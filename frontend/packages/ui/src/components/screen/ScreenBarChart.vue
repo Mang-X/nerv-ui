@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 /**
  * Screen — bar chart. 纵向柱状图（离散量的正确形态：小时流量/日产量这类
@@ -29,18 +29,21 @@ const VB_H = 140
 const PAD_T = 8
 const PAD_B = 4
 
-const n = computed(() => Math.max(1, ...props.series.map((s) => s.data.length)))
-const peak = computed(() => Math.max(1, ...props.series.flatMap((s) => s.data)))
+const n = computed(() => Math.max(0, ...props.series.map((s) => s.data.length)))
+const peak = computed(() =>
+  props.series.reduce((peak, s) => s.data.reduce((n, v) => Math.max(n, v), peak), 1),
+)
 
 /** 组内柱布局：槽宽 = 画布/n，柱占槽 62%（双序列各半），余为组间距 */
 const bars = computed(() => {
+  if (!n.value) return []
   const slot = VB_W / n.value
   const groupW = slot * 0.62
   const barW = groupW / props.series.length
   const out: { x: number; y: number; w: number; h: number; si: number; i: number }[] = []
   props.series.forEach((s, si) => {
     s.data.forEach((v, i) => {
-      const h = ((VB_H - PAD_T - PAD_B) * v) / peak.value
+      const h = (v / peak.value) * (VB_H - PAD_T - PAD_B)
       out.push({
         x: slot * i + (slot - groupW) / 2 + barW * si,
         y: VB_H - PAD_B - h,
@@ -58,7 +61,12 @@ const uid = Math.random().toString(36).slice(2, 8)
 
 // —— 悬停：按槽命中，整列高亮 + 信息卡；autoplay 自动巡显（用户悬停优先）——
 const svgEl = ref<SVGSVGElement>()
-const hover = ref<number | null>(null)
+const hoverX = ref<number | null>(null)
+const hover = computed(() =>
+  hoverX.value == null || !n.value
+    ? null
+    : Math.min(n.value - 1, Math.floor(hoverX.value * n.value)),
+)
 const auto = ref<number | null>(null)
 let timer: ReturnType<typeof setInterval> | undefined
 
@@ -66,27 +74,46 @@ function onMove(e: MouseEvent) {
   const svg = svgEl.value
   if (!svg) return
   const r = svg.getBoundingClientRect()
-  const i = Math.floor(((e.clientX - r.left) / r.width) * n.value)
-  hover.value = Math.max(0, Math.min(n.value - 1, i))
+  if (r.width) hoverX.value = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width))
+}
+const reduced = ref(false)
+let media: MediaQueryList | undefined
+function onMotion(e: MediaQueryListEvent) {
+  reduced.value = e.matches
+}
+function stop() {
+  if (timer !== undefined) clearInterval(timer)
+  timer = undefined
 }
 onMounted(() => {
-  if (!props.autoplay) return
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  timer = setInterval(() => {
-    if (hover.value != null) return // 用户交互中：暂停巡显
-    auto.value = ((auto.value ?? -1) + 1) % n.value
-  }, props.autoplayMs)
+  media = window.matchMedia('(prefers-reduced-motion: reduce)')
+  reduced.value = media.matches
+  media.addEventListener('change', onMotion)
+  watch(
+    [() => props.autoplay, () => props.autoplayMs, n, reduced],
+    () => {
+      stop()
+      auto.value = null
+      if (!props.autoplay || reduced.value || !n.value) return
+      timer = setInterval(() => {
+        if (hover.value != null) return
+        auto.value = ((auto.value ?? -1) + 1) % n.value
+      }, props.autoplayMs)
+    },
+    { immediate: true },
+  )
 })
 onBeforeUnmount(() => {
-  if (timer) clearInterval(timer)
+  stop()
+  media?.removeEventListener('change', onMotion)
 })
 
 const active = computed(() => hover.value ?? auto.value)
 const card = computed(() => {
   const i = active.value
-  if (i == null) return null
+  if (i == null || !n.value) return null
   const label = props.hoverLabels?.[i] ?? `#${i + 1}`
-  const vals = props.series.map((s) => ({ label: s.label, color: s.color, val: s.data[i] ?? 0 }))
+  const vals = props.series.map((s) => ({ label: s.label, color: s.color, val: s.data[i] ?? '—' }))
   const cx = ((i + 0.5) / n.value) * 100
   return { i, label, vals, cx, flip: cx > 55 }
 })
@@ -100,7 +127,7 @@ const card = computed(() => {
       :viewBox="`0 0 ${VB_W} ${VB_H}`"
       preserveAspectRatio="none"
       @mousemove="onMove"
-      @mouseleave="hover = null"
+      @mouseleave="hoverX = null"
     >
       <defs>
         <linearGradient
@@ -134,7 +161,7 @@ const card = computed(() => {
         :x="b.x"
         :y="b.y"
         :width="b.w"
-        :height="Math.max(0.5, b.h)"
+        :height="b.h"
         rx="1"
         :fill="`url(#sbBc-${uid}-${b.si})`"
       />
@@ -142,6 +169,7 @@ const card = computed(() => {
     <!-- 悬停信息卡：HTML overlay，逐序列读数 -->
     <div
       v-if="card"
+      role="tooltip"
       class="nv-scr-bc-card"
       :class="{ flip: card.flip }"
       :style="{ left: `${card.cx}%` }"
@@ -204,7 +232,11 @@ const card = computed(() => {
     display: flex;
     flex-direction: column;
     gap: 3px;
-    white-space: nowrap;
+    width: max-content;
+    max-width: calc(50% - 28px);
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: anywhere;
     pointer-events: none;
   }
   .nv-scr-bc-card.flip {

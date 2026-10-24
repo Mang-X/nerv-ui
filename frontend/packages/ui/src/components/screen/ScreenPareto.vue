@@ -20,7 +20,7 @@ const props = withDefaults(
   { total: undefined, unit: '件' },
 )
 
-const max = computed(() => Math.max(1, ...props.items.map((i) => i.count)))
+const max = computed(() => Math.max(0, ...props.items.map((i) => i.count)))
 /** 逐行累计占比（80/20 集中度直读） */
 const cums = computed(() => {
   let acc = 0
@@ -31,7 +31,7 @@ const cums = computed(() => {
 })
 const topSum = computed(() => cums.value.at(-1) ?? 0)
 const tailCount = computed(() =>
-  props.total ? props.total - props.items.reduce((n, i) => n + i.count, 0) : 0,
+  props.total != null ? props.total - props.items.reduce((n, i) => n + i.count, 0) : 0,
 )
 
 function tone(i: number): 't1' | 't2' | 't3' {
@@ -53,7 +53,7 @@ function tone(i: number): 't1' | 't2' | 't3' {
         <i
           class="nv-scr-pa-fill"
           :class="tone(i)"
-          :style="{ width: `${(it.count / max) * 100}%` }"
+          :style="{ width: `${max ? (it.count / max) * 100 : 0}%` }"
         />
         <i
           class="nv-scr-pa-cum-tick"
@@ -67,8 +67,8 @@ function tone(i: number): 't1' | 't2' | 't3' {
       <span
         >TOP{{ items.length }} 合计 <b>{{ topSum.toFixed(1) }}%</b></span
       >
-      <span v-if="total" class="nv-scr-pa-tail"
-        >长尾 {{ tailCount }} {{ unit }} · {{ (100 - topSum).toFixed(1) }}%</span
+      <span v-if="total != null" class="nv-scr-pa-tail"
+        >长尾 {{ tailCount }} {{ unit }} · {{ (total === 0 ? 0 : 100 - topSum).toFixed(1) }}%</span
       >
     </div>
   </div>
@@ -85,6 +85,7 @@ function tone(i: number): 't1' | 't2' | 't3' {
   .nv-scr-pa-head {
     display: flex;
     align-items: baseline;
+    flex-wrap: wrap;
     gap: 9px;
     min-width: 0;
     margin-bottom: 6px;
@@ -102,13 +103,12 @@ function tone(i: number): 't1' | 't2' | 't3' {
     color: var(--nv-scr-amber);
   }
   .nv-scr-pa-name {
-    flex: none;
+    flex: 0 1 auto;
+    max-width: 100%;
     font-size: 13.5px;
     font-weight: 600;
     color: var(--nv-scr-text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
     min-width: 0;
   }
   .nv-scr-pa-sub {

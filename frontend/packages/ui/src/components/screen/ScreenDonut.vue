@@ -23,18 +23,17 @@ const C = 2 * Math.PI * R
 /** 段间缝（弧长 px） */
 const GAP = 2.5
 
+// Normalize before summing: finite input values can have an overflowing sum.
+const peak = computed(() => props.segments.reduce((n, s) => Math.max(n, s.value), 0))
 const total = computed(() =>
-  Math.max(
-    1,
-    props.segments.reduce((n, s) => n + s.value, 0),
-  ),
+  peak.value > 0 ? props.segments.reduce((n, s) => n + s.value / peak.value, 0) : 0,
 )
 
 const arcs = computed(() => {
   let acc = 0
   const visible = props.segments.filter((s) => s.value > 0)
   return props.segments.map((s) => {
-    const frac = s.value / total.value
+    const frac = total.value > 0 ? s.value / peak.value / total.value : 0
     const len = Math.max(0, frac * C - (visible.length > 1 ? GAP : 0))
     const arc = { ...s, len, offset: -acc * C }
     acc += frac
@@ -140,9 +139,7 @@ const arcs = computed(() => {
   }
   .nv-scr-dn-l {
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
   }
   .nv-scr-dn-v {
     margin-left: auto;
