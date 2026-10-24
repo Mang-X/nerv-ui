@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileFeedbackDemo.test.ts (7 tests | 1 failed) 208ms
+   × shows badge count, cap, dot and a removable slot tag without inventing an unknown zero 27ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileFeedbackDemo.test.ts > shows badge count, cap, dot and a removable slot tag without inventing an unknown zero
+AssertionError: expected [ DOMWrapper{ …(3) } ] to have a length of +0 but got 1
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ src/MobileFeedbackDemo.test.ts:60:62
+     58|   await click('没有未读')
+     59|   expect(wrapper.get('[aria-label="提醒数值"]').text()).toBe('未读 0 条')
+     60|   expect(wrapper.get('[data-slot="badge"]').findAll('span')).toHaveLen…
+       |                                                              ^
+     61|   await wrapper.get('[aria-label="移除标签"]').trigger('click')
+     62|   expect(wrapper.get('[aria-label="标签回显"]').text()).toBe('已移除「周末」')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  23:54:01
+   Duration  6.84s (transform 4.27s, setup 569ms, import 5.38s, tests 208ms, environment 543ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileFeedbackDemo.test.ts

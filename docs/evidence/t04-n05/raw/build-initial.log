@@ -1,0 +1,16 @@
+$ pnpm typecheck && pnpm --filter @nerv-iip/playground build
+$ pnpm -r --workspace-concurrency=1 --if-present typecheck
+Scope: 3 of 4 workspace projects
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+src/mobile-feedback/FeedbackMedia.vue(26,252): error TS2322: Type '"ghost"' is not assignable to type 'Variant | undefined'.
+src/mobile-feedback/FeedbackMedia.vue(31,346): error TS2322: Type '"ghost"' is not assignable to type 'Variant | undefined'.
+src/mobile-feedback/FeedbackSignals.vue(33,35): error TS2322: Type '"ghost"' is not assignable to type 'Variant | undefined'.
+src/mobile-feedback/FeedbackSignals.vue(41,23): error TS2322: Type '"ghost"' is not assignable to type 'Variant | undefined'.
+src/mobile-feedback/FeedbackStates.vue(47,131): error TS2322: Type '"ghost"' is not assignable to type 'Variant | undefined'.
+/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 typecheck: `vue-tsc --noEmit -p tsconfig.json`
+Exit status 2
+[ELIFECYCLE] Command failed with exit code 2.
+[ELIFECYCLE] Command failed with exit code 2.

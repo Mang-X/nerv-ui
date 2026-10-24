@@ -5,6 +5,7 @@ import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 import MobileOverlayDemo from './MobileOverlayDemo.vue'
 import MobileListDemo from './MobileListDemo.vue'
+import MobileFeedbackDemo from './MobileFeedbackDemo.vue'
 import {
   NvApp,
   NvAppHeader,
@@ -77,13 +78,19 @@ function addProject() {
 </script>
 
 <template>
-  <MobileListDemo v-if="surface === '#mobile-lists'" />
+  <MobileFeedbackDemo v-if="surface === '#mobile-feedback'" />
+  <MobileListDemo v-else-if="surface === '#mobile-lists'" />
   <MobileOverlayDemo v-else-if="surface === '#mobile-overlays'" />
   <MobileInputDemo v-else-if="surface === '#mobile-input'" />
   <MobileDemo v-else-if="surface.startsWith('#mobile')" />
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a
+        href="#mobile-feedback"
+        class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
+        >片刻回响</a
+      >
       <a
         href="#mobile-lists"
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"

@@ -1,0 +1,36 @@
+docs/evidence/t04-n05/raw/baseline-mobile-pinned.log:32: new blank line at EOF.
+docs/evidence/t04-n05/raw/baseline-mobile.log:14: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round01.log:122: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round03-final-inspect.log:141: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round05-matrix.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round08-landscape-light.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round09-landscape-dark.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round10-portrait-dark.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round11-navigation.log:121: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round12-resources.log:78: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round13-hits.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round14-finish.log:3: new blank line at EOF.
+docs/evidence/t04-n05/raw/build-corrected.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n05/raw/build-corrected.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/build-corrected.log:33: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t04-n05/raw/build-corrected.log:42: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n05/raw/build-corrected.log:44: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/build-final.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n05/raw/build-final.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/build-final.log:33: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t04-n05/raw/build-final.log:42: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n05/raw/build-final.log:44: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/green-host-corrected.log:10: new blank line at EOF.
+docs/evidence/t04-n05/raw/host-green.log:18: new blank line at EOF.
+docs/evidence/t04-n05/raw/install.log:14: new blank line at EOF.
+docs/evidence/t04-n05/raw/public-corrected.log:10: new blank line at EOF.

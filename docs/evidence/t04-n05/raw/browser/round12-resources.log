@@ -1,0 +1,79 @@
+{ loaded: [ { url: 'http://127.0.0.1:4185/', status: 200, buildPath: 'index.html', bytes: 427, sha256: 'dde0583aba39161d2310a602e3a863ecbe658010c6a55e40e0dfb5d3c39ba8ae', equal: true, actualRequestObserved: true }, { url: 'http://127.0.0.1:4185/assets/index-DC4vscYU.js', status: 200, buildPath: 'assets/index-DC4vscYU.js', bytes: 514719, sha256: 'a1df32a7f5dd75e55a9050c1e19f4fc48b52b54134068bba57ec6340ab1822c2', equal: true, actualRequestObserved: true }, { url: 'http://127.0.0.1:4185/assets/index-dc5pfs4j.css', status: 200, buildPath: 'assets/index-dc5pfs4j.css', bytes: 229496, sha256: 'fa1d85e498a77fa3c796fa361e715925e2b4877b878b25d1470fdfb8136c0cf6', equal: true, actualRequestObserved: true }, { url: 'http://127.0.0.1:4185/media/portrait.svg', status: 200, buildPath: 'media/portrait.svg', bytes: 324, sha256: 'ce9f4ceb5ae5aca0c4a74c4f39df26f06e730d9de35bead980fa7b541dbdd6b8', equal: true, actualRequestObserved: true }, { url: 'http://127.0.0.1:4185/assets/inter-latin-wght-normal-Dx4kXJAl.woff2', status: 200, buildPath: 'assets/inter-latin-wght-normal-Dx4kXJAl.woff2', bytes: 48256, sha256: '3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62', equal: true, actualRequestObserved: true }, { url: 'http://127.0.0.1:4185/media/lake.svg', status: 200, buildPath: 'media/lake.svg', bytes: 415, sha256: 'db05eede3e86b7bfb1619215732aa6e4d358482dcd13045b96782ee80d220cac', equal: true, actualRequestObserved: true }, { url: 'http://127.0.0.1:4185/media/meadow.svg', status: 200, buildPath: 'media/meadow.svg', bytes: 390, sha256: 'e40a7cd50195f6f12cbcbe8523168ce7db21d55c23a436e7ea18bc8004b1fe3c', equal: true, actualRequestObserved: true } ], failures: [ { url: 'http://127.0.0.1:4185/media/missing-avatar.png', status: 200, headers: { 'cache-control': 'no-cache', 'content-type': 'text/html', date: 'Sat, 24 Oct 2026 16:05:50 GMT', etag: 'W/"1ab-dx0h5nZw98rbBiB/GZO3lMSfVTs"', vary: 'Origin' }, bytes: 427, sha256: 'dde0583aba39161d2310a602e3a863ecbe658010c6a55e40e0dfb5d3c39ba8ae', actualRequestObserved: true }, { url: 'http://127.0.0.1:4185/media/missing-landscape.png', status: 200, headers: { 'cache-control': 'no-cache', 'content-type': 'text/html', date: 'Sat, 24 Oct 2026 16:05:50 GMT', etag: 'W/"1ab-dx0h5nZw98rbBiB/GZO3lMSfVTs"', vary: 'Origin' }, bytes: 427, sha256: 'dde0583aba39161d2310a602e3a863ecbe658010c6a55e40e0dfb5d3c39ba8ae', actualRequestObserved: true } ], frontendTree: 'f28159b7e33184d6236b5a57985a05f52aef6da3' }
+[p1 "NvUI · 项目清单" | space "nerv-ui N05 feedback 20261024"(15): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "片刻回响"
+      button "切换明暗" [ref=328, loc=css:button[aria-label="切换明暗"]]
+        text "浅色"
+    container [ref=329]
+      container "每次回响都有回应"
+        container
+          button [ref=330]
+          button [ref=331]
+      container "轻轻提醒一下"
+        heading
+          text "轻轻提醒一下"
+        container
+          container
+            text "回响信箱"
+            text "7"
+          container
+            text "◇"
+            text "周末"
+            button "移除标签" [ref=332, loc=css:button[aria-label="移除标签"]]
+              svg_root
+          text "已读"
+        paragraph "提醒数值"
+          text "未读 7 条"
+        paragraph "标签回显"
+          text "周末标签已保留"
+        container
+          button [ref=333]
+            text "超过上限"
+          button [ref=334]
+            text "仅显示圆点"
+          button [ref=335]
+            text "没有未读"
+        container
+          button [ref=336]
+            text "短暂提示"
+          button [ref=337]
+            text "持续等待"
+          button [ref=338]
+            text "更新为成功"
+          button [ref=339]
+            text "失败提示"
+          button [ref=340]
+            text "延长提示"
+          button [ref=341]
+            text "关闭提示"
+        paragraph "提示状态"
+          text "已关闭"
+      container "把风景收入手记"
+        heading
+          text "把风景收入手记"
+        container
+          image
+          text "AR"
+          text "旅"
+          paragraph
+            text "与林悦一起，收藏日常"
+        container
+          button [ref=342]
+            text "损坏的头像"
+          button [ref=343]
+            text "恢复头像"
+        image
+        container
+          button [ref=344]
+            text "损坏的风景"
+          button [ref=345]
+            text "换一张风景"
+          button [ref=346]
+            text "回到湖畔"
+        paragraph "进度状态"
+          text "进度未知，等待开始"
+        container "手记内容加载中"
+
+

@@ -1,0 +1,9 @@
+preview_status: available=false
+preview_open: available=true tab_15_6faab953-90e1-4ff7-b4aa-20aa9696713e
+preview_resize first: Invalid parameters for tool 'preview_resize': Missing key at ["mode"]
+preview_resize second: Invalid parameters for tool 'preview_resize': Expected "fill" | "freeform" | "preset" at ["mode"]
+preview_resize corrected: setting freeform390x844, reported viewport1280x800
+preview_navigate: Navigation to http://127.0.0.1:4185/#mobile-feedback failed: ERR_CONNECTION_REFUSED (build not finished; server subsequently started)
+preview_snapshot attempt1: Preview automation snapshot timed out after 15000ms.
+preview_snapshot attempt2: Preview automation snapshot timed out after 15000ms.
+Fallback: read ego-browser SKILL and installed guide; single TaskSpace15/p1.

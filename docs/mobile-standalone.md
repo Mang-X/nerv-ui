@@ -120,3 +120,23 @@ N02 输入扫码接入见下文。后续 [#47](https://github.com/Mang-X/nerv-ui
 独立 R2 确认 F1/F2 修复有效后，另发现 F3：越阈值后撤回到或越过起点仍保留旧拉距，base/head 均可复现。本轮仅在该撤回分支清零拉距，保留同一指针再次拉动的资格；原断言、正式 RED/GREEN 与新 bundle 验证见 [F3 修复证据](evidence/t04-n04/f3/README.md)，整体待独立 R3。
 
 精确测试名、原始失败、fresh 浏览器输入方式、资源响应身份与限制见 [N04 证据](evidence/t04-n04/README.md)。本票不验收 N05/#49、#35 列表恢复、#11 版本化产物安装或物理触摸设备，不处理 #43/#51。
+
+## 反馈、状态与媒体（N05）
+
+[#49](https://github.com/Mang-X/nerv-ui/issues/49) 从 `/#mobile-feedback` 进入“片刻回响”，并与桌面、触屏、页壳、输入、浮层和列表六个既有入口往返。`MobileFeedbackDemo.vue` 组合三个宿主分片：`FeedbackStates.vue` 持有通知、收集请求与结果，`FeedbackSignals.vue` 持有徽标、标签和 toast，`FeedbackMedia.vue` 持有图片选择、手记加载与进度。全部使用裸包和既有公共 CSS，没有业务 SDK、相机、上传或新的依赖。
+
+| 公开件                                                  | 宿主交互与边界                                                                                                                                          |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NvNoticeBar`                                           | 默认 slot 中放通知文案、查看和关闭按钮；宿主 v-if 移除/恢复。组件只有 tone/default slot，没有新增 close/action API                                      |
+| `NvMobileResult`、`NvMobileEmpty`、`NvMobileErrorRetry` | 空态 icon/default slots、700ms 收集模拟、首次失败、pending 重试禁用及真实请求次数；重试成功与显式失败结果、actions slot；清空/结果替换/卸载取消旧任务   |
+| `NvMobileBadge`                                         | 未读 7、27 超出 max=9 显示 9+、点态代表数量未知、明确零时隐藏角标。未知从未当作有效 0                                                                   |
+| `NvMobileToast`                                         | 1200ms 自动隐藏、loading 持续等待、外部更新 success/error、2400ms 替换时限与宿主关闭；loading 不计时，message 单独变化沿用原期限，duration=0 不自动隐藏 |
+| `NvMobileAvatar`、`NvMobileTag`                         | 真实头像失败回退中文姓名、src 恢复、英文首字母与默认 slot；标签 slot、close 事件由宿主删除/恢复                                                         |
+| `NvMobileSkeleton`、`NvMobileProgress`                  | text/rect/circle 骨架与完成内容切换；有限进度 0/50/100，未知和失败以文案单列，不向 determinate API 传入无效数值                                         |
+| `NvMobileImage`                                         | 自有本地 SVG 风景、真实失败 URL、切换 src 恢复；保留 lazy/fit/radius/ratio，实际 HTTP 和加载状态由浏览器验证                                            |
+
+资源均为本票自绘 SVG：`public/media/{lake,meadow,portrait}.svg`。缺失 `.png` URL 刻意不提供文件，用于真实图片解码失败（当前 preview 对缺失路径返回 HTTP 200 的 SPA HTML，状态如实保留），未用手工 load/error 事件冒充浏览器加载。jsdom 的事件只证明组件对平台事件的响应。宿主的模拟数据、计时和资源选择不进入组件库；没有后台请求、进度测量或相机上传能力。
+
+库源码只有 `NvMobileTag` 窄修：真实浏览器基线测得关闭按钮 14×14px，与移动层 ≥44px 规则冲突。可关闭标签为按钮保留 44×44px，非关闭态 sm/md 保持原样，props/events/slots 和裸包导出不变。来源为 T01 固定提交 `79b1578f2b75f55709765b5e7882aaf33146c603`；其余十件组件源码与来源字节一致，migration/provenance 不改。旧库未回传，#14 接入时评估同步。
+
+测试名称、原始失败、四态截图、资源身份及 fresh/UNRUN 边界见 [N05 证据](evidence/t04-n05/README.md)。本组完成仍不关闭父 #5/#1；五组组合验收由 controller/独立 merger 接续。#35 列表恢复、#41 相机上传、#43/#51 独立缺陷、#11 packed 产物、物理设备与旧库接入均有各自 owner。

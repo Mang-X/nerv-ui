@@ -31,6 +31,7 @@ const { isDark, toggle } = useColorMode()
         <p class="text-sm text-muted-foreground">来信、书签与沿途的风景</p>
         <h1 class="text-2xl font-semibold">翻阅时光</h1>
         <nav aria-label="演示入口" class="flex flex-wrap gap-4 text-sm underline">
+          <a href="#mobile-feedback" class="inline-flex min-h-touch items-center">片刻回响</a>
           <a href="#mobile" class="inline-flex min-h-touch items-center">随行手记</a>
           <a href="#mobile-input" class="inline-flex min-h-touch items-center">随心记录</a>
           <a href="#mobile-overlays" class="inline-flex min-h-touch items-center">片刻安排</a>

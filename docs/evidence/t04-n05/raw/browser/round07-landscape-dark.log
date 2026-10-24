@@ -1,0 +1,15 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   2320,
++   1245
+-   844,
+-   390
+  ]
+
+    at record (file:///private/tmp/nerv-ui-t04-n05/browser/scenario-v2.mjs:7:59)
+    at async scenario (file:///private/tmp/nerv-ui-t04-n05/browser/scenario-v2.mjs:17:2)
+    at async file:////[eval2]:1:127
+
+ego's nodejs process exited with code 1.

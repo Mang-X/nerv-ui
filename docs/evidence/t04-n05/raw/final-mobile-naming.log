@@ -1,0 +1,10 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/packages/ui-mobile
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  00:00:16
+   Duration  6.71s (transform 4.21s, setup 0ms, import 5.85s, tests 4ms, environment 723ms)
+
+Could not parse CSS stylesheet

@@ -1,0 +1,57 @@
+{
+  "routes": [
+    {
+      "hash": "#desktop",
+      "heading": "让想法有序向前"
+    },
+    {
+      "hash": "#touch",
+      "heading": "共享阅读角"
+    },
+    {
+      "hash": "#mobile",
+      "heading": "周末随行"
+    },
+    {
+      "hash": "#mobile-input",
+      "heading": "随心记录"
+    },
+    {
+      "hash": "#mobile-overlays",
+      "heading": "片刻安排"
+    },
+    {
+      "hash": "#mobile-lists",
+      "heading": "翻阅时光"
+    }
+  ],
+  "cleanup": [
+    {
+      "delay": 700,
+      "before": {
+        "pending": 1,
+        "fired": 0
+      },
+      "pending": 0,
+      "fired": 0,
+      "toast": false,
+      "oldImageConnected": false,
+      "oldAvatarConnected": false,
+      "lateCallbacks": 0
+    },
+    {
+      "delay": 1200,
+      "before": {
+        "pending": 1,
+        "fired": 0
+      },
+      "pending": 0,
+      "fired": 0,
+      "toast": false,
+      "oldImageConnected": false,
+      "oldAvatarConnected": false,
+      "lateCallbacks": 0
+    }
+  ],
+  "input": "real Chromium anchor/button mouse actions; timer ledger observes actual set/clearTimeout, automatic hash navigation in microtask at scheduling boundary"
+}

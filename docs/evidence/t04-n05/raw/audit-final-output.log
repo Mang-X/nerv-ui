@@ -1,0 +1,15 @@
+{
+  base: '382e7641427cf2190ba39ea01229e28610aa113a',
+  frontendTree: 'f28159b7e33184d6236b5a57985a05f52aef6da3',
+  sourceTreeUnchangedSinceBuild: true,
+  frozenChanged: [],
+  onlyLibraryImplementationChanged: [ 'frontend/packages/ui-mobile/src/components/tag/Tag.vue' ],
+  dependencyInputs: 16,
+  mobile: { behavior: 127, naming: 6 },
+  ui: 644,
+  host: { behavior: 52, importContract: 28, total: 80 },
+  staticDocs: { mobile: 2, ui: 6 },
+  browser: { states: 4, groups: 28, syntheticTouch: 'UNRUN', physical: 'UNRUN' },
+  resources: { matched: 7, decodeFailure200Html: 2 },
+  independentMerger: 'UNRUN'
+}
