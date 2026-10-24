@@ -23,11 +23,11 @@ pnpm -C frontend --filter @nerv-iip/playground preview --port 4173 --strictPort
 
 初始 `frontend/DESIGN/governance.md` 只允许 `file-preview` 和 `test-support` 两个子入口，宿主还必须知道库内相对路径。独立消费不能延续该路径约束。本票新增以下稳定 CSS 入口，原组件入口不变：
 
-| 入口 | 用途 |
-| --- | --- |
-| `@nerv-iip/ui/styles.css` | 普通 Tailwind v4 宿主：层序、Tailwind、动画、shadcn 工具、字体/token、覆盖样式和包内 `@source` 一次接入 |
-| `@nerv-iip/ui/theme.css` | 自行组织样式的宿主引用 token、字体、基础与动效；保留原文件自身分层 |
-| `@nerv-iip/ui/overrides.css` | 自行决定覆盖层的宿主；内容仍故意不分层 |
+| 入口                         | 用途                                                                                                    |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `@nerv-iip/ui/styles.css`    | 普通 Tailwind v4 宿主：层序、Tailwind、动画、shadcn 工具、字体/token、覆盖样式和包内 `@source` 一次接入 |
+| `@nerv-iip/ui/theme.css`     | 自行组织样式的宿主引用 token、字体、基础与动效；保留原文件自身分层                                      |
+| `@nerv-iip/ui/overrides.css` | 自行决定覆盖层的宿主；内容仍故意不分层                                                                  |
 
 推荐入口 CSS：
 
@@ -52,14 +52,18 @@ pnpm -C frontend --filter @nerv-iip/playground preview --port 4173 --strictPort
 
 活动成员明确列为 `packages/ui`、`apps/playground`，根 TypeScript 配置只包含这两者，已去掉旧 app/API 路径 alias 和生成任务。暂不参与安装/聚合命令的目录及源码全部保留：
 
-| 成员 | 恢复责任 |
-| --- | --- |
+| 成员                  | 恢复责任                                     |
+| --------------------- | -------------------------------------------- |
 | `packages/scheduling` | #8：解除 api-client/business-core 耦合后恢复 |
-| `apps/design-system` | #10：全部文档站解耦后恢复 |
-| `packages/ui-mobile` | #5：移动独立运行时恢复 |
-| `packages/app-shell` | #9：应用壳与散落 UI 责任细拆后恢复 |
+| `apps/design-system`  | #10：全部文档站解耦后恢复                    |
+| `packages/ui-mobile`  | #5：移动独立运行时恢复                       |
+| `packages/app-shell`  | #9：应用壳与散落 UI 责任细拆后恢复           |
 
-lockfile 由当前活动集合裁剪，保留版本：与 T01 的 resolved package keys 比较，新增版本集合为 `[]`，移除 266 个不再可达的包。各候选 package.json 依赖版本未升级；恢复成员时从 T01/对应历史解析原锁定版本，不趁机升级依赖。
+lockfile 按当前活动集合保留来源解析。初版 `621ca3d8` 虽然新增 resolved package keys 为 `[]`，却把保留的 `wrap-ansi@7.0.0` 两条边改到来源中已存在的较新版本；这不是纯裁剪，独立审核 F1 已拒绝集成。keys-only 比较不能证明无升级，原失败记录保留。
+
+F1 修复恢复 `string-width@4.1.0`、`strip-ansi@6.0.0` 原边，以及它们需要的四个旧 package/snapshot。以 T01 integration `274d12ba` 的图、当前三个 importer 为根计算可达闭包：保留 **973 packages / 973 snapshots**，移除 **262** 个来源不可达节点；全部保留节点的 resolution、依赖/可选依赖、peer 上下文及其他字段无语义差异。另有五个 snapshot 仅新增 `optional:true` 分类标记，逐项列于证据，未改解析边。根/UI importer 不变，宿主仅新增公共 workspace 链接和来源 Vue 解析；本修复未新增 override，未重新 resolve。
+
+干净 frozen 安装同时核对安装 lock 与提交 lock 全对象相等，并从实际文件解析验证恢复链。复现命令、RED/GREEN 和历史 F1 见 [F1 证据](evidence/t02/f1/README.md)。各候选 package.json 依赖版本未升级；恢复成员时从 T01/对应历史解析原锁定版本，不趁机升级依赖。
 
 ## 测试责任分离
 

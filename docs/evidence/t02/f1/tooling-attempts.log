@@ -1,0 +1,11 @@
+Attempt 1 (exit 1): pnpm -C frontend exec vp fmt --write ../docs/...
+Error: `../docs/evidence/t02/f1/installed-green.json`: PATH must not contain ".."
+
+Attempt 2 (exit 1): frontend/node_modules/.bin/vp fmt --write docs/... (repository root)
+error: Package not found in workspace: `AbsolutePathBuf("/Users/mang/Project/nerv-ui-worktrees/t02-desktop")`
+
+Corrected: run pnpm -C frontend exec vp with absolute file paths; fresh fmt-check.log records exit 0. No source or lock changes from failed invocations.
+
+Initial lint (exit 0, 1 warning):
+/Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/compare-lock.mjs:17:28: warning eslint(no-unused-vars): Parameter 'optional' is declared but never used. Unused parameters should start with a '_'. help: Consider removing this parameter.
+The unused destructuring binding was renamed _optional; final lint is separate.

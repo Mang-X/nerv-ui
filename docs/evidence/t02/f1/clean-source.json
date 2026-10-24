@@ -1,0 +1,7 @@
+{
+  "trackedFrontendFiles": 1055,
+  "frontendContentSha256": "fb8e247ec5030f4f0f8338e6306a104c12ca0d30250fb24d17338269415be673",
+  "mismatches": [],
+  "pass": true,
+  "source": "git archive 621ca3d868f0cc34a35640cc011915029e19ca2d + repaired frontend/pnpm-lock.yaml; final source/config/test tracked bytes compared to clean directory"
+}

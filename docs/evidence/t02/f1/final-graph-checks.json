@@ -1,0 +1,17 @@
+{
+  "checks": [
+    {
+      "command": "node docs/evidence/t02/f1/compare-lock.mjs /tmp/nerv-ui-t02-f1-20261024/base-lock.yaml /tmp/nerv-ui-t02-f1-20261024/rejected-lock.yaml /tmp/nerv-ui-t02-f1-20261024/final-graph-red.json",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "reportMatches": true
+    },
+    {
+      "command": "node docs/evidence/t02/f1/compare-lock.mjs /tmp/nerv-ui-t02-f1-20261024/base-lock.yaml frontend/pnpm-lock.yaml /tmp/nerv-ui-t02-f1-20261024/final-graph-green.json",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "reportMatches": true
+    }
+  ],
+  "pass": true
+}

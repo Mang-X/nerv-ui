@@ -1,0 +1,81 @@
+{
+  "comparisons": [
+    {
+      "file": "assets/index-BW724V3r.css",
+      "previous": "bfdec8a0233292566ab0e0fffbebd754b7aa2dea769292e1125295fa67989188",
+      "fresh": "bfdec8a0233292566ab0e0fffbebd754b7aa2dea769292e1125295fa67989188",
+      "equal": true
+    },
+    {
+      "file": "assets/index-sm7qlm8U.js",
+      "previous": "d4eb4f99f102e05a6e9c302590ae6ce9fcce9532b98ca5bbbf5a804f15cac624",
+      "fresh": "d4eb4f99f102e05a6e9c302590ae6ce9fcce9532b98ca5bbbf5a804f15cac624",
+      "equal": true
+    },
+    {
+      "file": "assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2",
+      "previous": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+      "fresh": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+      "equal": true
+    },
+    {
+      "file": "assets/inter-cyrillic-wght-normal-DqGufNeO.woff2",
+      "previous": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+      "fresh": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+      "equal": true
+    },
+    {
+      "file": "assets/inter-greek-ext-wght-normal-DlzME5K_.woff2",
+      "previous": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+      "fresh": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+      "equal": true
+    },
+    {
+      "file": "assets/inter-greek-wght-normal-CkhJZR-_.woff2",
+      "previous": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+      "fresh": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+      "equal": true
+    },
+    {
+      "file": "assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2",
+      "previous": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "fresh": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "equal": true
+    },
+    {
+      "file": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "previous": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "fresh": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "equal": true
+    },
+    {
+      "file": "assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2",
+      "previous": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+      "fresh": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+      "equal": true
+    },
+    {
+      "file": "index.html",
+      "previous": "9372a5ea23214c344a946596c4f39bdc3d30db60be14d99c69739b4ea958a438",
+      "fresh": "9372a5ea23214c344a946596c4f39bdc3d30db60be14d99c69739b4ea958a438",
+      "equal": true
+    }
+  ],
+  "browserResponseComparisons": [
+    {
+      "file": "assets/index-sm7qlm8U.js",
+      "browser": "d4eb4f99f102e05a6e9c302590ae6ce9fcce9532b98ca5bbbf5a804f15cac624",
+      "fresh": "d4eb4f99f102e05a6e9c302590ae6ce9fcce9532b98ca5bbbf5a804f15cac624",
+      "equal": true
+    },
+    {
+      "file": "assets/index-BW724V3r.css",
+      "browser": "bfdec8a0233292566ab0e0fffbebd754b7aa2dea769292e1125295fa67989188",
+      "fresh": "bfdec8a0233292566ab0e0fffbebd754b7aa2dea769292e1125295fa67989188",
+      "equal": true
+    }
+  ],
+  "finalHtmlHttpMatches": true,
+  "pass": true,
+  "browserEvidence": "Inherited from 621ca3d868f0cc34a35640cc011915029e19ca2d; no fresh browser in F1 repair. Initial HTML formatter mismatch is retained in ../artifact-comparison.json."
+}
