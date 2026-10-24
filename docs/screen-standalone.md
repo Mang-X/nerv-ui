@@ -1,4 +1,4 @@
-# A01：独立大屏舞台与基础外壳
+# 独立大屏舞台与控件
 
 [#58](https://github.com/Mang-X/nerv-ui/issues/58) 落实批准 spec #1 的 A01：`NvScreenScaler`、`NvScreenPanel`、`NvBorderPanel`、`NvTechFrame`、`NvTitleBar`、`NvScreenHeader`、`NvGlowDivider`。公共名称、props/default、包名和许可保持兼容；父 #6 及后续 #59–#64 另行验收。
 
@@ -39,4 +39,14 @@ screen 按原合同固定深色，`--nv-scr-*` 不随外层 light/dark/brand 改
 
 A01 基于 integration `d9a5c22390090afce05cc74d731340ed5fe34cc3` / tree `bb0b68d1060b9e4a220c26a3042f8978644a8eb3`。7 件初始来源为 T01 固定 Nerv-IIP `79b1578f2b75f55709765b5e7882aaf33146c603`；活动改动仅 Scaler 的有限尺寸/容器测量/width 可达和 scale guard，其余六件实现原样复用。新增宿主与文档属于独立库；旧消费者尚未接入，不自动回写旧库，migration baseline 不改。
 
-未交付 A02–A07 的控件、指标、刷新、图表、表格、摘要；不复制 T08 背景、登录、墙或 dashboard recipe。不声称完整文档站 #10、packed/versioned #11、设备或旧库接入已经通过。实际 fresh/继承/FAIL/UNRUN、exact 对象与原始命令见本票证据。
+A03–A07 的指标、刷新、图表、表格、摘要由后续票交付；不复制 T08 背景、登录、墙或 dashboard recipe。不声称完整文档站 #10、packed/versioned #11、设备或旧库接入已经通过。实际 fresh/继承/FAIL/UNRUN、exact 对象与原始命令见本票证据。
+
+## A02：受控输入与空间安排
+
+[#59](https://github.com/Mang-X/nerv-ui/issues/59) 增加可刷新深链 `/#screen/controls`，由 ScreenDemo 按 section 串行挂载 `screen/ScreenControlsDemo.vue`；`/#screen` / `/#screen/stage`、原设置和七个旧表面返回入口保留。切回 stage 或其它表面会卸载 controls。
+
+本组只消费主桶中的七件既有控件及现有样式：Button、Input、Search、Select、Tabs、Segmented、Switch。宿主持有中性区域、空间列表、搜索、人数原始字符串、提醒和保存计数，不连接后端或权限 SDK。人数 `'0'` 有效，非法字符串显示错误；已选区域被删除时显示信息缺失并保留原始选择，空区域与无匹配搜索分别显示空态。区域 fixture 包含数字 `0` 与字符串 `'0'`，按严格身份匹配。
+
+左侧表单是可聚焦原生内滚区域，Panel 保持 overflow:hidden；Select 通过 body fixed 浮层展开。可操作“调整区域顺序”“切换长标签”“移除当前区域”“清空区域”“恢复区域”；这只改变 host 内存数据。暂停编辑禁用七件控件，区域安排按钮仍可用于恢复可选内容。
+
+Tabs 保持等宽槽位 ink；Segmented 根据按钮真实宽度定位 thumb。两者新增默认 false 的 disabled；旧 API/default/Nv 名称保留。Search 清除具有禁用 guard；Select 保留类型、动态安全与焦点，浮层重锚并在边界不足时向上展开；Switch 使用原生 click 避免额外 keydown 通道。Button/Input 实现无需变化。来源和每项公开测试、真实 browser/zoom、资源与未运行范围见 [A02 证据](evidence/t05-a02/README.md)。

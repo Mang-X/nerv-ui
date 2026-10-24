@@ -79,7 +79,7 @@ function addProject() {
 </script>
 
 <template>
-  <ScreenDemo v-if="surface.startsWith('#screen')" />
+  <ScreenDemo v-if="surface.startsWith('#screen')" :section="surface" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
   <MobileOverlayDemo v-else-if="surface === '#mobile-overlays'" />

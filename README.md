@@ -34,3 +34,5 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 [T04/N05 / #49](https://github.com/Mang-X/nerv-ui/issues/49) 的 11 件反馈、状态与媒体从 `/#mobile-feedback` 进入“片刻回响”。示例展示通知关闭、结果/空态/失败重试、徽标与标签、受控 toast、骨架与进度，以及真实本地图片成功/失败/src 恢复；六个既有入口均保留。接入与范围见 [移动接入](docs/mobile-standalone.md#反馈状态与媒体n05)，证据见 [N05 验证记录](docs/evidence/t04-n05/README.md)。父 #5 的组合验收单独进行。
 
 [T05/A01 / #58](https://github.com/Mang-X/nerv-ui/issues/58) 在 `/#screen`（兼容 `/#screen/stage`）提供“城市文化空间”的 7 件基础外壳舞台，支持 fit/width/stretch、设计尺寸与返回既有表面。接入与范围见 [独立大屏接入](docs/screen-standalone.md)，实际验证见 [A01 证据](docs/evidence/t05-a01/README.md)。其余大屏能力由 #59–#64 跟踪，父 #6 组合验收单列。
+
+[T05/A02 / #59](https://github.com/Mang-X/nerv-ui/issues/59) 从 `/#screen/controls` 进入“随心安排”，展示七件受控输入、选择与键盘控件；从同一设置栏返回空间舞台和全部既有表面。接入见 [独立大屏接入](docs/screen-standalone.md#a02受控输入与空间安排)，证据见 [A02 验证记录](docs/evidence/t05-a02/README.md)。父 #6 组合验收另行执行。

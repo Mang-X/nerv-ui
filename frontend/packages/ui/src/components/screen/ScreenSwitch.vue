@@ -8,16 +8,11 @@
  */
 const model = defineModel<boolean>({ default: false })
 
-withDefaults(defineProps<{ disabled?: boolean }>(), { disabled: false })
+const props = withDefaults(defineProps<{ disabled?: boolean }>(), { disabled: false })
 
 function toggle() {
+  if (props.disabled) return
   model.value = !model.value
-}
-function onKey(e: KeyboardEvent) {
-  if (e.key === ' ' || e.key === 'Enter') {
-    e.preventDefault()
-    toggle()
-  }
 }
 </script>
 
@@ -30,7 +25,6 @@ function onKey(e: KeyboardEvent) {
     :aria-checked="model"
     :disabled="disabled"
     @click="toggle"
-    @keydown="onKey"
   >
     <span class="nv-scr-sw-track">
       <span class="nv-scr-sw-handle" />

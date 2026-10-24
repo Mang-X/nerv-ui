@@ -72,3 +72,27 @@ it('keeps every schedule entry in a keyboard reachable region across collapse an
   }
   // jsdom proves state/content/focusability only. Browser evidence owns layout and scrolling.
 })
+
+it('opens only the completed controls section and unmounts its portal when returning to stage', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/controls' }, attachTo: document.body })
+  await nextTick()
+  expect(wrapper.get('h1').text()).toBe('寻找城市的一处停留')
+  expect(wrapper.get('a[href="#screen/controls"]').attributes('aria-current')).toBe('page')
+  await wrapper.get('[role="combobox"]').trigger('click')
+  expect(document.querySelector('[role="listbox"]')).not.toBeNull()
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.get('h1').text()).toBe('城市文化空间')
+  expect(document.querySelector('[role="listbox"]')).toBeNull()
+  expect(wrapper.find('[role="combobox"]').exists()).toBe(false)
+  for (const route of [
+    'desktop',
+    'touch',
+    'mobile',
+    'mobile-input',
+    'mobile-overlays',
+    'mobile-lists',
+    'mobile-feedback',
+  ]) {
+    expect(wrapper.find(`a[href="#${route}"]`).exists()).toBe(true)
+  }
+})
