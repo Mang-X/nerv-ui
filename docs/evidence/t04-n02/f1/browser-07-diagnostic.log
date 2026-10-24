@@ -1,0 +1,3 @@
+{ active: '<input type="text" inputmode="none" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="键入编码后按回车" class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground">', visibility: 'visible', focus: true, size: [ 2320, 1245 ], events: [ { type: 'focusin', key: null, trusted: true, target: 'INPUT' }, { type: 'input', key: null, trusted: true, target: 'INPUT' } ] }
+{ frames: [ 61352.2, 61401.6, 62401.9, 62435.5 ], visibility: 'visible', focus: true }
+

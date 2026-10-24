@@ -53,3 +53,20 @@ it('opens the standalone mobile shell directly and preserves desktop and touch e
   await wrapper.vm.$nextTick()
   expect(wrapper.get('h1').text()).toBe('共享阅读角')
 })
+
+it('opens mobile inputs directly and keeps the shell, desktop and touch routes reachable', async () => {
+  window.location.hash = '#mobile-input'
+  wrapper = mount(App, { attachTo: document.body })
+  expect(wrapper.get('h1').text()).toBe('随心记录')
+  expect(wrapper.get('a[href="#mobile"]').text()).toBe('随行手记')
+  for (const [hash, heading] of [
+    ['#mobile', '周末随行'],
+    ['#touch', '共享阅读角'],
+    ['#desktop', '让想法有序向前'],
+  ]) {
+    window.location.hash = hash!
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).toContain(heading)
+  }
+})

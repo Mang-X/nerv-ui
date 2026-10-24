@@ -1,0 +1,10 @@
+Error: JavaScript evaluation failed at line 0, column 0: TypeError: Cannot read properties of null (reading 'scrollIntoView')
+    at <anonymous>:2:51
+    at __egoPageEvaluate (<anonymous>:2:104)
+    at <anonymous>:3:9; expression: s=>document.querySelector(s).scrollIntoView({block:'center',behavior:'instant'})
+    at runtimeValue (file:////[eval1]:9189:15)
+    at evaluateInSession (file:////[eval1]:19460:12)
+    at async file:////[eval1]:19083:24
+    at async file:////[eval1]:16940:28
+
+ego's nodejs process exited with code 1.

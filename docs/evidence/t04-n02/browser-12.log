@@ -1,0 +1,49 @@
+click [data-scan-region] input
+click #note-title
+click button[aria-label="打开数值抽屉"]
+click #sheet-note
+click #sheet-number
+click [data-slot="number-keyboard"] button:nth-child(13)
+click [data-slot="number-keyboard"] button:nth-child(5)
+click [data-slot="number-keyboard"] button:nth-child(12)
+click [data-slot="number-keyboard"] button:nth-child(2)
+click [data-slot="number-keyboard"] button:nth-child(14)
+click [data-slot="number-keyboard"] button:nth-child(11)
+click button[aria-label="关闭数值抽屉"]
+{ name: 'portrait-light', viewport: [ 390, 844 ], keyCount: 14, allKeysHit: true, noOverflow: true, targets: 33, confirmed: '-05.2' }
+click button[aria-label="切换明暗"]
+click [data-scan-region] input
+click #note-title
+click button[aria-label="打开数值抽屉"]
+click #sheet-note
+click #sheet-number
+click [data-slot="number-keyboard"] button:nth-child(12)
+click [data-slot="number-keyboard"] button:nth-child(5)
+click [data-slot="number-keyboard"] button:nth-child(11)
+click button[aria-label="关闭数值抽屉"]
+{ name: 'portrait-dark', viewport: [ 390, 844 ], keyCount: 12, allKeysHit: true, noOverflow: true, targets: 33, confirmed: '05' }
+click button[aria-label="切换明暗"]
+click [data-scan-region] input
+click #note-title
+click button[aria-label="打开数值抽屉"]
+click #sheet-note
+click #sheet-number
+click [data-slot="number-keyboard"] button:nth-child(13)
+click [data-slot="number-keyboard"] button:nth-child(12)
+click [data-slot="number-keyboard"] button:nth-child(11)
+click button[aria-label="关闭数值抽屉"]
+{ name: 'landscape-light', viewport: [ 844, 390 ], keyCount: 13, allKeysHit: true, noOverflow: true, targets: 33, confirmed: '0X' }
+click button[aria-label="切换明暗"]
+click [data-scan-region] input
+click #note-title
+click button[aria-label="打开数值抽屉"]
+click #sheet-note
+click #sheet-number
+click [data-slot="number-keyboard"] button:nth-child(13)
+click [data-slot="number-keyboard"] button:nth-child(12)
+click [data-slot="number-keyboard"] button:nth-child(5)
+click [data-slot="number-keyboard"] button:nth-child(14)
+click [data-slot="number-keyboard"] button:nth-child(11)
+click button[aria-label="关闭数值抽屉"]
+{ name: 'landscape-dark', viewport: [ 844, 390 ], keyCount: 14, allKeysHit: true, noOverflow: true, targets: 33, confirmed: '-0.5' }
+

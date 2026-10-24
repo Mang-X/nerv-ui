@@ -1,0 +1,63 @@
+{
+  "base": "a20825e0477f446737a6bfc07d84b8ec20a143b6",
+  "baseTree": "b5878a6c46faac1384ec15bc5de3a5dea0908cfc",
+  "tests": [
+    {
+      "name": "ui-behavior",
+      "files": "43",
+      "tests": "644"
+    },
+    {
+      "name": "mobile-behavior",
+      "files": "13",
+      "tests": "75"
+    },
+    {
+      "name": "host-behavior-final",
+      "files": "5",
+      "tests": "32"
+    },
+    {
+      "name": "mobile-naming",
+      "files": "1",
+      "tests": "6"
+    },
+    {
+      "name": "mobile-static-docs",
+      "files": "1",
+      "tests": "2"
+    },
+    {
+      "name": "ui-static-docs",
+      "files": "3",
+      "tests": "6"
+    }
+  ],
+  "checks": {
+    "install": "fresh frozen pnpm 11.22.0; initially no node_modules",
+    "build": "fresh all three vue-tsc + playground build after final host focus fix",
+    "format": "9 changed source files PASS",
+    "lint": "9 changed source files PASS",
+    "manifests": "all 16 retained manifests/lock/workspace files full-byte unchanged",
+    "vue": "one physical Vue identity",
+    "browser": "fresh four CSS viewports/theme states, desktop Chromium UA, product dist responses byte-identical"
+  },
+  "unresolved": [
+    {
+      "issue": 51,
+      "kind": "inherited Reka rapid ArrowDown keyup race; failure retained, not fixed"
+    }
+  ],
+  "unrun": [
+    "physical PDA/scanner/IME device/system software-keyboard suppression certification",
+    "nonzero hardware safe-area values",
+    "CI",
+    "versioned package installation #11",
+    "N03–N05 complete acceptance",
+    "full docs host #10",
+    "original Nerv-IIP consumers/fullstack #14",
+    "#43 touch asChild"
+  ],
+  "inheritance": "T01 migration provenance and N01 approved package/CSS/shell/FAB baseline; no old dynamic pass reused as fresh",
+  "browserSynthetic": "only document burst in blur-to-RAF window uses synthetic KeyboardEvent (isTrusted=false); native text/click/key events recorded separately"
+}

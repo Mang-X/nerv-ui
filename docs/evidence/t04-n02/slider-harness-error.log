@@ -1,0 +1,55 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+ ❯ src/components/slider/MobileSlider.test.ts (2 tests | 2 failed) 15ms
+     × quantizes pointer drags, clamps both edges and uses updated range and controlled value 13ms
+     × stops an in-flight pointer edit when the host disables the slider and accepts a later re-enabled gesture 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/slider/MobileSlider.test.ts > NvMobileSlider public input > quantizes pointer drags, clamps both edges and uses updated range and controlled value
+TypeError: Cannot set property clientX of #<MouseEvent> which has only a getter
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1249:28
+ ❯ createDOMEvent ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1245:30
+ ❯ DOMWrapper.<anonymous> ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7216:31
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:56:71
+ ❯ __awaiter ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:52:12
+ ❯ DOMWrapper.trigger ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7209:16
+ ❯ src/components/slider/MobileSlider.test.ts:15:17
+     13|     vi.spyOn(track.element, 'getBoundingClientRect').mockReturnValue({…
+     14|     const thumb = wrapper.get('[role="slider"]')
+     15|     await track.trigger('pointerdown', { clientX: 65, pointerId: 1, bu…
+       |                 ^
+     16|     expect(thumb.attributes('aria-valuenow')).toBe('30')
+     17|     await track.trigger('pointermove', { clientX: 250, buttons: 1 })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/components/slider/MobileSlider.test.ts > NvMobileSlider public input > stops an in-flight pointer edit when the host disables the slider and accepts a later re-enabled gesture
+TypeError: Cannot set property clientX of #<MouseEvent> which has only a getter
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1249:28
+ ❯ createDOMEvent ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1245:30
+ ❯ DOMWrapper.<anonymous> ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7216:31
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:56:71
+ ❯ __awaiter ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:52:12
+ ❯ DOMWrapper.trigger ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7209:16
+ ❯ src/components/slider/MobileSlider.test.ts:38:17
+     36|     const track = wrapper.get('[data-slot="slider"] > div')
+     37|     vi.spyOn(track.element, 'getBoundingClientRect').mockReturnValue({…
+     38|     await track.trigger('pointerdown', { clientX: 60, pointerId: 1, bu…
+       |                 ^
+     39|     expect(wrapper.props('modelValue')).toBe(30)
+     40|     await wrapper.setProps({ disabled: true })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  18:49:55
+   Duration  3.54s (transform 2.23s, setup 0ms, import 3.12s, tests 15ms, environment 330ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/slider/MobileSlider.test.ts

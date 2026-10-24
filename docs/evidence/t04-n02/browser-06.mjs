@@ -1,0 +1,9 @@
+const {writeFile}=await import('node:fs/promises');const {default:assert}=await import('node:assert/strict');const {actions}=await import('file:///tmp/nerv-ui-t04-n02/browser-helpers.mjs');const task=await taskSpace(31);const page=task.page('p1');await page.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});const a=actions(page,390,844);
+await a.click('[role="radio"][value="desk"]');
+await page.cdp('Input.dispatchKeyEvent',{type:'rawKeyDown',key:'ArrowDown',code:'ArrowDown',windowsVirtualKeyCode:40});await a.settle();
+const beforeKeyUp=await page.evaluate(()=>({focus:document.activeElement.getAttribute('value'),selected:document.querySelector('[role="radio"][aria-checked="true"]').getAttribute('value')}));
+await page.cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowDown',code:'ArrowDown',windowsVirtualKeyCode:40});
+assert.deepEqual(beforeKeyUp,{focus:'pocket',selected:'pocket'});
+await a.click('button[aria-label="灵感提醒"]');await a.click('button[aria-label="锁定评分与进度"]');await a.click('[data-slot="slider"] [role="slider"]');await a.key('ArrowRight',39);assert.equal(await a.text('[aria-label="进度回显"]'),'90%');
+await a.click('button[aria-label="保存记录"]');assert.equal(await a.text('[aria-label="操作回显"]'),'已保存第 1 次 · 5 份 · 3.5 星 · 90%');await a.shot('portrait-form');
+const result={viewport:await a.size(),beforeKeyUp,scan:await a.text('[aria-label="扫码回显"]'),title:await a.text('[aria-label="标题回显"]'),search:await a.text('[aria-label="搜索结果"]'),preferences:await a.text('[aria-label="偏好回显"]'),action:await a.text('[aria-label="操作回显"]'),events:await page.evaluate(()=>window.__n02Events)};await writeFile('/tmp/nerv-ui-t04-n02/browser-input-form-final.json',JSON.stringify(result,null,2));console.log({...result,events:`${result.events.length} records`});

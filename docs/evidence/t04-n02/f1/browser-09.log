@@ -1,0 +1,5 @@
+AssertionError [ERR_ASSERTION]: sheet closes back to protected opener: focus button[aria-label="打开数值抽屉"]; actual <input type="text" inputmode="none" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="键入编码后按回车" class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground">
+    at Object.verify (file:///private/tmp/nerv-ui-t04-n02-f1/browser-helpers.mjs:18:110)
+    at async file:////[eval2]:3:11
+
+ego's nodejs process exited with code 1.

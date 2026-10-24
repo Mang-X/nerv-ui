@@ -1,0 +1,67 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileInputDemo.test.ts (2 tests | 1 failed) 53ms
+   × keeps selection identity through option reordering and external value changes 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileInputDemo.test.ts > keeps selection identity through option reordering and external value changes
+Error: Unable to get [role="radio"][value="desk"] within: <div class="flex h-dvh flex-col bg-background text-foreground">
+  <header data-shell="header" class="pt-safe px-safe sticky top-0 z-20 shrink-0 border-b border-border/70 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
+    <div data-slot="nav-bar" class="relative flex h-12 items-center justify-center gap-2 px-2">
+      <div class="absolute left-1 flex items-center">
+        <!--v-if-->
+      </div>
+      <div class="truncate px-12 text-base font-semibold">随心记录</div>
+      <div class="absolute right-1 flex items-center gap-1"><button type="button" aria-label="切换明暗" aria-pressed="false" class="size-11">深色</button></div>
+    </div>
+  </header>
+  <main data-shell="content" class="px-safe min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+    <div class="mx-auto max-w-2xl space-y-6 px-5 pt-5 pb-12">
+      <header class="space-y-2">
+        <p class="text-sm text-muted-foreground">留住生活里的小小灵感</p>
+        <h1 class="text-2xl font-semibold">随心记录</h1>
+        <nav aria-label="演示入口" class="flex flex-wrap gap-4 text-sm underline"><a href="#mobile" class="inline-flex min-h-touch items-center">随行手记</a><a href="#desktop" class="inline-flex min-h-touch items-center">桌面演示</a><a href="#touch" class="inline-flex min-h-touch items-center">触屏演示</a></nav>
+      </header>
+      <section aria-labelledby="words-heading" class="space-y-4 rounded-2xl border border-border bg-card p-4">
+        <h2 id="words-heading" class="text-lg font-semibold">写下灵感</h2><label for="note-title" class="block text-sm font-medium">标题</label>
+        <div data-v-ba322848="" data-slot="mobile-input" class="nv-m-minput flex h-11 items-center gap-2.5 rounded-xl border border-border bg-card px-3.5"><span data-v-ba322848="" class="flex shrink-0 items-center text-muted-foreground [&amp;_svg]:size-5">记</span><input data-v-ba322848="" data-slot="mobile-input-field" class="h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50" id="note-title" name="title" maxlength="24" autocomplete="off" placeholder="给今天起个名字"><span data-v-ba322848="" class="flex shrink-0 items-center text-muted-foreground [&amp;_svg]:size-5"><span class="whitespace-nowrap text-xs">0/24 字</span></span></div><output aria-label="标题回显" class="block text-sm text-muted-foreground">未命名 · 0 字</output>
+        <div data-v-f0486d0d="" data-slot="search-bar" class="flex items-center py-2 px-0">
+          <div data-v-f0486d0d="" class="min-h-touch flex flex-1 items-center gap-2 rounded-full bg-muted px-3.5"><svg data-v-f0486d0d="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search size-4 shrink-0 text-muted-foreground" aria-hidden="true">
+              <path d="m21 21-4.34-4.34"></path>
+              <circle cx="11" cy="11" r="8"></circle>
+            </svg><input data-v-f0486d0d="" type="search" placeholder="寻找湖畔、书屋或花园" aria-label="寻找去处" class="min-h-touch w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground [&amp;::-webkit-search-cancel-button]:hidden">
+            <transition-stub data-v-f0486d0d="" name="nv-m-sb-clear" appear="false" persisted="false" css="true">
+              <!--v-if-->
+            </transition-stub>
+          </div>
+          <div data-v-f0486d0d="" class="nv-m-sb-cancel"><button data-v-f0486d0d="" type="button" class="min-h-touch min-w-12 text-[15px] whitespace-nowrap text-brand active:opacity-60"> 取消 </button></div>
+        </div>
+        <p aria-label="搜索结果" class="text-sm">湖畔 · 书屋 · 花园</p><output aria-label="搜索事件" class="block text-xs text-muted-foreground">尚未搜索</output>
+      </section>
+    </div>
+  </main>
+  <!--v-if-->
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/MobileInputDemo.test.ts:37:17
+     35| it('keeps selection identity through option reordering and external va…
+     36|   wrapper = mount(MobileInputDemo, { attachTo: document.body })
+     37|   await wrapper.get('[role="radio"][value="desk"]').trigger('click')
+       |                 ^
+     38|   expect(wrapper.get('[aria-label="偏好回显"]').text()).toBe('书桌 · 提醒关 · 锁…
+     39|   await wrapper.get('button[aria-label="调整选项顺序"]').trigger('click')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  18:45:05
+   Duration  3.92s (transform 2.44s, setup 322ms, import 3.12s, tests 53ms, environment 345ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileInputDemo.test.ts

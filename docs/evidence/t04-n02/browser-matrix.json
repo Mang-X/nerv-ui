@@ -1,0 +1,1424 @@
+[
+  {
+    "name": "portrait-light",
+    "mode": "decimal",
+    "inputTitle": "portrait-light",
+    "scan": "1 次 · portrait-light",
+    "overlay": {
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "bodyBg": "oklch(0.985 0 0)",
+      "keyboardBg": "oklch(1 0 0)",
+      "keyboardRect": {
+        "x": 0,
+        "y": 541,
+        "width": 390,
+        "height": 303,
+        "bottom": 844
+      },
+      "sheetZ": "50",
+      "keyboardZ": "70",
+      "keys": [
+        {
+          "text": "1",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "2",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "3",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "4",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "5",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "6",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "7",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "8",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "9",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "删除",
+          "width": 90,
+          "height": 118,
+          "hit": true
+        },
+        {
+          "text": "收下数值",
+          "width": 90,
+          "height": 118,
+          "hit": true
+        },
+        {
+          "text": ".",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "0",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "±",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        }
+      ],
+      "focused": "sheet-number",
+      "value": "-05.2",
+      "docOverflow": false
+    },
+    "layout": {
+      "viewport": [
+        390,
+        844
+      ],
+      "docWidth": 390,
+      "main": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "clientHeight": 783,
+        "scrollHeight": 2449,
+        "overflowY": "auto"
+      },
+      "targets": [
+        {
+          "name": "切换明暗",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "随行手记",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "桌面演示",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "触屏演示",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "scan-enabled",
+          "width": 51,
+          "height": 31,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 262,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "number-mode",
+          "width": 316,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-number",
+          "width": 286,
+          "height": 42,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "清空数值",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "打开数值抽屉",
+          "width": 122,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "打开记录提示",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-title",
+          "width": 202.78125,
+          "height": 42,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "寻找去处",
+          "width": 264,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "减少",
+          "width": 32,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 44,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "增加",
+          "width": 32,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "1 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "2 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "3 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "4 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "5 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "保存记录",
+          "width": 316,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "清空标题",
+          "width": 76,
+          "height": 32,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "重新感受",
+          "width": 92,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "暂不可用",
+          "width": 92,
+          "height": 40,
+          "disabled": true,
+          "hit": false
+        },
+        {
+          "name": "随身",
+          "width": 314,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "书桌",
+          "width": 314,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "旅途",
+          "width": 314,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-reminder",
+          "width": 51,
+          "height": 31,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "锁定评分与进度",
+          "width": 316,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "调整选项顺序",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "恢复偏好",
+          "width": 92,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "portrait-dark",
+    "mode": "digits",
+    "inputTitle": "portrait-dark",
+    "scan": "1 次 · portrait-dark",
+    "overlay": {
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": true,
+      "bodyBg": "oklch(0.145 0 0)",
+      "keyboardBg": "oklch(0.205 0 0)",
+      "keyboardRect": {
+        "x": 0,
+        "y": 541,
+        "width": 390,
+        "height": 303,
+        "bottom": 844
+      },
+      "sheetZ": "50",
+      "keyboardZ": "70",
+      "keys": [
+        {
+          "text": "1",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "2",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "3",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "4",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "5",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "6",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "7",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "8",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "9",
+          "width": 90,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "删除",
+          "width": 90,
+          "height": 118,
+          "hit": true
+        },
+        {
+          "text": "收下数值",
+          "width": 90,
+          "height": 118,
+          "hit": true
+        },
+        {
+          "text": "0",
+          "width": 282,
+          "height": 56,
+          "hit": true
+        }
+      ],
+      "focused": "sheet-number",
+      "value": "05",
+      "docOverflow": false
+    },
+    "layout": {
+      "viewport": [
+        390,
+        844
+      ],
+      "docWidth": 390,
+      "main": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "clientHeight": 783,
+        "scrollHeight": 2449,
+        "overflowY": "auto"
+      },
+      "targets": [
+        {
+          "name": "切换明暗",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "随行手记",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "桌面演示",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "触屏演示",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "scan-enabled",
+          "width": 51,
+          "height": 31,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 262,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "number-mode",
+          "width": 316,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-number",
+          "width": 286,
+          "height": 42,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "清空数值",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "打开数值抽屉",
+          "width": 122,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "打开记录提示",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-title",
+          "width": 203.125,
+          "height": 42,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "寻找去处",
+          "width": 264,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "减少",
+          "width": 32,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 44,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "增加",
+          "width": 32,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "1 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "2 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "3 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "4 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "5 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "保存记录",
+          "width": 316,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "清空标题",
+          "width": 76,
+          "height": 32,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "重新感受",
+          "width": 92,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "暂不可用",
+          "width": 92,
+          "height": 40,
+          "disabled": true,
+          "hit": false
+        },
+        {
+          "name": "随身",
+          "width": 314,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "书桌",
+          "width": 314,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "旅途",
+          "width": 314,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-reminder",
+          "width": 51,
+          "height": 31,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "锁定评分与进度",
+          "width": 316,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "调整选项顺序",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "恢复偏好",
+          "width": 92,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "landscape-light",
+    "mode": "code",
+    "inputTitle": "landscape-light",
+    "scan": "1 次 · landscape-light",
+    "overlay": {
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": false,
+      "bodyBg": "oklch(0.985 0 0)",
+      "keyboardBg": "oklch(1 0 0)",
+      "keyboardRect": {
+        "x": 0,
+        "y": 87,
+        "width": 844,
+        "height": 303,
+        "bottom": 390
+      },
+      "sheetZ": "50",
+      "keyboardZ": "70",
+      "keys": [
+        {
+          "text": "1",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "2",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "3",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "4",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "5",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "6",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "7",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "8",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "9",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "删除",
+          "width": 203.5,
+          "height": 118,
+          "hit": true
+        },
+        {
+          "text": "收下数值",
+          "width": 203.5,
+          "height": 118,
+          "hit": true
+        },
+        {
+          "text": "X",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "0",
+          "width": 413,
+          "height": 56,
+          "hit": true
+        }
+      ],
+      "focused": "sheet-number",
+      "value": "0X",
+      "docOverflow": false
+    },
+    "layout": {
+      "viewport": [
+        844,
+        390
+      ],
+      "docWidth": 844,
+      "main": {
+        "clientWidth": 844,
+        "scrollWidth": 844,
+        "clientHeight": 329,
+        "scrollHeight": 2414,
+        "overflowY": "auto"
+      },
+      "targets": [
+        {
+          "name": "切换明暗",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "随行手记",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "桌面演示",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "触屏演示",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "scan-enabled",
+          "width": 51,
+          "height": 31,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 544,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "number-mode",
+          "width": 598,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-number",
+          "width": 568,
+          "height": 42,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "清空数值",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "打开数值抽屉",
+          "width": 122,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "打开记录提示",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-title",
+          "width": 485.4140625,
+          "height": 42,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "寻找去处",
+          "width": 546,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "减少",
+          "width": 32,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 44,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "增加",
+          "width": 32,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "1 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "2 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "3 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "4 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "5 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "保存记录",
+          "width": 598,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "清空标题",
+          "width": 76,
+          "height": 32,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "重新感受",
+          "width": 92,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "暂不可用",
+          "width": 92,
+          "height": 40,
+          "disabled": true,
+          "hit": false
+        },
+        {
+          "name": "随身",
+          "width": 596,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "书桌",
+          "width": 596,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "旅途",
+          "width": 596,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-reminder",
+          "width": 51,
+          "height": 31,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "锁定评分与进度",
+          "width": 598,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "调整选项顺序",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "恢复偏好",
+          "width": 92,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "landscape-dark",
+    "mode": "decimal",
+    "inputTitle": "landscape-dark",
+    "scan": "1 次 · landscape-dark",
+    "overlay": {
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "bodyBg": "oklch(0.145 0 0)",
+      "keyboardBg": "oklch(0.205 0 0)",
+      "keyboardRect": {
+        "x": 0,
+        "y": 87,
+        "width": 844,
+        "height": 303,
+        "bottom": 390
+      },
+      "sheetZ": "50",
+      "keyboardZ": "70",
+      "keys": [
+        {
+          "text": "1",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "2",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "3",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "4",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "5",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "6",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "7",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "8",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "9",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "删除",
+          "width": 203.5,
+          "height": 118,
+          "hit": true
+        },
+        {
+          "text": "收下数值",
+          "width": 203.5,
+          "height": 118,
+          "hit": true
+        },
+        {
+          "text": ".",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "0",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        },
+        {
+          "text": "±",
+          "width": 203.5,
+          "height": 56,
+          "hit": true
+        }
+      ],
+      "focused": "sheet-number",
+      "value": "-0.5",
+      "docOverflow": false
+    },
+    "layout": {
+      "viewport": [
+        844,
+        390
+      ],
+      "docWidth": 844,
+      "main": {
+        "clientWidth": 844,
+        "scrollWidth": 844,
+        "clientHeight": 329,
+        "scrollHeight": 2414,
+        "overflowY": "auto"
+      },
+      "targets": [
+        {
+          "name": "切换明暗",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "随行手记",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "桌面演示",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "触屏演示",
+          "width": 56,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "scan-enabled",
+          "width": 51,
+          "height": 31,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 544,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "number-mode",
+          "width": 598,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-number",
+          "width": 568,
+          "height": 42,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "清空数值",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "打开数值抽屉",
+          "width": 122,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "打开记录提示",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-title",
+          "width": 484.78125,
+          "height": 42,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "寻找去处",
+          "width": 546,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "减少",
+          "width": 32,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 44,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "增加",
+          "width": 32,
+          "height": 30,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "1 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "2 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "3 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "4 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "5 星",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "",
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "保存记录",
+          "width": 598,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "清空标题",
+          "width": 76,
+          "height": 32,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "重新感受",
+          "width": 92,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "暂不可用",
+          "width": 92,
+          "height": 40,
+          "disabled": true,
+          "hit": false
+        },
+        {
+          "name": "随身",
+          "width": 596,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "书桌",
+          "width": 596,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "旅途",
+          "width": 596,
+          "height": 48,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "note-reminder",
+          "width": 51,
+          "height": 31,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "锁定评分与进度",
+          "width": 598,
+          "height": 44,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "调整选项顺序",
+          "width": 94,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        },
+        {
+          "name": "恢复偏好",
+          "width": 92,
+          "height": 40,
+          "disabled": false,
+          "hit": true
+        }
+      ]
+    }
+  }
+]

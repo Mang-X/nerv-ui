@@ -1,0 +1,94 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileInputDemo.test.ts (4 tests | 1 failed) 263ms
+   × keeps selection identity through option reordering and external value changes 65ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileInputDemo.test.ts > keeps selection identity through option reordering and external value changes
+AssertionError: expected <input type="text" …(6)></input> to be <button role="radio" …(11)>…(2)</button> // Object.is equality
+
+- Expected
++ Received
+
+- <button
+-   aria-checked="true"
+-   class="nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40"
+-   data-active=""
+-   data-reka-collection-item=""
+-   data-slot="mobile-radio-item"
+-   data-state="checked"
+-   data-v-064a213b=""
+-   required="false"
+-   role="radio"
+-   tabindex="0"
+-   type="button"
+-   value="pocket"
+- >
+-   
+-   
+-   <span
+-     data-v-064a213b=""
+-   >
+-     
+-     随身
+-     
+-   </span>
+-   <span
+-     data-state="checked"
+-     data-v-064a213b=""
+-   >
+-     
+-     <svg
+-       aria-hidden="true"
+-       class="lucide lucide-check-icon lucide-check nv-m-mradio-tick size-5 text-brand"
+-       data-v-064a213b=""
+-       fill="none"
+-       height="24"
+-       stroke="currentColor"
+-       stroke-linecap="round"
+-       stroke-linejoin="round"
+-       stroke-width="2"
+-       viewBox="0 0 24 24"
+-       width="24"
+-       xmlns="http://www.w3.org/2000/svg"
+-     >
+-       <path
+-         d="M20 6 9 17l-5-5"
++ <input
++   autocapitalize="off"
++   autocomplete="off"
++   class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"
++   inputmode="none"
++   placeholder="键入编码后按回车"
++   spellcheck="false"
++   type="text"
+  />
+-     </svg>
+-     
+-   </span>
+-   
+-   
+- </button>
+
+ ❯ src/MobileInputDemo.test.ts:99:34
+     97|   // Reka defers roving-focus navigation to the next task.
+     98|   await new Promise((resolve) => setTimeout(resolve, 0))
+     99|   expect(document.activeElement).toBe(wrapper.get('[role="radio"][valu…
+       |                                  ^
+    100|   expect(wrapper.get('[role="radio"][aria-checked="true"]').attributes…
+    101|   await wrapper.get('[role="switch"][aria-label="灵感提醒"]').trigger('cli…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  18:46:49
+   Duration  4.74s (transform 2.69s, setup 455ms, import 3.53s, tests 263ms, environment 391ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileInputDemo.test.ts

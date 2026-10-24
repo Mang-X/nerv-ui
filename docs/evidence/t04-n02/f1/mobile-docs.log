@@ -1,0 +1,11 @@
+$ vp test run src/nvui-doc-coverage.contract.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  19:40:21
+   Duration  5.80s (transform 3.66s, setup 0ms, import 5.23s, tests 10ms, environment 448ms)
+

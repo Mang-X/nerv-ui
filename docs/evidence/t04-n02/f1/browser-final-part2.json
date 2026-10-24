@@ -1,0 +1,121 @@
+[
+  {
+    "name": "new round starts at scanner",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input type=\"text\" inputmode=\"none\" autocomplete=\"off\" autocapitalize=\"off\" spellcheck=\"false\" placeholder=\"键入编码后按回车\" class=\"w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground\">",
+    "activeId": "",
+    "activeLabel": null,
+    "status": "扫码接收中",
+    "draft": "手工草稿F1",
+    "number": "01",
+    "confirm": "confirm：01",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Tab to reminder action",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"打开记录提示\">留个提醒</button>",
+    "activeId": "",
+    "activeLabel": "打开记录提示",
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "01",
+    "confirm": "confirm：01",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Enter opens reminder and yields focus",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"dialog-note\" autocomplete=\"off\" placeholder=\"稍后想做的事\">",
+    "activeId": "dialog-note",
+    "activeLabel": null,
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "01",
+    "confirm": "confirm：01",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": true
+  },
+  {
+    "name": "dialog returns to protected opener",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"打开记录提示\">留个提醒</button>",
+    "activeId": "",
+    "activeLabel": "打开记录提示",
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "01",
+    "confirm": "confirm：01",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "leaving action resumes scanner with manual draft",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input type=\"text\" inputmode=\"none\" autocomplete=\"off\" autocapitalize=\"off\" spellcheck=\"false\" placeholder=\"键入编码后按回车\" class=\"w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground\">",
+    "activeId": "",
+    "activeLabel": null,
+    "status": "扫码接收中",
+    "draft": "手工草稿F1",
+    "number": "01",
+    "confirm": "confirm：01",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Tab to standalone readonly trigger",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"note-number\" readonly=\"\" inputmode=\"none\" autocomplete=\"off\" placeholder=\"点此录入\">",
+    "activeId": "note-number",
+    "activeLabel": null,
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "01",
+    "confirm": "confirm：01",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "standalone keypad confirmation resumes scanner",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input type=\"text\" inputmode=\"none\" autocomplete=\"off\" autocapitalize=\"off\" spellcheck=\"false\" placeholder=\"键入编码后按回车\" class=\"w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground\">",
+    "activeId": "",
+    "activeLabel": null,
+    "status": "扫码接收中",
+    "draft": "手工草稿F1",
+    "number": "0123",
+    "confirm": "confirm：0123",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  }
+]
