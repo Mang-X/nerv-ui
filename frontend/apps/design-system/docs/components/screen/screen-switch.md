@@ -21,10 +21,10 @@ const alarm = ref(false)
 <ScreenDemo>
   <div style="display:flex;align-items:center;gap:24px">
     <label style="display:flex;align-items:center;gap:10px;color:var(--nv-scr-text-2);font-size:14px">
-      <NvScreenSwitch v-model="auto" /> 自动排产
+      <NvScreenSwitch v-model="auto" /> 到访提醒
     </label>
     <label style="display:flex;align-items:center;gap:10px;color:var(--nv-scr-text-2);font-size:14px">
-      <NvScreenSwitch v-model="alarm" /> 声光报警
+      <NvScreenSwitch v-model="alarm" /> 活动提醒
     </label>
   </div>
 </ScreenDemo>
@@ -34,7 +34,7 @@ const alarm = ref(false)
 const auto = ref(true)
 </script>
 
-<template><NvScreenSwitch v-model="auto" /> 自动排产</template>
+<template><NvScreenSwitch v-model="auto" /> 到访提醒</template>
 ```
 
 ## 禁用态
@@ -59,3 +59,7 @@ const auto = ref(true)
 | ---------- | -------- | --------- | ------- |
 | `v-model`  | 开关状态 | `boolean` | `false` |
 | `disabled` | 禁用     | `boolean` | `false` |
+
+## 键盘与事件
+
+使用原生 button 的 click 激活通道：鼠标、Space、Enter 每次激活只更新一次 `update:modelValue`（boolean）。不叠加自定义 keydown 切换。`disabled` 同时使用原生属性和处理器 guard。请通过可见 label 或 `aria-label` / `aria-labelledby` 提供名称；提醒、声音等业务动作由宿主实现。

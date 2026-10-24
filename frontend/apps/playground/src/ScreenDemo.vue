@@ -2,6 +2,10 @@
 import { computed, shallowRef } from 'vue'
 import { NvScreenScaler, useColorMode, useTheme, type ScaleMode } from '@nerv-iip/ui'
 import ScreenStageDemo from './screen/ScreenStageDemo.vue'
+import ScreenControlsDemo from './screen/ScreenControlsDemo.vue'
+
+const props = defineProps<{ section?: string }>()
+const controls = computed(() => props.section === '#screen/controls')
 
 const mode = shallowRef<ScaleMode>('fit')
 const design = shallowRef('1920x1080')
@@ -17,7 +21,8 @@ const { theme, setTheme } = useTheme()
   <div class="screen-demo">
     <div class="screen-demo-tools">
       <nav aria-label="显示表面" class="screen-demo-nav">
-        <a href="#screen/stage" aria-current="page">空间舞台</a>
+        <a href="#screen/stage" :aria-current="!controls ? 'page' : undefined">空间舞台</a>
+        <a href="#screen/controls" :aria-current="controls ? 'page' : undefined">随心安排</a>
         <a href="#desktop">桌面演示</a>
         <a href="#touch">触屏演示</a>
         <a href="#mobile">移动演示</a>
@@ -71,9 +76,10 @@ const { theme, setTheme } = useTheme()
         :design-height="dimensions.height"
         :mode="mode"
         tabindex="0"
-        aria-label="城市文化空间舞台"
+        :aria-label="controls ? '城市空间控件舞台' : '城市文化空间舞台'"
       >
-        <ScreenStageDemo />
+        <ScreenControlsDemo v-if="controls" />
+        <ScreenStageDemo v-else />
       </NvScreenScaler>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Check, ChevronDown } from '@lucide/vue'
-import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, useId, watch } from 'vue'
 
 /**
  * Screen — big-board select. A dark trigger that drops a glowing panel of options
@@ -35,47 +35,75 @@ const open = ref(false)
 const root = ref<HTMLElement>()
 const trigger = ref<HTMLElement>()
 const panel = ref<HTMLElement>()
-const active = ref(-1)
-const pos = ref({ left: 0, top: 0, width: 0 })
+const activeValue = ref<Value>()
+const listId = useId()
+const active = computed(() =>
+  props.options.findIndex((option) => option.value === activeValue.value),
+)
+const pos = ref({ left: 0, top: 0, width: 0, maxHeight: 264 })
+let observer: ResizeObserver | undefined
 
 const selected = computed(() => props.options.find((o) => o.value === model.value))
 
 /** Anchor the teleported panel just under the trigger, in viewport coords. */
 function place() {
   const el = trigger.value
-  if (!el) return
+  if (!el || !open.value) return
   const r = el.getBoundingClientRect()
-  pos.value = { left: r.left, top: r.bottom + 6, width: r.width }
+  const gap = 6
+  const width = Math.min(r.width, Math.max(0, window.innerWidth - gap * 2))
+  const below = Math.max(0, window.innerHeight - r.bottom - gap * 2)
+  const above = Math.max(0, r.top - gap * 2)
+  const naturalHeight = panel.value ? panel.value.scrollHeight + 2 : 264
+  const upwards = below < Math.min(264, naturalHeight) && above > below
+  const maxHeight = Math.min(264, upwards ? above : below)
+  const height = Math.min(
+    panel.value?.offsetHeight || panel.value?.scrollHeight || maxHeight,
+    maxHeight,
+  )
+  pos.value = {
+    left: Math.max(gap, Math.min(r.left, window.innerWidth - width - gap)),
+    top: upwards ? Math.max(gap, r.top - gap - height) : Math.max(gap, r.bottom + gap),
+    width,
+    maxHeight,
+  }
+}
+function schedulePlace() {
+  nextTick(place)
 }
 function toggle() {
   if (props.disabled) return
   open.value = !open.value
 }
 function pick(v: Value) {
+  if (props.disabled || !props.options.some((option) => option.value === v)) return
   model.value = v
   open.value = false
+  trigger.value?.focus({ preventScroll: true })
 }
 function onKey(e: KeyboardEvent) {
   if (props.disabled) return
-  if (e.key === 'Escape') {
+  if (e.key === 'Escape' || e.key === 'Tab') {
     open.value = false
     return
   }
-  if (!open.value && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown')) {
+  if (!open.value && ['Enter', ' ', 'ArrowDown', 'ArrowUp'].includes(e.key)) {
     e.preventDefault()
     toggle()
     return
   }
   if (!open.value) return
-  if (e.key === 'ArrowDown') {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
     e.preventDefault()
-    active.value = Math.min(props.options.length - 1, active.value + 1)
-  } else if (e.key === 'ArrowUp') {
+    const next =
+      e.key === 'ArrowDown'
+        ? Math.min(props.options.length - 1, active.value + 1)
+        : Math.max(0, active.value - 1)
+    activeValue.value = props.options[next]?.value
+  } else if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault()
-    active.value = Math.max(0, active.value - 1)
-  } else if (e.key === 'Enter') {
-    e.preventDefault()
-    if (active.value >= 0) pick(props.options[active.value].value)
+    const option = props.options[active.value]
+    if (option) pick(option.value)
   }
 }
 function onDocPointer(e: MouseEvent) {
@@ -86,21 +114,47 @@ function onDocPointer(e: MouseEvent) {
 
 watch(open, (v) => {
   if (v) {
-    place()
-    active.value = props.options.findIndex((o) => o.value === model.value)
+    nextTick(() => {
+      if (!open.value) return
+      place()
+      if (typeof ResizeObserver !== 'undefined') {
+        observer = new ResizeObserver(schedulePlace)
+        if (trigger.value) observer.observe(trigger.value)
+        if (panel.value) observer.observe(panel.value)
+      }
+    })
+    activeValue.value = selected.value?.value ?? props.options[0]?.value
     document.addEventListener('pointerdown', onDocPointer, true)
-    window.addEventListener('scroll', place, true)
-    window.addEventListener('resize', place)
+    window.addEventListener('scroll', schedulePlace, true)
+    window.addEventListener('resize', schedulePlace)
   } else {
+    observer?.disconnect()
+    observer = undefined
     document.removeEventListener('pointerdown', onDocPointer, true)
-    window.removeEventListener('scroll', place, true)
-    window.removeEventListener('resize', place)
+    window.removeEventListener('scroll', schedulePlace, true)
+    window.removeEventListener('resize', schedulePlace)
   }
 })
+watch(
+  () => props.options,
+  () => {
+    if (active.value < 0) activeValue.value = selected.value?.value ?? props.options[0]?.value
+    if (open.value) schedulePlace()
+  },
+  { deep: true },
+)
+watch(
+  () => props.disabled,
+  (disabled) => {
+    if (disabled) open.value = false
+  },
+)
 onBeforeUnmount(() => {
+  open.value = false
+  observer?.disconnect()
   document.removeEventListener('pointerdown', onDocPointer, true)
-  window.removeEventListener('scroll', place, true)
-  window.removeEventListener('resize', place)
+  window.removeEventListener('scroll', schedulePlace, true)
+  window.removeEventListener('resize', schedulePlace)
 })
 </script>
 
@@ -113,6 +167,8 @@ onBeforeUnmount(() => {
       role="combobox"
       aria-haspopup="listbox"
       :aria-expanded="open"
+      :aria-controls="open ? listId : undefined"
+      :aria-activedescendant="open && active >= 0 ? `${listId}-${active}` : undefined"
       :disabled="disabled"
       @click="toggle"
       @keydown="onKey"
@@ -129,17 +185,24 @@ onBeforeUnmount(() => {
         ref="panel"
         class="nv-scr-sel-panel nv-scr-scroll"
         role="listbox"
-        :style="{ left: `${pos.left}px`, top: `${pos.top}px`, width: `${pos.width}px` }"
+        :id="listId"
+        :style="{
+          left: `${pos.left}px`,
+          top: `${pos.top}px`,
+          width: `${pos.width}px`,
+          maxHeight: `${pos.maxHeight}px`,
+        }"
       >
         <li
           v-for="(o, i) in options"
-          :key="String(o.value)"
+          :key="`${typeof o.value}:${o.value}`"
+          :id="`${listId}-${i}`"
           class="nv-scr-sel-opt"
           role="option"
           :class="{ on: o.value === model, active: i === active }"
           :aria-selected="o.value === model"
           @click="pick(o.value)"
-          @mousemove="active = i"
+          @mousemove="activeValue = o.value"
         >
           <span>{{ o.label }}</span>
           <Check v-if="o.value === model" class="nv-scr-sel-check" :size="15" />
@@ -212,6 +275,8 @@ onBeforeUnmount(() => {
   /* teleported to <body> — fixed so no ancestor overflow can clip it */
   .nv-scr-sel-panel {
     position: fixed;
+    box-sizing: border-box;
+    color-scheme: dark;
     z-index: 1000;
     margin: 0;
     padding: 5px;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 /**
  * Screen — big-board segmented control (今日 / 近7天 / 近30天). A hairline-framed
@@ -12,13 +12,17 @@ type Value = string | number
 
 const model = defineModel<Value>()
 
-const props = withDefaults(defineProps<{ options?: { label: string; value: Value }[] }>(), {
-  options: () => [
-    { label: '今日', value: 'today' },
-    { label: '近7天', value: '7d' },
-    { label: '近30天', value: '30d' },
-  ],
-})
+const props = withDefaults(
+  defineProps<{ options?: { label: string; value: Value }[]; disabled?: boolean }>(),
+  {
+    disabled: false,
+    options: () => [
+      { label: '今日', value: 'today' },
+      { label: '近7天', value: '7d' },
+      { label: '近30天', value: '30d' },
+    ],
+  },
+)
 
 // default to the first option when unbound so a zero-prop render still highlights
 if (model.value === undefined && props.options.length) {
@@ -26,48 +30,83 @@ if (model.value === undefined && props.options.length) {
 }
 
 const root = ref<HTMLElement>()
+const activeIndex = computed(() => props.options.findIndex((item) => item.value === model.value))
+let observer: ResizeObserver | undefined
 const thumb = ref({ x: 0, w: 0, ready: false })
 
 /** Measure the active segment and park the thumb under it. */
 function sync() {
   const el = root.value?.querySelector<HTMLElement>('.nv-scr-sg-opt.on')
-  if (el) thumb.value = { x: el.offsetLeft, w: el.offsetWidth, ready: true }
+  thumb.value = el
+    ? { x: el.offsetLeft, w: el.offsetWidth, ready: true }
+    : { x: 0, w: 0, ready: false }
 }
 
+function observe() {
+  observer?.disconnect()
+  if (root.value) {
+    observer?.observe(root.value)
+    root.value
+      .querySelectorAll<HTMLElement>('[role="radio"]')
+      .forEach((el) => observer?.observe(el))
+  }
+  sync()
+}
 onMounted(() => {
-  nextTick(sync)
+  if (typeof ResizeObserver !== 'undefined') observer = new ResizeObserver(sync)
+  nextTick(observe)
   window.addEventListener('resize', sync)
 })
-onBeforeUnmount(() => window.removeEventListener('resize', sync))
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  window.removeEventListener('resize', sync)
+})
 watch(
-  () => model.value,
-  () => nextTick(sync),
+  [() => props.options, () => model.value],
+  () => {
+    const focused = root.value?.contains(document.activeElement)
+    nextTick(() => {
+      observe()
+      if (focused && !props.disabled)
+        root.value
+          ?.querySelectorAll<HTMLElement>('[role="radio"]')
+          [Math.max(0, activeIndex.value)]?.focus({ preventScroll: true })
+    })
+  },
+  { deep: true },
 )
-
+function select(value: Value) {
+  if (props.disabled) return
+  model.value = value
+  root.value
+    ?.querySelectorAll<HTMLElement>('[role="radio"]')
+    [props.options.findIndex((item) => item.value === value)]?.focus({ preventScroll: true })
+}
 function move(dir: 1 | -1) {
-  const i = props.options.findIndex((o) => o.value === model.value)
-  const next = (i + dir + props.options.length) % props.options.length
-  model.value = props.options[next].value
+  if (props.disabled || !props.options.length) return
+  const next = (Math.max(0, activeIndex.value) + dir + props.options.length) % props.options.length
+  select(props.options[next].value)
 }
 </script>
 
 <template>
-  <div ref="root" class="nv-scr-sg" role="radiogroup">
+  <div ref="root" class="nv-scr-sg" role="radiogroup" :aria-disabled="disabled || undefined">
     <span
       class="nv-scr-sg-thumb"
       :class="{ ready: thumb.ready }"
       :style="{ transform: `translateX(${thumb.x}px)`, width: `${thumb.w}px` }"
     />
     <button
-      v-for="o in options"
-      :key="String(o.value)"
+      v-for="(o, i) in options"
+      :key="`${typeof o.value}:${o.value}`"
       type="button"
       class="nv-scr-sg-opt"
       role="radio"
       :class="{ on: o.value === model }"
       :aria-checked="o.value === model"
-      :tabindex="o.value === model ? 0 : -1"
-      @click="model = o.value"
+      :disabled="disabled"
+      :tabindex="!disabled && i === Math.max(0, activeIndex) ? 0 : -1"
+      @click="select(o.value)"
       @keydown.right.prevent="move(1)"
       @keydown.left.prevent="move(-1)"
     >
@@ -121,6 +160,10 @@ function move(dir: 1 | -1) {
   }
   .nv-scr-sg-opt:hover:not(.on) {
     color: var(--nv-scr-text-2);
+  }
+  .nv-scr-sg-opt:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
   .nv-scr-sg-opt.on {
     color: #04141a;

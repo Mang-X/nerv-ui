@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 
 /**
  * Screen — big-board tabs. A row of labels over a hairline baseline; the active
@@ -11,50 +11,73 @@ type Value = string | number
 
 const model = defineModel<Value>()
 
-const props = withDefaults(defineProps<{ items?: { label: string; value: Value }[] }>(), {
-  items: () => [
-    { label: '产量趋势', value: 'output' },
-    { label: '质量分析', value: 'quality' },
-    { label: '能耗监控', value: 'energy' },
-    { label: '设备状态', value: 'device' },
-  ],
-})
+const props = withDefaults(
+  defineProps<{ items?: { label: string; value: Value }[]; disabled?: boolean }>(),
+  {
+    disabled: false,
+    items: () => [
+      { label: '产量趋势', value: 'output' },
+      { label: '质量分析', value: 'quality' },
+      { label: '能耗监控', value: 'energy' },
+      { label: '设备状态', value: 'device' },
+    ],
+  },
+)
 
 if (model.value === undefined && props.items.length) {
   model.value = props.items[0].value
 }
 
-const activeIndex = computed(() =>
-  Math.max(
-    0,
-    props.items.findIndex((t) => t.value === model.value),
-  ),
-)
+const root = ref<HTMLElement>()
+const activeIndex = computed(() => props.items.findIndex((item) => item.value === model.value))
 
-function move(dir: 1 | -1) {
-  const next = (activeIndex.value + dir + props.items.length) % props.items.length
-  model.value = props.items[next].value
+function select(value: Value) {
+  if (props.disabled) return
+  model.value = value
+  root.value
+    ?.querySelectorAll<HTMLElement>('[role="tab"]')
+    [props.items.findIndex((item) => item.value === value)]?.focus({ preventScroll: true })
 }
+function move(dir: 1 | -1) {
+  if (props.disabled || !props.items.length) return
+  const next = (Math.max(0, activeIndex.value) + dir + props.items.length) % props.items.length
+  select(props.items[next].value)
+}
+watch(
+  [() => props.items, () => model.value],
+  () => {
+    const focused = root.value?.contains(document.activeElement)
+    nextTick(() => {
+      if (focused && !props.disabled)
+        root.value
+          ?.querySelectorAll<HTMLElement>('[role="tab"]')
+          [Math.max(0, activeIndex.value)]?.focus({ preventScroll: true })
+    })
+  },
+  { deep: true },
+)
 </script>
 
 <template>
-  <div class="nv-scr-tb" role="tablist">
+  <div ref="root" class="nv-scr-tb" role="tablist" :aria-disabled="disabled || undefined">
     <button
-      v-for="t in items"
-      :key="String(t.value)"
+      v-for="(t, i) in items"
+      :key="`${typeof t.value}:${t.value}`"
       type="button"
       class="nv-scr-tb-item"
       role="tab"
       :class="{ on: t.value === model }"
       :aria-selected="t.value === model"
-      :tabindex="t.value === model ? 0 : -1"
-      @click="model = t.value"
+      :disabled="disabled"
+      :tabindex="!disabled && i === Math.max(0, activeIndex) ? 0 : -1"
+      @click="select(t.value)"
       @keydown.right.prevent="move(1)"
       @keydown.left.prevent="move(-1)"
     >
       {{ t.label }}
     </button>
     <span
+      v-if="activeIndex >= 0"
       class="nv-scr-tb-ink"
       :style="{
         width: `${100 / Math.max(1, items.length)}%`,
@@ -72,7 +95,10 @@ function move(dir: 1 | -1) {
     border-bottom: 1px solid var(--nv-scr-line);
   }
   .nv-scr-tb-item {
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding: 9px 4px 11px;
     border: 0;
     background: transparent;
@@ -85,6 +111,10 @@ function move(dir: 1 | -1) {
   }
   .nv-scr-tb-item:hover:not(.on) {
     color: var(--nv-scr-text-2);
+  }
+  .nv-scr-tb-item:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
   .nv-scr-tb-item.on {
     color: var(--nv-scr-cyan);

@@ -6,7 +6,7 @@ title: NvScreenSearch 搜索框
 import { ref } from 'vue'
 import { NvScreenSearch } from '@nerv-iip/ui'
 
-const kw = ref('WO-2406-0312')
+const kw = ref('城市漫步')
 const empty = ref('')
 </script>
 
@@ -20,24 +20,24 @@ const empty = ref('')
 
 <ScreenDemo>
   <div style="display:flex;flex-direction:column;gap:12px;width:320px">
-    <NvScreenSearch v-model="kw" placeholder="搜索工单号或产品" />
-    <NvScreenSearch v-model="empty" placeholder="搜索工单号或产品" />
+    <NvScreenSearch v-model="kw" placeholder="搜索书房或展厅" />
+    <NvScreenSearch v-model="empty" placeholder="搜索书房或展厅" />
   </div>
 </ScreenDemo>
 
 ```vue
 <script setup>
-const kw = ref('WO-2406-0312')
+const kw = ref('城市漫步')
 </script>
 
 <template>
-  <NvScreenSearch v-model="kw" placeholder="搜索工单号或产品" />
+  <NvScreenSearch v-model="kw" placeholder="搜索书房或展厅" />
 </template>
 ```
 
 ## 禁用态
 
-`disabled` 整体淡出并禁止输入。
+`disabled` 整体淡出，同时禁止输入与清除。
 
 <ScreenDemo>
   <div style="width:320px">
@@ -56,3 +56,7 @@ const kw = ref('WO-2406-0312')
 | `v-model`     | 搜索关键词 | `string`  | `''`                         |
 | `placeholder` | 占位文本   | `string`  | `'搜索工单号 / 产线 / 设备'` |
 | `disabled`    | 禁用       | `boolean` | `false`                      |
+
+## 事件与可访问名称
+
+`update:modelValue` 的参数是字符串；单次清除只更新一次为 `''`，清除按钮随后消失。`disabled` 同时作用于输入和清除按钮，并在清除处理器中守卫。可用 `ariaLabel`（string，默认 `'搜索'`）命名输入。查询和空结果由宿主处理，组件不发请求。旧 placeholder 默认值保留兼容，新场景显式提供中性提示。

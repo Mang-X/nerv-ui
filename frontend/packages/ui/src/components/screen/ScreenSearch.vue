@@ -9,13 +9,17 @@ import { Search, X } from '@lucide/vue'
  */
 const model = defineModel<string>({ default: '' })
 
-withDefaults(defineProps<{ placeholder?: string; disabled?: boolean; ariaLabel?: string }>(), {
-  placeholder: '搜索工单号 / 产线 / 设备',
-  disabled: false,
-  ariaLabel: '搜索',
-})
+const props = withDefaults(
+  defineProps<{ placeholder?: string; disabled?: boolean; ariaLabel?: string }>(),
+  {
+    placeholder: '搜索工单号 / 产线 / 设备',
+    disabled: false,
+    ariaLabel: '搜索',
+  },
+)
 
 function clear() {
+  if (props.disabled) return
   model.value = ''
 }
 </script>
@@ -31,7 +35,14 @@ function clear() {
       :placeholder="placeholder"
       :disabled="disabled"
     />
-    <button v-if="model" type="button" class="nv-scr-se-clear" aria-label="清除" @click="clear">
+    <button
+      v-if="model"
+      type="button"
+      class="nv-scr-se-clear"
+      aria-label="清除"
+      :disabled="disabled"
+      @click="clear"
+    >
       <X :size="14" />
     </button>
   </div>

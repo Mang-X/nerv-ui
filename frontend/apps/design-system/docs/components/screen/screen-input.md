@@ -6,7 +6,7 @@ title: NvScreenInput 输入框
 import { ref } from 'vue'
 import { NvScreenInput } from '@nerv-iip/ui'
 
-const wo = ref('WO-2406-0312')
+const wo = ref('城市漫步')
 const qty = ref('1240')
 const bad = ref('')
 </script>
@@ -21,20 +21,20 @@ const bad = ref('')
 
 <ScreenDemo>
   <div style="display:flex;flex-direction:column;gap:12px;width:280px">
-    <NvScreenInput v-model="wo" placeholder="工单号" />
-    <NvScreenInput v-model="qty" suffix="件" placeholder="计划产量" />
+    <NvScreenInput v-model="wo" placeholder="活动名称" />
+    <NvScreenInput v-model="qty" suffix="人" placeholder="来访人数" />
   </div>
 </ScreenDemo>
 
 ```vue
 <script setup>
-const wo = ref('WO-2406-0312')
+const wo = ref('城市漫步')
 const qty = ref('1240')
 </script>
 
 <template>
-  <NvScreenInput v-model="wo" placeholder="工单号" />
-  <NvScreenInput v-model="qty" suffix="件" placeholder="计划产量" />
+  <NvScreenInput v-model="wo" placeholder="活动名称" />
+  <NvScreenInput v-model="qty" suffix="人" placeholder="来访人数" />
 </template>
 ```
 
@@ -44,14 +44,14 @@ const qty = ref('1240')
 
 <ScreenDemo>
   <div style="display:flex;flex-direction:column;gap:12px;width:280px">
-    <NvScreenInput v-model="bad" error placeholder="工单号必填" />
-    <NvScreenInput model-value="装配线 B" disabled />
+    <NvScreenInput v-model="bad" error placeholder="活动名称必填" />
+    <NvScreenInput model-value="河岸展厅" disabled />
   </div>
 </ScreenDemo>
 
 ```vue
-<NvScreenInput v-model="bad" error placeholder="工单号必填" />
-<NvScreenInput model-value="装配线 B" disabled />
+<NvScreenInput v-model="bad" error placeholder="活动名称必填" />
+<NvScreenInput model-value="河岸展厅" disabled />
 ```
 
 ## 属性
@@ -63,3 +63,7 @@ const qty = ref('1240')
 | `placeholder` | 占位文本                      | `string`  | `'请输入'` |
 | `suffix`      | 右侧单位                      | `string`  | —          |
 | `disabled`    | 禁用                          | `boolean` | `false`    |
+
+## 字符串与校验边界
+
+`update:modelValue` 保留字符串，包括 `'0'`、空串和用户尚未填好的文本。`error` 只负责视觉和 `aria-invalid`，校验、错误说明、零与缺失的区分由宿主决定；禁用使用原生 input disabled。`ariaLabel`（可选 string，无默认值）用于缺少可见标签时命名输入。
