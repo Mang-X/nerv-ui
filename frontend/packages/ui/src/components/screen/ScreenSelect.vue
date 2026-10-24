@@ -68,6 +68,25 @@ function place() {
     maxHeight,
   }
 }
+/** Scroll only the listbox; focus and every ancestor scroll position stay put. */
+function revealActive() {
+  const list = panel.value
+  const row = list?.children[active.value] as HTMLElement | undefined
+  if (!open.value || !list || !row) return
+  const bounds = list.getBoundingClientRect()
+  const top = bounds.top + list.clientTop
+  const bottom = top + list.clientHeight
+  const rect = row.getBoundingClientRect()
+  if (rect.top < top) list.scrollTop += rect.top - top
+  else if (rect.bottom > bottom) list.scrollTop += rect.bottom - bottom
+}
+function scheduleVisible() {
+  nextTick(() => {
+    place()
+    // Placement changes maxHeight; wait for that DOM patch before measuring rows.
+    nextTick(revealActive)
+  })
+}
 function schedulePlace() {
   nextTick(place)
 }
@@ -100,6 +119,7 @@ function onKey(e: KeyboardEvent) {
         ? Math.min(props.options.length - 1, active.value + 1)
         : Math.max(0, active.value - 1)
     activeValue.value = props.options[next]?.value
+    nextTick(revealActive)
   } else if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault()
     const option = props.options[active.value]
@@ -117,8 +137,9 @@ watch(open, (v) => {
     nextTick(() => {
       if (!open.value) return
       place()
+      nextTick(revealActive)
       if (typeof ResizeObserver !== 'undefined') {
-        observer = new ResizeObserver(schedulePlace)
+        observer = new ResizeObserver(scheduleVisible)
         if (trigger.value) observer.observe(trigger.value)
         if (panel.value) observer.observe(panel.value)
       }
@@ -126,23 +147,28 @@ watch(open, (v) => {
     activeValue.value = selected.value?.value ?? props.options[0]?.value
     document.addEventListener('pointerdown', onDocPointer, true)
     window.addEventListener('scroll', schedulePlace, true)
-    window.addEventListener('resize', schedulePlace)
+    window.addEventListener('resize', scheduleVisible)
   } else {
     observer?.disconnect()
     observer = undefined
     document.removeEventListener('pointerdown', onDocPointer, true)
     window.removeEventListener('scroll', schedulePlace, true)
-    window.removeEventListener('resize', schedulePlace)
+    window.removeEventListener('resize', scheduleVisible)
   }
 })
 watch(
   () => props.options,
   () => {
     if (active.value < 0) activeValue.value = selected.value?.value ?? props.options[0]?.value
-    if (open.value) schedulePlace()
+    if (open.value) scheduleVisible()
   },
   { deep: true },
 )
+watch(model, () => {
+  if (!open.value) return
+  activeValue.value = selected.value?.value ?? props.options[0]?.value
+  scheduleVisible()
+})
 watch(
   () => props.disabled,
   (disabled) => {
@@ -154,7 +180,7 @@ onBeforeUnmount(() => {
   observer?.disconnect()
   document.removeEventListener('pointerdown', onDocPointer, true)
   window.removeEventListener('scroll', schedulePlace, true)
-  window.removeEventListener('resize', schedulePlace)
+  window.removeEventListener('resize', scheduleVisible)
 })
 </script>
 

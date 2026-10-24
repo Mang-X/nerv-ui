@@ -463,3 +463,190 @@ it('select cancels pending placement before unmount without creating a late obse
   expect(document.querySelector('[role="listbox"]')).toBeNull()
   expect(construct).not.toHaveBeenCalled()
 })
+
+it('select reveals selected and keyboard active rows inside only its listbox after open and option changes', async () => {
+  const options = ref(Array.from({ length: 30 }, (_, value) => ({ label: `区域 ${value}`, value })))
+  const value = ref<number | undefined>(29)
+  const updates = vi.fn((next: string | number | undefined) => {
+    value.value = next as number
+  })
+  // System layout boundary only: real viewport/zoom/visibility is a separate browser lane.
+  vi.spyOn(HTMLElement.prototype, 'clientHeight', 'get').mockReturnValue(120)
+  vi.spyOn(HTMLElement.prototype, 'clientTop', 'get').mockReturnValue(1)
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(
+    function (this: HTMLElement) {
+      const list = document.querySelector<HTMLElement>('[role="listbox"]')
+      const index = Array.from(list?.children ?? []).indexOf(this)
+      const top =
+        this.getAttribute('role') === 'option' ? 69 + index * 24 - (list?.scrollTop ?? 0) : 68
+      return {
+        top,
+        bottom: top + (index >= 0 ? 24 : 122),
+        left: 24,
+        right: 204,
+        width: 180,
+        height: index >= 0 ? 24 : 122,
+      } as DOMRect
+    },
+  )
+  const wrapper = mount(
+    defineComponent(
+      () => () =>
+        h(NvScreenSelect, {
+          options: options.value,
+          modelValue: value.value,
+          'onUpdate:modelValue': updates,
+        }),
+    ),
+    { attachTo: document.body },
+  )
+  wrappers.push(wrapper)
+  const trigger = wrapper.get('[role="combobox"]')
+  ;(trigger.element as HTMLElement).focus()
+  const visible = () => {
+    const list = document.querySelector<HTMLElement>('[role="listbox"]')!
+    const row = document.getElementById(trigger.attributes('aria-activedescendant')!)!
+    const rect = row.getBoundingClientRect()
+    expect(rect.top).toBeGreaterThanOrEqual(69)
+    expect(rect.bottom).toBeLessThanOrEqual(189)
+    expect(document.activeElement).toBe(trigger.element)
+    return list
+  }
+  await trigger.trigger('click')
+  await flushPromises()
+  expect(visible().scrollTop).toBeGreaterThan(0)
+  for (let i = 0; i < 29; i++) {
+    await trigger.trigger('keydown', { key: 'ArrowUp' })
+    await flushPromises()
+    visible()
+  }
+  expect(document.getElementById(trigger.attributes('aria-activedescendant')!)?.textContent).toBe(
+    '区域 0',
+  )
+  options.value.reverse()
+  await flushPromises()
+  visible()
+  options.value = options.value.filter((option) => option.value !== 0)
+  await flushPromises()
+  visible()
+  expect(value.value).toBe(29)
+  expect(updates).not.toHaveBeenCalled()
+  await trigger.trigger('keydown', { key: 'Enter' })
+  expect(value.value).toBe(29)
+  expect(document.querySelector('[role="listbox"]')).toBeNull()
+})
+
+it.each([
+  { name: 'tabs', component: NvScreenTabs, prop: 'items', role: 'tab', checked: 'aria-selected' },
+  {
+    name: 'segmented',
+    component: NvScreenSegmented,
+    prop: 'options',
+    role: 'radio',
+    checked: 'aria-checked',
+  },
+])(
+  '$name preserves disabled undefined mount and initializes enabled mounts only once',
+  async ({ component, prop, role, checked }) => {
+    for (const disabledAtMount of [true, false, undefined]) {
+      const value = ref<string | number | undefined>()
+      const disabled = ref(disabledAtMount)
+      const options = ref<{ label: string; value: string | number }[]>([
+        { label: '数值零', value: 0 },
+        { label: '文字零', value: '0' },
+      ])
+      const updates = vi.fn((next: string | number | undefined) => {
+        value.value = next
+      })
+      const wrapper = mount(
+        defineComponent(
+          () => () =>
+            h(component as Component, {
+              [prop]: options.value,
+              modelValue: value.value,
+              disabled: disabled.value,
+              'onUpdate:modelValue': updates,
+            }),
+        ),
+        { attachTo: document.body },
+      )
+      wrappers.push(wrapper)
+      await flushPromises()
+      expect(value.value).toBe(disabledAtMount ? undefined : 0)
+      expect(updates.mock.calls).toEqual(disabledAtMount ? [] : [[0]])
+      disabled.value = false
+      options.value = []
+      await flushPromises()
+      options.value = [
+        { label: '文字零', value: '0' },
+        { label: '数值零', value: 0 },
+      ]
+      await flushPromises()
+      // Enabling and empty/recovery never introduce a new automatic default policy.
+      expect(value.value).toBe(disabledAtMount ? undefined : 0)
+      expect(updates.mock.calls).toEqual(disabledAtMount ? [] : [[0]])
+      await wrapper.findAll(`[role="${role}"]`)[0]!.trigger('click')
+      expect(value.value).toBe('0')
+      expect(updates.mock.calls).toEqual(disabledAtMount ? [['0']] : [[0], ['0']])
+      disabled.value = true
+      await flushPromises()
+      wrapper
+        .findAll(`[role="${role}"]`)[1]!
+        .element.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      await flushPromises()
+      expect(value.value).toBe('0')
+      expect(wrapper.findAll(`[role="${role}"]`)[0]!.attributes(checked)).toBe('true')
+      expect(updates).toHaveBeenCalledTimes(disabledAtMount ? 1 : 2)
+    }
+  },
+)
+
+it.each([
+  { name: 'tabs', component: NvScreenTabs, prop: 'items', role: 'tab' },
+  { name: 'segmented', component: NvScreenSegmented, prop: 'options', role: 'radio' },
+])(
+  '$name preserves defined string zero and empty undefined disabled mounts without emissions',
+  async ({ component, prop, role }) => {
+    for (const initial of ['0', undefined]) {
+      const value = ref<string | number | undefined>(initial)
+      const options = ref(
+        initial === undefined
+          ? []
+          : [
+              { label: '数值零', value: 0 as string | number },
+              { label: '文字零', value: '0' },
+            ],
+      )
+      const disabled = ref(true)
+      const updates = vi.fn((next: string | number | undefined) => {
+        value.value = next
+      })
+      const wrapper = mount(
+        defineComponent(
+          () => () =>
+            h(component as Component, {
+              [prop]: options.value,
+              modelValue: value.value,
+              disabled: disabled.value,
+              'onUpdate:modelValue': updates,
+            }),
+        ),
+      )
+      wrappers.push(wrapper)
+      options.value = [
+        { label: '数值零', value: 0 },
+        { label: '文字零', value: '0' },
+      ]
+      await flushPromises()
+      expect(
+        wrapper
+          .findAll(`[role="${role}"]`)
+          .every((button) => button.attributes('disabled') !== undefined),
+      ).toBe(true)
+      disabled.value = false
+      await flushPromises()
+      expect(value.value).toBe(initial)
+      expect(updates).not.toHaveBeenCalled()
+    }
+  },
+)

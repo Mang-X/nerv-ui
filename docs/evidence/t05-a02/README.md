@@ -1,5 +1,7 @@
 # T05/A02：七件受控大屏控件证据
 
+> 下文是原实施固定对象的历史证据。独立 R1 拒绝集成：F1 长列表活动项不可见（继承 AC 缺口），F2 新增 disabled 接缝在挂载时改值。原 FAIL 永久保留；本轮最窄修复与新 bundle 的 fresh 证据见 [F1/F2 回执](f1-f2/README.md)。新 head 仍须独立 R2。
+
 [#59](https://github.com/Mang-X/nerv-ui/issues/59) 仅交付 Button / Input / Search / Select / Tabs / Segmented / Switch 及 `/#screen/controls` 中性宿主。父 #6、spec #1、A03–A07、T08 recipe、#43/#51 保持独立。接入说明见 [独立大屏接入](../../screen-standalone.md#a02受控输入与空间安排)。
 
 ## 固定对象与来源

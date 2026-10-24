@@ -25,7 +25,7 @@ const props = withDefaults(
 )
 
 // default to the first option when unbound so a zero-prop render still highlights
-if (model.value === undefined && props.options.length) {
+if (!props.disabled && model.value === undefined && props.options.length) {
   model.value = props.options[0].value
 }
 

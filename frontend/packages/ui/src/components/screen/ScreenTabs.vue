@@ -24,7 +24,7 @@ const props = withDefaults(
   },
 )
 
-if (model.value === undefined && props.items.length) {
+if (!props.disabled && model.value === undefined && props.items.length) {
   model.value = props.items[0].value
 }
 
