@@ -48,3 +48,27 @@ it('changes visible neutral content through panel, border and tech-frame slots',
   expect(wrapper.get('input[type="checkbox"]').element).toHaveProperty('checked', false)
   // Actual flow/motion CSS and hit testing are browser evidence, not jsdom.
 })
+
+it('keeps every schedule entry in a keyboard reachable region across collapse and reopen at 1600 by 900', async () => {
+  wrapper = mount(ScreenDemo)
+  await wrapper.get('select[aria-label="设计尺寸"]').setValue('1600x900')
+  const toggle = wrapper.findAll('button').find((item) => item.text() === '查看今日安排')!
+  const entries = [
+    '10:30 · 城市阅读会 · 街角书房',
+    '14:00 · 河岸影像展 · 河畔展厅',
+    '16:00 · 周末分享 · 城市客厅',
+  ]
+  for (let round = 0; round < 2; round++) {
+    expect(toggle.attributes('aria-expanded')).toBe('false')
+    expect(wrapper.find('ol').exists()).toBe(false)
+    await toggle.trigger('click')
+    expect(toggle.attributes('aria-expanded')).toBe('true')
+    const region = wrapper.get('[role="region"][aria-label="今日安排内容"]')
+    expect(region.attributes('tabindex')).toBe('0')
+    expect(region.findAll('li').map((item) => item.text())).toEqual(entries)
+    expect(wrapper.text()).toContain('每一次停留，都让空间有了新的意义。')
+    expect(wrapper.get('main footer a').attributes('href')).toBe('#desktop')
+    await toggle.trigger('click')
+  }
+  // jsdom proves state/content/focusability only. Browser evidence owns layout and scrolling.
+})

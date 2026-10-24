@@ -2,6 +2,8 @@
 
 本票 [#58](https://github.com/Mang-X/nerv-ui/issues/58) 只交付 A01。父 #6、母 #1 和 #59–#64 不因本票完成而关闭。实现范围、公共接入和溢出策略见 [独立大屏接入](../../screen-standalone.md)。
 
+**后续独立 R1 已拒绝原 head 的 F1 布局反例；本页以下保留原实现证据身份。修复与新产物验证见 [F1 回执](f1/README.md)，独立 R2 尚未执行。**
+
 ## 固定对象与来源
 
 - 开工 clean linked worktree：`/Users/mang/Project/nerv-ui-worktrees/t05-a01-screen-stage`，分支 `feat/t05-a01-screen-stage`；所有 shell 命令显式 workdir 指向这里。

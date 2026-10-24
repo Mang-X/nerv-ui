@@ -31,6 +31,8 @@ pnpm -C frontend build
 
 Header 的 title/time/date/line/screen 全部由 host 显式输入；当前时间是固定展示输入，组件不启动时钟。图标是信息标记。Panel 的 title-extra/extra/default、Border 的 title/default、TechFrame 内容保留宿主动作；“阅读说明”“切换展厅”“查看今日安排”“点亮留言”均有真实可见结果。GlowDivider 的 flow 可切换，低动效关闭流光与 Header 呼吸动画。
 
+在 1600×900 等较紧设计尺寸下，宿主网格第一行允许收缩，安排正文在“今日安排内容”区域内原生滚动；Tab 可聚焦该区域，Home/End 或鼠标滚轮可读完三条安排。左侧“书房与展厅内容”亦可聚焦滚动，展开阅读说明时保留全部正文。TechFrame、分隔线和页脚各占独立空间；这只是 playground 宿主策略，不改变公共容器的默认样式。F1 的公开反例和修后坐标见 [修复证据](evidence/t05-a01/f1/README.md)。
+
 screen 按原合同固定深色，`--nv-scr-*` 不随外层 light/dark/brand 改色；设置栏使用共享主题，返回桌面、touch 和全部 mobile 入口保留原主题行为。
 
 ## 来源和交付边界

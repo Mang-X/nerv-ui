@@ -35,6 +35,9 @@ const flow = shallowRef(true)
         :title="hall ? '河畔展厅' : '街角书房'"
         accent="cyan"
         class="culture-stage-panel"
+        role="region"
+        aria-label="书房与展厅内容"
+        tabindex="0"
       >
         <template #title-extra
           ><button type="button" :aria-expanded="guidance" @click="guidance = !guidance">
@@ -71,14 +74,21 @@ const flow = shallowRef(true)
             查看今日安排
           </button></template
         >
-        <h2>把时间，留给喜欢的事</h2>
-        <p>一起阅读，也一起发现身边的美。</p>
-        <ol v-if="schedule">
-          <li>10:30 · 城市阅读会 · 街角书房</li>
-          <li>14:00 · 河岸影像展 · 河畔展厅</li>
-          <li>16:00 · 周末分享 · 城市客厅</li>
-        </ol>
-        <p v-else>点击上方，展开今天的相聚时刻。</p>
+        <div
+          class="culture-stage-agenda-content"
+          role="region"
+          aria-label="今日安排内容"
+          tabindex="0"
+        >
+          <h2>把时间，留给喜欢的事</h2>
+          <p>一起阅读，也一起发现身边的美。</p>
+          <ol v-if="schedule">
+            <li>10:30 · 城市阅读会 · 街角书房</li>
+            <li>14:00 · 河岸影像展 · 河畔展厅</li>
+            <li>16:00 · 周末分享 · 城市客厅</li>
+          </ol>
+          <p v-else>点击上方，展开今天的相聚时刻。</p>
+        </div>
       </NvBorderPanel>
       <NvTechFrame accent="green" class="culture-stage-frame">
         <div>
@@ -138,11 +148,13 @@ const flow = shallowRef(true)
     min-height: 0;
     display: grid;
     grid-template-columns: 1.15fr 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: minmax(0, 1fr) auto;
     gap: 28px;
   }
   .culture-stage-panel {
     grid-row: span 2;
+    min-height: 0;
+    overflow: auto;
   }
   .culture-stage-story {
     padding: 40px 24px;
@@ -184,11 +196,15 @@ const flow = shallowRef(true)
     font-variant-numeric: tabular-nums;
   }
   .culture-stage-agenda {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
     gap: 24px;
     padding: 28px 32px;
+  }
+  .culture-stage-agenda-content {
+    height: 100%;
+    overflow: auto;
   }
   .culture-stage-agenda ol {
     margin: 0;
