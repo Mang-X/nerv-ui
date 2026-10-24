@@ -3,8 +3,10 @@ import { computed, shallowRef } from 'vue'
 import { NvScreenScaler, useColorMode, useTheme, type ScaleMode } from '@nerv-iip/ui'
 import ScreenStageDemo from './screen/ScreenStageDemo.vue'
 import ScreenControlsDemo from './screen/ScreenControlsDemo.vue'
+import ScreenIndicatorsDemo from './screen/ScreenIndicatorsDemo.vue'
 
 const props = defineProps<{ section?: string }>()
+const indicators = computed(() => props.section === '#screen/indicators')
 const controls = computed(() => props.section === '#screen/controls')
 
 const mode = shallowRef<ScaleMode>('fit')
@@ -21,8 +23,11 @@ const { theme, setTheme } = useTheme()
   <div class="screen-demo">
     <div class="screen-demo-tools">
       <nav aria-label="显示表面" class="screen-demo-nav">
-        <a href="#screen/stage" :aria-current="!controls ? 'page' : undefined">空间舞台</a>
+        <a href="#screen/stage" :aria-current="!controls && !indicators ? 'page' : undefined"
+          >空间舞台</a
+        >
         <a href="#screen/controls" :aria-current="controls ? 'page' : undefined">随心安排</a>
+        <a href="#screen/indicators" :aria-current="indicators ? 'page' : undefined">阅读与到访</a>
         <a href="#desktop">桌面演示</a>
         <a href="#touch">触屏演示</a>
         <a href="#mobile">移动演示</a>
@@ -76,9 +81,12 @@ const { theme, setTheme } = useTheme()
         :design-height="dimensions.height"
         :mode="mode"
         tabindex="0"
-        :aria-label="controls ? '城市空间控件舞台' : '城市文化空间舞台'"
+        :aria-label="
+          indicators ? '城市空间指标舞台' : controls ? '城市空间控件舞台' : '城市文化空间舞台'
+        "
       >
-        <ScreenControlsDemo v-if="controls" />
+        <ScreenIndicatorsDemo v-if="indicators" />
+        <ScreenControlsDemo v-else-if="controls" />
         <ScreenStageDemo v-else />
       </NvScreenScaler>
     </div>

@@ -25,39 +25,46 @@ const reduce = useMediaQuery('(prefers-reduced-motion: reduce)')
 const display = ref(typeof props.value === 'number' ? props.value : 0)
 let raf = 0
 
-watch(
-  () => props.value,
-  (to) => {
-    if (typeof to !== 'number') return
-    cancelAnimationFrame(raf)
-    if (reduce.value) {
-      display.value = to
-      return
-    }
-    const from = display.value
-    const dur = 600
-    let start = 0
-    const step = (ts: number) => {
-      if (!start) start = ts
-      const t = Math.min(1, (ts - start) / dur)
-      // ease-out-expo — matches --nv-scr-ease-emphasized
-      const e = t === 1 ? 1 : 1 - 2 ** (-10 * t)
-      display.value = from + (to - from) * e
-      if (t < 1) raf = requestAnimationFrame(step)
-    }
-    raf = requestAnimationFrame(step)
-  },
-)
+watch([() => props.value, reduce], ([to]) => {
+  cancelAnimationFrame(raf)
+  raf = 0
+  if (typeof to !== 'number') return
+  if (reduce.value || display.value === to) {
+    display.value = to
+    return
+  }
+  const from = display.value
+  const dur = 600
+  let start = 0
+  const step = (ts: number) => {
+    if (!start) start = ts
+    const t = Math.min(1, (ts - start) / dur)
+    // ease-out-expo — matches --nv-scr-ease-emphasized
+    const e = t === 1 ? 1 : 1 - 2 ** (-10 * t)
+    // Weighted endpoints avoid overflow between opposite finite extremes.
+    display.value = t === 1 ? to : from * (1 - e) + to * e
+    if (t < 1) raf = requestAnimationFrame(step)
+  }
+  raf = requestAnimationFrame(step)
+})
 onBeforeUnmount(() => cancelAnimationFrame(raf))
 
 /** Group numbers (tweened), preserving the caller's decimal places; strings pass
  *  through verbatim so callers can pre-format. */
 const text = computed(() => {
   if (typeof props.value !== 'number') return String(props.value)
-  const dp = (String(props.value).split('.')[1] ?? '').length
+  const [coefficient, exponent = '0'] = String(props.value).split('e')
+  const dp = Math.max(0, (coefficient.split('.')[1] ?? '').length - Number(exponent))
+  // Intl's portable fraction limit is 20; toFixed supports up to 100 places.
+  // Smaller finite readings retain their shortest scientific form, never zero.
+  if (dp > 100) return String(display.value)
+  if (dp > 20 && Math.abs(display.value) < 1e21) {
+    const [integer, fraction] = display.value.toFixed(dp).split('.')
+    return `${integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}.${fraction}`
+  }
   return display.value.toLocaleString('en-US', {
-    minimumFractionDigits: dp,
-    maximumFractionDigits: dp,
+    minimumFractionDigits: Math.min(dp, 20),
+    maximumFractionDigits: Math.min(dp, 20),
   })
 })
 

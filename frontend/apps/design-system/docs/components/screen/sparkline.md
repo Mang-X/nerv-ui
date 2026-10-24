@@ -5,58 +5,40 @@ title: NvSparkline 迷你趋势
 <script setup>
 import { ref } from 'vue'
 import { NvSparkline, NvScreenPanel } from '@nerv-iip/ui'
-
-const yieldSeries = ref([8, 11, 9, 14, 12, 17, 15, 21, 19, 24, 22, 28])
-const tempSeries = ref([62, 64, 63, 67, 71, 69, 73, 70, 68, 66, 64, 63])
+const data = ref([8, 11, 9, 14, 12, 17])
 </script>
 
 # NvSparkline 迷你趋势
 
-极简迷你趋势线:一道辉光青色折线,按自身 min/max 归一化,可选线下渐变面积。`preserveAspectRatio="none"` 使其拉伸填满容器,任意量纲的序列都能塞进任意格子。基于独立的 `--nv-scr-*` 工业蓝令牌。至少需要两个点。
+裸内容 SVG 折线按本序列最小值、最大值归一化，填满宿主给定的宽高。至少两个点才画线，显式空数组与单点显示虚线，不混入默认业务数据。常量序列为底部水平线，不表示绝对量级为零。
 
-::: tip 容器
-`NvSparkline` 是「裸内容」组件,会拉伸填满容器,通常放进 [`NvScreenPanel`](./screen-panel) 并给定宽高使用。
-:::
-
-## 基础用法
-
-`data` 是序列;线条按自身 min/max 归一,不必预先缩放。
+## 两份独立序列
 
 <ScreenDemo>
-  <NvScreenPanel title="良品率趋势" style="width: 320px">
-    <div style="height: 56px">
-      <NvSparkline :data="yieldSeries" />
-    </div>
+  <NvScreenPanel title="阅读次数" style="width: 360px">
+    <div style="height: 56px"><NvSparkline :data="data" area /></div>
+    <p>阅读次数：{{ data.join(' → ') || '暂无数据' }}</p>
+    <button @click="data = [0, 10, 0]">替换为三点</button>
+    <button @click="data = []">清空</button>
+  </NvScreenPanel>
+  <NvScreenPanel title="预订次数" style="width: 360px">
+    <div style="height: 56px"><NvSparkline :data="[10, 0]" area color="var(--nv-scr-indigo)" /></div>
+    <p>预订次数：10 → 0</p>
   </NvScreenPanel>
 </ScreenDemo>
 
 ```vue
-<NvScreenPanel title="良品率趋势">
-  <div style="height: 56px">
-    <NvSparkline :data="series" />
-  </div>
-</NvScreenPanel>
-```
-
-## 面积填充
-
-`area` 为 `true` 时在线下铺一层渐隐渐变,趋势更醒目。
-
-<ScreenDemo>
-  <NvScreenPanel title="主轴温度（℃）" style="width: 320px">
-    <div style="height: 56px">
-      <NvSparkline :data="tempSeries" area />
-    </div>
-  </NvScreenPanel>
-</ScreenDemo>
-
-```vue
-<NvSparkline :data="series" area />
+<div style="height: 56px">
+  <NvSparkline :data="[8, 11, 9]" area color="var(--nv-scr-indigo)" />
+</div>
 ```
 
 ## 属性
 
-| 属性   | 说明                | 类型       | 默认         |
-| ------ | ------------------- | ---------- | ------------ |
-| `data` | 待绘序列,至少两个点 | `number[]` | 内置示例序列 |
-| `area` | 线下铺渐隐面积      | `boolean`  | `false`      |
+| 属性    | 说明                           | 类型                | 默认                         |
+| ------- | ------------------------------ | ------------------- | ---------------------------- |
+| `data`  | 有限数值序列，至少两个点才画线 | `number[]`          | 内置示例序列，保持兼容       |
+| `area`  | 线下渐变面积                   | `boolean`           | `false`                      |
+| `color` | 线条及面积渐变颜色             | `string`，CSS color | `undefined`，使用 cyan token |
+
+有限数值即使跨越正负极大值也保留序列的相对高低，不因中间跨度溢出产生无效路径；归一化不表示绝对量级。改变点数、颜色或面积开关均使用当前输入。每实例渐变 ID 独立，面积引用本实例 defs。图形自身 `aria-hidden`，宿主须同时提供标题、序列原文或等价可访问说明；只给图形不构成完整读数。缺测含义由宿主说明，不把未知点转成零。减少动态效果时停止路径过渡，图形仍更新。这里没有 hover、轴、取数或业务聚合能力。
