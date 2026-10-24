@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useEventListener } from '@vueuse/core'
-import { computed, onMounted, ref } from 'vue'
+import { useEventListener, useResizeObserver } from '@vueuse/core'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { computeScale, type ScaleMode } from './scale'
 
 const props = withDefaults(
@@ -12,34 +12,50 @@ const props = withDefaults(
   { designWidth: 1920, designHeight: 1080, mode: 'fit' },
 )
 
-const vw = ref(props.designWidth)
-const vh = ref(props.designHeight)
+const designWidth = computed(() =>
+  Number.isFinite(props.designWidth) && props.designWidth > 0 ? props.designWidth : 1920,
+)
+const designHeight = computed(() =>
+  Number.isFinite(props.designHeight) && props.designHeight > 0 ? props.designHeight : 1080,
+)
+
+const vw = ref(designWidth.value)
+const vh = ref(designHeight.value)
+
+const viewport = useTemplateRef<HTMLDivElement>('viewport')
 
 function update() {
   if (typeof window === 'undefined') return
-  vw.value = window.innerWidth
-  vh.value = window.innerHeight
+  vw.value = viewport.value?.clientWidth || window.innerWidth
+  vh.value = viewport.value?.clientHeight || window.innerHeight
 }
 
 onMounted(update)
 useEventListener('resize', update)
+useResizeObserver(viewport, update)
 
 const scale = computed(() =>
-  computeScale(vw.value, vh.value, props.designWidth, props.designHeight, props.mode),
+  computeScale(vw.value, vh.value, designWidth.value, designHeight.value, props.mode),
 )
 
 const stageStyle = computed(() => ({
-  width: `${props.designWidth}px`,
-  height: `${props.designHeight}px`,
+  width: `${designWidth.value}px`,
+  height: `${designHeight.value}px`,
   transform: `scale(${scale.value.x}, ${scale.value.y})`,
-  transformOrigin: 'center center',
+  transformOrigin: 'top left',
+}))
+const boundsStyle = computed(() => ({
+  width: `${designWidth.value * scale.value.x}px`,
+  height: `${designHeight.value * scale.value.y}px`,
 }))
 </script>
 
 <template>
-  <div class="screen-scaler">
-    <div class="screen-scaler__stage" :style="stageStyle">
-      <slot />
+  <div ref="viewport" class="screen-scaler" :class="{ 'screen-scaler--width': mode === 'width' }">
+    <div class="screen-scaler__bounds" :style="boundsStyle">
+      <div class="screen-scaler__stage" :style="stageStyle">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -55,8 +71,19 @@ const stageStyle = computed(() => ({
     overflow: hidden;
     background: var(--nv-scr-bg, #03050b);
   }
-  .screen-scaler__stage {
+  .screen-scaler--width {
+    display: block;
+    overflow: auto;
+  }
+  .screen-scaler__bounds {
+    position: relative;
     flex: none;
+    margin-inline: auto;
+  }
+  .screen-scaler__stage {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 </style>

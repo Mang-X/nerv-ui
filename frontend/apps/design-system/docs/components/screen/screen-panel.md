@@ -10,6 +10,8 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 
 大屏的基础容器:半透明渐变底、发丝级描边、顶部一道微光与玻璃质斜向高光。其它所有大屏模块都坐落在它之上。可选 `title` 行带出一条标题,`accent` 顶边色条用作状态签名(青 / 绿 / 琥珀 / 红)。
 
+独立运行入口为 playground 的 `/#screen/stage`；[接入说明](../../../../../../docs/screen-standalone.md)列出公共 CSS、返回导航和验收范围。下方 VitePress 预览仍由 #10 单独恢复。
+
 ## 基础用法
 
 传 `title` 出一条标题行,默认插槽放真实内容 —— 这里嵌一个核心指标块。
@@ -58,11 +60,11 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 
 ## 属性
 
-| 属性     | 说明                        | 类型                                    | 默认 |
-| -------- | --------------------------- | --------------------------------------- | ---- |
-| `title`  | 标题行文本                  | `string`                                | —    |
-| `accent` | 顶边状态色条                | `'cyan' \| 'green' \| 'amber' \| 'red'` | —    |
-| `class`  | 透传到根 `<section>` 的类名 | `string`                                | —    |
+| 属性     | 说明                        | 类型                                                | 默认 |
+| -------- | --------------------------- | --------------------------------------------------- | ---- |
+| `title`  | 标题行文本                  | `string`                                            | —    |
+| `accent` | 顶边状态色条                | `'cyan' \| 'green' \| 'amber' \| 'red' \| 'indigo'` | —    |
+| `class`  | 透传到根 `<section>` 的类名 | `string`                                            | —    |
 
 ## 插槽
 

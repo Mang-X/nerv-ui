@@ -21,6 +21,34 @@ it('adds a named project from the form to the searchable table', async () => {
   expect(wrapper.get('input#project-name').element).toHaveProperty('value', '')
 })
 
+it('opens screen stage deep links and returns through every existing surface without a fixed stage', async () => {
+  window.location.hash = '#screen/stage'
+  wrapper = mount(App, { attachTo: document.body })
+  expect(wrapper.get('h1').text()).toBe('城市文化空间')
+  expect(wrapper.get('a[href="#screen/stage"]').text()).toBe('空间舞台')
+  for (const [hash, heading] of [
+    ['#desktop', '让想法有序向前'],
+    ['#touch', '共享阅读角'],
+    ['#mobile', '周末随行'],
+    ['#mobile-input', '随心记录'],
+    ['#mobile-overlays', '片刻安排'],
+    ['#mobile-lists', '翻阅时光'],
+    ['#mobile-feedback', '片刻回响'],
+  ]) {
+    expect(wrapper.find(`a[href="${hash}"]`).exists()).toBe(true)
+    window.location.hash = hash!
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+    await nextTick()
+    expect(wrapper.get('h1').text()).toBe(heading)
+    expect(wrapper.find('.screen-scaler').exists()).toBe(false)
+    window.location.hash = '#screen'
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+    await nextTick()
+    expect(wrapper.get('h1').text()).toBe('城市文化空间')
+    expect(wrapper.findAll('.screen-scaler')).toHaveLength(1)
+  }
+})
+
 it('opens the standalone touch demo from its direct entry and returns to desktop', async () => {
   window.location.hash = '#touch'
   wrapper = mount(App, { attachTo: document.body })

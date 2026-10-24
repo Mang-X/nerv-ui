@@ -18,7 +18,9 @@ export function computeScale(
   designH: number,
   mode: ScaleMode = 'fit',
 ): Scale {
-  if (designW <= 0 || designH <= 0 || viewportW <= 0 || viewportH <= 0) {
+  if (
+    ![designW, designH, viewportW, viewportH].every((value) => Number.isFinite(value) && value > 0)
+  ) {
     return { x: 1, y: 1 }
   }
   switch (mode) {

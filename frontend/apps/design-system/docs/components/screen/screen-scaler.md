@@ -4,51 +4,44 @@ title: NvScreenScaler 舞台缩放
 
 # NvScreenScaler 舞台缩放
 
-大屏**舞台缩放容器**:内容按设计基准(默认 1920×1080)绝对布局,组件把整个舞台等比缩放到实际视口——挂墙电视 / 投影 / 拼接屏无论分辨率如何,画面构图恒定不跑版。`position: fixed` 占满视口、居中 letterbox,监听 resize 实时重算。
-
-::: warning 全屏组件,无内嵌 demo
-`NvScreenScaler` 固定占满整个视口,无法在文档页内演示——实际效果见 [大屏应用](https://github.com/Mang-X/Nerv-IIP/tree/main/frontend/apps/screen)(`apps/screen` 所有页面经 `ScreenLayout` 包裹在 1920×1080 舞台内)。
-:::
-
-## 基础用法
-
-作为页面最外层容器,内部按设计稿像素绝对布局:
+默认 fixed 全屏、1920×1080、fit，按实际容器缩放内容。独立运行入口为 playground 的 `/#screen` 或可刷新深链 `/#screen/stage`；[接入与溢出说明](../../../../../../docs/screen-standalone.md)。不依赖旧大屏应用或 VitePress wrapper。
 
 ```vue
+<script setup lang="ts">
+import { NvScreenScaler, NvScreenHeader } from '@nerv-iip/ui'
+</script>
+
 <template>
-  <NvScreenScaler :design-width="1920" :design-height="1080">
-    <!-- 内部一律按 1920×1080 设计稿布局，无需任何响应式处理 -->
-    <NvScreenHeader title="Nerv-IIP 工厂运营大屏" />
-    <main class="board"><!-- … --></main>
+  <NvScreenScaler :design-width="1920" :design-height="1080" mode="fit">
+    <NvScreenHeader
+      title="城市文化空间"
+      time="10:24:36"
+      date="星期日"
+      line="全城空间"
+      screen="城市客厅 01"
+    />
+    <!-- 按设计尺寸组织内容；数据与时间由宿主提供 -->
   </NvScreenScaler>
 </template>
 ```
 
-## 缩放模式
+## 缩放与定位
 
-`computeScale(viewportW, viewportH, designW, designH, mode)` 纯函数亦从包内导出(单测覆盖):
+| mode          | 行为                                             |
+| ------------- | ------------------------------------------------ |
+| `fit`（默认） | 等比取较小边，实体边界居中留边，整屏完整显示     |
+| `width`       | 按宽等比、从顶端开始，根原生滚动可到达溢出的底部 |
+| `stretch`     | 宽高独立拉伸，改变长宽比                         |
 
-| mode        | 行为                                   | 适用         |
-| ----------- | -------------------------------------- | ------------ |
-| `fit`(默认) | 等比取小边,letterbox 留边,整屏完整可见 | 挂墙大屏默认 |
-| `width`     | 按宽度等比,高度可能溢出                | 超宽拼接屏   |
-| `stretch`   | 宽高各自拉伸(非等比,会变形)            | 一般不用     |
-
-```vue
-<NvScreenScaler mode="width" :design-width="3840" :design-height="1080">
-  <!-- 双联屏内容 -->
-</NvScreenScaler>
-```
+默认根 `position:fixed;inset:0`。保留宿主导航时，在明确有尺寸的相对定位容器中通过 class/style 设置 Scaler 为 `position:absolute`；ResizeObserver 及 resize 测量根 clientWidth/clientHeight。不要直接塞进无尺寸 Card。缩放后的 bounds 提供真实滚动范围，装饰与固定层随组件卸载。
 
 ## API
 
-| Prop           | 类型                            | 默认    | 说明                   |
-| -------------- | ------------------------------- | ------- | ---------------------- |
-| `designWidth`  | `number`                        | `1920`  | 设计基准宽(px)         |
-| `designHeight` | `number`                        | `1080`  | 设计基准高(px)         |
-| `mode`         | `'fit' \| 'width' \| 'stretch'` | `'fit'` | 缩放模式               |
-| 默认插槽       | —                               | —       | 舞台内容(按设计稿布局) |
+| Prop           | 类型                            | 默认    | 说明                                   |
+| -------------- | ------------------------------- | ------- | -------------------------------------- |
+| `designWidth`  | `number`                        | `1920`  | 正有限设计宽度；非法输入按轴回退到默认 |
+| `designHeight` | `number`                        | `1080`  | 正有限设计高度；非法输入按轴回退到默认 |
+| `mode`         | `'fit' \| 'width' \| 'stretch'` | `'fit'` | 缩放方式                               |
+| 默认插槽       | —                               | —       | 按设计尺寸组织的内容                   |
 
-::: tip SVG 文本与缩放
-舞台整体 `transform: scale()` 下,SVG `preserveAspectRatio="none"` 图表内的文字层要用 HTML overlay 而非 SVG text(见 [NvScreenTrendChart](./trend-chart) 的悬停卡实现),否则非等比场景下文字变形。
-:::
+主桶亦导出 `computeScale(viewportW, viewportH, designW, designH, mode)` 和类型 `ScaleMode` / `Scale`。纯函数对任一非有限或非正尺寸返回 `{ x: 1, y: 1 }`；正常比例合同不变。实际几何、原生滚动和 browser zoom 另以真实浏览器验收，不由纯函数测试替代。
