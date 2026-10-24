@@ -1,0 +1,781 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleCreateProductionVersionRequest,
+  BusinessConsoleProductionVersionItem,
+} from '@nerv-iip/api-client'
+import type { NvDataTableColumn, NvMetricStripCell } from '@nerv-iip/ui'
+import CarriedContextSummary from '@/components/business/CarriedContextSummary.vue'
+import DirectoryPicker from '@/components/business/DirectoryPicker.vue'
+import FormSectionTitle from '@/components/masterData/FormSectionTitle.vue'
+import { useBusinessSkus } from '@/composables/useBusinessMasterData'
+import {
+  useEngineeringProductionVersions,
+  usePublishedMboms,
+  usePublishedRoutings,
+  useProductionVersionResolve,
+} from '@/composables/useProductEngineering'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import {
+  NvAlertDialog,
+  NvAlertDialogCancel,
+  NvAlertDialogContent,
+  NvAlertDialogDescription,
+  NvAlertDialogFooter,
+  NvAlertDialogHeader,
+  NvAlertDialogTitle,
+  NvButton,
+  NvCard,
+  NvCardContent,
+  NvCardHeader,
+  NvCardTitle,
+  NvCheckbox,
+  NvDataTable,
+  NvDatePicker,
+  NvDialog,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogFooter,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvDialogTrigger,
+  NvField,
+  NvFieldDescription,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvInput,
+  NvMetricStrip,
+  NvPageHeader,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  NvSpinner,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { PlusIcon, RefreshCwIcon, SearchIcon } from '@lucide/vue'
+import { computed, reactive, ref, shallowRef, watch } from 'vue'
+import { formatDate, today } from '@/utils/format'
+import { inlineErrorMessage, notifyOperationFailure, notifySuccess } from '@/utils/notify'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '生产版本',
+    requiredPermissions: ['business.engineering.production-versions.read'],
+  },
+})
+
+const {
+  archiveProductionVersion,
+  archivePending,
+  createProductionVersion,
+  createPending,
+  filters,
+  productionVersions,
+  productionVersionsError,
+  productionVersionsPending,
+  productionVersionsTotal,
+  refresh,
+  updateProductionVersion,
+  updatePending,
+} = useEngineeringProductionVersions()
+
+const { mboms, mbomsPending } = usePublishedMboms()
+const { routings, routingsPending } = usePublishedRoutings()
+const { skus } = useBusinessSkus()
+const {
+  resolve,
+  clear: clearResolve,
+  resolved,
+  resolvePending,
+  resolvedOnce,
+} = useProductionVersionResolve()
+
+const STATUS_FILTER_OPTIONS = [
+  { label: '全部状态', value: 'all' },
+  { label: '有效', value: 'active' },
+  { label: '已归档', value: 'archived' },
+]
+const statusFilter = ref('all')
+watch(statusFilter, (value) => {
+  filters.status = value === 'all' ? undefined : value
+})
+
+// Toolbar 搜索绑定到物料编码筛选（filters.skuCode 为可选，用 string 代理避免空串污染查询）。
+const skuSearch = computed({
+  get: () => filters.skuCode ?? '',
+  set: (value: string) => {
+    filters.skuCode = value.trim() ? value : undefined
+  },
+})
+
+const page = ref(1)
+const pageSize = ref('10')
+const pageSizeNumber = computed(() => Number(pageSize.value) || 10)
+watch(
+  [page, pageSize],
+  () => {
+    filters.skip = (page.value - 1) * pageSizeNumber.value
+    filters.take = pageSizeNumber.value
+  },
+  { immediate: true },
+)
+
+// SKU 码 → 名称映射（复用基础数据 SKU 列表），解析不到则显码。
+const skuNameByCode = computed(() => {
+  const map = new Map<string, string>()
+  for (const sku of skus.value) {
+    if (sku.code) map.set(sku.code, sku.displayName ?? sku.code)
+  }
+  return map
+})
+function skuLabel(code?: string | null) {
+  if (!code) return '无'
+  return skuNameByCode.value.get(code) ?? code
+}
+
+const mbomOptions = computed(() =>
+  mboms.value
+    .filter((m) => m.bomCode)
+    .map((m) => ({
+      value: m.bomCode as string,
+      label: `${m.bomCode} · ${m.revision ?? '—'}${m.skuCode ? ` · ${skuLabel(m.skuCode)}` : ''}`,
+    })),
+)
+const routingOptions = computed(() =>
+  routings.value
+    .filter((r) => r.routingCode)
+    .map((r) => ({
+      value: r.routingCode as string,
+      label: `${r.routingCode} · ${r.revision ?? '—'}${r.skuCode ? ` · ${skuLabel(r.skuCode)}` : ''}`,
+    })),
+)
+const skuOptions = computed(() =>
+  skus.value
+    .filter((s) => s.code)
+    .map((s) => ({ value: s.code as string, label: `${s.displayName ?? s.code} · ${s.code}` })),
+)
+
+function statusTone(status?: string | null) {
+  return (status ?? '').toLowerCase() === 'active' ? 'success' : 'neutral'
+}
+function statusLabel(status?: string | null) {
+  return (status ?? '').toLowerCase() === 'active' ? '有效' : '已归档'
+}
+
+const activeCount = computed(
+  () => productionVersions.value.filter((v) => v.status?.toLowerCase() === 'active').length,
+)
+const defaultCount = computed(
+  () =>
+    productionVersions.value.filter((v) => v.isDefault && v.status?.toLowerCase() === 'active')
+      .length,
+)
+
+const versionCells = computed<NvMetricStripCell[]>(() => [
+  {
+    key: 'active',
+    label: '有效生产版本',
+    value: activeCount.value,
+    unit: '个',
+    meta: '在有效期内、可投产',
+  },
+  {
+    key: 'default',
+    label: '默认版本',
+    value: defaultCount.value,
+    unit: '个',
+    meta: '一料多版时优先采用',
+  },
+])
+
+const listErrorMessage = computed(() => inlineErrorMessage(productionVersionsError.value))
+
+function formatLotRange(min?: number | null, max?: number | null) {
+  if (min == null && max == null) return '不限'
+  return `${min ?? 0} - ${max ?? '不限'}`
+}
+function formatValidRange(from?: string | null, to?: string | null) {
+  return `${formatDate(from)} 至 ${to ? formatDate(to) : '长期'}`
+}
+
+const columns: NvDataTableColumn<BusinessConsoleProductionVersionItem>[] = [
+  { key: 'skuCode', header: '物料', cellClass: 'font-medium', width: 'w-48' },
+  { key: 'binding', header: 'MBOM / 工艺路线', width: 'w-56' },
+  { key: 'valid', header: '有效期', width: 'w-52' },
+  { key: 'lotSize', header: '批量区间', width: 'w-32' },
+  { key: 'priority', header: '优先级', width: 'w-20', align: 'end' },
+  { key: 'isDefault', header: '默认', width: 'w-20' },
+  { key: 'status', header: '状态', width: 'w-24' },
+  { key: 'actions', header: '操作', align: 'end', width: 'w-36' },
+]
+
+// ── 新建 / 编辑表单 ─────────────────────────────────────────────
+interface ProductionVersionForm {
+  skuCode: string
+  mbomVersionId: string
+  routingVersionId: string
+  validFrom: string | null
+  validTo: string | null
+  lotSizeMin: string | number
+  lotSizeMax: string | number
+  priority: string | number
+  isDefault: boolean
+}
+
+function blankForm(): ProductionVersionForm {
+  return {
+    skuCode: '',
+    mbomVersionId: '',
+    routingVersionId: '',
+    validFrom: today(),
+    validTo: null,
+    lotSizeMin: '',
+    lotSizeMax: '',
+    priority: '0',
+    isDefault: false,
+  }
+}
+
+const formOpen = shallowRef(false)
+const showErrors = ref(false)
+// null = 新建，否则为正在编辑的 productionVersionId。
+const editingId = shallowRef<string | null>(null)
+const editingRow = shallowRef<BusinessConsoleProductionVersionItem | null>(null)
+const form = reactive<ProductionVersionForm>(blankForm())
+
+// 编辑态由所选行带出的只读上下文（物料是生产版本的身份，不可改）。
+const carriedItems = computed(() => [
+  { label: '物料', value: editingRow.value ? skuLabel(editingRow.value.skuCode) : undefined },
+  { label: '物料编码', value: editingRow.value?.skuCode },
+  {
+    label: '当前状态',
+    value: editingRow.value ? statusLabel(editingRow.value.status) : undefined,
+  },
+])
+
+function parseNumber(value: string | number | null | undefined): number | undefined {
+  if (value === null || value === undefined) return undefined
+  if (typeof value === 'number') return Number.isFinite(value) ? value : undefined
+  const trimmed = value.trim()
+  if (!trimmed) return undefined
+  const parsed = Number(trimmed)
+  return Number.isFinite(parsed) ? parsed : undefined
+}
+const lotMin = computed(() => parseNumber(form.lotSizeMin))
+const lotMax = computed(() => parseNumber(form.lotSizeMax))
+
+const skuValid = computed(() => form.skuCode.trim().length > 0)
+const mbomValid = computed(() => form.mbomVersionId.trim().length > 0)
+const routingValid = computed(() => form.routingVersionId.trim().length > 0)
+const validFromValid = computed(() => !!form.validFrom)
+// from ≤ to（to 可空）
+const validRangeValid = computed(
+  () => !form.validFrom || !form.validTo || form.validFrom <= form.validTo,
+)
+// 批量 min ≤ max（两者皆为非空数值时才校验）
+const lotRangeValid = computed(
+  () => lotMin.value == null || lotMax.value == null || lotMin.value <= lotMax.value,
+)
+
+const canSubmit = computed(
+  () =>
+    skuValid.value &&
+    mbomValid.value &&
+    routingValid.value &&
+    validFromValid.value &&
+    validRangeValid.value &&
+    lotRangeValid.value,
+)
+
+// 只有一份已发布 MBOM / 工艺路线时直接选中——没有选择余地的「选择」不该让用户做。
+watch([mbomOptions, routingOptions, formOpen], ([mbomList, routingList, open]) => {
+  if (!open) return
+  if (!form.mbomVersionId && mbomList.length === 1) form.mbomVersionId = mbomList[0]!.value
+  if (!form.routingVersionId && routingList.length === 1)
+    form.routingVersionId = routingList[0]!.value
+})
+
+const selectorsPending = computed(() => mbomsPending.value || routingsPending.value)
+const hasSelectorData = computed(
+  () => mbomOptions.value.length > 0 && routingOptions.value.length > 0,
+)
+
+function openCreate() {
+  editingId.value = null
+  editingRow.value = null
+  Object.assign(form, blankForm())
+  showErrors.value = false
+  formOpen.value = true
+}
+function openEdit(row: BusinessConsoleProductionVersionItem) {
+  if (!row.productionVersionId) return
+  if (row.status?.toLowerCase() === 'archived') return
+  editingId.value = row.productionVersionId
+  editingRow.value = row
+  showErrors.value = false
+  Object.assign(form, {
+    skuCode: row.skuCode ?? '',
+    mbomVersionId: row.mbomVersionId ?? '',
+    routingVersionId: row.routingVersionId ?? '',
+    validFrom: row.validFrom ?? null,
+    validTo: row.validTo ?? null,
+    lotSizeMin: row.lotSizeMin == null ? '' : String(row.lotSizeMin),
+    lotSizeMax: row.lotSizeMax == null ? '' : String(row.lotSizeMax),
+    priority: String(row.priority ?? 0),
+    isDefault: row.isDefault ?? false,
+  })
+  formOpen.value = true
+}
+
+async function submitForm() {
+  if (!canSubmit.value) {
+    showErrors.value = true
+    return
+  }
+  const priority = parseNumber(form.priority) ?? 0
+  try {
+    if (editingId.value) {
+      await updateProductionVersion(editingId.value, {
+        mbomVersionId: form.mbomVersionId.trim(),
+        routingVersionId: form.routingVersionId.trim(),
+        validFrom: form.validFrom ?? undefined,
+        validTo: form.validTo ?? null,
+        lotSizeMin: lotMin.value ?? null,
+        lotSizeMax: lotMax.value ?? null,
+        priority,
+        isDefault: form.isDefault,
+      })
+      notifySuccess(`物料「${skuLabel(form.skuCode)}」的生产版本已更新。`)
+    } else {
+      const body: BusinessConsoleCreateProductionVersionRequest = {
+        organizationId: filters.organizationId,
+        environmentId: filters.environmentId,
+        skuCode: form.skuCode.trim(),
+        mbomVersionId: form.mbomVersionId.trim(),
+        routingVersionId: form.routingVersionId.trim(),
+        validFrom: form.validFrom ?? undefined,
+        validTo: form.validTo ?? null,
+        lotSizeMin: lotMin.value ?? null,
+        lotSizeMax: lotMax.value ?? null,
+        priority,
+        isDefault: form.isDefault,
+      }
+      await createProductionVersion(body)
+      notifySuccess(`已为物料「${skuLabel(form.skuCode)}」创建生产版本。`)
+    }
+    showErrors.value = false
+    formOpen.value = false
+    editingId.value = null
+    editingRow.value = null
+  } catch (error) {
+    notifyOperationFailure('保存生产版本失败', error, '保存生产版本失败，请稍后重试。')
+  }
+}
+
+// ── 归档 ────────────────────────────────────────────────────────
+const archiveOpen = shallowRef(false)
+const archiveTarget = shallowRef<BusinessConsoleProductionVersionItem | null>(null)
+const archiveReason = ref('')
+function openArchive(row: BusinessConsoleProductionVersionItem) {
+  if (!row.productionVersionId || row.status?.toLowerCase() === 'archived') return
+  archiveTarget.value = row
+  archiveReason.value = ''
+  archiveOpen.value = true
+}
+async function confirmArchive() {
+  const target = archiveTarget.value
+  if (!target?.productionVersionId) return
+  const reason = archiveReason.value.trim() || '不再用于排产'
+  try {
+    await archiveProductionVersion(target.productionVersionId, reason)
+    notifySuccess(`物料「${skuLabel(target.skuCode)}」的生产版本已归档。`)
+    archiveOpen.value = false
+    archiveTarget.value = null
+  } catch (error) {
+    notifyOperationFailure('归档生产版本失败', error, '归档生产版本失败，请稍后重试。')
+  }
+}
+
+// ── resolve 解析卡 ──────────────────────────────────────────────
+const resolveForm = reactive({
+  skuCode: '',
+  effectiveDate: today() as string | null,
+  lotSize: '100',
+})
+const canResolve = computed(
+  () =>
+    resolveForm.skuCode.trim().length > 0 &&
+    !!resolveForm.effectiveDate &&
+    (parseNumber(resolveForm.lotSize) ?? -1) >= 0,
+)
+async function runResolve() {
+  if (!canResolve.value) return
+  try {
+    await resolve({
+      skuCode: resolveForm.skuCode.trim(),
+      effectiveDate: resolveForm.effectiveDate ?? '',
+      lotSize: parseNumber(resolveForm.lotSize) ?? 0,
+    })
+  } catch (error) {
+    notifyOperationFailure('解析生产版本失败', error, '解析生产版本失败，请稍后重试。')
+  }
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="生产版本"
+      :breadcrumbs="[{ label: '产品工程' }]"
+      :count="`${productionVersionsTotal} 个版本`"
+    >
+      <template #actions>
+        <NvButton
+          size="sm"
+          variant="outline"
+          type="button"
+          :disabled="productionVersionsPending"
+          @click="refresh"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+        <NvDialog v-model:open="formOpen">
+          <NvDialogTrigger as-child>
+            <NvButton size="sm" type="button" @click="openCreate">
+              <PlusIcon aria-hidden="true" />
+              新建生产版本
+            </NvButton>
+          </NvDialogTrigger>
+          <NvDialogContent class="sm:max-w-2xl">
+            <NvDialogHeader>
+              <NvDialogTitle>{{ editingId ? '编辑生产版本' : '新建生产版本' }}</NvDialogTitle>
+              <!-- 说明不上界面：仅供读屏播报。 -->
+              <NvDialogDescription class="sr-only">
+                把物料绑定到已发布的 MBOM 与工艺路线，并约定有效期与批量区间。
+              </NvDialogDescription>
+            </NvDialogHeader>
+            <form class="grid gap-5" @submit.prevent="submitForm">
+              <p v-if="showErrors && !canSubmit" class="text-sm text-destructive" role="alert">
+                请完整填写带 * 的必填项，并确保有效期起止、批量区间合法（已标红）。
+              </p>
+              <p
+                v-if="!selectorsPending && !hasSelectorData"
+                class="rounded-md border border-warning/30 bg-warning/10 p-3 text-sm text-warning"
+                role="alert"
+              >
+                当前没有已发布的 MBOM 或工艺路线可绑定。请先在 MBOM /
+                工艺路线页发布版本，再回来创建生产版本。
+              </p>
+
+              <!-- 编辑态：物料由所选行带出，只读展示，不做成禁用的选择框。 -->
+              <CarriedContextSummary v-if="editingId" label="编辑对象" :items="carriedItems" />
+
+              <FormSectionTitle>绑定对象</FormSectionTitle>
+              <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+                <NvField v-if="!editingId" :data-invalid="showErrors && !skuValid">
+                  <NvFieldLabel for="pv-sku"
+                    >物料 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <DirectoryPicker
+                    id="pv-sku"
+                    v-model="form.skuCode"
+                    directory-type="material"
+                    creatable
+                  />
+                </NvField>
+                <NvField class="self-start">
+                  <NvFieldLabel>设为默认</NvFieldLabel>
+                  <label
+                    for="pv-default"
+                    class="flex h-9 cursor-pointer select-none items-center justify-between rounded-md border bg-background px-3 text-sm"
+                  >
+                    <span>同一物料生效期内的默认版本</span>
+                    <NvCheckbox id="pv-default" v-model="form.isDefault" />
+                  </label>
+                </NvField>
+                <NvField :data-invalid="showErrors && !mbomValid">
+                  <NvFieldLabel for="pv-mbom"
+                    >已发布 MBOM <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvSelect v-model="form.mbomVersionId">
+                    <NvSelectTrigger id="pv-mbom"
+                      ><NvSelectValue placeholder="选择已发布 MBOM"
+                    /></NvSelectTrigger>
+                    <NvSelectContent>
+                      <NvSelectItem v-for="o in mbomOptions" :key="o.value" :value="o.value">{{
+                        o.label
+                      }}</NvSelectItem>
+                    </NvSelectContent>
+                  </NvSelect>
+                </NvField>
+                <NvField :data-invalid="showErrors && !routingValid">
+                  <NvFieldLabel for="pv-routing"
+                    >已发布工艺路线 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvSelect v-model="form.routingVersionId">
+                    <NvSelectTrigger id="pv-routing"
+                      ><NvSelectValue placeholder="选择已发布工艺路线"
+                    /></NvSelectTrigger>
+                    <NvSelectContent>
+                      <NvSelectItem v-for="o in routingOptions" :key="o.value" :value="o.value">{{
+                        o.label
+                      }}</NvSelectItem>
+                    </NvSelectContent>
+                  </NvSelect>
+                </NvField>
+              </NvFieldGroup>
+
+              <FormSectionTitle>有效期与适用范围</FormSectionTitle>
+              <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+                <NvField :data-invalid="showErrors && (!validFromValid || !validRangeValid)">
+                  <NvFieldLabel>生效起 <span class="text-destructive">*</span></NvFieldLabel>
+                  <NvDatePicker
+                    v-model="form.validFrom"
+                    placeholder="选择生效起日"
+                    class="w-full"
+                  />
+                </NvField>
+                <NvField :data-invalid="showErrors && !validRangeValid">
+                  <NvFieldLabel>生效止</NvFieldLabel>
+                  <NvDatePicker
+                    v-model="form.validTo"
+                    placeholder="留空表示长期有效"
+                    class="w-full"
+                  />
+                </NvField>
+                <NvField :data-invalid="showErrors && !lotRangeValid">
+                  <NvFieldLabel for="pv-lot-min">批量下限</NvFieldLabel>
+                  <NvInput
+                    id="pv-lot-min"
+                    v-model="form.lotSizeMin"
+                    type="number"
+                    min="0"
+                    placeholder="不限"
+                  />
+                </NvField>
+                <NvField :data-invalid="showErrors && !lotRangeValid">
+                  <NvFieldLabel for="pv-lot-max">批量上限</NvFieldLabel>
+                  <NvInput
+                    id="pv-lot-max"
+                    v-model="form.lotSizeMax"
+                    type="number"
+                    min="0"
+                    placeholder="不限"
+                  />
+                </NvField>
+                <NvField>
+                  <NvFieldLabel for="pv-priority">优先级</NvFieldLabel>
+                  <NvInput id="pv-priority" v-model="form.priority" type="number" min="0" />
+                  <NvFieldDescription>命中多个版本时数值越大越优先。</NvFieldDescription>
+                </NvField>
+              </NvFieldGroup>
+
+              <NvDialogFooter>
+                <NvButton type="button" variant="outline" @click="formOpen = false">取消</NvButton>
+                <NvButton type="submit" :disabled="createPending || updatePending">
+                  <NvSpinner v-if="createPending || updatePending" aria-hidden="true" />
+                  {{ editingId ? '保存生产版本' : '创建生产版本' }}
+                </NvButton>
+              </NvDialogFooter>
+            </form>
+          </NvDialogContent>
+        </NvDialog>
+      </template>
+    </NvPageHeader>
+
+    <NvMetricStrip :cells="versionCells" />
+
+    <NvCard>
+      <NvCardHeader>
+        <NvCardTitle class="text-base">版本解析</NvCardTitle>
+        <p class="text-sm text-muted-foreground">选物料、生效日和批量，查此时投产该用哪个版本。</p>
+      </NvCardHeader>
+      <!-- 条件行与结果块分两层：条件走响应式网格（按钮列随断点对齐），结果块任何断点都通栏。 -->
+      <NvCardContent class="grid gap-4">
+        <div
+          class="grid items-end gap-3 md:grid-cols-2 lg:grid-cols-[repeat(3,minmax(0,1fr))_auto]"
+        >
+          <NvField>
+            <NvFieldLabel for="resolve-sku">物料</NvFieldLabel>
+            <NvSelect v-model="resolveForm.skuCode">
+              <NvSelectTrigger id="resolve-sku"
+                ><NvSelectValue placeholder="选择物料"
+              /></NvSelectTrigger>
+              <NvSelectContent>
+                <NvSelectItem v-for="o in skuOptions" :key="o.value" :value="o.value">{{
+                  o.label
+                }}</NvSelectItem>
+              </NvSelectContent>
+            </NvSelect>
+          </NvField>
+          <NvField>
+            <NvFieldLabel>生效日</NvFieldLabel>
+            <NvDatePicker
+              v-model="resolveForm.effectiveDate"
+              placeholder="选择生效日"
+              class="w-full"
+            />
+          </NvField>
+          <NvField>
+            <NvFieldLabel for="resolve-lot">批量</NvFieldLabel>
+            <NvInput id="resolve-lot" v-model="resolveForm.lotSize" type="number" min="0" />
+          </NvField>
+          <div class="flex flex-wrap items-center gap-2">
+            <NvButton type="button" :disabled="!canResolve || resolvePending" @click="runResolve">
+              <NvSpinner v-if="resolvePending" aria-hidden="true" />
+              <SearchIcon v-else aria-hidden="true" />
+              解析
+            </NvButton>
+            <NvButton v-if="resolvedOnce" type="button" variant="ghost" @click="clearResolve"
+              >清除</NvButton
+            >
+          </div>
+        </div>
+        <div v-if="resolvedOnce" class="grid gap-2.5 rounded-md border bg-muted/30 p-4 text-sm">
+          <template v-if="resolved">
+            <div class="flex justify-between gap-3">
+              <span class="text-muted-foreground">命中物料</span>
+              <span class="font-medium">{{ skuLabel(resolved.skuCode) }}</span>
+            </div>
+            <div class="flex justify-between gap-3">
+              <span class="text-muted-foreground">MBOM</span>
+              <span class="font-medium">{{ resolved.mbomVersionId ?? '无' }}</span>
+            </div>
+            <div class="flex justify-between gap-3">
+              <span class="text-muted-foreground">工艺路线</span>
+              <span class="font-medium">{{ resolved.routingVersionId ?? '无' }}</span>
+            </div>
+            <div class="flex justify-between gap-3">
+              <span class="text-muted-foreground">状态</span>
+              <NvStatusBadge
+                :label="statusLabel(resolved.status)"
+                :tone="statusTone(resolved.status)"
+              />
+            </div>
+          </template>
+          <p v-else class="text-muted-foreground">
+            该物料在所选生效日与批量下没有命中任何生产版本。可调整条件，或新建覆盖此区间的版本。
+          </p>
+        </div>
+      </NvCardContent>
+    </NvCard>
+
+    <NvToolbar v-model:search="skuSearch" search-placeholder="按物料编码筛选生产版本">
+      <template #filters>
+        <NvSelect v-model="statusFilter">
+          <NvSelectTrigger class="h-9 w-32" aria-label="状态筛选"
+            ><NvSelectValue
+          /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem v-for="o in STATUS_FILTER_OPTIONS" :key="o.value" :value="o.value">{{
+              o.label
+            }}</NvSelectItem>
+          </NvSelectContent>
+        </NvSelect>
+      </template>
+    </NvToolbar>
+
+    <p v-if="listErrorMessage" class="text-sm text-destructive" role="alert">
+      {{ listErrorMessage }}
+    </p>
+
+    <NvDataTable
+      manual
+      :page="page"
+      :page-size="pageSize"
+      :total-items="productionVersionsTotal"
+      @update:page="page = $event"
+      @update:page-size="(v) => (pageSize = String(v))"
+      :columns="columns"
+      :rows="productionVersions"
+      row-key="productionVersionId"
+      :loading="productionVersionsPending"
+      empty-message="当前范围没有生产版本。可新建版本把物料绑定到已发布的 MBOM 与工艺路线。"
+      :searchable="false"
+      :column-settings="false"
+    >
+      <template #cell-skuCode="{ row }">
+        <div class="flex flex-col gap-0.5">
+          <span>{{ skuLabel(row.skuCode) }}</span>
+          <span class="text-xs text-muted-foreground">{{ row.skuCode }}</span>
+        </div>
+      </template>
+      <template #cell-binding="{ row }">
+        <div class="flex flex-col gap-0.5">
+          <span>{{ row.mbomVersionId || '无' }}</span>
+          <span class="text-xs text-muted-foreground">{{ row.routingVersionId || '无' }}</span>
+        </div>
+      </template>
+      <template #cell-valid="{ row }">
+        <span class="text-muted-foreground">{{
+          formatValidRange(row.validFrom, row.validTo)
+        }}</span>
+      </template>
+      <template #cell-lotSize="{ row }">{{
+        formatLotRange(row.lotSizeMin, row.lotSizeMax)
+      }}</template>
+      <template #cell-priority="{ row }"
+        ><span class="tabular-nums">{{ row.priority ?? 0 }}</span></template
+      >
+      <template #cell-isDefault="{ row }">
+        <NvStatusBadge v-if="row.isDefault" label="默认" tone="info" />
+        <span v-else class="text-muted-foreground">—</span>
+      </template>
+      <template #cell-status="{ row }">
+        <NvStatusBadge :label="statusLabel(row.status)" :tone="statusTone(row.status)" />
+      </template>
+      <template #cell-actions="{ row }">
+        <div class="flex justify-end gap-1">
+          <NvButton
+            type="button"
+            variant="ghost"
+            size="sm"
+            :disabled="row.status?.toLowerCase() === 'archived'"
+            @click="openEdit(row)"
+          >
+            编辑
+          </NvButton>
+          <NvButton
+            type="button"
+            variant="ghost"
+            size="sm"
+            :disabled="row.status?.toLowerCase() === 'archived'"
+            @click="openArchive(row)"
+          >
+            归档
+          </NvButton>
+        </div>
+      </template>
+    </NvDataTable>
+
+    <NvAlertDialog v-model:open="archiveOpen">
+      <NvAlertDialogContent>
+        <NvAlertDialogHeader>
+          <NvAlertDialogTitle>归档生产版本</NvAlertDialogTitle>
+          <NvAlertDialogDescription>
+            归档后物料「{{
+              skuLabel(archiveTarget?.skuCode)
+            }}」的此版本不可再编辑，也不会被新工单引用。
+          </NvAlertDialogDescription>
+        </NvAlertDialogHeader>
+        <NvField class="px-1">
+          <NvFieldLabel for="archive-reason">归档原因</NvFieldLabel>
+          <NvInput id="archive-reason" v-model="archiveReason" placeholder="不再用于排产" />
+        </NvField>
+        <NvAlertDialogFooter>
+          <NvAlertDialogCancel>取消</NvAlertDialogCancel>
+          <!-- 普通 NvButton，不用 NvAlertDialogAction：后者点击即无条件关框（confirm-destroy 规则 3）。 -->
+          <!-- variant 不写 = NvAlertDialogAction 的默认值 'default'，换件不改外观。 -->
+          <NvButton type="button" :disabled="archivePending" @click="confirmArchive">
+            <NvSpinner v-if="archivePending" aria-hidden="true" />
+            确认归档
+          </NvButton>
+        </NvAlertDialogFooter>
+      </NvAlertDialogContent>
+    </NvAlertDialog>
+  </BusinessLayout>
+</template>

@@ -1,0 +1,69 @@
+---
+title: Status 状态
+---
+
+<script setup>
+import { NvStatusDot, NvStatusBadge } from '@nerv-iip/ui'
+</script>
+
+# Status 状态
+
+表达实体的实时状态。`NvStatusDot` 是一个带可选脉冲环的状态点；`NvStatusBadge` 在其前置色点基础上叠加色调胶囊与本地化文案，并复用共享状态映射，原始值（如 `running`）会自动解析为标签与色调。
+
+## 状态点 NvStatusDot
+
+<Demo>
+  <span class="flex items-center gap-4">
+    <NvStatusDot tone="info" pulse />
+    <NvStatusDot tone="success" />
+    <NvStatusDot tone="warning" />
+    <NvStatusDot tone="danger" />
+    <NvStatusDot tone="neutral" />
+  </span>
+</Demo>
+
+```vue
+<NvStatusDot tone="info" pulse />
+<NvStatusDot tone="success" />
+<NvStatusDot tone="danger" />
+```
+
+## 状态徽标 NvStatusBadge
+
+按原始状态值自动解析中文文案与色调，`pulse` 标记进行中状态。空值或未知状态显示中性色「—」，不展示系统原码；开发期仍对缺词告警一次。传入 `label` 可明确覆盖展示文案，此时不产生缺词告警。
+
+<Demo>
+  <span class="flex flex-wrap items-center gap-2">
+    <NvStatusBadge value="running" pulse />
+    <NvStatusBadge value="ready" />
+    <NvStatusBadge value="completed" />
+    <NvStatusBadge value="pending" />
+    <NvStatusBadge value="blocked" />
+  </span>
+</Demo>
+
+```vue
+<NvStatusBadge value="running" pulse />
+<NvStatusBadge value="ready" />
+<NvStatusBadge value="completed" />
+<NvStatusBadge value="blocked" />
+```
+
+## 属性
+
+### NvStatusDot
+
+| 属性    | 说明                      | 类型                                              | 默认      |
+| ------- | ------------------------- | ------------------------------------------------- | --------- |
+| `tone`  | 色调                      | `success \| warning \| danger \| info \| neutral` | `neutral` |
+| `pulse` | 显示脉冲环（活跃/在线态） | `boolean`                                         | `false`   |
+| `size`  | 尺寸                      | `sm \| default`                                   | `default` |
+
+### NvStatusBadge
+
+| 属性    | 说明                              | 类型                                              | 默认    |
+| ------- | --------------------------------- | ------------------------------------------------- | ------- |
+| `value` | 原始状态值，自动映射为标签 + 色调 | `string \| null`                                  | —       |
+| `label` | 覆盖解析出的文案                  | `string`                                          | —       |
+| `tone`  | 覆盖解析出的色调                  | `success \| warning \| danger \| info \| neutral` | —       |
+| `pulse` | 状态点脉冲                        | `boolean`                                         | `false` |

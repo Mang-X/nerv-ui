@@ -1,0 +1,956 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleMesOperationTaskRow,
+  BusinessConsoleResourceItem,
+} from '@nerv-iip/api-client'
+import type { NvDataTableColumn, NvDataTableSort } from '@nerv-iip/ui'
+import { openSopFileContent, statusActionGate } from '@nerv-iip/business-core'
+import MesWorkScopeSelect from '@/components/mes/MesWorkScopeSelect.vue'
+import ActualHoursCell from '@/components/mes/ActualHoursCell.vue'
+import ProductionReportDialog from '@/components/mes/ProductionReportDialog.vue'
+import { recoverLifecycleAction, useLifecycleWriteIntent } from '@/composables/lifecycleAction'
+import type { ProductionReportContext } from '@/composables/mes/useProductionReportForm'
+import WorkOrderQuickView from '@/components/mes/WorkOrderQuickView.vue'
+import CodeWithNameCell from '@/components/business/CodeWithNameCell.vue'
+import {
+  type MesStatusValue,
+  mesOperationTaskStatusOptions,
+} from '@/composables/mes/useMesReferenceLabels'
+import { useMesDisplayNames } from '@/composables/mes/useMesDisplayNames'
+import { useBusinessMasterDataResources } from '@/composables/useBusinessMasterData'
+import {
+  describeMesReadinessReason,
+  useMesCurrentOperationSops,
+  useMesOperationTasks,
+} from '@/composables/useBusinessMes'
+import { OPERATION_QUALITY_VERDICT_LABELS } from '@/data/businessLabels'
+import { scheduleInvalidationHint } from '@/composables/useScheduleInvalidation'
+import type { MesLifecycleActionKey } from '@/composables/mes/useMesTaskSemantics'
+import {
+  isScheduleInvalidatedTask,
+  resolveDispatchAffordance,
+  resolveDispatchState,
+  resolveExecutionState,
+  resolveLifecycleActions,
+  resolveScheduleState,
+} from '@/composables/mes/useMesTaskSemantics'
+import type { DispatchAssignTarget } from '@/components/mes/DispatchAssignDialog.vue'
+import DispatchAssignDialog from '@/components/mes/DispatchAssignDialog.vue'
+import { useMesDispatchTasks } from '@/composables/useBusinessMes'
+import {
+  inlineErrorMessage,
+  notifyError,
+  notifyOperationFailure,
+  notifySuccess,
+} from '@/utils/notify'
+import { usePagedList } from '@/composables/usePagedList'
+import { usePendingWriteLeaveGuard } from '@/composables/usePendingWriteLeaveGuard'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import { useAuthStore } from '@/stores/auth'
+import {
+  NvButton,
+  NvDataTable,
+  NvDropdownMenuItem,
+  NvDropdownMenuSeparator,
+  NvPageHeader,
+  NvRowActions,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { watchDebounced } from '@vueuse/core'
+import {
+  CheckCheckIcon,
+  ClipboardCheckIcon,
+  EyeIcon,
+  FileCheckIcon,
+  FileTextIcon,
+  PauseIcon,
+  PlayIcon,
+  RefreshCwIcon,
+  RotateCwIcon,
+  ShieldCheckIcon,
+  TriangleAlertIcon,
+  UserCheckIcon,
+  WrenchIcon,
+} from '@lucide/vue'
+import { computed, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
+
+import { operationTaskLabel } from '@/utils/mesTaskIdentity'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '工序执行',
+    requiredPermissions: ['business.mes.operations.read'],
+  },
+})
+
+type Row = BusinessConsoleMesOperationTaskRow
+type CurrentSop = { fileId?: string | null; fileName?: string | null }
+
+const {
+  completeOperationTask,
+  filters,
+  operationTasks,
+  operationTasksError,
+  operationTasksPending,
+  operationTasksTotal,
+  operationTasksState,
+  operationListScope,
+  operationListScopeError,
+  operationListScopePending,
+  operationListScopeMessage,
+  operationScopeMessage,
+  operationScopeReady,
+  pauseOperationTask,
+  refreshOperationTasks,
+  resumeOperationTask,
+  startOperationTask,
+} = useMesOperationTasks()
+// 派工在本页行内直接完成：一线看着工序表就能把没人的活派出去，不必先跳派工看板。
+const { assignDispatchTask, assignDispatchTaskPending } = useMesDispatchTasks()
+
+const router = useRouter()
+const auth = useAuthStore()
+const canCallQuality = computed(() =>
+  ['business.quality.inspection-records.read', 'business.quality.inspection-records.create'].every(
+    (permission) => (auth.principal?.permissionCodes ?? []).includes(permission),
+  ),
+)
+// devices:true：工序读面只回设备编码，中文设备名要靠设备台账名录在前端补。
+const { resolveDevice, resolveShiftLabel, resolveWorkCenter } = useMesDisplayNames({
+  shifts: true,
+  devices: true,
+})
+
+/** 设备列的编码与名称：读面优先，其次设备台账名录；名录查不到就只显编码。 */
+function deviceCode(row: Row) {
+  return row.deviceAssetCode ?? row.deviceAssetId ?? ''
+}
+function deviceName(row: Row) {
+  return row.deviceAssetName ?? resolveDevice(deviceCode(row))
+}
+/** 排序 / 导出用的纯文本形态，与单元格呈现同一口径。 */
+function deviceText(row: Row) {
+  const code = deviceCode(row)
+  if (!code) return '未指定'
+  const name = deviceName(row)
+  return name ? `${name} ${code}` : code
+}
+const { resources: workCenterResources } = useBusinessMasterDataResources('work-center')
+const { resources: shiftResources } = useBusinessMasterDataResources('shift')
+
+const quickViewWorkOrderId = ref<string | null>(null)
+const quickViewOperationTaskId = ref<string | null>(null)
+// 报工在本页行内直接打开，上下文随行带出，不再跳到工单页只带两个 ID。
+const reportOpen = ref(false)
+const reportContext = ref<ProductionReportContext | null>(null)
+const selectedSopTask = ref<Row | null>(null)
+const openingSopFileId = ref<string | null>(null)
+const sopFileError = ref('')
+const {
+  filters: sopFilters,
+  currentSops,
+  currentSopsError,
+  currentSopsPending,
+  refreshCurrentSops,
+} = useMesCurrentOperationSops()
+
+const sopContextMessage = computed(() => {
+  const task = selectedSopTask.value
+  if (!task) return ''
+  if (!task.routingCode?.trim() || !task.routingRevision?.trim())
+    return '当前任务缺少工艺路线号或版本，无法确定适用的SOP。'
+  if (!task.workCenterCode?.trim()) return '当前任务缺少工作中心编码，无法确定适用的SOP。'
+  return ''
+})
+
+// --- Filters (live) ---
+const keyword = ref('')
+const statusFilter = ref('all')
+const workCenterFilter = ref('all')
+const shiftFilter = ref('all')
+
+function closeSops() {
+  selectedSopTask.value = null
+  sopFilters.operationCode = ''
+  sopFileError.value = ''
+}
+
+// SOP 属于打开它的任务范围；切换范围后由操作员重新选择任务。
+watch(
+  () => [
+    auth.principal?.principalId,
+    filters.organizationId,
+    filters.environmentId,
+    operationListScope.value?.kind,
+    operationListScope.value?.id,
+    keyword.value,
+    statusFilter.value,
+    workCenterFilter.value,
+    shiftFilter.value,
+    filters.skip,
+    filters.take,
+  ],
+  closeSops,
+)
+
+watch(statusFilter, (value) => {
+  filters.status = value === 'all' ? undefined : value
+})
+watchDebounced(
+  keyword,
+  (value) => {
+    filters.keyword = value.trim() || undefined
+  },
+  { debounce: 300, maxWait: 1000 },
+)
+watch(workCenterFilter, (value) => {
+  filters.workCenterId = value === 'all' ? undefined : value
+})
+watch(shiftFilter, (value) => {
+  filters.shiftId = value === 'all' ? undefined : value
+})
+
+const statusOptions = mesOperationTaskStatusOptions
+const workCenterOptions = computed(() => toResourceOptions(workCenterResources.value))
+const shiftOptions = computed(() => toResourceOptions(shiftResources.value))
+
+const visibleTasks = computed(() => operationTasks.value)
+
+// --- Sort (page-owned, before pagination) ---
+const sort = ref<NvDataTableSort | null>(null)
+function sortValue(task: Row, key: string): string | number {
+  if (key === 'operationSequence') return task.operationSequence ?? 0
+  if (key === 'plannedStartUtc')
+    return task.plannedStartUtc ? new Date(task.plannedStartUtc).getTime() : 0
+  return (task[key as keyof Row] as string | null) ?? ''
+}
+const sortedTasks = computed(() => {
+  if (!sort.value) return visibleTasks.value
+  const { key, direction } = sort.value
+  const factor = direction === 'asc' ? 1 : -1
+  return [...visibleTasks.value].sort((a, b) => {
+    const av = sortValue(a, key)
+    const bv = sortValue(b, key)
+    if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * factor
+    return String(av).localeCompare(String(bv), 'zh-Hans-CN') * factor
+  })
+})
+
+// --- Pagination ---
+const { page, pageSize } = usePagedList(filters, {
+  resetOn: [keyword, statusFilter, workCenterFilter, shiftFilter],
+})
+const pagedTasks = computed(() => sortedTasks.value)
+
+// facade 返回人读编码（workOrderId=WO-…、workCenterId=WC-…、operationTaskId=WO-…-OP-序号）：
+// 工序序号(operationSequence)作主锚点，工单/工作中心直接展示编码即可分辨。
+const columns: NvDataTableColumn<Row>[] = [
+  {
+    key: 'operationTaskId',
+    header: '工序任务',
+    width: 'w-64',
+    cellClass: 'font-medium whitespace-normal break-all',
+    accessor: (r) => operationTaskLabel(r),
+  },
+  {
+    key: 'workOrderId',
+    header: '工单',
+    width: 'w-56',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => r.workOrderNo ?? r.workOrderId ?? '无',
+  },
+  { key: 'status', header: '执行状态', width: 'w-24' },
+  { key: 'scheduleStatus', header: '排程', width: 'w-40' },
+  {
+    key: 'operationSequence',
+    header: '序号',
+    align: 'end',
+    width: 'w-20',
+    accessor: (r) => r.operationSequence ?? 0,
+  },
+  {
+    key: 'workCenterId',
+    header: '工作中心',
+    width: 'w-48',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) =>
+      r.workCenterName ?? resolveWorkCenter(r.workCenterCode ?? r.workCenterId) ?? '无',
+  },
+  {
+    key: 'deviceAssetId',
+    header: '设备',
+    width: 'w-64',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => deviceText(r),
+  },
+  {
+    key: 'shiftId',
+    header: '班次',
+    width: 'w-40',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => resolveShiftLabel(r.shiftId),
+  },
+  { key: 'assignedUserName', header: '派工', width: 'w-40' },
+  { key: 'actualHours', header: '实际工时', width: 'w-36' },
+  {
+    key: 'plannedStartUtc',
+    header: '计划开始',
+    width: 'w-48',
+    cellClass: 'whitespace-normal',
+    accessor: (r) => (r.plannedStartUtc ? new Date(r.plannedStartUtc).getTime() : 0),
+  },
+  {
+    key: 'qualityStatus',
+    header: '质量状态',
+    width: 'w-56',
+    cellClass: 'whitespace-normal break-all',
+  },
+  { key: 'sop', header: 'SOP', align: 'end', width: 'w-20' },
+  { key: 'actions', header: '操作', align: 'end', width: 'w-40' },
+]
+
+function rowKey(task: Row) {
+  return task.operationTaskId ?? `${task.workOrderId}-${task.operationSequence}`
+}
+
+const taskReadError = computed(() => operationListScopeError.value ?? operationTasksError.value)
+const errorMessage = computed(() =>
+  operationListScopeError.value
+    ? '范围读取失败，尚未读取任务。请重新加载。'
+    : inlineErrorMessage(operationTasksError.value),
+)
+const taskCount = computed(() => {
+  if (operationListScopeError.value) return '范围读取失败，尚未读取任务'
+  if (operationTasksState.value === 'idle') return '尚未读取任务'
+  if (operationTasksState.value === 'loading') return '正在读取任务…'
+  if (operationTasksState.value === 'error') return '任务读取失败'
+  return `${operationTasksTotal.value} 个工序任务`
+})
+
+function resetFilters() {
+  keyword.value = ''
+  statusFilter.value = 'all'
+  workCenterFilter.value = 'all'
+  shiftFilter.value = 'all'
+}
+
+// 「排程已失效」快捷项：一键把状态筛选切到失效任务，再点一次取消。
+//
+// 取值写法与 index.vue 的四格计数统一为**字面量**（不做 label 反查）：字面量在
+// `statusFilter` 被声明为 MesStatusValue 时会被类型检查挡住，而按中文 label 反查
+// 做不到这点 —— 改个文案就静默返回 undefined，筛选恒不激活。同理不按数组下标取：
+// 选项表增删一项就会串位。工序状态的运行时拼写是 PascalCase（#3912），
+// 而 `MesListFilters.status` 是 string，所以这里必须自己保证拼写。
+const invalidatedStatus: MesStatusValue = 'ScheduleInvalidated'
+const invalidatedFilterActive = computed(() => statusFilter.value === invalidatedStatus)
+function toggleInvalidatedFilter() {
+  statusFilter.value = invalidatedFilterActive.value ? 'all' : invalidatedStatus
+}
+
+function openWorkOrder(task: Row) {
+  if (!task.workOrderId) return
+  quickViewOperationTaskId.value = task.operationTaskId ?? null
+  quickViewWorkOrderId.value = task.workOrderId
+}
+function openSops(task: Row) {
+  selectedSopTask.value = task
+  sopFileError.value = ''
+  sopFilters.operationCode = sopContextMessage.value ? '' : (task.operationCode?.trim() ?? '')
+  sopFilters.workCenterCode = task.workCenterCode?.trim() ?? ''
+  sopFilters.routingCode = task.routingCode?.trim() ?? ''
+  sopFilters.routingRevision = task.routingRevision?.trim() ?? ''
+  sopFilters.asOfDate = ''
+}
+async function openSopFile(sop: CurrentSop) {
+  const fileId = sop.fileId?.trim()
+  if (!fileId) {
+    sopFileError.value = '当前SOP未绑定可查看的文件。'
+    return
+  }
+  sopFileError.value = ''
+  openingSopFileId.value = fileId
+  try {
+    await openSopFileContent(fileId, {
+      organizationId: sopFilters.organizationId,
+      environmentId: sopFilters.environmentId,
+    })
+  } catch (error) {
+    sopFileError.value = inlineErrorMessage(error, '无法打开SOP。')
+  } finally {
+    openingSopFileId.value = null
+  }
+}
+function openRoute(path: string, task: Row) {
+  void router.push({
+    path,
+    query: {
+      operationTaskId: task.operationTaskId ?? undefined,
+      workOrderId: task.workOrderId ?? undefined,
+      workCenterId: task.workCenterId ?? undefined,
+    },
+  })
+}
+// 只带 view，不带任何单据上下文：`quality/inspections` 的 query watch 一旦看到
+// workOrderId / operationTaskId / sourceDocumentId 就会**自动弹开「创建检验记录」抽屉**
+// （inspections.vue 的 `if (source) recordSheetOpen.value = true`）。本入口是去**看**首件结论的，
+// 把人丢进新建表单是走错门。真机走查抓到过一次，别再加回去。
+function openFirstArticleRecords() {
+  void router.push({ path: '/quality/inspections', query: { view: 'first-article-records' } })
+}
+function canOpenReport(task: Row) {
+  return Boolean(task.workOrderId && task.operationTaskId)
+}
+function openReport(task: Row) {
+  if (!canOpenReport(task)) return
+  reportContext.value = {
+    workOrderId: task.workOrderId!,
+    workOrderNo: task.workOrderNo,
+    operationTaskId: task.operationTaskId!,
+    operationTaskNo: task.operationTaskNo,
+    operationSequence: task.operationSequence,
+    operationStatus: task.status,
+    workCenterLabel:
+      task.workCenterName ?? resolveWorkCenter(task.workCenterCode ?? task.workCenterId),
+  }
+  reportOpen.value = true
+}
+// 可开工 / 执行中的工序才是一线现在能动手报工的；据此把行尾报工入口直接显出来，不必再翻下拉。
+// 状态口径统一走执行状态语义，不再硬编码后端大小写（运行时是 PascalCase，TS 声明是 camelCase）。
+function isReportableStatus(status?: string | null) {
+  return ['ready', 'running'].includes(resolveExecutionState(status).key)
+}
+
+// ── 工序生命周期动作（开工 / 暂停 / 恢复 / 完工）──────────────────
+const lifecyclePending = ref<string | null>(null)
+const lifecycleIntent = useLifecycleWriteIntent<MesLifecycleActionKey>(
+  (taskId, action) =>
+    `op-${action}-${taskId}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+)
+usePendingWriteLeaveGuard(lifecycleIntent.locked)
+const LIFECYCLE_RUNNERS: Record<
+  MesLifecycleActionKey,
+  (
+    id: string,
+    context: { organizationId: string; environmentId: string; workOrderId?: string },
+    body: { idempotencyKey: string },
+  ) => Promise<unknown>
+> = {
+  start: startOperationTask,
+  pause: pauseOperationTask,
+  resume: resumeOperationTask,
+  complete: completeOperationTask,
+}
+const LIFECYCLE_DONE_MESSAGES: Record<MesLifecycleActionKey, string> = {
+  start: '已开工。',
+  pause: '已暂停，恢复后可继续加工。',
+  resume: '已恢复加工。',
+  complete: '该工序已完工。',
+}
+const LIFECYCLE_FAIL_ACTIONS: Record<MesLifecycleActionKey, string> = {
+  start: '开工失败',
+  pause: '暂停失败',
+  resume: '恢复加工失败',
+  complete: '完工失败',
+}
+const LIFECYCLE_FAIL_FALLBACKS: Record<MesLifecycleActionKey, string> = {
+  start: '开工失败，请稍后重试。',
+  pause: '暂停失败，请稍后重试。',
+  resume: '恢复加工失败，请稍后重试。',
+  complete: '完工失败，请稍后重试。',
+}
+function lifecycleActionEnabled(task: Row, action: MesLifecycleActionKey) {
+  if (!operationScopeReady.value) return false
+  if (task.operationTaskId && !lifecycleIntent.permits(task.operationTaskId, action)) return false
+  return statusActionGate({
+    domain: 'mes-operation-task',
+    action,
+    facts: { status: task.status },
+  }).executable
+}
+
+async function runLifecycleAction(task: Row, action: MesLifecycleActionKey) {
+  if (!operationScopeReady.value) {
+    notifyError(operationScopeMessage.value)
+    return
+  }
+  const operationTaskId = task.operationTaskId
+  if (!operationTaskId) return
+  const intent = lifecycleIntent.acquire(operationTaskId, action)
+  if (!intent) return
+  lifecyclePending.value = operationTaskId
+  try {
+    await LIFECYCLE_RUNNERS[action](
+      operationTaskId,
+      {
+        organizationId: filters.organizationId,
+        environmentId: filters.environmentId,
+        workOrderId: task.workOrderId ?? undefined,
+      },
+      {
+        idempotencyKey: intent.key,
+      },
+    )
+    notifySuccess(LIFECYCLE_DONE_MESSAGES[action])
+    lifecycleIntent.clear()
+    void refreshOperationTasks()
+  } catch (error) {
+    if (
+      await recoverLifecycleAction(error, {
+        reset: () => {
+          lifecyclePending.value = null
+          lifecycleIntent.clear()
+        },
+        refresh: refreshOperationTasks,
+        notify: (message) => notifyError(message),
+      })
+    ) {
+      return
+    }
+    lifecycleIntent.recordFailure(error)
+    notifyOperationFailure(LIFECYCLE_FAIL_ACTIONS[action], error, LIFECYCLE_FAIL_FALLBACKS[action])
+  } finally {
+    lifecyclePending.value = null
+  }
+}
+
+// ── 行内派工 ────────────────────────────────────────────────────
+const assignOpen = ref(false)
+const assignTarget = ref<DispatchAssignTarget | null>(null)
+function openAssign(task: Row) {
+  if (!resolveDispatchAffordance(task).enabled) return
+  assignTarget.value = task
+  assignOpen.value = true
+}
+// 行尾是否直显「报工」按钮：状态能报工 且 工单/工序上下文齐全（跳转报工表单要带这两个 id）。
+function showReportButton(task: Row) {
+  return isReportableStatus(task.status) && canOpenReport(task)
+}
+function formatDateTime(value?: string | null) {
+  if (!value) return '无'
+  const date = new Date(value)
+  return Number.isNaN(date.getTime()) ? value : date.toLocaleString()
+}
+function formatDate(value?: string | null) {
+  if (!value) return '无'
+  const date = new Date(value)
+  return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString()
+}
+function canOpenSops(task: Row) {
+  return Boolean(task.operationCode?.trim())
+}
+const selectedSopErrorMessage = computed(() => inlineErrorMessage(currentSopsError.value))
+const selectedSopTitle = computed(() => {
+  const task = selectedSopTask.value
+  if (!task) return ''
+  return `${task.operationTaskNo ?? task.operationTaskId ?? '工序任务'} · ${task.operationCode ?? '未绑定工序'}`
+})
+// 质量状态既可能是总体判定（Ready / Warning / Blocked），也可能是具体阻塞原因码。
+// 判定值不在原因码表里，落到兜底分支就会把 Ready 原样显到界面上，所以先过一层中文判定表。
+// 判定表已提到 `@/data/businessLabels` 共享（工单详情的同名列用的是同一份，#1418）。
+function readiness(value?: string | null) {
+  const raw = (value ?? '未检').trim()
+  const verdict = OPERATION_QUALITY_VERDICT_LABELS[raw.toLowerCase()]
+  if (verdict) return { code: raw, label: verdict, nextStep: '' }
+  return describeMesReadinessReason(raw)
+}
+function readinessNeedsAction(value?: string | null) {
+  return [
+    'QUALITY_PLAN_MISSING',
+    'QUALITY_HOLD_ACTIVE',
+    'EQUIPMENT_UNAVAILABLE',
+    'EQUIPMENT_MAINTENANCE_CONFLICT',
+  ].includes(describeMesReadinessReason(value ?? '').code)
+}
+function toResourceOptions(items: BusinessConsoleResourceItem[]) {
+  return items
+    .filter((item) => item.active !== false && item.code)
+    .map((item) => ({
+      label: item.displayName ? `${item.displayName} (${item.code})` : item.code!,
+      value: item.code!,
+    }))
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader title="工序执行" :breadcrumbs="[{ label: '制造执行' }]" :count="taskCount">
+      <template #actions>
+        <NvButton
+          size="sm"
+          type="button"
+          variant="outline"
+          :disabled="operationTasksPending || operationListScopePending"
+          @click="refreshOperationTasks"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+      </template>
+    </NvPageHeader>
+
+    <p
+      v-if="operationListScopeMessage"
+      data-testid="operation-list-scope-message"
+      class="text-sm text-destructive"
+      role="alert"
+    >
+      {{ operationListScopeMessage }}
+    </p>
+
+    <NvToolbar v-model:search="keyword" search-placeholder="搜索任务、工单、设备">
+      <template #filters>
+        <MesWorkScopeSelect
+          permission-code="business.mes.operations.read"
+          :read-failed="!!operationListScopeError"
+          :read-pending="operationListScopePending"
+        />
+        <NvSelect v-model="statusFilter">
+          <NvSelectTrigger class="h-9 w-32" aria-label="工序状态"
+            ><NvSelectValue
+          /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem
+              v-for="option in statusOptions"
+              :key="option.value"
+              :value="option.value"
+              >{{ option.label }}</NvSelectItem
+            >
+          </NvSelectContent>
+        </NvSelect>
+        <NvSelect v-model="workCenterFilter">
+          <NvSelectTrigger class="h-9 w-40" aria-label="工作中心"
+            ><NvSelectValue placeholder="全部工作中心"
+          /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem value="all">全部工作中心</NvSelectItem>
+            <NvSelectItem
+              v-for="option in workCenterOptions"
+              :key="option.value"
+              :value="option.value"
+              >{{ option.label }}</NvSelectItem
+            >
+          </NvSelectContent>
+        </NvSelect>
+        <NvSelect v-model="shiftFilter">
+          <NvSelectTrigger class="h-9 w-32" aria-label="班次"
+            ><NvSelectValue placeholder="全部班次"
+          /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem value="all">全部班次</NvSelectItem>
+            <NvSelectItem
+              v-for="option in shiftOptions"
+              :key="option.value"
+              :value="option.value"
+              >{{ option.label }}</NvSelectItem
+            >
+          </NvSelectContent>
+        </NvSelect>
+        <NvButton
+          type="button"
+          size="sm"
+          :variant="invalidatedFilterActive ? 'default' : 'outline'"
+          :aria-pressed="invalidatedFilterActive"
+          @click="toggleInvalidatedFilter"
+        >
+          <TriangleAlertIcon aria-hidden="true" />
+          排程已失效
+        </NvButton>
+      </template>
+      <template #actions>
+        <NvButton type="button" variant="ghost" size="sm" @click="resetFilters">重置</NvButton>
+      </template>
+    </NvToolbar>
+
+    <p
+      v-if="operationScopeMessage"
+      data-testid="operation-scope-message"
+      class="text-sm text-destructive"
+      role="alert"
+    >
+      {{ operationScopeMessage }}
+    </p>
+
+    <NvDataTable
+      manual
+      :page="page"
+      :page-size="pageSize"
+      :total-items="operationTasksTotal"
+      @update:page="page = $event"
+      @update:page-size="(v) => (pageSize = String(v))"
+      v-model:sort="sort"
+      :columns="columns"
+      :rows="pagedTasks"
+      :row-key="rowKey"
+      :client-sort="false"
+      :loading="operationTasksPending || operationListScopePending"
+      :error="taskReadError"
+      :error-message="errorMessage"
+      :searchable="false"
+      :column-settings="false"
+      :empty-message="
+        operationTasksState === 'ready'
+          ? '当前没有工序任务。确认工单已释放、排程已生成后，可开工任务会出现在这里。'
+          : '尚未读取任务，请先确认作业范围。'
+      "
+      @retry="refreshOperationTasks"
+    >
+      <template #cell-operationTaskId="{ row }">
+        <span class="whitespace-normal break-all" :title="row.operationTaskId">{{
+          operationTaskLabel(row)
+        }}</span>
+      </template>
+      <template #cell-operationSequence="{ row }">
+        <span class="tabular-nums">工序 {{ row.operationSequence ?? '—' }}</span>
+      </template>
+      <template #cell-workOrderId="{ row }">
+        <button
+          v-if="row.workOrderId"
+          type="button"
+          class="text-brand underline-offset-4 hover:underline"
+          @click="openWorkOrder(row)"
+        >
+          {{ row.workOrderNo ?? row.workOrderId }}
+        </button>
+        <span v-else class="text-muted-foreground">—</span>
+      </template>
+      <template #cell-status="{ row }">
+        <NvStatusBadge
+          :label="resolveExecutionState(row.status).label"
+          :tone="resolveExecutionState(row.status).tone"
+        />
+      </template>
+      <template #cell-scheduleStatus="{ row }">
+        <span
+          class="inline-flex"
+          :title="
+            isScheduleInvalidatedTask(row.status)
+              ? scheduleInvalidationHint(row.scheduleInvalidationReasonCode)
+              : undefined
+          "
+        >
+          <NvStatusBadge
+            :label="resolveScheduleState(row).label"
+            :tone="resolveScheduleState(row).tone"
+          />
+        </span>
+      </template>
+      <template #cell-deviceAssetId="{ row }">
+        <CodeWithNameCell :code="deviceCode(row)" :name="deviceName(row)" fallback="未指定" />
+      </template>
+      <template #cell-assignedUserName="{ row }">
+        <NvStatusBadge
+          class="max-w-full"
+          :title="resolveDispatchState(row).label"
+          :label="resolveDispatchState(row).label"
+          :tone="resolveDispatchState(row).tone"
+        />
+      </template>
+      <template #cell-actualHours="{ row }">
+        <ActualHoursCell
+          :labor-hours="row.actualLaborHours"
+          :machine-hours="row.actualMachineHours"
+        />
+      </template>
+      <template #cell-plannedStartUtc="{ row }">
+        {{ formatDateTime(row.plannedStartUtc) }}
+      </template>
+      <template #cell-qualityStatus="{ row }">
+        <div class="grid gap-0.5">
+          <span>{{ readiness(row.qualityStatus).label }}</span>
+          <span
+            v-if="readinessNeedsAction(row.qualityStatus)"
+            class="text-xs text-muted-foreground"
+          >
+            {{ readiness(row.qualityStatus).nextStep }}
+          </span>
+        </div>
+      </template>
+      <template #cell-sop="{ row }">
+        <NvButton
+          size="icon"
+          type="button"
+          variant="ghost"
+          :disabled="!canOpenSops(row)"
+          :title="canOpenSops(row) ? '查看当前SOP' : '当前任务未绑定标准工序'"
+          @click="openSops(row)"
+        >
+          <FileTextIcon aria-hidden="true" />
+          <span class="sr-only">查看当前SOP</span>
+        </NvButton>
+      </template>
+      <template #cell-actions="{ row }">
+        <div class="flex items-center justify-end gap-1">
+          <NvButton v-if="showReportButton(row)" size="sm" type="button" @click="openReport(row)">
+            <ClipboardCheckIcon aria-hidden="true" />
+            报工
+          </NvButton>
+          <NvRowActions :label="`工序任务操作 工序 ${row.operationSequence ?? ''}`">
+            <!-- 状态流转：可用性对齐后端 OperationTask 状态机，禁用时给出为什么。 -->
+            <NvDropdownMenuItem
+              v-for="action in resolveLifecycleActions(row)"
+              :key="action.key"
+              :disabled="
+                !action.enabled ||
+                !lifecycleActionEnabled(row, action.key) ||
+                lifecyclePending === row.operationTaskId
+              "
+              :title="action.blockedReason"
+              @click="runLifecycleAction(row, action.key)"
+            >
+              <PlayIcon v-if="action.key === 'start'" aria-hidden="true" />
+              <PauseIcon v-else-if="action.key === 'pause'" aria-hidden="true" />
+              <RotateCwIcon v-else-if="action.key === 'resume'" aria-hidden="true" />
+              <CheckCheckIcon v-else aria-hidden="true" />
+              {{ action.label }}
+            </NvDropdownMenuItem>
+            <NvDropdownMenuSeparator />
+            <NvDropdownMenuItem
+              :disabled="!resolveDispatchAffordance(row).enabled"
+              :title="resolveDispatchAffordance(row).blockedReason"
+              @click="openAssign(row)"
+            >
+              <UserCheckIcon aria-hidden="true" />
+              {{ resolveDispatchAffordance(row).label }}
+            </NvDropdownMenuItem>
+            <NvDropdownMenuItem :disabled="!canOpenSops(row)" @click="openSops(row)">
+              <FileTextIcon aria-hidden="true" />
+              {{ canOpenSops(row) ? '查看当前SOP' : '未绑定标准工序' }}
+            </NvDropdownMenuItem>
+            <NvDropdownMenuSeparator />
+            <NvDropdownMenuItem
+              v-if="!showReportButton(row)"
+              :disabled="!canOpenReport(row)"
+              @click="openReport(row)"
+            >
+              <ClipboardCheckIcon aria-hidden="true" />
+              {{ canOpenReport(row) ? '报工' : '暂不可报工（缺工单）' }}
+            </NvDropdownMenuItem>
+            <!-- 首件未判合格时服务端会拒绝批量报工（#2780），入口留在报工旁边，被拦下的人一步可达。 -->
+            <NvDropdownMenuItem @click="openFirstArticleRecords()">
+              <FileCheckIcon aria-hidden="true" />
+              首件检验记录
+            </NvDropdownMenuItem>
+            <NvDropdownMenuItem :disabled="!row.workOrderId" @click="openWorkOrder(row)">
+              <EyeIcon aria-hidden="true" />
+              查看工单
+            </NvDropdownMenuItem>
+            <NvDropdownMenuSeparator />
+            <NvDropdownMenuItem
+              v-if="canCallQuality"
+              @click="openRoute('/quality/inspections', row)"
+            >
+              <ShieldCheckIcon aria-hidden="true" />
+              呼叫质检
+            </NvDropdownMenuItem>
+            <NvDropdownMenuItem @click="openRoute('/mes/downtime', row)">
+              <WrenchIcon aria-hidden="true" />
+              记录异常
+            </NvDropdownMenuItem>
+          </NvRowActions>
+        </div>
+      </template>
+    </NvDataTable>
+
+    <section
+      v-if="selectedSopTask"
+      class="grid gap-3 border-t border-border pt-4"
+      aria-live="polite"
+    >
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="min-w-0">
+          <h2 class="text-sm font-semibold text-foreground">{{ selectedSopTitle }}</h2>
+          <p class="text-xs text-muted-foreground">
+            当前生效 SOP ·
+            {{
+              selectedSopTask.workCenterName ??
+              resolveWorkCenter(selectedSopTask.workCenterCode ?? selectedSopTask.workCenterId) ??
+              selectedSopTask.workCenterId ??
+              '无工作中心'
+            }}
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <NvButton
+            size="sm"
+            type="button"
+            variant="outline"
+            :disabled="Boolean(sopContextMessage) || currentSopsPending"
+            @click="refreshCurrentSops"
+          >
+            <RefreshCwIcon aria-hidden="true" />
+            刷新SOP
+          </NvButton>
+          <NvButton size="sm" type="button" variant="ghost" @click="closeSops">关闭SOP</NvButton>
+        </div>
+      </div>
+      <p v-if="sopContextMessage" class="text-sm text-muted-foreground">{{ sopContextMessage }}</p>
+      <p
+        v-else-if="selectedSopErrorMessage || sopFileError"
+        class="text-sm text-destructive"
+        role="alert"
+      >
+        {{ selectedSopErrorMessage || sopFileError }}
+      </p>
+      <p v-else-if="currentSopsPending" class="text-sm text-muted-foreground">正在加载当前SOP...</p>
+      <ul v-else-if="currentSops.length" class="grid gap-2 md:grid-cols-2">
+        <li
+          v-for="sop in currentSops"
+          :key="`${sop.documentNumber}-${sop.revision}-${sop.fileId}`"
+          class="grid gap-1 rounded-md border border-border px-3 py-2 text-sm"
+        >
+          <span class="font-medium text-foreground">{{ sop.fileName || sop.documentNumber }}</span>
+          <span class="text-xs text-muted-foreground">
+            {{ sop.documentNumber }} · 版本 {{ sop.revision }} · 生效
+            {{ formatDate(sop.effectiveDate) }}
+          </span>
+          <NvButton
+            size="sm"
+            type="button"
+            variant="outline"
+            class="w-fit"
+            :disabled="openingSopFileId === sop.fileId"
+            @click="openSopFile(sop)"
+          >
+            <EyeIcon aria-hidden="true" />
+            查看SOP
+          </NvButton>
+        </li>
+      </ul>
+      <p v-else class="text-sm text-muted-foreground">当前工序没有已发布且已生效的SOP。</p>
+    </section>
+
+    <ProductionReportDialog
+      v-model:open="reportOpen"
+      :context="reportContext"
+      @reported="refreshOperationTasks"
+    />
+
+    <WorkOrderQuickView
+      v-model:work-order-id="quickViewWorkOrderId"
+      :operation-task-id="quickViewOperationTaskId"
+    />
+
+    <DispatchAssignDialog
+      v-model:open="assignOpen"
+      :target="assignTarget"
+      :assign="
+        (operationTaskId, body) =>
+          assignDispatchTask(operationTaskId, {
+            organizationId: filters.organizationId,
+            environmentId: filters.environmentId,
+            ...body,
+          })
+      "
+      :pending="assignDispatchTaskPending"
+      @assigned="refreshOperationTasks"
+    />
+  </BusinessLayout>
+</template>

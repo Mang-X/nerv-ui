@@ -1,0 +1,467 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleInventoryMovementLineResponse,
+  BusinessConsolePostStockMovementRequest,
+} from '@nerv-iip/api-client'
+import type { NvDataTableColumn } from '@nerv-iip/ui'
+import CodeWithNameCell from '@/components/business/CodeWithNameCell.vue'
+import {
+  INVENTORY_MANUAL_MOVEMENT_DEFAULT_TYPE,
+  INVENTORY_MANUAL_MOVEMENT_TYPE_OPTIONS,
+  inventoryMovementTypeLabel,
+} from '@/data/inventoryReference'
+import { useInventoryMovement } from '@/composables/useBusinessInventory'
+import { maintenanceWorkOrderNoLabel } from '@/composables/useEquipmentPickerCatalog'
+import { makeIdempotencyKey } from '@/composables/useBusinessMes'
+import { useInventoryScopeCatalog } from '@/composables/useInventoryScope'
+import { useMasterDataDisplayNames } from '@/composables/useMasterDataDisplayNames'
+import { useSkuNames } from '@/composables/useSkuNames'
+import { useBusinessContextStore } from '@/stores/businessContext'
+import DirectoryPicker from '@/components/business/DirectoryPicker.vue'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import { notifyOperationFailure, notifySuccess } from '@/utils/notify'
+import {
+  NvButton,
+  NvDataTable,
+  NvDialog,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvField,
+  NvFieldDescription,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvEntityPicker,
+  NvInput,
+  NvPageHeader,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  NvSpinner,
+} from '@nerv-iip/ui'
+import { SendIcon } from '@lucide/vue'
+import { computed, reactive, shallowRef, watch, watchEffect } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '库存移动过账',
+    requiredPermissions: ['business.inventory.movements.create'],
+  },
+})
+
+const route = useRoute()
+const businessContext = useBusinessContextStore()
+const { movementRows, movementsPending, movementsTotal, postMovement, postMovementPending } =
+  useInventoryMovement()
+// 物料 / 工厂走主数据目录；库位/批次/序列号走库存可搜目录（服务端搜索）。
+const { siteOptions, sitesPending, resolveUomCode } = useInventoryScopeCatalog()
+
+// 受控值：UI 说人话，下发仍是后端码值。
+const QUALITY_OPTIONS = [
+  { label: '可用', value: 'available' },
+  { label: '待检', value: 'inspection' },
+  { label: '冻结', value: 'blocked' },
+  { label: '不合格', value: 'rejected' },
+]
+
+const form = reactive({
+  // 默认类型必须是外部命令真的接受的码值：此前默认 `receipt` 后端从不接受，一开弹框就注定 400（台账 #49）。
+  movementType: INVENTORY_MANUAL_MOVEMENT_DEFAULT_TYPE,
+  sourceService: 'business-console',
+  sourceDocumentId: '',
+  sourceDocumentLineId: '',
+  // 一次填写一把键：网络重试沿用同一把（后端按键去重），过账成功后才换新键。
+  // 键只用网关白名单字符（字母数字与 . _ : / -）；过去把表单字段用「|」拼成键，
+  // 中文来源单号也原样进键，一提交就被网关 400 拒掉（#3922）。
+  idempotencyKey: makeIdempotencyKey('movement'),
+  skuCode: '',
+  // 单位跟随物料主档带出（onSkuChange），不预填假单位：写死通用单位会让后端单位换算直接失败。
+  uomCode: '',
+  siteCode: '',
+  locationCode: '',
+  lotNo: '',
+  serialNo: '',
+  qualityStatus: 'available',
+  quantity: '1',
+  // 调拨专用：入库库位。调拨必须两腿配平，缺腿后端整笔拒绝。
+  transferInLocationCode: '',
+})
+
+/** 调拨是两腿业务：出库位减、入库位增、数量等额，单腿会凭空增减库存。 */
+const isTransfer = computed(() => form.movementType === 'transfer')
+
+const movementSheetOpen = shallowRef(false)
+
+// 单位随物料的基本单位带出，不给手输：单位写错这笔移动就落不到正确台账。
+// 跟着物料目录重算：就地新建的物料要等目录刷新回来才查得到基本单位。
+watchEffect(() => {
+  form.uomCode = resolveUomCode(form.skuCode)
+})
+
+// 上下文穿透：从来源单据（收货/完工入库/领料/盘点）带入 SKU/库位/批次。
+const contextWorkOrderId = computed(() => firstQuery(route.query.workOrderId))
+watch(
+  () => route.query,
+  (query) => {
+    const source = firstQuery(query.sourceDocumentId) || firstQuery(query.workOrderId)
+    if (source) form.sourceDocumentId = source
+    const sku = firstQuery(query.skuCode) || firstQuery(query.skuId)
+    if (sku) form.skuCode = sku
+    const site = firstQuery(query.siteCode)
+    if (site) form.siteCode = site
+    const location = firstQuery(query.locationCode)
+    if (location) form.locationCode = location
+    const lot = firstQuery(query.lotNo) || firstQuery(query.materialLotId)
+    if (lot) form.lotNo = lot
+    const serial = firstQuery(query.serialNo)
+    if (serial) form.serialNo = serial
+  },
+  { immediate: true },
+)
+
+const canSubmit = computed(
+  () =>
+    isNonEmpty(businessContext.organizationId) &&
+    isNonEmpty(businessContext.environmentId) &&
+    isNonEmpty(form.movementType) &&
+    isNonEmpty(form.sourceDocumentId) &&
+    isNonEmpty(form.skuCode) &&
+    isNonEmpty(form.uomCode) &&
+    isNonEmpty(form.siteCode) &&
+    isNonEmpty(form.locationCode) &&
+    toOptionalNumber(form.quantity) !== undefined &&
+    (!isTransfer.value ||
+      (isNonEmpty(form.transferInLocationCode) &&
+        form.transferInLocationCode.trim() !== form.locationCode.trim() &&
+        (toOptionalNumber(form.quantity) ?? 0) > 0)),
+)
+
+// 读面只回编码，名称在主数据里，按编码 join 出中文名。
+const { resolveSkuName } = useSkuNames()
+const { resolveLocation } = useMasterDataDisplayNames({ locations: true })
+
+/** 「名称 编码」串，供排序与导出用；名录查不到就只有编码，不编名字。 */
+function skuText(code?: string | null, fallback = '未记录') {
+  const name = resolveSkuName(code)
+  return name ? `${name} ${code}` : (code ?? fallback)
+}
+/** 「工厂 / 库位」串：库位优先显中文名，查不到就只显编码。 */
+function locationLabel(siteCode?: string | null, locationCode?: string | null) {
+  const location = locationCode ? (resolveLocation(locationCode) ?? locationCode) : ''
+  return [siteCode, location].filter(Boolean).join(' / ') || '—'
+}
+
+type MovementRow = BusinessConsoleInventoryMovementLineResponse
+// 维修备件出库的来源单据（#3852，docs/product/maintenance/design.md §3.4.1）：新流水是正式单号，原样显示；
+// 早期流水存的是工单 ID（GUID），不上屏，显示为「维修工单」。其它来源的单据号照原样显示。
+const MAINTENANCE_SOURCE_SERVICE = 'maintenance'
+function sourceDocumentLabel(row: MovementRow) {
+  const documentId = row.sourceDocumentId ?? ''
+  return row.sourceService === MAINTENANCE_SOURCE_SERVICE
+    ? maintenanceWorkOrderNoLabel(documentId)
+    : documentId
+}
+const columns: NvDataTableColumn<MovementRow>[] = [
+  // 来源单据号（如 MWO-yyyyMMdd-NNNNNN）较长，固定列宽避免挤进类型列
+  {
+    key: 'sourceDocumentId',
+    header: '来源单据',
+    width: 'w-52',
+    cellClass: 'font-medium whitespace-nowrap',
+    accessor: (r) => sourceDocumentLabel(r),
+  },
+  {
+    key: 'movementType',
+    header: '类型',
+    accessor: (r) => inventoryMovementTypeLabel(r.movementType),
+  },
+  { key: 'skuCode', header: '物料', accessor: (r) => skuText(r.skuCode) },
+  {
+    key: 'location',
+    header: '库位',
+    accessor: (r) => locationLabel(r.siteCode, r.locationCode),
+  },
+  { key: 'lotNo', header: '批次', accessor: (r) => r.lotNo || '—' },
+  { key: 'quantity', header: '数量', align: 'end', width: 'w-28' },
+  { key: 'postedAtUtc', header: '过账时间', accessor: (r) => formatDateTime(r.postedAtUtc) },
+]
+
+function formatQuantity(value: number | null | undefined) {
+  if (value === null || value === undefined) return '—'
+  return `${value > 0 ? '+' : ''}${new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 3 }).format(value)}`
+}
+function formatDateTime(value: string | undefined) {
+  if (!value) return '—'
+  const parsed = new Date(value)
+  return Number.isNaN(parsed.getTime())
+    ? value
+    : new Intl.DateTimeFormat('zh-CN', { dateStyle: 'short', timeStyle: 'short' }).format(parsed)
+}
+
+async function submitMovement() {
+  if (!canSubmit.value) return
+  const quantity = toOptionalNumber(form.quantity)
+  // 调拨提交的是配平两腿：出库腿取负、入库腿取正，等额相消。
+  const transferQuantity = isTransfer.value ? Math.abs(quantity ?? 0) : undefined
+  const body: BusinessConsolePostStockMovementRequest = {
+    organizationId: businessContext.organizationId.trim(),
+    environmentId: businessContext.environmentId.trim(),
+    movementType: form.movementType,
+    sourceService: form.sourceService.trim() || 'business-console',
+    sourceDocumentId: form.sourceDocumentId.trim(),
+    sourceDocumentLineId: optionalText(form.sourceDocumentLineId),
+    idempotencyKey: form.idempotencyKey,
+    skuCode: form.skuCode.trim(),
+    uomCode: form.uomCode.trim(),
+    siteCode: form.siteCode.trim(),
+    locationCode: form.locationCode.trim(),
+    lotNo: optionalText(form.lotNo),
+    serialNo: optionalText(form.serialNo),
+    qualityStatus: form.qualityStatus.trim(),
+    // 手工移动只记本公司库存；寄售库存的货主差异走盘点差异确认，不在这里补录。
+    ownerType: 'owned',
+    quantity: transferQuantity === undefined ? quantity : -transferQuantity,
+    transferInLocationCode: isTransfer.value ? form.transferInLocationCode.trim() : undefined,
+    transferInQuantity: transferQuantity,
+  }
+  let response
+  try {
+    response = await postMovement(body)
+  } catch (error) {
+    notifyOperationFailure('提交库存移动失败', error, '提交库存移动失败，请稍后重试。')
+    return
+  }
+  // 列表来自服务端读面：过账成功后失效查询即可，新过账的流水刷新之后仍然在。
+  form.idempotencyKey = makeIdempotencyKey('movement')
+  movementSheetOpen.value = false
+  notifySuccess(`来源单据 ${body.sourceDocumentId} 的库存移动已受理`)
+}
+
+function optionalText(value: string) {
+  const trimmed = value.trim()
+  return trimmed ? trimmed : undefined
+}
+function toOptionalNumber(value: string) {
+  const parsed = Number(value)
+  return Number.isFinite(parsed) ? parsed : undefined
+}
+function firstQuery(value: unknown) {
+  if (Array.isArray(value)) return typeof value[0] === 'string' ? value[0] : ''
+  return typeof value === 'string' ? value : ''
+}
+function isNonEmpty(value: string) {
+  return value.trim().length > 0
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="库存移动过账"
+      :breadcrumbs="[{ label: '库存' }]"
+      :count="`${movementsTotal} 条库存流水`"
+    >
+      <template #actions>
+        <NvButton v-if="contextWorkOrderId" size="sm" type="button" variant="outline" as-child>
+          <RouterLink :to="`/mes/work-orders/${encodeURIComponent(contextWorkOrderId)}`"
+            >返回工单 {{ contextWorkOrderId }}</RouterLink
+          >
+        </NvButton>
+        <NvButton size="sm" type="button" @click="movementSheetOpen = true">
+          <SendIcon aria-hidden="true" />
+          新建移动
+        </NvButton>
+      </template>
+    </NvPageHeader>
+
+    <NvDataTable
+      :columns="columns"
+      :rows="movementRows"
+      :loading="movementsPending"
+      row-key="movementId"
+      :searchable="false"
+      :column-settings="false"
+      empty-message="当前范围内没有库存流水。库存移动一般由收货、完工入库、领料或盘点自动产生；确需补录时点右上角新建移动。"
+    >
+      <template #cell-skuCode="{ row }">
+        <CodeWithNameCell :code="row.skuCode" :name="resolveSkuName(row.skuCode)" />
+      </template>
+      <template #cell-quantity="{ row }"
+        ><span
+          class="tabular-nums"
+          :class="
+            (row.quantity ?? 0) < 0 ? 'text-destructive' : 'text-emerald-600 dark:text-emerald-400'
+          "
+          >{{ formatQuantity(row.quantity) }}</span
+        ></template
+      >
+    </NvDataTable>
+
+    <NvDialog v-model:open="movementSheetOpen">
+      <NvDialogContent class="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
+        <NvDialogHeader>
+          <NvDialogTitle>新建库存移动</NvDialogTitle>
+          <!-- 界面上不再写说明书；仅供读屏播报对象范围。 -->
+          <NvDialogDescription class="sr-only">人工补录一条库存移动过账。</NvDialogDescription>
+        </NvDialogHeader>
+        <form class="grid gap-4" @submit.prevent="submitMovement">
+          <NvFieldGroup class="grid gap-3 md:grid-cols-3">
+            <NvField>
+              <NvFieldLabel>移动类型</NvFieldLabel>
+              <NvSelect v-model="form.movementType">
+                <NvSelectTrigger aria-label="移动类型"><NvSelectValue /></NvSelectTrigger>
+                <NvSelectContent>
+                  <NvSelectItem
+                    v-for="option in INVENTORY_MANUAL_MOVEMENT_TYPE_OPTIONS"
+                    :key="option.value"
+                    :value="option.value"
+                    >{{ option.label }}</NvSelectItem
+                  >
+                </NvSelectContent>
+              </NvSelect>
+              <!-- 移库是两腿业务（#1359 后端强制配平）：选中它下面会多出「入库库位」，
+                   数量按调拨量正数录入，提交时自动拆成 -N / +N 两腿。 -->
+              <NvFieldDescription v-if="isTransfer"
+                >移库要一进一出：填出库库位与入库库位，按调拨量提交，两腿等额相消。</NvFieldDescription
+              >
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-source-document">来源单据</NvFieldLabel>
+              <NvInput id="movement-source-document" v-model="form.sourceDocumentId" required />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-source-line">来源行</NvFieldLabel>
+              <NvInput id="movement-source-line" v-model="form.sourceDocumentLineId" />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-sku">物料</NvFieldLabel>
+              <DirectoryPicker
+                id="movement-sku"
+                v-model="form.skuCode"
+                directory-type="material"
+                creatable
+                clearable
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-uom">单位</NvFieldLabel>
+              <!-- 单位随物料的基本单位带出，不给手输：单位写错这笔移动就落不到正确台账。 -->
+              <span
+                id="movement-uom"
+                class="inline-flex h-9 items-center rounded-md border border-input px-2.5 text-sm text-muted-foreground"
+                >{{ form.uomCode || '选择物料后自动带出' }}</span
+              >
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-site">工厂</NvFieldLabel>
+              <NvEntityPicker
+                id="movement-site"
+                v-model="form.siteCode"
+                :options="siteOptions"
+                title="选择工厂"
+                placeholder="选择工厂"
+                empty-text="暂无工厂主数据，请先在基础数据维护工厂"
+                :loading="sitesPending"
+                clearable
+                aria-label="工厂"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-location">{{
+                isTransfer ? '出库库位' : '库位'
+              }}</NvFieldLabel>
+              <DirectoryPicker
+                id="movement-location"
+                v-model="form.locationCode"
+                directory-type="location"
+                creatable
+                :form-site-code="form.siteCode"
+                title="选择库位"
+                placeholder="选择库位"
+                clearable
+                :aria-label="isTransfer ? '出库库位' : '库位'"
+              />
+            </NvField>
+            <!-- 调拨两腿配平：入库库位必填且不能与出库库位相同，否则整笔拒绝。 -->
+            <NvField v-if="isTransfer">
+              <NvFieldLabel for="movement-transfer-in-location">入库库位</NvFieldLabel>
+              <DirectoryPicker
+                id="movement-transfer-in-location"
+                v-model="form.transferInLocationCode"
+                directory-type="location"
+                creatable
+                :form-site-code="form.siteCode"
+                title="选择入库库位"
+                placeholder="选择入库库位"
+                clearable
+                aria-label="入库库位"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-quantity">{{
+                isTransfer ? '调拨数量' : '数量'
+              }}</NvFieldLabel>
+              <NvInput
+                id="movement-quantity"
+                v-model="form.quantity"
+                inputmode="decimal"
+                required
+                type="number"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel>质量状态</NvFieldLabel>
+              <NvSelect v-model="form.qualityStatus">
+                <NvSelectTrigger aria-label="质量状态"><NvSelectValue /></NvSelectTrigger>
+                <NvSelectContent>
+                  <NvSelectItem v-for="o in QUALITY_OPTIONS" :key="o.value" :value="o.value">{{
+                    o.label
+                  }}</NvSelectItem>
+                </NvSelectContent>
+              </NvSelect>
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-lot">批次</NvFieldLabel>
+              <DirectoryPicker
+                id="movement-lot"
+                v-model="form.lotNo"
+                directory-type="batch"
+                :form-site-code="form.siteCode"
+                title="选择批次"
+                placeholder="选择批次"
+                clearable
+                aria-label="批次"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="movement-serial">序列号</NvFieldLabel>
+              <DirectoryPicker
+                id="movement-serial"
+                v-model="form.serialNo"
+                directory-type="serial"
+                :form-site-code="form.siteCode"
+                title="选择序列号"
+                placeholder="选择序列号"
+                clearable
+                aria-label="序列号"
+              />
+            </NvField>
+          </NvFieldGroup>
+
+          <div class="flex justify-end">
+            <NvButton type="submit" :disabled="postMovementPending || !canSubmit">
+              <NvSpinner v-if="postMovementPending" aria-hidden="true" />
+              <SendIcon v-else aria-hidden="true" />
+              提交库存移动
+            </NvButton>
+          </div>
+        </form>
+      </NvDialogContent>
+    </NvDialog>
+  </BusinessLayout>
+</template>

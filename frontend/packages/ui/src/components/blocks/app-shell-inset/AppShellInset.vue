@@ -1,0 +1,53 @@
+<script setup lang="ts">
+import {
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarInset,
+  SidebarProvider,
+} from '../../ui/sidebar'
+import { NvSidebar, NvSidebarRail, NvSidebarTrigger } from '../../pc/sidebar'
+import { Separator } from '../../ui/separator'
+
+withDefaults(
+  defineProps<{
+    /** Sidebar collapse behaviour. */
+    collapsible?: 'offcanvas' | 'icon' | 'none'
+  }>(),
+  { collapsible: 'icon' },
+)
+</script>
+
+<template>
+  <SidebarProvider>
+    <NvSidebar variant="inset" :collapsible="collapsible">
+      <SidebarHeader v-if="$slots['sidebar-header']">
+        <slot name="sidebar-header" />
+      </SidebarHeader>
+      <SidebarContent>
+        <slot name="sidebar" />
+      </SidebarContent>
+      <SidebarFooter v-if="$slots['sidebar-footer']">
+        <slot name="sidebar-footer" />
+      </SidebarFooter>
+      <NvSidebarRail />
+    </NvSidebar>
+
+    <SidebarInset class="min-w-0">
+      <header
+        class="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-2 border-b bg-background px-4 transition-[width,height] ease-linear md:rounded-t-xl"
+      >
+        <NvSidebarTrigger class="-ml-1" />
+        <Separator
+          v-if="$slots.header"
+          orientation="vertical"
+          class="mr-2 data-[orientation=vertical]:h-4 data-[orientation=vertical]:self-center"
+        />
+        <slot name="header" />
+      </header>
+      <main class="flex flex-1 flex-col gap-4 p-4 md:gap-6 md:p-6">
+        <slot />
+      </main>
+    </SidebarInset>
+  </SidebarProvider>
+</template>

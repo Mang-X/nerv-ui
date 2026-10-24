@@ -1,0 +1,182 @@
+<script setup lang="ts">
+import {
+  NvButton,
+  NvSheet,
+  NvSheetContent,
+  NvSheetDescription,
+  NvSheetHeader,
+  NvSheetTitle,
+  NvStatusBadge,
+  NvSpinner,
+} from '@nerv-iip/ui'
+import { PrinterIcon, RefreshCwIcon } from '@lucide/vue'
+import { computed, watch } from 'vue'
+
+import { useQualityInspectionRecordDetail } from '@/composables/useBusinessQuality'
+import { useSkuNames } from '@/composables/useSkuNames'
+import { notifyError } from '@/utils/notify'
+
+// 来源检验记录只读详情，从质检页抽出（路由页只负责按 ?inspectionRecordId= 编排开合，Vue best-practices §2）。
+const props = defineProps<{
+  open: boolean
+  recordId: string
+  organizationId: string
+  environmentId: string
+}>()
+const emit = defineEmits<{
+  'update:open': [value: boolean]
+}>()
+
+// 读面只回 skuCode，成品名称在主数据里，前端按编码 join。
+// 特性行的 characteristicName 目前后端不下发、详情里也没有 planId 可反查，
+// 只能先显编码——已登记为后端缺口，不在这里编造名称。
+const { resolveSkuName } = useSkuNames()
+
+const openModel = computed({
+  get: () => props.open,
+  set: (value: boolean) => emit('update:open', value),
+})
+
+const { record, recordPending, recordError, refreshRecord } = useQualityInspectionRecordDetail(
+  () => ({
+    organizationId: props.organizationId,
+    environmentId: props.environmentId,
+    inspectionRecordId: props.recordId,
+  }),
+)
+
+// 记录详情加载失败（403/5xx/断网）走 toast，并保留可重试；仅真实成功空响应才显示「未找到」。
+watch(
+  recordError,
+  (err) => {
+    if (err) notifyError(err, '检验记录加载失败，请稍后重试。')
+  },
+  { immediate: true },
+)
+
+function printRecord() {
+  const printingClass = 'printing-inspection-record'
+  const cleanup = () => document.body.classList.remove(printingClass)
+  document.body.classList.add(printingClass)
+  window.addEventListener('afterprint', cleanup, { once: true })
+  try {
+    window.print()
+  } finally {
+    cleanup()
+    window.removeEventListener('afterprint', cleanup)
+  }
+}
+</script>
+
+<template>
+  <NvSheet v-model:open="openModel">
+    <NvSheetContent class="w-full overflow-y-auto sm:max-w-xl" data-printable-inspection-record>
+      <NvSheetHeader>
+        <div class="flex items-center justify-between gap-3">
+          <NvSheetTitle>检验记录 {{ recordId }}</NvSheetTitle>
+          <NvButton
+            v-if="record"
+            data-print-hidden
+            type="button"
+            size="sm"
+            variant="outline"
+            @click="printRecord"
+          >
+            <PrinterIcon aria-hidden="true" />
+            打印检验记录
+          </NvButton>
+        </div>
+        <!-- 记录内容已在下方完整呈现；此处仅供读屏播报。 -->
+        <NvSheetDescription class="sr-only">检验记录 {{ recordId }} 只读详情。</NvSheetDescription>
+      </NvSheetHeader>
+      <div class="grid content-start gap-4 p-4">
+        <div v-if="recordPending" class="flex items-center gap-2 text-muted-foreground">
+          <NvSpinner aria-hidden="true" />
+          <span>正在加载检验记录…</span>
+        </div>
+        <!-- 加载失败（403/5xx/断网）：错误已 toast，此处给可重试出口，不误报为「未找到」空态。 -->
+        <div v-else-if="recordError" class="grid justify-items-start gap-2">
+          <p class="text-sm text-muted-foreground">检验记录加载失败，请稍后重试。</p>
+          <NvButton size="sm" variant="outline" type="button" @click="refreshRecord">
+            <RefreshCwIcon aria-hidden="true" />
+            重试
+          </NvButton>
+        </div>
+        <div v-else-if="record" class="grid gap-4">
+          <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+            <dt class="text-muted-foreground">判定结论</dt>
+            <dd><NvStatusBadge :value="record.result" /></dd>
+            <dt class="text-muted-foreground">成品</dt>
+            <dd>
+              <template v-if="resolveSkuName(record.skuCode)">
+                {{ resolveSkuName(record.skuCode) }}
+                <span class="text-xs text-muted-foreground">{{ record.skuCode }}</span>
+              </template>
+              <template v-else>{{ record.skuCode ?? '—' }}</template>
+            </dd>
+            <dt class="text-muted-foreground">来源单据</dt>
+            <dd>{{ record.sourceDocumentId ?? '—' }}</dd>
+            <dt class="text-muted-foreground">批次 / 序列号</dt>
+            <dd>{{ record.batchNo ?? '—' }} / {{ record.serialNo ?? '—' }}</dd>
+            <dt class="text-muted-foreground">检验数量</dt>
+            <dd class="tabular-nums">{{ record.inspectedQuantity ?? 0 }}</dd>
+            <template v-if="record.dispositionReason">
+              <dt class="text-muted-foreground">处置说明</dt>
+              <dd>{{ record.dispositionReason }}</dd>
+            </template>
+          </dl>
+          <p v-if="record.nonconformanceReportId" class="text-sm text-muted-foreground">
+            关联不合格品：{{ record.nonconformanceReportId }}
+          </p>
+          <div v-if="(record.resultLines?.length ?? 0) > 0" class="grid gap-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+              >特性实测值</span
+            >
+            <ul class="grid gap-1">
+              <li
+                v-for="(line, i) in record.resultLines"
+                :key="`${line.characteristicCode}-${i}`"
+                class="flex items-center justify-between gap-2 rounded-md border bg-background px-3 py-1.5 text-sm"
+              >
+                <span class="truncate">{{ line.characteristicCode }}</span>
+                <span class="shrink-0 tabular-nums text-muted-foreground">{{
+                  line.measuredValue ?? line.observedValue ?? '—'
+                }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p v-else class="text-sm text-muted-foreground">
+          未找到该检验记录，可能已被清理或无访问权限。
+        </p>
+      </div>
+    </NvSheetContent>
+  </NvSheet>
+</template>
+
+<style>
+@media print {
+  body.printing-inspection-record * {
+    visibility: hidden !important;
+  }
+
+  body.printing-inspection-record [data-printable-inspection-record],
+  body.printing-inspection-record [data-printable-inspection-record] * {
+    visibility: visible !important;
+  }
+
+  body.printing-inspection-record [data-printable-inspection-record] {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body.printing-inspection-record [data-print-hidden] {
+    display: none !important;
+  }
+}
+</style>

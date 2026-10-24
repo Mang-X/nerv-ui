@@ -1,0 +1,682 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleConfirmStockCountAdjustmentRequest,
+  BusinessConsoleCreateStockCountTaskRequest,
+  BusinessConsoleInventoryCountTaskLineResponse,
+} from '@nerv-iip/api-client'
+import type { NvDataTableColumn } from '@nerv-iip/ui'
+import CarriedContextSummary from '@/components/business/CarriedContextSummary.vue'
+import CodeWithNameCell from '@/components/business/CodeWithNameCell.vue'
+import { useInventoryCounts } from '@/composables/useBusinessInventory'
+import { useErpPartnerCatalog } from '@/composables/useErpPickerCatalog'
+import { useInventoryScopeDefaults } from '@/composables/useInventoryScope'
+import { useMasterDataDisplayNames } from '@/composables/useMasterDataDisplayNames'
+import { useSkuNames } from '@/composables/useSkuNames'
+import DirectoryPicker from '@/components/business/DirectoryPicker.vue'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import { notifyOperationFailure, notifySuccess } from '@/utils/notify'
+import {
+  NvButton,
+  NvDataTable,
+  NvDialog,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvDropdownMenuItem,
+  NvEntityPicker,
+  NvField,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvInput,
+  NvPageHeader,
+  NvRowActions,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  NvSpinner,
+} from '@nerv-iip/ui'
+import { CheckCircle2Icon, ClipboardPlusIcon, RotateCcwIcon, XCircleIcon } from '@lucide/vue'
+import { computed, reactive, shallowRef, watch } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '库存盘点',
+    requiredPermissions: ['business.inventory.counts.manage'],
+  },
+})
+
+const route = useRoute()
+const {
+  cancelCountTask,
+  cancelCountTaskPending,
+  confirmAdjustment,
+  confirmAdjustmentPending,
+  countAdjustmentRows,
+  countTaskRows,
+  countTasksPending,
+  countTasksTotal,
+  createCountTask,
+  createCountTaskPending,
+  filters,
+  restartCountTask,
+  restartCountTaskPending,
+} = useInventoryCounts()
+
+// 受控值：UI 说人话，下发仍是后端码值。
+const QUALITY_OPTIONS = [
+  { label: '可用', value: 'available' },
+  { label: '待检', value: 'inspection' },
+  { label: '冻结', value: 'blocked' },
+  { label: '不合格', value: 'rejected' },
+]
+// 取值须落在 Inventory 服务认得的货主类型上（含别名），否则提交直接 400。
+const OWNER_OPTIONS = [
+  { label: '本公司', value: 'owned' },
+  { label: '客户寄售', value: 'customer' },
+  { label: '供应商寄售', value: 'supplier' },
+  { label: '生产领用', value: 'production' },
+  { label: '维修备件', value: 'maintenance' },
+]
+
+const taskSheetOpen = shallowRef(false)
+const adjustmentSheetOpen = shallowRef(false)
+const closeSheetOpen = shallowRef(false)
+let adjustmentKeySequence = 0
+
+// 盘点任务号由系统按编码规则生成；同一次填写的重试沿用同一个幂等键，拿回同一个任务号。
+const createTaskIdempotencyKey = shallowRef('')
+const taskForm = reactive({
+  skuCode: '',
+  // 单位不手填：盘点任务必须落在与库存台账完全一致的维度上，单位跟随所选物料的基本单位。
+  uomCode: '',
+  siteCode: '',
+  locationCode: '',
+  lotNo: '',
+  serialNo: '',
+  qualityStatus: 'available',
+  ownerType: 'owned',
+  ownerId: '',
+})
+const adjustmentForm = reactive({
+  countTaskId: '',
+  countedQuantity: '0',
+  idempotencyKey: '',
+})
+const closeForm = reactive({
+  countTaskId: '',
+  countTaskCode: '',
+  reason: '',
+})
+
+// 状态码值 → 中文标签：界面说人话，下发与过滤仍用后端码值。
+const STATUS_LABELS: Record<string, string> = {
+  open: '待实盘',
+  'pending-approval': '待审批',
+  confirmed: '已确认',
+  'recount-required': '需复盘',
+  cancelled: '已作废',
+}
+
+const contextWorkOrderId = computed(() => firstQuery(route.query.workOrderId))
+watch(
+  () => route.query,
+  (query) => {
+    const sku = firstQuery(query.skuCode) || firstQuery(query.skuId)
+    if (sku) taskForm.skuCode = sku
+    const site = firstQuery(query.siteCode)
+    if (site) taskForm.siteCode = site
+    const location = firstQuery(query.locationCode)
+    if (location) taskForm.locationCode = location
+    const lot = firstQuery(query.lotNo) || firstQuery(query.materialLotId)
+    if (lot) taskForm.lotNo = lot
+    const serial = firstQuery(query.serialNo)
+    if (serial) taskForm.serialNo = serial
+  },
+  { immediate: true },
+)
+
+// 工厂给默认值、单位跟随物料，仓管只需要选物料与库位。
+const { siteOptions, sitesPending } = useInventoryScopeDefaults(taskForm)
+// 寄售库存的货主是业务伙伴：客户寄售选客户、供应商寄售选供应商；其余货主类型没有货主可选。
+const { customerOptions, supplierOptions, partnersPending } = useErpPartnerCatalog()
+const ownerPartner = computed(() => {
+  if (taskForm.ownerType === 'customer') return { options: customerOptions.value, role: '客户' }
+  if (taskForm.ownerType === 'supplier') return { options: supplierOptions.value, role: '供应商' }
+  return undefined
+})
+watch(
+  () => taskForm.ownerType,
+  () => {
+    taskForm.ownerId = ''
+  },
+)
+// 物料 / 工厂 / 库位读面只回编码，名称在主数据里，按编码 join 出中文名。
+const { resolveSkuName } = useSkuNames()
+const { resolveLocation } = useMasterDataDisplayNames({ locations: true })
+
+/** 「名称 编码」串，供排序与导出用；名录查不到就只有编码，不编名字。 */
+function skuText(code?: string | null, fallback = '未记录') {
+  const name = resolveSkuName(code)
+  return name ? `${name} ${code}` : (code ?? fallback)
+}
+/** 「工厂 / 库位」串：库位优先显中文名，查不到就只显编码。 */
+function locationLabel(siteCode?: string | null, locationCode?: string | null) {
+  const location = locationCode ? (resolveLocation(locationCode) ?? locationCode) : ''
+  return [siteCode, location].filter(Boolean).join(' / ') || '—'
+}
+
+const adjustmentTarget = shallowRef<BusinessConsoleInventoryCountTaskLineResponse>()
+// 差异确认对象由所选任务行带出，只读展示，不做成（只读）输入框。
+const adjustmentContextItems = computed(() => {
+  const row = adjustmentTarget.value
+  if (!row) return []
+  return [
+    { label: '盘点任务', value: row.countTaskCode || row.countTaskId },
+    { label: '物料', value: skuText(row.skuCode) },
+    { label: '库位', value: locationLabel(row.siteCode, row.locationCode) },
+    { label: '批次', value: row.lotNo || '—' },
+    { label: '状态', value: statusLabel(row.status) },
+  ]
+})
+// 有待审批差异的任务上标注审批链，仓管才知道「在等谁」。
+const approvalChainByCountTaskCode = computed(() =>
+  Object.fromEntries(
+    countAdjustmentRows.value
+      .filter((row) => row.status === 'pending-approval' && row.approvalChainId)
+      .map((row) => [row.countTaskCode, row.approvalChainId as string]),
+  ),
+)
+const canCreateTask = computed(
+  () =>
+    isNonEmpty(filters.organizationId) &&
+    isNonEmpty(filters.environmentId) &&
+    isNonEmpty(taskForm.skuCode) &&
+    isNonEmpty(taskForm.uomCode) &&
+    isNonEmpty(taskForm.siteCode) &&
+    isNonEmpty(taskForm.locationCode),
+)
+const canCloseTask = computed(
+  () => isNonEmpty(closeForm.countTaskId) && isNonEmpty(closeForm.reason),
+)
+const canConfirmAdjustment = computed(
+  () =>
+    isNonEmpty(filters.organizationId) &&
+    isNonEmpty(filters.environmentId) &&
+    isNonEmpty(adjustmentForm.countTaskId) &&
+    isNonEmpty(adjustmentForm.idempotencyKey) &&
+    toOptionalNumber(adjustmentForm.countedQuantity) !== undefined,
+)
+
+type CountTaskRow = BusinessConsoleInventoryCountTaskLineResponse
+const columns: NvDataTableColumn<CountTaskRow>[] = [
+  {
+    key: 'countTaskCode',
+    header: '任务号',
+    width: 'w-56',
+    cellClass: 'font-medium whitespace-normal break-all',
+  },
+  // 物料 / 库位读面只回编码，名称在主数据里，按编码 join 出中文名。
+  {
+    key: 'skuCode',
+    header: '物料',
+    width: 'w-56',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => skuText(r.skuCode),
+  },
+  {
+    key: 'location',
+    header: '库位',
+    width: 'w-56',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => locationLabel(r.siteCode, r.locationCode),
+  },
+  {
+    key: 'lotNo',
+    header: '批次',
+    width: 'w-40',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => r.lotNo || '—',
+  },
+  {
+    key: 'countedQuantity',
+    header: '实盘',
+    width: 'w-28',
+    align: 'end',
+    accessor: (r) => formatQuantity(r.countedQuantity),
+  },
+  {
+    key: 'varianceQuantity',
+    header: '差异',
+    width: 'w-28',
+    align: 'end',
+    accessor: (r) => formatSignedQuantity(r.varianceQuantity),
+  },
+  {
+    key: 'approvalChainId',
+    header: '审批链',
+    width: 'w-40',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => approvalChainByCountTaskCode.value[r.countTaskCode ?? ''] ?? '—',
+  },
+  { key: 'status', header: '状态', width: 'w-24', accessor: (r) => statusLabel(r.status) },
+  { key: 'actions', header: '操作', align: 'end', width: 'w-12' },
+]
+
+async function submitTask() {
+  if (!canCreateTask.value) return
+  const body: BusinessConsoleCreateStockCountTaskRequest = {
+    organizationId: filters.organizationId.trim(),
+    environmentId: filters.environmentId.trim(),
+    skuCode: taskForm.skuCode.trim(),
+    uomCode: taskForm.uomCode.trim(),
+    siteCode: taskForm.siteCode.trim(),
+    locationCode: taskForm.locationCode.trim(),
+    lotNo: optionalText(taskForm.lotNo),
+    serialNo: optionalText(taskForm.serialNo),
+    qualityStatus: optionalText(taskForm.qualityStatus),
+    ownerType: optionalText(taskForm.ownerType),
+    ownerId: optionalText(taskForm.ownerId),
+    idempotencyKey: createTaskIdempotencyKey.value,
+  }
+  let response
+  try {
+    response = await createCountTask(body)
+  } catch (error) {
+    notifyOperationFailure('创建盘点任务失败', error, '创建盘点任务失败，请稍后重试。')
+    return
+  }
+  // 列表来自服务端读面：mutation 成功后失效查询即可，新建的任务刷新之后仍然在。
+  taskSheetOpen.value = false
+  notifySuccess(`盘点任务 ${response?.data?.countTaskCode ?? ''} 已创建`)
+}
+
+async function submitAdjustment() {
+  if (!canConfirmAdjustment.value) return
+  const body: BusinessConsoleConfirmStockCountAdjustmentRequest = {
+    countedQuantity: toOptionalNumber(adjustmentForm.countedQuantity),
+    idempotencyKey: adjustmentForm.idempotencyKey.trim(),
+  }
+  let response
+  try {
+    response = await confirmAdjustment(adjustmentForm.countTaskId.trim(), body)
+  } catch (error) {
+    notifyOperationFailure('确认库存调整失败', error, '确认库存调整失败，请稍后重试。')
+    return
+  }
+  const approvalPending = response?.data?.status === 'pending-approval'
+  adjustmentSheetOpen.value = false
+  notifySuccess(approvalPending ? '库存调整已进入审批' : '库存调整已确认')
+}
+
+// 重盘：重新冻结台账、按当前版本重取快照后放回待实盘。
+// 两种死单都靠它出去：审批驳回停在「需复盘」的；以及台账在快照之后被改动、确认差异每次都被拒
+// （拒绝回滚事务，状态仍留在「待实盘」）的。已确认 / 已作废 / 待审批不能重开。
+function canRestartRow(row: CountTaskRow) {
+  return Boolean(row.countTaskId) && (row.status === 'recount-required' || row.status === 'open')
+}
+
+async function restart(row: CountTaskRow) {
+  const countTaskId = row.countTaskId ?? ''
+  if (!canRestartRow(row)) return
+  try {
+    await restartCountTask(countTaskId)
+  } catch (error) {
+    notifyOperationFailure('重盘失败', error, '重盘失败，请稍后重试。')
+    return
+  }
+  notifySuccess(`盘点任务 ${row.countTaskCode || countTaskId} 已重新开盘`)
+}
+
+function openClose(row: CountTaskRow) {
+  closeForm.countTaskId = row.countTaskId ?? ''
+  closeForm.countTaskCode = row.countTaskCode ?? ''
+  closeForm.reason = ''
+  closeSheetOpen.value = true
+}
+
+async function submitClose() {
+  if (!canCloseTask.value) return
+  try {
+    await cancelCountTask(closeForm.countTaskId.trim(), closeForm.reason.trim())
+  } catch (error) {
+    // 失败保留弹框与已填原因，不把人赶回列表重填一遍。
+    notifyOperationFailure('关闭盘点任务失败', error, '关闭盘点任务失败，请稍后重试。')
+    return
+  }
+  closeSheetOpen.value = false
+  notifySuccess(`盘点任务 ${closeForm.countTaskCode || closeForm.countTaskId} 已关闭`)
+}
+
+// 已确认的任务不能再关闭（差异已经过账），已作废的不用再关。
+// 待审批同样不能关：审批链还在跑，把任务作废掉会让随后的审批回写在服务端抛异常、
+// 从消费者逃逸成毒消息——与「重盘不能绕过审批」是同一条原则。
+function canCloseRow(row: CountTaskRow) {
+  return (
+    Boolean(row.countTaskId) &&
+    row.status !== 'confirmed' &&
+    row.status !== 'cancelled' &&
+    row.status !== 'pending-approval'
+  )
+}
+
+function openTaskSheet() {
+  createTaskIdempotencyKey.value = createTaskKey()
+  taskSheetOpen.value = true
+}
+function createTaskKey() {
+  const c = globalThis.crypto
+  if (c && typeof c.randomUUID === 'function') return c.randomUUID()
+  return `count-task-${Date.now()}-${Math.round(Math.random() * 1e9)}`
+}
+function openAdjustment(row: CountTaskRow) {
+  const countTaskId = row.countTaskId ?? ''
+  adjustmentTarget.value = row
+  adjustmentForm.countTaskId = countTaskId
+  adjustmentForm.countedQuantity = String(row.countedQuantity ?? 0)
+  adjustmentForm.idempotencyKey = createAdjustmentIdempotencyKey(countTaskId)
+  adjustmentSheetOpen.value = true
+}
+function statusLabel(status: string | undefined) {
+  return status ? (STATUS_LABELS[status] ?? status) : '—'
+}
+function formatQuantity(value: number | null | undefined) {
+  if (value === null || value === undefined) return '—'
+  return new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 3 }).format(value)
+}
+function formatSignedQuantity(value: number | null | undefined) {
+  if (value === null || value === undefined) return '—'
+  return `${value > 0 ? '+' : ''}${formatQuantity(value)}`
+}
+function createAdjustmentIdempotencyKey(countTaskId: string) {
+  adjustmentKeySequence += 1
+  return `count-${countTaskId}-${Date.now()}-${adjustmentKeySequence}`
+}
+function optionalText(value: string) {
+  const trimmed = value.trim()
+  return trimmed ? trimmed : undefined
+}
+function toOptionalNumber(value: string) {
+  const parsed = Number(value)
+  return Number.isFinite(parsed) ? parsed : undefined
+}
+function firstQuery(value: unknown) {
+  if (Array.isArray(value)) return typeof value[0] === 'string' ? value[0] : ''
+  return typeof value === 'string' ? value : ''
+}
+function isNonEmpty(value: string) {
+  return value.trim().length > 0
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="库存盘点"
+      :breadcrumbs="[{ label: '库存' }]"
+      :count="`${countTasksTotal} 个盘点任务`"
+    >
+      <template #actions>
+        <NvButton v-if="contextWorkOrderId" size="sm" type="button" variant="outline" as-child>
+          <RouterLink :to="`/mes/work-orders/${encodeURIComponent(contextWorkOrderId)}`"
+            >返回工单 {{ contextWorkOrderId }}</RouterLink
+          >
+        </NvButton>
+        <NvButton size="sm" type="button" @click="openTaskSheet">
+          <ClipboardPlusIcon aria-hidden="true" />
+          创建盘点任务
+        </NvButton>
+      </template>
+    </NvPageHeader>
+
+    <NvDataTable
+      :columns="columns"
+      :rows="countTaskRows"
+      :loading="countTasksPending"
+      row-key="countTaskId"
+      :searchable="false"
+      :column-settings="false"
+      empty-message="暂无盘点任务。"
+    >
+      <template #empty>
+        <p class="text-sm font-medium">暂无盘点任务</p>
+        <p class="max-w-md text-sm text-muted-foreground">
+          这里显示盘点任务与差异确认入口；已下发到仓库执行的盘点单在「仓储作业 · 盘点执行」跟进。
+        </p>
+        <div class="flex gap-2">
+          <NvButton size="sm" type="button" @click="openTaskSheet">
+            <ClipboardPlusIcon aria-hidden="true" />
+            创建盘点任务
+          </NvButton>
+          <NvButton size="sm" type="button" variant="outline" as-child>
+            <RouterLink to="/wms/counts">盘点执行</RouterLink>
+          </NvButton>
+        </div>
+      </template>
+      <template #cell-skuCode="{ row }">
+        <CodeWithNameCell :code="row.skuCode" :name="resolveSkuName(row.skuCode)" />
+      </template>
+      <template #cell-actions="{ row }">
+        <NvRowActions :label="`盘点操作 ${row.countTaskCode}`">
+          <NvDropdownMenuItem :disabled="row.status !== 'open'" @click="openAdjustment(row)">
+            <CheckCircle2Icon aria-hidden="true" />
+            确认差异
+          </NvDropdownMenuItem>
+          <NvDropdownMenuItem
+            :disabled="!canRestartRow(row) || restartCountTaskPending"
+            @click="restart(row)"
+          >
+            <RotateCcwIcon aria-hidden="true" />
+            重盘
+          </NvDropdownMenuItem>
+          <NvDropdownMenuItem :disabled="!canCloseRow(row)" @click="openClose(row)">
+            <XCircleIcon aria-hidden="true" />
+            关闭任务
+          </NvDropdownMenuItem>
+        </NvRowActions>
+      </template>
+    </NvDataTable>
+
+    <NvDialog v-model:open="taskSheetOpen">
+      <NvDialogContent class="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
+        <NvDialogHeader>
+          <NvDialogTitle>创建盘点任务</NvDialogTitle>
+          <!-- 界面上不再写说明书；仅供读屏播报对象范围。 -->
+          <NvDialogDescription class="sr-only"
+            >按物料、工厂与库位创建盘点任务。</NvDialogDescription
+          >
+        </NvDialogHeader>
+        <form class="grid gap-4" @submit.prevent="submitTask">
+          <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+            <NvField>
+              <NvFieldLabel for="count-task-sku">物料</NvFieldLabel>
+              <DirectoryPicker
+                id="count-task-sku"
+                v-model="taskForm.skuCode"
+                directory-type="material"
+                creatable
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="count-task-uom">单位</NvFieldLabel>
+              <NvInput id="count-task-uom" v-model="taskForm.uomCode" disabled />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="count-task-site">工厂</NvFieldLabel>
+              <NvEntityPicker
+                id="count-task-site"
+                v-model="taskForm.siteCode"
+                :options="siteOptions"
+                title="选择工厂"
+                placeholder="选择工厂"
+                empty-text="暂无工厂主数据，请先在基础数据维护工厂"
+                :loading="sitesPending"
+                aria-label="工厂"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="count-task-location">库位</NvFieldLabel>
+              <DirectoryPicker
+                id="count-task-location"
+                v-model="taskForm.locationCode"
+                directory-type="location"
+                creatable
+                :form-site-code="taskForm.siteCode"
+                title="选择库位"
+                placeholder="选择库位"
+                clearable
+                aria-label="库位"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel>质量状态</NvFieldLabel>
+              <NvSelect v-model="taskForm.qualityStatus">
+                <NvSelectTrigger aria-label="质量状态"><NvSelectValue /></NvSelectTrigger>
+                <NvSelectContent>
+                  <NvSelectItem v-for="o in QUALITY_OPTIONS" :key="o.value" :value="o.value">{{
+                    o.label
+                  }}</NvSelectItem>
+                </NvSelectContent>
+              </NvSelect>
+            </NvField>
+            <NvField>
+              <NvFieldLabel>货主类型</NvFieldLabel>
+              <NvSelect v-model="taskForm.ownerType">
+                <NvSelectTrigger aria-label="货主类型"><NvSelectValue /></NvSelectTrigger>
+                <NvSelectContent>
+                  <NvSelectItem v-for="o in OWNER_OPTIONS" :key="o.value" :value="o.value">{{
+                    o.label
+                  }}</NvSelectItem>
+                </NvSelectContent>
+              </NvSelect>
+            </NvField>
+            <NvField v-if="ownerPartner">
+              <NvFieldLabel for="count-task-owner-id">货主</NvFieldLabel>
+              <NvEntityPicker
+                id="count-task-owner-id"
+                v-model="taskForm.ownerId"
+                :options="ownerPartner.options"
+                :title="`选择${ownerPartner.role}`"
+                :placeholder="`选择${ownerPartner.role}`"
+                :empty-text="`暂无${ownerPartner.role}，请先在基础数据维护业务伙伴`"
+                :loading="partnersPending"
+                clearable
+                aria-label="货主"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="count-task-lot">批次</NvFieldLabel>
+              <DirectoryPicker
+                id="count-task-lot"
+                v-model="taskForm.lotNo"
+                directory-type="batch"
+                :form-site-code="taskForm.siteCode"
+                title="选择批次"
+                placeholder="选择批次"
+                clearable
+                aria-label="批次"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="count-task-serial">序列号</NvFieldLabel>
+              <DirectoryPicker
+                id="count-task-serial"
+                v-model="taskForm.serialNo"
+                directory-type="serial"
+                :form-site-code="taskForm.siteCode"
+                title="选择序列号"
+                placeholder="选择序列号"
+                clearable
+                aria-label="序列号"
+              />
+            </NvField>
+          </NvFieldGroup>
+          <div class="flex justify-end">
+            <NvButton type="submit" :disabled="createCountTaskPending || !canCreateTask">
+              <NvSpinner v-if="createCountTaskPending" aria-hidden="true" />
+              <ClipboardPlusIcon v-else aria-hidden="true" />
+              创建任务
+            </NvButton>
+          </div>
+        </form>
+      </NvDialogContent>
+    </NvDialog>
+
+    <NvDialog v-model:open="adjustmentSheetOpen">
+      <NvDialogContent>
+        <NvDialogHeader>
+          <NvDialogTitle>确认盘点差异</NvDialogTitle>
+          <!-- 盘点对象已在下方只读区完整呈现；此处仅供读屏播报。 -->
+          <NvDialogDescription class="sr-only">
+            盘点任务
+            {{ adjustmentTarget?.countTaskCode || adjustmentForm.countTaskId }} 的差异确认。
+          </NvDialogDescription>
+        </NvDialogHeader>
+        <form class="grid content-start gap-4" @submit.prevent="submitAdjustment">
+          <CarriedContextSummary label="盘点对象" :items="adjustmentContextItems" />
+          <NvFieldGroup class="grid gap-3">
+            <NvField>
+              <NvFieldLabel for="count-adjust-quantity">实盘数量</NvFieldLabel>
+              <NvInput
+                id="count-adjust-quantity"
+                v-model="adjustmentForm.countedQuantity"
+                inputmode="decimal"
+                required
+                type="number"
+              />
+            </NvField>
+          </NvFieldGroup>
+          <div class="flex justify-end">
+            <NvButton type="submit" :disabled="confirmAdjustmentPending || !canConfirmAdjustment">
+              <NvSpinner v-if="confirmAdjustmentPending" aria-hidden="true" />
+              <CheckCircle2Icon v-else aria-hidden="true" />
+              确认调整
+            </NvButton>
+          </div>
+        </form>
+      </NvDialogContent>
+    </NvDialog>
+    <NvDialog v-model:open="closeSheetOpen">
+      <NvDialogContent>
+        <NvDialogHeader>
+          <NvDialogTitle>关闭盘点任务</NvDialogTitle>
+          <NvDialogDescription class="sr-only">
+            关闭盘点任务 {{ closeForm.countTaskCode || closeForm.countTaskId }}，并解除台账冻结。
+          </NvDialogDescription>
+        </NvDialogHeader>
+        <form class="grid content-start gap-4" @submit.prevent="submitClose">
+          <CarriedContextSummary
+            label="盘点任务"
+            :items="[{ label: '任务号', value: closeForm.countTaskCode || closeForm.countTaskId }]"
+          />
+          <NvFieldGroup class="grid gap-3">
+            <NvField>
+              <NvFieldLabel for="count-close-reason">关闭原因</NvFieldLabel>
+              <NvInput
+                id="count-close-reason"
+                v-model="closeForm.reason"
+                placeholder="例如：盘点范围调整，任务不再执行"
+                required
+              />
+            </NvField>
+          </NvFieldGroup>
+          <div class="flex justify-end">
+            <NvButton
+              type="submit"
+              variant="destructive"
+              :disabled="cancelCountTaskPending || !canCloseTask"
+            >
+              <NvSpinner v-if="cancelCountTaskPending" aria-hidden="true" />
+              <XCircleIcon v-else aria-hidden="true" />
+              关闭任务
+            </NvButton>
+          </div>
+        </form>
+      </NvDialogContent>
+    </NvDialog>
+  </BusinessLayout>
+</template>

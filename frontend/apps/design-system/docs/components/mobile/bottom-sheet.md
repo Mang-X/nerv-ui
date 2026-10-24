@@ -1,0 +1,104 @@
+---
+layout: page
+title: NvBottomSheet 底部抽屉
+---
+
+<script setup>
+import { NvBottomSheet, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { PrinterIcon, SplitIcon, WrenchIcon, XCircleIcon } from '@lucide/vue'
+import { ref } from 'vue'
+
+const sheetOpen = ref(false)
+</script>
+
+<MobileDoc>
+
+<template #phone>
+
+  <section>
+    <p class="nv-mdoc-label">基础用法</p>
+    <NvMobileButton variant="primary" size="md" block @click="sheetOpen = true">
+      打开底部抽屉
+    </NvMobileButton>
+    <NvBottomSheet v-model:open="sheetOpen" title="更多操作">
+      <div class="space-y-2 py-1">
+        <NvMobileButton variant="default" size="lg" block class="justify-start gap-3" @click="sheetOpen = false">
+          <SplitIcon class="size-5" aria-hidden="true" />拆分工单
+        </NvMobileButton>
+        <NvMobileButton variant="default" size="lg" block class="justify-start gap-3" @click="sheetOpen = false">
+          <PrinterIcon class="size-5" aria-hidden="true" />补打标签
+        </NvMobileButton>
+        <NvMobileButton variant="default" size="lg" block class="justify-start gap-3" @click="sheetOpen = false">
+          <WrenchIcon class="size-5" aria-hidden="true" />设备维护
+        </NvMobileButton>
+        <NvMobileButton variant="danger" size="lg" block class="justify-start gap-3" @click="sheetOpen = false">
+          <XCircleIcon class="size-5" aria-hidden="true" />报告异常
+        </NvMobileButton>
+      </div>
+    </NvBottomSheet>
+  </section>
+</template>
+
+# NvBottomSheet 底部抽屉
+
+从屏幕底部滑入的承载面板，可向下拖拽关闭，适合放置一组次级操作或表单内容。
+
+抽屉遵守 ui-mobile 的基础 modal 层级。抽屉内可唤起 `NvNumberKeyboard`；数字键盘使用优先输入层，不会被抽屉内容拦截，键盘交互也不会被误判为抽屉外点击。
+
+## 基础用法
+
+由触发按钮控制 `open`，默认插槽承载任意内容；抓住顶部把手向下拖拽即可关闭。
+
+```vue
+<script setup>
+import { NvBottomSheet, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { PrinterIcon, SplitIcon, WrenchIcon, XCircleIcon } from '@lucide/vue'
+import { ref } from 'vue'
+
+const sheetOpen = ref(false)
+</script>
+
+<template>
+  <NvMobileButton variant="primary" size="md" block @click="sheetOpen = true">
+    打开底部抽屉
+  </NvMobileButton>
+  <NvBottomSheet v-model:open="sheetOpen" title="更多操作">
+    <div class="space-y-2 py-1">
+      <NvMobileButton
+        variant="default"
+        size="lg"
+        block
+        class="justify-start gap-3"
+        @click="sheetOpen = false"
+      >
+        <SplitIcon class="size-5" aria-hidden="true" />拆分工单
+      </NvMobileButton>
+      <NvMobileButton
+        variant="danger"
+        size="lg"
+        block
+        class="justify-start gap-3"
+        @click="sheetOpen = false"
+      >
+        <XCircleIcon class="size-5" aria-hidden="true" />报告异常
+      </NvMobileButton>
+    </div>
+  </NvBottomSheet>
+</template>
+```
+
+## 属性
+
+| 属性          | 说明                       | 类型      | 默认    |
+| ------------- | -------------------------- | --------- | ------- |
+| `open`        | 是否打开（`v-model:open`） | `boolean` | `false` |
+| `title`       | 标题                       | `string`  | —       |
+| `description` | 描述                       | `string`  | —       |
+
+## 事件
+
+| 事件          | 说明                       | 回调参数           |
+| ------------- | -------------------------- | ------------------ |
+| `update:open` | 开关状态变化（含拖拽关闭） | `(value: boolean)` |
+
+</MobileDoc>

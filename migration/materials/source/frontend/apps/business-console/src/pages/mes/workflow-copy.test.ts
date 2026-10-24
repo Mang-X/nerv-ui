@@ -1,0 +1,760 @@
+import { mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
+import { reactive, ref } from 'vue'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { useAuthStore } from '@/stores/auth'
+
+import OperationTasksPage from './operation-tasks.vue'
+import PlansPage from './plans.vue'
+import ReceiptsPage from './receipts.vue'
+import TraceabilityPage from './traceability.vue'
+import WorkOrdersPage from './work-orders/index.vue'
+
+const routeState = vi.hoisted(() => ({
+  query: {} as Record<string, string>,
+}))
+
+const routerState = vi.hoisted(() => ({
+  push: vi.fn(),
+}))
+
+const mesSpies = vi.hoisted(() => ({
+  createReceiptRequest: vi.fn(async () => undefined),
+  refreshReceiptRequests: vi.fn(async () => undefined),
+  retryInventoryPosting: vi.fn(async () => undefined),
+  traceabilityNodes: [] as Array<{ nodeId: string; nodeType: string; displayName: string }>,
+  traceabilityFilters: undefined as
+    | { batchOrSerial: string; materialLotId: string; mode: string; workOrderId: string }
+    | undefined,
+}))
+
+vi.mock('vue-router', () => ({
+  onBeforeRouteLeave: vi.fn(),
+  RouterLink: {
+    props: ['to'],
+    template: '<a data-router-link :data-to="JSON.stringify(to)"><slot /></a>',
+  },
+  useRoute: () => routeState,
+  useRouter: () => routerState,
+}))
+
+vi.mock('@/utils/notify', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/utils/notify')>()),
+  notifySuccess: vi.fn(),
+  notifyError: vi.fn(),
+  notifyOperationFailure: vi.fn(),
+}))
+
+vi.mock('@/composables/useBusinessMasterData', () => ({
+  useBusinessMasterDataResources: (resourceType: string) => ({
+    resources: ref(
+      resourceType === 'worker'
+        ? [{ code: 'EMP001', userId: 'user-operator', displayName: '王建国' }]
+        : [],
+    ),
+    resourcesPending: ref(false),
+    filters: reactive({}),
+  }),
+  // 完工入库的单位跟随成品物料主档的基本单位（FG-001 是计件成品 → pcs）。
+  useBusinessSkus: () => ({
+    skus: ref([{ code: 'FG-001', baseUomCode: 'pcs', active: true }]),
+    skusPending: ref(false),
+    filters: reactive({}),
+  }),
+  // 完工入库的单位改成从计量单位主数据里选。
+  useBusinessUoms: () => ({
+    uoms: ref([{ code: 'pcs', displayName: '个', active: true }]),
+    uomsPending: ref(false),
+    filters: reactive({}),
+  }),
+  useBusinessWorkers: () => ({
+    workers: ref([]),
+    workersPending: ref(false),
+    filters: reactive({}),
+  }),
+}))
+
+// 急单表单的物料 ▸ 生产版本目录走 colada 读面，本文件只看文案与提交体，整体打桩。
+vi.mock('@/composables/useMesPickerCatalog', () => ({
+  useMesMaterialVersionCatalog: () => ({
+    productionVersionLabel: () => '—',
+    skuOptions: ref([]),
+    skusPending: ref(false),
+    productionVersionOptions: () => [],
+    productionVersionsPending: ref(false),
+  }),
+}))
+
+vi.mock('@/composables/mes/useProductionReportSerialOptions', () => ({
+  useProductionReportSerialOptions: () => ({
+    serialPolicy: ref('none'),
+    labelTemplates: ref([]),
+    serialOptionsReady: ref(true),
+    serialOptionsPending: ref(false),
+    refreshSerialOptions: vi.fn(),
+  }),
+}))
+
+vi.mock('@/composables/useBusinessMes', () => ({
+  // #1288 工具栏作业范围选择入口（MesWorkScopeSelect）
+  useMesWorkScopeSelection: () => ({
+    scopeOptions: ref([]),
+    scopeSelectionValue: ref(undefined),
+    scopeReady: ref(true),
+    scopeMessage: ref(''),
+    scopePending: ref(false),
+    scopeUnavailable: ref(false),
+    selectedScope: ref(undefined),
+    principalIdentity: ref('principal-test'),
+    requireSelectedScope: vi.fn(),
+  }),
+  useMesProductionReporting: () => ({
+    recordProductionReport: vi.fn(),
+    restoreProductionReport: vi.fn(),
+    readProductionPrintStatus: vi.fn(),
+    recordProductionReportError: ref(undefined),
+    recordProductionReportPending: ref(false),
+    reportScopeMessage: ref(''),
+    reportScopePending: ref(false),
+    reportScopeReady: ref(true),
+    refreshProductionReportState: vi.fn(),
+  }),
+  useMesProductionMaterialLots: () => ({
+    materialsReadPermission: ref(false),
+    materialLotsPending: ref(false),
+    materialLotsError: ref(undefined),
+    availableMaterialLots: ref([]),
+    refreshMaterialLots: vi.fn(),
+  }),
+  useMesScrapReasonCodes: () => ({
+    qualityInspectionRecordsReadPermission: ref(false),
+    scrapReasonCodesPending: ref(false),
+    scrapReasonCodesError: ref(undefined),
+    scrapReasonCodes: ref([]),
+    refreshScrapReasonCodes: vi.fn(),
+  }),
+  describeMesReadinessReason: (code: string) => ({
+    code,
+    label: code || '未检',
+    nextStep: '请按质量或设备处理要求跟进。',
+  }),
+  // 同码合并版（#1418）：页面改用它渲染阻塞项，桩要跟着真实模块的导出面走。
+  describeMesReadinessReasons: (codes?: readonly string[] | null) => {
+    const seen = new Map<
+      string,
+      { code: string; label: string; detail: string; nextStep: string }
+    >()
+    for (const code of codes ?? []) {
+      if (seen.has(code)) continue
+      seen.set(code, {
+        code,
+        label: code || '未检',
+        detail: '',
+        nextStep: '请按质量或设备处理要求跟进。',
+      })
+    }
+    return [...seen.values()]
+  },
+  makeIdempotencyKey: (prefix: string) => `${prefix}-test`,
+  useMesWorkOrderHistoricalProducedLots: () => ({
+    producedLots: ref([{ producedLotNo: 'LOT-WO-001', reportNo: 'PRPT-1', quantity: 10 }]),
+    producedLotsError: ref(undefined),
+    producedLotsPending: ref(false),
+    producedLotsState: ref('ready'),
+    refreshProducedLots: vi.fn(),
+  }),
+  useMesWorkOrderProducedLots: () => ({
+    // 单一产出批次自动选中，使完工入库提交用例可通过 canCreate（后端强制引用真实产出批次）。
+    producedLots: ref([
+      { producedLotNo: 'LOT-WO-001', reportNo: 'PRPT-1', goodQuantity: 10, remainingQuantity: 10 },
+    ]),
+    producedLotsError: ref(undefined),
+    producedLotsPending: ref(false),
+    refreshProducedLots: vi.fn(),
+  }),
+  useMesFinishedGoodsReceipts: () => ({
+    createReceiptRequest: mesSpies.createReceiptRequest,
+    createReceiptRequestError: ref(undefined),
+    createReceiptRequestPending: ref(false),
+    filters: {
+      environmentId: 'dev',
+      organizationId: 'org',
+      status: undefined,
+      take: 20,
+    },
+    receiptRequests: ref([]),
+    receiptRequestsError: ref(undefined),
+    receiptRequestsPending: ref(false),
+    receiptRequestsTotal: ref(0),
+    refreshReceiptRequests: mesSpies.refreshReceiptRequests,
+    retryInventoryPosting: mesSpies.retryInventoryPosting,
+    retryInventoryPostingError: ref(undefined),
+    isRetrying: () => false,
+  }),
+  useMesOperationTasks: () => ({
+    filters: {
+      environmentId: 'dev',
+      organizationId: 'org',
+      status: undefined,
+    },
+    operationTasks: ref([
+      {
+        operationTaskId: 'OP-001-10',
+        workOrderId: 'WO-001',
+        status: 'ready',
+        operationSequence: 10,
+        workCenterId: 'WC-01',
+      },
+    ]),
+    operationTasksError: ref(undefined),
+    operationTasksPending: ref(false),
+    operationTasksTotal: ref(1),
+    operationListScope: ref({
+      kind: 'work-center',
+      id: 'WC-01',
+      displayName: '精加工一线',
+    }),
+    operationListScopeMessage: ref(''),
+    operationListScopeError: ref(undefined),
+    operationListScopePending: ref(false),
+    operationTasksState: ref('ready'),
+    operationListScopeReady: ref(true),
+    operationScopeMessage: ref(''),
+    operationScopePending: ref(false),
+    operationScopeReady: ref(true),
+    operationTasksLastUpdatedAt: ref('2026-07-30T00:00:00Z'),
+    operationTasksHasSuccessfulResponse: ref(true),
+    operationTasksHasFailedResponse: ref(false),
+    refreshOperationTasks: vi.fn(),
+    startOperationTask: vi.fn(),
+    pauseOperationTask: vi.fn(),
+    resumeOperationTask: vi.fn(),
+    completeOperationTask: vi.fn(),
+  }),
+  useMesDispatchTasks: () => ({
+    assignDispatchTask: vi.fn(),
+    assignDispatchTaskPending: ref(false),
+  }),
+  useMesCurrentOperationSops: () => ({
+    filters: {
+      environmentId: 'dev',
+      organizationId: 'org',
+      operationCode: '',
+      workCenterCode: '',
+    },
+    currentSops: ref([]),
+    currentSopsError: ref(undefined),
+    currentSopsPending: ref(false),
+    refreshCurrentSops: vi.fn(),
+  }),
+  useMesProductionPlans: () => ({
+    convertPlanToWorkOrder: vi.fn(),
+    convertPlanToWorkOrderError: ref(undefined),
+    convertPlanToWorkOrderPending: ref(false),
+    filters: {
+      environmentId: 'dev',
+      organizationId: 'org',
+    },
+    productionPlans: ref([
+      {
+        productionPlanId: '01a0c7cb-8e5f-7292-a808-10ab91f74031',
+        sourceSystem: 'sales-order',
+        sourceDocumentId: '01a0c7cb-8e5f-7292-a808-10ab91f74031',
+        sourceDemandReference: 'MD-V3-01',
+        skuId: 'FG-001',
+        plannedQuantity: 10,
+        status: 'created',
+        readinessStatus: 'Ready',
+        plannedStartUtc: '2026-05-25T08:00:00.000Z',
+      },
+    ]),
+    productionPlansError: ref(undefined),
+    productionPlansPending: ref(false),
+    productionPlansTotal: ref(1),
+    refreshProductionPlans: vi.fn(),
+  }),
+  useMesTraceability: () => {
+    const filters = reactive({
+      batchOrSerial: '',
+      materialLotId: '',
+      mode: 'work-order',
+      workOrderId: '',
+    })
+    mesSpies.traceabilityFilters = filters
+
+    return {
+      filters,
+      refreshTraceability: vi.fn(),
+      traceability: ref({ edges: [], nodes: mesSpies.traceabilityNodes }),
+      traceabilityError: ref(undefined),
+      traceabilityPending: ref(false),
+    }
+  },
+  useMesWorkOrderDetail: () => ({
+    detail: ref(null),
+    detailError: ref(null),
+    detailPending: ref(false),
+    filters: reactive({ workOrderId: '' }),
+    workOrderManageScope: ref(undefined),
+    workOrderReadScope: ref(undefined),
+  }),
+  useMesWorkOrders: () => ({
+    createRushWorkOrder: vi.fn(),
+    createRushWorkOrderError: ref(undefined),
+    createRushWorkOrderPending: ref(false),
+    filters: {
+      environmentId: 'dev',
+      organizationId: 'org',
+      status: undefined,
+    },
+    recordProductionReport: vi.fn(),
+    recordProductionReportError: ref(undefined),
+    recordProductionReportPending: ref(false),
+    refreshWorkOrders: vi.fn(),
+    workOrders: ref([
+      {
+        workOrderId: 'WO-001',
+        skuId: 'FG-001',
+        quantity: 10,
+        status: 'ready',
+        operationTasks: [
+          {
+            operationTaskId: 'OP-001-10',
+            operationSequence: 10,
+            status: 'ready',
+            workCenterId: 'WC-01',
+          },
+        ],
+      },
+    ]),
+    workOrdersError: ref(undefined),
+    workOrdersPending: ref(false),
+    workOrdersTotal: ref(1),
+    workOrdersLastUpdatedAt: ref('2026-07-30T00:00:00Z'),
+    workOrdersHasSuccessfulResponse: ref(true),
+    workOrdersHasFailedResponse: ref(false),
+    workOrderReadScope: ref({
+      kind: 'work-center',
+      id: 'WC-01',
+      displayName: '精加工一线',
+    }),
+    workOrderReadScopeMessage: ref(''),
+    workOrderReadScopeReady: ref(true),
+    workOrderManageScope: ref({
+      kind: 'work-center',
+      id: 'WC-01',
+      displayName: '精加工一线',
+    }),
+    workOrderManageScopeMessage: ref(''),
+    workOrderManageScopePending: ref(false),
+    workOrderManageScopeReady: ref(true),
+  }),
+  useMesWorkOrderTransformations: () => ({
+    splitWorkOrder: vi.fn(),
+    mergeWorkOrders: vi.fn(),
+    readTransformation: vi.fn(),
+    splitWorkOrderPending: ref(false),
+    mergeWorkOrdersPending: ref(false),
+  }),
+}))
+
+const businessStubs = {
+  // 派工弹窗内部用 reka 的 DialogRoot/DialogTrigger（实体选择器），
+  // 与本文件的 UI passthrough stub 不兼容；本用例只看工序行的文案，整体桩掉。
+  DispatchAssignDialog: true,
+  BusinessActionSheet: {
+    props: ['open', 'title', 'description'],
+    template: '<section><h2>{{ title }}</h2><p>{{ description }}</p><slot /></section>',
+  },
+  BusinessContextBar: {
+    template: '<section><slot /></section>',
+  },
+  BusinessEmptyState: {
+    props: ['title', 'description', 'action'],
+    template: '<div>{{ title }} {{ description }} {{ action }}</div>',
+  },
+  BusinessFormStatus: true,
+  BusinessLayout: {
+    template: '<main><slot /></main>',
+  },
+  BusinessPageHeader: {
+    props: ['domain', 'title', 'kicker', 'summary'],
+    template: '<header><h1>{{ title }}</h1><p>{{ summary }}</p><slot name="actions" /></header>',
+  },
+  BusinessRowActions: {
+    template: '<div><slot /></div>',
+  },
+  BusinessStatusBadge: {
+    props: ['value'],
+    template: '<span>{{ value }}</span>',
+  },
+  BusinessTablePagination: true,
+}
+
+const uiStubs = {
+  // FE-2 block components (used by the migrated operation-tasks gold-standard page).
+  PageHeader: {
+    props: ['title', 'breadcrumbs', 'count'],
+    template: '<header><h1>{{ title }}</h1><slot name="actions" /></header>',
+  },
+  SectionCards: {
+    props: ['columns'],
+    template: '<div><slot /></div>',
+  },
+  SectionCard: {
+    props: ['description', 'value', 'hint', 'footnote', 'trend'],
+    template: '<div>{{ description }} {{ value }} {{ hint }}</div>',
+  },
+  Toolbar: {
+    props: ['search', 'searchPlaceholder'],
+    template: '<div><slot name="filters" /><slot name="actions" /></div>',
+  },
+  NvDataTable: {
+    props: ['rows', 'columns', 'rowKey', 'sort', 'clientSort', 'loading', 'emptyMessage'],
+    template: `<div><template v-for="(row, i) in rows" :key="i">
+      <span v-for="column in row.nodeType ? columns : []" :key="column.key">{{ column.accessor ? column.accessor(row) : row[column.key] }}</span>
+      <slot name="cell-sourceDemandReference" :row="row" />
+      <slot name="cell-sourceSystem" :row="row" />
+      <slot name="cell-workOrderId" :row="row" />
+      <slot name="cell-status" :row="row" />
+      <slot name="cell-qualityStatus" :row="row" />
+      <slot name="cell-actions" :row="row" />
+    </template></div>`,
+  },
+  DataTablePagination: true,
+  NvDialog: {
+    props: ['open'],
+    template: '<div><slot /></div>',
+  },
+  NvDialogContent: {
+    template: '<div><slot /></div>',
+  },
+  NvDialogHeader: {
+    template: '<div><slot /></div>',
+  },
+  NvDialogTitle: {
+    template: '<h2><slot /></h2>',
+  },
+  NvDialogDescription: {
+    template: '<p><slot /></p>',
+  },
+  NvDialogFooter: {
+    template: '<div><slot /></div>',
+  },
+  NvSheet: {
+    props: ['open'],
+    template: '<div><slot /></div>',
+  },
+  NvSheetContent: {
+    template: '<div><slot /></div>',
+  },
+  NvSheetHeader: {
+    template: '<div><slot /></div>',
+  },
+  NvSheetTitle: {
+    template: '<h2><slot /></h2>',
+  },
+  NvSheetDescription: {
+    template: '<p><slot /></p>',
+  },
+  NvSheetFooter: {
+    template: '<div><slot /></div>',
+  },
+  RowActions: {
+    props: ['label'],
+    template: '<div><slot /></div>',
+  },
+  NvStatusBadge: {
+    props: ['value'],
+    template: '<span>{{ value }}</span>',
+  },
+  NvButton: {
+    template: '<button v-bind="$attrs"><slot /></button>',
+  },
+  NvCheckbox: {
+    template: '<input type="checkbox" />',
+  },
+  DropdownMenuItem: {
+    template: '<button v-bind="$attrs"><slot /></button>',
+  },
+  DropdownMenuSeparator: true,
+  Field: {
+    template: '<div><slot /></div>',
+  },
+  FieldDescription: {
+    template: '<p><slot /></p>',
+  },
+  FieldGroup: {
+    template: '<div><slot /></div>',
+  },
+  FieldLabel: {
+    template: '<label><slot /></label>',
+  },
+  NvInput: {
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    template:
+      '<input :value="modelValue" v-bind="$attrs" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+  },
+  NvSelect: {
+    template: '<div><slot /></div>',
+  },
+  NvSelectContent: {
+    template: '<div><slot /></div>',
+  },
+  NvSelectItem: {
+    props: ['value'],
+    template: '<div><slot /></div>',
+  },
+  NvSelectTrigger: {
+    template: '<button><slot /></button>',
+  },
+  NvSelectValue: {
+    props: ['placeholder'],
+    template: '<span>{{ placeholder }}</span>',
+  },
+  // 只选控件内部自带 reka Dialog/Popover，与本文件的 NvDialog 桩不兼容；
+  // 桩成带同名 id 的输入位，保留「选中某个候选」的语义。
+  NvEntityPicker: {
+    props: ['modelValue', 'options', 'id'],
+    emits: ['update:modelValue'],
+    template:
+      '<input :id="id" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+  },
+  NvSearchSelect: {
+    props: ['modelValue', 'options', 'id'],
+    emits: ['update:modelValue'],
+    template:
+      '<input :id="id" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+  },
+  NvSpinner: true,
+  Table: {
+    template: '<table><slot /></table>',
+  },
+  TableBody: {
+    template: '<tbody><slot /></tbody>',
+  },
+  TableCell: {
+    template: '<td><slot /></td>',
+  },
+  TableEmpty: {
+    template: '<tr><td><slot /></td></tr>',
+  },
+  TableHead: {
+    template: '<th><slot /></th>',
+  },
+  TableHeader: {
+    template: '<thead><slot /></thead>',
+  },
+  TableRow: {
+    template: '<tr><slot /></tr>',
+  },
+}
+
+function mountMesPage(component: unknown) {
+  const pinia = createPinia()
+  const auth = useAuthStore(pinia)
+  auth.$patch({
+    principal: {
+      principalId: 'u1',
+      principalType: 'user',
+      organizationId: 'org',
+      environmentId: 'dev',
+      loginName: 'op',
+      permissionCodes: ['business.mes.receipts.manage'],
+    },
+  })
+  return mount(component, {
+    global: {
+      plugins: [pinia],
+      stubs: {
+        ...businessStubs,
+        ...uiStubs,
+        RouterLink: {
+          props: ['to'],
+          template: '<a data-router-link :data-to="JSON.stringify(to)"><slot /></a>',
+        },
+      },
+    },
+  })
+}
+
+function expectNoForbiddenVisibleTerms(text: string) {
+  expect(text).not.toMatch(
+    /demo|mock|seed|样例|用于验证|sourceSystem|operationId|联动测试|内置|幂等键/i,
+  )
+}
+
+describe('MES workflow copy', () => {
+  beforeEach(() => {
+    routeState.query = {}
+    routerState.push.mockReset()
+    mesSpies.createReceiptRequest.mockClear()
+    mesSpies.refreshReceiptRequests.mockClear()
+    mesSpies.traceabilityFilters = undefined
+    mesSpies.traceabilityNodes = []
+  })
+
+  it('keeps work-order reporting row-context driven with no typed context fields', () => {
+    // 报工上下文只能由所选行带出：页面既不再靠 URL query 唤起，也不再提供工单/工序输入位。
+    routeState.query = {
+      operationTaskId: 'OP-001-10',
+      workOrderId: 'WO-001',
+    }
+
+    const wrapper = mountMesPage(WorkOrdersPage)
+
+    expect(wrapper.find('#report-work-order').exists()).toBe(false)
+    expect(wrapper.find('#report-operation-task').exists()).toBe(false)
+    expect(wrapper.text()).not.toContain('工单与工序来自所选行')
+    expectNoForbiddenVisibleTerms(wrapper.text())
+  })
+
+  it('points formal scheduling output from work orders to the Scheduling workbench', () => {
+    const wrapper = mountMesPage(WorkOrdersPage)
+    const schedulingLink = wrapper
+      .findAll('[data-router-link]')
+      .find((link) => link.attributes('data-to') === '"/scheduling"')
+
+    expect(wrapper.text()).not.toContain('正式排产输出')
+    expect(wrapper.text()).not.toContain('排程结果')
+    expect(schedulingLink).toBeDefined()
+    expect(schedulingLink!.text()).toContain('排产工作台')
+  })
+
+  it('keeps operation tasks focused on supported row actions', () => {
+    const wrapper = mountMesPage(OperationTasksPage)
+
+    expect(wrapper.text()).toContain('报工')
+    expect(wrapper.text()).not.toContain('带入工单报工')
+    expect(wrapper.text()).not.toContain('进入执行')
+    expectNoForbiddenVisibleTerms(wrapper.text())
+  })
+
+  it('opens reporting in place from the operation-task row and carries the row context', async () => {
+    const wrapper = mountMesPage(OperationTasksPage)
+
+    await wrapper
+      .findAll('button')
+      .find((button) => button.text().includes('报工'))!
+      .trigger('click')
+
+    // 就地打开，不跳页——跳页会把工作中心等上下文丢成两个裸 ID。
+    expect(routerState.push).not.toHaveBeenCalled()
+    const carried = wrapper.find('[data-slot="carried-context"]')
+    expect(carried.exists()).toBe(true)
+    expect(carried.text()).toContain('WO-001')
+    expect(carried.text()).toContain('OP-001-10')
+  })
+
+  it('keeps production plans business-facing without manual system number generation', () => {
+    const wrapper = mountMesPage(PlansPage)
+
+    expect(wrapper.text()).toContain('生产计划')
+    expect(wrapper.text()).not.toContain('可转工单')
+    expect(wrapper.find('#add-plan-id').exists()).toBe(false)
+    expect(wrapper.text()).not.toContain('生成')
+    expect(wrapper.text()).toContain('MD-V3-01')
+    expect(wrapper.text().match(/MD-V3-01/g)).toHaveLength(1)
+    expect(wrapper.text()).not.toContain('01a0c7cb-8e5f-7292-a808-10ab91f74031')
+    expectNoForbiddenVisibleTerms(wrapper.text())
+  })
+
+  it('requires finished-goods receipt context instead of hand-entered system fields', () => {
+    const wrapper = mountMesPage(ReceiptsPage)
+
+    expect(wrapper.text()).toContain('从工单详情发起')
+    // 工单/成品不再是（只读）输入位——只读输入框看起来仍像可填的位置。
+    expect(wrapper.find('#receipt-work-order').exists()).toBe(false)
+    expect(wrapper.find('#receipt-sku').exists()).toBe(false)
+    expectNoForbiddenVisibleTerms(wrapper.text())
+  })
+
+  it('renders the receipt work order and sku as a read-only carried-context block', () => {
+    routeState.query = {
+      quantity: '10',
+      skuId: 'FG-001',
+      workOrderId: 'WO-001',
+    }
+    const wrapper = mountMesPage(ReceiptsPage)
+
+    const carried = wrapper.find('[data-slot="carried-context"]')
+    expect(carried.exists()).toBe(true)
+    expect(carried.text()).toContain('WO-001')
+    expect(carried.text()).toContain('FG-001')
+  })
+
+  it('submits finished-goods receipt context without client unit cost', async () => {
+    routeState.query = {
+      quantity: '10',
+      skuId: 'FG-001',
+      workOrderId: 'WO-001',
+    }
+    const wrapper = mountMesPage(ReceiptsPage)
+
+    expect(wrapper.find('#receipt-unit-cost').exists()).toBe(false)
+    await wrapper.find('form').trigger('submit')
+
+    expect(mesSpies.createReceiptRequest).toHaveBeenCalledWith(
+      expect.objectContaining({
+        environmentId: 'dev',
+        organizationId: 'org',
+        quantity: 10,
+        skuId: 'FG-001',
+        uomCode: 'pcs',
+        workOrderId: 'WO-001',
+      }),
+    )
+  })
+
+  it.each(['work-order', 'batch', 'material-lot'])(
+    'shows IAM operator names in %s traceability without employee linkage',
+    (mode) => {
+      routeState.query = { mode }
+      mesSpies.traceabilityNodes = [
+        { nodeId: 'user-admin', nodeType: 'Operator', displayName: '李工' },
+        { nodeId: 'user-missing', nodeType: 'Operator', displayName: '姓名不可用' },
+        { nodeId: 'user-operator', nodeType: 'Operator', displayName: 'IAM 王工' },
+        { nodeId: 'WO-001', nodeType: 'WorkOrder', displayName: '订单一' },
+      ]
+      const wrapper = mountMesPage(TraceabilityPage)
+      expect(wrapper.text()).toContain('李工')
+      expect(wrapper.text()).toContain('IAM 王工')
+      expect(wrapper.text()).toContain('姓名不可用')
+      expect(wrapper.text()).toContain('WO-001')
+      expect(wrapper.text()).toContain('订单一')
+      expect(wrapper.text()).not.toContain('user-admin')
+      expect(wrapper.text()).not.toContain('user-missing')
+      expect(wrapper.text()).not.toContain('王建国')
+      expect(mesSpies.traceabilityNodes[0].nodeId).toBe('user-admin')
+    },
+  )
+
+  it('links non-work-order traceability to scan records without hardcoding a workflow filter', () => {
+    routeState.query = { batchOrSerial: 'LOT-001', mode: 'batch' }
+    const wrapper = mountMesPage(TraceabilityPage)
+
+    const scanLink = wrapper.get('[data-router-link]')
+    const target = scanLink.attributes('data-to')
+
+    expect(target).toContain('"path":"/barcode/scans"')
+    expect(target).toContain('"sourceDocumentId":"LOT-001"')
+    expect(target).toContain('"scannedValue":"LOT-001"')
+    expect(target).not.toContain('sourceWorkflow')
+  })
+
+  it('initializes traceability filters from an inventory batch or serial route', () => {
+    routeState.query = { batchOrSerial: 'SN-001', mode: 'batch' }
+
+    mountMesPage(TraceabilityPage)
+
+    expect(mesSpies.traceabilityFilters).toEqual(
+      expect.objectContaining({
+        batchOrSerial: 'SN-001',
+        materialLotId: 'SN-001',
+        mode: 'batch',
+      }),
+    )
+  })
+})

@@ -1,0 +1,22 @@
+{
+  "name": "@nerv-iip/auth",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vp test run src --environment jsdom",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@nerv-iip/api-client": "workspace:*",
+    "pinia": "4.0.2",
+    "vue": "3.5.39",
+    "vue-router": "5.2.0"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  }
+}

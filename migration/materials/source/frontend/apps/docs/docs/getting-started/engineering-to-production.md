@@ -1,0 +1,88 @@
+# 基础资料到工程资料与生产版本
+
+这条路径帮助工程、工艺和生产准备角色从基础资料进入工程资料维护，并把可生产的产品版本准备出来。它不承诺完整 PLM/PDM 能力，只覆盖当前 Business Console 已暴露的基础资料、工程资料页面和生产版本窄化工作台。
+
+## 适用角色
+
+- 工程资料维护员：维护工程物料、文档、EBOM 和 ECO/ECN。
+- 工艺工程师：维护 MBOM、标准工序和工艺路线。
+- 生产准备员：确认生产版本是否可供计划和 MES 使用。
+
+## 前置资料
+
+- 已有组织、环境和登录权限。
+- MasterData 中已有 SKU、UOM、工厂、工作中心、设备和必要参考数据。
+- 产品图纸、物料清单和工艺资料已经完成业务审核，准备录入系统。
+
+## 页面入口
+
+| 环节           | Business Console 路由              | 当前事实或缺口                                          |
+| -------------- | ---------------------------------- | ------------------------------------------------------- |
+| 物料与产品     | `/master-data/skus`                | 已在基础数据域暴露，用于确认 SKU、UOM、分类和生命周期。 |
+| 计量单位       | `/master-data/units`               | 已在基础数据域暴露，用于确认产品和组件的单位。          |
+| 工厂结构       | `/master-data/facilities`          | 已在基础数据域暴露，用于确认工厂、产线和工作中心。      |
+| 设备台账       | `/master-data/devices`             | 已在基础数据域暴露，用于确认设备资产。                  |
+| 工程资料工作台 | `/engineering`                     | 已有路由就绪的汇总页；顶部导航默认进入生产版本页。      |
+| 工程物料       | `/engineering/items`               | 已在产品工程域暴露。                                    |
+| 工程文档       | `/engineering/documents`           | 已在产品工程域暴露，可按物料和文档类型过滤。            |
+| EBOM           | `/engineering/ebom`                | 已在产品工程域暴露。                                    |
+| MBOM           | `/engineering/mbom`                | 已在产品工程域暴露。                                    |
+| 标准工序       | `/engineering/standard-operations` | 已在产品工程域暴露。                                    |
+| 工艺路线       | `/engineering/routings`            | 已在产品工程域暴露。                                    |
+| 生产版本       | `/engineering/production-versions` | 已在产品工程域暴露，是计划和 MES 引用的关键结果。       |
+| ECO/ECN        | `/engineering/eco`                 | 已在产品工程域暴露；延迟生效切换仍是缺口。              |
+
+## 操作步骤
+
+1. 在 `/master-data/skus` 确认成品和关键物料 SKU 存在，并检查 UOM、分类和生命周期状态。
+2. 在 `/engineering/items` 建立或检查工程物料。当前 `ItemCode` 语义冻结为 MasterData SKU 编码。
+3. 在 `/engineering/documents` 点击「登记文档」，选择图纸、作业指导或质量证据文件；上传完成后填写修订、选择文档类型和关联物料并登记。刷新列表，点击「查看」→「打开文件」→文件链接，确认内容。
+4. 在 `/engineering/ebom` 维护设计结构，确认替代料、虚拟件、位号、得率和损耗。
+5. 在 `/engineering/mbom` 将 EBOM 转为制造用料，确保非虚拟件（phantom）的 EBOM 子项 SKU 被 MBOM 物料行覆盖。
+6. 在 `/engineering/standard-operations` 准备启用的标准工序，再到 `/engineering/routings` 发布工艺路线。逐工序选择是否「可中断（跨班次续排）」；未勾选的工序按不可中断处理，版本明细可查看该标记。
+7. 在 `/engineering/production-versions` 绑定 SKU、MBOM、Routing 和有效日期，形成计划和 MES 可引用的版本。
+8. 如需变更，使用 `/engineering/eco` 释放 ECO/ECN；当前归档为即时执行。
+
+## 填写窗口核对
+
+制造 BOM 的下图是**尚未发布**的填写状态：产出物料为 `FG-QJ-P1-L`，引用设计 BOM 修订 2，拟填修订 3、生效日 2026-10-24；物料 `SF-ROD-01` 数量为 1 件。它只说明本次填写内容，不代表版本已经发布，也不与其它教程单据的数量合计。
+
+[![制造 BOM 未发布表单，末行物料、增加配方及取消和发布按钮完整可见](/images/dialog-forms/mbom-draft.png)](/images/dialog-forms/mbom-draft.png '查看完整原图')
+
+工艺路线下图沿用同一产出物料，是修订 3、生效日 2026-10-24 的**未发布**填写状态；所选标准工序带出 15 分钟工时。增加工序后可使用上移、下移调整顺序，并逐行核对工作中心、工时与排程方式；不要把截图中的未发布内容当作已生效路线。
+
+[![工艺路线未发布表单，工序行、排序和删除按钮及页脚完整可见](/images/dialog-forms/routing-draft.png)](/images/dialog-forms/routing-draft.png '查看完整原图')
+
+增加多行后，分别滚到顶部核对版本头、滚到底部核对最后一行、增删按钮和操作栏，再处理校验提示。390 像素宽窗口下，制造 BOM 和设计 BOM 的行字段按单列排列，操作栏随内容滚动；逐行填写后，可用 Tab 移到末字段并核对增删按钮。制造 BOM 的配方单位下拉列表使用原生滚动条，滚动条显示期间的右缘区域仍有交互边界待核实；请选择选项文字所在的内容区，不把滚动条带当作选项点击区。
+
+## 业务对象/单据流
+
+SKU -> EngineeringItem -> EngineeringDocument -> EBOM -> MBOM -> StandardOperation -> Routing -> ProductionVersion -> ECO/ECN。
+
+## 状态变化
+
+- EBOM、MBOM、Routing 和 ProductionVersion 从 `Draft` 经校验发布为 `Published`，被 ECO/ECN 影响后可归档为 `Archived`。
+- ProductionVersion 需要真实 MBOM、Routing、SKU 和有效日期校验；同一 SKU 的 `active` 有效窗不能重叠。
+- ECO/ECN 发布会在同一事务内归档受影响版本。
+
+## 结果校验
+
+- 在 `/engineering/production-versions` 能按 SKU 找到 `Published` 生产版本，且版本绑定了有效 MBOM、Routing 和有效日期。
+- 在 `/engineering/routings` 能看到 Routing 发布时保存的标准工序快照，后续标准工序名称或工时调整不会直接改写已发布路线。
+- 在 `/engineering/mbom` 和 `/engineering/ebom` 能解释关键物料关系，不把设计结构和制造领料结构混为一谈。
+- 如果上述结果无法出现，当前卡点通常在基础资料缺失、版本有效期重叠、标准工序未启用或 ECO/ECN 变更规则未补齐。
+
+## 常见失败/空态
+
+- SKU 或 UOM 未准备：先回到 `/master-data/skus`、`/master-data/units` 补齐。
+- 标准工序未启用：Routing 发布会拒绝引用。
+- 生产版本有效期重叠：调整旧版本归档或修改新版本有效窗。
+- 页面列表为空：通常是组织/环境下尚未录入数据，不代表服务不可用。
+
+## 当前限制
+
+- 当前文档只覆盖 Business Console 已暴露的工程资料页面，不描述完整 PLM/PDM。
+- ECO 发布当前按即时归档处理；`effectiveDate` 的未来生效延迟切换和更细粒度下游失效事件属于后续加固。
+- 工程资料页面是窄化工作台，不承诺完整图纸审批、复杂变更影响分析或高级版本矩阵。
+
+[内部缺口记录](/internal/gaps/engineering-to-production)

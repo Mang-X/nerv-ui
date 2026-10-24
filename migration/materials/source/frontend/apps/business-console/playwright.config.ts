@@ -1,0 +1,57 @@
+import { defineConfig, devices } from '@playwright/test'
+import path from 'node:path'
+
+export function requireBrowserEvidenceOutputDir(outputDir = process.env.NERV_IIP_OUT_DIR): string {
+  if (!outputDir) {
+    throw new Error('请显式指定产物目录：设置 NERV_IIP_OUT_DIR 后再运行浏览器视觉核验。')
+  }
+  return path.resolve(outputDir)
+}
+
+const executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
+const port = Number(process.env.PLAYWRIGHT_BUSINESS_CONSOLE_PORT ?? 5126)
+const externalBaseURL = process.env.NERV_IIP_PLAYWRIGHT_BASE_URL
+const baseURL = externalBaseURL ?? `http://127.0.0.1:${port}`
+const outputDir = process.env.NERV_IIP_OUT_DIR
+
+export default defineConfig({
+  testDir: './e2e',
+  outputDir,
+  forbidOnly: !!process.env.CI,
+  fullyParallel: true,
+  reporter: 'list',
+  // 慢的 dev server（首次编译每页数秒）+ smoke 连续 18 页导航；默认 30s 太小。
+  timeout: 120_000,
+  use: {
+    baseURL,
+    launchOptions: executablePath ? { executablePath } : undefined,
+    screenshot: 'only-on-failure',
+    trace: 'retain-on-failure',
+  },
+  webServer: externalBaseURL
+    ? undefined
+    : {
+        command: process.env.CI
+          ? `vp preview --host 127.0.0.1 --port ${port}`
+          : `vp dev --host 127.0.0.1 --port ${port}`,
+        url: baseURL,
+        reuseExistingServer: !process.env.CI,
+        timeout: 120_000,
+      },
+  projects: [
+    {
+      name: 'desktop',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1366, height: 900 },
+      },
+    },
+    {
+      name: 'mobile',
+      use: {
+        ...devices['Pixel 5'],
+        viewport: { width: 390, height: 844 },
+      },
+    },
+  ],
+})
