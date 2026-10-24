@@ -1,0 +1,10 @@
+
+ RUN  v4.1.10 /private/tmp/nerv-ui-t03-merger-20261024
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Start at  17:38:10
+   Duration  4.86s (transform 5.94s, setup 570ms, import 8.24s, tests 95ms, environment 610ms)

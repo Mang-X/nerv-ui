@@ -1,0 +1,132 @@
+[
+  {
+    "orientation": "portrait",
+    "keyboardFocus": {
+      "tag": "BUTTON",
+      "name": "减少",
+      "focusVisible": true,
+      "outline": "oklab(0.55 -0.0465874 -0.173867 / 0.5) auto 1px",
+      "shadow": "none"
+    },
+    "bounds": {
+      "minDisabled": true,
+      "maxDisabled": false
+    },
+    "states": [
+      {
+        "value": "success",
+        "label": "开放中",
+        "text": "共享阅读角 开放中本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.7 0.12 160)",
+        "pulse": "nv-ping-3c69ddd0"
+      },
+      {
+        "value": "warning",
+        "label": "稍作休息",
+        "text": "共享阅读角 稍作休息本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.79 0.12 70)",
+        "pulse": "nv-ping-3c69ddd0"
+      },
+      {
+        "value": "danger",
+        "label": "暂时关闭",
+        "text": "共享阅读角 暂时关闭本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.66 0.18 25)",
+        "pulse": "nv-ping-3c69ddd0"
+      },
+      {
+        "value": "info",
+        "label": "新活动",
+        "text": "共享阅读角 新活动本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.55 0.18 255)",
+        "pulse": "nv-ping-3c69ddd0"
+      },
+      {
+        "value": "neutral",
+        "label": "未开放",
+        "text": "共享阅读角 未开放本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.708 0 0)",
+        "pulse": "nv-ping-3c69ddd0"
+      }
+    ],
+    "readback": {
+      "viewport": [
+        768,
+        1024
+      ],
+      "books": "0 本",
+      "duration": "13 分钟",
+      "mode": "阅读",
+      "feedback": "已体验：默认",
+      "active": "桌面演示共享阅读角 未开放本地体验 · R-01蓝色强调色切换浅色 选择节奏，留一点时间给自己。所有数据仅在本页内存中，刷新即可重置。 此刻的阅读角状态文字与语气开放中稍作休息暂时关闭新活动未开放 状态点脉冲 阅读计划随心neutral本周精选12本brand可用座位8席success即将开始5分钟warning待确认1项danger留给自己的时间阅读聆听休息 当前选择：阅读。按自己的节奏体验。 阅读本数0本0–5 本，每次调整 1 本00 本阅读时长13分钟5–18 分钟，步长 5，触界时截到上限或下限1313 分钟重置阅读设置轻触，开始一次体验加载由你手动结束，方便观察按钮状态；不发送请求。↗ 开始本地体验结束本地体验暂不可用语义变体默认品牌成功提醒危险描边轻量三种尺寸md · 44pxlg · 56pxxl · 72px查看指标回到操作示例已体验：默认",
+      "activeRole": null,
+      "busy": null,
+      "disabled": false
+    }
+  },
+  {
+    "orientation": "landscape",
+    "keyboardFocus": {
+      "tag": "BUTTON",
+      "name": "减少",
+      "focusVisible": true,
+      "outline": "oklab(0.55 -0.0465874 -0.173867 / 0.5) auto 1px",
+      "shadow": "none"
+    },
+    "bounds": {
+      "minDisabled": true,
+      "maxDisabled": false
+    },
+    "states": [
+      {
+        "value": "success",
+        "label": "开放中",
+        "text": "共享阅读角 开放中本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.7 0.12 160)",
+        "pulse": "nv-ping-3c69ddd0"
+      },
+      {
+        "value": "warning",
+        "label": "稍作休息",
+        "text": "共享阅读角 稍作休息本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.79 0.12 70)",
+        "pulse": "nv-ping-3c69ddd0"
+      },
+      {
+        "value": "danger",
+        "label": "暂时关闭",
+        "text": "共享阅读角 暂时关闭本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.66 0.18 25)",
+        "pulse": "nv-ping-3c69ddd0"
+      },
+      {
+        "value": "info",
+        "label": "新活动",
+        "text": "共享阅读角 新活动本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.55 0.18 255)",
+        "pulse": "nv-ping-3c69ddd0"
+      },
+      {
+        "value": "neutral",
+        "label": "未开放",
+        "text": "共享阅读角 未开放本地体验 · R-01蓝色强调色切换浅色",
+        "dot": "oklch(0.708 0 0)",
+        "pulse": "nv-ping-3c69ddd0"
+      }
+    ],
+    "readback": {
+      "viewport": [
+        1024,
+        768
+      ],
+      "books": "0 本",
+      "duration": "13 分钟",
+      "mode": "阅读",
+      "feedback": "已体验：默认",
+      "active": "桌面演示共享阅读角 未开放本地体验 · R-01蓝色强调色切换浅色 选择节奏，留一点时间给自己。所有数据仅在本页内存中，刷新即可重置。 此刻的阅读角状态文字与语气开放中稍作休息暂时关闭新活动未开放 状态点脉冲 阅读计划随心neutral本周精选12本brand可用座位8席success即将开始5分钟warning待确认1项danger留给自己的时间阅读聆听休息 当前选择：阅读。按自己的节奏体验。 阅读本数0本0–5 本，每次调整 1 本00 本阅读时长13分钟5–18 分钟，步长 5，触界时截到上限或下限1313 分钟重置阅读设置轻触，开始一次体验加载由你手动结束，方便观察按钮状态；不发送请求。↗ 开始本地体验结束本地体验暂不可用语义变体默认品牌成功提醒危险描边轻量三种尺寸md · 44pxlg · 56pxxl · 72px查看指标回到操作示例已体验：默认",
+      "activeRole": null,
+      "busy": null,
+      "disabled": false
+    }
+  }
+]

@@ -1,0 +1,42 @@
+const fs=await import('node:fs/promises');
+const crypto=await import('node:crypto');
+const task=await taskSpace(29), page=task.page('p1');
+const assert=(v,m)=>{if(!v)throw new Error(m)};
+await page.goto('http://127.0.0.1:4178/f1/');
+await page.reload();
+await page.waitForFunction(()=>[...document.scripts].some(s=>s.src.endsWith('index-BiHfW4Cs.js')));
+const read=()=>page.evaluate(()=>({dom:[...document.querySelectorAll('[role="tab"]')].map(t=>t.textContent),requested:document.querySelector('#requested').textContent,selected:document.querySelector('#selected').textContent,selectedTab:document.querySelector('[aria-selected="true"]').textContent,focused:document.activeElement?.textContent,tabStops:[...document.querySelectorAll('[role="tab"][tabindex="0"]')].map(t=>t.textContent)}));
+const rows=[];
+const step=async(key,value,label,previous)=>{
+ await page.keyboard.press(key);
+ const pending=await read();
+ assert(pending.requested==='Requested: '+value,'Requested '+key);
+ assert(pending.focused===label,'Focus '+key);
+ assert(pending.selectedTab===previous,'Controlled pending '+key);
+ // The host applies its pending public event without stealing keyboard focus.
+ await page.evaluate(()=>[...document.querySelectorAll('button')].find(b=>b.textContent==='Apply request').click());
+ await page.waitForFunction(value=>document.querySelector('#selected').textContent==='Selected: '+value,value);
+ const returned=await read();
+ assert(returned.selectedTab===label&&returned.focused===label,'Returned selection/focus '+key);
+ assert(JSON.stringify(returned.tabStops)===JSON.stringify([label]),'Single tab stop '+key);
+ rows.push({key,pending,returned});
+};
+await page.click('button:text-is("Reorder")');
+await page.focus('[role="tab"]:text-is("Read")');
+await step('ArrowRight','listen','Listen','Read');
+await step('ArrowRight','rest','Rest','Listen');
+await step('ArrowLeft','listen','Listen','Rest');
+await step('Home','rest','Rest','Listen');
+await step('End','listen','Listen','Rest');
+await page.click('button:text-is("Replace Rest with Pause")');
+await page.focus('[role="tab"]:text-is("Read")');
+await step('ArrowRight','listen','Listen','Listen');
+await step('Home','pause','Pause','Listen');
+await step('End','listen','Listen','Pause');
+await step('ArrowLeft','read','Read','Listen');
+const resources=await page.evaluate(()=>[...document.scripts,...document.querySelectorAll('link[rel="stylesheet"]')].map(e=>e.src||e.href).filter(url=>url.startsWith(location.origin+'/f1/assets/')));
+const responses=[];
+for(const url of resources){const response=await page.fetch(url);const local='/tmp/nerv-ui-t03-f1/served'+new URL(url).pathname;const expected=crypto.createHash('sha256').update(await fs.readFile(local)).digest('hex');const actual=crypto.createHash('sha256').update(response.body).digest('hex');assert(response.status===200&&actual===expected,'Resource identity '+url);responses.push({url,status:response.status,sha256:actual,matchesBuiltFile:true})}
+await fs.writeFile('/tmp/nerv-ui-t03-f1/browser-focus.json',JSON.stringify({host:'temporary production-built public @nerv-iip/ui host; no component internals',rows,responses},null,2));
+console.log({steps:rows.length,pass:true,responses});
+console.log(await page.snapshot());
