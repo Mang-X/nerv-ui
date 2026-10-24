@@ -117,3 +117,9 @@ const hours = Array.from({ length: 12 }, (_, i) => `${String(8 + i).padStart(2, 
 ```
 
 独立演示：`/#screen/charts`。两实例各自持有 SVG gradient 与交互状态；长标签卡片在图内折行，左右半区翻转。真实缩放/坐标证据与 mock mousemove 的逻辑边界分别记录在 `docs/evidence/t05-a05/README.md`。
+
+### 信息卡边界（A05 / F1）
+
+卡片最大宽度为图宽的一半减去内边距余量；槽中心在右半区（>50%）时向左打开，正中点仍向右，10px 间隔计入可用半区。长 hover label 保留全文并自然折行，读数保持当前槽的全部序列值，不按标签长度裁字。
+
+卡片保留自然内容高度，不加省略、行数上限或内部滚动。高度仍由宿主提供；对 `overflow:hidden` 的宿主，应给折行后的 label、所有序列行和顶部 4px 留足高度，必要时增高图表容器。本轮实测 100 个 W、两序列在 600×180，三序列在 400×240 下完整可读；这不是任意长度标签和任意小容器都可容纳的保证。真实 `getBoundingClientRect`、文本行 Range 和读数可见性见 [F1 证据](../../../../../../docs/evidence/t05-a05/f1/README.md)。

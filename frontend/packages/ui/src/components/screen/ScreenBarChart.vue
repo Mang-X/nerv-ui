@@ -115,7 +115,8 @@ const card = computed(() => {
   const label = props.hoverLabels?.[i] ?? `#${i + 1}`
   const vals = props.series.map((s) => ({ label: s.label, color: s.color, val: s.data[i] ?? '—' }))
   const cx = ((i + 0.5) / n.value) * 100
-  return { i, label, vals, cx, flip: cx > 55 }
+  // Keep placement aligned with the half-width card constraint (including its gap).
+  return { i, label, vals, cx, flip: cx > 50 }
 })
 </script>
 

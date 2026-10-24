@@ -1,5 +1,7 @@
 # T05/A05：内容分布与到访趋势
 
+> 后续独立 R1 拒绝集成：F1（P2，继承未修）证明12槽54.1667%的长tooltip仍裁切；原记录保留为实施时点证据。本轮修复、RED→GREEN及新bundle fresh范围见 [F1 证据](f1/README.md)，独立R2尚未执行。
+
 范围为 [#62](https://github.com/Mang-X/nerv-ui/issues/62) 的四图、playground 本组宿主/fixtures/公开测试、四 API 页及串行壳入口 `/#screen/charts`。按已批准母规格 [#1](https://github.com/Mang-X/nerv-ui/issues/1) 和父 [#6](https://github.com/Mang-X/nerv-ui/issues/6) 实施。本记录不等于父票组合验收。
 
 工作树 `/Users/mang/Project/nerv-ui-worktrees/t05-a05-screen-charts`，分支 `feat/t05-a05-screen-charts`。基线 `d9d64bd0c314aad4c11abd1bf6334d145d4b8253`，tree `ec48429a7720e027b45f9f6f893bb362f3e1c9d2`；交付前再次 fetch 并 merge 最新 `origin/integration/nerv-ui-extraction`。最终 head/tree、PR 与命令退出码由外部 `handoff.md` 固定，避免在提交内记录自身 SHA 的循环引用。

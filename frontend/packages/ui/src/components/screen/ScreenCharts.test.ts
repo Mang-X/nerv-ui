@@ -301,3 +301,52 @@ it('Pareto explicit zero total displays a zero denominator tail instead of hidin
   expect(w.get('.nv-scr-pa-sum').text()).toContain('TOP0 合计 0.0%')
   expect(w.get('.nv-scr-pa-tail').text()).toBe('长尾 0 次 · 0.0%')
 })
+
+// F1: the HTML card is limited to a half chart; the right half must open left.
+it.each([
+  { slot: 1, value: '11', flip: false },
+  { slot: 6, value: '47', flip: false },
+  { slot: 7, value: '59', flip: true },
+  { slot: 8, value: '67', flip: true },
+  { slot: 12, value: '103', flip: true },
+])(
+  'Bar places slot $slot tooltip into the available half without changing its label or readings',
+  async ({ slot, value, flip }) => {
+    const labels = Array.from({ length: 12 }, (_, i) =>
+      i === 6 ? 'W'.repeat(100) : `source/day/p${i + 1}`,
+    )
+    const w = chart(NvScreenBarChart, {
+      series: [
+        {
+          label: 'source-A',
+          color: 'red',
+          data: [11, 17, 23, 31, 41, 47, 59, 67, 73, 83, 97, 103],
+        },
+      ],
+      hoverLabels: labels,
+      autoplay: false,
+    })
+    rect(w, 'svg')
+    await w.get('svg').trigger('mousemove', { clientX: 100 + (940 * (slot - 0.5)) / 12 })
+    expect(w.get('[role="tooltip"]').classes('flip')).toBe(flip)
+    expect(w.get('.nv-scr-bc-c-t').text()).toBe(labels[slot - 1])
+    expect(w.get('.nv-scr-bc-c-s b').text()).toBe(value)
+    await w.get('svg').trigger('mouseleave')
+    expect(w.find('[role="tooltip"]').exists()).toBe(false)
+  },
+)
+
+it('Bar keeps the exact midpoint tooltip on the right with all current series readings', async () => {
+  const w = chart(NvScreenBarChart, {
+    series: [
+      { label: 'current', color: 'red', data: [11, 17, 23] },
+      { label: 'comparison', color: 'blue', data: [29, 31, 41] },
+    ],
+    hoverLabels: ['left', 'middle', 'right'],
+  })
+  rect(w, 'svg')
+  await w.get('svg').trigger('mousemove', { clientX: 570 })
+  expect(w.get('[role="tooltip"]').classes('flip')).toBe(false)
+  expect(w.get('.nv-scr-bc-c-t').text()).toBe('middle')
+  expect(w.findAll('.nv-scr-bc-c-s b').map((v) => v.text())).toEqual(['17', '31'])
+})
