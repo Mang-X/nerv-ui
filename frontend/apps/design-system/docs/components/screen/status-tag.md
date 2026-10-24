@@ -3,52 +3,38 @@ title: NvScreenStatusTag 状态标签
 ---
 
 <script setup>
+import { ref } from 'vue'
 import { NvScreenStatusTag } from '@nerv-iip/ui'
+const tone = ref('run')
+const label = ref('欢迎来坐坐')
+const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']
 </script>
 
 # NvScreenStatusTag 状态标签
 
-小号语义标签:彩色圆点 + 文字,外包一圈着色发丝边、底为极淡的色晕(不用实色填充块 —— 保持大屏底色为暗)。运行别名(`run` / `idle` / `alarm`)折叠到调色板。圆点配文字共同传达状态,不依赖颜色单独识别。
+圆点、文字与淡色边框共同表达状态。文字通过 **label prop** 提供，本组件没有用于替换标签的默认 slot。`run`、`idle`、`alarm` 分别映射到绿色、琥珀色、红色，原始颜色名也可直接使用。颜色同义不等于文字含义相同。
 
-## 运行态别名
-
-`run` / `idle` / `alarm` 对应运行、待机、报警三态。
+## 动态标签
 
 <ScreenDemo>
-  <div style="display:flex; gap:12px; align-items:center;">
-    <NvScreenStatusTag tone="run" label="运行中" />
-    <NvScreenStatusTag tone="idle" label="待机" />
-    <NvScreenStatusTag tone="alarm" label="报警" />
+  <div>
+    <select v-model="tone" aria-label="标签颜色"><option v-for="item in tones" :key="item">{{ item }}</option></select>
+    <input v-model="label" aria-label="标签文字" />
+    <NvScreenStatusTag :tone="tone" :label="label" />
   </div>
 </ScreenDemo>
 
 ```vue
-<NvScreenStatusTag tone="run" label="运行中" />
-<NvScreenStatusTag tone="idle" label="待机" />
-<NvScreenStatusTag tone="alarm" label="报警" />
-```
-
-## 原始颜色
-
-也可直接用调色板颜色名,覆盖更多业务语义。
-
-<ScreenDemo>
-  <div style="display:flex; gap:12px; align-items:center;">
-    <NvScreenStatusTag tone="cyan" label="数据采集" />
-    <NvScreenStatusTag tone="green" label="达标" />
-    <NvScreenStatusTag tone="amber" label="预警" />
-    <NvScreenStatusTag tone="red" label="超限" />
-  </div>
-</ScreenDemo>
-
-```vue
-<NvScreenStatusTag tone="cyan" label="数据采集" />
-<NvScreenStatusTag tone="red" label="超限" />
+<NvScreenStatusTag tone="run" label="阅读空间开放" />
+<NvScreenStatusTag tone="green" label="阅读空间开放" />
+<NvScreenStatusTag tone="cyan" label="尚未统计" />
 ```
 
 ## 属性
 
-| 属性    | 说明                                    | 类型                                                    | 默认     |
-| ------- | --------------------------------------- | ------------------------------------------------------- | -------- |
-| `tone`  | 运行别名或原始调色板颜色                | `run \| idle \| alarm \| cyan \| green \| amber \| red` | `run`    |
-| `label` | 标签文字,如「运行中」/「待机」/「报警」 | `string`                                                | `运行中` |
+| 属性    | 说明                         | 类型                                                                  | 默认                   |
+| ------- | ---------------------------- | --------------------------------------------------------------------- | ---------------------- |
+| `tone`  | 别名或原始颜色               | `'run' \| 'idle' \| 'alarm' \| 'cyan' \| 'green' \| 'amber' \| 'red'` | `'run'`                |
+| `label` | 标签文字，由宿主提供状态含义 | `string`                                                              | `'运行中'`，保留旧默认 |
+
+独立接入时显式传入中性文字；不要用默认“运行中”代表未知。文字随 prop 更新，状态不靠颜色单独识别。长标签须有足够宿主宽度，标签本身不自动推断缩写或业务规则。

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useId } from 'vue'
 
 /**
  * Screen — minimal sparkline. A crisp, hairline cyan polyline (non-scaling stroke
@@ -43,7 +43,7 @@ const geom = computed(() => {
   }
 })
 
-const uid = `sl-${Math.random().toString(36).slice(2, 8)}`
+const uid = `sl-${useId()}`
 </script>
 
 <template>

@@ -96,3 +96,34 @@ it('opens only the completed controls section and unmounts its portal when retur
     expect(wrapper.find(`a[href="#${route}"]`).exists()).toBe(true)
   }
 })
+
+it('opens the completed indicators deep link and stops its continuous readings before stage or controls', async () => {
+  vi.useFakeTimers()
+  try {
+    wrapper = mount(ScreenDemo, { props: { section: '#screen/indicators' } })
+    expect(wrapper.get('h1').text()).toBe('城市空间的每一刻')
+    expect(wrapper.get('a[href="#screen/indicators"]').attributes('aria-current')).toBe('page')
+    await wrapper
+      .findAll('button')
+      .find((item) => item.text() === '连续更新')!
+      .trigger('click')
+    await vi.advanceTimersByTimeAsync(700)
+    expect(wrapper.get('[aria-label="读数原文"]').text()).toContain('1,321')
+    await wrapper.setProps({ section: '#screen/controls' })
+    expect(wrapper.get('h1').text()).toBe('寻找城市的一处停留')
+    expect(wrapper.find('[aria-label="读数原文"]').exists()).toBe(false)
+    await wrapper.setProps({ section: '#screen/stage' })
+    expect(wrapper.get('h1').text()).toBe('城市文化空间')
+    expect(vi.getTimerCount()).toBe(0)
+    await wrapper.setProps({ section: '#screen/indicators' })
+    expect(wrapper.get('[aria-label="读数原文"]').text()).toContain('1,284')
+    expect(
+      wrapper
+        .findAll('button')
+        .find((item) => item.text() === '连续更新')!
+        .attributes('aria-pressed'),
+    ).toBe('false')
+  } finally {
+    vi.useRealTimers()
+  }
+})

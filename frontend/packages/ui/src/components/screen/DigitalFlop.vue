@@ -25,29 +25,27 @@ const reduce = useMediaQuery('(prefers-reduced-motion: reduce)')
 const display = ref(typeof props.value === 'number' ? props.value : 0)
 let raf = 0
 
-watch(
-  () => props.value,
-  (to) => {
-    if (typeof to !== 'number') return
-    cancelAnimationFrame(raf)
-    if (reduce.value) {
-      display.value = to
-      return
-    }
-    const from = display.value
-    const dur = 600
-    let start = 0
-    const step = (ts: number) => {
-      if (!start) start = ts
-      const t = Math.min(1, (ts - start) / dur)
-      // ease-out-expo — matches --nv-scr-ease-emphasized
-      const e = t === 1 ? 1 : 1 - 2 ** (-10 * t)
-      display.value = from + (to - from) * e
-      if (t < 1) raf = requestAnimationFrame(step)
-    }
-    raf = requestAnimationFrame(step)
-  },
-)
+watch([() => props.value, reduce], ([to]) => {
+  cancelAnimationFrame(raf)
+  raf = 0
+  if (typeof to !== 'number') return
+  if (reduce.value || display.value === to) {
+    display.value = to
+    return
+  }
+  const from = display.value
+  const dur = 600
+  let start = 0
+  const step = (ts: number) => {
+    if (!start) start = ts
+    const t = Math.min(1, (ts - start) / dur)
+    // ease-out-expo — matches --nv-scr-ease-emphasized
+    const e = t === 1 ? 1 : 1 - 2 ** (-10 * t)
+    display.value = from + (to - from) * e
+    if (t < 1) raf = requestAnimationFrame(step)
+  }
+  raf = requestAnimationFrame(step)
+})
 onBeforeUnmount(() => cancelAnimationFrame(raf))
 
 /** Group numbers (tweened), preserving the caller's decimal places; strings pass

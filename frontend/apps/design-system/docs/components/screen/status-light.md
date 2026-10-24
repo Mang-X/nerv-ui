@@ -3,52 +3,38 @@ title: NvScreenStatusLight 状态灯
 ---
 
 <script setup>
+import { ref } from 'vue'
 import { NvScreenStatusLight } from '@nerv-iip/ui'
+const tone = ref('run')
+const label = ref('欢迎来坐坐')
+const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']
 </script>
 
 # NvScreenStatusLight 状态灯
 
-一枚语义色呼吸辉光圆点,可选配文字。运行别名(`run` / `idle` / `alarm`)映射到调色板(绿 / 琥珀 / 红),也直接接受原始颜色名。状态不依赖颜色单独传达 —— 务必搭配 `label`。`prefers-reduced-motion` 下停止呼吸。
+10px 呼吸光点搭配宿主提供的状态文字。`run`、`idle`、`alarm` 分别与 `green`、`amber`、`red` 同色；别名不生成文字，也不决定业务含义。请始终提供明确 `label`，避免只靠颜色表意。
 
-## 运行态别名
-
-`run` / `idle` / `alarm` 对应运行、待机、报警三态。
+## 颜色与文字独立更新
 
 <ScreenDemo>
-  <div style="display:flex; gap:28px; align-items:center;">
-    <NvScreenStatusLight tone="run" label="焊接线 A · 运行中" />
-    <NvScreenStatusLight tone="idle" label="装配线 B · 待机" />
-    <NvScreenStatusLight tone="alarm" label="CNC 线 C · 报警" />
+  <div>
+    <select v-model="tone" aria-label="灯颜色"><option v-for="item in tones" :key="item">{{ item }}</option></select>
+    <input v-model="label" aria-label="灯文字" />
+    <NvScreenStatusLight :tone="tone" :label="label" />
   </div>
 </ScreenDemo>
 
 ```vue
-<NvScreenStatusLight tone="run" label="焊接线 A · 运行中" />
-<NvScreenStatusLight tone="idle" label="装配线 B · 待机" />
-<NvScreenStatusLight tone="alarm" label="CNC 线 C · 报警" />
-```
-
-## 原始颜色
-
-也可直接用调色板颜色名,如 `cyan` 用于数据 / 中性提示。
-
-<ScreenDemo>
-  <div style="display:flex; gap:28px; align-items:center;">
-    <NvScreenStatusLight tone="cyan" label="数据采集中" />
-    <NvScreenStatusLight tone="green" label="正常" />
-    <NvScreenStatusLight tone="amber" label="预警" />
-    <NvScreenStatusLight tone="red" label="故障" />
-  </div>
-</ScreenDemo>
-
-```vue
-<NvScreenStatusLight tone="cyan" label="数据采集中" />
-<NvScreenStatusLight tone="red" label="故障" />
+<NvScreenStatusLight tone="run" label="阅读空间开放" />
+<NvScreenStatusLight tone="green" label="阅读空间开放" />
+<NvScreenStatusLight tone="cyan" label="尚未统计" />
 ```
 
 ## 属性
 
-| 属性    | 说明                     | 类型                                                    | 默认  |
-| ------- | ------------------------ | ------------------------------------------------------- | ----- |
-| `tone`  | 运行别名或原始调色板颜色 | `run \| idle \| alarm \| cyan \| green \| amber \| red` | `run` |
-| `label` | 圆点旁文字,如「运行中」  | `string`                                                | —     |
+| 属性    | 说明           | 类型                                                                  | 默认    |
+| ------- | -------------- | --------------------------------------------------------------------- | ------- |
+| `tone`  | 别名或原始颜色 | `'run' \| 'idle' \| 'alarm' \| 'cyan' \| 'green' \| 'amber' \| 'red'` | `'run'` |
+| `label` | 光点旁文字     | `string`                                                              | 无      |
+
+减少动态效果时停止呼吸，光点与文字保留。这是基础小灯；大主灯、状态墙、取数和异常规则由各自 owner 提供，不由此组件推断。

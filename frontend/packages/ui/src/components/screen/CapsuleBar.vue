@@ -71,7 +71,7 @@ const rows = computed(() =>
   }
   .nv-scr-cb-row {
     display: grid;
-    grid-template-columns: 64px 1fr 52px;
+    grid-template-columns: 64px minmax(0, 1fr) minmax(52px, max-content);
     align-items: center;
     gap: 12px;
   }
