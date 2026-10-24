@@ -1,0 +1,11 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'translateY(0px)'
+- 'translateY(56px)'
+              ^
+
+    at f3 (file:///private/tmp/nerv-ui-t04-n04-f3/browser/f3.mjs:19:53)
+    at async file:///private/tmp/nerv-ui-t04-n04-f3/browser/round-02-f3-portrait.mjs:1:119
+
+ego's nodejs process exited with code 1.

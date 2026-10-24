@@ -1,0 +1,27 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground
+
+ ✓ src/nvui-imports.contract.test.ts (24 tests) 23ms
+ ✓ src/TouchDemo.test.ts (5 tests) 295ms
+ ✓ src/MobileDemo.test.ts (3 tests) 267ms
+ ✓ src/MobileListDemo.test.ts (8 tests) 395ms
+ ✓ src/App.test.ts (6 tests) 907ms
+ ✓ src/MobileOverlayDemo.test.ts (7 tests) 1231ms
+   ✓ commits the picked identity only on confirmation and leaves empty choices unsubmitted  470ms
+ ✓ src/MobileInputDemo.test.ts (14 tests) 1639ms
+   ✓ submits manual and captured scans, yields to ordinary fields and resumes without losing manual drafts  319ms
+
+ Test Files  7 passed (7)
+      Tests  67 passed (67)
+   Start at  23:17:52
+   Duration  10.08s (transform 22.92s, setup 9.29s, import 34.05s, tests 4.76s, environment 7.19s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-f3/raw/host.json
+$ vp test run src --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t04-n04-f3/raw/host.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

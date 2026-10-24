@@ -1,0 +1,16 @@
+{
+  "egoSpace": 13,
+  "egoFinish": "raw/browser-finish.log",
+  "t3Tab": "tab_13_6faab953-90e1-4ff7-b4aa-20aa9696713e",
+  "t3CloseReturned": {},
+  "server": {
+    "port": 4187,
+    "pids": [
+      54572,
+      54564
+    ],
+    "signal": "SIGTERM",
+    "unifiedExecExit": 143
+  },
+  "worktreeRetained": true
+}

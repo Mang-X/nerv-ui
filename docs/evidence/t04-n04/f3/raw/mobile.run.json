@@ -1,0 +1,17 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "corepack",
+    "pnpm@11.22.0",
+    "-C",
+    "frontend/packages/ui-mobile",
+    "test",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile=/tmp/nerv-ui-t04-n04-f3/raw/mobile.json"
+  ],
+  "start": "2026-10-24T15:16:42.370Z",
+  "end": "2026-10-24T15:17:21.390Z",
+  "exit": 0,
+  "signal": null
+}

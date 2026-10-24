@@ -117,4 +117,6 @@ N02 输入扫码接入见下文。后续 [#47](https://github.com/Mang-X/nerv-ui
 
 独立 R1 拒绝后补修两项：Swiper 在外部 index 变化时同时同步位移与指针坐标两个拖动基准，外部页本身不发 change，短拖松手沿用一次 change(当前页)，不额外发 update:index；PullRefresh 在 loading 变化时撤销旧手势并保持 loading 提示，松手再次检查 loading，完成后回弹并允许新拉动。宿主的“立即更新”按钮提供公开的外部刷新入口；请求计数未设额外 guard 掩盖组件重复事件。F1 是新增回归，F2 是本票承诺的继承验收缺口；两项修复与新产物验证见 [R1 修复证据](evidence/t04-n04/f1-f2/README.md)。
 
+独立 R2 确认 F1/F2 修复有效后，另发现 F3：越阈值后撤回到或越过起点仍保留旧拉距，base/head 均可复现。本轮仅在该撤回分支清零拉距，保留同一指针再次拉动的资格；原断言、正式 RED/GREEN 与新 bundle 验证见 [F3 修复证据](evidence/t04-n04/f3/README.md)，整体待独立 R3。
+
 精确测试名、原始失败、fresh 浏览器输入方式、资源响应身份与限制见 [N04 证据](evidence/t04-n04/README.md)。本票不验收 N05/#49、#35 列表恢复、#11 版本化产物安装或物理触摸设备，不处理 #43/#51。

@@ -93,3 +93,7 @@ pnpm 固定 11.22.0，任务局部 `/tmp/nerv-ui-t04-n04/bin/pnpm` 转发 corepa
 最终状态：四态各 6 组交互完整 PASS（390×844 / 844×390，light / dark），共 24 组，24 张最终截图；所有步骤实际 viewport/theme、无横溢出、内层滚动尺寸与输出见 `browser-matrix.json` 和 `browser/final-*.json`。分页未完成与 autoplay 开启时，通过平台 timer 账本和公开 hash 导航验证卸载，1+1 个计时归零且等待 1800ms 无迟到回调；五个旧入口实际点击往返，重入页状态与 scrollTop 均重置。实际加载的 HTML、JS、CSS、Inter 字体共 4 个响应全部 200，并与最终 build 全字节一致；其余未请求的字体仅记录磁盘 SHA256，不假称浏览器加载，见 `resources.json`。physical touch、iOS/Android、PDA、非零硬件安全区、CI、版本化安装产物、发布与旧仓接入均 UNRUN。本轮实现行为/浏览器使用 fresh；无继承 browser PASS。初始来源与既有实现事实注明为继承，对其动态行为的本轮测试是 fresh。
 
 任务资源已清理：ego TaskSpace 9 finish、T3 tab 关闭、4184 预览服务 PID 48436 停止且无监听，见 `cleanup.json`；保留任务 worktree 给独立 merger。本实施者不合并 PR、不关闭 #48/#5/#1、不 ready #18、不监控或轮询。独立审查由父 controller 的下一席负责。
+
+## R2 拒绝后的 F3 窄修
+
+R2 已确认 F1/F2 修复有效，另以 base/head 公开反例发现撤回起点仍刷新（F3，继承缺陷）。本轮的 RED/GREEN、新产物浏览器与证据边界见 [F3 修复记录](f3/README.md)。R1/R2 拒绝历史保留，整体待独立 R3。

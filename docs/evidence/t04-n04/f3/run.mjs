@@ -1,0 +1,5 @@
+import fs from 'node:fs'; import {spawnSync} from 'node:child_process';
+const root='/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists', dir='/tmp/nerv-ui-t04-n04-f3';
+const [name,...args]=process.argv.slice(2);const cwd=name.startsWith('probe-')?'/private/tmp/nerv-ui-t04-n04-f3/probe':root;
+const start=new Date().toISOString();const r=spawnSync(args[0],args.slice(1),{cwd,env:{...process.env,PATH:dir+'/bin:'+process.env.PATH},encoding:'utf8',maxBuffer:80*1024*1024});
+fs.writeFileSync(dir+'/raw/'+name+'.log',(r.stdout??'')+(r.stderr??''));fs.writeFileSync(dir+'/raw/'+name+'.run.json',JSON.stringify({cwd,command:args,start,end:new Date().toISOString(),exit:r.status,signal:r.signal,error:r.error?.message},null,2));console.log(JSON.stringify({name,exit:r.status,tail:((r.stdout??'')+(r.stderr??'')).slice(-1800)}));process.exitCode=r.status??1;

@@ -54,7 +54,10 @@ function onMove(e: PointerEvent) {
   if (!eligible || e.buttons === 0 || loading.value) return
   if ((scroller.value?.scrollTop ?? 0) > 0) return
   const dy = e.clientY - startY
-  if (dy <= 0) return
+  if (dy <= 0) {
+    distance.value = 0
+    return
+  }
   if (!engaged && dy < 4) return
   engaged = true
   dragging.value = true

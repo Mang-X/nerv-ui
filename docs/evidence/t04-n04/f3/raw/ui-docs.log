@@ -1,0 +1,17 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui
+
+ ✓ src/design-docs.contract.test.ts (1 test) 8ms
+ ✓ src/docs-layout.contract.test.ts (3 tests) 6ms
+ ✓ src/nvui-doc-coverage.contract.test.ts (2 tests) 3ms
+
+ Test Files  3 passed (3)
+      Tests  6 passed (6)
+   Start at  23:18:09
+   Duration  5.28s (transform 3.15s, setup 1.79s, import 3.98s, tests 17ms, environment 1.66s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-f3/raw/ui-docs.json
+$ vp test run src/design-docs.contract.test.ts src/nvui-doc-coverage.contract.test.ts src/docs-layout.contract.test.ts --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t04-n04-f3/raw/ui-docs.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

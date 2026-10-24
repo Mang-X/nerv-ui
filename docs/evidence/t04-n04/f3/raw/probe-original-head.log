@@ -1,0 +1,14 @@
+
+ RUN  v4.1.10 /private/tmp/nerv-ui-t04-n04-f3/probe
+
+ ✓ pull-refresh-public.test.ts (2 tests) 42ms
+ ✓ swiper-public.test.ts (2 tests) 60ms
+
+ Test Files  2 passed (2)
+      Tests  4 passed (4)
+   Start at  23:16:29
+   Duration  5.45s (transform 6.29s, setup 0ms, import 9.68s, tests 102ms, environment 884ms)
+
+JSON report written to /tmp/nerv-ui-t04-n04-f3/raw/probe-original-head.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

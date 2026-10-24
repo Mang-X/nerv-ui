@@ -1,0 +1,2 @@
+  await activate('立即更新');
+  const during=await page.evaluate(()=>({state:document.querySelector('[aria-label="刷新状态"]').textContent.trim(),text:document.querySelector('[data-slot="pull-refresh"]').textContent,style:document.querySelector('.nv-m-pr-inner').style.transform,disabled:[...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='立即更新').disabled}));

@@ -1,0 +1,13 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "d730e76ac576baa7c1509a50af4857fd9370a5bd"
+  ],
+  "start": "2026-10-24T15:32:34.242Z",
+  "end": "2026-10-24T15:32:34.361Z",
+  "exit": 2,
+  "signal": null
+}

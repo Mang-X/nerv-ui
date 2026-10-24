@@ -122,3 +122,75 @@ it.each([
     }
   },
 )
+
+it.each([
+  { name: 'above-start', y: 0 },
+  { name: 'at-start', y: 10 },
+  { name: 'below-start-control', y: 11 },
+])('does not refresh after retracting a threshold-crossing pull - $name', async ({ y }) => {
+  const wrapper = mount(PullRefresh, { props: { modelValue: false } })
+  try {
+    await nextTick()
+    await nextTick()
+    const area = wrapper.get('.nv-m-pr-inner')
+    const pointer = (type: string, clientY: number, buttons = 1) =>
+      area.element.dispatchEvent(new MouseEvent(type, { clientY, buttons }))
+    pointer('pointerdown', 10)
+    pointer('pointermove', 260)
+    await nextTick()
+    expect(wrapper.text()).toContain('释放立即刷新')
+    pointer('pointermove', y)
+    await nextTick()
+    expect(wrapper.text()).toContain('下拉刷新')
+    if (y <= 10) expect(area.attributes('style')).toContain('translateY(0px)')
+    pointer('pointerup', y, 0)
+    await nextTick()
+    expect(wrapper.emitted('refresh')).toBeUndefined()
+    expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+    expect(area.attributes('style')).toContain('translateY(0px)')
+  } finally {
+    wrapper.unmount()
+  }
+})
+
+it.each([
+  { name: 'above-start', y: 0 },
+  { name: 'at-start', y: 10 },
+])(
+  'allows one refresh after retracting and pulling again with the same pointer - $name',
+  async ({ y }) => {
+    const wrapper = mount(PullRefresh, { props: { modelValue: false } })
+    try {
+      await nextTick()
+      await nextTick()
+      const area = wrapper.get('.nv-m-pr-inner')
+      const pointer = (type: string, clientY: number, buttons = 1) =>
+        area.element.dispatchEvent(new MouseEvent(type, { clientY, buttons }))
+      pointer('pointerdown', 10)
+      pointer('pointermove', 260)
+      await nextTick()
+      expect(wrapper.text()).toContain('释放立即刷新')
+      pointer('pointermove', y)
+      await nextTick()
+      expect(area.attributes('style')).toContain('translateY(0px)')
+      expect(wrapper.emitted('refresh')).toBeUndefined()
+      pointer('pointermove', 260)
+      await nextTick()
+      expect(wrapper.text()).toContain('释放立即刷新')
+      expect(wrapper.emitted('refresh')).toBeUndefined()
+      pointer('pointerup', 260, 0)
+      await nextTick()
+      expect(wrapper.emitted('refresh')).toEqual([[]])
+      expect(wrapper.emitted('update:modelValue')).toEqual([[true]])
+      await wrapper.setProps({ modelValue: true })
+      pointer('pointerup', 260, 0)
+      await nextTick()
+      expect(wrapper.emitted('refresh')).toHaveLength(1)
+      expect(area.attributes('style')).toContain('translateY(56px)')
+      await wrapper.setProps({ modelValue: false })
+      expect(area.attributes('style')).toContain('translateY(0px)')
+    } finally {
+      wrapper.unmount()
+    }
+  },
+)

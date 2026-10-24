@@ -1,0 +1,14 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+ ✓ src/components/pull-refresh/PullRefresh.test.ts (2 tests) 35ms
+ ✓ src/components/pull-refresh/PullRefresh.gestures.test.ts (10 tests) 60ms
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Start at  23:15:40
+   Duration  4.70s (transform 5.19s, setup 0ms, import 8.06s, tests 95ms, environment 985ms)
+
+JSON report written to /tmp/nerv-ui-t04-n04-f3/raw/official-f3-green.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

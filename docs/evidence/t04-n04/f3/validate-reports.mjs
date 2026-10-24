@@ -1,0 +1,4 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+const dir='/tmp/nerv-ui-t04-n04-f3/raw',out=[];
+for(const f of fs.readdirSync(dir).filter(x=>x.endsWith('.json')&&!x.endsWith('.run.json'))){const r=JSON.parse(fs.readFileSync(dir+'/'+f));if(!r.testResults)continue;const cases=r.testResults.flatMap(x=>x.assertionResults??[]),passed=cases.filter(x=>x.status==='passed'),failed=cases.filter(x=>x.status==='failed'),pending=cases.filter(x=>!['passed','failed'].includes(x.status));assert(cases.length>0,f);assert.equal(cases.length,r.numTotalTests,f);assert.equal(passed.length,r.numPassedTests,f);assert.equal(failed.length,r.numFailedTests,f);assert.equal(pending.length,0,f);out.push({file:f,total:cases.length,passed:passed.length,failed:failed.length,pending:0,failures:failed.map(x=>x.fullName)});}
+fs.writeFileSync(dir+'/parsed-test-results.json',JSON.stringify(out,null,2));console.log(JSON.stringify(out,null,2));
