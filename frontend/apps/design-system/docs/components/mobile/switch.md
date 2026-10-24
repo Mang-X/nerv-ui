@@ -42,7 +42,7 @@ const locked = ref(true)
 
 # NvMobileSwitch 开关
 
-视觉轨道保持 iOS 比例（51×31），原生 `role="switch"` 动作根占 51×44px，透明上下留白在布局中预留；`v-model`、disabled、键盘、focus 和表单 name/value 仍由原有 Reka 根处理。开关拨动带弹性滑动，触摸端读起来如原生控件。右侧手机模拟器为实时组件，随页面滚动吸顶。
+可见轨道与 `role="switch"` 动作根统一占 51×44px，thumb 仍为 27px；背景由公开根 `class` 覆盖。`asChild` 保留 Reka 单根合成，根不会被装饰节点的 `aria-hidden`、尺寸或指针样式覆盖。非原生根的键盘焦点仍由消费者显式传入 `tabindex="0"`；`v-model`、disabled、键盘、focus 和表单 name/value 仍由原有 Reka 根处理。开关拨动带弹性滑动，触摸端读起来如原生控件。右侧手机模拟器为实时组件，随页面滚动吸顶。
 
 ## 基础用法
 

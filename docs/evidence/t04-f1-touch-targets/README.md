@@ -1,5 +1,7 @@
 # T04/F1：四类移动控件真实触点修复（#56）
 
+> 本页保留受拒 head `98cae9f` 的原实施证据；独立 R1 发现两个新增 P2。当前兼容返修、视觉取舍和新证据见 [compat](compat/README.md)，旧 bundle 结果不能覆盖新 head。
+
 本票承接父 #5 独立组合验收 R1 的 **F1 / P2（继承缺口，原验收新增回归 0）**。依据 [DESIGN.md](../../../DESIGN.md) 的移动触点 ≥44px 约束，仅修改 NvNavBar 返回、NvMobileButton、NvStepper 增减、NvMobileSwitch 及对应测试、文档。#45–#49 保持已完成，父 #5 完整四态跨组链路另行复验；本票不关闭 #5/#1，不操作 PR #18。
 
 原回执完整保留于 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-25/t04-parent-acceptance-r1/review-receipt.md`，原始 `browser/touch-targets-positioned.json`、`raw/material-source-identity.json` 和截图未修改。N02 历史披露不构成规则豁免，原 FAIL、raw 空白 exit2、冻结附件 fmt1 及四项 optional 均保留原身份。

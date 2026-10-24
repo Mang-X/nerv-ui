@@ -6,7 +6,7 @@ import { cn } from '../../lib/utils'
 
 /**
  * Mobile Stepper — compact, native (iOS / tdesign-mobile) number stepper with an
- * editable centre input. 32px surface inside independent 44px touch targets. Clamps to [min, max] on input/blur.
+ * editable centre input. Independent 44px touch targets and a 32px input. Clamps to [min, max] on input/blur.
  */
 const props = withDefaults(
   defineProps<{
@@ -45,7 +45,7 @@ function onBlur(e: Event) {
     data-slot="stepper"
     :class="
       cn(
-        'nv-m-stepper relative isolate inline-flex h-11 shrink-0 items-center rounded-lg before:pointer-events-none before:absolute before:inset-x-0 before:top-1/2 before:-z-10 before:h-8 before:-translate-y-1/2 before:rounded-lg before:border before:border-border before:bg-card',
+        'nv-m-stepper inline-flex h-11 shrink-0 items-center rounded-lg border border-border bg-card',
         props.class,
       )
     "
