@@ -25,7 +25,7 @@ import { describe, expect, it } from 'vitest'
  */
 
 /** 运行时子入口，全 app 源码放行；见 `frontend/DESIGN/governance.md` 的「包子入口边界」。 */
-const ALLOWED_UI_SUBPATHS = new Set(['file-preview'])
+const ALLOWED_UI_SUBPATHS = new Set(['file-preview', 'styles.css', 'theme.css', 'overrides.css'])
 /**
  * test-only 子入口（#2014）：`@nerv-iip/ui/test-support` 装的是各包 vitest `setupFiles`
  * 用的支撑件（unovis tooltip 定时器收口等）与本门禁自身的实现，不是组件边界的一部分。
@@ -103,7 +103,7 @@ export function walk(dir: string, keep: (name: string) => boolean): string[] {
 }
 
 export const isSource = (n: string) =>
-  /\.(vue|ts)$/.test(n) && !/\.(test|spec)\./.test(n) && !n.endsWith('.d.ts')
+  /\.(vue|ts|css)$/.test(n) && !/\.(test|spec)\./.test(n) && !n.endsWith('.d.ts')
 
 const MODULE_RE = /(?:from|import\(|\bimport)\s*['"]([^'"]+)['"]/g
 export function modulesOf(src: string): string[] {

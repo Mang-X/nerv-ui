@@ -1,0 +1,6 @@
+pnpm -C frontend exec vp fmt --check /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/desktop-standalone.md /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/README.md /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/README.md /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/artifacts-green.json /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/check-installed.mjs /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/clean-source.json /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/compare-lock.mjs /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/final-graph-checks.json /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/graph-green.json /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/graph-red.json /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/installed-edges-r1.json /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/installed-green.json
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 211ms on 12 files using 10 threads.
+exitCode: 0

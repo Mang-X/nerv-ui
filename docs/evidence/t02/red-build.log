@@ -1,0 +1,14 @@
+$ vp run -w workspace:build
+$ pnpm -r --if-present typecheck
+Scope: 5 of 6 workspace projects
+packages/ui typecheck$ vue-tsc --noEmit -p tsconfig.json
+packages/ui typecheck: src/components/ui/file-upload/FileUpload.test.ts:5:33 - error TS2307: Cannot find module '../../../../../../../backend/services/FileStorage/src/Nerv.IIP.FileStorage.Web/appsettings.json' or its corresponding type declarations.
+packages/ui typecheck: 5 import fileStorageSettings from '../../../../../../../backend/services/FileStorage/src/Nerv.IIP.FileStorage.Web/appsettings.json'
+packages/ui typecheck:                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+packages/ui typecheck: Found 1 error in src/components/ui/file-upload/FileUpload.test.ts:5
+packages/ui typecheck: Failed
+/Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/packages/ui:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/ui@0.1.0 typecheck: `vue-tsc --noEmit -p tsconfig.json`
+Exit status 2
+
+[ELIFECYCLE] Command failed with exit code 2.

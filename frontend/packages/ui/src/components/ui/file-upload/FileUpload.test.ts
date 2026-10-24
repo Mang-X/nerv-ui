@@ -2,17 +2,11 @@ import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defineComponent, h } from 'vue'
 
-import fileStorageSettings from '../../../../../../../backend/services/FileStorage/src/Nerv.IIP.FileStorage.Web/appsettings.json'
 import type { FileUploadExpose } from '.'
 import { FileUpload, fileUploadMotion } from '.'
 
-const qualityEvidencePurpose =
-  Object.keys(fileStorageSettings.FileStorage.PurposePolicies).find(
-    (purpose) => purpose === 'quality-evidence',
-  ) ??
-  (() => {
-    throw new Error('FileStorage purpose configuration must register quality-evidence.')
-  })()
+// A host-supplied opaque purpose; backend registration belongs to the consumer.
+const qualityEvidencePurpose = 'quality-evidence'
 
 const originalCreateObjectURL = URL.createObjectURL
 const originalRevokeObjectURL = URL.revokeObjectURL

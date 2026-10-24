@@ -1,4 +1,9 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": ["apps/**/*.ts", "apps/**/*.vue", "packages/**/*.ts", "packages/**/*.vue"]
+  "include": [
+    "apps/playground/src/**/*.ts",
+    "apps/playground/src/**/*.vue",
+    "packages/ui/src/**/*.ts",
+    "packages/ui/src/**/*.vue"
+  ]
 }

@@ -1,0 +1,22 @@
+Scope: all 7 workspace projects
+✓ Lockfile passes supply-chain policies (verified 5d ago)
+/Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/apps/design-system:
+[ERR_PNPM_WORKSPACE_PKG_NOT_FOUND] In apps/design-system: "@nerv-iip/api-client@workspace:*" is in the dependencies but no package named "@nerv-iip/api-client" is present in the workspace
+
+This error happened while installing a direct dependency of /Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/apps/design-system
+
+Packages found in the workspace: @nerv-iip/frontend-workspace, @nerv-iip/design-system, @nerv-iip/playground, @nerv-iip/app-shell, @nerv-iip/scheduling, @nerv-iip/ui, @nerv-iip/ui-mobile
+Progress: resolved 1, reused 0, downloaded 0, added 0
+[ERROR] Command failed with exit code 1: '/Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/pnpm' install
+
+pnpm: Command failed with exit code 1: '/Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/pnpm' install
+    at getFinalError (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:89203:14)
+    at makeError (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:91510:21)
+    at getSyncResult (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:93354:10)
+    at spawnSubprocessSync (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:93314:14)
+    at execaCoreSync (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:93244:23)
+    at callBoundExeca (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:95772:23)
+    at boundExeca (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:95749:49)
+    at sync2 (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:95908:10)
+    at runPnpmCli (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:271521:5)
+    at runDepsStatusCheck (file:///Users/mang/Library/pnpm/package-manager-store/v11/links/@pnpm/exe/11.22.0/4cf962caa00480d0adb68fd20353efbd53b75907c8a96dbba7447de6895c08a5/node_modules/@pnpm/exe/dist/pnpm.mjs:273323:7)

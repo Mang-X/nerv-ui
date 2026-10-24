@@ -1,5 +1,7 @@
 # 治理规范——Nerv-IIP Console 设计系统
 
+> T02 当前活动宿主为 playground。下文旧应用路径、四应用列表与原库协作约定保留为来源说明；当前活动范围、独立库接入与恢复责任见 [T02 接入决策](../../docs/desktop-standalone.md)。原版冻结、Nv 命名、token 与层序仍适用。
+
 ## 所有权
 
 `@nerv-iip/ui` package（`frontend/packages/ui`）是所有 UI 基础原语（primitive）**以及**设计 token
@@ -56,12 +58,15 @@ token 之上。
 ## 包子入口边界
 
 应用只通过裸 `@nerv-iip/ui` / `@nerv-iip/ui-mobile` 主桶消费组件库；深导入由每个 app 的
-`src/nvui-imports.contract.test.ts` 硬禁。当前只有两个例外，除此之外不得新增子入口：
+`src/nvui-imports.contract.test.ts` 硬禁。独立库 T02 按 [CSS 接入决策](../../docs/desktop-standalone.md) 新增三个精确 CSS 入口；其余子入口不得擅增：
 
-| 子入口                      | 性质                      | 放行面                                                               |
-| --------------------------- | ------------------------- | -------------------------------------------------------------------- |
-| `@nerv-iip/ui/file-preview` | 运行时子入口              | 全 app 源码                                                          |
-| `@nerv-iip/ui/test-support` | test-only 子入口（#2014） | 各 app 的 `src/test/setup.ts` 与 `src/nvui-imports.contract.test.ts` |
+| 子入口                       | 性质                      | 放行面                                                               |
+| ---------------------------- | ------------------------- | -------------------------------------------------------------------- |
+| `@nerv-iip/ui/file-preview`  | 运行时子入口              | 全 app 源码                                                          |
+| `@nerv-iip/ui/test-support`  | test-only 子入口（#2014） | 各 app 的 `src/test/setup.ts` 与 `src/nvui-imports.contract.test.ts` |
+| `@nerv-iip/ui/styles.css`    | 样式聚合入口（T02）       | 宿主样式入口；Tailwind v4 构建处理                                   |
+| `@nerv-iip/ui/theme.css`     | 样式分项入口（T02）       | 自行组织样式的宿主                                                   |
+| `@nerv-iip/ui/overrides.css` | 样式分项入口（T02）       | 宿主决定导入层级                                                     |
 
 `test-support` 装的是各包 vitest `setupFiles` 用的支撑件（unovis tooltip 定时器收口等）
 与这条 import hygiene 门禁自身的实现，不进主桶 `src/index.ts`，因此不属于组件边界、也不受
@@ -71,7 +76,7 @@ ADR 0020 的 NvUI 命名约束。
 
 - `src/test/setup.ts` 由门禁**正面放行**（`isTestSetupFile`）——它在扫描面之内，写错位置就判红；
 - app 的 contract 壳（`src/nvui-imports.contract.test.ts`，#2022）落在**扫描面之外**：门禁的
-  `isSource` 只扫 `.vue` / `.ts` 里非 `.test.` / `.spec.` 且非 `.d.ts` 的文件，测试文件整类不进
+  `isSource` 只扫 `.vue` / `.ts` / `.css` 里非 `.test.` / `.spec.` 且非 `.d.ts` 的文件，测试文件整类不进
   扫描。所以「壳可以深导入 test-support」是扫描口径的结果，不是又开了一个放行位。
 
 除此之外——被扫描的源文件（页面、组件、composable 等）引用 `test-support` 一律判红。

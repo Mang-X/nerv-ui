@@ -73,6 +73,14 @@ describe('nvuiImportViolation', () => {
     expect(nvuiImportViolation('@nerv-iip/ui/file-preview', SETUP)).toBeNull()
   })
 
+  it('allows the documented stylesheet entries and rejects private style paths', () => {
+    for (const entry of ['styles.css', 'theme.css', 'overrides.css']) {
+      expect(nvuiImportViolation('@nerv-iip/ui/' + entry, PAGE)).toBeNull()
+    }
+    expect(nvuiImportViolation('@nerv-iip/ui/src/styles/theme.css', PAGE)).toMatch(/deep import/)
+    expect(nvuiImportViolation('@nerv-iip/ui/unknown.css', PAGE)).toMatch(/deep import/)
+  })
+
   it('allows test-support only from src/test/setup.ts', () => {
     expect(nvuiImportViolation('@nerv-iip/ui/test-support', SETUP)).toBeNull()
     // 同目录下的普通测试辅助文件、以及页面/组件，一律判红——放行面钉死到 setup 文件本身。
@@ -107,8 +115,9 @@ describe('modulesOf', () => {
 })
 
 describe('isSource', () => {
-  it('guards .vue/.ts app sources and skips tests and declarations', () => {
+  it('guards Vue, TypeScript and CSS sources and skips tests and declarations', () => {
     expect(isSource('Page.vue')).toBe(true)
+    expect(isSource('main.css')).toBe(true)
     expect(isSource('useThing.ts')).toBe(true)
     expect(isSource('useThing.test.ts')).toBe(false)
     expect(isSource('useThing.spec.ts')).toBe(false)
@@ -119,12 +128,7 @@ describe('isSource', () => {
 
 describe('appsRequiringContract', () => {
   it('derives exactly the library-consuming apps that run vitest', () => {
-    expect(appsRequiringContract(frontendRoot)).toEqual([
-      'business-console',
-      'business-pda',
-      'console',
-      'screen',
-    ])
+    expect(appsRequiringContract(frontendRoot)).toEqual(['playground'])
   })
 
   it('each derived app ships the shell and the shells agree byte-for-byte', () => {

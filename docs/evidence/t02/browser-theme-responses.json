@@ -1,0 +1,59 @@
+{
+  "closeReturn": "查看星河计划",
+  "neutral": {
+    "primary": "oklch(20.5% 0 0)",
+    "background": "oklch(0.985 0 0)",
+    "text": "oklch(0.145 0 0)"
+  },
+  "accent": {
+    "primary": "oklch(0.55 0.18 255)",
+    "button": "oklch(0.55 0.18 255)"
+  },
+  "dark": {
+    "background": "oklch(0.145 0 0)",
+    "text": "oklch(0.985 0 0)",
+    "storedMode": "dark",
+    "storedTheme": "blue"
+  },
+  "persisted": {
+    "dark": true,
+    "primary": "oklch(0.55 0.18 255)",
+    "rows": 5,
+    "overflow": false
+  },
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4173/",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html",
+      "bytes": 377,
+      "sha256": "e422455c160e6428dd4dfd32f4ff676e96efbb2a309c00caebd1e504b99184fb"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-sm7qlm8U.js",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/javascript",
+      "bytes": 377033,
+      "sha256": "d4eb4f99f102e05a6e9c302590ae6ce9fcce9532b98ca5bbbf5a804f15cac624"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-BW724V3r.css",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/css",
+      "bytes": 194741,
+      "sha256": "bfdec8a0233292566ab0e0fffbebd754b7aa2dea769292e1125295fa67989188"
+    },
+    {
+      "url": "chrome-extension://meleenglfggcmcajknpeeeiobnpfmahc/fetch-interceptor.js",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/javascript",
+      "bytes": 15938,
+      "sha256": "cdda0df4479b7b7afd4c2f965d01eda0d947e9c973a6bf988c8ca883e865b3f3"
+    }
+  ],
+  "errors": []
+}
