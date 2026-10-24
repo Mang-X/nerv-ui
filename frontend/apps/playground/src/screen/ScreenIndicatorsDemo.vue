@@ -219,7 +219,7 @@ const kpis = computed(() => [
       </NvScreenPanel>
     </div>
     <footer>
-      <span>内存示例 · 无业务服务 · 零值与未知分别展示</span><a href="#screen/stage">返回空间舞台</a
+      <span>阅读、到访与预订 · 零值与未知分别展示</span><a href="#screen/stage">返回空间舞台</a
       ><a href="#screen/controls">随心安排</a><a href="#desktop">返回桌面</a>
     </footer>
   </main>

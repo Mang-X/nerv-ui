@@ -301,3 +301,131 @@ it('retains legacy defaults without treating explicitly empty arrays as example 
   expect(tag.classes()).toContain('green')
   expect(spark.get('path').attributes('d')).toContain('L240.0 6.0')
 })
+
+it.each([
+  [1e-7, '0.0000001'],
+  [-1e-7, '-0.0000001'],
+  [1.25e-7, '0.000000125'],
+  [-1.25e-7, '-0.000000125'],
+])(
+  'digital flop preserves scientific decimal %s on initial render and reduced updates',
+  async (value, expected) => {
+    reduced = true
+    const wrapper = mount(NvDigitalFlop, { props: { value, suffix: '次' } })
+    wrappers.push(wrapper)
+    await flushPromises()
+    expect(wrapper.text()).toBe(`${expected}次`)
+    expect(wrapper.attributes('aria-label')).toBe(`${expected} 次`)
+    await wrapper.setProps({ value: 0 })
+    expect(wrapper.attributes('aria-label')).toBe('0 次')
+    await wrapper.setProps({ value })
+    expect(wrapper.text()).toBe(`${expected}次`)
+    expect(wrapper.attributes('aria-label')).toBe(`${expected} 次`)
+    expect(frames.size).toBe(0)
+  },
+)
+
+it.each([
+  [0, '0'],
+  [12.25, '12.25'],
+  [-1234.5, '-1,234.5'],
+  [1.25e3, '1,250'],
+  [1.25e21, '1,250,000,000,000,000,000,000'],
+  [1e-20, `0.${'0'.repeat(19)}1`],
+  [1.25e-20, `0.${'0'.repeat(19)}125`],
+  [1e-100, `0.${'0'.repeat(99)}1`],
+  [1e-101, '1e-101'],
+  [-1.25e-100, '-1.25e-100'],
+  [Number.MIN_VALUE, '5e-324'],
+])(
+  'digital flop safely formats finite precision boundary %s and keeps strings literal',
+  async (value, expected) => {
+    reduced = true
+    const wrapper = mount(NvDigitalFlop, { props: { value } })
+    wrappers.push(wrapper)
+    await flushPromises()
+    expect(wrapper.text()).toBe(expected)
+    expect(wrapper.attributes('aria-label')).toBe(expected)
+    await wrapper.setProps({ value: '00.00000010e+0 · 待核对' })
+    expect(wrapper.text()).toBe('00.00000010e+0 · 待核对')
+    await wrapper.setProps({ value })
+    expect(wrapper.attributes('aria-label')).toBe(expected)
+    expect(frames.size).toBe(0)
+  },
+)
+
+it('digital flop settles tiny rapid decreasing targets across normal reduced literal and remount transitions', async () => {
+  const wrapper = mount(NvDigitalFlop, { props: { value: 1234.5, suffix: '次' } })
+  wrappers.push(wrapper)
+  await flushPromises()
+  await wrapper.setProps({ value: 1.25e-7 })
+  await frame(86400000)
+  await frame(86400200)
+  await wrapper.setProps({ value: -1e-7 })
+  await frame(86400216)
+  await frame(86400816)
+  expect(wrapper.text()).toBe('-0.0000001次')
+  expect(wrapper.attributes('aria-label')).toBe('-0.0000001 次')
+  expect(frames.size).toBe(0)
+  await wrapper.setProps({ value: 1.25e-7 })
+  await frame(86401000)
+  reduced = true
+  media.dispatchEvent(Object.assign(new Event('change'), { matches: true }))
+  await nextTick()
+  expect(wrapper.text()).toBe('0.000000125次')
+  expect(wrapper.attributes('aria-label')).toBe('0.000000125 次')
+  expect(frames.size).toBe(0)
+  await wrapper.setProps({ value: '极小读数 · 待确认' })
+  expect(wrapper.text()).toBe('极小读数 · 待确认次')
+  await wrapper.setProps({ value: 1e-7 })
+  expect(wrapper.attributes('aria-label')).toBe('0.0000001 次')
+  reduced = false
+  media.dispatchEvent(Object.assign(new Event('change'), { matches: false }))
+  await nextTick()
+  await wrapper.setProps({ value: -1.25e-7 })
+  await frame(86401200)
+  await frame(86401800)
+  expect(wrapper.attributes('aria-label')).toBe('-0.000000125 次')
+  await wrapper.setProps({ value: 1e-7 })
+  wrapper.unmount()
+  wrappers.pop()
+  expect(frames.size).toBe(0)
+  const remounted = mount(NvDigitalFlop, { props: { value: 1.25e-7 } })
+  wrappers.push(remounted)
+  expect(remounted.text()).toBe('0.000000125')
+  expect(frames.size).toBe(0)
+})
+
+it('digital flop reaches finite extreme and subnormal targets without overflow or endpoint cancellation', async () => {
+  const wrapper = mount(NvDigitalFlop, { props: { value: Number.MAX_VALUE } })
+  wrappers.push(wrapper)
+  await flushPromises()
+  expect(wrapper.attributes('aria-label')).not.toMatch(/NaN|∞|Infinity/)
+  await wrapper.setProps({ value: -Number.MAX_VALUE })
+  await frame(100)
+  await frame(300)
+  expect(wrapper.attributes('aria-label')).not.toMatch(/NaN|∞|Infinity/)
+  await frame(700)
+  expect(Number((wrapper.attributes('aria-label') ?? '').replaceAll(',', ''))).toBe(
+    -Number.MAX_VALUE,
+  )
+  await wrapper.setProps({ value: Number.MIN_VALUE })
+  await frame(800)
+  await frame(1400)
+  expect(wrapper.text()).toBe('5e-324')
+  expect(wrapper.attributes('aria-label')).toBe('5e-324')
+  expect(frames.size).toBe(0)
+})
+
+it('digital flop keeps grouped intermediate readings beyond portable Intl precision', async () => {
+  const wrapper = mount(NvDigitalFlop, { props: { value: 1234.5 } })
+  wrappers.push(wrapper)
+  await flushPromises()
+  await wrapper.setProps({ value: 1.25e-20 })
+  await frame(100)
+  expect(wrapper.text()).toBe('1,234.5000000000000000000000')
+  expect(wrapper.attributes('aria-label')).toBe('1,234.5000000000000000000000')
+  await frame(700)
+  expect(wrapper.text()).toBe(`0.${'0'.repeat(19)}125`)
+  expect(frames.size).toBe(0)
+})

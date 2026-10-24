@@ -3,9 +3,12 @@ title: NvRingGauge 环形仪表
 ---
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { NvRingGauge, NvScreenPanel } from '@nerv-iip/ui'
 const value = ref(72.5)
+const finiteValue = computed(() =>
+  typeof value.value === 'number' && Number.isFinite(value.value) ? value.value : undefined,
+)
 </script>
 
 # NvRingGauge 环形仪表
@@ -17,7 +20,8 @@ const value = ref(72.5)
 <ScreenDemo>
   <NvScreenPanel title="空间比例" style="width: 360px">
     <input v-model.number="value" type="number" aria-label="预订比例" />
-    <NvRingGauge :value="value" label="预订比例" />
+    <NvRingGauge v-if="finiteValue !== undefined" :value="finiteValue" label="预订比例" />
+    <p v-else role="status">比例未知</p>
     <NvRingGauge :value="0" label="阅读比例" :size="120" :value-size="24" />
   </NvScreenPanel>
 </ScreenDemo>
