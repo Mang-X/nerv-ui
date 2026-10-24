@@ -33,7 +33,12 @@ const geom = computed(() => {
   const max = Math.max(...d)
   const span = max - min || 1
   const stepX = W / (d.length - 1)
-  const y = (v: number) => 6 + (1 - (v - min) / span) * (H - 12)
+  // Opposite finite extremes can overflow their difference. Halving only that
+  // range preserves ordinary and adjacent/subnormal geometry unchanged.
+  const ratio = Number.isFinite(span)
+    ? (v: number) => (v - min) / span
+    : (v: number) => (v / 2 - min / 2) / (max / 2 - min / 2)
+  const y = (v: number) => 6 + (1 - ratio(v)) * (H - 12)
   const pts = d.map((v, i) => `${(i * stepX).toFixed(1)} ${y(v).toFixed(1)}`)
   return {
     line: `M${pts.join(' L')}`,

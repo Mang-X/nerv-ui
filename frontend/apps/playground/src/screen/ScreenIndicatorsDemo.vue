@@ -80,7 +80,7 @@ const kpis = computed(() => [
   {
     icon: ReadingIcon,
     value: source.value.note,
-    label: '空间提示由宿主提供',
+    label: '空间公告',
     tone: 'green' as const,
   },
   {

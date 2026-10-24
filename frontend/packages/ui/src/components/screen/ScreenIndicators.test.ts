@@ -220,6 +220,62 @@ it('sparkline renders explicit empty and single data as a dash then constant and
   expect(wrapper.get('line').attributes('stroke-dasharray')).toBe('3 4')
 })
 
+it('sparkline preserves finite rising falling and relative geometry across overflow range updates', async () => {
+  const wrapper = mount(NvSparkline, { props: { data: [-1e308, 1e308], area: true } })
+  wrappers.push(wrapper)
+  const expectPaths = (line: string, area = true) => {
+    const path = wrapper.get('path[fill="none"]')
+    expect(path.attributes('d')).toBe(line)
+    expect(path.attributes('style')).toContain(line)
+    expect(wrapper.find('path[fill^="url("]').exists()).toBe(area)
+    if (area) {
+      const fill = wrapper.get('path[fill^="url("]')
+      expect(fill.attributes('d')).toBe(line + ' L240 56 L0 56 Z')
+      expect(fill.attributes('style')).toContain(line + ' L240 56 L0 56 Z')
+    }
+  }
+  expectPaths('M0.0 50.0 L240.0 6.0')
+  await wrapper.setProps({ data: [-10, 10] })
+  expectPaths('M0.0 50.0 L240.0 6.0')
+  await wrapper.setProps({ data: [1e308, -1e308], area: false })
+  expectPaths('M0.0 6.0 L240.0 50.0', false)
+  await wrapper.setProps({
+    data: [-Number.MAX_VALUE, -Number.MAX_VALUE / 2, 0, Number.MAX_VALUE / 2, Number.MAX_VALUE],
+    area: true,
+  })
+  expectPaths('M0.0 50.0 L60.0 39.0 L120.0 28.0 L180.0 17.0 L240.0 6.0')
+})
+
+it('sparkline retains constant extremes adjacent finite values and subnormal ordering', async () => {
+  const wrapper = mount(NvSparkline, {
+    props: { data: [Number.MAX_VALUE, Number.MAX_VALUE], area: true },
+  })
+  wrappers.push(wrapper)
+  expect(wrapper.get('path[fill="none"]').attributes('d')).toBe('M0.0 50.0 L240.0 50.0')
+  for (const data of [
+    [-Number.MAX_VALUE, -Number.MAX_VALUE],
+    [Number.MIN_VALUE, Number.MIN_VALUE],
+  ]) {
+    await wrapper.setProps({ data })
+    expect(wrapper.get('path[fill="none"]').attributes('d')).toBe('M0.0 50.0 L240.0 50.0')
+  }
+  for (const data of [
+    [1e308, 1.0000000000000002e308],
+    [-1.0000000000000002e308, -1e308],
+  ]) {
+    await wrapper.setProps({ data })
+    expect(wrapper.get('path[fill="none"]').attributes('d')).toBe('M0.0 50.0 L240.0 6.0')
+    expect(wrapper.get('path[fill^="url("]').attributes('d')).toBe(
+      'M0.0 50.0 L240.0 6.0 L240 56 L0 56 Z',
+    )
+  }
+  await wrapper.setProps({ data: [-Number.MIN_VALUE, 0, Number.MIN_VALUE] })
+  expect(wrapper.get('path[fill="none"]').attributes('d')).toBe('M0.0 50.0 L120.0 28.0 L240.0 6.0')
+  expect(wrapper.get('path[fill^="url("]').attributes('d')).toBe(
+    'M0.0 50.0 L120.0 28.0 L240.0 6.0 L240 56 L0 56 Z',
+  )
+})
+
 it('kpi accepts the actual icon component and independent zero and clamped ring inputs with host text', async () => {
   const icon = defineComponent({
     props: ['size'],
