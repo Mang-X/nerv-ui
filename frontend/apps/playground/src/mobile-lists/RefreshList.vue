@@ -9,6 +9,7 @@ const status = shallowRef('尚未刷新')
 const scrollTop = shallowRef(0)
 let timer: ReturnType<typeof setTimeout> | undefined
 function refresh() {
+  loading.value = true
   requests.value++
   status.value = '刷新中'
   const fail = failNext.value
@@ -33,6 +34,14 @@ onBeforeUnmount(() => clearTimeout(timer))
     <label class="flex min-h-touch items-center gap-2 text-sm">
       <input v-model="failNext" type="checkbox" aria-label="下次刷新失败" />下次刷新失败
     </label>
+    <button
+      type="button"
+      :disabled="loading"
+      class="min-h-touch rounded-lg border border-border px-4 text-sm disabled:opacity-40"
+      @click="refresh"
+    >
+      立即更新
+    </button>
     <output aria-label="刷新状态" class="block text-sm" aria-live="polite"
       >{{ status }} · 请求 {{ requests }} 次</output
     >

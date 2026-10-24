@@ -156,3 +156,32 @@ it('clears pending refresh and pagination timers when the page is removed', asyn
   expect(vi.getTimerCount()).toBe(0)
   await vi.advanceTimersByTimeAsync(1300)
 })
+
+it('keeps a button refresh single when loading interrupts a pull and permits the next pull', async () => {
+  vi.useFakeTimers()
+  wrapper = mount(MobileListDemo)
+  await vi.advanceTimersByTimeAsync(0)
+  const area = wrapper.get('.nv-m-pr-inner').element
+  const pointer = (type: string, y: number, buttons = 1) =>
+    area.dispatchEvent(new MouseEvent(type, { clientY: y, buttons }))
+  pointer('pointerdown', 10)
+  pointer('pointermove', 260)
+  await click('立即更新')
+  expect(wrapper.get('[aria-label="刷新状态"]').text()).toBe('刷新中 · 请求 1 次')
+  expect(
+    wrapper
+      .findAll('button')
+      .find((b) => b.text() === '立即更新')!
+      .attributes('disabled'),
+  ).toBeDefined()
+  pointer('pointerup', 260, 0)
+  await vi.advanceTimersByTimeAsync(0)
+  expect(wrapper.get('[aria-label="刷新状态"]').text()).toBe('刷新中 · 请求 1 次')
+  await vi.advanceTimersByTimeAsync(650)
+  expect(wrapper.get('[aria-label="刷新状态"]').text()).toBe('已更新 · 请求 1 次')
+  pointer('pointerdown', 10)
+  pointer('pointermove', 260)
+  pointer('pointerup', 260, 0)
+  await vi.advanceTimersByTimeAsync(650)
+  expect(wrapper.get('[aria-label="刷新状态"]').text()).toBe('已更新 · 请求 2 次')
+})

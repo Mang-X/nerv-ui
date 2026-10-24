@@ -1,5 +1,7 @@
 # T04/N04 六件手势、列表与轮播
 
+> 本页是原交付 `19f0888391e2be27a5a58503724ac8e99706e8c2` 的实施证据。独立 R1 随后发现 F1 新回归与 F2 继承验收缺口并拒绝集成；本页旧 PASS 不覆盖它们。两项修复、原 FAIL 和新 head 的 fresh 验证见 [F1/F2 修复记录](f1-f2/README.md)。
+
 对应 [#48](https://github.com/Mang-X/nerv-ui/issues/48)、父 [#5](https://github.com/Mang-X/nerv-ui/issues/5) 与已批准 [spec #1](https://github.com/Mang-X/nerv-ui/issues/1)。唯一实施工作树 `/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists`，分支 `feat/t04-n04-mobile-lists`。本票只交付六件公开组件及 `/#mobile-lists` 中性宿主；无业务接口、SDK、新依赖或公共 API。父票、#49、#35、#43/#51 和 #11 不在本票验收结论内。
 
 ## 对象与来源

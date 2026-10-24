@@ -49,6 +49,7 @@ const offset = ref(0)
 const dragging = ref(false)
 
 let startX = 0
+let lastX = 0
 let startY = 0
 let startOffset = 0
 let axis: 'h' | 'v' | null = null
@@ -81,12 +82,14 @@ function onDown(e: PointerEvent) {
   stopAutoplay()
   width.value = viewportEl.value?.offsetWidth ?? 0
   startX = e.clientX
+  lastX = e.clientX
   startY = e.clientY
   startOffset = offset.value
   axis = null
 }
 function onMove(e: PointerEvent) {
   if (e.buttons === 0) return
+  lastX = e.clientX
   const dx = e.clientX - startX
   const dy = e.clientY - startY
   if (axis === null) {
@@ -163,6 +166,9 @@ watch(
 )
 watch(active, () => {
   offset.value = -active.value * width.value
+  // Rebase both origins so only movement after a controlled page change counts.
+  startOffset = offset.value
+  startX = lastX
 })
 watch(() => props.autoplay, startAutoplay)
 </script>

@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import Swiper from './Swiper.vue'
 import SwiperItem from './SwiperItem.vue'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 
 afterEach(() => {
   vi.restoreAllMocks()
@@ -86,3 +86,61 @@ it.each([
   wrapper.unmount()
   vi.useRealTimers()
 })
+
+it.each([
+  {
+    name: 'external-forward',
+    initial: 0,
+    start: 150,
+    end: 130,
+    continued: 80,
+    dragged: -350,
+    next: 2,
+    nextX: 30,
+  },
+  {
+    name: 'external-backward',
+    initial: 2,
+    start: 130,
+    end: 150,
+    continued: 200,
+    dragged: -250,
+    next: 0,
+    nextX: 270,
+  },
+])(
+  'rebases a short drag onto the externally chosen page - $name',
+  async ({ initial, start, end, continued, dragged, next, nextX }) => {
+    vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(300)
+    const wrapper = mount(Swiper, { props: { index: initial, items: ['A', 'B', 'C'] } })
+    try {
+      const track = wrapper.get('.nv-m-swiper-track')
+      const pointer = (type: string, x: number, buttons = 1) =>
+        track.element.dispatchEvent(new MouseEvent(type, { clientX: x, clientY: 10, buttons }))
+      pointer('pointerdown', start)
+      pointer('pointermove', end)
+      await nextTick()
+      await wrapper.setProps({ index: 1 })
+      expect(track.attributes('style')).toContain('translate3d(-300px, 0, 0)')
+      expect(wrapper.emitted('change')).toBeUndefined()
+      // Only the 50px after the external page change belongs to the rebased drag.
+      pointer('pointermove', continued)
+      await nextTick()
+      expect(track.attributes('style')).toContain(`translate3d(${dragged}px, 0, 0)`)
+      pointer('pointerup', continued, 0)
+      await nextTick()
+      expect(wrapper.emitted('update:index')).toBeUndefined()
+      expect(wrapper.emitted('change')).toEqual([[1]])
+      expect(track.attributes('style')).toContain('translate3d(-300px, 0, 0)')
+      // A fresh gesture still moves one page in the original direction.
+      pointer('pointerdown', 150)
+      pointer('pointermove', nextX)
+      pointer('pointerup', nextX, 0)
+      await nextTick()
+      expect(wrapper.emitted('update:index')).toEqual([[next]])
+      expect(wrapper.emitted('change')).toEqual([[1], [next]])
+    } finally {
+      wrapper.unmount()
+    }
+  },
+)

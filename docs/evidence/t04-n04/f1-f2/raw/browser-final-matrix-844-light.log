@@ -1,0 +1,31 @@
+PASS fresh-844-light
+[p1 "NvUI · 项目清单" | space "nerv-ui N04 F1 F2 20261024"(12): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=125, loc=css:button[aria-label="切换明暗"]]
+        text "深色"
+    container [ref=126]
+      container "沿途风景"
+        container
+          container
+            checkbox "循环翻页" [ref=127, loc=css:input[aria-label="循环翻页"]]
+            text "循环翻页"
+          container
+            checkbox "自动翻页" [ref=128, loc=css:input[aria-label="自动翻页"]]
+            text "自动翻页"
+        container
+          heading
+            text "庭院"
+          paragraph
+            text "读完这封信，再停留片刻。"
+        output "轮播状态" [ref=129]
+          text "第 3 / 3 页 · 切换 2 次"
+        container
+          button [ref=130]
+            text "上一页"
+          button [ref=131]
+            text "下一页"
+
+

@@ -1,0 +1,36 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground
+
+ ❯ src/MobileListDemo.test.ts (8 tests | 1 failed) 219ms
+   ✓ reports the selected swipe action identity and closes the row 54ms
+   ✓ finishes or recovers a failed refresh and ignores another pull while loading 26ms
+   ✓ loads one page at a time, pauses after failure, retries and stops at the end 31ms
+   ✓ renders a finite virtual window, selects the item identity and reflects host reordering and empty data 62ms
+   ✓ controls the carousel page, keeps end buttons disabled and clears autoplay when the host unmounts 17ms
+   ✓ shows an empty inbox, loads the first batch and cancels pending pagination on reset 10ms
+   ✓ clears pending refresh and pagination timers when the page is removed 9ms
+   × keeps a button refresh single when loading interrupts a pull and permits the next pull 8ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  22:23:25
+   Duration  14.84s (transform 7.57s, setup 2.13s, import 10.10s, tests 219ms, environment 1.71s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/host-red.json
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileListDemo.test.ts > keeps a button refresh single when loading interrupts a pull and permits the next pull
+AssertionError: 立即更新: expected undefined to be defined
+ ❯ click src/MobileListDemo.test.ts:7:24
+      5| async function click(text: string) {
+      6|   const button = wrapper.findAll('button').find((b) => b.text() === te…
+      7|   expect(button, text).toBeDefined()
+       |                        ^
+      8|   await button!.trigger('click')
+      9| }
+ ❯ src/MobileListDemo.test.ts:170:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

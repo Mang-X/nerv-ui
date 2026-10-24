@@ -1,0 +1,18 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "corepack",
+    "pnpm@11.22.0",
+    "-C",
+    "frontend",
+    "exec",
+    "vp",
+    "fmt",
+    "--write",
+    "../docs/evidence/t04-n04/README.md",
+    "../docs/evidence/t04-n04/f1-f2/README.md",
+    "../docs/mobile-standalone.md"
+  ],
+  "exit": 1,
+  "signal": null
+}

@@ -76,3 +76,49 @@ it('keeps downward touch pulls at the top and restores native vertical panning b
   expect(scroller.attributes('style')).toContain('touch-action: pan-x pan-down')
   wrapper.unmount()
 })
+
+it.each([
+  { name: 'release-during-loading', end: 'pointerup', completesBeforeRelease: false },
+  { name: 'cancel-during-loading', end: 'pointercancel', completesBeforeRelease: false },
+  { name: 'complete-before-release', end: 'pointerup', completesBeforeRelease: true },
+])(
+  'revokes an eligible pull when external loading starts - $name',
+  async ({ end, completesBeforeRelease }) => {
+    const wrapper = mount(PullRefresh, { props: { modelValue: false } })
+    try {
+      await nextTick()
+      await nextTick()
+      const area = wrapper.get('.nv-m-pr-inner')
+      const pointer = (type: string, y: number, buttons = 1) =>
+        area.element.dispatchEvent(new MouseEvent(type, { clientY: y, buttons }))
+      pointer('pointerdown', 10)
+      pointer('pointermove', 260)
+      await nextTick()
+      expect(wrapper.text()).toContain('释放立即刷新')
+      await wrapper.setProps({ modelValue: true })
+      expect(wrapper.text()).toContain('刷新中')
+      expect(area.attributes('style')).toContain('translateY(56px)')
+      if (completesBeforeRelease) await wrapper.setProps({ modelValue: false })
+      pointer('pointermove', 300)
+      pointer(end, 300, 0)
+      await nextTick()
+      expect(wrapper.emitted('refresh')).toBeUndefined()
+      expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+      if (!completesBeforeRelease) {
+        expect(wrapper.text()).toContain('刷新中')
+        expect(area.attributes('style')).toContain('translateY(56px)')
+        await wrapper.setProps({ modelValue: false })
+      }
+      expect(wrapper.text()).toContain('下拉刷新')
+      expect(area.attributes('style')).toContain('translateY(0px)')
+      pointer('pointerdown', 10)
+      pointer('pointermove', 260)
+      pointer('pointerup', 260, 0)
+      await nextTick()
+      expect(wrapper.emitted('refresh')).toEqual([[]])
+      expect(wrapper.emitted('update:modelValue')).toEqual([[true]])
+    } finally {
+      wrapper.unmount()
+    }
+  },
+)

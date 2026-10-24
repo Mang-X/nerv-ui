@@ -1,0 +1,1 @@
+const task=await taskSpace(12),page=task.page('p1');const {targeted}=await import('/tmp/nerv-ui-t04-n04-fix/browser/targeted-final.mjs');await targeted(page,844,390,true,'target-844-dark');console.log(await page.snapshot());

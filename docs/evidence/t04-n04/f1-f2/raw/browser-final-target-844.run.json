@@ -1,0 +1,10 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "zsh",
+    "-c",
+    "ego-browser nodejs < /tmp/nerv-ui-t04-n04-fix/browser/round-12-final-target-844.mjs"
+  ],
+  "exit": 0,
+  "signal": null
+}

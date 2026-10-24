@@ -1,0 +1,44 @@
+
+ RUN  v4.1.10 /private/tmp/nerv-ui-t04-n04-fix/probe
+
+ ✓ pull-refresh-public.test.ts (2 tests) 35ms
+ ❯ baseline-public.test.ts (2 tests | 1 failed) 38ms
+   × does not emit another refresh when the host starts loading during an eligible pull 30ms
+   ✓ ignores a pull started while loading and permits one after completion 7ms
+ ✓ swiper-baseline-public.test.ts (2 tests) 39ms
+ ✓ swiper-public.test.ts (2 tests) 41ms
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 7 passed (8)
+   Start at  22:24:04
+   Duration  5.45s (transform 10.48s, setup 0ms, import 18.18s, tests 154ms, environment 2.87s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/probe-fixed-with-base.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  baseline-public.test.ts > does not emit another refresh when the host starts loading during an eligible pull
+AssertionError: expected [ [] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [],
+]
+
+ ❯ baseline-public.test.ts:23:40
+     21|     pointer(area, 'pointerup', 260)
+     22|     await nextTick()
+     23|     expect(wrapper.emitted('refresh')).toBeUndefined()
+       |                                        ^
+     24|   } finally { wrapper.unmount() }
+     25| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

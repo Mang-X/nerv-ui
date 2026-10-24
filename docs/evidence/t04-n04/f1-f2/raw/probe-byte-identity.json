@@ -1,0 +1,22 @@
+[
+  {
+    "path": "baseline-public.test.ts",
+    "equal": true,
+    "sha256": "159c387ef678b13160b3427af8b97cda07c03348a2adb96ba73f4a50d4b319d6"
+  },
+  {
+    "path": "pull-refresh-public.test.ts",
+    "equal": true,
+    "sha256": "baf461fe9f7a57a0bb86f4ad7074a9ff259ff6a9f323a46bfc69483d66b1c626"
+  },
+  {
+    "path": "swiper-baseline-public.test.ts",
+    "equal": true,
+    "sha256": "113659ebba59647b39509ce16b94711c3bb3f6f70378ed93691045ddd996f952"
+  },
+  {
+    "path": "swiper-public.test.ts",
+    "equal": true,
+    "sha256": "49975761d438dab511c7d9409266fc4f7b4d9d3d040c8d557a86c08f84bd1155"
+  }
+]

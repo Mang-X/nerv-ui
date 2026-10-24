@@ -69,6 +69,10 @@ function onCancel() {
 }
 
 function onUp() {
+  if (loading.value) {
+    onCancel()
+    return
+  }
   eligible = false
   if (!engaged) return
   dragging.value = false
@@ -102,9 +106,8 @@ function onScroll() {
   emit('scroll', value)
 }
 
-watch(loading, (v) => {
-  if (!v) distance.value = 0
-})
+// Loading transitions end the previous gesture, including completion before release.
+watch(loading, onCancel)
 watch([() => props.scrollTop, () => props.scrollRestoreKey], ([value]) => restoreScrollTop(value))
 onMounted(() => restoreScrollTop(props.scrollTop))
 </script>
