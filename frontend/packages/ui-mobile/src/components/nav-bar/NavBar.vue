@@ -29,11 +29,13 @@ const slots = useSlots()
       <button
         v-if="back"
         type="button"
-        class="flex size-9 items-center justify-center rounded-full text-foreground active:bg-accent"
+        class="group flex size-11 shrink-0 items-center justify-center rounded-full text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
         aria-label="返回"
         @click="emit('back')"
       >
-        <ChevronLeft class="size-6" aria-hidden="true" />
+        <span class="flex size-9 items-center justify-center rounded-full group-active:bg-accent">
+          <ChevronLeft class="size-6" aria-hidden="true" />
+        </span>
       </button>
       <slot name="left" />
     </div>

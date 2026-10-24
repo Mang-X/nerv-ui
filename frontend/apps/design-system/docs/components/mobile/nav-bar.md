@@ -46,7 +46,7 @@ import { EllipsisIcon } from '@lucide/vue'
 
 ## 返回与右侧操作
 
-`back` 显示左侧返回按钮，`#right` 插槽放置操作。
+`back` 显示左侧返回按钮，`#right` 插槽放置操作。返回按钮真实占位为 44×44px，内部按压圆面保留 36×36px；图标随新按钮中心向右移动 4px。顶部栏仍为 48px 高，标题与左右插槽保留原接口。
 
 ```vue
 <NvNavBar title="WO-2406-0413" back @back="goBack">

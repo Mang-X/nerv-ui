@@ -27,19 +27,19 @@ const props = withDefaults(
 const variantClass: Record<Variant, string> = {
   primary: 'bg-brand text-brand-foreground',
   default: 'bg-muted text-foreground',
-  outline: 'border border-border bg-transparent text-foreground',
-  text: 'bg-transparent px-1 text-brand',
+  outline: 'border border-border text-foreground',
+  text: 'px-1 text-brand',
   danger: 'bg-destructive/10 text-destructive',
 }
 const sizeClass: Record<Size, string> = {
-  sm: 'h-8 px-3 text-[13px]',
-  md: 'h-10 px-4 text-[15px]',
+  sm: 'h-11 px-3 text-[13px]',
+  md: 'h-11 px-4 text-[15px]',
   lg: 'h-12 px-5 text-base',
 }
 
 const classes = computed(() =>
   cn(
-    'nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0',
+    'nv-m-mbtn inline-flex min-h-11 min-w-11 shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none focus-visible:ring-[3px] focus-visible:ring-brand/30 transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0',
     variantClass[props.variant],
     sizeClass[props.size],
     props.block && 'w-full',

@@ -7,7 +7,7 @@ import { ref } from 'vue'
 import { cn } from '../../lib/utils'
 
 /**
- * Mobile switch — iOS proportions (51×31), large thumb with a spring glide.
+ * Mobile switch — a 51×44 switch surface and native action target.
  * Bigger than the desktop SwitchPro; reads as a native control on touch.
  */
 const props = defineProps<SwitchRootProps & { class?: HTMLAttributes['class'] }>()
@@ -28,15 +28,18 @@ const pressed = ref(false)
     @pointercancel="pressed = false"
     :class="
       cn(
-        'nv-m-mswitch inline-flex h-[31px] w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-brand/30 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35',
+        'nv-m-mswitch inline-flex h-11 w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35 outline-none focus-visible:ring-[3px] focus-visible:ring-brand/30 disabled:cursor-not-allowed disabled:opacity-50',
         props.class,
       )
     "
   >
-    <SwitchThumb
-      class="nv-m-mswitch-thumb pointer-events-none block size-[27px] rounded-full bg-white shadow-[0_2px_4px_rgb(0_0_0/0.2)] ring-0 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
-      :class="pressed && 'is-pressed'"
-    />
+    <!-- With asChild this neutral span becomes the actual, exposed switch root. -->
+    <span>
+      <SwitchThumb
+        class="nv-m-mswitch-thumb pointer-events-none block size-[27px] rounded-full bg-white shadow-[0_2px_4px_rgb(0_0_0/0.2)] ring-0 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+        :class="pressed && 'is-pressed'"
+      />
+    </span>
   </SwitchRoot>
 </template>
 
