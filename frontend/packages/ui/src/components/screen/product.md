@@ -1,16 +1,16 @@
-# 大屏 / 控制室组件层 · 产品定位（product.md）
+# 大屏 / 远距显示组件层 · 产品定位（product.md）
 
-> `@nerv-iip/ui` 的 `screen/` 层 —— 中央控制室、车间指挥大屏的组件库。独立深色「工业蓝」令牌（`--nv-scr-*`），只遵循统一设计哲学，**不复用** PC/移动的浅色令牌。AI 编码与人工开发在改动本层前先读本文件。
+> `@nerv-iip/ui` 的 `screen/` 层 —— 公共空间、展馆、运营中心和控制室等远距显示表面的组件库。独立深色「工业蓝」令牌（`--nv-scr-*`），只遵循统一设计哲学，**不复用** PC/移动的浅色令牌。AI 编码与人工开发在改动本层前先读本文件。
 
 ## 一句话定位
 
-给数米外观看、暗光车间、常亮高亮 LED 拼接屏用的 MES 看板组件 —— 远距可读、克制发光、工业冷静。
+给数米外观看的公共展示屏、投影与 LED 拼接屏使用的通用组件 —— 远距可读、克制发光、冷静清晰。领域数据、时间与语义由宿主提供；MES 是兼容场景之一。
 
 ## 受众与场景
 
-- **观看者**：车间管理者、值班长，数米外扫视，不近距离阅读。
+- **观看者**：访客、观众、值班人员，数米外扫视，不近距离阅读。
 - **操作者**：控制室操作台少量交互（按钮 / 开关 / 筛选 / 搜索），鼠标或触控。
-- **环境**：暗光车间、24 小时常亮，避免大面积亮色刺眼。
+- **环境**：公共展示空间或控制室，可能长时间常亮，避免大面积亮色刺眼。
 - **硬件**：大尺寸 LED / 拼接屏，高亮度、可能有像素间距。
 - **与 PC/移动的区别**：观看距离更远 → 字号更大、辉光点缀关键数据；环境更暗 → 固定深色不跟随亮暗。因此独立成层。
 
@@ -20,7 +20,7 @@
 2. **远距可读** —— 关键数字使用大字号 + 克制的 `text-shadow` 辉光；次要信息降噪（`--nv-scr-muted` / `--nv-scr-faint`）。
 3. **独立深色令牌** —— 只用 `--nv-scr-*`，不混入共享 `--*`；无亮色模式。
 4. **动效统一、减速无回弹** —— 见下方动效契约，手感与 PC/移动完全一致。
-5. **数据驱动** —— 组件以零属性（props）可渲染示例，接入真实数据时只传值；严禁写死业务文案作为占位。
+5. **数据驱动** —— 已有零属性示例和默认值保留兼容；新接入显式提供本场景的数据、标签与时间，不把默认工业示例当作业务事实。
 
 ## 动效契约（与全系统统一）
 
@@ -68,16 +68,20 @@
 
 ## 组件清单
 
-| 分类        | 组件                                                                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| 容器 / 外壳 | `ScreenPanel` · `BorderPanel` · `TechFrame` · `TitleBar` · `ScreenHeader` · `GlowDivider`                                            |
-| 指标 / 图表 | `OeeHero` · `RingGauge` · `WaterLevel` · `CapsuleBar` · `DigitalFlop` · `Sparkline` · `TrendChart` · `TaktGantt`                     |
-| 数据 / 状态 | `StatusCard` · `Freshness` · `KpiBar` · `AlarmTable` · `StatusLight` · `StatusTag`                                                   |
-| 控件        | `ScreenButton` · `ScreenInput` · `ScreenSelect` · `ScreenSearch` · `ScreenTable` · `ScreenTabs` · `ScreenSegmented` · `ScreenSwitch` |
+真实导出以同目录 `index.ts` 和主桶为准，共 34 件组件；下表用于导航，不替代公开 API。
 
-**容器策略**：裸内容组件（`OeeHero` / `RingGauge` / `WaterLevel` / `CapsuleBar` / `DigitalFlop` / `Sparkline` / `KpiBar`）放进 `ScreenPanel`；自带容器组件（`TrendChart` / `TaktGantt` / `AlarmTable` / `StatusCard`）直接使用。
+| 分类                    | 当前公共导出                                                                                                                                                                    |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 舞台 / 容器 / 外壳（8） | `NvScreenScaler` · `NvScreenPanel` · `NvScreenScrollArea` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                                 |
+| 指标 / 图表（10）       | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvTaktGantt` |
+| 数据 / 状态（7）        | `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusTag` · `NvScrollBoard`                                        |
+| 控件（9）               | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` · `NvScreenPagination`     |
 
-文档与可交互预览见设计系统站「大屏」分区（`/components/screen/`）。
+工具与类型为 `computeScale` / `ScaleMode` / `Scale`、`useScreenData` / `UseScreenDataOptions` / `UseScreenDataReturn`。历史清单中的 WaterLevel 没有当前实现或导出，不计为活动能力。
+
+**容器策略**：裸内容组件（`NvOeeHero` / `NvRingGauge` / `NvCapsuleBar` / `NvDigitalFlop` / `NvSparkline` / `NvKpiBar`）放进 `NvScreenPanel`；自带容器的图表和摘要可直接使用。
+
+独立运行从 playground 的 `/#screen` 或 `/#screen/stage` 进入，A01 只展示 7 件外壳；后续六组按 #59–#64 扩充。接入、溢出和证据边界见 [大屏独立接入](../../../../../../docs/screen-standalone.md)。组件 API 页仍由设计系统文档站维护，完整文档站运行属于 #10。
 
 ## 应做 / 禁止（禁止更重要）
 
@@ -94,4 +98,4 @@
 
 - ✅ 数据增长 / 大位移用 `--nv-scr-ease-emphasized`，其余用 `--nv-scr-ease`。
 - ✅ 按压（press）反馈对齐专业层（pro）的 scale 体系（收缩、无回弹）。
-- ✅ 真实工厂数据看效果（产线名、`WO-` 工单、OEE / 节拍 / 达成率）。
+- ✅ 使用宿主明确提供的真实场景值或中性内存数据看效果，不推断行业含义；历史工业默认值保持兼容。

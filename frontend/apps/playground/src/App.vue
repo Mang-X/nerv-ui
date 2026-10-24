@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
+import ScreenDemo from './ScreenDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
@@ -78,7 +79,8 @@ function addProject() {
 </script>
 
 <template>
-  <MobileFeedbackDemo v-if="surface === '#mobile-feedback'" />
+  <ScreenDemo v-if="surface.startsWith('#screen')" />
+  <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
   <MobileOverlayDemo v-else-if="surface === '#mobile-overlays'" />
   <MobileInputDemo v-else-if="surface === '#mobile-input'" />
@@ -86,6 +88,11 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a
+        href="#screen"
+        class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
+        >大屏演示</a
+      >
       <a
         href="#mobile-feedback"
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"

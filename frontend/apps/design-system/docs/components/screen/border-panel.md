@@ -10,6 +10,8 @@ import { NvBorderPanel } from '@nerv-iip/ui'
 
 带装饰描边的容器:四角各一道发光短角线,顶边正中一个亮色缺口。克制胜于霓虹 —— 角标都是单层短线。给一块内容一点「仪表盘外壳」的分量,又不喧宾夺主。可选 `title` 与顶边缺口同处一行。
 
+独立运行入口为 playground 的 `/#screen/stage`；[接入说明](../../../../../../docs/screen-standalone.md)列出公共 CSS、返回导航和验收范围。下方 VitePress 预览仍由 #10 单独恢复。
+
 ## 基础用法
 
 传 `title` 在顶边缺口处带出居中标题,默认插槽放内容。

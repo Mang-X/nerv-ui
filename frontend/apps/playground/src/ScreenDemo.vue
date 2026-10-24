@@ -1,0 +1,149 @@
+<script setup lang="ts">
+import { computed, shallowRef } from 'vue'
+import { NvScreenScaler, useColorMode, useTheme, type ScaleMode } from '@nerv-iip/ui'
+import ScreenStageDemo from './screen/ScreenStageDemo.vue'
+
+const mode = shallowRef<ScaleMode>('fit')
+const design = shallowRef('1920x1080')
+const dimensions = computed(() => {
+  const [width, height] = design.value.split('x').map(Number)
+  return { width: width!, height: height! }
+})
+const { isDark, toggle } = useColorMode()
+const { theme, setTheme } = useTheme()
+</script>
+
+<template>
+  <div class="screen-demo">
+    <div class="screen-demo-tools">
+      <nav aria-label="显示表面" class="screen-demo-nav">
+        <a href="#screen/stage" aria-current="page">空间舞台</a>
+        <a href="#desktop">桌面演示</a>
+        <a href="#touch">触屏演示</a>
+        <a href="#mobile">移动演示</a>
+        <a href="#mobile-input">随心记录</a>
+        <a href="#mobile-overlays">片刻安排</a>
+        <a href="#mobile-lists">翻阅时光</a>
+        <a href="#mobile-feedback">片刻回响</a>
+      </nav>
+      <div class="screen-demo-settings" aria-label="舞台设置">
+        <label
+          >缩放方式
+          <select v-model="mode" aria-label="缩放方式">
+            <option value="fit">完整显示 fit</option>
+            <option value="width">宽度优先 width</option>
+            <option value="stretch">铺满 stretch</option>
+          </select>
+        </label>
+        <label
+          >设计尺寸
+          <select v-model="design" aria-label="设计尺寸">
+            <option value="1920x1080">1920 × 1080</option>
+            <option value="1600x900">1600 × 900</option>
+            <option value="1920x1440">1920 × 1440</option>
+          </select>
+        </label>
+        <button type="button" :aria-pressed="isDark" @click="toggle">
+          {{ isDark ? '切换浅色' : '切换深色' }}
+        </button>
+        <button
+          type="button"
+          :aria-pressed="theme === 'blue'"
+          @click="setTheme(theme === 'blue' ? 'neutral' : 'blue')"
+        >
+          蓝色主题
+        </button>
+        <p role="status">
+          {{
+            mode === 'width'
+              ? '宽度优先：在舞台内向下滚动，可到达底部。'
+              : mode === 'stretch'
+                ? '铺满：宽高独立缩放，内容随容器拉伸。'
+                : '完整显示：等比缩放，留边区域保留。'
+          }}
+        </p>
+      </div>
+    </div>
+    <div class="screen-demo-viewport">
+      <NvScreenScaler
+        class="screen-demo-scaler"
+        :design-width="dimensions.width"
+        :design-height="dimensions.height"
+        :mode="mode"
+        tabindex="0"
+        aria-label="城市文化空间舞台"
+      >
+        <ScreenStageDemo />
+      </NvScreenScaler>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+@layer app {
+  .screen-demo {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--background);
+    color: var(--foreground);
+  }
+  .screen-demo-tools {
+    flex: none;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .screen-demo-nav,
+  .screen-demo-settings {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+  .screen-demo-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    font-size: 13px;
+    text-decoration: underline;
+  }
+  .screen-demo-nav [aria-current] {
+    font-weight: 700;
+  }
+  .screen-demo-settings {
+    font-size: 12px;
+  }
+  .screen-demo-settings label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .screen-demo-settings select,
+  .screen-demo-settings button {
+    min-height: 32px;
+    border: 1px solid var(--border);
+    background: var(--background);
+    color: var(--foreground);
+    border-radius: var(--radius);
+    padding: 4px 8px;
+  }
+  .screen-demo-settings p {
+    margin: 0;
+    color: var(--muted-foreground);
+  }
+  .screen-demo-viewport {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+  }
+  .screen-demo-scaler {
+    position: absolute;
+    color-scheme: dark;
+  }
+  .screen-demo :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+</style>

@@ -30,4 +30,20 @@ describe('computeScale', () => {
   it('默认 mode 为 fit', () => {
     expect(computeScale(960, 540, 1920, 1080)).toEqual({ x: 0.5, y: 0.5 })
   })
+
+  it.each([
+    { name: 'nonfinite viewport width', values: [NaN, 540, 1920, 1080] },
+    { name: 'nonfinite viewport height', values: [960, Infinity, 1920, 1080] },
+    { name: 'nonfinite design width', values: [960, 540, Infinity, 1080] },
+    { name: 'nonfinite design height', values: [960, 540, 1920, NaN] },
+    { name: 'negative viewport', values: [-1, 540, 1920, 1080] },
+    { name: 'negative design', values: [960, 540, 1920, -1] },
+  ])('returns a safe identity for $name in every mode', ({ values }) => {
+    for (const mode of ['fit', 'width', 'stretch'] as const) {
+      expect(computeScale(values[0]!, values[1]!, values[2]!, values[3]!, mode)).toEqual({
+        x: 1,
+        y: 1,
+      })
+    }
+  })
 })
