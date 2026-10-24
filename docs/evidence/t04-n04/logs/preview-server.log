@@ -1,0 +1,5 @@
+$ vp preview --host 127.0.0.1 --port 4184 --strictPort
+  ➜  Local:   http://127.0.0.1:4184/
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 preview: `vp preview --host 127.0.0.1 --port 4184 --strictPort`
+Exit status 143

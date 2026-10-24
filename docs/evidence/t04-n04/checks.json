@@ -1,0 +1,148 @@
+[
+  {
+    "name": "final-scoped-fmt-write",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/docs/evidence/t04-n04/README.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileListDemo.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileListDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/LetterCarousel.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/PagedLetters.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/RefreshList.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/SwipeActions.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/WindowLetters.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.gestures.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swipe-cell/SwipeCell.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swiper/Swiper.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/virtual-list/VirtualList.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/README.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/docs/mobile-standalone.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/design-system/docs/components/mobile/pull-refresh.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/design-system/docs/components/mobile/swiper.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/design-system/docs/components/mobile/virtual-list.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/App.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/App.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileInputDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileOverlayDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/TouchDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/infinite-list/InfiniteList.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swiper/Swiper.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/virtual-list/VirtualList.vue"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-scoped-fmt",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--check",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/docs/evidence/t04-n04/README.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileListDemo.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileListDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/LetterCarousel.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/PagedLetters.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/RefreshList.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/SwipeActions.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/WindowLetters.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.gestures.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swipe-cell/SwipeCell.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swiper/Swiper.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/virtual-list/VirtualList.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/README.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/docs/mobile-standalone.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/design-system/docs/components/mobile/pull-refresh.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/design-system/docs/components/mobile/swiper.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/design-system/docs/components/mobile/virtual-list.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/App.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/App.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileInputDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileOverlayDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/TouchDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/infinite-list/InfiniteList.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swiper/Swiper.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/virtual-list/VirtualList.vue"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-scoped-lint",
+    "args": [
+      "exec",
+      "vp",
+      "lint",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileListDemo.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileListDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/LetterCarousel.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/PagedLetters.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/RefreshList.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/SwipeActions.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/mobile-lists/WindowLetters.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.gestures.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swipe-cell/SwipeCell.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swiper/Swiper.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/virtual-list/VirtualList.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/App.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/App.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileInputDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/MobileOverlayDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground/src/TouchDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/infinite-list/InfiniteList.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/swiper/Swiper.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/virtual-list/VirtualList.vue"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-swiper-slot",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui-mobile",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/swiper/Swiper.test.ts"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-three-typecheck",
+    "args": [
+      "typecheck"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-mobile-naming",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui-mobile",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/nvui-naming.contract.test.ts"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-mobile-staticdocs",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui-mobile",
+      "test:docs"
+    ],
+    "exit": 0
+  }
+]

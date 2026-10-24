@@ -1,0 +1,5 @@
+AssertionError [ERR_ASSERTION]: Synthetic browser touch pull must request refresh at the actual scroll top
+    at file:////[eval2]:11:8
+{ before: '已更新 · 请求 3 次', after: '已更新 · 请求 3 次', events: [ { type: 'pointerdown', buttons: 1, pointerType: 'touch', cancelable: true }, { type: 'pointermove', buttons: 1, pointerType: 'touch', cancelable: true }, { type: 'pointermove', buttons: 1, pointerType: 'touch', cancelable: true }, { type: 'pointercancel', buttons: 0, pointerType: 'touch', cancelable: false }, { type: 'pointerdown', buttons: 1, pointerType: 'touch', cancelable: true }, { type: 'pointermove', buttons: 1, pointerType: 'touch', cancelable: true }, { type: 'pointermove', buttons: 1, pointerType: 'touch', cancelable: true }, { type: 'pointercancel', buttons: 0, pointerType: 'touch', cancelable: false } ] }
+
+ego's nodejs process exited with code 1.

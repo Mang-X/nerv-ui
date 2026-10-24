@@ -28,3 +28,5 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 本仓库保持私有；未选择新的发行许可，未授权公开发布。第三方来源、Evaluation 声明与限制见 [来源与限制](migration/t01/README.md#第三方来源与限制)。本地、浏览器、CI、发布和原库接入证据分别报告。
 
 [T04/N03 / #47](https://github.com/Mang-X/nerv-ui/issues/47) 的 8 件选择与浮层从 `/#mobile-overlays` 直接访问，或在 `/#mobile` 点击“片刻安排”。示例展示草稿确认/取消、动作身份、滚轮与日期、下拉单开、折叠和抽屉内数字键盘；接入与证据见 [独立移动接入](docs/mobile-standalone.md#选择与浮层n03)。
+
+[T04/N04 / #48](https://github.com/Mang-X/nerv-ui/issues/48) 的六件手势、列表与轮播从 `/#mobile-lists` 进入“翻阅时光”。宿主展示左右滑动、顶端刷新、分页失败/重试/结束、有限 DOM 虚拟窗口及受控轮播；接入边界见 [独立移动接入](docs/mobile-standalone.md#手势列表与轮播n04)，验证记录见 [N04 证据](docs/evidence/t04-n04/README.md)。

@@ -1,0 +1,5 @@
+Scope: 3 of 4 workspace projects
+$ pnpm -r --workspace-concurrency=1 --if-present typecheck
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json

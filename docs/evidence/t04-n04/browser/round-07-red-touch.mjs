@@ -1,0 +1,11 @@
+const task=await taskSpace(9),page=task.page('p1');
+const {setup}=await import('/tmp/nerv-ui-t04-n04/browser/helpers.mjs');const a=await setup(page);
+const assert=(await import('node:assert/strict')).default;
+await a.align('.nv-m-pr-scroll');const before=await a.text('刷新状态');
+const r=await a.rect('.nv-m-pr-scroll'),x=r.x,y=r.top+25;
+await page.cdp('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:1}]});
+for(let i=1;i<=12;i++)await page.cdp('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y+i*14,id:1}]});
+await page.cdp('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+await a.settle();
+const after=await a.text('刷新状态');console.log({before,after,events:await page.evaluate(()=>window.n04TouchEvents)});
+assert.notEqual(after,before,'Synthetic browser touch pull must request refresh at the actual scroll top');

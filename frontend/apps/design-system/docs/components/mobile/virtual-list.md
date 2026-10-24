@@ -96,4 +96,10 @@ const equipment = Array.from({ length: 6000 }, (_, i) => {
 `itemHeight` 必须与每行真实渲染高度一致。若行高会随内容变化，请改用 [NvInfiniteList](/components/mobile/infinite-list) 或固定行内排版（截断、单行省略）。
 :::
 
+## 独立宿主行为
+
+容器实际尺寸变化时，组件通过 ResizeObserver 重新测量可视高度，卸载时断开观察。行外层按 index 复用；slot 内包含局部状态时，可按稳定 item 身份设置 key。组件没有 itemKey 属性。
+
+独立运行示例：`/#mobile-lists`（playground）。接入与验证边界见仓库 `docs/mobile-standalone.md`。
+
 </MobileDoc>

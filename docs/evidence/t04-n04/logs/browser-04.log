@@ -1,0 +1,7 @@
+Error: cannot bring .nv-m-swipe-content {"x":11,"y":342,"width":348,"height":80,"top":302,"right":185,"bottom":382,"left":-163,"hit":false,"scrollTop":0,"scrollHeight":80,"clientHeight":80,"overflow":"visible","touchAction":"pan-y"}
+    at bring (file:///private/tmp/nerv-ui-t04-n04/browser/helpers.mjs:10:181)
+    at async Object.drag (file:///private/tmp/nerv-ui-t04-n04/browser/helpers.mjs:15:47)
+    at async file:////[eval2]:10:1
+swipe open hit { x: 323, y: 151, width: 92, height: 80, top: 111, right: 369, bottom: 191, left: 277, hit: true, scrollTop: 0, scrollHeight: 80, clientHeight: 80, overflow: 'visible', touchAction: 'auto' }
+
+ego's nodejs process exited with code 1.

@@ -1,0 +1,31 @@
+PASS final-844-light
+[p1 "NvUI · 项目清单" | space "nerv-ui N04 lists 20261024"(9): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=63, loc=css:button[aria-label="切换明暗"]]
+        text "深色"
+    container [ref=64]
+      container "千封信笺"
+        container [ref=65]
+          button [ref=66]
+      container "沿途风景"
+        heading
+          text "沿途风景"
+        paragraph
+          text "左右滑动翻页，或使用下方按钮。"
+        container
+          container
+            checkbox "循环翻页" [ref=67, loc=css:input[aria-label="循环翻页"]]
+            text "循环翻页"
+          container
+            checkbox "自动翻页" [ref=68, loc=css:input[aria-label="自动翻页"]]
+            text "自动翻页"
+        container
+          heading
+            text "庭院"
+          paragraph
+            text "读完这封信，再停留片刻。"
+
+

@@ -81,4 +81,10 @@ function onRefresh() {
 | --------- | ---------------- | -------- |
 | `refresh` | 下拉越过阈值触发 | —        |
 
+## 独立宿主行为
+
+只有从内部滚动区顶端开始的手势才具备刷新资格。顶端使用方向性 touch-action 保留下拉给组件处理，向上划动仍可进入原生列表滚动；离开顶端后恢复双向纵向滚动。`pointercancel` 放弃本次下拉，不触发 `refresh`。宿主在成功或失败后均须清除 `modelValue`；失败提示与重试策略由宿主提供。
+
+独立运行示例：`/#mobile-lists`（playground）。接入与验证边界见仓库 `docs/mobile-standalone.md`。
+
 </MobileDoc>

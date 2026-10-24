@@ -29,6 +29,7 @@ const { isDark, toggle } = useColorMode()
         <p class="text-sm text-muted-foreground">为闲暇留一点位置</p>
         <h1 class="text-2xl font-semibold">片刻安排</h1>
         <nav aria-label="演示入口" class="flex flex-wrap gap-4 text-sm underline">
+          <a href="#mobile-lists" class="inline-flex min-h-touch items-center">翻阅时光</a>
           <a href="#mobile" class="inline-flex min-h-touch items-center">随行手记</a>
           <a href="#mobile-input" class="inline-flex min-h-touch items-center">随心记录</a>
           <a href="#desktop" class="inline-flex min-h-touch items-center">桌面演示</a>

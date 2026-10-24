@@ -72,6 +72,7 @@ function resetReading() {
   <NvApp>
     <main class="mx-auto max-w-6xl space-y-8 p-6">
       <nav aria-label="演示入口">
+        <a href="#mobile-lists" class="inline-flex min-h-touch items-center">翻阅时光</a>
         <a
           href="#desktop"
           class="inline-flex min-h-11 items-center rounded-lg px-4 underline focus-visible:outline-2"

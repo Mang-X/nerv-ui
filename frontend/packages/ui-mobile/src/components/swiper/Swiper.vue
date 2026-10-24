@@ -161,6 +161,9 @@ watch(
   () => requestAnimationFrame(syncCount),
   { deep: true },
 )
+watch(active, () => {
+  offset.value = -active.value * width.value
+})
 watch(() => props.autoplay, startAutoplay)
 </script>
 

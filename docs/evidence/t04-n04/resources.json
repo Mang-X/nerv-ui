@@ -1,0 +1,90 @@
+{
+  "loaded": [
+    {
+      "url": "http://127.0.0.1:4184/",
+      "status": 200,
+      "buildPath": "index.html",
+      "bytes": 427,
+      "sha256": "f4002b3a36e11aa8c17e90e2313ba0d8d24729934b5885c86d4a7a233f2169d4",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4184/assets/index-u8o5dYFK.js",
+      "status": 200,
+      "buildPath": "assets/index-u8o5dYFK.js",
+      "bytes": 492912,
+      "sha256": "f2a248f7f495988ef1fb31929f8f690e99dc97ab7480bfdea923fd3693e5d596",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4184/assets/index-BiCCj5rK.css",
+      "status": 200,
+      "buildPath": "assets/index-BiCCj5rK.css",
+      "bytes": 225779,
+      "sha256": "61ec3e065bedb26befcb04e490dd2829c0e9d09060bb7181e2c7694d9491f27f",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4184/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "buildPath": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "equal": true
+    }
+  ],
+  "dist": [
+    {
+      "path": "assets/index-BiCCj5rK.css",
+      "bytes": 225779,
+      "sha256": "61ec3e065bedb26befcb04e490dd2829c0e9d09060bb7181e2c7694d9491f27f"
+    },
+    {
+      "path": "assets/index-u8o5dYFK.js",
+      "bytes": 492912,
+      "sha256": "f2a248f7f495988ef1fb31929f8f690e99dc97ab7480bfdea923fd3693e5d596"
+    },
+    {
+      "path": "assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2",
+      "bytes": 25960,
+      "sha256": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd"
+    },
+    {
+      "path": "assets/inter-cyrillic-wght-normal-DqGufNeO.woff2",
+      "bytes": 18748,
+      "sha256": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075"
+    },
+    {
+      "path": "assets/inter-greek-ext-wght-normal-DlzME5K_.woff2",
+      "bytes": 11232,
+      "sha256": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190"
+    },
+    {
+      "path": "assets/inter-greek-wght-normal-CkhJZR-_.woff2",
+      "bytes": 18996,
+      "sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6"
+    },
+    {
+      "path": "assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2",
+      "bytes": 85068,
+      "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956"
+    },
+    {
+      "path": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62"
+    },
+    {
+      "path": "assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2",
+      "bytes": 10252,
+      "sha256": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2"
+    },
+    {
+      "path": "index.html",
+      "bytes": 427,
+      "sha256": "f4002b3a36e11aa8c17e90e2313ba0d8d24729934b5885c86d4a7a233f2169d4"
+    }
+  ],
+  "frontendTree": "adbb2ef1978322aa863221e5991182f8f7e04096",
+  "note": "Browser-origin fetch saveAs binary; every loaded resource plus HTML equals final build bytes. Actual response binaries remain in /tmp/nerv-ui-t04-n04/resources."
+}

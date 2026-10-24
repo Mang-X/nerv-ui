@@ -1,0 +1,7 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+0 !== 1
+
+    at file:////[eval2]:4:159
+
+ego's nodejs process exited with code 1.
