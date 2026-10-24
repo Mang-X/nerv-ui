@@ -60,13 +60,14 @@ token 之上。
 应用只通过裸 `@nerv-iip/ui` / `@nerv-iip/ui-mobile` 主桶消费组件库；深导入由每个 app 的
 `src/nvui-imports.contract.test.ts` 硬禁。独立库 T02 按 [CSS 接入决策](../../docs/desktop-standalone.md) 新增三个精确 CSS 入口；其余子入口不得擅增：
 
-| 子入口                       | 性质                      | 放行面                                                               |
-| ---------------------------- | ------------------------- | -------------------------------------------------------------------- |
-| `@nerv-iip/ui/file-preview`  | 运行时子入口              | 全 app 源码                                                          |
-| `@nerv-iip/ui/test-support`  | test-only 子入口（#2014） | 各 app 的 `src/test/setup.ts` 与 `src/nvui-imports.contract.test.ts` |
-| `@nerv-iip/ui/styles.css`    | 样式聚合入口（T02）       | 宿主样式入口；Tailwind v4 构建处理                                   |
-| `@nerv-iip/ui/theme.css`     | 样式分项入口（T02）       | 自行组织样式的宿主                                                   |
-| `@nerv-iip/ui/overrides.css` | 样式分项入口（T02）       | 宿主决定导入层级                                                     |
+| 子入口                                  | 性质                             | 放行面                                                               |
+| --------------------------------------- | -------------------------------- | -------------------------------------------------------------------- |
+| `@nerv-iip/ui/file-preview`             | 运行时子入口                     | 全 app 源码                                                          |
+| `@nerv-iip/ui/test-support`             | test-only 子入口（#2014）        | 各 app 的 `src/test/setup.ts` 与 `src/nvui-imports.contract.test.ts` |
+| `@nerv-iip/ui/styles.css`               | 样式聚合入口（T02）              | 宿主样式入口；Tailwind v4 构建处理                                   |
+| `@nerv-iip/ui/theme.css`                | 样式分项入口（T02）              | 自行组织样式的宿主                                                   |
+| `@nerv-iip/ui/overrides.css`            | 样式分项入口（T02）              | 宿主决定导入层级                                                     |
+| `@nerv-iip/ui-mobile/styles/mobile.css` | 既有移动样式入口（T04/N01 恢复） | 宿主样式入口；安全区 utilities 与移动包内 Tailwind 扫描源            |
 
 `test-support` 装的是各包 vitest `setupFiles` 用的支撑件（unovis tooltip 定时器收口等）
 与这条 import hygiene 门禁自身的实现，不进主桶 `src/index.ts`，因此不属于组件边界、也不受

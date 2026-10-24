@@ -1,0 +1,7 @@
+{
+  "dark": true,
+  "background": "oklch(0.145 0 0)",
+  "foreground": "oklch(0.985 0 0)",
+  "overflow": 390,
+  "viewport": 390
+}

@@ -1,0 +1,9 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  18:10:12
+   Duration  6.04s (transform 3.33s, setup 0ms, import 4.95s, tests 21ms, environment 930ms)

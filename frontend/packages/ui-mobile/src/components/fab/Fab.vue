@@ -20,7 +20,7 @@ export interface FabAction {
 const props = withDefaults(
   defineProps<{
     icon?: Component
-    /** Extended pill label (single-action mode only). */
+    /** Accessible trigger name; also an extended pill label in single-action mode. */
     text?: string
     /** Speed-dial actions; when present the FAB toggles open on tap. */
     actions?: FabAction[]
@@ -71,6 +71,7 @@ function onSelect(action: FabAction, index: number) {
         class="nv-m-fab-main"
         :class="text && !actions?.length ? 'nv-m-fab-extended' : ''"
         :data-tone="tone"
+        :aria-label="text"
         :aria-expanded="actions?.length ? open : undefined"
         @click="onMain"
       >

@@ -1,0 +1,26 @@
+{
+  "utilities": [
+    {
+      "selector": ".min-h-row",
+      "css": ".min-h-row { min-height: 56px; }"
+    },
+    {
+      "selector": ".min-h-touch",
+      "css": ".min-h-touch { min-height: 48px; }"
+    },
+    {
+      "selector": ".pt-safe",
+      "css": ".pt-safe { padding-top: max(.75rem, env(safe-area-inset-top)); }"
+    },
+    {
+      "selector": ".px-safe",
+      "css": ".px-safe { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }"
+    },
+    {
+      "selector": ".pb-safe",
+      "css": ".pb-safe { padding-bottom: max(.5rem, env(safe-area-inset-bottom)); }"
+    }
+  ],
+  "safeAreaSupported": true,
+  "viewportMeta": "width=device-width, initial-scale=1.0, viewport-fit=cover"
+}

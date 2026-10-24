@@ -1,0 +1,34 @@
+{
+  "base": "49a4db7c8348fc7058db611a4defd5153d91eaa5",
+  "source": "274d12baf1d5d27857beab0c7183d56623ffcefd",
+  "packages": {
+    "count": 973,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  "snapshots": {
+    "count": 973,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  "importers": [
+    "apps/playground",
+    "packages/ui-mobile"
+  ],
+  "optionalClassificationChanges": [],
+  "pass": true,
+  "vueResolutions": {
+    "packages/ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js",
+    "packages/ui-mobile": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js",
+    "apps/playground": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+  },
+  "mobileResolved": {
+    "@lucide/vue": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/node_modules/.pnpm/@lucide+vue@1.24.0_vue@3.5.39_typescript@6.0.3_/node_modules/@lucide/vue/dist/cjs/lucide-vue.js",
+    "@nerv-iip/ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui/src/index.ts",
+    "@vueuse/core": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js",
+    "reka-ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/node_modules/.pnpm/reka-ui@2.10.1_vue@3.5.39_typescript@6.0.3_/node_modules/reka-ui/dist/index.cjs",
+    "vue": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+  }
+}

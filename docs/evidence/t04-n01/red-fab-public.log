@@ -1,0 +1,43 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+ ❯ src/components/fab/Fab.test.ts (2 tests | 1 failed) 49ms
+     × names the speed-dial trigger with text and emits the selected action identity once 40ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/fab/Fab.test.ts > NvFab public actions > names the speed-dial trigger with text and emits the selected action identity once
+Error: Unable to get button[aria-label="更多随行操作"] within: <div data-v-72ff7956="" class="nv-m-fab-root" data-pos="bottom-right">
+  <transition-stub data-v-72ff7956="" name="nv-m-fab-scrim" appear="false" persisted="false" css="true">
+    <!--v-if-->
+  </transition-stub>
+  <div data-v-72ff7956="" class="nv-m-fab-stack">
+    <transition-group-stub data-v-72ff7956="" name="nv-m-fab-act" tag="div" appear="false" persisted="false" css="true" class="nv-m-fab-actions"></transition-group-stub><button data-v-72ff7956="" type="button" class="nv-m-fab-main" data-tone="brand" aria-expanded="false"><svg data-v-72ff7956="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus nv-m-fab-glyph" aria-hidden="true">
+        <path d="M5 12h14"></path>
+        <path d="M12 5v14"></path>
+      </svg>
+      <!--v-if-->
+    </button>
+  </div>
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/fab/Fab.test.ts:9:29
+      7|     const action = { key: 'save', text: '收好行程' }
+      8|     const wrapper = mount(NvFab, { props: { text: '更多随行操作', actions: […
+      9|     const trigger = wrapper.get('button[aria-label="更多随行操作"]')
+       |                             ^
+     10|     expect(trigger.attributes('aria-expanded')).toBe('false')
+     11|     await trigger.trigger('click')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  18:09:42
+   Duration  17.32s (transform 12.92s, setup 0ms, import 16.18s, tests 49ms, environment 895ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/fab/Fab.test.ts

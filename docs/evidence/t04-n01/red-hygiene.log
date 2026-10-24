@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/test-support/nvuiImportHygiene.test.ts (22 tests | 1 failed) 8ms
+     × allows only the public mobile stylesheet and rejects lookalikes and private mobile paths 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test-support/nvuiImportHygiene.test.ts > nvuiImportViolation > allows only the public mobile stylesheet and rejects lookalikes and private mobile paths
+AssertionError: expected 'deep import "@nerv-iip/ui-mobile/styl…' to be null
+
+- Expected:
+null
+
++ Received:
+"deep import \"@nerv-iip/ui-mobile/styles/mobile.css\" — use the bare @nerv-iip/ui-mobile barrel"
+
+ ❯ src/test-support/nvuiImportHygiene.test.ts:85:80
+     83|
+     84|   it('allows only the public mobile stylesheet and rejects lookalikes …
+     85|     expect(nvuiImportViolation('@nerv-iip/ui-mobile/styles/mobile.css'…
+       |                                                                                ^
+     86|     for (const entry of ['styles/other.css', 'styles/mobile.css/extra'…
+     87|       expect(nvuiImportViolation('@nerv-iip/ui-mobile/' + entry, PAGE)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 21 passed (22)
+   Start at  18:07:23
+   Duration  708ms (transform 38ms, setup 285ms, import 21ms, tests 8ms, environment 312ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/test-support/nvuiImportHygiene.test.ts

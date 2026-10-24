@@ -9,7 +9,8 @@
   },
   "scripts": {
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",
-    "test": "vp test run src"
+    "test": "vp test run src --exclude src/nvui-doc-coverage.contract.test.ts",
+    "test:docs": "vp test run src/nvui-doc-coverage.contract.test.ts"
   },
   "dependencies": {
     "@lucide/vue": "1.24.0",
