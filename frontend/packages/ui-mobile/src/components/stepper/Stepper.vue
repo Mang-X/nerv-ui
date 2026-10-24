@@ -6,7 +6,7 @@ import { cn } from '../../lib/utils'
 
 /**
  * Mobile Stepper — compact, native (iOS / tdesign-mobile) number stepper with an
- * editable centre input. ~32px tall. Clamps to [min, max] on input/blur.
+ * editable centre input. 32px surface inside independent 44px touch targets. Clamps to [min, max] on input/blur.
  */
 const props = withDefaults(
   defineProps<{
@@ -45,14 +45,14 @@ function onBlur(e: Event) {
     data-slot="stepper"
     :class="
       cn(
-        'nv-m-stepper inline-flex h-8 items-stretch overflow-hidden rounded-lg border border-border bg-card',
+        'nv-m-stepper relative isolate inline-flex h-11 shrink-0 items-center rounded-lg before:pointer-events-none before:absolute before:inset-x-0 before:top-1/2 before:-z-10 before:h-8 before:-translate-y-1/2 before:rounded-lg before:border before:border-border before:bg-card',
         props.class,
       )
     "
   >
     <button
       type="button"
-      class="nv-m-stepper-btn grid w-8 place-items-center text-foreground disabled:opacity-30"
+      class="nv-m-stepper-btn grid size-11 shrink-0 place-items-center rounded-lg text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring disabled:opacity-30"
       :disabled="!canDec"
       aria-label="减少"
       @click="set(modelValue - step)"
@@ -63,13 +63,13 @@ function onBlur(e: Event) {
       :value="modelValue"
       type="number"
       inputmode="numeric"
-      class="w-11 border-x border-border bg-transparent text-center text-[15px] font-medium tabular-nums outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+      class="h-8 w-11 min-w-0 border-x border-border bg-transparent text-center text-[15px] font-medium tabular-nums outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       @input="onInput"
       @blur="onBlur"
     />
     <button
       type="button"
-      class="nv-m-stepper-btn grid w-8 place-items-center text-foreground disabled:opacity-30"
+      class="nv-m-stepper-btn grid size-11 shrink-0 place-items-center rounded-lg text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring disabled:opacity-30"
       :disabled="!canInc"
       aria-label="增加"
       @click="set(modelValue + step)"

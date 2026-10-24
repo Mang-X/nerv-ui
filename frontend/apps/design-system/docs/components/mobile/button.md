@@ -50,7 +50,7 @@ import { NvMobileButton } from '@nerv-iip/ui-mobile'
 
 ## 尺寸
 
-`sm / md / lg` 三档；加 `block` 占满整行宽度。
+`sm / md / lg` 三档；加 `block` 占满整行宽度。视觉表面分别为 32 / 40 / 48px，真实动作根至少 44×44px；透明留白参与布局和点击，紧邻控件不会被向外覆盖。`asChild` 保留子元素语义与单个动作根。没有独立 `loading` API；宿主需要等待态时，结合 `disabled`、`aria-busy` 与插槽文案。
 
 ```vue
 <NvMobileButton variant="primary" size="sm">小号</NvMobileButton>
