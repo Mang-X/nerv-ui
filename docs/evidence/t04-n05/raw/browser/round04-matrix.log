@@ -1,0 +1,10 @@
+Error: JavaScript evaluation failed at line 0, column 0: TypeError: Cannot read properties of null (reading 'getBoundingClientRect')
+    at <anonymous>:2:92
+    at __egoPageEvaluate (<anonymous>:2:156)
+    at <anonymous>:3:9; expression: ()=>{const e=document.querySelector('[aria-label="移除标签"]');const r=e.getBoundingClientRect();return {width:r.width,height:r.height}}
+    at runtimeValue (file:////[eval1]:9189:15)
+    at evaluateInSession (file:////[eval1]:19460:12)
+    at async file:////[eval1]:19083:24
+    at async file:////[eval1]:16940:28
+
+ego's nodejs process exited with code 1.

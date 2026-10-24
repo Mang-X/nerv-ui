@@ -1,0 +1,1 @@
+import fs from 'node:fs/promises';const t=await taskSpace(15);console.log(await t.pages());await t.finish({keep:[]});await fs.writeFile('/tmp/nerv-ui-t04-n05/ego-cleanup.json',JSON.stringify({space:15,finished:true,kept:[]},null,2));console.log({finished:true});

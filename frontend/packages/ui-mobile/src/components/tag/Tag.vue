@@ -43,6 +43,7 @@ const sizeClass: Record<Size, string> = {
         'inline-flex items-center rounded-md font-medium whitespace-nowrap [&_svg]:shrink-0',
         variantClass[variant],
         sizeClass[size],
+        closable && 'h-auto min-h-11 pr-0',
         $props.class,
       )
     "
@@ -51,7 +52,7 @@ const sizeClass: Record<Size, string> = {
     <button
       v-if="closable"
       type="button"
-      class="nv-m-tag-close -mr-0.5 inline-flex items-center justify-center rounded-full outline-none"
+      class="nv-m-tag-close inline-flex size-11 shrink-0 items-center justify-center rounded-full outline-none"
       aria-label="移除标签"
       @click.stop="emit('close')"
     >

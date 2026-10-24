@@ -1,0 +1,105 @@
+[
+  {
+    "name": "final-mobile-behavior",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui-mobile",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src",
+      "--exclude",
+      "src/nvui-doc-coverage.contract.test.ts",
+      "--exclude",
+      "src/nvui-naming.contract.test.ts",
+      "--reporter=default",
+      "--reporter=json",
+      "--outputFile=/tmp/nerv-ui-t04-n05/mobile.json"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-mobile-naming",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui-mobile",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/nvui-naming.contract.test.ts"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-mobile-staticdocs",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui-mobile",
+      "test:docs"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-ui",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui",
+      "test"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-ui-staticdocs",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui",
+      "test:docs"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-host",
+    "args": [
+      "--filter",
+      "@nerv-iip/playground",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src",
+      "--reporter=default",
+      "--reporter=json",
+      "--outputFile=/tmp/nerv-ui-t04-n05/host.json"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "final-scoped-fmt",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--check",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/MobileFeedbackDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/mobile-feedback/FeedbackMedia.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/mobile-feedback/FeedbackSignals.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/mobile-feedback/FeedbackStates.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/packages/ui-mobile/src/components/feedback.public.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/README.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/docs/mobile-standalone.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/design-system/docs/components/mobile/tag.md",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/App.test.ts",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/App.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/MobileDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/MobileInputDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/MobileListDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/MobileOverlayDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground/src/TouchDemo.vue",
+      "/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/packages/ui-mobile/src/components/tag/Tag.vue"
+    ],
+    "exit": 1
+  }
+]

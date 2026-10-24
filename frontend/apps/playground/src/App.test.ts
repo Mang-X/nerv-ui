@@ -102,3 +102,28 @@ it('opens mobile lists directly and navigates through all five existing entries'
     expect(wrapper.get('a[href="#mobile-lists"]').text()).toBe('翻阅时光')
   }
 })
+
+it('opens mobile feedback directly and returns through all six existing entries', async () => {
+  window.location.hash = '#mobile-feedback'
+  wrapper = mount(App, { attachTo: document.body })
+  expect(wrapper.get('h1').text()).toBe('片刻回响')
+  for (const [hash, heading] of [
+    ['#mobile', '周末随行'],
+    ['#mobile-input', '随心记录'],
+    ['#mobile-overlays', '片刻安排'],
+    ['#mobile-lists', '翻阅时光'],
+    ['#touch', '共享阅读角'],
+    ['#desktop', '让想法有序向前'],
+  ]) {
+    expect(wrapper.find(`a[href="${hash}"]`).exists()).toBe(true)
+    window.location.hash = hash!
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+    await nextTick()
+    expect(wrapper.get('h1').text()).toBe(heading)
+    await wrapper.get('a[href="#mobile-feedback"]').trigger('click')
+    window.location.hash = '#mobile-feedback'
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+    await nextTick()
+    expect(wrapper.get('h1').text()).toBe('片刻回响')
+  }
+})

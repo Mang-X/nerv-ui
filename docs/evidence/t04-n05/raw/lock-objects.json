@@ -1,0 +1,8 @@
+{
+  "base": "382e7641427cf2190ba39ea01229e28610aa113a",
+  "packages": 973,
+  "snapshots": 973,
+  "fullDeepEqual": true,
+  "installedDeepEqual": true,
+  "includes": "all importers, package/snapshot objects, edges, peer/optional fields"
+}

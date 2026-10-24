@@ -1,0 +1,71 @@
+{
+  "states": [
+    {
+      "name": "390x844-light",
+      "groups": [
+        "empty",
+        "retry-error",
+        "result-success",
+        "toast-loading",
+        "image-error",
+        "image-recovered",
+        "media-complete"
+      ],
+      "tag": {
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "name": "844x390-light",
+      "groups": [
+        "empty",
+        "retry-error",
+        "result-success",
+        "toast-loading",
+        "image-error",
+        "image-recovered",
+        "media-complete"
+      ],
+      "tag": {
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "name": "844x390-dark",
+      "groups": [
+        "empty",
+        "retry-error",
+        "result-success",
+        "toast-loading",
+        "image-error",
+        "image-recovered",
+        "media-complete"
+      ],
+      "tag": {
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "name": "390x844-dark",
+      "groups": [
+        "empty",
+        "retry-error",
+        "result-success",
+        "toast-loading",
+        "image-error",
+        "image-recovered",
+        "media-complete"
+      ],
+      "tag": {
+        "width": 44,
+        "height": 44
+      }
+    }
+  ],
+  "totalGroups": 28,
+  "shots": 28,
+  "fresh": true
+}

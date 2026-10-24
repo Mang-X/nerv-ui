@@ -30,3 +30,5 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 [T04/N03 / #47](https://github.com/Mang-X/nerv-ui/issues/47) 的 8 件选择与浮层从 `/#mobile-overlays` 直接访问，或在 `/#mobile` 点击“片刻安排”。示例展示草稿确认/取消、动作身份、滚轮与日期、下拉单开、折叠和抽屉内数字键盘；接入与证据见 [独立移动接入](docs/mobile-standalone.md#选择与浮层n03)。
 
 [T04/N04 / #48](https://github.com/Mang-X/nerv-ui/issues/48) 的六件手势、列表与轮播从 `/#mobile-lists` 进入“翻阅时光”。宿主展示左右滑动、顶端刷新、分页失败/重试/结束、有限 DOM 虚拟窗口及受控轮播；接入边界见 [独立移动接入](docs/mobile-standalone.md#手势列表与轮播n04)，验证记录见 [N04 证据](docs/evidence/t04-n04/README.md)。
+
+[T04/N05 / #49](https://github.com/Mang-X/nerv-ui/issues/49) 的 11 件反馈、状态与媒体从 `/#mobile-feedback` 进入“片刻回响”。示例展示通知关闭、结果/空态/失败重试、徽标与标签、受控 toast、骨架与进度，以及真实本地图片成功/失败/src 恢复；六个既有入口均保留。接入与范围见 [移动接入](docs/mobile-standalone.md#反馈状态与媒体n05)，证据见 [N05 验证记录](docs/evidence/t04-n05/README.md)。父 #5 的组合验收单独进行。
