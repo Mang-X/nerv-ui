@@ -1,0 +1,1669 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileInputDemo.test.ts (14 tests | 1 failed | 13 skipped) 321ms
+   × resumes scanning after focus leaves the host for the standalone keypad and confirmation removes it 320ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileInputDemo.test.ts > resumes scanning after focus leaves the host for the standalone keypad and confirmation removes it
+AssertionError: expected <body><svg …(3)>…(1)</svg>
+…(3)</body> to be <input type="text" …(6)></input> // Object.is equality
+
+- Expected
++ Received
+
++ <body>
++   <svg
++     height="100%"
++     style="position: fixed; z-index: -99999999;"
++     width="100%"
++   >
++     <defs>
++       <mask
++         id="vis-pattern-fill-stripes-diagonal"
++       >
++         
++     
++         <pattern
++           height="10"
++           id="stripes-diagonal"
++           patternUnits="userSpaceOnUse"
++           viewBox="0 0 10 10"
++           width="10"
++         >
++           
++       
++           <rect
++             fill="#fff"
++             height="100%"
++             width="100%"
++           />
++           
++       
++           <path
++             d="M-1,1 l2,-2 M0,10 l10,-10 M9,11 l2,-2"
++             stroke="#000"
++           />
++           
++     
++         </pattern>
++         
++     
++         <rect
++           fill="url(#stripes-diagonal)"
++           height="200%"
++           width="200%"
++           x="-50%"
++           y="-50%"
++         />
++         
++   
++       </mask>
++       <mask
++         id="vis-pattern-fill-dots"
++       >
++         
++     
++         <pattern
++           height="10"
++           id="dots"
++           patternUnits="userSpaceOnUse"
++           viewBox="0 0 10 10"
++           width="10"
++         >
++           
++       
++           <rect
++             fill="#fff"
++             height="100%"
++             width="100%"
++           />
++           
++       
++           <path
++             d="m0-1.5a1 1 0 010 3m10-3a1 1 0 000 3M5 3.5a1 1 0 010 3 1 1 0 010-3M0 8.5 a1 1 0 010 3m10-3a1 1 0 000 3"
++             fill"#000"=""
++           />
++           
++     
++         </pattern>
++         
++     
++         <rect
++           fill="url(#dots)"
++           height="200%"
++           width="200%"
++           x="-50%"
++           y="-50%"
++         />
++         
++   
++       </mask>
++       <mask
++         id="vis-pattern-fill-stripes-vertical"
++       >
++         
++     
++         <pattern
++           height="10"
++           id="stripes-vertical"
++           patternUnits="userSpaceOnUse"
++           viewBox="0 0 10 10"
++           width="10"
++         >
++           
++       
++           <rect
++             fill="#fff"
++             height="100%"
++             width="100%"
++           />
++           
++       
++           <path
++             d="M 5,-1 L5,11"
++             stroke="#000"
++           />
++           
++     
++         </pattern>
++         
++     
++         <rect
++           fill="url(#stripes-vertical)"
++           height="200%"
++           width="200%"
++           x="-50%"
++           y="-50%"
++         />
++         
++   
++       </mask>
++       <mask
++         id="vis-pattern-fill-crosshatch"
++       >
++         
++     
++         <pattern
++           height="10"
++           id="crosshatch"
++           patternUnits="userSpaceOnUse"
++           viewBox="0 0 10 10"
++           width="10"
++         >
++           
++       
++           <rect
++             fill="#fff"
++             height="100%"
++             width="100%"
++           />
++           
++       
++           <path
++             d="M0 0L10 10ZM10 0L0 10Z"
++             stroke="#000"
++           />
++           
++     
++         </pattern>
++         
++     
++         <rect
++           fill="url(#crosshatch)"
++           height="200%"
++           width="200%"
++           x="-50%"
++           y="-50%"
++         />
++         
++   
++       </mask>
++       <mask
++         id="vis-pattern-fill-waves"
++       >
++         
++     
++         <pattern
++           height="10"
++           id="waves"
++           patternUnits="userSpaceOnUse"
++           viewBox="0 0 10 10"
++           width="10"
++         >
++           
++       
++           <rect
++             fill="#fff"
++             height="100%"
++             width="100%"
++           />
++           
++       
++           <path
++             d="M0 4Q2.5 1 5 4 7.5 7 10 4v2Q7.5 9 5 6 2.5 3 0 6Z"
++             fill="#000"
++           />
++           
++     
++         </pattern>
++         
++     
++         <rect
++           fill="url(#waves)"
++           height="200%"
++           width="200%"
++           x="-50%"
++           y="-50%"
++         />
++         
++   
++       </mask>
++       <mask
++         id="vis-pattern-fill-circles"
++       >
++         
++     
++         <pattern
++           height="10"
++           id="circles"
++           patternUnits="userSpaceOnUse"
++           viewBox="0 0 10 10"
++           width="10"
++         >
++           
++       
++           <rect
++             fill="#fff"
++             height="100%"
++             width="100%"
++           />
++           
++       
++           <circle
++             cx="5"
++             cy="5"
++             fill="#fff"
++             r="3"
++             stroke="#000"
++           />
++           
++     
++         </pattern>
++         
++     
++         <rect
++           fill="url(#circles)"
++           height="200%"
++           width="200%"
++           x="-50%"
++           y="-50%"
++         />
++         
++   
++       </mask>
++       <marker
++         fill="var(--vis-color0)"
++         id="vis-pattern-marker-circle"
++         markerHeight="10"
++         markerUnits="userSpaceOnUse"
++         markerWidth="10"
++         refX="5"
++         refY="5"
++       >
++         
++     
++         <circle
++           cx="5"
++           cy="5"
++           r="5"
++         />
++         
++   
++       </marker>
++       <marker
++         fill="var(--vis-color1)"
++         id="vis-pattern-marker-triangle"
++         markerHeight="10"
++         markerUnits="userSpaceOnUse"
++         markerWidth="10"
++         refX="5"
++         refY="5"
++       >
++         
++     
++         <path
++           d="M5,0 L10,9 L0,9Z"
++         >
++           
++   
++         </path>
++       </marker>
++       <marker
++         fill="var(--vis-color2)"
++         id="vis-pattern-marker-diamond"
++         markerHeight="10"
++         markerUnits="userSpaceOnUse"
++         markerWidth="10"
++         refX="5"
++         refY="5"
++       >
++         
++     
++         <path
++           d="M 0 5 L5 0 L 10 5 L 5 10 L 0 5Z"
++         >
++           
++   
++         </path>
++       </marker>
++       <marker
++         fill="var(--vis-color3)"
++         id="vis-pattern-marker-arrow"
++         markerHeight="10"
++         markerUnits="userSpaceOnUse"
++         markerWidth="10"
++         refX="5"
++         refY="5"
++       >
++         
++     
++         <path
++           d="M4 0 0 0 6 5 0 10 4 10 10 5Z"
++         >
++           
++   
++         </path>
++       </marker>
++       <marker
++         fill="var(--vis-color4)"
++         id="vis-pattern-marker-square"
++         markerHeight="10"
++         markerUnits="userSpaceOnUse"
++         markerWidth="10"
++         refX="5"
++         refY="5"
++       >
++         
++     
++         <rect
++           height="8"
++           width="8"
++           x="1"
++           y="1"
++         />
++         
++   
++       </marker>
++       <marker
++         fill="var(--vis-color5)"
++         id="vis-pattern-marker-star"
++         markerHeight="10"
++         markerUnits="userSpaceOnUse"
++         markerWidth="10"
++         refX="5"
++         refY="5"
++       >
++         
++     
++         <path
++           d="m2 9 3-9 3 9L0 3h10Z"
++         />
++         
++   
++       </marker>
++     </defs>
++   </svg>
++   <div
++     data-v-app=""
++   >
++     <div
++       class="flex h-dvh flex-col bg-background text-foreground"
++     >
++       <header
++         class="pt-safe px-safe sticky top-0 z-20 shrink-0 border-b border-border/70 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70"
++         data-shell="header"
++       >
++         
++         <div
++           class="relative flex h-12 items-center justify-center gap-2 px-2"
++           data-slot="nav-bar"
++         >
++           <div
++             class="absolute left-1 flex items-center"
++           >
++             <!--v-if-->
++             
++             
++           </div>
++           <div
++             class="truncate px-12 text-base font-semibold"
++           >
++             
++             随心记录
++             
++           </div>
++           <div
++             class="absolute right-1 flex items-center gap-1"
++           >
++             
++             <button
++               aria-label="切换明暗"
++               aria-pressed="false"
++               class="size-11"
++               type="button"
++             >
++               深色
++             </button>
++             
++           </div>
++         </div>
++         
++       </header>
++       <main
++         class="px-safe min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
++         data-shell="content"
++       >
++         
++         <div
++           class="mx-auto max-w-2xl space-y-6 px-5 pt-5 pb-12"
++         >
++           <header
++             class="space-y-2"
++           >
++             <p
++               class="text-sm text-muted-foreground"
++             >
++               留住生活里的小小灵感
++             </p>
++             <h1
++               class="text-2xl font-semibold"
++             >
++               随心记录
++             </h1>
++             <nav
++               aria-label="演示入口"
++               class="flex flex-wrap gap-4 text-sm underline"
++             >
++               <a
++                 class="inline-flex min-h-touch items-center"
++                 href="#mobile"
++               >
++                 随行手记
++               </a>
++               <a
++                 class="inline-flex min-h-touch items-center"
++                 href="#desktop"
++               >
++                 桌面演示
++               </a>
++               <a
++                 class="inline-flex min-h-touch items-center"
++                 href="#touch"
++               >
++                 触屏演示
++               </a>
++             </nav>
++           </header>
++           
++           <section
++             aria-labelledby="capture-heading"
++             class="space-y-4 rounded-2xl border border-border bg-card p-4"
++           >
++             <h2
++               class="text-lg font-semibold"
++               id="capture-heading"
++             >
++               接住一串灵感
++             </h2>
++             <div
++               class="flex min-h-touch items-center justify-between gap-3"
++             >
++               <label
++                 for="scan-enabled"
++               >
++                 持续接收扫码
++               </label>
++               
++               <button
++                 aria-checked="true"
++                 aria-label="持续接收扫码"
++                 aria-required="false"
++                 class="nv-m-mswitch inline-flex h-[31px] w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-brand/30 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35"
++                 data-slot="mobile-switch"
++                 data-state="checked"
++                 data-v-e1d3872a=""
++                 id="scan-enabled"
++                 role="switch"
++                 type="button"
++                 value="on"
++               >
++                 
++                 <span
++                   class="nv-m-mswitch-thumb pointer-events-none block size-[27px] rounded-full bg-white shadow-[0_2px_4px_rgb(0_0_0/0.2)] ring-0 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
++                   data-state="checked"
++                   data-v-e1d3872a=""
++                 >
++                   
++                   
++                 </span>
++                 
++               </button>
++               <!--v-if-->
++               
++             </div>
++             <p
++               aria-label="扫码状态"
++               class="text-sm text-muted-foreground"
++               role="status"
++             >
++               扫码已让出焦点
++             </p>
++             <label
++               class="block space-y-2"
++               data-scan-region=""
++             >
++               <span
++                 class="text-sm font-medium"
++               >
++                 便签编码
++               </span>
++               <div
++                 class="flex items-center gap-2 rounded-lg border border-border bg-card px-3 min-h-touch"
++               >
++                 <svg
++                   aria-hidden="true"
++                   class="lucide lucide-scan-line-icon lucide-scan-line size-5 shrink-0 text-brand"
++                   fill="none"
++                   height="24"
++                   stroke="currentColor"
++                   stroke-linecap="round"
++                   stroke-linejoin="round"
++                   stroke-width="2"
++                   viewBox="0 0 24 24"
++                   width="24"
++                   xmlns="http://www.w3.org/2000/svg"
++                 >
++                   <path
++                     d="M3 7V5a2 2 0 0 1 2-2h2"
++                   />
++                   <path
++                     d="M17 3h2a2 2 0 0 1 2 2v2"
++                   />
++                   <path
++                     d="M21 17v2a2 2 0 0 1-2 2h-2"
++                   />
++                   <path
++                     d="M7 21H5a2 2 0 0 1-2-2v-2"
++                   />
++                   <path
++                     d="M7 12h10"
++                   />
++                 </svg>
+                  <input
+                    autocapitalize="off"
+                    autocomplete="off"
+                    class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"
+                    inputmode="none"
+                    placeholder="键入编码后按回车"
+                    spellcheck="false"
+                    type="text"
++                 />
++               </div>
++             </label>
++             <output
++               aria-label="扫码回显"
++               class="block break-all text-sm"
++             >
++               0 次 · 尚无记录
++             </output>
++             <p
++               class="text-xs leading-relaxed text-muted-foreground"
++             >
++                回车收下编码并清空输入。编辑其它输入框时暂停接收，离开后恢复；也可关闭持续接收。 
++             </p>
++             <label
++               class="block text-sm font-medium"
++               for="number-mode"
++             >
++               数字键盘模式
++             </label>
++             <select
++               aria-label="数字键盘模式"
++               class="min-h-touch w-full rounded-xl border border-border bg-card px-3 text-sm"
++               id="number-mode"
++             >
++               <option
++                 value="decimal"
++               >
++                 小数与正负号
++               </option>
++               <option
++                 value="code"
++               >
++                 数字与 X
++               </option>
++               <option
++                 value="digits"
++               >
++                 纯数字
++               </option>
++             </select>
++             <label
++               class="block text-sm font-medium"
++               for="note-number"
++             >
++               记录数值
++             </label>
++             <div
++               class="nv-m-minput flex h-11 items-center gap-2.5 rounded-xl border border-border bg-card px-3.5"
++               data-slot="mobile-input"
++               data-v-ba322848=""
++             >
++               <!--v-if-->
++               <input
++                 autocomplete="off"
++                 class="h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50"
++                 data-slot="mobile-input-field"
++                 data-v-ba322848=""
++                 id="note-number"
++                 inputmode="none"
++                 placeholder="点此录入"
++                 readonly=""
++               />
++               <!--v-if-->
++             </div>
++             <p
++               class="text-xs text-muted-foreground"
++             >
++                保留开头的零，追加输入最多 6 个字符；正负号可独立切换。 
++             </p>
++             <button
++               aria-label="清空数值"
++               class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]"
++               data-slot="mobile-button"
++               data-v-a3bc4b5b=""
++               type="button"
++             >
++               
++               清空数值
++               
++             </button>
++             <output
++               aria-label="键盘按键"
++               class="block text-sm text-muted-foreground"
++             >
++               press：1
++             </output>
++             <output
++               aria-label="键盘确认"
++               class="block break-all text-sm"
++             >
++               confirm：1
++             </output>
++             <div
++               class="flex flex-wrap gap-3"
++             >
++               <button
++                 aria-label="打开数值抽屉"
++                 class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 bg-brand text-brand-foreground h-10 px-4 text-[15px]"
++                 data-slot="mobile-button"
++                 data-v-a3bc4b5b=""
++                 type="button"
++               >
++                 
++                 在抽屉里继续
++                 
++               </button>
++               <button
++                 aria-label="打开记录提示"
++                 class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]"
++                 data-slot="mobile-button"
++                 data-v-a3bc4b5b=""
++                 type="button"
++               >
++                 
++                 留个提醒
++                 
++               </button>
++             </div>
++             <output
++               aria-label="提示回显"
++               class="block text-sm text-muted-foreground"
++             >
++               尚无备注
++             </output>
++           </section>
++           
++           <!--teleport start-->
++           <!--teleport end-->
++           
++           
++           <!--teleport start-->
++           <!--teleport end-->
++           
++           
++           <!-- `defer` lets the target resolve after the tree mounts, so a scoped target
++        that is an ancestor (docs phone sim) is found instead of erroring. -->
++           <!--teleport start-->
++           <!--teleport end-->
++           
++           
++           <div
++             class="space-y-6"
++             data-form-region=""
++           >
++             
++             <section
++               aria-labelledby="words-heading"
++               class="space-y-4 rounded-2xl border border-border bg-card p-4"
++             >
++               <h2
++                 class="text-lg font-semibold"
++                 id="words-heading"
++               >
++                 写下灵感
++               </h2>
++               <label
++                 class="block text-sm font-medium"
++                 for="note-title"
++               >
++                 标题
++               </label>
++               <div
++                 class="nv-m-minput flex h-11 items-center gap-2.5 rounded-xl border border-border bg-card px-3.5"
++                 data-slot="mobile-input"
++                 data-v-ba322848=""
++               >
++                 <span
++                   class="flex shrink-0 items-center text-muted-foreground [&_svg]:size-5"
++                   data-v-ba322848=""
++                 >
++                   
++                   记
++                   
++                 </span>
++                 <input
++                   autocomplete="off"
++                   class="h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50"
++                   data-slot="mobile-input-field"
++                   data-v-ba322848=""
++                   id="note-title"
++                   maxlength="24"
++                   name="title"
++                   placeholder="给今天起个名字"
++                 />
++                 <span
++                   class="flex shrink-0 items-center text-muted-foreground [&_svg]:size-5"
++                   data-v-ba322848=""
++                 >
++                   
++                   <span
++                     class="whitespace-nowrap text-xs"
++                   >
++                     0/24 字
++                   </span>
++                   
++                 </span>
++               </div>
++               <output
++                 aria-label="标题回显"
++                 class="block text-sm text-muted-foreground"
++               >
++                 未命名 · 0 字
++               </output>
++               <div
++                 class="flex items-center py-2 px-0"
++                 data-slot="search-bar"
++                 data-v-f0486d0d=""
++               >
++                 <div
++                   class="min-h-touch flex flex-1 items-center gap-2 rounded-full bg-muted px-3.5"
++                   data-v-f0486d0d=""
++                 >
++                   <svg
++                     aria-hidden="true"
++                     class="lucide lucide-search-icon lucide-search size-4 shrink-0 text-muted-foreground"
++                     data-v-f0486d0d=""
++                     fill="none"
++                     height="24"
++                     stroke="currentColor"
++                     stroke-linecap="round"
++                     stroke-linejoin="round"
++                     stroke-width="2"
++                     viewBox="0 0 24 24"
++                     width="24"
++                     xmlns="http://www.w3.org/2000/svg"
++                   >
++                     <path
++                       d="m21 21-4.34-4.34"
++                     />
++                     <circle
++                       cx="11"
++                       cy="11"
++                       r="8"
++                     />
++                   </svg>
++                   <input
++                     aria-label="寻找去处"
++                     class="min-h-touch w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden"
++                     data-v-f0486d0d=""
++                     placeholder="寻找湖畔、书屋或花园"
++                     type="search"
++                   />
++                   <transition-stub
++                     appear="false"
++                     css="true"
++                     data-v-f0486d0d=""
++                     name="nv-m-sb-clear"
++                     persisted="false"
++                   >
++                     <!--v-if-->
++                   </transition-stub>
++                 </div>
++                 <div
++                   class="nv-m-sb-cancel"
++                   data-v-f0486d0d=""
++                 >
++                   <button
++                     class="min-h-touch min-w-12 text-[15px] whitespace-nowrap text-brand active:opacity-60"
++                     data-v-f0486d0d=""
++                     type="button"
++                   >
++                      取消 
++                   </button>
++                 </div>
++               </div>
++               <p
++                 aria-label="搜索结果"
++                 class="text-sm"
++               >
++                 湖畔 · 书屋 · 花园
++               </p>
++               <output
++                 aria-label="搜索事件"
++                 class="block text-xs text-muted-foreground"
++               >
++                 尚未搜索
++               </output>
++             </section>
++             <section
++               aria-labelledby="details-heading"
++               class="space-y-4 rounded-2xl border border-border bg-card p-4"
++             >
++               <h2
++                 class="text-lg font-semibold"
++                 id="details-heading"
++               >
++                 一点小细节
++               </h2>
++               <div
++                 class="flex min-h-touch flex-wrap items-center justify-between gap-3"
++               >
++                 <span>
++                   留存份数（1–5）
++                 </span>
++                 <div
++                   class="nv-m-stepper inline-flex h-8 items-stretch overflow-hidden rounded-lg border border-border bg-card"
++                   data-slot="stepper"
++                   data-v-3d40570b=""
++                 >
++                   <button
++                     aria-label="减少"
++                     class="nv-m-stepper-btn grid w-8 place-items-center text-foreground disabled:opacity-30"
++                     data-v-3d40570b=""
++                     type="button"
++                   >
++                     <svg
++                       aria-hidden="true"
++                       class="lucide lucide-minus-icon lucide-minus size-4"
++                       data-v-3d40570b=""
++                       fill="none"
++                       height="24"
++                       stroke="currentColor"
++                       stroke-linecap="round"
++                       stroke-linejoin="round"
++                       stroke-width="2"
++                       viewBox="0 0 24 24"
++                       width="24"
++                       xmlns="http://www.w3.org/2000/svg"
++                     >
++                       <path
++                         d="M5 12h14"
++                       />
++                     </svg>
++                   </button>
++                   <input
++                     class="w-11 border-x border-border bg-transparent text-center text-[15px] font-medium tabular-nums outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
++                     data-v-3d40570b=""
++                     inputmode="numeric"
++                     type="number"
++                     value="2"
++                   />
++                   <button
++                     aria-label="增加"
++                     class="nv-m-stepper-btn grid w-8 place-items-center text-foreground disabled:opacity-30"
++                     data-v-3d40570b=""
++                     type="button"
++                   >
++                     <svg
++                       aria-hidden="true"
++                       class="lucide lucide-plus-icon lucide-plus size-4"
++                       data-v-3d40570b=""
++                       fill="none"
++                       height="24"
++                       stroke="currentColor"
++                       stroke-linecap="round"
++                       stroke-linejoin="round"
++                       stroke-width="2"
++                       viewBox="0 0 24 24"
++                       width="24"
++                       xmlns="http://www.w3.org/2000/svg"
++                     >
++                       <path
++                         d="M5 12h14"
++                       />
++                       <path
++                         d="M12 5v14"
++                       />
++                     </svg>
++                   </button>
++                 </div>
++               </div>
++               <output
++                 aria-label="份数回显"
++                 class="block text-sm text-muted-foreground"
++               >
++                 2 份
++               </output>
++               <p
++                 class="text-sm"
++               >
++                 今天有多喜欢？轻点半颗星，再点一次取消。
++               </p>
++               <div
++                 aria-label="今日评分"
++                 aria-valuemax="5"
++                 aria-valuemin="0"
++                 aria-valuenow="0"
++                 class="inline-flex items-center"
++                 data-slot="rate"
++                 data-v-7b312779=""
++                 role="slider"
++               >
++                 
++                 <button
++                   aria-label="1 星"
++                   class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default"
++                   data-v-7b312779=""
++                   type="button"
++                 >
++                   <span
++                     class="nv-m-rate-glyph relative block size-7"
++                     data-v-7b312779=""
++                   >
++                     <!-- empty base -->
++                     <svg
++                       aria-hidden="true"
++                       class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35"
++                       data-v-7b312779=""
++                       fill="none"
++                       height="24"
++                       stroke="currentColor"
++                       stroke-linecap="round"
++                       stroke-linejoin="round"
++                       stroke-width="2"
++                       viewBox="0 0 24 24"
++                       width="24"
++                       xmlns="http://www.w3.org/2000/svg"
++                     >
++                       <path
++                         d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                       />
++                     </svg>
++                     <!-- filled overlay, clipped to fill ratio -->
++                     <span
++                       class="absolute inset-0 overflow-hidden"
++                       data-v-7b312779=""
++                       style="width: 0%;"
++                     >
++                       <svg
++                         aria-hidden="true"
++                         class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400"
++                         data-v-7b312779=""
++                         fill="none"
++                         height="24"
++                         stroke="currentColor"
++                         stroke-linecap="round"
++                         stroke-linejoin="round"
++                         stroke-width="2"
++                         viewBox="0 0 24 24"
++                         width="24"
++                         xmlns="http://www.w3.org/2000/svg"
++                       >
++                         <path
++                           d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                         />
++                       </svg>
++                     </span>
++                   </span>
++                 </button>
++                 <button
++                   aria-label="2 星"
++                   class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default"
++                   data-v-7b312779=""
++                   type="button"
++                 >
++                   <span
++                     class="nv-m-rate-glyph relative block size-7"
++                     data-v-7b312779=""
++                   >
++                     <!-- empty base -->
++                     <svg
++                       aria-hidden="true"
++                       class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35"
++                       data-v-7b312779=""
++                       fill="none"
++                       height="24"
++                       stroke="currentColor"
++                       stroke-linecap="round"
++                       stroke-linejoin="round"
++                       stroke-width="2"
++                       viewBox="0 0 24 24"
++                       width="24"
++                       xmlns="http://www.w3.org/2000/svg"
++                     >
++                       <path
++                         d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                        />
++                     </svg>
++                     <!-- filled overlay, clipped to fill ratio -->
++                     <span
++                       class="absolute inset-0 overflow-hidden"
++                       data-v-7b312779=""
++                       style="width: 0%;"
++                     >
++                       <svg
++                         aria-hidden="true"
++                         class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400"
++                         data-v-7b312779=""
++                         fill="none"
++                         height="24"
++                         stroke="currentColor"
++                         stroke-linecap="round"
++                         stroke-linejoin="round"
++                         stroke-width="2"
++                         viewBox="0 0 24 24"
++                         width="24"
++                         xmlns="http://www.w3.org/2000/svg"
++                       >
++                         <path
++                           d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                         />
++                       </svg>
++                     </span>
++                   </span>
++                 </button>
++                 <button
++                   aria-label="3 星"
++                   class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default"
++                   data-v-7b312779=""
++                   type="button"
++                 >
++                   <span
++                     class="nv-m-rate-glyph relative block size-7"
++                     data-v-7b312779=""
++                   >
++                     <!-- empty base -->
++                     <svg
++                       aria-hidden="true"
++                       class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35"
++                       data-v-7b312779=""
++                       fill="none"
++                       height="24"
++                       stroke="currentColor"
++                       stroke-linecap="round"
++                       stroke-linejoin="round"
++                       stroke-width="2"
++                       viewBox="0 0 24 24"
++                       width="24"
++                       xmlns="http://www.w3.org/2000/svg"
++                     >
++                       <path
++                         d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                       />
++                     </svg>
++                     <!-- filled overlay, clipped to fill ratio -->
++                     <span
++                       class="absolute inset-0 overflow-hidden"
++                       data-v-7b312779=""
++                       style="width: 0%;"
++                     >
++                       <svg
++                         aria-hidden="true"
++                         class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400"
++                         data-v-7b312779=""
++                         fill="none"
++                         height="24"
++                         stroke="currentColor"
++                         stroke-linecap="round"
++                         stroke-linejoin="round"
++                         stroke-width="2"
++                         viewBox="0 0 24 24"
++                         width="24"
++                         xmlns="http://www.w3.org/2000/svg"
++                       >
++                         <path
++                           d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                         />
++                       </svg>
++                     </span>
++                   </span>
++                 </button>
++                 <button
++                   aria-label="4 星"
++                   class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default"
++                   data-v-7b312779=""
++                   type="button"
++                 >
++                   <span
++                     class="nv-m-rate-glyph relative block size-7"
++                     data-v-7b312779=""
++                   >
++                     <!-- empty base -->
++                     <svg
++                       aria-hidden="true"
++                       class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35"
++                       data-v-7b312779=""
++                       fill="none"
++                       height="24"
++                       stroke="currentColor"
++                       stroke-linecap="round"
++                       stroke-linejoin="round"
++                       stroke-width="2"
++                       viewBox="0 0 24 24"
++                       width="24"
++                       xmlns="http://www.w3.org/2000/svg"
++                     >
++                       <path
++                         d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                       />
++                     </svg>
++                     <!-- filled overlay, clipped to fill ratio -->
++                     <span
++                       class="absolute inset-0 overflow-hidden"
++                       data-v-7b312779=""
++                       style="width: 0%;"
++                     >
++                       <svg
++                         aria-hidden="true"
++                         class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400"
++                         data-v-7b312779=""
++                         fill="none"
++                         height="24"
++                         stroke="currentColor"
++                         stroke-linecap="round"
++                         stroke-linejoin="round"
++                         stroke-width="2"
++                         viewBox="0 0 24 24"
++                         width="24"
++                         xmlns="http://www.w3.org/2000/svg"
++                       >
++                         <path
++                           d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                         />
++                       </svg>
++                     </span>
++                   </span>
++                 </button>
++                 <button
++                   aria-label="5 星"
++                   class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default"
++                   data-v-7b312779=""
++                   type="button"
++                 >
++                   <span
++                     class="nv-m-rate-glyph relative block size-7"
++                     data-v-7b312779=""
++                   >
++                     <!-- empty base -->
++                     <svg
++                       aria-hidden="true"
++                       class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35"
++                       data-v-7b312779=""
++                       fill="none"
++                       height="24"
++                       stroke="currentColor"
++                       stroke-linecap="round"
++                       stroke-linejoin="round"
++                       stroke-width="2"
++                       viewBox="0 0 24 24"
++                       width="24"
++                       xmlns="http://www.w3.org/2000/svg"
++                     >
++                       <path
++                         d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                       />
++                     </svg>
++                     <!-- filled overlay, clipped to fill ratio -->
++                     <span
++                       class="absolute inset-0 overflow-hidden"
++                       data-v-7b312779=""
++                       style="width: 0%;"
++                     >
++                       <svg
++                         aria-hidden="true"
++                         class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400"
++                         data-v-7b312779=""
++                         fill="none"
++                         height="24"
++                         stroke="currentColor"
++                         stroke-linecap="round"
++                         stroke-linejoin="round"
++                         stroke-width="2"
++                         viewBox="0 0 24 24"
++                         width="24"
++                         xmlns="http://www.w3.org/2000/svg"
++                       >
++                         <path
++                           d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
++                         />
++                       </svg>
++                     </span>
++                   </span>
++                 </button>
++                 
++               </div>
++               <output
++                 aria-label="评分回显"
++                 class="block text-sm text-muted-foreground"
++               >
++                 0 星
++               </output>
++               <p
++                 class="text-sm"
++                 id="progress-label"
++               >
++                 灵感进度
++               </p>
++               <div
++                 aria-labelledby="progress-label"
++                 class="nv-m-slider relative flex h-11 items-center select-none mx-5"
++                 data-slot="slider"
++                 data-v-84b4eda5=""
++               >
++                 <div
++                   class="relative h-1.5 w-full rounded-full bg-muted"
++                   data-v-84b4eda5=""
++                 >
++                   <!-- filled portion -->
++                   <div
++                     class="absolute inset-y-0 left-0 rounded-full bg-brand"
++                     data-v-84b4eda5=""
++                     style="width: 20%;"
++                   />
++                   <!-- thumb (44px hit area centered on the value position) -->
++                   <div
++                     aria-disabled="false"
++                     aria-valuemax="100"
++                     aria-valuemin="0"
++                     aria-valuenow="20"
++                     class="nv-m-slider-thumb absolute top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center"
++                     data-v-84b4eda5=""
++                     role="slider"
++                     style="left: 20%;"
++                     tabindex="0"
++                   >
++                     <!-- Two concentric discs (WinUI3): a solid brand outer circle with a
++              smaller dark circle sitting directly inside it (no ring/gap). The
++              inner disc is small at rest, grows on hover, shrinks while pressed. -->
++                     <span
++                       class="nv-m-slider-ring grid size-5 place-items-center rounded-full bg-brand shadow-[0_1px_5px_rgb(0_0_0/0.35)]"
++                       data-v-84b4eda5=""
++                     >
++                       <span
++                         class="nv-m-slider-dot block size-3.5 rounded-full bg-background"
++                         data-v-84b4eda5=""
++                       />
++                     </span>
++                     <!--v-if-->
++                   </div>
++                 </div>
++               </div>
++               <output
++                 aria-label="进度回显"
++                 class="block text-sm text-muted-foreground"
++               >
++                 20%
++               </output>
++               <button
++                 aria-label="保存记录"
++                 class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 bg-brand text-brand-foreground h-12 px-5 text-base w-full"
++                 data-slot="mobile-button"
++                 data-v-a3bc4b5b=""
++                 type="button"
++               >
++                 
++                 保存记录
++                 
++               </button>
++               <div
++                 class="flex flex-wrap items-center gap-3"
++               >
++                 <button
++                   class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 bg-destructive/10 text-destructive h-8 px-3 text-[13px]"
++                   data-slot="mobile-button"
++                   data-v-a3bc4b5b=""
++                   type="button"
++                 >
++                   
++                   清空标题
++                   
++                 </button>
++                 <button
++                   class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 bg-transparent text-brand h-10 px-4 text-[15px]"
++                   data-slot="mobile-button"
++                   data-v-a3bc4b5b=""
++                   type="button"
++                 >
++                   
++                   重新感受
++                   
++                 </button>
++                 <button
++                   aria-label="暂不可用"
++                   class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 bg-muted text-foreground h-10 px-4 text-[15px]"
++                   data-slot="mobile-button"
++                   data-v-a3bc4b5b=""
++                   disabled=""
++                   type="button"
++                 >
++                   
++                   暂不可用
++                   
++                 </button>
++               </div>
++               <output
++                 aria-label="操作回显"
++                 class="block text-sm text-muted-foreground"
++               >
++                 尚未保存
++               </output>
++             </section>
++             <section
++               aria-labelledby="preferences-heading"
++               class="space-y-4 rounded-2xl border border-border bg-card p-4"
++             >
++               <h2
++                 class="text-lg font-semibold"
++                 id="preferences-heading"
++               >
++                 记录偏好
++               </h2>
++               <div
++                 aria-label="记录方式"
++                 aria-required="false"
++                 class="overflow-hidden rounded-xl border border-border bg-card"
++                 data-slot="mobile-radio-group"
++                 dir="ltr"
++                 role="radiogroup"
++                 style="outline: none;"
++                 tabindex="0"
++               >
++                 
++                 
++                 
++                 
++                 <button
++                   aria-checked="true"
++                   class="nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40"
++                   data-active=""
++                   data-reka-collection-item=""
++                   data-slot="mobile-radio-item"
++                   data-state="checked"
++                   data-v-064a213b=""
++                   required="false"
++                   role="radio"
++                   tabindex="-1"
++                   type="button"
++                   value="pocket"
++                 >
++                   
++                   
++                   <span
++                     data-v-064a213b=""
++                   >
++                     
++                     随身
++                     
++                   </span>
++                   <span
++                     data-state="checked"
++                     data-v-064a213b=""
++                   >
++                     
++                     <svg
++                       aria-hidden="true"
++                       class="lucide lucide-check-icon lucide-check nv-m-mradio-tick size-5 text-brand"
++                       data-v-064a213b=""
++                       fill="none"
++                       height="24"
++                       stroke="currentColor"
++                       stroke-linecap="round"
++                       stroke-linejoin="round"
++                       stroke-width="2"
++                       viewBox="0 0 24 24"
++                       width="24"
++                       xmlns="http://www.w3.org/2000/svg"
++                     >
++                       <path
++                         d="M20 6 9 17l-5-5"
++                       />
++                     </svg>
++                     
++                   </span>
++                   
++                   
++                 </button>
++                 <!--v-if-->
++                 
++                 
++                 <button
++                   aria-checked="false"
++                   class="nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40"
++                   data-reka-collection-item=""
++                   data-slot="mobile-radio-item"
++                   data-state="unchecked"
++                   data-v-064a213b=""
++                   required="false"
++                   role="radio"
++                   tabindex="-1"
++                   type="button"
++                   value="desk"
++                 >
++                   
++                   
++                   <span
++                     data-v-064a213b=""
++                   >
++                     
++                     书桌
++                     
++                   </span>
++                   <!---->
++                   
++                   
++                 </button>
++                 <!--v-if-->
++                 
++                 
++                 <button
++                   aria-checked="false"
++                   class="nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40"
++                   data-reka-collection-item=""
++                   data-slot="mobile-radio-item"
++                   data-state="unchecked"
++                   data-v-064a213b=""
++                   required="false"
++                   role="radio"
++                   tabindex="-1"
++                   type="button"
++                   value="travel"
++                 >
++                   
++                   
++                   <span
++                     data-v-064a213b=""
++                   >
++                     
++                     旅途
++                     
++                   </span>
++                   <!---->
++                   
++                   
++                 </button>
++                 <!--v-if-->
++                 
++                 
++                 
++                 
++                 <!--v-if-->
++               </div>
++               <div
++                 class="flex min-h-touch items-center justify-between gap-3"
++               >
++                 <label
++                   for="note-reminder"
++                 >
++                   灵感提醒
++                 </label>
++                 
++                 <button
++                   aria-checked="false"
++                   aria-label="灵感提醒"
++                   aria-required="false"
++                   class="nv-m-mswitch inline-flex h-[31px] w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-brand/30 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35"
++                   data-slot="mobile-switch"
++                   data-state="unchecked"
++                   data-v-e1d3872a=""
++                   id="note-reminder"
++                   role="switch"
++                   type="button"
++                   value="on"
++                 >
++                   
++                   <span
++                     class="nv-m-mswitch-thumb pointer-events-none block size-[27px] rounded-full bg-white shadow-[0_2px_4px_rgb(0_0_0/0.2)] ring-0 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
++                     data-state="unchecked"
++                     data-v-e1d3872a=""
++                   >
++                     
++                     
++                   </span>
++                   
++                 </button>
++                 <!--v-if-->
++                 
++               </div>
++               <button
++                 aria-checked="false"
++                 aria-label="锁定评分与进度"
++                 class="nv-m-mcheck flex min-h-11 w-full items-center gap-3 text-left text-[15px] select-none disabled:opacity-40"
++                 data-slot="mobile-checkbox"
++                 data-v-7530af67=""
++                 role="checkbox"
++                 type="button"
++               >
++                 <span
++                   class="nv-m-mcheck-box grid size-[22px] shrink-0 place-items-center rounded-md border-2 transition-[colors,transform] border-muted-foreground/40 bg-transparent"
++                   data-v-7530af67=""
++                 >
++                   <svg
++                     aria-hidden="true"
++                     class="lucide lucide-check-icon lucide-check nv-m-mcheck-tick size-3.5 scale-0 opacity-0"
++                     data-v-7530af67=""
++                     fill="none"
++                     height="24"
++                     stroke="currentColor"
++                     stroke-linecap="round"
++                     stroke-linejoin="round"
++                     stroke-width="3"
++                     viewBox="0 0 24 24"
++                     width="24"
++                     xmlns="http://www.w3.org/2000/svg"
++                   >
++                     <path
++                       d="M20 6 9 17l-5-5"
++                     />
++                   </svg>
++                 </span>
++                 <span
++                   class="min-w-0 flex-1"
++                   data-v-7530af67=""
++                 >
++                   
++                   锁定评分与进度
++                   
++                 </span>
++               </button>
++               <output
++                 aria-label="偏好回显"
++                 class="block text-sm text-muted-foreground"
++               >
++                 随身 · 提醒关 · 锁定关
++               </output>
++               <div
++                 class="flex flex-wrap gap-3"
++               >
++                 <button
++                   aria-label="调整选项顺序"
++                   class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]"
++                   data-slot="mobile-button"
++                   data-v-a3bc4b5b=""
++                   type="button"
++                 >
++                   
++                   调整顺序
++                   
++                 </button>
++                 <button
++                   aria-label="恢复偏好"
++                   class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 bg-muted text-foreground h-10 px-4 text-[15px]"
++                   data-slot="mobile-button"
++                   data-v-a3bc4b5b=""
++                   type="button"
++                 >
++                   
++                   恢复偏好
++                   
++                 </button>
++               </div>
++             </section>
++             
++           </div>
++         </div>
++         
++       </main>
++       <!--v-if-->
++     </div>
++   </div>
++   
++   <transition-stub
++     appear="false"
++     css="true"
++     data-v-9e23dc1d=""
++     name="nv-m-nk-fade"
++     persisted="false"
++   >
++     <!--v-if-->
++   </transition-stub>
++   <transition-stub
++     appear="false"
++     css="true"
++     data-v-9e23dc1d=""
++     name="nv-m-nk-slide"
++     persisted="false"
++   >
++     <!--v-if-->
++   </transition-stub>
++   
++   
++   
++   
++   <!---->
++   <!---->
++   
++   
++   
++   
++   
++   
++   <!---->
++   <!---->
++   
++   
++   
++ </body>
+
+ ❯ src/MobileInputDemo.test.ts:303:34
+    301|   expect(body.find('[data-slot="number-keyboard"]').exists()).toBe(fal…
+    302|   expect(wrapper.get('[aria-label="键盘确认"]').text()).toBe('confirm：1')
+    303|   expect(document.activeElement).toBe(scanner.element)
+       |                                  ^
+    304|   expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码接收中')
+    305|   expect(scanner.element.value).toBe('保留草稿')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 13 skipped (14)
+   Start at  19:45:26
+   Duration  8.35s (transform 4.94s, setup 711ms, import 6.35s, tests 321ms, environment 811ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileInputDemo.test.ts -t 'resumes scanning after focus leaves'

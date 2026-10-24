@@ -7,19 +7,23 @@ import MobileCaptureInput from './mobile-input/MobileCaptureInput.vue'
 
 const { isDark, toggle } = useColorMode()
 const editing = shallowRef(false)
-function trackEditor(target: EventTarget | null) {
+function trackEditor(target: EventTarget | null, host: EventTarget | null) {
   editing.value =
     target instanceof HTMLElement &&
+    host instanceof HTMLElement &&
+    host.contains(target) &&
     !target.closest('[data-scan-region]') &&
-    (target.matches(
-      'input, textarea, select, [contenteditable], [role="radio"], [role="checkbox"], [role="switch"], [role="slider"]',
-    ) ||
-      (!!target.closest('[data-form-region]') && target.matches('button, a[href], [tabindex]')))
+    target.matches(
+      'input, textarea, select, button, a[href], [tabindex], [contenteditable], [role="radio"], [role="checkbox"], [role="switch"], [role="slider"]',
+    )
 }
 </script>
 
 <template>
-  <NvAppShellMobile>
+  <NvAppShellMobile
+    @focusin="trackEditor($event.target, $event.currentTarget)"
+    @focusout="trackEditor($event.relatedTarget, $event.currentTarget)"
+  >
     <template #header>
       <NvNavBar title="随心记录">
         <template #right>
@@ -35,11 +39,7 @@ function trackEditor(target: EventTarget | null) {
         </template>
       </NvNavBar>
     </template>
-    <div
-      class="mx-auto max-w-2xl space-y-6 px-5 pt-5 pb-12"
-      @focusin="trackEditor($event.target)"
-      @focusout="trackEditor($event.relatedTarget)"
-    >
+    <div class="mx-auto max-w-2xl space-y-6 px-5 pt-5 pb-12">
       <header class="space-y-2">
         <p class="text-sm text-muted-foreground">留住生活里的小小灵感</p>
         <h1 class="text-2xl font-semibold">随心记录</h1>

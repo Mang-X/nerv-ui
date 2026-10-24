@@ -1,0 +1,70 @@
+{"name":"final scanner active","size":[390,844],"active":"<input type=\"text\" inputmode=\"none\" autocomplete=\"off\" autocapitalize=\"off\" spellcheck=\"false\" placeholder=\"键入编码后按回车\" class=\"w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground\">","activeId":"","activeLabel":null,"status":"扫码接收中","draft":"","number":"","confirm":"尚未确认","sheet":false,"keyboard":false,"dialog":false}
+{"name":"Tab to mode","size":[390,844],"active":"<select id=\"number-mode\" aria-label=\"数字键盘模式\" class=\"min-h-touch w-full rounded-xl border border-border bg-card px-3 text-sm\"><option value=\"decimal\">小数与正负号</option><option value=\"code\">数字与 X</option><option value=\"digits\">纯数字</option></select>","activeId":"number-mode","activeLabel":"数字键盘模式","status":"扫码已让出焦点","draft":"手工草稿F1","number":"","confirm":"尚未确认","sheet":false,"keyboard":false,"dialog":false}
+{"name":"Tab to readonly number","size":[390,844],"active":"<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"note-number\" readonly=\"\" inputmode=\"none\" autocomplete=\"off\" placeholder=\"点此录入\">","activeId":"note-number","activeLabel":null,"status":"扫码已让出焦点","draft":"手工草稿F1","number":"","confirm":"尚未确认","sheet":false,"keyboard":false,"dialog":false}
+{"name":"Tab to clear number","size":[390,844],"active":"<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"清空数值\">清空数值</button>","activeId":"","activeLabel":"清空数值","status":"扫码已让出焦点","draft":"手工草稿F1","number":"","confirm":"尚未确认","sheet":false,"keyboard":false,"dialog":false}
+{"name":"Enter clear retains focus","size":[390,844],"active":"<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"清空数值\">清空数值</button>","activeId":"","activeLabel":"清空数值","status":"扫码已让出焦点","draft":"手工草稿F1","number":"","confirm":"尚未确认","sheet":false,"keyboard":false,"dialog":false}
+{"name":"Tab to sheet action","size":[390,844],"active":"<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 bg-brand text-brand-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"打开数值抽屉\">在抽屉里继续</button>","activeId":"","activeLabel":"打开数值抽屉","status":"扫码已让出焦点","draft":"手工草稿F1","number":"","confirm":"尚未确认","sheet":false,"keyboard":false,"dialog":false}
+{"name":"Space opens sheet and yields to note","size":[390,844],"active":"<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"sheet-note\" autocomplete=\"off\">","activeId":"sheet-note","activeLabel":null,"status":"扫码已让出焦点","draft":"手工草稿F1","number":"","confirm":"尚未确认","sheet":true,"keyboard":false,"dialog":false}
+{"name":"Tab to sheet readonly number","size":[390,844],"active":"<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"sheet-number\" readonly=\"\" inputmode=\"none\" autocomplete=\"off\" placeholder=\"点此录入\">","activeId":"sheet-number","activeLabel":null,"status":"扫码已让出焦点","draft":"手工草稿F1","number":"","confirm":"尚未确认","sheet":true,"keyboard":false,"dialog":false}
+[p1 "NvUI · 项目清单" | space "nerv-ui-t04-n02-f1-20261024"(4): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    text "随心记录"
+    button "切换明暗" [ref=56, loc=css:button[aria-label="切换明暗"]]
+      text "深色"
+  container
+    container "接住一串灵感"
+      text "数字键盘模式"
+      combobox "数字键盘模式" [ref=57, loc=css:select[aria-label="数字键盘模式"]]
+        text "小数与正负号"
+      text "记录数值"
+      textbox [ref=58]
+        text "点此录入"
+      paragraph
+        text "保留开头的零，追加输入最多 6 个字符；正负号可独立切换。"
+      button "清空数值" [ref=59, loc=css:button[aria-label="清空数值"]]
+        text "清空数值"
+      output "键盘按键" [ref=60]
+        text "尚未按键"
+      output "键盘确认" [ref=61]
+        text "尚未确认"
+      button "打开数值抽屉" [ref=62, loc=css:button[aria-label="打开数值抽屉"]]
+        text "在抽屉里继续"
+      button "打开记录提示" [ref=63, loc=css:button[aria-label="打开记录提示"]]
+        text "留个提醒"
+      output "提示回显" [ref=64]
+        text "尚无备注"
+    container "写下灵感"
+      heading
+        text "写下灵感"
+      text "标题"
+      text "记"
+      textbox [ref=65, loc=css:input[name="title"]]
+        text "给今天起个名字"
+      text "0/24 字"
+      output "标题回显" [ref=66]
+        text "未命名 · 0 字"
+      svg_root
+      searchbox "寻找去处" [ref=67, loc=css:input[placeholder="寻找湖畔、书屋或花园"]]
+        text "寻找湖畔、书屋或花园"
+      paragraph "搜索结果"
+        text "湖畔 · 书屋 · 花园"
+  dialog "调整数值" [ref=68, loc=role:dialog[name="调整数值"]]
+    container
+      heading
+        text "调整数值"
+      paragraph
+        text "写下一点补充，再收下数值。"
+    container
+      text "补充说明"
+      textbox [ref=69]
+        text "抽屉草稿F1"
+      text "抽屉数值"
+      textbox [ref=70]
+        text "点此录入"
+      button "关闭数值抽屉" [ref=71, loc=css:button[aria-label="关闭数值抽屉"]]
+        text "返回记录"
+
+{"name":"sheet confirm","size":[390,844],"active":"<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"sheet-number\" readonly=\"\" inputmode=\"none\" autocomplete=\"off\" placeholder=\"点此录入\">","activeId":"sheet-number","activeLabel":null,"status":"扫码已让出焦点","draft":"手工草稿F1","number":"01","confirm":"confirm：01","sheet":true,"keyboard":false,"dialog":false}
+{"name":"Escape closes sheet","size":[390,844],"active":"<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 bg-brand text-brand-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"打开数值抽屉\">在抽屉里继续</button>","activeId":"","activeLabel":"打开数值抽屉","status":"扫码已让出焦点","draft":"手工草稿F1","number":"01","confirm":"confirm：01","sheet":false,"keyboard":false,"dialog":false}
+

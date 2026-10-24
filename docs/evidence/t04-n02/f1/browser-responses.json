@@ -1,0 +1,94 @@
+{
+  "observed": {
+    "url": "http://127.0.0.1:4174/?f1=final2#mobile-input",
+    "resources": [
+      {
+        "url": "http://127.0.0.1:4174/assets/index-BuDJPcks.js",
+        "initiatorType": "script"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/index-Bp6Bq-fD.css",
+        "initiatorType": "link"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+        "initiatorType": "css"
+      }
+    ],
+    "scripts": [
+      "http://127.0.0.1:4174/assets/index-BuDJPcks.js"
+    ],
+    "styles": [
+      "http://127.0.0.1:4174/assets/index-Bp6Bq-fD.css"
+    ],
+    "number": "",
+    "scan": "2 次 · NEXT"
+  },
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4174/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-type": "text/html",
+        "date": "Sat, 24 Oct 2026 11:56:07 GMT",
+        "etag": "W/\"1ab-ecy2XW8m77WQPLt6ssDEL8c0y6I\"",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "path": "/tmp/nerv-ui-t04-n02-f1/response-0.bin"
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/index-BuDJPcks.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "text/javascript",
+        "date": "Sat, 24 Oct 2026 11:56:07 GMT",
+        "etag": "W/\"454022-1792842447246\"",
+        "keep-alive": "timeout=5",
+        "last-modified": "Sat, 24 Oct 2026 11:47:27 GMT",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "path": "/tmp/nerv-ui-t04-n02-f1/response-1.bin"
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/index-Bp6Bq-fD.css",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "text/css",
+        "date": "Sat, 24 Oct 2026 11:56:07 GMT",
+        "etag": "W/\"221531-1792842447246\"",
+        "keep-alive": "timeout=5",
+        "last-modified": "Sat, 24 Oct 2026 11:47:27 GMT",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "path": "/tmp/nerv-ui-t04-n02-f1/response-2.bin"
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-length": "48256",
+        "content-type": "font/woff2",
+        "date": "Sat, 24 Oct 2026 11:56:07 GMT",
+        "etag": "W/\"48256-1792842447250\"",
+        "keep-alive": "timeout=5",
+        "last-modified": "Sat, 24 Oct 2026 11:47:27 GMT",
+        "vary": "Origin"
+      },
+      "path": "/tmp/nerv-ui-t04-n02-f1/response-3.bin"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+[
+  {
+    "name": "final scanner active",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input type=\"text\" inputmode=\"none\" autocomplete=\"off\" autocapitalize=\"off\" spellcheck=\"false\" placeholder=\"键入编码后按回车\" class=\"w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground\">",
+    "activeId": "",
+    "activeLabel": null,
+    "status": "扫码接收中",
+    "draft": "",
+    "number": "",
+    "confirm": "尚未确认",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Tab to mode",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<select id=\"number-mode\" aria-label=\"数字键盘模式\" class=\"min-h-touch w-full rounded-xl border border-border bg-card px-3 text-sm\"><option value=\"decimal\">小数与正负号</option><option value=\"code\">数字与 X</option><option value=\"digits\">纯数字</option></select>",
+    "activeId": "number-mode",
+    "activeLabel": "数字键盘模式",
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "",
+    "confirm": "尚未确认",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Tab to readonly number",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"note-number\" readonly=\"\" inputmode=\"none\" autocomplete=\"off\" placeholder=\"点此录入\">",
+    "activeId": "note-number",
+    "activeLabel": null,
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "",
+    "confirm": "尚未确认",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Tab to clear number",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"清空数值\">清空数值</button>",
+    "activeId": "",
+    "activeLabel": "清空数值",
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "",
+    "confirm": "尚未确认",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Enter clear retains focus",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"清空数值\">清空数值</button>",
+    "activeId": "",
+    "activeLabel": "清空数值",
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "",
+    "confirm": "尚未确认",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Tab to sheet action",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 bg-brand text-brand-foreground h-10 px-4 text-[15px]\" type=\"button\" aria-label=\"打开数值抽屉\">在抽屉里继续</button>",
+    "activeId": "",
+    "activeLabel": "打开数值抽屉",
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "",
+    "confirm": "尚未确认",
+    "sheet": false,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Space opens sheet and yields to note",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"sheet-note\" autocomplete=\"off\">",
+    "activeId": "sheet-note",
+    "activeLabel": null,
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "",
+    "confirm": "尚未确认",
+    "sheet": true,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "Tab to sheet readonly number",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"sheet-number\" readonly=\"\" inputmode=\"none\" autocomplete=\"off\" placeholder=\"点此录入\">",
+    "activeId": "sheet-number",
+    "activeLabel": null,
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "",
+    "confirm": "尚未确认",
+    "sheet": true,
+    "keyboard": false,
+    "dialog": false
+  },
+  {
+    "name": "sheet confirm",
+    "size": [
+      390,
+      844
+    ],
+    "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\" id=\"sheet-number\" readonly=\"\" inputmode=\"none\" autocomplete=\"off\" placeholder=\"点此录入\">",
+    "activeId": "sheet-number",
+    "activeLabel": null,
+    "status": "扫码已让出焦点",
+    "draft": "手工草稿F1",
+    "number": "01",
+    "confirm": "confirm：01",
+    "sheet": true,
+    "keyboard": false,
+    "dialog": false
+  }
+]

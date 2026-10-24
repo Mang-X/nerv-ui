@@ -1,5 +1,6 @@
 import { DOMWrapper, mount } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 
 let wrapper: ReturnType<typeof mount> | undefined
@@ -72,6 +73,58 @@ it('submits manual and captured scans, yields to ordinary fields and resumes wit
   await wrapper.vm.$nextTick()
   expect(scan.element.value).toBe('')
   expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已暂停')
+})
+
+it.each([
+  { action: 'clear number', selector: 'button[aria-label="清空数值"]' },
+  { action: 'open number sheet', selector: 'button[aria-label="打开数值抽屉"]' },
+  { action: 'open reminder dialog', selector: 'button[aria-label="打开记录提示"]' },
+  { action: 'save record control', selector: 'button[aria-label="保存记录"]' },
+  { action: 'header theme control', selector: 'button[aria-label="切换明暗"]' },
+  { action: 'host navigation link', selector: 'a[href="#mobile"]' },
+])('yields scan focus to $action and resumes with the manual draft', async ({ selector }) => {
+  const frames = new Map<number, FrameRequestCallback>()
+  let frameId = 0
+  vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
+    frames.set(++frameId, callback)
+    return frameId
+  })
+  vi.stubGlobal('cancelAnimationFrame', (id: number) => frames.delete(id))
+  const settle = async () => {
+    await nextTick()
+    const pending = [...frames.values()]
+    frames.clear()
+    pending.forEach((callback) => callback(0))
+    await nextTick()
+  }
+  wrapper = mount(MobileInputDemo, { attachTo: document.body })
+  const scanner = wrapper.get<HTMLInputElement>('[data-scan-region] input')
+  await settle()
+  expect(document.activeElement).toBe(scanner.element)
+  await scanner.setValue('手工草稿')
+  const ordinary = wrapper.get<HTMLInputElement>('#note-number')
+  ordinary.element.focus()
+  await settle()
+  expect(document.activeElement).toBe(ordinary.element)
+  const action = wrapper.get<HTMLElement>(selector)
+  action.element.focus()
+  await settle()
+  expect(document.activeElement).toBe(action.element)
+  expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已让出焦点')
+  expect(scanner.element.value).toBe('手工草稿')
+  action.element.blur()
+  await settle()
+  expect(document.activeElement).toBe(scanner.element)
+  expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码接收中')
+  // Direct scanner -> action must also cancel the scanner's queued blur refocus.
+  action.element.focus()
+  await settle()
+  expect(document.activeElement).toBe(action.element)
+  expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已让出焦点')
+  action.element.blur()
+  await settle()
+  expect(document.activeElement).toBe(scanner.element)
+  expect(scanner.element.value).toBe('手工草稿')
 })
 
 it('reflects native text and search events in the host, including clear and cancel', async () => {
@@ -209,6 +262,73 @@ it('edits keypad strings with decimal, sign, limit, delete and alternate extra k
   await body.get('[data-mobile-overlay-layer="input-backdrop"]').trigger('click')
   expect(body.find('[data-slot="number-keyboard"]').exists()).toBe(false)
   expect(wrapper.get('[aria-label="键盘确认"]').text()).toBe('confirm：0X2')
+})
+
+it('resumes scanning after focus leaves the host for the standalone keypad and confirmation removes it', async () => {
+  const frames = new Map<number, FrameRequestCallback>()
+  let frameId = 0
+  vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
+    frames.set(++frameId, callback)
+    return frameId
+  })
+  vi.stubGlobal('cancelAnimationFrame', (id: number) => frames.delete(id))
+  const settle = async () => {
+    await nextTick()
+    const pending = [...frames.values()]
+    frames.clear()
+    pending.forEach((callback) => callback(0))
+    await nextTick()
+  }
+  wrapper = mount(MobileInputDemo, { attachTo: document.body })
+  const scanner = wrapper.get<HTMLInputElement>('[data-scan-region] input')
+  const number = wrapper.get<HTMLInputElement>('#note-number')
+  await settle()
+  await scanner.setValue('保留草稿')
+  number.element.focus()
+  await number.trigger('keydown', { key: 'Enter' })
+  const body = new DOMWrapper(document.body)
+  const keypad = body.get('[data-slot="number-keyboard"]')
+  const digit = keypad.findAll<HTMLButtonElement>('button').find((button) => button.text() === '1')!
+  digit.element.focus()
+  await digit.trigger('click')
+  await settle()
+  expect(document.activeElement).toBe(digit.element)
+  expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已让出焦点')
+  const confirm = keypad
+    .findAll<HTMLButtonElement>('button')
+    .find((button) => button.text() === '收下数值')!
+  confirm.element.focus()
+  await confirm.trigger('click')
+  await settle()
+  expect(body.find('[data-slot="number-keyboard"]').exists()).toBe(false)
+  expect(wrapper.get('[aria-label="键盘确认"]').text()).toBe('confirm：1')
+  expect(document.activeElement).toBe(scanner.element)
+  expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码接收中')
+  expect(scanner.element.value).toBe('保留草稿')
+})
+
+it('toggles the sign independently after the keypad reaches its append limit', async () => {
+  wrapper = mount(MobileInputDemo, { attachTo: document.body })
+  const body = new DOMWrapper(document.body)
+  const field = wrapper.get<HTMLInputElement>('#note-number')
+  await field.trigger('click')
+  const keypad = body.get('[data-slot="number-keyboard"]')
+  for (const digit of ['1', '2', '3', '4', '5', '6', '7']) {
+    await keypad
+      .findAll('button')
+      .find((button) => button.text() === digit)!
+      .trigger('click')
+  }
+  expect(field.element.value).toBe('123456')
+  await keypad.get('button[aria-label="正负号"]').trigger('click')
+  expect(field.element.value).toBe('-123456')
+  await keypad.get('button[aria-label="正负号"]').trigger('click')
+  expect(field.element.value).toBe('123456')
+  await keypad
+    .findAll('button')
+    .find((button) => button.text() === '收下数值')!
+    .trigger('click')
+  expect(wrapper.get('[aria-label="键盘确认"]').text()).toBe('confirm：123456')
 })
 
 it('yields scan focus to sheets and dialogs, keeps keypad confirmation inside the sheet and closes nested input with its host', async () => {

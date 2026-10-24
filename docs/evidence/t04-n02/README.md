@@ -1,5 +1,7 @@
 # T04/N02 输入、扫码与数字键盘证据
 
+R1 material F1 的后续修复与最终增量验证见 [F1 记录](f1/README.md)。本页保留原实施证据与当时边界，旧 JS 交互不计作修复 head 的 fresh。
+
 对应 [#46](https://github.com/Mang-X/nerv-ui/issues/46)，只覆盖父 [#5](https://github.com/Mang-X/nerv-ui/issues/5) 的 N02 12 件。直接入口 `/#mobile-input`，`/#mobile` 点击“随心记录”也可进入。桌面、`/#touch`、`/#mobile` 保留。PR 目标为 `integration/nerv-ui-extraction`；本实施席不合并、不关票、不轮询。
 
 工作树 `/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input`，分支 `feat/t04-n02-mobile-input`。开工 clean，基线 `a20825e0477f446737a6bfc07d84b8ec20a143b6`，tree `b5878a6c46faac1384ec15bc5de3a5dea0908cfc`；提交前重新 fetch 后 integration 仍为该 tip。原始记录 `/tmp/nerv-ui-t04-n02`。最终 head/tree 以提交和 PR 为准；[运行身份](runtime-identity.json) 固定实际验证源码 SHA256，[资源身份](artifact-identity.json) 固定实际 HTTP 响应与本地 dist。
