@@ -8,6 +8,65 @@ const options = [
   { value: 'rest', label: '休息' },
 ]
 
+it('aligns focus requests and controlled selection after options reorder', async () => {
+  const wrapper = mount(NvTouchSegmented, {
+    props: { modelValue: 'read', options },
+    attachTo: document.body,
+  })
+  try {
+    await wrapper.setProps({ options: [options[2]!, options[0]!, options[1]!] })
+    const tabs = wrapper.findAll<HTMLButtonElement>('[role="tab"]')
+    expect(tabs.map((tab) => tab.text())).toEqual(['休息', '阅读', '聆听'])
+    tabs[1]!.element.focus()
+    await tabs[1]!.trigger('keydown', { key: 'ArrowRight' })
+    expect(wrapper.emitted('update:modelValue')).toEqual([['listen']])
+    expect(wrapper.get('[aria-selected="true"]').text()).toBe('阅读')
+    expect(document.activeElement).toBe(tabs[2]!.element)
+    await wrapper.setProps({ modelValue: 'listen' })
+    expect(wrapper.get('[aria-selected="true"]').element).toBe(document.activeElement)
+    expect(wrapper.findAll('[tabindex="0"]').map((tab) => tab.text())).toEqual(['聆听'])
+  } finally {
+    wrapper.unmount()
+  }
+})
+
+it('uses updated options for Arrow Home and End after removal and insertion', async () => {
+  const wrapper = mount(NvTouchSegmented, {
+    props: { modelValue: 'read', options },
+    attachTo: document.body,
+  })
+  try {
+    await wrapper.setProps({
+      options: [{ value: 'pause', label: '暂停' }, options[0]!, options[1]!],
+    })
+    const tabs = wrapper.findAll<HTMLButtonElement>('[role="tab"]')
+    expect(tabs.map((tab) => tab.text())).toEqual(['暂停', '阅读', '聆听'])
+    tabs[1]!.element.focus()
+    for (const [key, target, value] of [
+      ['ArrowRight', 2, 'listen'],
+      ['Home', 0, 'pause'],
+      ['End', 2, 'listen'],
+      ['ArrowLeft', 1, 'read'],
+    ] as const) {
+      const previous = wrapper.get('[aria-selected="true"]').element
+      const focused = wrapper
+        .findAll('[role="tab"]')
+        .find((tab) => tab.element === document.activeElement)!
+      await focused.trigger('keydown', { key })
+      expect(document.activeElement).toBe(tabs[target]!.element)
+      expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual([value])
+      expect(wrapper.get('[aria-selected="true"]').element).toBe(previous)
+      await wrapper.setProps({ modelValue: value })
+      expect(wrapper.get('[aria-selected="true"]').element).toBe(document.activeElement)
+      expect(wrapper.findAll('[tabindex="0"]').map((tab) => tab.element)).toEqual([
+        document.activeElement,
+      ])
+    }
+  } finally {
+    wrapper.unmount()
+  }
+})
+
 it('moves focus and requests a controlled selection with horizontal navigation keys', async () => {
   const wrapper = mount(NvTouchSegmented, {
     props: { modelValue: 'read', options },

@@ -1,0 +1,93 @@
+{
+  "reviewedHead": "a7dfc8c07ef99e2f72fe1b90759cb835dc744c10",
+  "reviewedTree": "4ccb18d06fc8c563eb544e4a2e3cf977f8c16f8e",
+  "integrationBase": "a482af3826f611bab11f608139860b7f9a29891a",
+  "node": "v24.18.0",
+  "pnpm": "11.22.0",
+  "gates": {
+    "formal-red": {
+      "exit": 1,
+      "log": "/tmp/nerv-ui-t03-f1/formal-red.log"
+    },
+    "formal-green": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/formal-green.log"
+    },
+    "formal-final": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/formal-final.log"
+    },
+    "external-green": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/external-green.log"
+    },
+    "tests": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/tests.log"
+    },
+    "docs-tests": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/docs-tests.log"
+    },
+    "build-initial": {
+      "exit": 2,
+      "log": "/tmp/nerv-ui-t03-f1/build-initial.log"
+    },
+    "build": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/build.log"
+    },
+    "fmt": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/fmt.log"
+    },
+    "lint": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/lint.log"
+    },
+    "diff-check": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/diff-check.log"
+    },
+    "harness-build": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/harness-build.log"
+    },
+    "browser-focus": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/browser-focus.log"
+    },
+    "browser-matrix": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/browser-matrix.log"
+    },
+    "browser-final": {
+      "exit": 0,
+      "log": "/tmp/nerv-ui-t03-f1/browser-final.log"
+    }
+  },
+  "counts": {
+    "ui": 643,
+    "host": 17,
+    "docsContract": 6,
+    "formal": 5,
+    "external": 12,
+    "browserFocusSteps": 9,
+    "playgroundKeyboardSteps": 4,
+    "browserLayoutThemeCases": 8
+  },
+  "inheritance": [
+    "Existing non-F1 button/stepper/loading/pulse/slot/anchor browser interactions from a7dfc8c; not rerun here."
+  ],
+  "unrun": [
+    "fresh frozen installation",
+    "CI",
+    "physical touchscreen",
+    "other browsers",
+    "full documentation site",
+    "versioned artifact #11",
+    "old repository integration/fullstack",
+    "deployment",
+    "merge/issue closure"
+  ]
+}

@@ -1,0 +1,9 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t03-touch/frontend/packages/ui
+
+Could not parse CSS stylesheet
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  17:39:51
+   Duration  7.62s (transform 4.90s, setup 466ms, import 6.13s, tests 82ms, environment 824ms)

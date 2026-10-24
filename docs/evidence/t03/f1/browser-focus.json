@@ -1,0 +1,298 @@
+{
+  "host": "temporary production-built public @nerv-iip/ui host; no component internals",
+  "rows": [
+    {
+      "key": "ArrowRight",
+      "pending": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: read",
+        "selectedTab": "Read",
+        "focused": "Listen",
+        "tabStops": [
+          "Read"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Listen",
+        "tabStops": [
+          "Listen"
+        ]
+      }
+    },
+    {
+      "key": "ArrowRight",
+      "pending": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: rest",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Rest",
+        "tabStops": [
+          "Listen"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: rest",
+        "selected": "Selected: rest",
+        "selectedTab": "Rest",
+        "focused": "Rest",
+        "tabStops": [
+          "Rest"
+        ]
+      }
+    },
+    {
+      "key": "ArrowLeft",
+      "pending": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: rest",
+        "selectedTab": "Rest",
+        "focused": "Listen",
+        "tabStops": [
+          "Rest"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Listen",
+        "tabStops": [
+          "Listen"
+        ]
+      }
+    },
+    {
+      "key": "Home",
+      "pending": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: rest",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Rest",
+        "tabStops": [
+          "Listen"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: rest",
+        "selected": "Selected: rest",
+        "selectedTab": "Rest",
+        "focused": "Rest",
+        "tabStops": [
+          "Rest"
+        ]
+      }
+    },
+    {
+      "key": "End",
+      "pending": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: rest",
+        "selectedTab": "Rest",
+        "focused": "Listen",
+        "tabStops": [
+          "Rest"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Rest",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Listen",
+        "tabStops": [
+          "Listen"
+        ]
+      }
+    },
+    {
+      "key": "ArrowRight",
+      "pending": {
+        "dom": [
+          "Pause",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Listen",
+        "tabStops": [
+          "Listen"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Pause",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Listen",
+        "tabStops": [
+          "Listen"
+        ]
+      }
+    },
+    {
+      "key": "Home",
+      "pending": {
+        "dom": [
+          "Pause",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: pause",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Pause",
+        "tabStops": [
+          "Listen"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Pause",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: pause",
+        "selected": "Selected: pause",
+        "selectedTab": "Pause",
+        "focused": "Pause",
+        "tabStops": [
+          "Pause"
+        ]
+      }
+    },
+    {
+      "key": "End",
+      "pending": {
+        "dom": [
+          "Pause",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: pause",
+        "selectedTab": "Pause",
+        "focused": "Listen",
+        "tabStops": [
+          "Pause"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Pause",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: listen",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Listen",
+        "tabStops": [
+          "Listen"
+        ]
+      }
+    },
+    {
+      "key": "ArrowLeft",
+      "pending": {
+        "dom": [
+          "Pause",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: read",
+        "selected": "Selected: listen",
+        "selectedTab": "Listen",
+        "focused": "Read",
+        "tabStops": [
+          "Listen"
+        ]
+      },
+      "returned": {
+        "dom": [
+          "Pause",
+          "Read",
+          "Listen"
+        ],
+        "requested": "Requested: read",
+        "selected": "Selected: read",
+        "selectedTab": "Read",
+        "focused": "Read",
+        "tabStops": [
+          "Read"
+        ]
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4178/f1/assets/index-BiHfW4Cs.js",
+      "status": 200,
+      "sha256": "a9ebb45116e7b9591e2441e032ccc89c638d80809723ca59ea0cbfec450e6ba8",
+      "matchesBuiltFile": true
+    },
+    {
+      "url": "http://127.0.0.1:4178/f1/assets/index-Cw8s1Vq-.css",
+      "status": 200,
+      "sha256": "6ff5f156c5b71bbed83ff7db75e78710762b7dfb3bcfac3aeba4dfe78b3ede96",
+      "matchesBuiltFile": true
+    }
+  ]
+}

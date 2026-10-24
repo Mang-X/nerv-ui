@@ -17,7 +17,7 @@ const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
 const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
-const buttons = useTemplateRef<HTMLButtonElement[]>('buttons')
+const root = useTemplateRef<HTMLDivElement>('root')
 const activeIndex = computed(() =>
   Math.max(
     0,
@@ -48,20 +48,21 @@ function navigate(event: KeyboardEvent, index: number) {
   event.preventDefault()
   const option = props.options[next]
   if (!option) return
-  buttons.value?.[next]?.focus()
+  // Keyed moves do not reorder a v-for ref array; read the current DOM order.
+  root.value?.querySelectorAll<HTMLButtonElement>(':scope > button')[next]?.focus()
   emit('update:modelValue', option.value)
 }
 </script>
 
 <template>
   <div
+    ref="root"
     data-slot="touch-segmented"
     role="tablist"
     :class="cn('inline-flex h-12 items-center gap-1 rounded-xl bg-muted p-0.5', props.class)"
   >
     <button
       v-for="(opt, index) in options"
-      ref="buttons"
       :key="opt.value"
       type="button"
       role="tab"
