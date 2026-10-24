@@ -1,0 +1,32 @@
+$ git diff --check 0e487bdb
+docs/evidence/t04-n03/browser-01.log:90: new blank line at EOF.
+docs/evidence/t04-n03/browser-02.log:148: new blank line at EOF.
+docs/evidence/t04-n03/browser-03.log:97: new blank line at EOF.
+docs/evidence/t04-n03/browser-05.log:256: new blank line at EOF.
+docs/evidence/t04-n03/browser-06.log:383: new blank line at EOF.
+docs/evidence/t04-n03/browser-07.log:213: new blank line at EOF.
+docs/evidence/t04-n03/browser-10-diagnostic.log:61: new blank line at EOF.
+docs/evidence/t04-n03/browser-12-diagnostic.log:5: new blank line at EOF.
+docs/evidence/t04-n03/browser-17-diagnostic.log:6: new blank line at EOF.
+docs/evidence/t04-n03/browser-18.log:318: new blank line at EOF.
+docs/evidence/t04-n03/browser-19-final.log:6: new blank line at EOF.
+docs/evidence/t04-n03/browser-20-final-resources.log:69: new blank line at EOF.
+docs/evidence/t04-n03/browser-21-finish.log:2: new blank line at EOF.
+docs/evidence/t04-n03/build-fixed.log:29: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n03/build-fixed.log:31: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/build-fixed.log:39: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n03/build-fixed.log:41: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/build-post-review.log:29: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n03/build-post-review.log:31: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/build-post-review.log:39: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n03/build-post-review.log:41: trailing whitespace.
++ [38;5;240m     │[0m 
+
+exit=2

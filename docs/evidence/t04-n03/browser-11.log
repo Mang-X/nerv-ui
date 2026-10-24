@@ -1,0 +1,8 @@
+AssertionError [ERR_ASSERTION]: select all before replacement
+
+false !== true
+
+    at Object.type (file:///private/tmp/nerv-ui-t04-n03/browser-cdp.mjs:14:296)
+    at async file:////[eval2]:13:25
+
+ego's nodejs process exited with code 1.

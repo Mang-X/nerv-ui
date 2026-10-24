@@ -70,3 +70,12 @@ it('opens mobile inputs directly and keeps the shell, desktop and touch routes r
     expect(wrapper.text()).toContain(heading)
   }
 })
+
+it('opens the standalone overlay page directly and preserves all four existing entries', async () => {
+  window.location.hash = '#mobile-overlays'
+  wrapper = mount(App, { attachTo: document.body })
+  expect(wrapper.get('h1').text()).toBe('片刻安排')
+  for (const hash of ['#desktop', '#touch', '#mobile', '#mobile-input']) {
+    expect(wrapper.find(`a[href="${hash}"]`).exists()).toBe(true)
+  }
+})

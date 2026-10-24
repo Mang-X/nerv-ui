@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '庭院 · garden'
+- '湖畔 · lake'
+
+    at file:////[eval2]:10:93
+
+ego's nodejs process exited with code 1.

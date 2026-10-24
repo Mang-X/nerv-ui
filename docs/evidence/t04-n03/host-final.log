@@ -1,0 +1,19 @@
+$ pnpm -C frontend --filter @nerv-iip/playground test
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground
+
+
+ Test Files  6 passed (6)
+      Tests  52 passed (52)
+   Start at  20:33:52
+   Duration  12.13s (transform 25.39s, setup 6.87s, import 36.09s, tests 5.30s, environment 7.85s)
+
+$ vp test run src
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+exit=0

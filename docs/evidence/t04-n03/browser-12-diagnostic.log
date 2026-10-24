@@ -1,0 +1,5 @@
+before { value: '散步landscape-light', selection: [ 17, 17 ], active: 'arrangement-note', platform: 'MacIntel' }
+triple { value: '散步landscape-light', selection: [ 0, 17 ], active: 'arrangement-note', platform: 'MacIntel' }
+end { value: '散步landscape-light', selection: [ 17, 17 ], active: 'arrangement-note', platform: 'MacIntel' }
+shift home { value: '散步landscape-light', selection: [ 0, 17 ], active: 'arrangement-note', platform: 'MacIntel' }
+

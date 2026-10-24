@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { DialogTitle } from 'reka-ui'
-import { nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import BottomSheet from '../bottom-sheet/BottomSheet.vue'
 import MobileButton from '../button/MobileButton.vue'
 
@@ -22,11 +22,18 @@ const model = defineModel<string>()
 
 const ITEM = 40
 const scroller = ref<HTMLElement>()
-const draftIndex = ref(0)
+const draftValue = ref<string>()
+const draftIndex = computed(() =>
+  Math.max(
+    0,
+    props.options.findIndex((o) => o.value === draftValue.value),
+  ),
+)
 
 function onScroll() {
   const top = scroller.value?.scrollTop ?? 0
-  draftIndex.value = Math.max(0, Math.min(props.options.length - 1, Math.round(top / ITEM)))
+  const index = Math.max(0, Math.min(props.options.length - 1, Math.round(top / ITEM)))
+  draftValue.value = props.options[index]?.value
 }
 function confirm() {
   const opt = props.options[draftIndex.value]
@@ -34,19 +41,34 @@ function confirm() {
   open.value = false
 }
 
-watch(open, (isOpen) => {
-  if (!isOpen) return
+function resetDraft() {
+  draftValue.value =
+    props.options.find((o) => o.value === model.value)?.value ?? props.options[0]?.value
+}
+function positionWheel() {
   nextTick(() => {
-    const i = Math.max(
-      0,
-      props.options.findIndex((o) => o.value === model.value),
-    )
-    draftIndex.value = i
-    // jsdom / 老 WebView 没有 Element.prototype.scrollTo；瞬时定位改赋值 scrollTop
-    // （与 PullRefresh.vue restoreScrollTop 同写法），原本也没有 behavior: 'smooth'。
-    if (scroller.value) scroller.value.scrollTop = i * ITEM
+    if (open.value && scroller.value) scroller.value.scrollTop = draftIndex.value * ITEM
   })
-})
+}
+watch(
+  [open, model],
+  ([isOpen]) => {
+    if (!isOpen) return
+    resetDraft()
+    positionWheel()
+  },
+  { immediate: true },
+)
+watch(
+  () => props.options.map((o) => o.value),
+  () => {
+    if (!open.value) return
+    if (!props.options.some((o) => o.value === draftValue.value)) resetDraft()
+    positionWheel()
+  },
+)
+// A portal may mount after the initial open watcher; position the actual wheel then.
+watch(scroller, positionWheel)
 </script>
 
 <template>

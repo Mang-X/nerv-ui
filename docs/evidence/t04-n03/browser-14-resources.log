@@ -1,0 +1,8 @@
+Error: JavaScript evaluation failed at line 0, column 0: Error: RAF/animations timeout
+    at <anonymous>:2:240; expression: ()=>Promise.race([(async()=>{for(let i=0;i<2;i++)await new Promise(requestAnimationFrame);await Promise.all(document.getAnimations().map(a=>a.finished.catch(...
+    at runtimeValue (file:////[eval1]:9189:15)
+    at evaluateInSession (file:////[eval1]:19460:12)
+    at async file:////[eval1]:19083:24
+    at async file:////[eval1]:16940:28
+
+ego's nodejs process exited with code 1.

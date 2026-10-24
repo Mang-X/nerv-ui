@@ -76,3 +76,25 @@ N02 输入扫码接入见下文。后续 [#47](https://github.com/Mang-X/nerv-ui
 保留边界：浏览器向现有 Reka 单选组件连续发送无按住间隔的方向键 keyDown/keyUp 时，曾出现焦点已移动、选中值尚未改变；等待其异步焦点处理后再释放则两者一致。原始失败与成功边界分别保留，继承问题单列 [#51](https://github.com/Mang-X/nerv-ui/issues/51)，本票未修该底层竞态，也不把只发 keydown 的测试当作快速释放序列通过。
 
 验证记录、原始失败、资源身份和截图见 [N02 证据](evidence/t04-n02/README.md)。浏览器验证实际 DOM 配置、键盘事件和浮层触点，不能证明物理 PDA、扫码枪、系统软键盘不弹、非零安全区或 #11 安装产物已验收。N03–N05 与父 #5 仍由各票单独完成。
+
+## 选择与浮层（N03）
+
+[#47](https://github.com/Mang-X/nerv-ui/issues/47) 的独立入口为 `/#mobile-overlays`，也可从 `/#mobile` 点击“片刻安排”。桌面、触屏、页壳与输入入口仍保留。`MobileOverlayDemo.vue` 只组合页面；`mobile-overlays/OverlaySelections.vue` 持有去处/日期，`OverlayPanels.vue` 持有安排/提醒草稿与键盘生命周期，`OverlayDetails.vue` 持有动作、下拉和折叠状态。全部从裸包导入，复用已有公共移动 CSS，没有业务查询、认证、路由库或新依赖。
+
+| 公开件                                             | 中性受控接缝                                                                        |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `NvBottomSheet`                                    | 备注/时长草稿，确认保存，取消、遮罩、Escape、把手下拖放弃；抽屉关闭同步关闭数字键盘 |
+| `NvActionSheet`                                    | 动作重排后仍回传稳定 `value`，danger 外观，取消不触发 `select`                      |
+| `NvPicker`                                         | 单列滚轮，确定才写值，取消不提交；空选项确认不发值；宿主重排与恢复选择              |
+| `NvMobileDatePicker`                               | `YYYY-MM-DD`，2023–2025 年界，月末随年月夹取，确认与取消分离                        |
+| `NvMobileDialog`                                   | 提醒默认模态，确认提交 slot 输入，取消记录 `cancel`，Escape 只关闭；键盘焦点与恢复  |
+| `NvMobileDropdownMenu`、`NvMobileDropdownMenuItem` | 同组单开、遮罩关闭、字符串/数字值与 `change` 类型回显                               |
+| `NvMobileCollapse`                                 | 宿主受控展开、标题与内容 slots、内容按钮外部收起                                    |
+
+上述八件没有公开的 loading 或 disabled 选项能力，本例不新增这类 API。空选项沿用 Picker 的既有行为：保留当前值且不提交；日期上下界指年份，未新增日期级 min/max。下拉面板与遮罩是组内绝对定位，不是 Teleport 弹窗；宿主避免用 `overflow-hidden` 截断它们。
+
+本组公开回归先复现并窄修两个选择器问题：初始 `open=true` 的滚轮未定位、打开期间外部值/选项变更未同步；日期切换年月可能提交不存在的月末日。Picker 以稳定值保留重排前的草稿，移除草稿项时回退到外部值或首项；外部 `modelValue` 更新重新定位。DatePicker 将草稿夹取到现有年界及合法月末，滚动和外部变更均不提前提交。日列自身滚动只更新草稿，保留原生 scroll-snap；仅年月变化校正日列位置。来源是 T01 固定提交上的活动源码；不改迁移 provenance，未回传旧库，由 #14 接入时评估同步。
+
+`MOBILE_OVERLAY_TARGET` 不提供时使用 body，提供 selector 或 HTMLElement 时浮层挂到指定目标；测试覆盖两种注入形式及关闭后的移除。注入只改变挂载位置，固定定位浮层的几何约束仍由宿主容器决定。抽屉内复用现有 `NvNumberKeyboard` 优先输入层，按键和键盘遮罩不会被误当为抽屉外点击；宿主关闭抽屉或离开页面清理全部浮层。
+
+实际门禁、原始 RED/失败、四态浏览器与资源身份见 [N03 证据](evidence/t04-n03/README.md)。本组不重做 N02 扫码/输入，不修 #51 或 #43，不提前验收 N04/N05、父 #5、T08 组合、#11 产物安装或物理设备/软键盘/触摸手势。
