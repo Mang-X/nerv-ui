@@ -6,11 +6,15 @@
   "exports": {
     ".": "./src/index.ts",
     "./file-preview": "./src/components/ui/file-preview/index.ts",
-    "./test-support": "./src/test-support/index.ts"
+    "./test-support": "./src/test-support/index.ts",
+    "./styles.css": "./src/styles/standalone.css",
+    "./theme.css": "./src/styles/theme.css",
+    "./overrides.css": "./src/styles/overrides.css"
   },
   "scripts": {
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",
-    "test": "vp test run src"
+    "test": "vp test run src --exclude src/design-docs.contract.test.ts --exclude src/nvui-doc-coverage.contract.test.ts --exclude src/docs-layout.contract.test.ts",
+    "test:docs": "vp test run src/design-docs.contract.test.ts src/nvui-doc-coverage.contract.test.ts src/docs-layout.contract.test.ts"
   },
   "dependencies": {
     "@embedpdf/core": "2.14.4",

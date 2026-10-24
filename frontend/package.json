@@ -4,14 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate:api": "vp run -w workspace:generate-api",
-    "check": "vp check",
+    "dev": "pnpm --filter @nerv-iip/playground dev",
+    "test": "pnpm -r --workspace-concurrency=1 --if-present test",
+    "typecheck": "pnpm -r --workspace-concurrency=1 --if-present typecheck",
+    "build": "pnpm typecheck && pnpm --filter @nerv-iip/playground build",
     "fmt": "vp fmt --check .",
     "fmt:fix": "vp fmt --write .",
-    "lint": "vp lint .",
-    "test": "vp run --no-cache -w workspace:test",
-    "typecheck": "vp run -w workspace:typecheck",
-    "build": "vp run -w workspace:build"
+    "lint": "vp lint ."
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.2",

@@ -1,0 +1,8 @@
+T3 preview_status: available=false; preview_open was attempted before fallback.
+preview_open about:blank: Preview automation open failed: Invalid preview URL (parse: https:; input length 11).
+preview_open http://127.0.0.1:4173: chrome-error://chromewebdata/ (server not yet listening).
+preview_navigate after listener ready: title=NvUI · 项目清单, url=http://127.0.0.1:4173/.
+preview_snapshot attempt 1: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+preview_snapshot attempt 2: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Fallback: ego-browser v2.1.0, own TaskSpace 27 / p1. Actual viewport 2320x1245 CSS px.
+An attempted CDP 1440x1000 override did not persist in the native window; evidence reports actual dimensions.

@@ -1,0 +1,10 @@
+/* Default Tailwind v4 host integration; see docs/desktop-standalone.md. */
+@layer theme, nv-tokens, base, components, nv-components, utilities, nv-overrides, app;
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn-vue/tailwind.css';
+@import './theme.css';
+@import './overrides.css' layer(nv-overrides);
+
+/* Resolved relative to this package, including when linked from a workspace. */
+@source '../';

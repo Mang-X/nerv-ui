@@ -1,0 +1,12 @@
+{
+  "fonts": [
+    {
+      "url": "http://127.0.0.1:4173/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "responseStatus": 200,
+      "transferSize": 300,
+      "decodedBodySize": 48256
+    }
+  ],
+  "exceptions": [],
+  "eventCount": 71
+}

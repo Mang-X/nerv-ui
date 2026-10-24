@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/test-support/nvuiImportHygiene.test.ts (21 tests | 1 failed) 11ms
+     × guards Vue, TypeScript and CSS sources and skips tests and declarations 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test-support/nvuiImportHygiene.test.ts > isSource > guards Vue, TypeScript and CSS sources and skips tests and declarations
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/test-support/nvuiImportHygiene.test.ts:120:34
+    118|   it('guards Vue, TypeScript and CSS sources and skips tests and decla…
+    119|     expect(isSource('Page.vue')).toBe(true)
+    120|     expect(isSource('main.css')).toBe(true)
+       |                                  ^
+    121|     expect(isSource('useThing.ts')).toBe(true)
+    122|     expect(isSource('useThing.test.ts')).toBe(false)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 20 passed (21)
+   Start at  16:16:33
+   Duration  919ms (transform 51ms, setup 335ms, import 30ms, tests 11ms, environment 450ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/packages/ui:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/test-support/nvuiImportHygiene.test.ts

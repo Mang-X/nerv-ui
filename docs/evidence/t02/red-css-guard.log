@@ -1,0 +1,206 @@
+$ vp test run src src/test-support/nvuiImportHygiene.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/packages/ui
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ❯ src/test-support/nvuiImportHygiene.test.ts (21 tests | 4 failed) 19ms
+     × allows the documented stylesheet entries and rejects private style paths 5ms
+     × derives exactly the library-consuming apps that run vitest 3ms
+     × each derived app ships the shell and the shells agree byte-for-byte 1ms
+     × every app shell in the repo actually arms the guard 1ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ❯ src/components/ui/file-upload/FileUpload.test.ts (0 test)
+ ❯ src/design-system.contract.test.ts (24 tests | 3 failed) 81ms
+     × declares the full global layer order first in every host app main.css 2ms
+     × loads the host layer order before Vue and component-library modules 0ms
+     × keeps overrides.css unlayered (host decides the layer at import point) 1ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/ui/file-upload/FileUpload.test.ts [ src/components/ui/file-upload/FileUpload.test.ts ]
+Error: Failed to resolve import "../../../../../../../backend/services/FileStorage/src/Nerv.IIP.FileStorage.Web/appsettings.json" from "src/components/ui/file-upload/FileUpload.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/packages/ui/src/components/ui/file-upload/FileUpload.test.ts:5:0
+  26 |  const __vi_import_0__ = await import("@vue/test-utils");
+  27 |  const __vi_import_1__ = await import("vue");
+  28 |  const __vi_import_2__ = await import("../../../../../../../backend/services/FileStorage/src/Nerv.IIP.FileStorage.Web/...
+     |                                       ^
+  29 |  const __vi_import_3__ = await import(".");
+  30 |
+ ❯ TransformPluginContext._formatLog ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:35556:39
+ ❯ TransformPluginContext.error ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:35553:14
+ ❯ normalizeUrl ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:32588:18
+ ❯ ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:32651:30
+ ❯ TransformPluginContext.transform ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:32619:4
+ ❯ EnvironmentPluginContainer.transform ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:35341:14
+ ❯ loadAndTransform ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:25313:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/design-system.contract.test.ts > ADR 0020 §4 — cascade-layer isolation > declares the full global layer order first in every host app main.css
+Error: ENOENT: no such file or directory, open '/Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/apps/business-console/src/assets/main.css'
+ ❯ read src/design-system.contract.test.ts:11:31
+      9| // the ADR 0020 §3/§4 scene-namespace + cascade-layer isolation contra…
+     10| const srcDir = dirname(fileURLToPath(import.meta.url))
+     11| const read = (rel: string) => readFileSync(resolve(srcDir, rel), 'utf8…
+       |                               ^
+     12|
+     13| const themeCss = read('styles/theme.css')
+ ❯ appCss src/design-system.contract.test.ts:18:33
+ ❯ src/design-system.contract.test.ts:187:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  src/design-system.contract.test.ts > ADR 0020 §4 — cascade-layer isolation > loads the host layer order before Vue and component-library modules
+Error: ENOENT: no such file or directory, open '/Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/apps/business-console/src/main.ts'
+ ❯ read src/design-system.contract.test.ts:11:31
+      9| // the ADR 0020 §3/§4 scene-namespace + cascade-layer isolation contra…
+     10| const srcDir = dirname(fileURLToPath(import.meta.url))
+     11| const read = (rel: string) => readFileSync(resolve(srcDir, rel), 'utf8…
+       |                               ^
+     12|
+     13| const themeCss = read('styles/theme.css')
+ ❯ appEntry src/design-system.contract.test.ts:19:35
+ ❯ src/design-system.contract.test.ts:201:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  src/design-system.contract.test.ts > ADR 0020 §4 — cascade-layer isolation > keeps overrides.css unlayered (host decides the layer at import point)
+Error: ENOENT: no such file or directory, open '/Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/apps/business-console/src/assets/main.css'
+ ❯ read src/design-system.contract.test.ts:11:31
+      9| // the ADR 0020 §3/§4 scene-namespace + cascade-layer isolation contra…
+     10| const srcDir = dirname(fileURLToPath(import.meta.url))
+     11| const read = (rel: string) => readFileSync(resolve(srcDir, rel), 'utf8…
+       |                               ^
+     12|
+     13| const themeCss = read('styles/theme.css')
+ ❯ appCss src/design-system.contract.test.ts:18:33
+ ❯ src/design-system.contract.test.ts:240:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  src/test-support/nvuiImportHygiene.test.ts > nvuiImportViolation > allows the documented stylesheet entries and rejects private style paths
+AssertionError: expected 'deep import "@nerv-iip/ui/styles.css"…' to be null
+
+- Expected:
+null
+
++ Received:
+"deep import \"@nerv-iip/ui/styles.css\" — use the bare @nerv-iip/ui barrel"
+
+ ❯ src/test-support/nvuiImportHygiene.test.ts:78:66
+     76|   it('allows the documented stylesheet entries and rejects private sty…
+     77|     for (const entry of ['styles.css', 'theme.css', 'overrides.css']) {
+     78|       expect(nvuiImportViolation('@nerv-iip/ui/' + entry, PAGE)).toBeN…
+       |                                                                  ^
+     79|     }
+     80|     expect(nvuiImportViolation('@nerv-iip/ui/src/styles/theme.css', PA…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  src/test-support/nvuiImportHygiene.test.ts > appsRequiringContract > derives exactly the library-consuming apps that run vitest
+AssertionError: expected [ 'playground' ] to deeply equal [ 'business-console', …(3) ]
+
+- Expected
++ Received
+
+  [
+-   "business-console",
+-   "business-pda",
+-   "console",
+-   "screen",
++   "playground",
+  ]
+
+ ❯ src/test-support/nvuiImportHygiene.test.ts:130:49
+    128| describe('appsRequiringContract', () => {
+    129|   it('derives exactly the library-consuming apps that run vitest', () …
+    130|     expect(appsRequiringContract(frontendRoot)).toEqual([
+       |                                                 ^
+    131|       'business-console',
+    132|       'business-pda',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  src/test-support/nvuiImportHygiene.test.ts > appsRequiringContract > each derived app ships the shell and the shells agree byte-for-byte
+AssertionError: playground has no src/nvui-imports.contract.test.ts: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/test-support/nvuiImportHygiene.test.ts:141:81
+    139|     const contents = appsRequiringContract(frontendRoot).map((app) => {
+    140|       const shell = resolve(frontendRoot, 'apps', app, 'src', CONTRACT…
+    141|       expect(existsSync(shell), `${app} has no src/${CONTRACT_SHELL_BA…
+       |                                                                                 ^
+    142|       return readFileSync(shell).toString('base64')
+    143|     })
+ ❯ src/test-support/nvuiImportHygiene.test.ts:139:58
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  src/test-support/nvuiImportHygiene.test.ts > contractShellDefect > every app shell in the repo actually arms the guard
+Error: ENOENT: no such file or directory, open '/Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/apps/playground/src/nvui-imports.contract.test.ts'
+ ❯ src/test-support/nvuiImportHygiene.test.ts:219:34
+    217|     for (const app of appsRequiringContract(frontendRoot)) {
+    218|       const shell = resolve(frontendRoot, 'apps', app, 'src', CONTRACT…
+    219|       expect(contractShellDefect(readFileSync(shell, 'utf8')), app).to…
+       |                                  ^
+    220|     }
+    221|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  3 failed | 37 passed (40)
+      Tests  7 failed | 582 passed (589)
+   Start at  16:09:40
+   Duration  18.71s (transform 33.51s, setup 37.97s, import 61.96s, tests 13.10s, environment 38.30s)
+
+/Users/mang/Project/nerv-ui-worktrees/t02-desktop/frontend/packages/ui:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/ui@0.1.0 test: `vp test run src src/test-support/nvuiImportHygiene.test.ts`
+Exit status 1

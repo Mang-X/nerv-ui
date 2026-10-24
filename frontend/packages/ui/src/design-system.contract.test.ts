@@ -31,13 +31,8 @@ const firstImportSpecifier = (source: string) => {
     ? statement.moduleSpecifier.text
     : undefined
 }
-const HOST_APPS = [
-  'business-console',
-  'business-pda',
-  'console',
-  'design-system',
-  'screen',
-] as const
+// The new library owns its standalone host; original app checks live in reference-tests.
+const HOST_APPS = ['playground'] as const
 const LAYER_ORDER =
   '@layer theme, nv-tokens, base, components, nv-components, utilities, nv-overrides, app;'
 
@@ -235,10 +230,7 @@ import App from './App.vue'`
     // The file itself must not declare a layer — apps import it `layer(nv-overrides)`,
     // the docs import it plain. (ADR 0020 §4.3.)
     expect.soft(stripComments(overridesCss)).not.toContain('@layer')
-    // Product apps import it into nv-overrides.
-    for (const app of HOST_APPS) {
-      expect.soft(appCss(app)).toMatch(/overrides\.css'\s*layer\(nv-overrides\)/)
-    }
+    // Layer placement is exercised by the standalone host build/browser seam.
   })
 
   const uiSrc = resolve(srcDir) // packages/ui/src
@@ -319,30 +311,5 @@ import App from './App.vue'`
         .soft(readFileSync(file, 'utf8'), `${norm(file)} inline cubic-bezier`)
         .not.toMatch(/cubic-bezier/)
     }
-  })
-})
-
-// ─── ADR 0020 §4.2 — VitePress doc-site style isolation ────────────────────
-describe('ADR 0020 §4.2 — VitePress isolation', () => {
-  const ds = (rel: string) => read(`../../../apps/design-system/${rel}`)
-
-  it('enables postcssIsolateStyles for base.css AND vp-doc.css', () => {
-    const config = ds('docs/.vitepress/config.mts')
-    expect.soft(config).toContain('postcssIsolateStyles')
-    expect.soft(config).toMatch(/includeFiles:\s*\[[^\]]*base\\.css[^\]]*vp-doc\\.css/)
-  })
-
-  it('wraps every demo container root in vp-raw', () => {
-    expect.soft(ds('docs/.vitepress/theme/Demo.vue')).toContain('nv-demo vp-raw')
-    expect.soft(ds('docs/.vitepress/theme/ScreenDemo.vue')).toContain('nv-sd vp-raw')
-    expect.soft(ds('docs/.vitepress/theme/MobileDoc.vue')).toContain('nv-mdoc-phone vp-raw')
-  })
-
-  it('drops the old .vp-doc counter-hacks and never revives revert-layer', () => {
-    const style = stripComments(ds('docs/.vitepress/theme/style.css'))
-    expect.soft(style).not.toMatch(/\.vp-doc\s*:is\(\.(sb|nv-scr)-tbl/)
-    expect.soft(style).not.toContain('revert-layer')
-    // Doc site pulls host overrides (glass) in unlayered so they win in-site.
-    expect.soft(style).toContain("overrides.css'")
   })
 })
