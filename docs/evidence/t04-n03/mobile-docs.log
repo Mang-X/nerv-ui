@@ -1,0 +1,14 @@
+$ pnpm -C frontend --filter @nerv-iip/ui-mobile test:docs
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  20:27:04
+   Duration  5.42s (transform 3.45s, setup 0ms, import 4.90s, tests 4ms, environment 417ms)
+
+$ vp test run src/nvui-doc-coverage.contract.test.ts
+Could not parse CSS stylesheet
+
+exit=0

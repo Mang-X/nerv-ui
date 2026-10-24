@@ -1,0 +1,48 @@
+$ pnpm -C frontend --filter @nerv-iip/playground exec vp test run src/MobileOverlayDemo.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground
+
+ ❯ src/MobileOverlayDemo.test.ts (2 tests | 2 failed) 22ms
+   × commits the picked identity only on confirmation and leaves empty choices unsubmitted 19ms
+   × keeps date drafts separate and commits a real bounded calendar date 3ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  20:21:57
+   Duration  4.14s (transform 2.74s, setup 282ms, import 3.45s, tests 22ms, environment 303ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileOverlayDemo.test.ts
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileOverlayDemo.test.ts > commits the picked identity only on confirmation and leaves empty choices unsubmitted
+AssertionError: button 选择去处: expected undefined to be defined
+ ❯ click src/MobileOverlayDemo.test.ts:7:122
+      5| const body = () => new DOMWrapper(document.body)
+      6| const settle=async()=>{await flushPromises();await new Promise(r=>setT…
+      7| async function click(text:string) { const b=body().findAll('button').f…
+       |                                                                                                                          ^
+      8| async function scroll(selector:string,index:number){const w=body().get…
+      9| afterEach(()=>{wrapper?.unmount();document.body.innerHTML='';localStor…
+ ❯ src/MobileOverlayDemo.test.ts:12:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/MobileOverlayDemo.test.ts > keeps date drafts separate and commits a real bounded calendar date
+AssertionError: button 选择日期: expected undefined to be defined
+ ❯ click src/MobileOverlayDemo.test.ts:7:122
+      5| const body = () => new DOMWrapper(document.body)
+      6| const settle=async()=>{await flushPromises();await new Promise(r=>setT…
+      7| async function click(text:string) { const b=body().findAll('button').f…
+       |                                                                                                                          ^
+      8| async function scroll(selector:string,index:number){const w=body().get…
+      9| afterEach(()=>{wrapper?.unmount();document.body.innerHTML='';localStor…
+ ❯ src/MobileOverlayDemo.test.ts:27:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+exit=1

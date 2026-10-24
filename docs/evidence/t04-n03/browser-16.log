@@ -1,0 +1,10 @@
+Error: JavaScript evaluation failed at line 0, column 0: Error: button not unique 慢慢来 2
+    at <anonymous>:2:212
+    at __egoPageEvaluate (<anonymous>:2:354)
+    at <anonymous>:3:9; expression: ({label,scope})=>{const root=scope?document.querySelector(scope):document;const items=[...root.querySelectorAll('button')].filter(e=>e.textContent.trim()===l...
+    at runtimeValue (file:////[eval1]:9189:15)
+    at evaluateInSession (file:////[eval1]:19460:12)
+    at async file:////[eval1]:19083:24
+    at async file:////[eval1]:16940:28
+
+ego's nodejs process exited with code 1.

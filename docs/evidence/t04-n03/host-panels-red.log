@@ -1,0 +1,48 @@
+$ pnpm -C frontend --filter @nerv-iip/playground exec vp test run src/MobileOverlayDemo.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground
+
+ ❯ src/MobileOverlayDemo.test.ts (4 tests | 2 failed) 693ms
+   × keeps sheet edits as drafts, gives the numeric layer priority and removes it with the host sheet 18ms
+   × submits dialog content only on confirm and distinguishes cancel from Escape dismissal 17ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  20:22:47
+   Duration  6.49s (transform 4.09s, setup 279ms, import 5.12s, tests 693ms, environment 308ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileOverlayDemo.test.ts
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileOverlayDemo.test.ts > keeps sheet edits as drafts, gives the numeric layer priority and removes it with the host sheet
+AssertionError: button 写下安排: expected undefined to be defined
+ ❯ click src/MobileOverlayDemo.test.ts:7:122
+      5| const body = () => new DOMWrapper(document.body)
+      6| const settle=async()=>{await flushPromises();await new Promise(r=>setT…
+      7| async function click(text:string) { const b=body().findAll('button').f…
+       |                                                                                                                          ^
+      8| async function scroll(selector:string,index:number){const w=body().get…
+      9| afterEach(()=>{wrapper?.unmount();document.body.innerHTML='';localStor…
+ ❯ src/MobileOverlayDemo.test.ts:35:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/MobileOverlayDemo.test.ts > submits dialog content only on confirm and distinguishes cancel from Escape dismissal
+AssertionError: button 留个提醒: expected undefined to be defined
+ ❯ click src/MobileOverlayDemo.test.ts:7:122
+      5| const body = () => new DOMWrapper(document.body)
+      6| const settle=async()=>{await flushPromises();await new Promise(r=>setT…
+      7| async function click(text:string) { const b=body().findAll('button').f…
+       |                                                                                                                          ^
+      8| async function scroll(selector:string,index:number){const w=body().get…
+      9| afterEach(()=>{wrapper?.unmount();document.body.innerHTML='';localStor…
+ ❯ src/MobileOverlayDemo.test.ts:55:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+exit=1

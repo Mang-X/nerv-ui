@@ -1,0 +1,171 @@
+{
+  "base": "0e487bdbb51c9d041b71576f41585ac80244f2c1",
+  "frontendTree": "b2c22df3e379bfdca0a572b92d027b251f9fa71a",
+  "lanes": {
+    "ui": {
+      "tests": 644,
+      "log": "ui.log",
+      "note": "fresh before isolated mobile review fix; unchanged UI source; not rerun"
+    },
+    "mobile": {
+      "tests": 94,
+      "log": "mobile-post-review.log"
+    },
+    "host": {
+      "tests": 52,
+      "log": "host-post-review.log"
+    },
+    "naming": {
+      "tests": 6,
+      "log": "naming-post-review.log"
+    },
+    "mobileStaticDocs": {
+      "tests": 2,
+      "log": "mobile-docs-post-review.log"
+    },
+    "uiStaticDocs": {
+      "tests": 6,
+      "log": "ui-docs-post-review.log"
+    },
+    "build": {
+      "exit": 0,
+      "log": "build-post-review.log",
+      "typecheckPackages": 3
+    },
+    "browser": {
+      "states": 4,
+      "log": "browser-19-final.log",
+      "matrix": "browser-matrix-post-review.json",
+      "resourcesEqualBuilt": 4
+    }
+  },
+  "checks": [
+    {
+      "label": "docs-final-write",
+      "command": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "exec",
+        "vp",
+        "fmt",
+        "--write",
+        "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/README.md",
+        "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/docs/mobile-standalone.md",
+        "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/docs/evidence/t04-n03/README.md"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "source-final-fmt",
+      "command": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "exec",
+        "vp",
+        "fmt",
+        "--check",
+        "apps/playground/src/MobileOverlayDemo.test.ts",
+        "apps/playground/src/MobileOverlayDemo.vue",
+        "apps/playground/src/mobile-overlays/OverlayDetails.vue",
+        "apps/playground/src/mobile-overlays/OverlayPanels.vue",
+        "apps/playground/src/mobile-overlays/OverlaySelections.vue",
+        "packages/ui-mobile/src/components/date-picker/MobileDatePicker.test.ts",
+        "packages/ui-mobile/src/components/overlay-details.test.ts",
+        "packages/ui-mobile/src/components/overlays.test.ts",
+        "packages/ui-mobile/src/components/picker/Picker.test.ts",
+        "apps/playground/src/App.test.ts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/MobileDemo.vue",
+        "packages/ui-mobile/src/components/date-picker/MobileDatePicker.vue",
+        "packages/ui-mobile/src/components/picker/Picker.vue"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "source-final-lint",
+      "command": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "exec",
+        "vp",
+        "lint",
+        "apps/playground/src/MobileOverlayDemo.test.ts",
+        "apps/playground/src/MobileOverlayDemo.vue",
+        "apps/playground/src/mobile-overlays/OverlayDetails.vue",
+        "apps/playground/src/mobile-overlays/OverlayPanels.vue",
+        "apps/playground/src/mobile-overlays/OverlaySelections.vue",
+        "packages/ui-mobile/src/components/date-picker/MobileDatePicker.test.ts",
+        "packages/ui-mobile/src/components/overlay-details.test.ts",
+        "packages/ui-mobile/src/components/overlays.test.ts",
+        "packages/ui-mobile/src/components/picker/Picker.test.ts",
+        "apps/playground/src/App.test.ts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/MobileDemo.vue",
+        "packages/ui-mobile/src/components/date-picker/MobileDatePicker.vue",
+        "packages/ui-mobile/src/components/picker/Picker.vue"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "docs-final-fmt",
+      "command": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "exec",
+        "vp",
+        "fmt",
+        "--check",
+        "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/README.md",
+        "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/docs/mobile-standalone.md",
+        "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/docs/evidence/t04-n03/README.md"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "full-diff-check-final",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "0e487bdb"
+      ],
+      "exit": 2,
+      "bytes": 1771
+    },
+    {
+      "label": "scoped-diff-check-final",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "0e487bdb",
+        "--",
+        "frontend",
+        "README.md",
+        "docs/mobile-standalone.md",
+        "docs/evidence/t04-n03/README.md"
+      ],
+      "exit": 0,
+      "bytes": 116
+    },
+    {
+      "label": "evidence-docfmt-clean",
+      "exit": 0,
+      "note": "Final narrative after EOF/ANSI clarification; prior formatting failure retained"
+    }
+  ],
+  "UNRUN": [
+    "CI",
+    "physical devices",
+    "package #11",
+    "old consumers #14",
+    "full docs",
+    "independent merger/R2",
+    "merge",
+    "tracker completion"
+  ]
+}

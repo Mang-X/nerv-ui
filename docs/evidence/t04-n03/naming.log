@@ -1,0 +1,13 @@
+$ pnpm -C frontend --filter @nerv-iip/ui-mobile exec vp test run src/nvui-naming.contract.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  20:26:58
+   Duration  4.90s (transform 3.22s, setup 0ms, import 4.40s, tests 5ms, environment 394ms)
+
+Could not parse CSS stylesheet
+
+exit=0

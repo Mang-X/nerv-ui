@@ -1,0 +1,33 @@
+$ pnpm -C frontend --filter @nerv-iip/ui-mobile exec vp test run src/components/date-picker/MobileDatePicker.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile
+
+ ❯ src/components/date-picker/MobileDatePicker.test.ts (3 tests | 1 failed) 210ms
+   × clamps the day when changing from a leap year and resynchronizes external dates and year bounds 53ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  20:19:48
+   Duration  4.18s (transform 2.57s, setup 0ms, import 3.57s, tests 210ms, environment 319ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/date-picker/MobileDatePicker.test.ts
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/date-picker/MobileDatePicker.test.ts > clamps the day when changing from a leap year and resynchronizes external dates and year bounds
+TypeError: Cannot read properties of undefined (reading 'element')
+ ❯ src/components/date-picker/MobileDatePicker.test.ts:24:60
+     22|   expect(wrapper.emitted('update:modelValue')).toEqual([['2025-02-28']…
+     23|   await wrapper.setProps({modelValue:'2023-12-31'});await settle()
+     24|   expect(body().findAll<HTMLElement>('.nv-m-mdp-scroll')[1]!.element.s…
+       |                                                            ^
+     25|   await wrapper.setProps({minYear:2024,maxYear:2024});await settle();a…
+     26|   expect(wrapper.emitted('update:modelValue')!.at(-1)).toEqual(['2024-…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+exit=1

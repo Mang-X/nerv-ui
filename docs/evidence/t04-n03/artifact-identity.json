@@ -1,0 +1,399 @@
+{
+  "base": "0e487bdbb51c9d041b71576f41585ac80244f2c1",
+  "sourceCandidateTree": "7c5417353c00bef64d0f2ffdaf68de45d6657dd1",
+  "kind": "workspace source build; not #11 installed package",
+  "fixture": "local neutral lake/woods/garden; 2024-01-31; years 2023–2025; save/archive; no backend",
+  "files": [
+    {
+      "path": "assets/index-B0rRUbvX.css",
+      "sha256": "abcb06fea9d0e854dd8649f017ab78d1da458359c6eb19be69444d53e7a8879d",
+      "bytes": 224243
+    },
+    {
+      "path": "assets/index-D4pNVDKF.js",
+      "sha256": "2a09ce744f069866b0f0741fb0b7e11d49d09e94898c3e426f648f17dba1e3ba",
+      "bytes": 472279
+    },
+    {
+      "path": "assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2",
+      "sha256": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd",
+      "bytes": 25960
+    },
+    {
+      "path": "assets/inter-cyrillic-wght-normal-DqGufNeO.woff2",
+      "sha256": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075",
+      "bytes": 18748
+    },
+    {
+      "path": "assets/inter-greek-ext-wght-normal-DlzME5K_.woff2",
+      "sha256": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190",
+      "bytes": 11232
+    },
+    {
+      "path": "assets/inter-greek-wght-normal-CkhJZR-_.woff2",
+      "sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+      "bytes": 18996
+    },
+    {
+      "path": "assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2",
+      "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "bytes": 85068
+    },
+    {
+      "path": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "bytes": 48256
+    },
+    {
+      "path": "assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2",
+      "sha256": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+      "bytes": 10252
+    },
+    {
+      "path": "index.html",
+      "sha256": "821d05cd2a709f5a51bfa8a52810f21902bfbebf502b88a46c5fa79cab561959",
+      "bytes": 427
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4317/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "text/html",
+        "date": "Sat, 24 Oct 2026 12:52:16 GMT",
+        "etag": "W/\"1ab-QgWbp47yqnOt3ZGrJhGu/StfQzo\"",
+        "vary": "Origin"
+      },
+      "file": "/tmp/nerv-ui-t04-n03/response-0.bin",
+      "path": "index.html",
+      "sha256": "821d05cd2a709f5a51bfa8a52810f21902bfbebf502b88a46c5fa79cab561959",
+      "bytes": 427,
+      "equalsBuiltArtifact": true
+    },
+    {
+      "url": "http://127.0.0.1:4317/assets/index-D4pNVDKF.js",
+      "status": 200,
+      "headers": {
+        "access-control-allow-origin": "http://127.0.0.1:4317",
+        "cache-control": "no-cache",
+        "content-encoding": "gzip",
+        "content-type": "text/javascript",
+        "date": "Sat, 24 Oct 2026 12:52:16 GMT",
+        "etag": "W/\"472279-1792846069588\"",
+        "last-modified": "Sat, 24 Oct 2026 12:47:49 GMT",
+        "vary": "Origin"
+      },
+      "file": "/tmp/nerv-ui-t04-n03/response-1.bin",
+      "path": "assets/index-D4pNVDKF.js",
+      "sha256": "2a09ce744f069866b0f0741fb0b7e11d49d09e94898c3e426f648f17dba1e3ba",
+      "bytes": 472279,
+      "equalsBuiltArtifact": true
+    },
+    {
+      "url": "http://127.0.0.1:4317/assets/index-B0rRUbvX.css",
+      "status": 200,
+      "headers": {
+        "access-control-allow-origin": "http://127.0.0.1:4317",
+        "cache-control": "no-cache",
+        "content-encoding": "gzip",
+        "content-type": "text/css",
+        "date": "Sat, 24 Oct 2026 12:52:16 GMT",
+        "etag": "W/\"224243-1792846069591\"",
+        "last-modified": "Sat, 24 Oct 2026 12:47:49 GMT",
+        "vary": "Origin"
+      },
+      "file": "/tmp/nerv-ui-t04-n03/response-2.bin",
+      "path": "assets/index-B0rRUbvX.css",
+      "sha256": "abcb06fea9d0e854dd8649f017ab78d1da458359c6eb19be69444d53e7a8879d",
+      "bytes": 224243,
+      "equalsBuiltArtifact": true
+    },
+    {
+      "url": "http://127.0.0.1:4317/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "headers": {
+        "access-control-allow-origin": "http://127.0.0.1:4317",
+        "cache-control": "no-cache",
+        "content-length": "48256",
+        "content-type": "font/woff2",
+        "date": "Sat, 24 Oct 2026 12:52:16 GMT",
+        "etag": "W/\"48256-1792846069596\"",
+        "last-modified": "Sat, 24 Oct 2026 12:47:49 GMT",
+        "vary": "Origin"
+      },
+      "file": "/tmp/nerv-ui-t04-n03/response-3.bin",
+      "path": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "bytes": 48256,
+      "equalsBuiltArtifact": true
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "frontend/apps/playground/src/App.vue",
+      "sha256": "133386a312222eac6c94fd47e3008714b8e733681ce396f547138b466b505ab1"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileDemo.vue",
+      "sha256": "10a0836e558c16ba2a775bf81e5b0081c9e5c2ea6d0935e29a07a9375ac2202f"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileInputDemo.vue",
+      "sha256": "e78bf440c092ad0b9699f7b810317be9af9617fd26d0c2206a9045e02c11cb19"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileOverlayDemo.vue",
+      "sha256": "c6fe300311c43af99474c0dcdb4a92e50e2054f322d74552a5349072abfe1f2c"
+    },
+    {
+      "path": "frontend/apps/playground/src/TouchDemo.vue",
+      "sha256": "b938979558e65a3f71db90ec52cef933eb9f7d0d198faa772e16dd563bec8230"
+    },
+    {
+      "path": "frontend/apps/playground/src/assets/main.css",
+      "sha256": "d655e2caab2fe42b9938bb1ce60ce64f809fea0f813279947bb99e95aec3b004"
+    },
+    {
+      "path": "frontend/apps/playground/src/main.ts",
+      "sha256": "1a5dfaf5f3939d572a8c53242ad1d6dee5d564c736bfa44197c93a477dcd0bd5"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-input/MobileCaptureInput.vue",
+      "sha256": "e2712c1b04e70f34f7608b3583d47e13e4a2ad1906a44ba421a4788bfb761950"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-input/MobileInputFields.vue",
+      "sha256": "e06314e87104b2ce175d03e8f82f46b04dcabfe5430293a44c29ab217359cef1"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-overlays/OverlayDetails.vue",
+      "sha256": "4b7bc766bf74fbe5876ef9e4dacc022ac3dfc10ce237bdc6d6f1ab77df30e999"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-overlays/OverlayPanels.vue",
+      "sha256": "d7f8d9f3cb32e0e686011afff3188315ac5c5eb8d01d8a658ee8f8c7b76e43bf"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-overlays/OverlaySelections.vue",
+      "sha256": "473d56c3dc66a4b7480424bc8368a8033464476da4f307b3707b07e4536cb2bd"
+    },
+    {
+      "path": "frontend/apps/playground/src/test/setup.ts",
+      "sha256": "4dc374cf2cebfd8522ca74f292fb49dc0e2a7ff7df76bfb76d8dfd829abc4816"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/action-sheet/ActionSheet.vue",
+      "sha256": "ef1b0e9eb8663811d7f88318c99e8f4f10b186d7f01758c4436bf19e8b8f1ac3"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/app-shell-mobile/AppShellMobile.vue",
+      "sha256": "81f4e63d5e98b7bd19f3c287741a1c2fb73705c44c6d97d2e290a0d2d8e9d18f"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/avatar/MobileAvatar.vue",
+      "sha256": "e1e549f05c435a1378d466d58731682c25f43e909cd88641145038e4528e8ef0"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/badge/Badge.vue",
+      "sha256": "5e6f8646fab78abb537ae889806b951d37c0d7ce78c7ee3ab78bcb05aa624d35"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/bottom-sheet/BottomSheet.vue",
+      "sha256": "a5686a32e6a8ec5b0bd47cf0db8fef2b13043899387a942014d975ffc6d94e18"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/button/MobileButton.vue",
+      "sha256": "2f5d9b30ab385d8e3cbb1decc164e068d518ef4079293f7c81219d73d3715f54"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/cell/Cell.vue",
+      "sha256": "1be2a7016be9bc3a8b410b4e98929da4142709169e8194f0c8e3ce1a7a94338c"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/cell/CellGroup.vue",
+      "sha256": "c63b0b113b42fbed117e8939d031801ce9f640714826ab154db270d05f61a8a3"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/checkbox/MobileCheckbox.vue",
+      "sha256": "34db1d417a029a327ad2db4fca95e373fc0bcedbe9d24847351ff68ae2dd8dfb"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/collapse/Collapse.vue",
+      "sha256": "d19faa26b9a0f2b4f03b85beb3f437bcddd450fca3df8f3b698bf71a6b863842"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/date-picker/MobileDatePicker.vue",
+      "sha256": "4ee87fed9b69bfdd6ccd7d4dd5c7fe7ba3167d8d1763a77b1a17183a97b2dcfb"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/dialog/MobileDialog.vue",
+      "sha256": "b2b8724a8a2fb0f656f9480ca9c8aa6e6de49cf438785c02990c54f51146ec41"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/divider/Divider.vue",
+      "sha256": "b425be1029b58802caa985f77860ce726062f943066b0d2096ea6d40a801f6d4"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/dropdown-menu/DropdownMenu.vue",
+      "sha256": "161bc9f06907cf6b8aa6a16d36990ff128566b171b5c72c43608792cb9a21ec0"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/dropdown-menu/DropdownMenuItem.vue",
+      "sha256": "e2af0d2ef9c1a92a3d5fc18e0538ceabffe6948389686cba61936c12597b12cd"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/dropdown-menu/context.ts",
+      "sha256": "8a0f2fb685db4ea870299d92f7e1bfd863e60d8acd15b347fcb9371709ebc11e"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/empty/Empty.vue",
+      "sha256": "d6d6fd4d3bc237a3529cd5968d47dc2589138d1cb1ff63bcfaf756cd309ce808"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/error-retry/ErrorRetry.vue",
+      "sha256": "ecf10c993ba31cd436ddead8fd4299884719dd9c7d9b717df9774d6fc0abd3e0"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/fab/Fab.vue",
+      "sha256": "61d74e3433d1ea0cbafba38b5e696f43aa92bc4ece0447e1bd1c9ce1541284d2"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/grid/MobileGrid.vue",
+      "sha256": "34acdb594ef4473af6c2a9d7fa41122ed69da123bdabb373012b76321a6f79a3"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/image/MobileImage.vue",
+      "sha256": "fac7ce17d732b8ded144535e56622fb81c2b4355be5060041c8fd074bda07993"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/infinite-list/InfiniteList.vue",
+      "sha256": "7972418a3a612d0a124f7e979931cd19156543e634c59a694e1afac9a498b5b2"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/input/MobileInput.vue",
+      "sha256": "615af3421b8ec946fa92a784d5541d0e8fdd98faaa6c0d8f9c371156b6c709ac"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/list-row/ListRow.vue",
+      "sha256": "a8e6e89105df79315e911166f122904f91fd816954f32c3c69f08b58640f0db8"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/nav-bar/NavBar.vue",
+      "sha256": "940d2bd327fe57b73cda2f113cc87aae848df491d0957498ec281d8b78488e3f"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/notice-bar/NoticeBar.vue",
+      "sha256": "16b1b3ea28b5aaef47ad211862b94b77c17395bd9f193552f76cef133e852f73"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/number-keyboard/NumberKeyboard.vue",
+      "sha256": "0bd05bb07de65a5b1e89a00d4d86e8313426728966e1c347b549c1ecf2439070"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/picker/Picker.vue",
+      "sha256": "de0e2604bd8b9bad050e78c997decb5e9999d106535e2d9eaad3754f13081fb9"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/progress/MobileProgress.vue",
+      "sha256": "0a95e0b883b7ff8b48086dfd40613edcf83c7c38e83112c4f18c4e4d7b9f1db7"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.vue",
+      "sha256": "dc48e1e8ebfc15ba6b7a0f9b0aca79acba82ada7c7c245058ca2e8518cfdc893"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/radio/MobileRadioGroup.vue",
+      "sha256": "844d86c8cf1788bc47b3b97cb5d12aef4dcb50ae83a72177113e86f7ce31cf88"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/radio/MobileRadioItem.vue",
+      "sha256": "8dae38eaed9c89691ac357f9e4bde7ea718141fe28ee58967103d6595a2dd9d5"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/rate/Rate.vue",
+      "sha256": "eb1356896baf7531b185d80e30d342f5decec6b1b937a70c6734da74de0b4d13"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/result/Result.vue",
+      "sha256": "c6d4b4dd24fe6677ec8eec4a2447e32410777ade144cf94fac5d9c7114406c8a"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/scan-bar/ScanBar.vue",
+      "sha256": "bdd93f355b9196d4659e1f2665ec6b8f8598ddfb3f35c3917f5d1e02d6e4e1a5"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/search-bar/SearchBar.vue",
+      "sha256": "cfe60dbba1e99b148aa85cebc70096d825fab630b6720dfd454cf4d8896fe628"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/skeleton/MobileSkeleton.vue",
+      "sha256": "e20e8b5344d490dd253e93cf23c845116eae00036df01802da3f8f9405c0a917"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/slider/MobileSlider.vue",
+      "sha256": "045e7b51a71d538bad5a40aafc7b3c66b66e64b1ddafec54d65046e103728040"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/stepper/Stepper.vue",
+      "sha256": "3dcfeae94b5c90aee18ea70e9ec6d791c9b3a543ffb2766aac1f7316fa4faab7"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/steps/Steps.vue",
+      "sha256": "3ba4c159945b347c70dd4fb1b6f3ff11ea4c4d482f417386a237f6b19a70003a"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/swipe-cell/SwipeCell.vue",
+      "sha256": "12611067dde44d7530d513dcf3183809575fce4d704efe3bc2d3f3ab00d24f1a"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/swiper/Swiper.vue",
+      "sha256": "3e65994bc5f41e8edfca85a60a6f399db98747380570c2d42e59d5889bf37992"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/swiper/SwiperItem.vue",
+      "sha256": "3d8ff2380a812c383ff6d2a92f168d6f94c66c61a050c678897db33cefe46b20"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/switch/MobileSwitch.vue",
+      "sha256": "e506b80de35d82b2463f5b36dc2f958d8414efb9f5c1926bc7380b4a8e05b030"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/tab-bar/TabBar.vue",
+      "sha256": "31bd3eb8c0f6adaf79641a736e69136d30eb495c9db042bf30a4abdb5407db85"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/tabs/MobileTabs.vue",
+      "sha256": "37e7bc5a516c96649927692edf27111410a1c2a65bcf2ff3d452705783082b00"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/tag/Tag.vue",
+      "sha256": "539dc848b4fca95b158fdd3dbe5cf9c545ba513ae20cd1f3c7d7a8f2d719d355"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/toast/MobileToast.vue",
+      "sha256": "a2a811e6c34453ecd91eef72e63c044f92cf5ea0c7d0090d98ff4476a99456e0"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/virtual-list/VirtualList.vue",
+      "sha256": "deade8046a16ab422aac3d40bf7390e5bc681a9fe322fc728afe7bd24062f758"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/index.ts",
+      "sha256": "154c0adbe146be0b98ccb6c244537823294376f8a0bf0bc606993d8fd70c03f6"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/lib/overlay-target.ts",
+      "sha256": "69127c4669837bb269f2996fe85a833fcc9c4536617e2814d61fe4c6bc6c4c08"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/lib/utils.ts",
+      "sha256": "666b2c1fcb686881b70e20f662ac2be7c22a19dc50cb37bd88eb9310b16e5bae"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/styles/mobile.css",
+      "sha256": "5689122657ffcfe47d0f2c2b077961914f17c08a3f8718785ec6d735f5cd287c"
+    }
+  ]
+}

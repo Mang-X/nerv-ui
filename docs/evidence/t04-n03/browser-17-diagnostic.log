@@ -1,0 +1,6 @@
+page target undefined
+info { url: 'http://127.0.0.1:4317/#mobile-overlays', title: 'NvUI · 项目清单', w: 844, h: 390, sx: 0, sy: 0, pw: 844, ph: 390 }
+tabs [ { targetId: 'A7E7008C504404BC1EC9E840739A01F2', label: 'p1', page: Page { label: 'p1', spaceId: 5, mouse: PageMouse {}, keyboard: PageKeyboard {} }, title: 'NvUI · 项目清单', url: 'http://127.0.0.1:4317/#mobile-overlays', active: true, openedBy: 'agent' } ]
+window by page { windowId: 1239821784, bounds: { left: 0, top: 30, width: 2560, height: 1320, windowState: 'maximized' } }
+Error: Invalid parameters
+

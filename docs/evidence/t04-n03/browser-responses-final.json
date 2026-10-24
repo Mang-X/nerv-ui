@@ -1,0 +1,59 @@
+[
+  {
+    "url": "http://127.0.0.1:4317/",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-cache",
+      "content-type": "text/html",
+      "date": "Sat, 24 Oct 2026 12:52:16 GMT",
+      "etag": "W/\"1ab-QgWbp47yqnOt3ZGrJhGu/StfQzo\"",
+      "vary": "Origin"
+    },
+    "file": "/tmp/nerv-ui-t04-n03/response-0.bin"
+  },
+  {
+    "url": "http://127.0.0.1:4317/assets/index-D4pNVDKF.js",
+    "status": 200,
+    "headers": {
+      "access-control-allow-origin": "http://127.0.0.1:4317",
+      "cache-control": "no-cache",
+      "content-encoding": "gzip",
+      "content-type": "text/javascript",
+      "date": "Sat, 24 Oct 2026 12:52:16 GMT",
+      "etag": "W/\"472279-1792846069588\"",
+      "last-modified": "Sat, 24 Oct 2026 12:47:49 GMT",
+      "vary": "Origin"
+    },
+    "file": "/tmp/nerv-ui-t04-n03/response-1.bin"
+  },
+  {
+    "url": "http://127.0.0.1:4317/assets/index-B0rRUbvX.css",
+    "status": 200,
+    "headers": {
+      "access-control-allow-origin": "http://127.0.0.1:4317",
+      "cache-control": "no-cache",
+      "content-encoding": "gzip",
+      "content-type": "text/css",
+      "date": "Sat, 24 Oct 2026 12:52:16 GMT",
+      "etag": "W/\"224243-1792846069591\"",
+      "last-modified": "Sat, 24 Oct 2026 12:47:49 GMT",
+      "vary": "Origin"
+    },
+    "file": "/tmp/nerv-ui-t04-n03/response-2.bin"
+  },
+  {
+    "url": "http://127.0.0.1:4317/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "status": 200,
+    "headers": {
+      "access-control-allow-origin": "http://127.0.0.1:4317",
+      "cache-control": "no-cache",
+      "content-length": "48256",
+      "content-type": "font/woff2",
+      "date": "Sat, 24 Oct 2026 12:52:16 GMT",
+      "etag": "W/\"48256-1792846069596\"",
+      "last-modified": "Sat, 24 Oct 2026 12:47:49 GMT",
+      "vary": "Origin"
+    },
+    "file": "/tmp/nerv-ui-t04-n03/response-3.bin"
+  }
+]

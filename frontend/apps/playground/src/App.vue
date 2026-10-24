@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
+import MobileOverlayDemo from './MobileOverlayDemo.vue'
 import {
   NvApp,
   NvAppHeader,
@@ -75,7 +76,8 @@ function addProject() {
 </script>
 
 <template>
-  <MobileInputDemo v-if="surface === '#mobile-input'" />
+  <MobileOverlayDemo v-if="surface === '#mobile-overlays'" />
+  <MobileInputDemo v-else-if="surface === '#mobile-input'" />
   <MobileDemo v-else-if="surface.startsWith('#mobile')" />
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>

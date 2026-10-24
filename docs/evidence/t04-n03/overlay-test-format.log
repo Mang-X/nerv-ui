@@ -1,0 +1,4 @@
+$ pnpm -C frontend exec vp fmt --write packages/ui-mobile/src/components/overlays.test.ts
+Finished in 174ms on 1 files using 10 threads.
+
+exit=0

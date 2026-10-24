@@ -1,0 +1,7 @@
+$ pnpm -C frontend exec vp fmt --check /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/README.md /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/docs/mobile-standalone.md /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/docs/evidence/t04-n03/README.md
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 281ms on 3 files using 10 threads.
+
+exit=0

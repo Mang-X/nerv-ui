@@ -1,0 +1,67 @@
+$ pnpm -C frontend --filter @nerv-iip/playground exec vp test run src/MobileOverlayDemo.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground
+
+ ❯ src/MobileOverlayDemo.test.ts (7 tests | 3 failed) 417ms
+   × keeps sheet edits as drafts, gives the numeric layer priority and removes it with the host sheet 33ms
+   × receives action identity after cancellation and keyed reordering without guessing from labels 9ms
+   × keeps one dropdown open, receives the typed value and controls collapse slots from the host 8ms
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 4 passed (7)
+   Start at  20:23:55
+   Duration  4.22s (transform 2.47s, setup 278ms, import 3.14s, tests 417ms, environment 300ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileOverlayDemo.test.ts
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileOverlayDemo.test.ts > keeps sheet edits as drafts, gives the numeric layer priority and removes it with the host sheet
+TypeError: Cannot set property button of #<MouseEvent> which has only a getter
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1249:28
+ ❯ createDOMEvent ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1245:30
+ ❯ DOMWrapper.<anonymous> ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7216:31
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:56:71
+ ❯ __awaiter ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:52:12
+ ❯ DOMWrapper.trigger ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7209:16
+ ❯ src/MobileOverlayDemo.test.ts:38:61
+     36|   await body().get('input#arrangement-duration').trigger('click');awai…
+     37|   const keyboard=body().get('[data-slot="number-keyboard"]')
+     38|   await keyboard.findAll('button').find(b=>b.text()==='2')!.trigger('p…
+       |                                                             ^
+     39|   await keyboard.findAll('button').find(b=>b.text()==='2')!.trigger('c…
+     40|   expect(body().find('[data-slot="mobile-sheet-content"]').exists()).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/MobileOverlayDemo.test.ts > receives action identity after cancellation and keyed reordering without guessing from labels
+AssertionError: button 打开动作: expected undefined to be defined
+ ❯ click src/MobileOverlayDemo.test.ts:7:122
+      5| const body = () => new DOMWrapper(document.body)
+      6| const settle=async()=>{await flushPromises();await new Promise(r=>setT…
+      7| async function click(text:string) { const b=body().findAll('button').f…
+       |                                                                                                                          ^
+      8| async function scroll(selector:string,index:number){const w=body().get…
+      9| afterEach(()=>{wrapper?.unmount();document.body.innerHTML='';localStor…
+ ❯ src/MobileOverlayDemo.test.ts:66:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/MobileOverlayDemo.test.ts > keeps one dropdown open, receives the typed value and controls collapse slots from the host
+AssertionError: button 时段: expected undefined to be defined
+ ❯ click src/MobileOverlayDemo.test.ts:7:122
+      5| const body = () => new DOMWrapper(document.body)
+      6| const settle=async()=>{await flushPromises();await new Promise(r=>setT…
+      7| async function click(text:string) { const b=body().findAll('button').f…
+       |                                                                                                                          ^
+      8| async function scroll(selector:string,index:number){const w=body().get…
+      9| afterEach(()=>{wrapper?.unmount();document.body.innerHTML='';localStor…
+ ❯ src/MobileOverlayDemo.test.ts:74:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+exit=1

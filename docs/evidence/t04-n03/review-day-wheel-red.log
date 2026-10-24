@@ -1,0 +1,40 @@
+$ pnpm -C frontend --filter @nerv-iip/ui-mobile exec vp test run src/components/date-picker/MobileDatePicker.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile
+
+ ❯ src/components/date-picker/MobileDatePicker.test.ts (5 tests | 1 failed) 674ms
+   × leaves an in-progress day wheel position to native scroll snap until the gesture settles 38ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  20:46:07
+   Duration  10.37s (transform 6.00s, setup 0ms, import 8.54s, tests 674ms, environment 972ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/date-picker/MobileDatePicker.test.ts
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/date-picker/MobileDatePicker.test.ts > leaves an in-progress day wheel position to native scroll snap until the gesture settles
+AssertionError: expected 40 to be 58 // Object.is equality
+
+- Expected
++ Received
+
+- 58
++ 40
+
+ ❯ src/components/date-picker/MobileDatePicker.test.ts:100:33
+     98|   await day.trigger('scroll')
+     99|   await settle()
+    100|   expect(day.element.scrollTop).toBe(58)
+       |                                 ^
+    101|   expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+    102|   await confirm()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+exit=1

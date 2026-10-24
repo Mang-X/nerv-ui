@@ -1,0 +1,37 @@
+$ pnpm -C frontend --filter @nerv-iip/playground exec vp test run src/App.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground
+
+ ❯ src/App.test.ts (5 tests | 1 failed) 286ms
+   × opens the standalone overlay page directly and preserves all four existing entries 12ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  20:20:29
+   Duration  4.09s (transform 2.48s, setup 277ms, import 3.14s, tests 286ms, environment 301ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/App.test.ts
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.test.ts > opens the standalone overlay page directly and preserves all four existing entries
+AssertionError: expected '周末随行' to be '片刻安排' // Object.is equality
+
+Expected: "片刻安排"
+Received: "周末随行"
+
+ ❯ src/App.test.ts:77:36
+     75|   window.location.hash = '#mobile-overlays'
+     76|   wrapper = mount(App, { attachTo: document.body })
+     77|   expect(wrapper.get('h1').text()).toBe('片刻安排')
+       |                                    ^
+     78|   for (const hash of ['#desktop', '#touch', '#mobile', '#mobile-input'…
+     79|     expect(wrapper.get(`a[href="${hash}"]`).exists()).toBe(true)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+exit=1

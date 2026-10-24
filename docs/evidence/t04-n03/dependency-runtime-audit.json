@@ -1,0 +1,127 @@
+{
+  "base": "0e487bdbb51c9d041b71576f41585ac80244f2c1",
+  "comparison": "all 16 complete file bytes; no manifest or lock delta, no dependency graph change inferred from keys",
+  "manifests": [
+    {
+      "path": "frontend/apps/design-system/package.json",
+      "baseSha256": "ab07aaa295935b40fe1291f01d0cfa4a2fda4ab4612f091ed20f64172e03201c",
+      "currentSha256": "ab07aaa295935b40fe1291f01d0cfa4a2fda4ab4612f091ed20f64172e03201c",
+      "equal": true
+    },
+    {
+      "path": "frontend/apps/playground/package.json",
+      "baseSha256": "0967d9d77e6472ba531733012404781c7a4beb184fc8e3b881359037b0aac205",
+      "currentSha256": "0967d9d77e6472ba531733012404781c7a4beb184fc8e3b881359037b0aac205",
+      "equal": true
+    },
+    {
+      "path": "frontend/package.json",
+      "baseSha256": "f9e50aa19220ba1e97fd02a8748ea912cfe5a544aa383c905c9603e767b9380b",
+      "currentSha256": "f9e50aa19220ba1e97fd02a8748ea912cfe5a544aa383c905c9603e767b9380b",
+      "equal": true
+    },
+    {
+      "path": "frontend/packages/app-shell/package.json",
+      "baseSha256": "04a748352b4174d10f44e86e92cc4bebe7d42ed334698634f6e52916854703f3",
+      "currentSha256": "04a748352b4174d10f44e86e92cc4bebe7d42ed334698634f6e52916854703f3",
+      "equal": true
+    },
+    {
+      "path": "frontend/packages/scheduling/package.json",
+      "baseSha256": "8f4299bb64c446b43d0e0c8af81437eed2a402c50633c3485eb6e33b19c914ad",
+      "currentSha256": "8f4299bb64c446b43d0e0c8af81437eed2a402c50633c3485eb6e33b19c914ad",
+      "equal": true
+    },
+    {
+      "path": "frontend/packages/ui-mobile/package.json",
+      "baseSha256": "99a7898eda2f126c7dc6c1613f953540d135141ec5e08c7b656066bfb5edbcfb",
+      "currentSha256": "99a7898eda2f126c7dc6c1613f953540d135141ec5e08c7b656066bfb5edbcfb",
+      "equal": true
+    },
+    {
+      "path": "frontend/packages/ui/package.json",
+      "baseSha256": "4f7f9ce9ec077150eb1eca9e0ffd205a32600702b2d0b52f40eca2ce0977f079",
+      "currentSha256": "4f7f9ce9ec077150eb1eca9e0ffd205a32600702b2d0b52f40eca2ce0977f079",
+      "equal": true
+    },
+    {
+      "path": "frontend/pnpm-lock.yaml",
+      "baseSha256": "ea746bfedf77603fc582e97d95b9a97a2548349736f66e46e7ec8b3a8a4d476c",
+      "currentSha256": "ea746bfedf77603fc582e97d95b9a97a2548349736f66e46e7ec8b3a8a4d476c",
+      "equal": true
+    },
+    {
+      "path": "frontend/pnpm-workspace.yaml",
+      "baseSha256": "97360ca48c840c9e495b7dc6a2ea11f53e07d2b8bd968f3deb63e45afebf2e27",
+      "currentSha256": "97360ca48c840c9e495b7dc6a2ea11f53e07d2b8bd968f3deb63e45afebf2e27",
+      "equal": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/package.json",
+      "baseSha256": "e6444aa704f8c34800e7a657d0000f5cc5d24dac4043c59f0b5d20a33dfee021",
+      "currentSha256": "e6444aa704f8c34800e7a657d0000f5cc5d24dac4043c59f0b5d20a33dfee021",
+      "equal": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-pda/package.json",
+      "baseSha256": "8ab153c0b7378966422166348397892781a5e86fb978969625c9fc7f00180389",
+      "currentSha256": "8ab153c0b7378966422166348397892781a5e86fb978969625c9fc7f00180389",
+      "equal": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/console/package.json",
+      "baseSha256": "bd7657cfe5ca62f9c2592a1cffdadbbff096c47ca8a4252550d360223d86474b",
+      "currentSha256": "bd7657cfe5ca62f9c2592a1cffdadbbff096c47ca8a4252550d360223d86474b",
+      "equal": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/docs/package.json",
+      "baseSha256": "790aabddc8e68caf0772f8f51286276c9c8a72dd66eb6caa91e8bf62009051e9",
+      "currentSha256": "790aabddc8e68caf0772f8f51286276c9c8a72dd66eb6caa91e8bf62009051e9",
+      "equal": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/screen/package.json",
+      "baseSha256": "fbd2cf794801a25b658ca532b19f47d835e0913a892c89fc146d8dcc66608de1",
+      "currentSha256": "fbd2cf794801a25b658ca532b19f47d835e0913a892c89fc146d8dcc66608de1",
+      "equal": true
+    },
+    {
+      "path": "migration/materials/source/frontend/packages/auth/package.json",
+      "baseSha256": "ac99d6e0f6b567b751c5600aacb28c8dace8477b9e1902208b8bc96b7a01564d",
+      "currentSha256": "ac99d6e0f6b567b751c5600aacb28c8dace8477b9e1902208b8bc96b7a01564d",
+      "equal": true
+    },
+    {
+      "path": "migration/materials/source/frontend/packages/business-core/package.json",
+      "baseSha256": "53534bbdf0207c6bcf93beda744a15aae70582f7175627de461c4e2de696c398",
+      "currentSha256": "53534bbdf0207c6bcf93beda744a15aae70582f7175627de461c4e2de696c398",
+      "equal": true
+    }
+  ],
+  "sourceChanges": [
+    "frontend/packages/ui-mobile/src/components/date-picker/MobileDatePicker.vue",
+    "frontend/packages/ui-mobile/src/components/picker/Picker.vue"
+  ],
+  "runtime": [
+    {
+      "package": "packages/ui",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js",
+      "ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui/src/index.ts",
+      "reka": "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/node_modules/.pnpm/reka-ui@2.10.1_vue@3.5.39_typescript@6.0.3_/node_modules/reka-ui/dist/index.cjs"
+    },
+    {
+      "package": "packages/ui-mobile",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js",
+      "ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui/src/index.ts",
+      "reka": "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/node_modules/.pnpm/reka-ui@2.10.1_vue@3.5.39_typescript@6.0.3_/node_modules/reka-ui/dist/index.cjs"
+    },
+    {
+      "package": "apps/playground",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js",
+      "ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui/src/index.ts",
+      "reka": null
+    }
+  ],
+  "vueIdentityCount": 1
+}

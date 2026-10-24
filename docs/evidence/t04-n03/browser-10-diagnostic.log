@@ -1,0 +1,61 @@
+{
+  "url": "http://127.0.0.1:4317/#mobile-overlays",
+  "viewport": [
+    844,
+    390
+  ],
+  "dark": false,
+  "docOverflow": false,
+  "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-now",
+  "dialogs": [],
+  "outputs": [
+    {
+      "label": "去处回显",
+      "text": "林间 · woods"
+    },
+    {
+      "label": "日期回显",
+      "text": "2024-02-29"
+    },
+    {
+      "label": "安排回显",
+      "text": "散步landscape-light · 时长 3"
+    },
+    {
+      "label": "提醒回显",
+      "text": "带水 · 取消 1 次"
+    },
+    {
+      "label": "动作回显",
+      "text": "暂时收起 · archive"
+    },
+    {
+      "label": "筛选回显",
+      "text": "未选时段 · 2 · change：number 2"
+    },
+    {
+      "label": "提示展开状态",
+      "text": "提示已收起"
+    }
+  ],
+  "layers": [],
+  "main": [
+    {
+      "rect": {
+        "x": 0,
+        "y": 61,
+        "width": 844,
+        "height": 329,
+        "top": 61,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "height": 329,
+      "scrollHeight": 1257,
+      "scrollTop": 394,
+      "overflowY": "auto"
+    }
+  ]
+}
+

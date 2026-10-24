@@ -1,0 +1,39 @@
+$ pnpm -C frontend --filter @nerv-iip/playground exec vp test run src/MobileOverlayDemo.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground
+
+ ❯ src/MobileOverlayDemo.test.ts (4 tests | 1 failed) 395ms
+   × keeps sheet edits as drafts, gives the numeric layer priority and removes it with the host sheet 36ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  20:23:31
+   Duration  4.85s (transform 2.85s, setup 334ms, import 3.62s, tests 395ms, environment 414ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileOverlayDemo.test.ts
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileOverlayDemo.test.ts > keeps sheet edits as drafts, gives the numeric layer priority and removes it with the host sheet
+TypeError: Cannot set property button of #<MouseEvent> which has only a getter
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1249:28
+ ❯ createDOMEvent ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1245:30
+ ❯ DOMWrapper.<anonymous> ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7216:31
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:56:71
+ ❯ __awaiter ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:52:12
+ ❯ DOMWrapper.trigger ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7209:16
+ ❯ src/MobileOverlayDemo.test.ts:38:61
+     36|   await body().get('input#arrangement-duration').trigger('click');awai…
+     37|   const keyboard=body().get('[data-slot="number-keyboard"]')
+     38|   await keyboard.findAll('button').find(b=>b.text()==='2')!.trigger('p…
+       |                                                             ^
+     39|   await keyboard.findAll('button').find(b=>b.text()==='2')!.trigger('c…
+     40|   expect(body().find('[data-slot="mobile-sheet-content"]').exists()).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+exit=1

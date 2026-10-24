@@ -44,7 +44,8 @@ function setScroller(key: string, el: unknown) {
 function onScroll(key: 'y' | 'm' | 'd', items: number[]) {
   const top = scrollers.value[key]?.scrollTop ?? 0
   const idx = Math.max(0, Math.min(items.length - 1, Math.round(top / ITEM)))
-  draft.value = { ...draft.value, [key]: items[idx] }
+  draft.value = normalize({ ...draft.value, [key]: items[idx] })
+  if (key !== 'd') nextTick(() => scrollTo('d', days.value, draft.value.d))
 }
 function scrollTo(key: 'y' | 'm' | 'd', items: number[], value: number) {
   const idx = Math.max(0, items.indexOf(value))
@@ -62,18 +63,35 @@ function confirm() {
   open.value = false
 }
 
-watch(open, (isOpen) => {
-  if (!isOpen) return
-  const v = (model.value ?? '').match(/^(\d{4})-(\d{2})-(\d{2})$/)
-  draft.value = v
-    ? { y: +v[1], m: +v[2], d: +v[3] }
-    : { y: now.getFullYear(), m: now.getMonth() + 1, d: now.getDate() }
+function normalize(value: { y: number; m: number; d: number }) {
+  const y = Math.max(minY.value, Math.min(maxY.value, value.y))
+  const m = Math.max(1, Math.min(12, value.m))
+  const d = Math.max(1, Math.min(new Date(y, m, 0).getDate(), value.d))
+  return { y, m, d }
+}
+function positionWheels() {
   nextTick(() => {
+    if (!open.value) return
     scrollTo('y', years.value, draft.value.y)
     scrollTo('m', months, draft.value.m)
     scrollTo('d', days.value, draft.value.d)
   })
-})
+}
+watch(
+  [open, model, minY, maxY],
+  ([isOpen]) => {
+    if (!isOpen) return
+    const v = (model.value ?? '').match(/^(\d{4})-(\d{2})-(\d{2})$/)
+    draft.value = normalize(
+      v
+        ? { y: +v[1], m: +v[2], d: +v[3] }
+        : { y: now.getFullYear(), m: now.getMonth() + 1, d: now.getDate() },
+    )
+    positionWheels()
+  },
+  { immediate: true },
+)
+watch(() => [scrollers.value.y, scrollers.value.m, scrollers.value.d], positionWheels)
 </script>
 
 <template>

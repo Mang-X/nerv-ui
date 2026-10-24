@@ -1,0 +1,422 @@
+[
+  {
+    "name": "portrait-light",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-now",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "林间 · woods"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "portrait-light · 时长 空"
+        },
+        {
+          "label": "提醒回显",
+          "text": "portrait-light · 取消 1 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "暂时收起 · archive"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 2 · change：number 2"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 479.5,
+          "overflowY": "auto"
+        }
+      ]
+    },
+    "keyboardHit": {
+      "x": 51,
+      "y": 614,
+      "width": 90,
+      "height": 56,
+      "top": 586,
+      "bottom": 642,
+      "hit": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": {
+        "x": 195,
+        "y": 422,
+        "top": 62,
+        "bottom": 844,
+        "height": 844
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    },
+    "dialogHit": {
+      "x": 264.25,
+      "y": 494.875,
+      "width": 139.5,
+      "height": 46,
+      "top": 471.875,
+      "bottom": 517.875,
+      "hit": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": {
+        "x": 195,
+        "y": 422,
+        "top": 62,
+        "bottom": 844,
+        "height": 844
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    }
+  },
+  {
+    "name": "landscape-light",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-now",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "林间 · woods"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "landscape-light · 时长 空"
+        },
+        {
+          "label": "提醒回显",
+          "text": "landscape-light · 取消 2 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "暂时收起 · archive"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 2 · change：number 2"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 844,
+            "height": 329,
+            "top": 61,
+            "right": 844,
+            "bottom": 390,
+            "left": 0
+          },
+          "height": 329,
+          "scrollHeight": 1257,
+          "scrollTop": 882,
+          "overflowY": "auto"
+        }
+      ]
+    },
+    "keyboardHit": {
+      "x": 107.75,
+      "y": 160,
+      "width": 203.5,
+      "height": 56,
+      "top": 132,
+      "bottom": 188,
+      "hit": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "scroll": {
+        "x": 422,
+        "y": 195,
+        "top": 62,
+        "bottom": 390,
+        "height": 390
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    },
+    "dialogHit": {
+      "x": 491.25,
+      "y": 267.875,
+      "width": 139.5,
+      "height": 46,
+      "top": 244.875,
+      "bottom": 290.875,
+      "hit": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "scroll": {
+        "x": 422,
+        "y": 195,
+        "top": 62,
+        "bottom": 390,
+        "height": 390
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    }
+  },
+  {
+    "name": "landscape-dark",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "docOverflow": false,
+      "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-now",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "林间 · woods"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "landscape-dark · 时长 空"
+        },
+        {
+          "label": "提醒回显",
+          "text": "landscape-dark · 取消 3 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "暂时收起 · archive"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 2 · change：number 2"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 844,
+            "height": 329,
+            "top": 61,
+            "right": 844,
+            "bottom": 390,
+            "left": 0
+          },
+          "height": 329,
+          "scrollHeight": 1257,
+          "scrollTop": 882,
+          "overflowY": "auto"
+        }
+      ]
+    },
+    "keyboardHit": {
+      "x": 107.75,
+      "y": 160,
+      "width": 203.5,
+      "height": 56,
+      "top": 132,
+      "bottom": 188,
+      "hit": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "scroll": {
+        "x": 422,
+        "y": 195,
+        "top": 62,
+        "bottom": 390,
+        "height": 390
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    },
+    "dialogHit": {
+      "x": 491.25,
+      "y": 267.875,
+      "width": 139.5,
+      "height": 46,
+      "top": 244.875,
+      "bottom": 290.875,
+      "hit": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "scroll": {
+        "x": 422,
+        "y": 195,
+        "top": 62,
+        "bottom": 390,
+        "height": 390
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    }
+  },
+  {
+    "name": "portrait-dark",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": true,
+      "docOverflow": false,
+      "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-now",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "林间 · woods"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "portrait-dark · 时长 空"
+        },
+        {
+          "label": "提醒回显",
+          "text": "portrait-dark · 取消 4 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "暂时收起 · archive"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 2 · change：number 2"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 479.5,
+          "overflowY": "auto"
+        }
+      ]
+    },
+    "keyboardHit": {
+      "x": 51,
+      "y": 614,
+      "width": 90,
+      "height": 56,
+      "top": 586,
+      "bottom": 642,
+      "hit": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": {
+        "x": 195,
+        "y": 422,
+        "top": 62,
+        "bottom": 844,
+        "height": 844
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    },
+    "dialogHit": {
+      "x": 264.25,
+      "y": 494.875,
+      "width": 139.5,
+      "height": 46,
+      "top": 471.875,
+      "bottom": 517.875,
+      "hit": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": {
+        "x": 195,
+        "y": 422,
+        "top": 62,
+        "bottom": 844,
+        "height": 844
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    }
+  }
+]

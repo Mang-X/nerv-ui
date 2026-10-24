@@ -1,0 +1,383 @@
+[
+  {
+    "step": "actual portrait nested keyboard layers",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\"",
+      "dialogs": [
+        {
+          "text": "写下安排备注与时长会在收下安排后一起保存。安排备注预留时长放弃安排收下安排",
+          "rect": {
+            "x": 0,
+            "y": 493,
+            "width": 390,
+            "height": 351,
+            "top": 493,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "庭院 · garden"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "尚未收下安排"
+        },
+        {
+          "label": "提醒回显",
+          "text": "尚无提醒 · 取消 0 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "尚未选择动作"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 未选节奏 · 尚无 change"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [
+        {
+          "layer": "input-backdrop",
+          "z": "60",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "top": 0,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        },
+        {
+          "layer": "input-surface",
+          "z": "70",
+          "rect": {
+            "x": 0,
+            "y": 541,
+            "width": 390,
+            "height": 303,
+            "top": 541,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        },
+        {
+          "layer": "backdrop",
+          "z": "40",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "top": 0,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        },
+        {
+          "layer": "surface",
+          "z": "50",
+          "rect": {
+            "x": 0,
+            "y": 493,
+            "width": 390,
+            "height": 351,
+            "top": 493,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        }
+      ],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    },
+    "keyHit": {
+      "x": 51,
+      "y": 614,
+      "width": 90,
+      "height": 56,
+      "top": 586,
+      "bottom": 642,
+      "hit": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": {
+        "x": 195,
+        "y": 422,
+        "top": 62,
+        "bottom": 844,
+        "height": 844
+      },
+      "active": "<input data-v-7b777bc7=\"\" data-slot=\"mobile-input-field\" class=\"h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50\""
+    },
+    "maskHit": "input-backdrop"
+  },
+  {
+    "step": "actual sheet cancellation and focus restoration",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-now",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "庭院 · garden"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "尚未收下安排"
+        },
+        {
+          "label": "提醒回显",
+          "text": "尚无提醒 · 取消 0 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "尚未选择动作"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 未选节奏 · 尚无 change"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    }
+  },
+  {
+    "step": "actual dialog default mask guard and Tab trap",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<button data-v-b63787b6=\"\" type=\"button\" class=\"nv-m-md-btn nv-m-md-confirm\" data-tone=\"brand\">记住提醒</button>",
+      "dialogs": [
+        {
+          "text": "给自己一个提醒确定才记住这句话。提醒内容取消记住提醒",
+          "rect": {
+            "x": 55,
+            "y": 325.125,
+            "width": 280,
+            "height": 193.75,
+            "top": 325.125,
+            "right": 335,
+            "bottom": 518.875,
+            "left": 55
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "庭院 · garden"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "散步 · 时长 3"
+        },
+        {
+          "label": "提醒回显",
+          "text": "尚无提醒 · 取消 0 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "尚未选择动作"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 未选节奏 · 尚无 change"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    },
+    "confirmHit": {
+      "x": 264.25,
+      "y": 494.875,
+      "width": 139.5,
+      "height": 46,
+      "top": 471.875,
+      "bottom": 517.875,
+      "hit": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": {
+        "x": 195,
+        "y": 422,
+        "top": 62,
+        "bottom": 844,
+        "height": 844
+      },
+      "active": "<button data-v-b63787b6=\"\" type=\"button\" class=\"nv-m-md-btn nv-m-md-confirm\" data-tone=\"brand\">记住提醒</button>"
+    }
+  },
+  {
+    "step": "actual dialog confirm and Escape noncommit with focus",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-now",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "庭院 · garden"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "散步 · 时长 3"
+        },
+        {
+          "label": "提醒回显",
+          "text": "带水 · 取消 1 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "尚未选择动作"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 未选节奏 · 尚无 change"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    }
+  }
+]
+

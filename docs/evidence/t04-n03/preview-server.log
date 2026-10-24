@@ -1,0 +1,2 @@
+$ vp preview --host 127.0.0.1 --port 4317 --strictPort
+  ➜  Local:   http://127.0.0.1:4317/

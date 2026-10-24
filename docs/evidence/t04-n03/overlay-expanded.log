@@ -1,0 +1,13 @@
+$ pnpm -C frontend --filter @nerv-iip/ui-mobile exec vp test run src/components/overlays.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  20:29:11
+   Duration  4.12s (transform 2.27s, setup 0ms, import 3.31s, tests 314ms, environment 410ms)
+
+Could not parse CSS stylesheet
+
+exit=0
