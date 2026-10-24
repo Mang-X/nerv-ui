@@ -127,3 +127,32 @@ it('opens the completed indicators deep link and stops its continuous readings b
     vi.useRealTimers()
   }
 })
+
+it('opens data deep link and disposes its polling before old surfaces then returns with fresh source state', async () => {
+  vi.useFakeTimers()
+  vi.stubGlobal('matchMedia', () => ({
+    matches: true,
+    addEventListener() {},
+    removeEventListener() {},
+  }))
+  try {
+    wrapper = mount(ScreenDemo, { props: { section: '#screen/data' } })
+    expect(wrapper.get('h1').text()).toBe('城市空间的流动消息')
+    expect(wrapper.get('a[href="#screen/data"]').attributes('aria-current')).toBe('page')
+    await vi.advanceTimersByTimeAsync(4000)
+    expect(wrapper.get('[aria-label="reading-a 请求记录"]').text()).toBe('reading-a：2')
+    expect(wrapper.get('[aria-label="notices 请求记录"]').text()).toBe('notices：2')
+    await wrapper.setProps({ section: '#screen/stage' })
+    expect(wrapper.get('h1').text()).toBe('城市文化空间')
+    expect(vi.getTimerCount()).toBe(0)
+    await wrapper.setProps({ section: '#screen/data' })
+    expect(wrapper.get('[aria-label="阅读动态"]').text()).toContain('等待首次数据')
+    expect(wrapper.get('[aria-label="reading-a 请求记录"]').text()).toBe('reading-a：0')
+    for (const section of ['controls', 'indicators', 'stage'])
+      expect(wrapper.find(`a[href="#screen/${section}"]`).exists()).toBe(true)
+  } finally {
+    wrapper?.unmount()
+    wrapper = undefined
+    vi.useRealTimers()
+  }
+})
