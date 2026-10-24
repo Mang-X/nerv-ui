@@ -50,3 +50,13 @@ A03–A07 的指标、刷新、图表、表格、摘要由后续票交付；不�
 左侧表单是可聚焦原生内滚区域，Panel 保持 overflow:hidden；Select 通过 body fixed 浮层展开。可操作“调整区域顺序”“切换长标签”“移除当前区域”“清空区域”“恢复区域”；这只改变 host 内存数据。暂停编辑禁用七件控件，区域安排按钮仍可用于恢复可选内容。
 
 Tabs 保持等宽槽位 ink；Segmented 根据按钮真实宽度定位 thumb。两者新增默认 false 的 disabled；旧 API/default/Nv 名称保留。Search 清除具有禁用 guard；Select 保留类型、动态安全与焦点，浮层重锚并在边界不足时向上展开；Switch 使用原生 click 避免额外 keydown 通道。Button/Input 实现无需变化。来源和每项公开测试、真实 browser/zoom、资源与未运行范围见 [A02 证据](evidence/t05-a02/README.md)。
+
+## A04：流动消息与轮询生命周期
+
+`/#screen/data` 提供“城市空间的流动消息”，由同一大屏壳保留 stage、controls、indicators 和全部桌面／触屏／移动入口。仅消费主桶 `@nerv-iip/ui` 和既有 CSS，展示 `NvScreenScrollArea`、`NvScrollBoard`、`NvScreenFreshness` 与 `useScreenData`。
+
+宿主为 reading-a、reading-b、notices 提供确定身份的内存 fetcher。阅读来源使用带 key 的 `ScreenDataSource`，每次挂载捕获固定 fetcher；独立快讯另起实例。公开控件支持失败一次、暂缓完成后手动释放、刷新、启停及失败时保留或撤下内容。每 2 秒轮询，初次等待没有假数据或成功时间。来源切换不会把 A 晚回写入 B 的可见状态；helper 的 stop/dispose 仍只停轮询和监听，不取消在途请求。
+
+两种滚动并列展示：自动轮巡支持悬停／滚轮，低动效与键盘进入后使用原生滚动；重复副本 inert，第一份 slot 控件可交互。手动区域跟随内容增删、替换与行高变化更新上下箭头。两者均不提供虚拟列表或业务缓存。原生 `.nv-scr-scroll` 继续由 A01 的既有 CSS 提供。
+
+精确测试、浏览器、资源、历史失败及 UNRUN 边界见 [A04 证据](evidence/t05-a04/README.md)。完整文档站 #10、packed #11、旧库接入与父 #6 组合验收分别执行。

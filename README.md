@@ -36,3 +36,5 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 [T05/A01 / #58](https://github.com/Mang-X/nerv-ui/issues/58) 在 `/#screen`（兼容 `/#screen/stage`）提供“城市文化空间”的 7 件基础外壳舞台，支持 fit/width/stretch、设计尺寸与返回既有表面。接入与范围见 [独立大屏接入](docs/screen-standalone.md)，实际验证见 [A01 证据](docs/evidence/t05-a01/README.md)。其余大屏能力由 #59–#64 跟踪，父 #6 组合验收单列。
 
 [T05/A02 / #59](https://github.com/Mang-X/nerv-ui/issues/59) 从 `/#screen/controls` 进入“随心安排”，展示七件受控输入、选择与键盘控件；从同一设置栏返回空间舞台和全部既有表面。接入见 [独立大屏接入](docs/screen-standalone.md#a02受控输入与空间安排)，证据见 [A02 验证记录](docs/evidence/t05-a02/README.md)。父 #6 组合验收另行执行。
+
+[T05/A04 / #61](https://github.com/Mang-X/nerv-ui/issues/61) 从 `/#screen/data` 进入“流动消息”，展示独立来源的等待／失败／保留／恢复、刷新与启停，以及自动轮巡和手动翻阅。接入见 [独立大屏接入](docs/screen-standalone.md#a04流动消息与轮询生命周期)，公开行为与实际浏览器证据见 [A04 验证记录](docs/evidence/t05-a04/README.md)。

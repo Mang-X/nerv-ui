@@ -4,68 +4,51 @@ title: NvScrollBoard 无缝滚动板
 
 <script setup>
 import { NvScrollBoard } from '@nerv-iip/ui'
-
-const alarms = [
-  { time: '13:56', text: '电芯线 · 卷绕机 1# 急停触发 · 安全门未复位', level: 'alarm' },
-  { time: '12:03', text: '电芯线 · 注液机 注液量偏差预警', level: 'warn' },
-  { time: '10:48', text: '模组线 · EOL 测试柜 通讯超时重试', level: 'warn' },
-  { time: '09:15', text: 'PACK 线 · 上料卡滞短停 8 min（已恢复）', level: 'info' },
-  { time: '08:20', text: '电芯线 · 化成柜 B 温度越限预警（已恢复）', level: 'info' },
-  { time: '07:51', text: '电芯二线 · 分容柜 2# 温度越限预警（已恢复）', level: 'info' },
-]
+const messages = Array.from({ length: 12 }, (_, i) => ({ id: i, text: `${i + 1} · 城市共读与河岸影像` }))
 </script>
 
 # NvScrollBoard 无缝滚动板
 
-告警流 / 停机事件这类**挂墙轮巡列表**的载体:列表渲染两遍、按帧位移,滚过一半即无缝回到起点(观众看不到"跳回")。悬停暂停 + 滚轮自由查看(双向同样按半高取模无缝);内容未溢出时静止不动。基于 `useRafFn` 按帧驱动,`speed` 为像素/秒。
-
-## 基础用法
-
-外层容器限高,`items` + `#row` 作用域插槽:
+自动轮巡消息列表。长列表渲染原始与重复两份，按帧位移、按原始列表高度回环。`speed` 为像素/秒；短列表或空列表静止，不显示多余重复行。
 
 <ScreenDemo>
-  <div style="height: 150px">
-    <NvScrollBoard :items="alarms" :row-key="(r) => r.time + r.text" :speed="22">
-      <template #row="{ item }">
-        <div style="display: flex; gap: 10px; padding: 7px 2px; font-size: 13px; border-bottom: 1px solid var(--nv-scr-divider)">
-          <span style="color: var(--nv-scr-muted); font-variant-numeric: tabular-nums">{{ item.time }}</span>
-          <span :style="{ flex: 1, color: item.level === 'alarm' ? 'var(--nv-scr-red)' : item.level === 'warn' ? 'var(--nv-scr-amber)' : 'var(--nv-scr-faint)' }">
-            {{ item.text }}
-          </span>
-        </div>
-      </template>
+  <div style="height:150px">
+    <NvScrollBoard :items="messages" :row-key="row => row.id" :speed="28" aria-label="城市消息">
+      <template #row="{ item }"><div style="height:36px">{{ item.text }}</div></template>
     </NvScrollBoard>
   </div>
 </ScreenDemo>
 
 ```vue
-<template>
-  <div style="height: 150px">
-    <NvScrollBoard :items="alarms" :row-key="(r) => r.time + r.text" :speed="22">
-      <template #row="{ item }">
-        <div class="row">{{ item.time }} · {{ item.text }}</div>
-      </template>
-    </NvScrollBoard>
-  </div>
-</template>
+<NvScrollBoard
+  :items="messages"
+  :row-key="(row) => row.id"
+  :speed="28"
+  style="height:200px"
+  aria-label="城市消息"
+>
+  <template #row="{ item, index }">
+    <div class="message-row">{{ index + 1 }} · {{ item.text }}</div>
+  </template>
+</NvScrollBoard>
 ```
 
-## 交互语义
+## 交互与可达性
 
-- **悬停暂停**(`pauseOnHover`,默认开):运维凑近看时列表停住;
-- **滚轮自由查看**:暂停期间滚轮上下翻,同样无缝循环;
-- **未溢出不滚**:条目装得下时保持静止 —— 不为动而动。
+- 默认悬停暂停，离开恢复；双向滚轮按列表高度回环。
+- 内容追加、缩短或行高变化后重新测量，收回越界位移；不依赖下一次移动才修正。
+- `prefers-reduced-motion: reduce` 停止 JS 自动位移，改为原始列表的原生滚动，内容仍可达。运行中切换系统设置同样生效。
+- 键盘进入时暂停并回到原始列表，可通过原生滚动和第一份行内控件交互；焦点离开后恢复轮巡。重复区域使用 `aria-hidden` 和原生 `inert`，不产生第二套 Tab 目标；原始 slot 的按钮和链接保持可操作。
+- 宿主给容器明确高度、稳定 rowKey 和可理解的 `aria-label`。这不是虚拟列表；全部原始行均会渲染。重复区域只用于视觉连续性。
 
 ## API
 
-| Prop           | 类型                                | 默认   | 说明                            |
-| -------------- | ----------------------------------- | ------ | ------------------------------- |
-| `items`        | `T[]`                               | —      | 列表数据(泛型)                  |
-| `speed`        | `number`                            | `28`   | 滚动速度(px/s)                  |
-| `pauseOnHover` | `boolean`                           | `true` | 悬停暂停                        |
-| `rowKey`       | `(item, index) => string \| number` | 下标   | 行 key(轮询更新时保持 DOM 复用) |
-| `#row` 插槽    | `{ item, index }`                   | —      | 行渲染                          |
+| Prop           | 类型                                           | 默认      | 说明       |
+| -------------- | ---------------------------------------------- | --------- | ---------- |
+| `items`        | `T[]`                                          | —         | 泛型列表   |
+| `speed`        | `number`                                       | `28`      | 像素/秒    |
+| `pauseOnHover` | `boolean`                                      | `true`    | 悬停暂停   |
+| `rowKey`       | `(item: T, index: number) => string \| number` | 下标      | 稳定行身份 |
+| `#row`         | `{ item: T, index: number }`                   | item 文本 | 行内容     |
 
-::: tip 与 NvScreenScrollArea 的分工
-`NvScrollBoard` 是**自动轮巡**(无人操作的挂墙场景);[NvScreenScrollArea](./screen-scroll-area) 是**手动滚动**(运维交互场景,悬浮细滚条 + 可滑提示)。按场景选择,不要混用。
-:::
+[NvScreenScrollArea](./screen-scroll-area) 用于手动翻阅与溢出箭头；本组件用于自动轮巡。独立中性宿主 `/#screen/data` 并列展示两者。

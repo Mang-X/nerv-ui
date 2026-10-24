@@ -1,0 +1,110 @@
+import { mount, flushPromises } from '@vue/test-utils'
+import { afterEach, beforeEach, expect, it, vi } from 'vitest'
+import ScreenDataDemo from './ScreenDataDemo.vue'
+
+const wrappers: ReturnType<typeof mount>[] = []
+const button = (wrapper: Pick<ReturnType<typeof mount>, 'findAll'>, name: string) =>
+  wrapper.findAll('button').find((node) => node.text() === name)!
+beforeEach(() => {
+  vi.useFakeTimers()
+  vi.stubGlobal('matchMedia', () => ({
+    matches: true,
+    addEventListener() {},
+    removeEventListener() {},
+  }))
+})
+afterEach(() => {
+  wrappers.splice(0).forEach((wrapper) => wrapper.unmount())
+  vi.useRealTimers()
+  vi.unstubAllGlobals()
+})
+
+it('keyed source switch cannot display late A in B and independent sources keep their own request and freshness state', async () => {
+  const wrapper = mount(ScreenDataDemo)
+  wrappers.push(wrapper)
+  const primary = () => wrapper.get('[aria-label="阅读动态"]')
+  const secondary = () => wrapper.get('[aria-label="空间快讯"]')
+  expect(primary().text()).toContain('等待首次数据')
+  expect(primary().text()).toContain('最近成功：—')
+  await primary().get('input[aria-label="暂缓完成"]').setValue(true)
+  await button(primary(), '刷新').trigger('click')
+  await button(primary(), '刷新').trigger('click')
+  expect(primary().text()).toContain('请求 1')
+  expect(primary().text()).toContain('正在更新')
+  await wrapper.get('select[aria-label="阅读来源"]').setValue('reading-b')
+  expect(primary().text()).toContain('reading-b')
+  expect(primary().text()).toContain('等待首次数据')
+  await button(primary(), '刷新').trigger('click')
+  await flushPromises()
+  expect(primary().text()).toContain('河岸展厅 · reading-b · 1')
+  await button(wrapper, '完成 reading-a').trigger('click')
+  await flushPromises()
+  expect(primary().text()).not.toContain('街角书房 · reading-a · 1')
+  expect(primary().text()).toContain('河岸展厅 · reading-b · 1')
+  expect(secondary().text()).toContain('等待首次数据')
+  await button(secondary(), '失败一次').trigger('click')
+  await flushPromises()
+  expect(secondary().text()).toContain('尚无数据 · 本次未取到')
+  expect(secondary().text()).toContain('最近成功：—')
+  expect(primary().text()).toContain('更新完成')
+  await button(secondary(), '刷新').trigger('click')
+  await flushPromises()
+  expect(secondary().text()).toContain('空间快讯 · notices · 2')
+  await button(primary(), '停止轮询').trigger('click')
+  await button(secondary(), '停止轮询').trigger('click')
+  wrapper.unmount()
+  wrappers.pop()
+  expect(vi.getTimerCount()).toBe(0)
+})
+
+it('host explicitly retains or withdraws failed content and recovery restores it while polling stops and restarts', async () => {
+  const wrapper = mount(ScreenDataDemo)
+  wrappers.push(wrapper)
+  const primary = () => wrapper.get('[aria-label="阅读动态"]')
+  await button(primary(), '刷新').trigger('click')
+  await flushPromises()
+  const success = primary().get('.source-time').text()
+  await button(primary(), '失败一次').trigger('click')
+  await flushPromises()
+  expect(primary().text()).toContain('数据滞留')
+  expect(primary().text()).toContain('街角书房 · reading-a · 1')
+  expect(primary().get('.source-time').text()).toBe(success)
+  await primary().get('[aria-label="失败时保留内容"]').setValue(false)
+  expect(primary().text()).toContain('内容已暂时撤下')
+  expect(primary().text()).not.toContain('街角书房 · reading-a · 1')
+  await button(primary(), '刷新').trigger('click')
+  await flushPromises()
+  expect(primary().text()).toContain('街角书房 · reading-a · 3')
+  expect(primary().text()).toContain('更新完成')
+  await button(primary(), '停止轮询').trigger('click')
+  await vi.advanceTimersByTimeAsync(4000)
+  expect(wrapper.get('[aria-label="reading-a 请求记录"]').text()).toBe('reading-a：3')
+  expect(wrapper.get('[aria-label="notices 请求记录"]').text()).toBe('notices：2')
+  await button(primary(), '开始轮询').trigger('click')
+  await vi.advanceTimersByTimeAsync(2000)
+  expect(wrapper.get('[aria-label="reading-a 请求记录"]').text()).toBe('reading-a：4')
+})
+
+it('public list controls append shrink clear restore replace and change row height without losing original actions', async () => {
+  const wrapper = mount(ScreenDataDemo)
+  wrappers.push(wrapper)
+  const area = () => wrapper.get('[aria-label="翻阅消息"]')
+  expect(area().findAll('.data-row')).toHaveLength(12)
+  await button(wrapper, '追加消息').trigger('click')
+  expect(area().findAll('.data-row')).toHaveLength(16)
+  await button(wrapper, '缩为两条').trigger('click')
+  expect(area().findAll('.data-row')).toHaveLength(2)
+  await button(wrapper, '清空消息').trigger('click')
+  expect(area().get('p').text()).toBe('暂无消息')
+  expect(area().findAll('.data-row')).toHaveLength(0)
+  await button(wrapper, '恢复消息').trigger('click')
+  expect(area().findAll('.data-row')).toHaveLength(12)
+  const old = area().get('.data-row').element
+  await button(wrapper, '替换内容').trigger('click')
+  expect(area().get('.data-row').element).not.toBe(old)
+  const expand = wrapper.findAll('label').find((label) => label.text() === '展开行说明')!
+  await expand.get('input').setValue(true)
+  expect(area().get('.data-row').text()).toContain('为城市留一段安静的阅读时光')
+  await area().get('button').trigger('click')
+  expect(wrapper.text()).toContain('已选：space-1')
+})

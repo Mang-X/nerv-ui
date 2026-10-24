@@ -22,12 +22,24 @@ const vpRef = ref<InstanceType<typeof ScrollAreaViewport> | null>(null)
 const canUp = ref(false)
 const canDown = ref(false)
 let ro: ResizeObserver | null = null
+let mo: MutationObserver | null = null
+let contentEl: Element | null = null
 let vpEl: HTMLElement | null = null
 
 function update() {
   if (!vpEl) return
   canUp.value = vpEl.scrollTop > 2
   canDown.value = vpEl.scrollTop + vpEl.clientHeight < vpEl.scrollHeight - 2
+}
+
+function syncContent() {
+  const next = vpEl?.firstElementChild ?? null
+  if (next !== contentEl) {
+    if (contentEl) ro?.unobserve(contentEl)
+    contentEl = next
+    if (contentEl) ro?.observe(contentEl)
+  }
+  update()
 }
 
 onMounted(() => {
@@ -46,12 +58,14 @@ onMounted(() => {
   vpEl.addEventListener('scroll', update, { passive: true })
   ro = new ResizeObserver(update)
   ro.observe(vpEl)
-  if (vpEl.firstElementChild) ro.observe(vpEl.firstElementChild)
-  update()
+  mo = new MutationObserver(syncContent)
+  mo.observe(vpEl, { childList: true, subtree: true })
+  syncContent()
 })
 onBeforeUnmount(() => {
   vpEl?.removeEventListener('scroll', update)
   ro?.disconnect()
+  mo?.disconnect()
 })
 </script>
 
