@@ -1,0 +1,20 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "corepack",
+    "pnpm@11.22.0",
+    "-C",
+    "frontend",
+    "exec",
+    "vp",
+    "fmt",
+    "--check",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.vue",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.gestures.test.ts",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/design-system/docs/components/mobile/pull-refresh.md"
+  ],
+  "start": "2026-10-24T15:19:05.418Z",
+  "end": "2026-10-24T15:19:06.471Z",
+  "exit": 1,
+  "signal": null
+}

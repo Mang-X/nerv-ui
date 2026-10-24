@@ -1,0 +1,5954 @@
+{
+  "name": "f3-final-390-light",
+  "width": 390,
+  "height": 844,
+  "dark": false,
+  "records": [
+    {
+      "input": "mouse",
+      "mode": "at-start",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP mouse down/move/up"
+    },
+    {
+      "input": "mouse",
+      "mode": "above-start",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP mouse down/move/up"
+    },
+    {
+      "input": "mouse",
+      "mode": "repull",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "已更新 · 请求 1 次",
+        "text": " 下拉刷新第 1 次来信 1第 1 次来信 2第 1 次来信 3第 1 次来信 4第 1 次来信 5第 1 次来信 6第 1 次来信 7第 1 次来信 8第 1 次来信 9第 1 次来信 10第 1 次来信 11第 1 次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP mouse down/move/up"
+    },
+    {
+      "input": "mouse",
+      "mode": "loading",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "已更新 · 请求 1 次",
+        "text": " 下拉刷新第 1 次来信 1第 1 次来信 2第 1 次来信 3第 1 次来信 4第 1 次来信 5第 1 次来信 6第 1 次来信 7第 1 次来信 8第 1 次来信 9第 1 次来信 10第 1 次来信 11第 1 次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP mouse down/move/up"
+    },
+    {
+      "input": "mouse",
+      "mode": "cancel",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointercancel",
+            "y": 0,
+            "pointerType": "",
+            "trusted": false
+          },
+          {
+            "type": "pointerup",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP mouse with DOM pointercancel injection"
+    },
+    {
+      "input": "mouse",
+      "mode": "non-top",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 381,
+            "pointerType": "mouse",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP mouse down/move/up"
+    },
+    {
+      "input": "touch",
+      "mode": "at-start",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP synthetic touch, not physical touch"
+    },
+    {
+      "input": "touch",
+      "mode": "above-start",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP synthetic touch, not physical touch"
+    },
+    {
+      "input": "touch",
+      "mode": "repull",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "已更新 · 请求 1 次",
+        "text": " 下拉刷新第 1 次来信 1第 1 次来信 2第 1 次来信 3第 1 次来信 4第 1 次来信 5第 1 次来信 6第 1 次来信 7第 1 次来信 8第 1 次来信 9第 1 次来信 10第 1 次来信 11第 1 次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP synthetic touch, not physical touch"
+    },
+    {
+      "input": "touch",
+      "mode": "loading",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "已更新 · 请求 1 次",
+        "text": " 下拉刷新第 1 次来信 1第 1 次来信 2第 1 次来信 3第 1 次来信 4第 1 次来信 5第 1 次来信 6第 1 次来信 7第 1 次来信 8第 1 次来信 9第 1 次来信 10第 1 次来信 11第 1 次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointerup",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP synthetic touch, not physical touch"
+    },
+    {
+      "input": "touch",
+      "mode": "cancel",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 释放立即刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(78.0517px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 427,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 439,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 451,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 463,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 475,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 487,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 499,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 511,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 523,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 535,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 547,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 559,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 546.2857055664062,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 533.5714111328125,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 520.8571166992188,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 508.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 495.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 482.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 470,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 457.28570556640625,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 444.5714416503906,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 431.8571472167969,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 419.1428527832031,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 406.4285583496094,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 393.71429443359375,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointercancel",
+            "y": 381,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP synthetic touch, not physical touch"
+    },
+    {
+      "input": "touch",
+      "mode": "non-top",
+      "geometry": {
+        "x": 195,
+        "y": 494,
+        "width": 348,
+        "height": 254,
+        "top": 367,
+        "right": 369,
+        "bottom": 621,
+        "left": 21,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "pulled": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointercancel",
+            "y": 0,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "retracted": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointercancel",
+            "y": 0,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "final": {
+        "status": "尚未刷新 · 请求 0 次",
+        "text": " 下拉刷新初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "transform": "translateY(0px)",
+        "scrollTop": 0,
+        "events": [
+          {
+            "type": "pointerdown",
+            "y": 391,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 403,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointermove",
+            "y": 415,
+            "pointerType": "touch",
+            "trusted": true
+          },
+          {
+            "type": "pointercancel",
+            "y": 0,
+            "pointerType": "touch",
+            "trusted": true
+          }
+        ]
+      },
+      "description": "CDP synthetic touch, not physical touch"
+    }
+  ]
+}

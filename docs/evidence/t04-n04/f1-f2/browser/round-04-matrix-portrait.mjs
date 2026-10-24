@@ -1,0 +1,1 @@
+const task=await taskSpace(12),page=task.page('p1');const {scenario}=await import('/tmp/nerv-ui-t04-n04-fix/browser/scenario-v2.mjs');await scenario(page,390,844,false,'fresh-390-light');console.log(await page.snapshot());

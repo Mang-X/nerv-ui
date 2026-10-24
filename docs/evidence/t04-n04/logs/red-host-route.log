@@ -1,0 +1,34 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/App.test.ts (6 tests | 1 failed) 442ms
+   × opens mobile lists directly, navigates through all existing entries and unmounts pending work 29ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.test.ts > opens mobile lists directly, navigates through all existing entries and unmounts pending work
+AssertionError: expected '周末随行' to be '翻阅时光' // Object.is equality
+
+Expected: "翻阅时光"
+Received: "周末随行"
+
+ ❯ src/App.test.ts:87:36
+     85|   window.location.hash = '#mobile-lists'
+     86|   wrapper = mount(App, { attachTo: document.body })
+     87|   expect(wrapper.get('h1').text()).toBe('翻阅时光')
+       |                                    ^
+     88|   for (const hash of ['#desktop', '#touch', '#mobile', '#mobile-input'…
+     89|     expect(wrapper.find(`a[href="${hash}"]`).exists()).toBe(true)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  21:27:44
+   Duration  6.05s (transform 3.73s, setup 401ms, import 4.68s, tests 442ms, environment 410ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/App.test.ts

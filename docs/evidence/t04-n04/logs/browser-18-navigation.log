@@ -1,0 +1,60 @@
+prior failed probe ledger { pending: 0, intervals: 1, fired: 1 }
+{ before: { pending: 1, intervals: 1, fired: 0 }, after: { heading: '周末随行', pending: 0, intervals: 0, fired: 0 } }
+{ before: { pending: 1, intervals: 1, fired: 0 }, after: { heading: '周末随行', pending: 0, intervals: 0, fired: 0 }, routes: [ { hash: '#desktop', heading: '让想法有序向前' }, { hash: '#touch', heading: '共享阅读角' }, { hash: '#mobile-input', heading: '随心记录' }, { hash: '#mobile-overlays', heading: '片刻安排' }, { hash: '#mobile', heading: '周末随行' } ], final: { viewport: [ 390, 844 ], dark: true, overflow: false, main: [ { scrollTop: 0, clientHeight: 783, scrollHeight: 2274, overflow: 'auto' } ], scrollers: [ { slot: 'pull-refresh-scroll', scrollTop: 0, clientHeight: 254, scrollHeight: 672, scrollWidth: 333, clientWidth: 333, rect: { x: 21, y: 644, width: 348, height: 254, top: 644, right: 369, bottom: 898, left: 21 }, overflow: 'auto' }, { slot: 'infinite-list', scrollTop: 0, clientHeight: 254, scrollHeight: 428, scrollWidth: 333, clientWidth: 333, rect: { x: 20, y: 1155, width: 350, height: 256, top: 1155, right: 370, bottom: 1411, left: 20 }, overflow: 'auto' }, { slot: 'virtual-list', scrollTop: 0, clientHeight: 238, scrollHeight: 48000, scrollWidth: 333, clientWidth: 333, rect: { x: 20, y: 1607, width: 350, height: 240, top: 1607, right: 370, bottom: 1847, left: 20 }, overflow: 'auto' } ], windowRows: [ 'letter-1', 'letter-2', 'letter-3', 'letter-4', 'letter-5', 'letter-6', 'letter-7', 'letter-8', 'letter-9' ], outputs: [ [ '滑动动作回显', '尚未选择动作' ], [ '刷新状态', '尚未刷新 · 请求 0 次' ], [ '分页状态', '可以继续 · 8 封 · 请求 0 次' ], [ '信笺回显', '尚未选择信笺' ], [ '轮播状态', '第 1 / 3 页 · 切换 0 次' ] ] }, navigation: 'public hash change queued immediately after the host schedules 650ms loading; wheel load trigger is real Chromium input' }
+[p1 "NvUI · 项目清单" | space "nerv-ui N04 lists 20261024"(9): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=91, loc=css:button[aria-label="切换明暗"]]
+        text "浅色"
+    container [ref=92]
+      container
+        paragraph
+          text "来信、书签与沿途的风景"
+        heading
+          text "翻阅时光"
+        container "演示入口"
+          anchor [ref=93, loc=href:/#mobile, url=http://127.0.0.1:4184/#mobile]
+            text "随行手记"
+          anchor [ref=94, loc=href:/#mobile-input, url=http://127.0.0.1:4184/#mobile-input]
+            text "随心记录"
+          anchor [ref=95, loc=href:/#mobile-overlays, url=http://127.0.0.1:4184/#mobile-overlays]
+            text "片刻安排"
+          anchor [ref=96, loc=href:/#desktop, url=http://127.0.0.1:4184/#desktop]
+            text "桌面演示"
+          anchor [ref=97, loc=href:/#touch, url=http://127.0.0.1:4184/#touch]
+            text "触屏演示"
+      container "一封来信"
+        heading
+          text "一封来信"
+        paragraph
+          text "向左滑动来信，选择动作；向右滑动收起。"
+        container
+          container
+            button [ref=98]
+              text "收进书签"
+            button [ref=99]
+              text "暂时收起"
+          text "湖畔来信"
+        output "滑动动作回显" [ref=100]
+          text "尚未选择动作"
+      container "刷新来信"
+        heading
+          text "刷新来信"
+        paragraph
+          text "在信箱内滚动，回到顶端后向下拉动刷新。"
+        container
+          checkbox "下次刷新失败" [ref=101, loc=css:input[aria-label="下次刷新失败"]]
+          text "下次刷新失败"
+        output "刷新状态" [ref=102]
+          text "尚未刷新 · 请求 0 次"
+        paragraph
+          text "信箱滚动 0px"
+        container [ref=103]
+          text "初次来信 1"
+          text "初次来信 2"
+          text "初次来信 3"
+          text "初次来信 4"
+
+

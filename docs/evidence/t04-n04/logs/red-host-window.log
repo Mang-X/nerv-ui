@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileListDemo.test.ts (4 tests | 1 failed) 1114ms
+   × renders a finite virtual window, selects the item identity and reflects host reordering and empty data 1014ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileListDemo.test.ts > renders a finite virtual window, selects the item identity and reflects host reordering and empty data
+AssertionError: expected [] to have a length of 9 but got +0
+
+- Expected
++ Received
+
+- 9
++ 0
+
+ ❯ src/MobileListDemo.test.ts:81:71
+     79|   vi.spyOn(HTMLElement.prototype, 'clientHeight', 'get').mockReturnVal…
+     80|   wrapper = mount(MobileListDemo)
+     81|   await vi.waitFor(() => expect(wrapper.findAll('[data-window-row]')).…
+       |                                                                       ^
+     82|   const list = wrapper.get('[data-slot="virtual-list"]')
+     83|   ;(list.element as HTMLElement).scrollTop = 4800
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  21:25:06
+   Duration  6.99s (transform 3.84s, setup 469ms, import 4.82s, tests 1.11s, environment 460ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileListDemo.test.ts

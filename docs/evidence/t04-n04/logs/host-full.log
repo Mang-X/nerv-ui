@@ -1,0 +1,31 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/nvui-imports.contract.test.ts (24 tests) 43ms
+ ✓ src/TouchDemo.test.ts (5 tests) 359ms
+ ✓ src/MobileDemo.test.ts (3 tests) 313ms
+ ✓ src/MobileListDemo.test.ts (7 tests) 591ms
+ ✓ src/App.test.ts (6 tests) 1794ms
+   ✓ adds a named project from the form to the searchable table  435ms
+   ✓ opens the standalone touch demo from its direct entry and returns to desktop  459ms
+ ✓ src/MobileOverlayDemo.test.ts (7 tests) 2047ms
+   ✓ commits the picked identity only on confirmation and leaves empty choices unsubmitted  986ms
+   ✓ keeps sheet edits as drafts, gives the numeric layer priority and removes it with the host sheet  325ms
+ ✓ src/MobileInputDemo.test.ts (14 tests) 2616ms
+   ✓ submits manual and captured scans, yields to ordinary fields and resumes without losing manual drafts  468ms
+   ✓ yields scan focus to 'open number sheet' and resumes with the manual draft  330ms
+   ✓ yields scan focus to sheets and dialogs, keeps keypad confirmation inside the sheet and closes nested input with its host  318ms
+
+ Test Files  7 passed (7)
+      Tests  66 passed (66)
+   Start at  21:33:40
+   Duration  13.35s (transform 29.64s, setup 10.84s, import 43.30s, tests 7.76s, environment 10.89s)
+
+JSON report written to /tmp/nerv-ui-t04-n04/host-full.json

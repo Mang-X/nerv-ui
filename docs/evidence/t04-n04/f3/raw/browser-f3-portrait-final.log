@@ -1,0 +1,46 @@
+PASS f3-final-390-light 12 cases
+[p1 "NvUI · 项目清单" | space "N04 F3 fix 20261024"(13): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=33, loc=css:button[aria-label="切换明暗"]]
+        text "深色"
+    container [ref=34]
+      container "刷新来信"
+        paragraph
+          text "在信箱内滚动，回到顶端后向下拉动刷新。"
+        container
+          checkbox "下次刷新失败" [ref=35, loc=css:input[aria-label="下次刷新失败"]]
+          text "下次刷新失败"
+        button [ref=36]
+          text "立即更新"
+        output "刷新状态" [ref=37]
+          text "尚未刷新 · 请求 0 次"
+        paragraph
+          text "信箱滚动 0px"
+        container [ref=38]
+          text "初次来信 1"
+          text "初次来信 2"
+          text "初次来信 3"
+          text "初次来信 4"
+          text "初次来信 5"
+      container "继续翻阅"
+        heading
+          text "继续翻阅"
+        paragraph
+          text "在来信内滚动到底部，分批收下 24 封来信。"
+        container
+          checkbox "下次加载失败" [ref=39, loc=css:input[aria-label="下次加载失败"]]
+          text "下次加载失败"
+        container
+          button [ref=40]
+            text "重新开始"
+          button [ref=41]
+            text "清空信箱"
+        output "分页状态" [ref=42]
+          text "可以继续 · 8 封 · 请求 0 次"
+        container [ref=43]
+          text "来信 1"
+
+

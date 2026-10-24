@@ -1,0 +1,1 @@
+const task=await taskSpace(13),page=task.page('p1');const {f3}=await import('/tmp/nerv-ui-t04-n04-f3/browser/f3.mjs');await f3(page,390,844,false,'f3-390-light');console.log(await page.snapshot());

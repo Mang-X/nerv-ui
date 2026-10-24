@@ -1,0 +1,14 @@
+{
+  "cwd": "/private/tmp/nerv-ui-t04-n04-f3/probe",
+  "command": [
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.bin/vitest",
+    "run",
+    "--config",
+    "/tmp/nerv-ui-t04-n04-f3/probe/r2.config.mjs",
+    "--outputFile=/tmp/nerv-ui-t04-n04-f3/raw/probe-r2-interleavings.json"
+  ],
+  "start": "2026-10-24T15:16:35.304Z",
+  "end": "2026-10-24T15:16:40.768Z",
+  "exit": 0,
+  "signal": null
+}

@@ -1,0 +1,19 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "corepack",
+    "pnpm@11.22.0",
+    "-C",
+    "frontend/packages/ui-mobile",
+    "exec",
+    "vp",
+    "test",
+    "run",
+    "src/components/pull-refresh",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile=/tmp/nerv-ui-t04-n04-fix/raw/f2-red.json"
+  ],
+  "exit": 1,
+  "signal": null
+}

@@ -4,6 +4,7 @@ import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 import MobileOverlayDemo from './MobileOverlayDemo.vue'
+import MobileListDemo from './MobileListDemo.vue'
 import {
   NvApp,
   NvAppHeader,
@@ -76,12 +77,18 @@ function addProject() {
 </script>
 
 <template>
-  <MobileOverlayDemo v-if="surface === '#mobile-overlays'" />
+  <MobileListDemo v-if="surface === '#mobile-lists'" />
+  <MobileOverlayDemo v-else-if="surface === '#mobile-overlays'" />
   <MobileInputDemo v-else-if="surface === '#mobile-input'" />
   <MobileDemo v-else-if="surface.startsWith('#mobile')" />
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a
+        href="#mobile-lists"
+        class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
+        >翻阅时光</a
+      >
       <a
         href="#mobile"
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"

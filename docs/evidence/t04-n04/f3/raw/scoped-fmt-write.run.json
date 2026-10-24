@@ -1,0 +1,18 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "corepack",
+    "pnpm@11.22.0",
+    "-C",
+    "frontend",
+    "exec",
+    "vp",
+    "fmt",
+    "--write",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.gestures.test.ts"
+  ],
+  "start": "2026-10-24T15:20:07.853Z",
+  "end": "2026-10-24T15:20:08.597Z",
+  "exit": 0,
+  "signal": null
+}

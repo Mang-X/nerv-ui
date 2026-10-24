@@ -1,0 +1,1 @@
+const task=await taskSpace('N04 F3 fix 20261024');const page=task.page('p1');await page.goto('http://127.0.0.1:4187/#mobile-lists');console.log({spaceId:task.spaceId});console.log(await page.snapshot());

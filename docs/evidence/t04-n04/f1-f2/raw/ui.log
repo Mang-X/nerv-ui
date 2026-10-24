@@ -1,0 +1,120 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui
+
+ ✓ src/date-picker-props.contract.test.ts (2 tests) 1025ms
+     ✓ 声明为 prop 的 class/id 真的落进 DOM  961ms
+ ✓ src/components/pc/card/Metric.test.ts (43 tests) 439ms
+ ✓ src/components/pc/date-picker/NvDatePicker.test.ts (9 tests) 364ms
+ ✓ src/components/ui/date-picker/DatePicker.test.ts (2 tests) 723ms
+     ✓ selects a day from the calendar and emits a YYYY-MM-DD string  506ms
+ ✓ src/components/ui/date-picker/DateRangePicker.test.ts (2 tests) 793ms
+     ✓ renders a range calendar with the current selection  486ms
+     ✓ clears the selected range and emits null  300ms
+ ✓ src/components/ui/file-upload/FileUpload.test.ts (31 tests) 1070ms
+ ✓ src/components/ui/file-preview/FilePreview.test.ts (22 tests) 955ms
+ ✓ src/components/pc/data-table/DataTable.test.ts (12 tests) 532ms
+ ✓ src/components/blocks/entity-picker/EntityPicker.test.ts (24 tests) 2295ms
+ ✓ src/components/pc/date-picker/NvDateRangePicker.test.ts (3 tests) 473ms
+     ✓ 选完区间回传出规范排序的两端  321ms
+ ✓ src/test-support/unovisTooltipTimers.test.ts (2 tests) 258ms
+ ✓ src/components/pc/combobox/combobox.test.ts (9 tests) 619ms
+     ✓ gives the popover search input an accessible name derived from the field  363ms
+ ✓ src/components/pc/dialog/NvDialog.test.ts (3 tests) 426ms
+ ✓ src/components/blocks/group-panel/GroupPanel.test.ts (5 tests) 150ms
+ ✓ src/components/pc/sheet/NvSheetContent.test.ts (2 tests) 288ms
+ ✓ src/components/pc/sidebar/NvSidebar.test.ts (1 test) 233ms
+ ✓ src/components/pc/checkbox/NvCheckbox.contract.test.ts (7 tests) 135ms
+ ✓ src/components/pc/status/NvStatusBadge.test.ts (28 tests) 89ms
+ ✓ src/components/blocks/cascade-picker/CascadePicker.test.ts (3 tests) 150ms
+ ✓ src/design-system.contract.test.ts (21 tests) 166ms
+ ✓ src/components/pc/carousel/Carousel.test.ts (5 tests) 55ms
+ ✓ src/components/screen/ScreenFreshness.test.ts (2 tests) 22ms
+ ✓ src/components/pc/spinner/NvSpinner.test.ts (2 tests) 21ms
+ ✓ src/components/pc/input/NvInvalidControls.test.ts (2 tests) 38ms
+ ✓ src/components/touch/QtyStepper.test.ts (3 tests) 99ms
+ ✓ src/components/touch/StatTile.test.ts (5 tests) 101ms
+ ✓ src/nvui-naming.contract.test.ts (247 tests) 125ms
+ ✓ src/components/touch/TouchSegmented.test.ts (5 tests) 175ms
+ ✓ src/components/touch/StationBar.test.ts (5 tests) 150ms
+ ✓ src/foundation-conventions.contract.test.ts (36 tests) 214ms
+ ✓ src/components/touch/TouchButton.test.ts (11 tests) 292ms
+ ✓ src/components/pc/input/NvInput.test.ts (1 test) 74ms
+ ✓ src/test-support/nvuiImportHygiene.test.ts (22 tests) 13ms
+ ✓ src/components/screen/useScreenData.test.ts (6 tests) 14ms
+ ✓ src/components/ui/file-preview/filePreviewKind.test.ts (5 tests) 5ms
+ ✓ src/composables/useTheme.test.ts (5 tests) 10ms
+ ✓ src/components/screen/scale.test.ts (7 tests) 12ms
+ ✓ src/components/blocks/app-shell-inset/AppShellInset.test.ts (1 test) 20ms
+ ✓ src/lib/utils.test.ts (9 tests) 5ms
+ ✓ src/ui-primitives.contract.test.ts (8 tests) 8ms
+ ✓ src/reka-alias.contract.test.ts (20 tests) 7ms
+ ✓ src/blocks.contract.test.ts (4 tests) 3ms
+ ✓ src/date-chart-readiness.contract.test.ts (2 tests) 3ms
+
+ Test Files  43 passed (43)
+      Tests  644 passed (644)
+   Start at  22:38:43
+   Duration  17.24s (transform 22.27s, setup 35.03s, import 54.21s, tests 12.65s, environment 36.33s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/ui.json
+$ vp test run src --exclude src/design-docs.contract.test.ts --exclude src/nvui-doc-coverage.contract.test.ts --exclude src/docs-layout.contract.test.ts --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t04-n04-fix/raw/ui.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+stderr | src/date-picker-props.contract.test.ts > NvDatePicker.vue 声明的 DOM prop 必须被消费 > 声明为 prop 的 class/id 真的落进 DOM
+[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+stderr | src/components/pc/sheet/NvSheetContent.test.ts > NvSheetContent 版式契约 > 正文子元素带水平内边距，头尾排除在外（否则双重内边距且背景缩进）
+Warning: Missing `Description` or `aria-describedby="undefined"` for DialogContent.
+
+Could not parse CSS stylesheet
+stderr | src/components/pc/sheet/NvSheetContent.test.ts > NvSheetContent 版式契约 > 直接子元素钉住 min-w-0，超宽内容各自横向滚动而不顶破面板
+Warning: Missing `Description` or `aria-describedby="undefined"` for DialogContent.
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+stderr | src/components/pc/status/NvStatusBadge.test.ts > NvStatusBadge 中文状态展示 > 未知状态 new-producer-status 显示中性占位
+[NvStatusBadge] 词表缺失: new-producer-status（归一键 newproducerstatus），请补 statusMap.ts 的 STATUS_LABELS
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+stderr | src/foundation-conventions.contract.test.ts > 状态词表 > 空值与未登记码给中性占位，不回吐原码
+[NvStatusBadge] 词表缺失: brand-new-code（归一键 brandnewcode），请补 statusMap.ts 的 STATUS_LABELS
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

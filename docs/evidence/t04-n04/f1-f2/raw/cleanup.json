@@ -1,0 +1,28 @@
+{
+  "preview": {
+    "pid": 80348,
+    "port": 4186,
+    "signal": "SIGTERM",
+    "listening": false
+  },
+  "ego": {
+    "spaceId": 12,
+    "finishKeep": [],
+    "result": {
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+      "command": [
+        "zsh",
+        "-c",
+        "ego-browser nodejs < /tmp/nerv-ui-t04-n04-fix/browser/round-10-finish.mjs"
+      ],
+      "exit": 0,
+      "signal": null
+    }
+  },
+  "t3": {
+    "tabId": "tab_11_6faab953-90e1-4ff7-b4aa-20aa9696713e",
+    "closed": true,
+    "toolResult": {}
+  },
+  "worktreeRetainedForIndependentR2": true
+}

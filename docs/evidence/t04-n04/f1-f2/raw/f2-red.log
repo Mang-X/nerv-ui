@@ -1,0 +1,42 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+ ✓ src/components/pull-refresh/PullRefresh.test.ts (2 tests) 31ms
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts (7 tests | 3 failed) 45ms
+   ✓ cancels a pull beyond the threshold without requesting refresh 23ms
+   ✓ does not start a refresh when a gesture began below the scroll top 4ms
+   ✓ refreshes only beyond the threshold and holds until the controlled loading value clears 6ms
+   ✓ keeps downward touch pulls at the top and restores native vertical panning below it 2ms
+   × revokes an eligible pull when external loading starts - 'release-during-loading' 5ms
+   × revokes an eligible pull when external loading starts - 'cancel-during-loading' 3ms
+   × revokes an eligible pull when external loading starts - 'complete-before-release' 2ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  3 failed | 6 passed (9)
+   Start at  22:22:14
+   Duration  4.08s (transform 4.65s, setup 0ms, import 7.22s, tests 76ms, environment 676ms)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/f2-red.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pull-refresh/PullRefresh.gestures.test.ts > revokes an eligible pull when external loading starts - 'release-during-loading'
+ FAIL  src/components/pull-refresh/PullRefresh.gestures.test.ts > revokes an eligible pull when external loading starts - 'cancel-during-loading'
+ FAIL  src/components/pull-refresh/PullRefresh.gestures.test.ts > revokes an eligible pull when external loading starts - 'complete-before-release'
+AssertionError: expected 'transform: translateY(112.51303712598…' to contain 'translateY(56px)'
+
+Expected: "translateY(56px)"
+Received: "transform: translateY(112.51303712598072px);"
+
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts:99:38
+     97|     await wrapper.setProps({ modelValue: true })
+     98|     expect(wrapper.text()).toContain('刷新中')
+     99|     expect(area.attributes('style')).toContain('translateY(56px)')
+       |                                      ^
+    100|     if (completesBeforeRelease) await wrapper.setProps({ modelValue: f…
+    101|     pointer('pointermove', 300)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+

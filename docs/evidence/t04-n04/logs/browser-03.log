@@ -1,0 +1,61 @@
+{}
+{ w: 390, h: 844, dpr: 1 }
+{ windowId: 1239821806, bounds: { left: 0, top: 30, width: 2560, height: 1320, windowState: 'maximized' } }
+[p1 "NvUI · 项目清单" | space "nerv-ui N04 lists 20261024"(9): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=1, loc=css:button[aria-label="切换明暗"]]
+        text "深色"
+    container [ref=2]
+      container
+        paragraph
+          text "来信、书签与沿途的风景"
+        heading
+          text "翻阅时光"
+        container "演示入口"
+          anchor [ref=3, loc=href:/#mobile, url=http://127.0.0.1:4184/#mobile]
+            text "随行手记"
+          anchor [ref=4, loc=href:/#mobile-input, url=http://127.0.0.1:4184/#mobile-input]
+            text "随心记录"
+          anchor [ref=5, loc=href:/#mobile-overlays, url=http://127.0.0.1:4184/#mobile-overlays]
+            text "片刻安排"
+          anchor [ref=6, loc=href:/#desktop, url=http://127.0.0.1:4184/#desktop]
+            text "桌面演示"
+          anchor [ref=7, loc=href:/#touch, url=http://127.0.0.1:4184/#touch]
+            text "触屏演示"
+      container "一封来信"
+        heading
+          text "一封来信"
+        paragraph
+          text "向左滑动来信，选择动作；向右滑动收起。"
+        container
+          container
+            button [ref=8]
+              text "收进书签"
+            button [ref=9]
+              text "暂时收起"
+          text "湖畔来信"
+        output "滑动动作回显" [ref=10]
+          text "尚未选择动作"
+      container "刷新来信"
+        heading
+          text "刷新来信"
+        paragraph
+          text "在信箱内滚动，回到顶端后向下拉动刷新。"
+        container
+          checkbox "下次刷新失败" [ref=11, loc=css:input[aria-label="下次刷新失败"]]
+          text "下次刷新失败"
+        output "刷新状态" [ref=12]
+          text "尚未刷新 · 请求 0 次"
+        paragraph
+          text "信箱滚动 0px"
+        container [ref=13]
+          text "初次来信 1"
+          text "初次来信 2"
+          text "初次来信 3"
+          text "初次来信 4"
+
+{ screenshot: '/tmp/nerv-ui-t04-n04/browser/390-light-top-corrected.png' }
+

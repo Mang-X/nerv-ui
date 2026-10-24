@@ -1,0 +1,158 @@
+{ spaceId: 12, page: 'p1' }
+[p1 "NvUI · 项目清单" | space "nerv-ui N04 F1 F2 20261024"(12): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    text "翻阅时光"
+    button "切换明暗" [ref=1, loc=css:button[aria-label="切换明暗"]]
+      text "浅色"
+  container [ref=2]
+    container
+      paragraph
+        text "来信、书签与沿途的风景"
+      heading
+        text "翻阅时光"
+      container "演示入口"
+        anchor [ref=3, loc=href:/#mobile, url=http://127.0.0.1:4186/#mobile]
+          text "随行手记"
+        anchor [ref=4, loc=href:/#mobile-input, url=http://127.0.0.1:4186/#mobile-input]
+          text "随心记录"
+        anchor [ref=5, loc=href:/#mobile-overlays, url=http://127.0.0.1:4186/#mobile-overlays]
+          text "片刻安排"
+        anchor [ref=6, loc=href:/#desktop, url=http://127.0.0.1:4186/#desktop]
+          text "桌面演示"
+        anchor [ref=7, loc=href:/#touch, url=http://127.0.0.1:4186/#touch]
+          text "触屏演示"
+    container "一封来信"
+      heading
+        text "一封来信"
+      paragraph
+        text "向左滑动来信，选择动作；向右滑动收起。"
+      container
+        container
+          button [ref=8]
+            text "收进书签"
+          button [ref=9]
+            text "暂时收起"
+        text "湖畔来信"
+      output "滑动动作回显" [ref=10]
+        text "尚未选择动作"
+    container "刷新来信"
+      heading
+        text "刷新来信"
+      paragraph
+        text "在信箱内滚动，回到顶端后向下拉动刷新。"
+      container
+        checkbox "下次刷新失败" [ref=11, loc=css:input[aria-label="下次刷新失败"]]
+        text "下次刷新失败"
+      button [ref=12]
+        text "立即更新"
+      output "刷新状态" [ref=13]
+        text "尚未刷新 · 请求 0 次"
+      paragraph
+        text "信箱滚动 0px"
+      container
+        svg_root
+        text "下拉刷新"
+        container [ref=14]
+          text "初次来信 1"
+          text "初次来信 2"
+          text "初次来信 3"
+          text "初次来信 4"
+          text "初次来信 5"
+          text "初次来信 6"
+          text "初次来信 7"
+          text "初次来信 8"
+          text "初次来信 9"
+          text "初次来信 10"
+          text "初次来信 11"
+          text "初次来信 12"
+    container "继续翻阅"
+      heading
+        text "继续翻阅"
+      paragraph
+        text "在来信内滚动到底部，分批收下 24 封来信。"
+      container
+        checkbox "下次加载失败" [ref=15, loc=css:input[aria-label="下次加载失败"]]
+        text "下次加载失败"
+      button [ref=16]
+        text "重新开始"
+      button [ref=17]
+        text "清空信箱"
+      output "分页状态" [ref=18]
+        text "可以继续 · 8 封 · 请求 0 次"
+      container [ref=19]
+        text "来信 1"
+        text "来信 2"
+        text "来信 3"
+        text "来信 4"
+        text "来信 5"
+        text "来信 6"
+        text "来信 7"
+        text "来信 8"
+        text "上拉加载更多"
+    container "千封信笺"
+      heading
+        text "千封信笺"
+      paragraph
+        text "在窗口内翻阅 1000 封信笺，点击记住一封。"
+      button [ref=20]
+        text "倒序信笺"
+      container
+        checkbox "隐藏全部信笺" [ref=21, loc=css:input[aria-label="隐藏全部信笺"]]
+        text "隐藏全部信笺"
+      output "信笺回显" [ref=22]
+        text "尚未选择信笺"
+      container [ref=23]
+        button [ref=24]
+          text "信笺 1"
+        button [ref=25]
+          text "信笺 2"
+        button [ref=26]
+          text "信笺 3"
+        button [ref=27]
+          text "信笺 4"
+        button [ref=28]
+          text "信笺 5"
+        button [ref=29]
+          text "信笺 6"
+        button [ref=30]
+          text "信笺 7"
+        button [ref=31]
+          text "信笺 8"
+        button [ref=32]
+          text "信笺 9"
+    container "沿途风景"
+      heading
+        text "沿途风景"
+      paragraph
+        text "左右滑动翻页，或使用下方按钮。"
+      container
+        checkbox "循环翻页" [ref=33, loc=css:input[aria-label="循环翻页"]]
+        text "循环翻页"
+      container
+        checkbox "自动翻页" [ref=34, loc=css:input[aria-label="自动翻页"]]
+        text "自动翻页"
+      container
+        container
+          heading
+            text "湖畔"
+          paragraph
+            text "风掠过水面，留下一圈涟漪。"
+        container
+          heading
+            text "小径"
+          paragraph
+            text "沿着树影，慢慢走过午后。"
+        container
+          heading
+            text "庭院"
+          paragraph
+            text "读完这封信，再停留片刻。"
+      output "轮播状态" [ref=35]
+        text "第 1 / 3 页 · 切换 0 次"
+      button [ref=36]
+        text "上一页"
+      button [ref=37]
+        text "下一页"
+
+

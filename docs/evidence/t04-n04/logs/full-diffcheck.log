@@ -1,0 +1,60 @@
+docs/evidence/t04-n04/logs/baseline-mobile.log:26: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-01.log:157: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-02.log:97: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-03.log:61: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-05.log:42: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-06.log:46: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-09-touch-diagnostic.log:45: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-10-touch-diagnostic.log:44: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-11-portrait-light.log:49: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-12-landscape-light.log:30: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-15-landscape-dark.log:30: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-16-portrait-dark.log:49: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-18-navigation.log:59: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-19-resources.log:76: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-20-finish.log:2: new blank line at EOF.
+docs/evidence/t04-n04/logs/component-direct-corrected.log:14: new blank line at EOF.
+docs/evidence/t04-n04/logs/component-direct.log:14: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "items". Expected Array, got String with value "only". 
+docs/evidence/t04-n04/logs/component-direct.log:15: trailing whitespace.
++  at <Swiper items="only" autoplay=1000 ref="VTU_COMPONENT" > 
+docs/evidence/t04-n04/logs/final-build.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/final-build.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/final-build.log:37: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/final-build.log:39: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/green-host-carousel.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-pagination.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-refresh.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-route.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-swipe.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-window.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-pull-cancel.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-pull-start-below-top.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-swiper-index.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-virtual-resize.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/host-final-focused-corrected.log:11: new blank line at EOF.
+docs/evidence/t04-n04/logs/mobile-naming.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/mobile-staticdocs.log:11: new blank line at EOF.
+docs/evidence/t04-n04/logs/touch-fix-build.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/touch-fix-build.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/touch-fix-build.log:37: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/touch-fix-build.log:39: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/touch-fix-mobile.log:11: new blank line at EOF.
+docs/evidence/t04-n04/logs/typecheck-build-corrected.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/typecheck-build-corrected.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/typecheck-build-corrected.log:37: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/typecheck-build-corrected.log:39: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/ui-behavior-contracts.log:53: new blank line at EOF.
+docs/evidence/t04-n04/logs/ui-staticdocs.log:13: new blank line at EOF.

@@ -1,0 +1,12 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.bin/vitest",
+    "run",
+    "--config",
+    "/tmp/nerv-ui-t04-n04-fix/probe/vitest.config.mjs",
+    "--outputFile=/tmp/nerv-ui-t04-n04-fix/raw/probe-red-corrected.json"
+  ],
+  "exit": 1,
+  "signal": null
+}

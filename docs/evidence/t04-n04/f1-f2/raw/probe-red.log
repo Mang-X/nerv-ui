@@ -1,0 +1,53 @@
+
+ RUN  v4.1.10 /private/tmp/nerv-ui-t04-n04-fix/probe
+
+ ❯ swiper-public.test.ts (0 test)
+ ❯ baseline-public.test.ts (0 test)
+ ❯ pull-refresh-public.test.ts (0 test)
+ ❯ swiper-baseline-public.test.ts (0 test)
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  22:21:13
+   Duration  938ms (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 3.12s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/probe-red.json
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  baseline-public.test.ts [ baseline-public.test.ts ]
+Error: Cannot find module '/baseline-public.test.ts'
+ ❯ reviveInvokeError ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:546:14
+ ❯ Object.invoke ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:562:33
+ ❯ VitestModuleRunner.getModuleInformation ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1199:7
+ ❯ VitestModuleRunner.import ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1119:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  pull-refresh-public.test.ts [ pull-refresh-public.test.ts ]
+Error: Cannot find module '/pull-refresh-public.test.ts'
+ ❯ reviveInvokeError ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:546:14
+ ❯ Object.invoke ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:562:33
+ ❯ VitestModuleRunner.getModuleInformation ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1199:7
+ ❯ VitestModuleRunner.import ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1119:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  swiper-baseline-public.test.ts [ swiper-baseline-public.test.ts ]
+Error: Cannot find module '/swiper-baseline-public.test.ts'
+ ❯ reviveInvokeError ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:546:14
+ ❯ Object.invoke ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:562:33
+ ❯ VitestModuleRunner.getModuleInformation ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1199:7
+ ❯ VitestModuleRunner.import ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1119:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  swiper-public.test.ts [ swiper-public.test.ts ]
+Error: Cannot find module '/swiper-public.test.ts'
+ ❯ reviveInvokeError ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:546:14
+ ❯ Object.invoke ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:562:33
+ ❯ VitestModuleRunner.getModuleInformation ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1199:7
+ ❯ VitestModuleRunner.import ../../../../Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1119:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+

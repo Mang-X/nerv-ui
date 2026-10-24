@@ -1,0 +1,68 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+ ❯ src/components/swiper/Swiper.test.ts (7 tests | 2 failed) 45ms
+   ✓ moves the rendered track when the host changes the controlled index without emitting a user change 20ms
+   ✓ emits controlled page changes for horizontal swipes, clamps the ends and loops only when enabled 7ms
+   ✓ advances autoplay, stops it at zero and clears the timer on unmount 6ms
+   ✓ keeps 'empty' slides still without autoplay timers 2ms
+   ✓ keeps 'singleton' slides still without autoplay timers 1ms
+   × rebases a short drag onto the externally chosen page - 'external-forward' 4ms
+   × rebases a short drag onto the externally chosen page - 'external-backward' 5ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed (7)
+   Start at  22:21:27
+   Duration  3.92s (transform 2.31s, setup 0ms, import 3.50s, tests 45ms, environment 291ms)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/f1-red.json
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/swiper/Swiper.test.ts > rebases a short drag onto the externally chosen page - 'external-forward'
+AssertionError: expected [ [ 2 ] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [
+    2,
+  ],
+]
+
+ ❯ src/components/swiper/Swiper.test.ts:109:45
+    107|     pointer('pointerup', end, 0)
+    108|     await nextTick()
+    109|     expect(wrapper.emitted('update:index')).toBeUndefined()
+       |                                             ^
+    110|     expect(wrapper.emitted('change')).toEqual([[1]])
+    111|     expect(track.attributes('style')).toContain('translate3d(-300px, 0…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/components/swiper/Swiper.test.ts > rebases a short drag onto the externally chosen page - 'external-backward'
+AssertionError: expected [ [ +0 ] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [
+    0,
+  ],
+]
+
+ ❯ src/components/swiper/Swiper.test.ts:109:45
+    107|     pointer('pointerup', end, 0)
+    108|     await nextTick()
+    109|     expect(wrapper.emitted('update:index')).toBeUndefined()
+       |                                             ^
+    110|     expect(wrapper.emitted('change')).toEqual([[1]])
+    111|     expect(track.attributes('style')).toContain('translate3d(-300px, 0…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+

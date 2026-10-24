@@ -1,0 +1,47 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+ ✓ src/components/pull-refresh/PullRefresh.test.ts (2 tests) 46ms
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts (10 tests | 2 failed) 91ms
+   ✓ cancels a pull beyond the threshold without requesting refresh 29ms
+   ✓ does not start a refresh when a gesture began below the scroll top 5ms
+   ✓ refreshes only beyond the threshold and holds until the controlled loading value clears 13ms
+   ✓ keeps downward touch pulls at the top and restores native vertical panning below it 3ms
+   ✓ revokes an eligible pull when external loading starts - 'release-during-loading' 6ms
+   ✓ revokes an eligible pull when external loading starts - 'cancel-during-loading' 8ms
+   ✓ revokes an eligible pull when external loading starts - 'complete-before-release' 5ms
+   × does not refresh after retracting a threshold-crossing pull - 'above-start' 6ms
+   × does not refresh after retracting a threshold-crossing pull - 'at-start' 4ms
+   ✓ does not refresh after retracting a threshold-crossing pull - 'below-start-control' 9ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 10 passed (12)
+   Start at  23:15:24
+   Duration  7.30s (transform 8.39s, setup 0ms, import 12.41s, tests 137ms, environment 1.66s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-f3/raw/official-f3-red.json
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/pull-refresh '--reporter=default' '--reporter=json' '--outputFile=/tmp/nerv-ui-t04-n04-f3/raw/official-f3-red.json'
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pull-refresh/PullRefresh.gestures.test.ts > does not refresh after retracting a threshold-crossing pull - 'above-start'
+ FAIL  src/components/pull-refresh/PullRefresh.gestures.test.ts > does not refresh after retracting a threshold-crossing pull - 'at-start'
+AssertionError: expected '释放立即刷新' to contain '下拉刷新'
+
+Expected: "下拉刷新"
+Received: "释放立即刷新"
+
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts:144:28
+    142|     pointer('pointermove', y)
+    143|     await nextTick()
+    144|     expect(wrapper.text()).toContain('下拉刷新')
+       |                            ^
+    145|     if (y <= 10) expect(area.attributes('style')).toContain('translate…
+    146|     pointer('pointerup', y, 0)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+

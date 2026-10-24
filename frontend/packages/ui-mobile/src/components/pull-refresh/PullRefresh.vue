@@ -29,10 +29,12 @@ const emit = defineEmits<{
 const loading = defineModel<boolean>({ default: false })
 
 const scroller = ref<HTMLElement>()
+const atTop = ref(true)
 const distance = ref(0)
 const dragging = ref(false)
 let startY = 0
 let engaged = false
+let eligible = false
 
 const status = computed<'pull' | 'release' | 'loading'>(() => {
   if (loading.value) return 'loading'
@@ -43,22 +45,38 @@ const text = computed(
 )
 
 function onDown(e: PointerEvent) {
-  if ((scroller.value?.scrollTop ?? 0) > 0 || loading.value) return
+  eligible = (scroller.value?.scrollTop ?? 0) <= 0 && !loading.value
+  if (!eligible) return
   startY = e.clientY
   engaged = false
 }
 function onMove(e: PointerEvent) {
-  if (e.buttons === 0 || loading.value) return
+  if (!eligible || e.buttons === 0 || loading.value) return
   if ((scroller.value?.scrollTop ?? 0) > 0) return
   const dy = e.clientY - startY
-  if (dy <= 0) return
+  if (dy <= 0) {
+    distance.value = 0
+    return
+  }
   if (!engaged && dy < 4) return
   engaged = true
   dragging.value = true
   e.preventDefault()
   distance.value = rubberband(dy) // resistance (shared rubber-band curve)
 }
+function onCancel() {
+  eligible = false
+  engaged = false
+  dragging.value = false
+  distance.value = loading.value ? props.threshold : 0
+}
+
 function onUp() {
+  if (loading.value) {
+    onCancel()
+    return
+  }
+  eligible = false
   if (!engaged) return
   dragging.value = false
   engaged = false
@@ -76,6 +94,7 @@ function restoreScrollTop(value: number) {
     if (!scroller.value) return
     const requested = Math.max(0, value)
     scroller.value.scrollTop = requested
+    atTop.value = scroller.value.scrollTop <= 0
     emit('scrollRestored', {
       requested,
       actual: scroller.value.scrollTop,
@@ -85,12 +104,13 @@ function restoreScrollTop(value: number) {
 }
 
 function onScroll() {
-  emit('scroll', scroller.value?.scrollTop ?? 0)
+  const value = scroller.value?.scrollTop ?? 0
+  atTop.value = value <= 0
+  emit('scroll', value)
 }
 
-watch(loading, (v) => {
-  if (!v) distance.value = 0
-})
+// Loading transitions end the previous gesture, including completion before release.
+watch(loading, onCancel)
 watch([() => props.scrollTop, () => props.scrollRestoreKey], ([value]) => restoreScrollTop(value))
 onMounted(() => restoreScrollTop(props.scrollTop))
 </script>
@@ -104,7 +124,7 @@ onMounted(() => restoreScrollTop(props.scrollTop))
       @pointerdown="onDown"
       @pointermove="onMove"
       @pointerup="onUp"
-      @pointercancel="onUp"
+      @pointercancel="onCancel"
     >
       <div
         class="pointer-events-none absolute inset-x-0 flex items-center justify-center gap-2 text-sm text-muted-foreground"
@@ -123,7 +143,12 @@ onMounted(() => restoreScrollTop(props.scrollTop))
         />
         {{ text }}
       </div>
-      <div ref="scroller" class="nv-m-pr-scroll h-full overflow-y-auto" @scroll="onScroll">
+      <div
+        ref="scroller"
+        class="nv-m-pr-scroll h-full overflow-y-auto"
+        :style="{ touchAction: atTop ? 'pan-x pan-down' : 'pan-y' }"
+        @scroll="onScroll"
+      >
         <slot />
       </div>
     </div>

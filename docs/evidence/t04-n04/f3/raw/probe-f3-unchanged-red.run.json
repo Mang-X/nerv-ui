@@ -1,0 +1,14 @@
+{
+  "cwd": "/private/tmp/nerv-ui-t04-n04-f3/probe",
+  "command": [
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.bin/vitest",
+    "run",
+    "--config",
+    "/tmp/nerv-ui-t04-n04-f3/probe/m1.config.mjs",
+    "--outputFile=/tmp/nerv-ui-t04-n04-f3/raw/probe-f3-unchanged-red.json"
+  ],
+  "start": "2026-10-24T15:14:43.980Z",
+  "end": "2026-10-24T15:14:51.732Z",
+  "exit": 1,
+  "signal": null
+}

@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ❯ src/MobileListDemo.test.ts (7 tests | 1 failed) 269ms
+   × clears pending refresh and pagination timers when the page is removed 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileListDemo.test.ts > clears pending refresh and pagination timers when the page is removed
+AssertionError: expected 3 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 3
+
+ ❯ src/MobileListDemo.test.ts:150:30
+    148|   expect(wrapper.get('[aria-label="刷新状态"]').text()).toContain('刷新中')
+    149|   expect(wrapper.get('[aria-label="分页状态"]').text()).toContain('加载中')
+    150|   expect(vi.getTimerCount()).toBe(2)
+       |                              ^
+    151|   wrapper.unmount()
+    152|   expect(vi.getTimerCount()).toBe(0)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 12 passed (13)
+   Start at  21:29:44
+   Duration  6.85s (transform 7.86s, setup 965ms, import 10.28s, tests 865ms, environment 985ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileListDemo.test.ts src/App.test.ts

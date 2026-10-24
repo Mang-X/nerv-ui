@@ -1,0 +1,65 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+ ✓ src/components/number-keyboard/NumberKeyboard.test.ts (7 tests) 527ms
+ ✓ src/components/swiper/Swiper.test.ts (7 tests) 486ms
+   ✓ moves the rendered track when the host changes the controlled index without emitting a user change  317ms
+ ✓ src/components/scan-bar/ScanBar.test.ts (31 tests) 652ms
+ ✓ src/components/bottom-sheet/BottomSheet.test.ts (3 tests) 760ms
+     ✓ renders content into the document when open  615ms
+ ✓ src/components/slider/MobileSlider.test.ts (2 tests) 150ms
+ ✓ src/components/overlay-details.test.ts (3 tests) 948ms
+   ✓ action cancellation never selects and reordered actions emit their stable value once  677ms
+ ✓ src/components/picker/Picker.test.ts (4 tests) 1364ms
+   ✓ initializes an already open picker from the public value and commits it on confirm  445ms
+   ✓ discards a scrolled draft on cancel and confirms empty options without a value event  417ms
+ ✓ src/components/date-picker/MobileDatePicker.test.ts (5 tests) 1781ms
+   ✓ initializes an already open date and keeps a shorter month valid before confirming  544ms
+   ✓ clamps the day when changing from a leap year and resynchronizes external dates and year bounds  504ms
+ ✓ src/components/overlays.test.ts (7 tests) 2115ms
+   ✓ 'sheet' restores focus to the actual opener after Escape and leaves no modal  564ms
+   ✓ 'sheet' uses body by default and accepts selector and element overlay targets  456ms
+   ✓ 'dialog' uses body by default and accepts selector and element overlay targets  488ms
+ ✓ src/components/infinite-list/InfiniteList.test.ts (5 tests) 122ms
+ ✓ src/components/swipe-cell/SwipeCell.test.ts (1 test) 145ms
+ ✓ src/components/virtual-list/VirtualList.test.ts (2 tests) 111ms
+ ✓ src/components/search-bar/SearchBar.test.ts (9 tests) 256ms
+ ✓ src/components/fab/Fab.test.ts (2 tests) 110ms
+ ✓ src/components/pull-refresh/PullRefresh.gestures.test.ts (12 tests) 411ms
+ ✓ src/components/app-shell-mobile/AppShellMobile.test.ts (3 tests) 78ms
+ ✓ src/components/cell/Cell.test.ts (3 tests) 64ms
+ ✓ src/components/result/Result.test.ts (2 tests) 45ms
+ ✓ src/components/error-retry/ErrorRetry.test.ts (4 tests) 30ms
+ ✓ src/components/pull-refresh/PullRefresh.test.ts (2 tests) 44ms
+ ✓ src/components/list-row/ListRow.test.ts (4 tests) 40ms
+ ✓ src/nvui-naming.contract.test.ts (6 tests) 12ms
+
+ Test Files  22 passed (22)
+      Tests  124 passed (124)
+   Start at  23:16:43
+   Duration  38.13s (transform 118.95s, setup 0ms, import 279.09s, tests 10.25s, environment 36.81s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-f3/raw/mobile.json
+$ vp test run src --exclude src/nvui-doc-coverage.contract.test.ts --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t04-n04-f3/raw/mobile.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

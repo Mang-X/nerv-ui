@@ -1,0 +1,12 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+ ✓ src/components/swiper/Swiper.test.ts (7 tests) 32ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  22:21:54
+   Duration  4.00s (transform 2.21s, setup 0ms, import 3.18s, tests 32ms, environment 679ms)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/f1-green.json
+Could not parse CSS stylesheet

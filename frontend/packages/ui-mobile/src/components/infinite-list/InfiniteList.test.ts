@@ -84,3 +84,38 @@ describe('InfiniteList', () => {
     expect(wrapper.emitted('load')).toHaveLength(1)
   })
 })
+
+it('loads at the configured scroll boundary once and respects loading, pause and finished states', async () => {
+  const wrapper = mount(InfiniteList, {
+    props: { offset: 80, finishedText: '已读完' },
+    slots: { default: '<p>来信</p>' },
+  })
+  const scroller = wrapper.element as HTMLElement
+  Object.defineProperties(scroller, { scrollHeight: { value: 1000 }, clientHeight: { value: 240 } })
+  scroller.scrollTop = 679
+  await wrapper.trigger('scroll')
+  expect(wrapper.emitted('load')).toBeUndefined()
+  scroller.scrollTop = 680
+  await wrapper.trigger('scroll')
+  await wrapper.trigger('scroll')
+  expect(wrapper.emitted('load')).toEqual([[]])
+  await wrapper.setProps({ modelValue: true })
+  expect(wrapper.text()).toContain('加载中')
+  await wrapper.setProps({ modelValue: false, paused: true })
+  await wrapper.trigger('scroll')
+  expect(wrapper.emitted('load')).toHaveLength(1)
+  expect(wrapper.text()).not.toContain('已读完')
+  await wrapper.setProps({ paused: false, finished: true })
+  await wrapper.trigger('scroll')
+  expect(wrapper.text()).toContain('已读完')
+  expect(wrapper.emitted('load')).toHaveLength(1)
+  wrapper.unmount()
+})
+
+it('disconnects the parent scroll observer when removed', () => {
+  vi.stubGlobal('IntersectionObserver', MockIntersectionObserver)
+  const wrapper = mount(InfiniteList, { props: { parentScroll: true } })
+  expect(observers[0]?.observe).toHaveBeenCalledOnce()
+  wrapper.unmount()
+  expect(observers[0]?.disconnect).toHaveBeenCalledOnce()
+})

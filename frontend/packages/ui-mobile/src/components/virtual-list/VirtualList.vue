@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="T">
 import type { HTMLAttributes } from 'vue'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { cn } from '../../lib/utils'
 
 /**
@@ -26,9 +26,18 @@ const viewport = ref(0)
 function onScroll() {
   scrollTop.value = scroller.value?.scrollTop ?? 0
 }
+let observer: ResizeObserver | undefined
 onMounted(() => {
-  viewport.value = scroller.value?.clientHeight ?? 0
+  const measure = () => {
+    viewport.value = scroller.value?.clientHeight ?? 0
+  }
+  measure()
+  if (typeof ResizeObserver !== 'undefined' && scroller.value) {
+    observer = new ResizeObserver(measure)
+    observer.observe(scroller.value)
+  }
 })
+onBeforeUnmount(() => observer?.disconnect())
 
 const total = computed(() => props.items.length * props.itemHeight)
 const start = computed(() =>

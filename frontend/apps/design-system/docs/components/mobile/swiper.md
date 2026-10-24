@@ -103,4 +103,10 @@ const current = ref(0)
 | -------- | ------------ | ----------------- |
 | `change` | 切换到新一页 | `(index: number)` |
 
+## 独立宿主行为
+
+受控 `index` 由宿主改变时，轨道会同步位移，不额外发出 `change`；手势和自动播放仍通过 `update:index` / `change` 通知宿主。组件没有 `disabled` 属性，禁用导航由宿主按钮控制。
+
+独立运行示例：`/#mobile-lists`（playground）。接入与验证边界见仓库 `docs/mobile-standalone.md`。
+
 </MobileDoc>

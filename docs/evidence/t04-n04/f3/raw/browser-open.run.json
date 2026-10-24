@@ -1,0 +1,12 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "ego-browser",
+    "nodejs",
+    "/tmp/nerv-ui-t04-n04-f3/browser/round-01-open.mjs"
+  ],
+  "start": "2026-10-24T15:20:39.282Z",
+  "end": "2026-10-24T15:20:39.604Z",
+  "exit": 2,
+  "signal": null
+}

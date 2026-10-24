@@ -1,0 +1,65 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/infinite-list/InfiniteList.test.ts (5 tests) 98ms
+ ✓ src/components/swiper/Swiper.test.ts (5 tests) 112ms
+ ✓ src/components/search-bar/SearchBar.test.ts (9 tests) 184ms
+ ✓ src/components/number-keyboard/NumberKeyboard.test.ts (7 tests) 192ms
+ ✓ src/components/scan-bar/ScanBar.test.ts (31 tests) 385ms
+ ✓ src/components/overlay-details.test.ts (3 tests) 1445ms
+   ✓ action cancellation never selects and reordered actions emit their stable value once  1201ms
+ ✓ src/components/picker/Picker.test.ts (4 tests) 2195ms
+   ✓ initializes an already open picker from the public value and commits it on confirm  708ms
+   ✓ resynchronizes external value and keyed option order while open without emitting a commit  472ms
+   ✓ discards a scrolled draft on cancel and confirms empty options without a value event  609ms
+   ✓ preserves a scrolled draft by value across keyed reordering and falls back after its removal  404ms
+ ✓ src/components/date-picker/MobileDatePicker.test.ts (5 tests) 2705ms
+   ✓ initializes an already open date and keeps a shorter month valid before confirming  931ms
+   ✓ clamps the day when changing from a leap year and resynchronizes external dates and year bounds  777ms
+   ✓ keeps an out of range external year inside the advertised bounds on confirmation  417ms
+ ✓ src/components/overlays.test.ts (7 tests) 3180ms
+   ✓ 'sheet' restores focus to the actual opener after Escape and leaves no modal  856ms
+   ✓ 'dialog' restores focus to the actual opener after Escape and leaves no modal  434ms
+   ✓ 'sheet' uses body by default and accepts selector and element overlay targets  856ms
+   ✓ 'dialog' uses body by default and accepts selector and element overlay targets  555ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/virtual-list/VirtualList.test.ts (2 tests) 182ms
+ ✓ src/components/pull-refresh/PullRefresh.gestures.test.ts (3 tests) 161ms
+ ✓ src/components/slider/MobileSlider.test.ts (2 tests) 204ms
+ ✓ src/components/swipe-cell/SwipeCell.test.ts (1 test) 206ms
+ ✓ src/components/bottom-sheet/BottomSheet.test.ts (3 tests) 594ms
+     ✓ renders content into the document when open  430ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/fab/Fab.test.ts (2 tests) 99ms
+ ✓ src/components/pull-refresh/PullRefresh.test.ts (2 tests) 137ms
+ ✓ src/components/list-row/ListRow.test.ts (4 tests) 40ms
+ ✓ src/components/app-shell-mobile/AppShellMobile.test.ts (3 tests) 77ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/result/Result.test.ts (2 tests) 74ms
+ ✓ src/components/error-retry/ErrorRetry.test.ts (4 tests) 90ms
+ ✓ src/components/cell/Cell.test.ts (3 tests) 38ms
+
+ Test Files  21 passed (21)
+      Tests  107 passed (107)
+   Start at  21:32:19
+   Duration  27.03s (transform 55.20s, setup 0ms, import 167.43s, tests 12.40s, environment 36.14s)
+
+JSON report written to /tmp/nerv-ui-t04-n04/mobile-behavior.json

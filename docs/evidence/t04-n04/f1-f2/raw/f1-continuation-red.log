@@ -1,0 +1,54 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+ ❯ src/components/swiper/Swiper.test.ts (7 tests | 2 failed) 34ms
+   ✓ moves the rendered track when the host changes the controlled index without emitting a user change 16ms
+   ✓ emits controlled page changes for horizontal swipes, clamps the ends and loops only when enabled 5ms
+   ✓ advances autoplay, stops it at zero and clears the timer on unmount 3ms
+   ✓ keeps 'empty' slides still without autoplay timers 1ms
+   ✓ keeps 'singleton' slides still without autoplay timers 2ms
+   × rebases a short drag onto the externally chosen page - 'external-forward' 6ms
+   × rebases a short drag onto the externally chosen page - 'external-backward' 2ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed (7)
+   Start at  22:37:48
+   Duration  3.40s (transform 1.96s, setup 0ms, import 2.88s, tests 34ms, environment 400ms)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/f1-continuation-red.json
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/swiper/Swiper.test.ts > rebases a short drag onto the externally chosen page - 'external-forward'
+AssertionError: expected 'transform: translate3d(-370px, 0, 0);' to contain 'translate3d(-350px, 0, 0)'
+
+Expected: "translate3d(-350px, 0, 0)"
+Received: "transform: translate3d(-370px, 0, 0);"
+
+ ❯ src/components/swiper/Swiper.test.ts:111:41
+    109|       pointer('pointermove', continued)
+    110|       await nextTick()
+    111|       expect(track.attributes('style')).toContain(`translate3d(${dragg…
+       |                                         ^
+    112|       pointer('pointerup', continued, 0)
+    113|       await nextTick()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/components/swiper/Swiper.test.ts > rebases a short drag onto the externally chosen page - 'external-backward'
+AssertionError: expected 'transform: translate3d(-230px, 0, 0);' to contain 'translate3d(-250px, 0, 0)'
+
+Expected: "translate3d(-250px, 0, 0)"
+Received: "transform: translate3d(-230px, 0, 0);"
+
+ ❯ src/components/swiper/Swiper.test.ts:111:41
+    109|       pointer('pointermove', continued)
+    110|       await nextTick()
+    111|       expect(track.attributes('style')).toContain(`translate3d(${dragg…
+       |                                         ^
+    112|       pointer('pointerup', continued, 0)
+    113|       await nextTick()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+

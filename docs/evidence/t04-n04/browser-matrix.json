@@ -1,0 +1,42 @@
+[
+  {
+    "name": "final-390-light",
+    "steps": 6,
+    "viewport": [
+      390,
+      844
+    ],
+    "dark": false,
+    "passed": true
+  },
+  {
+    "name": "final-844-light",
+    "steps": 6,
+    "viewport": [
+      844,
+      390
+    ],
+    "dark": false,
+    "passed": true
+  },
+  {
+    "name": "final-844-dark",
+    "steps": 6,
+    "viewport": [
+      844,
+      390
+    ],
+    "dark": true,
+    "passed": true
+  },
+  {
+    "name": "final-390-dark",
+    "steps": 6,
+    "viewport": [
+      390,
+      844
+    ],
+    "dark": true,
+    "passed": true
+  }
+]

@@ -1,0 +1,2 @@
+Error: `../frontend/packages/ui-mobile/src/components/virtual-list/VirtualList.vue`: PATH must not contain
+".."
