@@ -1,5 +1,7 @@
 # T05/A03 指标与基础状态验证
 
+后续：独立 R1 对本页固定 head 拒绝合并（新增 F1、继承 F2，两项 P2）。修复与新对象证据见 [F1/F2 修复记录](f1-f2/README.md)；本页原实施、FAIL 与 UNRUN 保持历史身份。
+
 本票 [#60](https://github.com/Mang-X/nerv-ui/issues/60) 交付七件既有公开组件的独立中性演示，入口 `/#screen/indicators`。数据来自宿主内存中的阅读、到访、预订样例；组件不接入业务 SDK 或服务。父 [#6](https://github.com/Mang-X/nerv-ui/issues/6) 的组合验收、完整文档站 #10、packed 安装 #11 与旧消费者接入分别验收。
 
 ## 固定对象与范围
