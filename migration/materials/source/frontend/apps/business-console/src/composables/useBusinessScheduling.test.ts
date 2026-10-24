@@ -1,0 +1,297 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { shallowRef, watchEffect, nextTick } from 'vue'
+import { createPinia, setActivePinia } from 'pinia'
+
+import type { BusinessConsoleSchedulingPlanStatus } from '@nerv-iip/api-client'
+import {
+  getBusinessConsoleSchedulingPlanQueryOptions,
+  listBusinessConsoleSchedulingPlanHistoryQueryOptions,
+  releaseBusinessConsoleSchedulingPlanMutationOptions,
+  revokeBusinessConsoleSchedulingPlanMutationOptions,
+  upsertBusinessConsoleSchedulingOperationOverrideMutationOptions,
+} from '@nerv-iip/api-client'
+import { useBusinessContextStore } from '@/stores/businessContext'
+import { useBusinessScheduling } from './useBusinessScheduling'
+
+const coladaState = vi.hoisted(() => ({
+  invalidateQueries: vi.fn(async () => undefined),
+  queryDataById: new Map<string, unknown>(),
+  queryOptionsById: new Map<string, { enabled?: boolean }>(),
+}))
+
+vi.mock('@nerv-iip/api-client', () => ({
+  getBusinessConsoleSchedulingPlanQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'getBusinessConsoleSchedulingPlan' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsoleSchedulingPlanHistoryQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleSchedulingPlanHistory' }],
+    query: vi.fn(),
+  })),
+  releaseBusinessConsoleSchedulingPlanMutationOptions: vi.fn(() => ({
+    mutation: vi.fn(async (vars) => ({
+      success: true,
+      data: { planId: vars.path.planId, status: 'released' },
+    })),
+  })),
+  revokeBusinessConsoleSchedulingPlanMutationOptions: vi.fn(() => ({
+    mutation: vi.fn(async (vars) => ({
+      success: true,
+      data: { planId: vars.path.planId, status: 'revoked' },
+    })),
+  })),
+  upsertBusinessConsoleSchedulingOperationOverrideMutationOptions: vi.fn(() => ({
+    mutation: vi.fn(async (vars) => ({
+      success: true,
+      data: { planId: vars.path.planId, operationId: vars.path.operationId },
+    })),
+  })),
+}))
+
+vi.mock('@pinia/colada', () => ({
+  useMutation: vi.fn((options) => ({
+    error: shallowRef(),
+    isLoading: shallowRef(false),
+    mutateAsync: vi.fn(async (vars) => {
+      const result = await options.mutation(vars)
+      await options.onSuccess?.(result)
+      return result
+    }),
+  })),
+  useQuery: vi.fn((optionsFactory) => {
+    let options = optionsFactory()
+    watchEffect(() => {
+      options = optionsFactory()
+    })
+    const key = Array.isArray(options.key) ? options.key[0] : undefined
+    const id = key && typeof key === 'object' && '_id' in key ? String(key._id) : ''
+    coladaState.queryOptionsById.set(id, options)
+
+    return {
+      data: shallowRef(coladaState.queryDataById.get(id)),
+      error: shallowRef(),
+      isLoading: shallowRef(false),
+      refetch: vi.fn(),
+    }
+  }),
+  useQueryCache: vi.fn(() => ({
+    invalidateQueries: coladaState.invalidateQueries,
+  })),
+}))
+
+describe('business scheduling composable', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+    vi.clearAllMocks()
+    coladaState.invalidateQueries.mockClear()
+    coladaState.queryDataById.clear()
+    coladaState.queryOptionsById.clear()
+  })
+
+  it('loads APS plan summaries and gates detail until a plan is selected', () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-002', environmentId: 'prod' })
+    coladaState.queryDataById.set('listBusinessConsoleSchedulingPlanHistory', {
+      success: true,
+      data: {
+        total: 137,
+        items: [
+          {
+            planId: 'plan-001',
+            status: 'generated',
+            assignmentCount: 8,
+            conflictCount: 1,
+            unscheduledOperationCount: 2,
+            horizonStartUtc: '2026-09-01T00:00:00Z',
+            horizonEndUtc: '2026-09-08T00:00:00Z',
+          },
+        ],
+      },
+    })
+
+    const { detailSelection, planDetail, plans, plansTotal } = useBusinessScheduling()
+
+    // 0-based pageIndex contract: UI page 1 → API pageIndex 0 (else the first 100 plans are skipped).
+    expect(listBusinessConsoleSchedulingPlanHistoryQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-002',
+        environmentId: 'prod',
+        pageIndex: 0,
+        pageSize: 10,
+        status: undefined,
+        releasedOn: undefined,
+        isInvalidated: undefined,
+      },
+    })
+    expect(getBusinessConsoleSchedulingPlanQueryOptions).toHaveBeenCalledWith({
+      path: { planId: '' },
+      query: { organizationId: 'org-002', environmentId: 'prod' },
+    })
+    expect(coladaState.queryOptionsById.get('getBusinessConsoleSchedulingPlan')?.enabled).toBe(
+      false,
+    )
+    expect(detailSelection.planId).toBe('')
+    expect(plans.value[0]?.planId).toBe('plan-001')
+    expect(plansTotal.value).toBe(137)
+    expect(plans.value[0]?.horizonEndUtc).toBe('2026-09-08T00:00:00Z')
+    expect(planDetail.value).toBeUndefined()
+  })
+
+  it('maps later UI pages and resets paging when server filters or page size change', async () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-002', environmentId: 'prod' })
+    const { page, pageSize, filters } = useBusinessScheduling()
+    page.value = 12
+    await nextTick()
+    expect(listBusinessConsoleSchedulingPlanHistoryQueryOptions).toHaveBeenLastCalledWith({
+      query: expect.objectContaining({ pageIndex: 11, pageSize: 10 }),
+    })
+    filters.status = 'released'
+    filters.releasedOn = '2026-09-29'
+    filters.isInvalidated = true
+    await nextTick()
+    expect(page.value).toBe(1)
+    expect(listBusinessConsoleSchedulingPlanHistoryQueryOptions).toHaveBeenLastCalledWith({
+      query: {
+        organizationId: 'org-002',
+        environmentId: 'prod',
+        pageIndex: 0,
+        pageSize: 10,
+        status: 'released',
+        releasedOn: '2026-09-29',
+        isInvalidated: true,
+      },
+    })
+    page.value = 3
+    await nextTick()
+    pageSize.value = '50'
+    await nextTick()
+    expect(page.value).toBe(1)
+    expect(listBusinessConsoleSchedulingPlanHistoryQueryOptions).toHaveBeenLastCalledWith({
+      query: expect.objectContaining({ pageIndex: 0, pageSize: 50 }),
+    })
+  })
+
+  it('releases a selected plan through the generated facade and invalidates scheduling reads', async () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    const { detailSelection, releasePlan } = useBusinessScheduling()
+    detailSelection.planId = 'plan-001'
+
+    await releasePlan('plan-001')
+
+    expect(releaseBusinessConsoleSchedulingPlanMutationOptions).toHaveBeenCalled()
+    expect(
+      vi.mocked(releaseBusinessConsoleSchedulingPlanMutationOptions).mock.results[0]?.value
+        .mutation,
+    ).toHaveBeenCalledWith({
+      path: { planId: 'plan-001' },
+      query: { organizationId: 'org-001', environmentId: 'env-dev' },
+    })
+    expect(coladaState.invalidateQueries).toHaveBeenCalledWith({ predicate: expect.any(Function) })
+  })
+
+  it('revokes a released plan through the generated facade and invalidates scheduling reads', async () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    const { revokePlan } = useBusinessScheduling()
+
+    await revokePlan('plan-001')
+
+    expect(revokeBusinessConsoleSchedulingPlanMutationOptions).toHaveBeenCalled()
+    expect(
+      vi.mocked(revokeBusinessConsoleSchedulingPlanMutationOptions).mock.results[0]?.value.mutation,
+    ).toHaveBeenCalledWith({
+      path: { planId: 'plan-001' },
+      query: { organizationId: 'org-001', environmentId: 'env-dev' },
+    })
+    expect(coladaState.invalidateQueries).toHaveBeenCalledWith({ predicate: expect.any(Function) })
+  })
+
+  it('suppresses revoke when the business scope is empty', async () => {
+    const { revokePlan } = useBusinessScheduling()
+
+    await expect(revokePlan('plan-001')).rejects.toThrow('未撤销')
+    expect(
+      vi.mocked(revokeBusinessConsoleSchedulingPlanMutationOptions).mock.results[0]?.value.mutation,
+    ).not.toHaveBeenCalled()
+  })
+
+  it('surfaces a 200 + success:false revoke envelope as an error instead of fake success', async () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    const { revokePlan } = useBusinessScheduling()
+    vi.mocked(
+      vi.mocked(revokeBusinessConsoleSchedulingPlanMutationOptions).mock.results[0]?.value.mutation,
+    ).mockResolvedValueOnce({ success: false, message: '方案不处于已发布状态' })
+
+    await expect(revokePlan('plan-001')).rejects.toThrow('方案不处于已发布状态')
+  })
+
+  it('persists an operation override with scope in the body and invalidates scheduling reads', async () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    const { upsertOperationOverride } = useBusinessScheduling()
+
+    await upsertOperationOverride({
+      planId: 'plan-001',
+      operationId: 'op-010',
+      resourceId: 'res-cnc-01',
+      startUtc: '2026-07-29T01:00:00Z',
+      endUtc: '2026-07-29T03:00:00Z',
+    })
+
+    expect(
+      vi.mocked(upsertBusinessConsoleSchedulingOperationOverrideMutationOptions).mock.results[0]
+        ?.value.mutation,
+    ).toHaveBeenCalledWith({
+      path: { planId: 'plan-001', operationId: 'op-010' },
+      body: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        resourceId: 'res-cnc-01',
+        startUtc: '2026-07-29T01:00:00Z',
+        endUtc: '2026-07-29T03:00:00Z',
+      },
+    })
+    expect(coladaState.invalidateQueries).toHaveBeenCalledWith({ predicate: expect.any(Function) })
+  })
+
+  it('surfaces a 200 + success:false override envelope as an error instead of fake success', async () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    const { upsertOperationOverride } = useBusinessScheduling()
+    vi.mocked(
+      vi.mocked(upsertBusinessConsoleSchedulingOperationOverrideMutationOptions).mock.results[0]
+        ?.value.mutation,
+    ).mockResolvedValueOnce({ success: false, message: '工序不属于该方案' })
+
+    await expect(
+      upsertOperationOverride({ planId: 'plan-001', operationId: 'op-010', resourceId: 'res-1' }),
+    ).rejects.toThrow('工序不属于该方案')
+  })
+
+  it('gates revoke on the lowercase released status defined by the plan-status contract', () => {
+    // canRevoke（scheduling.vue）用 row.status === 'released' 小写口径；
+    // 该口径由 api-client 契约字面量联合保证——契约漂移成大写时此测试在类型检查阶段失败。
+    const released: BusinessConsoleSchedulingPlanStatus = 'released'
+    expect(released).toBe('released')
+    // @ts-expect-error 'Released'（大写）不是合法的方案状态契约值
+    const uppercase: BusinessConsoleSchedulingPlanStatus = 'Released'
+    void uppercase
+  })
+
+  it('suppresses the operation override when the resource is missing', async () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    const { upsertOperationOverride } = useBusinessScheduling()
+
+    await expect(
+      upsertOperationOverride({ planId: 'plan-001', operationId: 'op-010', resourceId: ' ' }),
+    ).rejects.toThrow('未持久锁定')
+    expect(
+      vi.mocked(upsertBusinessConsoleSchedulingOperationOverrideMutationOptions).mock.results[0]
+        ?.value.mutation,
+    ).not.toHaveBeenCalled()
+  })
+})

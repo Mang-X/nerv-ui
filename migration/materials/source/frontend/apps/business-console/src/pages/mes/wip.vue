@@ -1,0 +1,212 @@
+<script setup lang="ts">
+import type { NvDataTableColumn } from '@nerv-iip/ui'
+import WorkOrderQuickView from '@/components/mes/WorkOrderQuickView.vue'
+import { describeMesReadinessReasons, useMesWipSummary } from '@/composables/useBusinessMes'
+import {
+  mesOperationTaskStatusOptions,
+  useMesReferenceLabels,
+} from '@/composables/mes/useMesReferenceLabels'
+import { useMesDisplayNames } from '@/composables/mes/useMesDisplayNames'
+import { useMesKeywordFilter } from '@/composables/mes/useMesKeywordFilter'
+import { usePagedList } from '@/composables/usePagedList'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import {
+  NvButton,
+  NvDataTable,
+  NvInput,
+  NvPageHeader,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { RefreshCwIcon } from '@lucide/vue'
+import { computed, ref, shallowRef, watch } from 'vue'
+import { inlineErrorMessage } from '@/utils/notify'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '在制跟踪',
+    requiredPermissions: ['business.mes.operations.read'],
+  },
+})
+
+const { filters, refreshWip, wipError, wipPending, wipRows, wipTotal } = useMesWipSummary()
+const { resolveWorkCenter } = useMesDisplayNames()
+const { statusLabel } = useMesReferenceLabels()
+const { keyword } = useMesKeywordFilter(filters)
+const { page, pageSize } = usePagedList(filters, {
+  resetOn: [() => filters.status, () => filters.keyword],
+})
+const statusFilter = shallowRef('all')
+const wipStatusOptions = mesOperationTaskStatusOptions.filter(
+  (option) => option.value !== 'Completed' && option.value !== 'Cancelled',
+)
+watch(statusFilter, (value) => {
+  filters.status = value === 'all' ? undefined : value
+})
+
+const quickViewWorkOrderId = ref<string | null>(null)
+
+const errorMessage = computed(() => inlineErrorMessage(wipError.value))
+
+type WipRow = (typeof wipRows)['value'][number]
+// facade 回显示字段（workOrderNo / operationTaskNo / workCenterName），accessor 优先取人读显示值。
+const columns: NvDataTableColumn<WipRow>[] = [
+  {
+    key: 'workOrderId',
+    header: '工单',
+    cellClass: 'font-medium',
+    accessor: (r) => r.workOrderNo ?? r.workOrderId ?? '无',
+  },
+  {
+    key: 'operationTaskId',
+    header: '工序任务',
+    accessor: (r) => r.operationTaskNo ?? r.operationTaskId ?? '无',
+  },
+  {
+    key: 'workCenterId',
+    header: '工作中心',
+    accessor: (r) =>
+      r.workCenterName ?? resolveWorkCenter(r.workCenterCode ?? r.workCenterId) ?? '无',
+  },
+  { key: 'status', header: '状态', width: 'w-24' },
+  { key: 'progress', header: '在制进度', width: 'w-48', accessor: (r) => r.goodQuantity ?? 0 },
+  { key: 'blockingReasons', header: '卡点' },
+]
+
+// 完成度（0–1）= 已产良品 / 计划数，用于进度条宽度。
+function progressRatio(row: WipRow) {
+  const planned = row.plannedQuantity ?? 0
+  if (planned <= 0) return row.goodQuantity != null && row.goodQuantity > 0 ? 1 : 0
+  return Math.min(1, Math.max(0, (row.goodQuantity ?? 0) / planned))
+}
+function readinessList(reasons?: string[] | null) {
+  // 合并同码：同一工序两条「物料缺料」要并成一条并点名缺哪几项（#1418）。
+  return describeMesReadinessReasons(reasons)
+}
+function openWorkOrder(workOrderId?: string | null) {
+  if (workOrderId) quickViewWorkOrderId.value = workOrderId
+}
+function formatQuantity(value?: number | null) {
+  return new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 3 }).format(value ?? 0)
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="在制跟踪"
+      :breadcrumbs="[{ label: '制造执行' }]"
+      :count="`${wipTotal} 行在制`"
+    >
+      <template #actions>
+        <NvButton
+          size="sm"
+          type="button"
+          variant="outline"
+          :disabled="wipPending"
+          @click="refreshWip"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+      </template>
+    </NvPageHeader>
+
+    <NvToolbar :show-search="false">
+      <template #filters>
+        <NvInput
+          v-model="keyword"
+          class="h-9 w-56"
+          placeholder="工单 / 工序 / 工作中心"
+          aria-label="搜索在制行"
+        />
+        <NvSelect v-model="statusFilter">
+          <NvSelectTrigger class="h-9 w-32" aria-label="在制状态"
+            ><NvSelectValue
+          /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem
+              v-for="option in wipStatusOptions"
+              :key="option.value"
+              :value="option.value"
+              >{{ option.label }}</NvSelectItem
+            >
+          </NvSelectContent>
+        </NvSelect>
+      </template>
+    </NvToolbar>
+
+    <NvDataTable
+      manual
+      :page="page"
+      :page-size="pageSize"
+      :total-items="wipTotal"
+      @update:page="page = $event"
+      @update:page-size="(v) => (pageSize = String(v))"
+      :columns="columns"
+      :rows="wipRows"
+      :row-key="(r) => `${r.workOrderId}-${r.operationTaskId}`"
+      :loading="wipPending"
+      :error="wipError"
+      :error-message="errorMessage"
+      :searchable="false"
+      :column-settings="false"
+      empty-message="暂无在制数据。工单释放并排程、工序开工后，在制行会出现在这里。"
+      @retry="refreshWip"
+    >
+      <template #cell-workOrderId="{ row }">
+        <button
+          v-if="row.workOrderId"
+          type="button"
+          class="text-brand underline-offset-4 hover:underline"
+          @click="openWorkOrder(row.workOrderId)"
+        >
+          {{ row.workOrderNo ?? row.workOrderId }}
+        </button>
+        <span v-else class="text-muted-foreground">—</span>
+      </template>
+      <template #cell-status="{ row }">
+        <NvStatusBadge :value="row.status" :label="statusLabel(row.status)" />
+      </template>
+      <template #cell-progress="{ row }">
+        <div class="flex flex-col gap-1">
+          <span class="text-sm tabular-nums">
+            已产 {{ formatQuantity(row.goodQuantity) }} / 计划
+            {{ formatQuantity(row.plannedQuantity) }}
+          </span>
+          <div class="h-1.5 w-full overflow-hidden rounded-full bg-muted" role="presentation">
+            <div
+              class="h-full rounded-full bg-success transition-all"
+              :style="{ width: `${Math.round(progressRatio(row) * 100)}%` }"
+            />
+          </div>
+          <span v-if="(row.scrapQuantity ?? 0) > 0" class="text-xs text-warning tabular-nums">
+            报废 {{ formatQuantity(row.scrapQuantity) }}
+          </span>
+        </div>
+      </template>
+      <template #cell-blockingReasons="{ row }">
+        <div v-if="row.blockingReasons?.length" class="grid gap-2">
+          <div
+            v-for="reason in readinessList(row.blockingReasons)"
+            :key="`${row.operationTaskId}-${reason.code}`"
+            class="grid gap-0.5"
+          >
+            <NvStatusBadge :label="reason.label" tone="warning" />
+            <p v-if="reason.detail" class="text-xs text-foreground">{{ reason.detail }}</p>
+            <p class="text-xs text-muted-foreground">{{ reason.nextStep }}</p>
+          </div>
+        </div>
+        <span v-else class="text-muted-foreground">无卡点</span>
+      </template>
+    </NvDataTable>
+
+    <WorkOrderQuickView v-model:work-order-id="quickViewWorkOrderId" />
+  </BusinessLayout>
+</template>

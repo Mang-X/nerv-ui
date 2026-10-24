@@ -1,0 +1,586 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleCreateStandardOperationRequest,
+  BusinessConsoleStandardOperationItem,
+} from '@nerv-iip/api-client'
+import type { NvDataTableColumn } from '@nerv-iip/ui'
+import CarriedContextSummary from '@/components/business/CarriedContextSummary.vue'
+import DirectoryPicker from '@/components/business/DirectoryPicker.vue'
+import FormSectionTitle from '@/components/masterData/FormSectionTitle.vue'
+import { useBusinessMasterDataResources } from '@/composables/useBusinessMasterData'
+import { useStandardOperations } from '@/composables/useProductEngineering'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import {
+  NvAlertDialog,
+  NvAlertDialogCancel,
+  NvAlertDialogContent,
+  NvAlertDialogDescription,
+  NvAlertDialogFooter,
+  NvAlertDialogHeader,
+  NvAlertDialogTitle,
+  NvButton,
+  NvCheckbox,
+  NvDataTable,
+  NvDialog,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogFooter,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvDialogTrigger,
+  NvField,
+  NvFieldDescription,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvInput,
+  NvPageHeader,
+  NvSpinner,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { PlusIcon, RefreshCwIcon } from '@lucide/vue'
+import { computed, reactive, ref, shallowRef, watch } from 'vue'
+import { friendlyErrorMessage, notifyOperationFailure, notifySuccess } from '@/utils/notify'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '标准工序',
+    requiredPermissions: ['business.engineering.standard-operations.read'],
+  },
+})
+
+const {
+  archiveStandardOperation,
+  archivePending,
+  createStandardOperation,
+  createPending,
+  filters,
+  refresh,
+  standardOperations,
+  standardOperationsError,
+  standardOperationsPending,
+  standardOperationsTotal,
+  updateStandardOperation,
+  updatePending,
+} = useStandardOperations()
+
+// 默认工作中心来自基础数据「工作中心」，选择器显名称、绑定编码。
+const { resources: workCenters, resourcesPending: workCentersPending } =
+  useBusinessMasterDataResources('work-center')
+const workCenterNameByCode = computed(() => {
+  const map = new Map<string, string>()
+  for (const wc of workCenters.value) {
+    if (wc.code) map.set(wc.code, wc.displayName ?? wc.code)
+  }
+  return map
+})
+function workCenterLabel(code?: string | null) {
+  if (!code) return '未指定'
+  return workCenterNameByCode.value.get(code) ?? code
+}
+const workCenterOptions = computed(() =>
+  workCenters.value
+    .filter((wc) => wc.code)
+    .map((wc) => ({
+      value: wc.code as string,
+      label: `${wc.displayName ?? wc.code} · ${wc.code}`,
+    })),
+)
+
+// Toolbar 搜索绑定到 search 筛选（空串不污染查询）。
+const search = computed({
+  get: () => filters.search ?? '',
+  set: (value: string) => {
+    filters.search = value.trim() ? value : undefined
+  },
+})
+
+const page = ref(1)
+const pageSize = ref('10')
+const pageSizeNumber = computed(() => Number(pageSize.value) || 10)
+watch(
+  [page, pageSize],
+  () => {
+    filters.skip = (page.value - 1) * pageSizeNumber.value
+    filters.take = pageSizeNumber.value
+  },
+  { immediate: true },
+)
+
+// 非 Error 形态的 rejection 也必须显示出来，否则错误横幅整条消失、页面退化成空态把故障吞掉。
+const listErrorMessage = computed(() =>
+  standardOperationsError.value
+    ? friendlyErrorMessage(standardOperationsError.value, '标准工序加载失败，请刷新重试。')
+    : '',
+)
+
+function formatMinutes(setup?: number | null, run?: number | null) {
+  if (setup == null && run == null) return '—'
+  return `准备 ${setup ?? 0} / 加工 ${run ?? 0}`
+}
+
+const columns: NvDataTableColumn<BusinessConsoleStandardOperationItem>[] = [
+  { key: 'operationCode', header: '编码', width: 'w-32' },
+  { key: 'operationName', header: '工序名', cellClass: 'font-medium' },
+  { key: 'defaultWorkCenter', header: '默认工作中心' },
+  { key: 'standardMinutes', header: '标准工时（分）', width: 'w-40' },
+  { key: 'control', header: '控制', width: 'w-52' },
+  { key: 'status', header: '状态', width: 'w-24' },
+  { key: 'actions', header: '操作', align: 'end', width: 'w-24' },
+]
+
+// 控制键说人话。后端 `StandardOperation.ControlKey` 是自由字符串（无枚举、无 CodeSet），
+// 世界史种子与路线默认值都写 `standard`；不收词就把英文码印到「控制」列上。
+const CONTROL_KEY_LABELS: Record<string, string> = {
+  standard: '标准工序',
+  inhouse: '自制工序',
+  outsource: '外协工序',
+  outsourced: '外协工序',
+  inspection: '检验工序',
+  rework: '返工工序',
+  assembly: '装配工序',
+  packaging: '包装工序',
+}
+function controlKeyLabel(value?: string | null) {
+  const raw = (value ?? '').trim()
+  if (!raw) return ''
+  const label = CONTROL_KEY_LABELS[raw.toLowerCase().replace(/[-_\s]/g, '')]
+  if (label === undefined && import.meta.env.DEV) {
+    console.warn(`[标准工序] 词表缺失: ${raw}，请补 CONTROL_KEY_LABELS`)
+  }
+  return label ?? raw
+}
+
+// ── 新建 / 编辑表单 ─────────────────────────────────────────────
+interface StandardOperationForm {
+  operationCode: string
+  operationName: string
+  defaultWorkCenterCode: string
+  controlKey: string
+  standardSetupMinutes: string
+  standardRunMinutes: string
+  requiresReporting: boolean
+  requiresQualityInspection: boolean
+  isOutsourced: boolean
+  description: string
+}
+
+function blankForm(): StandardOperationForm {
+  return {
+    operationCode: '',
+    operationName: '',
+    defaultWorkCenterCode: '',
+    controlKey: 'INHOUSE',
+    standardSetupMinutes: '',
+    standardRunMinutes: '',
+    requiresReporting: true,
+    requiresQualityInspection: false,
+    isOutsourced: false,
+    description: '',
+  }
+}
+
+const formOpen = shallowRef(false)
+const showErrors = ref(false)
+// null = 新建，否则为正在编辑工序的 operationCode（编码即身份，编辑态只读）。
+const editingCode = shallowRef<string | null>(null)
+const editingRow = shallowRef<BusinessConsoleStandardOperationItem | null>(null)
+const form = reactive<StandardOperationForm>(blankForm())
+
+// 编辑态由所选行带出的只读上下文（编码即身份，不可改）。
+const carriedItems = computed(() => [
+  { label: '工序编码', value: editingCode.value },
+  {
+    label: '当前状态',
+    value: editingRow.value ? (editingRow.value.enabled === false ? '停用' : '启用') : undefined,
+  },
+])
+
+// 全厂只有一个工作中心时直接选中——没有选择余地的「选择」不该让用户做。
+watch([workCenterOptions, formOpen], ([options, open]) => {
+  if (open && !form.defaultWorkCenterCode && options.length === 1) {
+    form.defaultWorkCenterCode = options[0]!.value
+  }
+})
+
+function parseNumber(value: string): number | undefined {
+  const trimmed = value.trim()
+  if (!trimmed) return undefined
+  const parsed = Number(trimmed)
+  return Number.isFinite(parsed) ? parsed : undefined
+}
+const setupMinutes = computed(() => parseNumber(form.standardSetupMinutes))
+const runMinutes = computed(() => parseNumber(form.standardRunMinutes))
+
+const codeValid = computed(() => !!editingCode.value || form.operationCode.trim().length > 0)
+const nameValid = computed(() => form.operationName.trim().length > 0)
+const workCenterValid = computed(() => form.defaultWorkCenterCode.trim().length > 0)
+const controlKeyValid = computed(() => form.controlKey.trim().length > 0)
+const setupValid = computed(
+  () =>
+    form.standardSetupMinutes.trim() === '' ||
+    (setupMinutes.value != null && setupMinutes.value >= 0),
+)
+const runValid = computed(
+  () =>
+    form.standardRunMinutes.trim() === '' || (runMinutes.value != null && runMinutes.value >= 0),
+)
+const canSubmit = computed(
+  () =>
+    codeValid.value &&
+    nameValid.value &&
+    workCenterValid.value &&
+    controlKeyValid.value &&
+    setupValid.value &&
+    runValid.value,
+)
+
+function openCreate() {
+  editingCode.value = null
+  editingRow.value = null
+  Object.assign(form, blankForm())
+  showErrors.value = false
+  formOpen.value = true
+}
+function openEdit(row: BusinessConsoleStandardOperationItem) {
+  if (!row.operationCode) return
+  editingCode.value = row.operationCode
+  editingRow.value = row
+  showErrors.value = false
+  Object.assign(form, {
+    operationCode: row.operationCode ?? '',
+    operationName: row.operationName ?? '',
+    defaultWorkCenterCode: row.defaultWorkCenterCode ?? '',
+    controlKey: row.controlKey ?? 'INHOUSE',
+    standardSetupMinutes: row.standardSetupMinutes == null ? '' : String(row.standardSetupMinutes),
+    standardRunMinutes: row.standardRunMinutes == null ? '' : String(row.standardRunMinutes),
+    requiresReporting: row.requiresReporting ?? true,
+    requiresQualityInspection: row.requiresQualityInspection ?? false,
+    isOutsourced: row.isOutsourced ?? false,
+    description: row.description ?? '',
+  })
+  formOpen.value = true
+}
+
+async function submitForm() {
+  if (!canSubmit.value) {
+    showErrors.value = true
+    return
+  }
+  const shared = {
+    operationName: form.operationName.trim(),
+    defaultWorkCenterCode: form.defaultWorkCenterCode.trim(),
+    controlKey: form.controlKey.trim(),
+    standardSetupMinutes: setupMinutes.value,
+    standardRunMinutes: runMinutes.value,
+    requiresReporting: form.requiresReporting,
+    requiresQualityInspection: form.requiresQualityInspection,
+    isOutsourced: form.isOutsourced,
+    description: form.description.trim() || null,
+  }
+  try {
+    if (editingCode.value) {
+      await updateStandardOperation(editingCode.value, {
+        organizationId: filters.organizationId,
+        environmentId: filters.environmentId,
+        ...shared,
+      })
+      notifySuccess(`工序「${shared.operationName}」已更新。`)
+    } else {
+      const body: BusinessConsoleCreateStandardOperationRequest = {
+        organizationId: filters.organizationId,
+        environmentId: filters.environmentId,
+        operationCode: form.operationCode.trim(),
+        ...shared,
+      }
+      await createStandardOperation(body)
+      notifySuccess(`已创建标准工序「${shared.operationName}」。`)
+    }
+    showErrors.value = false
+    formOpen.value = false
+    editingCode.value = null
+    editingRow.value = null
+  } catch (error) {
+    notifyOperationFailure('保存标准工序失败', error, '保存标准工序失败，请稍后重试。')
+  }
+}
+
+// ── 停用 ────────────────────────────────────────────────────────
+const archiveOpen = shallowRef(false)
+const archiveTarget = shallowRef<BusinessConsoleStandardOperationItem | null>(null)
+function openArchive(row: BusinessConsoleStandardOperationItem) {
+  if (!row.operationCode) return
+  archiveTarget.value = row
+  archiveOpen.value = true
+}
+async function confirmArchive() {
+  const target = archiveTarget.value
+  if (!target?.operationCode) return
+  try {
+    await archiveStandardOperation(target.operationCode, '不再使用')
+    notifySuccess(`工序「${target.operationName}」已停用。`)
+    archiveOpen.value = false
+    archiveTarget.value = null
+  } catch (error) {
+    notifyOperationFailure('停用工序失败', error, '停用工序失败，请稍后重试。')
+  }
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="标准工序"
+      :breadcrumbs="[{ label: '产品工程' }]"
+      :count="`${standardOperationsTotal} 个工序`"
+    >
+      <template #actions>
+        <NvButton
+          size="sm"
+          variant="outline"
+          type="button"
+          :disabled="standardOperationsPending"
+          @click="refresh"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+        <NvDialog v-model:open="formOpen">
+          <NvDialogTrigger as-child>
+            <NvButton size="sm" type="button" @click="openCreate">
+              <PlusIcon aria-hidden="true" />
+              新建工序
+            </NvButton>
+          </NvDialogTrigger>
+          <NvDialogContent class="sm:max-w-2xl">
+            <NvDialogHeader>
+              <NvDialogTitle>{{ editingCode ? '编辑标准工序' : '新建标准工序' }}</NvDialogTitle>
+              <!-- 说明不上界面：仅供读屏播报。 -->
+              <NvDialogDescription class="sr-only">
+                {{
+                  editingCode
+                    ? `工序 ${editingCode} 的默认工作中心、工时与控制标志。`
+                    : '登记可复用的标准工序。'
+                }}
+              </NvDialogDescription>
+            </NvDialogHeader>
+            <form class="grid gap-5" @submit.prevent="submitForm">
+              <p v-if="showErrors && !canSubmit" class="text-sm text-destructive" role="alert">
+                请填写带 * 的必填项，并确保标准工时为非负数（已标红）。
+              </p>
+
+              <!-- 编辑态：编码由所选行带出，只读展示，不做成看起来可改的输入框。 -->
+              <CarriedContextSummary v-if="editingCode" label="编辑对象" :items="carriedItems" />
+
+              <FormSectionTitle>基本信息</FormSectionTitle>
+              <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+                <NvField v-if="!editingCode" :data-invalid="showErrors && !codeValid">
+                  <NvFieldLabel for="op-code"
+                    >工序编码 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput
+                    id="op-code"
+                    v-model="form.operationCode"
+                    placeholder="例如：OP-CNC-ROUGH"
+                  />
+                  <NvFieldDescription>由工厂自定义、需唯一。</NvFieldDescription>
+                </NvField>
+                <NvField :data-invalid="showErrors && !nameValid">
+                  <NvFieldLabel for="op-name"
+                    >工序名 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput
+                    id="op-name"
+                    v-model="form.operationName"
+                    placeholder="例如：CNC 粗加工"
+                  />
+                </NvField>
+                <NvField :data-invalid="showErrors && !workCenterValid">
+                  <NvFieldLabel for="op-wc"
+                    >默认工作中心 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <DirectoryPicker
+                    id="op-wc"
+                    v-model="form.defaultWorkCenterCode"
+                    directory-type="work-center"
+                    creatable
+                    placeholder="选择默认工作中心"
+                    :disabled="workCentersPending"
+                  />
+                  <NvFieldDescription>工艺路线选此工序时自动带出。</NvFieldDescription>
+                </NvField>
+                <NvField :data-invalid="showErrors && !controlKeyValid">
+                  <NvFieldLabel for="op-control"
+                    >控制键 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput id="op-control" v-model="form.controlKey" />
+                  <NvFieldDescription>例如：INHOUSE / INHOUSE-QC。</NvFieldDescription>
+                </NvField>
+              </NvFieldGroup>
+
+              <FormSectionTitle>标准工时</FormSectionTitle>
+              <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+                <NvField :data-invalid="showErrors && !setupValid">
+                  <NvFieldLabel for="op-setup">准备工时（分）</NvFieldLabel>
+                  <NvInput
+                    id="op-setup"
+                    v-model="form.standardSetupMinutes"
+                    type="number"
+                    min="0"
+                    placeholder="0"
+                  />
+                </NvField>
+                <NvField :data-invalid="showErrors && !runValid">
+                  <NvFieldLabel for="op-run">加工工时（分）</NvFieldLabel>
+                  <NvInput
+                    id="op-run"
+                    v-model="form.standardRunMinutes"
+                    type="number"
+                    min="0"
+                    placeholder="0"
+                  />
+                  <NvFieldDescription>单件加工标准时间。</NvFieldDescription>
+                </NvField>
+              </NvFieldGroup>
+
+              <FormSectionTitle>控制标志</FormSectionTitle>
+              <NvFieldGroup class="grid gap-2">
+                <label
+                  for="op-report"
+                  class="flex cursor-pointer select-none items-center justify-between rounded-md border bg-background px-3 py-2 text-sm"
+                >
+                  <span>需要报工</span>
+                  <NvCheckbox id="op-report" v-model="form.requiresReporting" />
+                </label>
+                <label
+                  for="op-inspect"
+                  class="flex cursor-pointer select-none items-center justify-between rounded-md border bg-background px-3 py-2 text-sm"
+                >
+                  <span>需要质检</span>
+                  <NvCheckbox id="op-inspect" v-model="form.requiresQualityInspection" />
+                </label>
+                <label
+                  for="op-outsource"
+                  class="flex cursor-pointer select-none items-center justify-between rounded-md border bg-background px-3 py-2 text-sm"
+                >
+                  <span>外协工序</span>
+                  <NvCheckbox id="op-outsource" v-model="form.isOutsourced" />
+                </label>
+              </NvFieldGroup>
+
+              <FormSectionTitle>其它</FormSectionTitle>
+              <NvFieldGroup class="grid gap-3">
+                <NvField>
+                  <NvFieldLabel for="op-desc">说明</NvFieldLabel>
+                  <NvInput
+                    id="op-desc"
+                    v-model="form.description"
+                    placeholder="可选，工序用途或注意事项"
+                  />
+                </NvField>
+              </NvFieldGroup>
+
+              <NvDialogFooter>
+                <NvButton type="button" variant="outline" @click="formOpen = false">取消</NvButton>
+                <NvButton type="submit" :disabled="createPending || updatePending">
+                  <NvSpinner v-if="createPending || updatePending" aria-hidden="true" />
+                  {{ editingCode ? '保存工序' : '创建工序' }}
+                </NvButton>
+              </NvDialogFooter>
+            </form>
+          </NvDialogContent>
+        </NvDialog>
+      </template>
+    </NvPageHeader>
+
+    <NvToolbar v-model:search="search" search-placeholder="按工序名或编码筛选" />
+
+    <p v-if="listErrorMessage" class="text-sm text-destructive" role="alert">
+      {{ listErrorMessage }}
+    </p>
+
+    <NvDataTable
+      manual
+      :page="page"
+      :page-size="pageSize"
+      :total-items="standardOperationsTotal"
+      @update:page="page = $event"
+      @update:page-size="(v) => (pageSize = String(v))"
+      :columns="columns"
+      :rows="standardOperations"
+      row-key="operationCode"
+      :loading="standardOperationsPending"
+      :searchable="false"
+      :column-settings="false"
+      empty-message="标准工序目录为空。新建可复用工序（默认工作中心 + 标准工时 + 控制键），工艺路线即可选用。"
+    >
+      <template #cell-defaultWorkCenter="{ row }">
+        <div class="flex flex-col gap-0.5">
+          <span>{{ workCenterLabel(row.defaultWorkCenterCode) }}</span>
+          <span v-if="row.defaultWorkCenterCode" class="text-xs text-muted-foreground">{{
+            row.defaultWorkCenterCode
+          }}</span>
+        </div>
+      </template>
+      <template #cell-standardMinutes="{ row }">
+        <span class="tabular-nums text-muted-foreground">{{
+          formatMinutes(row.standardSetupMinutes, row.standardRunMinutes)
+        }}</span>
+      </template>
+      <template #cell-control="{ row }">
+        <div class="flex flex-col gap-1">
+          <div class="flex flex-wrap gap-1">
+            <NvStatusBadge v-if="row.requiresReporting" label="报工" tone="info" />
+            <NvStatusBadge v-if="row.requiresQualityInspection" label="质检" tone="warning" />
+            <NvStatusBadge v-if="row.isOutsourced" label="外协" tone="neutral" />
+          </div>
+          <span v-if="row.controlKey" class="text-xs text-muted-foreground">{{
+            controlKeyLabel(row.controlKey)
+          }}</span>
+        </div>
+      </template>
+      <template #cell-status="{ row }">
+        <NvStatusBadge
+          :label="row.enabled === false ? '停用' : '启用'"
+          :tone="row.enabled === false ? 'neutral' : 'success'"
+        />
+      </template>
+      <template #cell-actions="{ row }">
+        <div class="flex justify-end gap-1">
+          <NvButton type="button" variant="ghost" size="sm" @click="openEdit(row)">编辑</NvButton>
+          <NvButton
+            type="button"
+            variant="ghost"
+            size="sm"
+            :disabled="row.enabled === false"
+            @click="openArchive(row)"
+            >停用</NvButton
+          >
+        </div>
+      </template>
+    </NvDataTable>
+
+    <NvAlertDialog v-model:open="archiveOpen">
+      <NvAlertDialogContent>
+        <NvAlertDialogHeader>
+          <NvAlertDialogTitle>停用标准工序</NvAlertDialogTitle>
+          <NvAlertDialogDescription>
+            停用后工序「{{
+              archiveTarget?.operationName
+            }}」将不可在新的工艺路线中选用，已发布路线不受影响。
+          </NvAlertDialogDescription>
+        </NvAlertDialogHeader>
+        <NvAlertDialogFooter>
+          <NvAlertDialogCancel>取消</NvAlertDialogCancel>
+          <!-- 普通 NvButton，不用 NvAlertDialogAction：后者点击即无条件关框（confirm-destroy 规则 3）。
+               variant 不写 = NvAlertDialogAction 的默认值 'default'，换件不改外观。 -->
+          <NvButton type="button" :disabled="archivePending" @click="confirmArchive">
+            <NvSpinner v-if="archivePending" aria-hidden="true" />
+            确认停用
+          </NvButton>
+        </NvAlertDialogFooter>
+      </NvAlertDialogContent>
+    </NvAlertDialog>
+  </BusinessLayout>
+</template>

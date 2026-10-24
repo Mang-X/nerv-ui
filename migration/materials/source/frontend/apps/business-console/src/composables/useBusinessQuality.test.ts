@@ -1,0 +1,418 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { shallowRef } from 'vue'
+import { createPinia, setActivePinia } from 'pinia'
+
+import {
+  closeBusinessConsoleQualityNcr,
+  confirmBusinessConsoleOperation,
+  createBusinessConsoleQualityInspectionRecordMutationOptions,
+  listBusinessConsoleQualityInspectionPlanCharacteristicsQueryOptions,
+  listBusinessConsoleQualityInspectionPlansQueryOptions,
+  listBusinessConsoleQualityNcrsQueryOptions,
+  submitBusinessConsoleQualityNcrDisposition,
+} from '@nerv-iip/api-client'
+import { useBusinessContextStore } from '@/stores/businessContext'
+import {
+  useQualityInspectionPlanCharacteristics,
+  useQualityInspectionPlans,
+  useQualityNcrs,
+} from './useBusinessQuality'
+
+const coladaState = vi.hoisted(() => ({
+  invalidateQueries: vi.fn(async () => undefined),
+  queryFactoriesById: new Map<string, () => unknown>(),
+  queryDataById: new Map<string, unknown>(),
+}))
+const lifecycleApi = vi.hoisted(() => ({
+  getNcr: vi.fn(),
+}))
+
+vi.mock('@nerv-iip/api-client', () => ({
+  closeBusinessConsoleQualityNcr: vi.fn(async () => ({
+    data: { success: true },
+    response: { status: 200 },
+  })),
+  closeBusinessConsoleQualityNcrMutationOptions: vi.fn(() => ({
+    mutation: vi.fn(async (vars) => ({
+      success: true,
+      data: vars,
+    })),
+  })),
+  confirmBusinessConsoleOperation: vi.fn(async (envelope) => envelope),
+  createBusinessConsoleQualityInspectionRecordMutationOptions: vi.fn(() => ({
+    mutation: vi.fn(async (vars) => ({
+      success: true,
+      data: vars.body,
+    })),
+  })),
+  listBusinessConsoleQualityInspectionPlansQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleQualityInspectionPlans' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsoleQualityInspectionPlanCharacteristicsQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleQualityInspectionPlanCharacteristics' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsoleQualityNcrsQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleQualityNcrs' }],
+    query: vi.fn(),
+  })),
+  getBusinessConsoleQualityNcrQueryOptions: vi.fn(() => ({
+    key: [],
+    query: lifecycleApi.getNcr,
+  })),
+  submitBusinessConsoleQualityNcrDisposition: vi.fn(async () => ({
+    data: { success: true },
+    response: { status: 200 },
+  })),
+  submitBusinessConsoleQualityNcrDispositionMutationOptions: vi.fn(() => ({
+    mutation: vi.fn(async (vars) => ({
+      success: true,
+      data: vars,
+    })),
+  })),
+}))
+
+vi.mock('@pinia/colada', () => ({
+  useMutation: vi.fn((options) => ({
+    error: shallowRef(),
+    isLoading: shallowRef(false),
+    mutateAsync: vi.fn(async (vars) => {
+      const result = await options.mutation(vars)
+      await options.onSuccess?.(result)
+      return result
+    }),
+  })),
+  useQuery: vi.fn((optionsFactory) => {
+    const options = optionsFactory()
+    const key = Array.isArray(options.key) ? options.key[0] : undefined
+    const id = key && typeof key === 'object' && '_id' in key ? String(key._id) : ''
+    coladaState.queryFactoriesById.set(id, optionsFactory)
+
+    return {
+      data: shallowRef(coladaState.queryDataById.get(id)),
+      error: shallowRef(),
+      isLoading: shallowRef(false),
+      refetch: vi.fn(),
+    }
+  }),
+  useQueryCache: vi.fn(() => ({
+    invalidateQueries: coladaState.invalidateQueries,
+  })),
+}))
+
+describe('business quality composables', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+    useBusinessContextStore().patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    vi.clearAllMocks()
+    coladaState.invalidateQueries.mockClear()
+    coladaState.queryFactoriesById.clear()
+    coladaState.queryDataById.clear()
+  })
+
+  it('loads inspection-plan characteristics through the existing facade', () => {
+    coladaState.queryDataById.set('listBusinessConsoleQualityInspectionPlanCharacteristics', {
+      success: true,
+      data: { items: [{ characteristicCode: 'DIM-01', lowerSpecLimit: 9.8 }] },
+    })
+
+    const { planCharacteristics } = useQualityInspectionPlanCharacteristics(() => ({
+      organizationId: 'org-001',
+      environmentId: 'env-dev',
+      inspectionPlanId: 'PLAN-001',
+    }))
+
+    expect(
+      listBusinessConsoleQualityInspectionPlanCharacteristicsQueryOptions,
+    ).toHaveBeenCalledWith({
+      path: { inspectionPlanId: 'PLAN-001' },
+      query: { organizationId: 'org-001', environmentId: 'env-dev' },
+    })
+    expect(planCharacteristics.value).toEqual([
+      { characteristicCode: 'DIM-01', lowerSpecLimit: 9.8 },
+    ])
+  })
+
+  it('lists inspection plans with default context and safe items', () => {
+    coladaState.queryDataById.set('listBusinessConsoleQualityInspectionPlans', {
+      success: true,
+      data: {
+        total: 34,
+        items: [
+          {
+            id: 'plan-1',
+            code: 'PLAN-001',
+          },
+        ],
+      },
+    })
+
+    const { inspectionPlans, inspectionPlansTotal } = useQualityInspectionPlans()
+
+    expect(listBusinessConsoleQualityInspectionPlansQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        skip: 0,
+        take: 100,
+      },
+    })
+    expect(inspectionPlansTotal.value).toBe(34)
+    expect(inspectionPlans.value).toEqual([
+      {
+        id: 'plan-1',
+        code: 'PLAN-001',
+      },
+    ])
+  })
+
+  it('exposes empty inspection plans and NCRs for unsuccessful envelopes', () => {
+    coladaState.queryDataById.set('listBusinessConsoleQualityInspectionPlans', {
+      success: false,
+    })
+    coladaState.queryDataById.set('listBusinessConsoleQualityNcrs', {
+      success: false,
+    })
+
+    const { inspectionPlans } = useQualityInspectionPlans()
+    const { ncrs } = useQualityNcrs()
+
+    expect(inspectionPlans.value).toEqual([])
+    expect(ncrs.value).toEqual([])
+  })
+
+  it('uses the latest business context store values for quality list queries', () => {
+    const context = useBusinessContextStore()
+    context.patchContext({ organizationId: 'org-qa-a', environmentId: 'env-qa-a' })
+
+    const { filters } = useQualityInspectionPlans({ keyword: 'plan' })
+    filters.status = 'active'
+
+    context.patchContext({ organizationId: 'org-qa-b', environmentId: 'env-qa-b' })
+    coladaState.queryFactoriesById.get('listBusinessConsoleQualityInspectionPlans')?.()
+
+    expect(listBusinessConsoleQualityInspectionPlansQueryOptions).toHaveBeenLastCalledWith({
+      query: {
+        organizationId: 'org-qa-b',
+        environmentId: 'env-qa-b',
+        status: 'active',
+        keyword: 'plan',
+        skip: 0,
+        take: 100,
+      },
+    })
+  })
+
+  it('passes keyword filters to inspection plan and NCR list queries', () => {
+    useQualityInspectionPlans({ keyword: 'IQP-001', take: 1 })
+    useQualityNcrs({ keyword: 'NCR-001', take: 1 })
+
+    expect(listBusinessConsoleQualityInspectionPlansQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        keyword: 'IQP-001',
+        skip: 0,
+        take: 1,
+      },
+    })
+    expect(listBusinessConsoleQualityNcrsQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        keyword: 'NCR-001',
+        skip: 0,
+        take: 1,
+      },
+    })
+  })
+
+  it('passes the selected inspection-plan category to the facade query', () => {
+    useQualityInspectionPlans({ category: 'first-article', take: 25 })
+
+    expect(listBusinessConsoleQualityInspectionPlansQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        category: 'first-article',
+        skip: 0,
+        take: 25,
+      },
+    })
+  })
+
+  it('lists NCRs with a take limit and invalidates after actions', async () => {
+    coladaState.queryDataById.set('listBusinessConsoleQualityNcrs', {
+      success: true,
+      data: {
+        total: 56,
+        items: [
+          {
+            id: 'ncr-1',
+            code: 'NCR-001',
+          },
+        ],
+      },
+    })
+
+    const { closeNcr, ncrs, ncrsTotal, submitDisposition } = useQualityNcrs()
+    lifecycleApi.getNcr
+      .mockResolvedValueOnce({ success: true, data: { id: 'ncr-1', status: 'Open' } })
+      .mockResolvedValueOnce({
+        success: true,
+        data: {
+          id: 'ncr-1',
+          status: 'Disposition-In-Progress',
+          dispositionType: 'rework',
+        },
+      })
+
+    expect(listBusinessConsoleQualityNcrsQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        skip: 0,
+        take: 100,
+      },
+    })
+    expect(ncrsTotal.value).toBe(56)
+    expect(ncrs.value).toEqual([
+      {
+        id: 'ncr-1',
+        code: 'NCR-001',
+      },
+    ])
+
+    await submitDisposition('ncr-1', {
+      dispositionType: 'rework',
+      dispositionApprovalChainId: 'chain-1',
+    })
+    await closeNcr('ncr-1', {
+      reworkWorkOrderId: 'wo-1',
+      reason: '返工处理已完成',
+    })
+
+    expect(submitBusinessConsoleQualityNcrDisposition).toHaveBeenCalledWith({
+      path: {
+        ncrId: 'ncr-1',
+      },
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+      },
+      body: {
+        dispositionType: 'rework',
+        dispositionApprovalChainId: 'chain-1',
+        idempotencyKey: expect.stringMatching(/^ncr-rework-/),
+      },
+      throwOnError: false,
+    })
+    expect(closeBusinessConsoleQualityNcr).toHaveBeenCalledWith({
+      path: {
+        ncrId: 'ncr-1',
+      },
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+      },
+      body: {
+        reworkWorkOrderId: 'wo-1',
+        reason: '返工处理已完成',
+      },
+      throwOnError: false,
+    })
+    expect(coladaState.invalidateQueries).toHaveBeenCalledTimes(2)
+    expect(confirmBusinessConsoleOperation).toHaveBeenCalledWith(
+      { success: true },
+      expect.objectContaining({
+        expectedOperationType: 'quality.ncr.rework',
+        expectedResourceId: 'ncr-1',
+        expectedIdempotencyKey: expect.stringMatching(/^ncr-rework-/),
+      }),
+    )
+  })
+
+  it('retries an unconfirmed rework with the same key and frozen MRB payload', async () => {
+    const { ncrActionGate, submitDisposition } = useQualityNcrs()
+    lifecycleApi.getNcr
+      .mockResolvedValueOnce({ success: true, data: { id: 'ncr-retry', status: 'Open' } })
+      .mockResolvedValueOnce({
+        success: true,
+        data: {
+          id: 'ncr-retry',
+          status: 'Disposition-In-Progress',
+          dispositionType: 'rework',
+        },
+      })
+    vi.mocked(confirmBusinessConsoleOperation)
+      .mockRejectedValueOnce({ code: 'business-operation-unconfirmed' })
+      .mockResolvedValueOnce({ success: true } as never)
+    const firstBody = {
+      dispositionType: 'rework',
+      dispositionApprovalChainId: 'chain-retry',
+      mrbReviews: [
+        {
+          reviewerId: 'qa-1',
+          decision: 'approved',
+          reviewedAtUtc: '2026-08-30T01:00:00Z',
+        },
+      ],
+    }
+
+    await expect(submitDisposition('ncr-retry', firstBody)).rejects.toMatchObject({
+      code: 'business-operation-unconfirmed',
+    })
+    const retryBody = {
+      ...firstBody,
+      mrbReviews: [
+        {
+          ...firstBody.mrbReviews[0]!,
+          reviewedAtUtc: '2026-08-30T02:00:00Z',
+        },
+      ],
+    }
+    expect(
+      ncrActionGate(
+        'ncr-retry',
+        'Disposition-In-Progress',
+        'rework',
+        'submit-disposition',
+        retryBody,
+      ),
+    ).toMatchObject({ executable: true, reason: 'allowed' })
+    await submitDisposition('ncr-retry', retryBody)
+
+    const calls = vi.mocked(submitBusinessConsoleQualityNcrDisposition).mock.calls
+    expect(calls).toHaveLength(2)
+    const firstSubmittedBody = calls[0]![0].body
+    const retrySubmittedBody = calls[1]![0].body
+    expect(retrySubmittedBody.idempotencyKey).toBe(firstSubmittedBody.idempotencyKey)
+    expect(retrySubmittedBody.mrbReviews?.[0]?.reviewedAtUtc).toBe('2026-08-30T01:00:00Z')
+  })
+
+  it('submits inspection records through the generated mutation option', async () => {
+    const { createInspectionRecord } = useQualityInspectionPlans()
+
+    await createInspectionRecord({
+      organizationId: 'org-001',
+      environmentId: 'env-dev',
+      sourceType: 'receipt',
+      sourceService: 'business-console',
+      sourceDocumentId: 'doc-1',
+      skuCode: 'SKU-001',
+      inspectedQuantity: 5,
+      resultLines: [],
+    })
+
+    expect(createBusinessConsoleQualityInspectionRecordMutationOptions).toHaveBeenCalled()
+    expect(
+      vi.mocked(createBusinessConsoleQualityInspectionRecordMutationOptions).mock.results[0]?.value
+        .mutation,
+    ).toHaveBeenCalledWith({
+      body: expect.objectContaining({
+        sourceDocumentId: 'doc-1',
+      }),
+    })
+  })
+})

@@ -1,0 +1,11 @@
+node_modules/
+.pnpm-store/
+dist/
+.vite/
+.vitepress/cache/
+.vitepress/dist/
+__pycache__/
+.env
+.env.*
+!.env.example
+.DS_Store

@@ -1,0 +1,580 @@
+/**
+ * 业务码值 → 中文显示名的集中词表。
+ *
+ * 为什么集中：这些码值散落在多个域的读面里（审批、库存、质量、MES、WMS、编码规则…），
+ * 以前每页各自 `labels[x] ?? x` 兜底，词表漏一个就把英文码印到界面上。集中一份后
+ * 补词只需改这里，不用满仓库找。
+ *
+ * 约定：
+ * - key 一律小写；查表前用 `normalizeCode` 归一（兼容后端 kebab-case 与 PascalCase 两种写法）。
+ * - 查不到时由调用方决定说法，`labelFor` 默认原样返回，避免把「没值」和「词表漏了」混为一谈。
+ * - 状态徽标（NvStatusBadge）的通用状态词表在 `@nerv-iip/ui` 内，这里只放它覆盖不到的业务码值。
+ */
+
+/** 把 `PartiallyReceived` / `partially-received` / `PARTIALLY_RECEIVED` 归一成 `partially-received`。 */
+export function normalizeCode(value?: string | null): string {
+  if (!value) return ''
+  return value
+    .trim()
+    .replace(/([a-z\d])([A-Z])/g, '$1-$2')
+    .replace(/[\s_]+/g, '-')
+    .toLowerCase()
+}
+
+/** 按词表取中文名；查不到默认原样返回（调用方可传 fallback 改为占位）。 */
+export function labelFor(
+  dictionary: Readonly<Record<string, string>>,
+  value?: string | null,
+  fallback?: string,
+): string {
+  if (!value) return fallback ?? ''
+  return dictionary[normalizeCode(value)] ?? fallback ?? value
+}
+
+/** 审批单据类型（审批中心 documentType）。 */
+export const DOCUMENT_TYPE_LABELS: Readonly<Record<string, string>> = {
+  'purchase-order': '采购订单',
+  'purchase-requisition': '采购申请',
+  'purchase-receipt': '采购收货',
+  'sales-order': '销售订单',
+  'sales-quotation': '销售报价',
+  'delivery-order': '发货单',
+  'work-order': '生产工单',
+  'ncr-disposition': '不合格品处置',
+  'engineering-change-order': '工程变更',
+  'inventory-count': '库存盘点',
+  'maintenance-work-order': '维修工单',
+  // 以下为后端实际在用、此前漏登记的类型（已回溯 backend 各服务的 documentType 字面量核实）。
+  'sales-shipment': '销售出货',
+  'finished-goods-receipt': '完工入库',
+  'material-issue': '生产领料',
+  'operation-task': '工序任务',
+  'work-center': '工作中心',
+  sop: '作业指导书',
+}
+
+/** 审批决定。 */
+export const APPROVAL_DECISION_LABELS: Readonly<Record<string, string>> = {
+  approve: '同意',
+  approved: '已同意',
+  reject: '驳回',
+  rejected: '已驳回',
+  abstain: '弃权',
+  delegate: '转办',
+  withdraw: '撤回',
+  // 后端 Approval 域实际下发的还有 return（`ApprovalDecisions.Return`）。
+  // 曾登记过的 `resolve` 是前端自造值、后端从未支持（#1311 的 400 之一），已随快捷操作一并去掉。
+  return: '退回',
+  returned: '已退回',
+}
+
+/**
+ * 库存质量状态。
+ *
+ * 权威取值只有 4 个（`Inventory.Domain/AggregatesModel/StockQualityStatus.cs`）：
+ * unrestricted / quality / restricted / blocked——写入时 Normalize，读面回的必是其一。
+ * 别名（qualified/available → unrestricted，inspection/quality-inspection → quality，
+ * conditional-release → restricted，rejected → blocked）一并登记，供直接展示别名的场合兜底。
+ */
+export const QUALITY_STATUS_LABELS: Readonly<Record<string, string>> = {
+  unrestricted: '非限制使用',
+  qualified: '非限制使用',
+  available: '非限制使用',
+  quality: '待检',
+  inspection: '待检',
+  'quality-inspection': '待检',
+  restricted: '受限使用',
+  'conditional-release': '条件放行',
+  blocked: '冻结',
+  rejected: '已拒收',
+}
+
+/**
+ * 工序任务「质量状态」列的**总体判定值**。这个字段是重载的：既可能是判定值
+ * （ready/warning/blocked），也可能是具体阻塞原因码，还可能是库存口径的质量状态。
+ * 判定值不在 `QUALITY_STATUS_LABELS` 里，直接 `labelFor` 会把 `Ready` 原样上屏（#1418）。
+ *
+ * 注意 `blocked` 在两张表里语义不同：库存口径是「冻结」（货被扣住），工序判定口径是
+ * 「已阻塞」（这道工序开不了工）。所以按上下文分表，而不是往库存表里塞。
+ */
+export const OPERATION_QUALITY_VERDICT_LABELS: Readonly<Record<string, string>> = {
+  ready: '可执行',
+  warning: '有提示',
+  blocked: '已阻塞',
+}
+
+/**
+ * 工序任务质量状态的显示口径：先认总体判定值，再退回库存质量状态，最后才原样透出。
+ * 顺序不能反 —— `blocked` 两表都有，工序语境下必须读成「已阻塞」。
+ */
+export function operationQualityStatusLabel(value?: string | null, fallback = '未检'): string {
+  if (!value) return fallback
+  const code = normalizeCode(value)
+  return OPERATION_QUALITY_VERDICT_LABELS[code] ?? QUALITY_STATUS_LABELS[code] ?? value
+}
+
+/** 库存货主类型（ownerType）。 */
+export const STOCK_OWNER_TYPE_LABELS: Readonly<Record<string, string>> = {
+  company: '本公司',
+  customer: '客户寄售',
+  supplier: '供应商寄售',
+  subcontractor: '外协方',
+}
+
+/**
+ * WMS 入库单、出库单行上可选的货主类型。取值必须是 Inventory `StockOwnerType.Normalize`
+ * 接受的值（规范值或别名），否则过账会被拒成「库存归属类型无效」（#3930）。
+ * 库存归属只按法律所有权区分：寄售不另设取值，客户寄售/客供料用 `customer`，供应商寄售用 `supplier`。
+ */
+export const WMS_LINE_OWNER_TYPE_OPTIONS: ReadonlyArray<{ label: string; value: string }> = [
+  { label: '本公司', value: 'owned' },
+  { label: '客户寄售/客供料', value: 'customer' },
+  { label: '供应商寄售', value: 'supplier' },
+]
+
+// 不合格品处置方式**不在这里**：受控值与显示函数都在
+// `@/composables/useQualityPickerCatalog` 的 QUALITY_DISPOSITION_OPTIONS /
+// qualityDispositionLabel，那份还会把词表外的历史自由文本显式标成「未知处置：xxx」。
+// 单一事实源，别在本文件另起一份。
+
+/**
+ * 追溯节点类型（MES 追溯图 nodeType）。
+ *
+ * 权威来源是 MES 读面的封闭类型 `MesTraceabilityNodeType`（构造函数私有、字符串无隐式转换，
+ * 调用点写不出表外的值），本表按它逐条对齐；`traceNodeType.contract.test.ts` 双向校验，
+ * 后端加一类节点而这里没跟进即红。
+ *
+ * 曾经这里是照着**边**的 relationType 抄的（`received-lot` / `produced-serial` /
+ * `consumed-serial`）外加两个后端从未发过的 `shipment` / `inspection`，
+ * 与节点类型集合只在四个键上碰巧对得上，其余节点在「类型」列上印英文码。
+ *
+ * 末两条不是受控节点类型，而是需求计划来源节点的**开放集**取值：那个节点的类型直接取工单上
+ * 持久化的 `SourceDocumentType`（外部写入方经公开端点给的自由文本，只限长不校验取值），
+ * 登记不进后端那个封闭类型。已知取值两个：`PlanningSuggestion` 有机读来源
+ * （`Nerv.IIP.Contracts.DemandPlanning` 的 `DemandPlanningSourceReferences.PlanningSuggestion`），
+ * `rework-work-order` 只出现在 MES 自己的返工建单路径上。未知取值仍如实回显原文。
+ */
+export const TRACE_NODE_TYPE_LABELS: Readonly<Record<string, string>> = {
+  'work-order': '生产工单',
+  'demand-source': '需求来源',
+  'operation-task': '工序任务',
+  'production-report': '报工记录',
+  operator: '报工人',
+  'device-asset': '生产设备',
+  'inspection-result': '不良记录',
+  'nonconformance-report': '不合格品报告',
+  'produced-lot': '产出批次',
+  serial: '产出序列号',
+  'produced-lot-or-serial': '产出批次/序列号',
+  material: '物料',
+  'material-lot': '投入批次',
+  'material-issue-request': '领料单',
+  'batch-or-serial': '批次/序列号',
+  'planning-suggestion': '计划建议',
+  'rework-work-order': '返工工单',
+}
+
+/**
+ * 上表中不属于后端节点类型常量的键——见表头说明的开放集取值。
+ * 供 `traceNodeType.contract.test.ts` 反向校验时排除，别在这里堆无来源的键。
+ */
+export const TRACE_NODE_TYPE_OPEN_SET_KEYS: readonly string[] = [
+  'planning-suggestion',
+  'rework-work-order',
+]
+
+/** 报工候选挂起原因（TelemetryProductionReportCandidate.suspensionReason）。 */
+export const REPORT_SUSPENSION_REASON_LABELS: Readonly<Record<string, string>> = {
+  'active-alarm': '设备存在未处理报警',
+  'no-work-center-mapping': '设备未绑定工作中心',
+  'no-current-work-order': '工作中心当前无在制工单',
+  'no-operation-task': '工作中心当前无进行中的工序任务',
+  'signal-stale': '采集信号已过期',
+}
+
+/** 质量数据来源类型（sourceType）。 */
+export const QUALITY_SOURCE_TYPE_LABELS: Readonly<Record<string, string>> = {
+  'in-process': '过程检验',
+  operation: '工序检验',
+  'mes-operation': '工序报工',
+  incoming: '来料检验',
+  final: '成品检验',
+  audit: '审核抽检',
+}
+
+/** 人员技能熟练度（人员技能矩阵 level）。 */
+export const SKILL_LEVEL_LABELS: Readonly<Record<string, string>> = {
+  trainee: '实习',
+  junior: '初级',
+  intermediate: '中级',
+  senior: '高级',
+  expert: '专家',
+  certified: '持证',
+}
+
+/** 编码规则版本状态。 */
+export const CODE_RULE_VERSION_LABELS: Readonly<Record<string, string>> = {
+  draft: '草稿',
+  published: '已发布',
+  superseded: '已被替代',
+  archived: '已归档',
+}
+
+/**
+ * 徽标色调。与 `@nerv-iip/ui` 的 `StatusTone` 同构，这里重声明是为了让本模块保持
+ * 纯数据（不依赖组件库），传给 `NvStatusBadge :tone` 时结构兼容。
+ */
+export type BusinessStatusTone = 'success' | 'warning' | 'danger' | 'info' | 'neutral'
+
+/**
+ * 库存质量状态的语义色调。UI 包通用状态表只认得 `available` / `blocked`，
+ * 台账真正回的 `unrestricted` / `quality` / `restricted` 落不到色调上，全成中性灰。
+ * 说法本身用 `QUALITY_STATUS_LABELS`（含别名），这里只补色调。
+ */
+export const STOCK_LEDGER_QUALITY_STATUS_TONES: Readonly<Record<string, BusinessStatusTone>> = {
+  unrestricted: 'success',
+  qualified: 'success',
+  available: 'success',
+  quality: 'warning',
+  inspection: 'warning',
+  'quality-inspection': 'warning',
+  restricted: 'warning',
+  'conditional-release': 'warning',
+  blocked: 'danger',
+  rejected: 'danger',
+}
+
+/**
+ * 库存台账口径的货主类型。Inventory 服务的规范值是
+ * `company / customer / supplier / production / maintenance`（`StockOwnerType`）。
+ */
+export const STOCK_LEDGER_OWNER_TYPE_LABELS: Readonly<Record<string, string>> = {
+  ...STOCK_OWNER_TYPE_LABELS,
+  production: '生产领用',
+  maintenance: '维修备件',
+}
+
+/**
+ * WCS 任务状态。后端一律 `Status.ToString()`（PascalCase，如 `InventoryPostingFailed`），
+ * UI 包通用状态表按小写整串查，多词状态查不到就把英文印上屏，所以这里补一份。
+ *
+ * **只给 WCS 用**：入库单 / 出库单 / 仓库任务（上架·拣货·补货·盘点）的状态词表在
+ * `@/data/wmsReference`，那份是按单据分域的——同一个 `Open` 在任务是「待执行」、
+ * 入库是「待收货」、出库是「待出库」，比扁平表准。别拿本表去覆盖那三类。
+ */
+export const WCS_TASK_STATUS_LABELS: Readonly<Record<string, string>> = {
+  open: '待处理',
+  completed: '已完成',
+  cancelled: '已取消',
+  closed: '已关闭',
+  failed: '执行失败',
+  pending: '待处理',
+  posted: '已过账',
+  dispatched: '已下发',
+  'pending-quality-check': '待质检放行',
+  'inventory-posting-pending': '库存过账中',
+  'inventory-posting-failed': '库存过账失败',
+}
+
+/** WMS/WCS 多词状态的语义色调（UI 包通用表覆盖不到的部分）。 */
+export const WMS_STATUS_TONES: Readonly<Record<string, BusinessStatusTone>> = {
+  'pending-quality-check': 'warning',
+  'inventory-posting-pending': 'warning',
+  'inventory-posting-failed': 'danger',
+}
+
+/** 取 WMS 状态的语义色调；没有特别声明就交回给通用表推断。 */
+export function wmsStatusTone(value?: string | null): BusinessStatusTone | undefined {
+  return WMS_STATUS_TONES[normalizeCode(value)]
+}
+
+/**
+ * WCS 适配器类型（`adapterType`）——仓储自动化设备的接入类型，
+ * 后端是自由文本技术标识，这里给出已接入类型的中文说法，未收录时只显技术标识。
+ */
+export const WCS_ADAPTER_TYPE_LABELS: Readonly<Record<string, string>> = {
+  agv: 'AGV 搬运机器人',
+  rgv: 'RGV 环形穿梭车',
+  'stacker-crane': '堆垛机',
+  asrs: '自动化立体库',
+  conveyor: '输送线',
+  shuttle: '四向穿梭车',
+  sorter: '分拣机',
+  robot: '机械臂',
+  manual: '人工作业',
+}
+
+// 库存移动类型词表已迁至 `data/inventoryReference.ts`：那里按「读面全集 / 外部命令可写 / 人工补录面」
+// 分三层并与后端逐字对齐。此处旧表含后端从不接受的 receipt / issue（正是走查台账 #49 的幽灵值），
+// 留着同名并存只会让人误 import 把问题捡回来，故删除，不做 re-export。
+
+/**
+ * 采集点位的工程单位（`unitCode`）。这是设备侧的物理量单位，与主数据计量单位
+ * （件 / 千克，走 `useMasterDataDisplayNames().formatUom`）不是一回事，所以单独一份。
+ */
+export const TELEMETRY_UNIT_LABELS: Readonly<Record<string, string>> = {
+  degc: '摄氏度',
+  degf: '华氏度',
+  k: '开尔文',
+  'mm-s': '毫米每秒',
+  rpm: '转每分',
+  a: '安培',
+  v: '伏特',
+  kw: '千瓦',
+  kwh: '千瓦时',
+  kn: '千牛',
+  n: '牛',
+  nm: '牛米',
+  bar: '巴',
+  kpa: '千帕',
+  mpa: '兆帕',
+  ph: 'pH 值',
+  count: '次',
+  pcs: '件',
+  pct: '百分比',
+  '%': '百分比',
+  mm: '毫米',
+  m: '米',
+  s: '秒',
+  hz: '赫兹',
+  'l-min': '升每分',
+  'm3-h': '立方米每小时',
+}
+
+/**
+ * 工程单位归一：`degC` / `mm/s` / `m3·h` 这类写法不能走 `normalizeCode`
+ * （它会把 `degC` 拆成 `deg-c`），这里只做小写 + 分隔符统一。
+ */
+function normalizeUnitCode(code?: string | null): string {
+  if (!code) return ''
+  return code
+    .trim()
+    .toLowerCase()
+    .replace(/[/\\·*\s_]+/g, '-')
+}
+
+/** 工程单位展示串：「摄氏度 (degC)」；名录里没有就只显技术单位。 */
+export function formatTelemetryUnit(code?: string | null, fallback = '无'): string {
+  if (!code) return fallback
+  const name = TELEMETRY_UNIT_LABELS[normalizeUnitCode(code)]
+  return name && name !== code ? `${name} (${code})` : code
+}
+
+/**
+ * 采集点位的数据类型（`valueType`，#3870 起后端收成闭集）。两种计数类型让点位参与报工：
+ * 自动报工直接过账，待人工确认生成遥测候选，由现场在 PDA 上确认。
+ */
+export const TELEMETRY_VALUE_TYPE_OPTIONS = [
+  { value: 'number', label: '数值' },
+  { value: 'bool', label: '开关' },
+  { value: 'text', label: '文本' },
+  { value: 'production-count-draft', label: '计数（待人工确认）' },
+  { value: 'production-count-posted', label: '计数（自动报工）' },
+] as const
+
+/** 闭集之前的历史写法（种子数据里的 decimal / string 等）归到闭集里的同义类型。 */
+const TELEMETRY_VALUE_TYPE_ALIASES: Readonly<Record<string, string>> = {
+  decimal: 'number',
+  numeric: 'number',
+  int: 'number',
+  integer: 'number',
+  boolean: 'bool',
+  string: 'text',
+}
+
+/** 把点位上的值类型归到闭集；归不上返回空串（表单里就是「未选」）。 */
+export function normalizeTelemetryValueType(value?: string | null): string {
+  const raw = (value ?? '').trim().toLowerCase()
+  const normalized = TELEMETRY_VALUE_TYPE_ALIASES[raw] ?? raw
+  return TELEMETRY_VALUE_TYPE_OPTIONS.some((option) => option.value === normalized)
+    ? normalized
+    : ''
+}
+
+/** 数据类型说人话；词表外显示「—」，不把后端英文码回吐到界面上。 */
+export function formatTelemetryValueType(value?: string | null): string {
+  const normalized = normalizeTelemetryValueType(value)
+  return TELEMETRY_VALUE_TYPE_OPTIONS.find((option) => option.value === normalized)?.label ?? '—'
+}
+
+export function isProductionCountValueType(value?: string | null): boolean {
+  return normalizeTelemetryValueType(value).startsWith('production-count-')
+}
+
+/** 采集周期候选：必须与连接器里该点位的采集周期一致，否则采样会被拒收。 */
+export const TELEMETRY_SAMPLING_POLICY_OPTIONS = [
+  { value: 'sample-10s', label: '每 10 秒' },
+  { value: 'sample-30s', label: '每 30 秒' },
+  { value: 'sample-60s', label: '每 1 分钟' },
+  { value: 'sample-300s', label: '每 5 分钟' },
+] as const
+
+const DURATION_UNIT_LABELS: Readonly<Record<string, string>> = {
+  ms: '毫秒',
+  s: '秒',
+  m: '分钟',
+  h: '小时',
+  d: '天',
+}
+
+function formatDurationToken(token?: string): string | undefined {
+  if (!token) return undefined
+  const match = /^(\d+)(ms|s|m|h|d)$/.exec(token.trim())
+  if (!match) return undefined
+  return `${match[1]} ${DURATION_UNIT_LABELS[match[2]!]}`
+}
+
+/**
+ * 采样策略（`samplingPolicy`）说人话。
+ *
+ * 后端是结构化配置串而不是枚举：`sample-2s`，或
+ * `bucket=30s;raw=7d;hourly=90d;daily=730d`（采样桶 + 三级保留期）。
+ * 直接摆到界面上没人看得懂，这里翻成「每 2 秒采样」「每 30 秒采样 · 原始保留 7 天…」。
+ */
+export function formatSamplingPolicy(value?: string | null, fallback = '未标注'): string {
+  const raw = (value ?? '').trim().toLowerCase()
+  if (!raw) return fallback
+
+  const RETENTION_PREFIXES: ReadonlyArray<readonly [string, string]> = [
+    ['raw=', '原始保留'],
+    ['hourly=', '小时汇总保留'],
+    ['daily=', '日汇总保留'],
+  ]
+
+  let bucket: string | undefined
+  const retentions: string[] = []
+  const parts = raw
+    .split(';')
+    .map((p) => p.trim())
+    .filter(Boolean)
+  for (const part of parts) {
+    if (part.startsWith('bucket=')) {
+      bucket = part.slice('bucket='.length)
+      continue
+    }
+    const retention = RETENTION_PREFIXES.find(([prefix]) => part.startsWith(prefix))
+    if (retention) {
+      const token = part.slice(retention[0].length)
+      retentions.push(`${retention[1]} ${formatDurationToken(token) ?? token}`)
+      continue
+    }
+    if (!bucket) bucket = part
+  }
+
+  const bucketToken = bucket?.startsWith('sample-') ? bucket.slice('sample-'.length) : bucket
+  const bucketText = formatDurationToken(bucketToken)
+  // 解析不出采样桶时只能如实回显配置串——它是时长配置而非英文码值，不硬造中文。
+  const head = bucketText ? `每 ${bucketText}采样` : raw
+  return retentions.length ? `${head} · ${retentions.join(' · ')}` : head
+}
+
+/**
+ * ISO 8601 周期（点检 / 保养计划的 `intervalIso`，如 `P7D` / `P1M`）说人话。
+ * 解析不出就回退到 `fallback`，不把 `P7D` 印到界面上。
+ */
+export function formatIsoInterval(value?: string | null, fallback = '未设置'): string {
+  const raw = (value ?? '').trim().toUpperCase()
+  if (!raw) return fallback
+  const match = /^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)W)?(?:(\d+)D)?$/.exec(raw)
+  if (!match || !match.slice(1).some(Boolean)) return fallback
+  const [, years, months, weeks, days] = match
+  const parts: string[] = []
+  if (years) parts.push(`${years} 年`)
+  if (months) parts.push(`${months} 个月`)
+  if (weeks) parts.push(`${weeks} 周`)
+  if (days) parts.push(`${days} 天`)
+  return `每 ${parts.join(' ')}`
+}
+
+/**
+ * MES 生产准备检查区域码（foundation 的 areaCode、生产驾驶舱阻塞项的 areaCode 同源）。
+ * 两页共用一份，避免驾驶舱印裸码而检查页印中文。
+ */
+export const MES_READINESS_AREA_LABELS: Readonly<Record<string, string>> = {
+  masterdata: '主数据',
+  'master-data': '主数据',
+  engineering: '工程',
+  // 后端就绪检查按**来源服务**分区，区域码即服务名。权威清单是网关
+  // BusinessConsoleMesEndpoints.AreaCodes 的 9 条：master-data / product-engineering /
+  // supply / quality / equipment / barcode-coding / iam-context / erp / inventory。
+  // 缺词就把服务名印到「检查区域」列上。
+  'product-engineering': '产品工程',
+  supply: '供应与齐套',
+  'barcode-coding': '条码与编码',
+  'iam-context': '账号与权限',
+  erp: '成本费率',
+  inventory: '库存',
+  material: '物料',
+  quality: '质量',
+  capacity: '产能',
+  equipment: '设备',
+  routing: '工艺路线',
+  bom: '物料清单',
+}
+
+/**
+ * MES 质量项处理状态（「质量与不良」列表 status）。
+ * 与通用状态徽标词表分开：同一个 `open` 在停机语境是「未恢复」，在质量项语境是「待处理」。
+ */
+export const MES_QUALITY_ITEM_STATUS_LABELS: Readonly<Record<string, string>> = {
+  open: '待处理',
+  'rework-pending': '待返工',
+  'scrap-accepted': '报废已受理',
+  'return-accepted': '退回已受理',
+  'disposition-accepted': '处置已受理',
+  closed: '已关闭',
+}
+
+/** MES 班次交接状态（open 在交接语境是「待接班」而非通用的「待处理」）。 */
+export const MES_HANDOVER_STATUS_LABELS: Readonly<Record<string, string>> = {
+  open: '待接班',
+  accepted: '已接班',
+}
+
+/**
+ * 交接单遗留问题的来源域，取值来自 MES 域枚举 ShiftHandoverIssueCategory（Equipment / Quality），
+ * 读面按枚举名回显字符串，`normalizeCode` 归一后查表。
+ */
+export const MES_HANDOVER_ISSUE_CATEGORY_LABELS: Readonly<Record<string, string>> = {
+  equipment: '设备',
+  quality: '质量',
+}
+
+/** 交接单遗留问题的严重度，取值来自 MES 域枚举 ShiftHandoverIssueSeverity（Low / Medium / High）。 */
+export const MES_HANDOVER_ISSUE_SEVERITY_LABELS: Readonly<Record<string, string>> = {
+  low: '低',
+  medium: '中',
+  high: '高',
+}
+
+/** 不合格品报告（NCR）状态，与后端 NonconformanceReport 的三个状态字一一对应。 */
+export const NCR_STATUS_LABELS: Readonly<Record<string, string>> = {
+  open: '待处置',
+  'disposition-in-progress': '处置中',
+  closed: '已关闭',
+  // 纠正措施（CAPA）走同一列展示时会出现的状态字
+  'effectiveness-verified': '有效性已验证',
+}
+
+/** MES 返工工单回执在 NCR 上的创建状态。 */
+export const REWORK_WORK_ORDER_CREATION_STATUS_LABELS: Readonly<Record<string, string>> = {
+  'not-requested': '未请求',
+  requested: '已请求',
+  created: '已创建',
+}
+
+/** 遥测报工候选状态（无挂起原因时展示，来自 TelemetryProductionReportCandidate.status）。 */
+export const TELEMETRY_CANDIDATE_STATUS_LABELS: Readonly<Record<string, string>> = {
+  'pending-confirmation': '待确认',
+  draft: '草稿',
+  promoted: '已转正',
+  dismissed: '已忽略',
+  suspended: '已挂起',
+}
+
+/** 维护点检结果（维护点检页录入的三个取值，设备详情页同一口径展示）。 */
+export const MAINTENANCE_INSPECTION_RESULT_LABELS: Readonly<Record<string, string>> = {
+  passed: '通过',
+  failed: '异常',
+  'requires-review': '需复检',
+}

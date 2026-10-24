@@ -1,0 +1,175 @@
+<script setup lang="ts">
+import type { FulfillmentNode } from '@/composables/useFulfillmentTimeline'
+import { NvButton, resolveStatus } from '@nerv-iip/ui'
+import { AlertTriangleIcon, LockIcon, RefreshCwIcon } from '@lucide/vue'
+import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
+// 走 utils/format 而不是 pages/erp/shared：后者是 ERP 页面的局部工具（`toLocaleString('zh-CN')`
+// → `2026/8/1 14:58:37`），共享组件跨层去拿本身是层次味道，渲染出来还和抽屉里其余时间戳
+// （`2026-08-01 14:58`）两种写法并排。
+import { formatDateTime } from '@/utils/format'
+
+const props = defineProps<{ node: FulfillmentNode }>()
+const emit = defineEmits<{ retry: [] }>()
+
+// 失败子类文案（A1：409 / 超时 / 其它错误可区分）。
+const failureText = computed(() => {
+  switch (props.node.failureKind) {
+    case 'conflict':
+      return '数据已发生变化，请刷新后重试。'
+    case 'timeout':
+      return '请求超时或网络中断，请重试。'
+    default:
+      return '该来源加载失败，请重试。'
+  }
+})
+
+// 各来源单据回的是英文状态码，走全站状态字典映射成中文，不把原文直出成 chip。
+// 节点可以给现成文案（如紧急度分级，词表不在共享 STATUS_LABELS 里），也可以给裸码值。
+const detailStatusLabel = computed(
+  () =>
+    props.node.detailStatusLabel ??
+    (props.node.detailStatus ? resolveStatus(props.node.detailStatus).label : ''),
+)
+</script>
+
+<template>
+  <div class="nv-ft-node" :data-status="node.status">
+    <div class="nv-ft-node-head">
+      <span class="nv-ft-node-title">{{ node.title }}</span>
+      <span v-if="node.businessNo" class="nv-ft-node-no">{{ node.businessNo }}</span>
+    </div>
+
+    <!-- 已确认 -->
+    <template v-if="node.status === 'established'">
+      <div class="nv-ft-node-meta">
+        <span v-if="detailStatusLabel" class="nv-ft-chip">{{ detailStatusLabel }}</span>
+        <span v-if="node.updatedAt" class="nv-ft-time"
+          >更新于 {{ formatDateTime(node.updatedAt) }}</span
+        >
+      </div>
+      <p v-if="node.note" class="nv-ft-node-note">{{ node.note }}</p>
+      <RouterLink v-if="node.drill" :to="node.drill" class="nv-ft-drill">查看详情 →</RouterLink>
+    </template>
+
+    <!-- 加载中 -->
+    <template v-else-if="node.status === 'loading'">
+      <p class="nv-ft-node-muted" role="status">加载中…</p>
+    </template>
+
+    <!-- 尚未产生 -->
+    <template v-else-if="node.status === 'pending'">
+      <p class="nv-ft-node-muted">尚未产生</p>
+      <p v-if="node.ruleNote" class="nv-ft-node-rule">{{ node.ruleNote }}</p>
+    </template>
+
+    <!-- 尚未建立关联 -->
+    <template v-else-if="node.status === 'unlinked'">
+      <p class="nv-ft-node-muted">尚未建立关联</p>
+      <p v-if="node.ruleNote" class="nv-ft-node-rule">{{ node.ruleNote }}</p>
+    </template>
+
+    <!-- 权限受限（403，不泄露数据） -->
+    <template v-else-if="node.status === 'restricted'">
+      <p class="nv-ft-node-restricted">
+        <LockIcon class="size-3.5" aria-hidden="true" />
+        权限受限，无权查看该节点数据。
+      </p>
+    </template>
+
+    <!-- 单源失败（含重试，不拖垮整条时间线） -->
+    <template v-else-if="node.status === 'failed'">
+      <p class="nv-ft-node-failed">
+        <AlertTriangleIcon class="size-3.5" aria-hidden="true" />
+        {{ failureText }}
+      </p>
+      <NvButton size="sm" variant="outline" type="button" @click="emit('retry')">
+        <RefreshCwIcon aria-hidden="true" />
+        重试
+      </NvButton>
+    </template>
+  </div>
+</template>
+
+<style scoped>
+.nv-ft-node {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.nv-ft-node-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.nv-ft-node-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.nv-ft-node-no {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-brand);
+}
+.nv-ft-node-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.nv-ft-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+.nv-ft-time {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.nv-ft-node-note {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.nv-ft-drill {
+  align-self: flex-start;
+  font-size: 0.8125rem;
+  color: var(--nv-brand);
+  text-decoration: none;
+}
+.nv-ft-drill:hover {
+  text-decoration: underline;
+}
+.nv-ft-node-muted {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+.nv-ft-node-rule {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+  max-width: 60ch;
+}
+.nv-ft-node-restricted,
+.nv-ft-node-failed {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+.nv-ft-node-restricted {
+  color: var(--muted-foreground);
+}
+.nv-ft-node-failed {
+  color: var(--destructive);
+}
+</style>

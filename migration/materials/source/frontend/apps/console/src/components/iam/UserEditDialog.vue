@@ -1,0 +1,149 @@
+<script setup lang="ts">
+import type { ConsoleIamUserResponse, ConsoleUpdateIamUserRequest } from '@nerv-iip/api-client'
+import {
+  Button,
+  NvCheckbox,
+  NvDialog,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogFooter,
+  NvDialogHeader,
+  NvDialogTitle,
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  NvInput,
+} from '@nerv-iip/ui'
+import { reactive, watch } from 'vue'
+
+const props = defineProps<{
+  user?: ConsoleIamUserResponse
+}>()
+
+const open = defineModel<boolean>('open', { default: false })
+
+const emit = defineEmits<{
+  submit: [payload: ConsoleUpdateIamUserRequest]
+}>()
+
+const form = reactive({
+  accountExpiresDate: '',
+  email: '',
+  enabled: true,
+  loginName: '',
+})
+const errors = reactive({
+  email: '',
+  loginName: '',
+})
+
+function syncUser() {
+  form.accountExpiresDate = toDateInputValue(props.user?.accountExpiresAtUtc)
+  form.email = props.user?.email ?? ''
+  form.enabled = props.user?.enabled !== false
+  form.loginName = props.user?.loginName ?? ''
+  clearErrors()
+}
+
+function clearErrors() {
+  errors.email = ''
+  errors.loginName = ''
+}
+
+function validate() {
+  clearErrors()
+  errors.loginName = form.loginName.trim() ? '' : '请输入登录名。'
+  errors.email = form.email.trim() ? '' : '请输入邮箱。'
+
+  return !errors.loginName && !errors.email
+}
+
+function handleSubmit() {
+  if (!validate()) {
+    return
+  }
+
+  emit('submit', {
+    accountExpiresAtUtc: toUtcEndOfDay(form.accountExpiresDate),
+    email: form.email.trim(),
+    enabled: form.enabled,
+    loginName: form.loginName.trim(),
+  })
+  open.value = false
+}
+
+function toDateInputValue(value?: string | null) {
+  return value?.slice(0, 10) ?? ''
+}
+
+function toUtcEndOfDay(value: string) {
+  return value ? `${value}T23:59:59Z` : undefined
+}
+
+watch(() => props.user, syncUser, { immediate: true })
+watch(open, (isOpen) => {
+  if (isOpen) {
+    syncUser()
+  }
+})
+</script>
+
+<template>
+  <NvDialog v-model:open="open">
+    <NvDialogContent>
+      <NvDialogHeader>
+        <NvDialogTitle>编辑用户</NvDialogTitle>
+        <NvDialogDescription> 更新用户的登录名、邮箱与启用状态。 </NvDialogDescription>
+      </NvDialogHeader>
+
+      <form class="grid gap-4" @submit.prevent="handleSubmit">
+        <FieldGroup>
+          <Field>
+            <FieldLabel for="iam-edit-login-name">登录名</FieldLabel>
+            <NvInput
+              id="iam-edit-login-name"
+              v-model="form.loginName"
+              :aria-invalid="Boolean(errors.loginName)"
+              :invalid="Boolean(errors.loginName)"
+              autocomplete="username"
+            />
+            <FieldError v-if="errors.loginName" :errors="[errors.loginName]" />
+          </Field>
+
+          <Field>
+            <FieldLabel for="iam-edit-email">邮箱</FieldLabel>
+            <NvInput
+              id="iam-edit-email"
+              v-model="form.email"
+              :aria-invalid="Boolean(errors.email)"
+              :invalid="Boolean(errors.email)"
+              autocomplete="email"
+              type="email"
+            />
+            <FieldError v-if="errors.email" :errors="[errors.email]" />
+          </Field>
+
+          <Field
+            orientation="horizontal"
+            class="items-center justify-between rounded-lg border p-3"
+          >
+            <div class="grid gap-1">
+              <FieldLabel for="iam-edit-enabled">启用</FieldLabel>
+            </div>
+            <NvCheckbox id="iam-edit-enabled" v-model="form.enabled" />
+          </Field>
+
+          <Field>
+            <FieldLabel for="iam-edit-account-expires">账号有效期</FieldLabel>
+            <NvInput id="iam-edit-account-expires" v-model="form.accountExpiresDate" type="date" />
+          </Field>
+        </FieldGroup>
+
+        <NvDialogFooter show-close-button>
+          <Button type="submit"> 保存修改 </Button>
+        </NvDialogFooter>
+      </form>
+    </NvDialogContent>
+  </NvDialog>
+</template>

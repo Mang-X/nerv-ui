@@ -1,0 +1,793 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleMesMaterialIssueRequestRow,
+  BusinessConsoleMesWorkOrderItem,
+} from '@nerv-iip/api-client'
+import {
+  materialIssueStatusLabel,
+  statusActionGate,
+  workOrderSubtitle,
+  workOrderTitle,
+} from '@nerv-iip/business-core'
+import {
+  NvAppShellMobile,
+  NvBottomSheet,
+  NvListRow,
+  NvMobileResult,
+  NvMobileToast,
+} from '@nerv-iip/ui-mobile'
+import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import {
+  useMesLineSideInventoryBalances,
+  useMesMaterialIssue,
+  useMesWorkOrders,
+} from '@/composables/useBusinessMes'
+import LineSideInventoryBalancesPanel from '@/components/mes/LineSideInventoryBalancesPanel.vue'
+import RetryableListError from '@/components/RetryableListError.vue'
+import { useLifecycleActionRecovery } from '@/composables/lifecycleActionRecovery'
+import { makeIdempotencyKey } from '@/composables/makeIdempotencyKey'
+import { describeRequestError } from '@/api/request-timeout'
+import MesScanPrevalidation from '@/components/mes/MesScanPrevalidation.vue'
+import type { MesScanAccepted } from '@/composables/mes/useMesScanPrevalidation'
+import { useMesScanGate } from '@/composables/mes/useMesScanGate'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '领料',
+  },
+})
+
+type IssueRequest = BusinessConsoleMesMaterialIssueRequestRow
+type WorkOrder = BusinessConsoleMesWorkOrderItem
+
+const router = useRouter()
+
+const {
+  filters,
+  requests,
+  pending,
+  error,
+  hasSuccessfulResponse,
+  hasFailedResponse,
+  refresh,
+  createIssue,
+  confirmLineSideReceipt,
+  returnLineSideMaterial,
+} = useMesMaterialIssue()
+
+const {
+  filters: workOrderFilters,
+  workOrders,
+  total: workOrderTotal,
+  pending: workOrdersPending,
+  error: workOrdersError,
+  refresh: refreshWorkOrders,
+} = useMesWorkOrders()
+
+const {
+  balances: lineSideInventoryBalances,
+  total: lineSideInventoryTotal,
+  pending: lineSideInventoryPending,
+  error: lineSideInventoryError,
+  hasNextPage: lineSideInventoryHasNextPage,
+  hasPreviousPage: lineSideInventoryHasPreviousPage,
+  page: lineSideInventoryPage,
+  pageCount: lineSideInventoryPageCount,
+  ready: lineSideInventoryReady,
+  nextPage: nextLineSideInventoryPage,
+  previousPage: previousLineSideInventoryPage,
+  refresh: refreshLineSideInventory,
+} = useMesLineSideInventoryBalances()
+
+// 可读中文状态标签 + 工单标题/副标题来自 @nerv-iip/business-core（不暴露原始状态码）。
+const statusLabel = materialIssueStatusLabel
+const scopeReady = computed(() => Boolean(filters.organizationId && filters.environmentId))
+const scopedRequests = computed(() => (scopeReady.value ? requests.value : []))
+const listFailure = computed(() =>
+  error.value
+    ? error.value
+    : hasFailedResponse.value
+      ? new Error('领料申请加载失败，请重试。')
+      : null,
+)
+
+// 领料申请没有自带业务单号；用工单 + 物料组合作可读标题，
+// 不把 requestId（GUID）当标签暴露——它仅作为列表 key 与接收动作的 path 参数。
+function requestTitle(req: IssueRequest) {
+  const wo = req.workOrderId ?? '无工单'
+  return req.materialId ? `${wo} · 物料 ${req.materialId}` : wo
+}
+function requestSubtitle(req: IssueRequest) {
+  const parts = [statusLabel(req.status)]
+  if (req.requestedQuantity !== undefined) parts.push(`申请 ${req.requestedQuantity}`)
+  if (req.receivedQuantity !== undefined) parts.push(`已收 ${req.receivedQuantity}`)
+  return parts.join(' · ')
+}
+
+function returnableQuantity(req: IssueRequest) {
+  return Math.max(0, (req.receivedQuantity ?? 0) - (req.consumedQuantity ?? 0))
+}
+
+// --- 结果反馈 ---
+type ResultState = {
+  status: 'success' | 'error'
+  title: string
+  description?: string
+  retry: () => void | Promise<void>
+}
+const result = ref<ResultState | null>(null)
+const submitting = ref(false)
+
+// 稳定的逐操作幂等键：在提交（创建/接收）时铸造一次，重试复用同键；
+// 开始新操作（重新打开新建/接收表单、成功）时清空 → 下次提交铸造新键。
+const operationKey = ref('')
+const returnOperationKey = ref('')
+const scanGate = useMesScanGate()
+const scanPending = scanGate.pending
+const scanGuarded = scanGate.guarded
+const scannedWorkOrderId = ref('')
+const scannedOperationTaskId = ref('')
+const scannedMaterialIssueRequestId = ref('')
+
+// --- 新建领料表单 ---
+const creating = ref(false)
+const selectedWorkOrder = ref<WorkOrder | null>(null)
+const issueMaterialId = ref('')
+const issueQuantity = ref<number | null>(null)
+
+const createValid = computed(() => {
+  if (!selectedWorkOrder.value?.workOrderId) return false
+  if (issueMaterialId.value.trim() === '') return false
+  // 数量可选；若填写则须 > 0
+  if (issueQuantity.value !== null && !(issueQuantity.value > 0)) return false
+  return true
+})
+
+const createSheetOpen = computed({
+  get: () => creating.value && result.value === null,
+  set: (open) => {
+    if (!open) closeCreate()
+  },
+})
+
+function openCreate() {
+  scanGate.clear('list')
+  result.value = null
+  selectedWorkOrder.value = null
+  issueMaterialId.value = ''
+  issueQuantity.value = null
+  // 新一轮新建领料 → 作废上一个幂等键
+  operationKey.value = ''
+  creating.value = true
+}
+function closeCreate() {
+  creating.value = false
+  selectedWorkOrder.value = null
+}
+function chooseWorkOrder(wo: WorkOrder) {
+  selectedWorkOrder.value = wo
+}
+
+async function submitCreate() {
+  if (scanGuarded.value) return
+  const workOrderId = selectedWorkOrder.value?.workOrderId
+  const materialId = issueMaterialId.value.trim()
+  if (!workOrderId || materialId === '') return
+  if (issueQuantity.value !== null && !(issueQuantity.value > 0)) return
+  const quantity = issueQuantity.value
+  // 首次提交铸造稳定幂等键，重试复用同键。
+  if (operationKey.value === '') {
+    operationKey.value = makeIdempotencyKey()
+  }
+  submitting.value = true
+  creating.value = false
+  const doSubmit = () =>
+    createIssue(workOrderId, {
+      materialId,
+      ...(quantity === null ? {} : { quantity }),
+      idempotencyKey: operationKey.value,
+    })
+  try {
+    await doSubmit()
+    result.value = {
+      status: 'success',
+      title: '领料申请已提交',
+      retry: () => {},
+    }
+  } catch (e) {
+    result.value = {
+      status: 'error',
+      title: '领料申请失败',
+      description: e instanceof Error ? e.message : '请检查网络后重试。',
+      retry: retryCreate,
+    }
+  } finally {
+    submitting.value = false
+  }
+}
+
+async function retryCreate() {
+  result.value = null
+  await submitCreate()
+}
+
+// --- 线边接收 ---
+const receiving = ref<IssueRequest | null>(null)
+const receivedQuantity = ref<number | null>(null)
+const returning = ref<IssueRequest | null>(null)
+const returnedQuantity = ref<number | null>(null)
+
+const receiveValid = computed(() => {
+  // 接收数量可选；若填写则须 >= 0
+  if (receivedQuantity.value === null) return true
+  return receivedQuantity.value >= 0
+})
+
+const receiveSheetOpen = computed({
+  get: () => receiving.value !== null && result.value === null,
+  set: (open) => {
+    if (!open) closeReceive()
+  },
+})
+
+function canReceive(req: IssueRequest) {
+  return statusActionGate({
+    domain: 'mes-material-issue',
+    action: 'confirm-receipt',
+    facts: { status: req.status },
+  }).executable
+}
+
+function openReceive(req: IssueRequest) {
+  if (!canReceive(req)) return
+  scanGate.clear('list')
+  result.value = null
+  // 新一轮线边接收 → 作废上一个幂等键
+  operationKey.value = ''
+  receiving.value = req
+  receivedQuantity.value = req.requestedQuantity ?? null
+}
+
+function canReturn(req: IssueRequest) {
+  return (
+    (req.materialLotId ?? '').trim().length > 0 &&
+    returnableQuantity(req) > 0 &&
+    ['received', 'partiallyreceived'].includes((req.status ?? '').toLowerCase())
+  )
+}
+
+function openReturn(req: IssueRequest) {
+  if (!canReturn(req)) return
+  scanGate.clear('list')
+  result.value = null
+  returnOperationKey.value = makeIdempotencyKey()
+  returning.value = req
+  returnedQuantity.value = returnableQuantity(req)
+}
+
+function closeReturn() {
+  returning.value = null
+  returnedQuantity.value = null
+}
+function closeReceive() {
+  receiving.value = null
+  receivedQuantity.value = null
+}
+
+function resetReceiveIntent() {
+  result.value = null
+  closeReceive()
+  operationKey.value = ''
+}
+
+const lifecycleRecovery = useLifecycleActionRecovery({
+  reset: resetReceiveIntent,
+  refresh,
+})
+
+async function submitReceive() {
+  if (scanGuarded.value) return
+  const req = receiving.value
+  const requestId = req?.requestId
+  if (!requestId) return
+  if (!receiveValid.value) return
+  const quantity = receivedQuantity.value
+  submitting.value = true
+  receiving.value = null
+  const doSubmit = () =>
+    confirmLineSideReceipt(
+      requestId,
+      // #3328：线边收料的 idempotencyKey 已从网关公开契约摘掉——MES 侧从不消费它，
+      // 重放安全由 MaterialIssueRequest.ConfirmLineSideReceipt 的「过账尚未回执」守卫承担。
+      quantity === null ? {} : { receivedQuantity: quantity },
+      {
+        workOrderId: req?.workOrderId,
+      },
+    )
+  try {
+    await doSubmit()
+    result.value = {
+      status: 'success',
+      title: '线边接收已确认',
+      retry: () => {},
+    }
+  } catch (e) {
+    if (await lifecycleRecovery.handle(e)) return
+    result.value = {
+      status: 'error',
+      title: '线边接收失败',
+      description: e instanceof Error ? e.message : '请检查网络后重试。',
+      retry: () => retryReceive(req!, quantity),
+    }
+  } finally {
+    submitting.value = false
+  }
+}
+
+async function submitReturn() {
+  if (scanGuarded.value) return
+  const req = returning.value
+  const requestId = req?.requestId
+  const quantity = returnedQuantity.value
+  const returnable = req ? returnableQuantity(req) : 0
+  if (!requestId || quantity === null || !(quantity > 0) || quantity > returnable) return
+  submitting.value = true
+  returning.value = null
+  const doSubmit = () =>
+    returnLineSideMaterial(
+      requestId,
+      { returnedQuantity: quantity, idempotencyKey: returnOperationKey.value },
+      { workOrderId: req?.workOrderId },
+    )
+  try {
+    await doSubmit()
+    result.value = { status: 'success', title: '线边退料已提交', retry: () => {} }
+  } catch (e) {
+    const described = describeRequestError(e)
+    result.value = {
+      status: 'error',
+      title: '线边退料失败',
+      description: described.message || '请检查网络后重试。',
+      retry: () => retryReturn(req!, quantity),
+    }
+  } finally {
+    submitting.value = false
+  }
+}
+
+async function retryReturn(req: IssueRequest, quantity: number) {
+  result.value = null
+  returning.value = req
+  returnedQuantity.value = quantity
+  if (returnOperationKey.value === '') returnOperationKey.value = makeIdempotencyKey()
+  await submitReturn()
+}
+
+async function retryReceive(req: IssueRequest, quantity: number | null) {
+  result.value = null
+  receiving.value = req
+  receivedQuantity.value = quantity
+  await submitReceive()
+}
+
+function continueWork() {
+  result.value = null
+  // 成功 → 作废本次操作幂等键，下次发起铸造新键
+  operationKey.value = ''
+}
+function goBack() {
+  result.value = null
+  operationKey.value = ''
+  router.push('/').catch(() => {})
+}
+
+// 扫码仅在列表态活跃；新建/接收/结果展开时不抢焦点。
+const scanActive = computed(
+  () =>
+    result.value === null &&
+    !creating.value &&
+    receiving.value === null &&
+    returning.value === null,
+)
+
+function onScanAccepted(value: MesScanAccepted) {
+  if (value.kind === 'work-order') {
+    scannedWorkOrderId.value = value.workOrderId
+    scannedOperationTaskId.value = ''
+    scannedMaterialIssueRequestId.value = ''
+    filters.keyword = undefined
+    filters.workOrderId = value.workOrderId
+    return
+  }
+  if (value.kind === 'operation-task') {
+    scannedWorkOrderId.value = value.workOrderId
+    scannedOperationTaskId.value = value.operationTaskId
+    scannedMaterialIssueRequestId.value = ''
+    filters.keyword = undefined
+    filters.workOrderId = value.workOrderId
+    return
+  }
+  if (value.kind === 'material') {
+    scannedWorkOrderId.value = value.workOrderId
+    scannedOperationTaskId.value = value.operationTaskId
+    scannedMaterialIssueRequestId.value = value.materialIssueRequestId
+    filters.workOrderId = value.workOrderId
+    filters.keyword = value.materialId ?? value.materialIssueRequestId
+  }
+}
+
+function onCreateScanAccepted(value: MesScanAccepted) {
+  if (value.kind !== 'work-order' && value.kind !== 'operation-task') return
+  workOrderFilters.keyword = undefined
+  workOrderFilters.workOrderId = value.workOrderId
+  scannedWorkOrderId.value = value.workOrderId
+  scannedOperationTaskId.value = value.kind === 'operation-task' ? value.operationTaskId : ''
+}
+</script>
+
+<template>
+  <NvAppShellMobile>
+    <template #header>
+      <div class="flex items-center gap-3 px-4 py-3">
+        <button
+          type="button"
+          aria-label="返回"
+          class="text-sm text-muted-foreground"
+          @click="router.push('/').catch(() => {})"
+        >
+          返回
+        </button>
+        <h1 class="text-lg font-semibold text-foreground">领料</h1>
+        <button
+          type="button"
+          data-testid="new-issue"
+          :disabled="scanPending"
+          class="ml-auto rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground"
+          @click="openCreate"
+        >
+          新建领料
+        </button>
+      </div>
+    </template>
+
+    <!-- 写操作结果反馈 -->
+    <NvMobileResult
+      v-if="result"
+      :status="result.status"
+      :title="result.title"
+      :description="result.description"
+    >
+      <template #actions>
+        <button
+          v-if="result.status === 'success'"
+          type="button"
+          class="min-h-touch w-full rounded-lg bg-primary text-base font-medium text-primary-foreground"
+          @click="continueWork"
+        >
+          继续
+        </button>
+        <button
+          v-else
+          type="button"
+          data-testid="retry-issue"
+          class="min-h-touch w-full rounded-lg bg-primary text-base font-medium text-primary-foreground"
+          @click="result.retry"
+        >
+          重试
+        </button>
+        <button
+          type="button"
+          class="min-h-touch w-full rounded-lg border border-border bg-card text-base font-medium text-foreground"
+          @click="goBack"
+        >
+          返回
+        </button>
+      </template>
+    </NvMobileResult>
+
+    <div v-else class="space-y-4 p-4">
+      <MesScanPrevalidation
+        :organization-id="filters.organizationId"
+        :environment-id="filters.environmentId"
+        :work-order-id="scannedWorkOrderId"
+        :operation-task-id="scannedOperationTaskId"
+        placeholder="扫描工单 / 工序 / 物料批次"
+        :active="scanActive"
+        :accepted-kinds="['work-order', 'operation-task', 'material']"
+        @accepted="onScanAccepted"
+        @status-change="scanGate.set('list', $event)"
+      />
+      <p
+        v-if="scannedMaterialIssueRequestId"
+        data-testid="issue-scanned-material"
+        class="text-sm text-muted-foreground"
+      >
+        已核验当前工单工序的物料批次
+      </p>
+
+      <LineSideInventoryBalancesPanel
+        :items="lineSideInventoryBalances"
+        :page="lineSideInventoryPage"
+        :page-count="lineSideInventoryPageCount"
+        :has-previous-page="lineSideInventoryHasPreviousPage"
+        :has-next-page="lineSideInventoryHasNextPage"
+        :total="lineSideInventoryTotal"
+        :pending="lineSideInventoryPending"
+        :error="lineSideInventoryError"
+        :ready="lineSideInventoryReady"
+        @previous-page="previousLineSideInventoryPage"
+        @next-page="nextLineSideInventoryPage"
+        @refresh="refreshLineSideInventory"
+      />
+
+      <RetryableListError
+        v-if="listFailure"
+        :error="listFailure"
+        :pending="pending"
+        fallback="加载领料申请失败，请下拉刷新或重试。"
+        test-id="issue-error"
+        @retry="() => refresh()"
+      />
+
+      <div
+        v-if="
+          scopeReady && !pending && !error && hasSuccessfulResponse && scopedRequests.length === 0
+        "
+        class="rounded-lg border border-dashed border-border bg-card px-4 py-8 text-center text-sm text-muted-foreground"
+      >
+        暂无领料申请
+      </div>
+
+      <div
+        v-else-if="scopeReady && scopedRequests.length > 0"
+        class="overflow-hidden rounded-lg border border-border"
+      >
+        <NvListRow
+          v-for="req in scopedRequests"
+          :key="req.requestId ?? `${req.workOrderId}-${req.materialId}`"
+          :title="requestTitle(req)"
+          :subtitle="requestSubtitle(req)"
+          :interactive="false"
+        >
+          <template #trailing>
+            <button
+              v-if="canReceive(req)"
+              type="button"
+              :data-testid="`receive-${req.requestId}`"
+              :disabled="scanPending"
+              class="shrink-0 rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium text-primary disabled:opacity-60"
+              @click="openReceive(req)"
+            >
+              线边接收
+            </button>
+            <button
+              v-if="canReturn(req)"
+              type="button"
+              :data-testid="`return-${req.requestId}`"
+              :disabled="scanPending"
+              class="shrink-0 rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium text-primary disabled:opacity-60"
+              @click="openReturn(req)"
+            >
+              线边退料
+            </button>
+          </template>
+        </NvListRow>
+      </div>
+    </div>
+
+    <NvBottomSheet
+      :open="returning !== null && result === null"
+      title="线边退料"
+      @update:open="
+        (open) => {
+          if (!open) closeReturn()
+        }
+      "
+    >
+      <div class="space-y-4 pb-2">
+        <p class="text-sm text-muted-foreground">退料数量不能超过当前线边可退数量。</p>
+        <label class="block space-y-1">
+          <span class="text-sm font-medium text-foreground">退料数量</span>
+          <input
+            v-model="returnedQuantity"
+            data-testid="returned-quantity"
+            type="number"
+            min="0"
+            :max="returning ? returnableQuantity(returning) : undefined"
+            step="any"
+            class="min-h-touch w-full rounded-lg border border-border bg-card px-3 text-base outline-none focus:border-primary"
+          />
+        </label>
+        <p
+          v-if="
+            returning &&
+            returnedQuantity !== null &&
+            returnedQuantity > returnableQuantity(returning)
+          "
+          class="text-sm text-destructive"
+          role="alert"
+        >
+          退料数量不能超过当前可退数量 {{ returnableQuantity(returning) }}。
+        </p>
+        <button
+          type="button"
+          data-testid="submit-return"
+          class="min-h-touch w-full rounded-lg bg-primary text-base font-medium text-primary-foreground disabled:opacity-50"
+          :disabled="
+            returnedQuantity === null ||
+            returnedQuantity <= 0 ||
+            (returning !== null && returnedQuantity > returnableQuantity(returning)) ||
+            submitting ||
+            scanGuarded
+          "
+          @click="submitReturn"
+        >
+          提交退料
+        </button>
+      </div>
+    </NvBottomSheet>
+
+    <!-- 新建领料表单 -->
+    <NvBottomSheet :open="createSheetOpen" title="新建领料" @update:open="createSheetOpen = $event">
+      <div class="space-y-4 pb-2">
+        <!-- 选工单 -->
+        <div v-if="!selectedWorkOrder" class="space-y-2">
+          <MesScanPrevalidation
+            :organization-id="filters.organizationId"
+            :environment-id="filters.environmentId"
+            :work-order-id="scannedWorkOrderId"
+            :operation-task-id="scannedOperationTaskId"
+            placeholder="扫描工单或工序"
+            :accepted-kinds="['work-order', 'operation-task']"
+            @accepted="onCreateScanAccepted"
+            @status-change="scanGate.set('create', $event)"
+          />
+          <p class="text-sm text-muted-foreground">选择领料的工单（共 {{ workOrderTotal }} 张）</p>
+          <RetryableListError
+            v-if="workOrdersError"
+            :error="workOrdersError"
+            :pending="workOrdersPending"
+            fallback="加载工单失败，请稍后重试。"
+            test-id="issue-work-orders-error"
+            @retry="() => refreshWorkOrders()"
+          />
+          <div
+            v-else-if="workOrders.length === 0"
+            class="rounded-lg border border-dashed border-border bg-card px-4 py-8 text-center text-sm text-muted-foreground"
+          >
+            暂无可领料的工单
+          </div>
+          <div
+            v-else
+            class="max-h-64 overflow-y-auto overflow-x-hidden rounded-lg border border-border"
+          >
+            <NvListRow
+              v-for="wo in workOrders"
+              :key="wo.workOrderId"
+              :data-testid="`issue-work-order`"
+              :title="workOrderTitle(wo)"
+              :subtitle="workOrderSubtitle(wo)"
+              @select="chooseWorkOrder(wo)"
+            />
+          </div>
+        </div>
+
+        <!-- 选好工单：填物料 + 数量 -->
+        <div v-else class="space-y-4">
+          <div
+            class="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3"
+          >
+            <div class="min-w-0">
+              <p class="text-sm text-muted-foreground">当前工单</p>
+              <p class="truncate text-base font-medium text-foreground">
+                {{ workOrderTitle(selectedWorkOrder) }}
+              </p>
+            </div>
+            <button
+              type="button"
+              data-testid="change-work-order"
+              class="shrink-0 text-sm text-primary"
+              @click="selectedWorkOrder = null"
+            >
+              改选工单
+            </button>
+          </div>
+
+          <label class="block space-y-1">
+            <span class="text-sm font-medium text-foreground">物料编号</span>
+            <input
+              v-model="issueMaterialId"
+              data-testid="issue-material"
+              type="text"
+              class="min-h-touch w-full rounded-lg border border-border bg-card px-3 text-base outline-none focus:border-primary"
+            />
+          </label>
+
+          <label class="block space-y-1">
+            <span class="text-sm font-medium text-foreground">领料数量（可选）</span>
+            <input
+              v-model.number="issueQuantity"
+              data-testid="issue-quantity"
+              type="number"
+              inputmode="numeric"
+              min="0"
+              class="min-h-touch w-full rounded-lg border border-border bg-card px-3 text-base outline-none focus:border-primary"
+            />
+          </label>
+
+          <p v-if="!createValid" class="text-sm text-muted-foreground">
+            请填写物料编号；若填写数量须大于 0。
+          </p>
+
+          <button
+            type="button"
+            data-testid="submit-issue"
+            :disabled="!createValid || submitting || scanGuarded"
+            class="min-h-touch w-full rounded-lg bg-primary text-base font-medium text-primary-foreground disabled:opacity-60"
+            @click="submitCreate"
+          >
+            提交领料
+          </button>
+          <button
+            type="button"
+            class="min-h-touch w-full rounded-lg border border-border bg-card text-base font-medium text-foreground"
+            @click="closeCreate"
+          >
+            取消
+          </button>
+        </div>
+      </div>
+    </NvBottomSheet>
+
+    <!-- 线边接收 -->
+    <NvBottomSheet
+      :open="receiveSheetOpen"
+      :title="receiving ? requestTitle(receiving) : ''"
+      @update:open="receiveSheetOpen = $event"
+    >
+      <div v-if="receiving" class="space-y-4 pb-2">
+        <p class="text-sm text-muted-foreground">当前状态：{{ statusLabel(receiving.status) }}</p>
+
+        <label class="block space-y-1">
+          <span class="text-sm font-medium text-foreground">接收数量</span>
+          <input
+            v-model.number="receivedQuantity"
+            data-testid="received-quantity"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            class="min-h-touch w-full rounded-lg border border-border bg-card px-3 text-base outline-none focus:border-primary"
+          />
+        </label>
+
+        <p v-if="!receiveValid" class="text-sm text-muted-foreground">接收数量须为非负数。</p>
+
+        <button
+          type="button"
+          data-testid="submit-receive"
+          :disabled="!receiveValid || submitting || scanGuarded"
+          class="min-h-touch w-full rounded-lg bg-primary text-base font-medium text-primary-foreground disabled:opacity-60"
+          @click="submitReceive"
+        >
+          确认接收
+        </button>
+        <button
+          type="button"
+          class="min-h-touch w-full rounded-lg border border-border bg-card text-base font-medium text-foreground"
+          @click="closeReceive"
+        >
+          取消
+        </button>
+      </div>
+    </NvBottomSheet>
+
+    <NvMobileToast
+      :show="lifecycleRecovery.toast.value.show"
+      :message="lifecycleRecovery.toast.value.message"
+      :type="lifecycleRecovery.toast.value.type"
+      @update:show="lifecycleRecovery.setToastOpen"
+    />
+  </NvAppShellMobile>
+</template>

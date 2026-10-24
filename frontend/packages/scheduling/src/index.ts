@@ -1,0 +1,65 @@
+// 公开契约 barrel。业务层只从这里消费。
+
+export { default as GanttChart } from './components/GanttChart.vue'
+export { default as ResourceSchedulerBoard } from './components/ResourceSchedulerBoard.vue'
+export { default as SchedulingLegend } from './components/panels/SchedulingLegend.vue'
+// 甘特工具栏(刻度 / 缩放 / 定位到当前 / 适配窗口 / 撤销重做 / 搜索)。此前只被包内的
+// SchedulingWorkbench 引用而没导出,业务页因此各自手搓了一组残缺的缩放按钮(#1399 M4)。
+// 时间线相关控件一律从这里取,不要在应用层再造第二套。
+export { default as SchedulingToolbar } from './components/panels/SchedulingToolbar.vue'
+// 选中工序详情面板。业务侧的只读甘特与草案工作区共用同一份工序详情呈现,
+// 不要在应用层另写一份重复实现。
+export { default as ChangeSummaryPanel } from './components/panels/ChangeSummaryPanel.vue'
+export { default as TaskDetailPanel } from './components/panels/TaskDetailPanel.vue'
+
+export { useSchedulingPlan, type SchedulingContext } from './composables/useSchedulingPlan'
+export { useSchedulingEdits, type SchedulingEditsDeps } from './composables/useSchedulingEdits'
+
+export { toModel, toLockedAssignments } from './model/aps-mapper'
+export { evaluateDraft } from './model/draft-feedback'
+export { materialReadyLabel } from './model/material-risk'
+export {
+  BLOCK_KINDS,
+  BLOCK_LABELS,
+  BLOCK_TOKENS,
+  toBlockKind,
+  type BlockKind,
+} from './model/blocks'
+export {
+  deriveLegendSemantics,
+  FULL_LEGEND_SEMANTICS,
+  type SchedulingLegendSemantics,
+} from './model/legend'
+export { resolveTimeScale, shiftBoundaryRendersAt, type ResolvedTimeScale } from './model/scale'
+export {
+  conflictReasonLabel,
+  changeTypeLabel,
+  severityTone,
+  changeTone,
+  type StatusTone,
+} from './model/labels'
+export type * from './model/types'
+
+export type {
+  SchedulingEngine,
+  SchedulingEngineOptions,
+  EngineCommand,
+  EngineEvents,
+  EngineEventName,
+  TaskDragPayload,
+  ThemeBinding,
+  EngineSnapshot,
+} from './engine/engine'
+export { runEngineConformance } from './engine/conformance'
+export { DhtmlxEngine } from './engine/dhtmlx/DhtmlxEngine'
+export { isDhtmlxAvailable, preloadGantt } from './engine/dhtmlx/loader'
+
+export { taskFactRows, withWorkOrderFacts } from './model/task-facts'
+export { default as TaskFacts } from './components/panels/TaskFacts.vue'
+
+export {
+  factoryTimeInput,
+  factoryTimeInstant,
+  scheduleTime,
+  withFactoryTimeContext,
+} from './model/factory-time'

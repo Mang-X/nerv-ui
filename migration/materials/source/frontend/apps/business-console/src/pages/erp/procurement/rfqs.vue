@@ -1,0 +1,354 @@
+<script setup lang="ts">
+import type { BusinessConsoleErpRequestForQuotationItem } from '@nerv-iip/api-client'
+import type { NvDataTableColumn, NvMetricStripCell } from '@nerv-iip/ui'
+import { useErpRequestsForQuotation } from '@/composables/useBusinessErp'
+import { useErpItemCatalog, useErpPartnerCatalog } from '@/composables/useErpPickerCatalog'
+import { useBusinessPartnerNames } from '@/composables/useBusinessPartnerNames'
+import { usePagedList } from '@/composables/usePagedList'
+import EntityMultiPicker from '@/components/business/EntityMultiPicker.vue'
+import DirectoryPicker from '@/components/business/DirectoryPicker.vue'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import { i18n } from '@/i18n'
+import {
+  NvButton,
+  NvDataTable,
+  NvDatePicker,
+  NvDialog,
+  NvDialogClose,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogFooter,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvEntityPicker,
+  NvField,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvInput,
+  NvMetricStrip,
+  NvPageHeader,
+  NvSpinner,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { PlusIcon, RefreshCwIcon } from '@lucide/vue'
+import { computed, reactive, shallowRef, watch } from 'vue'
+import { notifyOperationFailure, notifySuccess } from '@/utils/notify'
+import {
+  UNAVAILABLE_TEXT,
+  erpReadState,
+  formatDate,
+  formatQuantity,
+  pickerInvalidClass,
+  readCount,
+} from '../shared'
+
+const { locale } = i18n.global
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '询价 RFQ',
+    requiredPermissions: ['business.erp.procurement.read'],
+  },
+})
+
+const rfqs = useErpRequestsForQuotation()
+// 询价对象与物料从主数据目录里选；供应商是多选，用应用侧的多选组合件。
+const { supplierOptions, partnersPending } = useErpPartnerCatalog()
+const { uomOptions, uomsPending, baseUomBySku } = useErpItemCatalog()
+// 列表侧另需 code→name 反查（目录只给下拉选项，不做反查）；底层同一份查询，不会重复请求。
+const { resolvePartnerLabel } = useBusinessPartnerNames()
+const { page, pageSize } = usePagedList(rfqs.filters, { resetOn: [() => rfqs.filters.keyword] })
+
+const columns: NvDataTableColumn<BusinessConsoleErpRequestForQuotationItem>[] = [
+  { key: 'rfqNo', header: 'RFQ', cellClass: 'font-medium', accessor: (r) => r.rfqNo ?? '-' },
+  {
+    key: 'supplierCodes',
+    header: '供应商',
+    accessor: (r) =>
+      (r.supplierCodes ?? []).map((code) => resolvePartnerLabel(code, '')).join(' / ') || '-',
+  },
+  {
+    key: 'lineCount',
+    header: '明细',
+    align: 'end',
+    width: 'w-20',
+    accessor: (r) => r.lines?.length ?? 0,
+  },
+  { key: 'status', header: '状态', width: 'w-28' },
+  {
+    key: 'createdAtUtc',
+    header: '创建时间',
+    width: 'w-40',
+    accessor: (r) => formatDate(r.createdAtUtc),
+  },
+]
+
+const openCount = computed(
+  () => rfqs.items.value.filter((r) => (r.status ?? '').toLowerCase() === 'open').length,
+)
+const requestedQuantity = computed(() =>
+  rfqs.items.value
+    .flatMap((r) => r.lines ?? [])
+    .reduce((sum, line) => sum + (line.quantity ?? 0), 0),
+)
+const readState = computed(() =>
+  erpReadState({
+    noun: '询价单',
+    unit: '张',
+    ready: rfqs.ready.value,
+    pending: rfqs.pending.value,
+    error: rfqs.error.value,
+    total: rfqs.total.value,
+    filtered: Boolean(rfqs.filters.keyword || rfqs.filters.status),
+    emptyHint: '还没有询价单。可从采购申请或供应商策略发起真实询价。',
+  }),
+)
+
+const rfqCells = computed<NvMetricStripCell[]>(() => [
+  {
+    key: 'open',
+    label: '询价中',
+    value: readCount(readState.value, openCount.value),
+    unit: readState.value.trustworthy ? '单' : '',
+    meta: readState.value.trustworthy ? '等待供应商回价' : readState.value.emptyMessage,
+  },
+  {
+    key: 'quantity',
+    label: '询价数量',
+    value: readState.value.trustworthy ? formatQuantity(requestedQuantity.value) : UNAVAILABLE_TEXT,
+    meta: readState.value.trustworthy
+      ? `当前列表 ${rfqs.items.value.length} 张询价单合计`
+      : readState.value.emptyMessage,
+  },
+])
+
+const open = shallowRef(false)
+const form = reactive({
+  suppliers: '',
+  skuCode: '',
+  uomCode: '',
+  quantity: '1',
+  requiredDate: '',
+})
+// 询价单位默认跟随物料的基本单位；用户仍可改成采购包装单位。
+// 除了换物料，也跟着「所选物料的基本单位」变：就地新建的物料要等物料目录刷新回来才查得到。
+watch([() => form.skuCode, () => baseUomBySku.value.get(form.skuCode.trim())], ([, baseUom]) => {
+  if (baseUom) form.uomCode = baseUom
+})
+// 点提交才标红；结果一律 toast，弹窗不留常驻结果条。
+const showErrors = shallowRef(false)
+const supplierCodeList = computed(() =>
+  form.suppliers
+    .split(/[,\s]+/)
+    .map((s) => s.trim())
+    .filter(Boolean),
+)
+const invalid = computed(() => ({
+  suppliers: supplierCodeList.value.length === 0,
+  skuCode: !form.skuCode.trim(),
+  uomCode: !form.uomCode.trim(),
+  requiredDate: !form.requiredDate,
+  quantity: !(Number(form.quantity) > 0),
+}))
+const canSubmit = computed(() => !Object.values(invalid.value).some(Boolean))
+
+function openDialog() {
+  form.suppliers = ''
+  form.skuCode = ''
+  form.uomCode = ''
+  form.quantity = '1'
+  form.requiredDate = ''
+  showErrors.value = false
+  open.value = true
+}
+
+async function submit() {
+  showErrors.value = true
+  if (!canSubmit.value) return
+  const quantity = Number(form.quantity)
+  const supplierCodes = supplierCodeList.value
+  try {
+    await rfqs.createRequestForQuotation({
+      supplierCodes,
+      lines: [
+        {
+          lineNo: '10',
+          skuCode: form.skuCode.trim(),
+          uomCode: form.uomCode.trim(),
+          quantity,
+          requiredDate: form.requiredDate,
+        },
+      ],
+    })
+    open.value = false
+    notifySuccess('RFQ 已创建')
+  } catch (error) {
+    notifyOperationFailure(
+      '发起询价失败',
+      rfqs.createRequestForQuotationError.value ?? error,
+      '发起询价失败，请稍后重试。',
+    )
+  }
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="询价 RFQ"
+      :breadcrumbs="[{ label: '经营管理' }, { label: '采购' }]"
+      :count="readState.count"
+    >
+      <template #actions>
+        <NvButton
+          size="sm"
+          type="button"
+          variant="outline"
+          :disabled="rfqs.pending.value"
+          @click="rfqs.refresh"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+        <NvButton size="sm" type="button" @click="openDialog">
+          <PlusIcon aria-hidden="true" />
+          新建 RFQ
+        </NvButton>
+      </template>
+    </NvPageHeader>
+
+    <NvMetricStrip :cells="rfqCells" />
+
+    <NvToolbar :show-search="false">
+      <template #filters>
+        <NvInput
+          v-model="rfqs.filters.keyword"
+          class="h-9 w-64"
+          placeholder="RFQ / 供应商 / 物料"
+          aria-label="RFQ 关键字"
+        />
+      </template>
+    </NvToolbar>
+
+    <NvDataTable
+      manual
+      :page="page"
+      :page-size="pageSize"
+      :total-items="rfqs.total.value"
+      :columns="columns"
+      :rows="rfqs.items.value"
+      :row-key="(r: BusinessConsoleErpRequestForQuotationItem) => r.rfqNo ?? 'RFQ'"
+      :loading="rfqs.pending.value"
+      :searchable="false"
+      :column-settings="false"
+      :empty-message="readState.emptyMessage"
+      :error="readState.error"
+      :error-message="readState.errorMessage"
+      :awaiting-scope="readState.awaitingScope"
+      :awaiting-scope-message="readState.awaitingScopeMessage"
+      @retry="rfqs.refresh"
+      @update:page="page = $event"
+      @update:page-size="(v) => (pageSize = String(v))"
+    >
+      <template #cell-status="{ row }"><NvStatusBadge :value="row.status ?? '-'" /></template>
+    </NvDataTable>
+
+    <NvDialog v-model:open="open">
+      <NvDialogContent>
+        <NvDialogHeader>
+          <NvDialogTitle>新建 RFQ</NvDialogTitle>
+          <NvDialogDescription class="sr-only">向供应商发起单项物料询价。</NvDialogDescription>
+        </NvDialogHeader>
+        <form class="grid gap-4" @submit.prevent="submit">
+          <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+            <NvField class="sm:col-span-2">
+              <NvFieldLabel for="erp-rfq-suppliers">
+                供应商 <span class="text-destructive">*</span>
+              </NvFieldLabel>
+              <EntityMultiPicker
+                id="erp-rfq-suppliers"
+                v-model="form.suppliers"
+                :options="supplierOptions"
+                title="选择供应商"
+                placeholder="添加询价供应商"
+                empty-text="暂无供应商，请先在「基础数据 · 业务伙伴」维护"
+                :loading="partnersPending"
+                aria-label="供应商"
+                :invalid="showErrors && invalid.suppliers"
+                selection-empty-text="至少选择一家供应商"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="erp-rfq-sku">
+                物料 <span class="text-destructive">*</span>
+              </NvFieldLabel>
+              <DirectoryPicker
+                id="erp-rfq-sku"
+                v-model="form.skuCode"
+                directory-type="material"
+                creatable
+                :class="pickerInvalidClass(showErrors && invalid.skuCode)"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="erp-rfq-uom">
+                单位 <span class="text-destructive">*</span>
+              </NvFieldLabel>
+              <NvEntityPicker
+                id="erp-rfq-uom"
+                v-model="form.uomCode"
+                :options="uomOptions"
+                title="选择单位"
+                placeholder="选择询价单位"
+                empty-text="暂无计量单位，请先在「基础数据 · 计量单位」维护"
+                :loading="uomsPending"
+                aria-label="单位"
+                :class="pickerInvalidClass(showErrors && invalid.uomCode)"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="erp-rfq-qty">
+                数量 <span class="text-destructive">*</span>
+              </NvFieldLabel>
+              <NvInput
+                id="erp-rfq-qty"
+                v-model="form.quantity"
+                type="number"
+                min="1"
+                step="1"
+                :data-invalid="showErrors && invalid.quantity ? '' : undefined"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="erp-rfq-date">
+                需求日期 <span class="text-destructive">*</span>
+              </NvFieldLabel>
+              <NvDatePicker
+                id="erp-rfq-date"
+                v-model="form.requiredDate"
+                :locale="locale"
+                clearable
+                :aria-invalid="showErrors && invalid.requiredDate"
+                :class="pickerInvalidClass(showErrors && invalid.requiredDate)"
+              />
+            </NvField>
+          </NvFieldGroup>
+          <p v-if="showErrors && !canSubmit" class="text-sm text-destructive" role="alert">
+            请选择供应商、物料、单位，填写需求日期，并给出正数数量。
+          </p>
+          <NvDialogFooter>
+            <NvDialogClose as-child
+              ><NvButton type="button" variant="outline">取消</NvButton></NvDialogClose
+            >
+            <NvButton type="submit" :disabled="rfqs.createRequestForQuotationPending.value">
+              <NvSpinner v-if="rfqs.createRequestForQuotationPending.value" aria-hidden="true" />
+              发起询价
+            </NvButton>
+          </NvDialogFooter>
+        </form>
+      </NvDialogContent>
+    </NvDialog>
+  </BusinessLayout>
+</template>

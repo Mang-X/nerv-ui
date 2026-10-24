@@ -1,0 +1,588 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { shallowRef } from 'vue'
+import { createPinia, setActivePinia } from 'pinia'
+
+import {
+  acknowledgeBusinessConsoleEquipmentAlarm,
+  getBusinessConsoleEquipmentAvailabilityQueryOptions,
+  getBusinessConsoleEquipmentDeviceQueryOptions,
+  getBusinessConsoleEquipmentOverviewQueryOptions,
+  listBusinessConsoleEquipmentAlarmsQueryOptions,
+  listBusinessConsoleEquipmentAlarms,
+  shelveBusinessConsoleEquipmentAlarm,
+  unshelveBusinessConsoleEquipmentAlarm,
+} from '@nerv-iip/api-client'
+import { acquirePendingBusinessIntent } from '@nerv-iip/business-core'
+import {
+  describeAvailabilityWindowReference,
+  describeEquipmentReason,
+  equipmentSourceStatus,
+  equipmentStatusTone,
+  useBusinessEquipmentAlarms,
+  useBusinessEquipmentAvailability,
+  useBusinessEquipmentDevice,
+  useBusinessEquipmentOverview,
+  useEquipmentDeviceAlarms,
+} from './useBusinessEquipment'
+import { useBusinessContextStore } from '@/stores/businessContext'
+
+const coladaState = vi.hoisted(() => ({
+  confirmOperation: vi.fn(),
+  mutations: [] as Array<ReturnType<typeof vi.fn>>,
+  queryDataById: new Map<string, unknown>(),
+  queryOptionsById: new Map<string, { enabled?: boolean }>(),
+}))
+
+vi.mock('@nerv-iip/api-client', () => ({
+  acknowledgeBusinessConsoleEquipmentAlarm: vi.fn(async () => ({
+    data: { success: true },
+    response: { status: 200 },
+  })),
+  confirmBusinessConsoleOperation: (...args: unknown[]) => coladaState.confirmOperation(...args),
+  acknowledgeBusinessConsoleEquipmentAlarmMutationOptions: vi.fn(() => ({
+    key: [],
+    mutation: vi.fn(),
+  })),
+  getBusinessConsoleEquipmentAvailabilityQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'getBusinessConsoleEquipmentAvailability' }],
+    query: vi.fn(),
+  })),
+  getBusinessConsoleEquipmentDeviceQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'getBusinessConsoleEquipmentDevice' }],
+    query: vi.fn(),
+  })),
+  getBusinessConsoleEquipmentOverviewQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'getBusinessConsoleEquipmentOverview' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsoleEquipmentAlarmsQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleEquipmentAlarms' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsoleEquipmentAlarms: vi.fn(),
+  shelveBusinessConsoleEquipmentAlarm: vi.fn(async () => ({
+    data: { success: true },
+    response: { status: 200 },
+  })),
+  unshelveBusinessConsoleEquipmentAlarm: vi.fn(async () => ({
+    data: { success: true },
+    response: { status: 200 },
+  })),
+  shelveBusinessConsoleEquipmentAlarmMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  unshelveBusinessConsoleEquipmentAlarmMutationOptions: vi.fn(() => ({
+    key: [],
+    mutation: vi.fn(),
+  })),
+  // --- pulled in transitively via useBusinessMasterData (设备列表) ---
+  addBusinessConsoleTeamMemberMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  assignBusinessConsolePersonnelSkillMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleDepartmentMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleProductionLineMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleShiftMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleSiteMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleStationMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleBusinessPartnerMutationOptions: vi.fn(() => ({
+    key: [],
+    mutation: vi.fn(),
+  })),
+  createBusinessConsoleReferenceDataCodeMutationOptions: vi.fn(() => ({
+    key: [],
+    mutation: vi.fn(),
+  })),
+  createBusinessConsoleSkuMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleUnitOfMeasureMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleUomConversionMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleTeamMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleWorkCalendarMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleWorkCenterMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  createBusinessConsoleWorkshopMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  disableBusinessConsoleMasterDataResourceMutationOptions: vi.fn(() => ({
+    key: [],
+    mutation: vi.fn(),
+  })),
+  enableBusinessConsoleMasterDataResourceMutationOptions: vi.fn(() => ({
+    key: [],
+    mutation: vi.fn(),
+  })),
+  getBusinessConsoleMasterDataResourceDetail: vi.fn(),
+  listBusinessConsoleMasterDataResourcesQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleMasterDataResources' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsolePersonnelSkillMatrixQueryOptions: vi.fn(() => ({ key: [], query: vi.fn() })),
+  listBusinessConsoleSkusQueryOptions: vi.fn(() => ({ key: [], query: vi.fn() })),
+  listBusinessConsoleTeamMembersQueryOptions: vi.fn(() => ({ key: [], query: vi.fn() })),
+  listBusinessConsoleWorkersQueryOptions: vi.fn(() => ({ key: [], query: vi.fn() })),
+  listBusinessConsoleWorkshopsQueryOptions: vi.fn(() => ({ key: [], query: vi.fn() })),
+  registerBusinessConsoleDeviceAssetMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  removeBusinessConsoleTeamMemberMutationOptions: vi.fn(() => ({ key: [], mutation: vi.fn() })),
+  updateBusinessConsoleMasterDataResourceMutationOptions: vi.fn(() => ({
+    key: [],
+    mutation: vi.fn(),
+  })),
+}))
+
+vi.mock('@pinia/colada', () => ({
+  useMutation: vi.fn(() => {
+    const mutateAsync = vi
+      .fn()
+      .mockResolvedValue({ success: true, data: { alarmEventId: 'alarm-1' } })
+    coladaState.mutations.push(mutateAsync)
+    return {
+      mutateAsync,
+    }
+  }),
+  useQuery: vi.fn((optionsFactory) => {
+    const options = optionsFactory()
+    const key = Array.isArray(options.key) ? options.key[0] : undefined
+    const id = key && typeof key === 'object' && '_id' in key ? String(key._id) : ''
+    coladaState.queryOptionsById.set(id, options)
+
+    return {
+      data: shallowRef(coladaState.queryDataById.get(id)),
+      error: shallowRef(),
+      isLoading: shallowRef(false),
+      refetch: vi.fn(),
+    }
+  }),
+}))
+
+describe('business equipment composables', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+    useBusinessContextStore().patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    vi.clearAllMocks()
+    coladaState.confirmOperation.mockImplementation(async (value) => value)
+    coladaState.mutations.length = 0
+    coladaState.queryDataById.clear()
+    coladaState.queryOptionsById.clear()
+  })
+
+  it('maps shared equipment reason codes to Chinese labels and next steps', () => {
+    expect(describeEquipmentReason('equipment.activeAlarm')).toMatchObject({
+      code: 'equipment.activeAlarm',
+      label: '设备报警未解除',
+      nextStep: '处理并解除设备报警后重新检查',
+    })
+    expect(describeEquipmentReason('equipment.stateUnavailable')).toMatchObject({
+      label: '设备状态不可运行',
+      nextStep: '确认设备恢复运行后重新检查',
+    })
+    expect(describeEquipmentReason('equipment.downtime')).toMatchObject({
+      label: '设备停机中',
+      nextStep: '关闭停机事件或改派可用设备',
+    })
+    expect(describeEquipmentReason('equipment.maintenanceWindow')).toMatchObject({
+      label: '维修保养占用',
+      nextStep: '调整维修窗口、等待释放或选择替代设备',
+    })
+    expect(describeEquipmentReason('equipment.inspectionRequired')).toMatchObject({
+      label: '点检未通过',
+      nextStep: '完成点检并确认结果后重新检查',
+    })
+    expect(describeEquipmentReason('equipment.sourceStale')).toMatchObject({
+      label: '采集数据过期',
+      nextStep: '检查采集连接并刷新设备状态',
+    })
+    expect(describeEquipmentReason('equipment.sourceNotConnected')).toMatchObject({
+      label: '尚未接入采集',
+      nextStep: '为设备配置采集连接后即可看到运行状态',
+    })
+    expect(describeEquipmentReason('equipment.tagMappingMissing')).toMatchObject({
+      label: '采集点未配置',
+      nextStep: '补齐设备采集点映射',
+    })
+    expect(describeEquipmentReason('equipment.noEligibleSubstitute')).toMatchObject({
+      label: '无可替代设备',
+      nextStep: '调整排程或维护设备能力配置',
+    })
+    // 词表外的原因码不把英文码送上屏。
+    expect(describeEquipmentReason('vendor.custom')).toMatchObject({
+      code: 'vendor.custom',
+      label: '—',
+      nextStep: '查看设备详情并处理来源业务单据',
+    })
+  })
+
+  it('maps equipment statuses to business tones', () => {
+    expect(equipmentStatusTone('running')).toBe('success')
+    expect(equipmentStatusTone('ready')).toBe('success')
+    expect(equipmentStatusTone('idle')).toBe('success')
+    expect(equipmentStatusTone('faulted')).toBe('danger')
+    expect(equipmentStatusTone('stopped')).toBe('danger')
+    expect(equipmentStatusTone('offline')).toBe('danger')
+    expect(equipmentStatusTone('down')).toBe('danger')
+    expect(equipmentStatusTone(undefined)).toBe('muted')
+    expect(equipmentStatusTone('calibrating')).toBe('muted')
+  })
+
+  it('keeps equipment overview empty and disabled without hard-coded seed device defaults', () => {
+    const { activeBlocks, devices } = useBusinessEquipmentOverview()
+
+    expect(getBusinessConsoleEquipmentOverviewQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        deviceAssetIds: '',
+      },
+    })
+    expect(coladaState.queryOptionsById.get('getBusinessConsoleEquipmentOverview')?.enabled).toBe(
+      false,
+    )
+    expect(devices.value).toEqual([])
+    expect(activeBlocks.value).toEqual([])
+  })
+
+  it('uses the patched business context for equipment query options', () => {
+    const businessContext = useBusinessContextStore()
+    businessContext.patchContext({
+      organizationId: 'org-review',
+      environmentId: 'env-review',
+    })
+
+    useBusinessEquipmentOverview()
+    useBusinessEquipmentAvailability()
+    useBusinessEquipmentDevice('DEV-PATCHED-01')
+    useBusinessEquipmentAlarms()
+
+    expect(getBusinessConsoleEquipmentOverviewQueryOptions).toHaveBeenCalledWith({
+      query: expect.objectContaining({
+        organizationId: 'org-review',
+        environmentId: 'env-review',
+      }),
+    })
+    expect(getBusinessConsoleEquipmentAvailabilityQueryOptions).toHaveBeenCalledWith({
+      query: expect.objectContaining({
+        organizationId: 'org-review',
+        environmentId: 'env-review',
+      }),
+    })
+    expect(getBusinessConsoleEquipmentDeviceQueryOptions).toHaveBeenCalledWith({
+      path: { deviceAssetId: 'DEV-PATCHED-01' },
+      query: {
+        organizationId: 'org-review',
+        environmentId: 'env-review',
+      },
+    })
+    expect(listBusinessConsoleEquipmentAlarmsQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-review',
+        environmentId: 'env-review',
+      },
+    })
+  })
+
+  it('keeps availability query disabled until a device scope is entered', () => {
+    const { availabilityWindows } = useBusinessEquipmentAvailability()
+
+    expect(getBusinessConsoleEquipmentAvailabilityQueryOptions).toHaveBeenCalledWith({
+      query: expect.objectContaining({
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        deviceAssetIds: '',
+      }),
+    })
+    expect(
+      coladaState.queryOptionsById.get('getBusinessConsoleEquipmentAvailability')?.enabled,
+    ).toBe(false)
+    expect(availabilityWindows.value).toEqual([])
+  })
+
+  it('loads a device detail and exposes active alarms and availability windows', () => {
+    coladaState.queryDataById.set('getBusinessConsoleEquipmentDevice', {
+      success: true,
+      data: {
+        currentState: {
+          deviceAssetId: 'DEV-OIL-01',
+          currentState: 'faulted',
+          activeAlarms: [{ alarmEventId: 'alarm-1', alarmCode: 'TEMP_HIGH' }],
+        },
+        availability: {
+          items: [{ deviceAssetId: 'DEV-OIL-01', reasonCode: 'equipment.activeAlarm' }],
+        },
+      },
+    })
+
+    const { activeAlarms, availabilityWindows, device, filters } = useBusinessEquipmentDevice()
+
+    expect(getBusinessConsoleEquipmentDeviceQueryOptions).toHaveBeenCalledWith({
+      path: { deviceAssetId: filters.deviceAssetId },
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+      },
+    })
+    expect(device.value?.currentState?.currentState).toBe('faulted')
+    expect(activeAlarms.value).toHaveLength(1)
+    expect(availabilityWindows.value).toHaveLength(1)
+  })
+
+  it('loads alarm rows and defaults unsuccessful envelopes to an empty array', () => {
+    coladaState.queryDataById.set('listBusinessConsoleEquipmentAlarms', {
+      success: true,
+      data: {
+        items: [{ alarmEventId: 'alarm-1', deviceAssetId: 'DEV-OIL-01', severity: 'critical' }],
+      },
+    })
+
+    const active = useBusinessEquipmentAlarms()
+    expect(listBusinessConsoleEquipmentAlarmsQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+      },
+    })
+    expect(active.alarms.value).toHaveLength(1)
+
+    coladaState.queryDataById.set('listBusinessConsoleEquipmentAlarms', { success: false })
+    const failed = useBusinessEquipmentAlarms()
+    expect(failed.alarms.value).toEqual([])
+  })
+
+  it('单台设备的报警由服务端按设备过滤，未选设备时不发请求', () => {
+    const none = useEquipmentDeviceAlarms('')
+    expect(coladaState.queryOptionsById.get('listBusinessConsoleEquipmentAlarms')?.enabled).toBe(
+      false,
+    )
+    expect(none.alarms.value).toEqual([])
+
+    coladaState.queryDataById.set('listBusinessConsoleEquipmentAlarms', {
+      success: true,
+      data: { items: [{ alarmEventId: 'alarm-1', deviceAssetId: 'DEV-SMT-01' }] },
+    })
+    const device = useEquipmentDeviceAlarms('DEV-SMT-01')
+    expect(listBusinessConsoleEquipmentAlarmsQueryOptions).toHaveBeenLastCalledWith({
+      query: { organizationId: 'org-001', environmentId: 'env-dev', deviceAssetId: 'DEV-SMT-01' },
+    })
+    expect(coladaState.queryOptionsById.get('listBusinessConsoleEquipmentAlarms')?.enabled).toBe(
+      true,
+    )
+    expect(device.alarms.value.map((alarm) => alarm.alarmEventId)).toEqual(['alarm-1'])
+  })
+
+  it('posts alarm lifecycle actions with current business context', async () => {
+    const active = useBusinessEquipmentAlarms()
+    vi.mocked(listBusinessConsoleEquipmentAlarms)
+      .mockResolvedValueOnce({
+        data: { success: true, data: { items: [{ alarmEventId: 'alarm-1', status: 'Raised' }] } },
+      } as never)
+      .mockResolvedValueOnce({
+        data: { success: true, data: { items: [{ alarmEventId: 'alarm-1', status: 'Raised' }] } },
+      } as never)
+      .mockResolvedValueOnce({
+        data: { success: true, data: { items: [{ alarmEventId: 'alarm-1', status: 'Shelved' }] } },
+      } as never)
+
+    await active.acknowledgeAlarm('alarm-1', 'operator-a')
+    await active.shelveAlarm('alarm-1', 'operator-a', 45, 'maintenance window')
+    await active.unshelveAlarm('alarm-1')
+
+    expect(acknowledgeBusinessConsoleEquipmentAlarm).toHaveBeenCalledWith({
+      path: { alarmEventId: 'alarm-1' },
+      body: expect.objectContaining({
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        acknowledgedBy: 'operator-a',
+      }),
+      throwOnError: false,
+    })
+    expect(shelveBusinessConsoleEquipmentAlarm).toHaveBeenCalledWith({
+      path: { alarmEventId: 'alarm-1' },
+      body: expect.objectContaining({
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        durationMinutes: 45,
+        reason: 'maintenance window',
+        shelvedBy: 'operator-a',
+      }),
+      throwOnError: false,
+    })
+    expect(unshelveBusinessConsoleEquipmentAlarm).toHaveBeenCalledWith({
+      path: { alarmEventId: 'alarm-1' },
+      body: expect.objectContaining({
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+      }),
+      throwOnError: false,
+    })
+  })
+
+  it('forwards a frozen shelvedAtUtc and idempotency key so batch shelve retries are no-ops', async () => {
+    const active = useBusinessEquipmentAlarms()
+    vi.mocked(listBusinessConsoleEquipmentAlarms).mockResolvedValueOnce({
+      data: { success: true, data: { items: [{ alarmEventId: 'alarm-1', status: 'Raised' }] } },
+    } as never)
+
+    await active.shelveAlarm('alarm-1', 'operator-a', 120, 'planned maintenance', {
+      shelvedAtUtc: '2026-07-12T08:00:00.000Z',
+      idempotencyKey: 'shelve:alarm-1:2026-07-12T08:00:00.000Z:120',
+    })
+
+    expect(shelveBusinessConsoleEquipmentAlarm).toHaveBeenCalledWith({
+      path: { alarmEventId: 'alarm-1' },
+      body: expect.objectContaining({
+        durationMinutes: 120,
+        reason: 'planned maintenance',
+        shelvedAtUtc: '2026-07-12T08:00:00.000Z',
+        idempotencyKey: 'shelve:alarm-1:2026-07-12T08:00:00.000Z:120',
+      }),
+      throwOnError: false,
+    })
+  })
+
+  it('rotates the alarm intent key after an explicit 422 rejection', async () => {
+    const active = useBusinessEquipmentAlarms()
+    vi.mocked(listBusinessConsoleEquipmentAlarms).mockResolvedValue({
+      data: { success: true, data: { items: [{ alarmEventId: 'alarm-422', status: 'Raised' }] } },
+    } as never)
+    coladaState.confirmOperation
+      .mockRejectedValueOnce(Object.assign(new Error('validation failed'), { statusCode: 422 }))
+      .mockImplementation(async (value) => value)
+
+    await expect(
+      active.shelveAlarm('alarm-422', 'operator-a', 30, 'inspection', {
+        idempotencyKey: 'alarm-key-1',
+      }),
+    ).rejects.toThrow('validation failed')
+    await active.shelveAlarm('alarm-422', 'operator-a', 30, 'inspection', {
+      idempotencyKey: 'alarm-key-2',
+    })
+
+    expect(
+      vi
+        .mocked(shelveBusinessConsoleEquipmentAlarm)
+        .mock.calls.map(([request]) => request.body.idempotencyKey),
+    ).toEqual(['alarm-key-1', 'alarm-key-2'])
+  })
+
+  it('retains the alarm intent key while receipt confirmation is indeterminate', async () => {
+    const active = useBusinessEquipmentAlarms()
+    vi.mocked(listBusinessConsoleEquipmentAlarms).mockResolvedValue({
+      data: {
+        success: true,
+        data: { items: [{ alarmEventId: 'alarm-unknown', status: 'Raised' }] },
+      },
+    } as never)
+    coladaState.confirmOperation
+      .mockRejectedValueOnce(
+        Object.assign(new Error('权威状态尚未确认'), {
+          code: 'business-operation-unconfirmed',
+        }),
+      )
+      .mockImplementation(async (value) => value)
+
+    await expect(
+      active.shelveAlarm('alarm-unknown', 'operator-a', 30, 'inspection', {
+        idempotencyKey: 'alarm-key-stable',
+      }),
+    ).rejects.toThrow('权威状态尚未确认')
+    await active.shelveAlarm('alarm-unknown', 'operator-a', 30, 'inspection', {
+      idempotencyKey: 'alarm-key-new',
+    })
+
+    expect(
+      vi
+        .mocked(shelveBusinessConsoleEquipmentAlarm)
+        .mock.calls.map(([request]) => request.body.idempotencyKey),
+    ).toEqual(['alarm-key-stable', 'alarm-key-stable'])
+  })
+
+  it('uses the frozen shelf instant only for an explicit same-key retry gate', async () => {
+    const active = useBusinessEquipmentAlarms()
+    vi.mocked(listBusinessConsoleEquipmentAlarms).mockResolvedValue({
+      data: {
+        success: true,
+        data: {
+          items: [
+            {
+              alarmEventId: 'alarm-1',
+              status: 'Shelved',
+              shelvedAtUtc: '2026-07-12T08:00:00.000Z',
+              shelvedUntilUtc: '2026-07-12T10:00:00.000Z',
+            },
+          ],
+        },
+      },
+    } as never)
+    const intent = {
+      attempt: 'retry' as const,
+      shelvedAtUtc: '2026-07-12T08:00:00.000Z',
+      idempotencyKey: 'shelve:alarm-1:2026-07-12T08:00:00.000Z:120',
+    }
+    acquirePendingBusinessIntent(
+      {
+        principalId: 'unrestored-session',
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        operationType: 'iiot.alarm.shelve',
+        payloadFingerprint: JSON.stringify({
+          alarmEventId: 'alarm-1',
+          shelvedBy: 'operator-a',
+          durationMinutes: 120,
+          reason: 'planned maintenance',
+        }),
+      },
+      () => intent.idempotencyKey,
+      { shelvedAtUtc: intent.shelvedAtUtc },
+    )
+
+    await active.shelveAlarm('alarm-1', 'operator-a', 120, 'planned maintenance', intent)
+
+    expect(shelveBusinessConsoleEquipmentAlarm).toHaveBeenCalledOnce()
+  })
+})
+
+describe('可用性窗口的关联业务', () => {
+  const publicId = '019fbb41-5555-7555-8555-555555555555'
+
+  it('设备状态与采集类窗口显示设备编码，不显示 IIoT 回填的设备引用或快照主键', () => {
+    for (const sourceType of ['device-state', 'stale-source'] as const) {
+      expect(
+        describeAvailabilityWindowReference(
+          { sourceType, sourceReferenceLabel: publicId },
+          'EQ00001',
+        ),
+      ).toBe('EQ00001')
+    }
+    expect(
+      describeAvailabilityWindowReference(
+        { sourceType: 'stale-source', sourceReferenceLabel: publicId },
+        '',
+      ),
+    ).toBe('—')
+  })
+
+  it('其余窗口显示来源单据的人读标识，缺失时显示占位', () => {
+    expect(
+      describeAvailabilityWindowReference(
+        { sourceType: 'maintenance-window', sourceReferenceLabel: 'MWO000001' },
+        'EQ00001',
+      ),
+    ).toBe('MWO000001')
+    expect(describeAvailabilityWindowReference({ sourceType: 'alarm' }, 'EQ00001')).toBe('—')
+  })
+})
+
+describe('设备采集接入状态', () => {
+  const notConnected = { deviceAssetId: 'EQ00001', reasonCode: 'equipment.sourceNotConnected' }
+  const stale = { deviceAssetId: 'EQ00002', reasonCode: 'equipment.sourceStale' }
+
+  it('只有后端发了「尚未接入采集」窗口才算未接入，其余不新鲜的都是采集中断', () => {
+    expect(equipmentSourceStatus(false, [notConnected])).toBe('notConnected')
+    // 只上报样本、不带状态的设备没有状态快照，但后端按样本新鲜度发的是采集过期
+    expect(equipmentSourceStatus(false, [stale])).toBe('stale')
+    expect(equipmentSourceStatus(false, [])).toBe('stale')
+    expect(equipmentSourceStatus(true, [notConnected])).toBe('fresh')
+  })
+
+  it('看板按设备取自己的窗口，不被别的设备的未接入窗口带偏', () => {
+    expect(equipmentSourceStatus(false, [notConnected, stale], 'EQ00002')).toBe('stale')
+    expect(equipmentSourceStatus(false, [notConnected, stale], 'EQ00001')).toBe('notConnected')
+  })
+
+  it('原因徽标色由字典给出：尚未接入为中性色，其余缺省为危险色', () => {
+    expect(describeEquipmentReason('equipment.sourceNotConnected').tone).toBe('neutral')
+    expect(describeEquipmentReason('equipment.sourceStale').tone).toBe('danger')
+    expect(describeEquipmentReason('equipment.unknown-code').tone).toBe('danger')
+  })
+})

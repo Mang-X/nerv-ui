@@ -1,0 +1,861 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleMesOperationTaskRow,
+  BusinessConsoleMesWorkOrderItem,
+} from '@nerv-iip/api-client'
+import {
+  operationTaskStatusLabel,
+  productionReportFlow,
+  statusActionGate,
+  type ReportCtx,
+  workOrderSubtitle,
+  workOrderTitle,
+} from '@nerv-iip/business-core'
+import {
+  NvAppShellMobile,
+  NvBottomSheet,
+  NvListRow,
+  NvMobileResult,
+  NvMobileButton,
+  NvMobileToast,
+  NvNumberKeyboard,
+} from '@nerv-iip/ui-mobile'
+import { computed, reactive, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import {
+  useMesExactOperationTask,
+  useMesProductionReports,
+  useMesWorkOrderDetail,
+  useMesWorkOrders,
+} from '@/composables/useBusinessMes'
+import RetryableListError from '@/components/RetryableListError.vue'
+import MesWorkScopeFilter from '@/components/mes/MesWorkScopeFilter.vue'
+import ProductionReportMaterialLots from '@/components/mes/ProductionReportMaterialLots.vue'
+import ProductionReportScrapReasonField from '@/components/mes/ProductionReportScrapReasonField.vue'
+import ProductionReportSerialResult from '@/components/mes/ProductionReportSerialResult.vue'
+import ProductionReportSerialFields from '@/components/mes/ProductionReportSerialFields.vue'
+import ProductionReportOccupiedNotice from '@/components/mes/ProductionReportOccupiedNotice.vue'
+import { useProductionReportSerials } from '@/composables/mes/useProductionReportSerials'
+import { useLifecycleActionRecovery } from '@/composables/lifecycleActionRecovery'
+import { useProductionReportMaterials } from '@/composables/mes/useProductionReportMaterials'
+import { useProductionReportScrapReason } from '@/composables/mes/useProductionReportScrapReason'
+import { useMesReportSubmission } from '@/composables/mes/useMesReportSubmission'
+import { useMesReportIdentity } from '@/composables/useMesReportIdentity'
+import MesScanPrevalidation from '@/components/mes/MesScanPrevalidation.vue'
+import type { MesScanAccepted } from '@/composables/mes/useMesScanPrevalidation'
+import { useMesScanGate } from '@/composables/mes/useMesScanGate'
+import TelemetryCandidateQueue from './components/TelemetryCandidateQueue.vue'
+import { reworkSourceLabel, withReworkLabel } from './components/operationPresentation'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '报工',
+  },
+})
+
+type WorkOrder = BusinessConsoleMesWorkOrderItem
+type Task = BusinessConsoleMesOperationTaskRow
+
+const router = useRouter()
+const route = useRoute()
+const routeWorkOrderId = computed(() => {
+  const value = route.query.workOrderId
+  return typeof value === 'string' ? value.trim() : ''
+})
+
+const {
+  recordReport,
+  confirmReport,
+  reportScopeMessage,
+  reportScopePending,
+  reportScopeReady,
+  reportContext,
+  contextGeneration,
+  reportableTasks,
+  reportableTasksPending,
+  reportableTasksError,
+  reportableTasksReady,
+  refreshReportableTasks,
+} = useMesProductionReports(routeWorkOrderId)
+
+const {
+  filters: workOrderFilters,
+  workOrders,
+  total: workOrderTotal,
+  pending: workOrdersPending,
+  error: workOrdersError,
+  refresh: refreshWorkOrders,
+  hasSuccessfulResponse: workOrdersHasSuccessfulResponse,
+  hasFailedResponse: workOrdersHasFailedResponse,
+  workOrderReadScopeMessage,
+  workOrderReadScopePending,
+  workOrderReadScopeReady,
+  workOrderReadScopeUnavailable,
+} = useMesWorkOrders()
+// 工单读取范围没就绪时，列表区不会发查询；这里要告诉操作工为什么选不了工单。
+// 「没有授权范围」的原文带 IAM 配置指引，面向操作工改说业务话术。
+const workOrderScopeNotice = computed(() => {
+  if (workOrderReadScopeReady.value || workOrderReadScopePending.value) return ''
+  if (workOrderReadScopeUnavailable.value) return '当前账号没有可查看的工单范围，请联系管理员开通。'
+  return workOrderReadScopeMessage.value
+})
+
+const {
+  workOrder: workOrderDetail,
+  pending: workOrderDetailPending,
+  error: workOrderDetailError,
+  refresh: refreshWorkOrderDetail,
+  hasSuccessfulResponse: workOrderDetailHasSuccessfulResponse,
+  hasFailedResponse: workOrderDetailHasFailedResponse,
+} = useMesWorkOrderDetail(routeWorkOrderId)
+const routeOperationTaskId = computed(() => {
+  const value = route.query.operationTaskId
+  return typeof value === 'string' ? value.trim() : ''
+})
+const {
+  task: exactOperationTask,
+  pending: exactOperationTaskPending,
+  error: exactOperationTaskError,
+  refresh: refreshExactOperationTask,
+  reportingReadScopeMessage: exactOperationTaskScopeMessage,
+  reportingReadScopeReady: exactOperationTaskScopeReady,
+} = useMesExactOperationTask(routeWorkOrderId, routeOperationTaskId, workOrderDetail)
+
+const {
+  selectedWorkOrder,
+  selectedTask,
+  visibleOperationTasks,
+  pair,
+  recoveryPair,
+  routeIssue,
+  chooseWorkOrder: bindWorkOrder,
+  chooseTask: bindTask,
+  clearTask,
+  clearIdentity,
+} = useMesReportIdentity({
+  workOrderDetail,
+  workOrderDetailPending,
+  workOrderDetailError,
+  exactOperationTask,
+  exactOperationTaskPending,
+  exactOperationTaskError,
+  exactOperationTaskScopeReady,
+  exactOperationTaskScopeMessage,
+  reportableTasks,
+  reportableTasksPending,
+  reportableTasksError,
+  reportableTasksReady,
+})
+// 遥测候选区里的输入框获焦时扫码框让出焦点（候选区自己上报，见 TelemetryCandidateQueue）。
+const telemetryEditing = ref(false)
+const scanGate = useMesScanGate()
+const scanPending = scanGate.pending
+const scanGuarded = scanGate.guarded
+const validatedDeviceAssetId = ref('')
+const validatedPersonnelId = ref('')
+
+// --- 流程上下文（productionReportFlow 驱动当前步/进度）---
+const ctx = reactive<ReportCtx>({
+  workOrderId: undefined,
+  operationTaskId: undefined,
+  quantityEntered: false,
+  recorded: false,
+})
+
+const currentStep = computed(() => productionReportFlow.currentStep(ctx).id)
+const progress = computed(() => productionReportFlow.progress(ctx))
+
+// --- 数量录入 ---
+const goodQuantity = ref(0)
+const serials = useProductionReportSerials(
+  pair,
+  computed(() => selectedWorkOrder.value?.skuId ?? ''),
+  reportContext,
+  goodQuantity,
+)
+const {
+  required: serialRequired,
+  templateId: labelTemplateId,
+  valid: serialValid,
+  pendingCount: serialPendingCount,
+  pending: serialPending,
+  message: serialMessage,
+  templates: serialTemplates,
+} = serials
+const goodKeyboardOpen = ref(false)
+const goodKeyboardValue = computed({
+  get: () => (goodQuantity.value === 0 ? '' : String(goodQuantity.value)),
+  set: (value: string) => {
+    goodQuantity.value = Number(value)
+  },
+})
+const scrapQuantity = ref(0)
+const reworkQuantity = ref(0)
+const completesOperation = ref(false)
+const {
+  qualityInspectionRecordsReadPermission,
+  scrapReasonCodesPending,
+  scrapReasonCodesError,
+  scrapReasonCodes,
+  scrapReasonCode,
+  invalidScrapReasonCode,
+  scrapReasonValidationMessage,
+  refreshScrapReasonCodes,
+} = useProductionReportScrapReason(scrapQuantity)
+const {
+  materialsReadPermission,
+  materialLotsPending,
+  materialLotsError,
+  availableMaterialLots,
+  refreshMaterialLots,
+  consumedMaterialLots,
+  invalidMaterialLots,
+  materialValidationMessage,
+  resetMaterialSelections,
+  materialSelected,
+  materialQuantity,
+  setMaterialSelected,
+  setMaterialQuantity,
+  materialRemaining,
+} = useProductionReportMaterials(pair, scrapQuantity)
+
+const quantityValid = computed(
+  () =>
+    Number.isFinite(goodQuantity.value) &&
+    Number.isFinite(scrapQuantity.value) &&
+    Number.isFinite(reworkQuantity.value) &&
+    goodQuantity.value >= 0 &&
+    scrapQuantity.value >= 0 &&
+    reworkQuantity.value >= 0 &&
+    goodQuantity.value + scrapQuantity.value + reworkQuantity.value > 0,
+)
+
+const { currentIntent, result, submitting, conflictingPreparation, deleteCurrentIntent, submit } =
+  useMesReportSubmission({
+    pair,
+    recoveryPair,
+    selectedTask,
+    context: reportContext,
+    contextGeneration,
+    flowContext: ctx,
+    scanGuarded,
+    reportScopeReady,
+    quantityValid,
+    serialValid,
+    labelTemplateId,
+    serialRequired,
+    invalidMaterialLots,
+    invalidScrapReasonCode,
+    goodQuantity,
+    scrapQuantity,
+    reworkQuantity,
+    scrapReasonCode,
+    consumedMaterialLots,
+    completesOperation,
+    recordReport,
+    confirmReport,
+    recoverLifecycleAction: (error) => lifecycleRecovery.handle(error),
+  })
+
+function returnToPreparation() {
+  const saved = conflictingPreparation.value
+  if (!saved) return
+  void router.replace({
+    query: { workOrderId: saved.workOrderId, operationTaskId: saved.operationTaskId },
+  })
+}
+
+// 录数量面板：选中工序后打开
+const sheetOpen = computed({
+  get: () => pair.value !== null && result.value === null,
+  set: (open) => {
+    if (!open) closeSheet()
+  },
+})
+
+const canCompleteSelectedTask = computed(
+  () =>
+    selectedTask.value !== null &&
+    statusActionGate({
+      domain: 'mes-operation-task',
+      action: 'report-complete',
+      facts: { status: selectedTask.value.status },
+    }).executable,
+)
+
+watch(
+  [() => selectedWorkOrder.value?.workOrderId, () => selectedTask.value?.operationTaskId],
+  ([workOrderId, operationTaskId], previousIdentity) => {
+    const [previousWorkOrderId, previousOperationTaskId] = previousIdentity ?? []
+    ctx.workOrderId = workOrderId
+    ctx.operationTaskId = operationTaskId
+    if (workOrderId !== previousWorkOrderId || operationTaskId !== previousOperationTaskId) {
+      goodQuantity.value = 0
+      scrapQuantity.value = 0
+      reworkQuantity.value = 0
+      scrapReasonCode.value = ''
+      completesOperation.value = false
+      resetMaterialSelections()
+      validatedDeviceAssetId.value = ''
+      validatedPersonnelId.value = ''
+      ctx.quantityEntered = false
+      ctx.recorded = currentIntent.value?.status === 'success'
+    }
+  },
+  { immediate: true },
+)
+watch(canCompleteSelectedTask, (canComplete) => {
+  if (!canComplete) completesOperation.value = false
+})
+
+// ScanBar 仅在选工单步活跃；录数量/结果、操作遥测候选时不抢焦点
+const scanActive = computed(
+  () =>
+    currentStep.value === 'selectWorkOrder' &&
+    result.value === null &&
+    selectedTask.value === null &&
+    !telemetryEditing.value,
+)
+
+// 可读中文状态标签 + 工单标题/副标题来自 @nerv-iip/business-core。
+const taskStatusLabel = operationTaskStatusLabel
+
+function taskTitle(task: Task) {
+  const seq = task.operationSequence === undefined ? '' : `工序 ${task.operationSequence}`
+  const wo = task.workOrderId ?? '无工单'
+  return withReworkLabel(seq ? `${wo} · ${seq}` : wo, task)
+}
+function taskSubtitle(task: Task) {
+  const parts = [taskStatusLabel(task.status)]
+  if (task.workCenterId) parts.push(`工作中心 ${task.workCenterId}`)
+  const source = reworkSourceLabel(task)
+  if (source) parts.push(source)
+  return parts.join(' · ')
+}
+
+function reportWorkOrderTitle(workOrder: WorkOrder) {
+  return withReworkLabel(workOrderTitle(workOrder), workOrder)
+}
+
+function reportWorkOrderSubtitle(workOrder: WorkOrder) {
+  const source = reworkSourceLabel(workOrder)
+  return [workOrderSubtitle(workOrder), source].filter(Boolean).join(' · ')
+}
+
+const showWorkOrdersEmpty = computed(
+  () =>
+    !workOrdersPending.value &&
+    !workOrdersError.value &&
+    !workOrdersHasFailedResponse.value &&
+    workOrdersHasSuccessfulResponse.value &&
+    workOrders.value.length === 0,
+)
+
+// --- 步骤操作 ---
+function chooseWorkOrder(wo: WorkOrder) {
+  scanGate.clear('list')
+  void bindWorkOrder(wo)
+}
+
+function chooseTask(task: Task) {
+  scanGate.clear('list')
+  void bindTask(task)
+}
+
+function closeSheet() {
+  void clearTask()
+}
+
+// 返回上一步
+function backToWorkOrders() {
+  void clearIdentity()
+}
+
+function resetReportIntent() {
+  deleteCurrentIntent()
+  goodQuantity.value = 0
+  scrapQuantity.value = 0
+  reworkQuantity.value = 0
+  scrapReasonCode.value = ''
+  resetMaterialSelections()
+  completesOperation.value = false
+  ctx.quantityEntered = false
+  ctx.recorded = false
+  void clearIdentity()
+}
+
+const lifecycleRecovery = useLifecycleActionRecovery({
+  reset: resetReportIntent,
+  refresh: () =>
+    Promise.all([
+      refreshWorkOrders(),
+      refreshWorkOrderDetail(),
+      refreshExactOperationTask(),
+      refreshReportableTasks(),
+    ]),
+})
+
+function continueReport() {
+  if (submitting.value || result.value?.receipt?.printingPreparationPending) return
+  deleteCurrentIntent()
+  backToWorkOrders()
+}
+
+function goBack() {
+  router.push('/').catch(() => {})
+}
+
+async function onScanAccepted(value: MesScanAccepted) {
+  if (value.kind === 'work-order') {
+    workOrderFilters.keyword = undefined
+    workOrderFilters.workOrderId = value.workOrderId
+    await router.replace({ path: '/mes/report', query: { workOrderId: value.workOrderId } })
+    return
+  }
+  if (value.kind === 'operation-task') {
+    await router.replace({
+      path: '/mes/report',
+      query: { workOrderId: value.workOrderId, operationTaskId: value.operationTaskId },
+    })
+    return
+  }
+  if (value.kind === 'material') {
+    setMaterialSelected(value.materialIssueRequestId, true)
+    return
+  }
+  if (value.kind === 'device') {
+    validatedDeviceAssetId.value = value.scannedObjectId
+    return
+  }
+  if (value.kind === 'personnel') {
+    validatedPersonnelId.value = value.scannedObjectId
+  }
+}
+</script>
+
+<template>
+  <NvAppShellMobile>
+    <template #header>
+      <div class="flex items-center gap-3 px-4 py-3">
+        <button
+          type="button"
+          aria-label="返回"
+          class="text-sm text-muted-foreground"
+          @click="router.push('/').catch(() => {})"
+        >
+          返回
+        </button>
+        <h1 class="text-lg font-semibold text-foreground">报工</h1>
+        <span class="ml-auto text-xs text-muted-foreground">
+          第
+          {{ progress.completed + 1 > progress.total ? progress.total : progress.completed + 1 }}/{{
+            progress.total
+          }}
+          步
+        </span>
+      </div>
+    </template>
+
+    <ProductionReportOccupiedNotice
+      v-if="conflictingPreparation && !sheetOpen"
+      class="m-4"
+      @return="returnToPreparation"
+    />
+    <!-- 报工结果反馈 -->
+    <NvMobileResult
+      v-if="result"
+      :status="result.status"
+      :title="result.title"
+      :description="result.description"
+    >
+      <template #actions>
+        <ProductionReportSerialResult
+          v-if="result.receipt"
+          :receipt="result.receipt"
+          :context="reportContext"
+        />
+        <NvMobileButton
+          v-if="result.receipt?.printingPreparationPending"
+          data-testid="retry-label-preparation"
+          size="lg"
+          block
+          :disabled="submitting || !reportScopeReady || scanGuarded"
+          @click="submit"
+          >重试标签准备</NvMobileButton
+        >
+        <p
+          v-if="result.preparationError"
+          data-testid="label-preparation-error"
+          role="alert"
+          class="text-sm text-destructive"
+        >
+          标签准备未完成：{{ result.preparationError }} 本次报工已成功，请沿用原报工重试准备。
+        </p>
+        <button
+          v-if="result.status === 'success'"
+          type="button"
+          data-testid="continue-report"
+          :disabled="submitting || result.receipt?.printingPreparationPending"
+          class="min-h-touch w-full rounded-lg bg-primary text-base font-medium text-primary-foreground disabled:opacity-60"
+          @click="continueReport"
+        >
+          继续报工
+        </button>
+        <button
+          v-else
+          type="button"
+          data-testid="retry-report"
+          class="min-h-touch w-full rounded-lg bg-primary text-base font-medium text-primary-foreground"
+          @click="result.notAccepted ? deleteCurrentIntent() : submit()"
+        >
+          {{ result.notAccepted ? '修改后重新报工' : '重试' }}
+        </button>
+        <button
+          type="button"
+          class="min-h-touch w-full rounded-lg border border-border bg-card text-base font-medium text-foreground"
+          @click="goBack"
+        >
+          返回
+        </button>
+      </template>
+    </NvMobileResult>
+
+    <div v-else class="space-y-4 p-4">
+      <MesWorkScopeFilter permission-code="business.mes.work-orders.read" />
+      <p
+        v-if="reportScopeMessage"
+        data-testid="report-scope-message"
+        class="rounded-lg border border-destructive/40 px-4 py-3 text-sm text-destructive"
+        role="alert"
+      >
+        {{ reportScopeMessage }}
+      </p>
+      <p
+        v-if="routeIssue"
+        role="alert"
+        data-testid="report-route-issue"
+        class="rounded-lg border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive"
+      >
+        {{ routeIssue }}
+      </p>
+      <section
+        v-if="
+          currentStep === 'selectWorkOrder' &&
+          routeWorkOrderId &&
+          (workOrderDetailError || workOrderDetailHasFailedResponse)
+        "
+        class="space-y-2"
+      >
+        <RetryableListError
+          :error="workOrderDetailError"
+          :pending="workOrderDetailPending"
+          fallback="加载工单详情失败，请重试。"
+          test-id="work-order-detail-error"
+          @retry="() => refreshWorkOrderDetail()"
+        />
+      </section>
+      <TelemetryCandidateQueue
+        v-model:editing="telemetryEditing"
+        :context="reportContext"
+        :scan-pending="scanPending"
+      />
+      <!-- 步骤 1：选工单 -->
+      <template v-if="currentStep === 'selectWorkOrder'">
+        <MesScanPrevalidation
+          :organization-id="workOrderFilters.organizationId"
+          :environment-id="workOrderFilters.environmentId"
+          :work-order-id="pair?.workOrderId"
+          :operation-task-id="pair?.operationTaskId"
+          placeholder="扫描工单或工序"
+          :active="scanActive"
+          :accepted-kinds="['work-order', 'operation-task']"
+          @accepted="onScanAccepted"
+          @status-change="scanGate.set('list', $event)"
+        />
+        <p class="text-sm text-muted-foreground">选择报工的工单（共 {{ workOrderTotal }} 张）</p>
+        <p
+          v-if="workOrderScopeNotice"
+          data-testid="work-order-scope-notice"
+          class="rounded-lg border border-dashed border-border bg-card px-4 py-8 text-center text-sm text-muted-foreground"
+        >
+          {{ workOrderScopeNotice }}
+        </p>
+        <RetryableListError
+          v-else-if="workOrdersError || workOrdersHasFailedResponse"
+          :error="workOrdersError"
+          :pending="workOrdersPending"
+          fallback="加载工单失败，请下拉刷新或重试。"
+          test-id="work-orders-error"
+          @retry="() => refreshWorkOrders()"
+        />
+        <div
+          v-else-if="showWorkOrdersEmpty"
+          class="rounded-lg border border-dashed border-border bg-card px-4 py-8 text-center text-sm text-muted-foreground"
+        >
+          暂无可报工的工单
+        </div>
+        <div v-else class="overflow-hidden rounded-lg border border-border">
+          <NvListRow
+            v-for="wo in workOrders"
+            :key="wo.workOrderId"
+            :title="reportWorkOrderTitle(wo)"
+            :subtitle="reportWorkOrderSubtitle(wo)"
+            @select="chooseWorkOrder(wo)"
+          />
+        </div>
+      </template>
+
+      <!-- 步骤 2+：已选工单，选工序 -->
+      <template v-else>
+        <div
+          class="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3"
+        >
+          <div class="min-w-0">
+            <p class="text-sm text-muted-foreground">当前工单</p>
+            <p class="truncate text-base font-medium text-foreground">
+              {{ selectedWorkOrder ? reportWorkOrderTitle(selectedWorkOrder) : '' }}
+            </p>
+          </div>
+          <button
+            type="button"
+            data-testid="change-work-order"
+            class="shrink-0 text-sm text-primary"
+            @click="backToWorkOrders"
+          >
+            改选工单
+          </button>
+        </div>
+
+        <RetryableListError
+          v-if="workOrderDetailError || workOrderDetailHasFailedResponse"
+          :error="workOrderDetailError"
+          :pending="workOrderDetailPending"
+          fallback="加载工单详情失败，请重试。"
+          test-id="work-order-detail-error"
+          @retry="() => refreshWorkOrderDetail()"
+        />
+        <p class="text-sm text-muted-foreground">
+          选择要报工的工序（共 {{ visibleOperationTasks.length }} 道）
+        </p>
+        <div
+          v-if="
+            !workOrderDetailPending &&
+            !workOrderDetailError &&
+            workOrderDetailHasSuccessfulResponse &&
+            visibleOperationTasks.length === 0
+          "
+          class="rounded-lg border border-dashed border-border bg-card px-4 py-8 text-center text-sm text-muted-foreground"
+        >
+          该工单暂无工序
+        </div>
+        <div v-else class="overflow-hidden rounded-lg border border-border">
+          <NvListRow
+            v-for="task in visibleOperationTasks"
+            :key="task.operationTaskId ?? `${task.workOrderId}-${task.operationSequence}`"
+            :title="taskTitle(task)"
+            :subtitle="taskSubtitle(task)"
+            @select="chooseTask(task)"
+          />
+        </div>
+      </template>
+    </div>
+
+    <!-- 步骤 3：录数量 -->
+    <NvBottomSheet
+      :open="sheetOpen"
+      :title="selectedTask ? taskTitle(selectedTask) : ''"
+      @update:open="sheetOpen = $event"
+    >
+      <div v-if="selectedTask" class="space-y-4 pb-2">
+        <p class="text-sm text-muted-foreground">
+          当前状态：{{ taskStatusLabel(selectedTask.status) }}
+        </p>
+        <p
+          v-if="reworkSourceLabel(selectedTask)"
+          data-testid="report-rework-source"
+          class="rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-sm text-foreground"
+        >
+          {{ reworkSourceLabel(selectedTask) }}
+        </p>
+
+        <MesScanPrevalidation
+          :organization-id="workOrderFilters.organizationId"
+          :environment-id="workOrderFilters.environmentId"
+          :work-order-id="pair?.workOrderId"
+          :operation-task-id="pair?.operationTaskId"
+          placeholder="扫描物料批次 / 工序 / 设备 / 工牌"
+          :active="!submitting"
+          :accepted-kinds="['operation-task', 'device', 'personnel', 'material']"
+          @accepted="onScanAccepted"
+          @status-change="scanGate.set('context', $event)"
+        />
+        <p
+          v-if="validatedDeviceAssetId"
+          data-testid="report-validated-device"
+          class="text-sm text-muted-foreground"
+        >
+          已核验当前工序设备
+        </p>
+        <p
+          v-if="validatedPersonnelId"
+          data-testid="report-validated-personnel"
+          class="text-sm text-muted-foreground"
+        >
+          已核验当前工序人员
+        </p>
+
+        <label class="block space-y-1">
+          <span class="text-sm font-medium text-foreground">良品数</span>
+          <input
+            v-model.number="goodQuantity"
+            data-testid="good-quantity"
+            type="number"
+            inputmode="numeric"
+            :readonly="serialRequired"
+            :disabled="submitting"
+            @click="serialRequired && (goodKeyboardOpen = true)"
+            min="0"
+            class="min-h-touch w-full rounded-lg border border-border bg-card px-3 text-base outline-none focus:border-primary"
+          />
+        </label>
+
+        <NvNumberKeyboard
+          v-model="goodKeyboardValue"
+          v-model:show="goodKeyboardOpen"
+          title="良品数"
+          extra-key=""
+        />
+        <ProductionReportSerialFields
+          v-model="labelTemplateId"
+          :required="serialRequired"
+          :pending-count="serialPendingCount"
+          :pending="serialPending"
+          :message="serialMessage"
+          :templates="serialTemplates"
+          :disabled="submitting || scanGuarded"
+          @refresh="serials.refresh"
+        />
+
+        <label class="block space-y-1">
+          <span class="text-sm font-medium text-foreground">次品数</span>
+          <input
+            v-model.number="scrapQuantity"
+            data-testid="scrap-quantity"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            class="min-h-touch w-full rounded-lg border border-border bg-card px-3 text-base outline-none focus:border-primary"
+          />
+        </label>
+
+        <ProductionReportScrapReasonField
+          v-if="scrapQuantity > 0"
+          v-model="scrapReasonCode"
+          :quality-inspection-records-read-permission="qualityInspectionRecordsReadPermission"
+          :scrap-reason-codes-pending="scrapReasonCodesPending"
+          :scrap-reason-codes-error="scrapReasonCodesError"
+          :scrap-reason-codes="scrapReasonCodes"
+          :scrap-reason-validation-message="scrapReasonValidationMessage"
+          :submitting="submitting || scanGuarded"
+          :report-scope-ready="reportScopeReady"
+          :refresh-scrap-reason-codes="refreshScrapReasonCodes"
+        />
+
+        <label class="block space-y-1">
+          <span class="text-sm font-medium text-foreground">返修数</span>
+          <input
+            v-model.number="reworkQuantity"
+            data-testid="rework-quantity"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            class="min-h-touch w-full rounded-lg border border-border bg-card px-3 text-base outline-none focus:border-primary"
+          />
+        </label>
+
+        <label
+          class="flex items-center justify-between gap-3 rounded-lg border border-border bg-card px-3 py-3"
+        >
+          <span class="text-sm font-medium text-foreground">完工本工序</span>
+          <input
+            v-model="completesOperation"
+            data-testid="completes-operation"
+            type="checkbox"
+            :disabled="!canCompleteSelectedTask"
+            class="size-5"
+          />
+        </label>
+
+        <p v-if="!canCompleteSelectedTask" class="text-sm text-muted-foreground">
+          当前工序可报数量；仅执行中的工序可同时完工。
+        </p>
+
+        <ProductionReportMaterialLots
+          v-if="materialsReadPermission"
+          :available-material-lots="availableMaterialLots"
+          :material-lots-pending="materialLotsPending"
+          :material-lots-error="materialLotsError"
+          :submitting="submitting || scanGuarded"
+          :material-validation-message="materialValidationMessage"
+          :refresh-material-lots="refreshMaterialLots"
+          :material-selected="materialSelected"
+          :material-quantity="materialQuantity"
+          :set-material-selected="setMaterialSelected"
+          :set-material-quantity="setMaterialQuantity"
+          :material-remaining="materialRemaining"
+        />
+        <p v-else data-testid="material-permission-message" class="text-sm text-muted-foreground">
+          当前账号没有材料读取权限，耗料批次选择已禁用。
+        </p>
+
+        <p v-if="!quantityValid" class="text-sm text-muted-foreground">
+          良品数、次品数与返修数须为非负数，且合计大于 0。
+        </p>
+        <p v-else-if="scrapReasonValidationMessage" class="text-sm text-destructive" role="alert">
+          {{ scrapReasonValidationMessage }}
+        </p>
+
+        <ProductionReportOccupiedNotice
+          v-if="conflictingPreparation"
+          data-testid="occupied-report"
+          @return="returnToPreparation"
+        />
+        <button
+          type="button"
+          data-testid="submit-report"
+          :disabled="
+            !!conflictingPreparation ||
+            !quantityValid ||
+            !serialValid ||
+            invalidMaterialLots ||
+            invalidScrapReasonCode ||
+            submitting ||
+            scanGuarded ||
+            reportScopePending ||
+            !reportScopeReady
+          "
+          class="min-h-touch w-full rounded-lg bg-primary text-base font-medium text-primary-foreground disabled:opacity-60"
+          @click="submit"
+        >
+          提交报工
+        </button>
+        <button
+          type="button"
+          data-testid="change-operation"
+          class="min-h-touch w-full rounded-lg border border-border bg-card text-base font-medium text-foreground"
+          @click="closeSheet"
+        >
+          改选工序
+        </button>
+      </div>
+    </NvBottomSheet>
+
+    <NvMobileToast
+      :show="lifecycleRecovery.toast.value.show"
+      :message="lifecycleRecovery.toast.value.message"
+      :type="lifecycleRecovery.toast.value.type"
+      @update:show="lifecycleRecovery.setToastOpen"
+    />
+  </NvAppShellMobile>
+</template>

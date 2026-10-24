@@ -1,0 +1,222 @@
+<script setup lang="ts">
+import QualityTaskListView from '@/components/quality/QualityTaskListView.vue'
+import QualityTaskScanFilter from '@/components/quality/QualityTaskScanFilter.vue'
+import TaskListShell from '@/components/task-list/TaskListShell.vue'
+import { useNowClock } from '@/composables/useNowClock'
+import type { BusinessConsoleQualityInspectionTaskItem } from '@nerv-iip/api-client'
+import {
+  INSPECTION_TASK_SOURCE_TYPES,
+  inspectionTaskSourceTypeLabel,
+} from '@nerv-iip/business-core'
+import {
+  NvMobileDropdownMenu,
+  NvMobileDropdownMenuItem,
+  type DropdownOption,
+} from '@nerv-iip/ui-mobile'
+import { computed, shallowRef, watch } from 'vue'
+
+type Task = BusinessConsoleQualityInspectionTaskItem
+
+const props = withDefaults(
+  defineProps<{
+    tasks: Task[]
+    total: number
+    loaded: number
+    hasMore: boolean
+    pending: boolean
+    refreshing?: boolean
+    error: unknown
+    scopeReady?: boolean
+    hasSuccessfulResponse?: boolean
+    hasFailedResponse?: boolean
+    status?: string
+    keyword?: string
+    sourceType?: string
+    sourceService?: string
+    overdue?: boolean
+    loadingMore?: boolean
+    loadMoreError?: unknown
+  }>(),
+  {
+    scopeReady: true,
+    hasSuccessfulResponse: false,
+    hasFailedResponse: false,
+    status: 'pending',
+    keyword: '',
+    sourceType: undefined,
+    sourceService: undefined,
+    overdue: undefined,
+    loadingMore: false,
+    refreshing: false,
+    loadMoreError: undefined,
+  },
+)
+const emit = defineEmits<{
+  select: [task: Task]
+  loadMore: []
+  refresh: []
+  'update:status': [value: string]
+  'update:keyword': [value: string | undefined]
+  'update:sourceType': [value: string | undefined]
+  'update:sourceService': [value: string | undefined]
+  'update:overdue': [value: boolean | undefined]
+}>()
+
+// 受控响应式时钟：任务在页面停留期间跨过 dueAtUtc，超期标记与排序会随时钟自动重算。
+const now = useNowClock()
+
+const scanKeyword = shallowRef(props.keyword)
+watch(
+  () => props.keyword,
+  (value) => (scanKeyword.value = value),
+)
+const sourceTypeFilter = computed<string | null>({
+  get: () => props.sourceType ?? null,
+  set: (value) => emit('update:sourceType', value ?? undefined),
+})
+const sourceServiceModel = computed<string | number>({
+  get: () => props.sourceService ?? 'all',
+  set: (value) => emit('update:sourceService', value === 'all' ? undefined : String(value)),
+})
+const statusModel = computed<string | number>({
+  get: () => props.status,
+  set: (value) => emit('update:status', String(value)),
+})
+const overdueModel = computed<string | number>({
+  get: () => (props.overdue === true ? 'overdue' : 'all'),
+  set: (value) => emit('update:overdue', value === 'overdue' ? true : undefined),
+})
+const statusOptions: DropdownOption[] = [
+  { label: '待领取', value: 'pending' },
+  { label: '进行中', value: 'in-progress' },
+]
+const overdueOptions: DropdownOption[] = [
+  { label: '全部时效', value: 'all' },
+  { label: '仅看超期', value: 'overdue' },
+]
+const sourceServiceOptions: DropdownOption[] = [
+  { label: '全部来源服务', value: 'all' },
+  { label: 'WMS', value: 'wms' },
+  { label: 'ERP', value: 'erp' },
+  { label: 'MES', value: 'mes' },
+]
+const listError = computed(
+  () =>
+    props.error ?? (props.hasFailedResponse ? new Error('待检任务加载失败，请刷新重试。') : null),
+)
+
+function isOverdue(task: Task) {
+  if (!task.dueAtUtc) return false
+  const due = new Date(task.dueAtUtc).getTime()
+  return Number.isFinite(due) && due < now.value
+}
+
+// 超期置顶（按到期升序），其余按到期升序、无到期排最后。
+const displayTasks = computed(() =>
+  [...props.tasks].sort((a, b) => {
+    const overdueDiff = Number(isOverdue(b)) - Number(isOverdue(a))
+    if (overdueDiff !== 0) return overdueDiff
+    const da = a.dueAtUtc ? new Date(a.dueAtUtc).getTime() : Number.POSITIVE_INFINITY
+    const db = b.dueAtUtc ? new Date(b.dueAtUtc).getTime() : Number.POSITIVE_INFINITY
+    return da - db
+  }),
+)
+
+const sourceChips = computed(() =>
+  INSPECTION_TASK_SOURCE_TYPES.map((type) => ({
+    type,
+    label: inspectionTaskSourceTypeLabel(type),
+  })),
+)
+
+// 扫码内容作为服务端 keyword 条件；服务端先筛选再计算 total/分页，避免客户端全量扫描造假。
+function onScan(value: string) {
+  scanKeyword.value = value
+  emit('update:keyword', value.trim() || undefined)
+}
+
+function clearKeyword() {
+  scanKeyword.value = ''
+  emit('update:keyword', undefined)
+}
+
+function restoreState(state: { filters: Record<string, unknown> }) {
+  const { status, keyword, sourceType, sourceService, overdue } = state.filters
+  if (typeof status === 'string') emit('update:status', status)
+  emit('update:keyword', typeof keyword === 'string' && keyword ? keyword : undefined)
+  emit('update:sourceType', typeof sourceType === 'string' && sourceType ? sourceType : undefined)
+  emit(
+    'update:sourceService',
+    typeof sourceService === 'string' && sourceService ? sourceService : undefined,
+  )
+  emit('update:overdue', overdue === true ? true : undefined)
+}
+</script>
+
+<template>
+  <TaskListShell
+    state-key="quality-inspection-tasks"
+    :loaded="props.loaded"
+    :total="props.total"
+    :has-more="props.hasMore"
+    :pending="props.pending"
+    :refreshing="props.refreshing"
+    :loading-more="props.loadingMore"
+    :error="listError"
+    :load-more-error="props.loadMoreError"
+    error-test-id="tasks-error"
+    :filter-state="{ status, keyword, sourceType, sourceService, overdue }"
+    empty-description="当前账号没有符合筛选条件的质检任务。"
+    @refresh="emit('refresh')"
+    @retry="emit('refresh')"
+    @load-more="emit('loadMore')"
+    @retry-load-more="emit('loadMore')"
+    @restore="restoreState"
+  >
+    <template #filters>
+      <div class="space-y-3 px-4 py-3">
+        <QualityTaskScanFilter
+          :scan-keyword="scanKeyword"
+          :source-type-filter="sourceTypeFilter"
+          :chips="sourceChips"
+          @scan="onScan"
+          @clear-scan="clearKeyword"
+          @pick-source-type="(type) => (sourceTypeFilter = type)"
+        />
+        <NvMobileDropdownMenu>
+          <NvMobileDropdownMenuItem
+            v-model="statusModel"
+            title="任务状态"
+            :options="statusOptions"
+          />
+          <NvMobileDropdownMenuItem
+            v-model="overdueModel"
+            title="时效范围"
+            :options="overdueOptions"
+          />
+          <NvMobileDropdownMenuItem
+            v-model="sourceServiceModel"
+            title="来源服务"
+            :options="sourceServiceOptions"
+          />
+        </NvMobileDropdownMenu>
+      </div>
+    </template>
+
+    <div class="space-y-4 p-4">
+      <QualityTaskListView
+        :display-tasks="displayTasks"
+        :raw-count="tasks.length"
+        :total="total"
+        :loaded="loaded"
+        :has-more="hasMore"
+        :pending="pending"
+        :error="undefined"
+        :is-overdue="isOverdue"
+        @select="(task) => emit('select', task)"
+        @load-more="emit('loadMore')"
+        @refresh="emit('refresh')"
+      />
+    </div>
+  </TaskListShell>
+</template>
