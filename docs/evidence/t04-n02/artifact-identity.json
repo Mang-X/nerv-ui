@@ -1,0 +1,119 @@
+{
+  "browserInstrumentationResponses": [
+    {
+      "url": "chrome-extension://meleenglfggcmcajknpeeeiobnpfmahc/fetch-interceptor.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 15938,
+      "sha256": "cdda0df4479b7b7afd4c2f965d01eda0d947e9c973a6bf988c8ca883e865b3f3"
+    }
+  ],
+  "allResponsesMatchLocalBuild": true,
+  "assets": [
+    {
+      "url": "http://127.0.0.1:4174/",
+      "status": 200,
+      "type": "text/html",
+      "bytes": 427,
+      "sha256": "281d0418e0597a2139de09426b80f71f5b89924f5ed2f33443727a4c0000f526",
+      "path": "index.html",
+      "localSha256": "281d0418e0597a2139de09426b80f71f5b89924f5ed2f33443727a4c0000f526",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/index-DXSqS3NZ.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 453997,
+      "sha256": "35cb4008721faee7ab49d6ed46862f2dfca6949e7b35716c7cc99c8b6c65c945",
+      "path": "assets/index-DXSqS3NZ.js",
+      "localSha256": "35cb4008721faee7ab49d6ed46862f2dfca6949e7b35716c7cc99c8b6c65c945",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/index-Bp6Bq-fD.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 221531,
+      "sha256": "6e3b9322f55869f0708cb40dcbc07e1f57498448e46c4a3f3b30704167910193",
+      "path": "assets/index-Bp6Bq-fD.css",
+      "localSha256": "6e3b9322f55869f0708cb40dcbc07e1f57498448e46c4a3f3b30704167910193",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "type": "font/woff2",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "path": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "localSha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "equal": true
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "landscape-dark-overlay.png",
+      "width": 844,
+      "height": 390,
+      "bytes": 17873,
+      "sha256": "3128f46e1e729b4d9a4a126361f1fcefd2442b1254ac5ba78d653b56769a67d7"
+    },
+    {
+      "path": "landscape-light-overlay.png",
+      "width": 844,
+      "height": 390,
+      "bytes": 19115,
+      "sha256": "4602e9dd0c6a67466a6bd82fec4c487c78468335268cafb98b3b10348e9bbde1"
+    },
+    {
+      "path": "portrait-dark-overlay.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 32149,
+      "sha256": "db20d15692f399b68bda0fd46d7e5145cbb517fb62f97d5b36b6ac5a64b78cb7"
+    },
+    {
+      "path": "portrait-dialog.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 43431,
+      "sha256": "80251436bec7923cf42c4f9c5f2239556221e8e93a9b62b6631bd0df2bb13890"
+    },
+    {
+      "path": "portrait-form.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 34946,
+      "sha256": "d947fcf784d5481c8b5f66234de46bdbe457edd0b0af6af26ad30881261af402"
+    },
+    {
+      "path": "portrait-keyboard.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 43056,
+      "sha256": "e641fc4f867e2da306a5b5214a7daf7853d86f6ff7e170fecefc64e22b7b37eb"
+    },
+    {
+      "path": "portrait-light-overlay.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 35687,
+      "sha256": "da0eb967f0f028b9fb7b7ba819db79822643af043cabc88c0043302fa6b347f4"
+    },
+    {
+      "path": "portrait-light.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 48380,
+      "sha256": "c0dd0c29a6c0ae90a17cfbb6652b727218352e017cc0f539dd024ead6722d02e"
+    },
+    {
+      "path": "portrait-sheet-keyboard.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 36050,
+      "sha256": "e3887a5c7c2386bdfeec69f687fd1684a98844a8d58c21ebf7639c59b848f61f"
+    }
+  ]
+}

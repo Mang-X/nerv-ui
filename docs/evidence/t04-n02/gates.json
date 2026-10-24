@@ -1,0 +1,55 @@
+[
+  {
+    "name": "build",
+    "command": [
+      "pnpm",
+      "-C",
+      "frontend",
+      "build"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "format",
+    "command": [
+      "pnpm",
+      "-C",
+      "frontend",
+      "exec",
+      "vp",
+      "fmt",
+      "--check",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/App.test.ts",
+      "apps/playground/src/MobileDemo.vue",
+      "apps/playground/src/MobileInputDemo.vue",
+      "apps/playground/src/MobileInputDemo.test.ts",
+      "apps/playground/src/mobile-input/MobileInputFields.vue",
+      "apps/playground/src/mobile-input/MobileCaptureInput.vue",
+      "packages/ui-mobile/src/components/slider/MobileSlider.vue",
+      "packages/ui-mobile/src/components/slider/MobileSlider.test.ts"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "lint",
+    "command": [
+      "pnpm",
+      "-C",
+      "frontend",
+      "exec",
+      "vp",
+      "lint",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/App.test.ts",
+      "apps/playground/src/MobileDemo.vue",
+      "apps/playground/src/MobileInputDemo.vue",
+      "apps/playground/src/MobileInputDemo.test.ts",
+      "apps/playground/src/mobile-input/MobileInputFields.vue",
+      "apps/playground/src/mobile-input/MobileCaptureInput.vue",
+      "packages/ui-mobile/src/components/slider/MobileSlider.vue",
+      "packages/ui-mobile/src/components/slider/MobileSlider.test.ts"
+    ],
+    "exitCode": 0
+  }
+]

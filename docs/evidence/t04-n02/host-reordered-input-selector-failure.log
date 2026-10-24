@@ -1,0 +1,41 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground
+
+ ❯ src/MobileInputDemo.test.ts (6 tests | 1 failed) 702ms
+   × reflects native text and search events in the host, including clear and cancel 54ms
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 31 passed (32)
+   Start at  18:52:33
+   Duration  5.39s (transform 9.66s, setup 3.24s, import 13.24s, tests 1.40s, environment 2.57s)
+
+/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 test: `vp test run src`
+Exit status 1
+$ vp test run src
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileInputDemo.test.ts > reflects native text and search events in the host, including clear and cancel
+AssertionError: expected '' to contain '记'
+
+- Expected
++ Received
+
+- 记
+
+ ❯ src/MobileInputDemo.test.ts:69:60
+     67|   const name = wrapper.get<HTMLInputElement>('#note-title')
+     68|   expect(name.attributes()).toMatchObject({ maxlength: '24', autocompl…
+     69|   expect(wrapper.get('[data-slot="mobile-input"]').text()).toContain('…
+       |                                                            ^
+     70|   expect(wrapper.get('[data-slot="mobile-input"]').text()).toContain('…
+     71|   await name.setValue('海边来信')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

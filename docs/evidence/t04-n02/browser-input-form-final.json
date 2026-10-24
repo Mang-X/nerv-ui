@@ -1,0 +1,342 @@
+{
+  "viewport": [
+    390,
+    844
+  ],
+  "beforeKeyUp": {
+    "focus": "pocket",
+    "selected": "pocket"
+  },
+  "scan": "2 次 · WEDGE",
+  "title": "海边来信 · 4 字",
+  "search": "湖畔 · 书屋 · 花园",
+  "preferences": "随身 · 提醒开 · 锁定开",
+  "action": "已保存第 1 次 · 5 份 · 3.5 星 · 90%",
+  "events": [
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "键入编码后按回车"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "键入编码后按回车"
+    },
+    {
+      "type": "input",
+      "trusted": true,
+      "target": "键入编码后按回车"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "键入编码后按回车",
+      "key": "Enter"
+    },
+    {
+      "type": "keydown",
+      "trusted": false,
+      "target": "BODY",
+      "key": "W"
+    },
+    {
+      "type": "keydown",
+      "trusted": false,
+      "target": "BODY",
+      "key": "E"
+    },
+    {
+      "type": "keydown",
+      "trusted": false,
+      "target": "BODY",
+      "key": "D"
+    },
+    {
+      "type": "keydown",
+      "trusted": false,
+      "target": "BODY",
+      "key": "G"
+    },
+    {
+      "type": "keydown",
+      "trusted": false,
+      "target": "BODY",
+      "key": "E"
+    },
+    {
+      "type": "keydown",
+      "trusted": false,
+      "target": "BODY",
+      "key": "Enter"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "键入编码后按回车"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "note-title"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "note-title"
+    },
+    {
+      "type": "input",
+      "trusted": true,
+      "target": "note-title"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "寻找湖畔、书屋或花园"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "寻找湖畔、书屋或花园"
+    },
+    {
+      "type": "input",
+      "trusted": true,
+      "target": "寻找湖畔、书屋或花园"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "寻找湖畔、书屋或花园",
+      "key": "Enter"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "清除"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "path"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "寻找湖畔、书屋或花园"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "寻找湖畔、书屋或花园"
+    },
+    {
+      "type": "input",
+      "trusted": true,
+      "target": "寻找湖畔、书屋或花园"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "寻找湖畔、书屋或花园",
+      "key": "Enter"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "增加"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "path"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "INPUT"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "INPUT"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "INPUT",
+      "key": "a"
+    },
+    {
+      "type": "input",
+      "trusted": true,
+      "target": "INPUT"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "INPUT",
+      "key": "Tab"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "1 星"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "4 星"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "svg"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "DIV"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "DIV"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "DIV"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "DIV",
+      "key": "ArrowRight"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "调整选项顺序"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "调整选项顺序"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "BUTTON",
+      "key": "ArrowDown"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "BUTTON",
+      "key": "ArrowDown"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "BUTTON"
+    },
+    {
+      "type": "click",
+      "trusted": false,
+      "target": "BUTTON"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "note-reminder"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "note-reminder"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "锁定评分与进度"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "SPAN"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "DIV"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "SPAN"
+    },
+    {
+      "type": "keydown",
+      "trusted": true,
+      "target": "DIV",
+      "key": "ArrowRight"
+    },
+    {
+      "type": "focusin",
+      "trusted": true,
+      "target": "保存记录"
+    },
+    {
+      "type": "click",
+      "trusted": true,
+      "target": "保存记录"
+    }
+  ]
+}

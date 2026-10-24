@@ -1,0 +1,143 @@
+{
+  "viewport": [
+    390,
+    844
+  ],
+  "sheetZ": "50",
+  "keyboardZ": "70",
+  "keyboardKeys": [
+    {
+      "text": "1",
+      "rect": {
+        "x": 6,
+        "y": 586,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "2",
+      "rect": {
+        "x": 102,
+        "y": 586,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "3",
+      "rect": {
+        "x": 198,
+        "y": 586,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "4",
+      "rect": {
+        "x": 6,
+        "y": 648,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "5",
+      "rect": {
+        "x": 102,
+        "y": 648,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "6",
+      "rect": {
+        "x": 198,
+        "y": 648,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "7",
+      "rect": {
+        "x": 6,
+        "y": 710,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "8",
+      "rect": {
+        "x": 102,
+        "y": 710,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "9",
+      "rect": {
+        "x": 198,
+        "y": 710,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "删除",
+      "rect": {
+        "x": 294,
+        "y": 586,
+        "width": 90,
+        "height": 118
+      },
+      "hit": true
+    },
+    {
+      "text": "收下数值",
+      "rect": {
+        "x": 294,
+        "y": 710,
+        "width": 90,
+        "height": 118
+      },
+      "hit": true
+    },
+    {
+      "text": "X",
+      "rect": {
+        "x": 6,
+        "y": 772,
+        "width": 90,
+        "height": 56
+      },
+      "hit": true
+    },
+    {
+      "text": "0",
+      "rect": {
+        "x": 102,
+        "y": 772,
+        "width": 186,
+        "height": 56
+      },
+      "hit": true
+    }
+  ],
+  "focus": "sheet-number",
+  "sheetNote": "留在抽屉里的字",
+  "number": "0X27"
+}

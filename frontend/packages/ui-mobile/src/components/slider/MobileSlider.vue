@@ -57,7 +57,7 @@ function onDown(e: PointerEvent) {
   set(e.clientX)
 }
 function onMove(e: PointerEvent) {
-  if (!dragging.value || e.buttons === 0) return
+  if (props.disabled || !dragging.value || e.buttons === 0) return
   e.preventDefault()
   set(e.clientX)
 }
