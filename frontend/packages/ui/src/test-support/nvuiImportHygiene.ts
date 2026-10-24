@@ -79,7 +79,7 @@ export function nvuiImportViolation(spec: string, rel: string): string | null {
       ALLOWED_UI_SUBPATHS.has(sub) || (isTestSetupFile(rel) && TEST_ONLY_UI_SUBPATHS.has(sub))
     if (!allowed) return `deep import "${spec}" — use the bare @nerv-iip/ui barrel`
   }
-  if (/^@nerv-iip\/ui-mobile\/.+$/.test(spec)) {
+  if (/^@nerv-iip\/ui-mobile\/.+$/.test(spec) && spec !== '@nerv-iip/ui-mobile/styles/mobile.css') {
     return `deep import "${spec}" — use the bare @nerv-iip/ui-mobile barrel`
   }
   if (/^reka-ui(\/|$)/.test(spec)) {

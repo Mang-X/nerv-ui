@@ -35,3 +35,21 @@ it('opens the standalone touch demo from its direct entry and returns to desktop
   expect(wrapper.text()).toContain('让想法有序向前')
   expect(wrapper.get('a[href="#touch"]').text()).toBe('触屏演示')
 })
+
+it('opens the standalone mobile shell directly and preserves desktop and touch entries', async () => {
+  window.location.hash = '#mobile'
+  wrapper = mount(App, { attachTo: document.body })
+  expect(wrapper.get('h1').text()).toBe('周末随行')
+  expect(wrapper.get('[data-shell="header"]').text()).toContain('随行手记')
+  expect(wrapper.get('[data-shell="footer"]').text()).toContain('发现')
+  expect(wrapper.get('a[href="#desktop"]').text()).toBe('桌面演示')
+  expect(wrapper.get('a[href="#touch"]').text()).toBe('触屏演示')
+  window.location.hash = '#desktop'
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+  await wrapper.vm.$nextTick()
+  expect(wrapper.get('a[href="#mobile"]').text()).toBe('移动演示')
+  window.location.hash = '#touch'
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+  await wrapper.vm.$nextTick()
+  expect(wrapper.get('h1').text()).toBe('共享阅读角')
+})

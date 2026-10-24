@@ -29,7 +29,7 @@ function onFabSelect(action) {
       <div class="space-y-2 p-3">
         <div v-for="n in 4" :key="n" class="h-12 rounded-lg bg-card" />
       </div>
-      <NvFab :actions="fabActions" @select="onFabSelect" />
+      <NvFab text="更多操作" :actions="fabActions" @select="onFabSelect" />
     </div>
   </section>
 </template>
@@ -40,7 +40,7 @@ function onFabSelect(action) {
 
 ## 速拨菜单
 
-`actions` 提供子动作，点击主按钮展开；`select` 回传所选动作与下标。
+`actions` 提供子动作，点击主按钮展开；`select` 回传所选动作与下标。速拨主按钮用 `text` 提供可访问名称；此模式保持图标外观。
 
 ```vue
 <script setup>
@@ -60,20 +60,20 @@ function onFabSelect(action) {
 <template>
   <!-- 放入相对定位容器，例如 NvAppShellMobile -->
   <div class="relative h-64 overflow-hidden">
-    <NvFab :actions="fabActions" @select="onFabSelect" />
+    <NvFab text="更多操作" :actions="fabActions" @select="onFabSelect" />
   </div>
 </template>
 ```
 
 ## 属性
 
-| 属性       | 说明                         | 类型                                           | 默认           |
-| ---------- | ---------------------------- | ---------------------------------------------- | -------------- |
-| `icon`     | 主按钮图标（单动作模式）     | `Component`                                    | `PlusIcon`     |
-| `text`     | 扩展态药丸文案（单动作模式） | `string`                                       | —              |
-| `actions`  | 速拨子动作；提供时点击展开   | `FabAction[]`                                  | —              |
-| `position` | 锚定位置                     | `bottom-right \| bottom-left \| bottom-center` | `bottom-right` |
-| `tone`     | 主按钮色调                   | `brand \| default`                             | `brand`        |
+| 属性       | 说明                                         | 类型                                           | 默认           |
+| ---------- | -------------------------------------------- | ---------------------------------------------- | -------------- |
+| `icon`     | 主按钮图标（单动作模式）                     | `Component`                                    | `PlusIcon`     |
+| `text`     | 主按钮可访问名称；单动作模式也显示为药丸文案 | `string`                                       | —              |
+| `actions`  | 速拨子动作；提供时点击展开                   | `FabAction[]`                                  | —              |
+| `position` | 锚定位置                                     | `bottom-right \| bottom-left \| bottom-center` | `bottom-right` |
+| `tone`     | 主按钮色调                                   | `brand \| default`                             | `brand`        |
 
 `FabAction`：`{ key?: string; icon?: Component; text?: string }`
 

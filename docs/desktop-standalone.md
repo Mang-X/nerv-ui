@@ -50,13 +50,12 @@ pnpm -C frontend --filter @nerv-iip/playground preview --port 4173 --strictPort
 
 ## 分阶段 workspace 与恢复责任
 
-活动成员明确列为 `packages/ui`、`apps/playground`，根 TypeScript 配置只包含这两者，已去掉旧 app/API 路径 alias 和生成任务。暂不参与安装/聚合命令的目录及源码全部保留：
+T02 建立的活动成员为 `packages/ui`、`apps/playground`。T04/N01 / #45 增加 `packages/ui-mobile`，根 TypeScript 配置同步包含移动源码；移动接入见 [独立移动接入](mobile-standalone.md)。旧 app/API 路径 alias 和生成任务仍已移除。暂不参与安装/聚合命令的目录及源码全部保留：
 
 | 成员                  | 恢复责任                                     |
 | --------------------- | -------------------------------------------- |
 | `packages/scheduling` | #8：解除 api-client/business-core 耦合后恢复 |
 | `apps/design-system`  | #10：全部文档站解耦后恢复                    |
-| `packages/ui-mobile`  | #5：移动独立运行时恢复                       |
 | `packages/app-shell`  | #9：应用壳与散落 UI 责任细拆后恢复           |
 
 lockfile 按当前活动集合保留来源解析。初版 `621ca3d8` 虽然新增 resolved package keys 为 `[]`，却把保留的 `wrap-ansi@7.0.0` 两条边改到来源中已存在的较新版本；这不是纯裁剪，独立审核 F1 已拒绝集成。keys-only 比较不能证明无升级，原失败记录保留。

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import TouchDemo from './TouchDemo.vue'
+import MobileDemo from './MobileDemo.vue'
 import {
   NvApp,
   NvAppHeader,
@@ -30,9 +31,9 @@ import {
   type NvDataTableColumn,
 } from '@nerv-iip/ui'
 
-const touch = shallowRef(window.location.hash.startsWith('#touch'))
+const surface = shallowRef(window.location.hash)
 function syncSurface() {
-  touch.value = window.location.hash.startsWith('#touch')
+  surface.value = window.location.hash
 }
 onMounted(() => window.addEventListener('hashchange', syncSurface))
 onUnmounted(() => window.removeEventListener('hashchange', syncSurface))
@@ -73,9 +74,15 @@ function addProject() {
 </script>
 
 <template>
-  <TouchDemo v-if="touch" />
+  <MobileDemo v-if="surface.startsWith('#mobile')" />
+  <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a
+        href="#mobile"
+        class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
+        >移动演示</a
+      >
       <a
         href="#touch"
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"

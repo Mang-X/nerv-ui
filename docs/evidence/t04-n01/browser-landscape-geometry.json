@@ -1,0 +1,48 @@
+{
+  "viewport": {
+    "width": 844,
+    "height": 390
+  },
+  "dark": true,
+  "header": {
+    "x": 0,
+    "y": 0,
+    "width": 844,
+    "height": 61,
+    "bottom": 61,
+    "right": 844
+  },
+  "main": {
+    "x": 0,
+    "y": 61,
+    "width": 844,
+    "height": 272,
+    "bottom": 333,
+    "right": 844,
+    "scrollTop": 628.5,
+    "scrollHeight": 1355,
+    "clientHeight": 272
+  },
+  "footer": {
+    "x": 0,
+    "y": 333,
+    "width": 844,
+    "height": 57,
+    "bottom": 390,
+    "right": 844
+  },
+  "fab": {
+    "x": 711,
+    "y": 262,
+    "width": 117,
+    "height": 56,
+    "bottom": 318,
+    "right": 828,
+    "hit": true
+  },
+  "overflow": {
+    "root": 844,
+    "body": 844,
+    "main": 844
+  }
+}

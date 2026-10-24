@@ -1,0 +1,37 @@
+$ vp test run src App.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ❯ src/App.test.ts (3 tests | 1 failed) 362ms
+   × opens the standalone mobile shell directly and preserves desktop and touch entries 61ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.test.ts > opens the standalone mobile shell directly and preserves desktop and touch entries
+AssertionError: expected '让想法有序向前' to be '周末随行' // Object.is equality
+
+Expected: "周末随行"
+Received: "让想法有序向前"
+
+ ❯ src/App.test.ts:42:36
+     40|   window.location.hash = '#mobile'
+     41|   wrapper = mount(App, { attachTo: document.body })
+     42|   expect(wrapper.get('h1').text()).toBe('周末随行')
+       |                                    ^
+     43|   expect(wrapper.get('[data-shell="header"]').text()).toContain('随行手记')
+     44|   expect(wrapper.get('[data-shell="footer"]').text()).toContain('发现')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 17 passed (18)
+   Start at  18:05:33
+   Duration  5.54s (transform 5.46s, setup 1.99s, import 7.53s, tests 688ms, environment 1.94s)
+
+/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 test: `vp test run src App.test.ts`
+Exit status 1

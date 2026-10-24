@@ -1,0 +1,26 @@
+{
+  "base": "49a4db7c8348fc7058db611a4defd5153d91eaa5",
+  "trackedFiles": 71,
+  "unchanged": 68,
+  "changed": [
+    "frontend/packages/ui-mobile/package.json",
+    "frontend/packages/ui-mobile/src/components/fab/Fab.vue",
+    "frontend/packages/ui-mobile/src/styles/mobile.css"
+  ],
+  "originalBehaviorSuites": [
+    "frontend/packages/ui-mobile/src/components/app-shell-mobile/AppShellMobile.test.ts",
+    "frontend/packages/ui-mobile/src/components/bottom-sheet/BottomSheet.test.ts",
+    "frontend/packages/ui-mobile/src/components/cell/Cell.test.ts",
+    "frontend/packages/ui-mobile/src/components/error-retry/ErrorRetry.test.ts",
+    "frontend/packages/ui-mobile/src/components/infinite-list/InfiniteList.test.ts",
+    "frontend/packages/ui-mobile/src/components/list-row/ListRow.test.ts",
+    "frontend/packages/ui-mobile/src/components/number-keyboard/NumberKeyboard.test.ts",
+    "frontend/packages/ui-mobile/src/components/pull-refresh/PullRefresh.test.ts",
+    "frontend/packages/ui-mobile/src/components/result/Result.test.ts",
+    "frontend/packages/ui-mobile/src/components/scan-bar/ScanBar.test.ts",
+    "frontend/packages/ui-mobile/src/components/search-bar/SearchBar.test.ts"
+  ],
+  "allOriginalBehaviorSuitesUnchanged": true,
+  "barrelUnchanged": true,
+  "newBehaviorSuite": "frontend/packages/ui-mobile/src/components/fab/Fab.test.ts"
+}

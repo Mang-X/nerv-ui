@@ -4,6 +4,8 @@
     "apps/playground/src/**/*.ts",
     "apps/playground/src/**/*.vue",
     "packages/ui/src/**/*.ts",
-    "packages/ui/src/**/*.vue"
+    "packages/ui/src/**/*.vue",
+    "packages/ui-mobile/src/**/*.ts",
+    "packages/ui-mobile/src/**/*.vue"
   ]
 }

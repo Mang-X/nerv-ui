@@ -81,6 +81,21 @@ describe('nvuiImportViolation', () => {
     expect(nvuiImportViolation('@nerv-iip/ui/unknown.css', PAGE)).toMatch(/deep import/)
   })
 
+  it('allows only the public mobile stylesheet and rejects lookalikes and private mobile paths', () => {
+    expect(nvuiImportViolation('@nerv-iip/ui-mobile/styles/mobile.css', PAGE)).toBeNull()
+    for (const entry of [
+      'styles/other.css',
+      'styles/mobile.css/extra',
+      'src/styles/mobile.css',
+      'src/index.ts',
+      'styles.css',
+    ]) {
+      expect(nvuiImportViolation('@nerv-iip/ui-mobile/' + entry, PAGE), entry).toMatch(
+        /deep import/,
+      )
+    }
+  })
+
   it('allows test-support only from src/test/setup.ts', () => {
     expect(nvuiImportViolation('@nerv-iip/ui/test-support', SETUP)).toBeNull()
     // 同目录下的普通测试辅助文件、以及页面/组件，一律判红——放行面钉死到 setup 文件本身。

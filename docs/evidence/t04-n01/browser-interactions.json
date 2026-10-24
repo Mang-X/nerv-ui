@@ -1,0 +1,38 @@
+[
+  {
+    "name": "grid identity",
+    "value": true
+  },
+  {
+    "name": "cell selection",
+    "value": true
+  },
+  {
+    "name": "step terminal disabled",
+    "value": true
+  },
+  {
+    "name": "step reset",
+    "value": true
+  },
+  {
+    "name": "keyed list uses new category",
+    "value": true
+  },
+  {
+    "name": "controlled navigation and selected record",
+    "value": true
+  },
+  {
+    "name": "public back preserves category",
+    "value": true
+  },
+  {
+    "name": "single FAB click",
+    "value": true
+  },
+  {
+    "name": "speed dial expanded",
+    "value": true
+  }
+]
