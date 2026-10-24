@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
+import TouchDemo from './TouchDemo.vue'
 import {
   NvApp,
   NvAppHeader,
@@ -28,6 +29,13 @@ import {
   useTheme,
   type NvDataTableColumn,
 } from '@nerv-iip/ui'
+
+const touch = shallowRef(window.location.hash.startsWith('#touch'))
+function syncSurface() {
+  touch.value = window.location.hash.startsWith('#touch')
+}
+onMounted(() => window.addEventListener('hashchange', syncSurface))
+onUnmounted(() => window.removeEventListener('hashchange', syncSurface))
 
 interface Project {
   id: string
@@ -65,8 +73,14 @@ function addProject() {
 </script>
 
 <template>
-  <NvApp>
+  <TouchDemo v-if="touch" />
+  <NvApp v-else>
     <NvAppHeader>
+      <a
+        href="#touch"
+        class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
+        >触屏演示</a
+      >
       <span class="font-semibold tracking-tight">NvUI</span>
       <span class="text-sm text-muted-foreground">工作空间</span>
       <template #trailing>

@@ -1,0 +1,1962 @@
+[
+  {
+    "orientation": "portrait",
+    "dark": false,
+    "blue": false,
+    "url": "http://127.0.0.1:4176/#touch",
+    "viewport": [
+      768,
+      1024
+    ],
+    "dataIdentity": {
+      "corner": "R-01",
+      "books": "2 本",
+      "duration": "10 分钟"
+    },
+    "mode": "light",
+    "accent": "neutral",
+    "background": "oklch(0.985 0 0)",
+    "primary": "oklch(20.5% 0 0)",
+    "horizontalOverflow": false,
+    "targets": [
+      {
+        "name": "桌面演示",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "蓝色强调色",
+        "width": 111,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "深色模式",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开放中稍作休息暂时关闭新活动未开放",
+        "width": 118,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "状态点脉冲",
+        "width": 144,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "阅读",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "聆听",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "休息",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "重置阅读设置",
+        "width": 140,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开始本地体验",
+        "width": 705,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "结束本地体验",
+        "width": 140,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "暂不可用",
+        "width": 104,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "默认",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "品牌",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "成功",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "提醒",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "危险",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "描边",
+        "width": 76,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "轻量",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "md · 44px",
+        "width": 104.7734375,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "lg · 56px",
+        "width": 106.140625,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "xl · 72px",
+        "width": 120.4296875,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "查看指标",
+        "width": 108,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "回到操作示例",
+        "width": 136,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      }
+    ],
+    "tileColors": [
+      {
+        "label": "阅读计划",
+        "bg": "oklch(1 0 0)",
+        "value": "oklch(0.145 0 0)"
+      },
+      {
+        "label": "本周精选",
+        "bg": "oklab(0.54 -0.0387075 -0.155247 / 0.08)",
+        "value": "oklch(0.54 0.16 256)"
+      },
+      {
+        "label": "可用座位",
+        "bg": "oklab(0.6 -0.112763 0.0410424 / 0.08)",
+        "value": "oklch(0.6 0.12 160)"
+      },
+      {
+        "label": "即将开始",
+        "bg": "oklab(0.72 0.0486988 0.120534 / 0.1)",
+        "value": "oklch(0.72 0.13 68)"
+      },
+      {
+        "label": "待确认",
+        "bg": "oklab(0.55 0.181262 0.0845237 / 0.1)",
+        "value": "oklch(0.55 0.2 25)"
+      }
+    ]
+  },
+  {
+    "orientation": "portrait",
+    "dark": false,
+    "blue": true,
+    "url": "http://127.0.0.1:4176/#touch",
+    "viewport": [
+      768,
+      1024
+    ],
+    "dataIdentity": {
+      "corner": "R-01",
+      "books": "2 本",
+      "duration": "10 分钟"
+    },
+    "mode": "light",
+    "accent": "blue",
+    "background": "oklch(0.985 0 0)",
+    "primary": "oklch(0.55 0.18 255)",
+    "horizontalOverflow": false,
+    "targets": [
+      {
+        "name": "桌面演示",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "蓝色强调色",
+        "width": 111,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "深色模式",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开放中稍作休息暂时关闭新活动未开放",
+        "width": 118,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "状态点脉冲",
+        "width": 144,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "阅读",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "聆听",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "休息",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "重置阅读设置",
+        "width": 140,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开始本地体验",
+        "width": 705,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "结束本地体验",
+        "width": 140,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "暂不可用",
+        "width": 104,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "默认",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "品牌",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "成功",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "提醒",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "危险",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "描边",
+        "width": 76,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "轻量",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "md · 44px",
+        "width": 104.7734375,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "lg · 56px",
+        "width": 106.140625,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "xl · 72px",
+        "width": 120.4296875,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "查看指标",
+        "width": 108,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "回到操作示例",
+        "width": 136,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      }
+    ],
+    "tileColors": [
+      {
+        "label": "阅读计划",
+        "bg": "oklch(1 0 0)",
+        "value": "oklch(0.145 0 0)"
+      },
+      {
+        "label": "本周精选",
+        "bg": "oklab(0.55 -0.0465874 -0.173867 / 0.08)",
+        "value": "oklch(0.55 0.18 255)"
+      },
+      {
+        "label": "可用座位",
+        "bg": "oklab(0.6 -0.112763 0.0410424 / 0.08)",
+        "value": "oklch(0.6 0.12 160)"
+      },
+      {
+        "label": "即将开始",
+        "bg": "oklab(0.72 0.0486988 0.120534 / 0.1)",
+        "value": "oklch(0.72 0.13 68)"
+      },
+      {
+        "label": "待确认",
+        "bg": "oklab(0.55 0.181262 0.0845237 / 0.1)",
+        "value": "oklch(0.55 0.2 25)"
+      }
+    ]
+  },
+  {
+    "orientation": "portrait",
+    "dark": true,
+    "blue": false,
+    "url": "http://127.0.0.1:4176/#touch",
+    "viewport": [
+      768,
+      1024
+    ],
+    "dataIdentity": {
+      "corner": "R-01",
+      "books": "2 本",
+      "duration": "10 分钟"
+    },
+    "mode": "dark",
+    "accent": "neutral",
+    "background": "oklch(0.145 0 0)",
+    "primary": "oklch(92.2% 0 0)",
+    "horizontalOverflow": false,
+    "targets": [
+      {
+        "name": "桌面演示",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "蓝色强调色",
+        "width": 111,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "深色模式",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开放中稍作休息暂时关闭新活动未开放",
+        "width": 118,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "状态点脉冲",
+        "width": 144,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "阅读",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "聆听",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "休息",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "重置阅读设置",
+        "width": 140,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开始本地体验",
+        "width": 705,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "结束本地体验",
+        "width": 140,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "暂不可用",
+        "width": 104,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "默认",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "品牌",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "成功",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "提醒",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "危险",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "描边",
+        "width": 76,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "轻量",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "md · 44px",
+        "width": 104.7734375,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "lg · 56px",
+        "width": 106.140625,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "xl · 72px",
+        "width": 120.4296875,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "查看指标",
+        "width": 108,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "回到操作示例",
+        "width": 136,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      }
+    ],
+    "tileColors": [
+      {
+        "label": "阅读计划",
+        "bg": "oklch(0.205 0 0)",
+        "value": "oklch(0.985 0 0)"
+      },
+      {
+        "label": "本周精选",
+        "bg": "oklab(0.64 -0.0362883 -0.145544 / 0.08)",
+        "value": "oklch(0.64 0.15 256)"
+      },
+      {
+        "label": "可用座位",
+        "bg": "oklab(0.7 -0.112763 0.0410424 / 0.08)",
+        "value": "oklch(0.7 0.12 160)"
+      },
+      {
+        "label": "即将开始",
+        "bg": "oklab(0.79 0.0410424 0.112763 / 0.1)",
+        "value": "oklch(0.79 0.12 70)"
+      },
+      {
+        "label": "待确认",
+        "bg": "oklab(0.66 0.163135 0.0760713 / 0.1)",
+        "value": "oklch(0.66 0.18 25)"
+      }
+    ]
+  },
+  {
+    "orientation": "portrait",
+    "dark": true,
+    "blue": true,
+    "url": "http://127.0.0.1:4176/#touch",
+    "viewport": [
+      768,
+      1024
+    ],
+    "dataIdentity": {
+      "corner": "R-01",
+      "books": "2 本",
+      "duration": "10 分钟"
+    },
+    "mode": "dark",
+    "accent": "blue",
+    "background": "oklch(0.145 0 0)",
+    "primary": "oklch(0.55 0.18 255)",
+    "horizontalOverflow": false,
+    "targets": [
+      {
+        "name": "桌面演示",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "蓝色强调色",
+        "width": 111,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "深色模式",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开放中稍作休息暂时关闭新活动未开放",
+        "width": 118,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "状态点脉冲",
+        "width": 144,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "阅读",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "聆听",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "休息",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "重置阅读设置",
+        "width": 140,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开始本地体验",
+        "width": 705,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "结束本地体验",
+        "width": 140,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "暂不可用",
+        "width": 104,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "默认",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "品牌",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "成功",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "提醒",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "危险",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "描边",
+        "width": 76,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "轻量",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "md · 44px",
+        "width": 104.7734375,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "lg · 56px",
+        "width": 106.140625,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "xl · 72px",
+        "width": 120.4296875,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "查看指标",
+        "width": 108,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "回到操作示例",
+        "width": 136,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      }
+    ],
+    "tileColors": [
+      {
+        "label": "阅读计划",
+        "bg": "oklch(0.205 0 0)",
+        "value": "oklch(0.985 0 0)"
+      },
+      {
+        "label": "本周精选",
+        "bg": "oklab(0.55 -0.0465874 -0.173867 / 0.08)",
+        "value": "oklch(0.55 0.18 255)"
+      },
+      {
+        "label": "可用座位",
+        "bg": "oklab(0.7 -0.112763 0.0410424 / 0.08)",
+        "value": "oklch(0.7 0.12 160)"
+      },
+      {
+        "label": "即将开始",
+        "bg": "oklab(0.79 0.0410424 0.112763 / 0.1)",
+        "value": "oklch(0.79 0.12 70)"
+      },
+      {
+        "label": "待确认",
+        "bg": "oklab(0.66 0.163135 0.0760713 / 0.1)",
+        "value": "oklch(0.66 0.18 25)"
+      }
+    ]
+  },
+  {
+    "orientation": "landscape",
+    "dark": false,
+    "blue": false,
+    "url": "http://127.0.0.1:4176/#touch",
+    "viewport": [
+      1024,
+      768
+    ],
+    "dataIdentity": {
+      "corner": "R-01",
+      "books": "2 本",
+      "duration": "10 分钟"
+    },
+    "mode": "light",
+    "accent": "neutral",
+    "background": "oklch(0.985 0 0)",
+    "primary": "oklch(20.5% 0 0)",
+    "horizontalOverflow": false,
+    "targets": [
+      {
+        "name": "桌面演示",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "蓝色强调色",
+        "width": 111,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "深色模式",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开放中稍作休息暂时关闭新活动未开放",
+        "width": 118,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "状态点脉冲",
+        "width": 144,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "阅读",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "聆听",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "休息",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "重置阅读设置",
+        "width": 140,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开始本地体验",
+        "width": 716.78125,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "结束本地体验",
+        "width": 140,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "暂不可用",
+        "width": 104,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "默认",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "品牌",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "成功",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "提醒",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "危险",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "描边",
+        "width": 76,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "轻量",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "md · 44px",
+        "width": 104.7734375,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "lg · 56px",
+        "width": 106.140625,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "xl · 72px",
+        "width": 120.4296875,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "查看指标",
+        "width": 108,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "回到操作示例",
+        "width": 136,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      }
+    ],
+    "tileColors": [
+      {
+        "label": "阅读计划",
+        "bg": "oklch(1 0 0)",
+        "value": "oklch(0.145 0 0)"
+      },
+      {
+        "label": "本周精选",
+        "bg": "oklab(0.54 -0.0387075 -0.155247 / 0.08)",
+        "value": "oklch(0.54 0.16 256)"
+      },
+      {
+        "label": "可用座位",
+        "bg": "oklab(0.6 -0.112763 0.0410424 / 0.08)",
+        "value": "oklch(0.6 0.12 160)"
+      },
+      {
+        "label": "即将开始",
+        "bg": "oklab(0.72 0.0486988 0.120534 / 0.1)",
+        "value": "oklch(0.72 0.13 68)"
+      },
+      {
+        "label": "待确认",
+        "bg": "oklab(0.55 0.181262 0.0845237 / 0.1)",
+        "value": "oklch(0.55 0.2 25)"
+      }
+    ]
+  },
+  {
+    "orientation": "landscape",
+    "dark": false,
+    "blue": true,
+    "url": "http://127.0.0.1:4176/#touch",
+    "viewport": [
+      1024,
+      768
+    ],
+    "dataIdentity": {
+      "corner": "R-01",
+      "books": "2 本",
+      "duration": "10 分钟"
+    },
+    "mode": "light",
+    "accent": "blue",
+    "background": "oklch(0.985 0 0)",
+    "primary": "oklch(0.55 0.18 255)",
+    "horizontalOverflow": false,
+    "targets": [
+      {
+        "name": "桌面演示",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "蓝色强调色",
+        "width": 111,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "深色模式",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开放中稍作休息暂时关闭新活动未开放",
+        "width": 118,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "状态点脉冲",
+        "width": 144,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "阅读",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "聆听",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "休息",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "重置阅读设置",
+        "width": 140,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开始本地体验",
+        "width": 716.78125,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "结束本地体验",
+        "width": 140,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "暂不可用",
+        "width": 104,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "默认",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "品牌",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "成功",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "提醒",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "危险",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "描边",
+        "width": 76,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "轻量",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "md · 44px",
+        "width": 104.7734375,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "lg · 56px",
+        "width": 106.140625,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "xl · 72px",
+        "width": 120.4296875,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "查看指标",
+        "width": 108,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "回到操作示例",
+        "width": 136,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      }
+    ],
+    "tileColors": [
+      {
+        "label": "阅读计划",
+        "bg": "oklch(1 0 0)",
+        "value": "oklch(0.145 0 0)"
+      },
+      {
+        "label": "本周精选",
+        "bg": "oklab(0.55 -0.0465874 -0.173867 / 0.08)",
+        "value": "oklch(0.55 0.18 255)"
+      },
+      {
+        "label": "可用座位",
+        "bg": "oklab(0.6 -0.112763 0.0410424 / 0.08)",
+        "value": "oklch(0.6 0.12 160)"
+      },
+      {
+        "label": "即将开始",
+        "bg": "oklab(0.72 0.0486988 0.120534 / 0.1)",
+        "value": "oklch(0.72 0.13 68)"
+      },
+      {
+        "label": "待确认",
+        "bg": "oklab(0.55 0.181262 0.0845237 / 0.1)",
+        "value": "oklch(0.55 0.2 25)"
+      }
+    ]
+  },
+  {
+    "orientation": "landscape",
+    "dark": true,
+    "blue": false,
+    "url": "http://127.0.0.1:4176/#touch",
+    "viewport": [
+      1024,
+      768
+    ],
+    "dataIdentity": {
+      "corner": "R-01",
+      "books": "2 本",
+      "duration": "10 分钟"
+    },
+    "mode": "dark",
+    "accent": "neutral",
+    "background": "oklch(0.145 0 0)",
+    "primary": "oklch(92.2% 0 0)",
+    "horizontalOverflow": false,
+    "targets": [
+      {
+        "name": "桌面演示",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "蓝色强调色",
+        "width": 111,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "深色模式",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开放中稍作休息暂时关闭新活动未开放",
+        "width": 118,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "状态点脉冲",
+        "width": 144,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "阅读",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "聆听",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "休息",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "重置阅读设置",
+        "width": 140,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开始本地体验",
+        "width": 716.78125,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "结束本地体验",
+        "width": 140,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "暂不可用",
+        "width": 104,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "默认",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "品牌",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "成功",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "提醒",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "危险",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "描边",
+        "width": 76,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "轻量",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "md · 44px",
+        "width": 104.7734375,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "lg · 56px",
+        "width": 106.140625,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "xl · 72px",
+        "width": 120.4296875,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "查看指标",
+        "width": 108,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "回到操作示例",
+        "width": 136,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      }
+    ],
+    "tileColors": [
+      {
+        "label": "阅读计划",
+        "bg": "oklch(0.205 0 0)",
+        "value": "oklch(0.985 0 0)"
+      },
+      {
+        "label": "本周精选",
+        "bg": "oklab(0.64 -0.0362883 -0.145544 / 0.08)",
+        "value": "oklch(0.64 0.15 256)"
+      },
+      {
+        "label": "可用座位",
+        "bg": "oklab(0.7 -0.112763 0.0410424 / 0.08)",
+        "value": "oklch(0.7 0.12 160)"
+      },
+      {
+        "label": "即将开始",
+        "bg": "oklab(0.79 0.0410424 0.112763 / 0.1)",
+        "value": "oklch(0.79 0.12 70)"
+      },
+      {
+        "label": "待确认",
+        "bg": "oklab(0.66 0.163135 0.0760713 / 0.1)",
+        "value": "oklch(0.66 0.18 25)"
+      }
+    ]
+  },
+  {
+    "orientation": "landscape",
+    "dark": true,
+    "blue": true,
+    "url": "http://127.0.0.1:4176/#touch",
+    "viewport": [
+      1024,
+      768
+    ],
+    "dataIdentity": {
+      "corner": "R-01",
+      "books": "2 本",
+      "duration": "10 分钟"
+    },
+    "mode": "dark",
+    "accent": "blue",
+    "background": "oklch(0.145 0 0)",
+    "primary": "oklch(0.55 0.18 255)",
+    "horizontalOverflow": false,
+    "targets": [
+      {
+        "name": "桌面演示",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "蓝色强调色",
+        "width": 111,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "深色模式",
+        "width": 96,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开放中稍作休息暂时关闭新活动未开放",
+        "width": 118,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "状态点脉冲",
+        "width": 144,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "阅读",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "聆听",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "休息",
+        "width": 72,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "减少",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "增加",
+        "width": 56,
+        "height": 54,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "重置阅读设置",
+        "width": 140,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "开始本地体验",
+        "width": 716.78125,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "结束本地体验",
+        "width": 140,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "暂不可用",
+        "width": 104,
+        "height": 56,
+        "disabled": true,
+        "hit": false
+      },
+      {
+        "name": "默认",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "品牌",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "成功",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "提醒",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "危险",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "描边",
+        "width": 76,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "轻量",
+        "width": 72,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "md · 44px",
+        "width": 104.7734375,
+        "height": 44,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "lg · 56px",
+        "width": 106.140625,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "xl · 72px",
+        "width": 120.4296875,
+        "height": 72,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "查看指标",
+        "width": 108,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      },
+      {
+        "name": "回到操作示例",
+        "width": 136,
+        "height": 56,
+        "disabled": false,
+        "hit": true
+      }
+    ],
+    "tileColors": [
+      {
+        "label": "阅读计划",
+        "bg": "oklch(0.205 0 0)",
+        "value": "oklch(0.985 0 0)"
+      },
+      {
+        "label": "本周精选",
+        "bg": "oklab(0.55 -0.0465874 -0.173867 / 0.08)",
+        "value": "oklch(0.55 0.18 255)"
+      },
+      {
+        "label": "可用座位",
+        "bg": "oklab(0.7 -0.112763 0.0410424 / 0.08)",
+        "value": "oklch(0.7 0.12 160)"
+      },
+      {
+        "label": "即将开始",
+        "bg": "oklab(0.79 0.0410424 0.112763 / 0.1)",
+        "value": "oklch(0.79 0.12 70)"
+      },
+      {
+        "label": "待确认",
+        "bg": "oklab(0.66 0.163135 0.0760713 / 0.1)",
+        "value": "oklch(0.66 0.18 25)"
+      }
+    ]
+  }
+]

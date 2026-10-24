@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
+import { computed, useTemplateRef, type HTMLAttributes } from 'vue'
 import { cn } from '../../lib/utils'
 
 /**
@@ -17,20 +17,57 @@ const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
 const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
+const buttons = useTemplateRef<HTMLButtonElement[]>('buttons')
+const activeIndex = computed(() =>
+  Math.max(
+    0,
+    props.options.findIndex((option) => option.value === props.modelValue),
+  ),
+)
+
+function navigate(event: KeyboardEvent, index: number) {
+  const count = props.options.length
+  if (!count) return
+  let next: number
+  switch (event.key) {
+    case 'ArrowRight':
+      next = (index + 1) % count
+      break
+    case 'ArrowLeft':
+      next = (index - 1 + count) % count
+      break
+    case 'Home':
+      next = 0
+      break
+    case 'End':
+      next = count - 1
+      break
+    default:
+      return
+  }
+  event.preventDefault()
+  const option = props.options[next]
+  if (!option) return
+  buttons.value?.[next]?.focus()
+  emit('update:modelValue', option.value)
+}
 </script>
 
 <template>
   <div
     data-slot="touch-segmented"
     role="tablist"
-    :class="cn('inline-flex h-12 items-center gap-1 rounded-xl bg-muted p-1', props.class)"
+    :class="cn('inline-flex h-12 items-center gap-1 rounded-xl bg-muted p-0.5', props.class)"
   >
     <button
-      v-for="opt in options"
+      v-for="(opt, index) in options"
+      ref="buttons"
       :key="opt.value"
       type="button"
       role="tab"
       :aria-selected="modelValue === opt.value"
+      :tabindex="index === activeIndex ? 0 : -1"
+      @keydown="navigate($event, index)"
       :class="
         cn(
           'nv-seg h-full rounded-lg px-5 text-base font-medium whitespace-nowrap transition-colors',

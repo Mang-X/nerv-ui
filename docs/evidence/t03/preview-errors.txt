@@ -1,0 +1,8 @@
+初次preview_open(url=about:blank)：Preview automation open failed: Invalid preview URL (parse: https:; input length 11).
+随后省略url，preview_open成功自有tab tab_p_6faab953-90e1-4ff7-b4aa-20aa9696713e。
+首次navigate早于服务就绪：Preview automation navigate failed: Navigation to http://127.0.0.1:4176/#touch failed: ERR_CONNECTION_REFUSED
+服务HTTP200后navigate成功。
+同一步snapshot连续两次失败（中间已确认服务200并重新navigate）：
+Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+按规则回退ego-browser。T3 resize设置768×1024但返回实测1280×800，不能作为视口证据。

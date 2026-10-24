@@ -25,7 +25,9 @@ const shiftOptions = [
 
 ## 基础
 
-`v-model` 绑定当前值，`options` 提供 `{ value, label }` 列表。
+`v-model` 绑定当前值，`options` 提供 `{ value, label }` 列表。组件保持受控：点击或按键发出 `update:modelValue`，选中态由宿主回传的值决定。
+
+整体保持 48px 高，单段实际触控目标为 44px。Tab 进入当前选中项，左右方向键循环移动焦点并请求选择，Home / End 跳到首项 / 末项。宿主为 tablist 提供可访问名称，并展示对应内容。
 
 <Demo>
   <NvTouchSegmented v-model="view" :options="viewOptions" />

@@ -1,0 +1,70 @@
+[
+  {
+    "name": "portrait-light",
+    "path": "portrait-light.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "mode": "light",
+    "theme": "neutral",
+    "scripts": [
+      "http://127.0.0.1:4176/assets/index-mQWV6kKP.js"
+    ],
+    "pngPixels": [
+      753,
+      2114
+    ]
+  },
+  {
+    "name": "portrait-dark",
+    "path": "portrait-dark.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "mode": "dark",
+    "theme": "blue",
+    "scripts": [
+      "http://127.0.0.1:4176/assets/index-mQWV6kKP.js"
+    ],
+    "pngPixels": [
+      753,
+      2114
+    ]
+  },
+  {
+    "name": "landscape-light",
+    "path": "landscape-light.png",
+    "viewport": [
+      1024,
+      768
+    ],
+    "mode": "light",
+    "theme": "blue",
+    "scripts": [
+      "http://127.0.0.1:4176/assets/index-mQWV6kKP.js"
+    ],
+    "pngPixels": [
+      1009,
+      1766
+    ]
+  },
+  {
+    "name": "landscape-dark",
+    "path": "landscape-dark.png",
+    "viewport": [
+      1024,
+      768
+    ],
+    "mode": "dark",
+    "theme": "neutral",
+    "scripts": [
+      "http://127.0.0.1:4176/assets/index-mQWV6kKP.js"
+    ],
+    "pngPixels": [
+      1009,
+      1766
+    ]
+  }
+]

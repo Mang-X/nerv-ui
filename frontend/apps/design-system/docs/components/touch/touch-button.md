@@ -47,12 +47,14 @@ import { CheckCircleIcon, PauseIcon, BellRingIcon } from '@lucide/vue'
 
 ## 加载态
 
-`loading` 时显示环形加载器并禁止重复点击（`aria-busy`）。
+`loading` 时显示环形加载器并设置 `aria-busy` / `aria-disabled`；默认原生按钮同时禁用，阻止键盘重复激活。`as="a"` 的加载/禁用态阻止链接激活。显式 `disabled` 在加载结束后仍保留。
 
 <Demo>
   <NvTouchButton variant="brand" size="lg" loading>提交中</NvTouchButton>
   <NvTouchButton size="lg" disabled>禁用</NvTouchButton>
 </Demo>
+
+`asChild + loading` 的既有组合问题单独跟踪于 [#43](https://github.com/Mang-X/nerv-ui/issues/43)；T03 加载态使用默认原生按钮，`asChild` 仅演示普通链接。
 
 ## 属性
 

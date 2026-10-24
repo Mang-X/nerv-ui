@@ -46,11 +46,17 @@ const props = withDefaults(
       size?: TouchButtonVariants['size']
       block?: boolean
       loading?: boolean
+      disabled?: boolean
       class?: HTMLAttributes['class']
     }
   >(),
   { as: 'button', block: false },
 )
+function guardActivation(event: MouseEvent) {
+  if (!props.loading && !props.disabled) return
+  event.preventDefault()
+  event.stopImmediatePropagation()
+}
 </script>
 
 <template>
@@ -59,6 +65,9 @@ const props = withDefaults(
     :as="as"
     :as-child="asChild"
     :aria-busy="loading || undefined"
+    :disabled="disabled || loading || undefined"
+    :aria-disabled="disabled || loading || undefined"
+    @click.capture="guardActivation"
     :class="cn(touchButtonVariants({ variant, size, block }), props.class)"
   >
     <NvLoader v-if="loading" variant="ring" size="default" class="text-current" />

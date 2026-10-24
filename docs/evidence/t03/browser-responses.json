@@ -1,0 +1,38 @@
+{
+  "resources": {
+    "scripts": [
+      "http://127.0.0.1:4176/assets/index-mQWV6kKP.js"
+    ],
+    "styles": [
+      "http://127.0.0.1:4176/assets/index-CEZD6G1i.css"
+    ],
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4176/assets/index-mQWV6kKP.js",
+        "initiatorType": "script"
+      },
+      {
+        "name": "http://127.0.0.1:4176/assets/index-CEZD6G1i.css",
+        "initiatorType": "link"
+      },
+      {
+        "name": "http://127.0.0.1:4176/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+        "initiatorType": "css"
+      }
+    ]
+  },
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4176/assets/index-mQWV6kKP.js",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/javascript"
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-CEZD6G1i.css",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/css"
+    }
+  ]
+}
