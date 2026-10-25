@@ -266,7 +266,7 @@ function selectTask(task: NvScheduleTask) {
 <template>
   <div
     data-slot="nv-schedule-timeline"
-    class="nv-schedule-timeline"
+    class="nv-schedule-timeline text-sm"
     tabindex="0"
     aria-label="只读时间安排"
   >
@@ -446,7 +446,6 @@ function selectTask(task: NvScheduleTask) {
     background: color-mix(in oklch, var(--nv-warning), transparent 85%);
     border-right: 1px dashed var(--nv-warning);
     color: var(--foreground);
-    font-size: 0.7rem;
   }
   .nv-schedule-timeline-segments {
     position: absolute;
@@ -461,7 +460,6 @@ function selectTask(task: NvScheduleTask) {
     background: var(--nv-brand);
     color: var(--nv-brand-foreground);
     overflow: hidden;
-    font-size: 0.65rem;
   }
 
   .nv-schedule-timeline-body {
@@ -516,14 +514,12 @@ function selectTask(task: NvScheduleTask) {
   .nv-schedule-timeline-label--header {
     z-index: 30;
     color: var(--muted-foreground);
-    font-size: 0.75rem;
     font-weight: 600;
   }
 
   .nv-schedule-timeline-label__name {
     overflow: hidden;
     color: var(--foreground);
-    font-size: 0.875rem;
     font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -531,7 +527,6 @@ function selectTask(task: NvScheduleTask) {
 
   .nv-schedule-timeline-label__count {
     color: var(--muted-foreground);
-    font-size: 0.75rem;
   }
 
   .nv-schedule-timeline-axis,
@@ -547,7 +542,6 @@ function selectTask(task: NvScheduleTask) {
     align-items: center;
     border-left: 1px solid var(--border);
     color: var(--muted-foreground);
-    font-size: 0.72rem;
     font-weight: 500;
     padding-inline: 0.6rem;
     white-space: nowrap;
@@ -572,7 +566,6 @@ function selectTask(task: NvScheduleTask) {
     gap: 0.35rem;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 0.7rem;
   }
 
   .nv-schedule-timeline-task {
@@ -642,7 +635,6 @@ function selectTask(task: NvScheduleTask) {
 
   .nv-schedule-timeline-task__title {
     overflow: hidden;
-    font-size: 0.75rem;
     font-weight: 700;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -655,7 +647,6 @@ function selectTask(task: NvScheduleTask) {
     gap: 0.45rem;
     overflow: hidden;
     color: var(--muted-foreground);
-    font-size: 0.65rem;
     white-space: normal;
     overflow-wrap: anywhere;
   }
