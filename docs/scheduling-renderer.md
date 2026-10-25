@@ -41,3 +41,11 @@ pnpm -C frontend dev
 原64路径逐项归属见[证据页](./evidence/t07-p04/README.md)。7 份本票改输入的旧测试原字节保存在 `frontend/reference-tests/nerv-iip/t07-p04`；活动测试直接构造 `ScheduleModel`、facts、timezone、windows 和 links，不调用无 adapter 的旧 mapper，不从 SDK 数据偷偷推导新合同。旧日期/事实衍生断言保留来源，更新的活动断言按 host 提供值展示。无新增排除或 skip；保留的 4 条 stub-vendor conformance skip 单列，不能计为真实 vendor PASS。
 
 本地、真实浏览器、fake、历史失败与未运行车道见证据页。CI、完整文档站 #10、packed #11、设备、旧消费者 #13/#15、父 #8 组合及发布均单独验收。P03 R2 的 Markdown fmt FAIL 和关闭顺序瑕疵保留在历史 receipt；本票不改写它们。
+
+## R1 返修的边界
+
+活动 model 更新与首次输入都在组件内呈现错误；恢复有效 model 后重新初始化。`startUtc/endUtc`、分段和任何已提供的 `plannedStartUtc/plannedEndUtc` 都必须是有效的 UTC/offset 实际时刻；可选基线缺省仍合法，裸墙上时间不按浏览器时区解释。直接 `DhtmlxEngine.setData` 继续抛错且保留先前数据。
+
+固定 9.1.4 Evaluation 在创建后的 1ms 回调中建立 interval 并注册 `onDestroy`。适配器先撤销交互、observer 和 RAF，再在该回调之后调用 destructor，最后清空容器与释放 lease；因此真实 vendor 的最终释放跨到下一 timer turn。保留完整 Evaluation 回调，不拦截其计时器、不改 vendor 原字节。重复 destroy 不提前清空等待释放的容器。
+
+每次 mount 持有对象所有权 token。旧 async-init 晚回只可清理仍属于该 token 的对象；legacy singleton 被后来的 owner 成功接管后，旧代际不再 destructor 或清空容器。此项由 fake async legacy lane 证明，不宣称固定真实 vendor 的同步 init 变成异步。

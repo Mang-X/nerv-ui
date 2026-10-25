@@ -2,7 +2,7 @@
 import { Skeleton } from '@nerv-iip/ui'
 import { CalendarClockIcon } from '@lucide/vue'
 import { computed, ref, toRef } from 'vue'
-import { scheduleInstant } from '@nerv-iip/ui/schedule-model'
+import { hasInvalidModelTime } from '../model/instant-validation'
 import { factoryTimeInput } from '../model/factory-time'
 import type { TaskDragPayload, TimeScale } from '../engine/engine'
 import type { LaneOrder, ScheduleModel } from '../model/types'
@@ -42,19 +42,7 @@ const unresolvedFactoryTime = computed(
         (t) => !t.timezone || !factoryTimeInput('2000-01-01T00:00:00Z', t.timezone),
       )),
 )
-const invalidModelTime = computed(() => {
-  const model = props.model
-  if (!model) return false
-  return [
-    model.horizon,
-    ...model.tasks,
-    ...model.tasks.flatMap((task) => task.segments ?? []),
-  ].some(
-    (interval) =>
-      !Number.isFinite(scheduleInstant(interval.startUtc)) ||
-      !Number.isFinite(scheduleInstant(interval.endUtc)),
-  )
-})
+const invalidModelTime = computed(() => props.model != null && hasInvalidModelTime(props.model))
 const isEmpty = computed(() => props.model != null && props.model.tasks.length === 0)
 
 const { command, engineName, error } = useEngine({

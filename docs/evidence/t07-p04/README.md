@@ -52,3 +52,23 @@ vendor JS/CSS/d.ts 分别保持 891743/142723/211538 bytes，SHA256 为 `32e0d7d
 - 浏览器第一次 T3 snapshot 同一步两次原始错误 `Preview automation snapshot timed out after 15000ms.`；之后按指令使用 ego-browser，未升级。早轮 milestone 外层 visibility:hidden 被错误当作实际菱形不可见、resource hover 选择器歧义、CDP 注入随会话关闭后失效、DST 错用固定列宽，均保留脚本与 FAIL。修正验证对象/独立比例后复核，不改 vendor 来迁就断言。
 - P01 R1/R2、P02 union R1/oldyear P3、P03 R1、P03 R2 Markdown fmt FAIL 与关闭顺序瑕疵均仅引用历史 durable receipt。旧宿主默认并发 FAIL 的原因仍 UNKNOWN；本轮 default 与 serial 的 PASS 不改写旧结论。#43/#51、P03 consumer heading P3 未扩修。
 - **UNRUN**：CI、完整文档站 #10、packed #11、设备、旧消费者 #13/#15、父 #8 组合、发布与生产；旧后端/SDK/APS 算法/授权结论。本票没有独立 review/merge/close/ready18/watch/poll/publish。
+
+## 2026-10-26 · R1 五项 P2 返修
+
+R1 **拒绝合并**的 Standards1 / Spec4 全部保留：原回执 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p04-review-r1/review-receipt.md`、`standards.md`、`spec.md`、`spec-merger-addendum.md`。原 external probe **1 PASS / 2 FAIL** 不被后续结果覆盖。返修范围仅 STD-1、SPEC-1–4，同一 draft PR103；未启动审核、merge、ready、关票、发布或监控。
+
+本轮证据归档：`/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p04-fix/`，精确候选对象、测试/浏览器结果与 SHA256SUMS 见其 `handoff.md`。历史用指针保留，不复制旧账本。
+
+| Requirement                               | Evidence                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| STD-1 用户文案                            | `RealGanttDemo.vue` 使用共读活动、参考安排、重新打开与阅读宽度用语；保留控件、Professional Evaluation、授权 UNKNOWN 和真实水印。真实页面截图归档。                                                                                                                                                                                                                                                          |
+| SPEC-1 live 更新隔离与恢复                | `contains live invalid instants without host errors and recovers the current model`，正式 RED→GREEN；原 `live invalid actual instant is contained without host error` 保持原断言重跑。真实浏览器直接正常→时刻错误→正常另验 console.error。                                                                                                                                                                  |
+| SPEC-2 短命真实实例的 Evaluation interval | `releases the real Evaluation interval after a mount destroyed in its creation task`，加载保留 vendor 字节的 jsdom timer lane，正式 RED→GREEN；浏览器公开引擎对照另列。初次延后 destructor/提前清空 DOM 方案造成真实浏览器 classList FAIL，原结果保留；按 destructor→容器清空顺序修复后重验。                                                                                                               |
+| SPEC-3 baseline 显式实际时刻              | `rejects a bare baseline plannedStartUtc without replacing the prior data`、`rejects a bare baseline plannedEndUtc without replacing the prior data`；公开组件 `rejects a live bare baseline plannedStartUtc without host errors and recovers explicit offsets` 与 plannedEndUtc 对照，均 RED→GREEN。真实 vendor 的 UTC/Asia/Shanghai runtime 原裸基线分别投影 08:00Z / 00:00Z；修后拒绝并接受显式 offset。 |
+| SPEC-4 旧 owner 晚回                      | `preserves a reused singleton owner when an earlier asynchronous initialization resolves`，正式 RED→GREEN；原 `late initialization from prior singleton owner preserves the new owner` 原样重跑。仅 fake async-init + legacy singleton lane，真实9.1.4工厂同步初始化另列。                                                                                                                                  |
+
+本轮正式四包 1361 discovery / 1357 passed / 4 retained skipped；其中 scheduling117 / 113 passed / 4 skipped，ui805、mobile144、host295。所有 skip 保持原样，不代表真实 vendor conformance。P02 pure20 / P03 public-host50 / docs-source6、公开 types 与 root/nested build 分列；最终报告必须回读真实 reporter unhandled 字段，不补旧缺字段。
+
+973 packages/snapshots 的完整对象及依赖/peer 边、16 个工程输入与四包 Vue 单实体再次核对。三份 vendor 891743/142723/211538 字节不变。前轮原64归属与7份参考测试是历史快照，本轮不改其原 SHA；当前变更回到 Git 与本轮归档核验。旧来源、字体 LICENSE 与远程 font-face 构建移除策略不变；授权 UNKNOWN。
+
+CI、完整 docs10、packed11、设备、旧消费者13/15、父8组合、后端SDK/APS、发布与 P05–P16 均 UNRUN。原 FAIL/UNKNOWN、旧P3、#43/#51 与 main 全量 RAW diff-check exit2 保留；本票/maintenance 门禁独立报告。

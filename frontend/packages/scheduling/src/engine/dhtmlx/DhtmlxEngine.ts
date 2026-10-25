@@ -1,4 +1,4 @@
-import { scheduleInstant } from '@nerv-iip/ui/schedule-model'
+import { hasInvalidModelTime } from '../../model/instant-validation'
 import { factoryTimeInput, scheduleTime } from '../../model/factory-time'
 import { factoryUnit } from './factory-scale'
 import { freezeWindow, projectFreezeWindow } from '../../model/freeze-window'
@@ -20,8 +20,14 @@ import { resolveTimeScale } from '../../model/scale'
 import { createGanttInstanceSync, releaseGanttInstance } from './loader'
 import { applySkin } from './skin'
 
+// Last ownership token survives retirement, so a late init can clean its own
+// object only until a later mount has taken over that same object.
+const instanceOwners = new WeakMap<object, object>()
+
 // DHTMLX gantt 实例的最小子集(只声明适配器用到的成员)。
 interface DhxGantt {
+  version?: string
+  license?: string
   config: Record<string, unknown>
   templates: Record<string, unknown>
   ext?: { zoom?: { setLevel?: (l: string) => void } }
@@ -539,6 +545,7 @@ export class DhtmlxEngine implements SchedulingEngine {
   }
 
   private mountGeneration = 0
+  private instanceOwner?: object
 
   mount(container: HTMLElement, options: SchedulingEngineOptions): void | Promise<void> {
     const generation = ++this.mountGeneration
@@ -549,6 +556,9 @@ export class DhtmlxEngine implements SchedulingEngine {
     // loader 同时加载保留 vendor 与结构 CSS；宿主使用包的 Vite 字体/层序 transform。
     const inst = this.createInstance() as DhxGantt | null
     if (!inst) throw new Error('DHTMLX 实例不可用（单例已占用或模块缺失）')
+    const owner = {}
+    instanceOwners.set(inst, owner)
+    this.instanceOwner = owner
     this.gantt = inst
 
     this.configure(inst, options)
@@ -560,8 +570,10 @@ export class DhtmlxEngine implements SchedulingEngine {
     if (initialized && typeof (initialized as PromiseLike<void>).then === 'function') {
       return Promise.resolve(initialized).then(() => {
         if (generation !== this.mountGeneration) {
-          inst.destructor?.()
-          container.replaceChildren()
+          if (instanceOwners.get(inst) === owner) {
+            inst.destructor?.()
+            container.replaceChildren()
+          }
           return
         }
         this.finishMount(inst, container, options)
@@ -713,18 +725,7 @@ export class DhtmlxEngine implements SchedulingEngine {
   }
 
   setData(model: ScheduleModel): void {
-    const intervals = [
-      model.horizon,
-      ...model.tasks,
-      ...model.tasks.flatMap((task) => task.segments ?? []),
-    ]
-    if (
-      intervals.some(
-        (interval) =>
-          !Number.isFinite(scheduleInstant(interval.startUtc)) ||
-          !Number.isFinite(scheduleInstant(interval.endUtc)),
-      )
-    ) {
+    if (hasInvalidModelTime(model)) {
       throw new Error('实际时刻必须包含 Z 或显式偏移，且为有效日期')
     }
     this.model = model
@@ -839,6 +840,17 @@ export class DhtmlxEngine implements SchedulingEngine {
   destroy(): void {
     this.mountGeneration++
     const g = this.gantt
+    const container = this.container
+    const clearContainer = () => {
+      if (!container) return
+      container.classList.remove(
+        'nerv-gantt',
+        'nerv-gantt-dhx',
+        'nerv-gantt-dark',
+        'nerv-dhx-scope',
+      )
+      container.replaceChildren()
+    }
     if (g?.detachEvent) for (const id of this.eventIds) g.detachEvent(id)
     this.eventIds.length = 0
     this.listeners.clear()
@@ -867,19 +879,27 @@ export class DhtmlxEngine implements SchedulingEngine {
     cancelAnimationFrame(this.resizeRaf)
     this.resizeObserver?.disconnect()
     this.resizeObserver = undefined
-    g?.destructor?.()
-    if (g) releaseGanttInstance(g)
+    if (g) {
+      const owner = this.instanceOwner
+      const dispose = () => {
+        if (instanceOwners.get(g) !== owner) return
+        try {
+          g.destructor?.()
+        } finally {
+          releaseGanttInstance(g)
+          clearContainer()
+        }
+      }
+      // Fixed Evaluation 9.1.4 registers its interval/onDestroy in a 1ms
+      // construction callback. Retire after that callback so short-lived mounts
+      // still release the vendor interval. Keep the lease until actual disposal.
+      if (g.version === '9.1.4' && g.license === 'evaluation') setTimeout(dispose, 1)
+      else dispose()
+    }
     this.gantt = undefined
     this.markerId = undefined
-    if (this.container) {
-      this.container.classList.remove(
-        'nerv-gantt',
-        'nerv-gantt-dhx',
-        'nerv-gantt-dark',
-        'nerv-dhx-scope',
-      )
-      this.container.replaceChildren()
-    }
+    if (!g) clearContainer()
+    this.container = undefined
   }
 
   // --- internals ----------------------------------------------------------

@@ -136,8 +136,16 @@ export function useEngine(opts: UseEngineOptions) {
   watch(
     opts.model,
     (m) => {
-      if (m) engine.value?.setData(m)
-      else if (engine.value && opts.container.value) void init(opts.container.value)
+      try {
+        if (m && engine.value) engine.value.setData(m)
+        else if (opts.container.value && (engine.value || engineName.value === 'error'))
+          void init(opts.container.value)
+      } catch (cause) {
+        teardown()
+        engineName.value = 'error'
+        error.value = cause instanceof Error ? cause.message : String(cause)
+        pendingCommands.length = 0
+      }
     },
     { deep: true },
   )

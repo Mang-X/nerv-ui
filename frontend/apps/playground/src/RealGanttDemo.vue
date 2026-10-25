@@ -131,7 +131,7 @@ function remount() {
   <main class="min-h-screen bg-background p-5 text-foreground">
     <header class="mb-4 flex flex-wrap items-center gap-3">
       <a href="#schedule" class="underline">原生时间安排</a><a href="#" class="underline">桌面</a>
-      <h1 class="text-xl font-semibold">真实只读甘特图</h1>
+      <h1 class="text-xl font-semibold">共读活动安排</h1>
       <NvButton variant="outline" @click="toggle">{{ isDark ? '浅色' : '深色' }}</NvButton>
       <NvButton variant="outline" @click="setTheme(theme === 'blue' ? 'neutral' : 'blue')"
         >主题 {{ theme }}</NvButton
@@ -139,7 +139,7 @@ function remount() {
     </header>
     <p class="mb-3 text-sm">
       DHTMLX 9.1.4 Professional Evaluation。声明与水印保留，授权范围
-      UNKNOWN；本页仅本地中性数据，无后端。
+      UNKNOWN。查看共读进度、讨论时间与原定安排。
     </p>
     <div class="mb-4 flex flex-wrap items-center gap-3 text-sm">
       <label
@@ -169,12 +169,12 @@ function remount() {
         </select></label
       >
       <label><input v-model="readOnly" type="checkbox" />只读</label>
-      <NvButton variant="outline" @click="first = !first">切换首图</NvButton>
-      <NvButton variant="outline" @click="second = !second">切换第二图</NvButton>
-      <NvButton variant="outline" @click="remount">快速重挂</NvButton>
-      <NvButton variant="outline" @click="narrow = !narrow">容器宽度</NvButton>
-      <NvButton variant="outline" @click="resource = !resource">资源只读入口</NvButton>
-      <NvButton variant="outline" @click="version++">外部更新</NvButton>
+      <NvButton variant="outline" @click="first = !first">显示或收起活动图</NvButton>
+      <NvButton variant="outline" @click="second = !second">显示或收起参考图</NvButton>
+      <NvButton variant="outline" @click="remount">重新打开活动图</NvButton>
+      <NvButton variant="outline" @click="narrow = !narrow">切换阅读宽度</NvButton>
+      <NvButton variant="outline" @click="resource = !resource">查看阅读室安排</NvButton>
+      <NvButton variant="outline" @click="version++">更新活动安排</NvButton>
       <NvButton variant="outline" @click="command({ kind: 'selectTask', taskId: 'discussion' })"
         >选择讨论</NvButton
       >
@@ -185,11 +185,10 @@ function remount() {
         >定位完成</NvButton
       >
       <NvButton variant="outline" @click="command({ kind: 'scrollToToday' })">今天</NvButton>
-      <NvButton variant="outline" @click="command({ kind: 'fitToScreen' })">重算容器</NvButton>
+      <NvButton variant="outline" @click="command({ kind: 'fitToScreen' })">适应阅读宽度</NvButton>
     </div>
     <p role="status" class="mb-3 text-sm">
-      选中：{{ selected || '无' }}。双图使用相同 task
-      id，状态独立。适配窗口只重算容器，不自动缩放完整计划期。
+      选中：{{ selected || '无' }}。上方查看当前活动，下方对照原定安排；选择或更新活动后可继续参考。
     </p>
     <section :style="{ width: narrow ? '900px' : '100%' }" class="max-w-full space-y-5">
       <div
@@ -203,7 +202,10 @@ function remount() {
           :scale="scale"
           :read-only="readOnly"
           :loading="state === 'loading'"
-          @task-select="selected = 'first:' + $event"
+          @task-select="
+            selected =
+              '活动 · ' + (model.tasks.find((task) => task.id === $event)?.text ?? '未命名活动')
+          "
         />
       </div>
       <div
@@ -215,7 +217,10 @@ function remount() {
           :model="base"
           scale="hour"
           read-only
-          @task-select="selected = 'second:' + $event"
+          @task-select="
+            selected =
+              '参考 · ' + (base.tasks.find((task) => task.id === $event)?.text ?? '未命名活动')
+          "
         />
       </div>
       <div

@@ -691,3 +691,20 @@ it('rejects unparsed instants at the public engine boundary without replacing th
   expect(fake.state.parsed.data.map((t) => t.id)).toEqual(['a1', 'a2', 'order:WO-001'])
   engine.destroy()
 })
+it.each(['plannedStartUtc', 'plannedEndUtc'] as const)(
+  'rejects a bare baseline %s without replacing the prior data',
+  (field) => {
+    const fake = makeFakeGantt()
+    const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+    engine.mount(el(), { ...options(), readOnly: true })
+    engine.setData(cloneModel(sampleModel))
+    expect(() =>
+      engine.setData({
+        ...sampleModel,
+        tasks: [{ ...sampleModel.tasks[0], [field]: '2026-10-25T08:00:00' }],
+      }),
+    ).toThrow('实际时刻')
+    expect(fake.state.parsed.data.map((t) => t.id)).toEqual(['a1', 'a2', 'order:WO-001'])
+    engine.destroy()
+  },
+)

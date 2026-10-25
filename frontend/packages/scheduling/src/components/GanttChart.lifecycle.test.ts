@@ -252,3 +252,101 @@ it('keeps an invalid explicit timezone unresolved before vendor initialization',
   expect(w.text()).toContain('时区尚未解析')
   expect(factory.instances).toHaveLength(0)
 })
+it('contains live invalid instants without host errors and recovers the current model', async () => {
+  const errors: unknown[] = []
+  const factory = fakeFactory()
+  __setGanttModuleForTest(factory)
+  const w = mount(GanttChart, {
+    props: { model, readOnly: true },
+    global: { config: { errorHandler: (error) => errors.push(error) } },
+  })
+  wrappers.push(w)
+  await flushPromises()
+  expect(w.text()).toContain('共读')
+  await w.setProps({
+    model: { ...model, tasks: [{ ...model.tasks[0], startUtc: '2026-10-25T08:00:00' }] },
+  })
+  await flushPromises()
+  expect(w.get('[role="alert"]').text()).toContain('实际时刻')
+  expect(w.find('[data-engine="dhtmlx"]').exists()).toBe(false)
+  expect(factory.instances[0].destroyed).toBe(true)
+  expect(errors).toEqual([])
+  await w.setProps({ model: { ...model, tasks: [{ ...model.tasks[0], text: '恢复共读' }] } })
+  await flushPromises()
+  expect(w.find('[role="alert"]').exists()).toBe(false)
+  expect(w.get('[data-engine="dhtmlx"]').text()).toContain('恢复共读')
+  expect(errors).toEqual([])
+})
+it.each(['plannedStartUtc', 'plannedEndUtc'] as const)(
+  'rejects a live bare baseline %s without host errors and recovers explicit offsets',
+  async (field) => {
+    const errors: unknown[] = []
+    const factory = fakeFactory()
+    __setGanttModuleForTest(factory)
+    const baseline = {
+      ...model,
+      tasks: [
+        {
+          ...model.tasks[0],
+          plannedStartUtc: '2026-10-25T16:00:00+08:00',
+          plannedEndUtc: '2026-10-25T18:00:00+08:00',
+        },
+      ],
+    }
+    const w = mount(GanttChart, {
+      props: { model: baseline, readOnly: true },
+      global: { config: { errorHandler: (error) => errors.push(error) } },
+    })
+    wrappers.push(w)
+    await flushPromises()
+    expect(w.text()).toContain('共读')
+    await w.setProps({
+      model: { ...baseline, tasks: [{ ...baseline.tasks[0], [field]: '2026-10-25T08:00:00' }] },
+    })
+    await flushPromises()
+    expect(w.get('[role="alert"]').text()).toContain('实际时刻')
+    expect(w.find('[data-engine="dhtmlx"]').exists()).toBe(false)
+    expect(errors).toEqual([])
+    await w.setProps({ model: baseline })
+    await flushPromises()
+    expect(w.find('[role="alert"]').exists()).toBe(false)
+    expect(w.get('[data-engine="dhtmlx"]').text()).toContain('共读')
+    expect(errors).toEqual([])
+  },
+)
+it('preserves a reused singleton owner when an earlier asynchronous initialization resolves', async () => {
+  let resolve!: () => void
+  const ready = new Promise<void>((done) => {
+    resolve = done
+  })
+  const factory = fakeFactory()
+  const singleton = factory.Gantt.getGanttInstance()
+  const initialize = singleton.init
+  let initializations = 0
+  const reusable = {
+    ...singleton,
+    init(root: HTMLElement) {
+      initialize(root)
+      return ++initializations === 1 ? ready : undefined
+    },
+  }
+  __setGanttModuleForTest({ gantt: reusable })
+  const a = mount(GanttChart, { props: { model, readOnly: true } })
+  await flushPromises()
+  a.unmount()
+  const b = mount(GanttChart, {
+    props: {
+      model: { ...model, tasks: [{ ...model.tasks[0], text: '后来的共读' }] },
+      readOnly: true,
+    },
+  })
+  wrappers.push(b)
+  await flushPromises()
+  expect(b.get('[data-engine="dhtmlx"]').text()).toContain('后来的共读')
+  resolve()
+  await flushPromises()
+  expect(b.get('[data-engine="dhtmlx"]').text()).toContain('后来的共读')
+  await b.setProps({ model: { ...model, tasks: [{ ...model.tasks[0], text: '继续共读' }] } })
+  await flushPromises()
+  expect(b.text()).toContain('继续共读')
+})
