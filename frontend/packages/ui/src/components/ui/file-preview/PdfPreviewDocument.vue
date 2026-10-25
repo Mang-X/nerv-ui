@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDocumentState } from '@embedpdf/core/vue'
 import { DocumentContent } from '@embedpdf/plugin-document-manager/vue'
-import { Scroller } from '@embedpdf/plugin-scroll/vue'
+import { Scroller, useScroll } from '@embedpdf/plugin-scroll/vue'
 import {
   useIsViewportGated,
   useViewportCapability,
@@ -27,6 +27,7 @@ const { plugin: viewportPlugin } = useViewportPlugin()
 const { provides: viewportCapability } = useViewportCapability()
 const viewportGap = computed(() => viewportCapability.value?.getViewportGap() ?? 10)
 const isGated = useIsViewportGated(() => props.documentId)
+const { provides: scrollCapability } = useScroll(() => props.documentId)
 watch(
   [viewportPlugin, viewportElement, () => props.documentId],
   ([plugin, element, documentId], _old, onCleanup) => {
@@ -55,9 +56,23 @@ watch(
     element.addEventListener('scroll', scroll)
     const frames = new Set<number>()
     const unsubscribe = plugin.onScrollRequest(documentId, ({ x, y, behavior = 'auto' }) => {
+      // Auto-fit can request the old scroll position while a page jump is in flight.
+      // Keep that jump's logical destination across zoom/layout changes, rather than
+      // letting a later fit RAF cancel it with coordinates from the previous page.
+      const change = scrollCapability.value?.getPageChangeState()
+      const targetPage = change?.isChanging ? change.targetPage : undefined
       const frame = requestAnimationFrame(() => {
         frames.delete(frame)
-        element.scrollTo({ left: x, top: y, behavior })
+        const target = targetPage
+          ? element.querySelector<HTMLElement>(`[data-page-number="${targetPage}"]`)
+          : null
+        const top = target
+          ? element.scrollTop +
+            target.getBoundingClientRect().top -
+            element.getBoundingClientRect().top -
+            element.clientTop
+          : y
+        element.scrollTo({ left: x, top, behavior })
       })
       frames.add(frame)
     })

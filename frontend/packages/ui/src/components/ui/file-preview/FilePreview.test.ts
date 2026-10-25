@@ -36,6 +36,8 @@ const pdfRenderMocks = vi.hoisted(() => ({
 }))
 
 const pdfRenderScale = shallowRef(1)
+const pdfPageCount = shallowRef(1)
+const pdfPageChange = shallowRef({ isChanging: false, targetPage: 1 })
 
 const pdfScrollMocks = vi.hoisted(() => ({
   currentPage: 1,
@@ -121,6 +123,7 @@ const viewportMock = vi.hoisted(() => ({
   resize: vi.fn(),
   scroll: vi.fn(),
   unsubscribe: vi.fn(),
+  subscribe: vi.fn(),
 }))
 vi.mock('@embedpdf/plugin-viewport/vue', () => ({
   useIsViewportGated: () => shallowRef(false),
@@ -131,7 +134,7 @@ vi.mock('@embedpdf/plugin-viewport/vue', () => ({
       unregisterViewport: viewportMock.unregister,
       setViewportResizeMetrics: viewportMock.resize,
       setViewportScrollMetrics: viewportMock.scroll,
-      onScrollRequest: () => viewportMock.unsubscribe,
+      onScrollRequest: viewportMock.subscribe,
     }),
   }),
   ViewportPluginPackage: {},
@@ -155,13 +158,15 @@ vi.mock('@embedpdf/plugin-scroll/vue', () => ({
         h(
           'div',
           { 'data-testid': 'embedpdf-scroller' },
-          slots.default?.({
-            page: {
-              pageIndex: 0,
-              width: 320,
-              height: 420,
-            },
-          }),
+          Array.from({ length: pdfPageCount.value }, (_, pageIndex) =>
+            slots.default?.({
+              page: {
+                pageIndex,
+                width: 320,
+                height: 420,
+              },
+            }),
+          ),
         )
     },
   }),
@@ -170,6 +175,7 @@ vi.mock('@embedpdf/plugin-scroll/vue', () => ({
       scrollToPage: pdfScrollMocks.scrollToPage,
       scrollToPreviousPage: pdfScrollMocks.scrollToPreviousPage,
       scrollToNextPage: pdfScrollMocks.scrollToNextPage,
+      getPageChangeState: () => pdfPageChange.value,
     })),
     state: computed(() => ({
       currentPage: pdfScrollMocks.currentPage,
@@ -344,6 +350,8 @@ describe('FilePreview', () => {
   beforeEach(() => {
     vi.restoreAllMocks()
     pdfRenderScale.value = 1
+    pdfPageCount.value = 1
+    pdfPageChange.value = { isChanging: false, targetPage: 1 }
     pdfRenderMocks.pending = false
     pdfRenderMocks.tasks = []
     let bitmap = 0
@@ -355,6 +363,7 @@ describe('FilePreview', () => {
       },
     )
     for (const mock of Object.values(viewportMock)) mock.mockClear()
+    viewportMock.subscribe.mockImplementation(() => viewportMock.unsubscribe)
     vi.stubGlobal(
       'fetch',
       vi.fn(async () => ({
@@ -556,6 +565,61 @@ describe('FilePreview', () => {
     last.unmount()
   })
 
+  it('keeps the first PDF next page visible when pending fit requests change its layout', async () => {
+    pdfPageCount.value = 3
+    const frames = new Map<number, FrameRequestCallback>()
+    let nextFrame = 0
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
+      frames.set(++nextFrame, callback)
+      return nextFrame
+    })
+    vi.stubGlobal('cancelAnimationFrame', (id: number) => frames.delete(id))
+    let request: (position: { x: number; y: number; behavior: ScrollBehavior }) => void
+    viewportMock.subscribe.mockImplementation((_id, listener) => {
+      request = listener
+      return viewportMock.unsubscribe
+    })
+    const wrapper = mount(FilePreview, {
+      props: { src: '/files/reading-journey.pdf', fileName: 'reading-journey.pdf' },
+    })
+    await flushPromises()
+    const viewport = wrapper.get('[data-slot="file-preview-pdf-viewport"]').element as HTMLElement
+    // jsdom has no layout or scrolling. Model a three-page document at the DOM boundary.
+    const rect = (top: number) => ({ top, left: 0, width: 320, height: 400 }) as DOMRect
+    vi.spyOn(viewport, 'getBoundingClientRect').mockImplementation(() => rect(100))
+    Object.defineProperty(viewport, 'scrollTo', {
+      value: ({ top }: ScrollToOptions) => {
+        viewport.scrollTop = top ?? 0
+      },
+    })
+    for (const page of wrapper.findAll<HTMLElement>('[data-page-number]')) {
+      vi.spyOn(page.element, 'getBoundingClientRect').mockImplementation(() =>
+        rect(
+          110 +
+            (Number(page.attributes('data-page-number')) - 1) * 800 * pdfRenderScale.value -
+            viewport.scrollTop,
+        ),
+      )
+    }
+    pdfScrollMocks.scrollToNextPage.mockImplementationOnce(() => {
+      pdfPageChange.value = { isChanging: true, targetPage: 2 }
+      request({ x: 10, y: 810, behavior: 'smooth' })
+      // The external fit plugin updates scale then requests its old top position.
+      pdfRenderScale.value = 0.9
+      request({ x: 0, y: 0.5, behavior: 'instant' as ScrollBehavior })
+    })
+    await wrapper.get('button[aria-label="下一页"]').trigger('click')
+    for (const [id, callback] of frames) {
+      frames.delete(id)
+      callback(0)
+    }
+    const second = wrapper.get('[data-page-number="2"]').element
+    expect(second.getBoundingClientRect().top - viewport.getBoundingClientRect().top).toBe(0)
+    expect(viewport.scrollTop).toBe(730)
+    wrapper.unmount()
+    expect(frames.size).toBe(0)
+  })
+
   it('disconnects the PDF viewport observer and scroll subscription on unmount', async () => {
     const disconnect = vi.fn()
     vi.stubGlobal(
@@ -571,6 +635,60 @@ describe('FilePreview', () => {
     expect(disconnect).toHaveBeenCalledOnce()
     expect(viewportMock.unregister).toHaveBeenCalledWith('viewport-document')
     expect(viewportMock.unsubscribe).toHaveBeenCalledOnce()
+  })
+
+  it('honors ordinary PDF zoom scroll requests outside a page transition', async () => {
+    const frames: FrameRequestCallback[] = []
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) =>
+      frames.push(callback),
+    )
+    vi.stubGlobal('cancelAnimationFrame', vi.fn())
+    let request: (position: { x: number; y: number }) => void
+    viewportMock.subscribe.mockImplementation((_id, listener) => {
+      request = listener
+      return viewportMock.unsubscribe
+    })
+    const wrapper = mount(FilePreview, {
+      props: { src: '/files/reading-journey.pdf', fileName: 'reading-journey.pdf' },
+    })
+    await flushPromises()
+    const viewport = wrapper.get('[data-slot="file-preview-pdf-viewport"]').element as HTMLElement
+    const scrollTo = vi.fn(({ left, top }: ScrollToOptions) => {
+      viewport.scrollLeft = left ?? 0
+      viewport.scrollTop = top ?? 0
+    })
+    Object.defineProperty(viewport, 'scrollTo', { value: scrollTo })
+    request!({ x: 25, y: 140 })
+    for (const callback of frames) callback(0)
+    expect(viewport.scrollLeft).toBe(25)
+    expect(viewport.scrollTop).toBe(140)
+    wrapper.unmount()
+  })
+
+  it('cancels pending PDF navigation frames when its source is replaced', async () => {
+    const frames = new Map<number, FrameRequestCallback>()
+    let nextFrame = 0
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
+      frames.set(++nextFrame, callback)
+      return nextFrame
+    })
+    vi.stubGlobal('cancelAnimationFrame', (id: number) => frames.delete(id))
+    let request: (position: { x: number; y: number }) => void
+    viewportMock.subscribe.mockImplementation((_id, listener) => {
+      request = listener
+      return viewportMock.unsubscribe
+    })
+    const wrapper = mount(FilePreview, {
+      props: { src: '/files/reading-journey.pdf', fileName: 'reading-journey.pdf' },
+    })
+    await flushPromises()
+    request!({ x: 0, y: 800 })
+    expect(frames.size).toBe(1)
+    await wrapper.setProps({ src: '/files/garden.png', fileName: 'garden.png' })
+    await flushPromises()
+    expect(frames.size).toBe(0)
+    expect(viewportMock.unsubscribe).toHaveBeenCalledOnce()
+    wrapper.unmount()
   })
 
   it('releases the PDF bitmap URL when leaving before image load', async () => {
