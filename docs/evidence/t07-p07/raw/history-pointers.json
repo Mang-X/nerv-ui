@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p06-review-r2/review-receipt.md",
+    "bytes": 10541,
+    "sha256": "765e798b99c5598b5ab00308eb6766e21e0396263b5c15ebaf47eedfc668c77c",
+    "historicalEvidenceNotRerun": true
+  },
+  {
+    "path": "/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p06-implementation-r1/handoff.md",
+    "bytes": 9749,
+    "sha256": "530f8505bd11f92d8abf069e09b1a01841d50aa303d5ea94ce46594ae863a0b1",
+    "historicalEvidenceNotRerun": true
+  },
+  {
+    "path": "/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p05-review-r2/review-receipt.md",
+    "bytes": 10280,
+    "sha256": "49c069df4f29e0bc631cf969c142c9a22d5dce4f97d572f33cb54f8b7de540a2",
+    "historicalEvidenceNotRerun": true
+  },
+  {
+    "path": "/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p05-namespace-fix/handoff.md",
+    "bytes": 14948,
+    "sha256": "248c6b2dfe721d7f4ca7058956be4529bd49517418c9588fffd1b4d822ad6a2e",
+    "historicalEvidenceNotRerun": true
+  },
+  {
+    "path": "/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p04-review-r4/review-receipt.md",
+    "bytes": 12589,
+    "sha256": "a56ceb12291af4238d3870bee36fdc094f0584e04b6f554096d5c60379fdd233",
+    "historicalEvidenceNotRerun": true
+  },
+  {
+    "path": "/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-25/t07-research.md",
+    "bytes": 138765,
+    "sha256": "5848ef70ee73212a6b625f1cf8b59205ad0756e3f7cfd9b66fab636ef8418836",
+    "historicalEvidenceNotRerun": true
+  },
+  {
+    "path": "/tmp/nerv-ui-implementation-context.md",
+    "bytes": 47508,
+    "sha256": "778e0ab41a46b44f28280e7a33693a6b5f20fe11e3c537213e5749d51e5566df",
+    "historicalEvidenceNotRerun": true
+  },
+  {
+    "path": "/tmp/nerv-ui-controller-state.json",
+    "bytes": 71199,
+    "sha256": "f9955e2ac2726a5ea78dbe9f1853ed77abcba9de468294a585fd914a613f9a07",
+    "historicalEvidenceNotRerun": true
+  }
+]

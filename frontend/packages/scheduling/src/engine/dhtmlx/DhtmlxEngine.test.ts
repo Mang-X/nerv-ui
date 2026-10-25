@@ -244,6 +244,40 @@ describe('DhtmlxEngine (fake factory)', () => {
     engine.destroy()
   })
 
+  it('resource native resize returns to authority before a deferred proposal and invalidates stale proposals', async () => {
+    vi.useFakeTimers()
+    const fake = makeFakeGantt()
+    const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+    const model = cloneModel(sampleModel)
+    engine.mount(el(), { ...options(), view: 'resource' })
+    engine.setData(model)
+    const received: unknown[] = []
+    engine.on('taskDragEnd', (p) => received.push(p))
+    expect(fake.fire('onBeforeTaskDrag', 'a1', 'resize')).toBe(true)
+    fake.gantt.getTask('a1')!.end_date = new Date('2026-06-10T11:00:00Z')
+    expect.soft(fake.fire('onBeforeTaskChanged', 'a1', 'resize')).toBe(false)
+    expect(received).toEqual([])
+    await vi.runAllTimersAsync()
+    expect.soft(received).toEqual([
+      expect.objectContaining({
+        taskId: 'a1',
+        kind: 'resize',
+        endUtc: '2026-06-10T11:00:00.000Z',
+      }),
+    ])
+    expect.soft(fake.gantt.getTask('a1')!.end_date!.toISOString()).toBe('2026-06-10T10:00:00.000Z')
+    expect(fake.fire('onBeforeTaskDrag', 'a1', 'resize')).toBe(true)
+    fake.gantt.getTask('a1')!.end_date = new Date('2026-06-10T12:00:00Z')
+    fake.fire('onBeforeTaskChanged', 'a1', 'resize')
+    const newer = cloneModel(model)
+    newer.tasks.find((t) => t.id === 'a1')!.endUtc = '2026-06-10T15:00:00Z'
+    engine.setData(newer)
+    await vi.runAllTimersAsync()
+    expect.soft(received).toHaveLength(1)
+    expect.soft(fake.gantt.getTask('a1')!.end_date!.toISOString()).toBe('2026-06-10T15:00:00.000Z')
+    engine.destroy()
+  })
+
   it.each(['start_date', 'end_date'] as const)(
     'reports %s resize once after the native callback, retaining the resource (#4041)',
     async (endpoint) => {
@@ -255,6 +289,7 @@ describe('DhtmlxEngine (fake factory)', () => {
       model.tasks.find((task) => task.id === 'a1')!.resourceId = 'RES-001'
       engine.mount(el(), { ...options(), view: 'resource' })
       engine.setData(model)
+      expect(fake.fire('onBeforeTaskDrag', 'a1', 'resize')).toBe(true)
       const task = fake.gantt.getTask('a1')!
       task[endpoint] = new Date(
         endpoint === 'start_date' ? '2026-06-10T07:00:00Z' : '2026-06-10T11:00:00Z',
@@ -264,7 +299,8 @@ describe('DhtmlxEngine (fake factory)', () => {
         received.push(payload)
         engine.setData(model)
       })
-      fake.fire('onAfterTaskDrag', 'a1', 'resize')
+      expect(fake.fire('onBeforeTaskChanged', 'a1', 'resize')).toBe(false)
+      fake.fire('onAfterTaskDrag', 'a1', 'resize') // A late vendor notification cannot duplicate a proposal.
       expect(received).toEqual([])
       await vi.runAllTimersAsync()
       expect(received).toEqual([

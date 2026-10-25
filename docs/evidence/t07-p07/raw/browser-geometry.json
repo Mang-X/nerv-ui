@@ -1,0 +1,391 @@
+{
+  "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+  "tz": "Asia/Shanghai",
+  "scale": 1,
+  "inner": [
+    2300,
+    1225
+  ],
+  "rects": [
+    {
+      "cls": "gantt_task",
+      "id": null,
+      "prop": null,
+      "rect": {
+        "x": 274,
+        "y": 222,
+        "width": 1989,
+        "height": 616,
+        "top": 222,
+        "right": 2263,
+        "bottom": 838,
+        "left": 274
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "width:inherit;height:inherit;"
+    },
+    {
+      "cls": "gantt_data_area",
+      "id": null,
+      "prop": null,
+      "rect": {
+        "x": 274,
+        "y": 297,
+        "width": 1989,
+        "height": 541,
+        "top": 297,
+        "right": 2263,
+        "bottom": 838,
+        "left": 274
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "height: 541px; width: 1989px;"
+    },
+    {
+      "cls": "gantt_task_bg",
+      "id": null,
+      "prop": null,
+      "rect": {
+        "x": 274,
+        "y": 297,
+        "width": 1989,
+        "height": 1120,
+        "top": 297,
+        "right": 2263,
+        "bottom": 1417,
+        "left": 274
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "height: 1120px; width: 1989px;"
+    },
+    {
+      "cls": "gantt_task_row",
+      "id": "lane:place-0",
+      "prop": null,
+      "rect": {
+        "x": 274,
+        "y": 297,
+        "width": 1989,
+        "height": 280,
+        "top": 297,
+        "right": 2263,
+        "bottom": 577,
+        "left": 274
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "position: absolute; top: 0px; width: 100%; height: 280px;"
+    },
+    {
+      "cls": "gantt_task_row odd",
+      "id": "lane:place-1",
+      "prop": null,
+      "rect": {
+        "x": 274,
+        "y": 577,
+        "width": 1989,
+        "height": 280,
+        "top": 577,
+        "right": 2263,
+        "bottom": 857,
+        "left": 274
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "position: absolute; top: 280px; width: 100%; height: 280px;"
+    },
+    {
+      "cls": "gantt_task_row",
+      "id": "lane:place-2",
+      "prop": null,
+      "rect": {
+        "x": 274,
+        "y": 857,
+        "width": 1989,
+        "height": 280,
+        "top": 857,
+        "right": 2263,
+        "bottom": 1137,
+        "left": 274
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "position: absolute; top: 560px; width: 100%; height: 280px;"
+    },
+    {
+      "cls": "gantt_task_line nerv-order nerv-selected gantt_project gantt_bar_project gantt_dependent_task gantt_split_parent",
+      "id": "lane:place-0",
+      "prop": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;"
+    },
+    {
+      "cls": "gantt_task_line nerv-order nerv-selected gantt_project gantt_bar_project gantt_dependent_task gantt_split_parent",
+      "id": "lane:place-1",
+      "prop": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "left: 248px; top: 288px; height: 264px; line-height: 264px; width: 247px;"
+    },
+    {
+      "cls": "gantt_task_line nerv-order nerv-selected gantt_project gantt_bar_project gantt_dependent_task gantt_split_parent",
+      "id": "lane:place-2",
+      "prop": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "left: 165px; top: 568px; height: 264px; line-height: 264px; width: 662px;"
+    },
+    {
+      "cls": "gantt_task_line gantt_bar_task gantt_split_child",
+      "id": "edit",
+      "prop": null,
+      "rect": {
+        "x": 439,
+        "y": 305,
+        "width": 248,
+        "height": 264,
+        "top": 305,
+        "right": 687,
+        "bottom": 569,
+        "left": 439
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;"
+    },
+    {
+      "cls": "gantt_task_drag task_left task_start_date",
+      "id": null,
+      "prop": "start_date",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": null
+    },
+    {
+      "cls": "gantt_task_drag task_right task_end_date",
+      "id": null,
+      "prop": "end_date",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": null
+    },
+    {
+      "cls": "gantt_task_line nerv-locked gantt_bar_task gantt_split_child",
+      "id": "fixed",
+      "prop": null,
+      "rect": {
+        "x": 522,
+        "y": 585,
+        "width": 247,
+        "height": 264,
+        "top": 585,
+        "right": 769,
+        "bottom": 849,
+        "left": 522
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "left: 248px; top: 288px; height: 264px; line-height: 264px; width: 247px;"
+    },
+    {
+      "cls": "gantt_task_drag task_left task_start_date",
+      "id": null,
+      "prop": "start_date",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": null
+    },
+    {
+      "cls": "gantt_task_drag task_right task_end_date",
+      "id": null,
+      "prop": "end_date",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": null
+    },
+    {
+      "cls": "gantt_task_line nerv-segmented gantt_bar_task gantt_split_child",
+      "id": "parts",
+      "prop": null,
+      "rect": {
+        "x": 439,
+        "y": 865,
+        "width": 662,
+        "height": 264,
+        "top": 865,
+        "right": 1101,
+        "bottom": 1129,
+        "left": 439
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "left: 165px; top: 568px; height: 264px; line-height: 264px; width: 662px;"
+    },
+    {
+      "cls": "gantt_task_drag task_left task_start_date",
+      "id": null,
+      "prop": "start_date",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": null
+    },
+    {
+      "cls": "gantt_task_drag task_right task_end_date",
+      "id": null,
+      "prop": "end_date",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": null
+    },
+    {
+      "cls": "gantt_layout_cell gantt_ver_scroll gantt_layout_cell_border_top",
+      "id": null,
+      "prop": null,
+      "rect": {
+        "x": 2263,
+        "y": 296,
+        "width": 15,
+        "height": 544,
+        "top": 296,
+        "right": 2278,
+        "bottom": 840,
+        "left": 2263
+      },
+      "scroll": [
+        0,
+        0
+      ],
+      "style": "width: 15px; height: 544px; top: 74px;"
+    }
+  ]
+}

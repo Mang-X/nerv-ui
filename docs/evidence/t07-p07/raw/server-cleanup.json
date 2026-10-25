@@ -1,0 +1,88 @@
+{
+  "servers": [
+    {
+      "pid": 26861,
+      "expected": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground",
+      "match": "preview",
+      "command": {
+        "cmd": "ps",
+        "args": [
+          "-p",
+          "26861",
+          "-o",
+          "command="
+        ],
+        "exit": 0,
+        "stdout": "/Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js preview --host 127.0.0.1 --port 4287 --strictPort\n",
+        "stderr": ""
+      },
+      "location": {
+        "cmd": "lsof",
+        "args": [
+          "-a",
+          "-p",
+          "26861",
+          "-d",
+          "cwd",
+          "-Fn"
+        ],
+        "exit": 0,
+        "stdout": "p26861\nfcwd\nn/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground\n",
+        "stderr": ""
+      },
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 59730,
+      "expected": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "match": "serve-nested.mjs",
+      "command": {
+        "cmd": "ps",
+        "args": [
+          "-p",
+          "59730",
+          "-o",
+          "command="
+        ],
+        "exit": 0,
+        "stdout": "node docs/evidence/t07-p07/scripts/serve-nested.mjs\n",
+        "stderr": ""
+      },
+      "location": {
+        "cmd": "lsof",
+        "args": [
+          "-a",
+          "-p",
+          "59730",
+          "-d",
+          "cwd",
+          "-Fn"
+        ],
+        "exit": 0,
+        "stdout": "p59730\nfcwd\nn/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing\n",
+        "stderr": ""
+      },
+      "signal": "SIGTERM"
+    }
+  ],
+  "ptyExits": {
+    "root": 143,
+    "nested": 143
+  },
+  "ports": [
+    {
+      "port": 4287,
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "port": 4288,
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "markerExists": false,
+  "consumerNodeModulesRemoved": true
+}

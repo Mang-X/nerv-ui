@@ -1,0 +1,156 @@
+[
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/",
+    "status": 200,
+    "mime": "text/html",
+    "bytes": 514,
+    "sha256": "3d1b6f6c271d9dd7f9a5f285590e0e8a3f646573ea2daa372d4e26ab045279d6",
+    "body": "docs/evidence/t07-p07/raw/responses-final/root/index.html",
+    "freshDist": "frontend/apps/playground/dist/index.html",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/rolldown-runtime-EyZ2wyi3.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 612,
+    "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+    "body": "docs/evidence/t07-p07/raw/responses-final/root/rolldown-runtime-EyZ2wyi3.js",
+    "freshDist": "frontend/apps/playground/dist/assets/rolldown-runtime-EyZ2wyi3.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/index--tB6K1KV.css",
+    "status": 200,
+    "mime": "text/css",
+    "bytes": 330100,
+    "sha256": "7e46fe473b60093bf47e73256182d7ebbd2874d831d9e90ec55da037243e5630",
+    "body": "docs/evidence/t07-p07/raw/responses-final/root/index--tB6K1KV.css",
+    "freshDist": "frontend/apps/playground/dist/assets/index--tB6K1KV.css",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/index-eqpMfMkS.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 942733,
+    "sha256": "6cbdefc147d30d59d4be7ceba85cb71351779b970d1c11b07cf82716eb256f5f",
+    "body": "docs/evidence/t07-p07/raw/responses-final/root/index-eqpMfMkS.js",
+    "freshDist": "frontend/apps/playground/dist/assets/index-eqpMfMkS.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/dhtmlxgantt-DePP4erS.css",
+    "status": 200,
+    "mime": "text/css",
+    "bytes": 139046,
+    "sha256": "27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4",
+    "body": "docs/evidence/t07-p07/raw/responses-final/root/dhtmlxgantt-DePP4erS.css",
+    "freshDist": "frontend/apps/playground/dist/assets/dhtmlxgantt-DePP4erS.css",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 706201,
+    "sha256": "ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573",
+    "body": "docs/evidence/t07-p07/raw/responses-final/root/dhtmlxgantt.es-DLTcQAl2.js",
+    "freshDist": "frontend/apps/playground/dist/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "status": 200,
+    "mime": "font/woff2",
+    "bytes": 48256,
+    "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "body": "docs/evidence/t07-p07/raw/responses-final/root/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "freshDist": "frontend/apps/playground/dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/",
+    "status": 200,
+    "mime": "text/html; charset=utf-8",
+    "bytes": 526,
+    "sha256": "c819194ae6e4ea3b5252319f36879b1d715ee15aeff61a26d7777d6a3ff1685c",
+    "body": "docs/evidence/t07-p07/raw/responses-final/nested/index.html",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/index.html",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/rolldown-runtime-EyZ2wyi3.js",
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 612,
+    "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+    "body": "docs/evidence/t07-p07/raw/responses-final/nested/rolldown-runtime-EyZ2wyi3.js",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/rolldown-runtime-EyZ2wyi3.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/index-CApLkDFV.css",
+    "status": 200,
+    "mime": "text/css; charset=utf-8",
+    "bytes": 330128,
+    "sha256": "4003627ae4ea85928c52a438bd548160343ec9e74349def36ab324957456ee5d",
+    "body": "docs/evidence/t07-p07/raw/responses-final/nested/index-CApLkDFV.css",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/index-CApLkDFV.css",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/index-DPqkj4g9.js",
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 942781,
+    "sha256": "975d51d7e255ac3bb9c80192f65bfcd40dc0ac0fe59a181492f3015f20a18338",
+    "body": "docs/evidence/t07-p07/raw/responses-final/nested/index-DPqkj4g9.js",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/index-DPqkj4g9.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt-DePP4erS.css",
+    "status": 200,
+    "mime": "text/css; charset=utf-8",
+    "bytes": 139046,
+    "sha256": "27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4",
+    "body": "docs/evidence/t07-p07/raw/responses-final/nested/dhtmlxgantt-DePP4erS.css",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/dhtmlxgantt-DePP4erS.css",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 706201,
+    "sha256": "ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573",
+    "body": "docs/evidence/t07-p07/raw/responses-final/nested/dhtmlxgantt.es-DLTcQAl2.js",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "status": 200,
+    "mime": "font/woff2",
+    "bytes": 48256,
+    "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "body": "docs/evidence/t07-p07/raw/responses-final/nested/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "bodyEqualsFreshDist": true
+  }
+]

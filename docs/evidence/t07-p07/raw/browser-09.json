@@ -1,0 +1,160 @@
+[
+  {
+    "name": "fresh-root-resources",
+    "inventory": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "all": [
+        {
+          "url": "http://127.0.0.1:4287/assets/index-BRtcrzIR.js",
+          "status": 200,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4287/assets/rolldown-runtime-EyZ2wyi3.js",
+          "status": 200,
+          "initiator": "other"
+        },
+        {
+          "url": "http://127.0.0.1:4287/assets/index--tB6K1KV.css",
+          "status": 200,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4287/assets/dhtmlxgantt-DePP4erS.css",
+          "status": 200,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4287/assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "status": 200,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4287/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+          "status": 200,
+          "initiator": "css"
+        }
+      ]
+    }
+  },
+  {
+    "name": "nested-studio-accepted",
+    "state": {
+      "url": "http://127.0.0.1:4288/p07/#schedule-resource-edit/studio",
+      "authority": "速写与配色；陶艺工坊 · 晨间小组；10/25 13:00 至 10/25 16:00",
+      "count": 1,
+      "records": "1. 速写与配色 · 调整位置调整前：木作工坊 · 晨间小组；10/25 10:00 至 10/25 13:00本次调整：陶艺工坊 · 晨间小组；10/25 13:00 至 10/25 16:00处理结果：已采用新的活动安排。当前安排：陶艺工坊 · 晨间小组；10/25 13:00 至 10/25 16:00",
+      "b": {
+        "x": 687,
+        "y": 305,
+        "width": 248,
+        "height": 264,
+        "top": 305,
+        "right": 935,
+        "bottom": 569,
+        "left": 687
+      },
+      "ghost": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "rows": [
+        {
+          "id": "lane:place-1",
+          "rect": {
+            "x": 274,
+            "y": 297,
+            "width": 1989,
+            "height": 280,
+            "top": 297,
+            "right": 2263,
+            "bottom": 577,
+            "left": 274
+          }
+        },
+        {
+          "id": "lane:place-2",
+          "rect": {
+            "x": 274,
+            "y": 577,
+            "width": 1989,
+            "height": 280,
+            "top": 577,
+            "right": 2263,
+            "bottom": 857,
+            "left": 274
+          }
+        },
+        {
+          "id": "lane:place-0",
+          "rect": {
+            "x": 274,
+            "y": 857,
+            "width": 1989,
+            "height": 280,
+            "top": 857,
+            "right": 2263,
+            "bottom": 1137,
+            "left": 274
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "fresh-nested-resources",
+    "inventory": {
+      "url": "http://127.0.0.1:4288/p07/#schedule-resource-edit/studio",
+      "all": [
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/rolldown-runtime-EyZ2wyi3.js",
+          "status": 200,
+          "initiator": "other"
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-Bdm5FDbT.js",
+          "status": 200,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-CApLkDFV.css",
+          "status": 200,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt-DePP4erS.css",
+          "status": 200,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "status": 200,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+          "status": 200,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4288/favicon.ico",
+          "status": 404,
+          "initiator": "other"
+        }
+      ]
+    }
+  },
+  {
+    "name": "nested-old-resource-entry-return",
+    "url": "http://127.0.0.1:4288/p07/#schedule-resources/studio"
+  }
+]

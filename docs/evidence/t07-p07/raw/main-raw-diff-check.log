@@ -1,0 +1,1785 @@
+docs/evidence/t04-n02/browser-01.log:152: new blank line at EOF.
+docs/evidence/t04-n02/browser-02.log:81: new blank line at EOF.
+docs/evidence/t04-n02/browser-06.log:2: new blank line at EOF.
+docs/evidence/t04-n02/browser-08.log:2: new blank line at EOF.
+docs/evidence/t04-n02/browser-11.log:9: new blank line at EOF.
+docs/evidence/t04-n02/browser-12.log:49: new blank line at EOF.
+docs/evidence/t04-n02/browser-13.log:2: new blank line at EOF.
+docs/evidence/t04-n02/build.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/build.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/build.log:38: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/build.log:40: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/build.log:43: new blank line at EOF.
+docs/evidence/t04-n02/diff-check-raw.log:9: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/diff-check-raw.log:11: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/diff-check-raw.log:13: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/diff-check-raw.log:15: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/diff-check-raw.log:23: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:25: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:27: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:29: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:31: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:33: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:35: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:37: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:44: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:46: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:48: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:50: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:52: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:54: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:56: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:58: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/browser-01.log:152: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-02.log:168: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-03-diagnostic.log:2: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-04-animation-diagnostic.log:2: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-05-recover.log:161: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-07-diagnostic.log:3: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-08.log:70: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-11.log:12: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-12-diagnostic.log:76: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-13.log:115: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-finish.log:2: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-resources.log:95: new blank line at EOF.
+docs/evidence/t04-n02/f1/build-final.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/f1/build-final.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/build-final.log:37: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/f1/build-final.log:39: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/external-final-green.log:10: new blank line at EOF.
+docs/evidence/t04-n02/f1/external-red.log:34: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:36: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:71: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:108: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:110: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:137: new blank line at EOF.
+docs/evidence/t04-n02/f1/formal-final-green.log:10: new blank line at EOF.
+docs/evidence/t04-n02/f1/formal-green.log:10: new blank line at EOF.
+docs/evidence/t04-n02/f1/formal-red.log:27: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:29: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:64: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:66: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:101: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:103: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:9: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/f1/full-diff-check.log:11: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/full-diff-check.log:13: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/f1/full-diff-check.log:15: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/full-diff-check.log:18: trailing whitespace.
++++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/f1/full-diff-check.log:20: trailing whitespace.
++++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/full-diff-check.log:22: trailing whitespace.
++++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/f1/full-diff-check.log:24: trailing whitespace.
++++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/full-diff-check.log:26: trailing whitespace.
++++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:28: trailing whitespace.
++++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:30: trailing whitespace.
++++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:32: trailing whitespace.
++++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:34: trailing whitespace.
++++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:36: trailing whitespace.
++++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:38: trailing whitespace.
++++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:40: trailing whitespace.
++++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:42: trailing whitespace.
++++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:44: trailing whitespace.
++++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:46: trailing whitespace.
++++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:48: trailing whitespace.
++++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:50: trailing whitespace.
++++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:52: trailing whitespace.
++++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:54: trailing whitespace.
++++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:56: trailing whitespace.
++++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:70: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/f1/full-diff-check.log:72: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/full-diff-check.log:74: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/f1/full-diff-check.log:76: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/full-diff-check.log:79: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:81: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:83: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:85: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:87: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:89: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:94: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:96: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:98: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:100: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:102: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:104: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:110: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:112: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:114: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:116: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:118: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:120: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:123: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:125: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:127: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:129: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:131: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:133: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:135: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:137: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:139: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:141: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:143: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:145: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:147: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:149: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:151: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:153: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:155: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:157: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:159: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:161: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:163: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:165: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:167: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:169: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:171: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:173: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:175: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:177: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:179: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:181: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:183: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:185: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:187: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:189: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:191: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:193: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:195: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:197: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:199: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:201: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:203: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:205: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:207: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:209: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:211: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:213: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:215: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:217: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:219: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:221: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:223: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:225: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:227: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:229: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:231: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:233: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:235: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:237: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:239: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:241: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:243: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:245: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:247: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:249: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:251: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:253: trailing whitespace.
++++       
+docs/evidence/t04-n02/f1/full-diff-check.log:255: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:257: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:259: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:261: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:263: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:265: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:267: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:269: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:271: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:273: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:275: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:277: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:279: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:281: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:283: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:285: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:287: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:289: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:291: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:293: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:295: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:297: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:299: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:301: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:303: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:305: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:307: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:309: trailing whitespace.
++++     
+docs/evidence/t04-n02/f1/full-diff-check.log:311: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:313: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:315: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:317: trailing whitespace.
++++             
+docs/evidence/t04-n02/f1/full-diff-check.log:319: trailing whitespace.
++++             
+docs/evidence/t04-n02/f1/full-diff-check.log:321: trailing whitespace.
++++             
+docs/evidence/t04-n02/f1/full-diff-check.log:323: trailing whitespace.
++++             
+docs/evidence/t04-n02/f1/full-diff-check.log:325: trailing whitespace.
++++             
+docs/evidence/t04-n02/f1/full-diff-check.log:327: trailing whitespace.
++++             
+docs/evidence/t04-n02/f1/full-diff-check.log:329: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:331: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:333: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:335: trailing whitespace.
++++               
+docs/evidence/t04-n02/f1/full-diff-check.log:337: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:339: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:341: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:343: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:345: trailing whitespace.
++++               
+docs/evidence/t04-n02/f1/full-diff-check.log:347: trailing whitespace.
++++                回车收下编码并清空输入。编辑其它输入框时暂停接收，离开后恢复；也可关闭持续接收。 
+docs/evidence/t04-n02/f1/full-diff-check.log:349: trailing whitespace.
++++                保留开头的零，追加输入最多 6 个字符；正负号可独立切换。 
+docs/evidence/t04-n02/f1/full-diff-check.log:351: trailing whitespace.
++++               
+docs/evidence/t04-n02/f1/full-diff-check.log:353: trailing whitespace.
++++               
+docs/evidence/t04-n02/f1/full-diff-check.log:355: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:357: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:359: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:361: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:363: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:365: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:367: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:369: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:371: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:373: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:375: trailing whitespace.
++++           
+docs/evidence/t04-n02/f1/full-diff-check.log:377: trailing whitespace.
++++             
+docs/evidence/t04-n02/f1/full-diff-check.log:379: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:381: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:383: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:385: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:387: trailing whitespace.
++++                      取消 
+docs/evidence/t04-n02/f1/full-diff-check.log:389: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:391: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:393: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:395: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:397: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:399: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:401: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:403: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:405: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:407: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:409: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:411: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:413: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:415: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:417: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:419: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:421: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:423: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:425: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:427: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:429: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:431: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:433: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:435: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:437: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:439: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:441: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:443: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:445: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:447: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:449: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:451: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:453: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:455: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:457: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:459: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:461: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:463: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:465: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:467: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:469: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:471: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:473: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:475: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:477: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:479: trailing whitespace.
++++                     
+docs/evidence/t04-n02/f1/full-diff-check.log:481: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:483: trailing whitespace.
++++                 
+docs/evidence/t04-n02/f1/full-diff-check.log:485: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:487: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:489: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:491: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:493: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:495: trailing whitespace.
++++                   
+docs/evidence/t04-n02/f1/full-diff-check.log:497: trailing whitespace.
++++             
+docs/evidence/t04-n02/f1/full-diff-check.log:499: trailing whitespace.
++++         
+docs/evidence/t04-n02/f1/full-diff-check.log:501: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:503: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:505: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:507: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:509: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:511: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:513: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:515: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:517: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:519: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:521: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:523: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:525: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:527: trailing whitespace.
++++   
+docs/evidence/t04-n02/f1/full-diff-check.log:536: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:538: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:540: trailing whitespace.
+++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:542: trailing whitespace.
+++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:544: trailing whitespace.
+++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:546: trailing whitespace.
+++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:548: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:550: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:557: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:559: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:561: trailing whitespace.
+++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:563: trailing whitespace.
+++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:565: trailing whitespace.
+++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:567: trailing whitespace.
+++-     
+docs/evidence/t04-n02/f1/full-diff-check.log:569: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/full-diff-check.log:571: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/host-final.log:15: new blank line at EOF.
+docs/evidence/t04-n02/f1/mobile-docs.log:11: new blank line at EOF.
+docs/evidence/t04-n02/f1/mobile.log:22: new blank line at EOF.
+docs/evidence/t04-n02/f1/naming.log:10: new blank line at EOF.
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:34: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:36: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:71: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:108: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:110: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:137: new blank line at EOF.
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:27: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:28: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:36: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:37: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:43: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:44: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:49: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:50: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:52: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:53: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:61: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:62: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:67: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:68: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:76: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:77: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:83: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:84: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:89: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:90: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:92: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:93: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:101: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:102: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:107: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:108: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:116: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:117: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:123: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:124: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:129: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:130: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:132: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:133: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:141: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:142: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:147: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:148: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:156: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:157: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:163: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:164: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:169: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:170: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:172: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:173: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:181: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:182: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:187: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:188: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:196: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:197: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:203: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:204: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:209: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:210: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:212: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:213: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:221: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:222: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:227: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:228: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:236: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:237: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:243: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:244: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:252: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:253: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:255: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:256: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:264: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:265: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:276: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:277: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:283: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:284: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:295: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:296: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:300: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:301: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:313: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:314: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:318: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:319: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:331: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:332: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:336: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:337: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:349: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:350: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:357: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:358: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:369: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:370: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:374: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:375: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:389: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:398: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:399: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:404: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:406: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:411: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:420: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:423: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:429: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:470: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:489: trailing whitespace.
+++               
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:503: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:509: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:510: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:512: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:515: trailing whitespace.
+++               
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:585: trailing whitespace.
+++                回车收下编码并清空输入。编辑其它输入框时暂停接收，离开后恢复；也可关闭持续接收。 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:641: trailing whitespace.
+++                保留开头的零，追加输入最多 6 个字符；正负号可独立切换。 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:650: trailing whitespace.
+++               
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:652: trailing whitespace.
+++               
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:676: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:678: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:687: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:689: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:699: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:702: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:703: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:706: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:707: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:712: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:713: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:718: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:744: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:746: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:762: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:768: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:835: trailing whitespace.
+++                      取消 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:956: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1237: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1308: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1310: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1321: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1323: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1331: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1333: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1343: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1345: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1375: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1376: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1377: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1378: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1393: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1394: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1398: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1400: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1406: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1425: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1427: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1428: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1431: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1432: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1446: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1447: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1451: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1453: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1456: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1457: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1460: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1461: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1475: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1476: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1480: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1482: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1485: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1486: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1489: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1490: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1491: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1492: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1503: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1517: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1523: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1524: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1526: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1529: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1567: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1569: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1588: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1590: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1599: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1601: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1605: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1608: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1613: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1632: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1633: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1634: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1635: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1638: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1639: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1640: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1641: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1642: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1643: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1646: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1647: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1648: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/ui-docs.log:13: new blank line at EOF.
+docs/evidence/t04-n02/f1/ui.log:53: new blank line at EOF.
+docs/evidence/t04-n02/green-adjustments.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-entry.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-keyboard.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-overlay-focus.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-scan-focus-repaired.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-scan-focus.log:30: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:31: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:35: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:37: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:43: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:70: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:72: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-selection.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-text-search.log:10: new blank line at EOF.
+docs/evidence/t04-n02/host-behavior-final.log:15: new blank line at EOF.
+docs/evidence/t04-n02/host-format-expression-failure.log:34: new blank line at EOF.
+docs/evidence/t04-n02/host-reordered-input-selector-failure.log:41: new blank line at EOF.
+docs/evidence/t04-n02/red-keyboard.log:31: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:32: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:36: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:38: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:44: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:71: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:74: trailing whitespace.
++-   
+docs/evidence/t04-n02/slider-public-green.log:10: new blank line at EOF.
+docs/evidence/t04-n03/browser-01.log:90: new blank line at EOF.
+docs/evidence/t04-n03/browser-02.log:148: new blank line at EOF.
+docs/evidence/t04-n03/browser-03.log:97: new blank line at EOF.
+docs/evidence/t04-n03/browser-05.log:256: new blank line at EOF.
+docs/evidence/t04-n03/browser-06.log:383: new blank line at EOF.
+docs/evidence/t04-n03/browser-07.log:213: new blank line at EOF.
+docs/evidence/t04-n03/browser-10-diagnostic.log:61: new blank line at EOF.
+docs/evidence/t04-n03/browser-12-diagnostic.log:5: new blank line at EOF.
+docs/evidence/t04-n03/browser-17-diagnostic.log:6: new blank line at EOF.
+docs/evidence/t04-n03/browser-18.log:318: new blank line at EOF.
+docs/evidence/t04-n03/browser-19-final.log:6: new blank line at EOF.
+docs/evidence/t04-n03/browser-20-final-resources.log:69: new blank line at EOF.
+docs/evidence/t04-n03/browser-21-finish.log:2: new blank line at EOF.
+docs/evidence/t04-n03/build-fixed.log:29: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n03/build-fixed.log:31: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/build-fixed.log:39: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n03/build-fixed.log:41: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/build-post-review.log:29: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n03/build-post-review.log:31: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/build-post-review.log:39: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n03/build-post-review.log:41: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/full-diff-check-final.log:16: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n03/full-diff-check-final.log:18: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/full-diff-check-final.log:20: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n03/full-diff-check-final.log:22: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/full-diff-check-final.log:24: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n03/full-diff-check-final.log:26: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n03/full-diff-check-final.log:28: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n03/full-diff-check-final.log:30: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/f1-f2/raw/browser-final-matrix-390-dark.log:49: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-final-matrix-390-light.log:49: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-final-matrix-844-dark.log:30: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-final-matrix-844-light.log:30: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-final-navigation.log:59: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-final-resources.log:77: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-final-target-390.log:46: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-final-target-844.log:21: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-finish.log:2: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-matrix-390-dark.log:49: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-matrix-390-light.log:49: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-matrix-844-dark.log:30: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-matrix-844-light.log:30: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-open.log:157: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-target-390.log:46: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/browser-target-844.log:21: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/build.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/f1-f2/raw/build.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/f1-f2/raw/build.log:38: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/f1-f2/raw/build.log:40: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/f1-f2/raw/build.log:43: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/f1-continuation-red.log:54: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/f1-red.log:68: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/f2-red.log:42: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/host-red.log:36: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/probe-final-with-base.log:44: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/probe-fixed-with-base.log:44: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/probe-red-corrected.log:115: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/probe-red.log:53: new blank line at EOF.
+docs/evidence/t04-n04/f1-f2/raw/ui.log:71: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t04-n04/f1-f2/raw/ui.log:72: trailing whitespace.
++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t04-n04/f3/raw/browser-f3-failure-inspect.log:60: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/browser-f3-landscape.log:22: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/browser-f3-portrait-final.log:45: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/browser-finish.log:2: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/browser-open-corrected.log:76: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/browser-original-390.log:46: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/browser-original-844.log:21: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/browser-resources.log:64: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/build.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/f3/raw/build.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/f3/raw/build.log:38: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/f3/raw/build.log:40: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/f3/raw/build.log:43: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/official-f3-red.log:47: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/probe-f3-final.log:61: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/probe-f3-unchanged-red.log:63: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/probe-original-base-head.log:44: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/r2-original-m1-retract.log:63: new blank line at EOF.
+docs/evidence/t04-n04/f3/raw/ui.log:78: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t04-n04/f3/raw/ui.log:79: trailing whitespace.
++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t04-n04/logs/baseline-mobile.log:26: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-01.log:157: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-02.log:97: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-03.log:61: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-05.log:42: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-06.log:46: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-09-touch-diagnostic.log:45: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-10-touch-diagnostic.log:44: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-11-portrait-light.log:49: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-12-landscape-light.log:30: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-15-landscape-dark.log:30: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-16-portrait-dark.log:49: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-18-navigation.log:59: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-19-resources.log:76: new blank line at EOF.
+docs/evidence/t04-n04/logs/browser-20-finish.log:2: new blank line at EOF.
+docs/evidence/t04-n04/logs/component-direct-corrected.log:14: new blank line at EOF.
+docs/evidence/t04-n04/logs/component-direct.log:14: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "items". Expected Array, got String with value "only". 
+docs/evidence/t04-n04/logs/component-direct.log:15: trailing whitespace.
++  at <Swiper items="only" autoplay=1000 ref="VTU_COMPONENT" > 
+docs/evidence/t04-n04/logs/final-build.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/final-build.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/final-build.log:37: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/final-build.log:39: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/full-diffcheck.log:18: trailing whitespace.
+++[Vue warn]: Invalid prop: type check failed for prop "items". Expected Array, got String with value "only". 
+docs/evidence/t04-n04/logs/full-diffcheck.log:20: trailing whitespace.
+++  at <Swiper items="only" autoplay=1000 ref="VTU_COMPONENT" > 
+docs/evidence/t04-n04/logs/full-diffcheck.log:22: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/full-diffcheck.log:24: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/full-diffcheck.log:26: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/full-diffcheck.log:28: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/full-diffcheck.log:43: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/full-diffcheck.log:45: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/full-diffcheck.log:47: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/full-diffcheck.log:49: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/full-diffcheck.log:52: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/full-diffcheck.log:54: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/full-diffcheck.log:56: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/full-diffcheck.log:58: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/green-host-carousel.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-pagination.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-refresh.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-route.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-swipe.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-host-window.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-pull-cancel.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-pull-start-below-top.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-swiper-index.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/green-virtual-resize.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/host-final-focused-corrected.log:11: new blank line at EOF.
+docs/evidence/t04-n04/logs/mobile-naming.log:10: new blank line at EOF.
+docs/evidence/t04-n04/logs/mobile-staticdocs.log:11: new blank line at EOF.
+docs/evidence/t04-n04/logs/touch-fix-build.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/touch-fix-build.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/touch-fix-build.log:37: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/touch-fix-build.log:39: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/touch-fix-mobile.log:11: new blank line at EOF.
+docs/evidence/t04-n04/logs/typecheck-build-corrected.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n04/logs/typecheck-build-corrected.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/typecheck-build-corrected.log:37: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n04/logs/typecheck-build-corrected.log:39: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n04/logs/ui-behavior-contracts.log:53: new blank line at EOF.
+docs/evidence/t04-n04/logs/ui-staticdocs.log:13: new blank line at EOF.
+docs/evidence/t04-n05/raw/baseline-mobile-pinned.log:32: new blank line at EOF.
+docs/evidence/t04-n05/raw/baseline-mobile.log:14: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round01.log:122: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round03-final-inspect.log:141: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round05-matrix.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round08-landscape-light.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round09-landscape-dark.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round10-portrait-dark.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round11-navigation.log:121: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round12-resources.log:78: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round13-hits.log:2: new blank line at EOF.
+docs/evidence/t04-n05/raw/browser/round14-finish.log:3: new blank line at EOF.
+docs/evidence/t04-n05/raw/build-corrected.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n05/raw/build-corrected.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/build-corrected.log:33: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t04-n05/raw/build-corrected.log:42: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n05/raw/build-corrected.log:44: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/build-final.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n05/raw/build-final.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/build-final.log:33: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t04-n05/raw/build-final.log:42: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n05/raw/build-final.log:44: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/full-diffcheck.log:14: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n05/raw/full-diffcheck.log:16: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/full-diffcheck.log:18: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t04-n05/raw/full-diffcheck.log:20: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n05/raw/full-diffcheck.log:22: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/full-diffcheck.log:24: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n05/raw/full-diffcheck.log:26: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/full-diffcheck.log:28: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t04-n05/raw/full-diffcheck.log:30: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n05/raw/full-diffcheck.log:32: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n05/raw/green-host-corrected.log:10: new blank line at EOF.
+docs/evidence/t04-n05/raw/host-green.log:18: new blank line at EOF.
+docs/evidence/t04-n05/raw/install.log:14: new blank line at EOF.
+docs/evidence/t04-n05/raw/public-corrected.log:10: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-01.log:162: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-02.log:161: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-05.log:279: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-06.log:162: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-07.log:162: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-08.log:162: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-09-cleanup.log:2: new blank line at EOF.
+docs/evidence/t05-a07/raw/build-final.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t05-a07/raw/build-final.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/build-final.log:34: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t05-a07/raw/build-final.log:43: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t05-a07/raw/build-final.log:45: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/build-final.log:48: new blank line at EOF.
+docs/evidence/t05-a07/raw/build.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t05-a07/raw/build.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/build.log:34: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t05-a07/raw/build.log:43: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t05-a07/raw/build.log:45: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/build.log:48: new blank line at EOF.
+docs/evidence/t05-a07/raw/install.log:14: new blank line at EOF.
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:9: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:11: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:13: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:15: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:17: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:20: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:22: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:24: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:26: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t05-a07/raw/staged-raw-diff-check.log:28: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-compact-final.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build-compact-final.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-compact-final.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build-compact-final.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build-compact-final.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build-final.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build-final.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build-final.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final2.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build-final2.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final2.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build-final2.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build-final2.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final3.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build-final3.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final3.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build-final3.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build-final3.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/compact-green-run.log:83: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-preview-final.log:157: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-preview-run-r3.log:157: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-server.log:3: trailing whitespace.
++  VITE+ v0.2.4  
+docs/evidence/t06-f01/raw/dev-upload-final.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-upload-final2.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-upload-run-r3.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/docs-mobile.log:10: new blank line at EOF.
+docs/evidence/t06-f01/raw/docs-ui-final.log:13: new blank line at EOF.
+docs/evidence/t06-f01/raw/docs-ui.log:13: new blank line at EOF.
+docs/evidence/t06-f01/raw/full-tests.log:133: new blank line at EOF.
+docs/evidence/t06-f01/raw/green-files-route.log:6: trailing whitespace.
++[Vue warn]: Unhandled error during execution of mounted hook 
+docs/evidence/t06-f01/raw/green-files-route.log:24: trailing whitespace.
++]  ... > 
+docs/evidence/t06-f01/raw/green-files-route.log:25: trailing whitespace.
++  at <ScreenPanel title="分段到访（人次）" class="charts-bar-panel" > 
+docs/evidence/t06-f01/raw/green-files-route.log:26: trailing whitespace.
++  at <ScreenChartsDemo key=2 > 
+docs/evidence/t06-f01/raw/green-files-route.log:27: trailing whitespace.
++  at <ScreenScaler class="screen-demo-scaler" design-width=1920 design-height=1080  ... > 
+docs/evidence/t06-f01/raw/green-files-route.log:28: trailing whitespace.
++  at <ScreenDemo key=1 section="#screen/charts" > 
+docs/evidence/t06-f01/raw/green-files-route.log:29: trailing whitespace.
++  at <App ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/green-host-all-initial.log:12: new blank line at EOF.
+docs/evidence/t06-f01/raw/green-host-upload.log:11: new blank line at EOF.
+docs/evidence/t06-f01/raw/green-large-host.log:10: new blank line at EOF.
+docs/evidence/t06-f01/raw/green-memory-adapter.log:10: new blank line at EOF.
+docs/evidence/t06-f01/raw/narrow-dev-run.log:46: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-auto-disabled-run.log:146: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-layout-final.log:146: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-preview-final.log:157: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-preview-run.log:157: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-resources-run.log:154: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-upload-final2.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-upload-run.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/public-files-green.log:10: new blank line at EOF.
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:2: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:4: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:6: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:8: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:10: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:12: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:14: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:16: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:18: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:20: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:22: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:24: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:26: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:28: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:30: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:32: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:34: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:36: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:38: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:40: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:42: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:44: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:46: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:48: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:50: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:55: trailing whitespace.
+++  VITE+ v0.2.4  
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:64: trailing whitespace.
+++[Vue warn]: Unhandled error during execution of mounted hook 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:66: trailing whitespace.
+++]  ... > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:68: trailing whitespace.
+++  at <ScreenPanel title="分段到访（人次）" class="charts-bar-panel" > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:70: trailing whitespace.
+++  at <ScreenChartsDemo key=2 > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:72: trailing whitespace.
+++  at <ScreenScaler class="screen-demo-scaler" design-width=1920 design-height=1080  ... > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:74: trailing whitespace.
+++  at <ScreenDemo key=1 section="#screen/charts" > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:76: trailing whitespace.
+++  at <App ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:91: trailing whitespace.
+++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:93: trailing whitespace.
+++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:95: trailing whitespace.
+++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:97: trailing whitespace.
+++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:99: trailing whitespace.
+++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:101: trailing whitespace.
+++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:103: trailing whitespace.
+++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:105: trailing whitespace.
+++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:107: trailing whitespace.
+++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:109: trailing whitespace.
+++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:111: trailing whitespace.
+++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:113: trailing whitespace.
+++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:115: trailing whitespace.
+++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:117: trailing whitespace.
+++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:119: trailing whitespace.
+++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/staged-raw-diff-check.log:121: trailing whitespace.
+++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final.log:10: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t06-f01/raw/ui-final.log:11: trailing whitespace.
++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final.log:54: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/ui-final.log:55: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/ui-final.log:64: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final.log:68: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/ui-final.log:69: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/ui-final.log:77: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final2.log:10: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t06-f01/raw/ui-final2.log:11: trailing whitespace.
++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final2.log:51: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/ui-final2.log:52: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/ui-final2.log:61: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final2.log:65: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/ui-final2.log:66: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/ui-final2.log:74: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/upload-compact.log:10: new blank line at EOF.
+docs/evidence/t06-f02/raw/browser-cleanup.log:2: new blank line at EOF.
+docs/evidence/t06-f02/raw/browser-dev-r4.log:174: new blank line at EOF.
+docs/evidence/t06-f02/raw/browser-prod.log:174: new blank line at EOF.
+docs/evidence/t06-f02/raw/browser-resources.log:174: new blank line at EOF.
+docs/evidence/t06-f02/raw/build-final.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f02/raw/build-final.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f02/raw/build-final.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f02/raw/build-final.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f02/raw/build-final.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f02/raw/dev.log:3: trailing whitespace.
++  VITE+ v0.2.4  
+docs/evidence/t06-f02/raw/full-diff-check.log:6: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f02/raw/full-diff-check.log:8: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f02/raw/full-diff-check.log:10: trailing whitespace.
+++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f02/raw/full-diff-check.log:12: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f02/raw/full-diff-check.log:14: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t06-f02/raw/full-diff-check.log:16: trailing whitespace.
+++  VITE+ v0.2.4  
+docs/evidence/t06-f03/raw/browser-01.log:189: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-02.log:156: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-03.log:159: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-05.log:4: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-08.log:65: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-09.log:141: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-10.log:141: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-12.log:158: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-13.log:141: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-14.log:163: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-15.log:155: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-16.log:163: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-17.log:157: new blank line at EOF.
+docs/evidence/t06-f03/raw/browser-18-cleanup.log:2: new blank line at EOF.
+docs/evidence/t06-f03/raw/build-final.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f03/raw/build-final.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f03/raw/build-final.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f03/raw/build-final.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f03/raw/build-final.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f03/raw/build-initial.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f03/raw/build-initial.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f03/raw/build-initial.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f03/raw/build-initial.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f03/raw/build-initial.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f03/raw/dev-service.log:3: trailing whitespace.
++  VITE+ v0.2.4  
+docs/evidence/t06-f03/raw/gates.log:262: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f03/raw/gates.log:264: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f03/raw/gates.log:268: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f03/raw/gates.log:277: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f03/raw/gates.log:279: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f03/raw/green-head.log:10: new blank line at EOF.
+docs/evidence/t06-f03/raw/green-patch.log:10: new blank line at EOF.
+docs/evidence/t06-f03/raw/green-routing-abort.log:10: new blank line at EOF.
+docs/evidence/t06-f03/raw/narrow-all.log:11: new blank line at EOF.
+docs/evidence/t06-f03/raw/native-panel-format-error.txt:28: trailing whitespace.
++      
+docs/evidence/t06-f03/raw/native-panel-format-error.txt:28: new blank line at EOF.
+docs/evidence/t06-f03/raw/ui.log:17: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f03/raw/ui.log:18: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f03/raw/ui.log:27: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f03/raw/ui.log:31: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f03/raw/ui.log:32: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f03/raw/ui.log:40: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f03/raw/ui.log:77: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t06-f03/raw/ui.log:78: trailing whitespace.
++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t06-f04/raw/final-header/build-basepath.log:42: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f04/raw/final-header/build-basepath.log:44: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f04/raw/final-header/build-basepath.log:48: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f04/raw/final-header/build-basepath.log:57: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f04/raw/final-header/build-basepath.log:59: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f04/raw/final-header/build.log:48: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f04/raw/final-header/build.log:50: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f04/raw/final-header/build.log:54: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f04/raw/final-header/build.log:63: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f04/raw/final-header/build.log:65: trailing whitespace.
++ [38;5;240m     │[0m 
+frontend/apps/design-system/docs/public/file-preview/quality-evidence-report.pdf:44: trailing whitespace.
++0000000000 65535 f 
+frontend/apps/design-system/docs/public/file-preview/quality-evidence-report.pdf:45: trailing whitespace.
++0000000009 00000 n 
+frontend/apps/design-system/docs/public/file-preview/quality-evidence-report.pdf:46: trailing whitespace.
++0000000058 00000 n 
+frontend/apps/design-system/docs/public/file-preview/quality-evidence-report.pdf:47: trailing whitespace.
++0000000115 00000 n 
+frontend/apps/design-system/docs/public/file-preview/quality-evidence-report.pdf:48: trailing whitespace.
++0000000245 00000 n 
+frontend/apps/design-system/docs/public/file-preview/quality-evidence-report.pdf:49: trailing whitespace.
++0000000315 00000 n 
+frontend/apps/design-system/docs/public/file-preview/quality-evidence-report.pdf:50: trailing whitespace.
++0000000390 00000 n 
+frontend/apps/playground/public/files/quality-evidence-report.pdf:44: trailing whitespace.
++0000000000 65535 f 
+frontend/apps/playground/public/files/quality-evidence-report.pdf:45: trailing whitespace.
++0000000009 00000 n 
+frontend/apps/playground/public/files/quality-evidence-report.pdf:46: trailing whitespace.
++0000000058 00000 n 
+frontend/apps/playground/public/files/quality-evidence-report.pdf:47: trailing whitespace.
++0000000115 00000 n 
+frontend/apps/playground/public/files/quality-evidence-report.pdf:48: trailing whitespace.
++0000000245 00000 n 
+frontend/apps/playground/public/files/quality-evidence-report.pdf:49: trailing whitespace.
++0000000315 00000 n 
+frontend/apps/playground/public/files/quality-evidence-report.pdf:50: trailing whitespace.
++0000000390 00000 n 
+frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.d.ts:3939: trailing whitespace.
++				"project" -  a task that starts, when its earliest child task starts, and ends, when its latest child ends. 
+frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.d.ts:3940: trailing whitespace.
++				The start_date, end_date, duration properties are ignored for such tasks. 
+frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.d.ts:4825: trailing whitespace.
++	/**By default (when the property is set to true), the whole project is moved during auto scheduling. 
+frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.d.ts:4826: trailing whitespace.
++	 * It means that all tasks in the project remain on their places relative to each other and the beginning of the project. 
+frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.d.ts:5086: trailing whitespace.
++	projection?: ScaleProjectionMode | undefined | null 
+frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.es.js:1580: trailing whitespace.
++				
+frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.es.js:13957: trailing whitespace.
++								<input type='text' class='gantt_resources_filter_input' placeholder='${t.locale.labels.resources_filter_placeholder || "Search..."}' tab-index="-1"> 
+frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.es.js:15000: trailing whitespace.
++      for (let s in a) a[s] && !i[s] && console.warn(`You connected the '${s}' extension via an obsolete file. 

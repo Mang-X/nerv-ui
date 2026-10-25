@@ -1,0 +1,44 @@
+{
+  "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+  "all": [
+    {
+      "url": "http://127.0.0.1:4287/assets/index-BRtcrzIR.js",
+      "status": 200,
+      "initiator": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/rolldown-runtime-EyZ2wyi3.js",
+      "status": 200,
+      "initiator": "other"
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/index--tB6K1KV.css",
+      "status": 200,
+      "initiator": "link"
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/dhtmlxgantt-DePP4erS.css",
+      "status": 200,
+      "initiator": "link"
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "status": 200,
+      "initiator": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "initiator": "css"
+    }
+  ],
+  "selected": [
+    "http://127.0.0.1:4287/",
+    "http://127.0.0.1:4287/assets/index-BRtcrzIR.js",
+    "http://127.0.0.1:4287/assets/rolldown-runtime-EyZ2wyi3.js",
+    "http://127.0.0.1:4287/assets/index--tB6K1KV.css",
+    "http://127.0.0.1:4287/assets/dhtmlxgantt-DePP4erS.css",
+    "http://127.0.0.1:4287/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "http://127.0.0.1:4287/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+  ]
+}

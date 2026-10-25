@@ -145,6 +145,291 @@ async function update(props: Record<string, unknown>) {
   await flushPromises()
   await nextTick()
 }
+
+// Public DOM gestures on the preserved vendor. Geometry is deterministic jsdom
+// input here; trusted browser pointers and scrolling have their own receipt.
+function resourcePointer(type: string, x: number, y: number, target: EventTarget = document.body) {
+  target.dispatchEvent(
+    new MouseEvent(type, {
+      bubbles: true,
+      button: 0,
+      buttons: type === 'mouseup' ? 0 : 1,
+      clientX: x,
+      clientY: y,
+    }),
+  )
+}
+function beginResourceMove(id = 'a') {
+  const bar = document.querySelector<HTMLElement>(`.gantt_task_line[data-task-id="${id}"]`)!
+  expect(bar).toBeTruthy()
+  Object.defineProperty(bar, 'getBoundingClientRect', {
+    configurable: true,
+    value: () => ({
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: () => ({}),
+    }),
+  })
+  Object.defineProperty(document.querySelector('.nerv-drop-cancel')!, 'getBoundingClientRect', {
+    configurable: true,
+    value: () => ({ left: 1000, top: 3800, right: 1200, bottom: 3900, width: 200, height: 100 }),
+  })
+  resourcePointer('mousedown', 130, 40, bar.querySelector('.nerv-card')!)
+  return bar
+}
+it('public resource reassignment preserves input and resource identity and clears rejected drag visuals', async () => {
+  const input = model()
+  const before = JSON.stringify(input)
+  await show(input)
+  await update({ readOnly: false })
+  beginResourceMove()
+  // Name order: Empty, Over, Unknown, Zero. Drop a from Zero onto Unknown.
+  resourcePointer('mousemove', 260, 600)
+  expect(document.querySelector<HTMLElement>('.nerv-drop-hint')!.style.display).toBe('flex')
+  expect.soft(document.querySelector('.nerv-drop-tip')!.textContent).toMatch(/\d{2}:00$/)
+  resourcePointer('mouseup', 260, 600)
+  expect.soft(document.querySelectorAll('.nerv-drag-source')).toHaveLength(0)
+  await vi.advanceTimersByTimeAsync(2)
+  await nextTick()
+  expect.soft(JSON.stringify(input)).toBe(before)
+  expect.soft(wrapper!.emitted('taskDragEnd')?.[0]?.[0]).toMatchObject({
+    taskId: 'a',
+    operationId: 'a',
+    resourceId: 'r0',
+    kind: 'reassign',
+    assignment: { dimension: 'workCenter', id: 'Unknown', label: 'Unknown' },
+  })
+  expect.soft(document.querySelectorAll('.nerv-drag-source')).toHaveLength(0)
+  expect.soft(document.querySelector<HTMLElement>('.nerv-drop-hint')!.style.display).toBe('none')
+  expect.soft(document.querySelector<HTMLElement>('.nerv-drop-cancel')!.style.display).toBe('none')
+  expect.soft(wrapper!.emitted('taskSelect')).toBeUndefined()
+})
+
+it.each([
+  'Escape',
+  'cancel zone',
+  'outside timeline',
+  'read only',
+  'authority replacement',
+  'dimension replacement',
+])('public resource move cancels on %s without proposing or leaving a ghost', async (reason) => {
+  const input = model()
+  const before = JSON.stringify(input)
+  await show(input)
+  await update({ readOnly: false })
+  beginResourceMove()
+  resourcePointer('mousemove', 260, 600)
+  if (reason === 'Escape')
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
+  if (reason === 'read only') await update({ readOnly: true })
+  if (reason === 'authority replacement')
+    await update({
+      model: {
+        ...input,
+        tasks: input.tasks.map((t) =>
+          t.id === 'a'
+            ? {
+                ...t,
+                text: 'New authority',
+                startUtc: '2026-10-25T12:00:00Z',
+                endUtc: '2026-10-25T15:00:00Z',
+              }
+            : t,
+        ),
+      },
+    })
+  if (reason === 'dimension replacement') await update({ groupBy: 'team' })
+  const [x, y] =
+    reason === 'cancel zone'
+      ? [1100, 3850]
+      : reason === 'outside timeline'
+        ? [-20, 600]
+        : [260, 600]
+  resourcePointer('mousemove', x!, y!)
+  resourcePointer('mouseup', x!, y!)
+  await vi.advanceTimersByTimeAsync(2)
+  await nextTick()
+  expect(wrapper!.emitted('taskDragEnd')).toBeUndefined()
+  expect(JSON.stringify(input)).toBe(before)
+  expect(document.querySelectorAll('.nerv-drag-source')).toHaveLength(0)
+  expect(document.querySelector<HTMLElement>('.nerv-drop-hint')!.style.display).toBe('none')
+  expect(document.querySelector<HTMLElement>('.nerv-drop-cancel')!.style.display).toBe('none')
+  if (reason === 'authority replacement') expect(wrapper!.text()).toContain('New authority')
+  // The next deliberate click must still select; cancellation cannot consume it.
+  const bar = document.querySelector('.gantt_task_line[data-task-id="a"]')!
+  resourcePointer('mousedown', 100, 40, bar)
+  resourcePointer('mouseup', 100, 40)
+  bar.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+  expect(wrapper!.emitted('taskSelect')?.at(-1)).toEqual(['a'])
+})
+
+it.each(['team', 'equipment', 'resource'])(
+  'public resource explicit %s assignment accepts a frozen model without inventing equipment or work-center identity',
+  async (dimension) => {
+    const input = model()
+    input.groupValues = { ...input.groupValues, [dimension]: input.groupValues!.team! }
+    input.tasks = input.tasks.map((t) => ({
+      ...t,
+      dimensions: { ...t.dimensions, [dimension]: t.dimensions!.team! },
+    }))
+    const freeze = (value: unknown): void => {
+      if (value && typeof value === 'object') {
+        Object.values(value).forEach(freeze)
+        Object.freeze(value)
+      }
+    }
+    freeze(input)
+    await show(input, dimension)
+    await update({ readOnly: false })
+    const before = document.querySelector<HTMLElement>('.gantt_task_line[data-task-id="a"]')!.style
+      .top
+    beginResourceMove()
+    resourcePointer('mousemove', 260, 40) // Amber is the first lane in team name order.
+    resourcePointer('mouseup', 260, 40)
+    await vi.advanceTimersByTimeAsync(2)
+    await nextTick()
+    const payload = wrapper!.emitted('taskDragEnd')![0]![0] as import('../index').TaskDragPayload
+    expect(payload).toMatchObject({
+      taskId: 'a',
+      operationId: 'a',
+      resourceId: 'r0',
+      kind: 'reassign',
+      assignment: { dimension, id: 'Amber', label: 'Amber' },
+    })
+    expect(
+      document.querySelector<HTMLElement>('.gantt_task_line[data-task-id="a"]')!.style.top,
+    ).toBe(before)
+    const accepted = {
+      ...input,
+      tasks: input.tasks.map((t) =>
+        t.id === 'a'
+          ? {
+              ...t,
+              startUtc: payload.startUtc,
+              endUtc: payload.endUtc,
+              dimensions: { ...t.dimensions, [dimension]: { id: 'Amber', label: 'Amber' } },
+            }
+          : t,
+      ),
+    }
+    await update({ model: accepted })
+    expect(accepted.tasks[0]!.resourceId).toBe('r0')
+    expect(accepted.tasks[0]!.workCenterId).toBe('Zero')
+    expect(labels()).toEqual(['Amber', 'Blue', 'Quiet'])
+    expect(
+      document.querySelector<HTMLElement>('.gantt_task_line[data-task-id="a"]')!.style.top,
+    ).not.toBe(before)
+    expect(input.tasks[0]!.dimensions![dimension]!.id).toBe('Blue')
+  },
+)
+
+it('public legacy resource reassignment names a real resource while horizontal moves snap to hours and preserve duration', async () => {
+  const input = model()
+  input.groupDimensions = undefined
+  input.groupValues = undefined
+  input.tasks = input.tasks.map((t) => ({ ...t, dimensions: undefined, workCenterId: undefined }))
+  const before = JSON.stringify(input)
+  await show(input)
+  await update({ readOnly: false })
+  // Name order: Over resource, Unknown resource, Unrelated resource, Zero resource.
+  beginResourceMove()
+  resourcePointer('mousemove', 260, 320)
+  resourcePointer('mouseup', 260, 320)
+  await vi.advanceTimersByTimeAsync(2)
+  const first = wrapper!.emitted('taskDragEnd')![0]![0] as import('../index').TaskDragPayload
+  expect(first).toMatchObject({ taskId: 'a', resourceId: 'ru', kind: 'reassign' })
+  expect(first.assignment).toBeUndefined()
+  beginResourceMove()
+  resourcePointer('mousemove', 300, 900)
+  resourcePointer('mouseup', 300, 900)
+  await vi.advanceTimersByTimeAsync(2)
+  const moved = wrapper!.emitted('taskDragEnd')![1]![0] as import('../index').TaskDragPayload
+  expect(moved).toMatchObject({ taskId: 'a', resourceId: 'r0', kind: 'move' })
+  expect(moved.assignment).toBeUndefined()
+  expect(moved.startUtc).toMatch(/T\d{2}:00:00\.000Z$/)
+  expect(Date.parse(moved.endUtc) - Date.parse(moved.startUtc)).toBe(7_200_000)
+  expect(JSON.stringify(input)).toBe(before)
+})
+
+it.each(['dimension', 'legacy resource'])(
+  'public resource unassigned lane preserves the %s namespace without inventing an empty id',
+  async (namespace) => {
+    const input = model()
+    input.tasks.push({
+      ...task('unassigned', '', '', ''),
+      resourceId: undefined,
+      workCenterId: undefined,
+      dimensions: undefined,
+    })
+    if (namespace === 'legacy resource') {
+      input.groupDimensions = undefined
+      input.groupValues = undefined
+      input.tasks = input.tasks.map((t) => ({
+        ...t,
+        workCenterId: undefined,
+        dimensions: undefined,
+      }))
+    }
+    const before = JSON.stringify(input)
+    await show(input)
+    await update({ readOnly: false })
+    const index = labels().indexOf('未分配')
+    expect(index).toBeGreaterThanOrEqual(0)
+    beginResourceMove()
+    resourcePointer('mousemove', 260, index * 280 + 40)
+    resourcePointer('mouseup', 260, index * 280 + 40)
+    await vi.advanceTimersByTimeAsync(2)
+    const payload = wrapper!.emitted('taskDragEnd')![0]![0] as import('../index').TaskDragPayload
+    expect(payload.kind).toBe('reassign')
+    if (namespace === 'dimension') {
+      expect(payload.resourceId).toBe('r0')
+      expect(payload.assignment).toEqual({ dimension: 'workCenter', id: null, label: '未分配' })
+    } else {
+      expect(Object.hasOwn(payload, 'resourceId')).toBe(true)
+      expect(payload.resourceId).toBeUndefined()
+      expect(payload.assignment).toBeUndefined()
+    }
+    expect(JSON.stringify(input)).toBe(before)
+  },
+)
+
+it.each(['locked', 'segments', 'block', 'milestone', 'zero duration'])(
+  'public resource editing rejects %s activities',
+  async (state) => {
+    const input = model()
+    if (state === 'locked') input.tasks[0]!.locked = true
+    if (state === 'segments')
+      input.tasks[0]!.segments = [
+        { startUtc: input.tasks[0]!.startUtc, endUtc: '2026-10-25T09:00:00Z' },
+        { startUtc: '2026-10-25T09:30:00Z', endUtc: input.tasks[0]!.endUtc },
+      ]
+    if (state === 'block') input.tasks[0]!.blockKind = 'maintenance'
+    if (state === 'milestone') input.tasks[0]!.isMilestone = true
+    if (state === 'zero duration') input.tasks[0]!.endUtc = input.tasks[0]!.startUtc
+    const before = JSON.stringify(input)
+    await show(input)
+    await update({ readOnly: false })
+    if (state === 'block' || state === 'milestone')
+      expect(document.querySelector('.gantt_task_line[data-task-id="a"]')).toBeNull()
+    else {
+      beginResourceMove()
+      resourcePointer('mousemove', 260, 600)
+      resourcePointer('mouseup', 260, 600)
+    }
+    await vi.advanceTimersByTimeAsync(2)
+    expect(wrapper!.emitted('taskDragEnd')).toBeUndefined()
+    expect(document.querySelectorAll('.nerv-drag-source')).toHaveLength(0)
+    expect(document.querySelector<HTMLElement>('.nerv-drop-hint')!.style.display).toBe('none')
+    expect(JSON.stringify(input)).toBe(before)
+    if (state === 'locked') expect(wrapper!.emitted('lockedDragAttempt')).toEqual([['a']])
+  },
+)
 function legacyResourceModel(): ScheduleModel {
   return {
     ...model(),

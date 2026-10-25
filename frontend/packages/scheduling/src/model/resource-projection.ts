@@ -7,6 +7,8 @@ export type LaneKpi = Pick<
 export interface ResourceLane {
   key: string
   id?: string
+  /** The lane ID belongs to this namespace, never inferred from its spelling. */
+  identity: 'dimension' | 'resource'
   /** Explicit work-center membership; legacy resource IDs never imply this relation. */
   workCenterId?: string
   label: string
@@ -51,6 +53,7 @@ export function resourceProjection(
       lane = {
         key,
         id,
+        identity: explicit ? 'dimension' : 'resource',
         label,
         workCenterId: explicit && dimension === 'workCenter' ? id : undefined,
         resourceIds: [],

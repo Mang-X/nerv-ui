@@ -210,6 +210,7 @@ function selectedText(id: string) {
       <a href="#schedule" class="underline">时间安排</a
       ><a href="#schedule-gantt" class="underline">共读活动</a
       ><a href="#" class="underline">桌面</a>
+      <a :href="`#schedule-resource-edit/${venue}`" class="underline">调整活动安排</a>
       <a
         :href="venue === 'library' ? '#schedule-resources/studio' : '#schedule-resources/library'"
         class="underline"

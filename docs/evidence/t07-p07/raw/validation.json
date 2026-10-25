@@ -1,0 +1,3644 @@
+{
+  "reports": [
+    {
+      "name": "scheduling-final-02",
+      "discovery": 169,
+      "passed": 165,
+      "skipped": 4,
+      "failed": 0,
+      "success": true,
+      "numRuntimeErrorTestSuites": null,
+      "unhandledCount": null,
+      "unhandledErrors": null,
+      "errors": null,
+      "reason": null,
+      "tests": [
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "destroys the removed loading container and remounts one live instance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "does not mount after unmount while vendor resolution is pending",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "reports an initialization error and cleans the failed instance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "uses the shared native renderer on a genuinely missing module and disables editing",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "keeps same-id instances isolated when one unmounts",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "cleans late asynchronous initialization after the loading container is removed",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "applies commands queued before readiness only after authoritative data is parsed",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "rejects a second singleton owner without destroying the first chart",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "refreshes engine theme tokens when the public theme changes without a mode switch",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "clears stale tasks when the host withdraws the optional model",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "rejects a bare wall time before mounting instead of guessing browser coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "keeps an invalid explicit timezone unresolved before vendor initialization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "contains live invalid instants without host errors and recovers the current model",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "rejects a live bare baseline plannedStartUtc without host errors and recovers explicit offsets",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "rejects a live bare baseline plannedEndUtc without host errors and recovers explicit offsets",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.lifecycle.test.ts",
+          "name": "preserves a reused singleton owner when an earlier asynchronous initialization resolves",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "GanttChart keeps current execution facts on cards and tooltips without a commercial engine",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "GanttChart shows loading skeleton when loading",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "GanttChart mounts with a model without throwing and renders the order container",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "GanttChart shows the placeholder when no DHTMLX engine is available",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "GanttChart renders the package read-only timeline when DHTMLX is unavailable",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "GanttChart 只读卡片显示真实预计到料日期，无 ETA 的风险不造日期",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "GanttChart shows a clear empty state when the schedule has no tasks",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "ResourceSchedulerBoard mounts and renders the resource container",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "ResourceSchedulerBoard groups the read-only timeline into resource lanes",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "ResourceSchedulerBoard aligns day geometry to explicit UTC boundaries",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "ResourceSchedulerBoard keeps tasks outside the declared horizon inside the timeline track",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "ResourceSchedulerBoard uses the mapped task text in the read-only fallback",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "ReadonlyScheduleTimeline assembly dependencies keeps a visible dependency when child completion and parent start touch on the same resource row",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/GanttChart.test.ts",
+          "name": "ReadonlyScheduleTimeline assembly dependencies draws the child completion to parent start and removes the line when the relationship is absent",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource headers preserve known zero unknown and overload without borrowing a colliding resource id",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource reassignment preserves input and resource identity and clears rejected drag visuals",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource move cancels on Escape without proposing or leaving a ghost",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource move cancels on cancel zone without proposing or leaving a ghost",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource move cancels on outside timeline without proposing or leaving a ghost",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource move cancels on read only without proposing or leaving a ghost",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource move cancels on authority replacement without proposing or leaving a ghost",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource move cancels on dimension replacement without proposing or leaving a ghost",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource explicit team assignment accepts a frozen model without inventing equipment or work-center identity",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource explicit equipment assignment accepts a frozen model without inventing equipment or work-center identity",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource explicit resource assignment accepts a frozen model without inventing equipment or work-center identity",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public legacy resource reassignment names a real resource while horizontal moves snap to hours and preserve duration",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource unassigned lane preserves the dimension namespace without inventing an empty id",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource unassigned lane preserves the legacy resource namespace without inventing an empty id",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource editing rejects locked activities",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource editing rejects segments activities",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource editing rejects block activities",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource editing rejects milestone activities",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource editing rejects zero duration activities",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public 'vendor' resource fallback never borrows same-id work-center windows and retains resource blocks",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public 'native' resource fallback never borrows same-id work-center windows and retains resource blocks",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public 'vendor' explicit work-center tasks suppress resource fallback across ordering replacement and dimensions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public 'native' explicit work-center tasks suppress resource fallback across ordering replacement and dimensions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public controlled dimensions and three orders retain catalog empty and block-only lanes and stable task events after reorder",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public empty resources and all-zero metrics remain visible without a task or an empty-state overlay",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public generated lane ids never replace a colliding task identity or emit a lane as a task",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource names remain literal text even when they contain markup",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public calendar block and freeze backgrounds stay scoped to their input namespace and clear on replacement",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public missing-module fallback shares dimension membership empty lanes block windows and exact selection ids",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource hour axis never invents night or early shift names from missing calendar data",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource calendar contains 'bare wall time' and recovers without guessing shift instants",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+          "name": "public resource calendar contains 'invalid calendar day' and recovers without guessing shift instants",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/SchedulingWorkbench.test.ts",
+          "name": "SchedulingWorkbench renders the order gantt view",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/SchedulingWorkbench.test.ts",
+          "name": "SchedulingWorkbench renders the resource board view",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/SchedulingWorkbench.test.ts",
+          "name": "SchedulingWorkbench surfaces conflicts in business language in the side panel",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+          "name": "FakeEngine conformance mounts, renders one node per task, and exposes state",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+          "name": "FakeEngine conformance applies scaleTo command and reports via scaleChanged",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+          "name": "FakeEngine conformance selectTask command emits taskSelected with normalized id",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+          "name": "FakeEngine conformance destroy cleans the container",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+          "name": "AsyncFakeEngine conformance mounts, renders one node per task, and exposes state",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+          "name": "AsyncFakeEngine conformance applies scaleTo command and reports via scaleChanged",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+          "name": "AsyncFakeEngine conformance selectTask command emits taskSelected with normalized id",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+          "name": "AsyncFakeEngine conformance destroy cleans the container",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/styles/scheduling-palette.test.ts",
+          "name": "工序分色色板 八个工序色槽都有定义,且都是 oklch 字面量",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/styles/scheduling-palette.test.ts",
+          "name": "工序分色色板 任意两个色槽的色相差不小于 35°(装配/包装曾经肉眼同色)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/styles/scheduling-palette.test.ts",
+          "name": "工序分色色板 没有两个色槽是完全相同的颜色",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 只列方案里真实出现过的阻塞类型",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 方案没有资源时间块时,阻塞一组为空",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 后端带出工作日历才谈班次边界",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 班次边界按当前刻度推导(台账 #41) 班次级刻度下,落在单元格起点(偶数整点)的班次才列",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 班次边界按当前刻度推导(台账 #41) 班次级刻度下,奇数整点起班落不到 2 小时一格的起点上,不列",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 班次边界按当前刻度推导(台账 #41) 【已知近似】hour 档以「偶数整点 = 格线」为假设,奇数相位时间轴下会与图面相反",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 班次边界按当前刻度推导(台账 #41) 日级及以上是精确判定:任何相位下都画不出班次边界",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 班次边界按当前刻度推导(台账 #41) 日级刻度下班次竖线画不出来,图例不列班次边界",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 班次边界按当前刻度推导(台账 #41) 周 / 月刻度同理不列",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 班次边界按当前刻度推导(台账 #41) 不传刻度时按 auto 解析:计划期跨度决定实际刻度",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 「现在」线只在计划期覆盖当下时出现",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 状态一组跟着模型走:有冲突有锁定才列",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 物料风险:有缺料工序才列「缺料待备」",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 设备数据风险:有工序排在状态未知设备上才列「设备状态未知」",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 卡片语义(优先级/插单/齐套/换型/瓶颈)缺省不列",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/model/legend.test.ts",
+          "name": "deriveLegendSemantics 依赖箭头只在真有依赖链时列",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.conformance.test.ts",
+          "name": "DhtmlxEngine conformance (requires @dhx/trial-gantt) mounts, renders one node per task, and exposes state",
+          "status": "skipped",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.conformance.test.ts",
+          "name": "DhtmlxEngine conformance (requires @dhx/trial-gantt) applies scaleTo command and reports via scaleChanged",
+          "status": "skipped",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.conformance.test.ts",
+          "name": "DhtmlxEngine conformance (requires @dhx/trial-gantt) selectTask command emits taskSelected with normalized id",
+          "status": "skipped",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.conformance.test.ts",
+          "name": "DhtmlxEngine conformance (requires @dhx/trial-gantt) destroy cleans the container",
+          "status": "skipped",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.real-vendor.test.ts",
+          "name": "releases the real Evaluation interval after a mount destroyed in its creation task",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.real-vendor.test.ts",
+          "name": "preserves a reused container through real vendor retirement same task and subsequent updates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.real-vendor.test.ts",
+          "name": "preserves a reused container through real vendor retirement after vendor initialization and subsequent updates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) renders only the exact server window portion of a work-center cell, without blocking tasks",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) shows work-order quantities in the grid and never invents zero operation progress",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) uses the full operation due difference on every segment card",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) resource endpoints resize without starting the custom move, including read-only changes (#4041)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) rejects locked resource resize through the existing feedback event (#4041)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) resource native resize returns to authority before a deferred proposal and invalidates stale proposals",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) reports start_date resize once after the native callback, retaining the resource (#4041)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) reports end_date resize once after the native callback, retaining the resource (#4041)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) renders real segments with an empty overnight gap in order view (#4004)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) renders real segments with an empty overnight gap in resource view (#4004)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) keeps assembly dependencies visible in resource view without showing all intra-order links",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) maps the model into gantt.parse with one task per node and FS links",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) 资源卡片使用同一物料风险事实显示预计到料日期",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) maps resource load utilization into the resource lane header",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) aggregates underlying resource loads for a non-resource grouping dimension",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) seeds work-center lanes only from resources that belong to that dimension",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) keeps every resource lane when no task carries the grouping dimension",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) selectTask command selects in gantt and emits taskSelected",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) scaleTo updates scales config and emits scaleChanged",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) rejects locked order gestures before any write proposal",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) restores authoritative order dates after a rejected move without mutating input",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) restores authoritative order dates after a rejected resize without mutating input",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) invalidates a pending order proposal on replace",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) invalidates a pending order proposal on lock",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) invalidates a pending order proposal on remove",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) invalidates a pending order proposal on readonly roundtrip",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) invalidates a pending order proposal on destroy",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) uses the newest model after replacement during a held order gesture",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) honors reentrant host accept and isolates consecutive order gestures",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) honors reentrant host replace and isolates consecutive order gestures",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) honors reentrant host destroy and isolates consecutive order gestures",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) rejects unsupported order edit target summary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) rejects unsupported order edit target milestone",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) rejects unsupported order edit target segments",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) rejects unsupported order edit target block",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) rejects unsupported order edit target progress",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine (fake factory) normalizes native order completion into a deferred taskDragEnd proposal",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine 时间线底纹(工作日历 / 班次 / 资源时间块) 有日历时按日历判定工作/非工作,而不是猜周末夜班",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine 时间线底纹(工作日历 / 班次 / 资源时间块) 班次起点那一格带边界线",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine 时间线底纹(工作日历 / 班次 / 资源时间块) 资源时间块给对应泳道的单元格上按类型着色的斜纹",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine 时间线底纹(工作日历 / 班次 / 资源时间块) 工单甘特按工序自身的资源找块:那道工序所在设备停机,它那一行也有底纹",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "DhtmlxEngine 时间线底纹(工作日历 / 班次 / 资源时间块) 宿主没带日历时不推测周末或夜间",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "aligns factory ticks and renders task time without shifting real drag coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "shows named scales for every factory timezone instead of choosing the first factory",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "blocks implicit vendor editors and readonly drag without blocking adapter link projection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "rejects unparsed instants at the public engine boundary without replacing the prior data",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "rejects a bare baseline plannedStartUtc without replacing the prior data",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+          "name": "rejects a bare baseline plannedEndUtc without replacing the prior data",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/laneKpi.test.ts",
+          "name": "resolveLaneKpiVisibility 字段在所有泳道都缺失时不上屏",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/laneKpi.test.ts",
+          "name": "resolveLaneKpiVisibility 字段在所有泳道都是真实 0 时仍然上屏",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/laneKpi.test.ts",
+          "name": "resolveLaneKpiVisibility 只要有一条泳道有非零值就整列上屏——其余泳道的真 0 是有意义的读数,不能连坐隐藏",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/laneKpi.test.ts",
+          "name": "resolveLaneKpiVisibility NaN / Infinity 不算有效值",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/laneKpi.test.ts",
+          "name": "resolveLaneKpiVisibility 没有任何泳道时全部不上屏",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/laneKpi.test.ts",
+          "name": "resolveLaneKpiVisibility 四项全无数据时整列「产能指标」都不该出现",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/tooltipTokens.test.ts",
+          "name": "tooltipHtml 颜色事实源 插单 chip 用 --nv-scheduling-rush,而不是硬编码的橙",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/tooltipTokens.test.ts",
+          "name": "tooltipHtml 颜色事实源 所有 chip 的颜色都是 var(--…),tooltip 里不出现任何裸色字面量",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/tooltipTokens.test.ts",
+          "name": "tooltipHtml 颜色事实源 物料风险有真实 ETA 时显示统一的预计到料日期",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/tooltipTokens.test.ts",
+          "name": "tooltipHtml 颜色事实源 物料风险无 ETA 时不伪造预计到料日期",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/tooltipTokens.test.ts",
+          "name": "资源工序卡片阅读 按模型有序呈现 2026-08-01T00:00:00.000Z 至 2026-08-01T03:00:00.000Z、完整名称与文字状态",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/engine/dhtmlx/tooltipTokens.test.ts",
+          "name": "资源工序卡片阅读 按模型有序呈现 2026-10-12T01:17:00.000Z 至 2026-10-12T02:43:00.000Z、完整名称与文字状态",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/ConflictPanel.test.ts",
+          "name": "ConflictPanel renders business-language reason labels and emits select with taskId",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/ConflictPanel.test.ts",
+          "name": "ConflictPanel shows an empty state when there are no conflicts",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/TaskDetailPanel.test.ts",
+          "name": "TaskDetailPanel 物料预计到料 有 ETA 时显示预计到料 MM-DD",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/TaskDetailPanel.test.ts",
+          "name": "TaskDetailPanel 物料预计到料 无 ETA 时保留原风险说明且不伪造日期",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/TaskDetailPanel.test.ts",
+          "name": "shows two real segments and excludes the overnight gap from work hours (#4004)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/TaskDetailPanel.test.ts",
+          "name": "explains downtime risk without replacing conflict or moving the operation",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/TaskDetailPanel.test.ts",
+          "name": "renders factory timezone Asia/Shanghai in readonly operation details",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/TaskDetailPanel.test.ts",
+          "name": "renders factory timezone UTC in readonly operation details",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/TaskFacts.test.ts",
+          "name": "同一工序四处显示相同权威数值，并在页内展开真实商业关联",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling/src/components/panels/TaskFacts.test.ts",
+          "name": "HTML图面把商业关联当文字，不能注入标签",
+          "status": "passed",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "name": "host-final",
+      "discovery": 298,
+      "passed": 298,
+      "skipped": 0,
+      "failed": 0,
+      "success": true,
+      "numRuntimeErrorTestSuites": null,
+      "unhandledCount": null,
+      "unhandledErrors": null,
+      "errors": null,
+      "reason": null,
+      "tests": [
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "adds a named project from the form to the searchable table",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "opens screen stage deep links and returns through every existing surface without a fixed stage",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "opens the standalone touch demo from its direct entry and returns to desktop",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "opens the standalone mobile shell directly and preserves desktop and touch entries",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "opens mobile inputs directly and keeps the shell, desktop and touch routes reachable",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "opens the standalone overlay page directly and preserves all four existing entries",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "opens mobile lists directly and navigates through all five existing entries",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "opens mobile feedback directly and returns through all six existing entries",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/App.test.ts",
+          "name": "opens files directly and returns from every completed surface group",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/FilesDemo.test.ts",
+          "name": "keeps manual selection inert then pauses, resumes, retries and replaces receipt snapshots",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/FilesDemo.test.ts",
+          "name": "owns local preview URLs and only opens a controlled source after a separate host action",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/FilesDemo.test.ts",
+          "name": "adds the full 48-note collection before presenting a bounded virtual window",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/FilesDemo.test.ts",
+          "name": "offers an invalid image URL separately from corrupt bytes for source recovery",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/FilesDemo.test.ts",
+          "name": "keeps native mode and known fixture selection inert until explicit upload and waits for endpoint completion receipt",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/FilesDemo.test.ts",
+          "name": "offers local PDF fixtures and owns a local PDF URL without upload writes",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileDemo.test.ts",
+          "name": "keeps bottom navigation and content tabs controlled and returns with the public back event",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileDemo.test.ts",
+          "name": "selects cells and list rows, advances steps and receives grid item identity",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileDemo.test.ts",
+          "name": "receives single and speed-dial FAB events and switches the shared theme",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+          "name": "opens notice details, dismisses the notice and restores it through host actions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+          "name": "separates empty, pending, retry failure and successful results with actual retry counts",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+          "name": "shows badge count, cap, dot and a removable slot tag without inventing an unknown zero",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+          "name": "auto hides toast, updates a persistent loading toast, restarts duration and permits host close",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+          "name": "keeps unknown and failed progress distinct from finite values and toggles loaded skeleton content",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+          "name": "changes real image and avatar URLs after failure and preserves their independent fallback slots",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+          "name": "cancels pending host work and toast timers when the page is removed",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileFeedbackDemo.test.ts",
+          "name": "cancels the old collection when an external result replaces a pending request",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "submits manual and captured scans, yields to ordinary fields and resumes without losing manual drafts",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "yields scan focus to 'clear number' and resumes with the manual draft",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "yields scan focus to 'open number sheet' and resumes with the manual draft",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "yields scan focus to 'open reminder dialog' and resumes with the manual draft",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "yields scan focus to 'save record control' and resumes with the manual draft",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "yields scan focus to 'header theme control' and resumes with the manual draft",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "yields scan focus to 'host navigation link' and resumes with the manual draft",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "reflects native text and search events in the host, including clear and cancel",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "keeps selection identity through option reordering and external value changes",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "edits steps, half ratings and slider values, locks them and receives button actions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "edits keypad strings with decimal, sign, limit, delete and alternate extra keys then confirms",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "resumes scanning after focus leaves the host for the standalone keypad and confirmation removes it",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "toggles the sign independently after the keypad reaches its append limit",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileInputDemo.test.ts",
+          "name": "yields scan focus to sheets and dialogs, keeps keypad confirmation inside the sheet and closes nested input with its host",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileListDemo.test.ts",
+          "name": "reports the selected swipe action identity and closes the row",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileListDemo.test.ts",
+          "name": "finishes or recovers a failed refresh and ignores another pull while loading",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileListDemo.test.ts",
+          "name": "loads one page at a time, pauses after failure, retries and stops at the end",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileListDemo.test.ts",
+          "name": "renders a finite virtual window, selects the item identity and reflects host reordering and empty data",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileListDemo.test.ts",
+          "name": "controls the carousel page, keeps end buttons disabled and clears autoplay when the host unmounts",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileListDemo.test.ts",
+          "name": "shows an empty inbox, loads the first batch and cancels pending pagination on reset",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileListDemo.test.ts",
+          "name": "clears pending refresh and pagination timers when the page is removed",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileListDemo.test.ts",
+          "name": "keeps a button refresh single when loading interrupts a pull and permits the next pull",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileOverlayDemo.test.ts",
+          "name": "commits the picked identity only on confirmation and leaves empty choices unsubmitted",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileOverlayDemo.test.ts",
+          "name": "keeps date drafts separate and commits a real bounded calendar date",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileOverlayDemo.test.ts",
+          "name": "keeps sheet edits as drafts, gives the numeric layer priority and removes it with the host sheet",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileOverlayDemo.test.ts",
+          "name": "submits dialog content only on confirm and distinguishes cancel from Escape dismissal",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileOverlayDemo.test.ts",
+          "name": "receives action identity after cancellation and keyed reordering without guessing from labels",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileOverlayDemo.test.ts",
+          "name": "keeps one dropdown open, receives the typed value and controls collapse slots from the host",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/MobileOverlayDemo.test.ts",
+          "name": "removes all teleported layers when the overlay page is unmounted",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleDemo.test.ts",
+          "name": "opens schedule deep entry selects a task and returns through desktop and all previous routes",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "root export renders two neutral tasks at fixed instant coordinates and emits their task identity",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "replaces same-key labels facts segments links windows and resources without retaining old content",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "readonly selection never edits or mutates frozen caller data",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "keeps unresolved zones explicit and rejects wall-time tasks without guessing a browser timezone",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "preserves catalog empty lanes overlap stacking and explicit native scale choices",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "shows host attention separately from conflicts and never emits a conflict action for attention alone",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "uses unified badges for host conflict attention lock and labels without classifying host text",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "keeps short task identity statuses and selection readable in native details without widening time bars",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects nonexistent calendar dates across tasks horizon windows segments and dependency endpoints",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'non leap February' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'century non leap February' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'April month end' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'zero month' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'zero day' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'invalid start with offset' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'invalid end only' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'hour overflow' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'nonzero end of day minute' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'nonzero end of day fraction' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'minute overflow' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'leap second' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'offset hour overflow' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'offset minute overflow' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'missing offset' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'zero duration' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "rejects invalid instant partition 'reversed duration' without calendar normalization",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "preserves valid instant partition 'leap year February end' at independent UTC coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "preserves valid instant partition 'divisible four hundred leap year' at independent UTC coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "preserves valid instant partition 'month end with negative offset' at independent UTC coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "preserves valid instant partition 'positive offset crossing UTC date' at independent UTC coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "preserves valid instant partition 'basic numeric offset and minute preci…' at independent UTC coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "preserves valid instant partition 'offset milliseconds' at independent UTC coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScheduleTimeline.test.ts",
+          "name": "preserves valid instant partition 'valid ISO end of day' at independent UTC coordinates",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScreenDemo.test.ts",
+          "name": "changes scale and design dimensions with native host controls outside the stage",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScreenDemo.test.ts",
+          "name": "changes visible neutral content through panel, border and tech-frame slots",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScreenDemo.test.ts",
+          "name": "keeps every schedule entry in a keyboard reachable region across collapse and reopen at 1600 by 900",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScreenDemo.test.ts",
+          "name": "opens only the completed controls section and unmounts its portal when returning to stage",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScreenDemo.test.ts",
+          "name": "opens the completed indicators deep link and stops its continuous readings before stage or controls",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScreenDemo.test.ts",
+          "name": "opens data deep link and disposes its polling before old surfaces then returns with fresh source state",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScreenDemo.test.ts",
+          "name": "opens charts deep link preserves all completed sections and disposes autoplay before returning",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/ScreenDemo.test.ts",
+          "name": "opens tables deep link preserves completed links and resets rows and focus when returning",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/TouchDemo.test.ts",
+          "name": "keeps reading counts and duration in sync with bounded stepper events",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/TouchDemo.test.ts",
+          "name": "selects a reading mode and resets both controlled steppers",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/TouchDemo.test.ts",
+          "name": "shows local loading completion and keeps disabled actions inactive",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/TouchDemo.test.ts",
+          "name": "updates the station status and exposes the complete tone and button examples",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/TouchDemo.test.ts",
+          "name": "changes color mode and accent through the station right slot",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/TouchTargetsHost.test.ts",
+          "name": "keeps adjacent public actions, native input and controlled values independent",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/TouchTargetsHost.test.ts",
+          "name": "keeps caller-managed loading and disabled actions inert",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground found app source files to guard",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground App.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground FilesDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground MobileDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground MobileFeedbackDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground MobileInputDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground MobileListDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground MobileOverlayDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground OrderEditingDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground RealGanttDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground ResourceEditingDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground ResourceScheduleDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground ScheduleDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground ScreenDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground TouchDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground assets/main.css imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground files/NativeUploadPanel.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground files/PreviewPanel.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground files/UploadPanel.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground files/memoryUpload.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground main.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-feedback/FeedbackMedia.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-feedback/FeedbackSignals.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-feedback/FeedbackStates.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-input/MobileCaptureInput.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-input/MobileInputFields.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-lists/LetterCarousel.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-lists/PagedLetters.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-lists/RefreshList.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-lists/SwipeActions.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-lists/WindowLetters.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-overlays/OverlayDetails.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-overlays/OverlayPanels.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground mobile-overlays/OverlaySelections.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/ScreenChartsDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/ScreenControlsDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/ScreenDataDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/ScreenDataSource.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/ScreenIndicatorsDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/ScreenStageDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/ScreenSummaryDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/ScreenTablesDemo.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/chart-fixtures.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/controls-fixtures.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/data-fixtures.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/indicators-fixtures.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/summary-fixtures.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground screen/tables-fixtures.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground test/PublicCompatibilityHost.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground test/TouchTargetsHost.vue imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground test/setup.ts imports NvUI only through the stable boundary",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground the library exposes no @deprecated old-name aliases (closeout done)",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground contract shell consistency across apps every library-consuming app with a test runner ships the contract shell",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground contract shell consistency across apps every contract shell actually arms the guard",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/nvui-imports.contract.test.ts",
+          "name": "NvUI import hygiene (stable package boundary) — playground contract shell consistency across apps all app contract shells are byte-identical",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "previews 'root PNG' at the public base URL and recovers after image failure",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "previews 'root JPEG' at the public base URL and recovers after image failure",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "previews 'nested PNG' at the public base URL and recovers after image failure",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "previews 'nested JPEG' at the public base URL and recovers after image failure",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "keeps nested SVG and corrupt-image fixtures distinct and recovers from a host source error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "keeps the nested 'text' fixture unsupported and opens only the controlled base URL",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "keeps the nested 'legacy' fixture unsupported and opens only the controlled base URL",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "keeps the nested 'media' fixture unsupported and opens only the controlled base URL",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "keeps the nested 'archive' fixture unsupported and opens only the controlled base URL",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/PreviewPanel.test.ts",
+          "name": "keeps a local Blob URL unprefixed under the nested base and releases it on fixture replacement",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/memoryUpload.test.ts",
+          "name": "advances only explicit transports and records abort, failure and completion separately",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/memoryUpload.test.ts",
+          "name": "holds create and complete and can release a deliberately uncooperative aborted transport",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects invalid HEAD offset null before any PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects invalid HEAD offset  before any PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects invalid HEAD offset NaN before any PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects invalid HEAD offset -1 before any PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects invalid HEAD offset 0.5 before any PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects invalid HEAD offset 9 before any PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset null with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset  with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset NaN with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset -1 with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset 0.5 with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset 9 with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset 2 with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset 1 with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects unconfirmed PATCH offset 4 with bounded requests",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects mode tus provider server-proxy before fetch",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects mode server-proxy provider tus before fetch",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects mode unknown provider tus before fetch",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects mode tus provider unknown before fetch",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "rejects mode unknown provider unknown before fetch",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "aborts before starting and between acknowledged chunks without later PATCH or success",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "resumes from nonzero HEAD with exact binary slices, session headers and 1 MiB chunks",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "preserves tus HTTP 409 reason on HEAD and PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "preserves tus HTTP 412 reason on HEAD and PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "preserves tus HTTP 413 reason on HEAD and PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "preserves tus HTTP 460 reason on HEAD and PATCH",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "PUT forwards binary File and headers, reports only completion after response, and preserves failures",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "passes AbortSignal into an in-flight fetch and never reports PUT completion after abort",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/nativeTransport.test.ts",
+          "name": "handles an already-complete or empty tus session with HEAD only",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies no-extension with  IMAGE/PNG ; charset=utf-8  through the stable root helper as image",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies photo.PNG with  through the stable root helper as image",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies report.PDF with image/png through the stable root helper as pdf",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies photo.png with application/pdf; version=1.7 through the stable root helper as pdf",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies note.docx with image/png through the stable root helper as office-docx",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies note with application/vnd.openxmlformats-officedocument.wordprocessingml.document through the stable root helper as office-docx",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies table.xlsx with  through the stable root helper as office-xlsx",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies slides.pptx with  through the stable root helper as office-pptx",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies legacy.doc with  through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies legacy.xls with  through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies legacy.ppt with  through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies data.csv with text/csv through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies note.txt with text/plain through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies data.json with application/json through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies audio.mp3 with audio/mpeg through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies movie.mp4 with video/mp4 through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies files.zip with application/zip through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "classifies unknown with  through the stable root helper as unsupported",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "formats absent, zero and binary size boundaries through the root helper",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "validates extension MIME wildcard and empty policy .TXT through picker and drop",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "validates extension MIME wildcard and empty policy text/plain through picker and drop",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "validates extension MIME wildcard and empty policy image/* through picker and drop",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "validates extension MIME wildcard and empty policy  through picker and drop",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "rejects adjacent size, wrong type and excess count without creating successful receipts",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "disabled guards picker browse and drop while the explicit ref and composable keep host authority",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "renders the public default variant and releases library thumbnails on removal or clear",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "renders the public queue variant and releases library thumbnails on removal or clear",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "renders the public compact variant and releases library thumbnails on removal or clear",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "renders the public avatar variant and releases library thumbnails on removal or clear",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "renders the public gallery variant and releases library thumbnails on removal or clear",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "renders the public table variant and releases library thumbnails on removal or clear",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "renders the public image variant and releases library thumbnails on removal or clear",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "subpath preview distinguishes empty loading error unsupported and image ready without opening a window",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/publicFiles.test.ts",
+          "name": "clamps image zoom to 20–300 percent and rotates both directions through public controls",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "pause during create prevents a late session from starting transport",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "resume isolates old progress failure and finally from the current attempt",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'pause' during 'create' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'pause' during 'create' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'remove' during 'create' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'remove' during 'create' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'clear' during 'create' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'clear' during 'create' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'unmount' during 'create' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'unmount' during 'create' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'replace' during 'create' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'replace' during 'create' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'pause' during 'transport' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'pause' during 'transport' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'remove' during 'transport' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'remove' during 'transport' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'clear' during 'transport' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'clear' during 'transport' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'unmount' during 'transport' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'unmount' during 'transport' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'replace' during 'transport' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'replace' during 'transport' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'pause' during 'complete' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'pause' during 'complete' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'remove' during 'complete' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'remove' during 'complete' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'clear' during 'complete' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'clear' during 'complete' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'unmount' during 'complete' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'unmount' during 'complete' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'replace' during 'complete' isolates late 'success' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "'replace' during 'complete' isolates late 'failure' and preserves a new selection",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "single retry replaces an expired failed session and retains the failure reason",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "bulk retry replaces an expired failed session and retains the failure reason",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "clear during a batch create prevents not-yet-started rows from creating sessions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "scope disposal during create blocks late failure and subsequent actions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "scope disposal during transport blocks late failure and subsequent actions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "scope disposal during complete blocks late failure and subsequent actions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "remove while transport waits ignores late progress and success without completing",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "clear while transport waits ignores late progress and success without completing",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "pause while transport waits ignores late progress and success without completing",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "parallel batch operations keep one current attempt per row and pause every signal",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "out-of-order completions emit only current queued successes and removal updates the snapshot",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "active AbortError remains a real failure while pause cancellation is silent",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "new attempt completes before the old create settles without losing its receipt",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "new attempt completes before the old complete settles without losing its receipt",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "maxFiles keeps the existing failed-slot policy without limiting retry transport concurrency",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+          "name": "retry completes while an older paused attempt still awaits transport",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenChartsDemo.test.ts",
+          "name": "range model switches real source point count scale and all channel readouts then short empty and recover preserve identity",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenChartsDemo.test.ts",
+          "name": "host distribution controls replace donut legend center and Pareto denominator consistently including zero",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenControlsDemo.test.ts",
+          "name": "drives neutral search input error zero empty and restore through the host memory model",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenControlsDemo.test.ts",
+          "name": "host controls shared typed options and disables all seven actions without losing values",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenDataDemo.test.ts",
+          "name": "keyed source switch cannot display late A in B and independent sources keep their own request and freshness state",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenDataDemo.test.ts",
+          "name": "host explicitly retains or withdraws failed content and recovery restores it while polling stops and restarts",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenDataDemo.test.ts",
+          "name": "public list controls append shrink clear restore replace and change row height without losing original actions",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenIndicatorsDemo.test.ts",
+          "name": "host switches each source identity and keeps real zero distinct from unknown without invalid numeric props",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenIndicatorsDemo.test.ts",
+          "name": "host updates long text all status labels and trend area without replacing them with component defaults",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenIndicatorsDemo.test.ts",
+          "name": "host continuous readings stop on source change and unmount without timers updating another group",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenSummaryDemo.test.ts",
+          "name": "summary switches culture and coworking sources with explicit legacy adapter and improving cost decrease",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenSummaryDemo.test.ts",
+          "name": "summary unknown empty large and long labels update visible values and segment input then recover",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenSummaryDemo.test.ts",
+          "name": "summary deep link preserves all previous routes and resets source on return",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenTablesDemo.test.ts",
+          "name": "host controlled pagination changes actual row IDs range and slot callback once then resets on smaller total unknown empty and recovery",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/ScreenTablesDemo.test.ts",
+          "name": "host retains two independent events sharing a reference and explicit priority state presentation after reorder and replacement",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground/src/screen/data-fixtures.test.ts",
+          "name": "held requests retain captured source and outcome and all complete after a host remount",
+          "status": "passed",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "name": "docs-source-final",
+      "discovery": 6,
+      "passed": 6,
+      "skipped": 0,
+      "failed": 0,
+      "success": true,
+      "numRuntimeErrorTestSuites": null,
+      "unhandledCount": null,
+      "unhandledErrors": null,
+      "errors": null,
+      "reason": null,
+      "tests": [
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/ui/src/design-docs.contract.test.ts",
+          "name": "prescriptive design docs teach current identifiers contains no stale identifiers",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/ui/src/docs-layout.contract.test.ts",
+          "name": "ADR 0020 §4.2 — VitePress isolation enables postcssIsolateStyles for base.css AND vp-doc.css",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/ui/src/docs-layout.contract.test.ts",
+          "name": "ADR 0020 §4.2 — VitePress isolation wraps every demo container root in vp-raw",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/ui/src/docs-layout.contract.test.ts",
+          "name": "ADR 0020 §4.2 — VitePress isolation drops the old .vp-doc counter-hacks and never revives revert-layer",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/ui/src/nvui-doc-coverage.contract.test.ts",
+          "name": "every root Nv component is documented (coverage matrix / DESIGN / docs site) finds no undocumented root component outside the baseline",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "file": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/ui/src/nvui-doc-coverage.contract.test.ts",
+          "name": "every root Nv component is documented (coverage matrix / DESIGN / docs site) keeps the baseline shrink-only (documented entries must be removed)",
+          "status": "passed",
+          "failures": []
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "behaviorDiscovery": 467,
+    "behaviorPassed": 463,
+    "behaviorSkipped": 4,
+    "docsPassed": 6
+  },
+  "stubConformanceExecution": 0,
+  "source": [
+    {
+      "path": "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+      "bytes": 87181,
+      "sha256": "de1e707c588abf1ec36af159242560f2ecc71cff3b8d4a6150bd53d476a7bcf2",
+      "mtime": "2026-10-25T21:46:29.626Z",
+      "unchangedAfterFinalBuildStarted": true
+    },
+    {
+      "path": "frontend/packages/scheduling/src/engine/engine.ts",
+      "bytes": 3867,
+      "sha256": "7da3f9561ace674b65f028e18bb100c3b4ea3aa86c3f77a6f87cdbadd7a6f653",
+      "mtime": "2026-10-25T21:24:10.372Z",
+      "unchangedAfterFinalBuildStarted": true
+    },
+    {
+      "path": "frontend/packages/scheduling/src/model/resource-projection.ts",
+      "bytes": 5074,
+      "sha256": "4195c383cca6f3dbee511b33d33abb2d3fd83f5fb12d6676d375bf3db449c17c",
+      "mtime": "2026-10-25T21:24:10.372Z",
+      "unchangedAfterFinalBuildStarted": true
+    },
+    {
+      "path": "frontend/apps/playground/src/ResourceEditingDemo.vue",
+      "bytes": 11163,
+      "sha256": "4000984e60ad7701acc2551708d206bb7a3b4735a8f0d0b262ae6bfd292ca439",
+      "mtime": "2026-10-25T21:58:39.778Z",
+      "unchangedAfterFinalBuildStarted": true
+    },
+    {
+      "path": "frontend/apps/playground/src/App.vue",
+      "bytes": 9085,
+      "sha256": "6d0291aca5f3b90d82ba2e2633086d477986b69d82f580edee487427dd8bd82a",
+      "mtime": "2026-10-25T21:28:26.837Z",
+      "unchangedAfterFinalBuildStarted": true
+    },
+    {
+      "path": "frontend/apps/playground/src/ResourceScheduleDemo.vue",
+      "bytes": 11661,
+      "sha256": "668519cae0badc1b9c080ccec7c2d75ce8482ef0facd2e722cc49e1fcc278a75",
+      "mtime": "2026-10-25T21:28:02.185Z",
+      "unchangedAfterFinalBuildStarted": true
+    }
+  ],
+  "finalResponses": 14,
+  "gates": [
+    {
+      "name": "typecheck-02",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "typecheck"
+      ],
+      "started": "2026-10-25T21:29:01.276Z",
+      "finished": "2026-10-25T21:29:19.660Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "scheduling-01",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src",
+        "--reporter=json",
+        "--outputFile=../../../docs/evidence/t07-p07/raw/scheduling-01.json"
+      ],
+      "started": "2026-10-25T21:29:33.504Z",
+      "finished": "2026-10-25T21:29:43.526Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "build-root",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "build"
+      ],
+      "started": "2026-10-25T21:30:41.586Z",
+      "finished": "2026-10-25T21:31:02.568Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "red-preview-hour",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src/components/ResourceSchedulerBoard.public.test.ts",
+        "-t",
+        "public resource reassignment preserves",
+        "--reporter=json",
+        "--outputFile=../../../docs/evidence/t07-p07/raw/red-preview-hour.json"
+      ],
+      "started": "2026-10-25T21:36:47.620Z",
+      "finished": "2026-10-25T21:36:51.853Z",
+      "exit": 1,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "green-preview-hour",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src/components/ResourceSchedulerBoard.public.test.ts",
+        "-t",
+        "public resource reassignment preserves",
+        "--reporter=json",
+        "--outputFile=../../../docs/evidence/t07-p07/raw/green-preview-hour.json"
+      ],
+      "started": "2026-10-25T21:36:59.784Z",
+      "finished": "2026-10-25T21:37:03.844Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "build-browser-02",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "--filter",
+        "@nerv-iip/playground",
+        "build"
+      ],
+      "started": "2026-10-25T21:37:14.192Z",
+      "finished": "2026-10-25T21:37:17.051Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "scheduling-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src",
+        "--reporter=json",
+        "--outputFile=../../../docs/evidence/t07-p07/raw/scheduling-final.json"
+      ],
+      "started": "2026-10-25T21:41:18.323Z",
+      "finished": "2026-10-25T21:41:29.125Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "host-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src",
+        "--reporter=json",
+        "--outputFile=../../../docs/evidence/t07-p07/raw/host-final.json"
+      ],
+      "started": "2026-10-25T21:42:24.117Z",
+      "finished": "2026-10-25T21:42:37.317Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "docs-source-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/ui",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src/design-docs.contract.test.ts",
+        "src/nvui-doc-coverage.contract.test.ts",
+        "src/docs-layout.contract.test.ts",
+        "--reporter=json",
+        "--outputFile=../../../docs/evidence/t07-p07/raw/docs-source-final.json"
+      ],
+      "started": "2026-10-25T21:43:00.755Z",
+      "finished": "2026-10-25T21:43:05.067Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "public-vue-types",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vue-tsc",
+        "--noEmit",
+        "-p",
+        "/tmp/nerv-ui-p07-public-consumer/tsconfig.json"
+      ],
+      "started": "2026-10-25T21:44:32.404Z",
+      "finished": "2026-10-25T21:44:36.443Z",
+      "exit": 2,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "fmt-source",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "fmt",
+        "--write",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+        "packages/scheduling/src/engine/engine.ts",
+        "packages/scheduling/src/model/resource-projection.ts",
+        "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ResourceScheduleDemo.vue",
+        "apps/playground/src/ResourceEditingDemo.vue",
+        "../docs/scheduling-renderer.md",
+        "packages/scheduling/README.md",
+        "apps/design-system/docs/components/desktop/resource-scheduler.md"
+      ],
+      "started": "2026-10-25T21:45:14.550Z",
+      "finished": "2026-10-25T21:45:15.000Z",
+      "exit": 1,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "public-vue-types-corrected",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vue-tsc",
+        "--noEmit",
+        "-p",
+        "/tmp/nerv-ui-p07-public-consumer/tsconfig.json"
+      ],
+      "started": "2026-10-25T21:45:31.539Z",
+      "finished": "2026-10-25T21:45:33.296Z",
+      "exit": 2,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "fmt-source-corrected",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/node_modules/.bin/vp",
+      "args": [
+        "fmt",
+        "--write",
+        "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+        "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+        "frontend/packages/scheduling/src/engine/engine.ts",
+        "frontend/packages/scheduling/src/model/resource-projection.ts",
+        "frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+        "frontend/apps/playground/src/App.vue",
+        "frontend/apps/playground/src/ResourceScheduleDemo.vue",
+        "frontend/apps/playground/src/ResourceEditingDemo.vue",
+        "docs/scheduling-renderer.md",
+        "frontend/packages/scheduling/README.md",
+        "frontend/apps/design-system/docs/components/desktop/resource-scheduler.md"
+      ],
+      "started": "2026-10-25T21:45:48.823Z",
+      "finished": "2026-10-25T21:45:48.940Z",
+      "exit": 1,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "public-vue-types-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vue-tsc",
+        "--noEmit",
+        "-p",
+        "/tmp/nerv-ui-p07-public-consumer/tsconfig.json"
+      ],
+      "started": "2026-10-25T21:46:10.490Z",
+      "finished": "2026-10-25T21:46:14.483Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "fmt-frontend-write",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "fmt",
+        "--write",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+        "packages/scheduling/src/engine/engine.ts",
+        "packages/scheduling/src/model/resource-projection.ts",
+        "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ResourceScheduleDemo.vue",
+        "apps/playground/src/ResourceEditingDemo.vue",
+        "packages/scheduling/README.md",
+        "apps/design-system/docs/components/desktop/resource-scheduler.md"
+      ],
+      "started": "2026-10-25T21:46:29.124Z",
+      "finished": "2026-10-25T21:46:29.905Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "lint-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "lint",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+        "packages/scheduling/src/engine/engine.ts",
+        "packages/scheduling/src/model/resource-projection.ts",
+        "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ResourceScheduleDemo.vue",
+        "apps/playground/src/ResourceEditingDemo.vue"
+      ],
+      "started": "2026-10-25T21:47:28.819Z",
+      "finished": "2026-10-25T21:47:29.903Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "fmt-last-test",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "fmt",
+        "--write",
+        "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts"
+      ],
+      "started": "2026-10-25T21:48:42.254Z",
+      "finished": "2026-10-25T21:48:42.808Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "scheduling-final-02",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src",
+        "--reporter=json",
+        "--outputFile=../../../docs/evidence/t07-p07/raw/scheduling-final-02.json"
+      ],
+      "started": "2026-10-25T21:48:42.836Z",
+      "finished": "2026-10-25T21:48:53.789Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "build-root-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "build"
+      ],
+      "started": "2026-10-25T21:49:32.890Z",
+      "finished": "2026-10-25T21:49:54.685Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "build-nested-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "--filter",
+        "@nerv-iip/playground",
+        "build",
+        "--base",
+        "/p07/",
+        "--outDir",
+        "/tmp/nerv-ui-p07-nested-dist"
+      ],
+      "started": "2026-10-25T21:50:02.302Z",
+      "finished": "2026-10-25T21:50:04.364Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "response-identity-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "node",
+      "args": [
+        "docs/evidence/t07-p07/scripts/responses.mjs"
+      ],
+      "started": "2026-10-25T21:55:25.592Z",
+      "finished": "2026-10-25T21:55:25.705Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "build-root-copy-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "build"
+      ],
+      "started": "2026-10-25T21:56:55.602Z",
+      "finished": "2026-10-25T21:57:18.292Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "fmt-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "fmt",
+        "--check",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+        "packages/scheduling/src/engine/engine.ts",
+        "packages/scheduling/src/model/resource-projection.ts",
+        "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ResourceScheduleDemo.vue",
+        "apps/playground/src/ResourceEditingDemo.vue",
+        "packages/scheduling/README.md",
+        "apps/design-system/docs/components/desktop/resource-scheduler.md"
+      ],
+      "started": "2026-10-25T21:57:39.361Z",
+      "finished": "2026-10-25T21:57:40.069Z",
+      "exit": 1,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "build-nested-copy-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "--filter",
+        "@nerv-iip/playground",
+        "build",
+        "--base",
+        "/p07/",
+        "--outDir",
+        "/tmp/nerv-ui-p07-nested-dist"
+      ],
+      "started": "2026-10-25T21:57:49.558Z",
+      "finished": "2026-10-25T21:57:51.632Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "fmt-readonly-copy",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "fmt",
+        "--write",
+        "apps/playground/src/ResourceEditingDemo.vue"
+      ],
+      "started": "2026-10-25T21:58:39.164Z",
+      "finished": "2026-10-25T21:58:39.843Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "lint-copy-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "lint",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+        "packages/scheduling/src/engine/engine.ts",
+        "packages/scheduling/src/model/resource-projection.ts",
+        "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ResourceScheduleDemo.vue",
+        "apps/playground/src/ResourceEditingDemo.vue"
+      ],
+      "started": "2026-10-25T21:58:59.402Z",
+      "finished": "2026-10-25T21:58:59.880Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "build-root-final-formatted",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "build"
+      ],
+      "started": "2026-10-25T22:00:54.326Z",
+      "finished": "2026-10-25T22:01:15.830Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "fmt-check-final",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "exec",
+        "vp",
+        "fmt",
+        "--check",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+        "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+        "packages/scheduling/src/engine/engine.ts",
+        "packages/scheduling/src/model/resource-projection.ts",
+        "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ResourceScheduleDemo.vue",
+        "apps/playground/src/ResourceEditingDemo.vue",
+        "packages/scheduling/README.md",
+        "apps/design-system/docs/components/desktop/resource-scheduler.md"
+      ],
+      "started": "2026-10-25T22:03:56.746Z",
+      "finished": "2026-10-25T22:03:57.479Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "build-nested-final-formatted",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+      "command": "corepack",
+      "args": [
+        "pnpm",
+        "--filter",
+        "@nerv-iip/playground",
+        "build",
+        "--base",
+        "/p07/",
+        "--outDir",
+        "/tmp/nerv-ui-p07-nested-dist"
+      ],
+      "started": "2026-10-25T22:04:22.320Z",
+      "finished": "2026-10-25T22:04:24.529Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "evidence-md-check",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "node",
+      "args": [
+        "docs/evidence/t07-p07/scripts/format-docs.mjs",
+        "--check",
+        "docs/evidence/t07-p07/README.md",
+        "docs/scheduling-renderer.md"
+      ],
+      "started": "2026-10-25T22:04:33.786Z",
+      "finished": "2026-10-25T22:04:35.301Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "final-response-identity",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "node",
+      "args": [
+        "docs/evidence/t07-p07/scripts/responses.mjs",
+        "-final"
+      ],
+      "started": "2026-10-25T22:07:56.659Z",
+      "finished": "2026-10-25T22:07:56.771Z",
+      "exit": 1,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "integration-fetch",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "git",
+      "args": [
+        "fetch",
+        "origin",
+        "integration/nerv-ui-extraction"
+      ],
+      "started": "2026-10-25T22:07:56.798Z",
+      "finished": "2026-10-25T22:07:57.920Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "integration-merge",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "git",
+      "args": [
+        "merge",
+        "--no-edit",
+        "origin/integration/nerv-ui-extraction"
+      ],
+      "started": "2026-10-25T22:07:57.950Z",
+      "finished": "2026-10-25T22:07:57.959Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "final-response-identity-corrected",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "node",
+      "args": [
+        "docs/evidence/t07-p07/scripts/responses.mjs",
+        "-final"
+      ],
+      "started": "2026-10-25T22:08:10.001Z",
+      "finished": "2026-10-25T22:08:10.113Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "maintenance-diff-check",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "git",
+      "args": [
+        "diff",
+        "--check",
+        "--",
+        "frontend",
+        "docs/scheduling-renderer.md",
+        "docs/evidence/t07-p07/README.md",
+        "docs/evidence/t07-p07/scripts"
+      ],
+      "started": "2026-10-25T22:09:53.107Z",
+      "finished": "2026-10-25T22:09:53.131Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "main-raw-diff-check",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+      "command": "git",
+      "args": [
+        "diff",
+        "--check",
+        "origin/main"
+      ],
+      "started": "2026-10-25T22:09:53.159Z",
+      "finished": "2026-10-25T22:09:54.239Z",
+      "exit": 2,
+      "signal": null,
+      "error": null
+    }
+  ],
+  "unrun": [
+    "independent-review",
+    "CI",
+    "docs10",
+    "packed11",
+    "device",
+    "old-consumers13/15",
+    "parent8-combination",
+    "SDK/APS",
+    "production-release",
+    "commercial-authorization",
+    "native-80/125-zoom"
+  ],
+  "inherited": [
+    "unchanged UI/mobile behavior suites",
+    "P02 pure and P03 prepared public-host lanes",
+    "pre-copy current-round browser matrix, limited by exact copy-only main-JS difference"
+  ]
+}
