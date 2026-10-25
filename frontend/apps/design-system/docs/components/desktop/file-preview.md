@@ -283,6 +283,8 @@ fontFallback:null 关闭第三方回退字体请求。已有嵌入字体可正�
 
 2.14.4 上游 Vue Viewport 的清理函数未断开 ResizeObserver；当前 Document 只接管 viewport DOM 桥接，继续使用同版本 viewport/scroll/zoom 插件能力，卸载时显式 disconnect observer、移除 scroll 监听、取消待执行 RAF 并注销 viewport。未修改已安装包或 vendor JS。
 
+翻页期间，Document 从 scroll capability 读取目标页，并在执行滚动帧时按当前页面布局定位；自动适应宽度产生的旧位置请求不能把首次翻页拉回上一页。普通缩放仍沿用插件请求的位置。首次导航的原始失败与修复证据见 [导航记录](../../../../../../docs/evidence/t06-pdf-navigation/README.md)。
+
 F04 的 F1/F2 生命周期修复由本地来源持有 `AbortController`：换源或卸载取消 PDF GET/响应体读取；两个 await 后再次检查来源，只把当前完整 buffer 交给 PDFium。已开始的浏览器读操作若无法立即停止，晚到字节会丢弃；已入队的 native open 若晚成功，则显式 close 后才销毁 engine，不以 GC 代替释放。位图层沿用固定插件的 render 参数，每轮独立持有 task/Blob URL；换源、缩放重绘和卸载都会清理，即使 img 尚未 load，取消后的晚 bitmap 也不再创建 URL。当前显示位图在本轮有效期间保持 URL，不在 load 前提前回收。
 
 R1 原始有效 PDF 晚成功与未解码位图的 FAIL 保留，修复及真实 renderer 证据见 [F1/F2 回执](../../../../../../docs/evidence/t06-f04/f1-f2/README.md)。它们不被原正常矩阵的 PASS 覆盖。
