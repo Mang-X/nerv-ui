@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // Adapted from scheduling/ReadonlyScheduleTimeline.vue at 93f9689c; source remains frozen for P04.
 import { computed } from 'vue'
+import NvStatusBadge from '../status/NvStatusBadge.vue'
+import type { StatusTone } from '../../blocks/status-badge/statusMap'
 import type { NvScheduleTask, NvScheduleVisualModel } from './types'
 const props = withDefaults(
   defineProps<{
@@ -24,7 +26,40 @@ const DAY = 86400000
 const LABEL_WIDTH = 224
 const TASK_ROW_HEIGHT = 280
 function instant(value: string) {
-  return /(?:Z|[+-]\d{2}:?\d{2})$/i.test(value) ? Date.parse(value) : NaN
+  // Check the written calendar before Date.parse can roll an absent day into next month.
+  // Offset conversion must not be round-tripped through UTC calendar fields.
+  const parts =
+    /^(\d{4}|[+-]\d{6})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d+))?)?(Z|[+-](\d{2}):?(\d{2}))$/i.exec(
+      value,
+    )
+  if (!parts) return NaN
+  const [
+    ,
+    yearText,
+    monthText,
+    dayText,
+    hourText,
+    minuteText,
+    secondText,
+    fraction,
+    ,
+    offsetHour,
+    offsetMinute,
+  ] = parts
+  const year = Number(yearText),
+    month = Number(monthText),
+    day = Number(dayText)
+  const hour = Number(hourText),
+    minute = Number(minuteText),
+    second = Number(secondText ?? 0)
+  const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
+  const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  if (month < 1 || month > 12 || day < 1 || day > days[month - 1]!) return NaN
+  if (hour > 24 || minute > 59 || second > 59) return NaN
+  // ISO end-of-day 24:00 is valid only with zero minutes, seconds and fraction.
+  if (hour === 24 && (minute !== 0 || second !== 0 || /[1-9]/.test(fraction ?? ''))) return NaN
+  if (Number(offsetHour ?? 0) > 23 || Number(offsetMinute ?? 0) > 59) return NaN
+  return Date.parse(value)
 }
 function validInterval(value: { start: string; end: string }) {
   return Number.isFinite(instant(value.start)) && instant(value.end) > instant(value.start)
@@ -146,6 +181,12 @@ const lanes = computed(() => {
     }
   })
 })
+const compactTasks = computed(() =>
+  lanes.value.flatMap((lane) => lane.tasks.filter(isCompact).map((p) => p.task)),
+)
+function isCompact(p: { width: number }) {
+  return (p.width / 100) * timelineWidth.value < 96
+}
 const dependencies = computed(() => {
   const positions = new Map<string, { start: number; end: number; y: number }>()
   let height = 0
@@ -206,6 +247,15 @@ function segments(task: NvScheduleTask) {
       width:
         ((instant(s.end) - instant(s.start)) / (instant(task.end) - instant(task.start))) * 100,
     }))
+}
+function taskStatuses(task: NvScheduleTask): { label: string; tone: StatusTone }[] {
+  // Only explicit host fields carry semantics; arbitrary host labels stay neutral.
+  return [
+    ...(task.conflictLabel ? [{ label: task.conflictLabel, tone: 'danger' as const }] : []),
+    ...(task.attentionLabel ? [{ label: task.attentionLabel, tone: 'warning' as const }] : []),
+    ...(task.locked ? [{ label: '锁定', tone: 'neutral' as const }] : []),
+    ...(task.statusLabels ?? []).map((label) => ({ label, tone: 'neutral' as const })),
+  ]
 }
 function selectTask(task: NvScheduleTask) {
   emit('taskSelect', task.id)
@@ -297,28 +347,24 @@ function selectTask(task: NvScheduleTask) {
               :title="taskDescription(p.task)"
               @click="selectTask(p.task)"
             >
-              <span class="nv-schedule-timeline-task__title">{{ p.task.label }}</span>
-              <span
-                v-for="(fact, index) in p.task.facts"
-                :key="index"
-                class="nv-schedule-timeline-task__fact"
-                ><span>{{ fact.label }}</span
-                ><span>{{ fact.value }}</span></span
-              >
-              <span class="nv-schedule-timeline-task__meta">{{ taskTime(p.task) }}</span>
-              <span v-if="p.task.conflictLabel" class="nv-schedule-timeline-task__status">{{
-                p.task.conflictLabel
-              }}</span>
-              <span v-if="p.task.attentionLabel" class="nv-schedule-timeline-task__status">{{
-                p.task.attentionLabel
-              }}</span>
-              <span v-if="p.task.locked" class="nv-schedule-timeline-task__status">锁定</span>
-              <span
-                v-for="(status, index) in p.task.statusLabels"
-                :key="index"
-                class="nv-schedule-timeline-task__status"
-                >{{ status }}</span
-              >
+              <span v-if="!isCompact(p)" class="nv-schedule-timeline-task__content">
+                <span class="nv-schedule-timeline-task__title">{{ p.task.label }}</span>
+                <span
+                  v-for="(fact, index) in p.task.facts"
+                  :key="index"
+                  class="nv-schedule-timeline-task__fact"
+                  ><span>{{ fact.label }}</span
+                  ><span>{{ fact.value }}</span></span
+                >
+                <span class="nv-schedule-timeline-task__meta">{{ taskTime(p.task) }}</span>
+                <NvStatusBadge
+                  v-for="(status, index) in taskStatuses(p.task)"
+                  :key="index"
+                  :label="status.label"
+                  :tone="status.tone"
+                  class="nv-schedule-timeline-task__status"
+                />
+              </span>
               <span
                 v-if="p.task.segments?.length"
                 class="nv-schedule-timeline-segments"
@@ -358,6 +404,31 @@ function selectTask(task: NvScheduleTask) {
         </svg>
       </div>
     </div>
+    <details v-if="compactTasks.length" class="nv-schedule-timeline-details">
+      <summary>短时任务详情（{{ compactTasks.length }}）</summary>
+      <ul>
+        <li v-for="task in compactTasks" :key="task.id">
+          <button
+            type="button"
+            :aria-label="taskDescription(task)"
+            :title="taskDescription(task)"
+            @click="selectTask(task)"
+          >
+            <strong>{{ task.label }}</strong>
+            <span>{{ taskTime(task) }}</span>
+            <span v-for="(fact, index) in task.facts" :key="index"
+              >{{ fact.label }} {{ fact.value }}</span
+            >
+            <NvStatusBadge
+              v-for="(status, index) in taskStatuses(task)"
+              :key="index"
+              :label="status.label"
+              :tone="status.tone"
+            />
+          </button>
+        </li>
+      </ul>
+    </details>
   </div>
 </template>
 <style scoped>
@@ -379,14 +450,10 @@ function selectTask(task: NvScheduleTask) {
   }
   .nv-schedule-timeline-segments {
     position: absolute;
-    left: -1px;
-    right: -1px;
+    left: 0;
+    right: 0;
     bottom: 0.4rem;
     height: 1.25rem;
-  }
-  .nv-schedule-timeline-task--conflict .nv-schedule-timeline-segments {
-    left: -2px;
-    right: -2px;
   }
   .nv-schedule-timeline-segment {
     position: absolute;
@@ -518,30 +585,59 @@ function selectTask(task: NvScheduleTask) {
     justify-content: center;
     gap: 0.2rem;
     overflow: hidden;
-    border: 1px solid color-mix(in oklch, var(--primary), transparent 25%);
+    border: 0;
     border-radius: var(--radius-md);
     background: color-mix(in oklch, var(--primary), var(--card) 82%);
     color: var(--foreground);
-    padding: 0.4rem 0.6rem;
+    padding: 0;
     text-align: left;
-    box-shadow: var(--shadow-xs);
-  }
-
-  .nv-schedule-timeline-task:hover,
-  .nv-schedule-timeline-task:focus-visible {
-    border-color: var(--primary);
-    outline: none;
-    box-shadow: 0 0 0 2px color-mix(in oklch, var(--ring), transparent 55%);
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--primary), transparent 25%);
   }
 
   .nv-schedule-timeline-task--conflict {
-    border-width: 2px;
-    border-color: var(--destructive);
+    box-shadow: inset 0 0 0 2px var(--destructive);
     background: color-mix(in oklch, var(--destructive), var(--card) 88%);
   }
 
   .nv-schedule-timeline-task--locked {
-    border-style: dashed;
+    outline: 1px dashed var(--foreground);
+    outline-offset: -1px;
+  }
+
+  .nv-schedule-timeline-task:hover,
+  .nv-schedule-timeline-task:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  .nv-schedule-timeline-task__content {
+    display: flex;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    gap: 0.2rem;
+    overflow: hidden;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .nv-schedule-timeline-details {
+    position: sticky;
+    left: 0;
+    padding: 0.75rem 1rem;
+  }
+  .nv-schedule-timeline-details button {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+  .nv-schedule-timeline-details button:focus-visible {
+    outline: 2px solid var(--ring);
   }
 
   .nv-schedule-timeline-task__title {
@@ -565,17 +661,8 @@ function selectTask(task: NvScheduleTask) {
   }
 
   .nv-schedule-timeline-task__status {
-    display: inline-flex;
     flex: none;
-    align-items: center;
-    gap: 0.15rem;
-    color: var(--foreground);
-    font-weight: 700;
-  }
-
-  .nv-schedule-timeline-task__status svg {
-    width: 0.7rem;
-    height: 0.7rem;
+    max-width: 100%;
   }
 }
 </style>

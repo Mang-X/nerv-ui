@@ -46,6 +46,8 @@ import { NvScheduleTimeline, type NvScheduleVisualModel } from '@nerv-iip/ui'
 
 `taskSelect` / `conflictClick` 负载为 `taskId: string`。组件始终只读，没有编辑入口；锁定任务仍可选择。
 
+短任务不会因文字、状态徽章或内边距撑宽；投影不足 96px 时可展开原生“短时任务详情”阅读并选择，时间条仍保留完整可访问名称。日期必须为真实日历上的 ISO UTC/offset 实刻，非法日期/时间不归一化。
+
 公开类型同从主桶导出：`NvScheduleInterval`、`NvScheduleFact`、`NvScheduleTask`、`NvScheduleLane`、`NvScheduleLink`、`NvScheduleWindow`、`NvScheduleVisualModel`。详细字段以[类型源码](../../../../../packages/ui/src/components/pc/schedule-timeline/types.ts)为准。
 
 活动独立示例在 playground `/#schedule`；本页源码已同步，完整文档站运行仍由 #10 验证。

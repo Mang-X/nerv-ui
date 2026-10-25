@@ -1,5 +1,7 @@
 # T07/P01：原生只读时间轴实施证据
 
+本文保留首次实施 R1 的历史结果。独立 R1 后续拒绝三项 P2；本轮修复与 fresh 证据见 [F1–F3 修复](f1-f3/README.md)，不以本页历史 PASS 代替本轮验证。
+
 本记录只交付 [#84](https://github.com/Mang-X/nerv-ui/issues/84)，scope:M，单 PR；[#8](https://github.com/Mang-X/nerv-ui/issues/8) 的其它 15 叶和父组合验收另列。独立 merger 尚未运行，不宣称已验收或已集成。
 
 ## 固定对象与范围
@@ -17,16 +19,16 @@
 
 所有 shell 都显式指定本工作树。task-local shim 固定 corepack `pnpm@11.22.0`，包含 nested pnpm。最终全量测试按以下顺序串行，退出码均为 0：
 
-| 门禁 | 结果 | 复现入口（仓库根） |
-| --- | --- | --- |
-| frozen install | PASS | `pnpm -C frontend install --frozen-lockfile` |
-| UI 行为与契约 | 805 PASS | `pnpm -C frontend --filter @nerv-iip/ui test` |
-| mobile 行为/命名 | 144 PASS | `pnpm -C frontend --filter @nerv-iip/ui-mobile test` |
-| host 全量 | 267 PASS | `pnpm -C frontend --filter @nerv-iip/playground test --fileParallelism=false` |
-| 文档源码 | 6 + 2 PASS | UI `test:docs`；mobile 单独运行 `src/nvui-doc-coverage.contract.test.ts` |
-| 三包类型 + 根 base 构建 | PASS | `pnpm -C frontend build` |
-| 非根 base 构建 | PASS | `pnpm -C frontend --filter @nerv-iip/playground exec vp build --base=/p01-proof/` |
-| 受影响源码/新文档 fmt、源码 lint | PASS | 精确参数见 durable `raw/{fmt-candidate,lint-candidate}.run.json` |
+| 门禁                             | 结果       | 复现入口（仓库根）                                                                |
+| -------------------------------- | ---------- | --------------------------------------------------------------------------------- |
+| frozen install                   | PASS       | `pnpm -C frontend install --frozen-lockfile`                                      |
+| UI 行为与契约                    | 805 PASS   | `pnpm -C frontend --filter @nerv-iip/ui test`                                     |
+| mobile 行为/命名                 | 144 PASS   | `pnpm -C frontend --filter @nerv-iip/ui-mobile test`                              |
+| host 全量                        | 267 PASS   | `pnpm -C frontend --filter @nerv-iip/playground test --fileParallelism=false`     |
+| 文档源码                         | 6 + 2 PASS | UI `test:docs`；mobile 单独运行 `src/nvui-doc-coverage.contract.test.ts`          |
+| 三包类型 + 根 base 构建          | PASS       | `pnpm -C frontend build`                                                          |
+| 非根 base 构建                   | PASS       | `pnpm -C frontend --filter @nerv-iip/playground exec vp build --base=/p01-proof/` |
+| 受影响源码/新文档 fmt、源码 lint | PASS       | 精确参数见 durable `raw/{fmt-candidate,lint-candidate}.run.json`                  |
 
 [summary.json](raw/summary.json) 对照真实 JSON 的 `success`、失败断言/失败 suite、各文件 status 与 exit；该 reporter 没有 unhandled 计数字段，因此保留 null，不伪称字段为 0。五份最终日志未发现 unhandled error/rejection 文本；jsdom 的 stylesheet 解析告警保留。构建的 crypto browser-external、VueUse PURE annotation 和大 chunk 告警保留，未更改阈值。
 
@@ -36,15 +38,15 @@
 
 以下测试都在 bare `@nerv-iip/ui` root export 或实际 App 宿主接缝运行；名称对应最终 host 报告。
 
-| Requirement | 测试名 / 独立证据 |
-| --- | --- |
-| 两个中性任务、一依赖；轴/标签/坐标与 taskId | `root export renders two neutral tasks at fixed instant coordinates and emits their task identity` |
-| 同 key 文本、facts、分段、links、窗口、资源更替与 clear | `replaces same-key labels facts segments links windows and resources without retaining old content` |
-| readonly 不编辑、不突变输入 | `readonly selection never edits or mutates frozen caller data`，深冻结输入和真实浏览器手势 |
-| UTC/offset、未解析时区、拒绝无 offset wall time | `keeps unresolved zones explicit and rejects wall-time tasks without guessing a browser timezone` |
-| 风险强调独立于冲突事件 | `shows host attention separately from conflicts and never emits a conflict action for attention alone`；T3 实测 attention 2px、普通任务 1px，回读 taskId |
-| 原生空泳道、重叠排布、刻度选择 | `preserves catalog empty lanes overlap stacking and explicit native scale choices` |
-| 深链、选择回读、卸载重入、旧入口 | `opens schedule deep entry selects a task and returns through desktop and all previous routes`；[16 入口实际遍历](raw/old-routes-r2.json) |
+| Requirement                                             | 测试名 / 独立证据                                                                                                                                        |
+| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 两个中性任务、一依赖；轴/标签/坐标与 taskId             | `root export renders two neutral tasks at fixed instant coordinates and emits their task identity`                                                       |
+| 同 key 文本、facts、分段、links、窗口、资源更替与 clear | `replaces same-key labels facts segments links windows and resources without retaining old content`                                                      |
+| readonly 不编辑、不突变输入                             | `readonly selection never edits or mutates frozen caller data`，深冻结输入和真实浏览器手势                                                               |
+| UTC/offset、未解析时区、拒绝无 offset wall time         | `keeps unresolved zones explicit and rejects wall-time tasks without guessing a browser timezone`                                                        |
+| 风险强调独立于冲突事件                                  | `shows host attention separately from conflicts and never emits a conflict action for attention alone`；T3 实测 attention 2px、普通任务 1px，回读 taskId |
+| 原生空泳道、重叠排布、刻度选择                          | `preserves catalog empty lanes overlap stacking and explicit native scale choices`                                                                       |
+| 深链、选择回读、卸载重入、旧入口                        | `opens schedule deep entry selects a task and returns through desktop and all previous routes`；[16 入口实际遍历](raw/old-routes-r2.json)                |
 
 ## 真实浏览器
 
@@ -64,18 +66,18 @@ T3 preview 先 status/open；snapshot 同一步两次 `Preview automation snapsh
 
 完整原始报告、脚本和退出码保存在 durable，而非把后续 PASS 覆盖为第一次就通过：
 
-| 首次记录 | 原因 / 后续边界 |
-| --- | --- |
-| `red-attention`：5 PASS / 1 FAIL | 公共风险文字缺失；新增宿主 attention 展示字段，保留强调、避免误发 conflictClick；聚焦 7 GREEN |
-| `red-public`：1 FAIL | 旧 root 缺 `NvScheduleTimeline`；同 public seam 后续 GREEN |
-| `green-public`：1 FAIL | SVG 浮点字符串末位差异；改用独立固定数值与精度比较 |
-| `green-focused`：5 PASS / 1 FAIL | Test Utils 对 pointer `clientX` 只读字段赋值报错；改为原生 MouseEvent 初始化 |
-| `ui-tests`：804 PASS / 1 FAIL | 命名契约扫描局部 barrel；补标准局部导出，未放宽断言 |
-| `host-tests`：256 PASS，2 suite 收集 FAIL | formatter 使模板恢复操作失去分号；窄 probe 复现后移入具名 restore，完整重跑 266 PASS |
-| `time-text-red` / `segments-geometry-red` | 文案 103/97px 裁切、分段受 task padding 缩窄；允许换行并按任务完整时间包络投影，最终四态核对 |
-| `fmt-evidence` / `fmt-evidence-r2` | 根 evidence 文档不在 vp 的 frontend workspace：`..` 路径被拒、根执行找不到 package；两次工具失败保留，仅人工与 diff-check 核验，不称该文件 fmt PASS |
-| 末轮 T3 导航即时读取失败 | hash 已变而 hashchange 尚未完成；改等待公开标题/卸载，不调测试 timeout；16 入口重新 PASS |
-| preview 两次 timeout、about:blank 非法 URL、服务启动期 chrome-error、`round06` 定位歧义 | 原始工具失败保留；纠正 URL/按规则 fallback/按可见“桌面演示”收窄，未修改产品绕过 |
+| 首次记录                                                                                | 原因 / 后续边界                                                                                                                                     |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `red-attention`：5 PASS / 1 FAIL                                                        | 公共风险文字缺失；新增宿主 attention 展示字段，保留强调、避免误发 conflictClick；聚焦 7 GREEN                                                       |
+| `red-public`：1 FAIL                                                                    | 旧 root 缺 `NvScheduleTimeline`；同 public seam 后续 GREEN                                                                                          |
+| `green-public`：1 FAIL                                                                  | SVG 浮点字符串末位差异；改用独立固定数值与精度比较                                                                                                  |
+| `green-focused`：5 PASS / 1 FAIL                                                        | Test Utils 对 pointer `clientX` 只读字段赋值报错；改为原生 MouseEvent 初始化                                                                        |
+| `ui-tests`：804 PASS / 1 FAIL                                                           | 命名契约扫描局部 barrel；补标准局部导出，未放宽断言                                                                                                 |
+| `host-tests`：256 PASS，2 suite 收集 FAIL                                               | formatter 使模板恢复操作失去分号；窄 probe 复现后移入具名 restore，完整重跑 266 PASS                                                                |
+| `time-text-red` / `segments-geometry-red`                                               | 文案 103/97px 裁切、分段受 task padding 缩窄；允许换行并按任务完整时间包络投影，最终四态核对                                                        |
+| `fmt-evidence` / `fmt-evidence-r2`                                                      | 根 evidence 文档不在 vp 的 frontend workspace：`..` 路径被拒、根执行找不到 package；两次工具失败保留，仅人工与 diff-check 核验，不称该文件 fmt PASS |
+| 末轮 T3 导航即时读取失败                                                                | hash 已变而 hashchange 尚未完成；改等待公开标题/卸载，不调测试 timeout；16 入口重新 PASS                                                            |
+| preview 两次 timeout、about:blank 非法 URL、服务启动期 chrome-error、`round06` 定位歧义 | 原始工具失败保留；纠正 URL/按规则 fallback/按可见“桌面演示”收窄，未修改产品绕过                                                                     |
 
 full RAW（新库 main `599031a6` → staged candidate）diff-check 退出 2，原始日志 1785 行，来自继承的 integration 证据、PDF/vendor 等空白；P01 全量（含本票 raw JSON）diff-check 与 maintenance 各退出 0。三条 receipt 分开保存，没有改历史 raw 来变绿。
 
