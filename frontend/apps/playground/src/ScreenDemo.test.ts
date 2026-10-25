@@ -156,3 +156,31 @@ it('opens data deep link and disposes its polling before old surfaces then retur
     vi.useRealTimers()
   }
 })
+
+it('opens charts deep link preserves all completed sections and disposes autoplay before returning', async () => {
+  vi.useFakeTimers()
+  vi.stubGlobal('matchMedia', () => ({
+    matches: false,
+    addEventListener() {},
+    removeEventListener() {},
+  }))
+  try {
+    wrapper = mount(ScreenDemo, { props: { section: '#screen/charts' } })
+    expect(wrapper.get('h1').text()).toBe('内容分布与到访趋势')
+    expect(wrapper.get('a[href="#screen/charts"]').attributes('aria-current')).toBe('page')
+    await vi.advanceTimersByTimeAsync(1800)
+    expect(wrapper.get('.nv-scr-bc-card').text()).toContain('reading/day/p1')
+    await wrapper.setProps({ section: '#screen/stage' })
+    expect(wrapper.get('h1').text()).toBe('城市文化空间')
+    expect(vi.getTimerCount()).toBe(0)
+    await wrapper.setProps({ section: '#screen/charts' })
+    expect(wrapper.get('[aria-label="数据身份"]').text()).toContain('reading/day/5')
+    expect(wrapper.find('.nv-scr-bc-card').exists()).toBe(false)
+    for (const section of ['stage', 'controls', 'indicators', 'data'])
+      expect(wrapper.find(`a[href="#screen/${section}"]`).exists()).toBe(true)
+  } finally {
+    wrapper?.unmount()
+    wrapper = undefined
+    vi.useRealTimers()
+  }
+})

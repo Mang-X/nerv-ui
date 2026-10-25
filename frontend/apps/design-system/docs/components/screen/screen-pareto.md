@@ -63,3 +63,22 @@ const downtime = [
 | `items` | `{ label, sub?, count, pct }[]` | —    | 降序项;`pct` 为占全量 %           |
 | `total` | `number`                        | —    | 全量总数(算长尾行;不传则无长尾行) |
 | `unit`  | `string`                        | `件` | 数量单位                          |
+
+## 输入顺序与全量口径（T05/A05）
+
+组件保留输入顺序，不排序、不从 count 推算领域 pct。label 应唯一；count 为有限、非负数量，pct 为宿主提供的有限百分比。Σ 只累计输入 pct（显示一位小数）；条长独立按最大 count 归一化，小数数量也遵循相同比例，全部为零时条长为零。长名称可换行，数量/百分比保留可达。
+
+`total` 未传时不展示长尾；显式 `total=0` 仍展示长尾，空全量的长尾数量/占比均为 0。正 total 的长尾数量为 total 减 TOP count 合计，百分比为 100 减 Σ。宿主必须使 count/pct/total 使用相同分母，且 total 不小于 TOP 合计；组件不推断或修复矛盾的业务口径。number 类型和默认单位 `件` 保留，不新增运行时拒绝。
+
+```vue
+<NvScreenPareto
+  :items="[
+    { label: '阅读', sub: '内容 A', count: 53, pct: 53 },
+    { label: '影像', sub: '内容 B', count: 27, pct: 27 },
+  ]"
+  :total="100"
+  unit="次"
+/>
+```
+
+该例 TOP2 合计/Σ 为 80%，长尾 20 次/20%；`/#screen/charts` 的替换例保留较小项在前，证明组件没有偷偷排序。零值/替换与浏览器证据见 `docs/evidence/t05-a05/README.md`。

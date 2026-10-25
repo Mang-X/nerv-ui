@@ -23,7 +23,7 @@ const props = withDefaults(
     /** X-axis labels under the plot. */
     xLabels?: string[]
     /** Resting crosshair pin when not hovering. `x` is the data index. */
-    tooltip?: { x: number; label: string; actual: string; plan: string }
+    tooltip?: false | { x: number; label: string; actual: string; plan: string }
     title?: string
     /** 每个数据点的悬停标签（与 actual 等长）；缺省按 24h 均匀推算（2026-07 生产化） */
     hoverLabels?: string[]
@@ -65,15 +65,22 @@ const bottom = VB_H - PAD_B
 const left = PAD_L
 const right = VB_W
 
+const pointCount = computed(() =>
+  Math.max(
+    props.actual.length,
+    props.plan.length,
+    ...(props.series ?? []).map((s) => s.data.length),
+  ),
+)
+
 const max = computed(() => {
-  const peak = Math.max(
+  const peak = [props.actual, props.plan, ...(props.series ?? []).map((s) => s.data)].reduce(
+    (peak, data) => data.reduce((n, value) => Math.max(n, value), peak),
     1,
-    ...props.actual,
-    ...props.plan,
-    ...(props.series ?? []).flatMap((s) => s.data),
   )
   const mag = 10 ** Math.floor(Math.log10(peak))
-  return Math.ceil(peak / mag) * mag
+  const rounded = Math.ceil(peak / mag) * mag
+  return Number.isFinite(rounded) ? rounded : peak
 })
 
 function xAt(i: number, len: number) {
@@ -86,7 +93,9 @@ function yAt(v: number) {
 function linePath(data: number[]) {
   if (!data.length) return ''
   return data
-    .map((v, i) => `${i === 0 ? 'M' : 'L'}${xAt(i, data.length).toFixed(1)} ${yAt(v).toFixed(1)}`)
+    .map(
+      (v, i) => `${i === 0 ? 'M' : 'L'}${xAt(i, pointCount.value).toFixed(1)} ${yAt(v).toFixed(1)}`,
+    )
     .join(' ')
 }
 function fmt(v: number) {
@@ -99,34 +108,41 @@ const seriesPaths = computed(() =>
   (props.series ?? []).map((s) => ({ label: s.label, color: s.color, d: linePath(s.data) })),
 )
 const areaPath = computed(() =>
-  props.actual.length ? `${actualPath.value} L${right} ${bottom} L${left} ${bottom} Z` : '',
+  props.actual.length
+    ? `${actualPath.value} L${xAt(props.actual.length - 1, pointCount.value)} ${bottom} L${left} ${bottom} Z`
+    : '',
 )
 
-// Evenly spaced faint grid lines, one fewer than the y-label count.
+// Tick labels and grid lines share the same plot coordinates.
 const gridYs = computed(() => {
-  const n = Math.max(2, props.yLabels.length - 1)
+  const n = Math.max(2, props.yLabels.length)
   return Array.from({ length: n }, (_, i) => top + ((bottom - top) * i) / (n - 1))
 })
 
 // --- hover interaction ---------------------------------------------------
 const svgEl = ref<SVGSVGElement>()
-const hover = ref<number | null>(null)
+const hoverX = ref<number | null>(null)
+const hover = computed(() =>
+  hoverX.value == null || !pointCount.value
+    ? null
+    : Math.round(hoverX.value * (pointCount.value - 1)),
+)
 
 function onMove(e: MouseEvent) {
   const svg = svgEl.value
-  const len = props.actual.length
-  if (!svg || len < 1) return
+  if (!svg) return
   const r = svg.getBoundingClientRect()
   const svgX = ((e.clientX - r.left) / r.width) * VB_W
-  const i = Math.round(((svgX - left) / (right - left)) * (len - 1))
-  hover.value = Math.max(0, Math.min(len - 1, i))
+  if (!r.width) return
+  hoverX.value = Math.max(0, Math.min(1, (svgX - left) / (right - left)))
 }
 function onLeave() {
-  hover.value = null
+  hoverX.value = null
 }
 
 const cross = computed(() => {
-  const len = props.actual.length
+  const len = pointCount.value
+  if (!len) return null
   let i: number | null = null
   let label = ''
   let aVal = ''
@@ -134,15 +150,15 @@ const cross = computed(() => {
   if (hover.value != null) {
     i = hover.value
     if (props.hoverLabels?.length) {
-      label = props.hoverLabels[Math.min(i, props.hoverLabels.length - 1)]
+      label = props.hoverLabels[i] ?? `#${i + 1}`
     } else {
       const hr = Math.round((i / Math.max(1, len - 1)) * 24)
       label = `${String(hr).padStart(2, '0')}:00`
     }
-    aVal = fmt(props.actual[i] ?? 0)
-    pVal = fmt(props.plan[i] ?? 0)
+    aVal = props.actual[i] == null ? '—' : fmt(props.actual[i])
+    pVal = props.plan[i] == null ? '—' : fmt(props.plan[i])
   } else if (props.tooltip) {
-    i = Math.max(0, Math.min(len - 1, props.tooltip.x))
+    i = Math.max(0, Math.min(len - 1, Math.round(props.tooltip.x)))
     label = props.tooltip.label
     aVal = props.tooltip.actual
     pVal = props.tooltip.plan
@@ -159,10 +175,11 @@ const cross = computed(() => {
   // 信息卡为 HTML overlay（% 锚定）：SVG 用 preserveAspectRatio="none" 非均匀拉伸，
   // rect/text 放 SVG 内会随容器宽高比被拉变形。右半区翻转到标线左侧、纵向钳制在画布内
   // （钳制半径随序列行数增高，多行卡不顶出画布）。
-  const flip = cx > (left + right) / 2
+  // 卡片锚点与 max-width 均相对完整 body；plot 中点含左侧轴沟，不能作为半宽边界。
+  const flip = cx > VB_W / 2
   const half = 36 + sVals.length * 9
   const cyClamped = Math.min(Math.max(cy, top + half), bottom - half)
-  return { cx, cy, cyClamped, flip, label, aVal, pVal, sVals }
+  return { hasActual: props.actual[i] != null, cx, cy, cyClamped, flip, label, aVal, pVal, sVals }
 })
 
 const uid = Math.random().toString(36).slice(2, 8)
@@ -185,6 +202,7 @@ const uid = Math.random().toString(36).slice(2, 8)
           type="button"
           class="nv-scr-tc-tab"
           :class="{ on: r.value === range }"
+          :aria-pressed="r.value === range"
           @click="range = r.value"
         >
           {{ r.label }}
@@ -200,7 +218,12 @@ const uid = Math.random().toString(36).slice(2, 8)
 
     <div class="nv-scr-tc-body">
       <div class="nv-scr-tc-y">
-        <span v-for="(y, i) in yLabels" :key="i">{{ y }}</span>
+        <span
+          v-for="(y, i) in yLabels"
+          :key="i"
+          :style="{ top: `${(i / Math.max(1, yLabels.length - 1)) * 100}%` }"
+          >{{ y }}</span
+        >
       </div>
       <svg
         ref="svgEl"
@@ -276,11 +299,13 @@ const uid = Math.random().toString(36).slice(2, 8)
            任何容器宽高比 / ScreenScaler 缩放下都不变形 -->
       <template v-if="cross">
         <i
+          v-if="cross.hasActual"
           class="nv-scr-tc-dot"
           :style="{ left: `${(cross.cx / VB_W) * 100}%`, top: `${(cross.cy / VB_H) * 100}%` }"
           aria-hidden="true"
         />
         <div
+          role="tooltip"
           class="nv-scr-tc-cardh"
           :class="{ flip: cross.flip }"
           :style="{
@@ -383,14 +408,18 @@ const uid = Math.random().toString(36).slice(2, 8)
   .nv-scr-tc-y {
     position: absolute;
     left: 0;
-    top: 0;
-    height: 100%;
+    top: 7.333333%;
+    bottom: 4.666667%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: var(--nv-scr-faint);
     font-size: 11px;
-    padding: 4px 0;
+    padding: 0;
+  }
+  .nv-scr-tc-y span {
+    position: absolute;
+    transform: translateY(-50%);
   }
   .nv-scr-tc-svg {
     width: 100%;
@@ -466,7 +495,11 @@ const uid = Math.random().toString(36).slice(2, 8)
     display: flex;
     flex-direction: column;
     gap: 4px;
-    white-space: nowrap;
+    width: max-content;
+    max-width: calc(50% - 28px);
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: anywhere;
     pointer-events: none;
   }
   .nv-scr-tc-cardh.flip {
@@ -528,7 +561,7 @@ const uid = Math.random().toString(36).slice(2, 8)
     color: var(--nv-scr-faint);
     font-size: 11px;
     margin-top: 4px;
-    padding-left: 46px;
+    padding-left: 4.893617%;
   }
 }
 </style>

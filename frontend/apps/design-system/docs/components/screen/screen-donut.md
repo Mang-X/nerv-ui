@@ -90,3 +90,22 @@ const states = [
 | `thickness` | `number`                    | `11`   | 环厚(px)                      |
 | `legend`    | `boolean`                   | `true` | 右侧内置图例                  |
 | 默认插槽    | —                           | —      | 环中心内容(主数字 + 说明)     |
+
+## 独立内容来源（T05/A05）
+
+segments 是有限、非负的数量；label 为唯一身份，顺序由宿主提供。零值段无可见弧，空数组只保留底环和宿主 center slot。单个正值段占满圆（包括 0.2 这类小于 1 的数量），多个正值按输入比例分配并留原有段间缝。计算先按最大段归一化后求和，两个 `1e308` 的有限输入仍各占一半。负数或非有限值不定义为环形份额，不把它们转换为业务状态；未收紧现有 number 类型。
+
+legend 默认 true，关闭后 center slot 保留。图例保留完整标签并允许换行；替换/重排 segments 后弧与图例一起更新。中心合计、单位与领域口径由宿主提供，组件不请求 API、不替宿主决定汇总。
+
+```vue
+<NvScreenDonut
+  :segments="[
+    { label: '阅读', value: 53, color: 'var(--nv-scr-cyan)' },
+    { label: '影像', value: 27, color: 'var(--nv-scr-indigo)' },
+  ]"
+>
+  <b>80</b><span>内容到访</span>
+</NvScreenDonut>
+```
+
+`/#screen/charts` 提供多类、单类、零值、替换与 legend 开关，验证记录见 `docs/evidence/t05-a05/README.md`。
