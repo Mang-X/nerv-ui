@@ -1,118 +1,193 @@
-import type { ScheduleAssignmentContract } from '@nerv-iip/api-client'
-import { computed, ref, type Ref } from 'vue'
+import {
+  computed,
+  onScopeDispose,
+  shallowRef,
+  toValue,
+  watch,
+  type MaybeRefOrGetter,
+  type Ref,
+} from 'vue'
 import type { TaskDragPayload } from '../engine/engine'
-import { toLockedAssignments } from '../model/aps-mapper'
 import { cloneModel } from '../model/clone'
 import type { ScheduleModel } from '../model/types'
 
-export interface SchedulingEditsDeps {
-  /** 锁定分配 → 围绕锁定项重算 → 新模型。业务层注入(对接后端 preview)。 */
-  preview: (locked: ScheduleAssignmentContract[]) => Promise<ScheduleModel>
-  /** 提交发布当前计划。 */
-  release: (planId: string) => Promise<void>
+export interface SchedulingEditControl<Context = unknown> {
+  signal: AbortSignal
+  context: Context | undefined
+}
+export interface SchedulingEditsDeps<Context = unknown> {
+  context?: Context
+  preview?: (
+    snapshot: ScheduleModel,
+    control: SchedulingEditControl<Context>,
+  ) => Promise<ScheduleModel>
+  release?: (planId: string, control: SchedulingEditControl<Context>) => Promise<void>
 }
 
-/** 锁定—重预览编辑闭环 + 前端撤销/重做栈。贴合后端确定性重排能力,不做前端假持久化。 */
-export function useSchedulingEdits(model: Ref<ScheduleModel>, deps: SchedulingEditsDeps) {
-  const history = ref<ScheduleModel[]>([cloneModel(model.value)])
-  const pointer = ref(0)
-  const busy = ref(false)
-  const error = ref<unknown>()
-
+/** Local reversible display edits. Solving, validation, permission and storage belong to host. */
+export function useSchedulingEdits<Context = unknown>(
+  model: Ref<ScheduleModel>,
+  deps: MaybeRefOrGetter<SchedulingEditsDeps<Context>> = {},
+) {
+  const history = shallowRef<ScheduleModel[]>([cloneModel(model.value)])
+  const pointer = shallowRef(0)
+  const busy = shallowRef(false)
+  const error = shallowRef<unknown>()
+  const status = shallowRef<'idle' | 'pending' | 'success' | 'unknown' | 'error'>('idle')
+  let controller: AbortController | undefined
+  let disposed = false,
+    localWrite = false
   const dirty = computed(() => pointer.value > 0)
-  const canUndo = computed(() => pointer.value > 0)
-  const canRedo = computed(() => pointer.value < history.value.length - 1)
-
-  function commitSnapshot() {
-    history.value = history.value.slice(0, pointer.value + 1)
-    history.value.push(cloneModel(model.value))
-    pointer.value = history.value.length - 1
+  const canUndo = computed(() => pointer.value > 0 && !busy.value)
+  const canRedo = computed(() => pointer.value < history.value.length - 1 && !busy.value)
+  function cancel() {
+    controller?.abort()
+    controller = undefined
+    busy.value = false
+    status.value = 'idle'
   }
-
   function resetBaseline() {
     history.value = [cloneModel(model.value)]
     pointer.value = 0
   }
+  function replace(next: ScheduleModel) {
+    localWrite = true
+    try {
+      model.value = cloneModel(next)
+    } finally {
+      localWrite = false
+    }
+  }
+  function commit(next: ScheduleModel) {
+    replace(next)
+    history.value = [...history.value.slice(0, pointer.value + 1), cloneModel(model.value)]
+    pointer.value = history.value.length - 1
+    status.value = 'idle'
+    error.value = undefined
+  }
+  watch(
+    model,
+    () => {
+      if (!localWrite) {
+        cancel()
+        error.value = undefined
+        resetBaseline()
+      }
+    },
+    { deep: true, flush: 'sync' },
+  )
+  watch(
+    () => toValue(deps).context,
+    () => {
+      cancel()
+      error.value = undefined
+      resetBaseline()
+    },
+    { deep: true, flush: 'sync' },
+  )
+  onScopeDispose(() => {
+    disposed = true
+    cancel()
+  })
 
-  /** 拖动落点:乐观更新本地模型(仅改位置/资源,不改锁定状态)。
-   *  锁定是用户显式动作(详情面板);拖拽不应自动上锁,否则"拖一次即锁死、无法再拖"。
-   *  如需让该落点在重排中保留,由用户手动锁定后再重预览。 */
   function onTaskDragEnd(p: TaskDragPayload) {
-    const tasks = model.value.tasks.map((t) =>
-      t.id === p.taskId
-        ? {
-            ...t,
-            startUtc: p.startUtc,
-            endUtc: p.endUtc,
-            resourceId: p.resourceId ?? t.resourceId,
-            segments:
-              t.segments?.length === 1 ? [{ startUtc: p.startUtc, endUtc: p.endUtc }] : t.segments,
-          }
-        : t,
-    )
-    model.value = { ...model.value, tasks }
-    commitSnapshot()
+    if (disposed || busy.value || !model.value.tasks.some((t) => t.id === p.taskId)) return
+    commit({
+      ...model.value,
+      tasks: model.value.tasks.map((t) =>
+        t.id === p.taskId
+          ? {
+              ...t,
+              startUtc: p.startUtc,
+              endUtc: p.endUtc,
+              resourceId: p.resourceId ?? t.resourceId,
+              segments:
+                t.segments?.length === 1
+                  ? [{ startUtc: p.startUtc, endUtc: p.endUtc }]
+                  : t.segments,
+            }
+          : t,
+      ),
+    })
   }
-
   function setLocked(taskId: string, locked: boolean) {
-    const tasks = model.value.tasks.map((t) => (t.id === taskId ? { ...t, locked } : t))
-    model.value = { ...model.value, tasks }
-    commitSnapshot()
+    if (
+      disposed ||
+      busy.value ||
+      !model.value.tasks.some((t) => t.id === taskId && t.locked !== locked)
+    )
+      return
+    commit({
+      ...model.value,
+      tasks: model.value.tasks.map((t) => (t.id === taskId ? { ...t, locked } : t)),
+    })
   }
-
   function undo() {
-    if (!canUndo.value) return
-    pointer.value -= 1
-    model.value = cloneModel(history.value[pointer.value])
+    if (!disposed && canUndo.value) {
+      pointer.value--
+      replace(history.value[pointer.value]!)
+    }
   }
-
   function redo() {
-    if (!canRedo.value) return
-    pointer.value += 1
-    model.value = cloneModel(history.value[pointer.value])
-  }
-
-  /** 携带锁定分配重预览,用后端返回的新计划替换并以其为新基线。 */
-  async function repreview() {
-    busy.value = true
-    error.value = undefined
-    try {
-      const next = await deps.preview(toLockedAssignments(model.value))
-      model.value = next
-      resetBaseline()
-    } catch (e) {
-      error.value = e
-      throw e
-    } finally {
-      busy.value = false
+    if (!disposed && canRedo.value) {
+      pointer.value++
+      replace(history.value[pointer.value]!)
     }
   }
 
-  async function release() {
+  async function perform(kind: 'preview' | 'release'): Promise<boolean> {
+    if (disposed || busy.value) return false
+    const callbacks = toValue(deps)
+    if ((kind === 'preview' && !callbacks.preview) || (kind === 'release' && !callbacks.release)) {
+      status.value = 'unknown'
+      error.value = undefined
+      return false
+    }
+    const current = new AbortController()
+    controller = current
     busy.value = true
+    status.value = 'pending'
     error.value = undefined
+    const isCurrent = () => !disposed && controller === current && !current.signal.aborted
     try {
-      await deps.release(model.value.meta.planId)
+      const context = callbacks.context === undefined ? undefined : cloneModel(callbacks.context)
+      const control = { signal: current.signal, context }
+      if (kind === 'preview') {
+        const next = await callbacks.preview!(cloneModel(model.value), control)
+        if (!isCurrent()) return false
+        replace(next)
+      } else {
+        await callbacks.release!(model.value.meta.planId, control)
+        if (!isCurrent()) return false
+      }
       resetBaseline()
-    } catch (e) {
-      error.value = e
-      throw e
+      status.value = 'success'
+      return true
+    } catch (cause) {
+      if (!isCurrent()) return false
+      error.value = cause
+      status.value = 'error'
+      throw cause
     } finally {
-      busy.value = false
+      if (isCurrent()) {
+        busy.value = false
+        controller = undefined
+      }
     }
   }
-
   return {
     dirty,
     canUndo,
     canRedo,
     busy,
     error,
+    status,
     onTaskDragEnd,
     setLocked,
     undo,
     redo,
-    repreview,
-    release,
+    repreview: () => perform('preview'),
+    release: () => perform('release'),
+    cancel,
   }
 }

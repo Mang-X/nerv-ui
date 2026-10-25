@@ -1,0 +1,74 @@
+[
+  {
+    "source": "frontend/packages/scheduling/src/composables/useSchedulingEdits.test.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "72c0284fe745d29982ee43e54c8ec8a9f3412831d942252b18fbc8e870481b5d",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p03/composables/useSchedulingEdits.test.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/composables/useSchedulingEdits.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "9336e725b58ff00f53f60cb0aa5105495fcee7f430a19ad69bddfea8c39717d6",
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/composables/useSchedulingEdits.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/composables/useSchedulingPlan.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "e865599b15fe1da8136d2127fd634c1cd8a98bc1480cd873945564dd38371e4c",
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/composables/useSchedulingPlan.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/engine/conformance.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "5bb0a4bc4968bc2411d0a2557c07e79fad3eceb4d49cffe9a20231feadf343c7",
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/engine/conformance.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/model/aps-mapper.test.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "84e185291c2b6af3d6f4600c5691600bf18c66545929fe2f7577018d6cbaf911",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p03/model/aps-mapper.test.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/model/aps-mapper.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "e6871e486cf4a8e2b84317b380d899715497c56178dd709a35324b594f8150b3",
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/aps-mapper.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/model/draft-feedback.test.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "7c859656d03fe38be2ca3ef09d30a053bf0a4d8af6596bd36e3d0144ccf1f2e4",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p03/model/draft-feedback.test.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/model/draft-feedback.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "986c3b3082f44feaecfc196db7af13cd8710175954927f5482fd4bff4fae693c",
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/draft-feedback.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/model/fixtures.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "13b0746cb74fa819aab707ea8414a6b9dc0b6f94a34a2b0f1188ac163f5194ab",
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/fixtures.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/model/material-risk.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "6e9e76a6fe3a823577a32b06d90663ff07f96096909ba749fb1bd134784dbea0",
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/material-risk.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/model/perf-fixtures.ts",
+    "baseline": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "sha256": "973416d9cae20d529fc070218437189d40600426460935047375fcc2f1840cf4",
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/perf-fixtures.ts"
+  },
+  {
+    "source": "frontend/packages/scheduling/src/model/task-facts.test.ts",
+    "baseline": "93f9689cae554ea87ca6cb2a28a56b2f11f14f32",
+    "sha256": "3bc3cb582060b07c758f58476b3d7625e6603fc4e9aa39a44a0cee82b4134701",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p02/task-facts.test.ts"
+  }
+]

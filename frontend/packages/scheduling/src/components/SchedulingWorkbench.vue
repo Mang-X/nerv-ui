@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { ScheduleAssignmentContract } from '@nerv-iip/api-client'
 import { NvButton, NvTabs, NvTabsContent, NvTabsList, NvTabsTrigger, toast } from '@nerv-iip/ui'
 import { ListFilterIcon, PanelRightCloseIcon, PanelRightOpenIcon } from '@lucide/vue'
 import { computed, ref, watch } from 'vue'
 import type { EngineCommand, TaskDragPayload, TimeScale } from '../engine/engine'
-import { useSchedulingEdits } from '../composables/useSchedulingEdits'
+import { useSchedulingEdits, type SchedulingEditsDeps } from '../composables/useSchedulingEdits'
 import { cloneModel } from '../model/clone'
 import type { ScheduleModel, ScheduleTask } from '../model/types'
 import GanttChart from './GanttChart.vue'
@@ -17,7 +16,7 @@ import TaskDetailPanel from './panels/TaskDetailPanel.vue'
 import UnscheduledPanel from './panels/UnscheduledPanel.vue'
 
 // 排产工作台:工具栏 + 视图切换(工单甘特/资源排产板)+ 主图 + 右侧面板 + 检视。
-// 编辑走「锁定—重预览」闭环;preview/release 由业务层注入(默认 preview 返回当前模型、release 空操作)。
+// 编辑走「锁定—重预览」闭环;preview/release 由宿主注入，缺失动作不提交、不提示成功。
 const props = withDefaults(
   defineProps<{
     model?: ScheduleModel
@@ -25,8 +24,9 @@ const props = withDefaults(
     readOnly?: boolean
     engineKind?: 'auto' | 'dhtmlx'
     defaultView?: 'order' | 'resource'
-    preview?: (locked: ScheduleAssignmentContract[]) => Promise<ScheduleModel>
-    release?: (planId: string) => Promise<void>
+    context?: unknown
+    preview?: SchedulingEditsDeps['preview']
+    release?: SchedulingEditsDeps['release']
   }>(),
   { loading: false, readOnly: false, engineKind: 'auto', defaultView: 'order' },
 )
@@ -49,7 +49,7 @@ const workingModel = ref<ScheduleModel>(props.model ?? EMPTY_MODEL)
 watch(
   () => props.model,
   (m) => {
-    if (m) workingModel.value = cloneModel(m)
+    workingModel.value = cloneModel(m ?? EMPTY_MODEL)
   },
   { immediate: true },
 )
@@ -66,9 +66,18 @@ watch(
 const selectedTask = ref<ScheduleTask>()
 const sidebarOpen = ref(true)
 
-const previewFn = props.preview ?? (async () => workingModel.value)
-const releaseFn = props.release ?? (async () => {})
-const edits = useSchedulingEdits(workingModel, { preview: previewFn, release: releaseFn })
+const edits = useSchedulingEdits(workingModel, () => ({
+  context: props.context,
+  preview: props.preview,
+  release: props.release,
+}))
+watch(
+  () => props.model,
+  () => {
+    selectedTask.value = undefined
+  },
+  { flush: 'sync' },
+)
 
 // 只有业务层注入了 preview/release 才展示对应动作,避免只读/演示挂载时出现假成功提示。
 const canRepreview = computed(() => !!props.preview)
@@ -97,6 +106,7 @@ function onTaskSelect(taskId: string) {
   sidebarOpen.value = true // 选中即在侧栏展示详情(不再弹抽屉)
 }
 function onToggleLock(taskId: string, locked: boolean) {
+  if (readOnly.value || edits.busy.value) return
   edits.setLocked(taskId, locked)
   selectedTask.value = workingModel.value.tasks.find((t) => t.id === taskId)
   toast.success(locked ? '已锁定该工序' : '已解锁,可拖拽调整')
@@ -116,11 +126,11 @@ function onLockedDragAttempt(taskId: string) {
   toast.info('该工序已锁定,先解锁再拖拽')
 }
 function onDrag(p: TaskDragPayload) {
-  edits.onTaskDragEnd(p)
+  if (!readOnly.value) edits.onTaskDragEnd(p)
 }
 async function onRepreview() {
   try {
-    await edits.repreview()
+    if (readOnly.value || !(await edits.repreview())) return
     toast.success('已按锁定项重新排程')
   } catch {
     toast.error('重新排程失败,请稍后重试')
@@ -128,7 +138,7 @@ async function onRepreview() {
 }
 async function onRelease() {
   try {
-    await edits.release()
+    if (readOnly.value || !(await edits.release())) return
     toast.success('计划已发布')
   } catch {
     toast.error('发布失败,请稍后重试')
@@ -252,7 +262,7 @@ async function onRelease() {
           </div>
 
           <!-- 选中详情(常驻,取代弹出抽屉) -->
-          <TaskDetailPanel :task="selectedTask" @toggle-lock="onToggleLock" />
+          <TaskDetailPanel :task="selectedTask" :read-only="readOnly" @toggle-lock="onToggleLock" />
 
           <NvTabs default-value="conflicts" class="flex min-h-0 flex-1 flex-col">
             <NvTabsList class="mx-3 mt-3">

@@ -50,7 +50,8 @@ export type {
   ThemeBinding,
   EngineSnapshot,
 } from './engine/engine'
-export { runEngineConformance } from './engine/conformance'
+// Deprecated compatibility error; test registration is explicitly test-only.
+export { runEngineConformance } from './runtime-conformance'
 export { DhtmlxEngine } from './engine/dhtmlx/DhtmlxEngine'
 export { isDhtmlxAvailable, preloadGantt } from './engine/dhtmlx/loader'
 
@@ -63,3 +64,9 @@ export {
   scheduleTime,
   withFactoryTimeContext,
 } from './model/factory-time'
+
+export type { SchedulingPlanRequest, SchedulingPlanDeps } from './composables/useSchedulingPlan'
+export type { SchedulingEditControl } from './composables/useSchedulingEdits'
+export type { ScheduleModelAdapter, LockedAssignmentsAdapter } from './model/aps-mapper'
+export type { DraftValidator } from './model/draft-feedback'
+export type { MaterialReadyFormatter } from './model/material-risk'

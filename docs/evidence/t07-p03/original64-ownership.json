@@ -1,0 +1,578 @@
+[
+  {
+    "path": "frontend/packages/scheduling/.gitignore",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "645f5c50039117629a7df1ada431c098b8b268052a394320b8766065c0393c56",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/README.md",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "de4572ba077dd4a0ac8fa3d3e3d451a58dcd89bb053e5391ec9a1bcd08b2bd33",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/package.json",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "286f248c25417732b53547942cb4b0c85b1687acd4a01b5a679960fb665d9a52",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/GanttChart.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "6fbbaf34adca33293ed78ee4172fe25b7b25ab2079bc4bd5bde1bdd03d674df1",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/GanttChart.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "e2a8a0d5a6e26464854e63c923e127c946ad3b21fbfc65fab36a9fe6fe665f58",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/ReadonlyScheduleTimeline.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "430c444fa89c0d82e5dc94eab8ef74ec981cddf18a80fb22a0167b016f997fa5",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/ResourceSchedulerBoard.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "28cb8acd3c4c8e65f6121ee0e4d0ca0da3bb4b96199d003b9df137561f33ff58",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/SchedulingCanvas.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "70fa2a21bebc9f97f8427809f63ca26fd1d71914cefead74bc8612e623b4289a",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/SchedulingWorkbench.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "410b86ffc98a29981094541e6a9bdd227ef975022259996c559631a01346f82f",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/SchedulingWorkbench.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "1a68e9b047ea0ccfe6bdbe474b0590335dc9741b0499b009c83f7ba79541b5aa",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/ChangeSummaryPanel.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "afefcadcc542238e68d618ec170bc18cb688a79fbe62098d1419b6d1bff0f093",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/ConflictPanel.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "3259bb53d9adee34dd58673a47d1532b8313fb27dd84dbcfb822d12d53009ece",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/ConflictPanel.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "d3e0c16b74d4eca3dd7ffd7665dfa8a68313db9d42be538800779adb739d23f0",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/InspectorSheet.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "1fed12d862ca5940e41f4f3a9c3008a2dabe7a4b917425df3676ff50ea6b533d",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/SchedulingLegend.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "ee9a92f39befe85c2a6ef6923731301778eaa1118fdc877e3ba80a613c6105b6",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/SchedulingToolbar.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "afda5c133bf6148820cc4ebcca8b01dfc22c7ad7914fa0a92d8f3d98c2e98fd3",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/TaskDetailPanel.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "338bee65a296e62025f752717769e7d51384ecd61ccdec15a486b529b9215720",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/TaskDetailPanel.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "1839fb4f5a1f875ab4a37f7215938283d0d60f992316f9f752f8472f2fddf597",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/TaskFacts.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "f78cb543140987510f187c3d2c26e71c69e6965859a5e0b9e256671441368528",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/TaskFacts.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "394004ab42fa773e1c19999a36e12960719e4fade20399c06a26ddebb0ee641f",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/UnscheduledPanel.vue",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "d287ecb33fe0c6df8261407c2b05b0fd384fc6ed799a4ef5bfa3b060bb0bda25",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/useEngine.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "fde46594155e4587271876ad13d427810454c988a48f57d04f9815c9a4fa2456",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/composables/useSchedulingEdits.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "72c0284fe745d29982ee43e54c8ec8a9f3412831d942252b18fbc8e870481b5d",
+    "owner": "P03 host-reference nonactive",
+    "exists": false,
+    "unchanged": false,
+    "reference": "frontend/reference-tests/nerv-iip/t07-p03/composables/useSchedulingEdits.test.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/composables/useSchedulingEdits.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "9336e725b58ff00f53f60cb0aa5105495fcee7f430a19ad69bddfea8c39717d6",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/composables/useSchedulingEdits.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/composables/useSchedulingPlan.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "e865599b15fe1da8136d2127fd634c1cd8a98bc1480cd873945564dd38371e4c",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/composables/useSchedulingPlan.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/conformance.selfcheck.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "a74022afd2b100c19bde65b8bd0bd35e97057e9f1b3635b7e00c0bdc50a51dd1",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/conformance.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "5bb0a4bc4968bc2411d0a2557c07e79fad3eceb4d49cffe9a20231feadf343c7",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/engine/conformance.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.conformance.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "63486cd2c0a90a921fa7fe4c9e1f2d7f25196e73c54267f92f0ab962f1dc18a8",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "8337e6b61b82ba4d6ba37b141aaffc1dbd067b7b287720428f25d2ed4d0adbf7",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "b7d7a8826fea2f6c520b6d59c44ca0bb036321f42494d6428766d92289a4bf2e",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/empty.css",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "9908e81b9b04e008207a84e52b6666909571af8d4c6683594f88ce03d40eb3de",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/factory-scale.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "1386bc0a107ec2950a3b7611cc59de8a7eb682803d4fd0eaa0e2f0b7c85b4313",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/laneKpi.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "4ce6dced1da9975d924cac1e49f2baed9bec9c3f8fd2532e8184833446af47a1",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/loader.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "e152325e2ffb77d159fa864d38055d39352b4850a01347dbe92848179a8a9a4e",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/skin.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "326d60963d9727ffe2f184785e484f85c30d8af674a1a171895ac0228d0b9709",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/stub.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "046239ea7d6d47b456feae702e51c68188a92cc988d07c65a197bbabf5db4281",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/tooltipTokens.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "772df03d80235d2f76d7fd252f29b18f66dd359dbc124f076edb6615f2053ce6",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/engine.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "0e03c494951c279bc663d1d6ccb2ef221fb35c03bddd5db820f14f4c75054407",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/index.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "ddecdea53fc40de099b06a38d618470d40607fbd5824970919e414d976fb3ec6",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/aps-mapper.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "84e185291c2b6af3d6f4600c5691600bf18c66545929fe2f7577018d6cbaf911",
+    "owner": "P03 host-reference nonactive",
+    "exists": false,
+    "unchanged": false,
+    "reference": "frontend/reference-tests/nerv-iip/t07-p03/model/aps-mapper.test.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/aps-mapper.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "e6871e486cf4a8e2b84317b380d899715497c56178dd709a35324b594f8150b3",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/aps-mapper.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/blocks.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "257d29334989812d0e9d555b5a26434e31a04035605d010c28c38bf45fe43ac8",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/clone.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "67e7b3648247e862d99a1a583e3d49c9c1c6ae052b6b0e4850b07d7390551db4",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/draft-feedback.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "7c859656d03fe38be2ca3ef09d30a053bf0a4d8af6596bd36e3d0144ccf1f2e4",
+    "owner": "P03 host-reference nonactive",
+    "exists": false,
+    "unchanged": false,
+    "reference": "frontend/reference-tests/nerv-iip/t07-p03/model/draft-feedback.test.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/draft-feedback.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "986c3b3082f44feaecfc196db7af13cd8710175954927f5482fd4bff4fae693c",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/draft-feedback.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/factory-time.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "ef85347501306c0474eeee24e9bd4554c25ada081556c3f0434f8ca5715261e9",
+    "owner": "P02 prepared model (retained unchanged)",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/fixtures.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "13b0746cb74fa819aab707ea8414a6b9dc0b6f94a34a2b0f1188ac163f5194ab",
+    "owner": "P03 host-reference nonactive; P04 must replace fixture consumers with neutral inputs",
+    "exists": false,
+    "unchanged": false,
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/fixtures.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/freeze-window.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "2a578301bbf4b759e8498827b29efe9420e5a9624866f1521965ed0f8fb42003",
+    "owner": "P02 prepared model (retained unchanged)",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/labels.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "23a3a0c0802ba79013e73a5a7435912e2df9491a4d455b75eb56a35601f06d17",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/legend.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "42e483ebdad5f011aef21c181af17dcdce309b5e5d9b0087550432b761979cd0",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/legend.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "496db0550475e8fedf76ff3270c82ea9eaa5b81d726db094b54713949c3bbbb9",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/material-risk.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "6e9e76a6fe3a823577a32b06d90663ff07f96096909ba749fb1bd134784dbea0",
+    "owner": "P03 prepared contract (Workbench composition/P04 renderer pending)",
+    "exists": true,
+    "unchanged": false,
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/material-risk.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/perf-fixtures.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "973416d9cae20d529fc070218437189d40600426460935047375fcc2f1840cf4",
+    "owner": "P03 host-reference nonactive; P04 must replace fixture consumers with neutral inputs",
+    "exists": false,
+    "unchanged": false,
+    "reference": "frontend/reference-adapters/nerv-iip/t07-p03/model/perf-fixtures.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/scale.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "25025a93852ccfdc6c14a0ba103e63b7b61cbac28f14894149e6a92d489c678f",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/task-facts.test.ts",
+    "base": "93f9689cae554ea87ca6cb2a28a56b2f11f14f32",
+    "baseSha256": "3bc3cb582060b07c758f58476b3d7625e6603fc4e9aa39a44a0cee82b4134701",
+    "owner": "P02 host-reference nonactive (already moved)",
+    "exists": false,
+    "unchanged": false,
+    "reference": "frontend/reference-tests/nerv-iip/t07-p02/task-facts.test.ts"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/task-facts.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "e13e1ba9f2ac06a00edb48d0e803acd0c06f8ab7011f69c97b942ef1e8d9f8d4",
+    "owner": "P02 prepared model (retained unchanged)",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/types.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "0ebbe8991db85be25a0cd12a8763db183eee439462498d70fe02ea3ceaf15b71",
+    "owner": "P02 prepared model (retained unchanged)",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/styles/scheduling-palette.test.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "bf6eefa38565da9a0a2dc22c71ddd9897f534d7b6850e85fe005fdc647bc9a07",
+    "owner": "P04/P08 deferred original test; no green claim",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/src/styles/scheduling.css",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "010fe6bc5873954af2eccf92847015bea19e1736a2dbe674de317b9c3bf79e71",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/tsconfig.json",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "72837b03984f82f7dffd3e68a39ab21e904ce33162a7fb43de1e41eacb07955a",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.css",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "b538141aac6b42f66100ce97d48584b9516e3acbbceb97d6321277c8508f3a30",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.d.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "d1b938efdc7f8f2d29f434af65d6faf7a4174b72b630a79cf54ab3ea3587b734",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/vendor/dhtmlx/dhtmlxgantt.es.js",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "32e0d7db3b0ff0abaf86e162b9482d9425ce60024cd805d3ad4e86dc87ecc639",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  },
+  {
+    "path": "frontend/packages/scheduling/vite.config.ts",
+    "base": "23be2615a4556c63d8fd7cbefd4e165557e3959c",
+    "baseSha256": "82af691658a6b174cb3670a5650c9cd413ffcf421427086b7de80fe7cb76c9ef",
+    "owner": "P04/P05/P08 deferred existing runtime/resource",
+    "exists": true,
+    "unchanged": true,
+    "reference": null
+  }
+]
