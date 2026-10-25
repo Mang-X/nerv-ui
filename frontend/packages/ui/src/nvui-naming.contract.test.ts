@@ -179,6 +179,7 @@ const NV_ALL = [
   'NvSearchSelect',
   'NvSectionCard',
   'NvSectionCards',
+  'NvScheduleTimeline',
   'NvSelect',
   'NvSelectContent',
   'NvSelectGroup',

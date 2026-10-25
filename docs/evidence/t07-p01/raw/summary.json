@@ -1,0 +1,301 @@
+{
+  "base": "93f9689cae554ea87ca6cb2a28a56b2f11f14f32",
+  "baseTree": "74e5607188826c0a48f7bbbf1474ba0fbf822bdc",
+  "tests": [
+    {
+      "name": "ui-tests-candidate",
+      "exitCode": 0,
+      "numPassedTests": 805,
+      "numFailedTests": 0,
+      "numFailedTestSuites": 0,
+      "numPendingTests": 0,
+      "success": true,
+      "unhandledCounterPresent": false,
+      "unhandledCounter": null,
+      "unhandledLogMarkers": [],
+      "stylesheetWarningCount": 55,
+      "started": "2026-10-25T10:53:37.987Z",
+      "finished": "2026-10-25T10:53:56.983Z"
+    },
+    {
+      "name": "mobile-tests-candidate",
+      "exitCode": 0,
+      "numPassedTests": 144,
+      "numFailedTests": 0,
+      "numFailedTestSuites": 0,
+      "numPendingTests": 0,
+      "success": true,
+      "unhandledCounterPresent": false,
+      "unhandledCounter": null,
+      "unhandledLogMarkers": [],
+      "stylesheetWarningCount": 27,
+      "started": "2026-10-25T10:53:57.010Z",
+      "finished": "2026-10-25T10:54:10.339Z"
+    },
+    {
+      "name": "host-tests-candidate",
+      "exitCode": 0,
+      "numPassedTests": 267,
+      "numFailedTests": 0,
+      "numFailedTestSuites": 0,
+      "numPendingTests": 0,
+      "success": true,
+      "unhandledCounterPresent": false,
+      "unhandledCounter": null,
+      "unhandledLogMarkers": [],
+      "stylesheetWarningCount": 25,
+      "started": "2026-10-25T10:54:10.374Z",
+      "finished": "2026-10-25T10:54:42.610Z"
+    },
+    {
+      "name": "ui-docs-candidate",
+      "exitCode": 0,
+      "numPassedTests": 6,
+      "numFailedTests": 0,
+      "numFailedTestSuites": 0,
+      "numPendingTests": 0,
+      "success": true,
+      "unhandledCounterPresent": false,
+      "unhandledCounter": null,
+      "unhandledLogMarkers": [],
+      "stylesheetWarningCount": 3,
+      "started": "2026-10-25T10:54:42.636Z",
+      "finished": "2026-10-25T10:54:45.986Z"
+    },
+    {
+      "name": "mobile-docs-candidate",
+      "exitCode": 0,
+      "numPassedTests": 2,
+      "numFailedTests": 0,
+      "numFailedTestSuites": 0,
+      "numPendingTests": 0,
+      "success": true,
+      "unhandledCounterPresent": false,
+      "unhandledCounter": null,
+      "unhandledLogMarkers": [],
+      "stylesheetWarningCount": 1,
+      "started": "2026-10-25T10:54:46.011Z",
+      "finished": "2026-10-25T10:54:49.387Z"
+    }
+  ],
+  "finalSerial": true,
+  "requirements": [
+    {
+      "name": "opens schedule deep entry selects a task and returns through desktop and all previous routes",
+      "status": "passed"
+    },
+    {
+      "name": "root export renders two neutral tasks at fixed instant coordinates and emits their task identity",
+      "status": "passed"
+    },
+    {
+      "name": "replaces same-key labels facts segments links windows and resources without retaining old content",
+      "status": "passed"
+    },
+    {
+      "name": "readonly selection never edits or mutates frozen caller data",
+      "status": "passed"
+    },
+    {
+      "name": "keeps unresolved zones explicit and rejects wall-time tasks without guessing a browser timezone",
+      "status": "passed"
+    },
+    {
+      "name": "preserves catalog empty lanes overlap stacking and explicit native scale choices",
+      "status": "passed"
+    },
+    {
+      "name": "shows host attention separately from conflicts and never emits a conflict action for attention alone",
+      "status": "passed"
+    }
+  ],
+  "steps": [
+    {
+      "name": "install",
+      "args": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "install",
+        "--frozen-lockfile"
+      ],
+      "started": "2026-10-25T10:05:00.198Z",
+      "finished": "2026-10-25T10:05:05.290Z",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "name": "fmt-candidate",
+      "args": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "exec",
+        "vp",
+        "fmt",
+        "--check",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ScheduleDemo.vue",
+        "apps/playground/src/ScheduleDemo.test.ts",
+        "apps/playground/src/ScheduleTimeline.test.ts",
+        "packages/ui/src/components/pc/schedule-timeline",
+        "packages/ui/src/index.ts",
+        "packages/ui/src/nvui-naming.contract.test.ts",
+        "DESIGN/components/schedule-timeline.md",
+        "apps/design-system/docs/components/desktop/schedule-timeline.md"
+      ],
+      "started": "2026-10-25T10:54:49.417Z",
+      "finished": "2026-10-25T10:54:50.147Z",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "name": "lint-candidate",
+      "args": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "exec",
+        "vp",
+        "lint",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ScheduleDemo.vue",
+        "apps/playground/src/ScheduleDemo.test.ts",
+        "apps/playground/src/ScheduleTimeline.test.ts",
+        "packages/ui/src/components/pc/schedule-timeline",
+        "packages/ui/src/index.ts",
+        "packages/ui/src/nvui-naming.contract.test.ts"
+      ],
+      "started": "2026-10-25T10:54:50.175Z",
+      "finished": "2026-10-25T10:54:50.662Z",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "name": "build-root-candidate",
+      "args": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "build"
+      ],
+      "started": "2026-10-25T10:40:29.589Z",
+      "finished": "2026-10-25T10:40:49.597Z",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "name": "build-nested-candidate",
+      "args": [
+        "pnpm",
+        "-C",
+        "frontend",
+        "--filter",
+        "@nerv-iip/playground",
+        "exec",
+        "vp",
+        "build",
+        "--base=/p01-proof/"
+      ],
+      "started": "2026-10-25T10:51:58.133Z",
+      "finished": "2026-10-25T10:52:00.824Z",
+      "exitCode": 0,
+      "signal": null
+    }
+  ],
+  "browser": {
+    "fourStates": [
+      {
+        "name": "candidate-wide-light",
+        "viewport": {
+          "height": 1100,
+          "scale": 1,
+          "width": 1440
+        },
+        "dark": false
+      },
+      {
+        "name": "candidate-wide-dark",
+        "viewport": {
+          "height": 1100,
+          "scale": 1,
+          "width": 1440
+        },
+        "dark": true
+      },
+      {
+        "name": "candidate-narrow-dark",
+        "viewport": {
+          "height": 1100,
+          "scale": 1,
+          "width": 640
+        },
+        "dark": true
+      },
+      {
+        "name": "candidate-narrow-light",
+        "viewport": {
+          "height": 1100,
+          "scale": 1,
+          "width": 640
+        },
+        "dark": false
+      }
+    ],
+    "oldRoutes": 16,
+    "rootResponses": 9,
+    "nestedResponses": 8,
+    "rootAllBytesMatch": true,
+    "nestedAllBytesMatch": true,
+    "finalLane": "fresh T3 DOM geometry, computed styling, clicks, drag, 16 routes and HTTP body readback",
+    "screenshots": "inherited Ego pre-attention default model; final T3 default geometry/styling independently verified",
+    "priorEgoCapturedEvents": {
+      "lane": "retained pre-attention observation",
+      "capturedEvents": 459,
+      "runtimeExceptionThrown": 0,
+      "exceptions": []
+    },
+    "cleanup": {
+      "restored": {
+        "height": 1100,
+        "scale": 1,
+        "width": 1440
+      },
+      "closedTab": "tab_2s_6faab953-90e1-4ff7-b4aa-20aa9696713e",
+      "egoSpacePreviouslyFinished": 48
+    }
+  },
+  "historicalHostConcurrentFailure": {
+    "status": "UNKNOWN",
+    "freshReproduction": "UNRUN",
+    "pointer": "/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-25/t06-pdf-navigation-review-r1/"
+  },
+  "earlySchedulingDeviation": {
+    "mobileAndFocusedNamingOverlapMs": 1648,
+    "finalFullSuitesSerial": true
+  },
+  "diff": {
+    "fullRawMainToCandidate": {
+      "exitCode": 2,
+      "rawLogLines": 1785,
+      "scope": "inherited integration evidence/source"
+    },
+    "p01All": {
+      "exitCode": 0
+    },
+    "maintenance": {
+      "exitCode": 0
+    }
+  },
+  "unrun": [
+    "CI",
+    "docs10 full site",
+    "packed11",
+    "device",
+    "old consumers 13/15",
+    "publication",
+    "DHTMLX87",
+    "editing and recipes85-99 except84",
+    "independent merger review"
+  ]
+}

@@ -16,6 +16,8 @@ PR #1093 的指标家族件、演示走查整改前端批 1、演示走查整改
 
 ---
 
+> **独立库收口后新增（#84，无旧名）。** PC 品牌层 `pc/schedule-timeline/` 新增 `NvScheduleTimeline`；R1 确定桌面鼠标/键盘表面，按 PC 素名规则新增，不改变旧 `GanttChart` / `ResourceSchedulerBoard`。
+
 ## 附录 A：组件旧名 → 新名完整映射表（MAN-433/435 执行输入）
 
 判定依据列：`PC` = PC 素名规则（去 Pro/裸名升级）；`R1`–`R5` 见 1.2；`废` = 1.3 处置。

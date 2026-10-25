@@ -1,0 +1,246 @@
+[
+  {
+    "hash": "#desktop",
+    "old": {
+      "hash": "#desktop",
+      "heading": "让想法有序向前",
+      "native": 0,
+      "rect": {
+        "height": 32,
+        "width": 1024
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#touch",
+    "old": {
+      "hash": "#touch",
+      "heading": "共享阅读角",
+      "native": 0,
+      "rect": {
+        "height": 32,
+        "width": 117.0078125
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#mobile",
+    "old": {
+      "hash": "#mobile",
+      "heading": "周末随行",
+      "native": 0,
+      "rect": {
+        "height": 32,
+        "width": 640
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#mobile-input",
+    "old": {
+      "hash": "#mobile-input",
+      "heading": "随心记录",
+      "native": 0,
+      "rect": {
+        "height": 32,
+        "width": 632
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#mobile-overlays",
+    "old": {
+      "hash": "#mobile-overlays",
+      "heading": "片刻安排",
+      "native": 0,
+      "rect": {
+        "height": 32,
+        "width": 632
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#mobile-lists",
+    "old": {
+      "hash": "#mobile-lists",
+      "heading": "翻阅时光",
+      "native": 0,
+      "rect": {
+        "height": 32,
+        "width": 632
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#mobile-feedback",
+    "old": {
+      "hash": "#mobile-feedback",
+      "heading": "片刻回响",
+      "native": 0,
+      "rect": {
+        "height": 32,
+        "width": 632
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#files",
+    "old": {
+      "hash": "#files",
+      "heading": "留住片刻",
+      "native": 0,
+      "rect": {
+        "height": 36,
+        "width": 448
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#screen/stage",
+    "old": {
+      "hash": "#screen/stage",
+      "heading": "城市文化空间",
+      "native": 0,
+      "rect": {
+        "height": 38.25,
+        "width": 165.240234375
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#screen/controls",
+    "old": {
+      "hash": "#screen/controls",
+      "heading": "寻找城市的一处停留",
+      "native": 0,
+      "rect": {
+        "height": 38.25,
+        "width": 247.86328125
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#screen/indicators",
+    "old": {
+      "hash": "#screen/indicators",
+      "heading": "城市空间的每一刻",
+      "native": 0,
+      "rect": {
+        "height": 38.25,
+        "width": 220.32421875
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#screen/data",
+    "old": {
+      "hash": "#screen/data",
+      "heading": "城市空间的流动消息",
+      "native": 0,
+      "rect": {
+        "height": 38.25,
+        "width": 247.86328125
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#screen/charts",
+    "old": {
+      "hash": "#screen/charts",
+      "heading": "内容分布与到访趋势",
+      "native": 0,
+      "rect": {
+        "height": 33.75,
+        "width": 202.5
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#screen/tables",
+    "old": {
+      "hash": "#screen/tables",
+      "heading": "城市文化空间 · 清单与事件",
+      "native": 0,
+      "rect": {
+        "height": 38.25,
+        "width": 331.751953125
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#screen/summary",
+    "old": {
+      "hash": "#screen/summary",
+      "heading": "空间使用概况",
+      "native": 0,
+      "rect": {
+        "height": 33.75,
+        "width": 135
+      }
+    },
+    "reentry": {
+      "tasks": 2,
+      "selection": "尚未选择"
+    }
+  },
+  {
+    "hash": "#screen",
+    "heading": "城市文化空间"
+  }
+]
