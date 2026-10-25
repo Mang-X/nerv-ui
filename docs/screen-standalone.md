@@ -68,3 +68,13 @@ Tabs 保持等宽槽位 ink；Segmented 根据按钮真实宽度定位 thumb。�
 事件表保持旧六字段，不以 rename 掩盖领域含义；宿主将空间/参考号适配到 `line`/`wo`，用独立 `id` 维持两个相同 REF-7 事件，labels/levelLabels 与状态 slot 控制中性语义。默认工业示例和「已恢复」绿色继续兼容；传状态 slot 时不继承中文词的隐式判断。`more` 是文字说明，没有导航。
 
 两表提供固定高内容内滚与长列值；详情选择回调使用当前 slot 的 `row.id`。离开分组卸载本页，重入从第 1 页开始。此处没有服务查询/分页算法、#40 dashboard recipe、#64 摘要或 PC 表格改造。来源仍为固定迁移基线，增量留新库，旧库接入前不回写。实际证据见 [A06 验证记录](evidence/t05-a06/README.md)。
+
+## A07：主指标、比较摘要与时间分段
+
+`/#screen/summary` 展示“空间使用概况”，在同一壳中保留 stage/controls/indicators/data/charts/tables 及全部旧表面。文化空间、共享办公两份内存来源使用主桶 `NvOeeHero`、`NvScreenStatusCard`、`NvTaktGantt` 与公共 CSS，没有 SDK/认证/后端。
+
+Hero 只显示来源给出的访问量、费用、变化和 spark；`deltaTone` 由宿主表达“费用下降但改善”，省略时保留旧前导负号逻辑。StatusCard 继续使用 plan/actual/rate/downtime 字符串：宿主 adapter 明确映射目标/当前/进度/持续时间，以 labels/unit 覆盖旧固定文案；未知显示 `—`，不补 0。它自带 Panel，不叠第二层卡。
+
+Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时覆盖图例和段 title。来源负责唯一 row name、段顺序、有限 0–100 百分比及每行总和≤100；不从 axis 文字推算时间。小于100留尾部空白，空 rows/axis/segs 不恢复工业示例；超界输入由宿主验证，不增加归一化规则。可切换来源、未知、大数/长文案、空时段、更新与恢复。
+
+范围只覆盖三件既有组件，#25 三种新卡、#40 recipes、排程框架和领域算法分别交付。固定迁移源保持不变，本次增量仅留独立新库；旧库接入另验。精确公共测试、真实浏览器、资源与证据边界见 [A07 验证记录](evidence/t05-a07/README.md)；A07 不替代父 #6 的完整组合验收。

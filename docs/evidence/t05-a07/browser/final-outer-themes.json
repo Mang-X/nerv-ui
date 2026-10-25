@@ -1,0 +1,78 @@
+[
+  {
+    "dark": false,
+    "blue": false,
+    "outer": "oklch(0.985 0 0)",
+    "screen": "rgb(3, 5, 11)",
+    "deltas": [
+      {
+        "text": "较昨日 +8.2%",
+        "tone": "positive",
+        "color": "rgb(69, 208, 137)"
+      },
+      {
+        "text": "较昨日 -5% · 节省",
+        "tone": "positive",
+        "color": "rgb(69, 208, 137)"
+      }
+    ],
+    "scheme": "dark"
+  },
+  {
+    "dark": false,
+    "blue": true,
+    "outer": "oklch(0.985 0 0)",
+    "screen": "rgb(3, 5, 11)",
+    "deltas": [
+      {
+        "text": "较昨日 +8.2%",
+        "tone": "positive",
+        "color": "rgb(69, 208, 137)"
+      },
+      {
+        "text": "较昨日 -5% · 节省",
+        "tone": "positive",
+        "color": "rgb(69, 208, 137)"
+      }
+    ],
+    "scheme": "dark"
+  },
+  {
+    "dark": true,
+    "blue": false,
+    "outer": "oklch(0.145 0 0)",
+    "screen": "rgb(3, 5, 11)",
+    "deltas": [
+      {
+        "text": "较昨日 +8.2%",
+        "tone": "positive",
+        "color": "rgb(69, 208, 137)"
+      },
+      {
+        "text": "较昨日 -5% · 节省",
+        "tone": "positive",
+        "color": "rgb(69, 208, 137)"
+      }
+    ],
+    "scheme": "dark"
+  },
+  {
+    "dark": true,
+    "blue": true,
+    "outer": "oklch(0.145 0 0)",
+    "screen": "rgb(3, 5, 11)",
+    "deltas": [
+      {
+        "text": "较昨日 +8.2%",
+        "tone": "positive",
+        "color": "rgb(69, 208, 137)"
+      },
+      {
+        "text": "较昨日 -5% · 节省",
+        "tone": "positive",
+        "color": "rgb(69, 208, 137)"
+      }
+    ],
+    "scheme": "dark"
+  }
+]

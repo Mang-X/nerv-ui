@@ -1,0 +1,21 @@
+{
+  "source": "transcribed exact tool results from this session",
+  "status": {
+    "available": false,
+    "visible": false,
+    "tabId": null
+  },
+  "firstOpen": "Preview automation open failed: Invalid preview URL (parse: https:; input length 11).",
+  "resizeError": "Mcp error: -32602: Invalid parameters for tool 'preview_resize': Missing key\n  at [\"mode\"]",
+  "snapshotAttempts": [
+    {
+      "tabId": "tab_21_6faab953-90e1-4ff7-b4aa-20aa9696713e",
+      "raw": "Preview snapshot failed: Preview automation snapshot timed out after 15000ms."
+    },
+    {
+      "tabId": "tab_21_6faab953-90e1-4ff7-b4aa-20aa9696713e",
+      "raw": "Preview snapshot failed: Preview automation snapshot timed out after 15000ms."
+    }
+  ],
+  "fallback": "ego-browser after two consecutive snapshot timeouts; first corrected HTTP open/navigation succeeded"
+}

@@ -1,0 +1,5 @@
+Error: segment native hover {"title":"街角书房 · 占用 35%","filter":"brightness(1.18903)","color":"rgb(74, 166, 238)"}
+    at check (file:///private/tmp/nerv-ui-t05-a07/handoff/browser/common.mjs:4:53)
+    at file:////[eval2]:11:500
+
+ego's nodejs process exited with code 1.

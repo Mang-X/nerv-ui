@@ -1,0 +1,42 @@
+{
+  files: [
+    'README.md',
+    'docs/screen-standalone.md',
+    'frontend/apps/design-system/docs/components/screen/oee-hero.md',
+    'frontend/apps/design-system/docs/components/screen/status-card.md',
+    'frontend/apps/design-system/docs/components/screen/takt-gantt.md',
+    'frontend/apps/playground/src/ScreenDemo.vue',
+    'frontend/packages/ui/src/components/screen/OeeHero.vue',
+    'frontend/packages/ui/src/components/screen/StatusCard.vue',
+    'frontend/packages/ui/src/components/screen/TaktGantt.vue',
+    'frontend/apps/playground/src/screen/ScreenSummaryDemo.test.ts',
+    'frontend/apps/playground/src/screen/ScreenSummaryDemo.vue',
+    'frontend/apps/playground/src/screen/summary-fixtures.ts',
+    'frontend/packages/ui/src/components/screen/ScreenSummary.test.ts',
+    'frontend/packages/ui/src/components/screen/ScreenSummaryDocs.test.ts'
+  ],
+  args: [
+    '-C',
+    'frontend',
+    'exec',
+    'vp',
+    'fmt',
+    '--write',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/README.md',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/docs/screen-standalone.md',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/design-system/docs/components/screen/oee-hero.md',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/design-system/docs/components/screen/status-card.md',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/design-system/docs/components/screen/takt-gantt.md',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/playground/src/ScreenDemo.vue',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/packages/ui/src/components/screen/OeeHero.vue',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/packages/ui/src/components/screen/StatusCard.vue',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/packages/ui/src/components/screen/TaktGantt.vue',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/playground/src/screen/ScreenSummaryDemo.test.ts',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/playground/src/screen/ScreenSummaryDemo.vue',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/playground/src/screen/summary-fixtures.ts',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/packages/ui/src/components/screen/ScreenSummary.test.ts',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/packages/ui/src/components/screen/ScreenSummaryDocs.test.ts'
+  ],
+  exit: 0,
+  output: 'Finished in 442ms on 14 files using 10 threads.\n'
+}

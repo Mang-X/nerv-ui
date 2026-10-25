@@ -1,0 +1,3 @@
+{ name: 'ui', exit: 0 }
+{ name: 'mobile', exit: 0 }
+{ name: 'host', exit: 1 }

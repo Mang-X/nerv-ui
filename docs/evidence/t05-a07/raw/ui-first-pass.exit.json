@@ -1,0 +1,1 @@
+{"cwd":"/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary","args":["-C","frontend","--filter","@nerv-iip/ui","test","--reporter=json","--outputFile=/tmp/nerv-ui-t05-a07/handoff/raw/ui.json"],"exit":0}

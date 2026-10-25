@@ -1,0 +1,5 @@
+JSON report written to /tmp/nerv-ui-t05-a07/handoff/raw/docs-ui.json
+$ vp test run src/design-docs.contract.test.ts src/nvui-doc-coverage.contract.test.ts src/docs-layout.contract.test.ts --reporter=json --outputFile=/tmp/nerv-ui-t05-a07/handoff/raw/docs-ui.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

@@ -1,0 +1,9 @@
+const {save,read,check,settle}=await import('file:///tmp/nerv-ui-t05-a07/handoff/browser/common.mjs');const t=await taskSpace(23),p=t.page('p1');
+await p.cdp('Emulation.setDeviceMetricsOverride',{width:1920,height:1080,deviceScaleFactor:2,mobile:false});await settle(p);const normal=await read(p);check(normal.viewport[0]===1920,'viewport',normal);check(normal.gradients.length===2&&new Set(normal.gradients.map(x=>x.id)).size===2&&normal.gradients.every(x=>x.ref===`url(#${x.id})`),'gradients',normal);check(normal.deltas.every(x=>x.tone==='positive'&&x.color===normal.deltas[0].color),'improving decrease',normal);check(normal.cards.every(x=>x.nested===0&&x.scrollWidth<=x.width),'card boundaries',normal);
+await save('normal-1920',normal);await p.screenshot({path:'/tmp/nerv-ui-t05-a07/handoff/browser/summary-1920.png'});
+await p.click('text="长文案与大数"');await settle(p);const long=await read(p);await save('long-first',long);check(long.values[0].text==='123,456,789人次','large number',long);check(long.cards.every(x=>x.scrollWidth<=x.width),'long card clipped',long);await p.screenshot({path:'/tmp/nerv-ui-t05-a07/handoff/browser/long-first.png'});
+await p.click('text="未知读数"');const unknown=await read(p);check(unknown.values.every(x=>x.text.startsWith('—'))&&unknown.gradients.length===0,'unknown',unknown);await save('unknown',unknown);
+await p.click('text="空时段"');const empty=await read(p);check(empty.segments.length===0,'empty',empty);await save('empty',empty);
+await p.click('text="更新时段"');const update=await read(p);check(update.segments[0].segs[0].title==='街角书房 · 异常 10%','update',update);await save('update',update);
+await p.click('text="共享办公"');const second=await read(p);check(second.values[0].text==='386人次'&&second.legend.join('/')==='使用中/可预约/不开放/维护','second source',second);await save('second-source',second);
+await p.click('text="文化空间"');console.log(await p.snapshot());

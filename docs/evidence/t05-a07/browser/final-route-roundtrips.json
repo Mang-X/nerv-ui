@@ -1,0 +1,80 @@
+[
+  {
+    "hash": "#screen/stage",
+    "heading": "城市文化空间",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#screen/controls",
+    "heading": "寻找城市的一处停留",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#screen/indicators",
+    "heading": "城市空间的每一刻",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#screen/data",
+    "heading": "城市空间的流动消息",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#screen/charts",
+    "heading": "内容分布与到访趋势",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#screen/tables",
+    "heading": "城市文化空间 · 清单与事件",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#desktop",
+    "heading": "让想法有序向前",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#touch",
+    "heading": "共享阅读角",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#mobile",
+    "heading": "周末随行",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#mobile-input",
+    "heading": "随心记录",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#mobile-overlays",
+    "heading": "片刻安排",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#mobile-lists",
+    "heading": "翻阅时光",
+    "summary": false,
+    "activeConnected": true
+  },
+  {
+    "hash": "#mobile-feedback",
+    "heading": "片刻回响",
+    "summary": false,
+    "activeConnected": true
+  }
+]
