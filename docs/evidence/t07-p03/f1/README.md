@@ -36,7 +36,7 @@
 
 前席已执行且接续核验的本轮证据：P02 pure **20/20**、host **294/294（--no-file-parallelism）**、public tsc/browser vue-tsc、活动三包 typecheck/根 build、fmt/lint，均 exit0；不重复重型运行、不改写为接续 fresh。原实施/审核的 UI805、mobile144、docs-source6+2 与旧 16 browser observations 仅历史继承，不冒本修复 fresh。
 
-完整 lock YAML 对象、所有 dependency/optional/peer 边与 base 相同：973 packages / 973 snapshots；26 份工程输入与接续起点相同，5 个 consumer 的 Vue 同 realpath。12 份 reference provenance 原字节不变。P01 renderer/parser、P02 pure/readonly union、migration/vendor 均无 delta；静态图根31、host9、test-support4，只有 test-support 加载 Vitest。正常生产 consumer 与隔离 Workbench build 均检查 loaded/emitted 无 SDK/Vitest/reference。
+完整 lock YAML 对象、所有 dependency/optional/peer 边与 base 相同：973 packages / 973 snapshots；本轮从接续起点枚举的 28 份工程输入全部相同，5 个 consumer 的 Vue 同 realpath。原实施的26份是另一枚举起点，不混用计数。12 份 reference provenance 原字节不变。P01 renderer/parser、P02 pure/readonly union、migration/vendor 均无 delta；静态图根31、host9、test-support4，只有 test-support 加载 Vitest。正常生产 consumer 与隔离 Workbench build 均检查 loaded/emitted 无 SDK/Vitest/reference。
 
 ## FAIL / UNKNOWN / UNRUN
 
