@@ -1,0 +1,68 @@
+[
+  {
+    "name": "ui",
+    "success": true,
+    "total": 802,
+    "passed": 802,
+    "assertionCount": 802,
+    "failed": 0,
+    "pending": 0,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "logUnhandledLines": []
+  },
+  {
+    "name": "mobile",
+    "success": true,
+    "total": 144,
+    "passed": 144,
+    "assertionCount": 144,
+    "failed": 0,
+    "pending": 0,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "logUnhandledLines": []
+  },
+  {
+    "name": "host",
+    "success": true,
+    "total": 249,
+    "passed": 249,
+    "assertionCount": 249,
+    "failed": 0,
+    "pending": 0,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "logUnhandledLines": []
+  },
+  {
+    "name": "docs",
+    "success": true,
+    "total": 6,
+    "passed": 6,
+    "assertionCount": 6,
+    "failed": 0,
+    "pending": 0,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "logUnhandledLines": []
+  },
+  {
+    "name": "mobile-docs",
+    "success": true,
+    "total": 2,
+    "passed": 2,
+    "assertionCount": 2,
+    "failed": 0,
+    "pending": 0,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "logUnhandledLines": []
+  },
+  {
+    "name": "green-broken",
+    "success": true,
+    "total": 51,
+    "passed": 51,
+    "assertionCount": 51,
+    "failed": 0,
+    "pending": 0,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "logUnhandledLines": []
+  }
+]

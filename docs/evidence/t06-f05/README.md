@@ -42,3 +42,21 @@ XLSX 的独立 oracle 在浏览器前从 ZIP sharedStrings/workbook/worksheet �
 早期 test 位于 playground 时第三方 mock 解析身份不符，实际报 Worker is not defined；移动到拥有该依赖的 ui 包、仍从稳定子入口消费后纠正。同步 setProps 窗口早于 props 生效、人工 presence stub 导致错误归属的尝试均无效，不能作为产品 RED。原文件、日志与 JSON 保留。浏览器 Worker 自动附加抓取两次超时、首个合并 instrumentation 少分号导致 TypeError 也保留为 harness FAIL。
 
 补充的公开 HTTP 接缝：`FilePreview requests %s bytes with a document Accept instead of an HTML fallback`，三格式固定文档 MIME，原请求无 Accept 的三实例 RED 保留。首轮 missing 地址实际为 Vite SPA 的 200/HTML，不能算404；`history-before-accept/` 保留全轮原证据。最终生产重跑明确要求 missing 的 HTTP status=404，恢复正常样张后真实绘制。
+
+## 最终运行与交付
+
+实现提交 `41a549b8770000e09cc806e5cd5ccea35174ea1a` / tree `4f5923c458cc4b47379b2a18974ae3ace3f1dd83`；后续提交只归档本票证据。PR [#81](https://github.com/Mang-X/nerv-ui/pull/81) 保持草稿，仅向 integration，未合并/关闭/发布/监看。最终 head/tree 由持久 handoff 精确记录，避免把本文件自包含成循环哈希。
+
+- **fresh 候选源码门禁：** UI 802 / mobile 144 / host 249 / docs-source 6+2，全部 exit 0，逐 assertion passed、failed/pending 0。JSON 没有 numUnhandledErrors 字段；日志另查无 unhandled/uncaught。普通 build（含三个活动包 vue-tsc）、`--base=/office-proof/` build、五个受影响源码 fmt/lint 均 exit 0。Accept 修改后 UI/host/build 已重新运行，mobile 与 docs-source 在本轮同一不变 owner 上运行。
+- **真实浏览器：** dev 在 Accept 修改前通过 21 点，身份为本轮早期实现；最终生产 basepath 在 Accept 修改后再次通过完整 21 点：DOCX/PPTX 文本、彩色图形、三页不同像素与前后/下拉、50%/200%/reset、resize 保留第2页；XLSX 三张表 canvas/正文不同，独立 ZIP oracle 的数值经实际 fillText 读取。XLSX 原生水平滚动后 canvas 改变，内部 gridRegion 仍有正文高度、底栏 display:none，未提供公开 zoom。
+- **错误/恢复：** 三格式坏字节各一次 error+恢复；三个 missing 地址实际 GET **404**，均 error 后恢复真实画面。先前 200/HTML 与早期不正确观察永久保留，不能冒充404。
+- **对抗生命周期：** 三格式 × response/body × source/leave = 12 个真实成功读取，bytes/SHA 精确等独立 fixture 清单；旧 signal aborted、释放晚响应后 Worker 构造0，无旧 ready/error。真实 Worker 解析结果含 7564B DOCX JSON、4481B workbook JSON、6889B presentation JSON，故意晚交付；交付前每类1个 Worker 尚存，交付后均销毁、当前图片不变。XLSX 4313B worksheet 晚回亦无污染，Worker 在持有 workbook 的 destroy 时已终止。不承诺抢占已开始解析或所有任意格式故障。
+- **本地选择与清理：** 三格式逐一通过真实 file input 生成 Blob 来源、ready 与绘制；来源更换/离页后三个宿主文件 URL 全 revoke，无写请求。正常错误恢复和最终资源 lane 都检查旧 Worker 终止、observer 断开、Office timer/RAF 归零。Worker Blob URL 的 revoke 在 Worker 内记录，三份均回收；不把主页面看不到的 revoke 误报泄漏。
+- **最终资源：** 单轮 reload 捕获 **18 个页面 HTTP200 response body + 3 个 Worker WASM response body**，全部逐字节等最终 dist，URL/status/MIME/bytes/SHA/initiator 与 body 路径见 raw/final-resource-validation.json；WASM MIME 为 application/wasm，字节 892883 / 860696 / 815854。Blob worker 脚本不是 HTTP/dist 文件，原始脚本另存。测试 recorder 只在验收注入，把原 parser 脚本原样接在前缀后；生命周期 lane 不依赖这个 Worker fetch recorder，也没有 fake renderer。
+- **console：** 最终主页面 console=[]、window error/unhandled=[]、Worker error=[]；三个 parser Worker 各保留一条上游 WASM 初始化 deprecated-parameters warning，不能声称零 warning。普通 build 的 CSS/motion/PURE/chunk warning 与原日志保留。
+
+最终浏览器源/WASM/字体请求仅 loopback，非 loopback 由验收阻断；没有 Office 在线服务、文件外发或隐式写请求。字体仍受本机/嵌入覆盖限制，原 LICENSE/NOTICE 未删除。HTTP body 哈希核对不等于全文审阅所有第三方产物。
+
+原始脚本/日志/截图/response bodies、有效与无效 RED、完整 history-before-accept、研究/控制和前序 F04 R2 receipt 保存于 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-25/t06-f05-implementation-r1/`；仓内只保留本票可审核心记录及截图。归档过滤 node_modules/cache/cleancheckout/.vite/dist/.git，SHA256SUMS 逐文件回读。原始 RAW diff-check 与维护文件检查分别记录，不清洗历史字节。
+
+**UNRUN / 独立边界：** 独立审核、父 #7 组合、CI、packed #11、完整 docs #10、device #41、旧 consumer #12–15、发布。F01–04 完整旧 browser 为 inherited；F02 route/窄屏缺字 UNKNOWN、F04 R1 两个 FAIL 及其 R2 修复历史、F03 PUT 初始1% P3、#43/#51 均保留且不扩修。原库/main、双 main 和 migration 来源不写。真实测试不是 packed 消费验收。

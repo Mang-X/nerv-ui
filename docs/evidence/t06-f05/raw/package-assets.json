@@ -1,0 +1,208 @@
+{
+  "version": "0.72.2",
+  "allPackageFileMetadata": [
+    {
+      "path": "LICENSE",
+      "bytes": 1070,
+      "sha256": "c5ef721b35150df22732e27fd72224e61a87e0887fcd2505abe90c056ae053bb"
+    },
+    {
+      "path": "README.md",
+      "bytes": 52728,
+      "sha256": "bc9d5aa05e2db6223dcada2d5f3cdd9c3d394f6546630a07ca227e7811511a26"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 18578,
+      "sha256": "8074872c01bd6464c7fa49106530b7c21de2e5735dcd641ccc51dc36a38479d9"
+    },
+    {
+      "path": "dist/docx-wLLJuetI.js",
+      "bytes": 296225,
+      "sha256": "e8b703d7787c9eddd234981f699220ddf6797e2402e230a1d4b3289c24ba3002"
+    },
+    {
+      "path": "dist/docx.mjs",
+      "bytes": 347,
+      "sha256": "488e6d530c072ad64ad4375b0b0dc12d7d00fccf8aa5fa1e373fe3a5271023c2"
+    },
+    {
+      "path": "dist/docx_parser_bg.wasm",
+      "bytes": 892883,
+      "sha256": "a7e38311587511ae1cd5e7c9812a4d0db4e24b31cc1bb765236dbb2dcbfeaf88"
+    },
+    {
+      "path": "dist/find-cursor-DBifiZop.js",
+      "bytes": 566476,
+      "sha256": "851e382e788d3065c4fd5be59c2e35feafec49cff31edea4991fb587bbf045e2"
+    },
+    {
+      "path": "dist/highlight-rect-DTgfiJgA.js",
+      "bytes": 41721,
+      "sha256": "1cb90895da3d5a150aeee50aabd820ca0f1c4ae32919bba1fe1fff6ef52fb23e"
+    },
+    {
+      "path": "dist/index.mjs",
+      "bytes": 174,
+      "sha256": "9c36b37e41faf89007fa1c1af9cd0171e4ace506a5e4ad0d944fe76471f19db9"
+    },
+    {
+      "path": "dist/math.mjs",
+      "bytes": 1069,
+      "sha256": "04b7ac777248823141e6a6714ac2c79eb9a214510b39edff96f767028fbbae0b"
+    },
+    {
+      "path": "dist/mathjax-Dk_JzbFj.js",
+      "bytes": 459,
+      "sha256": "e9f1ad38966dee50b40630314fba60913e378572e3dab4d151a9b8e470159414"
+    },
+    {
+      "path": "dist/mathjax-stix2.js",
+      "bytes": 3097439,
+      "sha256": "feb78321c6b5dd31c55c1bfd0c433292aa2c521388c3c7661cf4456b9541d39c"
+    },
+    {
+      "path": "dist/pptx-D3L4FQfI.js",
+      "bytes": 190682,
+      "sha256": "adbebee265beb61b75cb8c3b74443d45124bc5650580d5cd5262f64ebc6065dc"
+    },
+    {
+      "path": "dist/pptx.mjs",
+      "bytes": 354,
+      "sha256": "07aef03fbc442b0656d3cb9c4e4449f30306c4f74a4e1560986e851351610783"
+    },
+    {
+      "path": "dist/pptx_parser_bg.wasm",
+      "bytes": 860696,
+      "sha256": "4ff969b9e3d37740b9c06a524fa5a262443ab72fb097594ad6324c54f4da7382"
+    },
+    {
+      "path": "dist/render-worker-host-B5esxBj-.js",
+      "bytes": 568583,
+      "sha256": "3ee7a69a402faa7030374a58e31b85e448b8e27ddef8c6732b0e9d37e70c65ef"
+    },
+    {
+      "path": "dist/render-worker-host-BzhGwe0I.js",
+      "bytes": 482741,
+      "sha256": "6b8d9f9427dbecc065113382d136e5340637d7f2d6f1ce9c4429d3d2bb22ca92"
+    },
+    {
+      "path": "dist/render-worker-host-Cg60RAG_.js",
+      "bytes": 438734,
+      "sha256": "a370c69aa379ebb6f0f1ac27215334292cf774e7af42478b04a2da79792b68a8"
+    },
+    {
+      "path": "dist/segments--0hIQLXB.js",
+      "bytes": 263,
+      "sha256": "4c8ffcf1ebbd8dacbd653ee03c024726a9f9984c03b052bc347e763c9cec5177"
+    },
+    {
+      "path": "dist/types/docx.d.ts",
+      "bytes": 210202,
+      "sha256": "c276706aa3b76e698c319c62d41c208e3e81a03e1b074282b3970a48ff5c3fe3"
+    },
+    {
+      "path": "dist/types/index.d.ts",
+      "bytes": 424625,
+      "sha256": "77d6c3170df5e95e7c2c41324fd97d57169b28a3e3fd1dc6645d177b3c7a56df"
+    },
+    {
+      "path": "dist/types/math.d.ts",
+      "bytes": 1267,
+      "sha256": "bd713b068bd6803d42c8b0bf76d26806c7cc63493eb1f061ab17448d55cb0cb0"
+    },
+    {
+      "path": "dist/types/pptx.d.ts",
+      "bytes": 181095,
+      "sha256": "018e01be4f9d8f3dbd7aad48bf699ff868f1930a2bd7fd381b5f2f5cc77468bb"
+    },
+    {
+      "path": "dist/types/xlsx.d.ts",
+      "bytes": 155863,
+      "sha256": "c50575a4b47c0b023723efc49335e1d22bdc4cc4ad2624a3eb5206052e36d1e3"
+    },
+    {
+      "path": "dist/visible-index-DSN5XPnm.js",
+      "bytes": 1349,
+      "sha256": "b74a83c014a2b27f2f676c8b35334f691dee939d25304cf0fb0646967f4dc5c0"
+    },
+    {
+      "path": "dist/xlsx-BWEqRZ25.js",
+      "bytes": 198484,
+      "sha256": "3845020df8b1b0282641737410fdd2e41285946e9d72be7dc3be7539e03409a7"
+    },
+    {
+      "path": "dist/xlsx.mjs",
+      "bytes": 267,
+      "sha256": "7accb3c651f91881011d46a933e086134cbe46110c5f0f1becad7d5057f6ca6f"
+    },
+    {
+      "path": "dist/xlsx_parser_bg.wasm",
+      "bytes": 815854,
+      "sha256": "4e2340b8f6a0aba67bc5fa6d62fb3e505d4b0059901f384d963c5e7a5f1e8443"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2854,
+      "sha256": "e5f125b63fd653912b576c3ea1c78ec9bd0836a90d61c4a8ea33d2095c6a236f"
+    }
+  ],
+  "vendor": [
+    {
+      "path": "frontend/packages/ui/src/components/ui/file-preview/ooxml/LICENSE",
+      "bytes": 1070,
+      "sha256": "c5ef721b35150df22732e27fd72224e61a87e0887fcd2505abe90c056ae053bb",
+      "source": "LICENSE",
+      "exactPackageBytes": true
+    },
+    {
+      "path": "frontend/packages/ui/src/components/ui/file-preview/ooxml/THIRD_PARTY_NOTICES.md",
+      "bytes": 18578,
+      "sha256": "8074872c01bd6464c7fa49106530b7c21de2e5735dcd641ccc51dc36a38479d9",
+      "source": "THIRD_PARTY_NOTICES.md",
+      "exactPackageBytes": true
+    },
+    {
+      "path": "frontend/packages/ui/src/components/ui/file-preview/ooxml/docx_parser_bg.wasm",
+      "bytes": 892883,
+      "sha256": "a7e38311587511ae1cd5e7c9812a4d0db4e24b31cc1bb765236dbb2dcbfeaf88",
+      "source": "dist/docx_parser_bg.wasm",
+      "exactPackageBytes": true
+    },
+    {
+      "path": "frontend/packages/ui/src/components/ui/file-preview/ooxml/pptx_parser_bg.wasm",
+      "bytes": 860696,
+      "sha256": "4ff969b9e3d37740b9c06a524fa5a262443ab72fb097594ad6324c54f4da7382",
+      "source": "dist/pptx_parser_bg.wasm",
+      "exactPackageBytes": true
+    },
+    {
+      "path": "frontend/packages/ui/src/components/ui/file-preview/ooxml/xlsx_parser_bg.wasm",
+      "bytes": 815854,
+      "sha256": "4e2340b8f6a0aba67bc5fa6d62fb3e505d4b0059901f384d963c5e7a5f1e8443",
+      "source": "dist/xlsx_parser_bg.wasm",
+      "exactPackageBytes": true
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "quality-work-instruction.docx",
+      "exactFrozenSourceBytes": true,
+      "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603",
+      "sourceGitBlob": "d9849c3b01b68bade91c1a7acc0a853099f599c6"
+    },
+    {
+      "name": "inspection-metrics.xlsx",
+      "exactFrozenSourceBytes": true,
+      "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603",
+      "sourceGitBlob": "679bfb91983573357f46e6cecf643c6a4679a2eb"
+    },
+    {
+      "name": "preview-review-deck.pptx",
+      "exactFrozenSourceBytes": true,
+      "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603",
+      "sourceGitBlob": "51bd60a0fdcdaecb331acd46727b31ae3852fe31"
+    }
+  ],
+  "reviewBoundary": "Selected viewer/load/render/destroy/navigation/worker/font producers and all shipped license/notices; hashes are not a claim of reading all package source."
+}

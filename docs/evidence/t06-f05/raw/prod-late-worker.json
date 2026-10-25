@@ -1,0 +1,82 @@
+[
+  {
+    "ext": "docx",
+    "mode": "load",
+    "beforeRelease": 1,
+    "fields": [
+      "type",
+      "id",
+      "documentJson"
+    ],
+    "payloadBytes": 7564,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [
+      {
+        "url": "blob:http://127.0.0.1:5250/d81fb704-adf1-4676-80c5-3103c963c2b2",
+        "terminated": true,
+        "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new window.Worker (<anonymous>:2:117)\n    at new an (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:19152)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:194050)\n    at async yu.load (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:202793)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:5215)"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "ext": "xlsx",
+    "mode": "load",
+    "beforeRelease": 1,
+    "fields": [
+      "type",
+      "id",
+      "workbookJson"
+    ],
+    "payloadBytes": 4481,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [
+      {
+        "url": "blob:http://127.0.0.1:5250/f47bbe1e-78b3-42fb-8fe2-71a60b58e3c0",
+        "terminated": true,
+        "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new window.Worker (<anonymous>:2:117)\n    at new Ne (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:1:12240)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:14:11761)\n    at async ia.load (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:14:28452)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:6099)"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "ext": "pptx",
+    "mode": "load",
+    "beforeRelease": 1,
+    "fields": [
+      "kind",
+      "id",
+      "presentationJson"
+    ],
+    "payloadBytes": 6889,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [
+      {
+        "url": "blob:http://127.0.0.1:5250/6d050db2-692f-4cac-9e9d-28914f80cfe9",
+        "terminated": true,
+        "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new window.Worker (<anonymous>:2:117)\n    at new Bi (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:113387)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:114700)\n    at async Wi.load (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:121560)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:5635)"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "ext": "xlsx",
+    "mode": "navigation",
+    "beforeRelease": 0,
+    "fields": [
+      "type",
+      "id",
+      "worksheetJson"
+    ],
+    "payloadBytes": 4313,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [
+      {
+        "url": "blob:http://127.0.0.1:5250/1a39a668-fd87-41e7-ae25-df985d05b9d7",
+        "terminated": true,
+        "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new window.Worker (<anonymous>:2:117)\n    at new Ne (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:1:12240)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:14:11761)\n    at async ia.load (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:14:28452)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:6099)"
+      }
+    ],
+    "errors": []
+  }
+]

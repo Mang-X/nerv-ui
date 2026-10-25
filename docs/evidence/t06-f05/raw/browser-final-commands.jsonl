@@ -1,0 +1,5 @@
+{"script": "browser-errors-v3", "cwd": "/Users/mang/Project/nerv-ui-worktrees/t06-f05-office-preview", "command": ["ego-browser", "nodejs"], "exit": 0, "seconds": 11.538670063018799}
+{"script": "browser-late-source-v2", "cwd": "/Users/mang/Project/nerv-ui-worktrees/t06-f05-office-preview", "command": ["ego-browser", "nodejs"], "exit": 0, "seconds": 14.558279037475586}
+{"script": "browser-late-worker-v2", "cwd": "/Users/mang/Project/nerv-ui-worktrees/t06-f05-office-preview", "command": ["ego-browser", "nodejs"], "exit": 0, "seconds": 3.0827691555023193}
+{"script": "browser-final-resources", "cwd": "/Users/mang/Project/nerv-ui-worktrees/t06-f05-office-preview", "command": ["ego-browser", "nodejs"], "exit": 0, "seconds": 1.6823780536651611}
+{"script": "browser-xlsx-local", "cwd": "/Users/mang/Project/nerv-ui-worktrees/t06-f05-office-preview", "command": ["ego-browser", "nodejs"], "exit": 0, "seconds": 2.524951696395874}
