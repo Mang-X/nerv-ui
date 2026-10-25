@@ -1,0 +1,47 @@
+[
+  {
+    "name": "ui",
+    "tests": 776,
+    "passed": 776,
+    "failed": 0,
+    "pending": 0,
+    "unhandledField": "NOT PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "mobile",
+    "tests": 144,
+    "passed": 144,
+    "failed": 0,
+    "pending": 0,
+    "unhandledField": "NOT PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "host",
+    "tests": 249,
+    "passed": 249,
+    "failed": 0,
+    "pending": 0,
+    "unhandledField": "NOT PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "docs-ui",
+    "tests": 6,
+    "passed": 6,
+    "failed": 0,
+    "pending": 0,
+    "unhandledField": "NOT PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "docs-mobile",
+    "tests": 2,
+    "passed": 2,
+    "failed": 0,
+    "pending": 0,
+    "unhandledField": "NOT PROVIDED",
+    "unhandledLogLines": []
+  }
+]

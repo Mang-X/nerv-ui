@@ -1,0 +1,18 @@
+[
+  {
+    "port": 5215,
+    "pid": 46539,
+    "cwd": "p46539\nfcwd\nn/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/apps/playground\n",
+    "command": "/Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js dev --host 127.0.0.1 --port 5215",
+    "signal": "SIGTERM",
+    "listenerAbsent": true
+  },
+  {
+    "port": 5216,
+    "pid": 41194,
+    "cwd": "p41194\nfcwd\nn/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/apps/playground\n",
+    "command": "/Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js preview --host 127.0.0.1 --port 5216 --base /pdf-proof/",
+    "signal": "SIGTERM",
+    "listenerAbsent": true
+  }
+]
