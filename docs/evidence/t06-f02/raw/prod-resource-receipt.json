@@ -1,0 +1,226 @@
+{
+  "rows": [
+    {
+      "url": "http://127.0.0.1:5200/",
+      "status": 200,
+      "mime": "text/html",
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Type": "text/html",
+        "Date": "Sun, 25 Oct 2026 03:47:54 GMT",
+        "Etag": "W/\"202-Q2PEmyyLFMMhxr5fXnUlOzMvoFY\"",
+        "Vary": "Origin"
+      },
+      "method": "GET",
+      "initiator": {
+        "type": "other"
+      },
+      "bytes": 514,
+      "sha256": "a3118015ac93c225da1381ed023ca504061f21e87aa3d2bba155438e087a729c",
+      "distPath": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground/dist/index.html",
+      "distEqual": true,
+      "bodyFile": "resources/index.html.response.bin",
+      "fromServiceWorker": false,
+      "fromDiskCache": false
+    },
+    {
+      "url": "http://127.0.0.1:5200/assets/index-CNz5veZP.css",
+      "status": 200,
+      "mime": "text/css",
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Encoding": "gzip",
+        "ETag": "W/\"298640-1792899861692\"",
+        "Access-Control-Allow-Origin": "http://127.0.0.1:5200",
+        "Date": "Sun, 25 Oct 2026 03:47:54 GMT",
+        "Content-Type": "text/css",
+        "Vary": "Origin",
+        "Last-Modified": "Sun, 25 Oct 2026 03:44:21 GMT"
+      },
+      "method": "GET",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5200/",
+        "lineNumber": 8,
+        "columnNumber": 73
+      },
+      "bytes": 298640,
+      "sha256": "d6bd6a7a9149660d3b463954f9e8f2118472b7584346abef064d98300963ba93",
+      "distPath": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground/dist/assets/index-CNz5veZP.css",
+      "distEqual": true,
+      "bodyFile": "resources/index-CNz5veZP.css.response.bin",
+      "fromServiceWorker": false,
+      "fromDiskCache": false
+    },
+    {
+      "url": "http://127.0.0.1:5200/assets/rolldown-runtime-EyZ2wyi3.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "headers": {
+        "Cache-Control": "no-cache",
+        "ETag": "W/\"612-1792899861691\"",
+        "Access-Control-Allow-Origin": "http://127.0.0.1:5200",
+        "Content-Length": "612",
+        "Date": "Sun, 25 Oct 2026 03:47:54 GMT",
+        "Content-Type": "text/javascript",
+        "Vary": "Origin",
+        "Last-Modified": "Sun, 25 Oct 2026 03:44:21 GMT"
+      },
+      "method": "GET",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5200/",
+        "lineNumber": 7,
+        "columnNumber": 86
+      },
+      "bytes": 612,
+      "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+      "distPath": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground/dist/assets/rolldown-runtime-EyZ2wyi3.js",
+      "distEqual": true,
+      "bodyFile": "resources/rolldown-runtime-EyZ2wyi3.js.response.bin",
+      "fromServiceWorker": false,
+      "fromDiskCache": false
+    },
+    {
+      "url": "http://127.0.0.1:5200/assets/index-BqjybfeN.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Encoding": "gzip",
+        "ETag": "W/\"832294-1792899861689\"",
+        "Access-Control-Allow-Origin": "http://127.0.0.1:5200",
+        "Date": "Sun, 25 Oct 2026 03:47:54 GMT",
+        "Content-Type": "text/javascript",
+        "Vary": "Origin",
+        "Last-Modified": "Sun, 25 Oct 2026 03:44:21 GMT"
+      },
+      "method": "GET",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5200/",
+        "lineNumber": 6,
+        "columnNumber": 70
+      },
+      "bytes": 832294,
+      "sha256": "c64d7cd5dc3b968196496572b6cc8632eee3a687685fac100b94085b34ce06b5",
+      "distPath": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground/dist/assets/index-BqjybfeN.js",
+      "distEqual": true,
+      "bodyFile": "resources/index-BqjybfeN.js.response.bin",
+      "fromServiceWorker": false,
+      "fromDiskCache": false
+    },
+    {
+      "url": "http://127.0.0.1:5200/files/quality-evidence.svg",
+      "status": 200,
+      "mime": "image/svg+xml",
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Encoding": "gzip",
+        "Date": "Sun, 25 Oct 2026 03:47:54 GMT",
+        "ETag": "W/\"1079-1792899861424\"",
+        "Content-Type": "image/svg+xml",
+        "Vary": "Origin",
+        "Last-Modified": "Sun, 25 Oct 2026 03:44:21 GMT"
+      },
+      "method": "GET",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5200/",
+        "lineNumber": 14,
+        "columnNumber": 1
+      },
+      "bytes": 1079,
+      "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "distPath": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground/dist/files/quality-evidence.svg",
+      "distEqual": true,
+      "bodyFile": "resources/quality-evidence.svg.response.bin",
+      "fromServiceWorker": false,
+      "fromDiskCache": false
+    },
+    {
+      "url": "http://127.0.0.1:5200/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "mime": "font/woff2",
+      "headers": {
+        "Cache-Control": "no-cache",
+        "ETag": "W/\"48256-1792899861692\"",
+        "Access-Control-Allow-Origin": "http://127.0.0.1:5200",
+        "Content-Length": "48256",
+        "Date": "Sun, 25 Oct 2026 03:47:54 GMT",
+        "Content-Type": "font/woff2",
+        "Vary": "Origin",
+        "Last-Modified": "Sun, 25 Oct 2026 03:44:21 GMT"
+      },
+      "method": "GET",
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5200/assets/index-CNz5veZP.css"
+      },
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "distPath": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground/dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "distEqual": true,
+      "bodyFile": "resources/inter-latin-wght-normal-Dx4kXJAl.woff2.response.bin",
+      "fromServiceWorker": false,
+      "fromDiskCache": false
+    },
+    {
+      "url": "http://127.0.0.1:5200/files/garden.png",
+      "status": 200,
+      "mime": "image/png",
+      "headers": {
+        "Cache-Control": "no-cache",
+        "ETag": "W/\"10878-1792899861423\"",
+        "Connection": "keep-alive",
+        "Content-Length": "10878",
+        "Keep-Alive": "timeout=5",
+        "Date": "Sun, 25 Oct 2026 03:47:54 GMT",
+        "Content-Type": "image/png",
+        "Vary": "Origin",
+        "Last-Modified": "Sun, 25 Oct 2026 03:44:21 GMT"
+      },
+      "method": "GET",
+      "initiator": {
+        "type": "other"
+      },
+      "bytes": 10878,
+      "sha256": "bbb5957119507867b24fb51c761bcbf1bf3af25c38f908d68721e2d03c8ae92e",
+      "distPath": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground/dist/files/garden.png",
+      "distEqual": true,
+      "bodyFile": "resources/garden.png.response.bin",
+      "fromServiceWorker": false,
+      "fromDiskCache": false
+    },
+    {
+      "url": "http://127.0.0.1:5200/files/coast.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "headers": {
+        "Cache-Control": "no-cache",
+        "ETag": "W/\"16037-1792899861423\"",
+        "Connection": "keep-alive",
+        "Content-Length": "16037",
+        "Keep-Alive": "timeout=5",
+        "Date": "Sun, 25 Oct 2026 03:47:54 GMT",
+        "Content-Type": "image/jpeg",
+        "Vary": "Origin",
+        "Last-Modified": "Sun, 25 Oct 2026 03:44:21 GMT"
+      },
+      "method": "GET",
+      "initiator": {
+        "type": "other"
+      },
+      "bytes": 16037,
+      "sha256": "2e5b23c0c5eaea91d63ae67b11aef0f4257974bd8d1e61448a964a294dcbaa30",
+      "distPath": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground/dist/files/coast.jpg",
+      "distEqual": true,
+      "bodyFile": "resources/coast.jpg.response.bin",
+      "fromServiceWorker": false,
+      "fromDiskCache": false
+    }
+  ],
+  "writes": [],
+  "externalHttp": [],
+  "unloadedLazyRuntimeRequests": []
+}

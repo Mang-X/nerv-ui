@@ -1,0 +1,107 @@
+{
+  "base": "e763c0fdc3e2800975578ab402b479d56f23c6fd",
+  "inputs": [
+    {
+      "path": "frontend/apps/design-system/package.json",
+      "bytes": 698,
+      "sha256": "ab07aaa295935b40fe1291f01d0cfa4a2fda4ab4612f091ed20f64172e03201c",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/apps/playground/package.json",
+      "bytes": 433,
+      "sha256": "0967d9d77e6472ba531733012404781c7a4beb184fc8e3b881359037b0aac205",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/package.json",
+      "bytes": 1099,
+      "sha256": "f9e50aa19220ba1e97fd02a8748ea912cfe5a544aa383c905c9603e767b9380b",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/app-shell/package.json",
+      "bytes": 571,
+      "sha256": "04a748352b4174d10f44e86e92cc4bebe7d42ed334698634f6e52916854703f3",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/scheduling/package.json",
+      "bytes": 619,
+      "sha256": "8f4299bb64c446b43d0e0c8af81437eed2a402c50633c3485eb6e33b19c914ad",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/ui-mobile/package.json",
+      "bytes": 729,
+      "sha256": "99a7898eda2f126c7dc6c1613f953540d135141ec5e08c7b656066bfb5edbcfb",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/ui/package.json",
+      "bytes": 1698,
+      "sha256": "4f7f9ce9ec077150eb1eca9e0ffd205a32600702b2d0b52f40eca2ce0977f079",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/pnpm-lock.yaml",
+      "bytes": 298343,
+      "sha256": "ea746bfedf77603fc582e97d95b9a97a2548349736f66e46e7ec8b3a8a4d476c",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/pnpm-workspace.yaml",
+      "bytes": 928,
+      "sha256": "97360ca48c840c9e495b7dc6a2ea11f53e07d2b8bd968f3deb63e45afebf2e27",
+      "byteEqual": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/package.json",
+      "bytes": 1092,
+      "sha256": "e6444aa704f8c34800e7a657d0000f5cc5d24dac4043c59f0b5d20a33dfee021",
+      "byteEqual": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-pda/package.json",
+      "bytes": 1270,
+      "sha256": "8ab153c0b7378966422166348397892781a5e86fb978969625c9fc7f00180389",
+      "byteEqual": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/console/package.json",
+      "bytes": 907,
+      "sha256": "bd7657cfe5ca62f9c2592a1cffdadbbff096c47ca8a4252550d360223d86474b",
+      "byteEqual": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/docs/package.json",
+      "bytes": 528,
+      "sha256": "790aabddc8e68caf0772f8f51286276c9c8a72dd66eb6caa91e8bf62009051e9",
+      "byteEqual": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/screen/package.json",
+      "bytes": 752,
+      "sha256": "fbd2cf794801a25b658ca532b19f47d835e0913a892c89fc146d8dcc66608de1",
+      "byteEqual": true
+    },
+    {
+      "path": "migration/materials/source/frontend/packages/auth/package.json",
+      "bytes": 453,
+      "sha256": "ac99d6e0f6b567b751c5600aacb28c8dace8477b9e1902208b8bc96b7a01564d",
+      "byteEqual": true
+    },
+    {
+      "path": "migration/materials/source/frontend/packages/business-core/package.json",
+      "bytes": 318,
+      "sha256": "53534bbdf0207c6bcf93beda744a15aae70582f7175627de461c4e2de696c398",
+      "byteEqual": true
+    }
+  ],
+  "semanticFullObjects": {
+    "importers": 4,
+    "packages": 973,
+    "snapshots": 973
+  },
+  "wholeLockByteEqual": true
+}

@@ -1,0 +1,477 @@
+[
+  {
+    "label": "create/pause selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/pause entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/pause cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/pause after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 success"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/remove selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/remove entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/remove cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/remove after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 success"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/clear selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/clear entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/clear cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/clear after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 success"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/unmount selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/unmount entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  }
+]

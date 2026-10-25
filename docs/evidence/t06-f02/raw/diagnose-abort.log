@@ -1,0 +1,41 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/files/uploadLifecycle.test.ts (19 tests | 1 failed | 18 skipped) 15ms
+   × active AbortError remains a real failure while pause cancellation is silent 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/files/uploadLifecycle.test.ts > active AbortError remains a real failure while pause cancellation is silent
+AssertionError: expected { …(10) } to match object { status: 'failed', …(1) }
+(8 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "error": "host aborted create",
++   "error": "上传失败。",
+    "status": "failed",
+  }
+
+ ❯ src/files/uploadLifecycle.test.ts:268:26
+    266|   f.creates[0]!.reject(new DOMException('host aborted create', 'AbortE…
+    267|   await task
+    268|   expect(upload.rows[0]).toMatchObject({ status: 'failed', error: 'hos…
+       |                          ^
+    269|   expect(f.options.onFailed).toHaveBeenCalledTimes(1)
+    270|   const retry = upload.retryRow(upload.rows[0]!.id), duplicate = uploa…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 skipped (19)
+   Start at  11:32:03
+   Duration  5.96s (transform 3.70s, setup 588ms, import 4.57s, tests 15ms, environment 657ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/files/uploadLifecycle.test.ts -t 'active AbortError'
