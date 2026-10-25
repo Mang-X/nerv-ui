@@ -72,3 +72,26 @@ R1 **拒绝合并**的 Standards1 / Spec4 全部保留：原回执 `/Users/mang/
 973 packages/snapshots 的完整对象及依赖/peer 边、16 个工程输入与四包 Vue 单实体再次核对。三份 vendor 891743/142723/211538 字节不变。前轮原64归属与7份参考测试是历史快照，本轮不改其原 SHA；当前变更回到 Git 与本轮归档核验。旧来源、字体 LICENSE 与远程 font-face 构建移除策略不变；授权 UNKNOWN。
 
 CI、完整 docs10、packed11、设备、旧消费者13/15、父8组合、后端SDK/APS、发布与 P05–P16 均 UNRUN。原 FAIL/UNKNOWN、旧P3、#43/#51 与 main 全量 RAW diff-check exit2 保留；本票/maintenance 门禁独立报告。
+
+## 2026-10-26 · R2 两项 P2 返修
+
+R2 **拒绝合并**的 Standards1 / Spec1 P2 保留：`/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p04-review-r2/review-receipt.md`（同目录 `standards.md`、`spec.md`、`merger-addendum.md` 及原外部 probe）。原真实浏览器同容器两分区 bars/layouts **1/1→0/0**、外部容器 probe **0 PASS / 1 FAIL** 均为历史事实，后续 PASS 不覆盖；R1 五项 P2 拒绝、原两 probe FAIL 与中间 `firstChild.classList` FAIL 继续由前节指针保留。
+
+本轮仅修 tooltip 与 P04 共享生命周期，同一 draft PR103。归档 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p04-container-fix/`，精确提交对象、逐文件 SHA 回读及 Requirement/Evidence 见该目录 `handoff.md`。未开启独立 R3，交父席安排。
+
+| Requirement               | Evidence                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| STD-1 tooltip 用户信息    | 实际 hover 显示“共读进度：已读完第一章，准备交流心得”，tooltip 非零几何、Evaluation 水印与授权 UNKNOWN 均保留；`tooltip-runtime.json`、`tooltip-visible.png`。无文案自证测试。                                                                                                                                                                                                                              |
+| SPEC-1 真实工厂同容器交接 | `preserves a reused container through real vendor retirement same task and subsequent updates` 与 `preserves a reused container through real vendor retirement after vendor initialization and subsequent updates` 正式 RED→GREEN；通过公开 engine mount/setData/destroy，验证 B 更新、scope、单布局、重复 destroy、最终 DOM 与所属 interval 释放。真实 vendor/jsdom 计时器车道，不称完整厂商 conformance。 |
+| 原外部断言及真实几何      | 原 `preserves the current real factory chart when a retired engine disposes the reused container` 原字节 RED→GREEN；与 R1 原三个公开 probe 合计 4 PASS。真实浏览器同任务/已初始化两分区 B 都保持 bars/layouts 1/1 并可更新；同一 engine 重挂几何非零，清理后 bars/layouts 0/0、scope=false。                                                                                                                |
+| 前轮修复与分区            | scheduling 原 117 case/status 不变，加上述 2 条；live 非法→恢复、baseline 两字段、缺省/offset、fake async-init legacy singleton、真实短命 Evaluation interval 均通过。浏览器另验 UTC/上海 baseline 与公开组件恢复、所属 interval active=[]。真实同步工厂、fake async/legacy、延后 HTTP/native fallback 分列。                                                                                               |
+
+最窄适配在 DhtmlxEngine 内：每次 mount 的厂商根节点独立，退役时从公开容器移出但保留完整子树，等固定 Evaluation 1ms 回调后调用 destructor，再清理自己的子树；公开容器 scope 只由当前 mount token 清理。vendor 的 `clearAll`/布局/$root 仍访问原厂商根，不会触及新图，也不提前掏空旧图导致 `firstChild` 异常。不改 vendor，不改变公开 root 或 API，不引入跨 owner 决策。
+
+Fresh：scheduling **119 discovery / 115 PASS / 4 retained skip / 0 FAIL**，UI805、mobile144、host295、P02pure20、P03host50、docs-source6；各真实 reporter `unhandledCount=0`。原4 skip逐名未变，0执行，不冒 conformance。公开 types、workspace types、root/nested build、受影响 fmt/lint 通过，lint 三条继承 warning 保留。真实浏览器主20+额外7+missing5共 **32 PASS**；root/nested 各6实际响应 body 与各自 fresh dist 逐字相同，公开 runtime probe JS/CSS 两响应也单独核验。
+
+973 packages/973 snapshots 完整对象含 metadata/optional/peer/edges、16工程输入、四包 Vue 单实体均不变；vendor **891743/142723/211538 bytes** 与原 SHA 不变。字体 transform 仍只去6远程 Inter face，4内嵌资源及本地 LICENSE 保留，授权 UNKNOWN。原64/7来源用历史指针，不复制历史账本或重建 registry。
+
+本票增量与 maintenance diff-check 分列通过；main 全量 **RAW exit2** 保留。本轮首导航服务未起、T3 两次 snapshot timeout、验证报告最初把 skip 状态误查为 pending（原报告保留，按实际 skipped 更正）均在外部 diagnostics 中记录。没有新增 skip/exclude/timeout，没有删除 raw 修绿。重复 ETA aria 断言 P3 延后；P02旧年/P03字号P3、#43/#51/P05–P16 不扩修。
+
+UNRUN：独立R3、CI、完整docs10、packed11、device、旧consumer13/15、后端SDK/APS、父8组合、发布/生产/商业授权。未ready/merge/close/watch/publish，#87仍 open；父8/1与PR18不变。

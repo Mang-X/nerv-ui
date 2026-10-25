@@ -49,3 +49,9 @@ pnpm -C frontend dev
 固定 9.1.4 Evaluation 在创建后的 1ms 回调中建立 interval 并注册 `onDestroy`。适配器先撤销交互、observer 和 RAF，再在该回调之后调用 destructor，最后清空容器与释放 lease；因此真实 vendor 的最终释放跨到下一 timer turn。保留完整 Evaluation 回调，不拦截其计时器、不改 vendor 原字节。重复 destroy 不提前清空等待释放的容器。
 
 每次 mount 持有对象所有权 token。旧 async-init 晚回只可清理仍属于该 token 的对象；legacy singleton 被后来的 owner 成功接管后，旧代际不再 destructor 或清空容器。此项由 fake async legacy lane 证明，不宣称固定真实 vendor 的同步 init 变成异步。
+
+## R2 同容器交接
+
+每次 mount 使用独立的厂商子容器，公开 container 与 API 保持不变。destroy 先撤销本实例交互与观察，再移出自己的厂商子容器，保留其中 DOM 直到延后 destructor 完成。新 mount 可立即复用公开 container；旧 vendor 的 clearAll、布局与 Evaluation 回调仍只访问旧子容器。公开 container 的 scope 类仅由当前 mount token 清理，旧实例不能清空新实例的图或主题。此规则同时保留 Evaluation interval 的正常建立与 onDestroy 释放，不修改 vendor 内部引用或原字节。
+
+真实同步工厂的同任务/已初始化交接及同一 engine 重挂在真实浏览器独立验证；fake async-init legacy singleton 的对象 token 保护仍使用原分区，不把两者混称厂商异步 conformance。R1/R2 拒绝与原失败保留于[证据页](./evidence/t07-p04/README.md)。

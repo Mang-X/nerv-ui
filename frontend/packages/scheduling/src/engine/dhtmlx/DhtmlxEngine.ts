@@ -23,6 +23,7 @@ import { applySkin } from './skin'
 // Last ownership token survives retirement, so a late init can clean its own
 // object only until a later mount has taken over that same object.
 const instanceOwners = new WeakMap<object, object>()
+const containerOwners = new WeakMap<HTMLElement, object>()
 
 // DHTMLX gantt 实例的最小子集(只声明适配器用到的成员)。
 interface DhxGantt {
@@ -478,6 +479,8 @@ export interface DhtmlxEngineDeps {
 /** DHTMLX Gantt 9.x(试用专业版)适配器:统一 SchedulingEngine ↔ DHTMLX vanilla 核心。 */
 export class DhtmlxEngine implements SchedulingEngine {
   private container?: HTMLElement
+  private vendorContainer?: HTMLElement
+  private containerOwner?: object
   private options!: SchedulingEngineOptions
   private gantt?: DhxGantt
   private model?: ScheduleModel
@@ -552,6 +555,9 @@ export class DhtmlxEngine implements SchedulingEngine {
     this.container = container
     this.options = options
     this.scale = options.scale
+    const containerOwner = {}
+    containerOwners.set(container, containerOwner)
+    this.containerOwner = containerOwner
     applySkin(container, options.theme)
     // loader 同时加载保留 vendor 与结构 CSS；宿主使用包的 Vite 字体/层序 transform。
     const inst = this.createInstance() as DhxGantt | null
@@ -561,18 +567,28 @@ export class DhtmlxEngine implements SchedulingEngine {
     this.instanceOwner = owner
     this.gantt = inst
 
+    // A retired Evaluation instance still needs its original DOM for its delayed
+    // destructor. Give the vendor a mount-owned root so a new chart can reuse the
+    // public container without either vendor touching the other's layout.
+    const vendorContainer = document.createElement('div')
+    vendorContainer.style.width = '100%'
+    vendorContainer.style.height = '100%'
+    container.appendChild(vendorContainer)
+    this.vendorContainer = vendorContainer
+
     this.configure(inst, options)
     this.wireEvents(inst)
     this.eventIds.push(inst.attachEvent('onBeforeLightbox', () => false))
     this.eventIds.push(inst.attachEvent('onLinkCreated', () => false))
     this.eventIds.push(inst.attachEvent('onLinkDblClick', () => false))
-    const initialized = inst.init(container) as unknown
+    const initialized = inst.init(vendorContainer) as unknown
     if (initialized && typeof (initialized as PromiseLike<void>).then === 'function') {
       return Promise.resolve(initialized).then(() => {
         if (generation !== this.mountGeneration) {
           if (instanceOwners.get(inst) === owner) {
             inst.destructor?.()
-            container.replaceChildren()
+            vendorContainer.replaceChildren()
+            vendorContainer.remove()
           }
           return
         }
@@ -841,15 +857,19 @@ export class DhtmlxEngine implements SchedulingEngine {
     this.mountGeneration++
     const g = this.gantt
     const container = this.container
+    const vendorContainer = this.vendorContainer
+    const containerOwner = this.containerOwner
     const clearContainer = () => {
-      if (!container) return
+      vendorContainer?.replaceChildren()
+      vendorContainer?.remove()
+      if (!container || containerOwners.get(container) !== containerOwner) return
       container.classList.remove(
         'nerv-gantt',
         'nerv-gantt-dhx',
         'nerv-gantt-dark',
         'nerv-dhx-scope',
       )
-      container.replaceChildren()
+      containerOwners.delete(container)
     }
     if (g?.detachEvent) for (const id of this.eventIds) g.detachEvent(id)
     this.eventIds.length = 0
@@ -879,6 +899,9 @@ export class DhtmlxEngine implements SchedulingEngine {
     cancelAnimationFrame(this.resizeRaf)
     this.resizeObserver?.disconnect()
     this.resizeObserver = undefined
+    // Detach, but keep the subtree intact until vendor disposal (clearAll/render
+    // reads firstChild). New mounts never share this retiring vendor root.
+    vendorContainer?.remove()
     if (g) {
       const owner = this.instanceOwner
       const dispose = () => {
@@ -900,6 +923,8 @@ export class DhtmlxEngine implements SchedulingEngine {
     this.markerId = undefined
     if (!g) clearContainer()
     this.container = undefined
+    this.vendorContainer = undefined
+    this.containerOwner = undefined
   }
 
   // --- internals ----------------------------------------------------------

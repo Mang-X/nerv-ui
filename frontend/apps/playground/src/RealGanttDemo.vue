@@ -49,7 +49,7 @@ const base: ScheduleModel = {
       ...task('chapter', '第一章 · 共读', '2026-10-25T00:00:00Z', '2026-10-25T03:00:00Z'),
       plannedStartUtc: '2026-10-24T23:00:00Z',
       plannedEndUtc: '2026-10-25T02:00:00Z',
-      facts: [{ label: '进度说明', value: '由宿主提供' }],
+      facts: [{ label: '共读进度', value: '已读完第一章，准备交流心得' }],
     },
     {
       ...task('discussion', '讨论与记录', '2026-10-25T03:00:00Z', '2026-10-26T04:00:00Z'),
