@@ -16,8 +16,8 @@ Node >=22.18，pnpm 11.22.0；具体命令、CSS 接入、workspace 恢复责任
 
 [T04/N02 / #46](https://github.com/Mang-X/nerv-ui/issues/46) 的输入、扫码与数字键盘从 `/#mobile-input` 直接访问，也可由 `/#mobile` 点击“随心记录”进入。12 件公开组件使用中性内存状态，保留其它入口；扫码在编辑表单或打开浮层时让出焦点。行为、字符串输入约束和浏览器/设备证据边界见 [移动接入](docs/mobile-standalone.md#输入扫码与数字键盘n02)。
 
-- `frontend/packages/ui`、`frontend/packages/ui-mobile`、`frontend/apps/playground`：当前活动 workspace。
-- `frontend/packages/{app-shell,scheduling}`、`frontend/apps/design-system`：保留的候选源码，待 #9/#8/#10 恢复参与安装和聚合命令。
+- `frontend/packages/ui`、`frontend/packages/ui-mobile`、`frontend/packages/scheduling`、`frontend/apps/playground`：当前活动 workspace。
+- `frontend/packages/app-shell`、`frontend/apps/design-system`：保留的候选源码，待 #9/#8/#10 恢复参与安装和聚合命令。
 - `frontend/DESIGN` 与 `DESIGN.md`：设计规则和资料；独立库增量决策优先回到当前接入文档。
 - `frontend/reference-tests`：旧库消费方参考契约，独立库命令不执行它们。
 - `migration/materials/source/frontend`：其他应用完整源码及 auth/business-core 原始素材，待解耦；不在活动 workspace 内。
@@ -43,8 +43,10 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 
 [T06/F01 / #72](https://github.com/Mang-X/nerv-ui/issues/72) 从 `/#files` 进入“留住片刻”，可从所有既有表面进入并返回。七种上传排列使用本页内存适配器，默认手动开始；本地图片提供缩放、旋转及状态恢复。接入与限制见 [独立文件接入](docs/files-standalone.md)，实际证据见 [F01 验证记录](docs/evidence/t06-f01/README.md)。PDF/Office、上传竞态及原生 HTTP 由 #73–#76 接续。
 
-[T07/P01 / #84](https://github.com/Mang-X/nerv-ui/issues/84) 从 `/#schedule` 进入“给片刻留个位置”，通过主桶 `NvScheduleTimeline` 显示中性任务、泳道、事实、分段、依赖与保留窗口，支持选择与外部模型更替。可由桌面进入并返回所有既有表面；接入/时间合同见[组件文档](frontend/apps/design-system/docs/components/desktop/schedule-timeline.md)，实际证据见 [P01 记录](docs/evidence/t07-p01/README.md)。只读 native 不代表真实 DHTMLX 或父 #8 已完成；scheduling workspace 仍待后续票恢复。
+[T07/P01 / #84](https://github.com/Mang-X/nerv-ui/issues/84) 从 `/#schedule` 进入“给片刻留个位置”，通过主桶 `NvScheduleTimeline` 显示中性任务、泳道、事实、分段、依赖与保留窗口，支持选择与外部模型更替。可由桌面进入并返回所有既有表面；接入/时间合同见[组件文档](frontend/apps/design-system/docs/components/desktop/schedule-timeline.md)，实际证据见 [P01 记录](docs/evidence/t07-p01/README.md)。P01 的只读 native 不代表真实 DHTMLX 或父 #8 已完成；当时未恢复的 scheduling workspace 由 P04 接续。
 
 [T07/P02 / #85](https://github.com/Mang-X/nerv-ui/issues/85) 提供候选 `@nerv-iip/scheduling/model` 的独立纯契约入口，复用 P01 visual types/renderer，事实、状态文案、任务时区与保留区间由宿主输入。旧 DTO 参数迁移、独立消费命令和 prepared-contract 边界见 [排程展示模型](docs/scheduling-model.md)；scheduling workspace/主桶整体运行仍由 P03/P04 接续。
 
-P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合同](docs/scheduling-host.md)；候选 scheduling 整包与真实 vendor 仍待 P04，独立 public consumer 不代表整包验收。
+P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合同](docs/scheduling-host.md)；P03 的独立 public consumer 不代表整包验收；当前 scheduling 整包与真实 vendor 的独立证据见 P04。
+
+[T07/P04 / #87](https://github.com/Mang-X/nerv-ui/issues/87) 从 `/#schedule-gantt` 展示真实只读 DHTMLX 与双实例，可返回原生时间安排。包/本地资源/生命周期与回落合同见 [引擎接入](docs/scheduling-renderer.md)，实际验证见 [P04 证据](docs/evidence/t07-p04/README.md)。资源投影、编辑和面板仍由 P05–P08 验收，授权 UNKNOWN。

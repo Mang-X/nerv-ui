@@ -22,6 +22,7 @@ function task(patch: Partial<ScheduleTask> = {}): ScheduleTask {
     text: '下料',
     startUtc: '2026-08-01T00:00:00.000Z',
     endUtc: '2026-08-01T03:00:00.000Z',
+    timezone: 'Asia/Shanghai',
     locked: false,
     hasConflict: false,
     ...patch,
@@ -56,6 +57,7 @@ describe('tooltipHtml 颜色事实源', () => {
   it('物料风险有真实 ETA 时显示统一的预计到料日期', () => {
     const html = tooltipHtml(
       task({
+        facts: [{ label: '物料', value: '预计到料 09-28' }],
         materialRisk: {
           orderId: 'WO-2026-03008',
           operationId: 'OP-10',

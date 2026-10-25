@@ -7,7 +7,17 @@
     ".": "./src/index.ts",
     "./model": "./src/model/index.ts",
     "./host": "./src/host.ts",
-    "./test-support": "./src/test-support.ts"
+    "./test-support": "./src/test-support.ts",
+    "./styles.css": "./src/styles/scheduling.css",
+    "./vendor": {
+      "types": "./vendor/dhtmlx/dhtmlxgantt.d.ts",
+      "default": "./vendor/dhtmlx/dhtmlxgantt.es.js"
+    },
+    "./vendor.css": "./vendor/dhtmlx/dhtmlxgantt.css",
+    "./vite": {
+      "types": "./vite.d.mts",
+      "default": "./vite.mjs"
+    }
   },
   "scripts": {
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",

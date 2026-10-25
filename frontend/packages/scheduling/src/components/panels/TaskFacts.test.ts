@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
-import { toModel } from '../../model/aps-mapper'
-import { samplePlan } from '../../model/fixtures'
+import { cloneModel } from '../../model/clone'
+import { sampleModel } from '../../test-fixtures/models'
 import { taskFactRows, withWorkOrderFacts } from '../../model/task-facts'
 import { cardHtml, tooltipHtml } from '../../engine/dhtmlx/DhtmlxEngine'
 import TaskDetailPanel from './TaskDetailPanel.vue'
@@ -9,28 +9,23 @@ import TaskFacts from './TaskFacts.vue'
 
 it('同一工序四处显示相同权威数值，并在页内展开真实商业关联', async () => {
   const model = withWorkOrderFacts(
-    toModel({
-      ...samplePlan,
-      assignments: [
+    cloneModel({
+      ...sampleModel,
+      tasks: [
         {
-          ...samplePlan.assignments![0],
-          currentExecution: {
-            workOrderProgress: { completedQuantity: 25, plannedQuantity: 100 },
-            isMaterialReady: false,
-            materialReadyUtc: null,
-            equipmentState: 'Running',
-            isEquipmentSourceFresh: false,
-          },
+          ...sampleModel.tasks[0],
         },
       ],
     }),
     [
       {
-        workOrderId: 'WO-001',
-        commercialSourceFacts: {
-          status: 'available',
-          salesOrders: [{ salesOrderNo: 'SO-261001-018', customerCode: 'CUST-018' }],
-        },
+        taskId: 'a1',
+        facts: [
+          { label: '工单进度', state: 'known', value: '25 / 100' },
+          { label: '物料', state: 'unknown', text: '缺料 · 未知到料日' },
+          { label: '销售订单', state: 'known', value: 'SO-261001-018' },
+          { label: '客户', state: 'known', value: 'CUST-018' },
+        ],
       },
     ],
   )
@@ -52,11 +47,11 @@ it('同一工序四处显示相同权威数值，并在页内展开真实商业�
 
 it('HTML图面把商业关联当文字，不能注入标签', () => {
   const task = {
-    ...toModel(samplePlan).tasks.find((item) => item.id === 'a1')!,
-    commercialSourceFacts: {
-      status: 'available' as const,
-      salesOrders: [{ salesOrderNo: '<img src=x>', customerCode: 'A&B' }],
-    },
+    ...cloneModel(sampleModel).tasks.find((item) => item.id === 'a1')!,
+    facts: [
+      { label: '销售订单', value: '<img src=x>' },
+      { label: '客户', value: 'A&B' },
+    ],
   }
   for (const html of [cardHtml(task), tooltipHtml(task)]) {
     expect(html).toContain('&lt;img src=x&gt;')

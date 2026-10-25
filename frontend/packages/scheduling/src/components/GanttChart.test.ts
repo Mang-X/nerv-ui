@@ -1,10 +1,14 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import { describe, expect, it } from 'vitest'
-import { toModel } from '../model/aps-mapper'
-import { samplePlan } from '../model/fixtures'
+import { beforeAll, describe, expect, it } from 'vitest'
+import { cloneModel } from '../model/clone'
+import { sampleModel } from '../test-fixtures/models'
 import GanttChart from './GanttChart.vue'
 import ResourceSchedulerBoard from './ResourceSchedulerBoard.vue'
+import { preloadGantt } from '../engine/dhtmlx/loader'
+beforeAll(async () => {
+  await preloadGantt()
+})
 import ReadonlyScheduleTimeline from './ReadonlyScheduleTimeline.vue'
 
 async function settle() {
@@ -18,24 +22,23 @@ async function settle() {
 
 describe('GanttChart', () => {
   it('keeps current execution facts on cards and tooltips without a commercial engine', async () => {
-    const model = toModel({
-      ...samplePlan,
-      assignments: [
+    const model = cloneModel({
+      ...sampleModel,
+      tasks: [
         {
-          ...samplePlan.assignments![0],
-          currentExecution: {
-            workOrderProgress: { completedQuantity: 25, plannedQuantity: 100 },
-            isMaterialReady: false,
-            materialReadyUtc: null,
-          },
+          ...sampleModel.tasks[0],
+          facts: [
+            { label: '工单进度', value: '25 / 100' },
+            { label: '物料', value: '缺料 · 未知到料日' },
+          ],
         },
       ],
     })
     const wrapper = mount(GanttChart, { props: { model, readOnly: true } })
     await settle()
     const card = wrapper.get('[data-task-id="a1"]')
-    expect(card.text()).toContain('工单进度25 / 100')
-    expect(card.text()).toContain('缺料 · 未知到料日')
+    expect(card.attributes('aria-label')).toContain('工单进度 25 / 100')
+    expect(card.attributes('aria-label')).toContain('缺料 · 未知到料日')
     expect(card.attributes('title')).toContain('工单进度 25 / 100')
     wrapper.unmount()
   })
@@ -46,7 +49,7 @@ describe('GanttChart', () => {
   })
 
   it('mounts with a model without throwing and renders the order container', async () => {
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     const wrapper = mount(GanttChart, {
       props: { model, scale: 'day' },
       attachTo: document.body,
@@ -58,7 +61,7 @@ describe('GanttChart', () => {
 
   it('shows the placeholder when no DHTMLX engine is available', async () => {
     const wrapper = mount(GanttChart, {
-      props: { model: toModel(samplePlan) },
+      props: { model: cloneModel(sampleModel) },
       attachTo: document.body,
     })
     await settle()
@@ -68,12 +71,12 @@ describe('GanttChart', () => {
 
   it('renders the package read-only timeline when DHTMLX is unavailable', async () => {
     const wrapper = mount(GanttChart, {
-      props: { model: toModel(samplePlan), scale: 'hour', readOnly: true },
+      props: { model: cloneModel(sampleModel), scale: 'hour', readOnly: true },
       attachTo: document.body,
     })
     await settle()
 
-    const timeline = wrapper.find('[data-testid="readonly-schedule-timeline"]')
+    const timeline = wrapper.find('[data-slot="nv-schedule-timeline"]')
     expect(timeline.exists()).toBe(true)
     expect(timeline.text()).toContain('WO-001')
     expect(timeline.text()).toContain('冲突')
@@ -86,25 +89,11 @@ describe('GanttChart', () => {
   })
 
   it('只读卡片显示真实预计到料日期，无 ETA 的风险不造日期', async () => {
-    const withEta = toModel({
-      ...samplePlan,
-      materialRisks: [
-        {
-          orderId: 'WO-001',
-          operationId: 'op-10',
-          reasonCodes: ['material-shortage'],
-          shortages: [],
-          message: '需在开工前完成备料',
-          materialReadyUtc: '2026-09-28T08:00:00.000Z',
-        },
-        {
-          orderId: 'WO-001',
-          operationId: 'op-20',
-          reasonCodes: ['material-shortage'],
-          shortages: [],
-          message: '需在开工前完成备料',
-          materialReadyUtc: null,
-        },
+    const withEta = cloneModel({
+      ...sampleModel,
+      tasks: [
+        { ...sampleModel.tasks[0], facts: [{ label: '物料', value: '预计到料 09-28' }] },
+        { ...sampleModel.tasks[1], facts: [{ label: '物料', value: '缺料待备' }] },
       ],
     })
     const wrapper = mount(GanttChart, {
@@ -116,9 +105,9 @@ describe('GanttChart', () => {
     const withEtaTask = wrapper.find('[data-task-id="a1"]')
     const withoutEtaTask = wrapper.find('[data-task-id="a2"]')
 
-    expect(withEtaTask.text()).toContain('预计到料 09-28')
     expect(withEtaTask.attributes('aria-label')).toContain('预计到料 09-28')
-    expect(withoutEtaTask.text()).toContain('缺料待备')
+    expect(withEtaTask.attributes('aria-label')).toContain('预计到料 09-28')
+    expect(withoutEtaTask.attributes('aria-label')).toContain('缺料待备')
     expect(withoutEtaTask.text()).not.toContain('预计到料')
     expect(withoutEtaTask.attributes('aria-label')).toContain('缺料待备')
     expect(withoutEtaTask.attributes('aria-label')).not.toContain('预计到料')
@@ -126,7 +115,7 @@ describe('GanttChart', () => {
   })
 
   it('shows a clear empty state when the schedule has no tasks', async () => {
-    const model = { ...toModel(samplePlan), tasks: [], links: [] }
+    const model = { ...cloneModel(sampleModel), tasks: [], links: [] }
     const wrapper = mount(GanttChart, {
       props: { model },
       attachTo: document.body,
@@ -140,7 +129,7 @@ describe('GanttChart', () => {
 describe('ResourceSchedulerBoard', () => {
   it('mounts and renders the resource container', async () => {
     const wrapper = mount(ResourceSchedulerBoard, {
-      props: { model: toModel(samplePlan), scale: 'day' },
+      props: { model: cloneModel(sampleModel), scale: 'day' },
       attachTo: document.body,
     })
     await settle()
@@ -150,18 +139,18 @@ describe('ResourceSchedulerBoard', () => {
 
   it('groups the read-only timeline into resource lanes', async () => {
     const wrapper = mount(ResourceSchedulerBoard, {
-      props: { model: toModel(samplePlan), scale: 'day', readOnly: true },
+      props: { model: cloneModel(sampleModel), scale: 'day', readOnly: true },
       attachTo: document.body,
     })
     await settle()
 
-    expect(wrapper.find('[data-testid="readonly-schedule-timeline"]').exists()).toBe(true)
-    expect(wrapper.findAll('[data-resource-lane]')).toHaveLength(2)
+    expect(wrapper.find('[data-slot="nv-schedule-timeline"]').exists()).toBe(true)
+    expect(wrapper.findAll('[data-lane-id]')).toHaveLength(2)
     wrapper.unmount()
   })
 
-  it('aligns day geometry to local calendar boundaries', async () => {
-    const model = toModel(samplePlan)
+  it('aligns day geometry to explicit UTC boundaries', async () => {
+    const model = cloneModel(sampleModel)
     model.horizon = {
       startUtc: '2026-06-10T00:00:00.000Z',
       endUtc: '2026-06-10T23:00:00.000Z',
@@ -185,9 +174,9 @@ describe('ResourceSchedulerBoard', () => {
     const task = wrapper.find('[data-task-id="a1"]')
     const taskStart = Date.parse('2026-06-10T16:00:00.000Z')
     const rangeStart = new Date('2026-06-10T00:00:00.000Z')
-    rangeStart.setHours(0, 0, 0, 0)
+    rangeStart.setUTCHours(0, 0, 0, 0)
     const rangeEnd = new Date('2026-06-10T23:00:00.000Z')
-    rangeEnd.setHours(24, 0, 0, 0)
+    rangeEnd.setUTCHours(24, 0, 0, 0)
     const expectedLeft =
       ((taskStart - rangeStart.getTime()) / (rangeEnd.getTime() - rangeStart.getTime())) * 100
     expect(Number.parseFloat((task.element as HTMLElement).style.left)).toBeCloseTo(expectedLeft, 5)
@@ -195,7 +184,7 @@ describe('ResourceSchedulerBoard', () => {
   })
 
   it('keeps tasks outside the declared horizon inside the timeline track', async () => {
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     model.horizon = {
       startUtc: '2026-06-10T00:00:00.000Z',
       endUtc: '2026-06-11T00:00:00.000Z',
@@ -227,7 +216,7 @@ describe('ResourceSchedulerBoard', () => {
   })
 
   it('uses the mapped task text in the read-only fallback', async () => {
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     model.tasks = model.tasks.map((task) =>
       task.id === 'a1' ? { ...task, text: 'WO-001 · 第 10 道 · 激光切割' } : task,
     )
@@ -238,32 +227,40 @@ describe('ResourceSchedulerBoard', () => {
     })
     await settle()
 
-    expect(wrapper.find('[data-task-id="a1"]').text()).toContain('激光切割')
+    expect(wrapper.find('[data-task-id="a1"]').attributes('aria-label')).toContain('激光切割')
     wrapper.unmount()
   })
 })
 
 describe('ReadonlyScheduleTimeline assembly dependencies', () => {
   it('keeps a visible dependency when child completion and parent start touch on the same resource row', () => {
-    const model = toModel({
-      ...samplePlan,
-      assignments: [
+    const model = cloneModel({
+      ...sampleModel,
+      tasks: [
         {
-          ...samplePlan.assignments![0],
-          assignmentId: 'child',
+          ...sampleModel.tasks[0],
+          id: 'child',
           orderId: 'WO-CHILD',
           startUtc: '2026-06-10T00:00:00.000Z',
           endUtc: '2026-06-10T01:00:00.000Z',
         },
         {
-          ...samplePlan.assignments![0],
-          assignmentId: 'parent',
+          ...sampleModel.tasks[0],
+          id: 'parent',
           orderId: 'WO-PARENT',
           startUtc: '2026-06-10T01:00:00.000Z',
           endUtc: '2026-06-10T02:00:00.000Z',
         },
       ],
-      assemblyDependencies: [{ childOrderId: 'WO-CHILD', parentOrderId: 'WO-PARENT' }],
+      horizon: { startUtc: '2026-06-10T00:00:00Z', endUtc: '2026-06-10T08:00:00Z' },
+      links: [
+        {
+          id: 'child->parent',
+          source: 'child',
+          target: 'parent',
+          type: 'finish_to_start' as const,
+        },
+      ],
     })
     const wrapper = mount(ReadonlyScheduleTimeline, {
       props: { model, view: 'resource', scale: 'hour' },
@@ -278,29 +275,32 @@ describe('ReadonlyScheduleTimeline assembly dependencies', () => {
 
   it('draws the child completion to parent start and removes the line when the relationship is absent', async () => {
     const plan = {
-      ...samplePlan,
-      assignments: [
-        ...samplePlan.assignments!,
+      ...sampleModel,
+      tasks: [
+        ...sampleModel.tasks,
         {
-          ...samplePlan.assignments![0],
-          assignmentId: 'assembly',
+          ...sampleModel.tasks[0],
+          id: 'assembly',
           orderId: 'WO-ASSEMBLY',
           resourceId: 'WC-ASSEMBLY',
+          dimensions: { workCenter: { id: 'WC-ASSEMBLY', label: '组装' } },
           workCenterId: 'WC-ASSEMBLY',
           startUtc: '2026-06-10T12:00:00.000Z',
           endUtc: '2026-06-10T14:00:00.000Z',
         },
       ],
-      assemblyDependencies: [{ childOrderId: 'WO-001', parentOrderId: 'WO-ASSEMBLY' }],
+      links: [
+        { id: 'a2->assembly', source: 'a2', target: 'assembly', type: 'finish_to_start' as const },
+      ],
     }
     const wrapper = mount(ReadonlyScheduleTimeline, {
-      props: { model: toModel(plan), view: 'resource' },
+      props: { model: cloneModel(plan), view: 'resource' },
     })
     const link = wrapper.get('[data-dependency-id="a2->assembly"]')
     expect(link.attributes('data-source')).toBe('a2')
     expect(link.attributes('data-target')).toBe('assembly')
     expect(link.get('path').attributes('d')).toBe('M 360 432 H 360 V 724 H 360')
-    await wrapper.setProps({ model: toModel({ ...plan, assemblyDependencies: [] }) })
+    await wrapper.setProps({ model: cloneModel({ ...plan, links: [] }) })
     expect(wrapper.find('[data-dependency-id]').exists()).toBe(false)
     wrapper.unmount()
   })

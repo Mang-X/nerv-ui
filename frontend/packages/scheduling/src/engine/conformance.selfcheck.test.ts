@@ -76,3 +76,13 @@ class FakeEngine implements SchedulingEngine {
 }
 
 describe('FakeEngine conformance', () => runEngineConformance(() => new FakeEngine()))
+
+// The public mount contract also permits a Promise; this selfcheck is still a
+// test double and does not certify vendor behavior.
+class AsyncFakeEngine extends FakeEngine {
+  async mount(container: HTMLElement, options: SchedulingEngineOptions): Promise<void> {
+    await Promise.resolve()
+    super.mount(container, options)
+  }
+}
+describe('AsyncFakeEngine conformance', () => runEngineConformance(() => new AsyncFakeEngine()))

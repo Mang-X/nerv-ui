@@ -131,6 +131,9 @@ const routes = [
 </script>
 
 <template>
+  <a href="#schedule-gantt" class="inline-flex min-h-11 items-center px-4 underline"
+    >真实只读甘特图</a
+  >
   <NvApp>
     <main class="mx-auto max-w-7xl space-y-6 p-4 sm:p-8">
       <nav

@@ -1,3 +1,4 @@
+import { scheduleInstant } from '@nerv-iip/ui/schedule-model'
 import { factoryTimeInput, scheduleTime } from '../../model/factory-time'
 import { factoryUnit } from './factory-scale'
 import { freezeWindow, projectFreezeWindow } from '../../model/freeze-window'
@@ -16,7 +17,7 @@ import {
 import { conflictReasonLabel } from '../../model/labels'
 import { materialReadyLabel } from '../../model/material-risk'
 import { resolveTimeScale } from '../../model/scale'
-import { createGanttInstanceSync } from './loader'
+import { createGanttInstanceSync, releaseGanttInstance } from './loader'
 import { applySkin } from './skin'
 
 // DHTMLX gantt 实例的最小子集(只声明适配器用到的成员)。
@@ -517,6 +518,7 @@ export class DhtmlxEngine implements SchedulingEngine {
   private shownLinkIds: string[] = []
   private resizeObserver?: ResizeObserver
   private resizeRaf = 0
+  private dragTimers = new Set<ReturnType<typeof setTimeout>>()
   /** 资源时间块:泳道 id → 时段窗口列表,供 timeline_cell_class 给单元格上底纹(块不作任务条)。 */
   private blockCells = new Map<string, { start: number; end: number; kind: string }[]>()
   /** 工序 id → 该工序所属资源/工作中心(工单甘特里按行找它对应的时间块)。 */
@@ -536,20 +538,43 @@ export class DhtmlxEngine implements SchedulingEngine {
     this.createInstance = deps.createInstance ?? createGanttInstanceSync
   }
 
-  mount(container: HTMLElement, options: SchedulingEngineOptions): void {
+  private mountGeneration = 0
+
+  mount(container: HTMLElement, options: SchedulingEngineOptions): void | Promise<void> {
+    const generation = ++this.mountGeneration
     this.container = container
     this.options = options
     this.scale = options.scale
     applySkin(container, options.theme)
-    // DHTMLX 自身布局/网格样式由应用层(business-console main.ts / 预览入口)导入,
-    // 经 vite alias 指向 vendor 或空 stub,避免污染包测试面。
+    // loader 同时加载保留 vendor 与结构 CSS；宿主使用包的 Vite 字体/层序 transform。
     const inst = this.createInstance() as DhxGantt | null
-    if (!inst) return // 不可用:useEngine 不会挂载本引擎,组件显示占位。
+    if (!inst) throw new Error('DHTMLX 实例不可用（单例已占用或模块缺失）')
     this.gantt = inst
 
     this.configure(inst, options)
     this.wireEvents(inst)
-    inst.init(container)
+    this.eventIds.push(inst.attachEvent('onBeforeLightbox', () => false))
+    this.eventIds.push(inst.attachEvent('onLinkCreated', () => false))
+    this.eventIds.push(inst.attachEvent('onLinkDblClick', () => false))
+    const initialized = inst.init(container) as unknown
+    if (initialized && typeof (initialized as PromiseLike<void>).then === 'function') {
+      return Promise.resolve(initialized).then(() => {
+        if (generation !== this.mountGeneration) {
+          inst.destructor?.()
+          container.replaceChildren()
+          return
+        }
+        this.finishMount(inst, container, options)
+      })
+    }
+    this.finishMount(inst, container, options)
+  }
+
+  private finishMount(
+    inst: DhxGantt,
+    container: HTMLElement,
+    options: SchedulingEngineOptions,
+  ): void {
     // 容器尺寸常在挂载后才定型(文档/响应式布局、字体或图片加载后回流)。DHTMLX 不自动重排,
     // 会停在初始(可能为 0/极窄)宽度,时间线塌陷成 1px。观察容器尺寸变化并 rAF 去抖重排。
     if (typeof ResizeObserver !== 'undefined') {
@@ -688,6 +713,20 @@ export class DhtmlxEngine implements SchedulingEngine {
   }
 
   setData(model: ScheduleModel): void {
+    const intervals = [
+      model.horizon,
+      ...model.tasks,
+      ...model.tasks.flatMap((task) => task.segments ?? []),
+    ]
+    if (
+      intervals.some(
+        (interval) =>
+          !Number.isFinite(scheduleInstant(interval.startUtc)) ||
+          !Number.isFinite(scheduleInstant(interval.endUtc)),
+      )
+    ) {
+      throw new Error('实际时刻必须包含 Z 或显式偏移，且为有效日期')
+    }
     this.model = model
     const g = this.gantt
     if (!g) return
@@ -755,7 +794,7 @@ export class DhtmlxEngine implements SchedulingEngine {
           g.config.readonly = command.readOnly
           g.config.drag_move = nativeDrag
           g.config.drag_resize = !command.readOnly
-          g.config.drag_links = !command.readOnly && this.options.view === 'order'
+          g.config.drag_links = false
           g.render()
         }
         break
@@ -798,10 +837,13 @@ export class DhtmlxEngine implements SchedulingEngine {
   }
 
   destroy(): void {
+    this.mountGeneration++
     const g = this.gantt
     if (g?.detachEvent) for (const id of this.eventIds) g.detachEvent(id)
     this.eventIds.length = 0
     this.listeners.clear()
+    for (const timer of this.dragTimers) clearTimeout(timer)
+    this.dragTimers.clear()
     if (this.pointerMove) document.removeEventListener('mousemove', this.pointerMove)
     if (this.pointerUp) document.removeEventListener('mouseup', this.pointerUp)
     if (this.pointerDown && this.container)
@@ -826,6 +868,7 @@ export class DhtmlxEngine implements SchedulingEngine {
     this.resizeObserver?.disconnect()
     this.resizeObserver = undefined
     g?.destructor?.()
+    if (g) releaseGanttInstance(g)
     this.gantt = undefined
     this.markerId = undefined
     if (this.container) {
@@ -942,7 +985,9 @@ export class DhtmlxEngine implements SchedulingEngine {
     const nativeDrag = !options.readOnly && options.view !== 'resource'
     c.drag_move = nativeDrag
     c.drag_resize = !options.readOnly
-    c.drag_links = !options.readOnly && options.view === 'order'
+    c.drag_links = false
+    c.details_on_dblclick = false
+    c.details_on_create = false
     c.drag_progress = false
     // 网格内拖拽换分支暂时关闭(onAfterTaskMove 易误触、破坏拖拽);改派后续用时间线跨行拖拽实现。
     c.order_branch = false
@@ -1113,6 +1158,7 @@ export class DhtmlxEngine implements SchedulingEngine {
     )
     this.eventIds.push(
       inst.attachEvent('onBeforeTaskDrag', (id, mode) => {
+        if (this.options.readOnly) return false
         const taskId = String(id)
         const task = inst.getTask(taskId)?.nerv
         if ((task?.segments?.length ?? 0) > 1) return false
@@ -1489,7 +1535,11 @@ export class DhtmlxEngine implements SchedulingEngine {
     }
     // 关键:延后到 DHTMLX 完成本次拖拽后再上报。同步上报会触发上层 setData →
     // clearAll()+parse() 在拖拽回调内重建数据,破坏拖拽中的条(收成一条线)。
-    setTimeout(() => this.emit('taskDragEnd', payload), 0)
+    const timer = setTimeout(() => {
+      this.dragTimers.delete(timer)
+      if (!this.options.readOnly) this.emit('taskDragEnd', payload)
+    }, 0)
+    this.dragTimers.add(timer)
   }
 
   /** 把 DHTMLX 的 task_id 属性镜像为统一的 data-task-id,供契约/选择器统一定位。 */

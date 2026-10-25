@@ -11,6 +11,7 @@
     "test": "vp test run src"
   },
   "dependencies": {
+    "@nerv-iip/scheduling": "workspace:*",
     "@nerv-iip/ui": "workspace:*",
     "@nerv-iip/ui-mobile": "workspace:*",
     "vue": "3.5.39"

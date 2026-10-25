@@ -1,8 +1,8 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import { describe, expect, it } from 'vitest'
-import { toModel } from '../model/aps-mapper'
-import { samplePlan } from '../model/fixtures'
+import { cloneModel } from '../model/clone'
+import { sampleModel } from '../test-fixtures/models'
 import SchedulingWorkbench from './SchedulingWorkbench.vue'
 
 async function settle() {
@@ -14,7 +14,7 @@ async function settle() {
 describe('SchedulingWorkbench', () => {
   it('renders the order gantt view', async () => {
     const wrapper = mount(SchedulingWorkbench, {
-      props: { model: toModel(samplePlan), defaultView: 'order' },
+      props: { model: cloneModel(sampleModel), defaultView: 'order' },
       attachTo: document.body,
     })
     await settle()
@@ -28,7 +28,7 @@ describe('SchedulingWorkbench', () => {
 
   it('renders the resource board view', async () => {
     const wrapper = mount(SchedulingWorkbench, {
-      props: { model: toModel(samplePlan), defaultView: 'resource' },
+      props: { model: cloneModel(sampleModel), defaultView: 'resource' },
       attachTo: document.body,
     })
     await settle()
@@ -38,7 +38,7 @@ describe('SchedulingWorkbench', () => {
 
   it('surfaces conflicts in business language in the side panel', async () => {
     const wrapper = mount(SchedulingWorkbench, {
-      props: { model: toModel(samplePlan) },
+      props: { model: cloneModel(sampleModel) },
       attachTo: document.body,
     })
     await settle()

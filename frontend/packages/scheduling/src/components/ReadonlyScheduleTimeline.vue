@@ -1,642 +1,73 @@
 <script setup lang="ts">
-import { LockIcon, TriangleAlertIcon } from '@lucide/vue'
-import { scheduleTime } from '../model/factory-time'
+import { NvScheduleTimeline, type NvScheduleVisualModel } from '@nerv-iip/ui'
 import { computed } from 'vue'
-import type { TimeScale } from '../engine/engine'
-import { freezeWindow, projectFreezeWindow } from '../model/freeze-window'
-import { taskFactRows } from '../model/task-facts'
-import { materialReadyLabel } from '../model/material-risk'
-import type { LaneOrder, ScheduleModel, ScheduleTask } from '../model/types'
-
-const props = withDefaults(
-  defineProps<{
-    model: ScheduleModel
-    view: 'order' | 'resource'
-    scale?: TimeScale
-    groupBy?: string
-    laneOrder?: LaneOrder
-  }>(),
-  { scale: 'auto', groupBy: 'workCenter', laneOrder: 'busiest' },
-)
-
-const emit = defineEmits<{
-  taskSelect: [taskId: string]
-  conflictClick: [taskId: string]
+import type { LaneOrder, ScheduleModel, TimeScale } from '../model/types'
+const props = defineProps<{
+  model: ScheduleModel
+  view: 'order' | 'resource'
+  scale?: TimeScale
+  groupBy?: string
+  laneOrder?: LaneOrder
 }>()
-
-const EIGHT_HOURS = 8 * 60 * 60 * 1000
-const ONE_DAY = 24 * 60 * 60 * 1000
-const LABEL_WIDTH = 224
-const TASK_ROW_HEIGHT = 280
-
-interface PositionedTask {
-  task: ScheduleTask
-  row: number
-  left: number
-  width: number
-}
-
-interface TimelineLane {
-  id: string
-  label: string
-  tasks: PositionedTask[]
-  rowCount: number
-  freeze?: ReturnType<typeof projectFreezeWindow>
-}
-
-const operationTasks = computed(() =>
-  props.model.tasks
-    // 资源时间块(维护/停机/换线/换型)不是工序:只读时间轴画不了单元格底纹,
-    // 与其把它冒充成一道工序条,不如不画(泳道的「N 道工序」读数也才是真的)。
-    .filter((task) => task.type === 'operation' && !task.blockKind)
-    .filter(
-      (task) =>
-        Number.isFinite(Date.parse(task.startUtc)) && Number.isFinite(Date.parse(task.endUtc)),
-    )
-    .filter((task) => Date.parse(task.endUtc) > Date.parse(task.startUtc)),
-)
-
-const resolvedScale = computed<'shift' | 'day'>(() => {
-  if (props.scale === 'hour') return 'shift'
-  if (props.scale !== 'auto') return 'day'
-  const duration = Date.parse(props.model.horizon.endUtc) - Date.parse(props.model.horizon.startUtc)
-  return duration > 0 && duration <= 2 * ONE_DAY ? 'shift' : 'day'
-})
-
-const stepMs = computed(() => (resolvedScale.value === 'shift' ? EIGHT_HOURS : ONE_DAY))
-
-function floorToLocalBoundary(timestamp: number) {
-  const value = new Date(timestamp)
-  if (props.model.timezones) {
-    const step = stepMs.value
-    return Math.floor(timestamp / step) * step
-  }
-  if (resolvedScale.value === 'day') {
-    value.setHours(0, 0, 0, 0)
-  } else {
-    value.setHours(Math.floor(value.getHours() / 8) * 8, 0, 0, 0)
-  }
-  return value.getTime()
-}
-
-function nextLocalBoundary(timestamp: number) {
-  if (props.model.timezones) return timestamp + stepMs.value
-  const value = new Date(timestamp)
-  if (resolvedScale.value === 'day') value.setDate(value.getDate() + 1)
-  else value.setHours(value.getHours() + 8)
-  return value.getTime()
-}
-
-function ceilToLocalBoundary(timestamp: number) {
-  const floor = floorToLocalBoundary(timestamp)
-  return floor === timestamp ? floor : nextLocalBoundary(floor)
-}
-
-const range = computed(() => {
-  const starts = operationTasks.value.map((task) => Date.parse(task.startUtc))
-  const ends = operationTasks.value.map((task) => Date.parse(task.endUtc))
-  const rawStart = Date.parse(props.model.horizon.startUtc)
-  const rawEnd = Date.parse(props.model.horizon.endUtc)
-  const fallbackStart = starts.length > 0 ? Math.min(...starts) : Date.now()
-  const fallbackEnd = ends.length > 0 ? Math.max(...ends) : fallbackStart + stepMs.value
-  const startCandidates = [...starts, fallbackStart]
-  const endCandidates = [...ends, fallbackEnd]
-  if (Number.isFinite(rawStart)) startCandidates.push(rawStart)
-  if (Number.isFinite(rawEnd)) endCandidates.push(rawEnd)
-  const axisStart = floorToLocalBoundary(Math.min(...startCandidates))
-  const axisEnd = Math.max(
-    nextLocalBoundary(axisStart),
-    ceilToLocalBoundary(Math.max(...endCandidates)),
+const emit = defineEmits<{ taskSelect: [taskId: string]; conflictClick: [taskId: string] }>()
+// Adapter only: the sole native renderer is owned by ui/P01. No domain projection.
+const visual = computed<NvScheduleVisualModel>(() => {
+  const dimension = props.groupBy ?? 'workCenter'
+  const laneOf = (t: ScheduleModel['tasks'][number]) =>
+    t.dimensions?.[dimension]?.id ?? t.resourceId ?? t.workCenterId ?? 'unassigned'
+  const resources = new Map(
+    props.model.groupValues?.[dimension]?.map((v) => [v.id, { id: v.id, label: v.label }]),
   )
-  return { start: axisStart, end: axisEnd, duration: axisEnd - axisStart }
+  for (const r of props.model.resources)
+    if (!resources.has(r.id)) resources.set(r.id, { id: r.id, label: r.text })
+  const operations = props.model.tasks.filter((t) => t.type === 'operation' && !t.blockKind)
+  for (const t of operations) {
+    const id = laneOf(t)
+    if (!resources.has(id)) resources.set(id, { id, label: t.dimensions?.[dimension]?.label ?? id })
+  }
+  return {
+    horizon: { start: props.model.horizon.startUtc, end: props.model.horizon.endUtc },
+    timezones: props.model.timezones,
+    groups: props.model.tasks
+      .filter((t) => t.type === 'order')
+      .map((t) => ({ id: t.id, label: t.text })),
+    resources: [...resources.values()],
+    tasks: operations.map((t) => ({
+      id: t.id,
+      label: t.text,
+      groupId: t.parentId,
+      resourceId: laneOf(t),
+      start: t.startUtc,
+      end: t.endUtc,
+      timezone: t.timezone,
+      facts: t.facts,
+      locked: t.locked,
+      conflictLabel: t.hasConflict ? '冲突' : undefined,
+      statusLabels: t.statusLabels,
+      segments: t.segments?.map((s, i) => ({
+        id: `${t.id}:${i}`,
+        start: s.startUtc,
+        end: s.endUtc,
+      })),
+    })),
+    links: props.model.links,
+    windows: props.model.freezeContext?.windows.map((w, i) => ({
+      id: `freeze:${i}`,
+      laneId: w.workCenterId,
+      start: w.startUtc,
+      end: w.endUtc,
+      label: '保留窗口',
+    })),
+  }
 })
-
-const ticks = computed(() => {
-  const result: Array<{ key: number; label: string; left: number; width: number }> = []
-  for (let time = range.value.start; time < range.value.end; time = nextLocalBoundary(time)) {
-    const next = nextLocalBoundary(time)
-    result.push({
-      key: time,
-      label: tickLabel(time),
-      left: ((time - range.value.start) / range.value.duration) * 100,
-      width: ((next - time) / range.value.duration) * 100,
-    })
-  }
-  return result
-})
-
-const timelineWidth = computed(() => {
-  const unitWidth = resolvedScale.value === 'shift' ? 168 : 144
-  return Math.max(720, ticks.value.length * unitWidth)
-})
-
-const resourceNames = computed(
-  () => new Map(props.model.resources.map((resource) => [resource.id, resource.text])),
-)
-const dimensionNames = computed(
-  () =>
-    new Map(
-      (props.model.groupValues?.[props.groupBy] ?? []).map((value) => [value.id, value.label]),
-    ),
-)
-
-const laneLabel = (task: ScheduleTask | undefined, laneId: string) => {
-  if (props.view === 'order') return task?.orderId || '未关联工单'
-  return (
-    task?.dimensions?.[props.groupBy]?.label ??
-    dimensionNames.value.get(laneId) ??
-    resourceNames.value.get(laneId) ??
-    task?.workCenterId ??
-    task?.resourceId ??
-    '未分配资源'
-  )
-}
-
-const lanes = computed<TimelineLane[]>(() => {
-  const groups = new Map<string, ScheduleTask[]>()
-  if (props.view === 'resource') {
-    for (const value of props.model.groupValues?.[props.groupBy] ?? []) {
-      groups.set(value.id, [])
-    }
-  }
-  for (const task of operationTasks.value) {
-    const laneId =
-      props.view === 'order'
-        ? task.orderId || '__unlinked__'
-        : (task.dimensions?.[props.groupBy]?.id ?? task.resourceId ?? '__unassigned__')
-    const tasks = groups.get(laneId) ?? []
-    tasks.push(task)
-    groups.set(laneId, tasks)
-  }
-
-  // 泳道排序（只在资源视图有意义；订单视图的泳道就是订单本身）。
-  // 默认忙闲降序：按车间/产线分组时名录里的空泳道会挤在首屏，演示第一眼像坏了。
-  // 「仅有排程」只作可选项——空泳道保留是 #1428 的有意设计，不做默认。
-  const laneOrder = props.view === 'resource' ? props.laneOrder : 'busiest'
-  const entries =
-    laneOrder === 'onlyScheduled'
-      ? [...groups.entries()].filter(([, tasks]) => tasks.length > 0)
-      : [...groups.entries()]
-  if (laneOrder === 'busiest') {
-    // 同样忙（含都为空）时保持插入序，即名录顺序，避免每次渲染抖动。
-    const seed = new Map([...groups.keys()].map((id, index) => [id, index]))
-    entries.sort(
-      (a, b) => b[1].length - a[1].length || (seed.get(a[0]) ?? 0) - (seed.get(b[0]) ?? 0),
-    )
-  } else if (laneOrder === 'name') {
-    entries.sort((a, b) =>
-      laneLabel(a[1][0], a[0]).localeCompare(laneLabel(b[1][0], b[0]), 'zh-Hans-CN'),
-    )
-  }
-
-  return entries.map(([id, tasks]) => {
-    const rowEnds: number[] = []
-    const positioned = [...tasks]
-      .sort((left, right) => Date.parse(left.startUtc) - Date.parse(right.startUtc))
-      .map((task) => {
-        const start = Date.parse(task.startUtc)
-        const end = Date.parse(task.endUtc)
-        let row = rowEnds.findIndex((rowEnd) => rowEnd <= start)
-        if (row === -1) {
-          row = rowEnds.length
-          rowEnds.push(end)
-        } else {
-          rowEnds[row] = end
-        }
-        return {
-          task,
-          row,
-          left: ((start - range.value.start) / range.value.duration) * 100,
-          width: ((end - start) / range.value.duration) * 100,
-        }
-      })
-
-    const window =
-      props.view === 'resource' && props.groupBy === 'workCenter'
-        ? freezeWindow(props.model.freezeContext, id)
-        : undefined
-    return {
-      id,
-      label: laneLabel(tasks[0], id),
-      tasks: positioned,
-      rowCount: Math.max(1, rowEnds.length),
-      freeze: window ? projectFreezeWindow(window, range.value.start, range.value.end) : undefined,
-    }
-  })
-})
-
-const laneHeight = (lane: TimelineLane) => Math.max(72, lane.rowCount * TASK_ROW_HEIGHT + 12)
-
-const dependencyLayout = computed(() => {
-  const positions = new Map<string, { orderId: string; start: number; end: number; y: number }>()
-  let height = 0
-  for (const lane of lanes.value) {
-    for (const positioned of lane.tasks) {
-      positions.set(positioned.task.id, {
-        orderId: positioned.task.orderId,
-        start: (positioned.left / 100) * timelineWidth.value,
-        end: ((positioned.left + positioned.width) / 100) * timelineWidth.value,
-        y: height + positioned.row * TASK_ROW_HEIGHT + TASK_ROW_HEIGHT / 2,
-      })
-    }
-    height += laneHeight(lane)
-  }
-  const links = props.model.links.flatMap((link) => {
-    const source = positions.get(link.source)
-    const target = positions.get(link.target)
-    if (!source || !target || source.orderId === target.orderId) return []
-    const elbow = (source.end + target.start) / 2
-    return [
-      {
-        ...link,
-        path:
-          source.y === target.y
-            ? `M ${source.end} ${source.y} H ${source.end + 12} V ${source.y - 28} H ${target.start - 12} V ${target.y} H ${target.start}`
-            : `M ${source.end} ${source.y} H ${elbow} V ${target.y} H ${target.start}`,
-        arrow: `${target.start - 5},${target.y - 4} ${target.start},${target.y} ${target.start - 5},${target.y + 4}`,
-      },
-    ]
-  })
-  return { links, height }
-})
-
-const groupLabel = computed(() => {
-  if (props.view === 'order') return '工单 / 工序'
-  return (
-    props.model.groupDimensions?.find((dimension) => dimension.key === props.groupBy)?.label ??
-    '资源'
-  )
-})
-
-function tickLabel(timestamp: number) {
-  if (props.model.timezones)
-    return props.model.timezones
-      .map(
-        (zone) =>
-          `${zone} · ${scheduleTime(new Date(timestamp).toISOString(), zone, { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}`,
-      )
-      .join(' / ')
-  const value = new Date(timestamp)
-  if (resolvedScale.value === 'shift') {
-    const start = value.toLocaleTimeString('zh-CN', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    })
-    const end = new Date(timestamp + EIGHT_HOURS).toLocaleTimeString('zh-CN', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    })
-    return `${value.toLocaleDateString('zh-CN', { month: 'numeric', day: 'numeric' })} ${start}–${end}`
-  }
-  return value.toLocaleDateString('zh-CN', { month: 'numeric', day: 'numeric', weekday: 'short' })
-}
-
-function taskTime(task: ScheduleTask) {
-  const options: Intl.DateTimeFormatOptions = {
-    month: 'numeric',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }
-  return `${task.factoryTimeLabel ?? ''} ${scheduleTime(task.startUtc, task.timezone, options)}–${scheduleTime(task.endUtc, task.timezone, options)}`
-}
-
-function taskLabel(task: ScheduleTask) {
-  if (task.text.trim()) return task.text
-  const sequence = task.operationSequence > 0 ? `第 ${task.operationSequence} 道` : '工序'
-  return `${task.orderId || '未关联工单'} · ${sequence}`
-}
-
-function taskAriaLabel(task: ScheduleTask) {
-  const parts = [taskLabel(task), taskTime(task)]
-  if (task.hasConflict) parts.push('冲突')
-  if (task.downtimeRisk) parts.push(task.downtimeRisk)
-  if (task.locked) parts.push('锁定')
-  if (task.materialRisk) parts.push(materialReadyLabel(task.materialRisk) ?? '缺料待备')
-  return parts.join('，')
-}
-
-function selectTask(task: ScheduleTask) {
-  emit('taskSelect', task.id)
-  if (task.hasConflict) emit('conflictClick', task.id)
-}
 </script>
-
 <template>
-  <div
-    data-testid="readonly-schedule-timeline"
-    class="nv-readonly-timeline h-full min-h-80 overflow-auto rounded-md border bg-card"
-  >
-    <div :style="{ width: `${LABEL_WIDTH + timelineWidth}px` }">
-      <div
-        class="nv-timeline-grid nv-timeline-header"
-        :style="{ gridTemplateColumns: `${LABEL_WIDTH}px ${timelineWidth}px` }"
-      >
-        <div class="nv-timeline-label nv-timeline-label--header">{{ groupLabel }}</div>
-        <div class="nv-timeline-axis" aria-hidden="true">
-          <div
-            v-for="tick in ticks"
-            :key="tick.key"
-            class="nv-timeline-tick"
-            :style="{ left: `${tick.left}%`, width: `${tick.width}%` }"
-          >
-            {{ tick.label }}
-          </div>
-        </div>
-      </div>
-
-      <div class="nv-timeline-body">
-        <div
-          v-for="lane in lanes"
-          :key="lane.id"
-          :data-resource-lane="view === 'resource' ? lane.id : undefined"
-          class="nv-timeline-grid nv-timeline-lane"
-          :style="{
-            gridTemplateColumns: `${LABEL_WIDTH}px ${timelineWidth}px`,
-            minHeight: `${laneHeight(lane)}px`,
-          }"
-        >
-          <div class="nv-timeline-label">
-            <span class="nv-timeline-label__name">{{ lane.label }}</span>
-            <span class="nv-timeline-label__count">{{ lane.tasks.length }} 道工序</span>
-          </div>
-          <div class="nv-timeline-track">
-            <span
-              v-if="lane.freeze"
-              class="nv-scheduling-freeze-window"
-              data-freeze-window
-              :data-start-utc="lane.freeze.startUtc"
-              :data-end-utc="lane.freeze.endUtc"
-              :style="{ left: `${lane.freeze.left}%`, width: `${lane.freeze.width}%` }"
-              aria-hidden="true"
-            />
-            <span
-              v-for="tick in ticks"
-              :key="tick.key"
-              class="nv-timeline-gridline"
-              :style="{ left: `${tick.left}%` }"
-              aria-hidden="true"
-            />
-            <button
-              v-for="positioned in lane.tasks"
-              :key="positioned.task.id"
-              type="button"
-              :data-task-id="positioned.task.id"
-              :data-conflict="positioned.task.hasConflict || undefined"
-              :data-locked="positioned.task.locked || undefined"
-              class="nv-timeline-task"
-              :class="{
-                'nv-timeline-task--conflict':
-                  positioned.task.hasConflict || Boolean(positioned.task.downtimeRisk),
-                'nv-timeline-task--locked': positioned.task.locked,
-              }"
-              :style="{
-                left: `${positioned.left}%`,
-                top: `${positioned.row * TASK_ROW_HEIGHT + 8}px`,
-                width: `${positioned.width}%`,
-              }"
-              :aria-label="taskAriaLabel(positioned.task)"
-              :title="
-                taskFactRows(positioned.task)
-                  .map(([label, value]) => `${label} ${value}`)
-                  .join('\n')
-              "
-              @click="selectTask(positioned.task)"
-            >
-              <span class="nv-timeline-task__title">{{ taskLabel(positioned.task) }}</span>
-              <span
-                v-for="([label, value], index) in taskFactRows(positioned.task)"
-                :key="index"
-                class="nv-timeline-task__fact"
-              >
-                <span>{{ label }}</span
-                ><span>{{ value }}</span>
-              </span>
-              <span class="nv-timeline-task__meta">
-                <span>{{ taskTime(positioned.task) }}</span>
-                <span v-if="positioned.task.hasConflict" class="nv-timeline-task__status">
-                  <TriangleAlertIcon aria-hidden="true" />冲突
-                </span>
-                <span v-if="positioned.task.downtimeRisk" class="nv-timeline-task__status"
-                  >停机风险</span
-                >
-                <span v-if="positioned.task.locked" class="nv-timeline-task__status">
-                  <LockIcon aria-hidden="true" />锁定
-                </span>
-                <span v-if="positioned.task.materialRisk" class="nv-timeline-task__status">
-                  {{ materialReadyLabel(positioned.task.materialRisk) ?? '缺料待备' }}
-                </span>
-              </span>
-            </button>
-          </div>
-        </div>
-        <svg
-          v-if="dependencyLayout.links.length"
-          class="nv-timeline-dependencies"
-          :style="{ left: `${LABEL_WIDTH}px` }"
-          :width="timelineWidth"
-          :height="dependencyLayout.height"
-          aria-label="装配工单依赖"
-        >
-          <g
-            v-for="link in dependencyLayout.links"
-            :key="link.id"
-            :data-dependency-id="link.id"
-            :data-source="link.source"
-            :data-target="link.target"
-          >
-            <path :d="link.path" />
-            <polygon :points="link.arrow" />
-          </g>
-        </svg>
-      </div>
-    </div>
-  </div>
+  <NvScheduleTimeline
+    :model="visual"
+    :view="view === 'order' ? 'task' : 'resource'"
+    :scale="scale === 'hour' ? 'eightHours' : scale === 'auto' || !scale ? 'auto' : 'day'"
+    :lane-order="laneOrder"
+    @task-select="emit('taskSelect', $event)"
+    @conflict-click="emit('conflictClick', $event)"
+  />
 </template>
-
-<style scoped>
-@layer nv-components {
-  .nv-timeline-body {
-    position: relative;
-  }
-
-  .nv-timeline-dependencies {
-    position: absolute;
-    top: 0;
-    z-index: 3;
-    pointer-events: none;
-    color: var(--primary);
-  }
-
-  .nv-timeline-dependencies path {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.5;
-  }
-
-  .nv-timeline-dependencies polygon {
-    fill: currentColor;
-  }
-
-  .nv-timeline-grid {
-    display: grid;
-  }
-
-  .nv-timeline-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    min-height: 3rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--card);
-  }
-
-  .nv-timeline-label {
-    position: sticky;
-    left: 0;
-    z-index: 10;
-    display: flex;
-    min-width: 0;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.2rem;
-    border-right: 1px solid var(--border);
-    background: var(--card);
-    padding: 0.75rem 1rem;
-  }
-
-  .nv-timeline-label--header {
-    z-index: 30;
-    color: var(--muted-foreground);
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-
-  .nv-timeline-label__name {
-    overflow: hidden;
-    color: var(--foreground);
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .nv-timeline-label__count {
-    color: var(--muted-foreground);
-    font-size: 0.75rem;
-  }
-
-  .nv-timeline-axis,
-  .nv-timeline-track {
-    position: relative;
-    min-width: 0;
-  }
-
-  .nv-timeline-tick {
-    position: absolute;
-    inset-block: 0;
-    display: flex;
-    align-items: center;
-    border-left: 1px solid var(--border);
-    color: var(--muted-foreground);
-    font-size: 0.72rem;
-    font-weight: 500;
-    padding-inline: 0.6rem;
-    white-space: nowrap;
-  }
-
-  .nv-timeline-lane {
-    border-bottom: 1px solid color-mix(in oklch, var(--border), transparent 35%);
-  }
-
-  .nv-timeline-track {
-    background: color-mix(in oklch, var(--muted), transparent 65%);
-  }
-
-  .nv-timeline-gridline {
-    position: absolute;
-    inset-block: 0;
-    border-left: 1px dashed color-mix(in oklch, var(--border), transparent 25%);
-  }
-
-  .nv-timeline-task__fact {
-    display: flex;
-    gap: 0.35rem;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 0.7rem;
-  }
-
-  .nv-timeline-task {
-    position: absolute;
-    z-index: 2;
-    display: flex;
-    height: 16.5rem;
-    min-width: 0;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.2rem;
-    overflow: hidden;
-    border: 1px solid color-mix(in oklch, var(--primary), transparent 25%);
-    border-radius: var(--radius-md);
-    background: color-mix(in oklch, var(--primary), var(--card) 82%);
-    color: var(--foreground);
-    padding: 0.4rem 0.6rem;
-    text-align: left;
-    box-shadow: var(--shadow-xs);
-  }
-
-  .nv-timeline-task:hover,
-  .nv-timeline-task:focus-visible {
-    border-color: var(--primary);
-    outline: none;
-    box-shadow: 0 0 0 2px color-mix(in oklch, var(--ring), transparent 55%);
-  }
-
-  .nv-timeline-task--conflict {
-    border-width: 2px;
-    border-color: var(--destructive);
-    background: color-mix(in oklch, var(--destructive), var(--card) 88%);
-  }
-
-  .nv-timeline-task--locked {
-    border-style: dashed;
-  }
-
-  .nv-timeline-task__title {
-    overflow: hidden;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .nv-timeline-task__meta {
-    display: flex;
-    min-width: 0;
-    align-items: center;
-    gap: 0.45rem;
-    overflow: hidden;
-    color: var(--muted-foreground);
-    font-size: 0.65rem;
-    white-space: nowrap;
-  }
-
-  .nv-timeline-task__status {
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-    gap: 0.15rem;
-    color: var(--foreground);
-    font-weight: 700;
-  }
-
-  .nv-timeline-task__status svg {
-    width: 0.7rem;
-    height: 0.7rem;
-  }
-}
-</style>

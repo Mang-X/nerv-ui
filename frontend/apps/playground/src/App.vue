@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import ScreenDemo from './ScreenDemo.vue'
 import FilesDemo from './FilesDemo.vue'
+import RealGanttDemo from './RealGanttDemo.vue'
 import ScheduleDemo from './ScheduleDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
@@ -81,7 +82,8 @@ function addProject() {
 </script>
 
 <template>
-  <ScheduleDemo v-if="surface === '#schedule'" />
+  <RealGanttDemo v-if="surface === '#schedule-gantt'" />
+  <ScheduleDemo v-else-if="surface === '#schedule'" />
   <FilesDemo v-else-if="surface === '#files'" />
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />

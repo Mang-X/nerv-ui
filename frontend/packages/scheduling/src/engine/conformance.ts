@@ -40,10 +40,10 @@ const baseModel = (): ScheduleModel => ({
 })
 
 export function runEngineConformance(makeEngine: () => SchedulingEngine): void {
-  it('mounts, renders one node per task, and exposes state', () => {
+  it('mounts, renders one node per task, and exposes state', async () => {
     const el = document.createElement('div')
     const engine = makeEngine()
-    engine.mount(el, baseOptions())
+    await engine.mount(el, baseOptions())
     const model: ScheduleModel = baseModel()
     engine.setData(model)
     expect(el.querySelectorAll('[data-task-id]').length).toBe(model.tasks.length)
@@ -51,11 +51,11 @@ export function runEngineConformance(makeEngine: () => SchedulingEngine): void {
     engine.destroy()
   })
 
-  it('applies scaleTo command and reports via scaleChanged', () => {
+  it('applies scaleTo command and reports via scaleChanged', async () => {
     const el = document.createElement('div')
     const engine = makeEngine()
     let reported: string | undefined
-    engine.mount(el, baseOptions())
+    await engine.mount(el, baseOptions())
     engine.on('scaleChanged', (p) => {
       reported = p.scale
     })
@@ -66,11 +66,11 @@ export function runEngineConformance(makeEngine: () => SchedulingEngine): void {
     engine.destroy()
   })
 
-  it('selectTask command emits taskSelected with normalized id', () => {
+  it('selectTask command emits taskSelected with normalized id', async () => {
     const el = document.createElement('div')
     const engine = makeEngine()
     let selected: string | undefined
-    engine.mount(el, baseOptions())
+    await engine.mount(el, baseOptions())
     engine.on('taskSelected', (p) => {
       selected = p.taskId
     })
@@ -81,10 +81,10 @@ export function runEngineConformance(makeEngine: () => SchedulingEngine): void {
     engine.destroy()
   })
 
-  it('destroy cleans the container', () => {
+  it('destroy cleans the container', async () => {
     const el = document.createElement('div')
     const engine = makeEngine()
-    engine.mount(el, baseOptions())
+    await engine.mount(el, baseOptions())
     engine.setData(baseModel())
     engine.destroy()
     expect(el.children.length).toBe(0)
