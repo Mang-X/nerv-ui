@@ -11,3 +11,5 @@
 旧算法/断言/fixtures 原字节另存非活动 `frontend/reference-adapters/nerv-iip/t07-p03` 与 `frontend/reference-tests/nerv-iip/t07-p03`；原64文件归属见 [本轮证据](../../../docs/evidence/t07-p03/README.md)。P04 已将受影响 engine/UI 测试改为直接展示输入；原字节另存 `frontend/reference-tests/nerv-iip/t07-p04`。fake 与保留的 vendor conformance skip 不代表真实引擎，实际执行统计见 [P04 证据](../../../docs/evidence/t07-p04/README.md)。
 
 DHTMLX 固定 9.1.4 Professional Evaluation；vendor 声明与水印保持，授权范围 UNKNOWN。无发布、升级或替换。
+
+P05 资源只读投影的 `resources/groupValues/groupBy/laneOrder`、可选资源维度归属、0/未知指标、日历/块/冻结与 native 能力边界见 [资源合同](../../../docs/scheduling-renderer.md#p05资源只读投影与分组)。独立入口 `/#schedule-resources/library` 与 `/#schedule-resources/studio`；实际 RED/GREEN 和浏览器证据见 [P05 记录](../../../docs/evidence/t07-p05/README.md)。

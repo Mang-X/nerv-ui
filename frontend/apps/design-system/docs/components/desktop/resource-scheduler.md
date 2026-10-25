@@ -144,6 +144,8 @@ const fmtDur = (t) => Math.round((Date.parse(t.endUtc) - Date.parse(t.startUtc))
 
 # ResourceSchedulerBoard 资源甘特图
 
+> P05 当前资源只读合同与两个中性入口见 [引擎接入与资源投影](../../../../../../docs/scheduling-renderer.md#p05资源只读投影与分组)。`ScheduleResource.dimensions` 明确空资源归属；KPI 的 0 与未知不同，无日历不猜作息。下文编辑组合保留为已有能力材料，P07/P08 与完整文档站 #10 分别验收；这里不代表其已完成。
+
 一资源一泳道,左轴维度可切换(工作中心 / 设备 / 班组 / 产线)。给计划员看机台负载、换型与过载。来自 `@nerv-iip/scheduling`,与 `GanttChart` 同模型、同引擎。
 
 拖动工单卡片可改时间(横向)或改派到另一资源泳道(纵向);时间轴由 DHTMLX 引擎渲染,无本地引擎包时画布显示占位。
@@ -424,6 +426,8 @@ function setResource(rid: string) {
 **Expose**:`command(cmd)`。
 
 ## 相关
+
+只读投影中的资源、工作中心和其它维度使用各自的 ID 空间。任务 `workCenterId` 可明确工作中心归属，任务/资源的 `dimensions` 仍按既有优先级生效。完全缺少当前维度信息时才兼容按资源展示；这种行可显示资源关联的日历和块，但不借用同串工作中心的日历或保留窗口。完整合同见[资源只读投影与分组](../../../../../../docs/scheduling-renderer.md#p05资源只读投影与分组)。
 
 - [GanttChart 工单甘特](./gantt-chart) — 同一模型的工单/工序时间线视角。
 - [业务操作编辑工序](#业务操作编辑工序) — 独立排产板 + 板外编辑面板,改开始时间 / 资源泳道 / 锁定并实时回写。

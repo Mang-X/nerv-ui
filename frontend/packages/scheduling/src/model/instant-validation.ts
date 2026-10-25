@@ -7,6 +7,7 @@ export function hasInvalidModelTime(model: ScheduleModel): boolean {
     model.horizon,
     ...model.tasks,
     ...model.tasks.flatMap((task) => task.segments ?? []),
+    ...(model.calendars ?? []).flatMap((calendar) => calendar.shiftWindows),
   ]
   return (
     intervals.some(

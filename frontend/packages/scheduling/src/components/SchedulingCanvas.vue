@@ -6,6 +6,7 @@ import { hasInvalidModelTime } from '../model/instant-validation'
 import { factoryTimeInput } from '../model/factory-time'
 import type { TaskDragPayload, TimeScale } from '../engine/engine'
 import type { LaneOrder, ScheduleModel } from '../model/types'
+import { resourceProjection } from '../model/resource-projection'
 import ReadonlyScheduleTimeline from './ReadonlyScheduleTimeline.vue'
 import { useEngine } from './useEngine'
 import '../styles/scheduling.css'
@@ -43,7 +44,13 @@ const unresolvedFactoryTime = computed(
       )),
 )
 const invalidModelTime = computed(() => props.model != null && hasInvalidModelTime(props.model))
-const isEmpty = computed(() => props.model != null && props.model.tasks.length === 0)
+const isEmpty = computed(
+  () =>
+    props.model != null &&
+    (props.view === 'resource'
+      ? resourceProjection(props.model, props.groupBy, props.laneOrder).lanes.length === 0
+      : props.model.tasks.length === 0),
+)
 
 const { command, engineName, error } = useEngine({
   container,

@@ -61,3 +61,34 @@ pnpm -C frontend dev
 时间信息有误时，页面提示核对任务的日期、时间和时区；时区缺失或无效时，提示核对工厂时区设置并保留当前草案。初始化异常显示重新加载页面、仍失败时联系管理员的操作提示；原始错误仍保存在 `useEngine` 的 `error` 诊断状态中，不直接拼入用户 alert。缺模块时，编辑提示切换只读查看时间安排或重新加载页面。
 
 这些文案不改变严格 UTC/offset 实际时刻、只读回落或页面级失败缓存合同；Z/offset、宿主解析与模块缓存说明继续由本页及展示模型文档承载。Evaluation、UNKNOWN 与真实水印保留。P01 共享 `NvScheduleTimeline` 的通用 UTC/offset/备用轴提示并非 P04 独有文案，本轮记录为跨 owner 延后，不修改共享 renderer 或其任务过滤语义。
+
+## P05：资源只读投影与分组
+
+[#88](https://github.com/Mang-X/nerv-ui/issues/88) 保留公开 `ResourceSchedulerBoard`、全部既有 props/emits 与 `command`。两个中性宿主分别从 `/#schedule-resources/library`、`/#schedule-resources/studio` 进入，可回到时间安排、共读活动和桌面；均为 workspace 源码消费，不是 #11 的打包安装验收。
+
+`model.groupDimensions` 给出维度键与标签，`groupValues[维度键]` 给出全量泳道、名称和同忙时的稳定名录顺序。`groupBy`、`laneOrder` 是受控输入；传入 `groupBy` 时门面不显示内部维度选择器，也不替宿主改写输入。未传入时保留内部选择和 `update:groupBy`。
+
+- `busiest`：工序数降序，同忙回到名录顺序；`name`：按名称排序。这两种保留空泳道、仅块泳道。
+- `onlyScheduled`：显式只显示有普通工序的泳道，过滤空泳道和仅块泳道；块、里程碑不计活动数。这是原有筛选语义，并非删除模型。
+- 泳道来源依次为全量名录、资源的明确维度归属、任务/块的明确归属。名录标签优先，不因任务数组重排被覆盖。任务 id、资源 id、维度 id 分属不同空间；相同字符串不证明关联，生成泳道 id 与任务冲突时只调整内部泳道 id，公开任务身份保持原样。点击泳道不发 `taskSelect`。
+- `ScheduleResource.dimensions?: Record<string, DimensionValue>` 是本票唯一公开类型增量，归 P05 呈现合同：与 `ScheduleTask.dimensions` 同形，让无任务资源明确属于哪个维度。任务自己的维度优先，其次资源明确归属；工作中心可用明确 `workCenterId`。维度存在名录/明确归属时，缺失归属进入“未分配”，不把设备 id 当作另一维度 id。完全没有该维度信息的旧输入保留按资源的兼容兜底；接入方应提供明确归属。
+
+```ts
+const resource: ScheduleResource = {
+  id: 'room-7',
+  text: '晨光书房',
+  utilization: 0,
+  dimensions: {
+    workCenter: { id: 'space-east', label: '东区空间' },
+    team: { id: 'reading-group', label: '共读小组' },
+  },
+}
+```
+
+KPI 仅从泳道明确关联的资源/负荷取值。单一资源的 utilization/OEE/切换/待料原值保留；输入有限数值 `0` 是已知零，不隐藏。指标在至少一条可见泳道已知时显示，其他泳道缺失或非有限值为“—”，不补零。全部未知的指标隐藏；全部已知零仍显示。利用率 `>1` 显示百分比与“超出容量”。多资源没有可直接归属的非加性事实时保持未知；负荷齐全时利用率保留既有 assigned/available 呈现汇总，available=0 使用输入 utilization，不推导资格、OEE或领域风险。部分资源缺负荷不伪造完整利用率。
+
+日历分别以 `resourceIds`、`workCenterIds` 的明确空间索引，不跨相等字符串串用；无适用日历不画周末/夜间，不借其他泳道日历。工作中心直接日历优先，否则只有资源成员日历完整时才显示该组的工作窗口并集。`shiftWindows: []` 表示明确无工作窗口，与没有适用日历不同。块按当前维度归属显示，冻结只在 workCenter 维度匹配 `freezeContext` 的明确 id，保持精确区间投影。资源兼容兜底行保留资源关联的日历和块，不继承同串工作中心的日历或冻结。任一任务（包括块）提供 `workCenterId` 即属于该维度的明确信息，判定覆盖完整任务集合；它不提供其它维度的归属。外部替换模型会重建泳道、指标、日历和块，不留旧行。
+
+P04 私有 vendor 子 root、退役 detach 保树、Evaluation 1ms 后析构、实例/container token 与迟到所有权保护保持；共享回归在 [P05 证据](evidence/t07-p05/README.md) 分列。只读不写输入、不发编辑事件；P06/P07 编辑验收、P08 面板、P11 风险、后端 APS 不在本票。
+
+缺模块仍复用 P01 唯一 native renderer；资源归属、排序、空/仅块泳道、块和工作中心保留窗口使用同一投影。native 的 KPI 资源头、班次日历底纹、多刻度、缩放与编辑不具备 vendor 等价能力，不以回落测试替代真实 vendor。商业授权仍 UNKNOWN，未发布。

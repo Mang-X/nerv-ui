@@ -1,0 +1,444 @@
+{
+  "base": "655b37430c42a9262b85f05817d9ded1186bf67c",
+  "branch": "feat/t07-p05-resource-projection",
+  "tests": [
+    {
+      "name": "scheduling-release",
+      "discovery": 129,
+      "statuses": {
+        "passed": 125,
+        "skipped": 4
+      },
+      "sourceDocs": 0,
+      "behavior": 129,
+      "skipped": [
+        "DhtmlxEngine conformance (requires @dhx/trial-gantt) mounts, renders one node per task, and exposes state",
+        "DhtmlxEngine conformance (requires @dhx/trial-gantt) applies scaleTo command and reports via scaleChanged",
+        "DhtmlxEngine conformance (requires @dhx/trial-gantt) selectTask command emits taskSelected with normalized id",
+        "DhtmlxEngine conformance (requires @dhx/trial-gantt) destroy cleans the container"
+      ],
+      "publicTests": [
+        {
+          "name": "public resource headers preserve known zero unknown and overload without borrowing a colliding resource id",
+          "status": "passed"
+        },
+        {
+          "name": "public controlled dimensions and three orders retain catalog empty and block-only lanes and stable task events after reorder",
+          "status": "passed"
+        },
+        {
+          "name": "public empty resources and all-zero metrics remain visible without a task or an empty-state overlay",
+          "status": "passed"
+        },
+        {
+          "name": "public generated lane ids never replace a colliding task identity or emit a lane as a task",
+          "status": "passed"
+        },
+        {
+          "name": "public resource names remain literal text even when they contain markup",
+          "status": "passed"
+        },
+        {
+          "name": "public calendar block and freeze backgrounds stay scoped to their input namespace and clear on replacement",
+          "status": "passed"
+        },
+        {
+          "name": "public missing-module fallback shares dimension membership empty lanes block windows and exact selection ids",
+          "status": "passed"
+        },
+        {
+          "name": "public resource hour axis never invents night or early shift names from missing calendar data",
+          "status": "passed"
+        },
+        {
+          "name": "public resource calendar contains 'bare wall time' and recovers without guessing shift instants",
+          "status": "passed"
+        },
+        {
+          "name": "public resource calendar contains 'invalid calendar day' and recovers without guessing shift instants",
+          "status": "passed"
+        }
+      ],
+      "actualReporter": {
+        "unhandledCount": 0,
+        "reason": "passed",
+        "errors": []
+      }
+    },
+    {
+      "name": "ui",
+      "discovery": 811,
+      "statuses": {
+        "passed": 811
+      },
+      "sourceDocs": 6,
+      "behavior": 805,
+      "skipped": [],
+      "publicTests": [],
+      "actualReporter": {
+        "unhandledCount": 0,
+        "reason": "passed",
+        "errors": []
+      }
+    },
+    {
+      "name": "mobile",
+      "discovery": 146,
+      "statuses": {
+        "passed": 146
+      },
+      "sourceDocs": 2,
+      "behavior": 144,
+      "skipped": [],
+      "publicTests": [],
+      "actualReporter": {
+        "unhandledCount": 0,
+        "reason": "passed",
+        "errors": []
+      }
+    },
+    {
+      "name": "host-final4",
+      "discovery": 296,
+      "statuses": {
+        "passed": 296
+      },
+      "sourceDocs": 0,
+      "behavior": 296,
+      "skipped": [],
+      "publicTests": [],
+      "actualReporter": {
+        "unhandledCount": 0,
+        "reason": "passed",
+        "errors": []
+      }
+    },
+    {
+      "name": "pure-model-corrected",
+      "discovery": 20,
+      "statuses": {
+        "passed": 20
+      },
+      "sourceDocs": 0,
+      "behavior": 20,
+      "skipped": [],
+      "publicTests": [],
+      "actualReporter": {
+        "unhandledCount": 0,
+        "reason": "passed",
+        "errors": []
+      }
+    },
+    {
+      "name": "pure-host-corrected",
+      "discovery": 50,
+      "statuses": {
+        "passed": 50
+      },
+      "sourceDocs": 0,
+      "behavior": 50,
+      "skipped": [],
+      "publicTests": [],
+      "actualReporter": {
+        "unhandledCount": 0,
+        "reason": "passed",
+        "errors": []
+      }
+    },
+    {
+      "name": "docs-source",
+      "discovery": 6,
+      "statuses": {
+        "passed": 6
+      },
+      "sourceDocs": 6,
+      "behavior": 0,
+      "skipped": [],
+      "publicTests": [],
+      "actualReporter": {
+        "unhandledCount": 0,
+        "reason": "passed",
+        "errors": []
+      }
+    }
+  ],
+  "formalFourPackageBehavior": {
+    "discovery": 1374,
+    "passed": 1370,
+    "skipped": 4
+  },
+  "sourceDocsIncludedInBroadRun": 8,
+  "bodyReceipts": [
+    {
+      "lane": "root-release",
+      "url": "http://127.0.0.1:4215/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "514",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:32 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 514,
+      "sha256": "2742ea0da0bcc85725b1c995153f2ad40d8111cb3b753d6a232ad076f77ab6c2",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "root-release",
+      "url": "http://127.0.0.1:4215/assets/index-jucu-wp3.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "923171",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:32 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 923171,
+      "sha256": "807d4c7f348128db0da0ad7e8e274109b7dd3f20d12eea959225fc2a0a64d259",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "root-release",
+      "url": "http://127.0.0.1:4215/assets/index-BsIA9YH5.css",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "329952",
+        "content-type": "text/css; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:32 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 329952,
+      "sha256": "e47d24da7172bdf7b64eb6a2c7396f21183278db9c8398bdae5b026defb62d1c",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "root-release",
+      "url": "http://127.0.0.1:4215/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "706201",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:32 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 706201,
+      "sha256": "ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "root-release",
+      "url": "http://127.0.0.1:4215/assets/dhtmlxgantt-DePP4erS.css",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "139046",
+        "content-type": "text/css; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:32 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 139046,
+      "sha256": "27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "root-release",
+      "url": "http://127.0.0.1:4215/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "48256",
+        "content-type": "font/woff2",
+        "date": "Sun, 25 Oct 2026 19:08:32 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "nested-release",
+      "url": "http://127.0.0.1:4216/p05/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "526",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:34 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 526,
+      "sha256": "f14653b92010ec88e472c12c25c38f2b51ca78b9edf437ba6c31f7e73d611e6e",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "nested-release",
+      "url": "http://127.0.0.1:4216/p05/assets/index-CvBTLh3D.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "923219",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:34 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 923219,
+      "sha256": "e226b41a731b3ca59aca4c599dc0582be5bf8d2f4b46cd8202fda6dccd63d4d0",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "nested-release",
+      "url": "http://127.0.0.1:4216/p05/assets/index-DamEH0f1.css",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "329980",
+        "content-type": "text/css; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:34 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 329980,
+      "sha256": "ffe471fe218e1a005c1ebef820268859eff68d9f13acb99e79e34c9e0df711ee",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "nested-release",
+      "url": "http://127.0.0.1:4216/p05/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "706201",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:34 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 706201,
+      "sha256": "ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "nested-release",
+      "url": "http://127.0.0.1:4216/p05/assets/dhtmlxgantt-DePP4erS.css",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "139046",
+        "content-type": "text/css; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 19:08:34 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 139046,
+      "sha256": "27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    },
+    {
+      "lane": "nested-release",
+      "url": "http://127.0.0.1:4216/p05/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-length": "48256",
+        "content-type": "font/woff2",
+        "date": "Sun, 25 Oct 2026 19:08:34 GMT",
+        "keep-alive": "timeout=5"
+      },
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "actualBodyEqualsFreshDist": true,
+      "readbackEqualsCurrentDist": true
+    }
+  ],
+  "browserCommands": [
+    {
+      "name": "round-19-release-matrix",
+      "file": "/tmp/nerv-ui-t07-p05/browser/round-19-release-matrix.mjs",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p05-resource-projection",
+      "started": "2026-10-25T19:07:08.722Z",
+      "finished": "2026-10-25T19:07:34.480Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "round-20-release-interactions",
+      "file": "/tmp/nerv-ui-t07-p05/browser/round-20-release-interactions.mjs",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p05-resource-projection",
+      "started": "2026-10-25T19:07:34.531Z",
+      "finished": "2026-10-25T19:08:01.511Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "round-21-release-lifecycle",
+      "file": "/tmp/nerv-ui-t07-p05/browser/round-21-release-lifecycle.mjs",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p05-resource-projection",
+      "started": "2026-10-25T19:08:01.550Z",
+      "finished": "2026-10-25T19:08:19.818Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "round-22-release-resources",
+      "file": "/tmp/nerv-ui-t07-p05/browser/round-22-release-resources.mjs",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p05-resource-projection",
+      "started": "2026-10-25T19:08:19.848Z",
+      "finished": "2026-10-25T19:08:34.667Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "round-23-release-fallback",
+      "file": "/tmp/nerv-ui-t07-p05/browser/round-23-release-fallback.mjs",
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p05-resource-projection",
+      "started": "2026-10-25T19:08:34.699Z",
+      "finished": "2026-10-25T19:08:38.745Z",
+      "exit": 0,
+      "signal": null,
+      "error": null
+    }
+  ],
+  "runtimeLifecycleSameAsBase": true,
+  "lockWholeObjectEqual": {
+    "byteEqual": true,
+    "packages": 973,
+    "snapshots": 973,
+    "packagesDeepEqual": true,
+    "snapshotsDeepEqual": true,
+    "importersDeepEqual": true,
+    "wholeObjectDeepEqual": true
+  },
+  "nativeZoom80And125": "UNRUN",
+  "independentMerger": "UNRUN",
+  "CI": "UNRUN",
+  "packed": "UNRUN",
+  "authorization": "UNKNOWN"
+}

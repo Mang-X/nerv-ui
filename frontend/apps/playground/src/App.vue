@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import ScreenDemo from './ScreenDemo.vue'
 import FilesDemo from './FilesDemo.vue'
+import ResourceScheduleDemo from './ResourceScheduleDemo.vue'
 import RealGanttDemo from './RealGanttDemo.vue'
 import ScheduleDemo from './ScheduleDemo.vue'
 import TouchDemo from './TouchDemo.vue'
@@ -82,7 +83,12 @@ function addProject() {
 </script>
 
 <template>
-  <RealGanttDemo v-if="surface === '#schedule-gantt'" />
+  <ResourceScheduleDemo
+    v-if="surface === '#schedule-resources/library' || surface === '#schedule-resources/studio'"
+    :key="surface"
+    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
+  <RealGanttDemo v-else-if="surface === '#schedule-gantt'" />
   <ScheduleDemo v-else-if="surface === '#schedule'" />
   <FilesDemo v-else-if="surface === '#files'" />
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
@@ -94,6 +100,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#schedule-resources/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >空间安排</a
+      >
       <a href="#schedule" class="inline-flex min-h-11 items-center px-4 underline">时间安排</a>
       <a href="#files" class="inline-flex min-h-11 items-center px-4 underline">留住片刻</a>
       <a

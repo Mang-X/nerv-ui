@@ -594,7 +594,8 @@
   /* 资源时间块(维护/停机/换线/换型):走时间线「单元格」底纹(与非工作日历同一实现),
    恒在卡片之下、与格子融为一体、绝不覆盖卡片。见 DhtmlxEngine timeline_cell_class + blockCells。
    斜纹按块类型着色;若同格也是非工作(nerv-offwork),两者叠加不冲突。 */
-  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block {
+  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block,
+  .nerv-gantt-dhx .nv-scheduling-block-window {
     --blk: var(--muted-foreground);
     background-image: repeating-linear-gradient(
       -45deg,
@@ -604,16 +605,20 @@
       color-mix(in srgb, var(--blk) 15%, transparent) 6px
     ) !important;
   }
-  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block-maintenance {
+  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block-maintenance,
+  .nerv-gantt-dhx .nv-scheduling-block-window.nerv-cell-block-maintenance {
     --blk: var(--nv-scheduling-block-maintenance);
   }
-  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block-downtime {
+  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block-downtime,
+  .nerv-gantt-dhx .nv-scheduling-block-window.nerv-cell-block-downtime {
     --blk: var(--nv-scheduling-block-downtime);
   }
-  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block-lineChange {
+  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block-lineChange,
+  .nerv-gantt-dhx .nv-scheduling-block-window.nerv-cell-block-lineChange {
     --blk: var(--nv-scheduling-block-linechange);
   }
-  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block-changeover {
+  .nerv-gantt-dhx .gantt_task_cell.nerv-cell-block-changeover,
+  .nerv-gantt-dhx .nv-scheduling-block-window.nerv-cell-block-changeover {
     --blk: var(--nv-scheduling-block-changeover);
   }
   .nerv-gantt-dhx .nerv-card {
@@ -1119,5 +1124,32 @@
     border-color: var(--destructive) !important;
     box-shadow: inset 0 0 0 1px var(--destructive) !important;
     background-color: color-mix(in oklch, var(--destructive) 16%, var(--card)) !important;
+  }
+}
+
+@layer nv-components {
+  /* Resource cells keep semantic classes; fragments carry exact input geometry at every scale. */
+  .nerv-gantt-dhx[data-view='resource'] .gantt_task_cell.nerv-offwork {
+    background-color: transparent !important;
+  }
+  .nerv-gantt-dhx[data-view='resource'] .gantt_task_cell.nerv-cell-block {
+    background-image: none !important;
+  }
+  .nerv-gantt-dhx[data-view='resource'] .gantt_task_cell.nerv-shift-start {
+    border-left-color: transparent !important;
+  }
+  .nv-scheduling-interval {
+    position: absolute;
+    inset-block: 0;
+    pointer-events: none;
+  }
+  .nv-scheduling-offwork {
+    background-color: color-mix(in srgb, var(--foreground) 3%, transparent);
+  }
+  .nv-scheduling-shift-boundary {
+    position: absolute;
+    inset-block: 0;
+    border-left: 1px dashed color-mix(in srgb, var(--foreground) 55%, transparent);
+    pointer-events: none;
   }
 }

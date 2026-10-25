@@ -9,6 +9,7 @@ import {
 import { computed, ref, watch } from 'vue'
 import type { EngineCommand, TaskDragPayload, TimeScale } from '../engine/engine'
 import type { LaneOrder, ScheduleModel } from '../model/types'
+import { resourceProjection } from '../model/resource-projection'
 import SchedulingCanvas from './SchedulingCanvas.vue'
 
 // 资源排产板:一资源一泳道,左轴维度可切换(设备 / 班组 / 产线 / 工作中心…)。
@@ -40,17 +41,13 @@ const groupBy = computed({
   },
 })
 watch(dimensions, (list) => {
-  if (list.length && !list.some((d) => d.key === groupBy.value)) groupBy.value = list[0].key
+  if (props.groupBy == null && list.length && !list.some((d) => d.key === groupBy.value))
+    groupBy.value = list[0].key
 })
 
-const laneCount = computed(() => {
-  const ops = (props.model?.tasks ?? []).filter((t) => t.type === 'operation')
-  const lanes = new Set([
-    ...(props.model?.groupValues?.[groupBy.value]?.map((value) => value.id) ?? []),
-    ...ops.map((t) => t.dimensions?.[groupBy.value]?.id ?? t.resourceId ?? '未分配'),
-  ])
-  return lanes.size
-})
+const laneCount = computed(() =>
+  props.model ? resourceProjection(props.model, groupBy.value, props.laneOrder).lanes.length : 0,
+)
 
 const canvas = ref<InstanceType<typeof SchedulingCanvas>>()
 function command(cmd: EngineCommand) {

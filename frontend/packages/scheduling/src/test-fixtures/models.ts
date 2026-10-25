@@ -93,6 +93,7 @@ export const sampleModelWithCalendar: ScheduleModel = {
     {
       ...firstTask,
       id: 'block:maint',
+      dimensions: { workCenter: { id: 'WC-002', label: '花园' } },
       resourceId: 'WC-002',
       workCenterId: 'WC-002',
       blockKind: 'maintenance',
