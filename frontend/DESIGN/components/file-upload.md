@@ -19,6 +19,7 @@
 - `FileUploadCreateSessionRequest`
 - `FileUploadCompleteSessionRequest`
 - `FileUploadExpose`
+- `FileUploadVariant`
 - `FileUploadMode`
 - `FileUploadProvider`
 - `FileUploadSession`
@@ -37,9 +38,9 @@
 5. `autoUpload` 默认为 `true`；设为 `false` 时，选中或拖放的文件保持排队，直到通过暴露的组件 API 调用 `uploadQueued()`。
 6. 暴露的命令式方法仅限上传工作流控制：`browse`、`addFiles`、`uploadQueued`、`pauseAll`、`resumeAll`、`retryFailed` 和 `clear`。
 7. 拖放和浏览入口共用相同的验证和 FileStorage 会话流程。
-8. 行进入/移除和拖放悬停反馈使用 Vue 过渡类和 Tailwind 语义化 tokens；当前 primitive 不需要 `motion-vue` 依赖。
+8. 行进入/移除和拖放悬停反馈使用 `motion-v` 的 `MotionConfig`、`AnimatePresence` 和 `motion.*`，遵从 `reduced-motion="user"`；CSS 继续使用现有语义令牌。
 9. 未来可用 Uppy 适配器替换传输，以支持更丰富的重试策略、来源提供方工作流或更广泛的 tus 协议覆盖范围，且不改变视觉契约。
-10. 拒绝的大小/类型、过期会话、校验和不匹配和中断上传错误均作为行级状态呈现；重试已过期的失败会话时，会在传输启动前创建新的上传会话。
+10. 拒绝的大小/类型、过期会话、校验和不匹配和中断上传错误均作为行级状态呈现；单行 `retryRow` 重试已过期的失败会话时，会在传输启动前创建新的上传会话；批量 `retryFailed` 的过期一致性由 #73 跟进。
 11. 被拒绝和失败的行保持可见，以便反馈或重试，但不占用可用上传槽位。
 12. 大型队列在超过 `virtualizeThreshold` 行后，从带动画的完整渲染切换为固定高度的虚拟化滚动容器；小型队列保留行进入/移除过渡。
 

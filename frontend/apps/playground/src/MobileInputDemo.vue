@@ -44,6 +44,7 @@ function trackEditor(target: EventTarget | null, host: EventTarget | null) {
         <p class="text-sm text-muted-foreground">留住生活里的小小灵感</p>
         <h1 class="text-2xl font-semibold">随心记录</h1>
         <nav aria-label="演示入口" class="flex flex-wrap gap-4 text-sm underline">
+          <a href="#files" class="inline-flex min-h-11 items-center px-3 underline">留住片刻</a>
           <a href="#mobile-feedback" class="inline-flex min-h-touch items-center">片刻回响</a>
           <a href="#mobile-lists" class="inline-flex min-h-touch items-center">翻阅时光</a>
           <a href="#mobile" class="inline-flex min-h-touch items-center">随行手记</a>

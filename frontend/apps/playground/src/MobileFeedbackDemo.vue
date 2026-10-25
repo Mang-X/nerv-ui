@@ -28,6 +28,7 @@ const { isDark, toggle } = useColorMode()
         <p class="text-sm text-muted-foreground">日常的小事，也有温柔的回应</p>
         <h1 class="text-2xl font-semibold">片刻回响</h1>
         <nav aria-label="演示入口" class="flex flex-wrap gap-4 text-sm underline">
+          <a href="#files" class="inline-flex min-h-11 items-center px-3 underline">留住片刻</a>
           <a href="#mobile" class="inline-flex min-h-touch items-center">随行手记</a
           ><a href="#mobile-input" class="inline-flex min-h-touch items-center">随心记录</a
           ><a href="#mobile-overlays" class="inline-flex min-h-touch items-center">片刻安排</a

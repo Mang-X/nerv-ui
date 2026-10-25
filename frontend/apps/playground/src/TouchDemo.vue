@@ -72,6 +72,7 @@ function resetReading() {
   <NvApp>
     <main class="mx-auto max-w-6xl space-y-8 p-6">
       <nav aria-label="演示入口">
+        <a href="#files" class="inline-flex min-h-11 items-center px-3 underline">留住片刻</a>
         <a href="#mobile-feedback" class="inline-flex min-h-touch items-center">片刻回响</a>
         <a href="#mobile-lists" class="inline-flex min-h-touch items-center">翻阅时光</a>
         <a

@@ -40,3 +40,5 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 [T05/A04 / #61](https://github.com/Mang-X/nerv-ui/issues/61) 从 `/#screen/data` 进入“流动消息”，展示独立来源的等待／失败／保留／恢复、刷新与启停，以及自动轮巡和手动翻阅。接入见 [独立大屏接入](docs/screen-standalone.md#a04流动消息与轮询生命周期)，公开行为与实际浏览器证据见 [A04 验证记录](docs/evidence/t05-a04/README.md)。
 
 [T05/A07 / #64](https://github.com/Mang-X/nerv-ui/issues/64) 从 `/#screen/summary` 进入“空间使用概况”。三件既有组件通过可选 tone、标签/单位与四态文案复用文化空间、共享办公来源；未知与空数据显式呈现。接入见 [独立大屏接入](docs/screen-standalone.md#a07主指标比较摘要与时间分段)，验证见 [A07 证据](docs/evidence/t05-a07/README.md)。#25 新卡和父 #6 组合验收单列。
+
+[T06/F01 / #72](https://github.com/Mang-X/nerv-ui/issues/72) 从 `/#files` 进入“留住片刻”，可从所有既有表面进入并返回。七种上传排列使用本页内存适配器，默认手动开始；本地图片提供缩放、旋转及状态恢复。接入与限制见 [独立文件接入](docs/files-standalone.md)，实际证据见 [F01 验证记录](docs/evidence/t06-f01/README.md)。PDF/Office、上传竞态及原生 HTTP 由 #73–#76 接续。
