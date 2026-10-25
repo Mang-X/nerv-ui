@@ -1,0 +1,428 @@
+[
+  {
+    "label": "1920 light neutral",
+    "width": 1920,
+    "height": 1080,
+    "scrollWidth": 1920,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": false,
+    "brand": "oklch(54% .16 256)",
+    "background": "oklch(0.985 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "1920 light blue",
+    "width": 1920,
+    "height": 1080,
+    "scrollWidth": 1920,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": false,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.985 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "1920 dark neutral",
+    "width": 1920,
+    "height": 1080,
+    "scrollWidth": 1920,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(64% .15 256)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "1920 dark blue",
+    "width": 1920,
+    "height": 1080,
+    "scrollWidth": 1920,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "1366 light neutral",
+    "width": 1366,
+    "height": 900,
+    "scrollWidth": 1366,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": false,
+    "brand": "oklch(54% .16 256)",
+    "background": "oklch(0.985 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "1366 light blue",
+    "width": 1366,
+    "height": 900,
+    "scrollWidth": 1366,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": false,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.985 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "1366 dark neutral",
+    "width": 1366,
+    "height": 900,
+    "scrollWidth": 1366,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(64% .15 256)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "1366 dark blue",
+    "width": 1366,
+    "height": 900,
+    "scrollWidth": 1366,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "390 light neutral",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": false,
+    "brand": "oklch(54% .16 256)",
+    "background": "oklch(0.985 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "390 light blue",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": false,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.985 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "390 dark neutral",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(64% .15 256)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "390 dark blue",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": []
+  },
+  {
+    "label": "390 variant default",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<select aria-label=\"可选文件类型\" class=\"min-h-11 rounded-md border bg-background px-3\"><option value=\"mixed\">图片、文本、PDF</option><option value=\"extension\">扩展名 .png / .txt</option><option value=\"mime\">PNG / 纯文本 MIME</option><opt",
+    "overflows": [],
+    "hit": {
+      "box": {
+        "x": 16,
+        "y": 406,
+        "width": 98,
+        "height": 32,
+        "top": 406,
+        "right": 114,
+        "bottom": 438,
+        "left": 16
+      },
+      "hit": true
+    }
+  },
+  {
+    "label": "390 variant queue",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<button data-v-1193d8f1=\"\" data-slot=\"nv-button\" class=\"nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transit",
+    "overflows": [],
+    "hit": {
+      "box": {
+        "x": 16,
+        "y": 313,
+        "width": 358,
+        "height": 218,
+        "top": 313,
+        "right": 374,
+        "bottom": 531,
+        "left": 16
+      },
+      "hit": true
+    }
+  },
+  {
+    "label": "390 variant compact",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<button data-v-1193d8f1=\"\" data-slot=\"nv-button\" class=\"nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transit",
+    "overflows": [],
+    "hit": {
+      "box": {
+        "x": 16,
+        "y": 355,
+        "width": 358,
+        "height": 134,
+        "top": 355,
+        "right": 374,
+        "bottom": 489,
+        "left": 16
+      },
+      "hit": true
+    }
+  },
+  {
+    "label": "390 variant avatar",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<button data-v-1193d8f1=\"\" data-slot=\"nv-button\" class=\"nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transit",
+    "overflows": [],
+    "hit": {
+      "box": {
+        "x": 139,
+        "y": 366,
+        "width": 112,
+        "height": 112,
+        "top": 366,
+        "right": 251,
+        "bottom": 478,
+        "left": 139
+      },
+      "hit": true
+    }
+  },
+  {
+    "label": "390 variant gallery",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<button data-v-1193d8f1=\"\" data-slot=\"nv-button\" class=\"nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transit",
+    "overflows": [],
+    "hit": {
+      "box": {
+        "x": 16,
+        "y": 273,
+        "width": 358,
+        "height": 298,
+        "top": 273,
+        "right": 374,
+        "bottom": 571,
+        "left": 16
+      },
+      "hit": true
+    }
+  },
+  {
+    "label": "390 variant table",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<button data-v-1193d8f1=\"\" data-slot=\"nv-button\" class=\"nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transit",
+    "overflows": [],
+    "hit": {
+      "box": {
+        "x": 16,
+        "y": 313,
+        "width": 358,
+        "height": 218,
+        "top": 313,
+        "right": 374,
+        "bottom": 531,
+        "left": 16
+      },
+      "hit": true
+    }
+  },
+  {
+    "label": "390 variant image",
+    "width": 390,
+    "height": 844,
+    "scrollWidth": 390,
+    "zoom": 1,
+    "dpr": 1,
+    "dark": true,
+    "brand": "oklch(0.55 0.18 255)",
+    "background": "oklch(0.145 0 0)",
+    "focused": "<button data-v-1193d8f1=\"\" data-slot=\"nv-button\" class=\"nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transit",
+    "overflows": [],
+    "hit": {
+      "box": {
+        "x": 16,
+        "y": 296.75,
+        "width": 358,
+        "height": 250,
+        "top": 296.75,
+        "right": 374,
+        "bottom": 546.75,
+        "left": 16
+      },
+      "hit": true
+    }
+  },
+  {
+    "label": "reduced motion",
+    "matches": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#desktop",
+    "heading": "让想法有序向前",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#touch",
+    "heading": "共享阅读角",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#mobile",
+    "heading": "周末随行",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#mobile-input",
+    "heading": "随心记录",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#mobile-overlays",
+    "heading": "片刻安排",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#mobile-lists",
+    "heading": "翻阅时光",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#mobile-feedback",
+    "heading": "片刻回响",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#screen/stage",
+    "heading": "城市文化空间",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#screen/controls",
+    "heading": "寻找城市的一处停留",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#screen/indicators",
+    "heading": "城市空间的每一刻",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#screen/data",
+    "heading": "城市空间的流动消息",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#screen/charts",
+    "heading": "内容分布与到访趋势",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#screen/tables",
+    "heading": "城市文化空间 · 清单与事件",
+    "returned": true
+  },
+  {
+    "label": "round trip",
+    "hash": "#screen/summary",
+    "heading": "空间使用概况",
+    "returned": true
+  }
+]

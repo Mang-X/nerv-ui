@@ -1,0 +1,64 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground
+
+Could not parse CSS stylesheet
+stderr | src/App.test.ts > opens files directly and returns from every completed surface group
+[Vue warn]: Unhandled error during execution of mounted hook 
+  at <ScreenBarChart class="charts-bars" series= [
+  {
+    label: '现场到访',
+    color: 'var(--nv-scr-cyan)',
+    data: [ 0, 37, 113, 61, 157 ]
+  },
+  {
+    label: '预约参考',
+    color: 'var(--nv-scr-indigo)',
+    data: [ 19, 71, 127, 83, 181 ]
+  }
+] x-labels= [
+  'reading/day/p1',
+  'reading/day/p2',
+  'reading/day/p3',
+  'reading/day/p4',
+  'reading/day/p5'
+]  ... > 
+  at <ScreenPanel title="分段到访（人次）" class="charts-bar-panel" > 
+  at <ScreenChartsDemo key=2 > 
+  at <ScreenScaler class="screen-demo-scaler" design-width=1920 design-height=1080  ... > 
+  at <ScreenDemo key=1 section="#screen/charts" > 
+  at <App ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+ ❯ src/App.test.ts (9 tests | 1 failed | 8 skipped) 329ms
+   × opens files directly and returns from every completed surface group 329ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.test.ts > opens files directly and returns from every completed surface group
+TypeError: window.matchMedia is not a function
+ ❯ ../../packages/ui/src/components/screen/ScreenBarChart.vue:89:18
+     87| }
+     88| onMounted(() => {
+     89|   media = window.matchMedia('(prefers-reduced-motion: reduce)')
+       |                  ^
+     90|   reduced.value = media.matches
+     91|   media.addEventListener('change', onMotion)
+ ❯ ../../node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:3116:40
+ ❯ callWithErrorHandling ../../node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:200:19
+ ❯ callWithAsyncErrorHandling ../../node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:207:17
+ ❯ hook.__weh.hook.__weh ../../node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:3096:19
+ ❯ flushPostFlushCbs ../../node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:382:28
+ ❯ flushJobs ../../node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:424:5
+ ❯ src/App.test.ts:167:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 skipped (9)
+   Start at  10:32:15
+   Duration  7.00s (transform 4.25s, setup 626ms, import 5.28s, tests 329ms, environment 647ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/App.test.ts -t 'opens files directly'

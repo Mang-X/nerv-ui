@@ -1,0 +1,15 @@
+[
+  {
+    "label": "empty before picker",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  }
+]

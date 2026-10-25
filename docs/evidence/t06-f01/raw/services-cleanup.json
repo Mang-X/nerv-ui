@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "port": 5196,
+      "pid": 77758,
+      "cwd": "p77758\nfcwd\nn/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground\n",
+      "command": "/Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js dev --host 127.0.0.1 --port 5196",
+      "signal": "SIGTERM"
+    },
+    {
+      "port": 5197,
+      "pid": 19512,
+      "cwd": "p19512\nfcwd\nn/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground\n",
+      "command": "/Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js preview --host 127.0.0.1 --port 5197",
+      "signal": "SIGTERM"
+    }
+  ],
+  "portsClosed": [
+    5196,
+    5197
+  ]
+}

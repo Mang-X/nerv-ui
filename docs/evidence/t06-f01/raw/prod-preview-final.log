@@ -1,0 +1,158 @@
+{ lane: 'prod', records: 29, created: 37, revoked: 37 }
+[p1 "NvUI · 项目清单" | space "nerv-ui-t06-f01-20261025"(26): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      anchor [ref=602, loc=href:/#files, url=http://127.0.0.1:5197/#files]
+        text "留住片刻"
+      anchor [ref=603, loc=href:/#screen, url=http://127.0.0.1:5197/#screen]
+        text "大屏演示"
+      anchor [ref=604, loc=href:/#mobile-feedback, url=http://127.0.0.1:5197/#mobile-feedback]
+        text "片刻回响"
+      anchor [ref=605, loc=href:/#mobile-lists, url=http://127.0.0.1:5197/#mobile-lists]
+        text "翻阅时光"
+      anchor [ref=606, loc=href:/#mobile, url=http://127.0.0.1:5197/#mobile]
+        text "移动演示"
+      anchor [ref=607, loc=href:/#touch, url=http://127.0.0.1:5197/#touch]
+        text "触屏演示"
+      text "NvUI"
+      text "工作空间"
+      container
+        button [ref=608]
+          text "蓝色主题"
+        button [ref=609]
+          text "切换浅色"
+    container
+      container "breadcrumb"
+        ordered_list
+          list_item
+            text "工作空间"
+          list_item
+            svg_root
+          list_item
+            link
+              text "项目清单"
+      container
+        heading
+          text "让想法有序向前"
+        paragraph
+          text "记录项目、查找进展，与团队保持同步。"
+      container
+        container
+          text "新建项目"
+          text "从一个清晰的名字开始。"
+        form
+          group
+            text "项目名称"
+            textbox [ref=610, loc=css:input[placeholder="输入项目名称"]]
+              text "输入项目名称"
+            paragraph
+              text "最多 80 个字符，创建后可在清单中查找。"
+          button [ref=611]
+            text "添加项目"
+      container
+        container
+          text "全部项目"
+          text "按名称搜索，点击列头排序。"
+        container
+          container
+            container
+              svg_root
+              textbox "搜索" [ref=612, loc=css:input[placeholder="搜索项目…"]]
+                text "搜索项目…"
+            button "切换为紧凑密度" [ref=613, loc=css:button[aria-label="切换为紧凑密度"]]
+              svg_root
+          table
+            table_row
+              table_cell
+                button [ref=614]
+                  text "编号"
+                  svg_root
+              table_cell
+                button [ref=615]
+                  text "项目"
+                  svg_root
+              table_cell
+                button [ref=616]
+                  text "负责人"
+                  svg_root
+              table_cell
+                text "操作"
+            table_row
+              table_cell
+                text "P-001"
+              table_cell
+                text "晨光书房"
+              table_cell
+                text "林悦"
+              table_cell
+                button "查看晨光书房" [ref=617, loc=css:button[aria-label="查看晨光书房"]]
+                  text "查看详情"
+            table_row
+              table_cell
+                text "P-002"
+              table_cell
+                text "山间来信"
+              table_cell
+                text "周宁"
+              table_cell
+                button "查看山间来信" [ref=618, loc=css:button[aria-label="查看山间来信"]]
+                  text "查看详情"
+            table_row
+              table_cell
+                text "P-003"
+              table_cell
+                text "城市漫步"
+              table_cell
+                text "陈曦"
+              table_cell
+                button "查看城市漫步" [ref=619, loc=css:button[aria-label="查看城市漫步"]]
+                  text "查看详情"
+            table_row
+              table_cell
+                text "P-004"
+              table_cell
+                text "流动花园"
+              table_cell
+                text "林悦"
+              table_cell
+                button "查看流动花园" [ref=620, loc=css:button[aria-label="查看流动花园"]]
+                  text "查看详情"
+            table_row
+              table_cell
+                text "P-005"
+              table_cell
+                text "远方计划"
+              table_cell
+                text "周宁"
+              table_cell
+                button "查看远方计划" [ref=621, loc=css:button[aria-label="查看远方计划"]]
+                  text "查看详情"
+          container
+            container
+              paragraph
+                text "显示 1–5 / 6 条"
+              container
+                text "每页"
+                comboboxgrouping "每页条数" [ref=622, loc=css:button[aria-label="每页条数"]]
+                  text "5"
+                  svg_root
+            container "分页"
+              button "第一页" [ref=623, loc=css:button[aria-label="第一页"]]
+                svg_root
+              button "上一页" [ref=624, loc=css:button[aria-label="上一页"]]
+                svg_root
+              button "第 1 页" [ref=625, loc=css:button[aria-label="第 1 页"]]
+                text "1"
+              button "第 2 页" [ref=626, loc=css:button[aria-label="第 2 页"]]
+                text "2"
+              button "下一页" [ref=627, loc=css:button[aria-label="下一页"]]
+                svg_root
+              button "最后一页" [ref=628, loc=css:button[aria-label="最后一页"]]
+                svg_root
+              container
+                text "跳至"
+                textbox "跳至页码" [ref=629, loc=css:input[aria-label="跳至页码"]]
+                text "页"
+
+

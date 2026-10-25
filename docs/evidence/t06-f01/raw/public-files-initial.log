@@ -1,0 +1,72 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground
+
+Could not parse CSS stylesheet
+stderr | src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy text/plain through picker and drop
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy image/* through picker and drop
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy  through picker and drop
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+ ❯ src/files/publicFiles.test.ts (33 tests | 5 failed) 372ms
+   × validates extension MIME wildcard and empty policy .TXT through picker and drop 88ms
+   × validates extension MIME wildcard and empty policy text/plain through picker and drop 34ms
+   × validates extension MIME wildcard and empty policy image/* through picker and drop 28ms
+   × validates extension MIME wildcard and empty policy  through picker and drop 25ms
+   × rejects adjacent size, wrong type and excess count without creating successful receipts 60ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy .TXT through picker and drop
+ FAIL  src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy text/plain through picker and drop
+ FAIL  src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy image/* through picker and drop
+ FAIL  src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy  through picker and drop
+AssertionError: expected [ DOMWrapper{ …(3) }, …(1) ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ src/files/publicFiles.test.ts:40:47
+     38|   await input.trigger('change'); await flushPromises()
+     39|   expect((input.element as HTMLInputElement).value).toBe('')
+     40|   expect(w.findAll('[data-status="queued"]')).toHaveLength(1)
+       |                                               ^
+     41|   await w.get('[data-slot="file-upload-dropzone"]').trigger('drop', { …
+     42|   expect(w.findAll('[data-status="queued"]')).toHaveLength(2)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/files/publicFiles.test.ts > rejects adjacent size, wrong type and excess count without creating successful receipts
+AssertionError: expected [ DOMWrapper{ …(3) }, …(3) ] to have a length of 2 but got 4
+
+- Expected
++ Received
+
+- 2
++ 4
+
+ ❯ src/files/publicFiles.test.ts:57:47
+     55|     { fileName: 'excess.txt', reason: '已达到最大文件数量限制。' },
+     56|   ])
+     57|   expect(w.findAll('[data-status="queued"]')).toHaveLength(2)
+       |                                               ^
+     58|   expect(w.findAll('[data-status="rejected"]')).toHaveLength(2)
+     59|   expect(completed).not.toHaveBeenCalled(); expect(adapter.state.count…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 28 passed (33)
+   Start at  10:35:09
+   Duration  11.40s (transform 6.70s, setup 1.08s, import 8.27s, tests 372ms, environment 1.48s)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/files/publicFiles.test.ts

@@ -1,0 +1,32 @@
+[
+  {
+    "label": "actual svg decode",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "等待预览 · 已打开 0 次 · 本地预览 0",
+    "preview": "quality-evidence.svgImage100%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5196/files/quality-evidence.svg",
+        "naturalWidth": 1200,
+        "naturalHeight": 720,
+        "box": {
+          "x": 750.1640625,
+          "y": 647,
+          "width": 493.6640625,
+          "height": 296.9921875,
+          "top": 647,
+          "right": 1243.828125,
+          "bottom": 943.9921875,
+          "left": 750.1640625
+        },
+        "transform": "none"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  }
+]

@@ -1,0 +1,5 @@
+Error: narrow variant page overflow compact
+    at assert (file:////[eval2]:1:176)
+    at file:////[eval2]:18:26
+
+ego's nodejs process exited with code 1.

@@ -1,0 +1,123 @@
+{
+  "scrollWidth": 549,
+  "rects": [
+    {
+      "tag": "OL",
+      "style": "--front-toast-height: 0px; --width: 356px; --gap: 14px; --normal-bg: var(--popover); --normal-text: var(--popover-foreground); --normal-border: var(--border); --border-radius: var(--radius); --offset-top: 24px; --offset-right: 24px; --offset-bottom: 24px; --offset-left: 24px; --mobile-offset-top: 16px; --mobile-offset-right: 16px; --mobile-offset-bottom: 16px; --mobile-offset-left: 16px;",
+      "box": {
+        "x": 16,
+        "y": 828,
+        "width": 390,
+        "height": 0,
+        "top": 828,
+        "right": 406,
+        "bottom": 828,
+        "left": 16
+      }
+    }
+  ],
+  "wide": [
+    {
+      "tag": "DIV",
+      "class": "",
+      "client": 390,
+      "scroll": 549,
+      "position": "static",
+      "overflow": "visible",
+      "text": "桌面演示触屏演示随行手记随心记录片刻安排翻阅时光片刻回响空间舞台随心安排阅读与到访流动消息内容与到访清单与事件空间使用概"
+    },
+    {
+      "tag": "DIV",
+      "slot": "app",
+      "class": "flex min-h-dvh flex-col bg-background text-foreground",
+      "client": 390,
+      "scroll": 549,
+      "position": "static",
+      "overflow": "visible",
+      "text": "桌面演示触屏演示随行手记随心记录片刻安排翻阅时光片刻回响空间舞台随心安排阅读与到访流动消息内容与到访清单与事件空间使用概"
+    },
+    {
+      "tag": "MAIN",
+      "class": "mx-auto max-w-7xl space-y-8 p-4 sm:p-8",
+      "client": 390,
+      "scroll": 549,
+      "position": "static",
+      "overflow": "visible",
+      "text": "桌面演示触屏演示随行手记随心记录片刻安排翻阅时光片刻回响空间舞台随心安排阅读与到访流动消息内容与到访清单与事件空间使用概"
+    },
+    {
+      "tag": "DIV",
+      "class": "grid items-start gap-10 xl:grid-cols-2",
+      "client": 358,
+      "scroll": 533,
+      "position": "static",
+      "overflow": "visible",
+      "text": "整理文件只在本页暂存，离开即清空。上传进度由你推进。排列方式 defaultqueuecompactavatargall"
+    },
+    {
+      "tag": "SECTION",
+      "class": "min-w-0 space-y-5",
+      "client": 358,
+      "scroll": 533,
+      "position": "static",
+      "overflow": "visible",
+      "text": "整理文件只在本页暂存，离开即清空。上传进度由你推进。排列方式 defaultqueuecompactavatargall"
+    },
+    {
+      "tag": "DIV",
+      "class": "",
+      "client": 358,
+      "scroll": 533,
+      "position": "static",
+      "overflow": "visible",
+      "text": " 添加文件支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf"
+    },
+    {
+      "tag": "DIV",
+      "slot": "file-upload",
+      "class": "flex flex-col gap-3",
+      "client": 358,
+      "scroll": 533,
+      "position": "static",
+      "overflow": "visible",
+      "text": " 添加文件支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf"
+    },
+    {
+      "tag": "INPUT",
+      "class": "sr-only",
+      "client": 1,
+      "scroll": 180,
+      "position": "absolute",
+      "overflow": "clip",
+      "text": ""
+    },
+    {
+      "tag": "BUTTON",
+      "slot": "file-upload-dropzone",
+      "class": "border-border bg-background hover:bg-muted/60 focus-visible:border-ring focus-visible:ring-ring/50 data-[dragging=true]:border-primary data-[dragging=true]:bg-primary/5 data-[dragging=true]:ring-primary/20 flex items-center border border-dashed text-center ring-0 will-change-transform focus-visible:ring-3 focus-visible:outline-none data-[dragging=true]:ring-2 disabled:pointer-events-none disabled:opacity-50 mx-auto min-h-0 w-full max-w-xl flex-row justify-start gap-3 rounded-lg px-4 py-4 shadow-none",
+      "client": 356,
+      "scroll": 532,
+      "position": "static",
+      "overflow": "visible",
+      "text": " 添加文件支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf"
+    },
+    {
+      "tag": "SPAN",
+      "class": "text-muted-foreground min-w-0 text-left text-sm",
+      "client": 219,
+      "scroll": 411,
+      "position": "static",
+      "overflow": "visible",
+      "text": "支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf · 单个"
+    },
+    {
+      "tag": "SPAN",
+      "class": "sr-only",
+      "client": 1,
+      "scroll": 109,
+      "position": "absolute",
+      "overflow": "hidden",
+      "text": "移除 garden.png"
+    }
+  ]
+}

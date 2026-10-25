@@ -1,0 +1,47 @@
+[ { width: 390, scrollWidth: 390, variant: 'default' }, { width: 390, scrollWidth: 390, variant: 'queue' }, { width: 390, scrollWidth: 390, variant: 'compact' }, { width: 390, scrollWidth: 390, variant: 'avatar' }, { width: 390, scrollWidth: 390, variant: 'gallery' }, { width: 390, scrollWidth: 390, variant: 'table' }, { width: 390, scrollWidth: 390, variant: 'image' } ]
+[p1 "NvUI · 项目清单" | space "nerv-ui-t06-f01-20261025"(26): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container "整理文件"
+      button [ref=384]
+        svg_root
+        text "选择文件或拖拽到这里"
+        text "支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf · 单个文件不超过 32.0 KB · 最多 5 个文件"
+        svg_root
+        text "浏览文件"
+      container
+        button [ref=385]
+          text "开始上传"
+        button [ref=386]
+          text "暂停全部"
+        button [ref=387]
+          text "继续全部"
+        button [ref=388]
+          text "清空文件"
+      container
+        container
+          button [ref=389]
+            text "推进传输"
+          button [ref=390]
+            text "本次传输失败"
+          button [ref=391]
+            text "加入 48 份便笺"
+        paragraph
+          text "每次推进至 25%、65%、100%；失败后可在文件行重试。"
+        output "传输计数" [ref=392]
+          text "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0"
+      container "成功回执"
+        heading
+          text "已暂存文件"
+        paragraph
+          text "尚无成功文件"
+      container [ref=393]
+        text "查看本次操作记录"
+    container "看见细节"
+      container
+        heading
+          text "看见细节"
+        paragraph
+          text "本地图片可缩放与旋转。其它文件保留原文件入口。"
+
+
