@@ -51,7 +51,9 @@ watch(
   (m) => {
     workingModel.value = cloneModel(m ?? EMPTY_MODEL)
   },
-  { immediate: true },
+  // Parent input is authoritative, including same-reference nested updates.
+  // Sync invalidation also prevents an action in this tick from using the old draft.
+  { immediate: true, deep: true, flush: 'sync' },
 )
 
 const view = ref<'order' | 'resource'>(props.defaultView)
@@ -76,7 +78,7 @@ watch(
   () => {
     selectedTask.value = undefined
   },
-  { flush: 'sync' },
+  { deep: true, flush: 'sync' },
 )
 
 // 只有业务层注入了 preview/release 才展示对应动作,避免只读/演示挂载时出现假成功提示。

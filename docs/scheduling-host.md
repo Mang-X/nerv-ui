@@ -83,7 +83,7 @@ function useSchedulingEdits<Context = unknown>(
 
 preview 收到本地草案的独立 JSON 快照（不是 SDK 锁定分配数组）；release 收到捕获的 planId；两者收到捕获 context 克隆和 signal。宿主在 preview 内按需调用 `toLockedAssignments(snapshot, hostAdapter)` 再请求自己的后端。宿主可修改快照而不会污染当前草案。返回模型也独立克隆。
 
-同一实例 pending 时 preview/release 及本地编辑不重复执行；外部 model 替换或 context 变化会取消旧操作并重设 baseline，旧结果/异常不污染新草案或新 busy 状态。context 改变不自行替宿主选择新模型，宿主应同步更换权威 model。取消仅隔离结果，权限、存储幂等及实际取消由宿主负责。本地编辑总是替换克隆，不修改传入对象；撤销/重做仅管理本地视觉历史，不是业务工作流。
+同一实例 pending 时 preview/release 及本地编辑不重复执行；外部 model 替换（包括同一 reactive 对象的嵌套更新）或 context 变化会取消旧操作并重设 baseline，旧结果/异常不污染新草案或新 busy 状态。context 改变不自行替宿主选择新模型，宿主应同步更换权威 model。取消仅隔离结果，权限、存储幂等及实际取消由宿主负责。本地编辑总是替换克隆，不修改传入对象；撤销/重做仅管理本地视觉历史，不是业务工作流。
 
 ## 从旧调用迁移
 
@@ -113,7 +113,7 @@ const edits = useSchedulingEdits(localDraft, () => ({
 if (await edits.repreview()) showAccepted()
 ```
 
-上述 host 函数均由接入应用实现，库中没有它们的生产 fake 算法。`SchedulingWorkbench` 仍为内部组合，不新增公开导出。它的 preview/release 参数使用上述签名，新增 opaque `context?: unknown`；每次读取最新 props，移除默认空成功回调；模型清空时清除本地草案，成功 boolean 为 true 才提示成功。实际 renderer 和完整组合仍由 P04/P16 证明。
+上述 host 函数均由接入应用实现，库中没有它们的生产 fake 算法。`SchedulingWorkbench` 仍为内部组合，不新增公开导出。它的 preview/release 参数使用上述签名，新增 opaque `context?: unknown`；每次读取最新 props，移除默认空成功回调；父级 model 是权威输入：对象替换与同一 reactive 对象的嵌套更新都会同步复制为独立草案、清除旧选择并失效旧 preview/release；本地锁定、撤销/重做不回写 props，也不会触发这条输入重置。对已经传入的 reactive model/context，同 tick 的动作读取当前输入；父级替换 props 后的 DOM 操作仍等待 Vue 将 props 传入组件。context 单独变化沿用现有约定，只取消操作并以当前草案重设 baseline，不代宿主选择新计划。模型清空时清除本地草案，成功 boolean 为 true 才提示成功。实际 renderer 和完整组合仍由 P04/P16 证明。
 
 ## conformance 的明确兼容处置
 
