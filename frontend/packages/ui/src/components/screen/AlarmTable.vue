@@ -114,18 +114,26 @@ withDefaults(
             <td>{{ a.time }}</td>
             <td>{{ a.line }}</td>
             <td>
-              <slot name="cell-level" :row="a as PresentedAlarmRow" :value="a.level">
-                <span class="nv-scr-at-lvl" :class="a.level"
-                  ><i />{{ levelLabels[a.level] ?? (a.level === 'sev' ? '严重' : '一般') }}</span
-                >
-              </slot>
+              <slot
+                v-if="$slots['cell-level']"
+                name="cell-level"
+                :row="a as PresentedAlarmRow"
+                :value="a.level"
+              />
+              <span v-else class="nv-scr-at-lvl" :class="a.level"
+                ><i />{{ levelLabels[a.level] ?? (a.level === 'sev' ? '严重' : '一般') }}</span
+              >
             </td>
             <td>{{ a.name }}</td>
             <td class="nv-scr-at-mono">{{ a.wo }}</td>
             <td>
-              <slot name="cell-status" :row="a as PresentedAlarmRow" :value="a.status">
-                <span :class="{ 'nv-scr-at-ok': a.status === '已恢复' }">{{ a.status }}</span>
-              </slot>
+              <slot
+                v-if="$slots['cell-status']"
+                name="cell-status"
+                :row="a as PresentedAlarmRow"
+                :value="a.status"
+              />
+              <span v-else :class="{ 'nv-scr-at-ok': a.status === '已恢复' }">{{ a.status }}</span>
             </td>
           </tr>
         </tbody>

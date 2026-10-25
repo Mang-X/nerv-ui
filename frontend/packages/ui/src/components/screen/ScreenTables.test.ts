@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { h } from 'vue'
+import { defineComponent, h } from 'vue'
 import { afterEach, expect, it } from 'vitest'
 import { NvAlarmTable, NvScreenPagination, NvScreenTable } from '../../index'
 
@@ -25,6 +25,83 @@ const events = [
     status: '特别好',
   },
 ]
+it.each(['<span v-if="false" />', '<!-- intentionally empty -->'])(
+  'Alarm explicit empty level and status slots suppress legacy rendering: %s',
+  (slot) => {
+    const w = mount(NvAlarmTable, {
+      props: { rows: [events[0]!] },
+      slots: { 'cell-level': slot, 'cell-status': slot },
+    })
+    wrappers.push(w)
+    expect(w.findAll('tbody td')[2]!.text()).toBe('')
+    expect(w.findAll('tbody td')[5]!.text()).toBe('')
+    expect(w.find('.nv-scr-at-lvl').exists()).toBe(false)
+    expect(w.find('.nv-scr-at-ok').exists()).toBe(false)
+  },
+)
+it('Alarm conditional slot content stays host owned through true false true', async () => {
+  const Host = defineComponent({
+    components: { NvAlarmTable },
+    props: { visible: Boolean },
+    setup: () => ({ rows: [events[0]!] }),
+    template: `<NvAlarmTable :rows="rows">
+      <template #cell-level="{ row, value }"><span v-if="visible">{{ row.id }}:{{ value }}</span></template>
+      <template #cell-status="{ row, value }"><span v-if="visible">{{ row.id }}:{{ value }}</span></template>
+    </NvAlarmTable>`,
+  })
+  const w = mount(Host, { props: { visible: true } })
+  wrappers.push(w)
+  for (const visible of [true, false, true]) {
+    await w.setProps({ visible })
+    expect(w.findAll('tbody td')[2]!.text()).toBe(visible ? 'event-a:sev' : '')
+    expect(w.findAll('tbody td')[5]!.text()).toBe(visible ? 'event-a:已恢复' : '')
+    expect(w.find('.nv-scr-at-lvl, .nv-scr-at-ok').exists()).toBe(false)
+  }
+})
+it.each([0, ''])('Alarm explicit slot text preserves value %j', (value) => {
+  const w = mount(NvAlarmTable, {
+    props: { rows: [events[0]!] },
+    slots: { 'cell-level': () => value, 'cell-status': () => value },
+  })
+  wrappers.push(w)
+  expect(w.findAll('tbody td')[2]!.text()).toBe(String(value))
+  expect(w.findAll('tbody td')[5]!.text()).toBe(String(value))
+  expect(w.find('.nv-scr-at-lvl, .nv-scr-at-ok').exists()).toBe(false)
+})
+it('Alarm undefined slots retain legacy fallback', () => {
+  const Host = defineComponent({
+    setup: () => () =>
+      h(
+        NvAlarmTable,
+        { rows: [events[0]!] },
+        { 'cell-level': undefined, 'cell-status': undefined },
+      ),
+  })
+  const w = mount(Host)
+  wrappers.push(w)
+  expect(w.get('.nv-scr-at-lvl').text()).toBe('严重')
+  expect(w.get('.nv-scr-at-ok').text()).toBe('已恢复')
+})
+it('Alarm dynamically added and removed slots switch between empty host output and legacy fallback', async () => {
+  const Host = defineComponent({
+    components: { NvAlarmTable },
+    props: { provided: Boolean },
+    setup: () => ({ rows: [events[0]!] }),
+    template: `<NvAlarmTable :rows="rows">
+      <template v-if="provided" #cell-level><!-- intentionally empty --></template>
+      <template v-if="provided" #cell-status><!-- intentionally empty --></template>
+    </NvAlarmTable>`,
+  })
+  const w = mount(Host, { props: { provided: false } })
+  wrappers.push(w)
+  for (const provided of [false, true, false, true]) {
+    await w.setProps({ provided })
+    expect(w.findAll('tbody td')[2]!.text()).toBe(provided ? '' : '严重')
+    expect(w.findAll('tbody td')[5]!.text()).toBe(provided ? '' : '已恢复')
+    expect(w.find('.nv-scr-at-lvl').exists()).toBe(!provided)
+    expect(w.find('.nv-scr-at-ok').exists()).toBe(!provided)
+  }
+})
 it('Alarm neutral headers level text and explicit state slot preserve distinct event identity across reorder replacement and empty', async () => {
   const w = mount(NvAlarmTable, {
     props: {
