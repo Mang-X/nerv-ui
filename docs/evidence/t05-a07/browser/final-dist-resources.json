@@ -1,0 +1,72 @@
+{
+  "resources": {
+    "url": "http://127.0.0.1:5197/#screen/summary",
+    "scripts": [
+      "http://127.0.0.1:5197/assets/index-DoNuZV-h.js"
+    ],
+    "styles": [
+      "http://127.0.0.1:5197/assets/index-DdvLMbH6.css"
+    ],
+    "loaded": [
+      {
+        "url": "http://127.0.0.1:5197/assets/index-DoNuZV-h.js",
+        "initiator": "script",
+        "status": 200,
+        "bytes": 186782
+      },
+      {
+        "url": "http://127.0.0.1:5197/assets/index-DdvLMbH6.css",
+        "initiator": "link",
+        "status": 200,
+        "bytes": 46390
+      },
+      {
+        "url": "http://127.0.0.1:5197/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+        "initiator": "css",
+        "status": 200,
+        "bytes": 0
+      }
+    ],
+    "fonts": [
+      {
+        "family": "Inter Variable",
+        "status": "loaded",
+        "weight": "100 900"
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "url": "http://127.0.0.1:5197/",
+      "status": 200,
+      "file": "/tmp/nerv-ui-t05-a07/handoff/browser/resources/index.html.response.bin",
+      "bytes": 427,
+      "sha256": "a0b2ea237339c693e713040c3ae8026d6abb3a02b965e16180a6153c71d60063",
+      "equalFinalDist": true
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-DoNuZV-h.js",
+      "status": 200,
+      "file": "/tmp/nerv-ui-t05-a07/handoff/browser/resources/index-DoNuZV-h.js.response.bin",
+      "bytes": 630430,
+      "sha256": "27df33174173d3d78ef26e17328f6ac4e5db003b51110a39c3da022e2d884114",
+      "equalFinalDist": true
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-DdvLMbH6.css",
+      "status": 200,
+      "file": "/tmp/nerv-ui-t05-a07/handoff/browser/resources/index-DdvLMbH6.css.response.bin",
+      "bytes": 298398,
+      "sha256": "78a95b317a8990aba9a5d74a1830cebe38de0858a61564f3acd672d7bfdaf0e0",
+      "equalFinalDist": true
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "file": "/tmp/nerv-ui-t05-a07/handoff/browser/resources/inter-latin-wght-normal-Dx4kXJAl.woff2.response.bin",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "equalFinalDist": true
+    }
+  ]
+}

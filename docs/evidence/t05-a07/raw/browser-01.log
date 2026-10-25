@@ -1,0 +1,163 @@
+{ space: 23 }
+[p1 "NvUI · 项目清单" | space "nerv-ui A07 screen summary 20261025"(23): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      container "显示表面"
+        anchor [ref=1, loc=href:/#screen/stage, url=http://127.0.0.1:5197/#screen/stage]
+          text "空间舞台"
+        anchor [ref=2, loc=href:/#screen/controls, url=http://127.0.0.1:5197/#screen/controls]
+          text "随心安排"
+        anchor [ref=3, loc=href:/#screen/indicators, url=http://127.0.0.1:5197/#screen/indicators]
+          text "阅读与到访"
+        anchor [ref=4, loc=href:/#screen/charts, url=http://127.0.0.1:5197/#screen/charts]
+          text "内容与到访"
+        anchor [ref=5, loc=href:/#screen/data, url=http://127.0.0.1:5197/#screen/data]
+          text "流动消息"
+        anchor [ref=6, loc=href:/#screen/tables, url=http://127.0.0.1:5197/#screen/tables]
+          text "清单与事件"
+        anchor [ref=7, loc=href:/#screen/summary, url=http://127.0.0.1:5197/#screen/summary]
+          text "空间使用概况"
+        anchor [ref=8, loc=href:/#desktop, url=http://127.0.0.1:5197/#desktop]
+          text "桌面演示"
+        anchor [ref=9, loc=href:/#touch, url=http://127.0.0.1:5197/#touch]
+          text "触屏演示"
+        anchor [ref=10, loc=href:/#mobile, url=http://127.0.0.1:5197/#mobile]
+          text "移动演示"
+        anchor [ref=11, loc=href:/#mobile-input, url=http://127.0.0.1:5197/#mobile-input]
+          text "随心记录"
+        anchor [ref=12, loc=href:/#mobile-overlays, url=http://127.0.0.1:5197/#mobile-overlays]
+          text "片刻安排"
+        anchor [ref=13, loc=href:/#mobile-lists, url=http://127.0.0.1:5197/#mobile-lists]
+          text "翻阅时光"
+        anchor [ref=14, loc=href:/#mobile-feedback, url=http://127.0.0.1:5197/#mobile-feedback]
+          text "片刻回响"
+      container "舞台设置"
+        container
+          text "缩放方式"
+          combobox "缩放方式" [ref=15, loc=css:select[aria-label="缩放方式"]]
+            text "完整显示 fit"
+        container
+          text "设计尺寸"
+          combobox "设计尺寸" [ref=16, loc=css:select[aria-label="设计尺寸"]]
+            text "1920 × 1080"
+        button [ref=17]
+          text "切换浅色"
+        button [ref=18]
+          text "蓝色主题"
+        status
+          text "完整显示：等比缩放，留边区域保留。"
+    container "城市空间概况舞台" [ref=19]
+      container
+        container
+          container
+            paragraph
+              text "城市空间 · 每一段停留"
+            heading
+              text "空间使用概况"
+          paragraph "当前概况来源"
+            text "文化空间"
+        container "概况来源与状态"
+          button [ref=20]
+            text "文化空间"
+          button [ref=21]
+            text "共享办公"
+          button [ref=22]
+            text "未知读数"
+          button [ref=23]
+            text "长文案与大数"
+          button [ref=24]
+            text "空时段"
+          button [ref=25]
+            text "更新时段"
+          button [ref=26]
+            text "恢复读数"
+        region "概况与时段内容" [ref=27, loc=role:region[name="概况与时段内容"]]
+          container
+            container
+              text "总访问"
+              container
+                text "文化空间 · 总访问"
+                container
+                  container
+                    text "12,840"
+                    text "人次"
+                  text "较昨日 +8.2%"
+                svg_root
+            container
+              text "费用变化"
+              container
+                text "文化空间 · 当日费用"
+                container
+                  container
+                    text "2,460"
+                    text "元"
+                  text "较昨日 -5% · 节省"
+                svg_root
+            container
+              text "街角书房 · 开放"
+              text "空间状态"
+              text "欢迎停留"
+              container
+                container
+                  text "目标到访"
+                  text "15,000 人次"
+                container
+                  text "当前到访"
+                  text "12,840 人次"
+                container
+                  text "当前进度"
+                  text "85.6%"
+              container
+                text "开放时长"
+                text "8 小时"
+            container
+              text "街角书房 · 待确认区域 · 待确认"
+              text "空间状态"
+              text "读数尚未送达"
+              container
+                container
+                  text "目标到访"
+                  text "— 人次"
+                container
+                  text "当前到访"
+                  text "— 人次"
+                container
+                  text "当前进度"
+                  text "—"
+              container
+                text "开放时长"
+                text "—"
+            container
+              container
+                text "今日空间使用时段"
+                container
+                  text "占用"
+                  text "开放"
+                  text "闭馆"
+                  text "异常"
+              container
+                text "09:00"
+                text "12:00"
+                text "15:00"
+                text "18:00"
+              text "街角书房"
+              text "河畔展厅"
+          container "时段原文"
+            paragraph
+              text "街角书房："
+              text "占用 35% ·"
+              text "开放 25% ·"
+              text "闭馆 30% ·"
+              text "异常 10%"
+            paragraph
+              text "河畔展厅："
+              text "开放 20% ·"
+              text "占用 50% ·"
+              text "异常 10% ·"
+              text "闭馆 20%"
+          paragraph
+            text "— 表示读数未知。费用下降由来源标记为节省；各时段按来源给定的顺序和比例展示。"
+        text "让空间中的每一次相遇，都有迹可循。"
+
+

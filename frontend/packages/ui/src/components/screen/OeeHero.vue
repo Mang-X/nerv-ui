@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useId } from 'vue'
 
 /**
  * Screen — hero KPI block: a big cyan glowing value with an optional unit, a
@@ -17,6 +17,8 @@ const props = withDefaults(
     unit?: string
     /** Change vs. baseline, e.g. 较昨日 +2.7%. Leading +/- drives the color. */
     delta?: string
+    /** Host-selected meaning; omitted preserves the legacy leading-minus rule. */
+    deltaTone?: 'positive' | 'negative' | 'neutral'
     /** Series for the bottom sparkline. */
     spark?: number[]
   }>(),
@@ -47,7 +49,10 @@ const geom = computed(() => {
   }
 })
 
-const uid = `oeh-${Math.random().toString(36).slice(2, 8)}`
+const uid = `oeh-${useId()}`
+const resolvedDeltaTone = computed(
+  () => props.deltaTone ?? (deltaDown.value ? 'negative' : 'positive'),
+)
 </script>
 
 <template>
@@ -57,7 +62,14 @@ const uid = `oeh-${Math.random().toString(36).slice(2, 8)}`
       <div class="nv-scr-oeh-val">
         {{ value }}<small v-if="unit">{{ unit }}</small>
       </div>
-      <div v-if="delta" class="nv-scr-oeh-delta" :class="{ down: deltaDown }">{{ delta }}</div>
+      <div
+        v-if="delta"
+        class="nv-scr-oeh-delta"
+        :class="{ down: resolvedDeltaTone === 'negative' }"
+        :data-tone="resolvedDeltaTone"
+      >
+        {{ delta }}
+      </div>
     </div>
     <svg
       v-if="geom"
@@ -120,6 +132,9 @@ const uid = `oeh-${Math.random().toString(36).slice(2, 8)}`
     margin-left: 13px;
     font-size: 14px;
     color: var(--nv-scr-green);
+  }
+  .nv-scr-oeh-delta[data-tone='neutral'] {
+    color: var(--nv-scr-muted);
   }
   .nv-scr-oeh-delta.down {
     color: var(--nv-scr-red);

@@ -1,0 +1,14 @@
+{
+  dependencyInputs: 16,
+  vue: [
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js',
+    '/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js'
+  ],
+  changed: 15,
+  checks: [
+    { name: 'fmt', args: [Array], exit: 0 },
+    { name: 'lint', args: [Array], exit: 0 }
+  ],
+  diffCheck: 0
+}

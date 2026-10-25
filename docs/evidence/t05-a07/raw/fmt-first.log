@@ -1,0 +1,17 @@
+Checking formatting...
+
+apps/design-system/docs/components/screen/oee-hero.md (244ms)
+apps/design-system/docs/components/screen/status-card.md (232ms)
+apps/design-system/docs/components/screen/takt-gantt.md (274ms)
+apps/playground/src/ScreenDemo.vue (299ms)
+apps/playground/src/screen/ScreenSummaryDemo.test.ts (1ms)
+apps/playground/src/screen/ScreenSummaryDemo.vue (324ms)
+apps/playground/src/screen/summary-fixtures.ts (1ms)
+packages/ui/src/components/screen/OeeHero.vue (270ms)
+packages/ui/src/components/screen/ScreenSummary.test.ts (2ms)
+packages/ui/src/components/screen/ScreenSummaryDocs.test.ts (2ms)
+packages/ui/src/components/screen/StatusCard.vue (293ms)
+packages/ui/src/components/screen/TaktGantt.vue (314ms)
+
+Format issues found in above 12 files. Run without `--check` to fix.
+Finished in 429ms on 14 files using 10 threads.

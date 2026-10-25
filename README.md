@@ -38,3 +38,5 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 [T05/A02 / #59](https://github.com/Mang-X/nerv-ui/issues/59) 从 `/#screen/controls` 进入“随心安排”，展示七件受控输入、选择与键盘控件；从同一设置栏返回空间舞台和全部既有表面。接入见 [独立大屏接入](docs/screen-standalone.md#a02受控输入与空间安排)，证据见 [A02 验证记录](docs/evidence/t05-a02/README.md)。父 #6 组合验收另行执行。
 
 [T05/A04 / #61](https://github.com/Mang-X/nerv-ui/issues/61) 从 `/#screen/data` 进入“流动消息”，展示独立来源的等待／失败／保留／恢复、刷新与启停，以及自动轮巡和手动翻阅。接入见 [独立大屏接入](docs/screen-standalone.md#a04流动消息与轮询生命周期)，公开行为与实际浏览器证据见 [A04 验证记录](docs/evidence/t05-a04/README.md)。
+
+[T05/A07 / #64](https://github.com/Mang-X/nerv-ui/issues/64) 从 `/#screen/summary` 进入“空间使用概况”。三件既有组件通过可选 tone、标签/单位与四态文案复用文化空间、共享办公来源；未知与空数据显式呈现。接入见 [独立大屏接入](docs/screen-standalone.md#a07主指标比较摘要与时间分段)，验证见 [A07 证据](docs/evidence/t05-a07/README.md)。#25 新卡和父 #6 组合验收单列。

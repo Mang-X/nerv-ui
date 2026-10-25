@@ -17,6 +17,8 @@ withDefaults(
     /** Time-axis ticks spread across the bar area, e.g. 09:30 … 10:30. */
     axis?: string[]
     title?: string
+    /** Text shared by the four palette legend entries and native hover titles. */
+    toneLabels?: Partial<Record<Seg[0], string>>
   }>(),
   {
     title: '节拍 Takt 58s',
@@ -70,7 +72,9 @@ const TONE_LABEL = { run: '运行', idle: '待机', stop: '停机', alarm: '报�
   <ScreenPanel :title="title" class="nv-scr-tg">
     <template #extra>
       <div class="nv-scr-tg-legend">
-        <span v-for="l in LEGEND" :key="l.tone"><i :class="l.tone" />{{ l.label }}</span>
+        <span v-for="l in LEGEND" :key="l.tone"
+          ><i :class="l.tone" />{{ toneLabels?.[l.tone] ?? l.label }}</span
+        >
       </div>
     </template>
     <div class="nv-scr-tg-axis">
@@ -85,7 +89,7 @@ const TONE_LABEL = { run: '运行', idle: '待机', stop: '停机', alarm: '报�
           class="nv-scr-tg-seg"
           :class="s[0]"
           :style="{ width: s[1] + '%' }"
-          :title="`${r.name} · ${TONE_LABEL[s[0]]} ${s[1]}%`"
+          :title="`${r.name} · ${toneLabels?.[s[0]] ?? TONE_LABEL[s[0]]} ${s[1]}%`"
         />
       </div>
     </div>

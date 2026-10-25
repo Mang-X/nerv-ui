@@ -1,0 +1,30 @@
+docs/evidence/t05-a07/raw/browser-01.log:162: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-02.log:161: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-05.log:279: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-06.log:162: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-07.log:162: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-08.log:162: new blank line at EOF.
+docs/evidence/t05-a07/raw/browser-09-cleanup.log:2: new blank line at EOF.
+docs/evidence/t05-a07/raw/build-final.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t05-a07/raw/build-final.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/build-final.log:34: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t05-a07/raw/build-final.log:43: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t05-a07/raw/build-final.log:45: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/build-final.log:48: new blank line at EOF.
+docs/evidence/t05-a07/raw/build.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t05-a07/raw/build.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/build.log:34: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t05-a07/raw/build.log:43: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t05-a07/raw/build.log:45: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t05-a07/raw/build.log:48: new blank line at EOF.
+docs/evidence/t05-a07/raw/install.log:14: new blank line at EOF.

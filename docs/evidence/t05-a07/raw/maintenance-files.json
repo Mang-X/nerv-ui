@@ -1,0 +1,17 @@
+[
+  "README.md",
+  "docs/screen-standalone.md",
+  "frontend/apps/design-system/docs/components/screen/oee-hero.md",
+  "frontend/apps/design-system/docs/components/screen/status-card.md",
+  "frontend/apps/design-system/docs/components/screen/takt-gantt.md",
+  "frontend/apps/playground/src/ScreenDemo.vue",
+  "frontend/packages/ui/src/components/screen/OeeHero.vue",
+  "frontend/packages/ui/src/components/screen/StatusCard.vue",
+  "frontend/packages/ui/src/components/screen/TaktGantt.vue",
+  "docs/evidence/t05-a07/README.md",
+  "frontend/apps/playground/src/screen/ScreenSummaryDemo.test.ts",
+  "frontend/apps/playground/src/screen/ScreenSummaryDemo.vue",
+  "frontend/apps/playground/src/screen/summary-fixtures.ts",
+  "frontend/packages/ui/src/components/screen/ScreenSummary.test.ts",
+  "frontend/packages/ui/src/components/screen/ScreenSummaryDocs.test.ts"
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "lane": "ui",
+    "exit": 0,
+    "passed": 770,
+    "failed": 0,
+    "pending": 0,
+    "todo": 0,
+    "suites": 115,
+    "unhandledField": "absent",
+    "unhandledLogMarkers": false
+  },
+  {
+    "lane": "mobile",
+    "exit": 0,
+    "passed": 144,
+    "failed": 0,
+    "pending": 0,
+    "todo": 0,
+    "suites": 48,
+    "unhandledField": "absent",
+    "unhandledLogMarkers": false
+  },
+  {
+    "lane": "host",
+    "exit": 0,
+    "passed": 124,
+    "failed": 0,
+    "pending": 0,
+    "todo": 0,
+    "suites": 19,
+    "unhandledField": "absent",
+    "unhandledLogMarkers": false
+  },
+  {
+    "lane": "docs-ui",
+    "exit": 0,
+    "passed": 6,
+    "failed": 0,
+    "pending": 0,
+    "todo": 0,
+    "suites": 6,
+    "unhandledField": "absent",
+    "unhandledLogMarkers": false
+  },
+  {
+    "lane": "docs-mobile",
+    "exit": 0,
+    "passed": 2,
+    "failed": 0,
+    "pending": 0,
+    "todo": 0,
+    "suites": 2,
+    "unhandledField": "absent",
+    "unhandledLogMarkers": false
+  }
+]

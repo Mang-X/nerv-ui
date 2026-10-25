@@ -19,6 +19,10 @@ const props = defineProps<{
   actual: string
   rate: string
   downtime: string
+  /** Labels only: legacy field names and formatted string values stay unchanged. */
+  labels?: Partial<Record<'state' | 'plan' | 'actual' | 'rate' | 'downtime', string>>
+  /** Shared suffix for plan and actual; empty suppresses the legacy 件. */
+  unit?: string
 }>()
 
 const accent = computed(
@@ -32,21 +36,25 @@ const accent = computed(
       <div class="nv-scr-lc-nm">{{ name }} · {{ state }}</div>
       <span class="nv-scr-lc-dot" :class="tone" />
     </div>
-    <div class="nv-scr-lc-state">当前状态</div>
+    <div class="nv-scr-lc-state">{{ labels?.state ?? '当前状态' }}</div>
     <div class="nv-scr-lc-big" :class="tone">{{ label }}</div>
     <div class="nv-scr-lc-stats">
       <div>
-        <i>计划产量</i><b>{{ plan }} 件</b>
+        <i>{{ labels?.plan ?? '计划产量' }}</i
+        ><b>{{ plan }}{{ (unit ?? '件') ? ` ${unit ?? '件'}` : '' }}</b>
       </div>
       <div>
-        <i>实际产量</i><b>{{ actual }} 件</b>
+        <i>{{ labels?.actual ?? '实际产量' }}</i
+        ><b>{{ actual }}{{ (unit ?? '件') ? ` ${unit ?? '件'}` : '' }}</b>
       </div>
       <div>
-        <i>达成率</i><b>{{ rate }}</b>
+        <i>{{ labels?.rate ?? '达成率' }}</i
+        ><b>{{ rate }}</b>
       </div>
     </div>
     <div class="nv-scr-lc-foot">
-      <span>停机时长</span><b>{{ downtime }}</b>
+      <span>{{ labels?.downtime ?? '停机时长' }}</span
+      ><b>{{ downtime }}</b>
     </div>
   </ScreenPanel>
 </template>
