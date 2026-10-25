@@ -1,0 +1,30 @@
+[
+  {
+    "port": 5230,
+    "before": [
+      {
+        "pid": 40137,
+        "cwd": "p40137\nfcwd\nn/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/apps/playground\n",
+        "command": "/Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js preview --host 127.0.0.1 --host 127.0.0.1 --port 5230 --strictPort --base /pdf-proof/"
+      }
+    ],
+    "after": {
+      "lsofExit": 1,
+      "listeners": ""
+    }
+  },
+  {
+    "port": 5231,
+    "before": [
+      {
+        "pid": 43181,
+        "cwd": "p43181\nfcwd\nn/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/apps/playground\n",
+        "command": "/Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js dev --host 127.0.0.1 --host 127.0.0.1 --port 5231 --strictPort"
+      }
+    ],
+    "after": {
+      "lsofExit": 1,
+      "listeners": ""
+    }
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "url": "http://127.0.0.1:5230/pdf-proof/#desktop",
+  "preview": false,
+  "workers": [],
+  "activeObservers": [],
+  "activeTimers": [],
+  "outstandingUrls": [],
+  "errors": [],
+  "zoom": {
+    "width": 2300,
+    "scrollWidth": 2300,
+    "scale": 1,
+    "dpr": 2
+  }
+}

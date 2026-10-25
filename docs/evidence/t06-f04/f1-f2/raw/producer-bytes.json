@@ -1,0 +1,26 @@
+[
+  {
+    "copy": "frontend/packages/ui/src/components/ui/file-preview/pdfium/pdfium.wasm",
+    "producer": "frontend/node_modules/.pnpm/@embedpdf+pdfium@2.14.4/node_modules/@embedpdf/pdfium/dist/pdfium.wasm",
+    "bytes": 4633788,
+    "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8"
+  },
+  {
+    "copy": "frontend/packages/ui/src/components/ui/file-preview/pdfium/LICENSE",
+    "producer": "frontend/node_modules/.pnpm/@embedpdf+pdfium@2.14.4/node_modules/@embedpdf/pdfium/LICENSE",
+    "bytes": 1075,
+    "sha256": "f5031b66adba8ef5ef57666deff980a7f2ccff5c8a8c22a8117e854d2b8dfcd3"
+  },
+  {
+    "copy": "frontend/packages/ui/src/components/ui/file-preview/pdfium/LICENSE.pdfium",
+    "producer": "frontend/node_modules/.pnpm/@embedpdf+pdfium@2.14.4/node_modules/@embedpdf/pdfium/LICENSE.pdfium",
+    "bytes": 12880,
+    "sha256": "b033ffb8fc19c23ca81f7e98019ab658cc6f4cf14587c7c6a2a67fb0f6ac0f5a"
+  },
+  {
+    "copy": "frontend/apps/playground/public/files/NotoSansHans-LICENSE.txt",
+    "producer": "frontend/node_modules/.pnpm/@embedpdf+fonts-sc@1.0.0/node_modules/@embedpdf/fonts-sc/LICENSE",
+    "bytes": 4484,
+    "sha256": "cea028c0b5185b804ae79f1eab96ca5ee469d61d44925972a2379430890bbec1"
+  }
+]

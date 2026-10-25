@@ -1,0 +1,146 @@
+[
+  {
+    "name": "F2-real-PDFium-toBlob-completes-after-unmount",
+    "before": {
+      "gate": {
+        "started": true,
+        "delivered": false,
+        "restore": {},
+        "bytes": 99755,
+        "type": "image/png",
+        "release": {}
+      },
+      "urls": [],
+      "wasm": [
+        {
+          "started": 865.5,
+          "input": 4633788,
+          "completed": 874,
+          "exports": 630
+        }
+      ]
+    },
+    "after": {
+      "urls": [],
+      "errors": []
+    }
+  },
+  {
+    "name": "F2-loaded-bitmap-retained-until-unmount",
+    "before": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5231/af60cd96-1e5c-4f51-991c-e57fd1b55c09",
+          "type": "image/png",
+          "bytes": 99755,
+          "revoked": false
+        }
+      ],
+      "images": [
+        {
+          "url": "blob:http://127.0.0.1:5231/af60cd96-1e5c-4f51-991c-e57fd1b55c09",
+          "width": 1131
+        }
+      ]
+    },
+    "after": [
+      {
+        "url": "blob:http://127.0.0.1:5231/af60cd96-1e5c-4f51-991c-e57fd1b55c09",
+        "type": "image/png",
+        "bytes": 99755,
+        "revoked": true
+      }
+    ]
+  },
+  {
+    "name": "F2-undecoded-rapid-zoom-source-replacement",
+    "before": {
+      "blocked": [
+        "blob:http://127.0.0.1:5231/7a365025-4b4f-4b21-999c-656cc900b333",
+        "blob:http://127.0.0.1:5231/ba95ebb5-5d49-4966-992a-c95e42233ca9",
+        "blob:http://127.0.0.1:5231/9152139f-1bd3-4e91-b9e9-1bf2647967fd",
+        "blob:http://127.0.0.1:5231/458e91fd-a312-42e1-9eb7-53b52e8d6b89",
+        "blob:http://127.0.0.1:5231/330675cc-a633-4602-b19e-eab1772cd2ee"
+      ],
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5231/af60cd96-1e5c-4f51-991c-e57fd1b55c09",
+          "type": "image/png",
+          "bytes": 99755,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/7a365025-4b4f-4b21-999c-656cc900b333",
+          "type": "image/png",
+          "bytes": 99755,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/ba95ebb5-5d49-4966-992a-c95e42233ca9",
+          "type": "image/png",
+          "bytes": 113982,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/9152139f-1bd3-4e91-b9e9-1bf2647967fd",
+          "type": "image/png",
+          "bytes": 152426,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/458e91fd-a312-42e1-9eb7-53b52e8d6b89",
+          "type": "image/png",
+          "bytes": 113982,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/330675cc-a633-4602-b19e-eab1772cd2ee",
+          "type": "image/png",
+          "bytes": 89504,
+          "revoked": false
+        }
+      ]
+    },
+    "after": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5231/af60cd96-1e5c-4f51-991c-e57fd1b55c09",
+          "type": "image/png",
+          "bytes": 99755,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/7a365025-4b4f-4b21-999c-656cc900b333",
+          "type": "image/png",
+          "bytes": 99755,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/ba95ebb5-5d49-4966-992a-c95e42233ca9",
+          "type": "image/png",
+          "bytes": 113982,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/9152139f-1bd3-4e91-b9e9-1bf2647967fd",
+          "type": "image/png",
+          "bytes": 152426,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/458e91fd-a312-42e1-9eb7-53b52e8d6b89",
+          "type": "image/png",
+          "bytes": 113982,
+          "revoked": true
+        },
+        {
+          "url": "blob:http://127.0.0.1:5231/330675cc-a633-4602-b19e-eab1772cd2ee",
+          "type": "image/png",
+          "bytes": 89504,
+          "revoked": true
+        }
+      ],
+      "errors": []
+    }
+  }
+]

@@ -1,0 +1,13 @@
+const fs=await import('node:fs/promises');const assert=(await import('node:assert/strict')).default;const p=(await taskSpace(36)).page('p1');
+await p.cdp('Page.addScriptToEvaluateOnNewDocument',{source:await fs.readFile('/tmp/nerv-ui-t06-f04-merger-r1-20261025/instrument.js','utf8')});await p.reload();await p.waitForSelector('a[href="#files"]');await p.click('a[href="#files"]');await p.waitForSelector('select[aria-label="预览内容"]');
+await p.evaluate(()=>{const a=window.__decodeGate={blocked:[]};const desc=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src'),setAttribute=HTMLImageElement.prototype.setAttribute;
+ Object.defineProperty(HTMLImageElement.prototype,'src',{...desc,set(value){if(String(value).startsWith('blob:')){a.blocked.push({url:String(value),via:'src',time:performance.now()});return;}desc.set.call(this,value);}});
+ HTMLImageElement.prototype.setAttribute=function(name,value){if(name==='src'&&String(value).startsWith('blob:')){a.blocked.push({url:String(value),via:'attribute',time:performance.now()});return;}return setAttribute.call(this,name,value);};
+ a.restore=()=>{Object.defineProperty(HTMLImageElement.prototype,'src',desc);HTMLImageElement.prototype.setAttribute=setAttribute;};});
+await p.selectOption('select[aria-label="预览内容"]','pdf-single');await p.waitForFunction(()=>window.__decodeGate.blocked.length>0);
+const before=await p.evaluate(()=>({blocked:window.__decodeGate.blocked,blobs:window.__pdfAudit.blobUrls,images:[...document.querySelectorAll('[data-slot="file-preview-pdf-page"] img')].map(x=>({src:x.src,complete:x.complete,naturalWidth:x.naturalWidth})),wasmInstances:window.__pdfAudit.wasmInstances}));
+assert(before.images.every(x=>!x.naturalWidth));assert(before.wasmInstances.some(x=>x.completed));
+await p.click('a[href="#desktop"]');await p.waitForFunction(()=>!document.querySelector('[data-slot="file-preview"]')&&!window.__pdfAudit.observers.some(x=>x.active)&&!window.__pdfAudit.timers.some(x=>x.active));
+const after=await p.evaluate(()=>({blobs:window.__pdfAudit.blobUrls,outstanding:window.__pdfAudit.blobUrls.filter(x=>!x.revoked),errors:window.__pdfAudit.errors}));assert(after.outstanding.length>0);
+const result={probe:'actual public FilePreview + PDFium/WASM renders real 1129B fixture; controlled HTMLImage src assignment delays decode/load only, no mocked renderer',before,after};await fs.writeFile('/tmp/nerv-ui-t06-f04-merger-r1-20261025/raw/finding-f2-public-browser.json',JSON.stringify(result,null,2));console.log(result);
+await p.evaluate(()=>{window.__decodeGate.restore();for(const x of window.__pdfAudit.blobUrls.filter(x=>!x.revoked))URL.revokeObjectURL(x.url);});console.log(await p.snapshot());
