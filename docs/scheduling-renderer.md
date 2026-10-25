@@ -93,13 +93,12 @@ P04 私有 vendor 子 root、退役 detach 保树、Evaluation 1ms 后析构、�
 
 缺模块仍复用 P01 唯一 native renderer；资源归属、排序、空/仅块泳道、块和工作中心保留窗口使用同一投影。native 的 KPI 资源头、班次日历底纹、多刻度、缩放与编辑不具备 vendor 等价能力，不以回落测试替代真实 vendor。商业授权仍 UNKNOWN，未发布。
 
-
 ## P06：order 受控编辑
 
 `GanttChart` 保留 `readOnly=false` 默认值、`taskDragEnd(TaskDragPayload)` 和 `lockedDragAttempt(taskId)`。`/#schedule-edit/library` / `/#schedule-edit/studio` 通过主桶消费两个中性领域，同页参考实例只读，提供既有入口往返。类型/字段未新增，资源改派 owner 仍是 P07；P08/P09、SDK、权限、求解和后台保存没有提前迁入。
 
 order 原生整条 move 与左右 resize 只产生提案。`taskId/operationId/resourceId` 取当前输入身份；`startUtc/endUtc` 为真实时刻的 UTC ISO，`kind` 只为 move/resize。vendor 按当前刻度吸附（不是浏览器 wall time 平移）。宿主在回调中回写新的 `model` 接受；不回写即拒绝，图面恢复原模型。异步授权/保存可先拒绝，待决定后再提供模型；无新增自动锁定、自动求解或审批状态。
 
-引擎在公开 `onBeforeTaskDrag` 建立一次手势，在 `onBeforeTaskChanged(id, mode, originalTask)` 捕获 vendor 的当前日期并返回 false，避免 vendor 内部写入变成权威。回调延后到原生 mouseup 栈结束，随后按最新模型重绘。期间外部 model 替换/深层更新、锁定/删任务、只读开启使旧手势失效；重绘等到释放，避免清除 vendor 当前拖拽对象。80ms 抑制已由 P04 移除，本票不恢复它。快速连续/回调重入的新手势在当前结算前被拦截，结算后正常继续；卸载清理 listener/timer，不向存活实例写入。
+引擎在公开 `onBeforeTaskDrag` 建立一次手势 token，在 `onBeforeTaskChanged(id, mode, originalTask)` 捕获 vendor 的当前日期并返回 false，避免 vendor 内部写入变成权威。回调延后到原生 mouseup 栈结束，随后按最新模型重绘。token 建立后，外部 model 替换/深层更新、锁定/删任务、只读开启使旧手势失效；重绘等到释放，避免清除 vendor 当前拖拽对象。vendor 在 mousedown 后达到移动阈值才建立 token，因此不能泛称任何 mousedown 后的模型替换都会取消手势；R1 真实测试未观察到该窗口用旧值覆盖新权威，详见 [F1 返修记录](evidence/t07-p06/f1/README.md)。80ms 抑制已由 P04 移除，本票不恢复它。快速连续/回调重入的新手势在当前结算前被拦截，结算后正常继续；卸载清理 listener/timer，不向存活实例写入。
 
 只读、分组、里程碑、块、多段不发写提案；锁定工序用既有 lockedDragAttempt 解释拒绝，不改变锁状态。输入任务、segments、维度与资源身份不突变。原生 fallback 编辑仍不可用；真实 vendor、fake adapter、native、APS 证据分列，参见 [P06 记录](evidence/t07-p06/README.md)。商业授权仍 UNKNOWN。

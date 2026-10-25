@@ -20,6 +20,21 @@ const scale = shallowRef<TimeScale>('hour')
 const policy = shallowRef('accept')
 const message = shallowRef('拖动活动调整时间，或拖动两端调整时长。')
 const proposals = shallowRef<TaskDragPayload[]>([])
+const records = shallowRef<
+  { activity: string; action: string; before: string; proposed: string; result: string }[]
+>([])
+const localTime = new Intl.DateTimeFormat('zh-CN', {
+  timeZone: 'Asia/Shanghai',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  hourCycle: 'h23',
+})
+function timeRange(start: string, end: string) {
+  return `${localTime.format(new Date(start))} 至 ${localTime.format(new Date(end))}`
+}
 const chart = useTemplateRef<InstanceType<typeof GanttChart>>('chart')
 const activity = (id: string, text: string, startUtc: string, endUtc: string): ScheduleTask => ({
   id,
@@ -93,6 +108,7 @@ function replace() {
   message.value = '已换为新的活动时间。'
 }
 function proposed(payload: TaskDragPayload) {
+  const previous = authority.value.tasks.find((task) => task.id === payload.taskId)
   proposals.value = [...proposals.value, payload]
   if (policy.value === 'accept') {
     authority.value = {
@@ -105,10 +121,28 @@ function proposed(payload: TaskDragPayload) {
   } else if (policy.value === 'replace') {
     replace()
   } else message.value = '保留原来的时间。'
+  records.value = [
+    ...records.value,
+    {
+      activity: previous?.text ?? '活动',
+      action:
+        payload.kind === 'move'
+          ? '移动'
+          : previous && Date.parse(previous.startUtc) === Date.parse(payload.startUtc)
+            ? '结束时间调整'
+            : previous && Date.parse(previous.endUtc) === Date.parse(payload.endUtc)
+              ? '开始时间调整'
+              : '起止时间调整',
+      before: previous ? timeRange(previous.startUtc, previous.endUtc) : '原时间未知',
+      proposed: timeRange(payload.startUtc, payload.endUtc),
+      result: message.value,
+    },
+  ]
 }
 function reset() {
   authority.value = initial
   proposals.value = []
+  records.value = []
   locked.value = false
   readOnly.value = false
   message.value = '已恢复最初安排。'
@@ -182,12 +216,24 @@ function reset() {
       </div>
       <p>
         当前首项活动：<output data-authority
-          >{{ model.tasks[1]?.startUtc }} → {{ model.tasks[1]?.endUtc }}</output
+          >{{
+            model.tasks[1] ? timeRange(model.tasks[1].startUtc, model.tasks[1].endUtc) : '时间未知'
+          }}
+          （上海时间）</output
         >
       </p>
       <details>
         <summary>时间调整记录（{{ proposals.length }}）</summary>
-        <pre data-proposals>{{ JSON.stringify(proposals, null, 2) }}</pre>
+        <p class="my-2 text-sm">以下时间均为上海时间。</p>
+        <p v-if="records.length === 0">暂无时间调整记录。</p>
+        <ol v-else data-proposals class="space-y-3">
+          <li v-for="(record, index) in records" :key="index" class="rounded-lg border p-3">
+            <p class="font-medium">{{ index + 1 }}. {{ record.activity }} · {{ record.action }}</p>
+            <p>调整前：{{ record.before }}</p>
+            <p>调整后：{{ record.proposed }}</p>
+            <p>处理结果：{{ record.result }}</p>
+          </li>
+        </ol>
       </details>
       <div
         v-if="second"

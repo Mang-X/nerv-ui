@@ -1,5 +1,7 @@
 # T07/P06 · 工单图受控编辑
 
+R1 Standards F1/P2 的后续展示返修见 [F1 记录](f1/README.md)。本页保留原实施轮事实、FAIL 与证据指针；后续 fresh 与有限继承分列于该记录。旧提案失效的保证从 `onBeforeTaskDrag` 建立 token 后开始，不泛化到任何 mousedown 后的替换。
+
 本轮仅 #89，scope M／高难度，单独 draft PR，base `integration/nerv-ui-extraction`。实施树 `/Users/mang/Project/nerv-ui-worktrees/t07-p06-order-editing`，分支 `feat/t07-p06-order-editing`；起点及交付前 fetch/merge 的最新 integration 均为 `e91051401ecd746f851dd6b06cd125e5f3aca049`，tree `7375464b8d2cc40a6740a0b44b8a775d12415d7b`。最终 head/tree/PR 与完整命令、响应 body、SHA 清单在本轮 durable [handoff](/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p06-implementation-r1/handoff.md)；证据根以下简称 `E`。
 
 ## Requirement | Evidence
