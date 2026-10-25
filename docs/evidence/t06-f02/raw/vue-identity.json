@@ -1,0 +1,17 @@
+[
+  {
+    "package": "packages/ui",
+    "version": "3.5.39",
+    "resolved": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+  },
+  {
+    "package": "packages/ui-mobile",
+    "version": "3.5.39",
+    "resolved": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+  },
+  {
+    "package": "apps/playground",
+    "version": "3.5.39",
+    "resolved": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+  }
+]

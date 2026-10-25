@@ -1,0 +1,5 @@
+Could not parse CSS stylesheet
+JSON report written to /tmp/nerv-ui-t06-f02/red-create.json
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/files/uploadLifecycle.test.ts '--reporter=json' '--outputFile=/tmp/nerv-ui-t06-f02/red-create.json'

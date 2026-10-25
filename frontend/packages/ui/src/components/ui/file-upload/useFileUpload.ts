@@ -8,7 +8,7 @@ import type {
   FileUploadTransport,
 } from './types'
 import type { MaybeRefOrGetter } from 'vue'
-import { computed, reactive, toValue } from 'vue'
+import { computed, getCurrentScope, onScopeDispose, reactive, toValue } from 'vue'
 import { formatFileSize as formatSharedFileSize } from '../../../lib/file'
 import { getFileKind } from './fileKind'
 
@@ -37,6 +37,13 @@ interface UseFileUploadOptions {
 export function useFileUpload(options: UseFileUploadOptions) {
   const rows = reactive<FileUploadRow[]>([])
   const controllers = new Map<string, AbortController>()
+  let disposed = false
+  if (getCurrentScope()) {
+    onScopeDispose(() => {
+      disposed = true
+      clear()
+    })
+  }
 
   const completedFiles = computed(() =>
     rows
@@ -54,6 +61,7 @@ export function useFileUpload(options: UseFileUploadOptions) {
   }
 
   async function addFiles(files: File[]) {
+    if (disposed) return
     let acceptedSlotCount = occupiedSlotCount.value
     const acceptedRows: FileUploadRow[] = []
     const rejectedFiles: FileUploadRejectedFile[] = []
@@ -99,11 +107,23 @@ export function useFileUpload(options: UseFileUploadOptions) {
   }
 
   async function uploadRow(row: FileUploadRow) {
+    if (disposed || !rows.includes(row) || !['queued', 'paused', 'failed'].includes(row.status))
+      return
+    if (row.status === 'failed' && row.uploadSession && isUploadSessionExpired(row.uploadSession)) {
+      row.uploadSession = null
+    }
     row.status = 'uploading'
     row.progress = 1
     row.error = null
     const controller = new AbortController()
     controllers.set(row.id, controller)
+    // The controller is also the attempt identity; cancellation remains effective
+    // when a host callback ignores its signal or has no signal parameter.
+    const isCurrent = () =>
+      !disposed &&
+      rows.includes(row) &&
+      controllers.get(row.id) === controller &&
+      !controller.signal.aborted
 
     try {
       const session =
@@ -122,16 +142,19 @@ export function useFileUpload(options: UseFileUploadOptions) {
           expectedSizeBytes: row.sizeBytes,
           checksum: null,
         }))
+      if (!isCurrent()) return
       row.uploadSession = session
 
       await options.transport({
         file: row.file,
         session,
         onProgress: (progress) => {
-          row.progress = clampProgress(progress)
+          if (isCurrent()) row.progress = clampProgress(progress)
         },
         signal: controller.signal,
       })
+
+      if (!isCurrent()) return
 
       const completed = await options.completeUploadSession(session.uploadSessionId, {
         organizationId: toValue(options.organizationId),
@@ -141,18 +164,21 @@ export function useFileUpload(options: UseFileUploadOptions) {
         sizeBytes: row.sizeBytes,
       })
 
+      if (!isCurrent()) return
       row.fileId = completed.fileId || session.fileId
       row.status = 'completed'
       row.progress = 100
       options.onCompleted(completedFiles.value)
     } catch (error) {
-      if (isAbortError(error) && isPausedRow(row)) {
-        row.error = null
-        return
-      }
-
+      if (!isCurrent()) return
       row.status = 'failed'
-      row.error = error instanceof Error ? error.message : '上传失败。'
+      row.error =
+        typeof error === 'object' &&
+        error !== null &&
+        'message' in error &&
+        typeof error.message === 'string'
+          ? error.message
+          : '上传失败。'
       options.onFailed(row)
     } finally {
       if (controllers.get(row.id) === controller) {
@@ -205,10 +231,6 @@ export function useFileUpload(options: UseFileUploadOptions) {
       return
     }
 
-    row.error = null
-    if (row.uploadSession && isUploadSessionExpired(row.uploadSession)) {
-      row.uploadSession = null
-    }
     await uploadRow(row)
   }
 
@@ -325,16 +347,6 @@ export function rowKind(row: FileUploadRow) {
 
 export function formatFileSize(bytes: number) {
   return formatSharedFileSize(bytes)
-}
-
-function isAbortError(error: unknown) {
-  return (
-    typeof error === 'object' && error !== null && 'name' in error && error.name === 'AbortError'
-  )
-}
-
-function isPausedRow(row: FileUploadRow) {
-  return row.status === 'paused'
 }
 
 function isUploadSessionExpired(session: FileUploadSession) {

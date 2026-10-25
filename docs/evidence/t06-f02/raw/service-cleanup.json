@@ -1,0 +1,54 @@
+{
+  "cwdProof": {
+    "args": [
+      "lsof",
+      "-a",
+      "-p",
+      "98500,98510",
+      "-d",
+      "cwd"
+    ],
+    "exit": 0,
+    "stdout": "COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF      NODE NAME\nnode    98500 mang  cwd    DIR   1,14      384 297960374 /Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground\nnode    98510 mang  cwd    DIR   1,14      384 297960374 /Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/apps/playground\n",
+    "stderr": ""
+  },
+  "processProof": {
+    "args": [
+      "ps",
+      "-p",
+      "98500,98510",
+      "-o",
+      "pid,ppid,command"
+    ],
+    "exit": 0,
+    "stdout": "  PID  PPID COMMAND\n98500 98480 node /Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/node_modules/.bin/../vite-plus/bin/vp preview --host 127.0.0.1 --port 5200 --strictPort\n98510 98500 /Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js preview --host 127.0.0.1 --port 5200 --strictPort\n",
+    "stderr": ""
+  },
+  "after": [
+    {
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:5199",
+        "-sTCP:LISTEN"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:5200",
+        "-sTCP:LISTEN"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "signal": "SIGTERM",
+  "t3TabClosed": true,
+  "egoFinished": true
+}

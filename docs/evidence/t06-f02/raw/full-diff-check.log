@@ -1,0 +1,16 @@
+docs/evidence/t06-f02/raw/browser-cleanup.log:2: new blank line at EOF.
+docs/evidence/t06-f02/raw/browser-dev-r4.log:174: new blank line at EOF.
+docs/evidence/t06-f02/raw/browser-prod.log:174: new blank line at EOF.
+docs/evidence/t06-f02/raw/browser-resources.log:174: new blank line at EOF.
+docs/evidence/t06-f02/raw/build-final.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f02/raw/build-final.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f02/raw/build-final.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f02/raw/build-final.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f02/raw/build-final.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f02/raw/dev.log:3: trailing whitespace.
++  VITE+ v0.2.4  
