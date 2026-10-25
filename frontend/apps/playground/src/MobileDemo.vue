@@ -89,6 +89,7 @@ const controlClass =
         <p class="text-sm text-muted-foreground">把时间留给喜欢的风景</p>
         <h1 class="text-2xl font-semibold tracking-tight">周末随行</h1>
         <nav class="flex flex-wrap gap-4 text-sm underline" aria-label="演示入口">
+          <a href="#files" class="inline-flex min-h-11 items-center px-3 underline">留住片刻</a>
           <a href="#mobile-feedback" class="inline-flex min-h-touch items-center">片刻回响</a>
           <a href="#mobile-lists" class="inline-flex min-h-touch items-center">翻阅时光</a>
           <a href="#mobile-overlays" class="inline-flex min-h-touch items-center">片刻安排</a>

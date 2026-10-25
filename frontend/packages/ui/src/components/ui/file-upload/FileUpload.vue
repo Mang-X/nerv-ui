@@ -444,7 +444,7 @@ defineExpose<FileUploadExpose>({
         <span
           v-if="restrictionHint"
           data-slot="file-upload-accept-hint"
-          class="text-muted-foreground max-w-full text-wrap text-xs leading-5"
+          class="text-muted-foreground max-w-full wrap-anywhere text-wrap text-xs leading-5"
         >
           {{ restrictionHint }}
         </span>
@@ -492,7 +492,7 @@ defineExpose<FileUploadExpose>({
             <PlusIcon class="size-4" aria-hidden="true" />
             {{ dropzoneCta }}
           </Button>
-          <span class="text-muted-foreground min-w-0 text-left text-sm">
+          <span class="text-muted-foreground min-w-0 wrap-anywhere text-left text-sm">
             {{ dropzoneDescription }}
           </span>
         </template>
@@ -512,7 +512,7 @@ defineExpose<FileUploadExpose>({
         <span
           v-if="variant !== 'compact' && variant !== 'avatar' && restrictionHint"
           data-slot="file-upload-accept-hint"
-          class="text-muted-foreground max-w-full text-wrap text-xs leading-5"
+          class="text-muted-foreground max-w-full wrap-anywhere text-wrap text-xs leading-5"
         >
           {{ variant === 'table' ? tableRestrictionHint : restrictionHint }}
         </span>

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { afterEach, expect, it } from 'vitest'
+import { afterEach, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import App from './App.vue'
 
@@ -7,6 +7,7 @@ let wrapper: ReturnType<typeof mount> | undefined
 afterEach(() => {
   wrapper?.unmount()
   document.body.innerHTML = ''
+  vi.unstubAllGlobals()
   localStorage.clear()
   window.location.hash = ''
 })
@@ -153,5 +154,42 @@ it('opens mobile feedback directly and returns through all six existing entries'
     window.dispatchEvent(new HashChangeEvent('hashchange'))
     await nextTick()
     expect(wrapper.get('h1').text()).toBe('片刻回响')
+  }
+})
+
+it('opens files directly and returns from every completed surface group', async () => {
+  vi.stubGlobal('matchMedia', () => ({
+    matches: false,
+    addEventListener() {},
+    removeEventListener() {},
+  }))
+  window.location.hash = '#files'
+  wrapper = mount(App, { attachTo: document.body })
+  expect(wrapper.get('h1').text()).toBe('留住片刻')
+  for (const hash of [
+    '#desktop',
+    '#touch',
+    '#mobile',
+    '#mobile-input',
+    '#mobile-overlays',
+    '#mobile-lists',
+    '#mobile-feedback',
+    '#screen/stage',
+    '#screen/controls',
+    '#screen/indicators',
+    '#screen/data',
+    '#screen/charts',
+    '#screen/tables',
+    '#screen/summary',
+  ]) {
+    expect(wrapper.find(`a[href="${hash}"]`).exists()).toBe(true)
+    window.location.hash = hash
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+    await nextTick()
+    expect(wrapper.get('a[href="#files"]').text()).toBe('留住片刻')
+    window.location.hash = '#files'
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+    await nextTick()
+    expect(wrapper.get('h1').text()).toBe('留住片刻')
   }
 })

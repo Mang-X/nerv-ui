@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import ScreenDemo from './ScreenDemo.vue'
+import FilesDemo from './FilesDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
@@ -79,7 +80,8 @@ function addProject() {
 </script>
 
 <template>
-  <ScreenDemo v-if="surface.startsWith('#screen')" :section="surface" />
+  <FilesDemo v-if="surface === '#files'" />
+  <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
   <MobileOverlayDemo v-else-if="surface === '#mobile-overlays'" />
@@ -88,6 +90,7 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#files" class="inline-flex min-h-11 items-center px-4 underline">留住片刻</a>
       <a
         href="#screen"
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"

@@ -1,0 +1,41 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/FilesDemo.test.ts (1 test | 1 failed) 63ms
+   × keeps manual selection inert then pauses, resumes, retries and replaces receipt snapshots 62ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/FilesDemo.test.ts > keeps manual selection inert then pauses, resumes, retries and replaces receipt snapshots
+Error: Unable to get input[type="file"][data-testid="upload-picker"] within: <div data-slot="app" class="flex min-h-dvh flex-col bg-background text-foreground">
+  <main>
+    <h1>留住片刻</h1>
+    <nav aria-label="显示表面"><a href="#desktop">desktop</a><a href="#touch">touch</a><a href="#mobile">mobile</a><a href="#mobile-input">mobile-input</a><a href="#mobile-overlays">mobile-overlays</a><a href="#mobile-lists">mobile-lists</a><a href="#mobile-feedback">mobile-feedback</a><a href="#screen/stage">screen/stage</a><a href="#screen/controls">screen/controls</a><a href="#screen/indicators">screen/indicators</a><a href="#screen/data">screen/data</a><a href="#screen/charts">screen/charts</a><a href="#screen/tables">screen/tables</a><a href="#screen/summary">screen/summary</a></nav>
+  </main>
+</div>
+<!-- Remove item from normal navigation flow, only available via hotkey -->
+<section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false">
+  <ol data-sonner-toaster="" data-sonner-theme="light" class="toaster group" dir="ltr" tabindex="-1" data-theme="light" data-rich-colors="false" data-y-position="bottom" data-x-position="right" style="--front-toast-height: 0px; --width: 356px; --gap: 14px; --normal-bg: var(--popover); --normal-text: var(--popover-foreground); --normal-border: var(--border); --border-radius: var(--radius); --offset-top: 24px; --offset-right: 24px; --offset-bottom: 24px; --offset-left: 24px; --mobile-offset-top: 16px; --mobile-offset-right: 16px; --mobile-offset-bottom: 16px; --mobile-offset-left: 16px;"></ol>
+</section>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ choose src/FilesDemo.test.ts:11:28
+      9|   wrapper = mount(FilesDemo, { attachTo: document.body })
+     10|   const choose = async (name: string) => {
+     11|     const input = wrapper!.get('input[type="file"][data-testid="upload…
+       |                            ^
+     12|     Object.defineProperty(input.element, 'files', { configurable: true…
+     13|     await input.trigger('change')
+ ❯ src/FilesDemo.test.ts:20:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  10:32:44
+   Duration  4.80s (transform 2.89s, setup 433ms, import 3.75s, tests 63ms, environment 448ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/FilesDemo.test.ts

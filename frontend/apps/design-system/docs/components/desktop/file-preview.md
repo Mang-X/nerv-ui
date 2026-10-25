@@ -238,7 +238,7 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
 | ----------------- | ------------------------------------------------------ |
 | `src`             | 浏览器可访问的文件地址或 data URL                      |
 | `fileName`        | 用于类型推断、标题和可访问标签                         |
-| `contentType`     | 优先参与类型推断                                       |
+| `contentType`     | 参与 family 与扩展名推断，详见下方冲突顺序             |
 | `sizeBytes`       | 展示紧凑文件大小                                       |
 | `height`          | 预览容器高度，默认 `520`                               |
 | `loading / error` | 由上层控制的异步状态                                   |
@@ -260,3 +260,13 @@ import { filePreviewMotion } from '@nerv-iip/ui'
 filePreviewMotion.fastInvoke
 filePreviewMotion.fade
 ```
+
+## 类型推断与独立图片宿主（T06/F01）
+
+从 `@nerv-iip/ui/file-preview` 导入 `FilePreview`，根入口只提供 helper/type。推断先调用共享 family：Word → spreadsheet → presentation → PDF → image → audio/video/archive；随后预览按 family PDF、family image、DOCX/XLSX/PPTX 扩展名或 OOXML MIME 选择 renderer。MIME 会去参数、trim、转小写，扩展名大小写不敏感，没有内容嗅探。`report.pdf + image/png` 为 PDF；`note.docx + image/png` 当前为 DOCX（Word family 更早匹配）；无扩展名且 `IMAGE/PNG; charset=utf-8` 为 image。不要概括成 MIME 总优先或 PDF 总压过 Office family。
+
+旧 `.doc/.xls/.ppt`、文本、CSV、JSON、音视频与压缩包显示 unsupported；上传接受这些类型不等于能内嵌预览。空源提示没有可用来源，不触发 ready；图片通过真实浏览器 load/error 触发事件。
+
+`/#files` 提供独立供应的本地 SVG/PNG/JPEG、损坏图片、empty/loading/error/unsupported。图片缩放范围 20%–300%，旋转每次 ±90°。`openSource` 仅发事件；宿主记录请求后，需要再点明确按钮才打开受控本地来源。预览读取 src 的 GET 是读动作，与上传写动作分开。宿主 Blob URL 更换后先卸载旧预览再 revoke，清空与离页也回收；库缩略图 URL 由库负责。
+
+playground 为 FilePreview 的 lazy 构建图启用已经锁定的 `vite-plugin-wasm@3.6.0`；没有新增版本。F01 的构建包含既有 PDFium/Office 异步 chunk，不代表真实 renderer 已验收：PDF #75、三种 Office #76 单独验证，完整文档站 #10、packed host #11 另列。

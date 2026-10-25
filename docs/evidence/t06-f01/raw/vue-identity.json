@@ -1,0 +1,14 @@
+[
+  {
+    "path": "frontend/apps/playground",
+    "vue": "/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+  },
+  {
+    "path": "frontend/packages/ui",
+    "vue": "/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+  },
+  {
+    "path": "frontend/packages/ui-mobile",
+    "vue": "/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+  }
+]

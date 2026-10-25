@@ -1,0 +1,167 @@
+$ vp test run src --exclude src/design-docs.contract.test.ts --exclude src/nvui-doc-coverage.contract.test.ts --exclude src/docs-layout.contract.test.ts --maxWorkers=4 --reporter=default --reporter=json --outputFile.json=/tmp/nerv-ui-t06-f01/raw/ui-final.json
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/packages/ui
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+stderr | src/date-picker-props.contract.test.ts > NvDatePicker.vue 声明的 DOM prop 必须被消费 > 声明为 prop 的 class/id 真的落进 DOM
+[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+ ✓ src/date-picker-props.contract.test.ts (2 tests) 1419ms
+     ✓ 声明为 prop 的 class/id 真的落进 DOM  1367ms
+ ✓ src/components/ui/date-picker/DatePicker.test.ts (2 tests) 604ms
+     ✓ selects a day from the calendar and emits a YYYY-MM-DD string  402ms
+ ✓ src/components/ui/date-picker/DateRangePicker.test.ts (2 tests) 612ms
+     ✓ renders a range calendar with the current selection  408ms
+ ✓ src/components/blocks/entity-picker/EntityPicker.test.ts (24 tests) 1730ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/pc/date-picker/NvDateRangePicker.test.ts (3 tests) 341ms
+ ✓ src/components/pc/combobox/combobox.test.ts (9 tests) 552ms
+     ✓ gives the popover search input an accessible name derived from the field  329ms
+ ✓ src/components/ui/file-preview/FilePreview.test.ts (22 tests) 992ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/dialog/NvDialog.test.ts (3 tests) 403ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenScrollArea.test.ts (1 test) 257ms
+stderr | src/components/pc/sheet/NvSheetContent.test.ts > NvSheetContent 版式契约 > 正文子元素带水平内边距，头尾排除在外（否则双重内边距且背景缩进）
+Warning: Missing `Description` or `aria-describedby="undefined"` for DialogContent.
+
+stderr | src/components/pc/sheet/NvSheetContent.test.ts > NvSheetContent 版式契约 > 直接子元素钉住 min-w-0，超宽内容各自横向滚动而不顶破面板
+Warning: Missing `Description` or `aria-describedby="undefined"` for DialogContent.
+
+ ✓ src/components/pc/sheet/NvSheetContent.test.ts (2 tests) 265ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/pc/card/Metric.test.ts (43 tests) 435ms
+ ✓ src/components/pc/sidebar/NvSidebar.test.ts (1 test) 182ms
+ ✓ src/components/screen/ScreenCharts.test.ts (26 tests) 322ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenControls.test.ts (17 tests) 573ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/pc/data-table/DataTable.test.ts (12 tests) 532ms
+Could not parse CSS stylesheet
+stderr | src/components/screen/ScreenIndicators.test.ts > kpi accepts the actual icon component and independent zero and clamped ring inputs with host text
+[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+  at <KpiBar items= [
+  {
+    icon: { props: [Array], setup: [Function: setup] },
+    value: '尚未统计',
+    label: '累计阅读',
+    tone: 'amber'
+  },
+  { value: '0%', label: '预订比例', ring: 0 }
+] ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/components/screen/ScreenIndicators.test.ts > kpi accepts the actual icon component and independent zero and clamped ring inputs with host text
+[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+  at <KpiBar items= [
+  {
+    icon: { props: [Array], setup: [Function: setup] },
+    value: '由宿主提供的很长很长的数值说明',
+    label: '河畔公共阅读空间全年累计到访说明',
+    tone: 'cyan'
+  }
+] ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+ ✓ src/components/screen/ScreenIndicators.test.ts (31 tests) 332ms
+ ✓ src/components/pc/date-picker/NvDatePicker.test.ts (9 tests) 469ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenIndicatorDocs.test.ts (1 test) 152ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/checkbox/NvCheckbox.contract.test.ts (7 tests) 180ms
+Could not parse CSS stylesheet
+ ✓ src/components/blocks/cascade-picker/CascadePicker.test.ts (3 tests) 176ms
+Could not parse CSS stylesheet
+ ✓ src/components/blocks/group-panel/GroupPanel.test.ts (5 tests) 168ms
+Could not parse CSS stylesheet
+ ✓ src/test-support/unovisTooltipTimers.test.ts (2 tests) 165ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenSummaryDocs.test.ts (3 tests) 137ms
+stderr | src/components/pc/status/NvStatusBadge.test.ts > NvStatusBadge 中文状态展示 > 未知状态 new-producer-status 显示中性占位
+[NvStatusBadge] 词表缺失: new-producer-status（归一键 newproducerstatus），请补 statusMap.ts 的 STATUS_LABELS
+
+ ✓ src/components/pc/status/NvStatusBadge.test.ts (28 tests) 70ms
+Could not parse CSS stylesheet
+ ✓ src/components/touch/TouchSegmented.test.ts (5 tests) 88ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenTables.test.ts (15 tests) 448ms
+ ✓ src/components/ui/file-upload/FileUpload.test.ts (31 tests) 1069ms
+ ✓ src/components/touch/TouchButton.test.ts (11 tests) 184ms
+ ✓ src/components/screen/ScreenScaler.test.ts (3 tests) 46ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/carousel/Carousel.test.ts (5 tests) 119ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenFreshness.test.ts (2 tests) 27ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenSummary.test.ts (8 tests) 95ms
+ ✓ src/components/screen/ScreenChrome.test.ts (3 tests) 71ms
+Could not parse CSS stylesheet
+ ✓ src/nvui-naming.contract.test.ts (247 tests) 110ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScrollBoard.test.ts (5 tests) 91ms
+ ✓ src/design-system.contract.test.ts (21 tests) 70ms
+stderr | src/foundation-conventions.contract.test.ts > 状态词表 > 空值与未登记码给中性占位，不回吐原码
+[NvStatusBadge] 词表缺失: brand-new-code（归一键 brandnewcode），请补 statusMap.ts 的 STATUS_LABELS
+
+ ✓ src/foundation-conventions.contract.test.ts (36 tests) 66ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/composables/useTheme.test.ts (5 tests) 15ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/pc/input/NvInvalidControls.test.ts (2 tests) 74ms
+ ✓ src/components/touch/QtyStepper.test.ts (3 tests) 62ms
+Could not parse CSS stylesheet
+ ✓ src/components/touch/StationBar.test.ts (5 tests) 66ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/pc/spinner/NvSpinner.test.ts (2 tests) 25ms
+ ✓ src/components/touch/StatTile.test.ts (5 tests) 54ms
+ ✓ src/components/blocks/app-shell-inset/AppShellInset.test.ts (1 test) 25ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/useScreenData.test.ts (13 tests) 26ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/input/NvInput.test.ts (1 test) 27ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/components/ui/file-preview/filePreviewKind.test.ts (5 tests) 4ms
+Could not parse CSS stylesheet
+ ✓ src/test-support/nvuiImportHygiene.test.ts (22 tests) 10ms
+ ✓ src/ui-primitives.contract.test.ts (8 tests) 4ms
+Could not parse CSS stylesheet
+ ✓ src/lib/utils.test.ts (9 tests) 6ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/scale.test.ts (13 tests) 5ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/blocks.contract.test.ts (4 tests) 4ms
+ ✓ src/reka-alias.contract.test.ts (20 tests) 6ms
+ ✓ src/date-chart-readiness.contract.test.ts (2 tests) 2ms
+
+ Test Files  54 passed (54)
+      Tests  770 passed (770)
+   Start at  10:50:29
+   Duration  38.66s (transform 11.89s, setup 37.13s, import 52.94s, tests 13.96s, environment 39.58s)
+
+JSON report written to /tmp/nerv-ui-t06-f01/raw/ui-final.json

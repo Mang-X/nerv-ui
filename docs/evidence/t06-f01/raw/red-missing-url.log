@@ -1,0 +1,34 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/FilesDemo.test.ts (4 tests | 1 failed | 3 skipped) 100ms
+   × offers an invalid image URL separately from corrupt bytes for source recovery 99ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/FilesDemo.test.ts > offers an invalid image URL separately from corrupt bytes for source recovery
+AssertionError: expected '/files/quality-evidence.svg' to be '/files/missing.png' // Object.is equality
+
+Expected: "/files/missing.png"
+Received: "/files/quality-evidence.svg"
+
+ ❯ src/FilesDemo.test.ts:119:79
+    117|   await wrapper.get('select[aria-label="预览内容"]').setValue('missing')
+    118|   await flushPromises()
+    119|   expect(wrapper.get('[data-testid="file-preview-image"]').attributes(…
+       |                                                                               ^
+    120| })
+    121|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 skipped (4)
+   Start at  10:44:08
+   Duration  4.32s (transform 2.67s, setup 333ms, import 3.46s, tests 100ms, environment 327ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/FilesDemo.test.ts -t 'invalid image URL'

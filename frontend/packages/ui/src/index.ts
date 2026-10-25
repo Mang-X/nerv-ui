@@ -227,6 +227,7 @@ export {
   type FileUploadSession,
   type FileUploadTransport,
   type FileUploadTransportContext,
+  type FileUploadVariant,
 } from './components/ui/file-upload'
 export {
   filePreviewMotion,

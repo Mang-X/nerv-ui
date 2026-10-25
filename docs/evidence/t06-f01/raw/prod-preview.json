@@ -1,0 +1,1311 @@
+[
+  {
+    "label": "actual svg decode",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "quality-evidence.svgImage100%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/quality-evidence.svg",
+        "naturalWidth": 1200,
+        "naturalHeight": 720,
+        "box": {
+          "x": 750.1860961914062,
+          "y": 647.0271606445312,
+          "width": 493.62005615234375,
+          "height": 296.9656982421875,
+          "top": 647.0271606445312,
+          "right": 1243.80615234375,
+          "bottom": 943.9928588867188,
+          "left": 750.1860961914062
+        },
+        "transform": "matrix(0.999929, 0, 0, 0.999929, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "actual GET quality-evidence.svg",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-cache",
+      "content-encoding": "gzip",
+      "content-type": "image/svg+xml",
+      "date": "Sun, 25 Oct 2026 03:02:20 GMT",
+      "etag": "W/\"1079-1792896845488\"",
+      "last-modified": "Sun, 25 Oct 2026 02:54:05 GMT",
+      "vary": "Origin"
+    },
+    "bytes": 1079,
+    "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806"
+  },
+  {
+    "label": "actual png decode",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "garden.pngImage100%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/garden.png",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 764.3650512695312,
+          "y": 652.6148681640625,
+          "width": 465.26995849609375,
+          "height": 291.5299072265625,
+          "top": 652.6148681640625,
+          "right": 1229.635009765625,
+          "bottom": 944.144775390625,
+          "left": 764.3650512695312
+        },
+        "transform": "matrix(0.985222, 0, 0, 0.985222, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "actual GET garden.png",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-cache",
+      "content-length": "10878",
+      "content-type": "image/png",
+      "date": "Sun, 25 Oct 2026 03:02:20 GMT",
+      "etag": "W/\"10878-1792896845488\"",
+      "last-modified": "Sun, 25 Oct 2026 02:54:05 GMT",
+      "vary": "Origin"
+    },
+    "bytes": 10878,
+    "sha256": "bbb5957119507867b24fb51c761bcbf1bf3af25c38f908d68721e2d03c8ae92e"
+  },
+  {
+    "label": "actual jpeg decode",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "coast.jpgImage100%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/coast.jpg",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 761.1849975585938,
+          "y": 651.6400146484375,
+          "width": 471.62994384765625,
+          "height": 295.5150146484375,
+          "top": 651.6400146484375,
+          "right": 1232.81494140625,
+          "bottom": 947.155029296875,
+          "left": 761.1849975585938
+        },
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "actual GET coast.jpg",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-cache",
+      "content-length": "16037",
+      "content-type": "image/jpeg",
+      "date": "Sun, 25 Oct 2026 03:02:20 GMT",
+      "etag": "W/\"16037-1792896845487\"",
+      "last-modified": "Sun, 25 Oct 2026 02:54:05 GMT",
+      "vary": "Origin"
+    },
+    "bytes": 16037,
+    "sha256": "2e5b23c0c5eaea91d63ae67b11aef0f4257974bd8d1e61448a964a294dcbaa30"
+  },
+  {
+    "label": "minimum zoom",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "coast.jpgImage20%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/coast.jpg",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 949.5999755859375,
+          "y": 765.7999877929688,
+          "width": 94.800048828125,
+          "height": 59.4000244140625,
+          "top": 765.7999877929688,
+          "right": 1044.4000244140625,
+          "bottom": 825.2000122070312,
+          "left": 949.5999755859375
+        },
+        "transform": "matrix(0.2, 0, 0, 0.2, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "maximum zoom",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "coast.jpgImage300%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/coast.jpg",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 286,
+          "y": 350,
+          "width": 1422,
+          "height": 891,
+          "top": 350,
+          "right": 1708,
+          "bottom": 1241,
+          "left": 286
+        },
+        "transform": "matrix(3, 0, 0, 3, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "rotate +90",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "coast.jpgImage300%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/coast.jpg",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 551.5,
+          "y": 84.5,
+          "width": 891,
+          "height": 1422,
+          "top": 84.5,
+          "right": 1442.5,
+          "bottom": 1506.5,
+          "left": 551.5
+        },
+        "transform": "matrix(0, 3, -3, 0, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "rotate -90",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "coast.jpgImage300%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/coast.jpg",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 551.5,
+          "y": 84.5,
+          "width": 891,
+          "height": 1422,
+          "top": 84.5,
+          "right": 1442.5,
+          "bottom": 1506.5,
+          "left": 551.5
+        },
+        "transform": "matrix(0, -3, 3, 0, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "decode error from real bad bytes",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "error 无法加载 broken.png。 · 已打开 0 次 · 本地预览 0",
+    "preview": "broken.pngImage预览失败无法加载 broken.png。",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "bad image response",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-cache",
+      "content-length": "66",
+      "content-type": "image/png",
+      "date": "Sun, 25 Oct 2026 03:03:06 GMT",
+      "etag": "W/\"66-1792896845487\"",
+      "last-modified": "Sun, 25 Oct 2026 02:54:05 GMT",
+      "vary": "Origin"
+    }
+  },
+  {
+    "label": "invalid URL decode error",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "error 无法加载 missing.png。 · 已打开 0 次 · 本地预览 0",
+    "preview": "missing.pngImage预览失败无法加载 missing.png。",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "invalid URL response",
+    "status": 200,
+    "headers": {
+      "cache-control": "no-cache",
+      "content-type": "text/html",
+      "date": "Sun, 25 Oct 2026 03:03:06 GMT",
+      "etag": "W/\"202-LvnqPS5RW5EWXB10YJW2nwQ91j0\"",
+      "vary": "Origin"
+    }
+  },
+  {
+    "label": "good source recovery",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "garden.pngImage100%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/garden.png",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 763.4790649414062,
+          "y": 651.473876953125,
+          "width": 467.04193115234375,
+          "height": 292.64019775390625,
+          "top": 651.473876953125,
+          "right": 1230.52099609375,
+          "bottom": 944.1140747070312,
+          "left": 763.4790649414062
+        },
+        "transform": "matrix(0.988229, 0, 0, 0.988229, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "empty source",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "等待预览 · 已打开 0 次 · 本地预览 0",
+    "preview": "未选择文件File暂不支持预览未选择文件 还没有可用的预览源。",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "host loading",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "garden.pngImage",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "host error",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "preview": "garden.pngImage预览失败来源暂不可用，请取消勾选后重试。",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "unsupported text",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "等待预览 · 已打开 0 次 · 本地预览 0",
+    "preview": "notes.txtFile暂不支持预览notes.txt 可从源文件打开，但当前格式暂不支持内嵌预览。  打开源文件",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "unsupported legacy",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "等待预览 · 已打开 0 次 · 本地预览 0",
+    "preview": "legacy.docFile暂不支持预览legacy.doc 可从源文件打开，但当前格式暂不支持内嵌预览。  打开源文件",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "unsupported media",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "等待预览 · 已打开 0 次 · 本地预览 0",
+    "preview": "recording.mp4File暂不支持预览recording.mp4 可从源文件打开，但当前格式暂不支持内嵌预览。  打开源文件",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "unsupported archive",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "等待预览 · 已打开 0 次 · 本地预览 0",
+    "preview": "collection.zipFile暂不支持预览collection.zip 可从源文件打开，但当前格式暂不支持内嵌预览。  打开源文件",
+    "images": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "openSource is only event",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "openSource · 已打开 0 次 · 本地预览 0",
+    "preview": "garden.pngImage100%",
+    "images": [
+      {
+        "src": "http://127.0.0.1:5197/files/garden.png",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 761.4536743164062,
+          "y": 648.8680419921875,
+          "width": 471.09271240234375,
+          "height": 295.17828369140625,
+          "top": 648.8680419921875,
+          "right": 1232.54638671875,
+          "bottom": 944.0463256835938,
+          "left": 761.4536743164062
+        },
+        "transform": "matrix(0.995088, 0, 0, 0.995088, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "explicit host open",
+    "tabs": [
+      {
+        "label": "p1",
+        "url": "http://127.0.0.1:5197/#files",
+        "openedBy": "agent"
+      },
+      {
+        "label": "p5",
+        "url": "http://127.0.0.1:5197/files/garden.png",
+        "openedBy": "agent"
+      }
+    ]
+  },
+  {
+    "label": "host Blob preview active",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 1 次 · 本地预览 1",
+    "preview": "garden.pngImage100%",
+    "images": [
+      {
+        "src": "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 764.2445678710938,
+          "y": 463.4597473144531,
+          "width": 465.51080322265625,
+          "height": 291.6808166503906,
+          "top": 463.4597473144531,
+          "right": 1229.75537109375,
+          "bottom": 755.1405639648438,
+          "left": 764.2445678710938
+        },
+        "transform": "matrix(0.985631, 0, 0, 0.985631, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "virtual image thumbnails before scroll",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 1 次 · 本地预览 1",
+    "preview": "garden.pngImage100%",
+    "images": [
+      {
+        "src": "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 764.2445678710938,
+          "y": 463.4597473144531,
+          "width": 465.51080322265625,
+          "height": 291.6808166503906,
+          "top": 463.4597473144531,
+          "right": 1229.75537109375,
+          "bottom": 755.1405639648438,
+          "left": 764.2445678710938
+        },
+        "transform": "matrix(0.985631, 0, 0, 0.985631, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/7e1627fa-f638-4706-a49c-cc5824986d65",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/9185646e-f8bf-4ac3-bc4d-77067c8684b2",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/49df08a1-e070-4ffa-9a30-48d83c4f1877",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/cb5b7b69-06bc-44e4-919a-9e9e9fdbaf18",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/a6155190-35d7-4352-a547-059da63d8861",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/438cf1ac-db31-4eab-8ab6-905a64d2ebbf",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/540dc74f-0664-4d92-8462-0f462672527c",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/0c239cc4-c658-4353-800d-c87dad464d35",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e23d599-4a0b-4fa1-b67c-c28eeae65fea",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/d543711a-d7ed-4087-b10c-c4843747a03e",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/cd0b4d50-6815-4021-8f87-c3e0e4af15be",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/91376bf3-ce19-4af3-a6c4-dae2e3a868b0",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/9fa81ffa-1e95-4f22-9da5-7ca682463581",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "virtual thumbnail unmount revokes library URLs",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 1 次 · 本地预览 1",
+    "preview": "garden.pngImage100%",
+    "images": [
+      {
+        "src": "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 760,
+          "y": 458,
+          "width": 474,
+          "height": 297,
+          "top": 458,
+          "right": 1234,
+          "bottom": 755,
+          "left": 760
+        },
+        "transform": "none"
+      }
+    ],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/7e1627fa-f638-4706-a49c-cc5824986d65",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/9185646e-f8bf-4ac3-bc4d-77067c8684b2",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/49df08a1-e070-4ffa-9a30-48d83c4f1877",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/cb5b7b69-06bc-44e4-919a-9e9e9fdbaf18",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/a6155190-35d7-4352-a547-059da63d8861",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/438cf1ac-db31-4eab-8ab6-905a64d2ebbf",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/540dc74f-0664-4d92-8462-0f462672527c",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/0c239cc4-c658-4353-800d-c87dad464d35",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e23d599-4a0b-4fa1-b67c-c28eeae65fea",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/d543711a-d7ed-4087-b10c-c4843747a03e",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/cd0b4d50-6815-4021-8f87-c3e0e4af15be",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/91376bf3-ce19-4af3-a6c4-dae2e3a868b0",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/9fa81ffa-1e95-4f22-9da5-7ca682463581",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/863e3383-7b88-4513-a99c-027b23e957dc",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3e476ad8-ab67-4579-969f-920a29d68195",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/01969622-8c62-4ac4-9d84-44ac300edbb7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/45b76deb-1ea7-496a-ae86-37379c7e2c7f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/f3a6d102-009e-4e8a-9c35-39adf66d127f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/82d2f9f4-8f19-4547-a540-4d1f9303e221",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e5c254d-7855-46f7-8c26-ba827c6fc8cf",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/a2c85758-7232-4f15-bbf3-fd29c82d6216",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/4d54a724-3577-4b52-9c55-81f2866ba767",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/08fd1bcf-3b8c-4d67-aac2-1f7731278ee7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/571a1bde-da9f-4255-936b-cbe93b162ad2",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e86ba16-abed-4813-a0d8-d44a6008c5df",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/eeffc81c-47a5-41e7-a3db-bf8c45504a07",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/4140f4fa-850a-46ad-9805-35a973aa1403",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/0980bd07-f8d2-447d-b94a-49c48142e4d8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/75af93f6-85aa-4dff-9cb9-d45e6d6d34b9",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/25b91b9b-f3e2-44f4-8b15-c06c719f2ac7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/f720c561-1ccb-4eca-859d-63c39da06585",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/438fa125-cd1f-4f70-be00-34234e16c495",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/638f810c-c842-465a-9b4d-b453011dec43",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/7e1627fa-f638-4706-a49c-cc5824986d65",
+        "blob:http://127.0.0.1:5197/9185646e-f8bf-4ac3-bc4d-77067c8684b2",
+        "blob:http://127.0.0.1:5197/49df08a1-e070-4ffa-9a30-48d83c4f1877",
+        "blob:http://127.0.0.1:5197/cb5b7b69-06bc-44e4-919a-9e9e9fdbaf18",
+        "blob:http://127.0.0.1:5197/a6155190-35d7-4352-a547-059da63d8861",
+        "blob:http://127.0.0.1:5197/438cf1ac-db31-4eab-8ab6-905a64d2ebbf",
+        "blob:http://127.0.0.1:5197/540dc74f-0664-4d92-8462-0f462672527c",
+        "blob:http://127.0.0.1:5197/0c239cc4-c658-4353-800d-c87dad464d35",
+        "blob:http://127.0.0.1:5197/6e23d599-4a0b-4fa1-b67c-c28eeae65fea",
+        "blob:http://127.0.0.1:5197/d543711a-d7ed-4087-b10c-c4843747a03e",
+        "blob:http://127.0.0.1:5197/cd0b4d50-6815-4021-8f87-c3e0e4af15be",
+        "blob:http://127.0.0.1:5197/91376bf3-ce19-4af3-a6c4-dae2e3a868b0",
+        "blob:http://127.0.0.1:5197/9fa81ffa-1e95-4f22-9da5-7ca682463581"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "replace host preview",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "event": "ready image · 已打开 1 次 · 本地预览 1",
+    "preview": "coast.jpgImage100%",
+    "images": [
+      {
+        "src": "blob:http://127.0.0.1:5197/3de5f7c8-95ce-45ec-aba3-24ee6a7598b8",
+        "naturalWidth": 640,
+        "naturalHeight": 400,
+        "box": {
+          "x": 761.1849975585938,
+          "y": 462.6400146484375,
+          "width": 471.62994384765625,
+          "height": 295.5150146484375,
+          "top": 462.6400146484375,
+          "right": 1232.81494140625,
+          "bottom": 758.155029296875,
+          "left": 761.1849975585938
+        },
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/7e1627fa-f638-4706-a49c-cc5824986d65",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/9185646e-f8bf-4ac3-bc4d-77067c8684b2",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/49df08a1-e070-4ffa-9a30-48d83c4f1877",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/cb5b7b69-06bc-44e4-919a-9e9e9fdbaf18",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/a6155190-35d7-4352-a547-059da63d8861",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/438cf1ac-db31-4eab-8ab6-905a64d2ebbf",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/540dc74f-0664-4d92-8462-0f462672527c",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/0c239cc4-c658-4353-800d-c87dad464d35",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e23d599-4a0b-4fa1-b67c-c28eeae65fea",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/d543711a-d7ed-4087-b10c-c4843747a03e",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/cd0b4d50-6815-4021-8f87-c3e0e4af15be",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/91376bf3-ce19-4af3-a6c4-dae2e3a868b0",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/9fa81ffa-1e95-4f22-9da5-7ca682463581",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/863e3383-7b88-4513-a99c-027b23e957dc",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3e476ad8-ab67-4579-969f-920a29d68195",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/01969622-8c62-4ac4-9d84-44ac300edbb7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/45b76deb-1ea7-496a-ae86-37379c7e2c7f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/f3a6d102-009e-4e8a-9c35-39adf66d127f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/82d2f9f4-8f19-4547-a540-4d1f9303e221",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e5c254d-7855-46f7-8c26-ba827c6fc8cf",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/a2c85758-7232-4f15-bbf3-fd29c82d6216",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/4d54a724-3577-4b52-9c55-81f2866ba767",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/08fd1bcf-3b8c-4d67-aac2-1f7731278ee7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/571a1bde-da9f-4255-936b-cbe93b162ad2",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e86ba16-abed-4813-a0d8-d44a6008c5df",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/eeffc81c-47a5-41e7-a3db-bf8c45504a07",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/4140f4fa-850a-46ad-9805-35a973aa1403",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/0980bd07-f8d2-447d-b94a-49c48142e4d8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/75af93f6-85aa-4dff-9cb9-d45e6d6d34b9",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/25b91b9b-f3e2-44f4-8b15-c06c719f2ac7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/f720c561-1ccb-4eca-859d-63c39da06585",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/438fa125-cd1f-4f70-be00-34234e16c495",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/638f810c-c842-465a-9b4d-b453011dec43",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6737ff48-9103-43f6-ba87-b1d3e85185a8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6bcb60b3-9462-45a8-8f7d-6b183abca1fd",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3de5f7c8-95ce-45ec-aba3-24ee6a7598b8",
+          "type": "image/jpeg",
+          "size": 16037
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/7e1627fa-f638-4706-a49c-cc5824986d65",
+        "blob:http://127.0.0.1:5197/9185646e-f8bf-4ac3-bc4d-77067c8684b2",
+        "blob:http://127.0.0.1:5197/49df08a1-e070-4ffa-9a30-48d83c4f1877",
+        "blob:http://127.0.0.1:5197/cb5b7b69-06bc-44e4-919a-9e9e9fdbaf18",
+        "blob:http://127.0.0.1:5197/a6155190-35d7-4352-a547-059da63d8861",
+        "blob:http://127.0.0.1:5197/438cf1ac-db31-4eab-8ab6-905a64d2ebbf",
+        "blob:http://127.0.0.1:5197/540dc74f-0664-4d92-8462-0f462672527c",
+        "blob:http://127.0.0.1:5197/0c239cc4-c658-4353-800d-c87dad464d35",
+        "blob:http://127.0.0.1:5197/6e23d599-4a0b-4fa1-b67c-c28eeae65fea",
+        "blob:http://127.0.0.1:5197/d543711a-d7ed-4087-b10c-c4843747a03e",
+        "blob:http://127.0.0.1:5197/cd0b4d50-6815-4021-8f87-c3e0e4af15be",
+        "blob:http://127.0.0.1:5197/91376bf3-ce19-4af3-a6c4-dae2e3a868b0",
+        "blob:http://127.0.0.1:5197/9fa81ffa-1e95-4f22-9da5-7ca682463581",
+        "blob:http://127.0.0.1:5197/638f810c-c842-465a-9b4d-b453011dec43",
+        "blob:http://127.0.0.1:5197/438fa125-cd1f-4f70-be00-34234e16c495",
+        "blob:http://127.0.0.1:5197/f720c561-1ccb-4eca-859d-63c39da06585",
+        "blob:http://127.0.0.1:5197/25b91b9b-f3e2-44f4-8b15-c06c719f2ac7",
+        "blob:http://127.0.0.1:5197/75af93f6-85aa-4dff-9cb9-d45e6d6d34b9",
+        "blob:http://127.0.0.1:5197/0980bd07-f8d2-447d-b94a-49c48142e4d8",
+        "blob:http://127.0.0.1:5197/4140f4fa-850a-46ad-9805-35a973aa1403",
+        "blob:http://127.0.0.1:5197/eeffc81c-47a5-41e7-a3db-bf8c45504a07",
+        "blob:http://127.0.0.1:5197/6e86ba16-abed-4813-a0d8-d44a6008c5df",
+        "blob:http://127.0.0.1:5197/571a1bde-da9f-4255-936b-cbe93b162ad2",
+        "blob:http://127.0.0.1:5197/08fd1bcf-3b8c-4d67-aac2-1f7731278ee7",
+        "blob:http://127.0.0.1:5197/4d54a724-3577-4b52-9c55-81f2866ba767",
+        "blob:http://127.0.0.1:5197/a2c85758-7232-4f15-bbf3-fd29c82d6216",
+        "blob:http://127.0.0.1:5197/6e5c254d-7855-46f7-8c26-ba827c6fc8cf",
+        "blob:http://127.0.0.1:5197/82d2f9f4-8f19-4547-a540-4d1f9303e221",
+        "blob:http://127.0.0.1:5197/f3a6d102-009e-4e8a-9c35-39adf66d127f",
+        "blob:http://127.0.0.1:5197/45b76deb-1ea7-496a-ae86-37379c7e2c7f",
+        "blob:http://127.0.0.1:5197/01969622-8c62-4ac4-9d84-44ac300edbb7",
+        "blob:http://127.0.0.1:5197/3e476ad8-ab67-4579-969f-920a29d68195",
+        "blob:http://127.0.0.1:5197/863e3383-7b88-4513-a99c-027b23e957dc",
+        "blob:http://127.0.0.1:5197/6737ff48-9103-43f6-ba87-b1d3e85185a8",
+        "blob:http://127.0.0.1:5197/6bcb60b3-9462-45a8-8f7d-6b183abca1fd",
+        "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "leave page cleanup",
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/7e1627fa-f638-4706-a49c-cc5824986d65",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/9185646e-f8bf-4ac3-bc4d-77067c8684b2",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/49df08a1-e070-4ffa-9a30-48d83c4f1877",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/cb5b7b69-06bc-44e4-919a-9e9e9fdbaf18",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/a6155190-35d7-4352-a547-059da63d8861",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/438cf1ac-db31-4eab-8ab6-905a64d2ebbf",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/540dc74f-0664-4d92-8462-0f462672527c",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/0c239cc4-c658-4353-800d-c87dad464d35",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e23d599-4a0b-4fa1-b67c-c28eeae65fea",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/d543711a-d7ed-4087-b10c-c4843747a03e",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/cd0b4d50-6815-4021-8f87-c3e0e4af15be",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/91376bf3-ce19-4af3-a6c4-dae2e3a868b0",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/9fa81ffa-1e95-4f22-9da5-7ca682463581",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/863e3383-7b88-4513-a99c-027b23e957dc",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3e476ad8-ab67-4579-969f-920a29d68195",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/01969622-8c62-4ac4-9d84-44ac300edbb7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/45b76deb-1ea7-496a-ae86-37379c7e2c7f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/f3a6d102-009e-4e8a-9c35-39adf66d127f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/82d2f9f4-8f19-4547-a540-4d1f9303e221",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e5c254d-7855-46f7-8c26-ba827c6fc8cf",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/a2c85758-7232-4f15-bbf3-fd29c82d6216",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/4d54a724-3577-4b52-9c55-81f2866ba767",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/08fd1bcf-3b8c-4d67-aac2-1f7731278ee7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/571a1bde-da9f-4255-936b-cbe93b162ad2",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6e86ba16-abed-4813-a0d8-d44a6008c5df",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/eeffc81c-47a5-41e7-a3db-bf8c45504a07",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/4140f4fa-850a-46ad-9805-35a973aa1403",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/0980bd07-f8d2-447d-b94a-49c48142e4d8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/75af93f6-85aa-4dff-9cb9-d45e6d6d34b9",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/25b91b9b-f3e2-44f4-8b15-c06c719f2ac7",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/f720c561-1ccb-4eca-859d-63c39da06585",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/438fa125-cd1f-4f70-be00-34234e16c495",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/638f810c-c842-465a-9b4d-b453011dec43",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6737ff48-9103-43f6-ba87-b1d3e85185a8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/6bcb60b3-9462-45a8-8f7d-6b183abca1fd",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3de5f7c8-95ce-45ec-aba3-24ee6a7598b8",
+          "type": "image/jpeg",
+          "size": 16037
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/7e1627fa-f638-4706-a49c-cc5824986d65",
+        "blob:http://127.0.0.1:5197/9185646e-f8bf-4ac3-bc4d-77067c8684b2",
+        "blob:http://127.0.0.1:5197/49df08a1-e070-4ffa-9a30-48d83c4f1877",
+        "blob:http://127.0.0.1:5197/cb5b7b69-06bc-44e4-919a-9e9e9fdbaf18",
+        "blob:http://127.0.0.1:5197/a6155190-35d7-4352-a547-059da63d8861",
+        "blob:http://127.0.0.1:5197/438cf1ac-db31-4eab-8ab6-905a64d2ebbf",
+        "blob:http://127.0.0.1:5197/540dc74f-0664-4d92-8462-0f462672527c",
+        "blob:http://127.0.0.1:5197/0c239cc4-c658-4353-800d-c87dad464d35",
+        "blob:http://127.0.0.1:5197/6e23d599-4a0b-4fa1-b67c-c28eeae65fea",
+        "blob:http://127.0.0.1:5197/d543711a-d7ed-4087-b10c-c4843747a03e",
+        "blob:http://127.0.0.1:5197/cd0b4d50-6815-4021-8f87-c3e0e4af15be",
+        "blob:http://127.0.0.1:5197/91376bf3-ce19-4af3-a6c4-dae2e3a868b0",
+        "blob:http://127.0.0.1:5197/9fa81ffa-1e95-4f22-9da5-7ca682463581",
+        "blob:http://127.0.0.1:5197/638f810c-c842-465a-9b4d-b453011dec43",
+        "blob:http://127.0.0.1:5197/438fa125-cd1f-4f70-be00-34234e16c495",
+        "blob:http://127.0.0.1:5197/f720c561-1ccb-4eca-859d-63c39da06585",
+        "blob:http://127.0.0.1:5197/25b91b9b-f3e2-44f4-8b15-c06c719f2ac7",
+        "blob:http://127.0.0.1:5197/75af93f6-85aa-4dff-9cb9-d45e6d6d34b9",
+        "blob:http://127.0.0.1:5197/0980bd07-f8d2-447d-b94a-49c48142e4d8",
+        "blob:http://127.0.0.1:5197/4140f4fa-850a-46ad-9805-35a973aa1403",
+        "blob:http://127.0.0.1:5197/eeffc81c-47a5-41e7-a3db-bf8c45504a07",
+        "blob:http://127.0.0.1:5197/6e86ba16-abed-4813-a0d8-d44a6008c5df",
+        "blob:http://127.0.0.1:5197/571a1bde-da9f-4255-936b-cbe93b162ad2",
+        "blob:http://127.0.0.1:5197/08fd1bcf-3b8c-4d67-aac2-1f7731278ee7",
+        "blob:http://127.0.0.1:5197/4d54a724-3577-4b52-9c55-81f2866ba767",
+        "blob:http://127.0.0.1:5197/a2c85758-7232-4f15-bbf3-fd29c82d6216",
+        "blob:http://127.0.0.1:5197/6e5c254d-7855-46f7-8c26-ba827c6fc8cf",
+        "blob:http://127.0.0.1:5197/82d2f9f4-8f19-4547-a540-4d1f9303e221",
+        "blob:http://127.0.0.1:5197/f3a6d102-009e-4e8a-9c35-39adf66d127f",
+        "blob:http://127.0.0.1:5197/45b76deb-1ea7-496a-ae86-37379c7e2c7f",
+        "blob:http://127.0.0.1:5197/01969622-8c62-4ac4-9d84-44ac300edbb7",
+        "blob:http://127.0.0.1:5197/3e476ad8-ab67-4579-969f-920a29d68195",
+        "blob:http://127.0.0.1:5197/863e3383-7b88-4513-a99c-027b23e957dc",
+        "blob:http://127.0.0.1:5197/6737ff48-9103-43f6-ba87-b1d3e85185a8",
+        "blob:http://127.0.0.1:5197/6bcb60b3-9462-45a8-8f7d-6b183abca1fd",
+        "blob:http://127.0.0.1:5197/7be8e077-5dd2-419e-a82c-1f091db89434",
+        "blob:http://127.0.0.1:5197/3de5f7c8-95ce-45ec-aba3-24ee6a7598b8"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  }
+]

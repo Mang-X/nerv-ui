@@ -1,0 +1,22 @@
+$ vp dev --host 127.0.0.1 --port 5196
+
+  VITE+ v0.2.4  
+
+  ➜  Local:   http://127.0.0.1:5196/
+10:34:51 AM [vite+] (client) [optimizer] bundling dependencies...
+10:36:03 AM [vite+] (client) hmr update /src/FilesDemo.vue, /src/assets/main.css
+10:36:03 AM [vite+] (client) hmr update /src/files/PreviewPanel.vue, /src/assets/main.css
+10:36:03 AM [vite+] (client) hmr update /src/files/UploadPanel.vue, /src/assets/main.css
+10:36:29 AM [vite+] (client) hmr update /src/files/UploadPanel.vue, /src/assets/main.css
+10:41:29 AM [vite+] (client) hmr update /src/MobileListDemo.vue, /src/assets/main.css
+10:41:29 AM [vite+] (client) hmr update /src/MobileInputDemo.vue, /src/assets/main.css
+10:41:29 AM [vite+] (client) hmr update /src/MobileFeedbackDemo.vue, /src/assets/main.css
+10:41:29 AM [vite+] (client) hmr update /src/MobileDemo.vue, /src/assets/main.css
+10:41:29 AM [vite+] (client) hmr update /src/MobileOverlayDemo.vue, /src/assets/main.css
+10:44:58 AM [vite+] (client) hmr update /src/files/PreviewPanel.vue, /src/assets/main.css
+10:44:59 AM [vite+] (client) hmr update /src/files/PreviewPanel.vue, /src/assets/main.css
+10:49:45 AM [vite+] (client) hmr update /@fs/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/packages/ui/src/components/ui/file-upload/FileUpload.vue, /src/assets/main.css
+10:52:32 AM [vite+] (client) hmr update /@fs/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/packages/ui/src/components/ui/file-upload/FileUpload.vue, /src/assets/main.css
+/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 dev: `vp dev --host 127.0.0.1 --port 5196`
+Exit status 143

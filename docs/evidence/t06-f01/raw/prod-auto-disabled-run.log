@@ -1,0 +1,147 @@
+[ { label: 'disabled drop ignored', before: { counts: 'create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0', rows: [], receipts: '已暂存文件尚无成功文件', audit: { urls: [ { url: 'blob:http://127.0.0.1:5197/ef04ebea-cc21-4138-809e-5510a86a9d25', type: 'image/jpeg', size: 3 }, { url: 'blob:http://127.0.0.1:5197/64585e83-896b-4396-b827-def4317e8f2e', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/9b59c0a4-b82b-4abb-a66c-d4b07f3e218c', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/7e16c9b1-4558-45db-a742-9191529481bd', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/f9eac9d4-6de2-4c8e-b249-7e786c841da3', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/a0684792-ae9e-4d85-ba40-cb6491201e2b', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/c228bfb4-edb9-4091-afe2-08d0412bc2ba', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/906bfd1b-2f14-4fda-b6c8-7e41ace0d1e6', type: 'image/png', size: 10878 } ], revoked: [ 'blob:http://127.0.0.1:5197/ef04ebea-cc21-4138-809e-5510a86a9d25', 'blob:http://127.0.0.1:5197/64585e83-896b-4396-b827-def4317e8f2e', 'blob:http://127.0.0.1:5197/9b59c0a4-b82b-4abb-a66c-d4b07f3e218c', 'blob:http://127.0.0.1:5197/7e16c9b1-4558-45db-a742-9191529481bd', 'blob:http://127.0.0.1:5197/f9eac9d4-6de2-4c8e-b249-7e786c841da3', 'blob:http://127.0.0.1:5197/a0684792-ae9e-4d85-ba40-cb6491201e2b', 'blob:http://127.0.0.1:5197/c228bfb4-edb9-4091-afe2-08d0412bc2ba', 'blob:http://127.0.0.1:5197/906bfd1b-2f14-4fda-b6c8-7e41ace0d1e6' ], writes: [], errors: [] } }, after: { counts: 'create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0', rows: [], receipts: '已暂存文件尚无成功文件', audit: { urls: [ { url: 'blob:http://127.0.0.1:5197/ef04ebea-cc21-4138-809e-5510a86a9d25', type: 'image/jpeg', size: 3 }, { url: 'blob:http://127.0.0.1:5197/64585e83-896b-4396-b827-def4317e8f2e', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/9b59c0a4-b82b-4abb-a66c-d4b07f3e218c', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/7e16c9b1-4558-45db-a742-9191529481bd', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/f9eac9d4-6de2-4c8e-b249-7e786c841da3', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/a0684792-ae9e-4d85-ba40-cb6491201e2b', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/c228bfb4-edb9-4091-afe2-08d0412bc2ba', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/906bfd1b-2f14-4fda-b6c8-7e41ace0d1e6', type: 'image/png', size: 10878 } ], revoked: [ 'blob:http://127.0.0.1:5197/ef04ebea-cc21-4138-809e-5510a86a9d25', 'blob:http://127.0.0.1:5197/64585e83-896b-4396-b827-def4317e8f2e', 'blob:http://127.0.0.1:5197/9b59c0a4-b82b-4abb-a66c-d4b07f3e218c', 'blob:http://127.0.0.1:5197/7e16c9b1-4558-45db-a742-9191529481bd', 'blob:http://127.0.0.1:5197/f9eac9d4-6de2-4c8e-b249-7e786c841da3', 'blob:http://127.0.0.1:5197/a0684792-ae9e-4d85-ba40-cb6491201e2b', 'blob:http://127.0.0.1:5197/c228bfb4-edb9-4091-afe2-08d0412bc2ba', 'blob:http://127.0.0.1:5197/906bfd1b-2f14-4fda-b6c8-7e41ace0d1e6' ], writes: [], errors: [] } } }, { label: 'automatic selection started without start button', data: { counts: 'create 3 · transport 5 · complete 2 · abort 1 · fail 1 · pending 1', rows: [ { status: 'uploading', text: 'notes.txt上传中File - 112 B移除 notes.txt' } ], receipts: '已暂存文件尚无成功文件', audit: { urls: [ { url: 'blob:http://127.0.0.1:5197/ef04ebea-cc21-4138-809e-5510a86a9d25', type: 'image/jpeg', size: 3 }, { url: 'blob:http://127.0.0.1:5197/64585e83-896b-4396-b827-def4317e8f2e', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/9b59c0a4-b82b-4abb-a66c-d4b07f3e218c', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/7e16c9b1-4558-45db-a742-9191529481bd', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/f9eac9d4-6de2-4c8e-b249-7e786c841da3', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/a0684792-ae9e-4d85-ba40-cb6491201e2b', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/c228bfb4-edb9-4091-afe2-08d0412bc2ba', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/906bfd1b-2f14-4fda-b6c8-7e41ace0d1e6', type: 'image/png', size: 10878 } ], revoked: [ 'blob:http://127.0.0.1:5197/ef04ebea-cc21-4138-809e-5510a86a9d25', 'blob:http://127.0.0.1:5197/64585e83-896b-4396-b827-def4317e8f2e', 'blob:http://127.0.0.1:5197/9b59c0a4-b82b-4abb-a66c-d4b07f3e218c', 'blob:http://127.0.0.1:5197/7e16c9b1-4558-45db-a742-9191529481bd', 'blob:http://127.0.0.1:5197/f9eac9d4-6de2-4c8e-b249-7e786c841da3', 'blob:http://127.0.0.1:5197/a0684792-ae9e-4d85-ba40-cb6491201e2b', 'blob:http://127.0.0.1:5197/c228bfb4-edb9-4091-afe2-08d0412bc2ba', 'blob:http://127.0.0.1:5197/906bfd1b-2f14-4fda-b6c8-7e41ace0d1e6' ], writes: [], errors: [] } } }, { label: 'automatic completed', data: { counts: 'create 3 · transport 5 · complete 3 · abort 1 · fail 1 · pending 0', rows: [ { status: 'completed', text: 'notes.txt上传中File - 112 B移除 notes.txt' } ], receipts: '已暂存文件notes.txt local-memory-3', audit: { urls: [ { url: 'blob:http://127.0.0.1:5197/ef04ebea-cc21-4138-809e-5510a86a9d25', type: 'image/jpeg', size: 3 }, { url: 'blob:http://127.0.0.1:5197/64585e83-896b-4396-b827-def4317e8f2e', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/9b59c0a4-b82b-4abb-a66c-d4b07f3e218c', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/7e16c9b1-4558-45db-a742-9191529481bd', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/f9eac9d4-6de2-4c8e-b249-7e786c841da3', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/a0684792-ae9e-4d85-ba40-cb6491201e2b', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/c228bfb4-edb9-4091-afe2-08d0412bc2ba', type: 'image/png', size: 10878 }, { url: 'blob:http://127.0.0.1:5197/906bfd1b-2f14-4fda-b6c8-7e41ace0d1e6', type: 'image/png', size: 10878 } ], revoked: [ 'blob:http://127.0.0.1:5197/ef04ebea-cc21-4138-809e-5510a86a9d25', 'blob:http://127.0.0.1:5197/64585e83-896b-4396-b827-def4317e8f2e', 'blob:http://127.0.0.1:5197/9b59c0a4-b82b-4abb-a66c-d4b07f3e218c', 'blob:http://127.0.0.1:5197/7e16c9b1-4558-45db-a742-9191529481bd', 'blob:http://127.0.0.1:5197/f9eac9d4-6de2-4c8e-b249-7e786c841da3', 'blob:http://127.0.0.1:5197/a0684792-ae9e-4d85-ba40-cb6491201e2b', 'blob:http://127.0.0.1:5197/c228bfb4-edb9-4091-afe2-08d0412bc2ba', 'blob:http://127.0.0.1:5197/906bfd1b-2f14-4fda-b6c8-7e41ace0d1e6' ], writes: [], errors: [] } } } ]
+[p1 "NvUI · 项目清单" | space "nerv-ui-t06-f01-20261025"(26): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container "显示表面"
+      anchor [ref=558, loc=href:/#desktop, url=http://127.0.0.1:5197/#desktop]
+        text "桌面演示"
+      anchor [ref=559, loc=href:/#touch, url=http://127.0.0.1:5197/#touch]
+        text "触屏演示"
+      anchor [ref=560, loc=href:/#mobile, url=http://127.0.0.1:5197/#mobile]
+        text "随行手记"
+      anchor [ref=561, loc=href:/#mobile-input, url=http://127.0.0.1:5197/#mobile-input]
+        text "随心记录"
+      anchor [ref=562, loc=href:/#mobile-overlays, url=http://127.0.0.1:5197/#mobile-overlays]
+        text "片刻安排"
+      anchor [ref=563, loc=href:/#mobile-lists, url=http://127.0.0.1:5197/#mobile-lists]
+        text "翻阅时光"
+      anchor [ref=564, loc=href:/#mobile-feedback, url=http://127.0.0.1:5197/#mobile-feedback]
+        text "片刻回响"
+      anchor [ref=565, loc=href:/#screen/stage, url=http://127.0.0.1:5197/#screen/stage]
+        text "空间舞台"
+      anchor [ref=566, loc=href:/#screen/controls, url=http://127.0.0.1:5197/#screen/controls]
+        text "随心安排"
+      anchor [ref=567, loc=href:/#screen/indicators, url=http://127.0.0.1:5197/#screen/indicators]
+        text "阅读与到访"
+      anchor [ref=568, loc=href:/#screen/data, url=http://127.0.0.1:5197/#screen/data]
+        text "流动消息"
+      anchor [ref=569, loc=href:/#screen/charts, url=http://127.0.0.1:5197/#screen/charts]
+        text "内容与到访"
+      anchor [ref=570, loc=href:/#screen/tables, url=http://127.0.0.1:5197/#screen/tables]
+        text "清单与事件"
+      anchor [ref=571, loc=href:/#screen/summary, url=http://127.0.0.1:5197/#screen/summary]
+        text "空间使用概况"
+    container
+      container
+        heading
+          text "留住片刻"
+        paragraph
+          text "整理旅途中的图片与便笺，放大看看值得记住的细节。文件只留在本页。"
+      container
+        button [ref=572]
+          text "切换亮色"
+        button [ref=573]
+          text "蓝色强调色"
+    container
+      container "整理文件"
+        container
+          heading
+            text "整理文件"
+          paragraph
+            text "只在本页暂存，离开即清空。上传进度由你推进。"
+        container
+          container
+            text "排列方式"
+            combobox "上传排列方式" [ref=531, loc=css:select[aria-label="上传排列方式"]]
+              text "queue"
+          container
+            text "文件类型"
+            combobox "可选文件类型" [ref=532, loc=css:select[aria-label="可选文件类型"]]
+              text "图片、文本、PDF"
+          container
+            text "最多文件"
+            combobox "最多文件" [ref=533, loc=css:select[aria-label="最多文件"]]
+              text "48"
+          container
+            checkbox [ref=534]
+            text "选中即开始"
+          container
+            checkbox [ref=535]
+            text "锁定选择"
+        button [ref=536]
+          svg_root
+          text "拖拽文件到这里，或点击浏览"
+          text "支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf · 单个文件不超过 32.0 KB · 最多 48 个文件"
+          text "还可上传 48 个文件"
+        container
+          button [ref=537]
+            text "开始上传"
+          button [ref=538]
+            text "暂停全部"
+          button [ref=539]
+            text "继续全部"
+          button [ref=540]
+            text "清空文件"
+        container
+          container
+            button [ref=541]
+              text "推进传输"
+            button [ref=542]
+              text "本次传输失败"
+            button [ref=543]
+              text "加入 48 份便笺"
+          paragraph
+            text "每次推进至 25%、65%、100%；失败后可在文件行重试。"
+          output "传输计数" [ref=544]
+            text "create 3 · transport 5 · complete 3 · abort 1 · fail 1 · pending 0"
+        container "成功回执"
+          heading
+            text "已暂存文件"
+          paragraph
+            text "尚无成功文件"
+      container "看见细节"
+        container
+          heading
+            text "看见细节"
+          paragraph
+            text "本地图片可缩放与旋转。其它文件保留原文件入口。"
+        container
+          text "预览内容"
+          combobox "预览内容" [ref=546, loc=css:select[aria-label="预览内容"]]
+            text "图形记录 SVG"
+        container
+          text "预览本地图片"
+          textbox "预览本地图片" [ref=547, loc=css:input[aria-label="预览本地图片"]]
+            button [ref=548]
+              text "选择文件"
+            text "未选择任何文件"
+        container
+          container
+            checkbox [ref=549]
+            text "等待来源"
+          container
+            checkbox [ref=550]
+            text "来源暂不可用"
+        container
+          container
+            container
+              svg_root
+              container
+                text "quality-evidence.svg"
+                text "Image"
+            button "打开 quality-evidence.svg" [ref=551, loc=css:button[aria-label="打开 quality-evidence.svg"]]
+              svg_root
+          container
+            container
+              button "缩小 quality-evidence.svg" [ref=552, loc=css:button[aria-label="缩小 quality-evidence.svg"]]
+                svg_root
+              text "100%"
+              button "放大 quality-evidence.svg" [ref=553, loc=css:button[aria-label="放大 quality-evidence.svg"]]
+                svg_root
+              button "向左旋转 quality-evidence.svg" [ref=554, loc=css:button[aria-label="向左旋转 quality-evidence.svg"]]
+                svg_root
+              button "向右旋转 quality-evidence.svg" [ref=555, loc=css:button[aria-label="向右旋转 quality-evidence.svg"]]
+                svg_root
+            image
+
+

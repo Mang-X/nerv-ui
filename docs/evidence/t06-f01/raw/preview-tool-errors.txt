@@ -1,0 +1,5 @@
+T3 preview_open about:blank: Preview automation open failed: Invalid preview URL (parse: https:; input length 11).
+T3 preview_open http://127.0.0.1:5196/#files: available true, tab_25_6faab953-90e1-4ff7-b4aa-20aa9696713e.
+T3 preview_snapshot {}: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+T3 preview_snapshot explicit tabId includeImage true save true: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Fallback ego-browser task space 26.

@@ -1,0 +1,150 @@
+{
+  "head": "4a0675711c69df5ce422313590dfbe7fa7c2be42",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6719,
+      "sha256": "8b4959a53721585ef19f70dfbdeb056a3e33110373d13e468921628a4b8d1f2a"
+    },
+    {
+      "path": "docs/files-standalone.md",
+      "bytes": 2930,
+      "sha256": "4a5d8bde1f600ed9f7e6ce7ccf1f649ce2101aaf119cb8accc4825a0c0d1b17e"
+    },
+    {
+      "path": "frontend/DESIGN/components/file-upload.md",
+      "bytes": 4258,
+      "sha256": "e3769d7901813e755b964f49eead4224e9f742eee18178cf531f4f94dcb48c5c"
+    },
+    {
+      "path": "frontend/apps/design-system/docs/components/desktop/file-preview.md",
+      "bytes": 10191,
+      "sha256": "3eeef1103dba396cc77f34f8bf1c3c59155bcfb7770d29e47283e30dc0efa288"
+    },
+    {
+      "path": "frontend/apps/design-system/docs/components/desktop/file-upload.md",
+      "bytes": 23797,
+      "sha256": "09c06b52f32e1b0bb61bb2c931f9ea9d975c6d7dad3e296a2c8a8b8b766a4c51"
+    },
+    {
+      "path": "frontend/apps/playground/public/files/broken.png",
+      "bytes": 66,
+      "sha256": "75396acfeaa204eab730a1145f415a9691c6772b06453e45201456fd30eeba8d"
+    },
+    {
+      "path": "frontend/apps/playground/public/files/coast.jpg",
+      "bytes": 16037,
+      "sha256": "2e5b23c0c5eaea91d63ae67b11aef0f4257974bd8d1e61448a964a294dcbaa30"
+    },
+    {
+      "path": "frontend/apps/playground/public/files/garden.png",
+      "bytes": 10878,
+      "sha256": "bbb5957119507867b24fb51c761bcbf1bf3af25c38f908d68721e2d03c8ae92e"
+    },
+    {
+      "path": "frontend/apps/playground/public/files/notes.txt",
+      "bytes": 112,
+      "sha256": "30a32bb124fc75e7e2207fd0dc92ea700d272ab1bedaf24958dd4e461f1bb305"
+    },
+    {
+      "path": "frontend/apps/playground/public/files/quality-evidence.svg",
+      "bytes": 1079,
+      "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806"
+    },
+    {
+      "path": "frontend/apps/playground/src/App.test.ts",
+      "bytes": 7853,
+      "sha256": "da2246e2b3efb5ceb2c9d9fddd70d0b21e114645f28d20671ad636ce3b47edf6"
+    },
+    {
+      "path": "frontend/apps/playground/src/App.vue",
+      "bytes": 7676,
+      "sha256": "5db0e335a1910d6c6ab1a2ebb7b3dc4dd19770dbe54190d0735e5776b4f4e6de"
+    },
+    {
+      "path": "frontend/apps/playground/src/FilesDemo.test.ts",
+      "bytes": 5141,
+      "sha256": "226992a2f81b83c1117c5530c76d9b691080dce4a76879512de0ce4e4d47cca6"
+    },
+    {
+      "path": "frontend/apps/playground/src/FilesDemo.vue",
+      "bytes": 2202,
+      "sha256": "b169f82e55cfdea641bcf38d870ea2ede5a4fa507bf8a5a96ac1e64cdcb566aa"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileDemo.vue",
+      "bytes": 7001,
+      "sha256": "8651e78cbf87554dd0d8f28680431ac94b1e37943f6f92e2f33f670f628a1fec"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileFeedbackDemo.vue",
+      "bytes": 1961,
+      "sha256": "a62ac9b913e16f876e144ce23b2b9c96fa89e8f76440b22d98f93c4dc58dba68"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileInputDemo.vue",
+      "bytes": 2469,
+      "sha256": "565e2b96fa1f7bcac1b60ba1706b3ef6ddb7fba47c091518e19fac71c6ca2883"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileListDemo.vue",
+      "bytes": 2116,
+      "sha256": "896e819b65153f23d4ef0139c6ca1ef19f239e8647035e7a05783fece8ffb48b"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileOverlayDemo.vue",
+      "bytes": 1967,
+      "sha256": "9fe378b198bbf1dbd095e47f12125e784c17abb4ff12f52b41cb7c8bfa4dee31"
+    },
+    {
+      "path": "frontend/apps/playground/src/ScreenDemo.vue",
+      "bytes": 6699,
+      "sha256": "ad44a4af624688dbe60065c20aa1e2d8c0882b10fd432a2d1793ef462ec9ba24"
+    },
+    {
+      "path": "frontend/apps/playground/src/TouchDemo.vue",
+      "bytes": 9822,
+      "sha256": "40f94a9d472c017a92711de8121edc966df4001ea992cce401b2d0e0b3bcdfb5"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/PreviewPanel.vue",
+      "bytes": 5731,
+      "sha256": "eddbd1869073862c780f0b78bae5d023ed4a6278356faf7844b4aa4f0d2c71b3"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/UploadPanel.vue",
+      "bytes": 7500,
+      "sha256": "6cbd63074f28ce0668733fd946db0b8bdea59770e07e1ca5ad7de946abd0606f"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/memoryUpload.test.ts",
+      "bytes": 2089,
+      "sha256": "f0101eb66bd4766a5355e9ef84c11b2157b74e511d0a494f69fe999e2baf59fb"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/memoryUpload.ts",
+      "bytes": 3180,
+      "sha256": "03352180b54e668dc1ba7b40160fe2dc67304d3f32fa1f7236b1301454f165ec"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/publicFiles.test.ts",
+      "bytes": 9969,
+      "sha256": "9c7544be351bded6c81254e12b6abd6d375451cf58f55e7cc75b648fd5ded06d"
+    },
+    {
+      "path": "frontend/apps/playground/vite.config.ts",
+      "bytes": 342,
+      "sha256": "7ac3fdd629f38a1570fcbbb93bbf1b531fefc758ec4c9865e5369941469aa2e2"
+    },
+    {
+      "path": "frontend/packages/ui/src/components/ui/file-upload/FileUpload.vue",
+      "bytes": 22340,
+      "sha256": "7117c1ed675c175103467369509c848e092d522226a277372caeee11d24a2a6c"
+    },
+    {
+      "path": "frontend/packages/ui/src/index.ts",
+      "bytes": 5845,
+      "sha256": "8617e252cf08e99f40f97ad14dbcc914ac76b62732b38501e4b25566c42d8fca"
+    }
+  ]
+}

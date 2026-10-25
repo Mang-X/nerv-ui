@@ -1,0 +1,36 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/files/memoryUpload.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/files/memoryUpload.test.ts [ src/files/memoryUpload.test.ts ]
+Error: Failed to resolve import "./memoryUpload" from "src/files/memoryUpload.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground/src/files/memoryUpload.test.ts:2:35
+  1  |  import { expect, it } from "vitest";
+  2  |  import { createMemoryUpload } from "./memoryUpload";
+     |                                      ^
+  3  |  it("advances only explicit transports and records abort, failure and completion separately", async () => {
+  4  |  	const adapter = createMemoryUpload();
+ ❯ TransformPluginContext._formatLog ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:35556:39
+ ❯ TransformPluginContext.error ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:35553:14
+ ❯ normalizeUrl ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:32588:18
+ ❯ ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:32651:30
+ ❯ TransformPluginContext.transform ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:32619:4
+ ❯ EnvironmentPluginContainer.transform ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:35341:14
+ ❯ loadAndTransform ../../node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/chunks/node.js:25313:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  10:32:15
+   Duration  1.28s (transform 46ms, setup 612ms, import 0ms, tests 0ms, environment 500ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/files/memoryUpload.test.ts
