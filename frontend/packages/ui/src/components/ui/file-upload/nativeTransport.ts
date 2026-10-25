@@ -4,6 +4,7 @@ const tusVersion = '1.0.0'
 const defaultChunkSizeBytes = 1024 * 1024
 
 export async function uploadWithNativeFileStorageTransport(context: FileUploadTransportContext) {
+  context.signal?.throwIfAborted()
   if (isTusSession(context.session)) {
     await uploadWithTus(context)
     return
@@ -14,14 +15,17 @@ export async function uploadWithNativeFileStorageTransport(context: FileUploadTr
     return
   }
 
-  throw new Error(`Unsupported upload provider: ${context.session.provider}`)
+  throw new Error(
+    `Unsupported upload mode/provider: ${context.session.uploadMode}/${context.session.provider}`,
+  )
 }
 
 async function uploadWithTus({ file, session, onProgress, signal }: FileUploadTransportContext) {
-  let offset = await readTusOffset(session, signal)
+  let offset = await readTusOffset(session, file.size, signal)
   onProgress(toProgress(offset, file.size))
 
   while (offset < file.size) {
+    signal?.throwIfAborted()
     const chunk = file.slice(offset, Math.min(offset + defaultChunkSizeBytes, file.size))
     const response = await fetch(session.upload.url, {
       method: 'PATCH',
@@ -35,17 +39,21 @@ async function uploadWithTus({ file, session, onProgress, signal }: FileUploadTr
       signal,
     })
 
+    signal?.throwIfAborted()
     if (!response.ok) {
       throw new Error(toTusError(response.status))
     }
 
-    const nextOffset = Number(response.headers.get('Upload-Offset'))
-    offset = Number.isFinite(nextOffset) ? nextOffset : offset + chunk.size
+    const nextOffset = readOffset(response, file.size, 'PATCH')
+    if (nextOffset !== offset + chunk.size) {
+      throw new Error('Tus PATCH did not confirm the complete chunk Upload-Offset.')
+    }
+    offset = nextOffset
     onProgress(toProgress(offset, file.size))
   }
 }
 
-async function readTusOffset(session: FileUploadSession, signal?: AbortSignal) {
+async function readTusOffset(session: FileUploadSession, size: number, signal?: AbortSignal) {
   const response = await fetch(session.upload.url, {
     method: 'HEAD',
     headers: {
@@ -55,11 +63,12 @@ async function readTusOffset(session: FileUploadSession, signal?: AbortSignal) {
     signal,
   })
 
+  signal?.throwIfAborted()
   if (!response.ok) {
     throw new Error(toTusError(response.status))
   }
 
-  return Number(response.headers.get('Upload-Offset') ?? 0)
+  return readOffset(response, size, 'HEAD')
 }
 
 async function uploadWithServerProxy({
@@ -78,6 +87,7 @@ async function uploadWithServerProxy({
     signal,
   })
 
+  signal?.throwIfAborted()
   if (!response.ok) {
     throw new Error(`Server-proxy upload failed with HTTP ${response.status}.`)
   }
@@ -86,11 +96,11 @@ async function uploadWithServerProxy({
 }
 
 function isTusSession(session: FileUploadSession) {
-  return session.uploadMode === 'tus' || session.provider === 'tus'
+  return session.uploadMode === 'tus' && session.provider === 'tus'
 }
 
 function isServerProxySession(session: FileUploadSession) {
-  return session.uploadMode === 'server-proxy' || session.provider === 'server-proxy'
+  return session.uploadMode === 'server-proxy' && session.provider === 'server-proxy'
 }
 
 function toProgress(offset: number, size: number) {
@@ -115,4 +125,13 @@ function toTusError(status: number) {
   }
 
   return `Upload failed with HTTP ${status}.`
+}
+
+function readOffset(response: Response, size: number, method: string) {
+  const raw = response.headers.get('Upload-Offset')
+  const offset = raw === null || !/^\d+$/.test(raw) ? NaN : Number(raw)
+  if (!Number.isSafeInteger(offset) || offset < 0 || offset > size) {
+    throw new Error(`Invalid tus ${method} Upload-Offset: ${raw ?? 'missing'}.`)
+  }
+  return offset
 }
