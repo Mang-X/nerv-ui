@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import ScreenDemo from './ScreenDemo.vue'
 import FilesDemo from './FilesDemo.vue'
+import ScheduleDemo from './ScheduleDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
@@ -80,7 +81,8 @@ function addProject() {
 </script>
 
 <template>
-  <FilesDemo v-if="surface === '#files'" />
+  <ScheduleDemo v-if="surface === '#schedule'" />
+  <FilesDemo v-else-if="surface === '#files'" />
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
@@ -90,6 +92,7 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#schedule" class="inline-flex min-h-11 items-center px-4 underline">时间安排</a>
       <a href="#files" class="inline-flex min-h-11 items-center px-4 underline">留住片刻</a>
       <a
         href="#screen"

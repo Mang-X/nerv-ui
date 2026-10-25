@@ -1,0 +1,15 @@
+{
+  "frontend/DESIGN/component-coverage.md": "3fade694bc2aaf1909cfa2570d5e9cf3bd9b211f9ca5378ccf465e1e0f271aa3",
+  "frontend/DESIGN/components/schedule-timeline.md": "22351ce5d631bd7fdad0aa30c60538435c4d91310cb9df95ec05b5a6fc8e478a",
+  "frontend/DESIGN/nvui-naming-map.md": "de3d6d565312aaf53d669f43fe1706ce881755e3d9849658c9a5c02f857de6d4",
+  "frontend/apps/design-system/docs/components/desktop/schedule-timeline.md": "da0ae94ca12282329e1d03d38eafa17b7848ee60fba72ad855378a81368a3a8b",
+  "frontend/apps/playground/src/App.vue": "31c36b19079c6c4cc56126357507ed8ed667b72f7bd28aff6e367b60028819c9",
+  "frontend/apps/playground/src/ScheduleDemo.test.ts": "905627a34096c3e3695c423226a60de24b45a8de945be8e3c371e45a961778a0",
+  "frontend/apps/playground/src/ScheduleDemo.vue": "335cd690384247314ee6a5822cd0d624009f9dbbad7c15e2f0b6dbe86eefb174",
+  "frontend/apps/playground/src/ScheduleTimeline.test.ts": "eb5ac0f7c896ef98a01fae62f546f22e7f8a8a46037f646cff998293d78e7c24",
+  "frontend/packages/ui/src/components/pc/schedule-timeline/NvScheduleTimeline.vue": "5b898d4d6503d9a55bd87ec64432fe82fcf0b06da4a5859b71b337c25e637b96",
+  "frontend/packages/ui/src/components/pc/schedule-timeline/index.ts": "6f36856147292a86170ec3d4f8d7ee2493b8a65681d46ca654f23bf273e63b38",
+  "frontend/packages/ui/src/components/pc/schedule-timeline/types.ts": "38f64b7dacf0585c96c2dce56e822042ae7502c68ec274cec95a0c530166f62f",
+  "frontend/packages/ui/src/index.ts": "83c5126ab5bd56390add098b04590c64b574617fae594b943f3494a6849f866a",
+  "frontend/packages/ui/src/nvui-naming.contract.test.ts": "18f240b92ad296b79445013beaf4bbc68d4ec094cc27cf7905183ff157aa9ae8"
+}

@@ -1,0 +1,107 @@
+{
+  "base": "/p01-proof/",
+  "count": 8,
+  "external": [],
+  "rows": [
+    {
+      "byteCount": 544,
+      "mime": "text/html",
+      "sha256": "2209abf23e5839f4c0db3a9696c30c77b5c5b45fcb1371435da139fb8c7a9ba9",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/p01-proof/",
+      "distByteCount": 544,
+      "distSha256": "2209abf23e5839f4c0db3a9696c30c77b5c5b45fcb1371435da139fb8c7a9ba9",
+      "matches": true
+    },
+    {
+      "byteCount": 852760,
+      "mime": "text/javascript",
+      "sha256": "4b388870a31ce1c9829eaf248529a4ae2d66a9a3c83f98d90b3c5ace37fb7015",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/p01-proof/assets/index-BtUqEQX4.js",
+      "distByteCount": 852760,
+      "distSha256": "4b388870a31ce1c9829eaf248529a4ae2d66a9a3c83f98d90b3c5ace37fb7015",
+      "matches": true
+    },
+    {
+      "byteCount": 612,
+      "mime": "text/javascript",
+      "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/p01-proof/assets/rolldown-runtime-EyZ2wyi3.js",
+      "distByteCount": 612,
+      "distSha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+      "matches": true
+    },
+    {
+      "byteCount": 303133,
+      "mime": "text/css",
+      "sha256": "d0f8e6d2fa1a4347c11b3c7f8993a2f7c03119aebad5776b60bebbf86641c904",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/p01-proof/assets/index-DjkET7dl.css",
+      "distByteCount": 303133,
+      "distSha256": "d0f8e6d2fa1a4347c11b3c7f8993a2f7c03119aebad5776b60bebbf86641c904",
+      "matches": true
+    },
+    {
+      "byteCount": 48256,
+      "mime": "font/woff2",
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/p01-proof/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "distByteCount": 48256,
+      "distSha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "matches": true
+    },
+    {
+      "byteCount": 1079,
+      "mime": "image/svg+xml",
+      "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/p01-proof/files/quality-evidence.svg",
+      "distByteCount": 1079,
+      "distSha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "matches": true
+    },
+    {
+      "byteCount": 10878,
+      "mime": "image/png",
+      "sha256": "bbb5957119507867b24fb51c761bcbf1bf3af25c38f908d68721e2d03c8ae92e",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/p01-proof/files/garden.png",
+      "distByteCount": 10878,
+      "distSha256": "bbb5957119507867b24fb51c761bcbf1bf3af25c38f908d68721e2d03c8ae92e",
+      "matches": true
+    },
+    {
+      "byteCount": 16037,
+      "mime": "image/jpeg",
+      "sha256": "2e5b23c0c5eaea91d63ae67b11aef0f4257974bd8d1e61448a964a294dcbaa30",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/p01-proof/files/coast.jpg",
+      "distByteCount": 16037,
+      "distSha256": "2e5b23c0c5eaea91d63ae67b11aef0f4257974bd8d1e61448a964a294dcbaa30",
+      "matches": true
+    }
+  ],
+  "images": [
+    {
+      "complete": true,
+      "height": 292.73638916015625,
+      "naturalHeight": 400,
+      "naturalWidth": 640,
+      "src": "http://127.0.0.1:4177/p01-proof/files/garden.png",
+      "width": 467.19549560546875
+    },
+    {
+      "complete": true,
+      "height": 293.7086181640625,
+      "naturalHeight": 400,
+      "naturalWidth": 640,
+      "src": "http://127.0.0.1:4177/p01-proof/files/coast.jpg",
+      "width": 468.7470703125
+    }
+  ],
+  "allMatch": true,
+  "dist": "/Users/mang/Project/nerv-ui-worktrees/t07-p01-native-timeline/frontend/apps/playground/dist"
+}

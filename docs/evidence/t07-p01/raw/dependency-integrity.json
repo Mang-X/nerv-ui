@@ -1,0 +1,120 @@
+{
+  "base": "93f9689cae554ea87ca6cb2a28a56b2f11f14f32",
+  "inputs": [
+    {
+      "path": "frontend/apps/design-system/package.json",
+      "baseSha256": "ab07aaa295935b40fe1291f01d0cfa4a2fda4ab4612f091ed20f64172e03201c",
+      "currentSha256": "ab07aaa295935b40fe1291f01d0cfa4a2fda4ab4612f091ed20f64172e03201c",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/apps/design-system/vite.config.ts",
+      "baseSha256": "5eb8c36af7a777e1a4c0603973d397b8573653d26c07fbd894d26bf4b2a83986",
+      "currentSha256": "5eb8c36af7a777e1a4c0603973d397b8573653d26c07fbd894d26bf4b2a83986",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/apps/playground/package.json",
+      "baseSha256": "0967d9d77e6472ba531733012404781c7a4beb184fc8e3b881359037b0aac205",
+      "currentSha256": "0967d9d77e6472ba531733012404781c7a4beb184fc8e3b881359037b0aac205",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/apps/playground/vite.config.ts",
+      "baseSha256": "173a59b5e50d99e09f8d47d48f63ea8ee915e55d72c5b260be962d532a472e75",
+      "currentSha256": "173a59b5e50d99e09f8d47d48f63ea8ee915e55d72c5b260be962d532a472e75",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/package.json",
+      "baseSha256": "f9e50aa19220ba1e97fd02a8748ea912cfe5a544aa383c905c9603e767b9380b",
+      "currentSha256": "f9e50aa19220ba1e97fd02a8748ea912cfe5a544aa383c905c9603e767b9380b",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/app-shell/package.json",
+      "baseSha256": "04a748352b4174d10f44e86e92cc4bebe7d42ed334698634f6e52916854703f3",
+      "currentSha256": "04a748352b4174d10f44e86e92cc4bebe7d42ed334698634f6e52916854703f3",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/app-shell/vite.config.ts",
+      "baseSha256": "2a9f594ba3c3512b8dae9589ddd9fc22029bf3d0ca8f696973e93d1ab2511b47",
+      "currentSha256": "2a9f594ba3c3512b8dae9589ddd9fc22029bf3d0ca8f696973e93d1ab2511b47",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/scheduling/package.json",
+      "baseSha256": "8f4299bb64c446b43d0e0c8af81437eed2a402c50633c3485eb6e33b19c914ad",
+      "currentSha256": "8f4299bb64c446b43d0e0c8af81437eed2a402c50633c3485eb6e33b19c914ad",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/scheduling/vite.config.ts",
+      "baseSha256": "82af691658a6b174cb3670a5650c9cd413ffcf421427086b7de80fe7cb76c9ef",
+      "currentSha256": "82af691658a6b174cb3670a5650c9cd413ffcf421427086b7de80fe7cb76c9ef",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/ui-mobile/package.json",
+      "baseSha256": "99a7898eda2f126c7dc6c1613f953540d135141ec5e08c7b656066bfb5edbcfb",
+      "currentSha256": "99a7898eda2f126c7dc6c1613f953540d135141ec5e08c7b656066bfb5edbcfb",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/ui-mobile/vite.config.ts",
+      "baseSha256": "527c72b5320cb49b406094bfe95aa2bea62c344f37b37ca07b462019d40dea70",
+      "currentSha256": "527c72b5320cb49b406094bfe95aa2bea62c344f37b37ca07b462019d40dea70",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/ui/package.json",
+      "baseSha256": "4f7f9ce9ec077150eb1eca9e0ffd205a32600702b2d0b52f40eca2ce0977f079",
+      "currentSha256": "4f7f9ce9ec077150eb1eca9e0ffd205a32600702b2d0b52f40eca2ce0977f079",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/packages/ui/vite.config.ts",
+      "baseSha256": "12455df6c5c4d0dd76bec3559983c17f6f745fbd6392b0d32d582ce9e78a9c90",
+      "currentSha256": "12455df6c5c4d0dd76bec3559983c17f6f745fbd6392b0d32d582ce9e78a9c90",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/pnpm-lock.yaml",
+      "baseSha256": "ea746bfedf77603fc582e97d95b9a97a2548349736f66e46e7ec8b3a8a4d476c",
+      "currentSha256": "ea746bfedf77603fc582e97d95b9a97a2548349736f66e46e7ec8b3a8a4d476c",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/pnpm-workspace.yaml",
+      "baseSha256": "97360ca48c840c9e495b7dc6a2ea11f53e07d2b8bd968f3deb63e45afebf2e27",
+      "currentSha256": "97360ca48c840c9e495b7dc6a2ea11f53e07d2b8bd968f3deb63e45afebf2e27",
+      "byteEqual": true
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "baseSha256": "f90313dd3c3f420e79de3634169e20f60f69420a8f2cc9ec9bfc64b57bd55049",
+      "currentSha256": "f90313dd3c3f420e79de3634169e20f60f69420a8f2cc9ec9bfc64b57bd55049",
+      "byteEqual": true
+    }
+  ],
+  "inputCount": 16,
+  "allByteEqual": true,
+  "packages": 973,
+  "snapshots": 973,
+  "vue": [
+    {
+      "path": "frontend/packages/ui/package.json",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t07-p01-native-timeline/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/package.json",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t07-p01-native-timeline/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+    },
+    {
+      "path": "frontend/apps/playground/package.json",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t07-p01-native-timeline/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js"
+    }
+  ],
+  "singleton": true
+}

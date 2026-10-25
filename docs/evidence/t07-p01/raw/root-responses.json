@@ -1,0 +1,99 @@
+{
+  "base": "/",
+  "count": 9,
+  "external": [],
+  "rows": [
+    {
+      "byteCount": 514,
+      "mime": "text/html",
+      "sha256": "f0a228deb16ad272d24378a791f63f7575c2f2991eb8b9e44fc13b8abcb6c068",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/",
+      "distByteCount": 514,
+      "distSha256": "f0a228deb16ad272d24378a791f63f7575c2f2991eb8b9e44fc13b8abcb6c068",
+      "matches": true
+    },
+    {
+      "byteCount": 852640,
+      "mime": "text/javascript",
+      "sha256": "c4d8b5212c72dd8351c6ab3258aca855713ff42df06dbf05f61387077a6f16d5",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/assets/index-D7-k-MDd.js",
+      "distByteCount": 852640,
+      "distSha256": "c4d8b5212c72dd8351c6ab3258aca855713ff42df06dbf05f61387077a6f16d5",
+      "matches": true
+    },
+    {
+      "byteCount": 612,
+      "mime": "text/javascript",
+      "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/assets/rolldown-runtime-EyZ2wyi3.js",
+      "distByteCount": 612,
+      "distSha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+      "matches": true
+    },
+    {
+      "byteCount": 303063,
+      "mime": "text/css",
+      "sha256": "fb775f2e2ae486aab6301671612b399a5844ba7d0603bfff5f38d4d0c8b37ad9",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/assets/index-BXueDkGy.css",
+      "distByteCount": 303063,
+      "distSha256": "fb775f2e2ae486aab6301671612b399a5844ba7d0603bfff5f38d4d0c8b37ad9",
+      "matches": true
+    },
+    {
+      "byteCount": 48256,
+      "mime": "font/woff2",
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "distByteCount": 48256,
+      "distSha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "matches": true
+    },
+    {
+      "byteCount": 324,
+      "mime": "image/svg+xml",
+      "sha256": "ce9f4ceb5ae5aca0c4a74c4f39df26f06e730d9de35bead980fa7b541dbdd6b8",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/media/portrait.svg",
+      "distByteCount": 324,
+      "distSha256": "ce9f4ceb5ae5aca0c4a74c4f39df26f06e730d9de35bead980fa7b541dbdd6b8",
+      "matches": true
+    },
+    {
+      "byteCount": 415,
+      "mime": "image/svg+xml",
+      "sha256": "db05eede3e86b7bfb1619215732aa6e4d358482dcd13045b96782ee80d220cac",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/media/lake.svg",
+      "distByteCount": 415,
+      "distSha256": "db05eede3e86b7bfb1619215732aa6e4d358482dcd13045b96782ee80d220cac",
+      "matches": true
+    },
+    {
+      "byteCount": 1079,
+      "mime": "image/svg+xml",
+      "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/files/quality-evidence.svg",
+      "distByteCount": 1079,
+      "distSha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "matches": true
+    },
+    {
+      "byteCount": 18996,
+      "mime": "font/woff2",
+      "sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+      "status": 200,
+      "url": "http://127.0.0.1:4177/assets/inter-greek-wght-normal-CkhJZR-_.woff2",
+      "distByteCount": 18996,
+      "distSha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6",
+      "matches": true
+    }
+  ],
+  "allMatch": true,
+  "dist": "/Users/mang/Project/nerv-ui-worktrees/t07-p01-native-timeline/frontend/apps/playground/dist"
+}
