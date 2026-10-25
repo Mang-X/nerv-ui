@@ -62,6 +62,15 @@ function onPdfError(message: string, source: string) {
     onChildError(message)
 }
 
+function onOfficeReady(source: string, kind: typeof previewKind.value) {
+  if (source === props.src && kind === previewKind.value && !props.loading && !props.error)
+    onChildReady(kind)
+}
+function onOfficeError(message: string, source: string, kind: typeof previewKind.value) {
+  if (source === props.src && kind === previewKind.value && !props.loading && !props.error)
+    onChildError(message)
+}
+
 function onChildError(message: string) {
   internalError.value = message
   emit('error', message)
@@ -203,8 +212,8 @@ function onChildReady(kind = previewKind.value) {
                 "
                 :src="src"
                 :kind="previewKind"
-                @ready="onChildReady(previewKind)"
-                @error="onChildError"
+                @ready="onOfficeReady"
+                @error="onOfficeError"
               />
             </MotionDiv>
           </AnimatePresence>

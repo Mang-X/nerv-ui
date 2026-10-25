@@ -286,3 +286,17 @@ fontFallback:null 关闭第三方回退字体请求。已有嵌入字体可正�
 F04 的 F1/F2 生命周期修复由本地来源持有 `AbortController`：换源或卸载取消 PDF GET/响应体读取；两个 await 后再次检查来源，只把当前完整 buffer 交给 PDFium。已开始的浏览器读操作若无法立即停止，晚到字节会丢弃；已入队的 native open 若晚成功，则显式 close 后才销毁 engine，不以 GC 代替释放。位图层沿用固定插件的 render 参数，每轮独立持有 task/Blob URL；换源、缩放重绘和卸载都会清理，即使 img 尚未 load，取消后的晚 bitmap 也不再创建 URL。当前显示位图在本轮有效期间保持 URL，不在 load 前提前回收。
 
 R1 原始有效 PDF 晚成功与未解码位图的 FAIL 保留，修复及真实 renderer 证据见 [F1/F2 回执](../../../../../../docs/evidence/t06-f04/f1-f2/README.md)。它们不被原正常矩阵的 PASS 覆盖。
+
+## Office 本地预览（T06/F05）
+
+Office 固定使用 `@silurus/ooxml@0.72.2`，DOCX / PPTX 在主线程绘制 canvas 与文本层，三种格式的 ZIP / WASM 解析使用包内 Blob Worker；XLSX 由同版本 viewer 绘制表格。`useGoogleFonts:false` 显式关闭可选 Google Fonts 请求；使用文档嵌入字体和本机可用字体，不保证所有字体、排版和字符覆盖。没有把文件或 src 发送到在线 Office 服务。
+
+三个 `*_parser_bg.wasm` 从精确安装包原样供应到库内 `file-preview/ooxml/`，通过 `?url` 产生本地资源 URL；MIT LICENSE 与原始 THIRD_PARTY_NOTICES 随资源保留。后者包含 Rust/WASM、Unicode、可选 MathJax/STIX 的上游声明；本包装层没有启用可选 math 引擎。宿主继续使用已经锁定的 `vite-plugin-wasm`，不依赖 CDN。
+
+DOCX / PPTX 提供前后页、下拉跳转、50%–200% 相对容器宽度缩放和重置。缩放及 resize 会重新绘制实际 canvas，保留当前文档和页码。0.72.2 没有公开的绝对渲染宽度 resize API，兼容点只写 DOCX `_opts.width` 或 PPTX `opts.width`，再调用对应 `_render` / `renderCurrentSlide`；公开 `setScale` 是相对自然页面尺寸的比例，语义不同。升级依赖时须重新验证这个内部兼容点。
+
+XLSX 提供前后工作表与下拉选择；内置底栏隐藏，表格绘图区保留。`showZoomSlider:false`，不提供本包装层的 XLSX 缩放按钮。独立样张包含 `Inspection`、`Trend`、`Summary`；验证预期先从 ZIP 单元格读取，真实画面另行检查。
+
+包装层持有来源 GET 的 `AbortController`，在响应和响应体完成后分别检查当前来源；切换 src、格式和离页后丢弃旧字节，避免再创建 viewer。动态导入与 viewer.load 完成后也检查来源，旧回调不更新当前导航或转发 ready/error。每代 render surface 独立，释放旧 viewer、observer、待执行定时器和 RAF；已开始的浏览器读取和解析不承诺可抢占。非 ZIP 字节先报错，防止上游把它们显示为一页空白；此签名检查不是完整文件安全验证，也不保证所有损坏 ZIP 都能诊断。
+
+`/#files` 独立供应原 DOCX/XLSX/PPTX、明确分页的三页 DOCX、三种坏文件与 404 地址；本地文件选择也接受这三种 Office 扩展名，只生成宿主 Blob URL。原样本、生成方式、资源 SHA 和真实浏览器证据见 [F05 记录](../../../../../../docs/evidence/t06-f05/README.md)。父 #7 组合、完整文档站 #10、packed host #11、设备 #41 和旧消费方 #12–15 分别验收。

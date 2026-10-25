@@ -38,6 +38,22 @@ const samples = [
     fileName: fileName!,
     contentType: 'application/pdf',
   })),
+  ...[
+    ['docx-original', '工作指引 DOCX', 'quality-work-instruction.docx'],
+    ['docx-pages', '阅读旅程（三页 DOCX）', 'reading-journey.docx'],
+    ['xlsx', '检查记录 XLSX', 'inspection-metrics.xlsx'],
+    ['pptx', '预览回顾 PPTX', 'preview-review-deck.pptx'],
+    ...['docx', 'xlsx', 'pptx'].flatMap((ext) => [
+      [ext + '-broken', '损坏 ' + ext.toUpperCase(), 'broken.' + ext],
+      [ext + '-missing', '无效 ' + ext.toUpperCase() + ' 地址', 'missing.' + ext],
+    ]),
+  ].map(([id, label, fileName]) => ({
+    id: id!,
+    label: label!,
+    fileName: fileName!,
+    src: import.meta.env.BASE_URL + 'files/' + fileName,
+    contentType: '',
+  })),
   {
     id: 'broken',
     label: '损坏图片',
@@ -115,9 +131,9 @@ function chooseLocal(event: Event) {
   if (
     !file.type.startsWith('image/') &&
     file.type !== 'application/pdf' &&
-    !file.name.toLowerCase().endsWith('.pdf')
+    !['.pdf', '.docx', '.xlsx', '.pptx'].some((ext) => file.name.toLowerCase().endsWith(ext))
   ) {
-    notice.value = '请选择本地图片或 PDF。'
+    notice.value = '请选择本地图片、PDF、DOCX、XLSX 或 PPTX。'
     return
   }
   notice.value = ''
@@ -149,7 +165,7 @@ onBeforeUnmount(() => {
     <div>
       <h2 id="preview-heading" class="text-xl font-semibold">看见细节</h2>
       <p class="mt-1 text-sm text-muted-foreground">
-        本地图片可缩放与旋转，PDF 可翻页与缩放。其它文件保留原文件入口。
+        图片可旋转，PDF、Word 与幻灯片可翻页缩放，表格可切换工作表。
       </p>
     </div>
     <label class="grid gap-1 text-sm"
@@ -165,9 +181,9 @@ onBeforeUnmount(() => {
       </select>
     </label>
     <label class="grid gap-1 text-sm"
-      >预览本地图片或 PDF<input
+      >预览本地图片或文档<input
         type="file"
-        accept="image/*,application/pdf,.pdf"
+        accept="image/*,application/pdf,.pdf,.docx,.xlsx,.pptx"
         aria-label="预览本地图片"
         class="min-h-11 max-w-full rounded-md border p-2"
         @change="chooseLocal"
