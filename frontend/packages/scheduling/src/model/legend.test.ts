@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { toModel } from './aps-mapper'
-import { samplePlan, samplePlanWithCalendar } from './fixtures'
+import { cloneModel } from './clone'
+import { sampleModel, sampleModelWithCalendar } from '../test-fixtures/models'
 import { deriveLegendSemantics } from './legend'
 import { resolveTimeScale, shiftBoundaryRendersAt } from './scale'
 
@@ -10,23 +10,23 @@ const NOW = Date.parse('2026-06-10T09:00:00.000Z')
 // 图例不许列图上没有的东西——这组用例就是那条硬约束的门禁。
 describe('deriveLegendSemantics', () => {
   it('只列方案里真实出现过的阻塞类型', () => {
-    expect(deriveLegendSemantics(toModel(samplePlanWithCalendar)).blocks).toEqual([
+    expect(deriveLegendSemantics(cloneModel(sampleModelWithCalendar)).blocks).toEqual([
       'maintenance',
       'changeover',
     ])
   })
 
   it('方案没有资源时间块时,阻塞一组为空', () => {
-    expect(deriveLegendSemantics(toModel(samplePlan)).blocks).toEqual([])
+    expect(deriveLegendSemantics(cloneModel(sampleModel)).blocks).toEqual([])
   })
 
   it('后端带出工作日历才谈班次边界', () => {
-    expect(deriveLegendSemantics(toModel(samplePlanWithCalendar), NOW, 'hour').calendar.shift).toBe(
-      true,
-    )
-    expect(deriveLegendSemantics(toModel(samplePlan), NOW, 'hour').calendar.shift).toBe(false)
+    expect(
+      deriveLegendSemantics(cloneModel(sampleModelWithCalendar), NOW, 'hour').calendar.shift,
+    ).toBe(true)
+    expect(deriveLegendSemantics(cloneModel(sampleModel), NOW, 'hour').calendar.shift).toBe(false)
     // 非工作底纹恒在:没有日历时引擎也会按通用作息画。
-    expect(deriveLegendSemantics(toModel(samplePlan)).calendar.nonWorking).toBe(true)
+    expect(deriveLegendSemantics(cloneModel(sampleModel)).calendar.nonWorking).toBe(true)
   })
 
   // 走查台账 #41:图例=图面事实。班次竖线由引擎逐格判定(单元格起点 === 班次窗口起点),
@@ -35,7 +35,7 @@ describe('deriveLegendSemantics', () => {
     // 用本地时间构造,避免测试跟着运行机器时区飘。
     const localIso = (hour: number) => new Date(2026, 5, 10, hour, 0, 0, 0).toISOString()
     const planWithShiftsAt = (...hours: number[]) => ({
-      ...samplePlan,
+      ...sampleModel,
       calendars: [
         {
           calendarId: 'CAL-MAIN',
@@ -51,12 +51,12 @@ describe('deriveLegendSemantics', () => {
     })
 
     it('班次级刻度下,落在单元格起点(偶数整点)的班次才列', () => {
-      const model = toModel(planWithShiftsAt(8, 16))
+      const model = cloneModel(planWithShiftsAt(8, 16))
       expect(deriveLegendSemantics(model, NOW, 'hour').calendar.shift).toBe(true)
     })
 
     it('班次级刻度下,奇数整点起班落不到 2 小时一格的起点上,不列', () => {
-      const model = toModel(planWithShiftsAt(7))
+      const model = cloneModel(planWithShiftsAt(7))
       expect(deriveLegendSemantics(model, NOW, 'hour').calendar.shift).toBe(false)
     })
 
@@ -67,8 +67,8 @@ describe('deriveLegendSemantics', () => {
     // 因此:时间轴若起于奇数整点,下面两条的期望值会与图面相反。治本前请勿把它读成"与引擎等价"。
     // 治本方向:引擎回传实际格线,或显式钉死 config.start_date 的相位。
     it('【已知近似】hour 档以「偶数整点 = 格线」为假设,奇数相位时间轴下会与图面相反', () => {
-      const evenShift = toModel(planWithShiftsAt(8))
-      const oddShift = toModel(planWithShiftsAt(7))
+      const evenShift = cloneModel(planWithShiftsAt(8))
+      const oddShift = cloneModel(planWithShiftsAt(7))
       // 当前假设下的判定:偶数整点起班列、奇数整点起班不列。
       expect(deriveLegendSemantics(evenShift, NOW, 'hour').calendar.shift).toBe(true)
       expect(deriveLegendSemantics(oddShift, NOW, 'hour').calendar.shift).toBe(false)
@@ -88,14 +88,14 @@ describe('deriveLegendSemantics', () => {
     })
 
     it('日级刻度下班次竖线画不出来,图例不列班次边界', () => {
-      const model = toModel(planWithShiftsAt(8, 16))
+      const model = cloneModel(planWithShiftsAt(8, 16))
       expect(deriveLegendSemantics(model, NOW, 'day').calendar.shift).toBe(false)
       // 非工作底纹与「现在」线不受刻度影响,仍照常推导。
       expect(deriveLegendSemantics(model, NOW, 'day').calendar.nonWorking).toBe(true)
     })
 
     it('周 / 月刻度同理不列', () => {
-      const model = toModel(planWithShiftsAt(0, 8, 16))
+      const model = cloneModel(planWithShiftsAt(0, 8, 16))
       expect(deriveLegendSemantics(model, NOW, 'week').calendar.shift).toBe(false)
       expect(deriveLegendSemantics(model, NOW, 'month').calendar.shift).toBe(false)
     })
@@ -103,7 +103,7 @@ describe('deriveLegendSemantics', () => {
     it('不传刻度时按 auto 解析:计划期跨度决定实际刻度', () => {
       // toModel 的 horizon 由任务时间推导,这里直接覆写成想验的跨度。
       const short = {
-        ...toModel(planWithShiftsAt(8)),
+        ...cloneModel(planWithShiftsAt(8)),
         horizon: { startUtc: localIso(0), endUtc: localIso(24) },
       }
       // 跨度 ≤2 天 → 班次级 → 画得出来
@@ -111,7 +111,7 @@ describe('deriveLegendSemantics', () => {
       expect(deriveLegendSemantics(short, NOW).calendar.shift).toBe(true)
 
       const long = {
-        ...toModel(planWithShiftsAt(8)),
+        ...cloneModel(planWithShiftsAt(8)),
         horizon: { startUtc: localIso(0), endUtc: new Date(2026, 5, 30).toISOString() },
       }
       // 跨度 20 天 → 周级 → 画不出来
@@ -121,7 +121,7 @@ describe('deriveLegendSemantics', () => {
   })
 
   it('「现在」线只在计划期覆盖当下时出现', () => {
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     expect(deriveLegendSemantics(model, Date.parse('2026-06-10T09:00:00.000Z')).calendar.now).toBe(
       true,
     )
@@ -131,7 +131,7 @@ describe('deriveLegendSemantics', () => {
   })
 
   it('状态一组跟着模型走:有冲突有锁定才列', () => {
-    const s = deriveLegendSemantics(toModel(samplePlan))
+    const s = deriveLegendSemantics(cloneModel(sampleModel))
     expect(s.status).toEqual({
       conflict: true,
       locked: true,
@@ -139,8 +139,11 @@ describe('deriveLegendSemantics', () => {
       equipmentRisk: false,
     })
 
-    const clean = toModel({ ...samplePlan, conflicts: [] })
-    for (const task of clean.tasks) task.locked = false
+    const clean = cloneModel({ ...sampleModel, conflicts: [] })
+    for (const task of clean.tasks) {
+      task.locked = false
+      task.hasConflict = false
+    }
     expect(deriveLegendSemantics(clean).status).toEqual({
       conflict: false,
       locked: false,
@@ -152,25 +155,28 @@ describe('deriveLegendSemantics', () => {
   // 图例一致性铁律(#1274):卡片/tooltip 上的「缺料待备」chip 出现在图上,图例就必须同步出现;
   // 方案全齐套时它绝不出现。
   it('物料风险:有缺料工序才列「缺料待备」', () => {
-    expect(deriveLegendSemantics(toModel(samplePlan)).status.materialRisk).toBe(false)
+    expect(deriveLegendSemantics(cloneModel(sampleModel)).status.materialRisk).toBe(false)
 
-    const risky = toModel({
-      ...samplePlan,
-      materialRisks: [
+    const risky = cloneModel({
+      ...sampleModel,
+      tasks: [
         {
-          orderId: 'WO-001',
-          operationId: 'op-10',
-          reasonCodes: ['material-shortage'],
-          shortages: [
-            {
-              materialId: 'RM-OIL-01',
-              materialLotId: null,
-              requiredQuantity: 145.86,
-              availableQuantity: 0,
-              shortageQuantity: 145.86,
-            },
-          ],
-          message: '物料未齐套：RM-OIL-01 缺 145.86。已按计划排入,需在开工前完成备料。',
+          ...sampleModel.tasks[0],
+          materialRisk: {
+            orderId: 'WO-001',
+            operationId: 'op-10',
+            reasonCodes: ['material-shortage'],
+            shortages: [
+              {
+                materialId: 'RM-OIL-01',
+                materialLotId: null,
+                requiredQuantity: 145.86,
+                availableQuantity: 0,
+                shortageQuantity: 145.86,
+              },
+            ],
+            message: '物料未齐套：RM-OIL-01 缺 145.86。已按计划排入,需在开工前完成备料。',
+          },
         },
       ],
     })
@@ -179,18 +185,21 @@ describe('deriveLegendSemantics', () => {
 
   // 同一条铁律(#1274/#1320):「设备状态未知」chip 上图,图例必须同步出现;设备状态全都清楚时绝不出现。
   it('设备数据风险:有工序排在状态未知设备上才列「设备状态未知」', () => {
-    expect(deriveLegendSemantics(toModel(samplePlan)).status.equipmentRisk).toBe(false)
+    expect(deriveLegendSemantics(cloneModel(sampleModel)).status.equipmentRisk).toBe(false)
 
-    const risky = toModel({
-      ...samplePlan,
-      equipmentRisks: [
+    const risky = cloneModel({
+      ...sampleModel,
+      tasks: [
         {
-          orderId: 'WO-001',
-          operationId: 'op-10',
-          resourceId: 'DEV-CNC-01',
-          reasonCodes: ['equipment.sourceStale'],
-          message:
-            '设备 DEV-CNC-01 状态未知(采集数据已过期)。已按计划排入,开工前请人工确认设备可用。',
+          ...sampleModel.tasks[0],
+          equipmentRisk: {
+            orderId: 'WO-001',
+            operationId: 'op-10',
+            resourceId: 'DEV-CNC-01',
+            reasonCodes: ['equipment.sourceStale'],
+            message:
+              '设备 DEV-CNC-01 状态未知(采集数据已过期)。已按计划排入,开工前请人工确认设备可用。',
+          },
         },
       ],
     })
@@ -198,7 +207,7 @@ describe('deriveLegendSemantics', () => {
   })
 
   it('卡片语义(优先级/插单/齐套/换型/瓶颈)缺省不列', () => {
-    const s = deriveLegendSemantics(toModel(samplePlan))
+    const s = deriveLegendSemantics(cloneModel(sampleModel))
     expect(s.card).toEqual({
       priority: false,
       rush: false,
@@ -209,7 +218,7 @@ describe('deriveLegendSemantics', () => {
   })
 
   it('依赖箭头只在真有依赖链时列', () => {
-    expect(deriveLegendSemantics(toModel(samplePlan)).gantt.link).toBe(true)
-    expect(deriveLegendSemantics({ ...toModel(samplePlan), links: [] }).gantt.link).toBe(false)
+    expect(deriveLegendSemantics(cloneModel(sampleModel)).gantt.link).toBe(true)
+    expect(deriveLegendSemantics({ ...cloneModel(sampleModel), links: [] }).gantt.link).toBe(false)
   })
 })

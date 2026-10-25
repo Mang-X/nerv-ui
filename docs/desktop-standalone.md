@@ -54,7 +54,7 @@ T02 建立的活动成员为 `packages/ui`、`apps/playground`。T04/N01 / #45 �
 
 | 成员                  | 恢复责任                                     |
 | --------------------- | -------------------------------------------- |
-| `packages/scheduling` | #8：解除 api-client/business-core 耦合后恢复 |
+| `packages/scheduling` | P04/#87 已恢复；[运行与资源接入](./scheduling-renderer.md) |
 | `apps/design-system`  | #10：全部文档站解耦后恢复                    |
 | `packages/app-shell`  | #9：应用壳与散落 UI 责任细拆后恢复           |
 

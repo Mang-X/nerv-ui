@@ -67,6 +67,8 @@ const readOnlyModel = ref(makeModel())
 const emptyModel = ref({ ...makeModel(), tasks: [], links: [] })
 </script>
 
+> P04 已恢复独立 workspace 与 `/#schedule-gantt` 的真实只读演示；构建样式、资源、缓存和回落边界见[引擎接入](../../../../../../docs/scheduling-renderer.md)。下列文档站完整运行仍由 #10 单独验证，资源投影/受控编辑的完整验收由 P05–P08 接续。
+
 # GanttChart 工单甘特图
 
 工单 → 工序 WBS 视角的时间线:工序条、依赖链、里程碑、进度。给跟单与管理看进度和瓶颈。来自 `@nerv-iip/scheduling`(引擎无关的复合组件,非 shadcn 原版)。

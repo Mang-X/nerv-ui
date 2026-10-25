@@ -1,5 +1,5 @@
-import { useColorMode } from '@nerv-iip/ui'
-import { onBeforeUnmount, ref, watch, type Ref } from 'vue'
+import { useColorMode, useTheme } from '@nerv-iip/ui'
+import { onBeforeUnmount, shallowRef, watch, type Ref } from 'vue'
 import type {
   EngineCommand,
   EngineEvents,
@@ -10,9 +10,7 @@ import type {
 import { DhtmlxEngine } from '../engine/dhtmlx/DhtmlxEngine'
 import { isDhtmlxAvailable, preloadGantt } from '../engine/dhtmlx/loader'
 import type { LaneOrder, ScheduleModel } from '../model/types'
-
 export type EngineKind = 'auto' | 'dhtmlx'
-
 const TOKEN_NAMES = [
   '--nv-brand',
   '--destructive',
@@ -24,18 +22,13 @@ const TOKEN_NAMES = [
   '--foreground',
   '--card',
 ]
-
 function readTokens(): Record<string, string> {
   if (typeof document === 'undefined') return {}
-  const s = getComputedStyle(document.documentElement)
-  const out: Record<string, string> = {}
-  for (const n of TOKEN_NAMES) {
-    const v = s.getPropertyValue(n).trim()
-    if (v) out[n] = v
-  }
-  return out
+  const style = getComputedStyle(document.documentElement)
+  return Object.fromEntries(
+    TOKEN_NAMES.map((n) => [n, style.getPropertyValue(n).trim()]).filter(([, v]) => v),
+  )
 }
-
 export interface UseEngineOptions {
   container: Ref<HTMLElement | undefined>
   model: Ref<ScheduleModel | undefined>
@@ -47,110 +40,135 @@ export interface UseEngineOptions {
   engineKind?: EngineKind
   on?: Partial<{ [E in keyof EngineEvents]: (p: EngineEvents[E]) => void }>
 }
-
 export function useEngine(opts: UseEngineOptions) {
-  const engine = ref<SchedulingEngine>()
-  const engineName = ref<'dhtmlx' | 'unavailable'>('unavailable')
+  const engine = shallowRef<SchedulingEngine>()
+  const engineName = shallowRef<'loading' | 'dhtmlx' | 'unavailable' | 'error'>('loading')
+  const error = shallowRef<string>()
   const { isDark } = useColorMode()
-  let initializing = true
+  const { theme } = useTheme()
+  let generation = 0
+  let disposed = false
+  let mounting: SchedulingEngine | undefined
   const pendingCommands: EngineCommand[] = []
-  // 工具栏可先于 vendor 就绪；命令由初始化 owner 在 mount/setData 后消费。
   function command(value: EngineCommand) {
-    if (initializing) {
-      pendingCommands.push(value)
-      return
-    }
-    engine.value?.applyCommand(value)
+    if (engine.value) engine.value.applyCommand(value)
+    else if (!disposed && engineName.value === 'loading') pendingCommands.push(value)
   }
-
-  async function build(): Promise<SchedulingEngine | undefined> {
-    await preloadGantt()
-    const ok = await isDhtmlxAvailable()
-    if (ok) {
-      engineName.value = 'dhtmlx'
-      return new DhtmlxEngine()
-    }
-    // 无 DHTMLX vendor(CI/文档构建/未配置本地试用包):不挂载任何引擎,组件显示占位。
-    engineName.value = 'unavailable'
-    return undefined
+  function teardown() {
+    generation++
+    const current = engine.value ?? mounting
+    engine.value = undefined
+    mounting = undefined
+    current?.destroy()
   }
-
-  // 拖拽引起的 model 变更:引擎(DHTMLX)已就地移好条,不应再 setData 重建(否则条被收成线)。
-  let suppressSetData = false
-
-  async function init() {
-    if (!opts.container.value || engine.value) return
-    const e = await build()
-    // 无可用引擎(DHTMLX vendor 缺失):不挂载,保持 engineName='unavailable',组件显示占位。
-    if (!e) {
-      initializing = false
-      pendingCommands.length = 0
-      return
-    }
-    // 容器可能在 await 期间被卸载。
-    if (!opts.container.value) return
-    const options: SchedulingEngineOptions = {
-      view: opts.view,
-      readOnly: opts.readOnly.value,
-      scale: opts.scale.value,
-      groupBy: opts.groupBy?.value,
-      laneOrder: opts.laneOrder?.value,
-      locale: 'zh',
-      theme: { isDark: isDark.value, tokens: readTokens() },
-    }
-    e.mount(opts.container.value, options)
-    for (const [name, cb] of Object.entries(opts.on ?? {})) {
-      if (name === 'taskDragEnd') {
-        e.on('taskDragEnd', ((p: { kind?: string }) => {
-          // 工单甘特用 DHTMLX 原生拖拽:move/resize 已就地移好条,跳过 setData 避免重建破坏。
-          // 资源排产板用自定义拖拽:原块静止,必须 setData 重新 parse 才能把卡片渲染到新时间/新泳道。
-          suppressSetData = opts.view === 'order' && p?.kind !== 'reassign'
-          ;(cb as (payload: unknown) => void)(p)
-          setTimeout(() => {
-            suppressSetData = false
-          }, 80)
-        }) as never)
-      } else {
-        e.on(name as keyof EngineEvents, cb as never)
+  async function init(container: HTMLElement) {
+    teardown()
+    const ticket = generation
+    error.value = undefined
+    engineName.value = 'loading'
+    const current = () => !disposed && generation === ticket && opts.container.value === container
+    let candidate: SchedulingEngine | undefined
+    try {
+      await preloadGantt()
+      if (!current()) return
+      if (!(await isDhtmlxAvailable())) {
+        if (current()) {
+          engineName.value = 'unavailable'
+          pendingCommands.length = 0
+        }
+        return
       }
+      if (!current()) return
+      candidate = new DhtmlxEngine()
+      mounting = candidate
+      for (const [name, cb] of Object.entries(opts.on ?? {}))
+        candidate.on(name as keyof EngineEvents, cb as never)
+      const options: SchedulingEngineOptions = {
+        view: opts.view,
+        readOnly: opts.readOnly.value,
+        scale: opts.scale.value,
+        groupBy: opts.groupBy?.value,
+        laneOrder: opts.laneOrder?.value,
+        locale: 'zh',
+        theme: { isDark: isDark.value, tokens: readTokens() },
+      }
+      await candidate.mount(container, options)
+      if (!current()) {
+        candidate.destroy()
+        return
+      }
+      // Inputs may have changed while asynchronous initialization was pending.
+      candidate.applyCommand({ kind: 'setReadOnly', readOnly: opts.readOnly.value })
+      candidate.applyCommand({ kind: 'scaleTo', scale: opts.scale.value })
+      candidate.applyCommand({
+        kind: 'setTheme',
+        theme: { isDark: isDark.value, tokens: readTokens() },
+      })
+      if (opts.groupBy)
+        candidate.applyCommand({ kind: 'setGroupBy', groupBy: opts.groupBy.value ?? 'workCenter' })
+      if (opts.laneOrder)
+        candidate.applyCommand({
+          kind: 'setLaneOrder',
+          laneOrder: opts.laneOrder.value ?? 'busiest',
+        })
+      if (opts.model.value) candidate.setData(opts.model.value)
+      mounting = undefined
+      engine.value = candidate
+      engineName.value = 'dhtmlx'
+      pendingCommands.splice(0).forEach(command)
+    } catch (cause) {
+      candidate?.destroy()
+      if (!current()) return
+      mounting = undefined
+      engineName.value = 'error'
+      error.value = cause instanceof Error ? cause.message : String(cause)
+      pendingCommands.length = 0
     }
-    if (opts.model.value) e.setData(opts.model.value)
-    engine.value = e
-    initializing = false
-    pendingCommands.splice(0).forEach(command)
   }
-
   watch(
     opts.container,
     (el) => {
-      if (el) void init()
+      if (el) void init(el)
+      else teardown()
     },
-    { immediate: true },
+    { immediate: true, flush: 'post' },
   )
-  watch(opts.model, (m) => {
-    if (m && !suppressSetData) engine.value?.setData(m)
-  })
-  watch(opts.scale, (s) => engine.value?.applyCommand({ kind: 'scaleTo', scale: s }))
-  watch(opts.readOnly, (r) => engine.value?.applyCommand({ kind: 'setReadOnly', readOnly: r }))
-  if (opts.laneOrder) {
-    watch(opts.laneOrder, (order) =>
-      engine.value?.applyCommand({ kind: 'setLaneOrder', laneOrder: order ?? 'busiest' }),
-    )
-  }
-  if (opts.groupBy) {
+  watch(
+    opts.model,
+    (m) => {
+      try {
+        if (m && engine.value) engine.value.setData(m)
+        else if (opts.container.value && (engine.value || engineName.value === 'error'))
+          void init(opts.container.value)
+      } catch (cause) {
+        teardown()
+        engineName.value = 'error'
+        error.value = cause instanceof Error ? cause.message : String(cause)
+        pendingCommands.length = 0
+      }
+    },
+    { deep: true },
+  )
+  watch(opts.scale, (scale) => engine.value?.applyCommand({ kind: 'scaleTo', scale }))
+  watch(opts.readOnly, (readOnly) => engine.value?.applyCommand({ kind: 'setReadOnly', readOnly }))
+  if (opts.groupBy)
     watch(opts.groupBy, (g) =>
       engine.value?.applyCommand({ kind: 'setGroupBy', groupBy: g ?? 'workCenter' }),
     )
-  }
-  watch(isDark, (d) =>
-    engine.value?.applyCommand({ kind: 'setTheme', theme: { isDark: d, tokens: readTokens() } }),
+  if (opts.laneOrder)
+    watch(opts.laneOrder, (o) =>
+      engine.value?.applyCommand({ kind: 'setLaneOrder', laneOrder: o ?? 'busiest' }),
+    )
+  watch(
+    [isDark, theme],
+    ([d]) =>
+      engine.value?.applyCommand({ kind: 'setTheme', theme: { isDark: d, tokens: readTokens() } }),
+    { flush: 'post' },
   )
-
   onBeforeUnmount(() => {
+    disposed = true
     pendingCommands.length = 0
-    engine.value?.destroy()
-    engine.value = undefined
+    teardown()
   })
-
-  return { engine, engineName, command }
+  return { engine, engineName, error, command }
 }

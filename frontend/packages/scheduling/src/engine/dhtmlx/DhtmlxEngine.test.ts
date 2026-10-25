@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { toModel } from '../../model/aps-mapper'
-import { samplePlan, samplePlanWithCalendar } from '../../model/fixtures'
+import { cloneModel } from '../../model/clone'
+import { sampleModel, sampleModelWithCalendar } from '../../test-fixtures/models'
 import type { SchedulingEngineOptions } from '../engine'
 import { withFactoryTimeContext } from '../../model/factory-time'
 import { cardHtml, tooltipHtml, DhtmlxEngine } from './DhtmlxEngine'
@@ -59,6 +59,10 @@ function makeFakeGantt() {
     showDate: (_d: Date) => {},
     date: {
       add: (date: Date, step: number, unit: string) => {
+        const custom = (
+          gantt.date as unknown as Record<string, (date: Date, step: number) => Date>
+        )[`add_${unit}`]
+        if (custom) return custom(date, step)
         const result = new Date(date)
         if (unit === 'day') result.setDate(result.getDate() + step)
         else result.setHours(result.getHours() + step)
@@ -89,13 +93,16 @@ describe('DhtmlxEngine (fake factory)', () => {
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     engine.mount(el(), { ...options(), view: 'resource', groupBy: 'workCenter' })
     engine.setData(
-      toModel({
-        ...samplePlan,
+      cloneModel({
+        ...sampleModel,
         freezeContext: {
-          asOfUtc: '2026-06-10T06:00:00Z',
-          defaultWindowEndUtc: '2026-06-10T12:00:00Z',
-          workCenterWindows: [{ workCenterId: 'WC-CNC', endUtc: '2026-06-10T06:00:00Z' }],
-          assignments: [],
+          windows: [
+            {
+              workCenterId: 'WC-ASM',
+              startUtc: '2026-06-10T06:00:00Z',
+              endUtc: '2026-06-10T12:00:00Z',
+            },
+          ],
         },
       }),
     )
@@ -122,7 +129,7 @@ describe('DhtmlxEngine (fake factory)', () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     engine.mount(el(), options())
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     engine.setData(model)
     const columns = fake.state.config.columns as {
       name: string
@@ -136,7 +143,7 @@ describe('DhtmlxEngine (fake factory)', () => {
       column.template({
         nerv: {
           ...task,
-          currentExecution: { workOrderProgress: { completedQuantity: 25, plannedQuantity: 100 } },
+          facts: [{ label: '工单进度', value: '25 / 100' }],
         },
       }),
     ).toContain('25 / 100')
@@ -148,23 +155,20 @@ describe('DhtmlxEngine (fake factory)', () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     const endUtc = '2026-06-10T16:00:00Z'
-    const model = toModel({
-      ...samplePlan,
-      assignments: [
+    const model = cloneModel({
+      ...sampleModel,
+      tasks: [
         {
-          ...samplePlan.assignments![0],
+          ...sampleModel.tasks[0],
           endUtc,
+          facts: [{ label: '交期差', value: '按期' }],
+          dueUtc: endUtc,
           segments: [
             { startUtc: '2026-06-10T08:00:00Z', endUtc: '2026-06-10T10:00:00Z' },
             { startUtc: '2026-06-10T14:00:00Z', endUtc },
           ],
         },
       ],
-      validationContext: {
-        operations: [
-          { orderId: 'WO-001', operationId: 'op-10', dueUtc: endUtc, predecessorOperationIds: [] },
-        ],
-      },
     })
     engine.mount(el(), { ...options(), view: 'resource' })
     engine.setData(model)
@@ -188,7 +192,7 @@ describe('DhtmlxEngine (fake factory)', () => {
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     const root = el()
     engine.mount(root, { ...options(), view: 'resource' })
-    engine.setData(toModel(samplePlan))
+    engine.setData(cloneModel(sampleModel))
     root.insertAdjacentHTML(
       'beforeend',
       '<div class="gantt_task_line" task_id="a1"><div class="nerv-card"></div><div class="gantt_task_drag task_left"></div></div>',
@@ -222,7 +226,7 @@ describe('DhtmlxEngine (fake factory)', () => {
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     const root = el()
     engine.mount(root, { ...options(), view: 'resource' })
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     model.tasks.find((task) => task.id === 'a1')!.locked = true
     engine.setData(model)
     root.insertAdjacentHTML(
@@ -245,7 +249,7 @@ describe('DhtmlxEngine (fake factory)', () => {
       vi.useFakeTimers()
       const fake = makeFakeGantt()
       const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
-      const model = toModel(samplePlan)
+      const model = cloneModel(sampleModel)
       // 设备资源与工作中心是不同身份;resize 不得把分组泳道写成资源。
       model.tasks.find((task) => task.id === 'a1')!.resourceId = 'RES-001'
       engine.mount(el(), { ...options(), view: 'resource' })
@@ -283,13 +287,13 @@ describe('DhtmlxEngine (fake factory)', () => {
     (view) => {
       const fake = makeFakeGantt()
       const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
-      const model = toModel({
-        ...samplePlan,
-        assignments: [
+      const model = cloneModel({
+        ...sampleModel,
+        tasks: [
           {
-            ...samplePlan.assignments![0],
+            ...sampleModel.tasks[0],
             endUtc: '2026-06-11T10:00:00Z',
-            isLocked: true,
+            locked: true,
             segments: [
               { startUtc: '2026-06-10T08:00:00Z', endUtc: '2026-06-10T10:00:00Z' },
               { startUtc: '2026-06-11T08:00:00Z', endUtc: '2026-06-11T10:00:00Z' },
@@ -330,7 +334,7 @@ describe('DhtmlxEngine (fake factory)', () => {
   it('keeps assembly dependencies visible in resource view without showing all intra-order links', () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     model.tasks.push({
       ...model.tasks.find((task) => task.id === 'a1')!,
       id: 'assembly',
@@ -355,8 +359,8 @@ describe('DhtmlxEngine (fake factory)', () => {
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     const el = document.createElement('div')
     engine.mount(el, options())
-    engine.setData(toModel(samplePlan))
-    expect(fake.state.parsed.data).toHaveLength(toModel(samplePlan).tasks.length)
+    engine.setData(cloneModel(sampleModel))
+    expect(fake.state.parsed.data).toHaveLength(cloneModel(sampleModel).tasks.length)
     expect(fake.state.parsed.links).toEqual([
       { id: 'a1->a2', source: 'a1', target: 'a2', type: '0' },
     ])
@@ -367,16 +371,20 @@ describe('DhtmlxEngine (fake factory)', () => {
   it('资源卡片使用同一物料风险事实显示预计到料日期', () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
-    const model = toModel({
-      ...samplePlan,
-      materialRisks: [
+    const model = cloneModel({
+      ...sampleModel,
+      tasks: [
         {
-          orderId: 'WO-001',
-          operationId: 'op-10',
-          reasonCodes: ['material-shortage'],
-          shortages: [],
-          message: '需在开工前完成备料',
-          materialReadyUtc: '2026-09-28T08:00:00.000Z',
+          ...sampleModel.tasks[0],
+          facts: [{ label: '物料', value: '预计到料 09-28' }],
+          materialRisk: {
+            orderId: 'WO-001',
+            operationId: 'op-10',
+            reasonCodes: ['material-shortage'],
+            shortages: [],
+            message: '需在开工前完成备料',
+            materialReadyUtc: '2026-09-28T08:00:00.000Z',
+          },
         },
       ],
     })
@@ -399,7 +407,7 @@ describe('DhtmlxEngine (fake factory)', () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     engine.mount(el(), { ...options(), view: 'resource' })
-    engine.setData(toModel(samplePlan))
+    engine.setData(cloneModel(sampleModel))
     expect(fake.state.parsed.data.find((task) => task.id === 'lane:WC-001')?.kpi?.utilization).toBe(
       0.25,
     )
@@ -408,7 +416,7 @@ describe('DhtmlxEngine (fake factory)', () => {
   it('aggregates underlying resource loads for a non-resource grouping dimension', () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     for (const task of model.tasks) {
       if (task.type === 'operation' && task.resourceId === 'WC-001') {
         task.dimensions = { device: { id: 'DEVICE-A', label: '设备 A' } }
@@ -429,7 +437,7 @@ describe('DhtmlxEngine (fake factory)', () => {
   it('seeds work-center lanes only from resources that belong to that dimension', () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     // 资源空间里混入一台设备:它不是任何工序携带的 workCenter,不该长出泳道。
     model.resources = [...model.resources, { id: 'DEVICE-A', text: '设备 A' }]
 
@@ -446,7 +454,7 @@ describe('DhtmlxEngine (fake factory)', () => {
   it('keeps every resource lane when no task carries the grouping dimension', () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
-    const model = toModel(samplePlan)
+    const model = cloneModel(sampleModel)
     // 没有任何工序携带 workCenter 维度 → 无从判断资源是否属于该维度,
     // 此时必须保留全部资源泳道,否则整块时间轴会一行不剩。
     for (const task of model.tasks) task.dimensions = undefined
@@ -469,7 +477,7 @@ describe('DhtmlxEngine (fake factory)', () => {
     engine.on('taskSelected', (p) => {
       selected = p.taskId
     })
-    engine.setData(toModel(samplePlan))
+    engine.setData(cloneModel(sampleModel))
     engine.applyCommand({ kind: 'selectTask', taskId: 'a1' })
     expect(fake.state.selected).toBe('a1')
     expect(selected).toBe('a1')
@@ -484,7 +492,7 @@ describe('DhtmlxEngine (fake factory)', () => {
     engine.on('scaleChanged', (p) => {
       scale = p.scale
     })
-    engine.setData(toModel(samplePlan))
+    engine.setData(cloneModel(sampleModel))
     engine.applyCommand({ kind: 'scaleTo', scale: 'week' })
     expect(scale).toBe('week')
     expect(engine.getState().scale).toBe('week')
@@ -498,7 +506,7 @@ describe('DhtmlxEngine (fake factory)', () => {
     engine.on('taskDragEnd', (p) => {
       payload = p
     })
-    engine.setData(toModel(samplePlan))
+    engine.setData(cloneModel(sampleModel))
     // 模拟 DHTMLX 拖动后改写了任务时间。
     const moved = fake.state.parsed.data.find((t) => t.id === 'a1')!
     moved.start_date = new Date('2026-06-10T09:00:00.000Z')
@@ -518,12 +526,12 @@ describe('DhtmlxEngine 时间线底纹(工作日历 / 班次 / 资源时间块)'
     view: 'order' | 'resource',
     rowId: string,
     date: string,
-    plan = samplePlanWithCalendar,
+    plan = sampleModelWithCalendar,
   ) {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     engine.mount(el(), { ...options(), view })
-    engine.setData(toModel(plan))
+    engine.setData(cloneModel(plan))
     const template = fake.state.templates.timeline_cell_class as (
       task: { id: string },
       date: Date,
@@ -576,7 +584,7 @@ describe('DhtmlxEngine 时间线底纹(工作日历 / 班次 / 资源时间块)'
   })
 
   it('后端没带日历时退回通用作息假设(周末 + 夜间),不空着也不假装有日历', () => {
-    const classes = cellClass('resource', 'lane:WC-001', '2026-06-10T22:00:00.000Z', samplePlan)
+    const classes = cellClass('resource', 'lane:WC-001', '2026-06-10T22:00:00.000Z', sampleModel)
     expect(classes).toContain('nerv-offwork')
     expect(classes).not.toContain('nerv-shift-start')
   })
@@ -591,18 +599,14 @@ it('aligns factory ticks and renders task time without shifting real drag coordi
   const fake = makeFakeGantt()
   const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
   engine.mount(el(), { ...options(), scale: 'hour' })
-  const model = toModel(samplePlan)
+  const model = cloneModel(sampleModel)
   const op = model.tasks.find((task) => task.type === 'operation')!
   op.startUtc = '2026-10-16T16:00:00Z'
   op.endUtc = '2026-10-16T18:00:00Z'
-  const timed = withFactoryTimeContext(model, [
-    {
-      workCenterCode: op.workCenterId!,
-      plantCode: 'NB',
-      plantName: '宁波工厂',
-      timezone: 'Asia/Shanghai',
-    },
-  ])
+  const timed = withFactoryTimeContext(
+    model,
+    model.tasks.map((task) => ({ taskId: task.id, timezone: 'Asia/Shanghai', label: '宁波工厂' })),
+  )
   engine.setData(timed)
   const scales = fake.state.config.scales as { unit: string; format: (date: Date) => string }[]
   const hour = scales[1]
@@ -651,7 +655,7 @@ it('shows named scales for every factory timezone instead of choosing the first 
   const fake = makeFakeGantt()
   const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
   engine.mount(el(), { ...options(), scale: 'hour' })
-  engine.setData({ ...toModel(samplePlan), timezones: ['Asia/Shanghai', 'UTC'] })
+  engine.setData({ ...cloneModel(sampleModel), timezones: ['Asia/Shanghai', 'UTC'] })
   const scales = fake.state.config.scales as { format: (date: Date) => string }[]
   expect(scales).toHaveLength(4)
   const instant = new Date('2026-10-16T16:00:00Z')
@@ -659,3 +663,48 @@ it('shows named scales for every factory timezone instead of choosing the first 
   expect(scales[3].format(instant)).toContain('UTC · 16:00')
   engine.destroy()
 })
+it('blocks implicit vendor editors and readonly drag without blocking adapter link projection', () => {
+  const fake = makeFakeGantt()
+  const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+  engine.mount(el(), { ...options(), readOnly: true })
+  engine.setData(cloneModel(sampleModel))
+  expect(fake.state.config.drag_links).toBe(false)
+  expect(fake.state.config.details_on_dblclick).toBe(false)
+  expect(fake.fire('onBeforeLightbox', 'a1')).toBe(false)
+  expect(fake.fire('onLinkCreated', {})).toBe(false)
+  expect(fake.fire('onLinkDblClick', 'a1->a2')).toBe(false)
+  expect(fake.fire('onBeforeTaskDrag', 'a1', 'move')).toBe(false)
+  expect(fake.state.parsed.links).toEqual([{ id: 'a1->a2', source: 'a1', target: 'a2', type: '0' }])
+  engine.destroy()
+})
+it('rejects unparsed instants at the public engine boundary without replacing the prior data', () => {
+  const fake = makeFakeGantt(),
+    engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+  engine.mount(el(), { ...options(), readOnly: true })
+  engine.setData(cloneModel(sampleModel))
+  expect(() =>
+    engine.setData({
+      ...sampleModel,
+      tasks: [{ ...sampleModel.tasks[0], startUtc: '2026-06-10T08:00:00' }],
+    }),
+  ).toThrow('实际时刻')
+  expect(fake.state.parsed.data.map((t) => t.id)).toEqual(['a1', 'a2', 'order:WO-001'])
+  engine.destroy()
+})
+it.each(['plannedStartUtc', 'plannedEndUtc'] as const)(
+  'rejects a bare baseline %s without replacing the prior data',
+  (field) => {
+    const fake = makeFakeGantt()
+    const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+    engine.mount(el(), { ...options(), readOnly: true })
+    engine.setData(cloneModel(sampleModel))
+    expect(() =>
+      engine.setData({
+        ...sampleModel,
+        tasks: [{ ...sampleModel.tasks[0], [field]: '2026-10-25T08:00:00' }],
+      }),
+    ).toThrow('实际时刻')
+    expect(fake.state.parsed.data.map((t) => t.id)).toEqual(['a1', 'a2', 'order:WO-001'])
+    engine.destroy()
+  },
+)

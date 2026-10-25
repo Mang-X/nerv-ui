@@ -1,0 +1,44 @@
+[
+  {
+    "path": "frontend/packages/scheduling/src/components/GanttChart.test.ts",
+    "base": "f2bb45dd1b05f8c7d220828d3472aa47eec5df62",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p04/components/GanttChart.test.ts",
+    "sha256": "6fbbaf34adca33293ed78ee4172fe25b7b25ab2079bc4bd5bde1bdd03d674df1"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/SchedulingWorkbench.test.ts",
+    "base": "f2bb45dd1b05f8c7d220828d3472aa47eec5df62",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p04/components/SchedulingWorkbench.test.ts",
+    "sha256": "410b86ffc98a29981094541e6a9bdd227ef975022259996c559631a01346f82f"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/TaskFacts.test.ts",
+    "base": "f2bb45dd1b05f8c7d220828d3472aa47eec5df62",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p04/components/panels/TaskFacts.test.ts",
+    "sha256": "f78cb543140987510f187c3d2c26e71c69e6965859a5e0b9e256671441368528"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/components/panels/TaskDetailPanel.test.ts",
+    "base": "f2bb45dd1b05f8c7d220828d3472aa47eec5df62",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p04/components/panels/TaskDetailPanel.test.ts",
+    "sha256": "338bee65a296e62025f752717769e7d51384ecd61ccdec15a486b529b9215720"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+    "base": "f2bb45dd1b05f8c7d220828d3472aa47eec5df62",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p04/engine/dhtmlx/DhtmlxEngine.test.ts",
+    "sha256": "8337e6b61b82ba4d6ba37b141aaffc1dbd067b7b287720428f25d2ed4d0adbf7"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/engine/dhtmlx/tooltipTokens.test.ts",
+    "base": "f2bb45dd1b05f8c7d220828d3472aa47eec5df62",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p04/engine/dhtmlx/tooltipTokens.test.ts",
+    "sha256": "772df03d80235d2f76d7fd252f29b18f66dd359dbc124f076edb6615f2053ce6"
+  },
+  {
+    "path": "frontend/packages/scheduling/src/model/legend.test.ts",
+    "base": "f2bb45dd1b05f8c7d220828d3472aa47eec5df62",
+    "reference": "frontend/reference-tests/nerv-iip/t07-p04/model/legend.test.ts",
+    "sha256": "42e483ebdad5f011aef21c181af17dcdce309b5e5d9b0087550432b761979cd0"
+  }
+]

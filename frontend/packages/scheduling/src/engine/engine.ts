@@ -75,7 +75,7 @@ export interface EngineSnapshot {
 }
 
 export interface SchedulingEngine {
-  mount(container: HTMLElement, options: SchedulingEngineOptions): void
+  mount(container: HTMLElement, options: SchedulingEngineOptions): void | Promise<void>
   setData(model: ScheduleModel): void
   applyCommand(command: EngineCommand): void
   on<E extends EngineEventName>(event: E, cb: (payload: EngineEvents[E]) => void): Unsubscribe

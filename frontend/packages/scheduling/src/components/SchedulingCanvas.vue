@@ -2,6 +2,8 @@
 import { Skeleton } from '@nerv-iip/ui'
 import { CalendarClockIcon } from '@lucide/vue'
 import { computed, ref, toRef } from 'vue'
+import { hasInvalidModelTime } from '../model/instant-validation'
+import { factoryTimeInput } from '../model/factory-time'
 import type { TaskDragPayload, TimeScale } from '../engine/engine'
 import type { LaneOrder, ScheduleModel } from '../model/types'
 import ReadonlyScheduleTimeline from './ReadonlyScheduleTimeline.vue'
@@ -31,10 +33,19 @@ const emit = defineEmits<{
 }>()
 
 const container = ref<HTMLElement>()
-const unresolvedFactoryTime = computed(() => props.model?.timezones?.length === 0)
+const unresolvedFactoryTime = computed(
+  () =>
+    props.model != null &&
+    (!props.model.timezones?.length ||
+      props.model.timezones.some((zone) => !factoryTimeInput('2000-01-01T00:00:00Z', zone)) ||
+      props.model.tasks.some(
+        (t) => !t.timezone || !factoryTimeInput('2000-01-01T00:00:00Z', t.timezone),
+      )),
+)
+const invalidModelTime = computed(() => props.model != null && hasInvalidModelTime(props.model))
 const isEmpty = computed(() => props.model != null && props.model.tasks.length === 0)
 
-const { command, engineName } = useEngine({
+const { command, engineName, error } = useEngine({
   container,
   model: toRef(props, 'model'),
   view: props.view,
@@ -62,15 +73,23 @@ defineExpose({ command, engineName })
     </div>
     <template v-else>
       <div
-        v-show="engineName === 'dhtmlx' && !unresolvedFactoryTime"
+        v-if="!unresolvedFactoryTime && !invalidModelTime"
+        v-show="(engineName === 'dhtmlx' || engineName === 'loading') && !unresolvedFactoryTime"
         ref="container"
         :data-view="view"
         :data-engine="engineName"
         class="h-full w-full"
       />
+      <p v-if="error || invalidModelTime" role="alert" class="p-4 text-sm text-destructive">
+        {{
+          invalidModelTime
+            ? '时间信息有误，暂时无法显示安排。请核对任务的日期、时间和时区后重试。'
+            : '暂时无法显示安排。请重新加载页面后重试；如仍无法查看，请联系管理员。'
+        }}
+      </p>
       <!-- 无可用引擎时的优雅占位:容器仍在 DOM 中,引擎一旦可用即可挂载。 -->
-      <p v-if="unresolvedFactoryTime" role="status" class="p-4 text-sm text-muted-foreground">
-        工厂时区尚未解析，保留当前草案；请核对工厂配置后查看时间轴。
+      <p v-else-if="unresolvedFactoryTime" role="status" class="p-4 text-sm text-muted-foreground">
+        尚未设置有效的工厂时区，保留当前草案；请核对工厂时区设置后查看安排。
       </p>
       <div
         v-else-if="isEmpty"
@@ -104,8 +123,10 @@ defineExpose({ command, engineName })
       >
         <CalendarClockIcon class="h-8 w-8" aria-hidden="true" />
         <div class="space-y-1">
-          <p class="text-sm font-medium">排程引擎未加载</p>
-          <p class="text-xs">DHTMLX 引擎在生产部署时手动分发;开发环境请配置本地 vendor。</p>
+          <p class="text-sm font-medium">暂时无法打开排程图</p>
+          <p class="text-xs">
+            当前无法编辑安排；可切换到只读模式查看时间安排。请重新加载页面后重试。
+          </p>
         </div>
       </div>
     </template>

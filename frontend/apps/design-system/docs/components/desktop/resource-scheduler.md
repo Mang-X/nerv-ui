@@ -140,6 +140,8 @@ function patch(id, fn) {
 const fmtDur = (t) => Math.round((Date.parse(t.endUtc) - Date.parse(t.startUtc)) / H * 10) / 10
 </script>
 
+> P04 已恢复独立 workspace 与 `/#schedule-gantt` 的真实只读演示；构建样式、资源、缓存和回落边界见[引擎接入](../../../../../../docs/scheduling-renderer.md)。下列文档站完整运行仍由 #10 单独验证，资源投影/受控编辑的完整验收由 P05–P08 接续。
+
 # ResourceSchedulerBoard 资源甘特图
 
 一资源一泳道,左轴维度可切换(工作中心 / 设备 / 班组 / 产线)。给计划员看机台负载、换型与过载。来自 `@nerv-iip/scheduling`,与 `GanttChart` 同模型、同引擎。

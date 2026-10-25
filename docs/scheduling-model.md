@@ -1,6 +1,6 @@
 # 排程展示模型与宿主事实（T07/P02）
 
-本票提供候选 `@nerv-iip/scheduling/model` 的纯契约准备入口，可独立消费类型和函数。scheduling 仍未加入 workspace；其主桶、loader、adapter、engine、旧组件与旧测试不在本票通过范围。P03/#86 负责 SDK/业务算法与公开回调隔离，P04/#87 负责整包恢复与真实 DHTMLX。这里使用 P01 的唯一 `NvScheduleTimeline`，无新增 renderer。
+本票提供候选 `@nerv-iip/scheduling/model` 的纯契约准备入口，可独立消费类型和函数。P02 当时未恢复 workspace；其主桶、loader、adapter、engine、旧组件与旧测试不在 P02 历史通过范围。当前 workspace 与引擎接入见 [P04 接入](./scheduling-renderer.md)。P03/#86 负责 SDK/业务算法与公开回调隔离，P04/#87 负责整包恢复与真实 DHTMLX。这里使用 P01 的唯一 `NvScheduleTimeline`，无新增 renderer。
 
 ## 公开接缝
 

@@ -2,7 +2,7 @@
 
 P03 提供独立的 `@nerv-iip/scheduling/host` 源码入口，供宿主加载、映射、校验和提交自己的排程数据。它不调用 SDK，不求解、不推导容量/前序/交期，不判断权限或保存数据。展示模型见 [scheduling-model.md](./scheduling-model.md)。
 
-当前 scheduling 仍未加入活动 workspace；独立 consumer 通过真实 package exports 和本地包链接消费。完整引擎解析、原调用更新和 DHTMLX 接线由 [P04 / #87](https://github.com/Mang-X/nerv-ui/issues/87) 负责。这里的 source consumer 成功不代表 packed 安装、整包或 vendor 成功。
+P03 当时仅验证 prepared consumer。P04 已恢复活动 workspace 与真实引擎接线，当前接入见 [引擎合同](./scheduling-renderer.md)；P03 的历史 source consumer 证据仍不代表 packed 安装或真实 vendor。
 
 ## 公开名和准确签名
 
