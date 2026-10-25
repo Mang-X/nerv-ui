@@ -118,7 +118,9 @@ const plan = [140, 420, 700, 900, 1010, 1080, 1150, 1180, 1220, 1260, 1320, 1380
 | `tooltip`                   | 十字光标 + 信息卡,`x` 是钉住的数据下标       | `false 或 { x: number; label: string; actual: string; plan: string }` | 钉在下标 6(12:00)                                                 |
 | `title`                     | 面板标题                                     | `string`                                                              | `'产量趋势（件）'`                                                |
 
-悬停信息卡与十字点为 **HTML overlay**(百分比锚定 + 右半区翻转 + 纵向钳制)——SVG `preserveAspectRatio="none"` 非均匀拉伸下文字零变形,任何容器宽高比 / NvScreenScaler 缩放都成立。
+悬停信息卡与十字点为 **HTML overlay**(百分比锚定 + 右半区翻转 + 纵向钳制)，避免文字随 SVG `preserveAspectRatio="none"` 非均匀拉伸变形，并随 NvScreenScaler 缩放。
+
+翻转与卡片最大宽均以完整绘图区容器（含左侧轴沟）为基准：锚点超过容器半宽时向左打开。卡片使用 border-box 半宽减 28px 的上限、14px 间距和全文换行，不截断标签或附加读数。该上限与 150px 最小宽同时成立需要内部容器宽至少 356px（默认面板左右内边距下，外宽至少 396px）。卡片高度随标签折行和序列行自然增长；纵向锚点钳制并不测量任意文本高度，使用 `overflow:hidden` 的宿主应为内容留足高度，不承诺无限文本或任意小容器均可容纳。
 
 ## 独立来源与缺测（T05/A05）
 

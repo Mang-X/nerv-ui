@@ -175,7 +175,8 @@ const cross = computed(() => {
   // 信息卡为 HTML overlay（% 锚定）：SVG 用 preserveAspectRatio="none" 非均匀拉伸，
   // rect/text 放 SVG 内会随容器宽高比被拉变形。右半区翻转到标线左侧、纵向钳制在画布内
   // （钳制半径随序列行数增高，多行卡不顶出画布）。
-  const flip = cx > (left + right) / 2
+  // 卡片锚点与 max-width 均相对完整 body；plot 中点含左侧轴沟，不能作为半宽边界。
+  const flip = cx > VB_W / 2
   const half = 36 + sVals.length * 9
   const cyClamped = Math.min(Math.max(cy, top + half), bottom - half)
   return { hasActual: props.actual[i] != null, cx, cy, cyClamped, flip, label, aVal, pVal, sVals }

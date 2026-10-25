@@ -46,6 +46,61 @@ it('Trend retains its default pin but explicit false and empty data never show h
   expect(w.get('.nv-scr-tc-act').attributes('d')).toBe('')
 })
 
+it('Trend opens the plot midpoint card into the available container half with its full label and extra reading', async () => {
+  const label = 'W'.repeat(120)
+  const w = chart(NvScreenTrendChart, {
+    actual: [10, 50, 90],
+    plan: [20, 60, 100],
+    series: [{ label: 'extra', color: 'red', data: [7, 41, 67] }],
+    hoverLabels: ['L', label, 'R'],
+    yLabels: ['100', '80', '60', '40', '20', '0'],
+    tooltip: false,
+    tabs: false,
+  })
+  rect(w, 'svg')
+  await w.get('svg').trigger('mousemove', { clientX: 593 })
+  expect(w.get('.nv-scr-tc-cardh').classes('flip')).toBe(true)
+  expect(w.get('.nv-scr-tc-c-t').text()).toBe(label)
+  expect(w.get('.nv-scr-tc-c-a b').text()).toBe('50')
+  expect(w.get('.nv-scr-tc-c-p b').text()).toBe('60')
+  expect(w.get('.nv-scr-tc-c-s').text()).toBe('extra41')
+  await w.get('svg').trigger('mouseleave')
+  expect(w.find('.nv-scr-tc-cardh').exists()).toBe(false)
+})
+
+it.each([
+  { count: 3, index: 0, flip: false },
+  { count: 3, index: 2, flip: true },
+  { count: 5, index: 1, flip: false },
+  { count: 5, index: 2, flip: true },
+  { count: 5, index: 3, flip: true },
+  { count: 41, index: 18, flip: false },
+  { count: 41, index: 19, flip: true },
+  { count: 41, index: 20, flip: true },
+  { count: 41, index: 21, flip: true },
+])(
+  'Trend places point $index of $count into the available container half with current readings',
+  async ({ count, index, flip }) => {
+    const actual = Array.from({ length: count }, (_, i) => 10 + i)
+    const labels = actual.map((_, i) => `source/day/p${i + 1}`)
+    const w = chart(NvScreenTrendChart, {
+      actual,
+      plan: actual.map((v) => v + 100),
+      series: [{ label: 'extra', color: 'red', data: actual.map((v) => v + 200) }],
+      hoverLabels: labels,
+      tooltip: false,
+      tabs: false,
+    })
+    rect(w, 'svg')
+    await w.get('svg').trigger('mousemove', { clientX: 146 + (894 * index) / (count - 1) })
+    expect(w.get('.nv-scr-tc-cardh').classes('flip')).toBe(flip)
+    expect(w.get('.nv-scr-tc-c-t').text()).toBe(labels[index])
+    expect(w.get('.nv-scr-tc-c-a b').text()).toBe(String(10 + index))
+    expect(w.get('.nv-scr-tc-c-p b').text()).toBe(String(110 + index))
+    expect(w.get('.nv-scr-tc-c-s').text()).toBe(`extra${210 + index}`)
+  },
+)
+
 it('Trend shares point slots across short series and recomputes a held pointer through short empty and recovered data', async () => {
   const w = chart(NvScreenTrendChart, {
     actual: [0, 17, 100],
