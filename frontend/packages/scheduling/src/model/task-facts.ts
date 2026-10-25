@@ -1,65 +1,39 @@
-import { equipmentStateLabel } from '@nerv-iip/business-core'
-import type { BusinessConsoleMesWorkOrderItem } from '@nerv-iip/api-client'
-import type { ScheduleModel, ScheduleTask } from './types'
+import type { ScheduleFact, ScheduleFactInput, ScheduleTaskFacts, ScheduleFactRow } from './types'
 
-/** 商业关联来自已加载的 MES 权威工单；不借分页空缺编造关联。 */
-export function withWorkOrderFacts(
-  model: ScheduleModel,
-  orders: BusinessConsoleMesWorkOrderItem[],
-  commercialSourceUnavailable = false,
-): ScheduleModel {
-  const byId = new Map(orders.map((order) => [order.workOrderId, order]))
+type FactModel = { tasks: readonly ({ id: string } & ScheduleTaskFacts)[] }
+type ProjectedFactTask<M extends FactModel> = Omit<M['tasks'][number], 'facts'> & {
+  facts: readonly ScheduleFactRow[]
+}
+
+function displayFact(fact: ScheduleFact): [string, string] {
+  if (fact.state === 'known') return [fact.label, String(fact.value)]
+  return [
+    fact.label,
+    fact.text ?? { unknown: '未知', forbidden: '无权读取', unavailable: '暂不可读取' }[fact.state],
+  ]
+}
+
+/** Historical name retained. Host projects domain facts and authority by task identity. */
+export function withWorkOrderFacts<M extends FactModel>(
+  model: M,
+  inputs: readonly ScheduleFactInput[],
+): Omit<M, 'tasks'> & { tasks: ProjectedFactTask<M>[] } {
+  const byId = new Map(inputs.map((input) => [input.taskId, input.facts]))
   return {
     ...model,
-    tasks: model.tasks.map((task) => ({
-      ...task,
-      commercialSourceFacts: commercialSourceUnavailable
-        ? undefined
-        : byId.get(task.orderId)?.commercialSourceFacts,
-      commercialSourceUnavailable,
-    })),
+    tasks: model.tasks.map(
+      (task: M['tasks'][number]): ProjectedFactTask<M> => ({
+        ...task,
+        facts: (byId.get(task.id) ?? [{ label: '事实', state: 'unknown' } as const]).map((fact) => {
+          const [label, value] = displayFact(fact)
+          return { label, value }
+        }),
+      }),
+    ),
   }
 }
 
-/** 四个读面统一的事实口径。当前执行值与保存时风险分别展示。 */
-export function taskFactRows(task: ScheduleTask): Array<[string, string]> {
-  if (task.blockKind || task.type !== 'operation') return []
-  const current = task.currentExecution
-  const rows: Array<[string, string]> = []
-  const commercial = task.commercialSourceFacts
-  if (task.commercialSourceUnavailable) rows.push(['商业关联', '暂不可读取'])
-  else if (commercial?.status === 'forbidden') rows.push(['商业关联', '无权读取'])
-  for (const order of commercial?.salesOrders ?? []) {
-    if (order.salesOrderNo) rows.push(['销售订单', order.salesOrderNo])
-    if (order.customerCode) rows.push(['客户', order.customerCode])
-  }
-  const progress = current?.workOrderProgress
-  if (progress?.completedQuantity != null && progress.plannedQuantity != null)
-    rows.push(['工单进度', `${progress.completedQuantity} / ${progress.plannedQuantity}`])
-  if (task.dueUtc) {
-    const minutes = (Date.parse(task.endUtc) - Date.parse(task.dueUtc)) / 60_000
-    rows.push([
-      '交期差',
-      minutes === 0 ? '按期' : `${minutes > 0 ? '延期' : '提前'} ${Math.abs(minutes)} 分钟`,
-    ])
-  }
-  const ready =
-    current?.isMaterialReady === true ? '已齐套' : current?.isMaterialReady === false ? '缺料' : ''
-  const eta = current?.materialReadyUtc
-    ? `预计到料 ${new Date(current.materialReadyUtc).toLocaleString('zh-CN', { hour12: false })}`
-    : current?.isMaterialReady === true
-      ? ''
-      : '未知到料日'
-  rows.push(['当前到料', [ready, eta].filter(Boolean).join(' · ')])
-  const knownEquipment =
-    current?.isEquipmentSourceFresh === true && task.resourceId === task.executionResourceId
-  rows.push([
-    '当前设备',
-    knownEquipment && current?.equipmentState
-      ? equipmentStateLabel(current.equipmentState)
-      : '未知 · 开工前请人工确认设备可用',
-  ])
-  if (task.predecessors) rows.push(['前序', task.predecessors.join('、') || '无'])
-  if (task.successors) rows.push(['后序', task.successors.join('、') || '无'])
-  return rows
+/** One display source for cards, tooltips and detail rows; never derives domain risk/status. */
+export function taskFactRows(task: ScheduleTaskFacts): Array<[string, string]> {
+  return task.facts?.map(({ label, value }) => [label, value]) ?? [['事实', '未知']]
 }

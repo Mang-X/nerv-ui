@@ -53,3 +53,5 @@ import { NvScheduleTimeline, type NvScheduleVisualModel } from '@nerv-iip/ui'
 活动独立示例在 playground `/#schedule`；本页源码已同步，完整文档站运行仍由 #10 验证。
 
 <!-- @include: ../../../../../DESIGN/components/schedule-timeline.md -->
+
+P02 提供的 `ScheduleVisualModel` 与本组件的 `NvScheduleVisualModel` 是同一合同；宿主可从纯 `@nerv-iip/scheduling/model` 接缝准备 facts、显式时区与保留窗口。参数迁移与独立消费命令见[排程展示模型](../../../../../../docs/scheduling-model.md)。该入口准备完成不代表 scheduling 主桶、workspace 或 DHTMLX 已恢复。
