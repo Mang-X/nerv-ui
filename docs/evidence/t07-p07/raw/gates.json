@@ -1,0 +1,703 @@
+[
+  {
+    "name": "typecheck-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "typecheck"
+    ],
+    "started": "2026-10-25T21:29:01.276Z",
+    "finished": "2026-10-25T21:29:19.660Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "scheduling-01",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p07/raw/scheduling-01.json"
+    ],
+    "started": "2026-10-25T21:29:33.504Z",
+    "finished": "2026-10-25T21:29:43.526Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "build"
+    ],
+    "started": "2026-10-25T21:30:41.586Z",
+    "finished": "2026-10-25T21:31:02.568Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-preview-hour",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/ResourceSchedulerBoard.public.test.ts",
+      "-t",
+      "public resource reassignment preserves",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p07/raw/red-preview-hour.json"
+    ],
+    "started": "2026-10-25T21:36:47.620Z",
+    "finished": "2026-10-25T21:36:51.853Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "green-preview-hour",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/ResourceSchedulerBoard.public.test.ts",
+      "-t",
+      "public resource reassignment preserves",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p07/raw/green-preview-hour.json"
+    ],
+    "started": "2026-10-25T21:36:59.784Z",
+    "finished": "2026-10-25T21:37:03.844Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-browser-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "--filter",
+      "@nerv-iip/playground",
+      "build"
+    ],
+    "started": "2026-10-25T21:37:14.192Z",
+    "finished": "2026-10-25T21:37:17.051Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "scheduling-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p07/raw/scheduling-final.json"
+    ],
+    "started": "2026-10-25T21:41:18.323Z",
+    "finished": "2026-10-25T21:41:29.125Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/apps/playground",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p07/raw/host-final.json"
+    ],
+    "started": "2026-10-25T21:42:24.117Z",
+    "finished": "2026-10-25T21:42:37.317Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "docs-source-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/ui",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/design-docs.contract.test.ts",
+      "src/nvui-doc-coverage.contract.test.ts",
+      "src/docs-layout.contract.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p07/raw/docs-source-final.json"
+    ],
+    "started": "2026-10-25T21:43:00.755Z",
+    "finished": "2026-10-25T21:43:05.067Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "public-vue-types",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vue-tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/nerv-ui-p07-public-consumer/tsconfig.json"
+    ],
+    "started": "2026-10-25T21:44:32.404Z",
+    "finished": "2026-10-25T21:44:36.443Z",
+    "exit": 2,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-source",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+      "packages/scheduling/src/engine/engine.ts",
+      "packages/scheduling/src/model/resource-projection.ts",
+      "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/ResourceScheduleDemo.vue",
+      "apps/playground/src/ResourceEditingDemo.vue",
+      "../docs/scheduling-renderer.md",
+      "packages/scheduling/README.md",
+      "apps/design-system/docs/components/desktop/resource-scheduler.md"
+    ],
+    "started": "2026-10-25T21:45:14.550Z",
+    "finished": "2026-10-25T21:45:15.000Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "public-vue-types-corrected",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vue-tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/nerv-ui-p07-public-consumer/tsconfig.json"
+    ],
+    "started": "2026-10-25T21:45:31.539Z",
+    "finished": "2026-10-25T21:45:33.296Z",
+    "exit": 2,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-source-corrected",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/node_modules/.bin/vp",
+    "args": [
+      "fmt",
+      "--write",
+      "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+      "frontend/packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+      "frontend/packages/scheduling/src/engine/engine.ts",
+      "frontend/packages/scheduling/src/model/resource-projection.ts",
+      "frontend/packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+      "frontend/apps/playground/src/App.vue",
+      "frontend/apps/playground/src/ResourceScheduleDemo.vue",
+      "frontend/apps/playground/src/ResourceEditingDemo.vue",
+      "docs/scheduling-renderer.md",
+      "frontend/packages/scheduling/README.md",
+      "frontend/apps/design-system/docs/components/desktop/resource-scheduler.md"
+    ],
+    "started": "2026-10-25T21:45:48.823Z",
+    "finished": "2026-10-25T21:45:48.940Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "public-vue-types-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vue-tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/nerv-ui-p07-public-consumer/tsconfig.json"
+    ],
+    "started": "2026-10-25T21:46:10.490Z",
+    "finished": "2026-10-25T21:46:14.483Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-frontend-write",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+      "packages/scheduling/src/engine/engine.ts",
+      "packages/scheduling/src/model/resource-projection.ts",
+      "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/ResourceScheduleDemo.vue",
+      "apps/playground/src/ResourceEditingDemo.vue",
+      "packages/scheduling/README.md",
+      "apps/design-system/docs/components/desktop/resource-scheduler.md"
+    ],
+    "started": "2026-10-25T21:46:29.124Z",
+    "finished": "2026-10-25T21:46:29.905Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "lint-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "lint",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+      "packages/scheduling/src/engine/engine.ts",
+      "packages/scheduling/src/model/resource-projection.ts",
+      "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/ResourceScheduleDemo.vue",
+      "apps/playground/src/ResourceEditingDemo.vue"
+    ],
+    "started": "2026-10-25T21:47:28.819Z",
+    "finished": "2026-10-25T21:47:29.903Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-last-test",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts"
+    ],
+    "started": "2026-10-25T21:48:42.254Z",
+    "finished": "2026-10-25T21:48:42.808Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "scheduling-final-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p07/raw/scheduling-final-02.json"
+    ],
+    "started": "2026-10-25T21:48:42.836Z",
+    "finished": "2026-10-25T21:48:53.789Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "build"
+    ],
+    "started": "2026-10-25T21:49:32.890Z",
+    "finished": "2026-10-25T21:49:54.685Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-nested-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "--filter",
+      "@nerv-iip/playground",
+      "build",
+      "--base",
+      "/p07/",
+      "--outDir",
+      "/tmp/nerv-ui-p07-nested-dist"
+    ],
+    "started": "2026-10-25T21:50:02.302Z",
+    "finished": "2026-10-25T21:50:04.364Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "response-identity-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p07/scripts/responses.mjs"
+    ],
+    "started": "2026-10-25T21:55:25.592Z",
+    "finished": "2026-10-25T21:55:25.705Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-copy-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "build"
+    ],
+    "started": "2026-10-25T21:56:55.602Z",
+    "finished": "2026-10-25T21:57:18.292Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "fmt",
+      "--check",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+      "packages/scheduling/src/engine/engine.ts",
+      "packages/scheduling/src/model/resource-projection.ts",
+      "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/ResourceScheduleDemo.vue",
+      "apps/playground/src/ResourceEditingDemo.vue",
+      "packages/scheduling/README.md",
+      "apps/design-system/docs/components/desktop/resource-scheduler.md"
+    ],
+    "started": "2026-10-25T21:57:39.361Z",
+    "finished": "2026-10-25T21:57:40.069Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-nested-copy-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "--filter",
+      "@nerv-iip/playground",
+      "build",
+      "--base",
+      "/p07/",
+      "--outDir",
+      "/tmp/nerv-ui-p07-nested-dist"
+    ],
+    "started": "2026-10-25T21:57:49.558Z",
+    "finished": "2026-10-25T21:57:51.632Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-readonly-copy",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "apps/playground/src/ResourceEditingDemo.vue"
+    ],
+    "started": "2026-10-25T21:58:39.164Z",
+    "finished": "2026-10-25T21:58:39.843Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "lint-copy-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "lint",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+      "packages/scheduling/src/engine/engine.ts",
+      "packages/scheduling/src/model/resource-projection.ts",
+      "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/ResourceScheduleDemo.vue",
+      "apps/playground/src/ResourceEditingDemo.vue"
+    ],
+    "started": "2026-10-25T21:58:59.402Z",
+    "finished": "2026-10-25T21:58:59.880Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-final-formatted",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "build"
+    ],
+    "started": "2026-10-25T22:00:54.326Z",
+    "finished": "2026-10-25T22:01:15.830Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-check-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "exec",
+      "vp",
+      "fmt",
+      "--check",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts",
+      "packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.test.ts",
+      "packages/scheduling/src/engine/engine.ts",
+      "packages/scheduling/src/model/resource-projection.ts",
+      "packages/scheduling/src/components/ResourceSchedulerBoard.public.test.ts",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/ResourceScheduleDemo.vue",
+      "apps/playground/src/ResourceEditingDemo.vue",
+      "packages/scheduling/README.md",
+      "apps/design-system/docs/components/desktop/resource-scheduler.md"
+    ],
+    "started": "2026-10-25T22:03:56.746Z",
+    "finished": "2026-10-25T22:03:57.479Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-nested-final-formatted",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend",
+    "command": "corepack",
+    "args": [
+      "pnpm",
+      "--filter",
+      "@nerv-iip/playground",
+      "build",
+      "--base",
+      "/p07/",
+      "--outDir",
+      "/tmp/nerv-ui-p07-nested-dist"
+    ],
+    "started": "2026-10-25T22:04:22.320Z",
+    "finished": "2026-10-25T22:04:24.529Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "evidence-md-check",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p07/scripts/format-docs.mjs",
+      "--check",
+      "docs/evidence/t07-p07/README.md",
+      "docs/scheduling-renderer.md"
+    ],
+    "started": "2026-10-25T22:04:33.786Z",
+    "finished": "2026-10-25T22:04:35.301Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "final-response-identity",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p07/scripts/responses.mjs",
+      "-final"
+    ],
+    "started": "2026-10-25T22:07:56.659Z",
+    "finished": "2026-10-25T22:07:56.771Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "integration-fetch",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "git",
+    "args": [
+      "fetch",
+      "origin",
+      "integration/nerv-ui-extraction"
+    ],
+    "started": "2026-10-25T22:07:56.798Z",
+    "finished": "2026-10-25T22:07:57.920Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "integration-merge",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "git",
+    "args": [
+      "merge",
+      "--no-edit",
+      "origin/integration/nerv-ui-extraction"
+    ],
+    "started": "2026-10-25T22:07:57.950Z",
+    "finished": "2026-10-25T22:07:57.959Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "final-response-identity-corrected",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p07/scripts/responses.mjs",
+      "-final"
+    ],
+    "started": "2026-10-25T22:08:10.001Z",
+    "finished": "2026-10-25T22:08:10.113Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "maintenance-diff-check",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "git",
+    "args": [
+      "diff",
+      "--check",
+      "--",
+      "frontend",
+      "docs/scheduling-renderer.md",
+      "docs/evidence/t07-p07/README.md",
+      "docs/evidence/t07-p07/scripts"
+    ],
+    "started": "2026-10-25T22:09:53.107Z",
+    "finished": "2026-10-25T22:09:53.131Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "main-raw-diff-check",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "git",
+    "args": [
+      "diff",
+      "--check",
+      "origin/main"
+    ],
+    "started": "2026-10-25T22:09:53.159Z",
+    "finished": "2026-10-25T22:09:54.239Z",
+    "exit": 2,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "evidence-md-check-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p07/scripts/format-docs.mjs",
+      "--check",
+      "docs/evidence/t07-p07/README.md",
+      "docs/scheduling-renderer.md"
+    ],
+    "started": "2026-10-25T22:13:46.450Z",
+    "finished": "2026-10-25T22:13:47.620Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  }
+]

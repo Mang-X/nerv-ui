@@ -1,0 +1,7 @@
+../../../../../../tmp/nerv-ui-p07-public-consumer/Consumer.vue(2,44): error TS2307: Cannot find module 'vue' or its corresponding type declarations.
+packages/scheduling/src/components/panels/TaskDetailPanel.vue(4,8): error TS2882: Cannot find module or type declarations for side-effect import of '../../styles/scheduling.css'.
+packages/scheduling/src/components/SchedulingCanvas.vue(12,8): error TS2882: Cannot find module or type declarations for side-effect import of '../styles/scheduling.css'.
+packages/scheduling/src/engine/dhtmlx/loader.ts(19,16): error TS2307: Cannot find module '@nerv-iip/scheduling/vendor.css' or its corresponding type declarations.
+packages/ui/src/components/blocks/status-badge/statusMap.ts(222,20): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+packages/ui/src/components/screen/index.ts(7,8): error TS2882: Cannot find module or type declarations for side-effect import of './tokens.css'.
+packages/ui/src/components/ui/sonner/index.ts(3,8): error TS2882: Cannot find module or type declarations for side-effect import of 'vue-sonner/style.css'.

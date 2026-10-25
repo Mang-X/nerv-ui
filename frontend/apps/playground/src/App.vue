@@ -5,6 +5,7 @@ import FilesDemo from './FilesDemo.vue'
 import ResourceScheduleDemo from './ResourceScheduleDemo.vue'
 import RealGanttDemo from './RealGanttDemo.vue'
 import OrderEditingDemo from './OrderEditingDemo.vue'
+import ResourceEditingDemo from './ResourceEditingDemo.vue'
 import ScheduleDemo from './ScheduleDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
@@ -84,8 +85,15 @@ function addProject() {
 </script>
 
 <template>
+  <ResourceEditingDemo
+    v-if="
+      surface === '#schedule-resource-edit/library' || surface === '#schedule-resource-edit/studio'
+    "
+    :key="surface"
+    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <OrderEditingDemo
-    v-if="surface === '#schedule-edit/library' || surface === '#schedule-edit/studio'"
+    v-else-if="surface === '#schedule-edit/library' || surface === '#schedule-edit/studio'"
     :key="surface"
     :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
   />

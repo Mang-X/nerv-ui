@@ -1,0 +1,183 @@
+[
+  {
+    "name": "real-http503-editing-unavailable",
+    "state": {
+      "url": "http://127.0.0.1:4288/p07/#schedule-resource-edit/studio",
+      "vendor": 0,
+      "native": 1,
+      "editingNative": 0,
+      "unavailable": "暂时无法打开排程图 当前无法编辑安排；可切换到只读模式查看时间安排。请重新加载页面后重试。 ",
+      "count": 0,
+      "tips": 0,
+      "ghost": 0,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-DPqkj4g9.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/rolldown-runtime-EyZ2wyi3.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-CApLkDFV.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt-DePP4erS.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "status": 503
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+          "status": 200
+        }
+      ]
+    },
+    "initialErrors": null
+  },
+  {
+    "name": "actual-vendor-503-response",
+    "response": {
+      "ok": false,
+      "status": 503,
+      "statusText": "Service Unavailable",
+      "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "headers": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Sun, 25 Oct 2026 22:07:55 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked"
+      },
+      "savedPath": "/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/docs/evidence/t07-p07/raw/vendor-unavailable-response-final.js"
+    }
+  },
+  {
+    "name": "native-readonly-renderer",
+    "state": {
+      "url": "http://127.0.0.1:4288/p07/#schedule-resource-edit/studio",
+      "vendor": 0,
+      "native": 2,
+      "editingNative": 1,
+      "count": 0,
+      "tips": 0,
+      "ghost": 0,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-DPqkj4g9.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/rolldown-runtime-EyZ2wyi3.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-CApLkDFV.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt-DePP4erS.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "status": 503
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "status": 503
+        }
+      ]
+    }
+  },
+  {
+    "name": "native-does-not-pretend-editing",
+    "state": {
+      "url": "http://127.0.0.1:4288/p07/#schedule-resource-edit/studio",
+      "vendor": 0,
+      "native": 1,
+      "editingNative": 0,
+      "unavailable": "暂时无法打开排程图 当前无法编辑安排；可切换到只读模式查看时间安排。请重新加载页面后重试。 ",
+      "count": 0,
+      "tips": 0,
+      "ghost": 0,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-DPqkj4g9.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/rolldown-runtime-EyZ2wyi3.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-CApLkDFV.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt-DePP4erS.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "status": 503
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "status": 503
+        }
+      ]
+    }
+  },
+  {
+    "name": "reload-restores-preserved-vendor",
+    "state": {
+      "url": "http://127.0.0.1:4288/p07/#schedule-resource-edit/studio",
+      "vendor": 2,
+      "native": 0,
+      "editingNative": 0,
+      "count": 0,
+      "tips": 2,
+      "ghost": 4,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-DPqkj4g9.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/rolldown-runtime-EyZ2wyi3.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/index-CApLkDFV.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt-DePP4erS.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4288/p07/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+          "status": 200
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,1 @@
+/* Deliberate P07 vendor-unavailable verification. */

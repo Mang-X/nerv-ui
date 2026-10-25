@@ -1,0 +1,156 @@
+[
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/",
+    "status": 200,
+    "mime": "text/html",
+    "bytes": 514,
+    "sha256": "69cf59d6bf4663f097bb86c484f68f63e92d79d0ec9814f90b7d7aeca4419924",
+    "body": "docs/evidence/t07-p07/raw/responses/root/index.html",
+    "freshDist": "frontend/apps/playground/dist/index.html",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/index-BRtcrzIR.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 942671,
+    "sha256": "233920497404a3d4e0cc514d1d20b094ad9564733664efa4cb4db2826da929de",
+    "body": "docs/evidence/t07-p07/raw/responses/root/index-BRtcrzIR.js",
+    "freshDist": "frontend/apps/playground/dist/assets/index-BRtcrzIR.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/rolldown-runtime-EyZ2wyi3.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 612,
+    "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+    "body": "docs/evidence/t07-p07/raw/responses/root/rolldown-runtime-EyZ2wyi3.js",
+    "freshDist": "frontend/apps/playground/dist/assets/rolldown-runtime-EyZ2wyi3.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/index--tB6K1KV.css",
+    "status": 200,
+    "mime": "text/css",
+    "bytes": 330100,
+    "sha256": "7e46fe473b60093bf47e73256182d7ebbd2874d831d9e90ec55da037243e5630",
+    "body": "docs/evidence/t07-p07/raw/responses/root/index--tB6K1KV.css",
+    "freshDist": "frontend/apps/playground/dist/assets/index--tB6K1KV.css",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/dhtmlxgantt-DePP4erS.css",
+    "status": 200,
+    "mime": "text/css",
+    "bytes": 139046,
+    "sha256": "27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4",
+    "body": "docs/evidence/t07-p07/raw/responses/root/dhtmlxgantt-DePP4erS.css",
+    "freshDist": "frontend/apps/playground/dist/assets/dhtmlxgantt-DePP4erS.css",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "status": 200,
+    "mime": "text/javascript",
+    "bytes": 706201,
+    "sha256": "ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573",
+    "body": "docs/evidence/t07-p07/raw/responses/root/dhtmlxgantt.es-DLTcQAl2.js",
+    "freshDist": "frontend/apps/playground/dist/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "root",
+    "url": "http://127.0.0.1:4287/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "status": 200,
+    "mime": "font/woff2",
+    "bytes": 48256,
+    "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "body": "docs/evidence/t07-p07/raw/responses/root/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "freshDist": "frontend/apps/playground/dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/",
+    "status": 200,
+    "mime": "text/html; charset=utf-8",
+    "bytes": 526,
+    "sha256": "139aeefe230fda1aa943818166a5f89e8b87de492b667dc3d9782b13736c2362",
+    "body": "docs/evidence/t07-p07/raw/responses/nested/index.html",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/index.html",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/rolldown-runtime-EyZ2wyi3.js",
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 612,
+    "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+    "body": "docs/evidence/t07-p07/raw/responses/nested/rolldown-runtime-EyZ2wyi3.js",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/rolldown-runtime-EyZ2wyi3.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/index-Bdm5FDbT.js",
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 942719,
+    "sha256": "7c5898b07ecfe34b17b975a3c4fccf33b29db481ef80cf52be1d7ea9ba777268",
+    "body": "docs/evidence/t07-p07/raw/responses/nested/index-Bdm5FDbT.js",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/index-Bdm5FDbT.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/index-CApLkDFV.css",
+    "status": 200,
+    "mime": "text/css; charset=utf-8",
+    "bytes": 330128,
+    "sha256": "4003627ae4ea85928c52a438bd548160343ec9e74349def36ab324957456ee5d",
+    "body": "docs/evidence/t07-p07/raw/responses/nested/index-CApLkDFV.css",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/index-CApLkDFV.css",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt-DePP4erS.css",
+    "status": 200,
+    "mime": "text/css; charset=utf-8",
+    "bytes": 139046,
+    "sha256": "27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4",
+    "body": "docs/evidence/t07-p07/raw/responses/nested/dhtmlxgantt-DePP4erS.css",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/dhtmlxgantt-DePP4erS.css",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 706201,
+    "sha256": "ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573",
+    "body": "docs/evidence/t07-p07/raw/responses/nested/dhtmlxgantt.es-DLTcQAl2.js",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/dhtmlxgantt.es-DLTcQAl2.js",
+    "bodyEqualsFreshDist": true
+  },
+  {
+    "lane": "nested",
+    "url": "http://127.0.0.1:4288/p07/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "status": 200,
+    "mime": "font/woff2",
+    "bytes": 48256,
+    "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "body": "docs/evidence/t07-p07/raw/responses/nested/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "freshDist": "../../../../../tmp/nerv-ui-p07-nested-dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+    "bodyEqualsFreshDist": true
+  }
+]

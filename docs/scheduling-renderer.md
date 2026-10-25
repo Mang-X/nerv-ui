@@ -102,3 +102,39 @@ order 原生整条 move 与左右 resize 只产生提案。`taskId/operationId/r
 引擎在公开 `onBeforeTaskDrag` 建立一次手势 token，在 `onBeforeTaskChanged(id, mode, originalTask)` 捕获 vendor 的当前日期并返回 false，避免 vendor 内部写入变成权威。回调延后到原生 mouseup 栈结束，随后按最新模型重绘。token 建立后，外部 model 替换/深层更新、锁定/删任务、只读开启使旧手势失效；重绘等到释放，避免清除 vendor 当前拖拽对象。vendor 在 mousedown 后达到移动阈值才建立 token，因此不能泛称任何 mousedown 后的模型替换都会取消手势；R1 真实测试未观察到该窗口用旧值覆盖新权威，详见 [F1 返修记录](evidence/t07-p06/f1/README.md)。80ms 抑制已由 P04 移除，本票不恢复它。快速连续/回调重入的新手势在当前结算前被拦截，结算后正常继续；卸载清理 listener/timer，不向存活实例写入。
 
 只读、分组、里程碑、块、多段不发写提案；锁定工序用既有 lockedDragAttempt 解释拒绝，不改变锁状态。输入任务、segments、维度与资源身份不突变。原生 fallback 编辑仍不可用；真实 vendor、fake adapter、native、APS 证据分列，参见 [P06 记录](evidence/t07-p06/README.md)。商业授权仍 UNKNOWN。
+
+## P07：资源受控编辑
+
+`ResourceSchedulerBoard` 的公开名字、默认值和事件保留。两个独立入口为 `/#schedule-resource-edit/library`、`/#schedule-resource-edit/studio`，可返回原资源只读、工单图与桌面。它们仅在内存中接受、拒绝或换入另一份安排；记录显示活动、调整前后位置与时间、处理结果和当前安排，不提供保存、自动锁定、资格或求解。
+
+整条卡片移动使用 document mousemove/mouseup，自定义虚影在超过 5px 阈值后显示。横移按整小时吸附，保留原正时长；跨泳道为 `kind: 'reassign'`，同泳道为 `move`。只有时间线可见区域内的有效泳道可以接收；取消区、Escape 或区域外释放不发写提案。拖动与紧随的 click 互斥，下一次主动点击仍可选择。原生左右 resize 不启动虚影、不改派，`kind: 'resize'`，仅被拖端点变化，按整小时吸附；另一端和原 `resourceId` 保持。
+
+`TaskDragPayload` 保留所有原字段，新增一个可选字段：
+
+```ts
+assignment?: { dimension: string; id: string | null; label: string }
+```
+
+有当前维度名录、任务维度、资源维度，或 workCenter 的明确 `workCenterId` 时，泳道属于该**维度空间**。跨泳道只通过 `assignment` 表示目标归属（`id: null` 表示未分配），原 `resourceId` 保持输入身份。即使 `dimension` 叫 equipment/resource，或目标 ID 与某资源字符串相同，也不推断它就是设备资源。`workCenter` 改派同样不能把该 ID 写成 `resourceId`。
+
+完全没有当前维度信息时，P05 保留的资源兼容泳道属于**资源空间**：此时跨泳道通过真实的目标资源 `resourceId` 表示，`assignment` 缺省，不创建 workCenter/dimensions；改派到未分配行时，该字段明确为 `undefined`，宿主接受时需清除原资源，不能用 `?? 原资源` 把它补回。横移和 resize 的 `assignment` 始终缺省。现有仅消费原字段的代码仍能消费时间/已分配资源提案；接受显式维度改派的宿主需要处理新增字段，不能依赖旧引擎偷偷修改输入。`useSchedulingEdits`、草案/工作台和旧业务 consumer 的维度接受策略由 P09/接入票负责，本票未提前修改它们。
+
+例如，接受显式维度提案时，宿主不可变地更新该维度；workCenter 的兼容关系由宿主明确同步。未分配时还要按自身数据关系移除继承归属，不能只删除任务维度却仍让资源维度把它投回原行。库不替宿主选择设备或资格。
+
+```ts
+function accept(task: ScheduleTask, p: TaskDragPayload): ScheduleTask {
+  const next = { ...task, startUtc: p.startUtc, endUtc: p.endUtc, resourceId: p.resourceId }
+  if (p.assignment) {
+    const { dimension, id, label } = p.assignment
+    next.dimensions = { ...task.dimensions }
+    if (id === null) delete next.dimensions[dimension]
+    else next.dimensions[dimension] = { id, label }
+    if (dimension === 'workCenter') next.workCenterId = id ?? undefined
+  }
+  return next
+}
+```
+
+输入始终是权威。移动不改 vendor 任务或输入；native resize 在 vendor `onBeforeTaskChanged` 返回 false 让 9.1.4 先恢复原任务，mouseup 栈后才发提案。宿主回写才接受，不回写即恢复原图；回调内的模型替换也优先。资源手势从 mousedown 保留 token（包括 native resize 尚未达到阈值的窗口），模型/维度/排列替换、只读开启使旧提案失效；原生手势等待 mouseup 后重绘，避免破坏 vendor 当前对象。结算及回调重入期间不启动第二次编辑。只读、locked、block、milestone、多段和非正时长拒绝编辑。卸载清理本实例的 document listener、timer、tooltip 和 ghost，不影响其它实例。
+
+真实 vendor/browser、vendor/jsdom、fake adapter、native 只读回落与真实 APS 分开计证据；本机 80%/125% 原生 zoom 若未操作即为 UNRUN。验证和限制见 [P07 证据](evidence/t07-p07/README.md)。Evaluation、水印、三份 vendor 原字节和 UNKNOWN 授权不变。P08/P09、旧 consumer、packed、父 #8 组合及发布不在本票完成声明内。

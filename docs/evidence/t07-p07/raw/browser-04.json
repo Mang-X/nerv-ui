@@ -1,0 +1,343 @@
+[
+  {
+    "name": "cross-lane-accepted",
+    "state": {
+      "authority": "阅读与交流；林间书屋 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 1,
+      "scroll": 0,
+      "source": {
+        "x": 439,
+        "y": 281,
+        "width": 248,
+        "height": 264,
+        "top": 281,
+        "right": 687,
+        "bottom": 545,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "改派 林间书屋 · 10:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "rows": [
+        {
+          "id": "lane:place-1",
+          "rect": {
+            "x": 274,
+            "y": 273,
+            "width": 1989,
+            "height": 280,
+            "top": 273,
+            "right": 2263,
+            "bottom": 553,
+            "left": 274
+          }
+        },
+        {
+          "id": "lane:place-2",
+          "rect": {
+            "x": 274,
+            "y": 553,
+            "width": 1989,
+            "height": 280,
+            "top": 553,
+            "right": 2263,
+            "bottom": 833,
+            "left": 274
+          }
+        },
+        {
+          "id": "lane:place-0",
+          "rect": {
+            "x": 274,
+            "y": 833,
+            "width": 1989,
+            "height": 280,
+            "top": 833,
+            "right": 2263,
+            "bottom": 1113,
+            "left": 274
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "held-pointer-after-scroll",
+    "state": {
+      "authority": "阅读与交流；林间书屋 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 1,
+      "scroll": 579,
+      "ghost": [
+        {
+          "display": "flex",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 522,
+            "y": 279,
+            "width": 238.078125,
+            "height": 268,
+            "top": 279,
+            "right": 760.078125,
+            "bottom": 547,
+            "left": 522
+          }
+        },
+        {
+          "display": "flex",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 1077.13671875,
+            "y": 207,
+            "width": 145.7265625,
+            "height": 32.765625,
+            "top": 207,
+            "right": 1222.86328125,
+            "bottom": 239.765625,
+            "left": 1077.13671875
+          }
+        }
+      ],
+      "rows": [
+        {
+          "id": "lane:place-0",
+          "rect": {
+            "x": 274,
+            "y": 254,
+            "width": 1989,
+            "height": 280,
+            "top": 254,
+            "right": 2263,
+            "bottom": 534,
+            "left": 274
+          }
+        },
+        {
+          "id": "lane:place-3",
+          "rect": {
+            "x": 274,
+            "y": 534,
+            "width": 1989,
+            "height": 280,
+            "top": 534,
+            "right": 2263,
+            "bottom": 814,
+            "left": 274
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "scrolled-lane-ghost",
+    "state": {
+      "authority": "阅读与交流；林间书屋 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 1,
+      "scroll": 579,
+      "ghost": [
+        {
+          "display": "flex",
+          "text": "改派 安静角落 · 11:00",
+          "rect": {
+            "x": 522,
+            "y": 514.015625,
+            "width": 238.078125,
+            "height": 268,
+            "top": 514.015625,
+            "right": 760.078125,
+            "bottom": 782.015625,
+            "left": 522
+          }
+        },
+        {
+          "display": "flex",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 1077.13671875,
+            "y": 182.5,
+            "width": 145.7265625,
+            "height": 32.765625,
+            "top": 182.5,
+            "right": 1222.86328125,
+            "bottom": 215.265625,
+            "left": 1077.13671875
+          }
+        }
+      ],
+      "rows": [
+        {
+          "id": "lane:place-0",
+          "rect": {
+            "x": 274,
+            "y": 229.5,
+            "width": 1989,
+            "height": 280,
+            "top": 229.5,
+            "right": 2263,
+            "bottom": 509.5,
+            "left": 274
+          }
+        },
+        {
+          "id": "lane:place-3",
+          "rect": {
+            "x": 274,
+            "y": 509.5,
+            "width": 1989,
+            "height": 280,
+            "top": 509.5,
+            "right": 2263,
+            "bottom": 789.5,
+            "left": 274
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "scrolled-lane-accepted",
+    "state": {
+      "authority": "阅读与交流；安静角落 · 共读小组；10/25 11:00 至 10/25 14:00",
+      "count": 2,
+      "scroll": 0,
+      "source": {
+        "x": 524.8995361328125,
+        "y": 819.59912109375,
+        "width": 241.200927734375,
+        "height": 257.8017578125,
+        "top": 819.59912109375,
+        "right": 766.1004638671875,
+        "bottom": 1077.40087890625,
+        "left": 524.8995361328125
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "改派 安静角落 · 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "rows": [
+        {
+          "id": "lane:place-1",
+          "rect": {
+            "x": 274,
+            "y": 248.5,
+            "width": 1989,
+            "height": 280,
+            "top": 248.5,
+            "right": 2263,
+            "bottom": 528.5,
+            "left": 274
+          }
+        },
+        {
+          "id": "lane:place-2",
+          "rect": {
+            "x": 274,
+            "y": 528.5,
+            "width": 1989,
+            "height": 280,
+            "top": 528.5,
+            "right": 2263,
+            "bottom": 808.5,
+            "left": 274
+          }
+        },
+        {
+          "id": "lane:place-3",
+          "rect": {
+            "x": 274,
+            "y": 808.5,
+            "width": 1989,
+            "height": 280,
+            "top": 808.5,
+            "right": 2263,
+            "bottom": 1088.5,
+            "left": 274
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true
+        ]
+      }
+    }
+  }
+]

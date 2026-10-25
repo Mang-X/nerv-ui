@@ -1,0 +1,1060 @@
+[
+  {
+    "name": "initial-hover",
+    "state": {
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "recordCount": 0,
+      "summary": "活动调整记录（0）",
+      "status": "拖动活动调整位置与时间；拖动两端调整开始或结束时间。",
+      "bars": [
+        {
+          "rect": {
+            "x": 439,
+            "y": 305,
+            "width": 248,
+            "height": 264,
+            "top": 305,
+            "right": 687,
+            "bottom": 569,
+            "left": 439
+          },
+          "style": "left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;",
+          "text": "\n    周末共读\n    阅读与交流\n    10:00–13:00\n    \n    \n    事实 未知\n    \n    \n    \n  "
+        }
+      ],
+      "ghost": [
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "block",
+          "rect": {
+            "x": 577,
+            "y": 455,
+            "width": 215.6171875,
+            "height": 129.34375,
+            "top": 455,
+            "right": 792.6171875,
+            "bottom": 584.34375,
+            "left": 577
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [],
+        "up": []
+      }
+    },
+    "handles": [
+      {
+        "cls": "gantt_task_drag task_left task_start_date",
+        "display": "block",
+        "rect": {
+          "x": 433.5,
+          "y": 305.5,
+          "width": 8,
+          "height": 130.5,
+          "top": 305.5,
+          "right": 441.5,
+          "bottom": 436,
+          "left": 433.5
+        }
+      },
+      {
+        "cls": "gantt_task_drag task_right task_end_date",
+        "display": "block",
+        "rect": {
+          "x": 684.5,
+          "y": 305.5,
+          "width": 8,
+          "height": 130.5,
+          "top": 305.5,
+          "right": 692.5,
+          "bottom": 436,
+          "left": 684.5
+        }
+      }
+    ]
+  },
+  {
+    "name": "horizontal-ghost",
+    "state": {
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "recordCount": 0,
+      "summary": "活动调整记录（0）",
+      "status": "拖动活动调整位置与时间；拖动两端调整开始或结束时间。",
+      "bars": [
+        {
+          "rect": {
+            "x": 439,
+            "y": 305,
+            "width": 248,
+            "height": 264,
+            "top": 305,
+            "right": 687,
+            "bottom": 569,
+            "left": 439
+          },
+          "style": "left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;",
+          "text": "\n    周末共读\n    阅读与交流\n    10:00–13:00\n    \n    \n    事实 未知\n    \n    \n    \n  "
+        }
+      ],
+      "ghost": [
+        {
+          "cls": "nerv-drop-hint",
+          "display": "flex",
+          "text": "调整到 13:00",
+          "rect": {
+            "x": 687,
+            "y": 303,
+            "width": 248,
+            "height": 268,
+            "top": 303,
+            "right": 935,
+            "bottom": 571,
+            "left": 687
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "flex",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 1077.13671875,
+            "y": 231,
+            "width": 145.7265625,
+            "height": 32.765625,
+            "top": 231,
+            "right": 1222.86328125,
+            "bottom": 263.765625,
+            "left": 1077.13671875
+          }
+        },
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 1,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          {
+            "trusted": true,
+            "x": 479,
+            "y": 541
+          }
+        ],
+        "up": []
+      }
+    }
+  },
+  {
+    "name": "horizontal-accepted",
+    "state": {
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+      "recordCount": 1,
+      "records": "1. 阅读与交流 · 移动时间调整前：晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00本次调整：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00处理结果：已采用新的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+      "summary": "活动调整记录（1）",
+      "status": "已采用新的活动安排。",
+      "bars": [
+        {
+          "rect": {
+            "x": 687,
+            "y": 305,
+            "width": 248,
+            "height": 264,
+            "top": 305,
+            "right": 935,
+            "bottom": 569,
+            "left": 687
+          },
+          "style": "left: 413px; top: 8px; height: 264px; line-height: 264px; width: 248px;",
+          "text": "\n    周末共读\n    阅读与交流\n    13:00–16:00\n    \n    \n    事实 未知\n    \n    \n    \n  "
+        }
+      ],
+      "ghost": [
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "调整到 13:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          {
+            "trusted": true,
+            "x": 479,
+            "y": 541
+          }
+        ],
+        "up": [
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 10:00 → 10/25 13:00 \" role=\"img\" style=\"left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">10:00–13:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "native-handles",
+    "handles": [
+      {
+        "prop": "start_date",
+        "rect": {
+          "x": 683.3150634765625,
+          "y": 307.3430480957031,
+          "width": 7.8878173828125,
+          "height": 128.67095947265625,
+          "top": 307.3430480957031,
+          "right": 691.202880859375,
+          "bottom": 436.0140075683594,
+          "left": 683.3150634765625
+        }
+      },
+      {
+        "prop": "end_date",
+        "rect": {
+          "x": 930.797119140625,
+          "y": 307.3430480957031,
+          "width": 7.8878173828125,
+          "height": 128.67095947265625,
+          "top": 307.3430480957031,
+          "right": 938.6849365234375,
+          "bottom": 436.0140075683594,
+          "left": 930.797119140625
+        }
+      }
+    ]
+  },
+  {
+    "name": "native-left-active",
+    "state": {
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+      "recordCount": 1,
+      "records": "1. 阅读与交流 · 移动时间调整前：晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00本次调整：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00处理结果：已采用新的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+      "summary": "活动调整记录（1）",
+      "status": "已采用新的活动安排。",
+      "bars": [
+        {
+          "rect": {
+            "x": 604,
+            "y": 305,
+            "width": 331,
+            "height": 264,
+            "top": 305,
+            "right": 935,
+            "bottom": 569,
+            "left": 604
+          },
+          "style": "left: 330px; top: 8px; height: 264px; line-height: 264px; width: 331px;",
+          "text": "\n    周末共读\n    阅读与交流\n    13:00–16:00\n    \n    \n    事实 未知\n    \n    \n    \n  "
+        }
+      ],
+      "ghost": [
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "调整到 13:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          {
+            "trusted": true,
+            "x": 479,
+            "y": 541
+          },
+          {
+            "trusted": true,
+            "x": 687,
+            "y": 416
+          }
+        ],
+        "up": [
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 10:00 → 10/25 13:00 \" role=\"img\" style=\"left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">10:00–13:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "native-left-rejected",
+    "state": {
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+      "recordCount": 2,
+      "records": "1. 阅读与交流 · 移动时间调整前：晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00本次调整：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00处理结果：已采用新的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:002. 阅读与交流 · 调整开始时间调整前：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00本次调整：晨光书房 · 共读小组；10/25 12:00 至 10/25 16:00处理结果：保留原来的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+      "summary": "活动调整记录（2）",
+      "status": "保留原来的活动安排。",
+      "bars": [
+        {
+          "rect": {
+            "x": 687.5831298828125,
+            "y": 305.62078857421875,
+            "width": 246.833740234375,
+            "height": 262.7584228515625,
+            "top": 305.62078857421875,
+            "right": 934.4168701171875,
+            "bottom": 568.3792114257812,
+            "left": 687.5831298828125
+          },
+          "style": "left: 413px; top: 8px; height: 264px; line-height: 264px; width: 248px;",
+          "text": "\n    周末共读\n    阅读与交流\n    13:00–16:00\n    \n    \n    事实 未知\n    \n    \n    \n  "
+        }
+      ],
+      "ghost": [
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "调整到 13:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          {
+            "trusted": true,
+            "x": 479,
+            "y": 541
+          },
+          {
+            "trusted": true,
+            "x": 687,
+            "y": 416
+          }
+        ],
+        "up": [
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 10:00 → 10/25 13:00 \" role=\"img\" style=\"left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">10:00–13:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          },
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 13:00 → 10/25 16:00 \" role=\"img\" style=\"left: 413px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">13:00–16:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "native-right-accepted",
+    "state": {
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 18:00",
+      "recordCount": 3,
+      "records": "1. 阅读与交流 · 移动时间调整前：晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00本次调整：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00处理结果：已采用新的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:002. 阅读与交流 · 调整开始时间调整前：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00本次调整：晨光书房 · 共读小组；10/25 12:00 至 10/25 16:00处理结果：保留原来的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:003. 阅读与交流 · 调整结束时间调整前：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00本次调整：晨光书房 · 共读小组；10/25 13:00 至 10/25 18:00处理结果：已采用新的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 18:00",
+      "summary": "活动调整记录（3）",
+      "status": "已采用新的活动安排。",
+      "bars": [
+        {
+          "rect": {
+            "x": 687,
+            "y": 305,
+            "width": 414,
+            "height": 264,
+            "top": 305,
+            "right": 1101,
+            "bottom": 569,
+            "left": 687
+          },
+          "style": "left: 413px; top: 8px; height: 264px; line-height: 264px; width: 414px;",
+          "text": "\n    周末共读\n    阅读与交流\n    13:00–18:00\n    \n    \n    事实 未知\n    \n    \n    \n  "
+        }
+      ],
+      "ghost": [
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "调整到 13:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          {
+            "trusted": true,
+            "x": 479,
+            "y": 541
+          },
+          {
+            "trusted": true,
+            "x": 687,
+            "y": 416
+          },
+          {
+            "trusted": true,
+            "x": 936,
+            "y": 416
+          }
+        ],
+        "up": [
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 10:00 → 10/25 13:00 \" role=\"img\" style=\"left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">10:00–13:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          },
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 13:00 → 10/25 16:00 \" role=\"img\" style=\"left: 413px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">13:00–16:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          },
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 13:00 → 10/25 16:00 \" role=\"img\" style=\"left: 413px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">13:00–16:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "records-and-native-rollback",
+    "state": {
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 18:00",
+      "recordCount": 3,
+      "records": "1. 阅读与交流 · 移动时间调整前：晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00本次调整：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00处理结果：已采用新的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:002. 阅读与交流 · 调整开始时间调整前：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00本次调整：晨光书房 · 共读小组；10/25 12:00 至 10/25 16:00处理结果：保留原来的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:003. 阅读与交流 · 调整结束时间调整前：晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00本次调整：晨光书房 · 共读小组；10/25 13:00 至 10/25 18:00处理结果：已采用新的活动安排。当前安排：晨光书房 · 共读小组；10/25 13:00 至 10/25 18:00",
+      "summary": "活动调整记录（3）",
+      "status": "已采用新的活动安排。",
+      "bars": [
+        {
+          "rect": {
+            "x": 687.04248046875,
+            "y": 305.027099609375,
+            "width": 413.9150390625,
+            "height": 263.94580078125,
+            "top": 305.027099609375,
+            "right": 1100.95751953125,
+            "bottom": 568.972900390625,
+            "left": 687.04248046875
+          },
+          "style": "left: 413px; top: 8px; height: 264px; line-height: 264px; width: 414px;",
+          "text": "\n    周末共读\n    阅读与交流\n    13:00–18:00\n    \n    \n    事实 未知\n    \n    \n    \n  "
+        }
+      ],
+      "ghost": [
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "调整到 13:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-hint",
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "cls": "nerv-drop-cancel",
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          {
+            "trusted": true,
+            "x": 479,
+            "y": 541
+          },
+          {
+            "trusted": true,
+            "x": 687,
+            "y": 416
+          },
+          {
+            "trusted": true,
+            "x": 936,
+            "y": 416
+          },
+          {
+            "trusted": true,
+            "x": 1150,
+            "y": 908
+          }
+        ],
+        "up": [
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 10:00 → 10/25 13:00 \" role=\"img\" style=\"left: 165px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">10:00–13:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          },
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 13:00 → 10/25 16:00 \" role=\"img\" style=\"left: 413px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">13:00–16:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          },
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 16:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 13:00 → 10/25 16:00 \" role=\"img\" style=\"left: 413px; top: 8px; height: 264px; line-height: 264px; width: 248px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">13:00–16:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          },
+          {
+            "trusted": true,
+            "authority": "阅读与交流；晨光书房 · 共读小组；10/25 13:00 至 10/25 18:00",
+            "bar": "<div data-task-id=\"edit\" task_id=\"edit\" class=\"gantt_task_line gantt_bar_task gantt_split_child nerv-card-settle\" aria-label=\" 周末共读 工序 阅读与交流 事实 未知 资源 item-0 起止 10/25 13:00 → 10/25 18:00 \" role=\"img\" style=\"left: 413px; top: 8px; height: 264px; line-height: 264px; width: 414px;\"><div class=\"gantt_task_progress_wrapper\"><div class=\"gantt_task_progress\" style=\"width: 0px;\"></div></div><div class=\"gantt_task_content\"><div class=\"nerv-card\">\n    <div class=\"nerv-card-r1\"><span class=\"nerv-card-wo\">周末共读</span><span class=\"nerv-card-meta\"></span></div>\n    <div class=\"nerv-card-r2\" title=\"阅读与交流\">阅读与交流</div>\n    <div class=\"nerv-card-r3 nerv-card-time\">13:00–18:00</div>\n    \n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-r3\">事实 未知</div>\n    <div class=\"nerv-card-r3\"></div>\n    <div class=\"nerv-card-tags\"></div>\n    \n  </div></div><div class=\"gantt_task_drag task_left task_start_date\" data-bind-property=\"start_date\"></div><div class=\"gantt_task_drag task_right task_end_date\" data-bind-property=\"end_date\"></div></div>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "read-only-copy-green",
+    "copy": {
+      "readOnly": true,
+      "status": "当前只读，可查看活动的位置与时间。"
+    }
+  }
+]

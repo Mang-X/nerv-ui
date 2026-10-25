@@ -52,6 +52,7 @@ interface DhxGantt {
   updateTask?: (id: string | number) => void
   getScrollState?: () => { x: number; y: number }
   dateFromPos?: (x: number) => Date
+  posFromDate?: (date: Date) => number
   render: () => void
   setSizes?: () => void
   destructor?: () => void
@@ -517,6 +518,7 @@ export class DhtmlxEngine implements SchedulingEngine {
   private dragging = false
   private dragTaskId?: string
   private dragGrabOffX = 0
+  private dragBarWidth = 0
   private dragOrigStart?: Date
   private dragOrigEnd?: Date
   private dragOrigLaneId?: string
@@ -528,6 +530,14 @@ export class DhtmlxEngine implements SchedulingEngine {
   private resizeRaf = 0
   private orderGesture?: {
     taskId: string
+    valid: boolean
+    payload?: TaskDragPayload
+    timer?: ReturnType<typeof setTimeout>
+  }
+  private resourceGesture?: {
+    taskId: string
+    mode: 'move' | 'resize'
+    nativeStarted?: boolean
     valid: boolean
     payload?: TaskDragPayload
     timer?: ReturnType<typeof setTimeout>
@@ -668,22 +678,35 @@ export class DhtmlxEngine implements SchedulingEngine {
       let downX = 0
       let downY = 0
       this.pointerDown = (e: MouseEvent) => {
-        if (e.button !== 0 || this.options.readOnly) return
-        // 端点交给原生 resize;整条移动仍走虚影与跨泳道改派。
-        if ((e.target as HTMLElement)?.closest?.('.gantt_task_drag')) return
+        if (e.button !== 0 || this.resourceGesture) return
+        this.suppressNextClick = false
+        if (this.options.readOnly) return
         const bar = (e.target as HTMLElement)?.closest?.('.gantt_task_line') as HTMLElement | null
         if (!bar || !bar.querySelector('.nerv-card')) return
         const id = bar.getAttribute('task_id')
         const t = id ? inst.getTask(id) : undefined
-        if (!id || !t) return
+        if (!id || !t || t.nerv?.type !== 'operation' || t.nerv.blockKind || t.nerv.isMilestone)
+          return
+        if (!t.start_date || !t.end_date || !(+t.end_date > +t.start_date)) return
         if ((t.nerv?.segments?.length ?? 0) > 1) return
+        const nativeResize = (e.target as HTMLElement)?.closest?.('.gantt_task_drag')
         if (t.nerv?.locked) {
           // 已锁定:不可拖拽。给出抖动反馈并上报(上层提示「先解锁」并聚焦该块)。
-          this.signalLockedDrag(id, bar)
+          if (!nativeResize) this.signalLockedDrag(id, bar)
+          return
+        }
+        // Reserve even the pre-native mousedown window. A model replacement or
+        // read-only transition before onBeforeTaskDrag must invalidate this resize.
+        if (nativeResize) {
+          this.resourceGesture = { taskId: id, mode: 'resize', valid: true }
+          this.hideTip()
           return
         }
         this.dragTaskId = id
-        this.dragGrabOffX = e.clientX - bar.getBoundingClientRect().left
+        this.resourceGesture = { taskId: id, mode: 'move', valid: true }
+        const bounds = bar.getBoundingClientRect()
+        this.dragGrabOffX = e.clientX - bounds.left
+        this.dragBarWidth = bounds.width
         downX = e.clientX
         downY = e.clientY
         this.dragOrigStart = t.start_date ? new Date(t.start_date) : undefined
@@ -715,24 +738,30 @@ export class DhtmlxEngine implements SchedulingEngine {
         this.cancelZone?.classList.toggle('nerv-drop-cancel-hot', this.overCancel)
         this.updateDropHint(inst)
       }
-      this.pointerUp = () => {
+      this.pointerUp = (e) => {
+        this.lastPointerX = e.clientX
+        this.lastPointerY = e.clientY
         const id = this.dragTaskId
-        if (!id) return
+        if (!id) {
+          this.finishResourceGesture()
+          return
+        }
         const committed = this.dragging && !this.overCancel
         if (committed) {
-          // 关键:提交时**不**在此处去掉 nerv-drag-source。原块保持淡出,直到 commit→setData
-          // 重建出「新位置」的条(新 DOM 元素,天然无淡出类)。否则先去暗会让原块在**旧位置**
-          // 亮起一帧、再跳到新位 = 用户看到的"闪回"。
           this.commitCustomDrag(inst, id)
-        } else {
-          // 未提交(取消 / 未越过阈值):就地恢复原块。
-          this.barEl(id)?.classList.remove('nerv-drag-source')
         }
+        this.barEl(id)?.classList.remove('nerv-drag-source')
         this.hideDropHint()
-        this.dragTaskId = undefined
+        this.finishResourceGesture()
       }
       // Esc 中止拖拽:走取消分支(恢复原块、隐藏虚影、不上报 dragEnd)。
       this.keyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && this.resourceGesture?.mode === 'resize') {
+          e.preventDefault()
+          this.resourceGesture.valid = false
+          this.resourceGesture.payload = undefined
+          return
+        }
         if (e.key !== 'Escape' || !this.dragging || !this.dragTaskId) return
         e.preventDefault()
         this.cancelCustomDrag()
@@ -755,6 +784,11 @@ export class DhtmlxEngine implements SchedulingEngine {
       throw new Error('实际时刻必须包含 Z 或显式偏移，且为有效日期')
     }
     this.model = model
+    if (this.resourceGesture) {
+      this.resourceGesture.valid = false
+      if (this.resourceGesture.mode === 'move') this.cancelCustomDrag()
+      return
+    }
     // Keep the vendor's current drag object alive until mouseup. The new model
     // is authoritative immediately; the old gesture may no longer propose writes.
     if (this.orderGesture) {
@@ -828,6 +862,11 @@ export class DhtmlxEngine implements SchedulingEngine {
       }
       case 'setReadOnly':
         if (command.readOnly && this.orderGesture) this.orderGesture.valid = false
+        if (command.readOnly && this.resourceGesture) {
+          this.resourceGesture.valid = false
+          if (this.resourceGesture.mode === 'move') this.cancelCustomDrag()
+          this.hideTip()
+        }
         this.options.readOnly = command.readOnly
         if (g) {
           const nativeDrag = !command.readOnly && this.options.view !== 'resource'
@@ -900,6 +939,7 @@ export class DhtmlxEngine implements SchedulingEngine {
     for (const timer of this.dragTimers) clearTimeout(timer)
     this.dragTimers.clear()
     this.orderGesture = undefined
+    this.resourceGesture = undefined
     if (this.pointerMove) document.removeEventListener('mousemove', this.pointerMove)
     if (this.pointerUp) document.removeEventListener('mouseup', this.pointerUp)
     if (this.pointerDown && this.container)
@@ -1045,7 +1085,7 @@ export class DhtmlxEngine implements SchedulingEngine {
     c.duration_unit = 'hour'
     c.duration_step = 1
     c.time_step = 60
-    c.round_dnd_dates = true
+    c.round_dnd_dates = options.view !== 'resource'
     // 关闭 DHTMLX 自带错误弹窗:多实例同页时,跨实例的 getTask/addLink 偶发 "Task not found"
     // 会被 DHTMLX 弹成右上角红条堆叠;我们已在调用处按容器/存在性守卫,这里再兜底禁用其错误 UI。
     c.show_errors = false
@@ -1299,7 +1339,9 @@ export class DhtmlxEngine implements SchedulingEngine {
             this.options.readOnly ||
             mode !== 'resize' ||
             task?.type !== 'operation' ||
-            task.blockKind
+            task.blockKind ||
+            task.isMilestone ||
+            !(Date.parse(task.endUtc) > Date.parse(task.startUtc))
           )
             return false
           if (task.locked) {
@@ -1307,6 +1349,18 @@ export class DhtmlxEngine implements SchedulingEngine {
             if (bar) this.signalLockedDrag(taskId, bar)
             return false
           }
+          const gesture = this.resourceGesture
+          if (
+            gesture &&
+            (!gesture.valid ||
+              gesture.taskId !== taskId ||
+              gesture.mode !== 'resize' ||
+              gesture.nativeStarted ||
+              gesture.timer !== undefined)
+          )
+            return false
+          this.resourceGesture = gesture ?? { taskId, mode: 'resize', valid: true }
+          this.resourceGesture.nativeStarted = true
           this.hideTip()
           this.suppressNextClick = true
         }
@@ -1315,6 +1369,46 @@ export class DhtmlxEngine implements SchedulingEngine {
     )
     this.eventIds.push(
       inst.attachEvent('onBeforeTaskChanged', (id, mode) => {
+        if (this.options.view === 'resource') {
+          const gesture = this.resourceGesture
+          const source = this.model?.tasks.find((t) => t.id === String(id))
+          const task = inst.getTask(String(id))
+          if (
+            gesture?.valid &&
+            gesture.mode === 'resize' &&
+            gesture.nativeStarted &&
+            gesture.taskId === String(id) &&
+            mode === 'resize' &&
+            !this.options.readOnly &&
+            source?.type === 'operation' &&
+            !source.locked &&
+            !source.blockKind &&
+            !source.isMilestone &&
+            (source.segments?.length ?? 0) <= 1 &&
+            task?.start_date &&
+            task.end_date &&
+            Number.isFinite(+task.start_date) &&
+            +task.end_date > +task.start_date
+          ) {
+            const start = +task.start_date
+            const end = +task.end_date
+            const oldStart = Date.parse(source.startUtc)
+            const oldEnd = Date.parse(source.endUtc)
+            if ((start === oldStart) !== (end === oldEnd))
+              gesture.payload = {
+                taskId: source.id,
+                operationId: source.operationId,
+                resourceId: source.resourceId,
+                startUtc: task.start_date.toISOString(),
+                endUtc: task.end_date.toISOString(),
+                kind: 'resize',
+              }
+          }
+          this.finishResourceGesture()
+          // 9.1.4 restores the original task and clears native drag state on false.
+          // A deferred host proposal must never make the temporary resize authoritative.
+          return false
+        }
         if (this.options.view !== 'order') return true
         const gesture = this.orderGesture
         const source = this.model?.tasks.find((t) => t.id === String(id))
@@ -1355,19 +1449,6 @@ export class DhtmlxEngine implements SchedulingEngine {
         return false
       }),
     )
-    this.eventIds.push(
-      inst.attachEvent(
-        'onAfterTaskDrag',
-        (id, mode) =>
-          this.options.view === 'resource' && this.emitDrag(inst, String(id), String(mode)),
-      ),
-    )
-    this.eventIds.push(
-      inst.attachEvent(
-        'onAfterTaskMove',
-        (id) => this.options.view === 'resource' && this.emitDrag(inst, String(id), 'move'),
-      ),
-    )
     // 资源视图整条移动走自定义实现;端点拉伸由上述原生事件归一化。
     this.eventIds.push(inst.attachEvent('onGanttRender', () => this.mirrorTaskIds()))
   }
@@ -1402,12 +1483,20 @@ export class DhtmlxEngine implements SchedulingEngine {
     const area = root.querySelector('.gantt_data_area') ?? root.querySelector('.gantt_task_bg')
     if (!area) return undefined
     const top = area.getBoundingClientRect().top
+    const bounds = area.getBoundingClientRect()
+    if (
+      this.lastPointerX < bounds.left ||
+      this.lastPointerX >= bounds.right ||
+      this.lastPointerY < bounds.top ||
+      this.lastPointerY >= bounds.bottom
+    )
+      return undefined
     const scrollY = inst.getScrollState?.().y ?? 0
     const rowH = Number(inst.config.row_height) || 1
     const idx = Math.floor((this.lastPointerY - top + scrollY) / rowH)
     if (idx < 0) return undefined
     const lane = inst.getTaskByIndex(idx)
-    return lane?.id != null && String(lane.id).startsWith('lane:') ? lane : undefined
+    return lane?.id != null && this.resourceLanes.has(String(lane.id)) ? lane : undefined
   }
 
   /** 拖拽预览:在目标泳道、指针所在时间位置画一个卡片大小的虚影(松手前可见落点的「行+时间」)。 */
@@ -1420,9 +1509,8 @@ export class DhtmlxEngine implements SchedulingEngine {
       ? (root.querySelector(`.gantt_task_row[task_id="${String(lane.id)}"]`) as HTMLElement | null)
       : null
     const area = root.querySelector('.gantt_data_area') as HTMLElement | null
-    const srcBar = this.dragTaskId ? this.barEl(this.dragTaskId) : null
     // 在取消区上方时,不显示泳道虚影(取消区自身高亮即可)。
-    if (!row || !area || !srcBar || this.overCancel) {
+    if (!row || !area || this.dragBarWidth <= 0 || this.overCancel) {
       hint.style.display = 'none'
       return
     }
@@ -1430,10 +1518,12 @@ export class DhtmlxEngine implements SchedulingEngine {
     const rRect = row.getBoundingClientRect()
     const aRect = area.getBoundingClientRect()
     // 虚影随指针:横向 = 新时间(保留抓取点),纵向 = 目标泳道。夹在时间区内。
-    const w = Math.max(96, Math.round(srcBar.getBoundingClientRect().width))
+    // Smart rendering removes the source DOM after a vertical scroll. The grab
+    // geometry belongs to this gesture, independently of that DOM's lifetime.
+    const w = this.dragBarWidth
     const left = Math.min(
       Math.max(this.lastPointerX - this.dragGrabOffX, aRect.left),
-      aRect.right - w,
+      Math.max(aRect.left, aRect.right - w),
     )
     const newStart = this.timeAtScreenX(inst, left, aRect)
     const laneName = lane?.nerv?.text ?? ''
@@ -1443,7 +1533,12 @@ export class DhtmlxEngine implements SchedulingEngine {
     if (tip) tip.textContent = (same ? '调整到 ' : `改派 ${laneName} · `) + timeStr
     hint.style.display = 'flex'
     hint.style.top = `${rRect.top - cRect.top + 6}px`
-    hint.style.left = `${left - cRect.left}px`
+    const projected = newStart ? inst.posFromDate?.(newStart) : undefined
+    const snappedLeft =
+      projected !== undefined && Number.isFinite(projected)
+        ? aRect.left + projected - (inst.getScrollState?.().x ?? 0)
+        : left
+    hint.style.left = `${snappedLeft - cRect.left}px`
     hint.style.width = `${w}px`
     hint.style.height = `${rRect.height - 12}px`
   }
@@ -1511,7 +1606,7 @@ export class DhtmlxEngine implements SchedulingEngine {
     if (!inst.dateFromPos) return undefined
     const scrollX = inst.getScrollState?.().x ?? 0
     const d = inst.dateFromPos(screenLeft - aRect.left + scrollX)
-    return d && !Number.isNaN(d.getTime()) ? d : undefined
+    return d && Number.isFinite(+d) ? new Date(Math.round(+d / 3_600_000) * 3_600_000) : undefined
   }
 
   private fmtHm(d: Date): string {
@@ -1519,27 +1614,79 @@ export class DhtmlxEngine implements SchedulingEngine {
     return scheduleTime(d.toISOString(), task?.timezone, { hour: '2-digit', minute: '2-digit' })
   }
 
-  /** 自定义拖拽提交:按虚影位置算出新时间(横向)+ 目标泳道(纵向),写回任务后走统一上报。 */
+  /** Custom movement proposes values without changing vendor data or the input graph. */
   private commitCustomDrag(inst: DhxGantt, id: string): void {
-    const t = inst.getTask(id)
+    const gesture = this.resourceGesture
+    const source = this.model?.tasks.find((task) => task.id === id)
+    const target = this.laneAtPointer(inst)
+    const lane = target ? this.resourceLanes.get(String(target.id)) : undefined
     const area = this.container?.querySelector('.gantt_data_area') as HTMLElement | null
-    const srcBar = this.barEl(id)
-    if (t && area && srcBar && this.dragOrigStart && this.dragOrigEnd) {
+    if (
+      gesture?.valid &&
+      !this.options.readOnly &&
+      source &&
+      !source.locked &&
+      !source.blockKind &&
+      (source.segments?.length ?? 0) <= 1 &&
+      lane &&
+      area &&
+      this.dragBarWidth > 0 &&
+      this.dragOrigStart &&
+      this.dragOrigEnd
+    ) {
       const aRect = area.getBoundingClientRect()
-      const w = srcBar.getBoundingClientRect().width
+      const w = this.dragBarWidth
       const left = Math.min(
         Math.max(this.lastPointerX - this.dragGrabOffX, aRect.left),
-        aRect.right - w,
+        Math.max(aRect.left, aRect.right - w),
       )
       const newStart = this.timeAtScreenX(inst, left, aRect)
       if (newStart) {
         const dur = this.dragOrigEnd.getTime() - this.dragOrigStart.getTime()
-        t.start_date = newStart
-        t.end_date = new Date(newStart.getTime() + dur)
+        const start = Math.round(+newStart / 3_600_000) * 3_600_000
+        const reassigned = String(target!.id) !== this.dragOrigLaneId
+        if (dur > 0 && (reassigned || start !== +this.dragOrigStart))
+          gesture.payload = {
+            taskId: source.id,
+            operationId: source.operationId,
+            resourceId: reassigned && lane.identity === 'resource' ? lane.id : source.resourceId,
+            startUtc: new Date(start).toISOString(),
+            endUtc: new Date(start + dur).toISOString(),
+            kind: reassigned ? 'reassign' : 'move',
+            ...(reassigned && lane.identity === 'dimension'
+              ? {
+                  assignment: {
+                    dimension: this.options.groupBy || 'workCenter',
+                    id: lane.id ?? null,
+                    label: lane.label,
+                  },
+                }
+              : {}),
+          }
       }
     }
-    this.emitDrag(inst, id, 'move')
-    this.scheduleSettle(id)
+  }
+
+  private finishResourceGesture(): void {
+    const gesture = this.resourceGesture
+    if (!gesture || gesture.timer !== undefined) return
+    const inst = this.gantt
+    const timer = setTimeout(() => {
+      this.dragTimers.delete(timer)
+      if (this.resourceGesture !== gesture || this.gantt !== inst) return
+      try {
+        if (gesture.valid && !this.options.readOnly && gesture.payload)
+          this.emit('taskDragEnd', gesture.payload)
+      } finally {
+        if (this.resourceGesture === gesture && this.gantt === inst) {
+          this.resourceGesture = undefined
+          if (this.model) this.setData(this.model)
+          if (gesture.payload) this.scheduleSettle(gesture.taskId)
+        }
+      }
+    }, 0)
+    gesture.timer = timer
+    this.dragTimers.add(timer)
   }
 
   /**
@@ -1566,6 +1713,7 @@ export class DhtmlxEngine implements SchedulingEngine {
 
   /** Esc 中止自定义拖拽:恢复原块与原时间、隐藏虚影/取消区,不上报 dragEnd。 */
   private cancelCustomDrag(): void {
+    if (this.resourceGesture) this.resourceGesture.valid = false
     const id = this.dragTaskId
     if (id) {
       this.barEl(id)?.classList.remove('nerv-drag-source')
@@ -1577,13 +1725,14 @@ export class DhtmlxEngine implements SchedulingEngine {
     }
     this.suppressNextClick = true // 中止后紧随的 mouseup 会被当点击,抑制之
     this.hideDropHint()
+    this.finishResourceGesture()
   }
 
   /** 自绘 tooltip:悬停任务块时跟指针平滑移动;不在块上或拖拽中则隐藏。 */
   private updateTip(inst: DhxGantt, e: MouseEvent): void {
     const tip = this.tipEl
     if (!tip) return
-    if (this.dragging) {
+    if (this.dragging || this.resourceGesture?.mode === 'resize') {
       this.hideTip()
       return
     }
@@ -1668,82 +1817,13 @@ export class DhtmlxEngine implements SchedulingEngine {
     this.dragOrigStart = undefined
     this.dragOrigEnd = undefined
     this.dragOrigLaneId = undefined
+    this.dragBarWidth = 0
     this.overCancel = false
     if (this.dropHint) this.dropHint.style.display = 'none'
     if (this.cancelZone) {
       this.cancelZone.style.display = 'none'
       this.cancelZone.classList.remove('nerv-drop-cancel-hot')
     }
-  }
-
-  private emitDrag(inst: DhxGantt, taskId: string, mode: string): void {
-    // 落在取消区:撤销改派,工序回到原泳道与原时间,不上报。
-    if (this.options.view === 'resource' && this.overCancel && mode === 'move') {
-      const t = inst.getTask(taskId)
-      if (t) {
-        if (this.dragOrigStart) t.start_date = new Date(this.dragOrigStart)
-        if (this.dragOrigEnd) t.end_date = new Date(this.dragOrigEnd)
-        inst.updateTask?.(taskId)
-      }
-      this.hideDropHint()
-      return
-    }
-    this.hideDropHint()
-    const task = inst.getTask(taskId)
-    const src = this.model?.tasks.find((t) => t.id === taskId)
-    // 注意:src 与 task.nerv 是同一对象,改派前先存原 resourceId,否则 kind 判定会被自身改写干扰。
-    const originalResourceId = src?.resourceId
-    let reassigned = false
-    // 资源视图跨泳道拖拽 = 改派:按落点找目标泳道,更新该任务在当前分组维度的归属。
-    // (split 模式下不能只 updateTask 跨行;更新归属后让上层重新 parse 才会落到新泳道。)
-    if (this.options.view === 'resource' && task?.nerv && mode !== 'resize') {
-      const lane = this.laneAtPointer(inst)
-      if (lane && String(lane.id) !== String(task.parent)) {
-        const laneResId = this.resourceLanes.get(String(lane.id))?.id ?? ''
-        const dim = this.options.groupBy || 'workCenter'
-        task.nerv.dimensions = {
-          ...(task.nerv.dimensions ?? {}),
-          [dim]: { id: laneResId, label: String(lane.text ?? laneResId) },
-        }
-        if (dim === 'workCenter') {
-          task.nerv.resourceId = laneResId
-          task.nerv.workCenterId = laneResId
-        }
-        task.parent = String(lane.id)
-        task.$resource = laneResId
-        reassigned = true
-      }
-    }
-    const parent = task?.parent != null ? String(task.parent) : undefined
-    const reassignedResource = parent
-      ? (this.resourceLanes.get(parent)?.id ?? task?.$resource)
-      : task?.$resource
-    const kind =
-      mode === 'resize'
-        ? 'resize'
-        : reassigned || (reassignedResource && reassignedResource !== originalResourceId)
-          ? 'reassign'
-          : 'move'
-    const start = task?.start_date?.toISOString() ?? src?.startUtc ?? ''
-    const end = task?.end_date?.toISOString() ?? src?.endUtc ?? ''
-    // 防御:零/负时长时不上报(避免把条收成一条线)。
-    if (start && end && Date.parse(end) <= Date.parse(start)) return
-    const payload = {
-      taskId,
-      operationId: src?.operationId ?? taskId,
-      resourceId:
-        mode === 'resize' ? originalResourceId : (reassignedResource ?? originalResourceId),
-      startUtc: start,
-      endUtc: end,
-      kind: kind as 'move' | 'resize' | 'reassign',
-    }
-    // 关键:延后到 DHTMLX 完成本次拖拽后再上报。同步上报会触发上层 setData →
-    // clearAll()+parse() 在拖拽回调内重建数据,破坏拖拽中的条(收成一条线)。
-    const timer = setTimeout(() => {
-      this.dragTimers.delete(timer)
-      if (!this.options.readOnly) this.emit('taskDragEnd', payload)
-    }, 0)
-    this.dragTimers.add(timer)
   }
 
   /** 把 DHTMLX 的 task_id 属性镜像为统一的 data-task-id,供契约/选择器统一定位。 */

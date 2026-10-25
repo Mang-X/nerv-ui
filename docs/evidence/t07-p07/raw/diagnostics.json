@@ -1,0 +1,106 @@
+[
+  {
+    "lane": "preparation",
+    "exit": 1,
+    "message": "First test redirection used ../../../../docs instead of ../../../docs from scheduling cwd; no test executed."
+  },
+  {
+    "lane": "fixture",
+    "exit": 1,
+    "files": [
+      "red-resource.json",
+      "red-resource-02.json",
+      "geometry-diagnostic.log",
+      "green-resource.json"
+    ],
+    "message": "An instance spy changed the shared mocked rectangle. Corrected to own getBoundingClientRect properties, then reran the exact base (red-resource-corrected) before GREEN."
+  },
+  {
+    "lane": "environment",
+    "exit": 1,
+    "file": "typecheck-01.log",
+    "message": "Nested pnpm resolved v12.0.0. Added only a private /tmp/nerv-ui-p07-bin/pnpm shim that execs corepack pnpm; project metadata unchanged."
+  },
+  {
+    "lane": "implementation",
+    "exit": 1,
+    "file": "focused-01.json",
+    "passed": 73,
+    "failed": 2,
+    "message": "Read-only cancellation consumed a later click; locked endpoint feedback duplicated. Both narrowly fixed, focused-02 75PASS and final suite GREEN."
+  },
+  {
+    "lane": "browser-preparation",
+    "exit": 1,
+    "file": "browser-02.log",
+    "message": "Default centered hover was intercepted by a genuinely overlapping card. Used observed reachable lower-left point; no force/callback."
+  },
+  {
+    "lane": "product-red",
+    "exit": 1,
+    "file": "browser-03.json",
+    "message": "Real vendor smart rendering removed the dragged source during scroll579; ghost disappeared. Preserved before browser-04 GREEN with gesture-owned width."
+  },
+  {
+    "lane": "browser-assertion",
+    "exit": 1,
+    "file": "browser-06.log",
+    "message": "Incorrectly required locked feedback to remain after the following selection message. Browser-07 observes real refusal at mousedown and verifies zero proposals; no product change for that assertion."
+  },
+  {
+    "lane": "public-types-preparation",
+    "exit": 2,
+    "files": [
+      "public-vue-types.log",
+      "public-vue-types-corrected.log"
+    ],
+    "message": "Temporary consumer initially linked nonexistent root vue and assumed a physical vite/client path despite the alias. Corrected only consumer links and actual exported client d.ts; final exit0."
+  },
+  {
+    "lane": "formatter-preparation",
+    "exit": 1,
+    "files": [
+      "fmt-source.log",
+      "fmt-source-corrected.log"
+    ],
+    "message": "vp rejected an outside-workspace .. path and root cwd. Used frontend paths plus documented stdin formatting for root Markdown."
+  },
+  {
+    "lane": "copy-red",
+    "exit": 1,
+    "file": "read-only-copy-red.log",
+    "message": "Checked readonly still displayed drag instructions. One template prompt condition fixed; browser-12/14 GREEN."
+  },
+  {
+    "lane": "copy-formatter",
+    "exit": 1,
+    "file": "fmt-final.log",
+    "message": "New prompt interpolation needed normal line wrapping. Formatter fixed only that source; final check exit0."
+  },
+  {
+    "lane": "optional-byte-proof",
+    "exit": 1,
+    "message": "Two diagnostic attempts reported nonlocal compiled change while accounting for only one content-hash reference. Final copy-only-proof uses explicit OfficePreview/PdfPreview/dist filename references and proves only the prompt ternary remains. The complete unnormalized diff is retained in read-only-copy-diff.json."
+  },
+  {
+    "lane": "response-orchestration",
+    "exit": 1,
+    "file": "final-response-identity.log",
+    "message": "Author began the response audit while deliberate native HTTP503 window was active; actual vendor response503 was correctly rejected. Waited for browser-14 to restore vendor, then final-response-identity-corrected exit0 without relaxing assertions."
+  },
+  {
+    "lane": "exploration",
+    "exit": 1,
+    "message": "A final ls of the not-yet-created durable directory followed a successful response audit in one shell command. A separately gated response audit exit0 is retained; ls is not a product gate."
+  },
+  {
+    "lane": "T3-preparation",
+    "message": "preview_open about:blank rejected: Preview automation open failed: Invalid preview URL (parse: https:; input length 11). Corrected by omitting URL."
+  },
+  {
+    "lane": "T3-browser",
+    "calls": 2,
+    "raw": "Preview snapshot failed: Preview automation snapshot timed out after 15000ms.",
+    "message": "Both same-step tool failures retained in conversation; second structured receipt saved in t3-snapshot-02.json. Ego fallback after reading skill/complete local guide; no upgrade."
+  }
+]

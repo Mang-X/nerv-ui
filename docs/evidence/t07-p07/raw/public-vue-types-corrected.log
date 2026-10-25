@@ -1,0 +1,3 @@
+error TS2688: Cannot find type definition file for '/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/node_modules/vite/client'.
+  The file is in the program because:
+    Entry point of type library '/Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/node_modules/vite/client' specified in compilerOptions

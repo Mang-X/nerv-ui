@@ -1,0 +1,24 @@
+{
+  "oldName": "index-BRtcrzIR.js",
+  "newName": "index-eqpMfMkS.js",
+  "normalization": "only literal JS content-hash filenames for OfficePreview, PdfPreview and dist",
+  "oldRefs": [
+    "OfficePreview-GrQwVZKW.js",
+    "PdfPreview--ruI-llr.js",
+    "dist-Cqag9PPW.js",
+    "OfficePreview-GrQwVZKW.js",
+    "PdfPreview--ruI-llr.js"
+  ],
+  "newRefs": [
+    "OfficePreview-E0j5HrjP.js",
+    "PdfPreview-Bg4ATFjP.js",
+    "dist-Cqag9PPW.js",
+    "OfficePreview-E0j5HrjP.js",
+    "PdfPreview-Bg4ATFjP.js"
+  ],
+  "commonPrefix": 794239,
+  "commonSuffix": 126996,
+  "before": "",
+  "after": "s.value?`当前只读，可查看活动的位置与时间。`:",
+  "onlyCopyExpressionVerified": true
+}

@@ -1,0 +1,8 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /已确定/. Input:
+
+'已选择活动，可查看时间与位置。'
+
+    at file:////[eval2]:14:245
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+
+ego's nodejs process exited with code 1.

@@ -422,8 +422,10 @@ function setResource(rid: string) {
 | `loading`    | 加载态                       | `boolean`                                        | `false`  |
 | `engineKind` | 渲染引擎选择                 | `'auto' \| 'dhtmlx'`                             | `'auto'` |
 
-**Emits**:`taskSelect(taskId)`、`taskDragEnd(payload)`(`kind: 'move' \| 'reassign'`)、`conflictClick(taskId)`。
+**Emits**:`taskSelect(taskId)`、`taskDragEnd(payload)`(`kind: 'move' \| 'resize' \| 'reassign'`)、`conflictClick(taskId)`、`lockedDragAttempt(taskId)`、`update:groupBy(groupBy)`。
 **Expose**:`command(cmd)`。
+
+P07 新增可选 `payload.assignment: { dimension, id, label }` 表达显式维度改派，保留原 `resourceId`；resize 只改端点，取消不提案，宿主回写才接受。纯资源兼容行仍使用原资源字段，不把其它维度 ID 当设备或工作中心。旧的仅按资源字段回写示例不能接受显式维度改派；新接入请按[完整资源编辑合同](../../../../../../docs/scheduling-renderer.md#p07资源受控编辑)处理。两个活动中性入口与本轮证据在那里列出；本页其余面板组合和完整文档站仍由 P08/#10 验收。
 
 ## 相关
 

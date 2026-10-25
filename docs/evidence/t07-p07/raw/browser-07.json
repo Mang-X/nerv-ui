@@ -1,0 +1,450 @@
+[
+  {
+    "name": "locked-feedback-before-selection-and-no-proposal",
+    "state": {
+      "count": 0,
+      "status": "已选择活动，可查看时间与位置。",
+      "tips": [
+        {
+          "display": "block",
+          "rect": {
+            "x": 626,
+            "y": 808,
+            "width": 213.171875,
+            "height": 129.34375,
+            "top": 808,
+            "right": 839.171875,
+            "bottom": 937.34375,
+            "left": 626
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "ghost": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "viewport": [
+        2300,
+        1225
+      ]
+    }
+  },
+  {
+    "name": "segmented-and-block-edit-refused",
+    "segmented": {
+      "handles": [
+        0,
+        0
+      ],
+      "blocks": 0,
+      "windows": 1
+    },
+    "state": {
+      "count": 0,
+      "status": "已选择活动，可查看时间与位置。",
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "ghost": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "viewport": [
+        2300,
+        1225
+      ]
+    }
+  },
+  {
+    "name": "tooltip-bounded-at-lower-edge",
+    "state": {
+      "count": 0,
+      "status": "已选择活动，可查看时间与位置。",
+      "tips": [
+        {
+          "display": "block",
+          "rect": {
+            "x": 478,
+            "y": 762,
+            "width": 215.625,
+            "height": 129.34375,
+            "top": 762,
+            "right": 693.625,
+            "bottom": 891.34375,
+            "left": 478
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "ghost": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "viewport": [
+        2300,
+        1225
+      ]
+    }
+  },
+  {
+    "name": "narrow-horizontal-scroll",
+    "state": {
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "tips": [
+        {
+          "display": "block",
+          "rect": {
+            "x": 514,
+            "y": 618,
+            "width": 213.171875,
+            "height": 129.34375,
+            "top": 618,
+            "right": 727.171875,
+            "bottom": 747.34375,
+            "left": 514
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "ghost": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "viewport": [
+        2300,
+        1225
+      ]
+    },
+    "scroll": {
+      "x": 940,
+      "y": 0
+    }
+  },
+  {
+    "name": "old-order-entry-return",
+    "old": {
+      "bars": 6,
+      "baselines": 2,
+      "resourceBars": 0,
+      "ownResourceTips": 0,
+      "ghost": 0
+    }
+  }
+]

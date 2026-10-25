@@ -51,7 +51,8 @@ export type EngineCommand =
  * 拖拽结束的归一化提案，不含引擎私有结构。
  * order: taskId/operationId/resourceId 保持输入身份；kind 仅 move/resize，时刻为 UTC ISO。
  * 宿主回写 model 才接受；不回写即拒绝。库不修改输入、不自动锁定或求解。
- * resource 的改派语义由资源编辑接缝维护。
+ * resource: 显式维度改派只通过 assignment 表达，resourceId 保持输入值；
+ * 旧的纯资源泳道改派仍通过 resourceId 表达。resize 不改派。
  */
 export interface TaskDragPayload {
   taskId: string
@@ -60,6 +61,8 @@ export interface TaskDragPayload {
   startUtc: string
   endUtc: string
   kind: 'move' | 'resize' | 'reassign'
+  /** Only for reassignment within an explicit grouping dimension; null means unassigned. */
+  assignment?: { dimension: string; id: string | null; label: string }
 }
 
 export interface EngineEvents {
