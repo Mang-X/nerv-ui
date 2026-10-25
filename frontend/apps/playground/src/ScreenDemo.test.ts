@@ -184,3 +184,22 @@ it('opens charts deep link preserves all completed sections and disposes autopla
     vi.useRealTimers()
   }
 })
+
+it('opens tables deep link preserves completed links and resets rows and focus when returning', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/tables' }, attachTo: document.body })
+  expect(wrapper.get('h1').text()).toBe('城市文化空间 · 清单与事件')
+  expect(wrapper.get('a[href="#screen/tables"]').attributes('aria-current')).toBe('page')
+  await wrapper.get('[aria-label="下一页"]').trigger('click')
+  expect(wrapper.get('[aria-label="清单页读数"]').text()).toContain('collection-019')
+  for (const section of ['stage', 'controls', 'indicators', 'data', 'charts']) {
+    expect(wrapper.get(`a[href="#screen/${section}"]`).attributes('href')).toBe(
+      `#screen/${section}`,
+    )
+  }
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('[aria-label="清单页读数"]').exists()).toBe(false)
+  expect(wrapper.get('h1').text()).toBe('城市文化空间')
+  await wrapper.setProps({ section: '#screen/tables' })
+  expect(wrapper.get('[aria-label="清单页读数"]').text()).toContain('collection-001')
+  expect(document.querySelector('[role="listbox"]')).toBeNull()
+})

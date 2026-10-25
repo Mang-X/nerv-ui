@@ -21,7 +21,12 @@ const props = withDefaults(
   { pageSize: 10 },
 )
 
-const pageCount = computed(() => Math.max(1, Math.ceil(props.total / props.pageSize)))
+// Invalid sizes previously produced Infinity/NaN pages. Keep the legacy default
+// as a presentation fallback; valid positive integer inputs remain host-owned.
+const size = computed(() =>
+  Number.isFinite(props.pageSize) && props.pageSize > 0 ? props.pageSize : 10,
+)
+const pageCount = computed(() => Math.max(1, Math.ceil(props.total / size.value)))
 
 /** Windowed page list with ellipses. */
 const pages = computed<(number | '…')[]>(() => {
@@ -49,8 +54,8 @@ const pages = computed<(number | '…')[]>(() => {
 
 const rangeText = computed(() => {
   if (props.total === 0) return '0'
-  const from = (page.value - 1) * props.pageSize + 1
-  const to = Math.min(props.total, page.value * props.pageSize)
+  const from = (page.value - 1) * size.value + 1
+  const to = Math.min(props.total, page.value * size.value)
   return `${from.toLocaleString('en-US')}–${to.toLocaleString('en-US')}`
 })
 

@@ -108,13 +108,14 @@ withDefaults(
   .nv-scr-tbl th {
     position: sticky;
     top: 0;
+    z-index: 1;
     padding: 13px 16px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: var(--nv-scr-text-2);
     white-space: nowrap;
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--nv-scr-bg-accent);
     border-bottom: 1px solid var(--nv-scr-line-2);
   }
   .nv-scr-tbl tbody td {

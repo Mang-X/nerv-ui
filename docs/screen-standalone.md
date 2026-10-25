@@ -60,3 +60,11 @@ Tabs 保持等宽槽位 ink；Segmented 根据按钮真实宽度定位 thumb。�
 两种滚动并列展示：自动轮巡支持悬停／滚轮，低动效与键盘进入后使用原生滚动；重复副本 inert，第一份 slot 控件可交互。手动区域跟随内容增删、替换与行高变化更新上下箭头。两者均不提供虚拟列表或业务缓存。原生 `.nv-scr-scroll` 继续由 A01 的既有 CSS 提供。
 
 精确测试、浏览器、资源、历史失败及 UNRUN 边界见 [A04 证据](evidence/t05-a04/README.md)。完整文档站 #10、packed #11、旧库接入与父 #6 组合验收分别执行。
+
+## A06：清单、分页与事件身份
+
+`/#screen/tables` 从主桶消费 `NvScreenTable`、`NvScreenPagination`、`NvAlarmTable`，保留 stage/controls/indicators/data/charts 与旧表面深链。馆藏/活动由本页内存数据提供，`row-key="id"`；每页 18 项，由宿主 slice。替换、总量缩短、清空、恢复同步重置到第 1 页；组件自身不监听 total 发出第二次事件。未知总数独立显示「总数未知」，隐藏已知总数分页器。
+
+事件表保持旧六字段，不以 rename 掩盖领域含义；宿主将空间/参考号适配到 `line`/`wo`，用独立 `id` 维持两个相同 REF-7 事件，labels/levelLabels 与状态 slot 控制中性语义。默认工业示例和「已恢复」绿色继续兼容；传状态 slot 时不继承中文词的隐式判断。`more` 是文字说明，没有导航。
+
+两表提供固定高内容内滚与长列值；详情选择回调使用当前 slot 的 `row.id`。离开分组卸载本页，重入从第 1 页开始。此处没有服务查询/分页算法、#40 dashboard recipe、#64 摘要或 PC 表格改造。来源仍为固定迁移基线，增量留新库，旧库接入前不回写。实际证据见 [A06 验证记录](evidence/t05-a06/README.md)。
