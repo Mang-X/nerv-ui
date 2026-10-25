@@ -1,0 +1,582 @@
+{
+  "requests": [
+    {
+      "url": "http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/pdfium/pdfium.wasm",
+      "method": "GET",
+      "initiator": "Error\n    at window.fetch (<anonymous>:8:68)\n    at async createPdfiumEngine (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:16167:72)\n    at async http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreview.vue?t=1792904588065:40:22",
+      "started": 1359.199999988079,
+      "status": 200,
+      "type": "application/wasm",
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "finished": 1430.5
+    },
+    {
+      "url": "http://127.0.0.1:5215/files/reading-journey.pdf",
+      "method": "GET",
+      "initiator": "Error\n    at window.fetch (<anonymous>:8:68)\n    at async http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7162:29",
+      "started": 1559.5999999940395,
+      "status": 200,
+      "type": "application/pdf",
+      "bytes": 3782,
+      "sha256": "ef7e0c8edc0b2a984a78d60dd3f2439708f48f5b379b42633a055c571c461137",
+      "finished": 1615.699999988079
+    }
+  ],
+  "errors": [],
+  "workers": [],
+  "observers": [
+    {
+      "active": false,
+      "stack": "Error\n    at new window.ResizeObserver (<anonymous>:18:104)\n    at watch.immediate (http://127.0.0.1:5215/node_modules/.vite/deps/@vueuse_core.js?v=de31e180:4810:15)\n    at callWithErrorHandling (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:1890:17)\n    at callWithAsyncErrorHandling (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:1897:15)\n    at baseWatchOptions.call (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:2389:46)\n    at job (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:1671:13)\n    at watch$1 (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:1692:25)\n    at doWatch (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:2411:22)\n    at watch (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:2363:9)\n    at useResizeObserver (http://127.0.0.1:5215/node_modules/.vite/deps/@vueuse_core.js?v=de31e180:4804:20)"
+    },
+    {
+      "active": false,
+      "stack": "Error\n    at new window.ResizeObserver (<anonymous>:18:104)\n    at watch.flush (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:37:19)\n    at callWithErrorHandling (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:1890:17)\n    at callWithAsyncErrorHandling (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:1897:15)\n    at baseWatchOptions.call (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:2389:46)\n    at job (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:1671:13)\n    at flushPostFlushCbs (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:2022:25)\n    at flushJobs (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:2050:3)\n    at flushJobs (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:2052:51)"
+    }
+  ],
+  "timers": [
+    {
+      "ms": 0,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at updateStyle (http://127.0.0.1:5215/@vite/client:1201:4)\n    at http://127.0.0.1:5215/src/assets/main.css?t=1792904588065:4:1",
+      "id": 2
+    },
+    {
+      "ms": 3000,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at setDevtoolsHook$1 (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:2193:3)\n    at baseCreateRenderer (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:5297:2)\n    at createRenderer (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:5288:9)\n    at ensureRenderer (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:8542:33)\n    at createApp (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:8556:14)\n    at http://127.0.0.1:5215/src/main.ts?t=1792904588065:6:1",
+      "id": 3
+    },
+    {
+      "ms": 200,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at setup (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:3573:28)\n    at callWithErrorHandling (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:1890:17)\n    at setupStatefulComponent (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:6781:23)\n    at setupComponent (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:6757:35)\n    at mountComponent (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:5545:3)\n    at processComponent (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:5535:8)\n    at patch (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:5326:28)\n    at mountChildren (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:5440:4)\n    at mountElement (http://127.0.0.1:5215/node_modules/.vite/deps/vue.runtime.esm-bundler-D2h_BVZe.js?v=964e0a6a:5396:28)",
+      "id": 8
+    },
+    {
+      "ms": 150,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at EventControl.debounce (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1418:27)\n    at EventControl.handle (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1412:47)\n    at KeyedEventControl.handle (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1454:12)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1545:49\n    at Set.forEach (<anonymous>)\n    at notify (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1545:34)\n    at Object.emit (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1579:5)\n    at _ViewportPlugin.setViewportResizeMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:401:38)\n    at window.ResizeObserver.<anonymous> (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:37:51)",
+      "id": 23
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at _ZoomPlugin.handleRequest (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-zoom_vue.js?v=b0b2d827:467:82)\n    at _ZoomPlugin.recalcAuto (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-zoom_vue.js?v=b0b2d827:578:142)\n    at viewport.onViewportResize.mode [as handler] (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-zoom_vue.js?v=b0b2d827:306:50)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1419:9\n    at <anonymous>:20:128",
+      "id": 24
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at _ZoomPlugin.handleRequest (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-zoom_vue.js?v=b0b2d827:467:82)\n    at _ZoomPlugin.recalcAuto (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-zoom_vue.js?v=b0b2d827:578:142)\n    at viewport.onViewportResize.mode [as handler] (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-zoom_vue.js?v=b0b2d827:306:50)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1419:9\n    at <anonymous>:20:128",
+      "id": 25
+    },
+    {
+      "ms": 5000,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at PageContext.release (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:8309:47)\n    at PdfiumNative.renderRectEncoded (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:15088:12)\n    at PdfiumNative.renderPageRaw (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:9250:21)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7262:54\n    at Object.execute [as executeFactory] (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7332:19)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7045:28\n    at WorkerTaskQueue.process (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7066:6)\n    at WorkerTaskQueue.enqueue (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7005:33)\n    at PdfEngine.renderWithEncoding (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7331:41)",
+      "id": 26
+    },
+    {
+      "ms": 5000,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at PageContext.release (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:8309:47)\n    at PdfiumNative.renderRectEncoded (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:15088:12)\n    at PdfiumNative.renderPageRaw (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:9250:21)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7262:54\n    at Object.execute [as executeFactory] (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7332:19)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7045:28\n    at WorkerTaskQueue.process (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7066:6)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7027:29",
+      "id": 28
+    },
+    {
+      "ms": 5000,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at PageContext.release (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:8309:47)\n    at PdfiumNative.renderRectEncoded (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:15088:12)\n    at PdfiumNative.renderPageRaw (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:9250:21)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7262:54\n    at Object.execute [as executeFactory] (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7332:19)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7045:28\n    at WorkerTaskQueue.process (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7066:6)\n    at http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_engines_pdfium-direct-engine.js?v=43b8b0d6:7027:29",
+      "id": 29
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 30
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 31
+    },
+    {
+      "ms": 100,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at <anonymous>:317:21\n    at new Promise (<anonymous>)\n    at HTMLButtonElement.<anonymous> (<anonymous>:309:11)",
+      "id": 32
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 33
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 34
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 35
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 36
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 37
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 38
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 39
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 40
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 41
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 42
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 43
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 44
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 45
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 46
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 47
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 48
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 49
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 50
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 51
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 52
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 53
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 54
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 55
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 56
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 57
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 58
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 59
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 60
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 61
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 62
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 63
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 64
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 65
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 66
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 67
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 68
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 69
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 70
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 71
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 72
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 73
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 74
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 75
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 76
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 77
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 78
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 79
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 80
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 81
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 82
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 83
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 84
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 85
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 86
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 87
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 88
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 89
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 90
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 91
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 92
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 93
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 94
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 95
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 96
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 97
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 98
+    },
+    {
+      "ms": 100,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at <anonymous>:317:21\n    at new Promise (<anonymous>)\n    at HTMLAnchorElement.<anonymous> (<anonymous>:309:11)",
+      "id": 99
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 100
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 101
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 102
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 103
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 104
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 105
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:489:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 106
+    },
+    {
+      "ms": 300,
+      "active": false,
+      "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at _ViewportPlugin.debouncedDispatch (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_core.js?v=c9cb69fc:1212:39)\n    at _ViewportPlugin.bumpScrollActivity (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:490:8)\n    at _ViewportPlugin.setViewportScrollMetrics (http://127.0.0.1:5215/node_modules/.vite/deps/@embedpdf_plugin-viewport_vue.js?v=90afde95:412:9)\n    at HTMLDivElement.scroll (http://127.0.0.1:5215/@fs/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewDocument.vue?t=1792904588065:33:32)",
+      "id": 107
+    }
+  ],
+  "blobUrls": [
+    {
+      "url": "blob:http://127.0.0.1:5215/7824dc70-b560-4cd2-acdd-12edd5083c7a",
+      "type": "image/png",
+      "bytes": 95044,
+      "revoked": true
+    },
+    {
+      "url": "blob:http://127.0.0.1:5215/a8a8f3be-7b0c-45a9-9708-47197646b174",
+      "type": "image/png",
+      "bytes": 98114,
+      "revoked": true
+    },
+    {
+      "url": "blob:http://127.0.0.1:5215/817f1f4a-ab8c-4512-80c9-da76ee285374",
+      "type": "image/png",
+      "bytes": 95271,
+      "revoked": true
+    }
+  ]
+}

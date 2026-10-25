@@ -7,7 +7,7 @@ const samples = [
   {
     id: 'svg',
     label: '图形记录 SVG',
-    src: '/files/quality-evidence.svg',
+    src: import.meta.env.BASE_URL + 'files/quality-evidence.svg',
     fileName: 'quality-evidence.svg',
     contentType: 'image/svg+xml',
   },
@@ -25,6 +25,19 @@ const samples = [
     fileName: 'coast.jpg',
     contentType: 'image/jpeg',
   },
+  ...[
+    ['pdf-single', '阅读记录 PDF', 'quality-evidence-report.pdf'],
+    ['pdf-pages', '阅读旅程（三页 PDF）', 'reading-journey.pdf'],
+    ['pdf-chinese', '春日阅读（中文 PDF）', 'reading-chinese.pdf'],
+    ['pdf-broken', '损坏 PDF', 'broken.pdf'],
+    ['pdf-missing', '无效 PDF 地址', 'missing.pdf'],
+  ].map(([id, label, fileName]) => ({
+    id: id!,
+    label: label!,
+    src: import.meta.env.BASE_URL + 'files/' + fileName,
+    fileName: fileName!,
+    contentType: 'application/pdf',
+  })),
   {
     id: 'broken',
     label: '损坏图片',
@@ -99,8 +112,12 @@ function chooseLocal(event: Event) {
   const file = input.files?.[0]
   input.value = ''
   if (!file) return
-  if (!file.type.startsWith('image/')) {
-    notice.value = '请选择本地图片。'
+  if (
+    !file.type.startsWith('image/') &&
+    file.type !== 'application/pdf' &&
+    !file.name.toLowerCase().endsWith('.pdf')
+  ) {
+    notice.value = '请选择本地图片或 PDF。'
     return
   }
   notice.value = ''
@@ -132,7 +149,7 @@ onBeforeUnmount(() => {
     <div>
       <h2 id="preview-heading" class="text-xl font-semibold">看见细节</h2>
       <p class="mt-1 text-sm text-muted-foreground">
-        本地图片可缩放与旋转。其它文件保留原文件入口。
+        本地图片可缩放与旋转，PDF 可翻页与缩放。其它文件保留原文件入口。
       </p>
     </div>
     <label class="grid gap-1 text-sm"
@@ -148,9 +165,9 @@ onBeforeUnmount(() => {
       </select>
     </label>
     <label class="grid gap-1 text-sm"
-      >预览本地图片<input
+      >预览本地图片或 PDF<input
         type="file"
-        accept="image/*"
+        accept="image/*,application/pdf,.pdf"
         aria-label="预览本地图片"
         class="min-h-11 max-w-full rounded-md border p-2"
         @change="chooseLocal"

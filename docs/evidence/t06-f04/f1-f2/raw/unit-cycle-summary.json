@@ -1,0 +1,210 @@
+[
+  {
+    "artifact": "red-f1-unit.json",
+    "success": false,
+    "numTotalTests": 29,
+    "numPassedTests": 28,
+    "numFailedTests": 1,
+    "numFailedTestSuites": 2,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "failures": [
+      {
+        "name": "FilePreview cancels a PDF body read on unmount without allocating a late document",
+        "status": "failed",
+        "messages": [
+          "AssertionError: expected \"vi.fn()\" to be called once, but got 0 times\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:487:25\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      }
+    ],
+    "suiteMessages": []
+  },
+  {
+    "artifact": "green-f1-unit.json",
+    "success": true,
+    "numTotalTests": 29,
+    "numPassedTests": 29,
+    "numFailedTests": 0,
+    "numFailedTestSuites": 0,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "failures": [],
+    "suiteMessages": []
+  },
+  {
+    "artifact": "red-f2-unit.json",
+    "success": false,
+    "numTotalTests": 30,
+    "numPassedTests": 23,
+    "numFailedTests": 7,
+    "numFailedTestSuites": 2,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "failures": [
+      {
+        "name": "FilePreview renders PDF with headless embedpdf layers and the unified toolbar",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get [data-slot=\"file-preview-pdf-toolbar\"] within: <div data-slot=\"file-preview-pdf\" class=\"h-full min-h-0 w-full overflow-hidden\">\n  <div class=\"grid h-full min-h-64 place-items-center bg-muted/20 p-6 text-center text-sm text-destructive\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n</div>\n    at VueWrapper.get (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:400:20\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview allows jumping PDF pages from the unified toolbar",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get specified component within: <div data-slot=\"file-preview-pdf\" class=\"h-full min-h-0 w-full overflow-hidden\">\n  <div class=\"grid h-full min-h-64 place-items-center bg-muted/20 p-6 text-center text-sm text-destructive\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n</div>\n    at VueWrapper.getComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7203:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:419:32\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview ignores obsolete PDF status while switching sources",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get specified component within: <div data-testid=\"motion-config\">\n  <section data-slot=\"file-preview\" class=\"overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-xs\" style=\"height: 520px;\">\n    <div class=\"grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)]\">\n      <header data-slot=\"file-preview-header\" class=\"flex min-h-12 items-center justify-between gap-3 border-b border-border/70 bg-card px-3\">\n        <div class=\"flex min-w-0 items-center gap-2.5\">\n          <div class=\"flex size-8 shrink-0 items-center justify-center rounded-md border border-red-500/25 bg-red-500/10 dark:border-red-400/25 dark:bg-red-400/10\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-file-type-icon lucide-file-type size-4 text-red-600 dark:text-red-300\" aria-hidden=\"true\">\n              <path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"></path>\n              <path d=\"M14 2v5a1 1 0 0 0 1 1h5\"></path>\n              <path d=\"M11 18h2\"></path>\n              <path d=\"M12 12v6\"></path>\n              <path d=\"M9 13v-.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v.5\"></path>\n            </svg></div>\n          <div class=\"min-w-0\">\n            <div class=\"truncate text-[13px] font-medium leading-[18px]\">report.pdf</div>\n            <div class=\"truncate text-xs leading-4 text-muted-foreground\">PDF</div>\n          </div>\n        </div><button data-slot=\"button\" data-variant=\"ghost\" data-size=\"icon-sm\" class=\"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-3 aria-invalid:ring-3 active:not-aria-[haspopup]:translate-y-px [&amp;_svg:not([class*=size-])]:size-4 group/button inline-flex shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg\" aria-label=\"\u6253\u5f00 report.pdf\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" class=\"lucide lucide-external-link-icon lucide-external-link\">\n            <path d=\"M15 3h6v6\"></path>\n            <path d=\"M10 14 21 3\"></path>\n            <path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"></path>\n          </svg></button>\n      </header>\n      <div data-slot=\"file-preview-body\" class=\"min-h-0 overflow-hidden bg-background\">\n        <div data-testid=\"animate-presence\">\n          <div data-testid=\"motion-div\" class=\"h-full min-h-0\">\n            <div data-slot=\"file-preview-error\" class=\"flex h-full min-h-64 flex-col items-center justify-center gap-3 bg-muted/20 p-6 text-center\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-circle-alert-icon lucide-circle-alert size-6 text-destructive\" aria-hidden=\"true\">\n                <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>\n                <line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"></line>\n                <line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"></line>\n              </svg>\n              <div class=\"max-w-sm\">\n                <div class=\"text-sm font-semibold leading-5\">\u9884\u89c8\u5931\u8d25</div>\n                <div class=\"mt-1 text-sm leading-5 text-muted-foreground\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n</div>\n    at VueWrapper.getComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7203:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:460:25\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview cancels a PDF body read on unmount without allocating a late document",
+        "status": "failed",
+        "messages": [
+          "AssertionError: expected \"vi.fn()\" to be called once, but got 0 times\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:500:25\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview releases the PDF page jump timer on unmount and disables page boundaries",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get button[aria-label=\"\u4e0a\u4e00\u9875\"] within: <div data-slot=\"file-preview-pdf\" class=\"h-full min-h-0 w-full overflow-hidden\">\n  <div class=\"grid h-full min-h-64 place-items-center bg-muted/20 p-6 text-center text-sm text-destructive\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n</div>\n    at VueWrapper.get (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:513:20\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview disconnects the PDF viewport observer and scroll subscription on unmount",
+        "status": "failed",
+        "messages": [
+          "Error: useRegistry must be used inside <EmbedPDF>\n    at useRegistry (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_svelte_1c56c51168287acfd3285e2d81062c7e/node_modules/@embedpdf/core/dist/vue/index.js:7:19)\n    at usePlugin (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_svelte_1c56c51168287acfd3285e2d81062c7e/node_modules/@embedpdf/core/dist/vue/index.js:131:24)\n    at useCapability (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_svelte_1c56c51168287acfd3285e2d81062c7e/node_modules/@embedpdf/core/dist/vue/index.js:150:40)\n    at useRenderCapability (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+plugin-render@2.14.4_@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_re_f00c46c2a838fd65678b087961932329/node_modules/@embedpdf/plugin-render/dist/vue/index.js:7:35)\n    at setup (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+plugin-render@2.14.4_@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_re_f00c46c2a838fd65678b087961932329/node_modules/@embedpdf/plugin-render/dist/vue/index.js:19:42)\n    at callWithErrorHandling (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:200:19)\n    at setupStatefulComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:8142:25)\n    at setupComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:8104:36)\n    at mountComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6014:7)\n    at processComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5980:9)"
+        ]
+      },
+      {
+        "name": "FilePreview releases the PDF bitmap URL when leaving before image load",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get [data-slot=\"file-preview-pdf-page\"] img within: <div data-testid=\"motion-config\">\n  <section data-slot=\"file-preview\" class=\"overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-xs\" style=\"height: 520px;\">\n    <div class=\"grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)]\">\n      <header data-slot=\"file-preview-header\" class=\"flex min-h-12 items-center justify-between gap-3 border-b border-border/70 bg-card px-3\">\n        <div class=\"flex min-w-0 items-center gap-2.5\">\n          <div class=\"flex size-8 shrink-0 items-center justify-center rounded-md border border-red-500/25 bg-red-500/10 dark:border-red-400/25 dark:bg-red-400/10\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-file-type-icon lucide-file-type size-4 text-red-600 dark:text-red-300\" aria-hidden=\"true\">\n              <path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"></path>\n              <path d=\"M14 2v5a1 1 0 0 0 1 1h5\"></path>\n              <path d=\"M11 18h2\"></path>\n              <path d=\"M12 12v6\"></path>\n              <path d=\"M9 13v-.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v.5\"></path>\n            </svg></div>\n          <div class=\"min-w-0\">\n            <div class=\"truncate text-[13px] font-medium leading-[18px]\">inspection.pdf</div>\n            <div class=\"truncate text-xs leading-4 text-muted-foreground\">PDF</div>\n          </div>\n        </div><button data-slot=\"button\" data-variant=\"ghost\" data-size=\"icon-sm\" class=\"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-3 aria-invalid:ring-3 active:not-aria-[haspopup]:translate-y-px [&amp;_svg:not([class*=size-])]:size-4 group/button inline-flex shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg\" aria-label=\"\u6253\u5f00 inspection.pdf\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" class=\"lucide lucide-external-link-icon lucide-external-link\">\n            <path d=\"M15 3h6v6\"></path>\n            <path d=\"M10 14 21 3\"></path>\n            <path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"></path>\n          </svg></button>\n      </header>\n      <div data-slot=\"file-preview-body\" class=\"min-h-0 overflow-hidden bg-background\">\n        <div data-testid=\"animate-presence\">\n          <div data-testid=\"motion-div\" class=\"h-full min-h-0\">\n            <div data-slot=\"file-preview-error\" class=\"flex h-full min-h-64 flex-col items-center justify-center gap-3 bg-muted/20 p-6 text-center\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-circle-alert-icon lucide-circle-alert size-6 text-destructive\" aria-hidden=\"true\">\n                <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>\n                <line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"></line>\n                <line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"></line>\n              </svg>\n              <div class=\"max-w-sm\">\n                <div class=\"text-sm font-semibold leading-5\">\u9884\u89c8\u5931\u8d25</div>\n                <div class=\"mt-1 text-sm leading-5 text-muted-foreground\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n</div>\n    at VueWrapper.get (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:549:25\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      }
+    ],
+    "suiteMessages": []
+  },
+  {
+    "artifact": "green-f2-unit.json",
+    "success": false,
+    "numTotalTests": 30,
+    "numPassedTests": 23,
+    "numFailedTests": 7,
+    "numFailedTestSuites": 2,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "failures": [
+      {
+        "name": "FilePreview renders PDF with headless embedpdf layers and the unified toolbar",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get [data-slot=\"file-preview-pdf-toolbar\"] within: <div data-slot=\"file-preview-pdf\" class=\"h-full min-h-0 w-full overflow-hidden\">\n  <div class=\"grid h-full min-h-64 place-items-center bg-muted/20 p-6 text-center text-sm text-destructive\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n</div>\n    at VueWrapper.get (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:400:20\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview allows jumping PDF pages from the unified toolbar",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get specified component within: <div data-slot=\"file-preview-pdf\" class=\"h-full min-h-0 w-full overflow-hidden\">\n  <div class=\"grid h-full min-h-64 place-items-center bg-muted/20 p-6 text-center text-sm text-destructive\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n</div>\n    at VueWrapper.getComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7203:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:419:32\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview ignores obsolete PDF status while switching sources",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get specified component within: <div data-testid=\"motion-config\">\n  <section data-slot=\"file-preview\" class=\"overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-xs\" style=\"height: 520px;\">\n    <div class=\"grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)]\">\n      <header data-slot=\"file-preview-header\" class=\"flex min-h-12 items-center justify-between gap-3 border-b border-border/70 bg-card px-3\">\n        <div class=\"flex min-w-0 items-center gap-2.5\">\n          <div class=\"flex size-8 shrink-0 items-center justify-center rounded-md border border-red-500/25 bg-red-500/10 dark:border-red-400/25 dark:bg-red-400/10\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-file-type-icon lucide-file-type size-4 text-red-600 dark:text-red-300\" aria-hidden=\"true\">\n              <path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"></path>\n              <path d=\"M14 2v5a1 1 0 0 0 1 1h5\"></path>\n              <path d=\"M11 18h2\"></path>\n              <path d=\"M12 12v6\"></path>\n              <path d=\"M9 13v-.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v.5\"></path>\n            </svg></div>\n          <div class=\"min-w-0\">\n            <div class=\"truncate text-[13px] font-medium leading-[18px]\">report.pdf</div>\n            <div class=\"truncate text-xs leading-4 text-muted-foreground\">PDF</div>\n          </div>\n        </div><button data-slot=\"button\" data-variant=\"ghost\" data-size=\"icon-sm\" class=\"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-3 aria-invalid:ring-3 active:not-aria-[haspopup]:translate-y-px [&amp;_svg:not([class*=size-])]:size-4 group/button inline-flex shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg\" aria-label=\"\u6253\u5f00 report.pdf\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" class=\"lucide lucide-external-link-icon lucide-external-link\">\n            <path d=\"M15 3h6v6\"></path>\n            <path d=\"M10 14 21 3\"></path>\n            <path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"></path>\n          </svg></button>\n      </header>\n      <div data-slot=\"file-preview-body\" class=\"min-h-0 overflow-hidden bg-background\">\n        <div data-testid=\"animate-presence\">\n          <div data-testid=\"motion-div\" class=\"h-full min-h-0\">\n            <div data-slot=\"file-preview-error\" class=\"flex h-full min-h-64 flex-col items-center justify-center gap-3 bg-muted/20 p-6 text-center\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-circle-alert-icon lucide-circle-alert size-6 text-destructive\" aria-hidden=\"true\">\n                <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>\n                <line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"></line>\n                <line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"></line>\n              </svg>\n              <div class=\"max-w-sm\">\n                <div class=\"text-sm font-semibold leading-5\">\u9884\u89c8\u5931\u8d25</div>\n                <div class=\"mt-1 text-sm leading-5 text-muted-foreground\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n</div>\n    at VueWrapper.getComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7203:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:460:25\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview cancels a PDF body read on unmount without allocating a late document",
+        "status": "failed",
+        "messages": [
+          "AssertionError: expected \"vi.fn()\" to be called once, but got 0 times\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:500:25\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview releases the PDF page jump timer on unmount and disables page boundaries",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get button[aria-label=\"\u4e0a\u4e00\u9875\"] within: <div data-slot=\"file-preview-pdf\" class=\"h-full min-h-0 w-full overflow-hidden\">\n  <div class=\"grid h-full min-h-64 place-items-center bg-muted/20 p-6 text-center text-sm text-destructive\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n</div>\n    at VueWrapper.get (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:513:20\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      },
+      {
+        "name": "FilePreview disconnects the PDF viewport observer and scroll subscription on unmount",
+        "status": "failed",
+        "messages": [
+          "Error: useRegistry must be used inside <EmbedPDF>\n    at useRegistry (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_svelte_1c56c51168287acfd3285e2d81062c7e/node_modules/@embedpdf/core/dist/vue/index.js:7:19)\n    at usePlugin (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_svelte_1c56c51168287acfd3285e2d81062c7e/node_modules/@embedpdf/core/dist/vue/index.js:131:24)\n    at useCapability (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_svelte_1c56c51168287acfd3285e2d81062c7e/node_modules/@embedpdf/core/dist/vue/index.js:150:40)\n    at useRenderCapability (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+plugin-render@2.14.4_@embedpdf+core@2.14.4_preact@10.29.7_react-dom@19.2.7_re_f00c46c2a838fd65678b087961932329/node_modules/@embedpdf/plugin-render/dist/vue/index.js:7:35)\n    at setup (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewRenderLayer.vue:11:40)\n    at callWithErrorHandling (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:200:19)\n    at setupStatefulComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:8142:25)\n    at setupComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:8104:36)\n    at mountComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6014:7)\n    at processComponent (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5980:9)"
+        ]
+      },
+      {
+        "name": "FilePreview releases the PDF bitmap URL when leaving before image load",
+        "status": "failed",
+        "messages": [
+          "Error: Unable to get [data-slot=\"file-preview-pdf-page\"] img within: <div data-testid=\"motion-config\">\n  <section data-slot=\"file-preview\" class=\"overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-xs\" style=\"height: 520px;\">\n    <div class=\"grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)]\">\n      <header data-slot=\"file-preview-header\" class=\"flex min-h-12 items-center justify-between gap-3 border-b border-border/70 bg-card px-3\">\n        <div class=\"flex min-w-0 items-center gap-2.5\">\n          <div class=\"flex size-8 shrink-0 items-center justify-center rounded-md border border-red-500/25 bg-red-500/10 dark:border-red-400/25 dark:bg-red-400/10\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-file-type-icon lucide-file-type size-4 text-red-600 dark:text-red-300\" aria-hidden=\"true\">\n              <path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"></path>\n              <path d=\"M14 2v5a1 1 0 0 0 1 1h5\"></path>\n              <path d=\"M11 18h2\"></path>\n              <path d=\"M12 12v6\"></path>\n              <path d=\"M9 13v-.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v.5\"></path>\n            </svg></div>\n          <div class=\"min-w-0\">\n            <div class=\"truncate text-[13px] font-medium leading-[18px]\">inspection.pdf</div>\n            <div class=\"truncate text-xs leading-4 text-muted-foreground\">PDF</div>\n          </div>\n        </div><button data-slot=\"button\" data-variant=\"ghost\" data-size=\"icon-sm\" class=\"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-3 aria-invalid:ring-3 active:not-aria-[haspopup]:translate-y-px [&amp;_svg:not([class*=size-])]:size-4 group/button inline-flex shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg\" aria-label=\"\u6253\u5f00 inspection.pdf\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" class=\"lucide lucide-external-link-icon lucide-external-link\">\n            <path d=\"M15 3h6v6\"></path>\n            <path d=\"M10 14 21 3\"></path>\n            <path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"></path>\n          </svg></button>\n      </header>\n      <div data-slot=\"file-preview-body\" class=\"min-h-0 overflow-hidden bg-background\">\n        <div data-testid=\"animate-presence\">\n          <div data-testid=\"motion-div\" class=\"h-full min-h-0\">\n            <div data-slot=\"file-preview-error\" class=\"flex h-full min-h-64 flex-col items-center justify-center gap-3 bg-muted/20 p-6 text-center\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-circle-alert-icon lucide-circle-alert size-6 text-destructive\" aria-hidden=\"true\">\n                <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>\n                <line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"></line>\n                <line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"></line>\n              </svg>\n              <div class=\"max-w-sm\">\n                <div class=\"text-sm font-semibold leading-5\">\u9884\u89c8\u5931\u8d25</div>\n                <div class=\"mt-1 text-sm leading-5 text-muted-foreground\">useRegistry must be used inside &lt;EmbedPDF&gt;</div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n</div>\n    at VueWrapper.get (/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:549:25\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      }
+    ],
+    "suiteMessages": []
+  },
+  {
+    "artifact": "green-f2-unit-v2.json",
+    "success": false,
+    "numTotalTests": 0,
+    "numPassedTests": 0,
+    "numFailedTests": 0,
+    "numFailedTestSuites": 1,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "failures": [],
+    "suiteMessages": [
+      "[vue/compiler-sfc] Unexpected token, expected \"{\" (33:21)\n\n/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewRenderLayer.vue\n31 |        active = false\n32 |        task.abort({ code: 9, // PdfErrorCode.Cancelled in the fixed 2.14.4 producer. message: 'canceled render task' })\n33 |        if (objectUrl) URL.revokeObjectURL(objectUrl)\n   |                       ^\n34 |      })\n35 |      task.wait((blob) => {"
+    ]
+  },
+  {
+    "artifact": "green-lifecycle-unit.json",
+    "success": false,
+    "numTotalTests": 0,
+    "numPassedTests": 0,
+    "numFailedTests": 0,
+    "numFailedTestSuites": 1,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "failures": [],
+    "suiteMessages": [
+      "[vue/compiler-sfc] Unexpected token, expected \"{\" (35:21)\n\n/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/PdfPreviewRenderLayer.vue\n33 |        active = false\n34 |        task.abort({ code: 9, // PdfErrorCode.Cancelled in the fixed 2.14.4 producer. message: 'canceled render task' })\n35 |        if (objectUrl) URL.revokeObjectURL(objectUrl)\n   |                       ^\n36 |      })\n37 |      task.wait((blob) => {"
+    ]
+  },
+  {
+    "artifact": "green-lifecycle-unit-v2.json",
+    "success": false,
+    "numTotalTests": 35,
+    "numPassedTests": 34,
+    "numFailedTests": 1,
+    "numFailedTestSuites": 2,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "failures": [
+      {
+        "name": "FilePreview aborts a pending PDF render and ignores its late bitmap after unmount",
+        "status": "failed",
+        "messages": [
+          "AssertionError: expected \"vi.fn()\" to not be called at all, but actually been called 3 times\n\nReceived:\n\n  1st vi.fn() call:\n\n    Array [\n      Blob {},\n    ]\n\n  2nd vi.fn() call:\n\n    Array [\n      Blob {},\n    ]\n\n  3rd vi.fn() call:\n\n    Array [\n      Blob {},\n    ]\n\n\nNumber of calls: 3\n\n    at Proxy.<anonymous> (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1467:10)\n    at Proxy.<anonymous> (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1156:15)\n    at Proxy.methodWrapper (file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/chai@6.2.2/node_modules/chai/index.js:1700:25)\n    at /Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/packages/ui/src/components/ui/file-preview/FilePreview.test.ts:602:37\n    at file:///Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+        ]
+      }
+    ],
+    "suiteMessages": []
+  },
+  {
+    "artifact": "green-lifecycle-unit-v3.json",
+    "success": true,
+    "numTotalTests": 35,
+    "numPassedTests": 35,
+    "numFailedTests": 0,
+    "numFailedTestSuites": 0,
+    "numUnhandledErrors": "NOT PROVIDED",
+    "failures": [],
+    "suiteMessages": []
+  }
+]

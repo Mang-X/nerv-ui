@@ -270,3 +270,19 @@ filePreviewMotion.fade
 `/#files` 提供独立供应的本地 SVG/PNG/JPEG、损坏图片、empty/loading/error/unsupported。图片缩放范围 20%–300%，旋转每次 ±90°。`openSource` 仅发事件；宿主记录请求后，需要再点明确按钮才打开受控本地来源。预览读取 src 的 GET 是读动作，与上传写动作分开。宿主 Blob URL 更换后先卸载旧预览再 revoke，清空与离页也回收；库缩略图 URL 由库负责。
 
 playground 为 FilePreview 的 lazy 构建图启用已经锁定的 `vite-plugin-wasm@3.6.0`；没有新增版本。F01 的构建包含既有 PDFium/Office 异步 chunk，不代表真实 renderer 已验收：PDF #75、三种 Office #76 单独验证，完整文档站 #10、packed host #11 另列。
+
+## PDF 本地资源与生命周期（T06/F04）
+
+PDF 固定使用 EmbedPDF/PDFium **2.14.4 direct engine**，在主线程运行。切换来源时只接受当前来源的 ready/error；初始化失败和未激活文档的加载失败也向外触发 error。ready 表示文档加载完成，位图随后绘制，不能单凭 ready 判断某页已经可见。上/下一页、下拉选择、滚动、缩放（25%–400%）和适应宽度沿用统一工具栏。
+
+WASM 从精确已安装包原样复制到库的 file-preview/pdfium/pdfium.wasm，随 Vite 的 ?url 导入生成本地资源 URL，并保留 LICENSE 与 LICENSE.pdfium；资源身份见[证据](../../../../../../docs/evidence/t06-f04/README.md)。宿主仍启用已锁定的 vite-plugin-wasm。此路径不创建 Worker，也没有独立 worker response；不配置 pdf.js worker、cmaps 或 standard_fonts。
+
+fontFallback:null 关闭第三方回退字体请求。已有嵌入字体可正常显示；缺少字体的 PDF 不保证任意中文字符完整，不使用远程字体弥补。中文样张从 @embedpdf/fonts-sc@1.0.0 的 NotoSansHans-Regular.otf 提取已知 glyph 并转为嵌入 TrueType 子集；OFL notice 随样张保留，它只是确定内容的验收样张，不构成通用字体包。
+
+`/#files` 提供原 1129 字节单页、三页独有内容、嵌入中文、坏文件和 404 来源；同一选择器保留图片和 unsupported。可选择本地图片或 PDF，仅生成宿主 Blob URL，不上传。更换来源/离页释放 URL、viewport observer、工具栏定时器和 engine；初始化晚完成的实例同样销毁。大量 PDF 在主线程的响应性与未嵌入字体覆盖不在本票承诺范围。Office #76、父组合 #7、完整文档站 #10 和 packed #11 仍由各票验收。
+
+2.14.4 上游 Vue Viewport 的清理函数未断开 ResizeObserver；当前 Document 只接管 viewport DOM 桥接，继续使用同版本 viewport/scroll/zoom 插件能力，卸载时显式 disconnect observer、移除 scroll 监听、取消待执行 RAF 并注销 viewport。未修改已安装包或 vendor JS。
+
+F04 的 F1/F2 生命周期修复由本地来源持有 `AbortController`：换源或卸载取消 PDF GET/响应体读取；两个 await 后再次检查来源，只把当前完整 buffer 交给 PDFium。已开始的浏览器读操作若无法立即停止，晚到字节会丢弃；已入队的 native open 若晚成功，则显式 close 后才销毁 engine，不以 GC 代替释放。位图层沿用固定插件的 render 参数，每轮独立持有 task/Blob URL；换源、缩放重绘和卸载都会清理，即使 img 尚未 load，取消后的晚 bitmap 也不再创建 URL。当前显示位图在本轮有效期间保持 URL，不在 load 前提前回收。
+
+R1 原始有效 PDF 晚成功与未解码位图的 FAIL 保留，修复及真实 renderer 证据见 [F1/F2 回执](../../../../../../docs/evidence/t06-f04/f1-f2/README.md)。它们不被原正常矩阵的 PASS 覆盖。

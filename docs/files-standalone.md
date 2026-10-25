@@ -19,3 +19,9 @@
 本机 fixture 的 `window.__nervUploadFixture` 提供 `readback()`（计数、signal/attempt、闸门、操作记录和成功快照）以及 `release(stage, fail?, id?) / advance() / fail()`。诊断句柄保留到下一次文件页挂载或页面关闭，便于离页后释放已发出的 promise 并读回后台行为；不包含 File 内容，也不发送网络请求。它属于 playground 验收夹具，不是组件库公共 API。完整行为证据见 [F02](evidence/t06-f02/README.md)；#74–#76 及父组合仍单独验收。
 
 API 合同继续以对应[上传页](../frontend/apps/design-system/docs/components/desktop/file-upload.md)与[预览页](../frontend/apps/design-system/docs/components/desktop/file-preview.md)为准。早期研究“docx + image 可能 image”的描述与当前实现不符；公开回归确认当前为 office-docx，F01 只修正文档，不改变 MIME 策略。原库来源与第三方声明不变，回传旧库由后续消费者接入票决定。
+
+## F04：本地 PDF 阅读
+
+同一个预览选择器增加原样单页、三页阅读旅程、嵌入中文字体、坏 PDF 和无效地址。本地图片输入也接受 PDF，保持既有可访问标签和原文件操作。PDF 的分页、缩放、适应宽度与滚动由现有三件内部 SFC 负责；宿主只供应来源和读回事件。
+
+固定 PDFium 2.14.4 使用 direct engine，在主线程运行，无 Worker。WASM 原样随库本地资源打包，Vite 根据 base 生成 URL；fontFallback:null 禁止远程补字体，只承诺嵌入字体样张的已知 glyph。失败可换来源或切换 loading 重试；ready 为文档 loaded，真实画面另按解码位图检查。资源 SHA、来源/notice、真实浏览器与 RED/GREEN 身份见 [F04 证据](evidence/t06-f04/README.md)，接口见[预览页](../frontend/apps/design-system/docs/components/desktop/file-preview.md#pdf-本地资源与生命周期t06f04)。原迁移素材不变，本轮修复是否回传原仓由 #12–#15 消费者接入决定。

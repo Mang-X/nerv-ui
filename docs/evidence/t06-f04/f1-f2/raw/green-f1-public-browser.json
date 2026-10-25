@@ -1,0 +1,100 @@
+[
+  {
+    "name": "F1-response-unmount",
+    "before": {
+      "signalAborted": true,
+      "bytes": 1129,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      }
+    },
+    "after": {
+      "phase": "response",
+      "opened": [],
+      "destroyed": true,
+      "signalAborted": true,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      },
+      "errors": []
+    }
+  },
+  {
+    "name": "F1-response-source",
+    "before": {
+      "signalAborted": true,
+      "bytes": 1129,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      }
+    },
+    "after": {
+      "phase": "response",
+      "opened": [],
+      "destroyed": true,
+      "signalAborted": true,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      },
+      "event": "ready pdf · 已打开 0 次 · 本地预览 0",
+      "errors": []
+    }
+  },
+  {
+    "name": "F1-body-unmount",
+    "before": {
+      "signalAborted": true,
+      "bytes": 1129,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      }
+    },
+    "after": {
+      "phase": "body",
+      "opened": [],
+      "destroyed": true,
+      "signalAborted": true,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      },
+      "errors": []
+    }
+  },
+  {
+    "name": "F1-body-source",
+    "before": {
+      "signalAborted": true,
+      "bytes": 1129,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      }
+    },
+    "after": {
+      "phase": "body",
+      "opened": [],
+      "destroyed": true,
+      "signalAborted": true,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      },
+      "event": "ready pdf · 已打开 0 次 · 本地预览 0",
+      "errors": []
+    }
+  }
+]

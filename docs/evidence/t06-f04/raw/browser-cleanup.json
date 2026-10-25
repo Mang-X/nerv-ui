@@ -1,0 +1,12 @@
+{
+  "space": 35,
+  "viewport": {
+    "width": 2300,
+    "scrollWidth": 2300,
+    "scale": 1,
+    "dpr": 2
+  },
+  "nativeZoomChanged": false,
+  "finish": "resolved",
+  "kept": []
+}
