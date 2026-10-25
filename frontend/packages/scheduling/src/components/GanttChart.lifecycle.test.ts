@@ -112,7 +112,7 @@ it('reports an initialization error and cleans the failed instance', async () =>
   const w = mount(GanttChart, { props: { model, readOnly: true } })
   wrappers.push(w)
   await flushPromises()
-  expect(w.get('[role="alert"]').text()).toContain('fixture init failure')
+  expect(w.get('[role="alert"]').text()).toContain('暂时无法显示安排')
   expect(destructor).toHaveBeenCalledOnce()
 })
 it('uses the shared native renderer on a genuinely missing module and disables editing', async () => {
@@ -122,7 +122,7 @@ it('uses the shared native renderer on a genuinely missing module and disables e
   await flushPromises()
   expect(w.get('[data-slot="nv-schedule-timeline"]').text()).toContain('共读')
   await w.setProps({ readOnly: false })
-  expect(w.get('[data-testid="engine-unavailable"]').text()).toContain('编辑不可用')
+  expect(w.get('[data-testid="engine-unavailable"]').text()).toContain('当前无法编辑安排')
 })
 it('keeps same-id instances isolated when one unmounts', async () => {
   const factory = fakeFactory()
@@ -189,7 +189,7 @@ it('rejects a second singleton owner without destroying the first chart', async 
   const b = mount(GanttChart, { props: { model, readOnly: true } })
   wrappers.push(b)
   await flushPromises()
-  expect(b.get('[role="alert"]').text()).toContain('单例已占用')
+  expect(b.get('[role="alert"]').text()).toContain('暂时无法显示安排')
   expect(a.text()).toContain('共读')
   expect(factory.instances[0].destroyed).toBe(false)
 })
@@ -231,7 +231,7 @@ it('rejects a bare wall time before mounting instead of guessing browser coordin
   })
   wrappers.push(w)
   await flushPromises()
-  expect(w.get('[role="alert"]').text()).toContain('实际时刻')
+  expect(w.get('[role="alert"]').text()).toContain('时间信息有误')
   expect(factory.instances).toHaveLength(0)
 })
 it('keeps an invalid explicit timezone unresolved before vendor initialization', async () => {
@@ -249,7 +249,7 @@ it('keeps an invalid explicit timezone unresolved before vendor initialization',
   })
   wrappers.push(w)
   await flushPromises()
-  expect(w.text()).toContain('时区尚未解析')
+  expect(w.text()).toContain('尚未设置有效的工厂时区')
   expect(factory.instances).toHaveLength(0)
 })
 it('contains live invalid instants without host errors and recovers the current model', async () => {
@@ -267,7 +267,7 @@ it('contains live invalid instants without host errors and recovers the current 
     model: { ...model, tasks: [{ ...model.tasks[0], startUtc: '2026-10-25T08:00:00' }] },
   })
   await flushPromises()
-  expect(w.get('[role="alert"]').text()).toContain('实际时刻')
+  expect(w.get('[role="alert"]').text()).toContain('时间信息有误')
   expect(w.find('[data-engine="dhtmlx"]').exists()).toBe(false)
   expect(factory.instances[0].destroyed).toBe(true)
   expect(errors).toEqual([])
@@ -304,7 +304,7 @@ it.each(['plannedStartUtc', 'plannedEndUtc'] as const)(
       model: { ...baseline, tasks: [{ ...baseline.tasks[0], [field]: '2026-10-25T08:00:00' }] },
     })
     await flushPromises()
-    expect(w.get('[role="alert"]').text()).toContain('实际时刻')
+    expect(w.get('[role="alert"]').text()).toContain('时间信息有误')
     expect(w.find('[data-engine="dhtmlx"]').exists()).toBe(false)
     expect(errors).toEqual([])
     await w.setProps({ model: baseline })

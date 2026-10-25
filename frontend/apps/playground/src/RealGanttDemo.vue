@@ -130,7 +130,7 @@ function remount() {
 <template>
   <main class="min-h-screen bg-background p-5 text-foreground">
     <header class="mb-4 flex flex-wrap items-center gap-3">
-      <a href="#schedule" class="underline">原生时间安排</a><a href="#" class="underline">桌面</a>
+      <a href="#schedule" class="underline">时间安排</a><a href="#" class="underline">桌面</a>
       <h1 class="text-xl font-semibold">共读活动安排</h1>
       <NvButton variant="outline" @click="toggle">{{ isDark ? '浅色' : '深色' }}</NvButton>
       <NvButton variant="outline" @click="setTheme(theme === 'blue' ? 'neutral' : 'blue')"
@@ -155,7 +155,7 @@ function remount() {
           <option value="ready">正常</option>
           <option value="loading">加载中</option>
           <option value="empty">空计划</option>
-          <option value="unresolved">时区未解析</option>
+          <option value="unresolved">时区待确认</option>
           <option value="invalid">时刻错误</option>
         </select></label
       >

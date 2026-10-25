@@ -83,13 +83,13 @@ defineExpose({ command, engineName })
       <p v-if="error || invalidModelTime" role="alert" class="p-4 text-sm text-destructive">
         {{
           invalidModelTime
-            ? '实际时刻必须包含 Z 或显式偏移，且为有效日期；请由宿主解析后传入。'
-            : `排程引擎初始化失败：${error}`
+            ? '时间信息有误，暂时无法显示安排。请核对任务的日期、时间和时区后重试。'
+            : '暂时无法显示安排。请重新加载页面后重试；如仍无法查看，请联系管理员。'
         }}
       </p>
       <!-- 无可用引擎时的优雅占位:容器仍在 DOM 中,引擎一旦可用即可挂载。 -->
       <p v-else-if="unresolvedFactoryTime" role="status" class="p-4 text-sm text-muted-foreground">
-        工厂时区尚未解析，保留当前草案；请核对工厂配置后查看时间轴。
+        尚未设置有效的工厂时区，保留当前草案；请核对工厂时区设置后查看安排。
       </p>
       <div
         v-else-if="isEmpty"
@@ -123,9 +123,9 @@ defineExpose({ command, engineName })
       >
         <CalendarClockIcon class="h-8 w-8" aria-hidden="true" />
         <div class="space-y-1">
-          <p class="text-sm font-medium">排程引擎未加载</p>
+          <p class="text-sm font-medium">暂时无法打开排程图</p>
           <p class="text-xs">
-            编辑不可用；只读模式可查看原生时间轴。模块失败按页面缓存，重新加载页面后重试。
+            当前无法编辑安排；可切换到只读模式查看时间安排。请重新加载页面后重试。
           </p>
         </div>
       </div>

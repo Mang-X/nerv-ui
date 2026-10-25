@@ -95,3 +95,16 @@ Fresh：scheduling **119 discovery / 115 PASS / 4 retained skip / 0 FAIL**，UI8
 本票增量与 maintenance diff-check 分列通过；main 全量 **RAW exit2** 保留。本轮首导航服务未起、T3 两次 snapshot timeout、验证报告最初把 skip 状态误查为 pending（原报告保留，按实际 skipped 更正）均在外部 diagnostics 中记录。没有新增 skip/exclude/timeout，没有删除 raw 修绿。重复 ETA aria 断言 P3 延后；P02旧年/P03字号P3、#43/#51/P05–P16 不扩修。
 
 UNRUN：独立R3、CI、完整docs10、packed11、device、旧consumer13/15、后端SDK/APS、父8组合、发布/生产/商业授权。未ready/merge/close/watch/publish，#87仍 open；父8/1与PR18不变。
+
+## 2026-10-26 · R3 Standards P2 用户提示返修
+
+R3 **拒绝合并**：Standards material 1（P2）/ optional 1（继承 P3）、Spec material 0。原完整回执及两轴报告位于 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p04-review-r3/`，不覆盖此前 R1/R2 拒绝或任何 FAIL/UNKNOWN。当前返修为 scope:S，仅 P04 可见异常提示和同 owner 残留标签；同一 draft PR103，交父安排独立 R4，本席不启动审核或后继。
+
+- `SchedulingCanvas` 的时间错误、初始化错误、时区未就绪、编辑不可用提示面向使用者说明当前状态及可采取的操作；不再显示 Z/offset、宿主解析、原始异常或模块缓存。`RealGanttDemo` 将独有导航和状态标签改为“时间安排”“时区待确认”。`GanttChart`、当前实际资源组件 `ResourceSchedulerBoard`（没有名为 ResourceGantt 的活动文件）和 `ReadonlyScheduleTimeline` 的 P04 独有表面已有限核对；无额外同类残留。P01 共享 renderer 的通用 UTC/offset/备用轴提示跨 owner 延后，未改其行为；P05–P16、重复 ETA 断言 P3 均未扩修。
+- 正式测试仅更新现有文本预期，未新增文案镜像测试，未删改实例清理、非法时间拒绝、基线恢复、双实例及 singleton 隔离等行为断言。fresh 定向 `GanttChart.test.ts` + `GanttChart.lifecycle.test.ts` **30 PASS / 0 FAIL / 0 skip**，真实 reporter `unhandledCount=0`；fmt/lint、root（含 workspace typecheck）与 nested build exit 0。
+- fresh 生产浏览器：正常→时间错误→恢复、正常→时区待确认→恢复；错误时活动图消失且参考图保留，恢复后双图各3条，window/console errors 均为空。真实 HTTP503→唯一 native 只读回落→编辑不可用→恢复 transport 后同页重挂仍失败→整页 reload 恢复。截图已实际查看。初始化 throw/singleton 异常由既有定向 fake lane 验证，不冒真实 vendor throw。
+- root/nested 各6个实际 HTTP200 响应逐 body 等于各自 fresh dist。相对 R3 实际响应，主 JS hash 已变化；仅声明的可见文案和构建 chunk 引用经 AST 规范化后相同，其他10个已取样 CSS/vendor/runtime/font body 原字节相同。两份 SFC 的 script 原字节相同，engine/model/loader 未改，16工程输入及三 vendor 原字节不变。该证明支持有限功能继承，不表示新 bundle 重跑完整矩阵。
+- **继承** R3 四包1359 PASS / 4原skip、原4probe PASS、32browser PASS及生命周期闭合；本轮未重演全部功能矩阵。中间两次文本预期未更新完整造成的正式测试 FAIL、浏览器从 invalid 直接切 unresolved 后仍受既有 error 优先级影响的等待超时、T3 snapshot两次 timeout 与外部 proof 脚本文件匹配修正均保留于本轮 diagnostics，不改产品语义来修绿。
+- **UNRUN**：独立 R4、CI、完整 docs #10、packed #11、device、旧 consumer #13/#15、后端 SDK/APS、父 #8 组合、发布与商业授权。main 全量 RAW diff-check exit2 历史保留，维护范围与返修增量另列。
+
+本轮 durable：`/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p04-user-copy-fix/`。精确 head/tree/base、所有命令、branch/copy 核对、fresh/继承边界、截图、实际 body 与逐文件 SHA 回读见该目录 `handoff.md`、`string-only-proof.json`、`actual-body-equality.json`、`archive-verification.json`；仅归档本轮资料和历史指针，不复制 node_modules/cache/dist 或历史大目录。

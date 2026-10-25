@@ -55,3 +55,9 @@ pnpm -C frontend dev
 每次 mount 使用独立的厂商子容器，公开 container 与 API 保持不变。destroy 先撤销本实例交互与观察，再移出自己的厂商子容器，保留其中 DOM 直到延后 destructor 完成。新 mount 可立即复用公开 container；旧 vendor 的 clearAll、布局与 Evaluation 回调仍只访问旧子容器。公开 container 的 scope 类仅由当前 mount token 清理，旧实例不能清空新实例的图或主题。此规则同时保留 Evaluation interval 的正常建立与 onDestroy 释放，不修改 vendor 内部引用或原字节。
 
 真实同步工厂的同任务/已初始化交接及同一 engine 重挂在真实浏览器独立验证；fake async-init legacy singleton 的对象 token 保护仍使用原分区，不把两者混称厂商异步 conformance。R1/R2 拒绝与原失败保留于[证据页](./evidence/t07-p04/README.md)。
+
+## R3 用户提示返修
+
+时间信息有误时，页面提示核对任务的日期、时间和时区；时区缺失或无效时，提示核对工厂时区设置并保留当前草案。初始化异常显示重新加载页面、仍失败时联系管理员的操作提示；原始错误仍保存在 `useEngine` 的 `error` 诊断状态中，不直接拼入用户 alert。缺模块时，编辑提示切换只读查看时间安排或重新加载页面。
+
+这些文案不改变严格 UTC/offset 实际时刻、只读回落或页面级失败缓存合同；Z/offset、宿主解析与模块缓存说明继续由本页及展示模型文档承载。Evaluation、UNKNOWN 与真实水印保留。P01 共享 `NvScheduleTimeline` 的通用 UTC/offset/备用轴提示并非 P04 独有文案，本轮记录为跨 owner 延后，不修改共享 renderer 或其任务过滤语义。

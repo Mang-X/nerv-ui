@@ -65,7 +65,7 @@ describe('GanttChart', () => {
       attachTo: document.body,
     })
     await settle()
-    expect(wrapper.text()).toContain('排程引擎未加载')
+    expect(wrapper.text()).toContain('暂时无法打开排程图')
     wrapper.unmount()
   })
 
