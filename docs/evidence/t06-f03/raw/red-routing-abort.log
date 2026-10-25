@@ -1,0 +1,85 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/files/nativeTransport.test.ts (21 tests | 6 failed) 12ms
+   × rejects mode tus provider server-proxy before fetch 2ms
+   × rejects mode server-proxy provider tus before fetch 0ms
+   × rejects mode unknown provider tus before fetch 0ms
+   × rejects mode tus provider unknown before fetch 0ms
+   × rejects mode unknown provider unknown before fetch 1ms
+   × aborts before starting and between acknowledged chunks without later PATCH or success 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/files/nativeTransport.test.ts > rejects mode tus provider server-proxy before fetch
+ FAIL  src/files/nativeTransport.test.ts > rejects mode server-proxy provider tus before fetch
+ FAIL  src/files/nativeTransport.test.ts > rejects mode unknown provider tus before fetch
+ FAIL  src/files/nativeTransport.test.ts > rejects mode tus provider unknown before fetch
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ src/files/nativeTransport.test.ts:47:58
+     45|   const ctx = context(8, mode)
+     46|   ctx.session.provider = provider as 'tus'
+     47|   await expect(uploadWithNativeFileStorageTransport(ctx)).rejects.toTh…
+       |                                                          ^
+     48|   expect(fetcher).not.toHaveBeenCalled()
+     49| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/files/nativeTransport.test.ts > rejects mode unknown provider unknown before fetch
+AssertionError: expected [Function] to throw error including 'Unsupported upload mode/provider' but got 'Unsupported upload provider: unknown'
+
+Expected: "Unsupported upload mode/provider"
+Received: "Unsupported upload provider: unknown"
+
+ ❯ src/files/nativeTransport.test.ts:47:58
+     45|   const ctx = context(8, mode)
+     46|   ctx.session.provider = provider as 'tus'
+     47|   await expect(uploadWithNativeFileStorageTransport(ctx)).rejects.toTh…
+       |                                                          ^
+     48|   expect(fetcher).not.toHaveBeenCalled()
+     49| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/files/nativeTransport.test.ts > aborts before starting and between acknowledged chunks without later PATCH or success
+AssertionError: expected Error: Tus PATCH did not confirm the comp… to match object { name: 'AbortError' }
+
+- Expected
++ Received
+
+- {
+-   "name": "AbortError",
++ Error {
++   "message": "Tus PATCH did not confirm the complete chunk Upload-Offset.",
+  }
+
+ ❯ src/files/nativeTransport.test.ts:60:58
+     58|   }).mockResolvedValue(response(String(ctx.file.size)))
+     59|   vi.stubGlobal('fetch', fetcher)
+     60|   await expect(uploadWithNativeFileStorageTransport(ctx)).rejects.toMa…
+       |                                                          ^
+     61|   expect(fetcher).toHaveBeenCalledTimes(2)
+     62|   expect(ctx.onProgress).toHaveBeenCalledExactlyOnceWith(0)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 15 passed (21)
+   Start at  12:10:40
+   Duration  3.47s (transform 2.18s, setup 312ms, import 2.72s, tests 12ms, environment 304ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/files/nativeTransport.test.ts

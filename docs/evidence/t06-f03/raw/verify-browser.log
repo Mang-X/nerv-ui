@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/nerv-ui-t06-f03/verify-browser.py", line 16, in <module>
+    elif r['scenario']=='network':assert s['offset']==0 and 'Failed to fetch' in r['error'] and len([e for e in events if e['method']=='PUT'])<=2
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

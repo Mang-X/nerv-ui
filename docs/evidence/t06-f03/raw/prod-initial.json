@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "status": 200,
+  "statusText": "OK",
+  "url": "http://127.0.0.1:5204/__native-fixture/readback",
+  "headers": {
+    "cache-control": "no-store",
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "date": "Sun, 25 Oct 2026 04:23:41 GMT",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+    "vary": "Origin"
+  },
+  "body": "{\"expected\":{\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"source\":\"generated i % 251\"},\"pending\":0,\"aborted\":0,\"sessions\":[],\"events\":[]}"
+}

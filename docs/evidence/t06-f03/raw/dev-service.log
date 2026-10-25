@@ -1,0 +1,131 @@
+$ vp dev --host 127.0.0.1 --port 5203 --strictPort
+
+  VITE+ v0.2.4  
+
+  ➜  Local:   http://127.0.0.1:5203/
+12:15:28 PM [vite+] (client) page reload /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/packages/ui/src/components/ui/file-upload/nativeTransport.ts
+12:15:28 PM [vite+] nativeFixture.ts changed, restarting server...
+12:15:28 PM [vite+] (client) hmr update /src/FilesDemo.vue, /src/assets/main.css
+12:15:28 PM [vite+] (client) hmr update /src/files/NativeUploadPanel.vue, /src/assets/main.css
+12:15:28 PM [vite+] server restarted.
+12:15:43 PM [vite+] (client) Pre-transform error: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+  Plugin: vite:vue
+  File: /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground/src/files/NativeUploadPanel.vue:192:17
+  191 |          variant="outline"
+  192 |          @click="
+  193 |            upload?.resumeAll()
+      |  ^
+  194 |            upload?.retryFailed()
+  195 |          "
+12:15:44 PM [vite+] Internal server error: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+  Plugin: vite:vue
+  File: /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground/src/files/NativeUploadPanel.vue:192:17
+  191 |          variant="outline"
+  192 |          @click="
+  193 |            upload?.resumeAll()
+      |  ^
+  194 |            upload?.retryFailed()
+  195 |          "
+      at createCompilerError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1378:17)
+      at emitError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3014:5)
+      at createExp (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3007:7)
+      at Object.onattribend (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2532:29)
+      at Tokenizer.handleInAttrValue (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:959:16)
+      at Tokenizer.stateInAttrValueDoubleQuotes (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:969:10)
+      at Tokenizer.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1113:16)
+      at Object.baseParse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3053:13)
+      at Object.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-dom@3.5.39/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:910:23)
+      at Object.parse$1 [as parse] (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-sfc@3.5.39/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1824:24)
+12:16:05 PM [vite+] Internal server error: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+  Plugin: vite:vue
+  File: /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground/src/files/NativeUploadPanel.vue:192:17
+  191 |          variant="outline"
+  192 |          @click="
+  193 |            upload?.resumeAll()
+      |  ^
+  194 |            upload?.retryFailed()
+  195 |          "
+      at createCompilerError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1378:17)
+      at emitError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3014:5)
+      at createExp (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3007:7)
+      at Object.onattribend (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2532:29)
+      at Tokenizer.handleInAttrValue (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:959:16)
+      at Tokenizer.stateInAttrValueDoubleQuotes (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:969:10)
+      at Tokenizer.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1113:16)
+      at Object.baseParse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3053:13)
+      at Object.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-dom@3.5.39/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:910:23)
+      at Object.parse$1 [as parse] (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-sfc@3.5.39/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1824:24)
+12:16:20 PM [vite+] Internal server error: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+  Plugin: vite:vue
+  File: /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground/src/files/NativeUploadPanel.vue:192:17
+  191 |          variant="outline"
+  192 |          @click="
+  193 |            upload?.resumeAll()
+      |  ^
+  194 |            upload?.retryFailed()
+  195 |          "
+      at createCompilerError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1378:17)
+      at emitError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3014:5)
+      at createExp (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3007:7)
+      at Object.onattribend (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2532:29)
+      at Tokenizer.handleInAttrValue (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:959:16)
+      at Tokenizer.stateInAttrValueDoubleQuotes (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:969:10)
+      at Tokenizer.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1113:16)
+      at Object.baseParse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3053:13)
+      at Object.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-dom@3.5.39/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:910:23)
+      at Object.parse$1 [as parse] (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-sfc@3.5.39/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1824:24)
+12:16:30 PM [vite+] (client) hmr update /src/assets/main.css
+12:16:30 PM [vite+] (client) Pre-transform error: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+  Plugin: vite:vue
+  File: /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground/src/files/NativeUploadPanel.vue:196:17
+  195 |          variant="outline"
+  196 |          @click="
+  197 |            upload?.resumeAll()
+      |  ^
+  198 |            upload?.retryFailed()
+  199 |          "
+12:16:30 PM [vite+] Internal server error: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+  Plugin: vite:vue
+  File: /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground/src/files/NativeUploadPanel.vue:196:17
+  195 |          variant="outline"
+  196 |          @click="
+  197 |            upload?.resumeAll()
+      |  ^
+  198 |            upload?.retryFailed()
+  199 |          "
+      at createCompilerError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1378:17)
+      at emitError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3014:5)
+      at createExp (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3007:7)
+      at Object.onattribend (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2532:29)
+      at Tokenizer.handleInAttrValue (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:959:16)
+      at Tokenizer.stateInAttrValueDoubleQuotes (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:969:10)
+      at Tokenizer.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1113:16)
+      at Object.baseParse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3053:13)
+      at Object.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-dom@3.5.39/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:910:23)
+      at Object.parse$1 [as parse] (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-sfc@3.5.39/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1824:24)
+12:16:41 PM [vite+] Internal server error: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+  Plugin: vite:vue
+  File: /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground/src/files/NativeUploadPanel.vue:196:17
+  195 |          variant="outline"
+  196 |          @click="
+  197 |            upload?.resumeAll()
+      |  ^
+  198 |            upload?.retryFailed()
+  199 |          "
+      at createCompilerError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1378:17)
+      at emitError (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3014:5)
+      at createExp (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3007:7)
+      at Object.onattribend (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2532:29)
+      at Tokenizer.handleInAttrValue (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:959:16)
+      at Tokenizer.stateInAttrValueDoubleQuotes (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:969:10)
+      at Tokenizer.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1113:16)
+      at Object.baseParse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-core@3.5.39/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:3053:13)
+      at Object.parse (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-dom@3.5.39/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:910:23)
+      at Object.parse$1 [as parse] (/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/node_modules/.pnpm/@vue+compiler-sfc@3.5.39/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1824:24)
+12:16:48 PM [vite+] (client) hmr update /src/assets/main.css
+12:16:50 PM [vite+] (client) hmr update /src/files/NativeUploadPanel.vue, /src/assets/main.css
+12:19:33 PM [vite+] nativeFixture.ts changed, restarting server...
+12:19:33 PM [vite+] server restarted.
+/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 dev: `vp dev --host 127.0.0.1 --port 5203 --strictPort`
+Exit status 143

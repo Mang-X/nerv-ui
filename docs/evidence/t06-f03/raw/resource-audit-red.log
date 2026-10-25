@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/nerv-ui-t06-f03/resource-audit.py", line 12, in <module>
+    assert [(Path(urllib.parse.urlparse(r['src']).path).name,r['width'],r['height'])for r in a['records']if r['stage']=='image']==[('quality-evidence.svg',1200,900),('garden.png',640,480),('coast.jpg',640,480)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

@@ -1,0 +1,17 @@
+$ vp test run src/design-docs.contract.test.ts src/nvui-doc-coverage.contract.test.ts src/docs-layout.contract.test.ts --maxWorkers=1 --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t06-f03/raw/docs-ui.json
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ✓ src/nvui-doc-coverage.contract.test.ts (2 tests) 3ms
+Could not parse CSS stylesheet
+ ✓ src/design-docs.contract.test.ts (1 test) 8ms
+Could not parse CSS stylesheet
+ ✓ src/docs-layout.contract.test.ts (3 tests) 5ms
+
+ Test Files  3 passed (3)
+      Tests  6 passed (6)
+   Start at  12:22:55
+   Duration  5.04s (transform 2.38s, setup 795ms, import 3.05s, tests 16ms, environment 922ms)
+
+JSON report written to /tmp/nerv-ui-t06-f03/raw/docs-ui.json

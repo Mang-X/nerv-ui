@@ -1,0 +1,147 @@
+$ vp test run src --maxWorkers=1 --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t06-f03/raw/host.json
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ✓ src/MobileInputDemo.test.ts (14 tests) 1015ms
+Could not parse CSS stylesheet
+stderr | src/files/uploadLifecycle.test.ts > 'pause' during 'create' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'pause' during 'create' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'pause' during 'transport' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'pause' during 'transport' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'remove' during 'transport' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'remove' during 'transport' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'clear' during 'transport' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'clear' during 'transport' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'unmount' during 'transport' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'unmount' during 'transport' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'pause' during 'complete' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'pause' during 'complete' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'remove' during 'complete' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'remove' during 'complete' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'clear' during 'complete' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'clear' during 'complete' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'unmount' during 'complete' isolates late 'success' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/uploadLifecycle.test.ts > 'unmount' during 'complete' isolates late 'failure' and preserves a new selection
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+ ✓ src/files/uploadLifecycle.test.ts (48 tests) 753ms
+Could not parse CSS stylesheet
+ ✓ src/ScreenDemo.test.ts (8 tests) 264ms
+Could not parse CSS stylesheet
+stderr | src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy text/plain through picker and drop
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy image/* through picker and drop
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/publicFiles.test.ts > validates extension MIME wildcard and empty policy  through picker and drop
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/publicFiles.test.ts > renders the public default variant and releases library thumbnails on removal or clear
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/files/publicFiles.test.ts > renders the public queue variant and releases library thumbnails on removal or clear
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+ ✓ src/files/publicFiles.test.ts (34 tests) 459ms
+Could not parse CSS stylesheet
+ ✓ src/MobileListDemo.test.ts (8 tests) 190ms
+Could not parse CSS stylesheet
+ ✓ src/MobileFeedbackDemo.test.ts (8 tests) 183ms
+Could not parse CSS stylesheet
+ ✓ src/App.test.ts (9 tests) 1750ms
+   ✓ opens files directly and returns from every completed surface group  970ms
+Could not parse CSS stylesheet
+ ✓ src/MobileOverlayDemo.test.ts (7 tests) 897ms
+Could not parse CSS stylesheet
+stderr | src/FilesDemo.test.ts > keeps manual selection inert then pauses, resumes, retries and replaces receipt snapshots
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/FilesDemo.test.ts > keeps manual selection inert then pauses, resumes, retries and replaces receipt snapshots
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/FilesDemo.test.ts > adds the full 48-note collection before presenting a bounded virtual window
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/FilesDemo.test.ts > keeps native mode and known fixture selection inert until explicit upload and waits for endpoint completion receipt
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+ ✓ src/FilesDemo.test.ts (5 tests) 1810ms
+   ✓ keeps manual selection inert then pauses, resumes, retries and replaces receipt snapshots  1023ms
+   ✓ adds the full 48-note collection before presenting a bounded virtual window  407ms
+Could not parse CSS stylesheet
+ ✓ src/files/nativeTransport.test.ts (29 tests) 147ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenDataDemo.test.ts (3 tests) 223ms
+Could not parse CSS stylesheet
+ ✓ src/TouchDemo.test.ts (5 tests) 262ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenIndicatorsDemo.test.ts (3 tests) 104ms
+Could not parse CSS stylesheet
+ ✓ src/MobileDemo.test.ts (3 tests) 105ms
+Could not parse CSS stylesheet
+ ✓ src/files/memoryUpload.test.ts (2 tests) 12ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenSummaryDemo.test.ts (3 tests) 114ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenTablesDemo.test.ts (2 tests) 144ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenChartsDemo.test.ts (2 tests) 67ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenControlsDemo.test.ts (2 tests) 81ms
+Could not parse CSS stylesheet
+ ✓ src/TouchTargetsHost.test.ts (2 tests) 75ms
+Could not parse CSS stylesheet
+ ✓ src/screen/data-fixtures.test.ts (1 test) 4ms
+Could not parse CSS stylesheet
+ ✓ src/nvui-imports.contract.test.ts (50 tests) 11ms
+
+ Test Files  22 passed (22)
+      Tests  248 passed (248)
+   Start at  12:22:13
+   Duration  41.46s (transform 4.32s, setup 6.87s, import 16.13s, tests 8.67s, environment 7.82s)
+
+JSON report written to /tmp/nerv-ui-t06-f03/raw/host.json

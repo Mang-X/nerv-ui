@@ -1,0 +1,294 @@
+UROOT>
+
+ ✓ src/date-picker-props.contract.test.ts (2 tests) 281ms
+Could not parse CSS stylesheet
+ ✓ src/composables/useTheme.test.ts (5 tests) 8ms
+Could not parse CSS stylesheet
+ ✓ src/ui-primitives.contract.test.ts (8 tests) 3ms
+Could not parse CSS stylesheet
+ ✓ src/test-support/unovisTooltipTimers.test.ts (2 tests) 62ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenScaler.test.ts (3 tests) 26ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/checkbox/NvCheckbox.contract.test.ts (7 tests) 61ms
+Could not parse CSS stylesheet
+ ✓ src/lib/utils.test.ts (9 tests) 2ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/date-picker/NvDateRangePicker.test.ts (3 tests) 122ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenChrome.test.ts (3 tests) 33ms
+Could not parse CSS stylesheet
+stderr | src/components/pc/status/NvStatusBadge.test.ts > NvStatusBadge 中文状态展示 > 未知状态 new-producer-status 显示中性占位
+[NvStatusBadge] 词表缺失: new-producer-status（归一键 newproducerstatus），请补 statusMap.ts 的 STATUS_LABELS
+
+ ✓ src/components/pc/status/NvStatusBadge.test.ts (28 tests) 33ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenScrollArea.test.ts (1 test) 94ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/carousel/Carousel.test.ts (5 tests) 32ms
+Could not parse CSS stylesheet
+stderr | src/components/pc/sheet/NvSheetContent.test.ts > NvSheetContent 版式契约 > 正文子元素带水平内边距，头尾排除在外（否则双重内边距且背景缩进）
+Warning: Missing `Description` or `aria-describedby="undefined"` for DialogContent.
+
+stderr | src/components/pc/sheet/NvSheetContent.test.ts > NvSheetContent 版式契约 > 直接子元素钉住 min-w-0，超宽内容各自横向滚动而不顶破面板
+Warning: Missing `Description` or `aria-describedby="undefined"` for DialogContent.
+
+ ✓ src/components/pc/sheet/NvSheetContent.test.ts (2 tests) 91ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenSummaryDocs.test.ts (3 tests) 54ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/dialog/NvDialog.test.ts (3 tests) 170ms
+Could not parse CSS stylesheet
+ ✓ src/components/touch/TouchButton.test.ts (11 tests) 51ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenIndicatorDocs.test.ts (1 test) 45ms
+Could not parse CSS stylesheet
+ ✓ src/components/blocks/group-panel/GroupPanel.test.ts (5 tests) 63ms
+Could not parse CSS stylesheet
+ ✓ src/components/touch/QtyStepper.test.ts (3 tests) 28ms
+Could not parse CSS stylesheet
+ ✓ src/components/ui/file-preview/filePreviewKind.test.ts (5 tests) 3ms
+Could not parse CSS stylesheet
+ ✓ src/components/blocks/cascade-picker/CascadePicker.test.ts (3 tests) 41ms
+Could not parse CSS stylesheet
+ ✓ src/components/ui/date-picker/DatePicker.test.ts (2 tests) 278ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/scale.test.ts (13 tests) 4ms
+Could not parse CSS stylesheet
+ ✓ src/blocks.contract.test.ts (4 tests) 3ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/sidebar/NvSidebar.test.ts (1 test) 184ms
+Could not parse CSS stylesheet
+ ✓ src/components/ui/date-picker/DateRangePicker.test.ts (2 tests) 391ms
+Could not parse CSS stylesheet
+ ✓ src/components/touch/StationBar.test.ts (5 tests) 53ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/spinner/NvSpinner.test.ts (2 tests) 19ms
+Could not parse CSS stylesheet
+ ✓ src/components/screen/ScreenFreshness.test.ts (2 tests) 18ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/input/NvInvalidControls.test.ts (2 tests) 33ms
+Could not parse CSS stylesheet
+ ✓ src/components/blocks/app-shell-inset/AppShellInset.test.ts (1 test) 17ms
+Could not parse CSS stylesheet
+ ✓ src/components/touch/StatTile.test.ts (5 tests) 22ms
+Could not parse CSS stylesheet
+ ✓ src/components/pc/input/NvInput.test.ts (1 test) 22ms
+Could not parse CSS stylesheet
+ ✓ src/date-chart-readiness.contract.test.ts (2 tests) 1ms
+
+ Test Files  54 passed (54)
+      Tests  770 passed (770)
+   Start at  12:20:13
+   Duration  74.41s (transform 5.11s, setup 17.34s, import 24.64s, tests 6.42s, environment 20.65s)
+
+JSON report written to /tmp/nerv-ui-t06-f03/raw/ui.json
+
+EXIT 0
+$ vp test run src --exclude src/nvui-doc-coverage.contract.test.ts --maxWorkers=1 --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t06-f03/raw/mobile.json
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+ ✓ src/components/scan-bar/ScanBar.test.ts (31 tests) 143ms
+Could not parse CSS stylesheet
+ ✓ src/components/pull-refresh/PullRefresh.gestures.test.ts (12 tests) 74ms
+Could not parse CSS stylesheet
+ ✓ src/components/feedback.public.test.ts (9 tests) 244ms
+Could not parse CSS stylesheet
+ ✓ src/components/search-bar/SearchBar.test.ts (9 tests) 52ms
+Could not parse CSS stylesheet
+ ✓ src/components/swiper/Swiper.test.ts (7 tests) 41ms
+Could not parse CSS stylesheet
+ ✓ src/components/overlays.test.ts (7 tests) 348ms
+Could not parse CSS stylesheet
+ ✓ src/nvui-naming.contract.test.ts (6 tests) 3ms
+Could not parse CSS stylesheet
+ ✓ src/components/number-keyboard/NumberKeyboard.test.ts (7 tests) 86ms
+Could not parse CSS stylesheet
+ ✓ src/components/date-picker/MobileDatePicker.test.ts (5 tests) 407ms
+Could not parse CSS stylesheet
+ ✓ src/components/infinite-list/InfiniteList.test.ts (5 tests) 30ms
+Could not parse CSS stylesheet
+ ✓ src/components/switch/MobileSwitch.test.ts (3 tests) 41ms
+Could not parse CSS stylesheet
+ ✓ src/components/picker/Picker.test.ts (4 tests) 218ms
+Could not parse CSS stylesheet
+ ✓ src/components/overlay-details.test.ts (3 tests) 132ms
+Could not parse CSS stylesheet
+ ✓ src/components/slider/MobileSlider.test.ts (2 tests) 23ms
+Could not parse CSS stylesheet
+ ✓ src/components/virtual-list/VirtualList.test.ts (2 tests) 23ms
+Could not parse CSS stylesheet
+ ✓ src/components/button/MobileButton.test.ts (5 tests) 31ms
+Could not parse CSS stylesheet
+ ✓ src/components/stepper/Stepper.test.ts (2 tests) 24ms
+Could not parse CSS stylesheet
+ ✓ src/components/swipe-cell/SwipeCell.test.ts (1 test) 20ms
+Could not parse CSS stylesheet
+ ✓ src/components/bottom-sheet/BottomSheet.test.ts (3 tests) 94ms
+Could not parse CSS stylesheet
+ ✓ src/components/fab/Fab.test.ts (2 tests) 25ms
+Could not parse CSS stylesheet
+ ✓ src/components/pull-refresh/PullRefresh.test.ts (2 tests) 24ms
+Could not parse CSS stylesheet
+ ✓ src/components/list-row/ListRow.test.ts (4 tests) 16ms
+Could not parse CSS stylesheet
+ ✓ src/components/app-shell-mobile/AppShellMobile.test.ts (3 tests) 19ms
+Could not parse CSS stylesheet
+ ✓ src/components/error-retry/ErrorRetry.test.ts (4 tests) 17ms
+Could not parse CSS stylesheet
+ ✓ src/components/nav-bar/NavBar.test.ts (1 test) 21ms
+Could not parse CSS stylesheet
+ ✓ src/components/result/Result.test.ts (2 tests) 18ms
+Could not parse CSS stylesheet
+ ✓ src/components/cell/Cell.test.ts (3 tests) 15ms
+
+ Test Files  27 passed (27)
+      Tests  144 passed (144)
+   Start at  12:21:28
+   Duration  43.78s (transform 5.22s, setup 0ms, import 29.58s, tests 2.19s, environment 9.53s)
+
+JSON report written to /tmp/nerv-ui-t06-f03/raw/mobile.json
+
+EXIT 0
+d virtual window
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+stderr | src/FilesDemo.test.ts > keeps native mode and known fixture selection inert until explicit upload and waits for endpoint completion receipt
+You are trying to animate borderColor from "rgb(0, 0, 0)" to "var(--border)". "var(--border)" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+
+ ✓ src/FilesDemo.test.ts (5 tests) 1810ms
+   ✓ keeps manual selection inert then pauses, resumes, retries and replaces receipt snapshots  1023ms
+   ✓ adds the full 48-note collection before presenting a bounded virtual window  407ms
+Could not parse CSS stylesheet
+ ✓ src/files/nativeTransport.test.ts (29 tests) 147ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenDataDemo.test.ts (3 tests) 223ms
+Could not parse CSS stylesheet
+ ✓ src/TouchDemo.test.ts (5 tests) 262ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenIndicatorsDemo.test.ts (3 tests) 104ms
+Could not parse CSS stylesheet
+ ✓ src/MobileDemo.test.ts (3 tests) 105ms
+Could not parse CSS stylesheet
+ ✓ src/files/memoryUpload.test.ts (2 tests) 12ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenSummaryDemo.test.ts (3 tests) 114ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenTablesDemo.test.ts (2 tests) 144ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenChartsDemo.test.ts (2 tests) 67ms
+Could not parse CSS stylesheet
+ ✓ src/screen/ScreenControlsDemo.test.ts (2 tests) 81ms
+Could not parse CSS stylesheet
+ ✓ src/TouchTargetsHost.test.ts (2 tests) 75ms
+Could not parse CSS stylesheet
+ ✓ src/screen/data-fixtures.test.ts (1 test) 4ms
+Could not parse CSS stylesheet
+ ✓ src/nvui-imports.contract.test.ts (50 tests) 11ms
+
+ Test Files  22 passed (22)
+      Tests  248 passed (248)
+   Start at  12:22:13
+   Duration  41.46s (transform 4.32s, setup 6.87s, import 16.13s, tests 8.67s, environment 7.82s)
+
+JSON report written to /tmp/nerv-ui-t06-f03/raw/host.json
+
+EXIT 0
+$ vp test run src/design-docs.contract.test.ts src/nvui-doc-coverage.contract.test.ts src/docs-layout.contract.test.ts --maxWorkers=1 --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t06-f03/raw/docs-ui.json
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ✓ src/nvui-doc-coverage.contract.test.ts (2 tests) 3ms
+Could not parse CSS stylesheet
+ ✓ src/design-docs.contract.test.ts (1 test) 8ms
+Could not parse CSS stylesheet
+ ✓ src/docs-layout.contract.test.ts (3 tests) 5ms
+
+ Test Files  3 passed (3)
+      Tests  6 passed (6)
+   Start at  12:22:55
+   Duration  5.04s (transform 2.38s, setup 795ms, import 3.05s, tests 16ms, environment 922ms)
+
+JSON report written to /tmp/nerv-ui-t06-f03/raw/docs-ui.json
+
+EXIT 0
+$ vp test run src/nvui-doc-coverage.contract.test.ts --maxWorkers=1 --reporter=default --reporter=json --outputFile=/tmp/nerv-ui-t06-f03/raw/docs-mobile.json
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+ ✓ src/nvui-doc-coverage.contract.test.ts (2 tests) 3ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  12:23:01
+   Duration  3.99s (transform 2.59s, setup 0ms, import 3.57s, tests 3ms, environment 338ms)
+
+JSON report written to /tmp/nerv-ui-t06-f03/raw/docs-mobile.json
+
+EXIT 0
+sets/visible-index-DSN5XPnm-DVzamU6h.js                 0.90 kB │ gzip:     0.52 kB
+dist/assets/OfficePreview-CO2avZ8K.js                          9.08 kB │ gzip:     3.60 kB
+dist/assets/browser-BKLM0ThC-DUKI5lR4.js                      19.40 kB │ gzip:     4.40 kB
+dist/assets/dist-W6hRjUYM.js                                  24.03 kB │ gzip:     7.90 kB
+dist/assets/highlight-rect-DTgfiJgA-DG6n8riI.js               29.70 kB │ gzip:     8.14 kB
+dist/assets/PdfPreview-CjIOMHBW.js                            93.51 kB │ gzip:    24.40 kB
+dist/assets/pptx-dfaq2gTN.js                                 127.81 kB │ gzip:    39.87 kB
+dist/assets/xlsx-hmtvHUP6.js                                 154.24 kB │ gzip:    49.56 kB
+dist/assets/docx-faY0xKYH.js                                 208.80 kB │ gzip:    72.31 kB
+dist/assets/direct-engine-KBzggbCW.js                        303.09 kB │ gzip:    68.23 kB
+dist/assets/mathjax-Dk_JzbFj-6Ksh7OwF.js                     369.58 kB │ gzip:    95.71 kB
+dist/assets/render-worker-host-Cg60RAG_-Bhz0jz7C.js          438.18 kB │ gzip:   119.24 kB
+dist/assets/render-worker-host-BzhGwe0I-Be1o_AB0.js          482.30 kB │ gzip:   128.16 kB
+dist/assets/render-worker-host-B5esxBj--D9pA-ktz.js          568.20 kB │ gzip:   160.88 kB
+dist/assets/worker-engine-Cy7W7k4q.js                        689.48 kB │ gzip:   119.73 kB
+dist/assets/index-C5rfCsAZ.js                                838.14 kB │ gzip:   252.01 kB
+
+[31m[INVALID_ANNOTATION] [0mA comment "/* #__PURE__ */" in "../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js" contains an annotation that Rolldown cannot interpret due to the position of the comment.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m ../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js:3362:1 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m3362 │[0m /* #__PURE__ */
+ [38;5;240m     │[0m ───────┬───────  
+ [38;5;240m     │[0m        ╰───────── comment ignored due to position
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: For more information on how to use pure annotations correctly, check the documentation: https://rolldown.rs/in-depth/dead-code-elimination#pure
+[38;5;246m──────╯[0m
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[31m[INVALID_ANNOTATION] [0mA comment "/* #__PURE__ */" in "../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js" contains an annotation that Rolldown cannot interpret due to the position of the comment.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m ../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js:5780:23 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m5780 │[0m [38;5;249mc[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249md[0m[38;5;249me[0m[38;5;249mf[0m[38;5;249ma[0m[38;5;249mu[0m[38;5;249ml[0m[38;5;249mt[0m[38;5;249mS[0m[38;5;249mt[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0m[38;5;249m([0m/* #__PURE__ */[38;5;249m [0m[38;5;249m{[0m
+ [38;5;240m     │[0m                       ───────┬───────  
+ [38;5;240m     │[0m                              ╰───────── comment ignored due to position
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: For more information on how to use pure annotations correctly, check the documentation: https://rolldown.rs/in-depth/dead-code-elimination#pure
+[38;5;246m──────╯[0m
+
+✓ built in 2.17s
+
+EXIT 0
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 305ms on 7 files using 10 threads.
+
+EXIT 0
+apps/playground/src/files/nativeTransport.test.ts:144:13: warning unicorn(no-useless-spread): Using a spread operator here creates a new array unnecessarily. help: `new Uint8Array(bytes).slice` returns a new array. Spreading it into an array expression to create a new array is redundant.
+
+EXIT 0
