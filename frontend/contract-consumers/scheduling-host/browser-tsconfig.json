@@ -1,0 +1,5 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "types": ["vite/client"], "noEmit": true },
+  "include": ["main.ts", "models.ts", "consumption.ts", "../../packages/ui/src/env.d.ts"]
+}

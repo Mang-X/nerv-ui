@@ -5,7 +5,9 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./model": "./src/model/index.ts"
+    "./model": "./src/model/index.ts",
+    "./host": "./src/host.ts",
+    "./test-support": "./src/test-support.ts"
   },
   "scripts": {
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",
@@ -13,8 +15,6 @@
   },
   "dependencies": {
     "@lucide/vue": "1.24.0",
-    "@nerv-iip/api-client": "workspace:*",
-    "@nerv-iip/business-core": "workspace:*",
     "@nerv-iip/ui": "workspace:*",
     "@vueuse/core": "^14.3.0",
     "vue": "3.5.39"

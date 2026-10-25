@@ -1,0 +1,26 @@
+@layer app {
+  .host-page {
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 16px;
+    display: grid;
+    gap: 20px;
+  }
+  .host-page h1 {
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .host-page h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .host-page section {
+    display: grid;
+    gap: 14px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
