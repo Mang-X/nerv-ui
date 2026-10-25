@@ -7,6 +7,8 @@ export type LaneKpi = Pick<
 export interface ResourceLane {
   key: string
   id?: string
+  /** Explicit work-center membership; legacy resource IDs never imply this relation. */
+  workCenterId?: string
   label: string
   resourceIds: string[]
   operations: ScheduleTask[]
@@ -28,7 +30,9 @@ export function resourceProjection(
   const catalog = model.groupValues?.[dimension]
   const explicit =
     catalog !== undefined ||
-    model.tasks.some((t) => t.dimensions?.[dimension]) ||
+    model.tasks.some(
+      (t) => t.dimensions?.[dimension] || (dimension === 'workCenter' && t.workCenterId),
+    ) ||
     model.resources.some((r) => r.dimensions?.[dimension])
   const valueOf = (task: ScheduleTask) =>
     task.dimensions?.[dimension] ??
@@ -44,7 +48,15 @@ export function resourceProjection(
     const key = JSON.stringify([dimension, id ?? null])
     let lane = lanes.get(key)
     if (!lane) {
-      lane = { key, id, label, resourceIds: [], operations: [], blocks: [] }
+      lane = {
+        key,
+        id,
+        label,
+        workCenterId: explicit && dimension === 'workCenter' ? id : undefined,
+        resourceIds: [],
+        operations: [],
+        blocks: [],
+      }
       lanes.set(key, lane)
     }
     return lane

@@ -57,9 +57,9 @@ const visual = computed<NvScheduleVisualModel>(() => {
               end: block.endUtc,
               label: BLOCK_LABELS[block.blockKind!],
             })),
-            ...(dimension === 'workCenter'
+            ...(lane.workCenterId !== undefined
               ? (props.model.freezeContext?.windows ?? [])
-                  .filter((window) => window.workCenterId === lane.id)
+                  .filter((window) => window.workCenterId === lane.workCenterId)
                   .map((window, i) => ({
                     id: `freeze:${lane.key}:${i}`,
                     laneId: lane.key,

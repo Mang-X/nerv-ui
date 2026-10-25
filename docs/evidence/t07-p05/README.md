@@ -1,5 +1,7 @@
 # T07/P05：资源只读投影与分组
 
+本页保留原实施 R1 证据。随后独立 R1 以两项 Spec P2 拒绝集成；同 PR 的命名空间修复、正式 RED/GREEN 与本轮 fresh/继承边界见 [F1/F2 返修记录](f1-f2/README.md)。原 PASS 不抵消反例，父席另安排独立 R2。
+
 范围为 [#88](https://github.com/Mang-X/nerv-ui/issues/88)，单个 draft PR，仅 base `integration/nerv-ui-extraction`。起点 `655b37430c42a9262b85f05817d9ded1186bf67c` / tree `e41a517696727bb9e7cf4dc8358b7f70bbe144b0`，开工 clean。实现 head/tree、最终 clean、PR 与校验总表见本轮交接；独立 merger、合并及关闭均未由实施席执行。
 
 - 实际工作树 `/Users/mang/Project/nerv-ui-worktrees/t07-p05-resource-projection`，branch `feat/t07-p05-resource-projection`。T3 自动旧树没有实施写入；新旧 main 均未修改。

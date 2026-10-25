@@ -1198,8 +1198,8 @@ export class DhtmlxEngine implements SchedulingEngine {
           ),
         )
       }
-      if ((this.options.groupBy ?? 'workCenter') === 'workCenter' && lane.id !== undefined) {
-        const window = freezeWindow(this.model?.freezeContext, lane.id)
+      if (lane.workCenterId !== undefined) {
+        const window = freezeWindow(this.model?.freezeContext, lane.workCenterId)
         if (window)
           content.push(
             span('nv-scheduling-freeze-window', window.start, window.end, 'data-freeze-window'),
@@ -1684,11 +1684,7 @@ export class DhtmlxEngine implements SchedulingEngine {
       return lane
         ? [
             ...lane.resourceIds.map(resourceKey),
-            ...(this.options.groupBy === 'workCenter' || !this.options.groupBy
-              ? lane.id === undefined
-                ? []
-                : [workCenterKey(lane.id)]
-              : []),
+            ...(lane.workCenterId === undefined ? [] : [workCenterKey(lane.workCenterId)]),
           ]
         : []
     }

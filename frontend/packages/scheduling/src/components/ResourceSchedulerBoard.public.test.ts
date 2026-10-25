@@ -145,6 +145,172 @@ async function update(props: Record<string, unknown>) {
   await flushPromises()
   await nextTick()
 }
+function legacyResourceModel(): ScheduleModel {
+  return {
+    ...model(),
+    tasks: [],
+    resources: [{ id: 'r0', text: 'Resource r0' }],
+    groupDimensions: undefined,
+    groupValues: undefined,
+    calendars: [
+      { calendarId: 'unrelated-center', resourceIds: [], workCenterIds: ['r0'], shiftWindows: [] },
+    ],
+    freezeContext: {
+      windows: [
+        { workCenterId: 'r0', startUtc: '2026-10-25T08:30:00Z', endUtc: '2026-10-25T09:30:00Z' },
+      ],
+    },
+  }
+}
+it.each([
+  { case: 'vendor', native: false },
+  { case: 'native', native: true },
+])(
+  'public $case resource fallback never borrows same-id work-center windows and retains resource blocks',
+  async ({ native }) => {
+    const input = legacyResourceModel()
+    if (native) {
+      __setGanttModuleForTest(null)
+      wrapper = mount(ResourceSchedulerBoard, {
+        attachTo: document.body,
+        props: {
+          model: input,
+          groupBy: 'workCenter',
+          laneOrder: 'name',
+          scale: 'hour',
+          readOnly: true,
+        },
+      })
+      await flushPromises()
+      expect(wrapper.find('[data-slot="nv-schedule-timeline"]').exists()).toBe(true)
+    } else await show(input)
+    expect(wrapper!.text()).toContain('Resource r0')
+    expect(
+      wrapper!.findAll('[data-calendar-window], [data-freeze-window], [data-window-id]'),
+    ).toHaveLength(0)
+    // Compatibility still admits genuinely associated resource calendars/blocks.
+    const block = {
+      ...task('resource-block', 'r0', '', ''),
+      dimensions: undefined,
+      workCenterId: undefined,
+      blockKind: 'maintenance' as const,
+      startUtc: '2026-10-25T08:30:00Z',
+      endUtc: '2026-10-25T09:30:00Z',
+    }
+    await update({
+      model: {
+        ...input,
+        tasks: [block],
+        calendars: [{ ...input.calendars![0]!, resourceIds: ['r0'], workCenterIds: [] }],
+      },
+    })
+    expect(wrapper!.text()).toContain('Resource r0')
+    expect(wrapper!.findAll('[data-freeze-window]')).toHaveLength(0)
+    if (native) expect(wrapper!.findAll('[data-window-id]')).toHaveLength(1)
+    else {
+      expect(wrapper!.findAll('[data-calendar-window]').length).toBeGreaterThan(0)
+      expect(wrapper!.findAll('[data-block-window]').map((w) => [w.attributes('style')])).toEqual([
+        ['left:25%;width:50%'],
+      ])
+    }
+    await update({ model: { ...input, resources: [], calendars: [], freezeContext: null } })
+    expect(wrapper!.text()).not.toContain('Resource r0')
+    expect(
+      wrapper!.findAll(
+        '[data-calendar-window], [data-freeze-window], [data-block-window], [data-window-id]',
+      ),
+    ).toHaveLength(0)
+  },
+)
+it.each([
+  { case: 'vendor', native: false },
+  { case: 'native', native: true },
+])(
+  'public $case explicit work-center tasks suppress resource fallback across ordering replacement and dimensions',
+  async ({ native }) => {
+    const op = { ...task('op', 'r0', 'wc-A', ''), dimensions: undefined }
+    const input = { ...legacyResourceModel(), tasks: [op], calendars: [], freezeContext: null }
+    if (native) {
+      __setGanttModuleForTest(null)
+      wrapper = mount(ResourceSchedulerBoard, {
+        attachTo: document.body,
+        props: { model: input, groupBy: 'workCenter', laneOrder: 'name', readOnly: true },
+      })
+      await flushPromises()
+    } else await show(input)
+    const laneLabels = () =>
+      native
+        ? wrapper!
+            .findAll('.nv-schedule-timeline-lane .nv-schedule-timeline-label__name')
+            .map((w) => w.text())
+        : labels()
+    const check = (expected: string[]) => expect(laneLabels()).toEqual(expected)
+    for (const laneOrder of ['name', 'busiest', 'onlyScheduled']) {
+      await update({ laneOrder })
+      check(['wc-A'])
+      await wrapper!
+        .find(native ? '[data-task-id="op"]' : '.gantt_task_line[data-task-id="op"]')
+        .trigger('click')
+      expect(wrapper!.emitted('taskSelect')?.at(-1)).toEqual(['op'])
+    }
+    // A later task supplies the dimension for the whole input, including unassigned members.
+    await update({
+      laneOrder: 'name',
+      model: { ...input, tasks: [{ ...op, id: 'unassigned', workCenterId: undefined }, op] },
+    })
+    check(['未分配', 'wc-A'])
+    // Blocks also carry explicit membership, but never qualify for onlyScheduled.
+    await update({ model: { ...input, tasks: [{ ...op, blockKind: 'maintenance' }] } })
+    check(['wc-A'])
+    await update({ laneOrder: 'onlyScheduled' })
+    expect(wrapper!.text()).not.toContain('wc-A')
+    // Task dimensions outrank resource dimensions, which outrank the legacy workCenterId.
+    await update({
+      laneOrder: 'name',
+      model: {
+        ...input,
+        resources: [
+          {
+            ...input.resources[0]!,
+            dimensions: { workCenter: { id: 'wc-R', label: 'Resource center' } },
+          },
+        ],
+        tasks: [{ ...op, dimensions: { workCenter: { id: 'wc-T', label: 'Task center' } } }],
+      },
+    })
+    check(['Resource center', 'Task center'])
+    expect(wrapper!.text()).not.toContain('wc-A')
+    await update({
+      model: {
+        ...input,
+        resources: [
+          {
+            ...input.resources[0]!,
+            dimensions: { workCenter: { id: 'wc-R', label: 'Resource center' } },
+          },
+        ],
+      },
+    })
+    check(['Resource center'])
+    await update({
+      model: {
+        ...input,
+        tasks: [{ ...op, workCenterId: undefined }],
+        groupValues: { workCenter: [] },
+      },
+    })
+    check(['未分配'])
+    // workCenterId cannot invent membership in an unrelated dimension.
+    await update({ groupBy: 'team', model: input })
+    expect(wrapper!.text()).toContain('Resource r0')
+    expect(wrapper!.text()).not.toContain('wc-A')
+    await update({ groupBy: 'workCenter', model: { ...input, tasks: [] } })
+    expect(wrapper!.text()).toContain('Resource r0')
+    expect(wrapper!.text()).not.toContain('wc-A')
+    await update({ model: { ...input, tasks: [], resources: [] } })
+    expect(wrapper!.text()).not.toContain('Resource r0')
+  },
+)
 it('public controlled dimensions and three orders retain catalog empty and block-only lanes and stable task events after reorder', async () => {
   const input = model()
   input.tasks.push({ ...task('block', 'rb', 'Block', 'Quiet'), blockKind: 'maintenance' })
