@@ -203,6 +203,9 @@ export interface ScheduleLink {
 }
 
 export interface ScheduleResource {
+  /** Explicit membership in each display dimension, including resources without tasks.
+   * IDs are local to that dimension and are never inferred from equal resource IDs. */
+  dimensions?: Record<string, DimensionValue>
   /** resourceId / workCenterId。 */
   id: string
   /** 业务化资源名。 */

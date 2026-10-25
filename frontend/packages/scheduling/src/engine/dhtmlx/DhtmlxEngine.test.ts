@@ -95,6 +95,7 @@ describe('DhtmlxEngine (fake factory)', () => {
     engine.setData(
       cloneModel({
         ...sampleModel,
+        groupValues: { workCenter: [{ id: 'WC-ASM', label: 'Assembly' }] },
         freezeContext: {
           windows: [
             {
@@ -583,9 +584,9 @@ describe('DhtmlxEngine 时间线底纹(工作日历 / 班次 / 资源时间块)'
     expect(cellClass('order', 'a2', '2026-06-10T10:00:00.000Z')).not.toContain('nerv-cell-block')
   })
 
-  it('后端没带日历时退回通用作息假设(周末 + 夜间),不空着也不假装有日历', () => {
+  it('宿主没带日历时不推测周末或夜间', () => {
     const classes = cellClass('resource', 'lane:WC-001', '2026-06-10T22:00:00.000Z', sampleModel)
-    expect(classes).toContain('nerv-offwork')
+    expect(classes).not.toContain('nerv-offwork')
     expect(classes).not.toContain('nerv-shift-start')
   })
 })

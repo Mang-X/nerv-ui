@@ -144,6 +144,8 @@ const fmtDur = (t) => Math.round((Date.parse(t.endUtc) - Date.parse(t.startUtc))
 
 # ResourceSchedulerBoard 资源甘特图
 
+> P05 当前资源只读合同与两个中性入口见 [引擎接入与资源投影](../../../../../../docs/scheduling-renderer.md#p05资源只读投影与分组)。`ScheduleResource.dimensions` 明确空资源归属；KPI 的 0 与未知不同，无日历不猜作息。下文编辑组合保留为已有能力材料，P07/P08 与完整文档站 #10 分别验收；这里不代表其已完成。
+
 一资源一泳道,左轴维度可切换(工作中心 / 设备 / 班组 / 产线)。给计划员看机台负载、换型与过载。来自 `@nerv-iip/scheduling`,与 `GanttChart` 同模型、同引擎。
 
 拖动工单卡片可改时间(横向)或改派到另一资源泳道(纵向);时间轴由 DHTMLX 引擎渲染,无本地引擎包时画布显示占位。

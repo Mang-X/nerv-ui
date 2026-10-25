@@ -19,6 +19,12 @@ import { materialReadyLabel } from '../../model/material-risk'
 import { resolveTimeScale } from '../../model/scale'
 import { createGanttInstanceSync, releaseGanttInstance } from './loader'
 import { applySkin } from './skin'
+import {
+  resourceProjection,
+  resourceKey,
+  workCenterKey,
+  type ResourceLane,
+} from '../../model/resource-projection'
 
 // Last ownership token survives retirement, so a late init can clean its own
 // object only until a later mount has taken over that same object.
@@ -96,68 +102,60 @@ interface LaneTask extends GridTask {
 
 // 左侧列1:资源名(+瓶颈标)。列头随所选维度变(工作中心/设备/班组/产线)。
 function laneNameCell(t: LaneTask): string {
-  const name = t.nerv?.text ?? ''
-  const over = (t.kpi?.utilization ?? 0) > 1
-  return `<div class="nerv-lane-id"><span class="nerv-lane-name">${name}</span>${over ? '<span class="nerv-lane-tag">瓶颈</span>' : ''}</div>`
+  const name = escapeHtml(t.nerv?.text ?? '')
+  const over =
+    typeof t.kpi?.utilization === 'number' &&
+    Number.isFinite(t.kpi.utilization) &&
+    t.kpi.utilization > 1
+  return `<div class="nerv-lane-id"><span class="nerv-lane-name">${name}</span>${over ? '<span class="nerv-lane-tag">超出容量</span>' : ''}</div>`
 }
 export type LaneKpiKey = 'utilization' | 'oee' | 'changeoverCount' | 'materialRisk'
 export type LaneKpiVisibility = Record<LaneKpiKey, boolean>
 
-/**
- * 某个指标是否值得上屏:**全部泳道都取不到值、或全部泳道都是 0** 就不上屏(#1399 M8)。
- *
- * 「OEE 0%」比没有这一列更伤——领导看见 0% 会问"设备是不是停了",而真相只是读面没透传
- * 这个字段(根因 C)。一个恒 0 的指标不是"当前表现差",是"我们没这个数",屏幕不该混淆二者。
- *
- * 注意判定的是**跨全部泳道**而不是逐泳道:某条产线今天切换次数确实是 0 是有意义的读数,
- * 只有当整列都没有非零值时才说明这个字段根本没有数据供给。
- */
+/** A supplied finite zero is a known value. Missing/non-finite values remain unknown. */
 export function resolveLaneKpiVisibility(lanes: ReadonlyArray<LaneTask['kpi']>): LaneKpiVisibility {
-  const anyNonZero = (key: LaneKpiKey) =>
+  const anyKnown = (key: LaneKpiKey) =>
     lanes.some((k) => {
       const v = k?.[key]
-      return typeof v === 'number' && Number.isFinite(v) && v !== 0
+      return typeof v === 'number' && Number.isFinite(v)
     })
   return {
-    utilization: anyNonZero('utilization'),
-    oee: anyNonZero('oee'),
-    changeoverCount: anyNonZero('changeoverCount'),
-    materialRisk: anyNonZero('materialRisk'),
+    utilization: anyKnown('utilization'),
+    oee: anyKnown('oee'),
+    changeoverCount: anyKnown('changeoverCount'),
+    materialRisk: anyKnown('materialRisk'),
   }
 }
 
-/** 四个指标全无数据 → 整列「产能指标」都不该出现,把宽度还给泳道名。 */
+/** 四个指标全部未知 → 整列「产能指标」都不该出现,把宽度还给泳道名。 */
 export function hasAnyLaneKpi(visibility: LaneKpiVisibility): boolean {
   return Object.values(visibility).some(Boolean)
 }
 
-// 左侧列2:产能指标(利用率 / OEE / 切换 / 待料)。恒 0 / 无数据的指标整项不渲染。
+// A visible metric uses an explicit dash for each unknown lane; zero is never a fallback.
 function makeLaneKpiCell(getVisibility: () => LaneKpiVisibility) {
   return (t: LaneTask): string => {
-    const k = t.kpi
-    if (!k) return ''
-    const show = getVisibility()
-    const cells: string[] = []
-    if (show.utilization) {
-      const util = Math.round((k.utilization ?? 0) * 100)
-      cells.push(
-        `<span class="nerv-lane-kpi"><i>利用率</i><b class="${util > 100 ? 'nerv-over' : ''}">${util}%</b></span>`,
-      )
+    const labels: Record<LaneKpiKey, string> = {
+      utilization: '利用率',
+      oee: 'OEE',
+      changeoverCount: '切换',
+      materialRisk: '待料',
     }
-    if (show.oee) {
-      cells.push(
-        `<span class="nerv-lane-kpi"><i>OEE</i><b>${Math.round((k.oee ?? 0) * 100)}%</b></span>`,
-      )
-    }
-    if (show.changeoverCount) {
-      cells.push(`<span class="nerv-lane-kpi"><i>切换</i><b>${k.changeoverCount ?? 0}</b></span>`)
-    }
-    if (show.materialRisk) {
-      const risk = k.materialRisk ?? 0
-      cells.push(
-        `<span class="nerv-lane-kpi"><i>待料</i><b class="${risk ? 'nerv-warn' : ''}">${risk}</b></span>`,
-      )
-    }
+    const cells = (Object.keys(labels) as LaneKpiKey[])
+      .filter((key) => getVisibility()[key])
+      .map((key) => {
+        const value = t.kpi?.[key]
+        const known = typeof value === 'number' && Number.isFinite(value)
+        const percentage = key === 'utilization' || key === 'oee'
+        const text = known ? (percentage ? `${Math.round(value * 100)}%` : String(value)) : '—'
+        const tone =
+          known && key === 'utilization' && value > 1
+            ? 'nerv-over'
+            : known && key === 'materialRisk' && value > 0
+              ? 'nerv-warn'
+              : ''
+        return `<span class="nerv-lane-kpi"><i>${labels[key]}</i><b class="${tone}">${text}</b></span>`
+      })
     return cells.length ? `<div class="nerv-lane-kpis">${cells.join('')}</div>` : ''
   }
 }
@@ -364,13 +362,12 @@ export function cardHtml(t: ScheduleTask): string {
 const WEEKDAY = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
 const fmtDayLong = (d: Date) => `${d.getMonth() + 1}月${d.getDate()}日 ${WEEKDAY[d.getDay()]}`
 const fmtHour = (d: Date) => `${String(d.getHours()).padStart(2, '0')}:00`
-// 班次带(资源排产板):8h 三班制 — 夜班 00-08 / 早班 08-16 / 中班 16-24。
+// Neutral eight-hour axis partitions; actual shifts come only from input calendars.
 const shiftLabel = (d: Date) => {
   const h = d.getHours()
-  return h < 8 ? '夜班 00–08' : h < 16 ? '早班 08–16' : '中班 16–24'
+  return h < 8 ? '00:00–08:00' : h < 16 ? '08:00–16:00' : '16:00–24:00'
 }
-const shiftCss = (d: Date) =>
-  d.getHours() < 8 || d.getHours() >= 16 ? 'nerv-shift nerv-shift-dim' : 'nerv-shift'
+const shiftCss = () => 'nerv-shift'
 const fmtDayShort = (d: Date) => `${d.getDate()} ${WEEKDAY[d.getDay()].slice(1)}`
 const fmtMonth = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月`
 
@@ -495,6 +492,7 @@ export class DhtmlxEngine implements SchedulingEngine {
    * 泳道产能指标的上屏白名单。mount 时列定义闭包引用它,setData 时按真实数据重算——
    * 所以初值必须是"全不显示":列先建好、数据还没到,这一瞬间若默认全显示就会闪一排 0%。
    */
+  private resourceLanes = new Map<string, ResourceLane>()
   private kpiVisibility: LaneKpiVisibility = {
     utilization: false,
     oee: false,
@@ -745,10 +743,16 @@ export class DhtmlxEngine implements SchedulingEngine {
       throw new Error('实际时刻必须包含 Z 或显式偏移，且为有效日期')
     }
     this.model = model
+    if (this.selectedTaskId && !model.tasks.some((task) => task.id === this.selectedTaskId))
+      this.selectedTaskId = undefined
     const g = this.gantt
     if (!g) return
     // model 已知后再应用自适应刻度(configure 早于 setData,那时 horizon 未知)。
     g.config.scales = this.scalesFor()
+    if (this.options.view === 'resource') {
+      g.config.start_date = new Date(model.horizon.startUtc)
+      g.config.end_date = new Date(model.horizon.endUtc)
+    }
     g.clearAll()
     this.shownLinkIds = [] // clearAll 已清掉连线
     // toGanttData 顺带算出本批数据里哪些泳道指标真有值(见 kpiVisibility)。列定义要在 parse
@@ -970,7 +974,7 @@ export class DhtmlxEngine implements SchedulingEngine {
                     const hour = Number(
                       factoryTimeInput(date.toISOString(), timezone).slice(11, 13),
                     )
-                    return `${timezone} · ${hour < 8 ? '夜班 00–08' : hour < 16 ? '早班 08–16' : '中班 16–24'}`
+                    return `${timezone} · ${hour < 8 ? '00:00–08:00' : hour < 16 ? '08:00–16:00' : '16:00–24:00'}`
                   }
                 : calendar.format,
           }
@@ -1129,47 +1133,97 @@ export class DhtmlxEngine implements SchedulingEngine {
       const lock = t.locked ? `<span class="nerv-card-lock">${LOCK_SVG}</span>` : ''
       return `<span class="nerv-bar-label">${escapeHtml(task.text ?? '')}${t.downtimeRisk ? ' · 停机风险' : ''}${lock}</span>`
     }
+    // 时间线底纹仅呈现输入的日历、时间块和冻结窗口。
     // 时间线底纹讲三件事:
     // ① 工作 / 非工作——有后端工作日历时按日历判定(休息日、班次之外都算非工作),
-    //    没有日历时才退回「周末 + 20:00–08:00 夜间」的通用作息假设;
+    //    没有适用日历时保持未知，不猜测周末或夜间;
     // ② 班次边界——单元格正好落在某个班次起点上时加一条竖线(nerv-shift-start);
     // ③ 资源时间块(维护/停机/换线/换型)——该行对应的资源在此时段有块 → 叠加斜纹底纹。
     // 三者都走单元格,恒在卡片之下、与格子融为一体、绝不覆盖卡片。
     // 单元格内容天然在任务条下层，按真实格线裁剪，不将稳定窗口当不可用时间块。
     inst.templates.timeline_cell_content = (task: { id?: string | number }, date: Date) => {
-      if (
-        this.options.view !== 'resource' ||
-        (this.options.groupBy ?? 'workCenter') !== 'workCenter'
-      )
-        return ''
-      const workCenterId = String(task.id ?? '').replace(/^lane:/, '')
-      const window = freezeWindow(this.model?.freezeContext, workCenterId)
-      if (!window) return ''
+      if (this.options.view !== 'resource') return ''
+      const lane = this.resourceLanes.get(String(task.id ?? ''))
+      if (!lane) return ''
       const scales = inst.config.scales as Array<{ unit: string; step: number }>
       const scale = scales[scales.length - 1]!
-      const end = inst.date!.add(date, scale.step, scale.unit)
-      const projected = projectFreezeWindow(window, date.getTime(), end.getTime())
-      if (!projected) return ''
-      return `<span class="nv-scheduling-freeze-window" data-freeze-window style="left:${projected.left}%;width:${projected.width}%" aria-hidden="true"></span>`
+      const start = date.getTime()
+      const end = inst.date!.add(date, scale.step, scale.unit).getTime()
+      const span = (className: string, a: number, b: number, attributes = '') => {
+        const projected = projectFreezeWindow(
+          {
+            start: a,
+            end: b,
+            startUtc: new Date(a).toISOString(),
+            endUtc: new Date(b).toISOString(),
+          },
+          start,
+          end,
+        )
+        return projected
+          ? `<span class="nv-scheduling-interval ${className}" ${attributes} style="left:${projected.left}%;width:${projected.width}%" aria-hidden="true"></span>`
+          : ''
+      }
+      const content: string[] = []
+      const windows = this.calendarFor(this.lanesOf(task.id))
+      if (windows) {
+        let cursor = start
+        for (const window of [...windows].sort((a, b) => a.start - b.start)) {
+          if (window.end <= start || window.start >= end) continue
+          if (window.start > cursor)
+            content.push(
+              span(
+                'nv-scheduling-offwork',
+                cursor,
+                Math.min(window.start, end),
+                'data-calendar-window',
+              ),
+            )
+          cursor = Math.max(cursor, Math.min(window.end, end))
+          if (window.start >= start && window.start < end)
+            content.push(
+              `<span class="nv-scheduling-shift-boundary" style="left:${((window.start - start) / (end - start)) * 100}%" aria-hidden="true"></span>`,
+            )
+        }
+        if (cursor < end)
+          content.push(span('nv-scheduling-offwork', cursor, end, 'data-calendar-window'))
+      }
+      for (const block of this.blockCells.get(lane.key) ?? []) {
+        content.push(
+          span(
+            `nv-scheduling-block-window nerv-cell-block-${block.kind}`,
+            block.start,
+            block.end,
+            'data-block-window',
+          ),
+        )
+      }
+      if ((this.options.groupBy ?? 'workCenter') === 'workCenter' && lane.id !== undefined) {
+        const window = freezeWindow(this.model?.freezeContext, lane.id)
+        if (window)
+          content.push(
+            span('nv-scheduling-freeze-window', window.start, window.end, 'data-freeze-window'),
+          )
+      }
+      return content.join('')
     }
 
     inst.templates.timeline_cell_class = (task: { id?: string | number }, date: Date) => {
       const classes: string[] = []
       const ts = date.getTime()
       const lanes = this.lanesOf(task?.id)
-      if (this.workingWindows.size) {
-        if (!this.isWorkingAt(lanes, ts)) {
-          const day = date.getDay()
-          classes.push(day === 0 || day === 6 ? 'nerv-weekend' : 'nerv-offwork')
-        }
-        if (this.shiftStarts.has(ts)) classes.push('nerv-shift-start')
-      } else {
-        const day = date.getDay()
-        const h = date.getHours()
-        if (day === 0 || day === 6 || h < 8 || h >= 20) classes.push('nerv-offwork')
+      const windows = this.calendarFor(lanes)
+      if (windows) {
+        if (!windows.some((window) => ts >= window.start && ts < window.end))
+          classes.push('nerv-offwork')
+        if (windows.some((window) => window.start === ts)) classes.push('nerv-shift-start')
       }
       if (this.blockCells.size) {
-        for (const lane of lanes) {
+        const blockKeys =
+          this.options.view === 'resource'
+            ? [this.resourceLanes.get(String(task.id))?.key ?? '']
+            : lanes
+        for (const lane of blockKeys) {
           const wins = this.blockCells.get(lane)
           if (!wins) continue
           const hit = wins.find((w) => ts >= w.start && ts < w.end)
@@ -1192,6 +1246,7 @@ export class DhtmlxEngine implements SchedulingEngine {
           return false
         }
         const taskId = String(id)
+        if (this.resourceLanes.has(taskId)) return false
         this.selectedTaskId = taskId
         this.markSelectedBar(taskId)
         this.showOrderLinks(taskId)
@@ -1542,7 +1597,7 @@ export class DhtmlxEngine implements SchedulingEngine {
     if (this.options.view === 'resource' && task?.nerv && mode !== 'resize') {
       const lane = this.laneAtPointer(inst)
       if (lane && String(lane.id) !== String(task.parent)) {
-        const laneResId = String(lane.id).slice(5)
+        const laneResId = this.resourceLanes.get(String(lane.id))?.id ?? ''
         const dim = this.options.groupBy || 'workCenter'
         task.nerv.dimensions = {
           ...(task.nerv.dimensions ?? {}),
@@ -1558,7 +1613,9 @@ export class DhtmlxEngine implements SchedulingEngine {
       }
     }
     const parent = task?.parent != null ? String(task.parent) : undefined
-    const reassignedResource = parent?.startsWith('lane:') ? parent.slice(5) : task?.$resource
+    const reassignedResource = parent
+      ? (this.resourceLanes.get(parent)?.id ?? task?.$resource)
+      : task?.$resource
     const kind =
       mode === 'resize'
         ? 'resize'
@@ -1622,40 +1679,51 @@ export class DhtmlxEngine implements SchedulingEngine {
   private lanesOf(rowId?: string | number): string[] {
     if (typeof rowId !== 'string' && typeof rowId !== 'number') return []
     const id = String(rowId)
-    if (this.options.view === 'resource') return [id.replace(/^lane:/, '')]
+    if (this.options.view === 'resource') {
+      const lane = this.resourceLanes.get(id)
+      return lane
+        ? [
+            ...lane.resourceIds.map(resourceKey),
+            ...(this.options.groupBy === 'workCenter' || !this.options.groupBy
+              ? lane.id === undefined
+                ? []
+                : [workCenterKey(lane.id)]
+              : []),
+          ]
+        : []
+    }
     return this.taskLane.get(id) ?? []
   }
 
-  private isWorkingAt(lanes: string[], ts: number): boolean {
-    for (const lane of lanes) {
-      const wins = this.workingWindows.get(lane)
-      if (wins) return wins.some((w) => ts >= w.start && ts < w.end)
-    }
-    // 该行不在任何一份日历的适用范围内(或行本身没有资源归属):用全局并集判定,
-    // 这样至少休息日/夜间仍然是灰的,而不是整片当成工作时间。
-    const all = this.workingWindows.get('__all__')
-    return all ? all.some((w) => ts >= w.start && ts < w.end) : true
+  private calendarFor(keys: string[]): { start: number; end: number }[] | undefined {
+    const workCenters = keys.filter((key) => key.startsWith('["workCenter",'))
+    const direct = workCenters.flatMap((key) => this.workingWindows.get(key) ?? [])
+    if (workCenters.some((key) => this.workingWindows.has(key))) return direct
+    const resources = keys.filter((key) => key.startsWith('["resource",'))
+    if (!resources.length || resources.some((key) => !this.workingWindows.has(key)))
+      return undefined
+    return resources.flatMap((key) => this.workingWindows.get(key)!)
   }
 
-  /** 从模型的工作日历建索引:每个资源/工作中心一份工作窗口表 + 全局并集 + 班次起点集合。 */
+  /** 从模型的工作日历建索引:资源与工作中心分开索引，不向未知行外推日历。 */
   private buildCalendarIndex(model: ScheduleModel): void {
     this.workingWindows = new Map()
     this.shiftStarts = new Set()
     const calendars = model.calendars ?? []
     if (!calendars.length) return
 
-    const all: { start: number; end: number }[] = []
     for (const calendar of calendars) {
       const windows = calendar.shiftWindows
         .map((w) => ({ start: Date.parse(w.startUtc), end: Date.parse(w.endUtc) }))
         .filter((w) => Number.isFinite(w.start) && Number.isFinite(w.end) && w.end > w.start)
         .sort((a, b) => a.start - b.start)
-      if (!windows.length) continue
       for (const w of windows) {
-        all.push(w)
         this.shiftStarts.add(w.start)
       }
-      for (const key of [...calendar.resourceIds, ...calendar.workCenterIds]) {
+      for (const key of [
+        ...calendar.resourceIds.map(resourceKey),
+        ...calendar.workCenterIds.map(workCenterKey),
+      ]) {
         if (!key) continue
         const existing = this.workingWindows.get(key)
         this.workingWindows.set(
@@ -1664,11 +1732,6 @@ export class DhtmlxEngine implements SchedulingEngine {
         )
       }
     }
-    if (all.length)
-      this.workingWindows.set(
-        '__all__',
-        all.sort((a, b) => a.start - b.start),
-      )
   }
 
   /** 时间块索引:泳道键(资源 + 工作中心都登记)→ 时段窗口,供单元格底纹查表。 */
@@ -1678,7 +1741,11 @@ export class DhtmlxEngine implements SchedulingEngine {
       const start = Date.parse(b.startUtc)
       const end = Date.parse(b.endUtc)
       if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) continue
-      const keys = new Set([laneOf(b), b.resourceId ?? '', b.workCenterId ?? ''])
+      const keys = new Set([
+        laneOf(b),
+        ...(b.resourceId ? [resourceKey(b.resourceId)] : []),
+        ...(b.workCenterId ? [workCenterKey(b.workCenterId)] : []),
+      ])
       for (const key of keys) {
         if (!key) continue
         const arr = this.blockCells.get(key) ?? []
@@ -1698,143 +1765,54 @@ export class DhtmlxEngine implements SchedulingEngine {
         .filter((t) => !t.blockKind)
         .map((t) => [
           t.id,
-          [t.resourceId, t.workCenterId, t.dimensions?.workCenter?.id].filter(Boolean) as string[],
+          [
+            ...(t.resourceId ? [resourceKey(t.resourceId)] : []),
+            ...((t.dimensions?.workCenter?.id ?? t.workCenterId)
+              ? [workCenterKey((t.dimensions?.workCenter?.id ?? t.workCenterId)!)]
+              : []),
+          ],
         ]),
     )
 
+    this.resourceLanes = new Map()
     if (this.options.view === 'resource') {
-      // 一资源(所选维度)一泳道:分组行用 split task,同组工序铺在它那一行。里程碑不入资源板。
-      const dim = this.options.groupBy || 'workCenter'
-      const ops = model.tasks.filter(
-        (t) => t.type === 'operation' && !t.isMilestone && !t.blockKind,
-      )
-      // 资源时间块不作任务条:改为按泳道+时段给时间线「单元格」上底纹(与非工作日历同一实现),
-      // 真正与格子融为一体、恒在卡片之下、绝不覆盖。见 timeline_cell_class + this.blockCells。
-      const blocks = model.tasks.filter((t) => !!t.blockKind)
-      const resById = new Map(model.resources.map((r) => [r.id, r]))
-      const loadByResource = new Map<
-        string,
-        { assigned: number; available: number; utilization: number }
-      >()
-      for (const load of model.loads) {
-        const total = loadByResource.get(load.resourceId) ?? {
-          assigned: 0,
-          available: 0,
-          utilization: 0,
-        }
-        total.assigned += load.assignedMinutes
-        total.available += load.availableMinutes
-        total.utilization = Math.max(total.utilization, load.utilization)
-        loadByResource.set(load.resourceId, total)
-      }
-      const groups = new Map<string, string>()
-      const laneOf = (t: ScheduleTask) => t.dimensions?.[dim]?.id ?? t.resourceId ?? '__none__'
-      const resourcesByLane = new Map<string, Set<string>>()
-      const configuredLanes = model.groupValues?.[dim] ?? []
-      for (const lane of configuredLanes) groups.set(lane.id, lane.label)
-      // 用资源播种泳道,保证空泳道常驻——拖走最后一个工序时该行不消失。但仅当资源本身就是
-      // 该维度的成员时才播种:若工序携带的维度 id(如 WC-*)与资源 id(如设备 DEV-*)分属两个
-      // 空间,播种全部资源会生出一批永远为空的设备泳道垫在最上方,把真正有工序的泳道挤出首屏。
-      if (dim === 'workCenter') {
-        const dimIds = new Set<string>()
-        for (const t of ops) {
-          const id = t.dimensions?.[dim]?.id
-          if (id) dimIds.add(id)
-        }
-        for (const r of model.resources) {
-          if (dimIds.size > 0 && !dimIds.has(r.id)) continue
-          if (!groups.has(r.id)) groups.set(r.id, r.text)
-        }
-      }
-      for (const t of ops) {
-        const id = laneOf(t)
-        // 工序携带的维度标签(如「切割中心」)优先于资源原始名(如「激光切割-01」)。
-        groups.set(id, t.dimensions?.[dim]?.label ?? t.resourceId ?? groups.get(id) ?? '未分配')
-        if (t.resourceId) {
-          const resources = resourcesByLane.get(id) ?? new Set<string>()
-          resources.add(t.resourceId)
-          resourcesByLane.set(id, resources)
-        }
-      }
-      // 时间块:按当前维度算出所属泳道 + 时段窗口,供 timeline_cell_class 给单元格上底纹;
-      // 同时播种泳道(块所在资源即使没工序,泳道也要在)。
-      this.buildBlockIndex(blocks, laneOf)
-      for (const b of blocks) {
-        const id = laneOf(b)
-        if (!groups.has(id)) groups.set(id, b.dimensions?.[dim]?.label ?? b.resourceId ?? '未分配')
-      }
-      // 泳道按资源固定顺序排(改派后不重排整板);非资源维度保持出现顺序(稳定排序)。
-      const resOrder = new Map(model.resources.map((r, i) => [r.id, i]))
-      const groupOrder = new Map(configuredLanes.map((lane, index) => [lane.id, index]))
-      // 每条泳道上有多少工序——排序与「仅有排程」共用，只数一遍。
-      const opCountByLane = new Map<string, number>()
-      for (const t of ops) {
-        const id = laneOf(t)
-        opCountByLane.set(id, (opCountByLane.get(id) ?? 0) + 1)
-      }
-      const laneOrder = this.options.laneOrder ?? 'busiest'
-      const laneEntries =
-        laneOrder === 'onlyScheduled'
-          ? [...groups.entries()].filter(([id]) => (opCountByLane.get(id) ?? 0) > 0)
-          : [...groups.entries()]
-      const sortedGroups = laneEntries.sort((a, b) => {
-        if (laneOrder === 'name') return a[1].localeCompare(b[1], 'zh-Hans-CN')
-        if (laneOrder === 'busiest') {
-          // 忙的排上面：按车间/产线分组时名录里的空泳道会挤在首屏，演示第一眼像坏了
-          // （第五轮走查实测：首屏两条空产线，滚下去才见到有活的那条）。
-          const diff = (opCountByLane.get(b[0]) ?? 0) - (opCountByLane.get(a[0]) ?? 0)
-          if (diff !== 0) return diff
-          // 同样忙（含都为空）时回落名录顺序，避免每次渲染抖动。
-        }
-        return (
-          (groupOrder.get(a[0]) ?? resOrder.get(a[0]) ?? Number.MAX_SAFE_INTEGER) -
-          (groupOrder.get(b[0]) ?? resOrder.get(b[0]) ?? Number.MAX_SAFE_INTEGER)
-        )
-      })
-      // 本批泳道指标先攒起来,循环末尾一次性判定哪些指标真有数据(#1399 M8)。
-      const laneKpis: Array<LaneTask['kpi']> = []
-      for (const [id, label] of sortedGroups) {
-        const res = resById.get(id)
-        const resourceIds = resourcesByLane.get(id) ?? new Set([id])
-        const load = [...resourceIds].reduce<
-          { assigned: number; available: number; utilization: number } | undefined
-        >((total, resourceId) => {
-          const next = loadByResource.get(resourceId)
-          if (!next) return total
-          return {
-            assigned: (total?.assigned ?? 0) + next.assigned,
-            available: (total?.available ?? 0) + next.available,
-            utilization: Math.max(total?.utilization ?? 0, next.utilization),
-          }
-        }, undefined)
-        const utilization = load
-          ? load.available > 0
-            ? load.assigned / load.available
-            : load.utilization
-          : undefined
-        const kpi =
-          res || utilization != null
-            ? {
-                utilization: res?.utilization ?? utilization,
-                oee: res?.oee,
-                changeoverCount: res?.changeoverCount,
-                materialRisk: res?.materialRisk,
-              }
-            : undefined
-        laneKpis.push(kpi)
+      const projection = resourceProjection(model, this.options.groupBy, this.options.laneOrder)
+      const occupiedIds = new Set(model.tasks.map((task) => task.id))
+      const parentIds = new Map<string, string>()
+      this.blockCells = new Map()
+      for (const lane of projection.lanes) {
+        // Keep legacy row IDs where possible, while task IDs always retain their exact public identity.
+        let rowId = `lane:${lane.id ?? '__none__'}`
+        while (occupiedIds.has(rowId)) rowId = `lane:${rowId}`
+        occupiedIds.add(rowId)
+        this.resourceLanes.set(rowId, lane)
+        parentIds.set(lane.key, rowId)
+        const windows = lane.blocks
+          .map((block) => ({
+            start: Date.parse(block.startUtc),
+            end: Date.parse(block.endUtc),
+            kind: block.blockKind!,
+          }))
+          .filter(
+            (window) =>
+              Number.isFinite(window.start) &&
+              Number.isFinite(window.end) &&
+              window.end > window.start,
+          )
+        this.blockCells.set(lane.key, windows)
         data.push({
-          id: `lane:${id}`,
-          text: label,
+          id: rowId,
+          text: lane.label,
           type: 'project',
           render: 'split',
           open: true,
-          kpi,
+          kpi: lane.kpi,
           nerv: {
             type: 'order',
-            orderId: id,
+            orderId: lane.id ?? '',
             operationId: '',
             operationSequence: 0,
-            text: label,
+            text: lane.label,
             startUtc: '',
             endUtc: '',
             locked: false,
@@ -1842,9 +1820,10 @@ export class DhtmlxEngine implements SchedulingEngine {
           },
         })
       }
-      this.kpiVisibility = resolveLaneKpiVisibility(laneKpis)
-      for (const t of ops) data.push(this.toGanttTask(t, `lane:${laneOf(t)}`, toDate))
-      // 工单内线仍按选中展示；装配跨工单前置常显。
+      this.kpiVisibility = resolveLaneKpiVisibility(projection.lanes.map((lane) => lane.kpi))
+      const ops = projection.lanes.flatMap((lane) => lane.operations)
+      for (const task of ops)
+        data.push(this.toGanttTask(task, parentIds.get(projection.keyOf(task))!, toDate))
       const taskById = new Map(ops.map((task) => [task.id, task]))
       const links = model.links
         .filter((link) => {
@@ -1860,7 +1839,12 @@ export class DhtmlxEngine implements SchedulingEngine {
     // 给该工序行的单元格上底纹(见 timeline_cell_class + taskLane)。
     this.buildBlockIndex(
       model.tasks.filter((t) => !!t.blockKind),
-      (t) => t.workCenterId ?? t.resourceId ?? '__none__',
+      (t) =>
+        t.workCenterId
+          ? workCenterKey(t.workCenterId)
+          : t.resourceId
+            ? resourceKey(t.resourceId)
+            : '',
     )
     for (const t of model.tasks) {
       if (t.blockKind) continue // 资源时间块不作任务条
