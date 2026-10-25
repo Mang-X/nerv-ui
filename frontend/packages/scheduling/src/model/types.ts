@@ -1,9 +1,33 @@
-import type {
-  ScheduleAssignmentContract,
-  SchedulePlanFreezeContextContract,
-  BusinessConsoleMesWorkOrderItem,
-} from '@nerv-iip/api-client'
-// 引擎无关的排程数据模型。所有字段为引擎可消费的归一化形态,不含任何引擎私有结构。
+import type { NvScheduleVisualModel, NvScheduleFact } from '@nerv-iip/ui/schedule-model'
+
+/** P01 renderer's exact public contract, independent of SDK/engine fields. */
+export type ScheduleVisualModel = NvScheduleVisualModel
+export type ScheduleFactRow = NvScheduleFact
+
+/** Host-formatted value; missing authority never becomes zero or an empty association. */
+export type ScheduleFact =
+  | { label: string; state: 'known'; value: string | number }
+  | { label: string; state: 'unknown' | 'forbidden' | 'unavailable'; text?: string }
+
+export interface ScheduleTaskFacts {
+  facts?: readonly ScheduleFactRow[]
+}
+export interface ScheduleFactInput {
+  taskId: string
+  facts?: readonly ScheduleFact[]
+}
+export interface ScheduleTimeContext {
+  taskId: string
+  timezone: string
+  label?: string
+  unresolvedReason?: string
+}
+/** Every interval is supplied by the host, including its start. No default calendar. */
+export interface ScheduleFreezeContext {
+  windows: readonly { workCenterId: string; startUtc: string; endUtc: string }[]
+}
+
+// 既有引擎模型的兼容字段。中性 native renderer 消费上方 ScheduleVisualModel。
 // 这是「换引擎」接缝的数据契约:DHTMLX 适配器与自研适配器都只消费 ScheduleModel。
 
 export type PlanStatus = 'preview' | 'generated' | 'released'
@@ -81,10 +105,15 @@ export interface ScheduleTask {
   /** 计划基线(与实际 start/end 对比;甘特画"计划 vs 实际"双层条)。 */
   plannedStartUtc?: string
   plannedEndUtc?: string
-  currentExecution?: ScheduleAssignmentContract['currentExecution']
+  /** @deprecated Host-only legacy payload. Supply facts/statusLabels; never interpreted by the library. */
+  currentExecution?: unknown
+  facts?: readonly ScheduleFactRow[]
+  statusLabels?: readonly string[]
   /** 当前设备事实对应的原始资源；人工改派后不能套用旧设备状态。 */
   executionResourceId?: string
-  commercialSourceFacts?: BusinessConsoleMesWorkOrderItem['commercialSourceFacts']
+  /** @deprecated Host-only legacy payload; use explicit facts, including authority state. */
+  commercialSourceFacts?: unknown
+  /** @deprecated Use a host fact with state unavailable. */
   commercialSourceUnavailable?: boolean
   predecessors?: string[]
   successors?: string[]
@@ -313,11 +342,11 @@ export interface ScheduleModel {
   groupValues?: Record<string, DimensionValue[]>
   /**
    * 计划所依据的工作日历。有值时甘特按它画工作/非工作底纹与班次边界;
-   * 无值时引擎退回「周末 + 夜间」的通用作息假设。
+   * 缺省表示宿主未提供依据，不在纯展示契约中推导工作时间。
    */
   calendars?: ScheduleCalendar[]
   /** 服务端冻结上下文，仅用于呈现稳定窗口，不在浏览器推导冻结集。 */
-  freezeContext?: SchedulePlanFreezeContextContract | null
+  freezeContext?: ScheduleFreezeContext | null
   validationContext?: ScheduleValidationContext
   horizon: { startUtc: string; endUtc: string }
   meta: { planId: string; status: PlanStatus; algorithmVersion: string }

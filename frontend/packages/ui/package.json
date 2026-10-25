@@ -9,7 +9,8 @@
     "./test-support": "./src/test-support/index.ts",
     "./styles.css": "./src/styles/standalone.css",
     "./theme.css": "./src/styles/theme.css",
-    "./overrides.css": "./src/styles/overrides.css"
+    "./overrides.css": "./src/styles/overrides.css",
+    "./schedule-model": "./src/lib/schedule-time.ts"
   },
   "scripts": {
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",

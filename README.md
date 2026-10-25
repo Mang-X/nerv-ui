@@ -44,3 +44,5 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 [T06/F01 / #72](https://github.com/Mang-X/nerv-ui/issues/72) 从 `/#files` 进入“留住片刻”，可从所有既有表面进入并返回。七种上传排列使用本页内存适配器，默认手动开始；本地图片提供缩放、旋转及状态恢复。接入与限制见 [独立文件接入](docs/files-standalone.md)，实际证据见 [F01 验证记录](docs/evidence/t06-f01/README.md)。PDF/Office、上传竞态及原生 HTTP 由 #73–#76 接续。
 
 [T07/P01 / #84](https://github.com/Mang-X/nerv-ui/issues/84) 从 `/#schedule` 进入“给片刻留个位置”，通过主桶 `NvScheduleTimeline` 显示中性任务、泳道、事实、分段、依赖与保留窗口，支持选择与外部模型更替。可由桌面进入并返回所有既有表面；接入/时间合同见[组件文档](frontend/apps/design-system/docs/components/desktop/schedule-timeline.md)，实际证据见 [P01 记录](docs/evidence/t07-p01/README.md)。只读 native 不代表真实 DHTMLX 或父 #8 已完成；scheduling workspace 仍待后续票恢复。
+
+[T07/P02 / #85](https://github.com/Mang-X/nerv-ui/issues/85) 提供候选 `@nerv-iip/scheduling/model` 的独立纯契约入口，复用 P01 visual types/renderer，事实、状态文案、任务时区与保留区间由宿主输入。旧 DTO 参数迁移、独立消费命令和 prepared-contract 边界见 [排程展示模型](docs/scheduling-model.md)；scheduling workspace/主桶整体运行仍由 P03/P04 接续。
