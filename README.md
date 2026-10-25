@@ -50,3 +50,5 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合同](docs/scheduling-host.md)；P03 的独立 public consumer 不代表整包验收；当前 scheduling 整包与真实 vendor 的独立证据见 P04。
 
 [T07/P04 / #87](https://github.com/Mang-X/nerv-ui/issues/87) 从 `/#schedule-gantt` 展示真实只读 DHTMLX 与双实例，可返回原生时间安排。包/本地资源/生命周期与回落合同见 [引擎接入](docs/scheduling-renderer.md)，实际验证见 [P04 证据](docs/evidence/t07-p04/README.md)。资源投影、编辑和面板仍由 P05–P08 验收，授权 UNKNOWN。
+
+[T07/P06 / #89](https://github.com/Mang-X/nerv-ui/issues/89) 从 `/#schedule-edit/library` 与 `/#schedule-edit/studio` 展示工单图受控移动、双端调整、采用/保留及外部时间替换。锁定/分段和只读保留权威模型；接入与竞态边界见 [引擎接入](docs/scheduling-renderer.md#p06order-受控编辑)，验证见 [P06 记录](docs/evidence/t07-p06/README.md)。资源改派、面板、草案组合继续由 P07–P09 负责。

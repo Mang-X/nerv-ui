@@ -502,7 +502,208 @@ describe('DhtmlxEngine (fake factory)', () => {
     expect(engine.getState().scale).toBe('week')
   })
 
-  it('normalizes onAfterTaskDrag into a taskDragEnd payload (deferred)', async () => {
+  it('rejects locked order gestures before any write proposal', () => {
+    const fake = makeFakeGantt()
+    const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+    engine.mount(el(), options())
+    engine.setData(
+      cloneModel({ ...sampleModel, tasks: [{ ...sampleModel.tasks[0]!, locked: true }] }),
+    )
+    expect(fake.fire('onBeforeTaskDrag', 'a1', 'move')).toBe(false)
+    expect(fake.fire('onBeforeTaskDrag', 'a1', 'resize')).toBe(false)
+    engine.destroy()
+  })
+
+  it.each(['move', 'resize'])(
+    'restores authoritative order dates after a rejected %s without mutating input',
+    async (mode) => {
+      vi.useFakeTimers()
+      const fake = makeFakeGantt()
+      const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+      const input = cloneModel(sampleModel)
+      const original = JSON.stringify(input)
+      engine.mount(el(), options())
+      engine.setData(input)
+      const proposals: unknown[] = []
+      engine.on('taskDragEnd', (p) => proposals.push(p))
+      expect(fake.fire('onBeforeTaskDrag', 'a1', mode)).toBe(true)
+      const moved = fake.gantt.getTask('a1')!
+      moved.start_date = new Date('2026-06-10T09:00:00Z')
+      moved.end_date = new Date('2026-06-10T11:00:00Z')
+      // Real vendor calls before-change with the original task, then either rolls
+      // back (false) or updates and fires after-drag (true).
+      if (fake.fire('onBeforeTaskChanged', 'a1', mode) !== false)
+        fake.fire('onAfterTaskDrag', 'a1', mode)
+      await vi.runOnlyPendingTimersAsync()
+      expect(proposals).toEqual([
+        {
+          taskId: 'a1',
+          operationId: input.tasks[0]!.operationId,
+          resourceId: input.tasks[0]!.resourceId,
+          startUtc: '2026-06-10T09:00:00.000Z',
+          endUtc: '2026-06-10T11:00:00.000Z',
+          kind: mode,
+        },
+      ])
+      expect(fake.gantt.getTask('a1')!.start_date?.toISOString()).toBe('2026-06-10T08:00:00.000Z')
+      expect(fake.gantt.getTask('a1')!.end_date?.toISOString()).toBe('2026-06-10T10:00:00.000Z')
+      expect(JSON.stringify(input)).toBe(original)
+      engine.destroy()
+    },
+  )
+
+  it.each(['replace', 'lock', 'remove', 'readonly roundtrip', 'destroy'])(
+    'invalidates a pending order proposal on %s',
+    async (change) => {
+      vi.useFakeTimers()
+      const fake = makeFakeGantt()
+      const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+      const input = cloneModel(sampleModel)
+      engine.mount(el(), options())
+      engine.setData(input)
+      const proposals: unknown[] = []
+      engine.on('taskDragEnd', (p) => proposals.push(p))
+      expect(fake.fire('onBeforeTaskDrag', 'a1', 'move')).toBe(true)
+      fake.gantt.getTask('a1')!.start_date = new Date('2026-06-10T09:00:00Z')
+      fake.gantt.getTask('a1')!.end_date = new Date('2026-06-10T11:00:00Z')
+      fake.fire('onBeforeTaskChanged', 'a1', 'move')
+      if (change === 'readonly roundtrip') {
+        engine.applyCommand({ kind: 'setReadOnly', readOnly: true })
+        engine.applyCommand({ kind: 'setReadOnly', readOnly: false })
+      } else if (change === 'destroy') engine.destroy()
+      else
+        engine.setData({
+          ...input,
+          tasks: input.tasks.flatMap((t) =>
+            t.id !== 'a1'
+              ? [t]
+              : change === 'remove'
+                ? []
+                : [
+                    {
+                      ...t,
+                      locked: change === 'lock',
+                      startUtc: '2026-06-10T14:00:00Z',
+                      endUtc: '2026-06-10T16:00:00Z',
+                    },
+                  ],
+          ),
+        })
+      await vi.runOnlyPendingTimersAsync()
+      expect(proposals).toEqual([])
+      if (change === 'remove') expect(fake.gantt.getTask('a1')).toBeUndefined()
+      else if (change !== 'destroy')
+        expect(fake.gantt.getTask('a1')!.start_date?.toISOString()).toBe(
+          change === 'readonly roundtrip' ? '2026-06-10T08:00:00.000Z' : '2026-06-10T14:00:00.000Z',
+        )
+      engine.destroy()
+    },
+  )
+
+  it('uses the newest model after replacement during a held order gesture', async () => {
+    vi.useFakeTimers()
+    const fake = makeFakeGantt()
+    const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+    engine.mount(el(), options())
+    engine.setData(cloneModel(sampleModel))
+    const proposals: unknown[] = []
+    engine.on('taskDragEnd', (p) => proposals.push(p))
+    expect(fake.fire('onBeforeTaskDrag', 'a1', 'resize')).toBe(true)
+    const held = fake.gantt.getTask('a1')!
+    engine.setData(
+      cloneModel({
+        ...sampleModel,
+        tasks: [
+          {
+            ...sampleModel.tasks[0]!,
+            startUtc: '2026-06-10T14:00:00Z',
+            endUtc: '2026-06-10T16:00:00Z',
+          },
+        ],
+      }),
+    )
+    held.end_date = new Date('2026-06-10T12:00:00Z')
+    expect(fake.fire('onBeforeTaskChanged', 'a1', 'resize')).toBe(false)
+    await vi.runOnlyPendingTimersAsync()
+    expect(proposals).toEqual([])
+    expect(fake.gantt.getTask('a1')!.start_date?.toISOString()).toBe('2026-06-10T14:00:00.000Z')
+    expect(fake.gantt.getTask('a1')!.end_date?.toISOString()).toBe('2026-06-10T16:00:00.000Z')
+    engine.destroy()
+  })
+
+  it.each(['accept', 'replace', 'destroy'])(
+    'honors reentrant host %s and isolates consecutive order gestures',
+    async (response) => {
+      vi.useFakeTimers()
+      const fake = makeFakeGantt()
+      const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+      const input = cloneModel(sampleModel)
+      const original = JSON.stringify(input)
+      engine.mount(el(), options())
+      engine.setData(input)
+      let count = 0
+      engine.on('taskDragEnd', (p) => {
+        count++
+        expect(fake.fire('onBeforeTaskDrag', 'a1', 'move')).toBe(false)
+        if (response === 'destroy') engine.destroy()
+        else
+          engine.setData({
+            ...input,
+            tasks: [
+              {
+                ...input.tasks[0]!,
+                startUtc: response === 'accept' ? p.startUtc : '2026-06-10T14:00:00Z',
+                endUtc: response === 'accept' ? p.endUtc : '2026-06-10T16:00:00Z',
+              },
+            ],
+          })
+      })
+      expect(fake.fire('onBeforeTaskDrag', 'a1', 'move')).toBe(true)
+      fake.gantt.getTask('a1')!.start_date = new Date('2026-06-10T09:00:00Z')
+      fake.gantt.getTask('a1')!.end_date = new Date('2026-06-10T11:00:00Z')
+      fake.fire('onBeforeTaskChanged', 'a1', 'move')
+      expect(fake.fire('onBeforeTaskDrag', 'a1', 'move')).toBe(false)
+      await vi.runOnlyPendingTimersAsync()
+      expect(count).toBe(1)
+      expect(JSON.stringify(input)).toBe(original)
+      if (response !== 'destroy') {
+        expect(fake.gantt.getTask('a1')!.start_date?.toISOString()).toBe(
+          response === 'accept' ? '2026-06-10T09:00:00.000Z' : '2026-06-10T14:00:00.000Z',
+        )
+        expect(fake.fire('onBeforeTaskDrag', 'a1', 'resize')).toBe(true)
+        fake.gantt.getTask('a1')!.end_date = new Date('2026-06-10T18:00:00Z')
+        fake.fire('onBeforeTaskChanged', 'a1', 'resize')
+        await vi.runOnlyPendingTimersAsync()
+        expect(count).toBe(2)
+      }
+      engine.destroy()
+    },
+  )
+
+  it.each(['summary', 'milestone', 'segments', 'block', 'progress'])(
+    'rejects unsupported order edit target %s',
+    (target) => {
+      const fake = makeFakeGantt()
+      const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
+      engine.mount(el(), options())
+      const task = { ...sampleModel.tasks[0]! }
+      if (target === 'summary') task.type = 'order'
+      if (target === 'milestone') task.isMilestone = true
+      if (target === 'block') task.blockKind = 'maintenance'
+      if (target === 'segments')
+        task.segments = [
+          { startUtc: '2026-06-10T08:00:00Z', endUtc: '2026-06-10T09:00:00Z' },
+          { startUtc: '2026-06-10T11:00:00Z', endUtc: '2026-06-10T12:00:00Z' },
+        ]
+      engine.setData({ ...sampleModel, tasks: [task] })
+      expect(fake.fire('onBeforeTaskDrag', 'a1', target === 'progress' ? 'progress' : 'move')).toBe(
+        false,
+      )
+      engine.destroy()
+    },
+  )
+
+  it('normalizes native order completion into a deferred taskDragEnd proposal', async () => {
     const fake = makeFakeGantt()
     const engine = new DhtmlxEngine({ createInstance: () => fake.gantt })
     let payload: { taskId: string; startUtc: string; kind: string } | undefined
@@ -511,11 +712,12 @@ describe('DhtmlxEngine (fake factory)', () => {
       payload = p
     })
     engine.setData(cloneModel(sampleModel))
+    expect(fake.fire('onBeforeTaskDrag', 'a1', 'move')).toBe(true)
     // 模拟 DHTMLX 拖动后改写了任务时间。
     const moved = fake.state.parsed.data.find((t) => t.id === 'a1')!
     moved.start_date = new Date('2026-06-10T09:00:00.000Z')
     moved.end_date = new Date('2026-06-10T11:00:00.000Z')
-    fake.fire('onAfterTaskDrag', 'a1', 'move')
+    fake.fire('onBeforeTaskChanged', 'a1', 'move')
     // emit 延后到 DHTMLX 处理完拖拽之后,等一拍。
     await new Promise((r) => setTimeout(r, 1))
     expect(payload?.taskId).toBe('a1')
@@ -625,11 +827,12 @@ it('aligns factory ticks and renders task time without shifting real drag coordi
   expect(cardHtml(timed.tasks.find((task) => task.id === op.id)!)).toContain('00:00–02:00')
   const payloads: unknown[] = []
   engine.on('taskDragEnd', (value) => payloads.push(value))
+  expect(fake.fire('onBeforeTaskDrag', op.id, 'move')).toBe(true)
   row.start_date = new Date('2026-10-16T17:00:00Z')
   row.end_date = new Date('2026-10-16T19:00:00Z')
   vi.useFakeTimers()
   try {
-    fake.fire('onAfterTaskDrag', op.id, 'move')
+    fake.fire('onBeforeTaskChanged', op.id, 'move')
     await vi.runAllTimersAsync()
     expect(payloads).toContainEqual(
       expect.objectContaining({
@@ -639,8 +842,11 @@ it('aligns factory ticks and renders task time without shifting real drag coordi
         kind: 'move',
       }),
     )
-    row.end_date = new Date('2026-10-16T20:00:00Z')
-    fake.fire('onAfterTaskDrag', op.id, 'resize')
+    expect(fake.fire('onBeforeTaskDrag', op.id, 'resize')).toBe(true)
+    const resized = fake.gantt.getTask(op.id)!
+    resized.start_date = new Date('2026-10-16T17:00:00Z')
+    resized.end_date = new Date('2026-10-16T20:00:00Z')
+    fake.fire('onBeforeTaskChanged', op.id, 'resize')
     await vi.runAllTimersAsync()
     expect(payloads).toContainEqual(
       expect.objectContaining({

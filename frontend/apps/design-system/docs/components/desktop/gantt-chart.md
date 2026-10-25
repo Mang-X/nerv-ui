@@ -67,13 +67,13 @@ const readOnlyModel = ref(makeModel())
 const emptyModel = ref({ ...makeModel(), tasks: [], links: [] })
 </script>
 
-> P04 已恢复独立 workspace 与 `/#schedule-gantt` 的真实只读演示；构建样式、资源、缓存和回落边界见[引擎接入](../../../../../../docs/scheduling-renderer.md)。下列文档站完整运行仍由 #10 单独验证，资源投影/受控编辑的完整验收由 P05–P08 接续。
+> P04 已恢复独立 workspace 与 `/#schedule-gantt` 的真实只读演示；构建样式、资源、缓存和回落边界见[引擎接入](../../../../../../docs/scheduling-renderer.md)。下列文档站完整运行仍由 #10 单独验证，P05 资源投影与 P06 工单编辑分别取证；资源改派/面板由 P07/P08 接续。
 
 # GanttChart 工单甘特图
 
 工单 → 工序 WBS 视角的时间线:工序条、依赖链、里程碑、进度。给跟单与管理看进度和瓶颈。来自 `@nerv-iip/scheduling`(引擎无关的复合组件,非 shadcn 原版)。
 
-拖动工序条可改期(可编辑时);时间轴由 DHTMLX 引擎渲染,引擎在部署时提供(开发用试用版,交付时向客户手动分发正式版),无本地引擎包时画布显示占位。
+拖动工序条可提出改期或端点调整；只有宿主回写模型才接受。当前固定 DHTMLX 9.1.4 Professional Evaluation，版权/水印保留，授权范围 UNKNOWN；缺模块时只读可回落，编辑不可用。
 
 ## 基础用法
 
@@ -87,14 +87,14 @@ const emptyModel = ref({ ...makeModel(), tasks: [], links: [] })
 
 ```vue
 <script setup lang="ts">
-import { GanttChart, toModel } from '@nerv-iip/scheduling'
-import type { SchedulePlanContract } from '@nerv-iip/api-client'
+import { GanttChart, type ScheduleModel, type TaskDragPayload } from '@nerv-iip/scheduling'
 import { ref } from 'vue'
 
-const model = ref(toModel(plan as SchedulePlanContract)) // plan 来自 APS facade
+const props = defineProps<{ initial: ScheduleModel }>()
+const model = ref(props.initial)
 
-function onDrag(p) {
-  // 改期后回写模型;接后端时改为「锁定 → 重预览」的编辑闭环
+function onDrag(p: TaskDragPayload) {
+  // 接受：回写新的模型。拒绝：不回写。业务约束与持久化由接入方处理。
   model.value = {
     ...model.value,
     tasks: model.value.tasks.map((t) =>
@@ -114,6 +114,10 @@ function onDrag(p) {
 ### 改期(拖拽)
 
 可编辑时(非 `read-only`),**横向拖动**工序条即改期——在上方基础用法 demo 里拖任一条即可。落点经 `@task-drag-end` 归一化回传(`startUtc` / `endUtc`),回写 `model` 后引擎按新位置重绘(不回写则条会弹回原位)。甘特聚焦时间线改期本身;若要**编辑工序字段**(开始时间 / 资源泳道 / 锁定),见 [ResourceSchedulerBoard 的「业务操作编辑工序」](./resource-scheduler#业务操作编辑工序)。
+
+P06 独立入口为 `/#schedule-edit/library` 与 `/#schedule-edit/studio`，提供采用/保留/外部替换、只读与锁定、双实例和原入口返回。整条 move 保留时长，左右端 resize 保留另一端；日期按当前 vendor 刻度吸附，负载保留实际 UTC 时刻与输入身份，不自动改派资源。
+
+order 仅允许未锁定的单段普通工序；分组、里程碑、时间块、多段和只读不发写提案。锁定尝试发既有 `lockedDragAttempt(taskId)`，是否解锁由接入方决定。在 `onBeforeTaskDrag` 建立手势 token 后，新模型、锁定/删除、只读开启或卸载使旧提案失效；模型在鼠标释放后恢复为最新权威状态。mousedown 到移动阈值之间尚未建立 token，不保证此窗口的任何模型替换都取消手势。快速外部更新没有 80ms 忽略窗口。回调重入期间的新手势不接受，当前提案结算后可继续。异步决定时先保留原模型，稍后回写新模型即可；库不持有待审批队列。
 
 ### 刻度切换
 

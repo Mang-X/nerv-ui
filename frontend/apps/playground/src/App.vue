@@ -4,6 +4,7 @@ import ScreenDemo from './ScreenDemo.vue'
 import FilesDemo from './FilesDemo.vue'
 import ResourceScheduleDemo from './ResourceScheduleDemo.vue'
 import RealGanttDemo from './RealGanttDemo.vue'
+import OrderEditingDemo from './OrderEditingDemo.vue'
 import ScheduleDemo from './ScheduleDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
@@ -83,8 +84,15 @@ function addProject() {
 </script>
 
 <template>
+  <OrderEditingDemo
+    v-if="surface === '#schedule-edit/library' || surface === '#schedule-edit/studio'"
+    :key="surface"
+    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <ResourceScheduleDemo
-    v-if="surface === '#schedule-resources/library' || surface === '#schedule-resources/studio'"
+    v-else-if="
+      surface === '#schedule-resources/library' || surface === '#schedule-resources/studio'
+    "
     :key="surface"
     :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
   />
@@ -100,6 +108,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#schedule-edit/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >安排共读</a
+      >
       <a href="#schedule-resources/library" class="inline-flex min-h-11 items-center px-4 underline"
         >空间安排</a
       >
