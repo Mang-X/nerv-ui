@@ -178,3 +178,44 @@ it('keeps native mode and known fixture selection inert until explicit upload an
     vi.unstubAllGlobals()
   }
 })
+
+it('offers local PDF fixtures and owns a local PDF URL without upload writes', async () => {
+  const create = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:local-pdf')
+  const revoke = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {})
+  const fetcher = vi.fn()
+  vi.stubGlobal('fetch', fetcher)
+  try {
+    wrapper = mount(FilesDemo, {
+      global: {
+        stubs: {
+          FilePreview: {
+            props: ['src', 'fileName', 'contentType'],
+            template:
+              '<div data-testid="preview-source">{{ src }} {{ fileName }} {{ contentType }}</div>',
+          },
+        },
+      },
+    })
+    await wrapper.get('select[aria-label="预览内容"]').setValue('pdf-pages')
+    expect(wrapper.get('[data-testid="preview-source"]').text()).toContain(
+      '/files/reading-journey.pdf',
+    )
+    const input = wrapper.get('input[aria-label="预览本地图片"]')
+    Object.defineProperty(input.element, 'files', {
+      configurable: true,
+      value: [new File(['%PDF'], 'local.pdf', { type: 'application/pdf' })],
+    })
+    await input.trigger('change')
+    await flushPromises()
+    expect(create).toHaveBeenCalledOnce()
+    expect(wrapper.get('[data-testid="preview-source"]').text()).toContain(
+      'blob:local-pdf local.pdf application/pdf',
+    )
+    expect(fetcher).not.toHaveBeenCalled()
+    wrapper.unmount()
+    wrapper = undefined
+    expect(revoke).toHaveBeenCalledWith('blob:local-pdf')
+  } finally {
+    vi.unstubAllGlobals()
+  }
+})

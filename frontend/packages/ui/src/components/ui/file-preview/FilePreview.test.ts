@@ -8,6 +8,7 @@ import { FilePreview, getFilePreviewKindMeta } from '.'
 import { NvSelect } from '../../pc/select'
 import OfficePreview from './OfficePreview.vue'
 import PdfPreview from './PdfPreview.vue'
+import PdfPreviewDocument from './PdfPreviewDocument.vue'
 
 const officeViewerMocks = vi.hoisted(() => ({
   docxOptions: [] as Array<{ width?: number }>,
@@ -20,7 +21,11 @@ const officeViewerMocks = vi.hoisted(() => ({
 const pdfEngineMocks = vi.hoisted(() => ({
   engine: {} as Record<string, unknown> | null,
   isLoading: false,
+  active: true,
+  documentStatus: 'loaded',
+  documentError: null as string | null,
   error: null as Error | null,
+  pending: null as Promise<unknown> | null,
 }))
 
 const pdfScrollMocks = vi.hoisted(() => ({
@@ -38,12 +43,13 @@ vi.mock('@embedpdf/core', () => ({
   }),
 }))
 
-vi.mock('@embedpdf/engines/vue', () => ({
-  usePdfiumEngine: () => ({
-    engine: shallowRef(pdfEngineMocks.engine),
-    isLoading: shallowRef(pdfEngineMocks.isLoading),
-    error: shallowRef(pdfEngineMocks.error),
-  }),
+vi.mock('@embedpdf/engines/pdfium-direct-engine', () => ({
+  createPdfiumEngine: () => {
+    if (pdfEngineMocks.pending) return pdfEngineMocks.pending
+    if (pdfEngineMocks.error) return Promise.reject(pdfEngineMocks.error)
+    if (pdfEngineMocks.isLoading) return new Promise(() => {})
+    return Promise.resolve(pdfEngineMocks.engine)
+  },
 }))
 
 vi.mock('@embedpdf/core/vue', () => ({
@@ -55,14 +61,14 @@ vi.mock('@embedpdf/core/vue', () => ({
         h(
           'div',
           { 'data-testid': 'embedpdf-provider' },
-          slots.default?.({ activeDocumentId: 'test-document' }),
+          slots.default?.({ activeDocumentId: pdfEngineMocks.active ? 'test-document' : null }),
         )
     },
   }),
   useDocumentState: () =>
     computed(() => ({
-      status: 'loaded',
-      error: null,
+      status: pdfEngineMocks.documentStatus,
+      error: pdfEngineMocks.documentError,
     })),
 }))
 
@@ -89,7 +95,25 @@ vi.mock('@embedpdf/plugin-document-manager/vue', () => ({
   }),
 }))
 
+const viewportMock = vi.hoisted(() => ({
+  register: vi.fn(),
+  unregister: vi.fn(),
+  resize: vi.fn(),
+  scroll: vi.fn(),
+  unsubscribe: vi.fn(),
+}))
 vi.mock('@embedpdf/plugin-viewport/vue', () => ({
+  useIsViewportGated: () => shallowRef(false),
+  useViewportCapability: () => ({ provides: shallowRef({ getViewportGap: () => 10 }) }),
+  useViewportPlugin: () => ({
+    plugin: shallowRef({
+      registerViewport: viewportMock.register,
+      unregisterViewport: viewportMock.unregister,
+      setViewportResizeMetrics: viewportMock.resize,
+      setViewportScrollMetrics: viewportMock.scroll,
+      onScrollRequest: () => viewportMock.unsubscribe,
+    }),
+  }),
   ViewportPluginPackage: {},
   Viewport: defineComponent({
     name: 'Viewport',
@@ -290,14 +314,22 @@ vi.mock('motion-v', () => {
 describe('FilePreview', () => {
   beforeEach(() => {
     vi.restoreAllMocks()
+    for (const mock of Object.values(viewportMock)) mock.mockClear()
     officeViewerMocks.docxOptions = []
     officeViewerMocks.pptxOptions = []
     officeViewerMocks.xlsxOptions = []
     officeViewerMocks.docxRenderWidths = []
     officeViewerMocks.pptxRenderWidths = []
-    pdfEngineMocks.engine = {}
+    pdfEngineMocks.engine = {
+      closeAllDocuments: () => ({ wait: (done: () => void) => done() }),
+      destroy: vi.fn(),
+    }
     pdfEngineMocks.isLoading = false
+    pdfEngineMocks.pending = null
     pdfEngineMocks.error = null
+    pdfEngineMocks.active = true
+    pdfEngineMocks.documentStatus = 'loaded'
+    pdfEngineMocks.documentError = null
     pdfScrollMocks.currentPage = 1
     pdfScrollMocks.totalPages = 3
     pdfScrollMocks.scrollToPage.mockClear()
@@ -334,13 +366,14 @@ describe('FilePreview', () => {
     expect(getFilePreviewKindMeta('pdf').icon).not.toBe(getFilePreviewKindMeta('office-docx').icon)
   })
 
-  it('renders PDF with headless embedpdf layers and the unified toolbar', () => {
+  it('renders PDF with headless embedpdf layers and the unified toolbar', async () => {
     const wrapper = mount(PdfPreview, {
       props: {
         src: '/files/inspection.pdf',
       },
     })
 
+    await flushPromises()
     expect(wrapper.get('[data-slot="file-preview-pdf-toolbar"]')).toBeTruthy()
     expect(wrapper.get('button[aria-label="上一页"]')).toBeTruthy()
     expect(wrapper.get('button[aria-label="下一页"]')).toBeTruthy()
@@ -359,6 +392,7 @@ describe('FilePreview', () => {
       },
     })
 
+    await flushPromises()
     const pageSelect = wrapper.getComponent(NvSelect)
     pageSelect.vm.$emit('update:modelValue', '3')
     await flushPromises()
@@ -369,6 +403,102 @@ describe('FilePreview', () => {
     })
     expect(pdfScrollMocks.scrollToNextPage).not.toHaveBeenCalled()
     expect(pdfScrollMocks.scrollToPreviousPage).not.toHaveBeenCalled()
+  })
+
+  it('reports PDF initialization failure instead of indefinite loading', async () => {
+    pdfEngineMocks.engine = null
+    pdfEngineMocks.error = new Error('WASM unavailable')
+    const wrapper = mount(PdfPreview, { props: { src: '/files/inspection.pdf' } })
+    await flushPromises()
+    expect(wrapper.text()).toContain('WASM unavailable')
+    expect(wrapper.text()).not.toContain('正在加载 PDF 预览')
+    expect(wrapper.emitted('error')?.[0]?.[0]).toBe('WASM unavailable')
+    expect(wrapper.emitted('ready')).toBeUndefined()
+    wrapper.unmount()
+  })
+
+  it('reports PDF document failure before activation', async () => {
+    pdfEngineMocks.active = false
+    pdfEngineMocks.documentStatus = 'error'
+    pdfEngineMocks.documentError = 'Invalid PDF bytes'
+    const wrapper = mount(PdfPreview, { props: { src: '/files/broken.pdf' } })
+    await flushPromises()
+    expect(wrapper.emitted('error')?.[0]?.[0]).toBe('Invalid PDF bytes')
+    expect(wrapper.emitted('ready')).toBeUndefined()
+    wrapper.unmount()
+  })
+
+  it('ignores obsolete PDF status while switching sources', async () => {
+    const wrapper = mount(FilePreview, { props: { src: '/files/old.pdf', fileName: 'report.pdf' } })
+    await flushPromises()
+    await wrapper.setProps({ src: '/files/current.pdf' })
+    await flushPromises()
+    const readyCount = wrapper.emitted('ready')?.length ?? 0
+    const pdf = wrapper.getComponent(PdfPreview)
+    // Simulate retained async renderer notifications tagged with their originating source.
+    pdf.vm.$emit('ready', '/files/old.pdf')
+    pdf.vm.$emit('error', 'obsolete document failure', '/files/old.pdf')
+    await flushPromises()
+    expect(wrapper.emitted('ready')?.length ?? 0).toBe(readyCount)
+    expect(wrapper.emitted('error')).toBeUndefined()
+    expect(wrapper.text()).not.toContain('obsolete document failure')
+    wrapper.unmount()
+  })
+
+  it('disposes a PDF engine that resolves after unmount without late events', async () => {
+    let resolve!: (value: unknown) => void
+    pdfEngineMocks.pending = new Promise((done) => {
+      resolve = done
+    })
+    const engine = {
+      closeAllDocuments: vi.fn(() => ({ wait: (done: () => void) => done() })),
+      destroy: vi.fn(),
+    }
+    const wrapper = mount(PdfPreview, { props: { src: '/files/slow.pdf' } })
+    await flushPromises()
+    wrapper.unmount()
+    resolve(engine)
+    await flushPromises()
+    expect(engine.closeAllDocuments).toHaveBeenCalledOnce()
+    expect(engine.destroy).toHaveBeenCalledOnce()
+    expect(wrapper.emitted('ready')).toBeUndefined()
+    expect(wrapper.emitted('error')).toBeUndefined()
+  })
+
+  it('releases the PDF page jump timer on unmount and disables page boundaries', async () => {
+    const wrapper = mount(PdfPreview, { props: { src: '/files/inspection.pdf' } })
+    await flushPromises()
+    expect(wrapper.get('button[aria-label="上一页"]').attributes('disabled')).toBeDefined()
+    expect(wrapper.get('button[aria-label="下一页"]').attributes('disabled')).toBeUndefined()
+    vi.useFakeTimers()
+    wrapper.getComponent(NvSelect).vm.$emit('update:modelValue', '3')
+    expect(vi.getTimerCount()).toBe(1)
+    wrapper.unmount()
+    expect(vi.getTimerCount()).toBe(0)
+    vi.useRealTimers()
+    pdfScrollMocks.currentPage = 3
+    const last = mount(PdfPreview, { props: { src: '/files/inspection.pdf' } })
+    await flushPromises()
+    expect(last.get('button[aria-label="下一页"]').attributes('disabled')).toBeDefined()
+    expect(last.get('button[aria-label="上一页"]').attributes('disabled')).toBeUndefined()
+    last.unmount()
+  })
+
+  it('disconnects the PDF viewport observer and scroll subscription on unmount', async () => {
+    const disconnect = vi.fn()
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        observe() {}
+        disconnect = disconnect
+      },
+    )
+    const wrapper = mount(PdfPreviewDocument, { props: { documentId: 'viewport-document' } })
+    await flushPromises()
+    wrapper.unmount()
+    expect(disconnect).toHaveBeenCalledOnce()
+    expect(viewportMock.unregister).toHaveBeenCalledWith('viewport-document')
+    expect(viewportMock.unsubscribe).toHaveBeenCalledOnce()
   })
 
   it('uses localized PDF loading copy', () => {

@@ -53,6 +53,15 @@ function openSource(src = props.src) {
   }
 }
 
+function onPdfReady(source: string) {
+  if (source === props.src && previewKind.value === 'pdf' && !props.loading && !props.error)
+    onChildReady('pdf')
+}
+function onPdfError(message: string, source: string) {
+  if (source === props.src && previewKind.value === 'pdf' && !props.loading && !props.error)
+    onChildError(message)
+}
+
 function onChildError(message: string) {
   internalError.value = message
   emit('error', message)
@@ -176,8 +185,8 @@ function onChildReady(kind = previewKind.value) {
               <PdfPreview
                 v-else-if="previewKind === 'pdf'"
                 :src="src"
-                @ready="onChildReady('pdf')"
-                @error="onChildError"
+                @ready="onPdfReady"
+                @error="onPdfError"
               />
               <ImagePreview
                 v-else-if="previewKind === 'image'"
