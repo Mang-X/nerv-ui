@@ -3,7 +3,10 @@ import { createPluginRegistration, type PluginRegistry } from '@embedpdf/core'
 import { EmbedPDF } from '@embedpdf/core/vue'
 import type { createPdfiumEngine } from '@embedpdf/engines/pdfium-direct-engine'
 import wasmUrl from './pdfium/pdfium.wasm?url'
-import { DocumentManagerPluginPackage } from '@embedpdf/plugin-document-manager/vue'
+import {
+  DocumentManagerPluginPackage,
+  type DocumentManagerPlugin,
+} from '@embedpdf/plugin-document-manager/vue'
 import { RenderPluginPackage } from '@embedpdf/plugin-render/vue'
 import { ScrollPluginPackage, ScrollStrategy } from '@embedpdf/plugin-scroll/vue'
 import { ViewportPluginPackage } from '@embedpdf/plugin-viewport/vue'
@@ -25,6 +28,9 @@ type Engine = Awaited<ReturnType<typeof createPdfiumEngine>>
 const engine = shallowRef<Engine | null>(null)
 const engineError = shallowRef<Error | null>(null)
 const isLoading = shallowRef(true)
+const documentLoading = shallowRef(true)
+const documentError = shallowRef('')
+let sourceVersion = 0
 let mounted = true
 const pendingDisposals = new Set<Promise<void>>()
 function disposeRegistry(registry: PluginRegistry) {
@@ -62,25 +68,67 @@ onMounted(async () => {
 const provider = computed(() => {
   const source = props.src
   let active = true
+  const controller = new AbortController()
+  const documentId = 'file-preview-pdf:' + ++sourceVersion + ':' + source
   let registry: PluginRegistry | undefined
   return {
     source,
-    documentId: 'file-preview-pdf:' + source,
+    documentId,
     async initialize(value: PluginRegistry) {
       if (!active || !mounted) {
         disposeRegistry(value)
         return
       }
       registry = value
+      // 2.14.4 openDocumentUrl does not cancel fetch/body reads with its task.
+      // Own the read here; only a current, fully read buffer may enter PDFium.
+      const instance = engine.value!
+      try {
+        const response = await fetch(source, {
+          headers: { Accept: 'application/pdf' },
+          signal: controller.signal,
+        })
+        if (!active || !mounted) return
+        if (!response.ok) throw new Error(`无法加载 PDF（HTTP ${response.status}）。`)
+        const buffer = await response.arrayBuffer()
+        if (!active || !mounted) return
+        const manager = value.getPlugin<DocumentManagerPlugin>('document-manager')!.provides()
+        const opening = manager.openDocumentBuffer({
+          documentId,
+          name: source,
+          buffer,
+          autoActivate: true,
+        })
+        // A queued native open can outlive registry removal. Close its actual
+        // result before allowing engine destruction, including on source reuse.
+        const disposal = opening
+          .toPromise()
+          .then(({ task }) => task.toPromise())
+          .then(async (doc) => {
+            if (!active || !mounted) await instance.closeDocument(doc).toPromise()
+          })
+          .catch(() => {})
+          .finally(() => pendingDisposals.delete(disposal))
+        pendingDisposals.add(disposal)
+      } catch (cause) {
+        if (!active || !mounted) return
+        documentError.value = cause instanceof Error ? cause.message : String(cause)
+        documentLoading.value = false
+        emit('error', documentError.value, source)
+      }
     },
     ready() {
-      if (active && mounted && source === props.src) emit('ready', source)
+      if (active && mounted && source === props.src) {
+        documentLoading.value = false
+        emit('ready', source)
+      }
     },
     error(message: string) {
       if (active && mounted && source === props.src) emit('error', message, source)
     },
     dispose() {
       active = false
+      controller.abort()
       if (registry) {
         disposeRegistry(registry)
         registry = undefined
@@ -88,7 +136,15 @@ const provider = computed(() => {
     },
   }
 })
-watch(provider, (_value, old) => old.dispose(), { flush: 'sync' })
+watch(
+  provider,
+  (_value, old) => {
+    old.dispose()
+    documentLoading.value = true
+    documentError.value = ''
+  },
+  { flush: 'sync' },
+)
 onBeforeUnmount(() => {
   mounted = false
   provider.value.dispose()
@@ -101,16 +157,7 @@ onErrorCaptured((cause) => {
   return false
 })
 const plugins = computed(() => [
-  createPluginRegistration(DocumentManagerPluginPackage, {
-    initialDocuments: [
-      {
-        documentId: provider.value.documentId,
-        url: props.src,
-        requestOptions: { headers: { Accept: 'application/pdf' } },
-        autoActivate: true,
-      },
-    ],
-  }),
+  createPluginRegistration(DocumentManagerPluginPackage),
   createPluginRegistration(ViewportPluginPackage),
   createPluginRegistration(ScrollPluginPackage, {
     defaultStrategy: ScrollStrategy.Vertical,
@@ -153,6 +200,12 @@ watch(
       :plugins="plugins"
       :on-initialized="provider.initialize"
     >
+      <div
+        v-if="documentLoading || documentError"
+        class="grid h-full min-h-64 place-items-center bg-muted/20 text-sm text-muted-foreground"
+      >
+        {{ documentError || '正在加载 PDF 预览' }}
+      </div>
       <PdfPreviewDocument
         :document-id="provider.documentId"
         @ready="provider.ready"

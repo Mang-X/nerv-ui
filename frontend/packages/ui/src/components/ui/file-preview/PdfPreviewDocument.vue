@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useDocumentState } from '@embedpdf/core/vue'
 import { DocumentContent } from '@embedpdf/plugin-document-manager/vue'
-import { RenderLayer } from '@embedpdf/plugin-render/vue'
 import { Scroller } from '@embedpdf/plugin-scroll/vue'
 import {
   useIsViewportGated,
@@ -10,6 +9,7 @@ import {
 } from '@embedpdf/plugin-viewport/vue'
 import { computed, useTemplateRef, watch } from 'vue'
 
+import PdfPreviewRenderLayer from './PdfPreviewRenderLayer.vue'
 import PdfPreviewToolbar from './PdfPreviewToolbar.vue'
 
 const props = defineProps<{
@@ -112,7 +112,7 @@ watch(
                 class="relative mx-auto bg-white shadow-sm"
                 :style="{ width: `${page.width}px`, height: `${page.height}px` }"
               >
-                <RenderLayer :document-id="documentId" :page-index="page.pageIndex" />
+                <PdfPreviewRenderLayer :document-id="documentId" :page-index="page.pageIndex" />
               </div>
             </template>
           </Scroller>
