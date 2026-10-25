@@ -1,0 +1,61 @@
+import { mount } from '@vue/test-utils'
+import { afterEach, expect, it } from 'vitest'
+import ScreenTablesDemo from './ScreenTablesDemo.vue'
+let w: ReturnType<typeof mount>
+afterEach(() => w?.unmount())
+function button(text: string) {
+  return w.findAll('button').find((b) => b.text() === text)!
+}
+function ids() {
+  return w.findAll('[data-collection-id]').map((n) => n.attributes('data-collection-id'))
+}
+it('host controlled pagination changes actual row IDs range and slot callback once then resets on smaller total unknown empty and recovery', async () => {
+  w = mount(ScreenTablesDemo)
+  expect(ids()).toHaveLength(18)
+  expect(ids()[0]).toBe('collection-001')
+  expect(w.get('[aria-label="清单页读数"]').text()).toContain('第 1 页')
+  await w.get('[aria-label="下一页"]').trigger('click')
+  expect(ids()[0]).toBe('collection-019')
+  expect(ids().at(-1)).toBe('collection-036')
+  expect(w.get('.nv-scr-pg-total').text()).toBe('共 153 条 · 19–36')
+  expect(w.get('[aria-label="分页事件次数"]').text()).toContain('1')
+  await button('选择 collection-019').trigger('click')
+  expect(w.get('[aria-label="当前记录"]').text()).toContain('collection-019')
+  await button('缩为七项').trigger('click')
+  expect(ids()).toHaveLength(7)
+  expect(ids()[0]).toBe('collection-001')
+  expect(w.get('.nv-scr-pg-total').text()).toBe('共 7 条 · 1–7')
+  expect(w.get('[aria-label="当前记录"]').text()).toContain('尚未选择')
+  expect(w.get('[aria-label="分页事件次数"]').text()).toContain('1')
+  await button('总数未知').trigger('click')
+  expect(w.text()).toContain('总数未知')
+  expect(w.find('nav[aria-label="分页"]').exists()).toBe(false)
+  expect(ids()).toHaveLength(7)
+  await button('清空清单').trigger('click')
+  expect(ids()).toHaveLength(0)
+  expect(w.get('.nv-scr-pg-total').text()).toBe('共 0 条 · 0')
+  await button('恢复清单').trigger('click')
+  expect(ids()[0]).toBe('collection-001')
+  expect(ids()).toHaveLength(18)
+  await button('刷新清单').trigger('click')
+  expect(w.get('[aria-label="刷新次数"]').text()).toContain('1')
+  expect(ids()[0]).toBe('collection-001')
+  await button('活动清单').trigger('click')
+  expect(ids()[0]).toBe('activity-001')
+  expect(w.text()).toContain('河岸共读')
+})
+it('host retains two independent events sharing a reference and explicit priority state presentation after reorder and replacement', async () => {
+  w = mount(ScreenTablesDemo)
+  const eventIds = () => w.findAll('[data-event-id]').map((n) => n.attributes('data-event-id'))
+  expect(eventIds().slice(0, 2)).toEqual(['event-001', 'event-002'])
+  const rows = w.findAll('.nv-scr-at-tbl tbody tr')
+  expect(rows[0]!.text()).toContain('REF-7')
+  expect(rows[1]!.text()).toContain('REF-7')
+  expect(w.find('.nv-scr-at-ok').exists()).toBe(false)
+  expect(w.findAll('.event-state')[0]!.attributes('class')).toContain('neutral')
+  await button('倒序事件').trigger('click')
+  expect(eventIds().at(-1)).toBe('event-001')
+  await button('替换事件').trigger('click')
+  expect(eventIds()).toEqual(['replacement-001', 'replacement-002'])
+  expect(w.text()).not.toContain('event-001')
+})

@@ -3,119 +3,67 @@ title: NvScreenTable 数据表格
 ---
 
 <script setup>
-import { NvScreenButton, NvScreenPagination, NvScreenPanel, NvScreenSearch, NvScreenSelect, NvScreenTable, NvScreenStatusTag } from '@nerv-iip/ui'
-import { ref } from 'vue'
-
-const columns = [
-  { key: 'wo', label: '工单号' },
-  { key: 'product', label: '产品' },
-  { key: 'plan', label: '计划', align: 'right' },
-  { key: 'actual', label: '实际', align: 'right' },
-  { key: 'status', label: '状态', align: 'center' },
-]
-const rows = [
-  { wo: 'WO-2406-0312', product: '车架总成', plan: '1,240', actual: '1,156', status: 'run' },
-  { wo: 'WO-2406-0308', product: '门板组件', plan: '980', actual: '742', status: 'idle' },
-  { wo: 'WO-2406-0301', product: '齿轮箱体', plan: '760', actual: '312', status: 'alarm' },
-  { wo: 'WO-2406-0297', product: '外壳面板', plan: '1,080', actual: '1,024', status: 'run' },
-]
-const tones = { run: '运行中', idle: '待机', alarm: '报警' }
-
-// 完整数据表格示例:筛选 + 操作 + 分页
-const keyword = ref('')
-const lineFilter = ref('all')
+import { ref, computed } from 'vue'
+import { NvScreenTable, NvScreenPagination, NvScreenButton } from '@nerv-iip/ui'
 const page = ref(1)
-const lineOptions = [
-  { label: '全部产线', value: 'all' },
-  { label: '焊接线 A', value: 'a' },
-  { label: '装配线 B', value: 'b' },
-  { label: 'CNC 线 C', value: 'c' },
+const selected = ref('尚未选择')
+const columns = [
+  { key: 'id', label: '记录编号' },
+  { key: 'title', label: '馆藏名称' },
+  { key: 'count', label: '份数', align: 'right' },
+  { key: 'note', label: '备注', align: 'center' },
+  { key: 'action', label: '操作' },
 ]
-const fullColumns = [
-  { key: 'wo', label: '工单号' },
-  { key: 'product', label: '产品' },
-  { key: 'actual', label: '实际', align: 'right' },
-  { key: 'status', label: '状态', align: 'center' },
-  { key: 'action', label: '操作', align: 'center' },
-]
+const rows = Array.from({ length: 23 }, (_, i) => ({ id: `item-${i + 1}`, title: '城市记忆', count: i, note: i ? '—' : '', action: '' }))
+const visibleRows = computed(() => rows.slice((page.value - 1) * 5, page.value * 5))
 </script>
 
 # NvScreenTable 数据表格
 
-大屏数据表:微微发光的表头行压在细线正文行上(无竖向分隔),行随悬停点亮。列各自设对齐方式;任意单元格可被 `#cell-<key>` 插槽接管,用于状态点、等宽编码等。纯数据驱动 —— `columns` + `rows` 即可渲染。基于独立的 `--nv-scr-*` 令牌。
+固定深色、发丝行线、按列对齐。组件只呈现宿主传入的行；查询、排序、分页和领域状态留在宿主。
 
-## 基础用法
-
-`columns` 定义列(`align` 控制对齐),`rows` 是数据,`rowKey` 指明唯一列。
+## 中性清单与真实分页
 
 <ScreenDemo wide>
-  <NvScreenTable :columns="columns" :rows="rows" row-key="wo">
-    <template #cell-status="{ value }">
-      <NvScreenStatusTag :tone="value">{{ tones[value] }}</NvScreenStatusTag>
-    </template>
+  <NvScreenTable :columns="columns" :rows="visibleRows" row-key="id" style="max-height:260px" tabindex="0" aria-label="馆藏清单">
+    <template #cell-action="{ row }"><NvScreenButton size="sm" @click="selected = row.id">选择 {{ row.id }}</NvScreenButton></template>
   </NvScreenTable>
+  <NvScreenPagination v-model:page="page" :total="rows.length" :page-size="5" style="margin-top:16px" />
+  <p>{{ selected }}</p>
 </ScreenDemo>
 
 ```vue
 <script setup>
-const columns = [
-  { key: 'wo', label: '工单号' },
-  { key: 'product', label: '产品' },
-  { key: 'plan', label: '计划', align: 'right' },
-  { key: 'actual', label: '实际', align: 'right' },
-  { key: 'status', label: '状态', align: 'center' },
-]
-const rows = [
-  { wo: 'WO-2406-0312', product: '车架总成', plan: '1,240', actual: '1,156', status: 'run' },
-  // …
-]
+import { ref, computed } from 'vue'
+const page = ref(1)
+const rows = ref([{ id: 'item-1', count: 0, note: '' }])
+const visibleRows = computed(() => rows.value.slice((page.value - 1) * 5, page.value * 5))
 </script>
 
 <template>
-  <NvScreenTable :columns="columns" :rows="rows" row-key="wo">
-    <!-- 用 #cell-<key> 插槽渲染状态标签 -->
-    <template #cell-status="{ value }">
-      <NvScreenStatusTag :tone="value">{{ tones[value] }}</NvScreenStatusTag>
+  <NvScreenTable :columns="columns" :rows="visibleRows" row-key="id">
+    <template #cell-action="{ row, value }">
+      <button @click="select(row.id)">{{ value }}</button>
     </template>
   </NvScreenTable>
+  <NvScreenPagination v-model:page="page" :total="rows.length" :page-size="5" />
 </template>
 ```
 
-## 完整数据表格（筛选 · 操作 · 分页）
-
-配合 `NvScreenSearch` / `NvScreenSelect` 组成筛选栏,`#cell-action` 插槽放 `NvScreenButton size="sm"` 行内操作,底部接 `NvScreenPagination`。下拉浮层 `Teleport` 到 `<body>`,不会被面板 `overflow` 裁切。
-
-<ScreenDemo wide>
-  <NvScreenPanel>
-    <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
-      <div style="flex:1;min-width:200px"><NvScreenSearch v-model="keyword" placeholder="搜索工单号或产品" /></div>
-      <div style="width:160px"><NvScreenSelect v-model="lineFilter" :options="lineOptions" /></div>
-      <NvScreenButton variant="secondary">导出</NvScreenButton>
-    </div>
-    <NvScreenTable :columns="fullColumns" :rows="rows" row-key="wo">
-      <template #cell-status="{ value }">
-        <NvScreenStatusTag :tone="value">{{ tones[value] }}</NvScreenStatusTag>
-      </template>
-      <template #cell-action>
-        <NvScreenButton variant="ghost" size="sm">详情</NvScreenButton>
-      </template>
-    </NvScreenTable>
-    <div style="margin-top:14px">
-      <NvScreenPagination v-model:page="page" :total="248" :page-size="4" />
-    </div>
-  </NvScreenPanel>
-</ScreenDemo>
-
 ## 属性
 
-| 属性      | 说明                          | 类型                                                                      | 默认         |
-| --------- | ----------------------------- | ------------------------------------------------------------------------- | ------------ |
-| `columns` | 列定义,`align` 控制单元格对齐 | `{ key: string; label: string; align?: 'left' \| 'center' \| 'right' }[]` | 内置示例列   |
-| `rows`    | 数据行                        | `Record<string, unknown>[]`                                               | 内置示例工单 |
-| `rowKey`  | 作为 `v-for` key 的唯一列     | `string`                                                                  | `'wo'`       |
+| 属性      | 说明                        | 类型                                                                      | 默认           |
+| --------- | --------------------------- | ------------------------------------------------------------------------- | -------------- |
+| `columns` | 列与表头/单元格对齐         | `{ key: string; label: string; align?: 'left' \| 'center' \| 'right' }[]` | 旧工单示例列   |
+| `rows`    | 只展示传入数组，不切页/去重 | `Record<string, unknown>[]`                                               | 旧工单示例     |
+| `rowKey`  | 唯一且稳定的行字段          | `string`                                                                  | `'wo'`（兼容） |
 
 ## 插槽
 
-| 插槽         | 作用域参数       | 说明                                                               |
-| ------------ | ---------------- | ------------------------------------------------------------------ |
-| `cell-<key>` | `{ row, value }` | 接管对应列的单元格渲染(状态点、等宽编码等);缺省直接输出 `row[key]` |
+| 插槽         | 参数             | 说明                                                      |
+| ------------ | ---------------- | --------------------------------------------------------- |
+| `cell-<key>` | `{ row, value }` | 当前行及原值；回调使用 `row.id`，不使用行位置或业务参考号 |
+
+默认文本不以真值过滤：`0` 为 `0`、空字符串为空、`—` 保留。中性实体须显式设置 `row-key="id"`；同参考号不同 ID 可以同时存在。宿主保证 key 唯一，组件不按参考号去重。省略 props 的原工单示例继续兼容。
+
+指定根容器 `height` / `max-height` 后原生双向内滚，表头吸顶；可传 `tabindex="0"` 供键盘滚动。无需覆盖全局 `th` 或修改公共 CSS 层。独立完整演示见 playground `/#screen/tables`；文档站构建另属 #10。
