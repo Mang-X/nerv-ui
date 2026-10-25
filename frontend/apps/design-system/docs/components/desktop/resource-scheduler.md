@@ -6,7 +6,7 @@ pageClass: nv-wide
 <script setup>
 import { ResourceSchedulerBoard } from '@nerv-iip/scheduling'
 import { NvButton, NvField, NvFieldGroup, NvFieldLabel, NvInput, NvSelect, NvSelectContent, NvSelectItem, NvSelectTrigger, NvSelectValue } from '@nerv-iip/ui'
-import SchedulingLegend from '../../../../../packages/scheduling/src/components/panels/SchedulingLegend.vue'
+import { SchedulingLegend } from '@nerv-iip/scheduling'
 import { computed, ref } from 'vue'
 import { makeModel, makeCalendarModel, makeBlockDemoModel } from '../../.vitepress/schedulingDemo'
 
@@ -200,7 +200,7 @@ function onDrag(p) {
     <ResourceSchedulerBoard :model="galleryModel" :read-only="true" />
   </div>
   <div style="border:1px solid var(--border); border-top:0; border-radius:0 0 8px 8px; overflow:hidden; margin-top:-1px">
-    <SchedulingLegend view="resource" :categories="cats" />
+    <SchedulingLegend view="resource" :model="galleryModel" scale="auto" :categories="cats" />
   </div>
   <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:.5rem; margin-top:1rem">
     <div v-for="item in resLegend" :key="item.label" style="display:flex; gap:.625rem; align-items:flex-start; border:1px solid var(--border); border-radius:8px; padding:.625rem .75rem">
@@ -433,3 +433,7 @@ P07 新增可选 `payload.assignment: { dimension, id, label }` 表达显式维�
 
 - [GanttChart 工单甘特](./gantt-chart) — 同一模型的工单/工序时间线视角。
 - [业务操作编辑工序](#业务操作编辑工序) — 独立排产板 + 板外编辑面板,改开始时间 / 资源泳道 / 锁定并实时回写。
+
+## P08 面板组合
+
+SchedulingToolbar、SchedulingLegend、TaskFacts、TaskDetailPanel、ChangeSummaryPanel、ConflictPanel、UnscheduledPanel 均从 `@nerv-iip/scheduling` 主桶消费。完整 props/emits、禁用理由、真实图面语义、受控显隐与 Sheet 详情 recipe 见 [排程面板合同](../../../../../../docs/scheduling-panels.md)。独立宿主为 `/#schedule-panels/library` 与 `/#schedule-panels/studio`，不代表完整文档站或 packed 验收。

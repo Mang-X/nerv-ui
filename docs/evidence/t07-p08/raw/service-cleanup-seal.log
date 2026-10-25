@@ -1,0 +1,21 @@
+{
+  records: [
+    {
+      pid: 78354,
+      cwd: '/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels',
+      command: 'node docs/evidence/t07-p08/scripts/serve.mjs',
+      signal: 'SIGTERM'
+    },
+    {
+      pid: 78754,
+      cwd: '/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels',
+      command: 'node docs/evidence/t07-p08/scripts/serve.mjs --nested',
+      signal: 'SIGTERM'
+    }
+  ],
+  ports: [
+    { port: 4307, lsofExit: 1, listener: '' },
+    { port: 4308, lsofExit: 1, listener: '' },
+    { port: 4309, lsofExit: 1, listener: '' }
+  ]
+}

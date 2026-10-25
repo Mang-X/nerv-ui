@@ -1,0 +1,237 @@
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+[p1 "NvUI · 项目清单" | space "nerv-ui P08 panels 2026-10-26"(78): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      anchor [ref=551, url=http://127.0.0.1:4308/#]
+        text "桌面"
+      anchor [ref=552, loc=href:/#schedule-gantt, url=http://127.0.0.1:4308/#schedule-gantt]
+        text "共读活动图"
+      anchor [ref=553, loc=href:/#schedule-resource-edit/library, url=http://127.0.0.1:4308/#schedule-resource-edit/library]
+        text "空间安排"
+      anchor [ref=554, loc=href:/#schedule-panels/studio, url=http://127.0.0.1:4308/#schedule-panels/studio]
+        text "创作工作坊"
+      heading
+        text "周一读书会"
+      button [ref=555]
+        text "浅色"
+      button [ref=556]
+        text "主题 neutral"
+    paragraph
+      text "DHTMLX 9.1.4 Professional Evaluation，声明与水印保留，授权范围 UNKNOWN。查看活动与空间安排。"
+    container
+      container
+        checkbox [ref=557]
+        text "采用锁定请求"
+      container
+        checkbox [ref=558]
+        text "活动待确认"
+      container
+        checkbox [ref=559]
+        text "正在处理"
+      button [ref=560]
+        text "更新活动内容"
+      button [ref=561]
+        text "倒序显示清单"
+      button [ref=562]
+        text "替换全部活动"
+      button [ref=563]
+        text "清空活动"
+      button [ref=564]
+        text "恢复活动"
+      button [ref=565]
+        text "切换阅读宽度"
+      button [ref=566]
+        text "显示或收起参考图"
+      button [ref=567]
+        text "显示或收起活动图"
+    container
+      container
+        comboboxgrouping "时间刻度" [ref=568, loc=css:button[aria-label="时间刻度"]]
+          text "小时"
+          svg_root
+        comboboxgrouping "分组维度" [ref=569, loc=css:button[aria-label="分组维度"]]
+          text "空间"
+          svg_root
+        comboboxgrouping "泳道排序" [ref=570, loc=css:button[aria-label="泳道排序"]]
+          text "名称升序"
+          svg_root
+        container
+          button "放大" [ref=571, loc=css:button[aria-label="放大"]]
+            svg_root
+          button "缩小" [ref=572, loc=css:button[aria-label="缩小"]]
+            svg_root
+          button "定位到当前" [ref=573, loc=css:button[aria-label="定位到当前"]]
+            svg_root
+          button "适配窗口" [ref=574, loc=css:button[aria-label="适配窗口"]]
+            svg_root
+        container
+          button "撤销" [ref=575, loc=css:button[aria-label="撤销"]]
+            svg_root
+          button "重做" [ref=576, loc=css:button[aria-label="重做"]]
+            svg_root
+          button "允许编辑" [ref=577, loc=css:button[aria-label="允许编辑"]]
+            svg_root
+        container
+          container
+            svg_root
+            textbox "搜索工序" [ref=578, loc=css:input[placeholder="搜索活动或空间"]]
+              text "搜索活动或空间"
+          button "上一个匹配" [ref=579, loc=css:button[aria-label="上一个匹配"]]
+            svg_root
+          button "下一个匹配" [ref=580, loc=css:button[aria-label="下一个匹配"]]
+            svg_root
+        container
+          text "活动状态已更新"
+          button [ref=581]
+            svg_root
+            text "核对活动"
+          button [ref=582]
+            svg_root
+            text "确认安排"
+      container
+        paragraph
+          text "选中：尚未选择活动"
+        paragraph
+          text "0 项活动"
+        status
+          text "当前为只读"
+        button [ref=583]
+          text "展开活动详情"
+      container
+        container
+          container
+            container
+              container
+                treegrid
+                  row
+                    columnheader "任务名称"
+                      text "任务名称"
+                    columnheader "负责人"
+                      text "负责人"
+                    columnheader "优先级"
+                      text "优先级"
+                    columnheader "状态"
+                      text "状态"
+                    columnheader "工时"
+                      text "工时"
+                    columnheader "工单进度"
+                      text "工单进度"
+                    columnheader
+                  rowgroup
+                container
+                  container "Asia/Shanghai · 10/26周一"
+                    text "Asia/Shanghai · 10/26周一"
+                  container
+                    container "Asia/Shanghai · 05:00"
+                      text "Asia/Shanghai · 05:00"
+                    container "Asia/Shanghai · 07:00"
+                      text "Asia/Shanghai · 07:00"
+                    container "Asia/Shanghai · 09:00"
+                      text "Asia/Shanghai · 09:00"
+              iframe
+                root
+              container
+                text "×"
+                text "This is an evaluation version dhtmlxGantt."
+                text "Please contact us at"
+                anchor [ref=584, url=mailto:contact@dhtmlx.com?subject=dhtmlxGantt%20licensing]
+                  text "contact@dhtmlx.com"
+                text "or visit"
+                anchor [ref=585, url=https://dhtmlx.com/docs/products/dhtmlxGantt/]
+                  text "dhtmlx.com"
+                text "in order to obtain a license."
+            status
+              svg_root
+              container
+                paragraph
+                  text "暂无排程任务"
+                paragraph
+                  text "调整筛选条件或生成排程后再查看甘特图。"
+          container
+            button [ref=586]
+              svg_root
+              text "活动分色"
+            button "隐藏 活动分色" [ref=587, loc=css:button[aria-label="隐藏 活动分色"]]
+              svg_root
+            text "活动"
+        container
+          text "尚未选择活动"
+          container [ref=588]
+            text "活动事实"
+    container
+      container "冲突"
+        container
+          heading
+            text "待确认事项"
+          text "0 项"
+        container
+          text "暂无待确认事项"
+          paragraph
+            text "当前没有提供待确认记录。"
+      container "未排产"
+        container
+          heading
+            text "等待安排"
+          text "0 项"
+        container
+          text "暂无待安排活动"
+          paragraph
+            text "当前没有提供等待安排的记录。"
+      container "变更摘要"
+        container
+          heading
+            text "活动调整"
+          text "0 / 0 项"
+        textbox "筛选活动" [ref=589, loc=css:input[placeholder="筛选活动"]]
+          text "筛选活动"
+        container
+          text "暂无活动调整"
+          paragraph
+            text "当前没有提供调整记录。"
+    container "活动记录"
+      heading
+        text "活动记录"
+      unordered_list
+        list_item
+          text "晨间共读"
+          text "切换查看方式"
+          text "07:18:20"
+          text "当前为只读"
+        list_item
+          text "晨间共读"
+          text "确认安排"
+          text "07:18:19"
+          text "已记录确认请求，安排保持不变"
+        list_item
+          text "晨间共读"
+          text "核对活动"
+          text "07:18:19"
+          text "已记录核对请求，安排保持不变"
+        list_item
+          text "晨间共读"
+          text "锁定"
+          text "07:18:19"
+          text "已锁定活动"
+        list_item
+          text "晨间共读"
+          text "查看并定位"
+          text "07:18:19"
+          text "已定位 晨间共读"
+        list_item
+          text "午间共读"
+          text "查看并定位"
+          text "07:18:18"
+          text "已定位 午间共读"
+        list_item
+          text "晨间共读"
+          text "查看并定位"
+          text "07:18:18"
+          text "已定位 晨间共读"
+        list_item
+          text "读书会"
+          text "适配窗口"
+          text "07:18:18"
+          text "已适配当前阅读宽度"
+
+

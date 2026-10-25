@@ -6,21 +6,30 @@
 // 结构:按分类分组、每类一行(分类标题 + 该类图例项)。每类可折叠(本地 ref)、可显隐(emit + 自身淡化)。
 import { ChevronRightIcon, EyeIcon, EyeOffIcon } from '@lucide/vue'
 import { computed, reactive } from 'vue'
-import { BLOCK_LABELS, BLOCK_TOKENS } from '../../model/blocks'
-import { deriveLegendSemantics, FULL_LEGEND_SEMANTICS } from '../../model/legend'
-import type { ScheduleModel, TimeScale } from '../../model/types'
+import { BLOCK_LABELS, BLOCK_TOKENS, type BlockKind } from '../../model/blocks'
+import { deriveLegendSemantics } from '../../model/legend'
+import type { LaneOrder, ScheduleModel, TimeScale } from '../../model/types'
 
 const props = withDefaults(
   defineProps<{
     categories?: { key: string; label: string }[]
     view?: 'order' | 'resource'
-    /** 当前图上的模型。给出时图例只列模型里真实存在的语义;不给时按"全部可能"展示(文档/演示)。 */
+    /** 当前图上的模型。给出时图例只列模型里真实存在的语义;不给时不推断图面语义。 */
     model?: ScheduleModel
     /**
      * 当前时间刻度。班次边界这类**随刻度出现/消失**的语义要靠它才推得准:
      * 日级视图下班次竖线一条都画不出来,图例就不该列(走查台账 #41)。
      */
     scale?: TimeScale
+    groupBy?: string
+    laneOrder?: LaneOrder
+    /** Host clock for deterministic current-time display. */
+    now?: number
+    /** Controlled visibility; emit is a request until the host updates this prop and its chart. */
+    hiddenGroups?: readonly string[]
+    toggleableGroups?: readonly string[]
+    categoryLabel?: string
+    blockLabels?: Partial<Record<BlockKind, string>>
   }>(),
   { view: 'order' },
 )
@@ -59,10 +68,12 @@ interface LegendItem {
   token?: string
 }
 
-// 有模型就照模型说话;没有模型(组件库文档 / 演示挂载)才用包内的「全部可能」常量,
-// 组件自己不再手写一份语义形状。
+// Derive only from the current diagram inputs. No model means no inferred semantics.
 const semantics = computed(() =>
-  props.model ? deriveLegendSemantics(props.model, Date.now(), props.scale) : FULL_LEGEND_SEMANTICS,
+  deriveLegendSemantics(props.model, props.now ?? Date.now(), props.scale, props.view, {
+    groupBy: props.groupBy,
+    laneOrder: props.laneOrder,
+  }),
 )
 
 const groups = computed<{ key: GroupKey; label: string; items: LegendItem[] }[]>(() => {
@@ -71,7 +82,7 @@ const groups = computed<{ key: GroupKey; label: string; items: LegendItem[] }[]>
   const all: { key: GroupKey; label: string; items: LegendItem[] }[] = [
     {
       key: 'category',
-      label: '工序分色',
+      label: props.categoryLabel ?? '工序分色',
       items: (props.categories ?? []).map((c) => ({
         key: c.key,
         label: c.label,
@@ -131,7 +142,7 @@ const groups = computed<{ key: GroupKey; label: string; items: LegendItem[] }[]>
       label: '阻塞',
       items: s.blocks.map((kind) => ({
         key: kind,
-        label: BLOCK_LABELS[kind],
+        label: props.blockLabels?.[kind] ?? BLOCK_LABELS[kind],
         kind: 'block' as const,
         token: BLOCK_TOKENS[kind],
       })),
@@ -151,20 +162,25 @@ const groups = computed<{ key: GroupKey; label: string; items: LegendItem[] }[]>
 
 // 折叠态(默认全部展开)与显隐态(默认全部可见),按 GroupKey 各自维护。
 const collapsed = reactive<Record<string, boolean>>({})
-const hidden = reactive<Record<string, boolean>>({})
+const localHidden = reactive<Record<string, boolean>>({})
+const hidden = computed<Record<string, boolean>>(() =>
+  props.hiddenGroups === undefined
+    ? localHidden
+    : Object.fromEntries(props.hiddenGroups.map((key) => [key, true])),
+)
 
 function toggleCollapse(key: GroupKey) {
   collapsed[key] = !collapsed[key]
 }
 function toggleVisible(key: GroupKey) {
-  const next = !(hidden[key] ?? false)
-  hidden[key] = next
+  const next = !(hidden.value[key] ?? false)
+  if (props.hiddenGroups === undefined) localHidden[key] = next
   emit('toggle-category', { key, visible: !next })
 }
 </script>
 
 <template>
-  <div class="border-t border-border/50 bg-card/60 text-xs text-muted-foreground">
+  <div class="border-t border-border/50 bg-card/60 text-sm text-muted-foreground">
     <!-- 每个分类一行:左标题(折叠指示 + 名称 + 显隐开关),右图例项。行间发丝分隔。 -->
     <div
       v-for="group in groups"
@@ -187,6 +203,7 @@ function toggleVisible(key: GroupKey) {
       </button>
       <button
         type="button"
+        v-if="toggleableGroups === undefined || toggleableGroups.includes(group.key)"
         class="nerv-leg-eye"
         :aria-pressed="!!hidden[group.key]"
         :aria-label="hidden[group.key] ? `显示 ${group.label}` : `隐藏 ${group.label}`"
@@ -241,7 +258,7 @@ function toggleVisible(key: GroupKey) {
           <!-- ③ 卡片 -->
           <span
             v-else-if="item.kind === 'priority'"
-            class="rounded bg-destructive/15 px-1 py-px text-[0.58rem] font-bold text-destructive"
+            class="rounded bg-destructive/15 px-1 py-px text-sm font-bold text-destructive"
             >高</span
           >
           <svg
@@ -276,12 +293,12 @@ function toggleVisible(key: GroupKey) {
           </template>
           <span
             v-else-if="item.kind === 'changeover'"
-            class="rounded bg-foreground/10 px-1.5 py-px text-[0.58rem] font-semibold"
+            class="rounded bg-foreground/10 px-1.5 py-px text-sm font-semibold"
             >换型</span
           >
           <span
             v-else-if="item.kind === 'bottleneck'"
-            class="rounded-[3px] bg-destructive/15 px-1.5 py-px text-[0.58rem] font-bold text-destructive"
+            class="rounded-[3px] bg-destructive/15 px-1.5 py-px text-sm font-bold text-destructive"
             >瓶颈</span
           >
           <!-- ④ 状态 -->

@@ -1,0 +1,5 @@
+JSON report written to /Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/raw/docs-source-seal.json
+$ vp test run src/design-docs.contract.test.ts src/nvui-doc-coverage.contract.test.ts src/docs-layout.contract.test.ts --reporter=json --outputFile=../../../docs/evidence/t07-p08/raw/docs-source-seal.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

@@ -1,0 +1,19 @@
+{
+  "url": "http://127.0.0.1:4307/#schedule-panels/library",
+  "shift": 0,
+  "block": 0,
+  "legend": [
+    " 活动",
+    " 计划基线 依赖箭头",
+    " 非工作时段"
+  ],
+  "scale": [
+    "Asia/Shanghai · 07:00",
+    "Asia/Shanghai · 09:00",
+    "Asia/Shanghai · 11:00",
+    "Asia/Shanghai · 13:00",
+    "Asia/Shanghai · 15:00",
+    "Asia/Shanghai · 17:00",
+    "Asia/Shanghai · 19:00"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "url": "http://127.0.0.1:4307/#schedule-panels/library",
+  "engine": "dhtmlx",
+  "scale": [
+    {
+      "text": "Asia/Shanghai · 07:00",
+      "title": "Asia/Shanghai · 07:00"
+    },
+    {
+      "text": "Asia/Shanghai · 09:00",
+      "title": "Asia/Shanghai · 09:00"
+    },
+    {
+      "text": "Asia/Shanghai · 11:00",
+      "title": "Asia/Shanghai · 11:00"
+    },
+    {
+      "text": "Asia/Shanghai · 13:00",
+      "title": "Asia/Shanghai · 13:00"
+    },
+    {
+      "text": "Asia/Shanghai · 15:00",
+      "title": "Asia/Shanghai · 15:00"
+    },
+    {
+      "text": "Asia/Shanghai · 17:00",
+      "title": "Asia/Shanghai · 17:00"
+    },
+    {
+      "text": "Asia/Shanghai · 19:00",
+      "title": "Asia/Shanghai · 19:00"
+    }
+  ],
+  "shiftCells": 0,
+  "legend": [
+    " 活动",
+    " 计划基线 依赖箭头",
+    " 空间整理",
+    " 非工作时段 班次边界"
+  ],
+  "baselines": 1,
+  "blockCells": 0,
+  "timezone": "Asia/Shanghai"
+}

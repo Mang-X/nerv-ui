@@ -79,7 +79,17 @@ export interface DimensionValue {
  */
 export type LaneOrder = 'busiest' | 'name' | 'onlyScheduled'
 
+/** Optional host display facts. Identity fields keep their original meaning. */
+export interface ScheduleTaskDisplay {
+  groupLabel?: string
+  resourceLabel?: string
+  priorityLabel?: string
+  blockLabel?: string
+  blockDescription?: string
+}
+
 export interface ScheduleTask {
+  display?: ScheduleTaskDisplay
   /** 展示时区来自已授权工厂上下文；空字符串表示未解析，不回退到浏览器。 */
   timezone?: string
   factoryTimeLabel?: string
@@ -229,6 +239,9 @@ export interface ResourceLoadBucket {
 }
 
 export interface ScheduleConflict {
+  label?: string
+  reasonLabel?: string
+  selectDisabledReason?: string
   id: string
   reason: ConflictReason
   severity: ConflictSeverity
@@ -241,6 +254,11 @@ export interface ScheduleConflict {
 }
 
 export interface UnscheduledItem {
+  label?: string
+  groupLabel?: string
+  reasonLabel?: string
+  actionLabel?: string
+  actionDisabledReason?: string
   orderId: string
   operationId: string
   reason: ConflictReason
@@ -248,6 +266,10 @@ export interface UnscheduledItem {
 }
 
 export interface ScheduleChange {
+  label?: string
+  groupLabel?: string
+  typeLabel?: string
+  selectDisabledReason?: string
   orderId: string
   operationId: string
   changeType: ChangeType

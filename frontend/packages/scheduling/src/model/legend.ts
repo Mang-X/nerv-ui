@@ -3,8 +3,9 @@
 // 后端没带日历就不谈班次,方案里没有换型窗口就不列换型图例。
 
 import { BLOCK_KINDS, type BlockKind } from './blocks'
-import { resolveTimeScale, shiftBoundaryRendersAt } from './scale'
-import type { ScheduleModel, TimeScale } from './types'
+import { resourceProjection, resourceKey, workCenterKey } from './resource-projection'
+import { resolveTimeScale, orderScaleCells } from './scale'
+import type { LaneOrder, ScheduleModel, TimeScale } from './types'
 
 export interface SchedulingLegendSemantics {
   /** 甘特语义(工单甘特):计划基线 / 依赖箭头 / 里程碑。 */
@@ -32,8 +33,8 @@ export interface SchedulingLegendSemantics {
   /** 阻塞:方案里真实出现过的资源时间块类型(按固定顺序)。 */
   blocks: BlockKind[]
   /**
-   * 日历:非工作时段底纹恒在(有日历按日历、无日历按通用作息);
-   * 班次边界要后端带出日历**且当前刻度画得出那条线**才列(见 shiftBoundaryRendersAt);
+   * 日历:仅有适用日历才推导非工作底纹;
+   * 班次边界要后端带出日历**且当前刻度画得出那条线**才列(工单格点 / 资源连续区间);
    * 「现在」线只在计划期覆盖当下时出现。
    */
   calendar: { nonWorking: boolean; shift: boolean; now: boolean }
@@ -67,32 +68,116 @@ export function deriveLegendSemantics(
   model?: ScheduleModel,
   now: number = Date.now(),
   scale?: TimeScale,
+  view: 'order' | 'resource' = 'order',
+  grouping?: { groupBy?: string; laneOrder?: LaneOrder },
 ): SchedulingLegendSemantics {
   if (!model) return EMPTY
   const tasks = model.tasks ?? []
-  const operations = tasks.filter((t) => t.type === 'operation' && !t.blockKind)
-  const blockKinds = new Set(tasks.map((t) => t.blockKind).filter(Boolean) as BlockKind[])
-
+  const projection =
+    view === 'resource'
+      ? resourceProjection(model, grouping?.groupBy, grouping?.laneOrder)
+      : undefined
+  const operations = projection
+    ? projection.lanes.flatMap((lane) => lane.operations)
+    : tasks.filter((t) => t.type === 'operation' && !t.blockKind)
+  const renderedRows = projection
+    ? projection.lanes.map((lane) => ({
+        resources: lane.resourceIds,
+        workCenter: lane.workCenterId,
+      }))
+    : tasks
+        .filter((t) => !t.blockKind)
+        .map((task) => ({
+          resources: task.resourceId === undefined ? [] : [task.resourceId],
+          workCenter: task.dimensions?.workCenter?.id ?? task.workCenterId,
+        }))
+  if (!renderedRows.length) return EMPTY
   const horizonStart = Date.parse(model.horizon?.startUtc ?? '')
   const horizonEnd = Date.parse(model.horizon?.endUtc ?? '')
-  // 走查台账 #41:此前只看「后端有没有带日历」,于是日级视图下图例照列「班次边界」,
-  // 而图面一条线都没有。改为按当前刻度下**真的画得出来**的班次起点推导。
   const resolvedScale = resolveTimeScale(scale, model.horizon)
-  const shiftBoundaryVisible = (model.calendars ?? []).some((calendar) =>
-    calendar.shiftWindows.some((window) => shiftBoundaryRendersAt(window.startUtc, resolvedScale)),
+  const cells = view === 'order' ? orderScaleCells(model, resolvedScale) : []
+  const indexed = new Map<string, { start: number; end: number }[]>()
+  for (const calendar of model.calendars ?? []) {
+    const windows = calendar.shiftWindows
+      .map((window) => ({ start: Date.parse(window.startUtc), end: Date.parse(window.endUtc) }))
+      .filter((window) => Number.isFinite(window.start) && window.end > window.start)
+    for (const key of [
+      ...calendar.resourceIds.map(resourceKey),
+      ...calendar.workCenterIds.map(workCenterKey),
+    ])
+      indexed.set(key, [...(indexed.get(key) ?? []), ...windows])
+  }
+  // Same explicit namespace/precedence as the renderer; a resource name never becomes a work center.
+  const rowWindows = renderedRows
+    .map((row) => {
+      const workCenter =
+        row.workCenter === undefined ? undefined : indexed.get(workCenterKey(row.workCenter))
+      if (workCenter !== undefined) return workCenter
+      if (!row.resources.length || row.resources.some((id) => !indexed.has(resourceKey(id))))
+        return undefined
+      return row.resources.flatMap((id) => indexed.get(resourceKey(id))!)
+    })
+    .filter((windows): windows is { start: number; end: number }[] => windows !== undefined)
+  const shiftBoundaryVisible = rowWindows.some((windows) =>
+    windows.some((window) =>
+      view === 'resource'
+        ? window.start >= horizonStart && window.start < horizonEnd
+        : cells.includes(window.start),
+    ),
+  )
+  const hasOffwork = rowWindows.some((windows) => {
+    if (view === 'order')
+      return cells.some((at) => !windows.some((window) => at >= window.start && at < window.end))
+    let cursor = horizonStart
+    for (const window of [...windows].sort((a, b) => a.start - b.start)) {
+      if (window.end <= cursor) continue
+      if (window.start > cursor) return cursor < horizonEnd
+      cursor = Math.max(cursor, window.end)
+    }
+    return cursor < horizonEnd
+  })
+  const blocks = projection
+    ? projection.lanes.flatMap((lane) => lane.blocks)
+    : tasks.filter(
+        (task) =>
+          task.blockKind &&
+          renderedRows.some(
+            (row) =>
+              (task.resourceId !== undefined && row.resources.includes(task.resourceId)) ||
+              (task.workCenterId !== undefined && row.workCenter === task.workCenterId),
+          ),
+      )
+  const visibleBlockKinds = new Set(
+    blocks
+      .filter((task) =>
+        view === 'resource'
+          ? Date.parse(task.startUtc) < horizonEnd && Date.parse(task.endUtc) > horizonStart
+          : cells.some((at) => at >= Date.parse(task.startUtc) && at < Date.parse(task.endUtc)),
+      )
+      .map((task) => task.blockKind),
   )
 
   return {
     gantt: {
-      baseline: operations.some((t) => t.plannedStartUtc || t.plannedEndUtc),
-      link: (model.links ?? []).length > 0,
+      baseline: operations.some(
+        (t) =>
+          Number.isFinite(Date.parse(t.plannedStartUtc ?? '')) &&
+          Date.parse(t.plannedEndUtc ?? '') > Date.parse(t.plannedStartUtc ?? ''),
+      ),
+      link: (model.links ?? []).some(
+        (link) =>
+          tasks.some((task) => task.id === link.source && !task.blockKind) &&
+          tasks.some((task) => task.id === link.target && !task.blockKind),
+      ),
       milestone: tasks.some((t) => t.isMilestone || t.milestoneLabel),
     },
     card: {
       priority: operations.some((t) => !!t.priority),
       rush: operations.some((t) => t.isRush),
       kitting: operations.some((t) => typeof t.kitting === 'number'),
-      changeover: operations.some((t) => typeof t.changeoverMin === 'number'),
+      changeover: operations.some(
+        (t) => typeof t.changeoverMin === 'number' && t.changeoverMin > 0,
+      ),
       bottleneck:
         (model.resources ?? []).some((r) => (r.utilization ?? 0) > 1) ||
         (model.loads ?? []).some((l) => l.utilization > 1),
@@ -105,10 +190,10 @@ export function deriveLegendSemantics(
       // 同理:有工序真的排在状态未知设备上才列「设备状态未知」。
       equipmentRisk: operations.some((t) => !!t.equipmentRisk),
     },
-    blocks: BLOCK_KINDS.filter((kind) => blockKinds.has(kind)),
+    blocks: BLOCK_KINDS.filter((kind) => visibleBlockKinds.has(kind)),
     calendar: {
-      // 时间线底纹恒在:有日历按日历判定,无日历也会画周末/夜间。
-      nonWorking: true,
+      // Absent calendars remain unknown; never invent night/weekend shading.
+      nonWorking: hasOffwork,
       shift: shiftBoundaryVisible,
       now:
         Number.isFinite(horizonStart) &&

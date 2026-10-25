@@ -1,0 +1,33 @@
+[
+  {
+    "stage": "initial",
+    "url": "http://127.0.0.1:4308/#schedule-panels/library",
+    "title": "周一读书会",
+    "selected": "选中：晨间共读",
+    "detail": "周一读书会工序  · 晨间共读 锁定活动参与人数0备注反馈未知报名无权读取记录暂不可读取空间晨光书房开始11/02 09:00结束11/02 12:00工时3 小时数量0准备0 分钟进度0%",
+    "records": "活动记录\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读\n晨间共读\n查看并定位\n07:05:34\n已定位 晨间共读",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx",
+      "dhtmlx"
+    ],
+    "bars": 5,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [],
+    "resources": [
+      "http://127.0.0.1:4308/assets/index-9HcsBR8L.js",
+      "http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4308/assets/index-BtGh0fLp.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "http://127.0.0.1:4308/favicon.ico"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  }
+]

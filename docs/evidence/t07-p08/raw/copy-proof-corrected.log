@@ -1,0 +1,21 @@
+{
+  report: [
+    {
+      lane: 'root',
+      old: [Object],
+      current: [Object],
+      semanticDelta: [Object],
+      normalizedReferences: [Array],
+      other: [Array]
+    },
+    {
+      lane: 'nested',
+      old: [Object],
+      current: [Object],
+      semanticDelta: [Object],
+      normalizedReferences: [Array],
+      other: [Array]
+    }
+  ],
+  scope: 'Only the summary-exclusion predicate changed after the browser matrix. Prior P08 library/studio fixtures contain no order summary tasks; resource continuous overlays do not use this helper. Inherit only those prior sequences with this proof. The new stale-summary counterexample is a public unit lane, not fresh browser or vendor conformance. No statement that all chunks or all possible models are equivalent.'
+}

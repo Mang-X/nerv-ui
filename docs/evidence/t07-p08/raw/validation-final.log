@@ -1,0 +1,282 @@
+[
+  {
+    file: 'docs-source-final.json',
+    discovery: 6,
+    passed: 6,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'focused-01.json',
+    discovery: 22,
+    passed: 21,
+    failed: 1,
+    pending: 0,
+    failedSuites: 2,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'focused-phase-01.json',
+    discovery: 25,
+    passed: 20,
+    failed: 5,
+    pending: 0,
+    failedSuites: 4,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'focused-phase-02.json',
+    discovery: 25,
+    passed: 25,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'focused-phase-03.json',
+    discovery: 25,
+    passed: 25,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'green-detail.json',
+    discovery: 3,
+    passed: 3,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'green-host-02.json',
+    discovery: 2,
+    passed: 2,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'green-host.json',
+    discovery: 2,
+    passed: 1,
+    failed: 1,
+    pending: 0,
+    failedSuites: 1,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'green-legend.json',
+    discovery: 1,
+    passed: 1,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'green-lists.json',
+    discovery: 5,
+    passed: 5,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'green-phase.json',
+    discovery: 9,
+    passed: 0,
+    failed: 1,
+    pending: 8,
+    failedSuites: 1,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'green-toolbar.json',
+    discovery: 2,
+    passed: 2,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'host-collection-fail.json',
+    discovery: 290,
+    passed: 290,
+    failed: 0,
+    pending: 0,
+    failedSuites: 3,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'host-final-02.json',
+    discovery: 302,
+    passed: 302,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'host-final-03.json',
+    discovery: 302,
+    passed: 302,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'host-final.json',
+    discovery: 302,
+    passed: 302,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'host-layout-final.json',
+    discovery: 302,
+    passed: 302,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'host-recursion-final.json',
+    discovery: 302,
+    passed: 302,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'host-serial-final.json',
+    discovery: 302,
+    passed: 302,
+    failed: 0,
+    pending: 0,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'red-detail.json',
+    discovery: 3,
+    passed: 0,
+    failed: 1,
+    pending: 2,
+    failedSuites: 1,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'red-host.json',
+    discovery: 2,
+    passed: 0,
+    failed: 2,
+    pending: 0,
+    failedSuites: 1,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'red-legend.json',
+    discovery: 1,
+    passed: 0,
+    failed: 1,
+    pending: 0,
+    failedSuites: 2,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'red-lists.json',
+    discovery: 5,
+    passed: 0,
+    failed: 2,
+    pending: 3,
+    failedSuites: 1,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'red-phase.json',
+    discovery: 9,
+    passed: 0,
+    failed: 1,
+    pending: 8,
+    failedSuites: 1,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'red-toolbar.json',
+    discovery: 2,
+    passed: 0,
+    failed: 1,
+    pending: 1,
+    failedSuites: 1,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'red-zero-legend.json',
+    discovery: 10,
+    passed: 0,
+    failed: 1,
+    pending: 9,
+    failedSuites: 1,
+    unhandledCount: null,
+    success: false
+  },
+  {
+    file: 'scheduling-01.json',
+    discovery: 177,
+    passed: 173,
+    failed: 0,
+    pending: 4,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  },
+  {
+    file: 'scheduling-final.json',
+    discovery: 179,
+    passed: 175,
+    failed: 0,
+    pending: 4,
+    failedSuites: 0,
+    unhandledCount: null,
+    success: true
+  }
+]

@@ -2,7 +2,7 @@
 import { scheduleTime } from '../../model/factory-time'
 import TaskFacts from './TaskFacts.vue'
 import '../../styles/scheduling.css'
-import { NvButton } from '@nerv-iip/ui'
+import { NvButton, NvStatusBadge } from '@nerv-iip/ui'
 import { LockIcon, UnlockIcon } from '@lucide/vue'
 import { computed } from 'vue'
 import { conflictReasonLabel } from '../../model/labels'
@@ -11,13 +11,24 @@ import type { ScheduleTask } from '../../model/types'
 
 // 选中工序/工单的完整详情(取代弹出抽屉,常驻右侧栏顶部)。
 // readOnly:只读视图(已发布方案的甘特查阅面)不提供锁定/解锁交互,只呈现锁定状态。
-const props = defineProps<{ task?: ScheduleTask; readOnly?: boolean }>()
+const props = defineProps<{
+  task?: ScheduleTask
+  readOnly?: boolean
+  lockDisabledReason?: string
+  labels?: {
+    empty?: string
+    lock?: string
+    unlock?: string
+    resource?: string
+    changeover?: string
+  }
+}>()
 const emit = defineEmits<{ 'toggle-lock': [taskId: string, locked: boolean] }>()
 
 const isOrder = computed(() => props.task?.type === 'order')
 const isBlock = computed(() => !!props.task?.blockKind)
 const materialReadyText = computed(() => materialReadyLabel(props.task?.materialRisk))
-const PRIO = { high: ['高', 'danger'], medium: ['中', 'warning'], low: ['低', 'muted'] } as const
+const PRIO = { high: ['高', 'danger'], medium: ['中', 'warning'], low: ['低', 'neutral'] } as const
 const BLOCK = {
   maintenance: {
     label: '设备维护',
@@ -78,6 +89,8 @@ const durationH = computed(() => {
       (sum, segment) => sum + Date.parse(segment.endUtc) - Date.parse(segment.startUtc),
       0,
     ) / 3_600_000
+  if (!Number.isFinite(h) || h < 0) return '—'
+  if (h === 0) return '0 小时'
   return h >= 1 ? `${Math.round(h)} 小时` : '<1 小时'
 })
 const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
@@ -85,11 +98,13 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
 
 <template>
   <div class="border-b border-border/60">
-    <p v-if="task?.factoryTimeLabel" class="px-4 pt-3 text-xs text-muted-foreground">
+    <p v-if="task?.factoryTimeLabel" class="px-4 pt-3 text-sm text-muted-foreground">
       {{ task.factoryTimeLabel }}
     </p>
     <div v-if="!task" class="flex flex-col items-center gap-1.5 px-4 py-8 text-center">
-      <span class="text-sm font-medium text-muted-foreground">未选择工序</span>
+      <span class="text-sm font-medium text-muted-foreground">{{
+        labels?.empty ?? '未选择工序'
+      }}</span>
     </div>
 
     <!-- 资源时间块:专有信息(不套工单模板) -->
@@ -100,14 +115,18 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
           :style="{ '--bk': BLOCK[task.blockKind!].tone }"
         ></span>
         <span class="text-sm font-semibold text-foreground">{{
-          task.text || BLOCK[task.blockKind!].label
+          task.text || task.display?.blockLabel || BLOCK[task.blockKind!].label
         }}</span>
       </div>
-      <p class="mt-1 text-xs text-muted-foreground">{{ BLOCK[task.blockKind!].desc }}</p>
-      <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs">
+      <p class="mt-1 text-sm text-muted-foreground">
+        {{ task.display?.blockDescription ?? BLOCK[task.blockKind!].desc }}
+      </p>
+      <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm">
         <div class="col-span-2 flex justify-between">
-          <dt class="text-muted-foreground">资源</dt>
-          <dd class="font-medium text-foreground">{{ task.resourceId || '—' }}</dd>
+          <dt class="text-muted-foreground">{{ labels?.resource ?? '资源' }}</dt>
+          <dd class="font-medium text-foreground">
+            {{ task.display?.resourceLabel ?? task.resourceId ?? '—' }}
+          </dd>
         </div>
         <div class="flex justify-between">
           <dt class="text-muted-foreground">开始</dt>
@@ -128,34 +147,17 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
       <!-- 标题行:WO + 优先级 + 插单 + 锁 -->
       <div class="flex flex-wrap items-center gap-1.5">
         <span class="font-mono text-sm font-semibold tracking-tight text-foreground">{{
-          task.orderId || '—'
+          task.display?.groupLabel ?? task.orderId ?? '—'
         }}</span>
-        <span
+        <NvStatusBadge
           v-if="task.priority"
-          class="rounded px-1.5 py-px text-[0.65rem] font-bold"
-          :class="{
-            'bg-destructive/15 text-destructive': task.priority === 'high',
-            'bg-warning/15 text-warning': task.priority === 'medium',
-            'bg-muted text-muted-foreground': task.priority === 'low',
-          }"
-          >{{ PRIO[task.priority][0] }}优先</span
-        >
-        <span
-          v-if="task.isRush"
-          class="inline-flex items-center gap-0.5 rounded px-1.5 py-px text-[0.65rem] font-semibold"
-          style="
-            color: var(--nv-scheduling-rush);
-            background: color-mix(in oklch, var(--nv-scheduling-rush), transparent 85%);
-          "
-          >⚡ 插单</span
-        >
-        <span
-          v-if="task.locked"
-          class="inline-flex items-center gap-0.5 rounded bg-brand/12 px-1.5 py-px text-[0.65rem] font-semibold text-brand"
-          >已锁定</span
-        >
+          :tone="PRIO[task.priority][1]"
+          :label="task.display?.priorityLabel ?? `${PRIO[task.priority][0]}优先`"
+        />
+        <NvStatusBadge v-if="task.isRush" tone="warning" label="插单" />
+        <NvStatusBadge v-if="task.locked" tone="info" label="已锁定" />
       </div>
-      <p class="mt-1 text-[0.82rem] text-foreground">
+      <p class="mt-1 text-sm text-foreground">
         {{ task.product || (isOrder ? '工单' : '工序') }}
         <span v-if="!isOrder" class="text-muted-foreground"> · {{ task.text }}</span>
       </p>
@@ -165,17 +167,22 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
         v-if="!isOrder && !readOnly"
         size="sm"
         :variant="task.locked ? 'secondary' : 'outline'"
-        class="mt-2.5 h-7 w-full gap-1.5 text-xs"
+        class="mt-2.5 h-7 w-full gap-1.5 text-sm"
+        :disabled="!!lockDisabledReason"
+        :title="lockDisabledReason"
         @click="emit('toggle-lock', task.id, !task.locked)"
       >
         <component :is="task.locked ? UnlockIcon : LockIcon" class="size-3.5" aria-hidden="true" />
-        {{ task.locked ? '解锁(允许拖拽)' : '锁定此工序' }}
+        {{ task.locked ? (labels?.unlock ?? '解锁(允许拖拽)') : (labels?.lock ?? '锁定此工序') }}
       </NvButton>
 
+      <p v-if="lockDisabledReason && !readOnly" class="mt-2 text-sm text-muted-foreground">
+        {{ lockDisabledReason }}
+      </p>
       <!-- 冲突横幅 -->
       <div
         v-if="task.hasConflict && task.conflictReason"
-        class="mt-2.5 rounded-md border border-destructive/40 bg-destructive/10 px-2.5 py-1.5 text-xs font-medium text-destructive"
+        class="mt-2.5 rounded-md border border-destructive/40 bg-destructive/10 px-2.5 py-1.5 text-sm font-medium text-destructive"
       >
         冲突 · {{ conflictReasonLabel[task.conflictReason] }}
       </div>
@@ -186,7 +193,7 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
       -->
       <div
         v-if="task.materialRisk"
-        class="nv-sched-material-risk mt-2.5 rounded-md px-2.5 py-1.5 text-xs"
+        class="nv-sched-material-risk mt-2.5 rounded-md px-2.5 py-1.5 text-sm"
         data-testid="task-material-risk"
       >
         <p class="font-medium">方案物料风险 · 需在开工前完成备料</p>
@@ -212,14 +219,14 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
       -->
       <div
         v-if="task.equipmentRisk"
-        class="nv-sched-equipment-risk mt-2.5 rounded-md px-2.5 py-1.5 text-xs"
+        class="nv-sched-equipment-risk mt-2.5 rounded-md px-2.5 py-1.5 text-sm"
         data-testid="task-equipment-risk"
       >
         <p class="font-medium">方案设备风险 · 保存时状态未知，开工前请人工确认设备可用</p>
         <p class="mt-1">{{ task.equipmentRisk.message }}</p>
       </div>
 
-      <div v-if="(task.segments?.length ?? 0) > 1" class="mt-3 grid gap-1 text-xs">
+      <div v-if="(task.segments?.length ?? 0) > 1" class="mt-3 grid gap-1 text-sm">
         <p class="font-medium">实际排程 · {{ task.segments!.length }} 段</p>
         <p v-for="(segment, index) in task.segments" :key="index">
           第 {{ index + 1 }} 段 · {{ fmt(segment.startUtc) }} 至 {{ fmt(segment.endUtc) }}
@@ -229,7 +236,7 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
 
       <p
         v-if="task.downtimeRisk"
-        class="mt-3 rounded border border-destructive/40 bg-destructive/10 p-2 text-xs text-destructive"
+        class="mt-3 rounded border border-destructive/40 bg-destructive/10 p-2 text-sm text-destructive"
         role="status"
       >
         {{ task.downtimeRisk }}
@@ -237,10 +244,12 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
       <TaskFacts :task="task" class="mt-3" />
 
       <!-- 明细网格 -->
-      <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs">
+      <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm">
         <div v-if="!isOrder" class="col-span-2 flex justify-between">
-          <dt class="text-muted-foreground">资源</dt>
-          <dd class="font-medium text-foreground">{{ task.resourceId || '—' }}</dd>
+          <dt class="text-muted-foreground">{{ labels?.resource ?? '资源' }}</dt>
+          <dd class="font-medium text-foreground">
+            {{ task.display?.resourceLabel ?? task.resourceId ?? '—' }}
+          </dd>
         </div>
         <div class="flex justify-between">
           <dt class="text-muted-foreground">开始</dt>
@@ -281,8 +290,8 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
             {{ pct(task.kitting) }}
           </dd>
         </div>
-        <div v-if="task.changeoverMin" class="flex justify-between">
-          <dt class="text-muted-foreground">换型</dt>
+        <div v-if="task.changeoverMin != null" class="flex justify-between">
+          <dt class="text-muted-foreground">{{ labels?.changeover ?? '换型' }}</dt>
           <dd class="font-medium text-foreground">{{ task.changeoverMin }} 分钟</dd>
         </div>
         <div v-if="task.load != null" class="flex justify-between">
@@ -300,7 +309,9 @@ const pct = (v?: number) => (v == null ? '—' : `${Math.round(v * 100)}%`)
         </div>
         <div v-if="task.status" class="flex justify-between">
           <dt class="text-muted-foreground">状态</dt>
-          <dd class="font-medium text-foreground">{{ task.status.label }}</dd>
+          <dd class="font-medium text-foreground">
+            <NvStatusBadge :tone="task.status.tone" :label="task.status.label" />
+          </dd>
         </div>
       </dl>
     </div>

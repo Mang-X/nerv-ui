@@ -70,3 +70,7 @@ export type { SchedulingEditControl } from './composables/useSchedulingEdits'
 export type { ScheduleModelAdapter, LockedAssignmentsAdapter } from './model/aps-mapper'
 export type { DraftValidator } from './model/draft-feedback'
 export type { MaterialReadyFormatter } from './model/material-risk'
+
+// P08: controlled list actions; domain processing remains with the host.
+export { default as ConflictPanel } from './components/panels/ConflictPanel.vue'
+export { default as UnscheduledPanel } from './components/panels/UnscheduledPanel.vue'

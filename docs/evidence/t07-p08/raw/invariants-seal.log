@@ -1,0 +1,11 @@
+{
+  packages: 973,
+  snapshots: 973,
+  vendor: [ 891743, 142723, 211538 ],
+  vueIdentity: {
+    package: 'apps/playground',
+    path: '/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/package.json',
+    version: '3.5.39'
+  },
+  unchanged: 21
+}

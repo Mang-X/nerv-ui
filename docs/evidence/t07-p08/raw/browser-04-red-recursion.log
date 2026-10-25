@@ -1,0 +1,8 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+12 !== 1
+
+    at file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-04-red-recursion.mjs:13:8
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+
+ego's nodejs process exited with code 1.
