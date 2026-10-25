@@ -355,6 +355,13 @@ describe('FilePreview', () => {
       },
     )
     for (const mock of Object.values(viewportMock)) mock.mockClear()
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => ({
+        ok: true,
+        arrayBuffer: async () => new Uint8Array([0x50, 0x4b, 3, 4]).buffer,
+      })),
+    )
     officeViewerMocks.docxOptions = []
     officeViewerMocks.pptxOptions = []
     officeViewerMocks.xlsxOptions = []
@@ -946,6 +953,21 @@ describe('FilePreview', () => {
     expect(wrapper.text()).toContain('100%')
     expect(officeViewerMocks.docxOptions).toHaveLength(1)
     expect(officeViewerMocks.docxRenderWidths).toEqual([704, 640])
+  })
+
+  it('FilePreview renders a true 50 percent canvas at a narrow office width', async () => {
+    vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(400)
+    const wrapper = mount(FilePreview, { props: { src: '/narrow.docx', fileName: 'narrow.docx' } })
+    await vi.waitFor(() => expect(wrapper.emitted('ready')).toEqual([['office-docx']]))
+    vi.useFakeTimers()
+    for (let index = 0; index < 5; index += 1)
+      await wrapper.get('button[aria-label="缩小文档"]').trigger('click')
+    await vi.advanceTimersByTimeAsync(200)
+    await flushPromises()
+    expect(wrapper.get('button[aria-label="重置文档缩放"]').text()).toBe('50%')
+    expect(officeViewerMocks.docxRenderWidths.at(-1)).toBe(200)
+    expect(wrapper.get('button[aria-label="缩小文档"]').attributes('disabled')).toBeDefined()
+    wrapper.unmount()
   })
 
   it('documents every file preview demo with code examples and localized state labels', () => {

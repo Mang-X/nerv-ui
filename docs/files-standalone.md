@@ -25,3 +25,11 @@ API 合同继续以对应[上传页](../frontend/apps/design-system/docs/compone
 同一个预览选择器增加原样单页、三页阅读旅程、嵌入中文字体、坏 PDF 和无效地址。本地图片输入也接受 PDF，保持既有可访问标签和原文件操作。PDF 的分页、缩放、适应宽度与滚动由现有三件内部 SFC 负责；宿主只供应来源和读回事件。
 
 固定 PDFium 2.14.4 使用 direct engine，在主线程运行，无 Worker。WASM 原样随库本地资源打包，Vite 根据 base 生成 URL；fontFallback:null 禁止远程补字体，只承诺嵌入字体样张的已知 glyph。失败可换来源或切换 loading 重试；ready 为文档 loaded，真实画面另按解码位图检查。资源 SHA、来源/notice、真实浏览器与 RED/GREEN 身份见 [F04 证据](evidence/t06-f04/README.md)，接口见[预览页](../frontend/apps/design-system/docs/components/desktop/file-preview.md#pdf-本地资源与生命周期t06f04)。原迁移素材不变，本轮修复是否回传原仓由 #12–#15 消费者接入决定。
+
+## 本地 Office 预览（T06/F05）
+
+在同一 `/#files` 选择器中打开工作指引 DOCX、三页阅读旅程 DOCX、检查记录 XLSX 或预览回顾 PPTX；三种格式均使用固定 `@silurus/ooxml@0.72.2`，没有在线预览服务。DOCX/PPTX 可翻页、下拉跳转和按容器宽度的 50%–200% 重绘缩放；resize 保留页码。XLSX 可在 Inspection/Trend/Summary 间切换，不提供包装层缩放工具。
+
+三个 WASM 和上游许可随库本地供应，解析 Worker 来自包内 Blob，绘制在主线程；Google Fonts 可选路径显式关闭。字体按文档嵌入与本机可用字体回退，不能据本地样张推断所有文档字体完整。坏字节和 404 进入 error，切换正常样张恢复。来源 GET/响应体、旧 viewer 回调及 render surface 按代次隔离；离页清理 viewer、observer、timer/RAF 和宿主 Blob URL。
+
+本地文件选择支持图片、PDF、DOCX、XLSX、PPTX，不触发上传；上传排列、内存和原生 HTTP 演示仍由原区域提供。完整验证与未运行边界见 [F05 证据](evidence/t06-f05/README.md)，父 #7 仍需最终组合验收。

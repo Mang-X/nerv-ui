@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import docxWasmUrl from './ooxml/docx_parser_bg.wasm?url'
+import pptxWasmUrl from './ooxml/pptx_parser_bg.wasm?url'
+import xlsxWasmUrl from './ooxml/xlsx_parser_bg.wasm?url'
 import type { FilePreviewKind } from './filePreviewKind'
 import {
   ChevronLeftIcon,
@@ -52,8 +55,8 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  error: [message: string]
-  ready: []
+  error: [message: string, source: string, kind: typeof props.kind]
+  ready: [source: string, kind: typeof props.kind]
 }>()
 
 const containerRef = ref<HTMLElement | null>(null)
@@ -73,6 +76,9 @@ const minimumZoomScale = 0.5
 const maximumZoomScale = 2
 const zoomScaleStep = 0.1
 let loadToken = 0
+let mounted = true
+let sourceRead: AbortController | null = null
+const surfaceVersion = ref(0)
 let canvasResizeObserver: ResizeObserver | null = null
 let canvasResizeFrame = 0
 let canvasRerenderTimer = 0
@@ -142,6 +148,8 @@ const jumpOptions = computed(() => {
 })
 
 function destroyViewer() {
+  sourceRead?.abort()
+  sourceRead = null
   clearScheduledCanvasRerender()
   viewer.value?.destroy()
   viewer.value = null
@@ -173,7 +181,7 @@ function measureCanvasRenderWidth() {
 
 function getEffectiveCanvasRenderWidth() {
   const baseWidth = canvasRenderWidth.value || measureCanvasRenderWidth()
-  return Math.max(minimumCanvasRenderWidth, Math.round(baseWidth * zoomScale.value))
+  return Math.max(1, Math.round(baseWidth * zoomScale.value))
 }
 
 function syncCanvasRenderWidth() {
@@ -254,17 +262,15 @@ async function rerenderCanvasViewer() {
 }
 
 function setCanvasViewerRenderWidth(active: CanvasOfficeViewer, renderWidth: number) {
-  // @silurus/ooxml 0.69.0 exposes navigation publicly, but not Viewer resize.
+  // @silurus/ooxml 0.72.2 exposes navigation publicly, but not Viewer resize.
   // Keep the private width write isolated so future package upgrades have one
   // small compatibility point instead of coupling the render flow throughout.
-  active.opts = active.opts ?? {}
-  active.opts.width = renderWidth
-  active._opts = active._opts ?? {}
-  active._opts.width = renderWidth
+  if (props.kind === 'office-pptx' && active.opts) active.opts.width = renderWidth
+  if (props.kind === 'office-docx' && active._opts) active._opts.width = renderWidth
 }
 
 async function rerenderActiveCanvasViewer(active: CanvasOfficeViewer) {
-  // No public Viewer rerender API exists in @silurus/ooxml 0.69.0; these private
+  // No public Viewer rerender API exists in @silurus/ooxml 0.72.2; these private
   // methods are the only path that preserves the current document and text layer
   // while resizing without creating another worker-backed viewer.
   if (props.kind === 'office-pptx') {
@@ -313,6 +319,8 @@ function scheduleCanvasRenderWidthSync() {
 function installCanvasResizeObserver() {
   canvasResizeObserver?.disconnect()
   canvasResizeObserver = null
+  if (canvasResizeFrame) cancelAnimationFrame(canvasResizeFrame)
+  canvasResizeFrame = 0
 
   if (!usesCanvas.value || !canvasStageRef.value || typeof ResizeObserver === 'undefined') {
     syncCanvasRenderWidth()
@@ -327,11 +335,24 @@ function installCanvasResizeObserver() {
 function handleError(err: unknown) {
   const message = err instanceof Error ? err.message : '无法渲染此 Office 文档。'
   errorMessage.value = message
-  emit('error', message)
+  emit('error', message, props.src, props.kind)
 }
 
 async function loadViewer() {
   const token = ++loadToken
+  const source = props.src
+  const kind = props.kind
+  const isCurrent = () =>
+    mounted && token === loadToken && source === props.src && kind === props.kind
+  const onError = (error: unknown) => {
+    if (isCurrent()) handleError(error)
+  }
+  const onIndexChange = (index: number, count: number) => {
+    if (isCurrent()) {
+      currentIndex.value = index
+      total.value = count
+    }
+  }
   loading.value = true
   errorMessage.value = ''
   currentIndex.value = 0
@@ -339,89 +360,119 @@ async function loadViewer() {
   sheetNames.value = []
   zoomScale.value = 1
   destroyViewer()
+  surfaceVersion.value += 1
+  const controller = new AbortController()
+  sourceRead = controller
 
   await nextTick()
 
-  if (token !== loadToken || !containerRef.value) {
-    if (token === loadToken) {
+  if (!isCurrent() || !containerRef.value) {
+    if (isCurrent()) {
       loading.value = false
     }
     return
   }
 
+  installCanvasResizeObserver()
   if (usesCanvas.value && !canvasRenderWidth.value) {
     syncCanvasRenderWidth()
   }
 
   try {
+    const accept =
+      kind === 'office-docx'
+        ? 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        : kind === 'office-xlsx'
+          ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+          : 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    const response = await fetch(source, { headers: { Accept: accept }, signal: controller.signal })
+    if (!isCurrent()) return
+    if (!response.ok) throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`)
+    const buffer = await response.arrayBuffer()
+    if (!isCurrent()) return
+    const signature = new Uint8Array(buffer, 0, Math.min(buffer.byteLength, 4))
+    if (
+      signature.length < 4 ||
+      signature[0] !== 0x50 ||
+      signature[1] !== 0x4b ||
+      signature[2] !== 3 ||
+      signature[3] !== 4
+    )
+      throw new Error('文件不是有效的 OOXML ZIP 文档。')
     const renderWidth = usesCanvas.value ? getEffectiveCanvasRenderWidth() : 0
 
-    if (props.kind === 'office-docx') {
+    if (kind === 'office-docx') {
       if (!canvasRef.value) {
         throw new Error('Document canvas is unavailable.')
       }
       const { DocxViewer } = await import('@silurus/ooxml/docx')
+      if (!isCurrent()) return
       const docxViewer = new DocxViewer(canvasRef.value, {
         container: containerRef.value,
+        wasmUrl: docxWasmUrl,
+        useGoogleFonts: false,
         enableTextSelection: true,
         width: renderWidth,
-        onPageChange: (index, count) => {
-          currentIndex.value = index
-          total.value = count
-        },
-        onError: handleError,
+        onPageChange: onIndexChange,
+        onError,
       })
       viewer.value = docxViewer as unknown as OfficeViewer
-      await docxViewer.load(props.src)
+      await docxViewer.load(buffer)
+      if (!isCurrent()) return
       total.value = docxViewer.pageCount
-    } else if (props.kind === 'office-pptx') {
+    } else if (kind === 'office-pptx') {
       if (!canvasRef.value) {
         throw new Error('Presentation canvas is unavailable.')
       }
       const { PptxViewer } = await import('@silurus/ooxml/pptx')
+      if (!isCurrent()) return
       const pptxViewer = new PptxViewer(canvasRef.value, {
+        wasmUrl: pptxWasmUrl,
+        useGoogleFonts: false,
         enableTextSelection: true,
         width: renderWidth,
-        onSlideChange: (index, count) => {
-          currentIndex.value = index
-          total.value = count
-        },
-        onError: handleError,
+        onSlideChange: onIndexChange,
+        onError,
       })
       viewer.value = pptxViewer as unknown as OfficeViewer
-      await pptxViewer.load(props.src)
+      await pptxViewer.load(buffer)
+      if (!isCurrent()) return
       total.value = pptxViewer.slideCount
     } else {
       if (!spreadsheetRef.value) {
         throw new Error('Spreadsheet container is unavailable.')
       }
       const { XlsxViewer } = await import('@silurus/ooxml/xlsx')
+      if (!isCurrent()) return
       const xlsxViewer = new XlsxViewer(spreadsheetRef.value, {
+        wasmUrl: xlsxWasmUrl,
+        useGoogleFonts: false,
         selectionColor: 'var(--ring)',
         showZoomSlider: false,
         onReady: (names) => {
-          sheetNames.value = names
-          total.value = names.length
+          if (isCurrent()) {
+            sheetNames.value = names
+            total.value = names.length
+          }
         },
-        onSheetChange: (index, count) => {
-          currentIndex.value = index
-          total.value = count
-        },
-        onError: handleError,
+        onSheetChange: onIndexChange,
+        onError,
       })
       viewer.value = xlsxViewer as unknown as OfficeViewer
-      await xlsxViewer.load(props.src)
+      await xlsxViewer.load(buffer)
+      if (!isCurrent()) return
       sheetNames.value = xlsxViewer.sheetNames
       total.value = xlsxViewer.sheetCount
     }
 
-    if (!errorMessage.value) {
-      emit('ready')
+    if (isCurrent() && !errorMessage.value) {
+      if (total.value < 1) throw new Error('文档没有可预览的页面或工作表。')
+      emit('ready', source, kind)
     }
   } catch (err) {
-    handleError(err)
+    onError(err)
   } finally {
-    if (token === loadToken) {
+    if (isCurrent()) {
       loading.value = false
     }
   }
@@ -520,6 +571,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  mounted = false
   loadToken += 1
   if (canvasResizeFrame) {
     cancelAnimationFrame(canvasResizeFrame)
@@ -628,6 +680,7 @@ onBeforeUnmount(() => {
       </div>
       <div
         v-show="!errorMessage"
+        :key="surfaceVersion"
         ref="containerRef"
         class="mx-auto h-full min-h-64 w-full overflow-auto rounded-md border border-border bg-slate-100 text-slate-950 shadow-sm [color-scheme:light]"
       >
