@@ -34,7 +34,7 @@
 - ui docs-source：6 passed；全 workspace 类型检查、根 build、`/nested/` build 退出 0。完整文档站 #10 没有运行，不能用这 6 条代替它。
 - 4 条 skip 原样保留在 `DhtmlxEngine conformance (requires @dhx/trial-gantt)`：`mounts, renders one node per task, and exposes state`、`applies scaleTo command and reports via scaleChanged`、`selectTask command emits taskSelected with normalized id`、`destroy cleans the container`。配置现在使用包 vendor 子入口别名；历史 suite 名保留。该组 0 执行，绝非 vendor PASS。
 - fresh 浏览器最终为主流程 18 项、额外生命周期/DST/base/资源 7 项、missing-module 5 项，均逐项报告。最终页面 error/unhandled hooks 为空；fake 与真实模块/HTTP 分区明确分开。资源 proof 12 个响应包含 root/nested 各 6：主 JS、runtime JS、主 CSS、vendor CSS、vendor JS、本地 Inter woff2。
-- 精确 commands/cwd/start/end/exit 见 durable `commands.jsonl`，source format/lint 与 raw/maintenance diff-check 分列。lint 退出 0，有 3 条继承 warning，不写成零 warning。
+- 精确 commands/cwd/start/end/exit 见 durable `commands.jsonl`，source format/lint 与 raw/maintenance diff-check 分列。lint 退出 0，有 3 条继承 warning，不写成零 warning。本票 base→head 的 raw/maintenance diff-check 均为 0；包含全部集成历史的 `main...HEAD` raw diff-check 为 exit2（1785 行诊断），原样保留，不与本票增量混称全绿。
 
 ## 依赖与资源来源
 
