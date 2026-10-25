@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { NvApp, NvButton, useColorMode, useTheme } from '@nerv-iip/ui'
+import { ref } from 'vue'
+import NativeUploadPanel from './files/NativeUploadPanel.vue'
+const uploadMode = ref('memory')
 import UploadPanel from './files/UploadPanel.vue'
 import PreviewPanel from './files/PreviewPanel.vue'
 const { isDark, toggle } = useColorMode()
@@ -55,7 +58,20 @@ const routes = [
           >
         </div>
       </header>
-      <div class="grid items-start gap-10 xl:grid-cols-2"><UploadPanel /><PreviewPanel /></div>
+      <label class="block text-sm"
+        >传输方式
+        <select
+          v-model="uploadMode"
+          aria-label="传输方式"
+          class="min-h-11 rounded-md border bg-background px-3"
+        >
+          <option value="memory">内存适配器</option>
+          <option value="native">本机原生 HTTP</option>
+        </select></label
+      >
+      <div class="grid items-start gap-10 xl:grid-cols-2">
+        <UploadPanel v-if="uploadMode === 'memory'" /><NativeUploadPanel v-else /><PreviewPanel />
+      </div>
     </main>
   </NvApp>
 </template>

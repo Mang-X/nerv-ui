@@ -1,0 +1,164 @@
+{ endpoint: { expected: { size: 2097169, sha256: 'b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e', source: 'generated i % 251' }, pending: 0, aborted: 2, sessions: [ { id: 'fixture-1', mode: 'server-proxy', scenario: 'network', offset: 0, byteCount: 0, sha256: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', complete: false } ], events: [ { method: 'POST', path: '/__native-fixture/session', headers: { host: '127.0.0.1:5203', connection: 'keep-alive', 'content-length': '44', 'sec-ch-ua-platform': '"macOS"', 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36', 'sec-ch-ua': '"Not:A-Brand";v="8", "Chromium";v="156", "Google Chrome";v="156"', dnt: '1', 'content-type': 'application/json', 'sec-ch-ua-mobile': '?0', accept: '*/*', origin: 'http://127.0.0.1:5203', 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors', 'sec-fetch-dest': 'empty', referer: 'http://127.0.0.1:5203/?f03=4', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' }, status: 201, responseHeaders: {}, responseBody: { uploadSessionId: 'fixture-1', fileId: 'fixture-1', uploadMode: 'server-proxy', provider: 'server-proxy', expiresAtUtc: '2026-10-25T05:20:06.670Z', upload: { url: '/__native-fixture/fixture-1', headers: { 'X-Fixture-Session': 'fixture-1' } } } }, { method: 'PUT', path: '/__native-fixture/fixture-1', headers: { host: '127.0.0.1:5203', connection: 'keep-alive', 'content-length': '2097169', 'sec-ch-ua-platform': '"macOS"', 'x-fixture-session': 'fixture-1', 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36', 'sec-ch-ua': '"Not:A-Brand";v="8", "Chromium";v="156", "Google Chrome";v="156"', dnt: '1', 'content-type': 'application/octet-stream', 'sec-ch-ua-mobile': '?0', accept: '*/*', origin: 'http://127.0.0.1:5203', 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors', 'sec-fetch-dest': 'empty', referer: 'http://127.0.0.1:5203/?f03=4', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' }, body: { byteCount: 2097169, sha256: 'b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e' }, status: 'aborted', aborted: true }, { method: 'PUT', path: '/__native-fixture/fixture-1', headers: { host: '127.0.0.1:5203', connection: 'keep-alive', 'content-length': '2097169', 'sec-ch-ua-platform': '"macOS"', 'x-fixture-session': 'fixture-1', 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36', 'sec-ch-ua': '"Not:A-Brand";v="8", "Chromium";v="156", "Google Chrome";v="156"', dnt: '1', 'content-type': 'application/octet-stream', 'sec-ch-ua-mobile': '?0', accept: '*/*', origin: 'http://127.0.0.1:5203', 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors', 'sec-fetch-dest': 'empty', referer: 'http://127.0.0.1:5203/?f03=4', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' }, body: { byteCount: 2097169, sha256: 'b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e' }, status: 'aborted', aborted: true } ] }, wire: [ { url: '/__native-fixture/session', method: 'POST', headers: { 'content-type': 'application/json' }, body: '{"mode":"server-proxy","scenario":"network"}', status: 201, responseHeaders: { 'access-control-allow-origin': 'http://127.0.0.1:5203', 'cache-control': 'no-store', connection: 'keep-alive', 'content-type': 'application/json', date: 'Sun, 25 Oct 2026 04:20:06 GMT', 'keep-alive': 'timeout=5', 'transfer-encoding': 'chunked', vary: 'Origin' }, responseBody: '{"uploadSessionId":"fixture-1","fileId":"fixture-1","uploadMode":"server-proxy","provider":"server-proxy","expiresAtUtc":"2026-10-25T05:20:06.670Z","upload":{"url":"/__native-fixture/fixture-1","headers":{"X-Fixture-Session":"fixture-1"}}}' }, { url: '/__native-fixture/fixture-1', method: 'PUT', headers: { 'content-type': 'application/octet-stream', 'x-fixture-session': 'fixture-1' }, body: { byteCount: 2097169, sha256: 'b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e' }, error: 'TypeError: Failed to fetch', signalAborted: false }, { url: '/__native-fixture/readback', method: 'GET', headers: {}, body: null, status: 200, responseHeaders: { 'cache-control': 'no-store', connection: 'keep-alive', 'content-type': 'application/json', date: 'Sun, 25 Oct 2026 04:20:06 GMT', 'keep-alive': 'timeout=5', 'transfer-encoding': 'chunked', vary: 'Origin' }, responseBody: '{"expected":{"size":2097169,"sha256":"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e","source":"generated i % 251"},"pending":0,"aborted":2,"sessions":[{"id":"fixture-1","mode":"server-proxy","scenario":"network","offset":0,"byteCount":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","complete":false}],"events":[{"method":"POST","path":"/__native-fixture/session","headers":{"host":"127.0.0.1:5203","connection":"keep-alive","content-length":"44","sec-ch-ua-platform":"\\"macOS\\"","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36","sec-ch-ua":"\\"Not:A-Brand\\";v=\\"8\\", \\"Chromium\\";v=\\"156\\", \\"Google Chrome\\";v=\\"156\\"","dnt":"1","content-type":"application/json","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://127.0.0.1:5203","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://127.0.0.1:5203/?f03=4","accept-encoding":"gzip, deflate, ' } ], errors: [], error: 'Failed to fetch', receipt: '尚无本机成功回执' }
+[p1 "NvUI · 项目清单" | space "nerv-ui-f03-20261025"(33): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container "显示表面"
+      anchor [ref=226, loc=href:/?f03=4#desktop, url=http://127.0.0.1:5203/?f03=4#desktop]
+        text "桌面演示"
+      anchor [ref=227, loc=href:/?f03=4#touch, url=http://127.0.0.1:5203/?f03=4#touch]
+        text "触屏演示"
+      anchor [ref=228, loc=href:/?f03=4#mobile, url=http://127.0.0.1:5203/?f03=4#mobile]
+        text "随行手记"
+      anchor [ref=229, loc=href:/?f03=4#mobile-input, url=http://127.0.0.1:5203/?f03=4#mobile-input]
+        text "随心记录"
+      anchor [ref=230, loc=href:/?f03=4#mobile-overlays, url=http://127.0.0.1:5203/?f03=4#mobile-overlays]
+        text "片刻安排"
+      anchor [ref=231, loc=href:/?f03=4#mobile-lists, url=http://127.0.0.1:5203/?f03=4#mobile-lists]
+        text "翻阅时光"
+      anchor [ref=232, loc=href:/?f03=4#mobile-feedback, url=http://127.0.0.1:5203/?f03=4#mobile-feedback]
+        text "片刻回响"
+      anchor [ref=233, loc=href:/?f03=4#screen/stage, url=http://127.0.0.1:5203/?f03=4#screen/stage]
+        text "空间舞台"
+      anchor [ref=234, loc=href:/?f03=4#screen/controls, url=http://127.0.0.1:5203/?f03=4#screen/controls]
+        text "随心安排"
+      anchor [ref=235, loc=href:/?f03=4#screen/indicators, url=http://127.0.0.1:5203/?f03=4#screen/indicators]
+        text "阅读与到访"
+      anchor [ref=236, loc=href:/?f03=4#screen/data, url=http://127.0.0.1:5203/?f03=4#screen/data]
+        text "流动消息"
+      anchor [ref=237, loc=href:/?f03=4#screen/charts, url=http://127.0.0.1:5203/?f03=4#screen/charts]
+        text "内容与到访"
+      anchor [ref=238, loc=href:/?f03=4#screen/tables, url=http://127.0.0.1:5203/?f03=4#screen/tables]
+        text "清单与事件"
+      anchor [ref=239, loc=href:/?f03=4#screen/summary, url=http://127.0.0.1:5203/?f03=4#screen/summary]
+        text "空间使用概况"
+    container
+      container
+        heading
+          text "留住片刻"
+        paragraph
+          text "整理旅途中的图片与便笺，放大看看值得记住的细节。文件只留在本页。"
+      container
+        button [ref=240]
+          text "切换亮色"
+        button [ref=241]
+          text "蓝色强调色"
+    container
+      text "传输方式"
+      combobox "传输方式" [ref=242, loc=css:select[aria-label="传输方式"]]
+        text "本机原生 HTTP"
+    container
+      container "本机原生传输"
+        heading
+          text "本机原生传输"
+        paragraph
+          text "只发送内置 2 MiB + 17 字节夹具。回执代表本机模拟端点确认，不是生产 FileStorage。PUT 只显示等待与传输完成，传输完成后还需确认回执。"
+        container
+          container
+            text "协议"
+            combobox "原生协议" [ref=243, loc=css:select[aria-label="原生协议"]]
+              text "server-proxy PUT"
+          container
+            text "场景"
+            combobox "原生场景" [ref=244, loc=css:select[aria-label="原生场景"]]
+              text "network"
+          container
+            text "排列"
+            combobox "原生排列" [ref=245, loc=css:select[aria-label="原生排列"]]
+              text "queue"
+        button [ref=246]
+          svg_root
+          text "拖拽文件到这里，或点击浏览"
+          text "支持 .bin · 单个文件不超过 2.0 MB · 最多 1 个文件"
+          text "还可上传 1 个文件"
+        text "文件 (0/1)"
+        text "总计 2.0 MB"
+        button [ref=268]
+          svg_root
+          text "添加文件"
+        button [ref=269]
+          svg_root
+          text "清空"
+        svg_root
+        text "native-fixture.bin"
+        text "待上传"
+        text "File - 2.0 MB"
+        progressindicator "1%"
+        paragraph
+          text "Failed to fetch"
+        button "暂停 native-fixture.bin" [ref=270, loc=css:button[aria-label="暂停 native-fixture.bin"]]
+          svg_root
+        button "移除 native-fixture.bin" [ref=271, loc=css:button[aria-label="移除 native-fixture.bin"]]
+          svg_root
+        container
+          button [ref=247]
+            text "加入已知二进制夹具"
+          button [ref=248]
+            text "开始原生上传"
+          button [ref=249]
+            text "取消原生传输"
+          button [ref=250]
+            text "恢复原生传输"
+          button [ref=251]
+            text "清空原生队列"
+          button [ref=252]
+            text "读取端点"
+          button [ref=253]
+            text "重置端点"
+        alert
+          text "Failed to fetch"
+        output "本机成功回执" [ref=254]
+          text "尚无本机成功回执"
+        container [ref=255]
+          text "端点只读记录"
+      container "看见细节"
+        container
+          heading
+            text "看见细节"
+          paragraph
+            text "本地图片可缩放与旋转。其它文件保留原文件入口。"
+        container
+          text "预览内容"
+          combobox "预览内容" [ref=256, loc=css:select[aria-label="预览内容"]]
+            text "图形记录 SVG"
+        container
+          text "预览本地图片"
+          textbox "预览本地图片" [ref=257, loc=css:input[aria-label="预览本地图片"]]
+            button [ref=258]
+              text "选择文件"
+            text "未选择任何文件"
+        container
+          container
+            checkbox [ref=259]
+            text "等待来源"
+          container
+            checkbox [ref=260]
+            text "来源暂不可用"
+        container
+          container
+            container
+              svg_root
+              container
+                text "quality-evidence.svg"
+                text "Image"
+            button "打开 quality-evidence.svg" [ref=261, loc=css:button[aria-label="打开 quality-evidence.svg"]]
+              svg_root
+          container
+            container
+              button "缩小 quality-evidence.svg" [ref=262, loc=css:button[aria-label="缩小 quality-evidence.svg"]]
+                svg_root
+              text "100%"
+              button "放大 quality-evidence.svg" [ref=263, loc=css:button[aria-label="放大 quality-evidence.svg"]]
+                svg_root
+              button "向左旋转 quality-evidence.svg" [ref=264, loc=css:button[aria-label="向左旋转 quality-evidence.svg"]]
+                svg_root
+              button "向右旋转 quality-evidence.svg" [ref=265, loc=css:button[aria-label="向右旋转 quality-evidence.svg"]]
+                svg_root
+            image
+        container
+          button [ref=266]
+            text "打开本地原图"
+          text "先在预览中请求，再点击此处打开。"
+        output "预览事件" [ref=267]
+          text "ready image · 已打开 0 次 · 本地预览 0"
+
+

@@ -1,0 +1,219 @@
+{
+  "before": {
+    "geometry": {
+      "width": 2300,
+      "scale": 1,
+      "dpr": 2
+    },
+    "endpoint": {
+      "expected": {
+        "size": 2097169,
+        "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+        "source": "generated i % 251"
+      },
+      "pending": 0,
+      "aborted": 0,
+      "sessions": [
+        {
+          "id": "fixture-23",
+          "mode": "tus",
+          "scenario": "ok",
+          "offset": 2097169,
+          "byteCount": 2097169,
+          "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+          "complete": true
+        }
+      ],
+      "events": [
+        {
+          "method": "POST",
+          "path": "/__native-fixture/session",
+          "headers": {
+            "host": "127.0.0.1:5204",
+            "connection": "keep-alive",
+            "content-length": "30",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+            "dnt": "1",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "origin": "http://127.0.0.1:5204",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "http://127.0.0.1:5204/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+          },
+          "status": 201,
+          "responseHeaders": {},
+          "responseBody": {
+            "uploadSessionId": "fixture-23",
+            "fileId": "fixture-23",
+            "uploadMode": "tus",
+            "provider": "tus",
+            "expiresAtUtc": "2026-10-25T05:26:39.854Z",
+            "upload": {
+              "url": "/__native-fixture/fixture-23",
+              "headers": {
+                "X-Fixture-Session": "fixture-23"
+              }
+            }
+          }
+        },
+        {
+          "method": "HEAD",
+          "path": "/__native-fixture/fixture-23",
+          "headers": {
+            "host": "127.0.0.1:5204",
+            "connection": "keep-alive",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "x-fixture-session": "fixture-23",
+            "tus-resumable": "1.0.0",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+            "dnt": "1",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "http://127.0.0.1:5204/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+          },
+          "status": 200,
+          "responseHeaders": {
+            "Tus-Resumable": "1.0.0",
+            "Upload-Offset": "17"
+          },
+          "responseBody": null
+        },
+        {
+          "method": "PATCH",
+          "path": "/__native-fixture/fixture-23",
+          "headers": {
+            "host": "127.0.0.1:5204",
+            "connection": "keep-alive",
+            "content-length": "1048576",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "x-fixture-session": "fixture-23",
+            "tus-resumable": "1.0.0",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+            "upload-offset": "17",
+            "sec-ch-ua-mobile": "?0",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+            "dnt": "1",
+            "content-type": "application/offset+octet-stream",
+            "accept": "*/*",
+            "origin": "http://127.0.0.1:5204",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "http://127.0.0.1:5204/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+          },
+          "body": {
+            "byteCount": 1048576,
+            "sha256": "e5840bc90f9d2f6f79225d19a8bb4832ea8c0a3f60a58255a4b6d812bebdb2d5"
+          },
+          "status": 204,
+          "responseHeaders": {
+            "Tus-Resumable": "1.0.0",
+            "Upload-Offset": "1048593"
+          },
+          "responseBody": null
+        },
+        {
+          "method": "PATCH",
+          "path": "/__native-fixture/fixture-23",
+          "headers": {
+            "host": "127.0.0.1:5204",
+            "connection": "keep-alive",
+            "content-length": "1048576",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "x-fixture-session": "fixture-23",
+            "tus-resumable": "1.0.0",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+            "upload-offset": "1048593",
+            "sec-ch-ua-mobile": "?0",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+            "dnt": "1",
+            "content-type": "application/offset+octet-stream",
+            "accept": "*/*",
+            "origin": "http://127.0.0.1:5204",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "http://127.0.0.1:5204/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+          },
+          "body": {
+            "byteCount": 1048576,
+            "sha256": "f98f826fbc705c2a7938961e537c20bc6f91a2ad741f778eddf49f1be2a74300"
+          },
+          "status": 204,
+          "responseHeaders": {
+            "Tus-Resumable": "1.0.0",
+            "Upload-Offset": "2097169"
+          },
+          "responseBody": null
+        },
+        {
+          "method": "POST",
+          "path": "/__native-fixture/fixture-23/complete",
+          "headers": {
+            "host": "127.0.0.1:5204",
+            "connection": "keep-alive",
+            "content-length": "0",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "x-fixture-session": "fixture-23",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+            "dnt": "1",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "origin": "http://127.0.0.1:5204",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "http://127.0.0.1:5204/",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+          },
+          "status": 200,
+          "responseHeaders": {},
+          "responseBody": {
+            "fileId": "fixture-23",
+            "size": 2097169,
+            "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e"
+          }
+        }
+      ]
+    }
+  },
+  "after": {
+    "geometry": {
+      "width": 2300,
+      "scale": 1,
+      "dpr": 2
+    },
+    "endpoint": {
+      "expected": {
+        "size": 2097169,
+        "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+        "source": "generated i % 251"
+      },
+      "pending": 0,
+      "aborted": 0,
+      "sessions": [],
+      "events": []
+    }
+  },
+  "finished": true,
+  "keep": []
+}

@@ -120,3 +120,61 @@ it('offers an invalid image URL separately from corrupt bytes for source recover
     '/files/missing.png',
   )
 })
+
+it('keeps native mode and known fixture selection inert until explicit upload and waits for endpoint completion receipt', async () => {
+  const fetcher = vi.fn().mockResolvedValue(new Response('{}', { status: 200 }))
+  vi.stubGlobal('fetch', fetcher)
+  try {
+    wrapper = mount(FilesDemo)
+    await wrapper.get('[aria-label="传输方式"]').setValue('native')
+    await flushPromises()
+    expect(fetcher).not.toHaveBeenCalled()
+    await wrapper
+      .findAll('button')
+      .find((b) => b.text() === '加入已知二进制夹具')!
+      .trigger('click')
+    await flushPromises()
+    expect(fetcher).not.toHaveBeenCalled()
+    expect(wrapper.get('[data-slot="file-upload-row"]').text()).toContain('native-fixture.bin')
+    let confirm!: (r: Response) => void
+    fetcher
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            uploadSessionId: 'fixture-1',
+            fileId: 'fixture-1',
+            uploadMode: 'server-proxy',
+            provider: 'server-proxy',
+            expiresAtUtc: '2099-01-01',
+            upload: {
+              url: '/__native-fixture/fixture-1',
+              headers: { 'X-Fixture-Session': 'fixture-1' },
+            },
+          }),
+        ),
+      )
+      .mockResolvedValueOnce(new Response(null, { status: 204 }))
+      .mockImplementationOnce(
+        () =>
+          new Promise<Response>((r) => {
+            confirm = r
+          }),
+      )
+    await wrapper
+      .findAll('button')
+      .find((b) => b.text() === '开始原生上传')!
+      .trigger('click')
+    await flushPromises()
+    expect(fetcher.mock.calls.map((c) => c[1].method)).toEqual(['POST', 'PUT', 'POST'])
+    expect(wrapper.get('[aria-label="本机成功回执"]').text()).toBe('尚无本机成功回执')
+    confirm(new Response(JSON.stringify({ fileId: 'confirmed-fixture' })))
+    await flushPromises()
+    expect(wrapper.get('[aria-label="本机成功回执"]').text()).toContain('confirmed-fixture')
+    await wrapper.get('[aria-label="传输方式"]').setValue('memory')
+    await flushPromises()
+    expect(wrapper.get('[aria-label="传输计数"]').text()).toContain('create 0')
+    expect(fetcher).toHaveBeenCalledTimes(3)
+  } finally {
+    vi.unstubAllGlobals()
+  }
+})

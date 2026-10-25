@@ -1,0 +1,819 @@
+{
+  "records": [
+    {
+      "stage": "preview-openSource",
+      "endpoint": {
+        "expected": {
+          "size": 2097169,
+          "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+          "source": "generated i % 251"
+        },
+        "pending": 0,
+        "aborted": 0,
+        "sessions": [],
+        "events": []
+      }
+    },
+    {
+      "stage": "route-roundtrip",
+      "endpoint": {
+        "expected": {
+          "size": 2097169,
+          "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+          "source": "generated i % 251"
+        },
+        "pending": 0,
+        "aborted": 0,
+        "sessions": [],
+        "events": []
+      }
+    },
+    {
+      "stage": "known-selection",
+      "endpoint": {
+        "expected": {
+          "size": 2097169,
+          "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+          "source": "generated i % 251"
+        },
+        "pending": 0,
+        "aborted": 0,
+        "sessions": [],
+        "events": []
+      }
+    },
+    {
+      "stage": "tus-success",
+      "endpoint": {
+        "expected": {
+          "size": 2097169,
+          "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+          "source": "generated i % 251"
+        },
+        "pending": 0,
+        "aborted": 0,
+        "sessions": [
+          {
+            "id": "fixture-1",
+            "mode": "tus",
+            "scenario": "ok",
+            "offset": 2097169,
+            "byteCount": 2097169,
+            "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+            "complete": true
+          }
+        ],
+        "events": [
+          {
+            "method": "POST",
+            "path": "/__native-fixture/session",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "30",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "content-type": "application/json",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "status": 201,
+            "responseHeaders": {},
+            "responseBody": {
+              "uploadSessionId": "fixture-1",
+              "fileId": "fixture-1",
+              "uploadMode": "tus",
+              "provider": "tus",
+              "expiresAtUtc": "2026-10-25T05:14:13.666Z",
+              "upload": {
+                "url": "/__native-fixture/fixture-1",
+                "headers": {
+                  "X-Fixture-Session": "fixture-1"
+                }
+              }
+            }
+          },
+          {
+            "method": "HEAD",
+            "path": "/__native-fixture/fixture-1",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-1",
+              "tus-resumable": "1.0.0",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "status": 200,
+            "responseHeaders": {
+              "Tus-Resumable": "1.0.0",
+              "Upload-Offset": "17"
+            },
+            "responseBody": null
+          },
+          {
+            "method": "PATCH",
+            "path": "/__native-fixture/fixture-1",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "1048576",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-1",
+              "tus-resumable": "1.0.0",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "upload-offset": "17",
+              "sec-ch-ua-mobile": "?0",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "dnt": "1",
+              "content-type": "application/offset+octet-stream",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "body": {
+              "byteCount": 1048576,
+              "sha256": "e5840bc90f9d2f6f79225d19a8bb4832ea8c0a3f60a58255a4b6d812bebdb2d5"
+            },
+            "status": 204,
+            "responseHeaders": {
+              "Tus-Resumable": "1.0.0",
+              "Upload-Offset": "1048593"
+            },
+            "responseBody": null
+          },
+          {
+            "method": "PATCH",
+            "path": "/__native-fixture/fixture-1",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "1048576",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-1",
+              "tus-resumable": "1.0.0",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "upload-offset": "1048593",
+              "sec-ch-ua-mobile": "?0",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "dnt": "1",
+              "content-type": "application/offset+octet-stream",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "body": {
+              "byteCount": 1048576,
+              "sha256": "f98f826fbc705c2a7938961e537c20bc6f91a2ad741f778eddf49f1be2a74300"
+            },
+            "status": 204,
+            "responseHeaders": {
+              "Tus-Resumable": "1.0.0",
+              "Upload-Offset": "2097169"
+            },
+            "responseBody": null
+          },
+          {
+            "method": "POST",
+            "path": "/__native-fixture/fixture-1/complete",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "0",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-1",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "status": 200,
+            "responseHeaders": {},
+            "responseBody": {
+              "fileId": "fixture-1",
+              "size": 2097169,
+              "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "stage": "put-success",
+      "endpoint": {
+        "expected": {
+          "size": 2097169,
+          "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+          "source": "generated i % 251"
+        },
+        "pending": 0,
+        "aborted": 0,
+        "sessions": [
+          {
+            "id": "fixture-1",
+            "mode": "tus",
+            "scenario": "ok",
+            "offset": 2097169,
+            "byteCount": 2097169,
+            "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+            "complete": true
+          },
+          {
+            "id": "fixture-2",
+            "mode": "server-proxy",
+            "scenario": "ok",
+            "offset": 2097169,
+            "byteCount": 2097169,
+            "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e",
+            "complete": true
+          }
+        ],
+        "events": [
+          {
+            "method": "POST",
+            "path": "/__native-fixture/session",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "30",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "content-type": "application/json",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "status": 201,
+            "responseHeaders": {},
+            "responseBody": {
+              "uploadSessionId": "fixture-1",
+              "fileId": "fixture-1",
+              "uploadMode": "tus",
+              "provider": "tus",
+              "expiresAtUtc": "2026-10-25T05:14:13.666Z",
+              "upload": {
+                "url": "/__native-fixture/fixture-1",
+                "headers": {
+                  "X-Fixture-Session": "fixture-1"
+                }
+              }
+            }
+          },
+          {
+            "method": "HEAD",
+            "path": "/__native-fixture/fixture-1",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-1",
+              "tus-resumable": "1.0.0",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "status": 200,
+            "responseHeaders": {
+              "Tus-Resumable": "1.0.0",
+              "Upload-Offset": "17"
+            },
+            "responseBody": null
+          },
+          {
+            "method": "PATCH",
+            "path": "/__native-fixture/fixture-1",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "1048576",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-1",
+              "tus-resumable": "1.0.0",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "upload-offset": "17",
+              "sec-ch-ua-mobile": "?0",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "dnt": "1",
+              "content-type": "application/offset+octet-stream",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "body": {
+              "byteCount": 1048576,
+              "sha256": "e5840bc90f9d2f6f79225d19a8bb4832ea8c0a3f60a58255a4b6d812bebdb2d5"
+            },
+            "status": 204,
+            "responseHeaders": {
+              "Tus-Resumable": "1.0.0",
+              "Upload-Offset": "1048593"
+            },
+            "responseBody": null
+          },
+          {
+            "method": "PATCH",
+            "path": "/__native-fixture/fixture-1",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "1048576",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-1",
+              "tus-resumable": "1.0.0",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "upload-offset": "1048593",
+              "sec-ch-ua-mobile": "?0",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "dnt": "1",
+              "content-type": "application/offset+octet-stream",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "body": {
+              "byteCount": 1048576,
+              "sha256": "f98f826fbc705c2a7938961e537c20bc6f91a2ad741f778eddf49f1be2a74300"
+            },
+            "status": 204,
+            "responseHeaders": {
+              "Tus-Resumable": "1.0.0",
+              "Upload-Offset": "2097169"
+            },
+            "responseBody": null
+          },
+          {
+            "method": "POST",
+            "path": "/__native-fixture/fixture-1/complete",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "0",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-1",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "status": 200,
+            "responseHeaders": {},
+            "responseBody": {
+              "fileId": "fixture-1",
+              "size": 2097169,
+              "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e"
+            }
+          },
+          {
+            "method": "POST",
+            "path": "/__native-fixture/session",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "39",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "content-type": "application/json",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "status": 201,
+            "responseHeaders": {},
+            "responseBody": {
+              "uploadSessionId": "fixture-2",
+              "fileId": "fixture-2",
+              "uploadMode": "server-proxy",
+              "provider": "server-proxy",
+              "expiresAtUtc": "2026-10-25T05:14:15.803Z",
+              "upload": {
+                "url": "/__native-fixture/fixture-2",
+                "headers": {
+                  "X-Fixture-Session": "fixture-2"
+                }
+              }
+            }
+          },
+          {
+            "method": "PUT",
+            "path": "/__native-fixture/fixture-2",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "2097169",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-2",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "content-type": "application/octet-stream",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "body": {
+              "byteCount": 2097169,
+              "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e"
+            },
+            "status": 204,
+            "responseHeaders": {},
+            "responseBody": null
+          },
+          {
+            "method": "POST",
+            "path": "/__native-fixture/fixture-2/complete",
+            "headers": {
+              "host": "127.0.0.1:5203",
+              "connection": "keep-alive",
+              "content-length": "0",
+              "sec-ch-ua-platform": "\"macOS\"",
+              "x-fixture-session": "fixture-2",
+              "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+              "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+              "dnt": "1",
+              "sec-ch-ua-mobile": "?0",
+              "accept": "*/*",
+              "origin": "http://127.0.0.1:5203",
+              "sec-fetch-site": "same-origin",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-dest": "empty",
+              "referer": "http://127.0.0.1:5203/",
+              "accept-encoding": "gzip, deflate, br, zstd",
+              "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+            },
+            "status": 200,
+            "responseHeaders": {},
+            "responseBody": {
+              "fileId": "fixture-2",
+              "size": 2097169,
+              "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "wire": [
+    {
+      "url": "/__native-fixture/readback",
+      "method": "GET",
+      "headers": {},
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:13:50 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"expected\":{\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"source\":\"generated i % 251\"},\"pending\":0,\"aborted\":0,\"sessions\":[],\"events\":[]}"
+    },
+    {
+      "url": "/__native-fixture/readback",
+      "method": "GET",
+      "headers": {},
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:10 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"expected\":{\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"source\":\"generated i % 251\"},\"pending\":0,\"aborted\":0,\"sessions\":[],\"events\":[]}"
+    },
+    {
+      "url": "/__native-fixture/readback",
+      "method": "GET",
+      "headers": {},
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:11 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"expected\":{\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"source\":\"generated i % 251\"},\"pending\":0,\"aborted\":0,\"sessions\":[],\"events\":[]}"
+    },
+    {
+      "url": "/__native-fixture/readback",
+      "method": "GET",
+      "headers": {},
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:12 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"expected\":{\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"source\":\"generated i % 251\"},\"pending\":0,\"aborted\":0,\"sessions\":[],\"events\":[]}"
+    },
+    {
+      "url": "/__native-fixture/session",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{\"mode\":\"tus\",\"scenario\":\"ok\"}",
+      "status": 201,
+      "responseHeaders": {
+        "access-control-allow-origin": "http://127.0.0.1:5203",
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:13 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"uploadSessionId\":\"fixture-1\",\"fileId\":\"fixture-1\",\"uploadMode\":\"tus\",\"provider\":\"tus\",\"expiresAtUtc\":\"2026-10-25T05:14:13.666Z\",\"upload\":{\"url\":\"/__native-fixture/fixture-1\",\"headers\":{\"X-Fixture-Session\":\"fixture-1\"}}}"
+    },
+    {
+      "url": "/__native-fixture/fixture-1",
+      "method": "HEAD",
+      "headers": {
+        "tus-resumable": "1.0.0",
+        "x-fixture-session": "fixture-1"
+      },
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "date": "Sun, 25 Oct 2026 04:14:13 GMT",
+        "keep-alive": "timeout=5",
+        "tus-resumable": "1.0.0",
+        "upload-offset": "17",
+        "vary": "Origin"
+      },
+      "responseBody": ""
+    },
+    {
+      "url": "/__native-fixture/fixture-1",
+      "method": "PATCH",
+      "headers": {
+        "content-type": "application/offset+octet-stream",
+        "tus-resumable": "1.0.0",
+        "upload-offset": "17",
+        "x-fixture-session": "fixture-1"
+      },
+      "body": {
+        "byteCount": 1048576,
+        "sha256": "e5840bc90f9d2f6f79225d19a8bb4832ea8c0a3f60a58255a4b6d812bebdb2d5"
+      },
+      "status": 204,
+      "responseHeaders": {
+        "access-control-allow-origin": "http://127.0.0.1:5203",
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "date": "Sun, 25 Oct 2026 04:14:13 GMT",
+        "keep-alive": "timeout=5",
+        "tus-resumable": "1.0.0",
+        "upload-offset": "1048593",
+        "vary": "Origin"
+      },
+      "responseBody": ""
+    },
+    {
+      "url": "/__native-fixture/fixture-1",
+      "method": "PATCH",
+      "headers": {
+        "content-type": "application/offset+octet-stream",
+        "tus-resumable": "1.0.0",
+        "upload-offset": "1048593",
+        "x-fixture-session": "fixture-1"
+      },
+      "body": {
+        "byteCount": 1048576,
+        "sha256": "f98f826fbc705c2a7938961e537c20bc6f91a2ad741f778eddf49f1be2a74300"
+      },
+      "status": 204,
+      "responseHeaders": {
+        "access-control-allow-origin": "http://127.0.0.1:5203",
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "date": "Sun, 25 Oct 2026 04:14:13 GMT",
+        "keep-alive": "timeout=5",
+        "tus-resumable": "1.0.0",
+        "upload-offset": "2097169",
+        "vary": "Origin"
+      },
+      "responseBody": ""
+    },
+    {
+      "url": "/__native-fixture/fixture-1/complete",
+      "method": "POST",
+      "headers": {
+        "x-fixture-session": "fixture-1"
+      },
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "access-control-allow-origin": "http://127.0.0.1:5203",
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:13 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"fileId\":\"fixture-1\",\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\"}"
+    },
+    {
+      "url": "/__native-fixture/readback",
+      "method": "GET",
+      "headers": {},
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:13 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"expected\":{\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"source\":\"generated i % 251\"},\"pending\":0,\"aborted\":0,\"sessions\":[{\"id\":\"fixture-1\",\"mode\":\"tus\",\"scenario\":\"ok\",\"offset\":2097169,\"byteCount\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"complete\":true}],\"events\":[{\"method\":\"POST\",\"path\":\"/__native-fixture/session\",\"headers\":{\"host\":\"127.0.0.1:5203\",\"connection\":\"keep-alive\",\"content-length\":\"30\",\"sec-ch-ua-platform\":\"\\\"macOS\\\"\",\"user-agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36\",\"sec-ch-ua\":\"\\\"Not:A-Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"156\\\", \\\"Google Chrome\\\";v=\\\"156\\\"\",\"dnt\":\"1\",\"content-type\":\"application/json\",\"sec-ch-ua-mobile\":\"?0\",\"accept\":\"*/*\",\"origin\":\"http://127.0.0.1:5203\",\"sec-fetch-site\":\"same-origin\",\"sec-fetch-mode\":\"cors\",\"sec-fetch-dest\":\"empty\",\"referer\":\"http://127.0.0.1:5203/\",\"accept-encoding\":\"gzip, deflate, br, zstd\""
+    },
+    {
+      "url": "/__native-fixture/session",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{\"mode\":\"server-proxy\",\"scenario\":\"ok\"}",
+      "status": 201,
+      "responseHeaders": {
+        "access-control-allow-origin": "http://127.0.0.1:5203",
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:15 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"uploadSessionId\":\"fixture-2\",\"fileId\":\"fixture-2\",\"uploadMode\":\"server-proxy\",\"provider\":\"server-proxy\",\"expiresAtUtc\":\"2026-10-25T05:14:15.803Z\",\"upload\":{\"url\":\"/__native-fixture/fixture-2\",\"headers\":{\"X-Fixture-Session\":\"fixture-2\"}}}"
+    },
+    {
+      "url": "/__native-fixture/fixture-2",
+      "method": "PUT",
+      "headers": {
+        "content-type": "application/octet-stream",
+        "x-fixture-session": "fixture-2"
+      },
+      "body": {
+        "byteCount": 2097169,
+        "sha256": "b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e"
+      },
+      "status": 204,
+      "responseHeaders": {
+        "access-control-allow-origin": "http://127.0.0.1:5203",
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "date": "Sun, 25 Oct 2026 04:14:15 GMT",
+        "keep-alive": "timeout=5",
+        "vary": "Origin"
+      },
+      "responseBody": ""
+    },
+    {
+      "url": "/__native-fixture/fixture-2/complete",
+      "method": "POST",
+      "headers": {
+        "x-fixture-session": "fixture-2"
+      },
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "access-control-allow-origin": "http://127.0.0.1:5203",
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:15 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"fileId\":\"fixture-2\",\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\"}"
+    },
+    {
+      "url": "/__native-fixture/readback",
+      "method": "GET",
+      "headers": {},
+      "body": null,
+      "status": 200,
+      "responseHeaders": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Sun, 25 Oct 2026 04:14:15 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "responseBody": "{\"expected\":{\"size\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"source\":\"generated i % 251\"},\"pending\":0,\"aborted\":0,\"sessions\":[{\"id\":\"fixture-1\",\"mode\":\"tus\",\"scenario\":\"ok\",\"offset\":2097169,\"byteCount\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"complete\":true},{\"id\":\"fixture-2\",\"mode\":\"server-proxy\",\"scenario\":\"ok\",\"offset\":2097169,\"byteCount\":2097169,\"sha256\":\"b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e\",\"complete\":true}],\"events\":[{\"method\":\"POST\",\"path\":\"/__native-fixture/session\",\"headers\":{\"host\":\"127.0.0.1:5203\",\"connection\":\"keep-alive\",\"content-length\":\"30\",\"sec-ch-ua-platform\":\"\\\"macOS\\\"\",\"user-agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36\",\"sec-ch-ua\":\"\\\"Not:A-Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"156\\\", \\\"Google Chrome\\\";v=\\\"156\\\"\",\"dnt\":\"1\",\"content-type\":\"application/json\",\"sec-ch-ua-mobile\":\"?0\",\"accept\":\"*/*\",\"orig"
+    }
+  ],
+  "errors": []
+}

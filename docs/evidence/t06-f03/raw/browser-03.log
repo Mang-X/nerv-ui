@@ -1,0 +1,160 @@
+[ { stage: 'preview-openSource', sessions: [] }, { stage: 'route-roundtrip', sessions: [] }, { stage: 'known-selection', sessions: [] }, { stage: 'tus-success', sessions: [ { id: 'fixture-1', mode: 'tus', scenario: 'ok', offset: 2097169, byteCount: 2097169, sha256: 'b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e', complete: true } ] }, { stage: 'put-success', sessions: [ { id: 'fixture-1', mode: 'tus', scenario: 'ok', offset: 2097169, byteCount: 2097169, sha256: 'b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e', complete: true }, { id: 'fixture-2', mode: 'server-proxy', scenario: 'ok', offset: 2097169, byteCount: 2097169, sha256: 'b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e', complete: true } ] } ]
+[p1 "NvUI · 项目清单" | space "nerv-ui-f03-20261025"(33): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container "显示表面"
+      anchor [ref=76, loc=href:/#desktop, url=http://127.0.0.1:5203/#desktop]
+        text "桌面演示"
+      anchor [ref=77, loc=href:/#touch, url=http://127.0.0.1:5203/#touch]
+        text "触屏演示"
+      anchor [ref=78, loc=href:/#mobile, url=http://127.0.0.1:5203/#mobile]
+        text "随行手记"
+      anchor [ref=79, loc=href:/#mobile-input, url=http://127.0.0.1:5203/#mobile-input]
+        text "随心记录"
+      anchor [ref=80, loc=href:/#mobile-overlays, url=http://127.0.0.1:5203/#mobile-overlays]
+        text "片刻安排"
+      anchor [ref=81, loc=href:/#mobile-lists, url=http://127.0.0.1:5203/#mobile-lists]
+        text "翻阅时光"
+      anchor [ref=82, loc=href:/#mobile-feedback, url=http://127.0.0.1:5203/#mobile-feedback]
+        text "片刻回响"
+      anchor [ref=83, loc=href:/#screen/stage, url=http://127.0.0.1:5203/#screen/stage]
+        text "空间舞台"
+      anchor [ref=84, loc=href:/#screen/controls, url=http://127.0.0.1:5203/#screen/controls]
+        text "随心安排"
+      anchor [ref=85, loc=href:/#screen/indicators, url=http://127.0.0.1:5203/#screen/indicators]
+        text "阅读与到访"
+      anchor [ref=86, loc=href:/#screen/data, url=http://127.0.0.1:5203/#screen/data]
+        text "流动消息"
+      anchor [ref=87, loc=href:/#screen/charts, url=http://127.0.0.1:5203/#screen/charts]
+        text "内容与到访"
+      anchor [ref=88, loc=href:/#screen/tables, url=http://127.0.0.1:5203/#screen/tables]
+        text "清单与事件"
+      anchor [ref=89, loc=href:/#screen/summary, url=http://127.0.0.1:5203/#screen/summary]
+        text "空间使用概况"
+    container
+      container
+        heading
+          text "留住片刻"
+        paragraph
+          text "整理旅途中的图片与便笺，放大看看值得记住的细节。文件只留在本页。"
+      container
+        button [ref=90]
+          text "切换亮色"
+        button [ref=91]
+          text "蓝色强调色"
+    container
+      text "传输方式"
+      combobox "传输方式" [ref=92, loc=css:select[aria-label="传输方式"]]
+        text "本机原生 HTTP"
+    container
+      container "本机原生传输"
+        heading
+          text "本机原生传输"
+        paragraph
+          text "只发送内置 2 MiB + 17 字节夹具。回执代表本机模拟端点确认，不是生产 FileStorage。PUT 只显示等待与传输完成，传输完成后还需确认回执。"
+        container
+          container
+            text "协议"
+            combobox "原生协议" [ref=93, loc=css:select[aria-label="原生协议"]]
+              text "server-proxy PUT"
+          container
+            text "场景"
+            combobox "原生场景" [ref=94, loc=css:select[aria-label="原生场景"]]
+              text "成功"
+          container
+            text "排列"
+            combobox "原生排列" [ref=95, loc=css:select[aria-label="原生排列"]]
+              text "queue"
+        button [ref=96]
+          svg_root
+          text "拖拽文件到这里，或点击浏览"
+          text "支持 .bin · 单个文件不超过 2.0 MB · 最多 1 个文件"
+          text "还可上传 0 个文件"
+        text "文件 (1/1)"
+        text "总计 2.0 MB"
+        button [ref=97]
+          svg_root
+          text "添加文件"
+        button [ref=98]
+          svg_root
+          text "清空"
+        svg_root
+        text "native-fixture.bin"
+        text "待上传"
+        text "File - 2.0 MB"
+        progressindicator "100%"
+        button "暂停 native-fixture.bin" [ref=99, loc=css:button[aria-label="暂停 native-fixture.bin"]]
+          svg_root
+        button "移除 native-fixture.bin" [ref=100, loc=css:button[aria-label="移除 native-fixture.bin"]]
+          svg_root
+        container
+          button [ref=101]
+            text "加入已知二进制夹具"
+          button [ref=102]
+            text "开始原生上传"
+          button [ref=103]
+            text "取消原生传输"
+          button [ref=104]
+            text "恢复原生传输"
+          button [ref=105]
+            text "清空原生队列"
+          button [ref=106]
+            text "读取端点"
+          button [ref=107]
+            text "重置端点"
+        output "本机成功回执" [ref=108]
+          text "native-fixture.bin: fixture-2"
+        container [ref=109]
+          text "端点只读记录"
+      container "看见细节"
+        container
+          heading
+            text "看见细节"
+          paragraph
+            text "本地图片可缩放与旋转。其它文件保留原文件入口。"
+        container
+          text "预览内容"
+          combobox "预览内容" [ref=110, loc=css:select[aria-label="预览内容"]]
+            text "图形记录 SVG"
+        container
+          text "预览本地图片"
+          textbox "预览本地图片" [ref=111, loc=css:input[aria-label="预览本地图片"]]
+            button [ref=112]
+              text "选择文件"
+            text "未选择任何文件"
+        container
+          container
+            checkbox [ref=113]
+            text "等待来源"
+          container
+            checkbox [ref=114]
+            text "来源暂不可用"
+        container
+          container
+            container
+              svg_root
+              container
+                text "quality-evidence.svg"
+                text "Image"
+            button "打开 quality-evidence.svg" [ref=115, loc=css:button[aria-label="打开 quality-evidence.svg"]]
+              svg_root
+          container
+            container
+              button "缩小 quality-evidence.svg" [ref=116, loc=css:button[aria-label="缩小 quality-evidence.svg"]]
+                svg_root
+              text "100%"
+              button "放大 quality-evidence.svg" [ref=117, loc=css:button[aria-label="放大 quality-evidence.svg"]]
+                svg_root
+              button "向左旋转 quality-evidence.svg" [ref=118, loc=css:button[aria-label="向左旋转 quality-evidence.svg"]]
+                svg_root
+              button "向右旋转 quality-evidence.svg" [ref=119, loc=css:button[aria-label="向右旋转 quality-evidence.svg"]]
+                svg_root
+            image
+        container
+          button [ref=120]
+            text "打开本地原图"
+          text "先在预览中请求，再点击此处打开。"
+        output "预览事件" [ref=121]
+          text "ready image · 已打开 0 次 · 本地预览 0"
+
+

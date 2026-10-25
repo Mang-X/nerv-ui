@@ -594,3 +594,19 @@ fileUploadMotion.pointToPointShort
 七种变体均可在同页切换；切换时显式清空本页队列。default 为按钮入口；其它变体提供 dropzone。超过 40 行时 default/queue/table 使用固定高度虚拟窗口，gallery/image/compact/avatar 保留各自布局。库创建与回收缩略图 URL，虚拟行卸载后也会回收；宿主自己创建的预览 URL 由宿主回收。音视频上传标签不代表存在音视频播放器。
 
 F01 的 390px 浏览器检查发现长类型提示在 compact 撑到 549px，在 gallery 撑到 393px；组件现在允许 compact 提示与共享 accept hint 在词内换行，保留完整限制信息和已有按钮、props、默认值。该自研目录属于治理 carve-out，未改 shadcn 原版；公开几何 RED→GREEN 见 F01 证据。
+
+## 原生 HTTP 传输与本机夹具（T06/F03）
+
+根入口 `uploadWithNativeFileStorageTransport` 保持现有签名。默认传输只接受 `uploadMode/provider` 同为 `tus/tus` 或 `server-proxy/server-proxy`；冲突、缺失或未知值在 fetch 前拒绝，不再用 OR 把未知 provider 分派到已知协议。已有两组一致值保持兼容；宿主自定义传输仍通过 `transport` 注入。
+
+tus 先 HEAD 恢复已确认 offset，再发送每片最多 1 MiB 的二进制 PATCH。HEAD/PATCH `Upload-Offset` 必须为十进制非负安全整数且不大于文件长度；PATCH 必须精确确认 `旧 offset + 本片长度`。缺失、非数字、小数、越界、不前进、倒退和部分确认会立即失败，不猜测字节已写入；重试重新 HEAD。409/412/413/460 的原因保留，网络异常原样向上传递。AbortSignal 传入真实 fetch，已取消时不发送后续分片或报告完成。
+
+原生 fetch PUT 没有上传字节进度事件，只在成功响应后回报 100。界面发起时的等待状态不代表已发送字节；仍须 `completeUploadSession` 确认后才产生成功回执。细粒度进度由宿主注入 adapter 提供。
+
+playground `/#files` 的“传输方式 → 本机原生 HTTP”使用同源 Vite `configureServer/configurePreviewServer` 内存处理器；dev/preview 均仅允许 `127.0.0.1` 绑定，不另建服务。先“加入已知二进制夹具”，再明确“开始原生上传”；初始页面、选择模式、加入夹具、仅预览、换页与 openSource 均不创建上传或完成会话。原生模式的 picker/drop 所在区域 inert，只能用内置文件；内存适配器七变体、图片与 F02 闸门仍在原模式。
+
+夹具为 `2 MiB + 17` 字节的 `byte[i] = i % 251`，SHA256 `b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e`，由本仓生成，无第三方文件。tus 会话初置已知前 17 字节；后续请求必须携带会话 header，端点逐片比对固定字节。“读取端点”只读 offset、byteCount、SHA256、pending 和请求摘要；complete 只在完整字节及 hash 相等后成功。最多 16 个会话、256 条摘要、每文件 2097169 字节；状态随 Vite 进程结束消失，无数据库、认证、任意代理或长期存储。
+
+“等待第二片以取消”在第二个 PATCH 保持等待；点击取消使实际 fetch 中止，读回 pending=0 后再恢复，最终 hash 应相等。HTTP 数值错误场景首次触发后可恢复；network 场景持续断开（包含浏览器内部重试），须重置后换成功场景；非法 offset 场景用于明确失败。“重置端点”先取消本地队列，服务端在所有 pending 结束前以 409 拒绝 reset；读回 pending=0 后再显式重置。不要让 reset 与尚未结束的操作并发。端点 URL `/__native-fixture/readback` 为只读，`/session`、`/:id`、`/:id/complete`、`/reset` 只属于本机测试夹具。
+
+回执仅证明本机 fixture 成功，不代表生产 FileStorage、原后端或 FullChain 已接入。新库来源仍冻结于迁移基线，本轮不回传旧库；旧消费者接入另票处理。运行与失败记录见 [F03 证据](../../../../../../docs/evidence/t06-f03/README.md)。

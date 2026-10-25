@@ -1,0 +1,99 @@
+[
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "Preview automation navigate failed: Navigation to http://127.0.0.1:5203/#files failed: ERR_CONNECTION_REFUSED"
+      }
+    ],
+    "isError": true
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"available\":true,\"visible\":false,\"tabId\":\"tab_2c_6faab953-90e1-4ff7-b4aa-20aa9696713e\",\"url\":\"http://127.0.0.1:5203/#files\",\"title\":\"NvUI · 项目清单\",\"loading\":false,\"control\":{\"owner\":\"agent\",\"ownedByCaller\":true,\"generation\":0},\"dialog\":null,\"viewportSetting\":{\"_tag\":\"fill\"},\"fileChooser\":null,\"downloads\":[],\"tabs\":[{\"tabId\":\"tab_2c_6faab953-90e1-4ff7-b4aa-20aa9696713e\",\"url\":\"http://127.0.0.1:5203/#files\",\"owner\":\"agent\",\"ownedByCaller\":true,\"visible\":false,\"profileId\":\"default\"}],\"profiles\":[{\"id\":\"default\",\"name\":\"Default\"},{\"id\":\"incognito\",\"name\":\"Incognito\",\"incognito\":true},{\"id\":\"profile-062f7adb-9596-4a70-ab40-26bb526fe8d6\",\"name\":\"New profile\"}],\"defaultProfileId\":\"default\"}"
+      }
+    ],
+    "structuredContent": {
+      "available": true,
+      "visible": false,
+      "tabId": "tab_2c_6faab953-90e1-4ff7-b4aa-20aa9696713e",
+      "url": "http://127.0.0.1:5203/#files",
+      "title": "NvUI · 项目清单",
+      "loading": false,
+      "control": {
+        "owner": "agent",
+        "ownedByCaller": true,
+        "generation": 0
+      },
+      "dialog": null,
+      "viewportSetting": {
+        "_tag": "fill"
+      },
+      "fileChooser": null,
+      "downloads": [],
+      "tabs": [
+        {
+          "tabId": "tab_2c_6faab953-90e1-4ff7-b4aa-20aa9696713e",
+          "url": "http://127.0.0.1:5203/#files",
+          "owner": "agent",
+          "ownedByCaller": true,
+          "visible": false,
+          "profileId": "default"
+        }
+      ],
+      "profiles": [
+        {
+          "id": "default",
+          "name": "Default"
+        },
+        {
+          "id": "incognito",
+          "name": "Incognito",
+          "incognito": true
+        },
+        {
+          "id": "profile-062f7adb-9596-4a70-ab40-26bb526fe8d6",
+          "name": "New profile"
+        }
+      ],
+      "defaultProfileId": "default"
+    },
+    "isError": false
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "Preview snapshot failed: Preview automation snapshot timed out after 15000ms."
+      }
+    ],
+    "structuredContent": {
+      "error": {
+        "_tag": "PreviewAutomationTimeoutError",
+        "operation": "snapshot",
+        "failureCount": 1,
+        "message": "Preview automation snapshot timed out after 15000ms."
+      }
+    },
+    "isError": true
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "Preview snapshot failed: Preview automation snapshot timed out after 15000ms."
+      }
+    ],
+    "structuredContent": {
+      "error": {
+        "_tag": "PreviewAutomationTimeoutError",
+        "operation": "snapshot",
+        "failureCount": 1,
+        "message": "Preview automation snapshot timed out after 15000ms."
+      }
+    },
+    "isError": true
+  }
+]
