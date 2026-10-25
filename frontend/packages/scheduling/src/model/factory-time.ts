@@ -70,18 +70,21 @@ export function scheduleTime(
 }
 
 type TimeModel = { tasks: readonly { id: string; timezone?: string | null }[] }
-type ProjectedTimeTask<M extends TimeModel> = Omit<
-  M['tasks'][number],
-  'timezone' | 'factoryTimeLabel'
-> & { timezone: string; factoryTimeLabel: string }
+// Map each union member so its id still narrows the fields retained by the spread.
+type ProjectedTimeTask<T> = {
+  [K in keyof T as Exclude<K, 'timezone' | 'factoryTimeLabel'>]: T[K]
+} & { timezone: string; factoryTimeLabel: string }
 
 /** Host supplies a separate zone per task; no first-factory/order inference. */
 export function withFactoryTimeContext<M extends TimeModel>(
   model: M,
   context?: readonly ScheduleTimeContext[],
-): Omit<M, 'tasks' | 'timezones'> & { tasks: ProjectedTimeTask<M>[]; timezones: string[] } {
+): Omit<M, 'tasks' | 'timezones'> & {
+  tasks: ProjectedTimeTask<M['tasks'][number]>[]
+  timezones: string[]
+} {
   const byId = new Map(context?.map((item) => [item.taskId, item]))
-  const tasks = model.tasks.map((task: M['tasks'][number]): ProjectedTimeTask<M> => {
+  const tasks = model.tasks.map((task: M['tasks'][number]): ProjectedTimeTask<typeof task> => {
     const item = byId.get(task.id)
     const timezone =
       item && !item.unresolvedReason && factoryTimeInput('2000-01-01T00:00:00Z', item.timezone)

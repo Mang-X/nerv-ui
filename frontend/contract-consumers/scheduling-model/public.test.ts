@@ -160,6 +160,7 @@ it('invalid original and empty zone never bypass wall conversion checks', () => 
 })
 
 import { expectTypeOf } from 'vitest'
+import type { ScheduleVisualModel } from '@nerv-iip/scheduling/model'
 it('projected declarations replace literal host facts and zones with actual output types', () => {
   const literal = {
     tasks: [{ id: 'read', timezone: 'UTC', facts: [{ label: '旧标签', value: '旧值' }] }],
@@ -172,4 +173,88 @@ it('projected declarations replace literal host facts and zones with actual outp
   expect(projected.tasks[0]!.timezone).toBe('')
   expect(projected.tasks[0]!.facts).toEqual([{ label: '余票', value: '0' }])
   expect(literal.tasks[0].facts[0].value).toBe('旧值')
+})
+
+it('mixed readonly tasks retain id narrowing and literal fields after facts and time replacement', () => {
+  const source = {
+    horizon: { start: '2026-01-15T00:00Z', end: '2026-01-16T00:00Z' },
+    links: [],
+    tasks: [
+      {
+        id: 'read',
+        label: 'Read',
+        start: '2026-01-15T00:00Z',
+        end: '2026-01-15T02:00Z',
+        segments: [{ id: 'read-1', start: '2026-01-15T00:00Z', end: '2026-01-15T01:00Z' }],
+        timezone: 'oldzone',
+        facts: [{ label: 'oldfacts', value: 'oldvalue' }],
+      },
+      {
+        id: 'walk',
+        label: 'Walk',
+        start: '2026-01-15T03:00Z',
+        end: '2026-01-15T04:00Z',
+        attentionLabel: 'Rain',
+        timezone: 'oldzone',
+        facts: [{ label: 'oldfacts', value: 'oldvalue' }],
+      },
+    ],
+  } as const satisfies ScheduleVisualModel
+  const timed = withFactoryTimeContext(source, [])
+  const facts = withWorkOrderFacts(source, [])
+
+  for (const task of timed.tasks) {
+    expectTypeOf(task.timezone).toEqualTypeOf<string>()
+    expectTypeOf(task.factoryTimeLabel).toEqualTypeOf<string>()
+    expectTypeOf(task.facts).toEqualTypeOf<(typeof source.tasks)[0]['facts']>()
+    expect(task.timezone).toBe('')
+    expect(task.factoryTimeLabel).toBe('时区未解析')
+    expect(task.facts).toEqual([{ label: 'oldfacts', value: 'oldvalue' }])
+    if (task.id === 'read') {
+      expectTypeOf(task.label).toEqualTypeOf<'Read'>()
+      expectTypeOf(task.segments).toEqualTypeOf<(typeof source.tasks)[0]['segments']>()
+      expect(task.segments[0].id).toBe('read-1')
+    } else {
+      expectTypeOf(task.id).toEqualTypeOf<'walk'>()
+      expectTypeOf(task.label).toEqualTypeOf<'Walk'>()
+      expectTypeOf(task.attentionLabel).toEqualTypeOf<'Rain'>()
+      expect(task.attentionLabel).toBe('Rain')
+    }
+  }
+  for (const task of facts.tasks) {
+    expectTypeOf(task.facts[0]!.value).toEqualTypeOf<string>()
+    expectTypeOf(task.timezone).toEqualTypeOf<'oldzone'>()
+    expect(task.facts).toEqual([{ label: '事实', value: '未知' }])
+    expect(task.timezone).toBe('oldzone')
+    if (task.id === 'read') {
+      expectTypeOf(task.label).toEqualTypeOf<'Read'>()
+      expectTypeOf(task.segments).toEqualTypeOf<(typeof source.tasks)[0]['segments']>()
+      expect(task.segments[0].id).toBe('read-1')
+    } else {
+      expectTypeOf(task.id).toEqualTypeOf<'walk'>()
+      expectTypeOf(task.label).toEqualTypeOf<'Walk'>()
+      expectTypeOf(task.attentionLabel).toEqualTypeOf<'Rain'>()
+      expect(task.attentionLabel).toBe('Rain')
+    }
+  }
+  for (const model of [withWorkOrderFacts(timed, []), withFactoryTimeContext(facts, [])]) {
+    expectTypeOf(model).toMatchTypeOf<ScheduleVisualModel>()
+    for (const task of model.tasks) {
+      expectTypeOf(task.timezone).toEqualTypeOf<string>()
+      expectTypeOf(task.facts[0]!.value).toEqualTypeOf<string>()
+      expect(task.timezone).toBe('')
+      expect(task.facts).toEqual([{ label: '事实', value: '未知' }])
+      if (task.id === 'read') {
+        expectTypeOf(task.segments).toEqualTypeOf<(typeof source.tasks)[0]['segments']>()
+        expect(task.segments[0].id).toBe('read-1')
+      } else {
+        expectTypeOf(task.attentionLabel).toEqualTypeOf<'Rain'>()
+        expect(task.attentionLabel).toBe('Rain')
+      }
+    }
+  }
+  expect(source.tasks.map((task) => [task.timezone, task.facts])).toEqual([
+    ['oldzone', [{ label: 'oldfacts', value: 'oldvalue' }]],
+    ['oldzone', [{ label: 'oldfacts', value: 'oldvalue' }]],
+  ])
 })

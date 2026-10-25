@@ -1,7 +1,10 @@
 import type { ScheduleFact, ScheduleFactInput, ScheduleTaskFacts, ScheduleFactRow } from './types'
 
 type FactModel = { tasks: readonly ({ id: string } & ScheduleTaskFacts)[] }
-type ProjectedFactTask<M extends FactModel> = Omit<M['tasks'][number], 'facts'> & {
+// Map each union member so its id still narrows the fields retained by the spread.
+type ProjectedFactTask<T> = {
+  [K in keyof T as Exclude<K, 'facts'>]: T[K]
+} & {
   facts: readonly ScheduleFactRow[]
 }
 
@@ -17,12 +20,12 @@ function displayFact(fact: ScheduleFact): [string, string] {
 export function withWorkOrderFacts<M extends FactModel>(
   model: M,
   inputs: readonly ScheduleFactInput[],
-): Omit<M, 'tasks'> & { tasks: ProjectedFactTask<M>[] } {
+): Omit<M, 'tasks'> & { tasks: ProjectedFactTask<M['tasks'][number]>[] } {
   const byId = new Map(inputs.map((input) => [input.taskId, input.facts]))
   return {
     ...model,
     tasks: model.tasks.map(
-      (task: M['tasks'][number]): ProjectedFactTask<M> => ({
+      (task: M['tasks'][number]): ProjectedFactTask<typeof task> => ({
         ...task,
         facts: (byId.get(task.id) ?? [{ label: '事实', state: 'unknown' } as const]).map((fact) => {
           const [label, value] = displayFact(fact)
