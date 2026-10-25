@@ -47,7 +47,12 @@ export type EngineCommand =
   | { kind: 'setGroupBy'; groupBy: string }
   | { kind: 'setLaneOrder'; laneOrder: LaneOrder }
 
-/** 拖拽结束的归一化负载,不含任何引擎私有结构——接缝处的关键契约。 */
+/**
+ * 拖拽结束的归一化提案，不含引擎私有结构。
+ * order: taskId/operationId/resourceId 保持输入身份；kind 仅 move/resize，时刻为 UTC ISO。
+ * 宿主回写 model 才接受；不回写即拒绝。库不修改输入、不自动锁定或求解。
+ * resource 的改派语义由资源编辑接缝维护。
+ */
 export interface TaskDragPayload {
   taskId: string
   operationId: string

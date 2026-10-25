@@ -12,6 +12,7 @@ import {
   type SchedulingEngine,
   type SchedulingEngineOptions,
   type ThemeBinding,
+  type TaskDragPayload,
   type Unsubscribe,
 } from '../engine'
 import { conflictReasonLabel } from '../../model/labels'
@@ -525,6 +526,12 @@ export class DhtmlxEngine implements SchedulingEngine {
   private shownLinkIds: string[] = []
   private resizeObserver?: ResizeObserver
   private resizeRaf = 0
+  private orderGesture?: {
+    taskId: string
+    valid: boolean
+    payload?: TaskDragPayload
+    timer?: ReturnType<typeof setTimeout>
+  }
   private dragTimers = new Set<ReturnType<typeof setTimeout>>()
   /** 资源时间块:泳道 id → 时段窗口列表,供 timeline_cell_class 给单元格上底纹(块不作任务条)。 */
   private blockCells = new Map<string, { start: number; end: number; kind: string }[]>()
@@ -735,6 +742,11 @@ export class DhtmlxEngine implements SchedulingEngine {
       document.addEventListener('mouseup', this.pointerUp)
       document.addEventListener('keydown', this.keyDown)
     }
+    if (options.view === 'order') {
+      // Reconcile after the vendor mouseup stack, including cancelled/no-op drags.
+      this.pointerUp = () => this.finishOrderGesture()
+      document.addEventListener('mouseup', this.pointerUp)
+    }
     if (this.model) this.setData(this.model)
   }
 
@@ -743,6 +755,12 @@ export class DhtmlxEngine implements SchedulingEngine {
       throw new Error('实际时刻必须包含 Z 或显式偏移，且为有效日期')
     }
     this.model = model
+    // Keep the vendor's current drag object alive until mouseup. The new model
+    // is authoritative immediately; the old gesture may no longer propose writes.
+    if (this.orderGesture) {
+      this.orderGesture.valid = false
+      return
+    }
     if (this.selectedTaskId && !model.tasks.some((task) => task.id === this.selectedTaskId))
       this.selectedTaskId = undefined
     const g = this.gantt
@@ -809,6 +827,7 @@ export class DhtmlxEngine implements SchedulingEngine {
         break
       }
       case 'setReadOnly':
+        if (command.readOnly && this.orderGesture) this.orderGesture.valid = false
         this.options.readOnly = command.readOnly
         if (g) {
           const nativeDrag = !command.readOnly && this.options.view !== 'resource'
@@ -880,6 +899,7 @@ export class DhtmlxEngine implements SchedulingEngine {
     this.listeners.clear()
     for (const timer of this.dragTimers) clearTimeout(timer)
     this.dragTimers.clear()
+    this.orderGesture = undefined
     if (this.pointerMove) document.removeEventListener('mousemove', this.pointerMove)
     if (this.pointerUp) document.removeEventListener('mouseup', this.pointerUp)
     if (this.pointerDown && this.container)
@@ -1262,6 +1282,18 @@ export class DhtmlxEngine implements SchedulingEngine {
         const taskId = String(id)
         const task = inst.getTask(taskId)?.nerv
         if ((task?.segments?.length ?? 0) > 1) return false
+        if (this.options.view === 'order') {
+          if (task?.type !== 'operation' || task.blockKind || task.isMilestone) return false
+          if (task.locked) {
+            const bar = this.barEl(taskId)
+            if (bar) this.signalLockedDrag(taskId, bar)
+            else this.emit('lockedDragAttempt', { taskId })
+            return false
+          }
+          if (mode !== 'move' && mode !== 'resize') return false
+          if (this.orderGesture) return false
+          this.orderGesture = { taskId, valid: true }
+        }
         if (this.options.view === 'resource') {
           if (
             this.options.readOnly ||
@@ -1282,15 +1314,85 @@ export class DhtmlxEngine implements SchedulingEngine {
       }),
     )
     this.eventIds.push(
-      inst.attachEvent('onAfterTaskDrag', (id, mode) =>
-        this.emitDrag(inst, String(id), String(mode)),
+      inst.attachEvent('onBeforeTaskChanged', (id, mode) => {
+        if (this.options.view !== 'order') return true
+        const gesture = this.orderGesture
+        const source = this.model?.tasks.find((t) => t.id === String(id))
+        const task = inst.getTask(String(id))
+        if (
+          gesture?.taskId === String(id) &&
+          gesture.valid &&
+          !this.options.readOnly &&
+          source?.type === 'operation' &&
+          !source.locked &&
+          !source.blockKind &&
+          !source.isMilestone &&
+          (source.segments?.length ?? 0) <= 1 &&
+          (mode === 'move' || mode === 'resize') &&
+          task?.start_date &&
+          task.end_date &&
+          Number.isFinite(+task.start_date) &&
+          +task.end_date > +task.start_date
+        ) {
+          const startUtc = task.start_date.toISOString()
+          const endUtc = task.end_date.toISOString()
+          if (
+            Date.parse(startUtc) !== Date.parse(source.startUtc) ||
+            Date.parse(endUtc) !== Date.parse(source.endUtc)
+          )
+            gesture.payload = {
+              taskId: source.id,
+              operationId: source.operationId,
+              resourceId: source.resourceId,
+              startUtc,
+              endUtc,
+              kind: mode,
+            }
+        }
+        this.finishOrderGesture()
+        // The vendor restores its original task. Only the host can accept the
+        // proposal; no vendor update/undo/autoschedule becomes authority.
+        return false
+      }),
+    )
+    this.eventIds.push(
+      inst.attachEvent(
+        'onAfterTaskDrag',
+        (id, mode) =>
+          this.options.view === 'resource' && this.emitDrag(inst, String(id), String(mode)),
       ),
     )
     this.eventIds.push(
-      inst.attachEvent('onAfterTaskMove', (id) => this.emitDrag(inst, String(id), 'move')),
+      inst.attachEvent(
+        'onAfterTaskMove',
+        (id) => this.options.view === 'resource' && this.emitDrag(inst, String(id), 'move'),
+      ),
     )
     // 资源视图整条移动走自定义实现;端点拉伸由上述原生事件归一化。
     this.eventIds.push(inst.attachEvent('onGanttRender', () => this.mirrorTaskIds()))
+  }
+
+  private finishOrderGesture(): void {
+    const gesture = this.orderGesture
+    if (!gesture || gesture.timer !== undefined) return
+    const inst = this.gantt
+    const timer = setTimeout(() => {
+      this.dragTimers.delete(timer)
+      if (this.orderGesture !== gesture || this.gantt !== inst) return
+      try {
+        // Retain the token through callbacks: reentrant models invalidate it,
+        // and a second gesture cannot write against this unsettled proposal.
+        if (gesture.valid && !this.options.readOnly && gesture.payload)
+          this.emit('taskDragEnd', gesture.payload)
+      } finally {
+        if (this.orderGesture === gesture && this.gantt === inst) {
+          this.orderGesture = undefined
+          if (this.model) this.setData(this.model)
+        }
+      }
+    }, 0)
+    gesture.timer = timer
+    this.dragTimers.add(timer)
   }
 
   /** 资源视图:按指针落点 Y 定位目标泳道任务(split 模式下可见行即泳道)。 */
