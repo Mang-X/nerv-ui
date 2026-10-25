@@ -12,4 +12,10 @@
 
 宿主 Vite 使用已锁定的 WASM plugin 编译 FilePreview lazy graph，不新增/升级依赖。PDFium 2.14.4 与本地 OOXML 0.72.2 保持不变。本票只验图片/状态和顺序注入传输：#73 取消晚回与 attempt、#74 native HTTP/tus、#75 PDF、#76 Office、父 #7 组合、CI、完整 docs #10、packed #11、设备 #41、旧消费者与旧库退出均不由本票声称完成。
 
+## F02：可控等待与取消晚回
+
+“等待创建会话”“等待完成回执”默认关闭；开启后用“释放创建/回执”或对应失败按钮结束等待。“模拟传输忽略取消”保留已取消传输，继续“推进传输”会产生旧进度与晚成功，用于核对当前有效 attempt 的隔离。操作记录包含 attempt、abort 和 receipt，等待闸门列出阶段及编号。取消已经发出的 complete 只隔离本地结果，不回滚远端完成请求。
+
+本机 fixture 的 `window.__nervUploadFixture` 提供 `readback()`（计数、signal/attempt、闸门、操作记录和成功快照）以及 `release(stage, fail?, id?) / advance() / fail()`。诊断句柄保留到下一次文件页挂载或页面关闭，便于离页后释放已发出的 promise 并读回后台行为；不包含 File 内容，也不发送网络请求。它属于 playground 验收夹具，不是组件库公共 API。完整行为证据见 [F02](evidence/t06-f02/README.md)；#74–#76 及父组合仍单独验收。
+
 API 合同继续以对应[上传页](../frontend/apps/design-system/docs/components/desktop/file-upload.md)与[预览页](../frontend/apps/design-system/docs/components/desktop/file-preview.md)为准。早期研究“docx + image 可能 image”的描述与当前实现不符；公开回归确认当前为 office-docx，F01 只修正文档，不改变 MIME 策略。原库来源与第三方声明不变，回传旧库由后续消费者接入票决定。

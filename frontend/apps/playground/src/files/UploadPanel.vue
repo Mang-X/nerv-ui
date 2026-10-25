@@ -43,9 +43,11 @@ const rejected = shallowRef<FileUploadRejectedFile[]>([])
 const failure = ref('')
 function completed(files: FileUploadCompletedFile[]) {
   receipts.value = files
+  state.events.push(`receipt ${files.map((f) => `${f.fileName}:${f.fileId}`).join(',')}`)
 }
 function failed(row: FileUploadRow) {
   failure.value = `${row.fileName}：${row.error}`
+  state.events.push(`failed ${failure.value}`)
 }
 function clear() {
   upload.value?.pauseAll()
@@ -75,6 +77,22 @@ async function addCollection() {
   )
 }
 onBeforeUnmount(clear)
+
+// Local fixture control/readback survives route disposal so acceptance can
+// release already-issued promises and inspect signals, not just hidden rows.
+// No File contents or network access are exposed here.
+const fixtureControl = {
+  readback: () => ({
+    ...adapter.readback(),
+    receipts: [...receipts.value],
+    failure: failure.value,
+  }),
+  release: adapter.release,
+  advance: adapter.advance,
+  fail: adapter.fail,
+}
+;(window as Window & { __nervUploadFixture?: typeof fixtureControl }).__nervUploadFixture =
+  fixtureControl
 </script>
 
 <template>
@@ -158,7 +176,36 @@ onBeforeUnmount(clear)
       <NvButton variant="ghost" @click="clear">清空文件</NvButton>
     </div>
     <div class="rounded-lg border bg-muted/20 p-4">
+      <div class="mb-3 flex flex-wrap gap-3 text-sm">
+        <label><input v-model="state.holdCreate" type="checkbox" />等待创建会话</label>
+        <label><input v-model="state.holdComplete" type="checkbox" />等待完成回执</label>
+        <label><input v-model="state.ignoreAbort" type="checkbox" />模拟传输忽略取消</label>
+      </div>
       <div class="flex flex-wrap gap-2">
+        <NvButton
+          variant="outline"
+          :disabled="!state.gates.some((g) => g.stage === 'create')"
+          @click="adapter.release('create')"
+          >释放创建</NvButton
+        >
+        <NvButton
+          variant="outline"
+          :disabled="!state.gates.some((g) => g.stage === 'create')"
+          @click="adapter.release('create', true)"
+          >创建失败</NvButton
+        >
+        <NvButton
+          variant="outline"
+          :disabled="!state.gates.some((g) => g.stage === 'complete')"
+          @click="adapter.release('complete')"
+          >释放回执</NvButton
+        >
+        <NvButton
+          variant="outline"
+          :disabled="!state.gates.some((g) => g.stage === 'complete')"
+          @click="adapter.release('complete', true)"
+          >回执失败</NvButton
+        >
         <NvButton variant="outline" :disabled="state.pending === 0" @click="adapter.advance"
           >推进传输</NvButton
         >
@@ -175,6 +222,9 @@ onBeforeUnmount(clear)
       <p class="mt-2 text-sm text-muted-foreground">
         每次推进至 25%、65%、100%；失败后可在文件行重试。
       </p>
+      <output aria-label="等待闸门" class="mt-2 block text-xs">{{
+        state.gates.map((g) => `${g.stage} #${g.id} ${g.sessionId}`).join(' · ') || '无等待闸门'
+      }}</output>
       <output aria-label="传输计数" class="mt-3 block break-words font-mono text-xs"
         >create {{ state.counts.create }} · transport {{ state.counts.transport }} · complete
         {{ state.counts.complete }} · abort {{ state.counts.abort }} · fail

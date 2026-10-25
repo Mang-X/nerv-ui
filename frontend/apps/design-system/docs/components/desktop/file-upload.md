@@ -559,7 +559,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 | `addFiles(files)`          | 从外部文件选择器、粘贴或业务模板加入队列  |
 | `uploadQueued()`           | 上传所有 queued 行                        |
 | `pauseAll() / resumeAll()` | 暂停或恢复上传中的行                      |
-| `retryFailed()`            | 重试失败行；批量过期一致性由 #73 跟进     |
+| `retryFailed()`            | 重试失败行；与单行重试一致，过期会话重新创建 |
 | `clear()`                  | 清空队列，不发出 synthetic completed 事件 |
 | `browse()`                 | 打开原生文件选择器                        |
 
@@ -586,6 +586,10 @@ fileUploadMotion.pointToPointShort
 独立 playground 的 `/#files` 从根入口消费 `FileUpload`、`FileUploadVariant` 和公开 ref 类型，使用纯内存 `createUploadSession / transport / completeUploadSession`。默认手动模式，选择与拖放后计数仍为零，明确开始后才创建会话。传输由按钮推进进度或失败，响应 AbortSignal；这是顺序路径演示，晚回 attempt 隔离由 #73 验收，原生 HTTP/tus 由 #74 验收。
 
 `completed(files)` 是当前 completed 行的快照，移除成功行后再次发出，宿主应替换列表。`clear()` 不发 synthetic empty，宿主清空自己的回执选择。`disabled` 保护 picker、`browse()` 与 drop；公开 `addFiles` / composable 仍由宿主授权。前端 accept 不是服务端安全校验；failed/rejected 行不占 maxFiles 槽位，maxFiles 不是并发上限。
+
+上传批次保持 `Promise.all` 并行，没有并发参数。每行仅当前有效 attempt 可以更新进度、失败或成功回执；暂停、移除、清空、avatar 重选和组件卸载使旧 attempt 失效。create、transport 和 complete 晚回后先核对有效性，不再启动取消后尚未开始的下一步。已经发出的 complete 请求无法通过现有签名撤销，宿主负责远端会话清理；本地隔离不代表网络 rollback。宿主主动取消后的 AbortError 不发 failed，未被本地取消的错误仍保留 message 并发 failed。
+
+`useFileUpload` 在 Vue effect scope 内使用时随 scope dispose 清理；在 scope 外使用时由调用方执行 `clear()`。clear 后仍可重新加入文件；已 dispose 的实例不再接受新文件。单行和批量 retry 共享过期会话处理；failed 行不占槽及其重试政策沿用原约定。
 
 七种变体均可在同页切换；切换时显式清空本页队列。default 为按钮入口；其它变体提供 dropzone。超过 40 行时 default/queue/table 使用固定高度虚拟窗口，gallery/image/compact/avatar 保留各自布局。库创建与回收缩略图 URL，虚拟行卸载后也会回收；宿主自己创建的预览 URL 由宿主回收。音视频上传标签不代表存在音视频播放器。
 
