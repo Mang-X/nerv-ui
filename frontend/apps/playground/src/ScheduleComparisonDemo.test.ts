@@ -29,6 +29,9 @@ for (const venue of ['library', 'studio'] as const) {
     window.location.hash = `#schedule-compare/${venue}`
     page = mount(App)
     expect(page.get('h1').text()).toContain(venue === 'library' ? '读书会' : '工作坊')
+    expect(page.get('header').text()).not.toContain('由本页分别持有')
+    expect(page.findAll('button').some((button) => button.text() === '外部替换候选')).toBe(false)
+    expect(page.get('[data-scheduling-preview] header').text()).not.toContain('此读面')
     expect(page.get('[data-semantic-key="morning"]').text()).toContain('已调整')
     expect(page.get('[data-semantic-key="noon"]').text()).toContain('待安排；完工时间未提供')
     expect(page.get('[data-semantic-key="evening"]').text()).toContain('新增')
@@ -63,7 +66,7 @@ for (const venue of ['library', 'studio'] as const) {
     expect(
       page.get('[data-semantic-key="morning"] td:nth-child(4) li time').attributes('datetime'),
     ).toBe('2026-11-02T05:00:00Z')
-    await click('外部替换候选')
+    await click('载入另一份候选安排')
     expect(page.get('[data-semantic-key="morning"] td:nth-child(3)').text()).toBe(saved)
     expect(
       page.get('[data-semantic-key="morning"] td:nth-child(4) time').attributes('datetime'),

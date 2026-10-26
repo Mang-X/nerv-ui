@@ -56,6 +56,11 @@ const rowTones = {
   blocked: 'danger',
   missing: 'neutral',
 } as const
+function reason(row: ScheduleComparisonRow) {
+  return (
+    row.after?.message ?? (row.kind === 'missing' ? '候选未提供，原因未说明' : '来源未提供调整原因')
+  )
+}
 const changes = computed<ScheduleChange[]>(() =>
   comparison.value.rows.map((row) => ({
     orderId: row.semanticKey,
@@ -79,7 +84,7 @@ const changes = computed<ScheduleChange[]>(() =>
             : row.kind === 'preserved'
               ? 'preserved'
               : 'blocked',
-    message: row.after?.message ?? row.before?.message ?? '来源未提供调整原因',
+    message: reason(row),
     taskId: row.after?.task?.id,
     beforeTaskId: row.before?.task?.id ?? null,
     afterTaskId: row.after?.task?.id ?? null,
@@ -310,7 +315,7 @@ function choose(assignmentId: string) {
           class="rounded-md border border-border p-3"
         >
           <h4 class="font-medium">{{ selected.after?.label ?? selected.before?.label }}</h4>
-          <p>{{ selected.after?.message ?? selected.before?.message ?? '调整原因未提供' }}</p>
+          <p>{{ reason(selected) }}</p>
         </aside>
       </section>
     </template>

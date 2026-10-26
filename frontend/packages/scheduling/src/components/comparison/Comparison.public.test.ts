@@ -233,6 +233,8 @@ describe('public snapshot comparison', () => {
       global: { stubs: { GanttChart: true } },
     })
     expect(wrapper.text()).toContain('0')
+    expect(wrapper.get('[data-scheduling-preview] header').text()).toContain('尚未保存或发布')
+    expect(wrapper.get('[data-scheduling-preview] header').text()).not.toContain('此读面')
     expect(wrapper.text()).toContain('等待场地')
     expect(wrapper.text()).not.toContain('已发布')
     await wrapper.setProps({
@@ -240,6 +242,64 @@ describe('public snapshot comparison', () => {
     })
     expect(wrapper.text()).toContain('暂不可读取')
     expect(wrapper.text()).not.toContain('等待场地')
+  })
+
+  it('uses only candidate reasons for missing changed added and blocked summaries and selection', async () => {
+    const baseline = snapshot('saved', [
+      {
+        semanticKey: 'missing',
+        label: '原活动',
+        task: task('old-missing'),
+        message: '原场地已确认',
+      },
+      { semanticKey: 'changed', label: '调整活动', task: task('old-changed'), message: '基线说明' },
+      {
+        semanticKey: 'blocked',
+        label: '待安排活动',
+        task: task('old-blocked'),
+        message: '旧阻断说明',
+      },
+    ])
+    const candidate = snapshot('candidate', [
+      {
+        semanticKey: 'changed',
+        label: '调整活动',
+        task: task('new-changed', '2026-11-02T02:00:00Z'),
+        message: '改用下午时段',
+      },
+      { semanticKey: 'blocked', label: '待安排活动', state: 'blocked', message: '新场地待确认' },
+      { semanticKey: 'added', label: '新增活动', task: task('new-added'), message: '新增晚间场次' },
+    ])
+    const wrapper = mount(ScheduleRevisionReview, { props: { baseline, candidate } })
+    const summaries = wrapper.findAll('[data-change-row]')
+    expect(summaries.map((row) => row.text())).toEqual([
+      expect.stringContaining('候选未提供'),
+      expect.stringContaining('改用下午时段'),
+      expect.stringContaining('新场地待确认'),
+      expect.stringContaining('新增晚间场次'),
+    ])
+    expect(wrapper.text()).not.toContain('原场地已确认')
+    expect(wrapper.text()).not.toContain('基线说明')
+    expect(wrapper.text()).not.toContain('旧阻断说明')
+    await wrapper.get('[data-change-task="new-changed"]').trigger('click')
+    expect(wrapper.get('[data-comparison-selection]').text()).toContain('改用下午时段')
+    await wrapper.setProps({ candidate: snapshot('empty', []) })
+    expect(wrapper.findAll('[data-change-row]')).toHaveLength(3)
+    expect(wrapper.text()).not.toContain('原场地已确认')
+    expect(wrapper.get('[data-comparison-selection]').text()).not.toContain('基线说明')
+    expect(wrapper.get('[data-comparison-selection]').text()).toContain('原因未说明')
+    const emptyMessage = snapshot('empty-message', [
+      {
+        semanticKey: 'changed',
+        label: '调整活动',
+        task: task('new-changed', '2026-11-02T02:00:00Z'),
+        message: '',
+      },
+    ])
+    await wrapper.setProps({ candidate: emptyMessage })
+    const projected = wrapper.getComponent(ChangeSummaryPanel).props('changes') as ScheduleChange[]
+    expect(projected.find((item) => item.orderId === 'changed')?.message).toBe('')
+    expect(wrapper.text()).not.toContain('基线说明')
   })
 
   it('keeps missing added and explicit blocked states consistent across table and summary', () => {

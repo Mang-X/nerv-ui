@@ -61,7 +61,7 @@ function select(taskId: string) {
   <section class="grid min-w-0 gap-4" aria-label="候选结果" data-scheduling-preview>
     <header class="grid gap-1">
       <h2 class="text-xl font-semibold">{{ title ?? '候选安排' }}</h2>
-      <p>{{ notice ?? '候选结果由来源提供；此读面不代表已保存或发布。' }}</p>
+      <p>{{ notice ?? '候选结果由来源提供；尚未保存或发布。' }}</p>
     </header>
     <SnapshotContext title="候选来源" :source="snapshot?.source" :provided="!!snapshot">
       <p>{{ snapshot?.label }}</p>

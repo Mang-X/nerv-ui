@@ -63,7 +63,7 @@ function previewDraft() {
       ...copy.source,
       kind: 'current',
       label: '未保存草案预览',
-      status: '仅本页预览；未保存或发布',
+      status: '仅供预览；尚未保存或发布',
     },
   }
   selectedKey.value = ''
@@ -81,7 +81,7 @@ function replaceCandidate() {
     first.label = props.venue === 'library' ? '清晨共读 · 替换' : '清晨创作 · 替换'
     first.task.text = first.label
   }
-  candidate.value = { ...copy, id: 'candidate-replaced', label: '外部替换的候选安排' }
+  candidate.value = { ...copy, id: 'candidate-replaced', label: '另一份候选安排' }
   selectedKey.value = ''
 }
 function clearCandidate() {
@@ -136,7 +136,7 @@ function select(key: string) {
         {{ venue === 'library' ? '读书会安排对照' : '工作坊安排对照' }}
       </h1>
       <p class="text-muted-foreground">
-        查看已保存安排与候选安排的差异。草案预览、当前记录和已保存基线由本页分别持有。
+        查看已保存安排与候选安排的差异。草案预览不会改动已保存安排。
       </p>
       <div class="flex flex-wrap gap-2">
         <NvButton variant="outline" :aria-pressed="isDark" @click="toggle">{{
@@ -157,7 +157,7 @@ function select(key: string) {
       <div class="flex flex-wrap gap-2">
         <NvButton variant="outline" @click="editDraft">修改未保存草案</NvButton>
         <NvButton variant="outline" @click="previewDraft">预览草案候选</NvButton>
-        <NvButton variant="outline" @click="replaceCandidate">外部替换候选</NvButton>
+        <NvButton variant="outline" @click="replaceCandidate">载入另一份候选安排</NvButton>
         <NvButton variant="outline" @click="clearCandidate">清空候选</NvButton>
         <NvButton variant="outline" @click="restore">恢复两侧记录</NvButton>
         <NvButton variant="outline" :aria-pressed="readOnly" @click="readOnly = !readOnly">{{
@@ -183,7 +183,7 @@ function select(key: string) {
           v-if="draft.items[0]?.task"
           :datetime="draft.items[0]!.task!.startUtc"
           >{{ draftStart }}</time
-        ><span v-else>—</span>。此值不写入已保存基线。
+        ><span v-else>—</span>。草案修改不会改动已保存安排。
       </p>
     </section>
     <ScheduleRevisionReview

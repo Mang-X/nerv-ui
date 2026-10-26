@@ -41,4 +41,4 @@
 
 CI、docs #10、packed #11、device、旧 consumer #13/#15、父 #8 全组合、真实 APS、生产、授权、原生 zoom 均 **UNRUN**。来源旧库静态可读不等于实际旧 consumer 通过；UI 比较不等于 APS 判定。完整原始日志、截图、HTTP manifest、最小源码 archive 与最终 SHA 回读在外部 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-27/t07-p12-implementation-r1/`。
 
-PR110 后续两轮 material 返修分别见 [R1 返修](f1/README.md) 与 [R2 返修](f2/README.md)；上述实施 R1 数值保留其原始时点，不被后续门禁覆盖。
+PR110 后续 material 返修分别见 [R1 返修](f1/README.md)、[R2 返修](f2/README.md) 与 [R3 返修](f3/README.md)；上述实施 R1 数值保留其原始时点，不被后续门禁覆盖。
