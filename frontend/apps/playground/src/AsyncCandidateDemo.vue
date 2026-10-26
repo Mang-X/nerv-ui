@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, shallowRef } from 'vue'
+import { computed, onMounted, onUnmounted, shallowRef, watch } from 'vue'
 import {
   SchedulingCandidatePanel,
   SchedulingDowntimeBanner,
@@ -42,7 +42,6 @@ const failureMessage = shallowRef('')
 const saving = shallowRef(false)
 const selected = shallowRef(false)
 const savedError = shallowRef('')
-const oldJobId = shallowRef('')
 const downtimePhase = shallowRef<SchedulingDowntimeItem['phase']>('no-etr')
 const now = shallowRef(new Date())
 const nowText = computed(
@@ -80,17 +79,26 @@ function held<T>(): Held<T> {
   })
   return { promise, resolve, reject }
 }
-const pending = new Map<
-  string,
-  {
-    deferred: Held<SchedulingAsyncResult>
-    controller: AbortController
-    requestKey: string
-    context: string
-    baselineId: string
-  }
->()
-let pendingSave: { jobId: string; candidateId: string; deferred: Held<void> } | undefined
+interface PendingRequest {
+  deferred: Held<SchedulingAsyncResult>
+  controller: AbortController
+  requestKey: string
+  context: string
+  baselineId: string
+}
+const pending = new Map<string, PendingRequest>()
+let previousRequest: { id: string; request: PendingRequest } | undefined
+interface SaveOperation {
+  jobId: string
+  requestKey: string
+  context: string
+  baselineId: string
+  candidateId: string
+  deferred: Held<void>
+  controller: AbortController
+}
+let pendingSave: SaveOperation | undefined
+let previousSave: SaveOperation | undefined
 let timer: ReturnType<typeof setInterval> | undefined
 let serial = 0
 let disposed = false
@@ -104,8 +112,57 @@ onUnmounted(() => {
   if (timer) clearInterval(timer)
   for (const request of pending.values()) request.controller.abort()
   pending.clear()
+  previousRequest?.request.controller.abort()
+  previousRequest = undefined
+  pendingSave?.controller.abort()
+  previousSave?.controller.abort()
   pendingSave = undefined
+  previousSave = undefined
 })
+
+function invalidateSave() {
+  if (pendingSave) {
+    pendingSave.controller.abort()
+    previousSave = pendingSave
+    pendingSave = undefined
+  }
+  saving.value = false
+  savedError.value = ''
+}
+function retireRequest(id: string) {
+  const request = pending.get(id)
+  if (request) {
+    previousRequest = { id, request }
+    request.controller.abort()
+    pending.delete(id)
+  }
+}
+function invalidateJob(clear: boolean) {
+  if (job.value) {
+    retireRequest(job.value.id)
+    if (clear) job.value = undefined
+    else if (job.value.status === 'created' || job.value.status === 'running')
+      job.value = { ...job.value, status: 'stopped' }
+  }
+  if (clear) {
+    candidateSet.value = undefined
+    selected.value = false
+    failureMessage.value = ''
+  }
+  invalidateSave()
+}
+watch(
+  () => props.venue,
+  () => invalidateJob(true),
+  { flush: 'sync' },
+)
+watch(
+  readOnly,
+  (value) => {
+    if (value) invalidateJob(false)
+  },
+  { flush: 'sync' },
+)
 
 function current(id: string, requestKey: string, context: string, controller: AbortController) {
   return (
@@ -123,7 +180,9 @@ function createResult(
   requestKey: string,
   selectedBaselineId: string,
 ): SchedulingAsyncResult {
-  const { baseline, candidate } = comparisonSnapshots(props.venue)
+  const venue = context as 'library' | 'studio'
+  const label = venue === 'library' ? '晨间共读' : '午后创作'
+  const { baseline, candidate } = comparisonSnapshots(venue)
   return {
     jobId: id,
     contextKey: context,
@@ -133,7 +192,7 @@ function createResult(
     orders: [
       {
         id: 'morning',
-        label: targetLabel.value,
+        label,
         impact: '位置待核对',
         beforeCompletion: '11:00（Asia/Shanghai）',
         afterCompletion: null,
@@ -145,14 +204,12 @@ function createResult(
     operations: [
       {
         id: 'movement',
-        label: targetLabel.value,
+        label,
         reasons: ['场地调整'],
         paths: [
           {
             id: 'path',
-            steps: [
-              `${targetLabel.value} → ${props.venue === 'library' ? '午间分享' : '午后交流'}`,
-            ],
+            steps: [`${label} → ${venue === 'library' ? '午间分享' : '午后交流'}`],
           },
         ],
       },
@@ -172,9 +229,9 @@ function startJob(force = false) {
   )
     return
   if (readOnly.value || !selectedPlanId.value) return
+  invalidateSave()
   if (job.value) {
-    oldJobId.value = job.value.id
-    pending.get(job.value.id)?.controller.abort()
+    retireRequest(job.value.id)
   }
   const id = `job-${++serial}`
   const requestKey = `request-${serial}`
@@ -200,7 +257,6 @@ function startJob(force = false) {
   savedError.value = ''
   selected.value = false
   saving.value = false
-  pendingSave = undefined
   void deferred.promise
     .then(
       (result) => {
@@ -290,6 +346,7 @@ function startJob(force = false) {
     )
     .finally(() => {
       pending.delete(id)
+      if (previousRequest?.id === id) previousRequest = undefined
       // A settled old request never clears the active job or its busy state.
       if (
         current(id, requestKey, context, controller) &&
@@ -312,15 +369,23 @@ function complete(id?: string) {
     )
 }
 function completeOld() {
-  if (oldJobId.value) complete(oldJobId.value)
+  const previous = previousRequest
+  if (previous)
+    previous.request.deferred.resolve(
+      createResult(
+        previous.id,
+        previous.request.context,
+        previous.request.requestKey,
+        previous.request.baselineId,
+      ),
+    )
 }
 function failCurrent() {
   const id = job.value?.id
   if (id) pending.get(id)?.deferred.reject(new Error('RAW_HTTP_500: fixture-only diagnostic'))
 }
 function failOld() {
-  if (oldJobId.value)
-    pending.get(oldJobId.value)?.deferred.reject(new Error('RAW_HTTP_500: old fixture diagnostic'))
+  previousRequest?.request.deferred.reject(new Error('RAW_HTTP_500: old fixture diagnostic'))
 }
 function stop(id: string, requestKey: string) {
   if (
@@ -329,8 +394,7 @@ function stop(id: string, requestKey: string) {
     !['created', 'running'].includes(job.value.status)
   )
     return
-  oldJobId.value = id
-  pending.get(id)?.controller.abort()
+  retireRequest(id)
   job.value = { ...job.value, status: 'stopped' }
 }
 function retry(id: string, requestKey: string) {
@@ -338,31 +402,63 @@ function retry(id: string, requestKey: string) {
     startJob(true)
 }
 function save(id: string, candidateId: string) {
+  const activeJob = job.value
   if (
     readOnly.value ||
     saving.value ||
     selected.value ||
-    job.value?.id !== id ||
-    job.value.status !== 'completed' ||
-    job.value.result?.candidate?.id !== candidateId
+    activeJob?.id !== id ||
+    activeJob.status !== 'completed' ||
+    activeJob.result?.candidate?.id !== candidateId ||
+    activeJob.result.jobId !== activeJob.id ||
+    activeJob.result.contextKey !== activeJob.contextKey ||
+    activeJob.result.requestKey !== activeJob.requestKey ||
+    activeJob.input.baselineId !== selectedPlanId.value ||
+    activeJob.contextKey !== contextKey.value
   )
     return
   const deferred = held<void>()
-  pendingSave = { jobId: id, candidateId, deferred }
+  const operation: SaveOperation = {
+    jobId: id,
+    requestKey: activeJob.requestKey,
+    context: activeJob.contextKey,
+    baselineId: activeJob.input.baselineId,
+    candidateId,
+    deferred,
+    controller: new AbortController(),
+  }
+  pendingSave = operation
   saving.value = true
   savedError.value = ''
+  const stillCurrent = () =>
+    !disposed &&
+    !operation.controller.signal.aborted &&
+    !readOnly.value &&
+    pendingSave === operation &&
+    contextKey.value === operation.context &&
+    selectedPlanId.value === operation.baselineId &&
+    job.value?.id === operation.jobId &&
+    job.value.requestKey === operation.requestKey &&
+    job.value.contextKey === operation.context &&
+    job.value.input.baselineId === operation.baselineId &&
+    job.value.status === 'completed' &&
+    job.value.result?.jobId === operation.jobId &&
+    job.value.result?.candidate?.id === operation.candidateId
   void deferred.promise
     .then(
       () => {
-        if (!disposed && job.value?.id === id && job.value.result?.candidate?.id === candidateId)
-          selected.value = true
+        if (stillCurrent()) selected.value = true
       },
       () => {
-        if (!disposed && job.value?.id === id) savedError.value = '修订未保存，请稍后重试。'
+        if (stillCurrent()) savedError.value = '修订未保存，请稍后重试。'
       },
     )
     .finally(() => {
-      if (!disposed && job.value?.id === id) saving.value = false
+      if (stillCurrent()) {
+        saving.value = false
+        pendingSave = undefined
+      }
+      if (previousSave === operation) previousSave = undefined
     })
 }
 function confirmSave() {
@@ -371,21 +467,19 @@ function confirmSave() {
 function rejectSave() {
   pendingSave?.deferred.reject(new Error('RAW_SAVE_ERROR'))
 }
+function confirmOldSave() {
+  previousSave?.deferred.resolve()
+}
+function rejectOldSave() {
+  previousSave?.deferred.reject(new Error('RAW_SAVE_ERROR: old fixture diagnostic'))
+}
 function previewCandidates() {
   startJob()
 }
 function choosePlan(id: string) {
-  if (selectedPlanId.value === id) return
-  if (job.value) {
-    oldJobId.value = job.value.id
-    pending.get(job.value.id)?.controller.abort()
-  }
-  job.value = undefined
+  if (readOnly.value || selectedPlanId.value === id) return
+  invalidateJob(true)
   selectedPlanId.value = id
-  candidateSet.value = undefined
-  selected.value = false
-  saving.value = false
-  pendingSave = undefined
 }
 function selectCandidate(id: string, candidateId: string) {
   save(id, candidateId)
@@ -460,6 +554,12 @@ function selectCandidate(id: string, candidateId: string) {
         >
         <NvButton variant="outline" data-fixture="reject-save" @click="rejectSave"
           >确认保存失败</NvButton
+        >
+        <NvButton variant="outline" data-fixture="confirm-old-save" @click="confirmOldSave"
+          >让上一保存晚到</NvButton
+        >
+        <NvButton variant="outline" data-fixture="reject-old-save" @click="rejectOldSave"
+          >让上一保存失败</NvButton
         >
       </div>
       <div class="flex flex-wrap gap-2">

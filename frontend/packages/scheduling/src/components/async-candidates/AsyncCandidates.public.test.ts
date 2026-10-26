@@ -266,6 +266,23 @@ it('public insertion hides a previous plan result when the selected plan changes
   expect(wrapper.text()).not.toContain('预览完成')
 })
 
+it('completed insertion without a matching result asks for review instead of claiming preview completion', async () => {
+  const wrapper = mount(SchedulingInsertionPreview, {
+    props: {
+      contextKey: 'venue-a',
+      targetKey: 'morning',
+      targetLabel: '晨间共读',
+      pageIndex: 0,
+      pageSize: 5,
+      selectedPlanId: 'saved-a',
+      job: { ...job, status: 'completed' },
+    },
+  })
+  expect(wrapper.text()).toContain('本次结果身份不一致或尚未提供')
+  expect(wrapper.text()).not.toContain('预览完成')
+  wrapper.unmount()
+})
+
 it('public save request without a host confirmation remains unselected', async () => {
   const candidate = {
     id: 'candidate-a',

@@ -175,7 +175,7 @@ function start() {
             created: '等待计算',
             running: '计算中',
             failed: '计算失败',
-            completed: '预览完成',
+            completed: result ? '预览完成' : '结果待核对',
             stopped: '已停止等待',
           }[currentJob.status]
         }}

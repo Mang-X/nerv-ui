@@ -127,3 +127,167 @@ it('host switching the selected saved plan cancels the old request and retains t
   expect(page.text()).toContain('所选方案 · 已保存安排 2')
   page.unmount()
 })
+
+it('same host instance invalidates a created job on source change and accepts a new request', async () => {
+  const page = mount(AsyncCandidateDemo, { props: { venue: 'library' } })
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.setProps({ venue: 'studio' })
+  expect(page.text()).toContain('工作坊异步候选')
+  expect(page.text()).not.toContain('已受理，等待计算')
+  expect(page.find('[aria-label="急单插单候选"]').exists()).toBe(false)
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.get('[data-fixture="complete-old"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('已受理，等待计算')
+  expect(page.text()).not.toContain('候选计算完成')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('候选计算完成')
+  expect(page.text()).toContain('午后创作')
+  expect(page.text()).not.toContain('晨间共读 · 原窗口')
+  page.unmount()
+})
+
+it('old save confirmation after source change cannot affect a new save operation', async () => {
+  const page = mount(AsyncCandidateDemo, { props: { venue: 'library' } })
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  await page.get('[data-action="select"]').trigger('click')
+  expect(page.text()).toContain('正在保存修订')
+  await page.setProps({ venue: 'studio' })
+  expect(page.text()).not.toContain('正在保存修订')
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  await page.get('[data-action="select"]').trigger('click')
+  await page.get('[data-fixture="confirm-old-save"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('正在保存修订')
+  expect(page.text()).not.toContain('候选修订已保存')
+  await page.get('[data-fixture="confirm-save"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('候选修订已保存')
+  page.unmount()
+})
+
+it('readonly transition cancels a pending result and recovery can start again', async () => {
+  const page = mount(AsyncCandidateDemo, { props: { venue: 'library' } })
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page
+    .findAll('button')
+    .find((button) => button.text() === '只读查看')!
+    .trigger('click')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).not.toContain('候选计算完成')
+  expect(page.text()).toContain('当前为只读')
+  await page
+    .findAll('button')
+    .find((button) => button.text() === '允许操作')!
+    .trigger('click')
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('候选计算完成')
+  page.unmount()
+})
+
+it('readonly keeps an already completed result but cancels its pending save', async () => {
+  const page = mount(AsyncCandidateDemo, { props: { venue: 'library' } })
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  await page.get('[data-action="select"]').trigger('click')
+  await page
+    .findAll('button')
+    .find((button) => button.text() === '只读查看')!
+    .trigger('click')
+  expect(page.text()).toContain('候选计算完成')
+  await page.get('[data-fixture="confirm-old-save"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).not.toContain('候选修订已保存')
+  expect(page.text()).not.toContain('正在保存修订')
+  await page
+    .findAll('button')
+    .find((button) => button.text() === '允许操作')!
+    .trigger('click')
+  await page.get('[data-action="select"]').trigger('click')
+  await page.get('[data-fixture="confirm-save"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('候选修订已保存')
+  page.unmount()
+})
+
+it('a late save failure after changing plans cannot replace the new request state', async () => {
+  const page = mount(AsyncCandidateDemo, { props: { venue: 'library' } })
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  await page.get('[data-action="select"]').trigger('click')
+  await page.findAll('[data-action="choose-plan"]')[1]!.trigger('click')
+  expect(page.text()).toContain('所选方案 · 已保存安排 2')
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.get('[data-fixture="reject-old-save"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('已受理，等待计算')
+  expect(page.text()).not.toContain('修订未保存')
+  expect(page.text()).not.toContain('RAW_SAVE_ERROR')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('候选计算完成')
+  page.unmount()
+})
+
+it('replacing a job while save waits prevents its late confirmation from selecting the new job', async () => {
+  const page = mount(AsyncCandidateDemo, { props: { venue: 'studio' } })
+  await page.get('[data-fixture="start-job"]').trigger('click')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  await page.get('[data-action="select"]').trigger('click')
+  await page.get('[data-fixture="replace-job"]').trigger('click')
+  await page.get('[data-fixture="confirm-old-save"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('已受理，等待计算')
+  expect(page.text()).not.toContain('候选修订已保存')
+  await page.get('[data-fixture="complete-current"]').trigger('click')
+  await flushPromises()
+  expect(page.text()).toContain('候选计算完成')
+  expect(page.text()).not.toContain('候选修订已保存')
+  page.unmount()
+})
+
+it.each([
+  ['library', 'complete-old'],
+  ['library', 'fail-old'],
+  ['studio', 'complete-old'],
+  ['studio', 'fail-old'],
+] as const)(
+  '%s source and readonly edges keep %s outside the next request',
+  async (venue, lateAction) => {
+    const page = mount(AsyncCandidateDemo, { props: { venue } })
+    await page.get('[data-fixture="start-job"]').trigger('click')
+    await page.get('[data-fixture="running"]').trigger('click')
+    const changed = page.setProps({ venue: venue === 'library' ? 'studio' : 'library' })
+    const readonly = page
+      .findAll('button')
+      .find((button) => button.text() === '只读查看')!
+      .trigger('click')
+    await Promise.all([changed, readonly])
+    expect(page.find('[aria-label="急单插单候选"]').exists()).toBe(false)
+    await page.get(`[data-fixture="${lateAction}"]`).trigger('click')
+    await flushPromises()
+    expect(page.text()).not.toContain('候选计算完成')
+    expect(page.text()).not.toContain('计算失败')
+    await page
+      .findAll('button')
+      .find((button) => button.text() === '允许操作')!
+      .trigger('click')
+    await page.get('[data-fixture="start-job"]').trigger('click')
+    expect(page.text()).toContain('已受理，等待计算')
+    await page.get('[data-fixture="complete-current"]').trigger('click')
+    await flushPromises()
+    expect(page.text()).toContain('候选计算完成')
+    page.unmount()
+  },
+)

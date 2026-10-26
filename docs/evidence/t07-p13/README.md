@@ -2,6 +2,8 @@
 
 本记录对应 [#96](https://github.com/Mang-X/nerv-ui/issues/96)，实施起点为 `feat/t07-p13-async-candidates` 的 `62a3a62ad57b3fb3bd2309e9966d4e2554f67f61` / tree `d510380fb5a2ba7a271e7567c3c2473817c5e938`。最终候选 head/tree、clean、PR 与上游整合结果见本轮独立 handoff；这里不将后续合并称为本席验收。固定旧源 `79b1578f2b75f55709765b5e7882aaf33146c603` / tree `58e30c637acb7efdd393af291e570288b03b5aa9` 只读，`migration` 未改。
 
+PR111 R1 的来源/只读/保存时序返修及本轮独立 RED→GREEN 见 [f1 记录](f1/README.md)。以下初次实施数字保留为历史时点，不由 f1 的后续结果改写。
+
 ## 来源和接缝
 
 四个冻结私有 Vue 的 Git blob 分别为 `SchedulingCandidatePanel.vue` `6688357f80da2b8f4a340aec0c74445dda12a8e9`、`SchedulingRushInsertionResult.vue` `47eeec29df3a3b2ede4da173d8ea1a5dbaedf1ab`、`SchedulingInsertionPreview.vue` `1d424177b8d4c625fabc5623619968ebbf03f77e`、`SchedulingDowntimeBanner.vue` `f38b275402587d3d1d897b92c5d9175d8930c09c`。它们的实际旧消费者为 `pages/scheduling.vue`、`SingleOrderSchedulingDialog.vue`；旧插单和停机 composables 的取数/判断留给 host。逐能力及新类型见[公共合同](../../scheduling-async-candidates.md)。P12 比较和 P11 风险的原公共入口仍被复用，原默认和省略行为未改。
