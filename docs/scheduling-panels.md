@@ -71,17 +71,23 @@ P08 / [#91](https://github.com/Mang-X/nerv-ui/issues/91) 只处理既有八个�
 
 ## 图例与真实刻度
 
-`model?/view?='order'/scale?` 与 categories 保留。缺 model 不再列“全部可能”图例；`FULL_LEGEND_SEMANTICS` 常量仍导出供明确的静态色板参考，运行图例不默认使用。新增 `now?`（宿主时钟）、`groupBy?/laneOrder?`（与资源图相同）、`categoryLabel?/blockLabels?`（展示词）。
+`model?/view?='order'/scale?` 与 categories 保留。缺 model 不再列“全部可能”图例；`FULL_LEGEND_SEMANTICS` 常量仍导出供明确的静态色板参考，运行图例不默认使用。新增 `now?`（仅图例的时钟采样）、`groupBy?/laneOrder?`（与资源图相同）、`categoryLabel?/blockLabels?`（展示词）。`now` 不传入 engine，不同步或刷新其 marker；确定性对照须让双方使用同一时钟采样。默认在图例重新计算时读取 Date.now，不提供持续时钟服务。
 
 `deriveLegendSemantics(model?, now?, scale?, view?='order', grouping?)` 保留前三参数。没有适用日历不造周末/夜间；资源与工作中心按显式 namespace，工作中心日历优先，未知资源不能借同串工作中心日历。完整覆盖的日历不列不存在的非工作底纹。
 
 固定 DHTMLX 9.1.4 `Ri()` / `scale_offset_minimal` 的工单范围排除 project 汇总节点后从实际活动日期取最小刻度起点，再向前一格、向后两格；`model/scale.ts` 的展示推导按这一规则和最终工厂时区取格点。旧“偶数整点”假设已被真实 07/09/11…相位反例推翻；`shiftBoundaryRendersAt(startUtc, scale)` 保留旧两参近似签名，但**当前图例不再调用它**。工单班次/时间块只有命中真实格点才列；粗刻度下零点班次恰好命中格点时仍可出现，不能一概声称全无。未解析对齐时不造格点。
+
+全为 project 的工单图沿厂商专用分支，以首个 project 的开始至开始后一小时（当前 duration_unit）取范围，再按同一刻度扩展；不使用全部父日期的极值。混合普通活动时仍排除旧父日期；`isMilestone` 优先于 order 类型，参与实际活动范围且结束取开始。空任务或仅时间块没有工单行，不推导图例。图例的格点与轴边界来自同一展示计算，不修改任务日期或 engine 配置。
+
+“现在”须同时位于 horizon 与实际显示轴，轴两端均包含。工单轴由任务推导，不等于 horizon；资源轴由 horizon 配置，保留其不同语义。engine 在当下不属于 horizon 时使用的中点参考不是实际现在，图例不将它声明为当前时刻。此范围指完整显示轴，不承诺横向滚动后 marker 一定位于可见 viewport。
 
 小时展示格点与保留的 `factory_hour_start` 一样清除毫秒；这只归一展示参考时刻，`factoryTimeInstant` 的编辑/无操作保存继续保留原始偏移与毫秒。当前保留厂商的粗刻度 offset 转换仍会保留输入的毫秒相位；不能把小时规则推广到日/周/月。上海和 Kolkata 四刻度与真实 cell/连续窗口的本轮对照见返修证据。
 
 格点从已知实际时刻投影，不经过 wall time 编辑准入。小时对齐保留 DST 回拨中输入所属的那一次小时，逐格按实际时长推进；日/周/月沿用当前厂商的日历 offset 数学。合法 offset 与 UTC 字串表达同一 instant 时得到同一展示相位；这不放宽 `factoryTimeInstant` 对编辑后不存在或二义性墙上时间的拒绝策略。
 
 `timezones` 缺省、空或含非法时区，或任一任务时区未解析时，公开 renderer 不建立图面，图例的甘特/卡片/状态/块/日历推导也全部为空，包括非工作底纹与“现在”。不回退浏览器时区。显式 `categories` 仍是宿主独立提供的分类色板，可在无 model 或未解析时展示并保留原显隐请求；它不证明图已渲染，也不代表宿主已应用过滤。宿主若只需随图显示色板，应与图面使用相同的显示条件。
+
+图面相关语义还复用 SchedulingCanvas 当前的 `hasInvalidModelTime` 严格准入：horizon、任务、segments、calendar 窗口和已提供的可选 baseline 必须是有效 UTC/offset 实际时刻。任一被拒绝时全部图面语义为空，显式 categories 仍独立保留。这里消费现有准入，不另定日期顺序、DST 编辑或业务策略；loading、隐藏、vendor/native 能力由宿主沿现有组合条件决定。
 
 工单 cell 只绘制第一个命中块：先资源泳道，再工作中心泳道；同一泳道按当前模型的块顺序首命中。图例只列至少赢得一个 cell 的种类，完整覆盖时后块可不出现，部分覆盖时仍可能出现两类。不同泳道分别判定。资源视图仍绘制全部相交的连续块窗口；本规则不改变引擎、模型顺序或业务窗口优先级。
 

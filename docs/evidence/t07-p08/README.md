@@ -1,5 +1,7 @@
 # P08 / #91：图例、工具栏与八个详情/列表面板
 
+R3 独立审查拒绝后的三项展示 P2 返修见 [F7–F9 记录](f7-f9/README.md)：严格图面准入、全 summary 厂商显示范围与“现在”的实际轴边界。独立 R4 交父安排，原 R1/R2/R3 拒绝和全部历史 FAIL/UNKNOWN 保留。
+
 R2 独立审查拒绝后的两个时区展示 P2 返修见 [F5–F6 记录](f5-f6/README.md)：合法 DST instant 格点与未解析图面的图例边界。本轮实施证据不代独立 R3 批准；原 R1/R2 拒绝与全部历史 FAIL/UNKNOWN 保留。
 
 R1 独立审查拒绝后的四项 P2 返修见 [F1–F4 记录](f1-f4/README.md)。下文保留首轮实施时点的原始结论与证据；其中“summary fresh browser UNRUN”等历史状态不覆盖返修轮的新证据，原 RED/FAIL/UNKNOWN 和 R1 拒绝也不被后续通过消除。

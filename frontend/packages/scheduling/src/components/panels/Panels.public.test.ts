@@ -980,3 +980,261 @@ it('legend ignores stale summary dates when deriving the real operation hour pha
   expect(w.text()).not.toContain('班次边界')
   w.unmount()
 })
+
+it.each(['task nonfinite', 'task no offset', 'calendar', 'baseline', 'horizon', 'segment'])(
+  'legend strict diagram admission suppresses all semantics for invalid %s',
+  async (kind) => {
+    const input: ScheduleModel = structuredClone(model)
+    input.tasks[0] = {
+      ...input.tasks[0]!,
+      locked: true,
+      hasConflict: true,
+      priority: 'high',
+      isRush: true,
+      kitting: 0.5,
+      changeoverMin: 10,
+      plannedStartUtc: '2026-10-26T01:00:00Z',
+      plannedEndUtc: '2026-10-26T02:00:00Z',
+      materialRisk: {
+        orderId: 'group-a',
+        operationId: 'internal-a',
+        reasonCodes: [],
+        shortages: [],
+        message: '需备料',
+      },
+      equipmentRisk: {
+        orderId: 'group-a',
+        operationId: 'internal-a',
+        resourceId: 'room-a',
+        reasonCodes: [],
+        message: '需确认设备',
+      },
+    }
+    input.tasks.push({ ...input.tasks[0]!, id: 'milestone', isMilestone: true })
+    input.links = [
+      {
+        id: 'dependency',
+        source: input.tasks[0]!.id,
+        target: 'milestone',
+        type: 'finish_to_start',
+      },
+    ]
+    input.resources[0]!.utilization = 2
+    input.calendars = [
+      {
+        calendarId: 'c',
+        resourceIds: ['room-a'],
+        workCenterIds: [],
+        shiftWindows: [
+          { startUtc: '2026-10-26T00:00:00Z', endUtc: '2026-10-26T02:00:00Z', shiftCode: 'open' },
+        ],
+      },
+    ]
+    const admitted = mount(SchedulingLegend, {
+      props: { model: structuredClone(input), scale: 'hour' },
+    })
+    expect(admitted.text()).toMatch(/计划基线.*依赖箭头.*里程碑/)
+    await admitted.setProps({ view: 'resource' })
+    for (const label of [
+      '优先级',
+      '插单',
+      '齐套',
+      '换型耗时',
+      '资源过载',
+      '锁定',
+      '冲突',
+      '缺料待备',
+      '设备状态未知',
+    ])
+      expect(admitted.text()).toContain(label)
+    admitted.unmount()
+    if (kind === 'task nonfinite') input.tasks[0]!.startUtc = 'not-an-instant'
+    if (kind === 'task no offset') input.tasks[0]!.startUtc = '2026-10-26T00:00:00'
+    if (kind === 'calendar') input.calendars[0]!.shiftWindows[0]!.startUtc = 'invalid'
+    if (kind === 'baseline') input.tasks[0]!.plannedStartUtc = 'not-an-instant'
+    if (kind === 'horizon') input.horizon.endUtc = 'not-an-instant'
+    if (kind === 'segment')
+      input.tasks[0]!.segments = [{ startUtc: 'invalid', endUtc: input.tasks[0]!.endUtc }]
+    const before = JSON.stringify(input)
+    const w = mount(SchedulingLegend, {
+      props: { model: input, scale: 'hour', now: Date.parse('2026-10-26T02:00:00Z') },
+    })
+    for (const view of ['order', 'resource'] as const) {
+      await w.setProps({ view })
+      expect.soft(w.text()).toBe('')
+      await w.setProps({ categories: [{ key: 'reading', label: '阅读' }] })
+      expect.soft(w.text()).toContain('阅读')
+      expect.soft(w.text()).not.toMatch(/锁定|现在|班次边界|计划基线|缺料待备/)
+      await w.setProps({ categories: undefined })
+    }
+    expect(JSON.stringify(input)).toBe(before)
+    w.unmount()
+  },
+)
+
+it('legend uses the first project one-hour extent for an all-summary order diagram', async () => {
+  const summary: ScheduleTask = {
+    ...model.tasks[0]!,
+    type: 'order',
+    timezone: 'UTC',
+    startUtc: '2026-10-26T09:00:00Z',
+    endUtc: '2026-10-26T23:00:00Z',
+  }
+  const input: ScheduleModel = {
+    ...model,
+    timezones: ['UTC'],
+    horizon: { startUtc: '2026-10-26T00:00:00Z', endUtc: '2026-10-27T00:00:00Z' },
+    tasks: [
+      summary,
+      {
+        ...summary,
+        id: 'maintenance',
+        type: 'operation',
+        blockKind: 'maintenance',
+        endUtc: '2026-10-26T10:00:00Z',
+      },
+    ],
+    calendars: [
+      {
+        calendarId: 'c',
+        resourceIds: ['room-a'],
+        workCenterIds: [],
+        shiftWindows: [
+          { startUtc: summary.startUtc, endUtc: '2026-10-26T11:00:00Z', shiftCode: 'open' },
+        ],
+      },
+    ],
+  }
+  const w = mount(SchedulingLegend, {
+    props: { model: input, scale: 'hour', now: Date.parse('2026-10-26T14:00:00Z') },
+  })
+  expect.soft(w.text()).toContain('班次边界')
+  expect.soft(w.text()).toContain('设备维护')
+  expect.soft(w.text()).toContain('非工作时段')
+  expect.soft(w.text()).toContain('现在')
+  await w.setProps({ now: Date.parse('2026-10-26T14:00:00.001Z') })
+  expect.soft(w.text()).not.toContain('现在') // first start09 + duration hour10 -> padded axis07..14
+  // Order input parentId is ignored by the order renderer. Far project dates do not extend this branch.
+  await w.setProps({
+    model: {
+      ...input,
+      tasks: [
+        ...input.tasks,
+        { ...summary, id: 'other-project', parentId: summary.id, startUtc: '2026-10-28T00:00:00Z' },
+      ],
+    },
+  })
+  expect.soft(w.text()).toContain('班次边界')
+  expect.soft(w.text()).not.toContain('现在')
+  w.unmount()
+})
+
+it.each([
+  ['before axis', '2026-10-26T06:59:59.999Z', false],
+  ['axis start', '2026-10-26T07:00:00Z', true],
+  ['inside axis', '2026-10-26T10:00:00Z', true],
+  ['axis end', '2026-10-26T15:00:00Z', true],
+  ['after axis', '2026-10-26T15:00:00.001Z', false],
+] as const)(
+  'legend now follows order display range at %s while resource follows horizon',
+  async (_name, now, visible) => {
+    const input: ScheduleModel = {
+      ...model,
+      timezones: ['UTC'],
+      horizon: { startUtc: '2026-10-26T00:00:00Z', endUtc: '2026-10-27T00:00:00Z' },
+      tasks: [
+        {
+          ...model.tasks[0]!,
+          timezone: 'UTC',
+          startUtc: '2026-10-26T09:00:00Z',
+          endUtc: '2026-10-26T11:00:00Z',
+        },
+      ],
+    }
+    const w = mount(SchedulingLegend, {
+      props: { model: input, scale: 'hour', now: Date.parse(now) },
+    })
+    expect.soft(w.text().includes('现在')).toBe(visible)
+    await w.setProps({ view: 'resource' })
+    expect.soft(w.text()).toContain('现在')
+    await w.setProps({ now: Date.parse('2026-10-27T00:00:00.001Z') })
+    expect.soft(w.text()).not.toContain('现在')
+    w.unmount()
+  },
+)
+
+it('legend does not derive order semantics for empty or block-only input', () => {
+  for (const tasks of [[], [{ ...model.tasks[0]!, blockKind: 'maintenance' as const }]]) {
+    const w = mount(SchedulingLegend, {
+      props: { model: { ...model, tasks }, now: Date.parse('2026-10-26T02:00:00Z') },
+    })
+    expect(w.text()).toBe('')
+    w.unmount()
+  }
+})
+
+it.each(['summary with operation', 'order milestone'] as const)(
+  'legend uses non-project dates for %s instead of stale project dates',
+  (kind) => {
+    const operation: ScheduleTask = {
+      ...model.tasks[0]!,
+      timezone: 'UTC',
+      startUtc: '2026-10-26T09:00:00Z',
+      endUtc: '2026-10-26T11:00:00Z',
+      ...(kind === 'order milestone'
+        ? { type: 'order', isMilestone: true, endUtc: '2026-10-28T23:00:00Z' }
+        : {}),
+    }
+    const summary: ScheduleTask = {
+      ...operation,
+      id: 'summary',
+      type: 'order',
+      isMilestone: false,
+      startUtc: '2026-10-26T00:00:00Z',
+      endUtc: '2026-10-29T00:00:00Z',
+    }
+    const input: ScheduleModel = {
+      ...model,
+      timezones: ['UTC'],
+      tasks: [summary, { ...operation, parentId: summary.id }],
+      calendars: [
+        {
+          calendarId: 'c',
+          resourceIds: ['room-a'],
+          workCenterIds: [],
+          shiftWindows: [
+            { startUtc: operation.startUtc, endUtc: '2026-10-26T10:00:00Z', shiftCode: 'open' },
+          ],
+        },
+      ],
+    }
+    const w = mount(SchedulingLegend, {
+      props: { model: input, scale: 'hour', now: Date.parse('2026-10-26T01:00:00Z') },
+    })
+    expect.soft(w.text()).toContain('班次边界')
+    expect.soft(w.text()).not.toContain('现在')
+    w.unmount()
+  },
+)
+
+it('legend now requires horizon membership even when the order axis includes the instant', () => {
+  const input: ScheduleModel = {
+    ...model,
+    timezones: ['UTC'],
+    horizon: { startUtc: '2026-10-26T09:00:00Z', endUtc: '2026-10-26T11:00:00Z' },
+    tasks: [
+      {
+        ...model.tasks[0]!,
+        timezone: 'UTC',
+        startUtc: '2026-10-26T09:00:00Z',
+        endUtc: '2026-10-26T11:00:00Z',
+      },
+    ],
+  }
+  const w = mount(SchedulingLegend, {
+    props: { model: input, scale: 'hour', now: Date.parse('2026-10-26T08:00:00Z') },
+  })
+  // Engine's out-of-horizon reference is a midpoint, not the actual present.
+  expect(w.text()).not.toContain('现在')
+  w.unmount()
+})

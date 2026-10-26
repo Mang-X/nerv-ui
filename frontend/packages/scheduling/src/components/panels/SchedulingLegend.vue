@@ -23,7 +23,7 @@ const props = withDefaults(
     scale?: TimeScale
     groupBy?: string
     laneOrder?: LaneOrder
-    /** Host clock for deterministic current-time display. */
+    /** Legend-only clock sample; does not set the engine clock or refresh its marker. */
     now?: number
     /** Controlled visibility; emit is a request until the host updates this prop and its chart. */
     hiddenGroups?: readonly string[]

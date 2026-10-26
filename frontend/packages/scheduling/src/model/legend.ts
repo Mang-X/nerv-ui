@@ -4,7 +4,8 @@
 
 import { BLOCK_KINDS, type BlockKind } from './blocks'
 import { resourceProjection, resourceKey, workCenterKey } from './resource-projection'
-import { resolveTimeScale, orderScaleCells, hasUnresolvedDisplayTimezone } from './scale'
+import { resolveTimeScale, orderDisplayScale, hasUnresolvedDisplayTimezone } from './scale'
+import { hasInvalidModelTime } from './instant-validation'
 import type { LaneOrder, ScheduleModel, TimeScale } from './types'
 
 export interface SchedulingLegendSemantics {
@@ -35,7 +36,7 @@ export interface SchedulingLegendSemantics {
   /**
    * 日历:仅有适用日历才推导非工作底纹;
    * 班次边界要后端带出日历**且当前刻度画得出那条线**才列(工单格点 / 资源连续区间);
-   * 「现在」线只在计划期覆盖当下时出现。
+   * 「现在」只在当下位于计划期与实际显示轴内时列出。
    */
   calendar: { nonWorking: boolean; shift: boolean; now: boolean }
 }
@@ -73,7 +74,7 @@ export function deriveLegendSemantics(
 ): SchedulingLegendSemantics {
   // These are diagram semantics. Explicit categories are a separate host palette
   // in SchedulingLegend and remain available without a resolved diagram.
-  if (!model || hasUnresolvedDisplayTimezone(model)) return EMPTY
+  if (!model || hasUnresolvedDisplayTimezone(model) || hasInvalidModelTime(model)) return EMPTY
   const tasks = model.tasks ?? []
   const projection =
     view === 'resource'
@@ -97,7 +98,10 @@ export function deriveLegendSemantics(
   const horizonStart = Date.parse(model.horizon?.startUtc ?? '')
   const horizonEnd = Date.parse(model.horizon?.endUtc ?? '')
   const resolvedScale = resolveTimeScale(scale, model.horizon)
-  const cells = view === 'order' ? orderScaleCells(model, resolvedScale) : []
+  const orderDisplay = view === 'order' ? orderDisplayScale(model, resolvedScale) : undefined
+  const cells = orderDisplay?.cells ?? []
+  const displayStart = view === 'order' ? orderDisplay?.start : horizonStart
+  const displayEnd = view === 'order' ? orderDisplay?.end : horizonEnd
   const indexed = new Map<string, { start: number; end: number }[]>()
   for (const calendar of model.calendars ?? []) {
     const windows = calendar.shiftWindows
@@ -223,7 +227,11 @@ export function deriveLegendSemantics(
         Number.isFinite(horizonStart) &&
         Number.isFinite(horizonEnd) &&
         now >= horizonStart &&
-        now <= horizonEnd,
+        now <= horizonEnd &&
+        displayStart !== undefined &&
+        displayEnd !== undefined &&
+        now >= displayStart &&
+        now <= displayEnd,
     },
   }
 }

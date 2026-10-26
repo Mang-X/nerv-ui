@@ -77,13 +77,28 @@ export function hasUnresolvedDisplayTimezone(model: ScheduleModel): boolean {
  * This helper never changes engine configuration or task dates.
  */
 export function orderScaleCells(model: ScheduleModel, scale: ResolvedTimeScale): number[] {
-  if (hasUnresolvedDisplayTimezone(model)) return []
-  // Vendor getSubtaskDates excludes project summaries, whose input dates may be stale.
-  const tasks = model.tasks.filter((task) => !task.blockKind && task.type !== 'order')
-  const dates = tasks
-    .flatMap((task) => [Date.parse(task.startUtc), Date.parse(task.endUtc)])
-    .filter(Number.isFinite)
-  if (!dates.length) return []
+  return orderDisplayScale(model, scale)?.cells ?? []
+}
+
+/** Range and cells share the retained vendor's task-driven display calculation. */
+export function orderDisplayScale(
+  model: ScheduleModel,
+  scale: ResolvedTimeScale,
+): { start: number; end: number; cells: number[] } | undefined {
+  if (hasUnresolvedDisplayTimezone(model)) return undefined
+  const rows = model.tasks.filter((task) => !task.blockKind)
+  if (!rows.length) return undefined
+  // toGanttTask gives milestones precedence over the order/project type.
+  // Mixed diagrams exclude project dates; all-project Ri instead uses the
+  // first project's start plus one duration_unit (configured as one hour).
+  const tasks = rows.filter((task) => task.type !== 'order' || task.isMilestone)
+  const dates = tasks.length
+    ? tasks.flatMap((task) => [
+        Date.parse(task.startUtc),
+        Date.parse(task.isMilestone ? task.startUtc : task.endUtc),
+      ])
+    : [Date.parse(rows[0]!.startUtc), Date.parse(rows[0]!.startUtc) + 3_600_000]
+  if (dates.some((at) => !Number.isFinite(at))) return undefined
   const timezone = model.timezones!.at(-1)!
   const step = scale === 'hour' ? 2 : scale === 'week' ? 7 : 1
   const wall = (at: number) =>
@@ -128,5 +143,5 @@ export function orderScaleCells(model: ScheduleModel, scale: ResolvedTimeScale):
     if (!(next > at)) break
     at = next
   }
-  return cells
+  return { start: first, end, cells }
 }
