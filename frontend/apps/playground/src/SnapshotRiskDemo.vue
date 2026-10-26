@@ -87,6 +87,9 @@ function restore() {
       <a href="#schedule-draft/library" class="inline-flex min-h-11 items-center underline"
         >一起安排</a
       >
+      <a href="#schedule-compare/library" class="inline-flex min-h-11 items-center underline"
+        >安排对照</a
+      >
       <a href="#schedule-gantt" class="inline-flex min-h-11 items-center underline">时间与空间</a>
       <a
         :href="`#schedule-snapshot/${venue === 'library' ? 'studio' : 'library'}`"

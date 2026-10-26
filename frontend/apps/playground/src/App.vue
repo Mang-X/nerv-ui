@@ -9,6 +9,7 @@ import ResourceEditingDemo from './ResourceEditingDemo.vue'
 import ScheduleDemo from './ScheduleDemo.vue'
 import DraftEditingDemo from './DraftEditingDemo.vue'
 import SnapshotRiskDemo from './SnapshotRiskDemo.vue'
+import ScheduleComparisonDemo from './ScheduleComparisonDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
@@ -88,8 +89,13 @@ function addProject() {
 </script>
 
 <template>
+  <ScheduleComparisonDemo
+    v-if="surface === '#schedule-compare/library' || surface === '#schedule-compare/studio'"
+    :key="surface"
+    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <SnapshotRiskDemo
-    v-if="surface === '#schedule-snapshot/library' || surface === '#schedule-snapshot/studio'"
+    v-else-if="surface === '#schedule-snapshot/library' || surface === '#schedule-snapshot/studio'"
     :key="surface"
     :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
   />
@@ -134,6 +140,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#schedule-compare/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >安排对照</a
+      >
       <a href="#schedule-snapshot/library" class="inline-flex min-h-11 items-center px-4 underline"
         >安排核对</a
       >

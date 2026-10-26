@@ -275,6 +275,9 @@ export interface ScheduleChange {
   changeType: ChangeType
   message: string
   taskId?: string
+  /** Explicit per-snapshot assignment IDs for revision comparison; taskId remains the select target. */
+  beforeTaskId?: string | null
+  afterTaskId?: string | null
 }
 
 /** 单个班次工作窗口(窗口之外即非工作时间)。 */

@@ -267,6 +267,7 @@ function cleared() {
       ><a :href="`#schedule-edit/${venue}`" class="underline">活动时间调整</a
       ><a :href="`#schedule-resource-edit/${venue}`" class="underline">活动位置调整</a
       ><a :href="`#schedule-panels/${venue}`" class="underline">活动详情</a
+      ><a :href="`#schedule-compare/${venue}`" class="underline">安排对照</a
       ><a
         :href="reading ? '#schedule-draft/studio' : '#schedule-draft/library'"
         class="underline"

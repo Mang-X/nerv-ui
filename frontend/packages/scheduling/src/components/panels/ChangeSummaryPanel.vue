@@ -28,15 +28,28 @@ const filteredChanges = computed(() => {
         .includes(query),
     )
     .map((change) => {
-      const before = findTask(props.baseTasks, change)
-      const after = findTask(props.tasks, change)
+      const before = findTask(
+        props.baseTasks,
+        change,
+        change.beforeTaskId === undefined ? change.taskId : change.beforeTaskId,
+      )
+      const after = findTask(
+        props.tasks,
+        change,
+        change.afterTaskId === undefined ? change.taskId : change.afterTaskId,
+      )
       return { ...change, before, after }
     })
 })
-function findTask(tasks: ScheduleTask[] | undefined, change: ScheduleChange) {
+function findTask(
+  tasks: ScheduleTask[] | undefined,
+  change: ScheduleChange,
+  identity: string | null | undefined,
+) {
   // An explicit identity stays authoritative even after removal (including an empty id).
   // Only historical records with no identity may use the unique legacy association.
-  if (change.taskId !== undefined) return tasks?.find((task) => task.id === change.taskId)
+  if (identity === null) return undefined
+  if (identity !== undefined) return tasks?.find((task) => task.id === identity)
   const matches = tasks?.filter(
     (task) => task.orderId === change.orderId && task.operationId === change.operationId,
   )
@@ -65,7 +78,11 @@ const emit = defineEmits<{ select: [taskId: string] }>()
 function selectionReason(c: ScheduleChange) {
   if (c.selectDisabledReason) return c.selectDisabledReason
   if (!c.taskId) return '无关联活动'
-  if (props.tasks && !findTask(props.tasks, c)) return '该活动当前不可查看'
+  if (
+    props.tasks &&
+    !findTask(props.tasks, c, c.afterTaskId === undefined ? c.taskId : c.afterTaskId)
+  )
+    return '该活动当前不可查看'
 }
 function onClick(c: ScheduleChange) {
   if (c.taskId && !selectionReason(c)) emit('select', c.taskId)
