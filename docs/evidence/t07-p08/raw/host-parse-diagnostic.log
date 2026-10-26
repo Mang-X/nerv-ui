@@ -1,0 +1,24 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground
+
+ ❯ src/SchedulePanelsDemo.test.ts (0 test)
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  07:01:45
+   Duration  602ms (transform 26ms, setup 223ms, import 0ms, tests 0ms, environment 253ms)
+
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/SchedulePanelsDemo.test.ts [ src/SchedulePanelsDemo.test.ts ]
+SyntaxError: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+242 |          variant="outline"
+243 |          @click="
+244 |            authority = panelModel(venue)
+    |  ^
+245 |            hiddenGroups = []
+246 |          "
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

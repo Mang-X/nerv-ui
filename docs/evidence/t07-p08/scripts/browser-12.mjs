@@ -1,0 +1,28 @@
+import { session,logger,instrument,state,click,choose,assert } from './browser-common.mjs'
+const {page}=await session(),save=logger('browser-12');
+await page.goto('http://127.0.0.1:4308/#schedule-panels/library');await page.reload();await page.waitForSelector('[data-engine="dhtmlx"]');await instrument(page);
+const buttonState=label=>page.evaluate(label=>{const el=document.querySelector(`button[aria-label="${label}"]`);return {disabled:el?.disabled,title:el?.title}},label);
+assert.equal((await buttonState('撤销')).disabled,true);assert.equal((await buttonState('重做')).disabled,true);
+assert.match((await buttonState('放大')).title,/小时刻度/);
+await page.click('button[aria-label="缩小"]');assert.equal(await page.evaluate(()=>document.querySelector('[aria-label="时间刻度"]').textContent),'日');
+await page.click('button[aria-label="放大"]');assert.equal(await page.evaluate(()=>document.querySelector('[aria-label="时间刻度"]').textContent),'小时');
+await choose(page,'时间刻度','月');assert.match((await buttonState('缩小')).title,/月刻度/);
+await page.click('button[aria-label="定位到当前"]');await page.click('button[aria-label="适配窗口"]');
+await save('zoom-current-fit-and-undo-redo-reasons',await state(page));
+await choose(page,'时间刻度','小时');
+await page.fill('input[aria-label="搜索工序"]','共读');
+await page.click('button[aria-label="下一个匹配"]');assert.match((await state(page)).selected,/晨间共读/);
+await page.click('button[aria-label="下一个匹配"]');assert.match((await state(page)).selected,/午间共读/);
+await page.click('button[aria-label="上一个匹配"]');assert.match((await state(page)).selected,/晨间共读/);
+await page.click('button[aria-label="清空搜索"]');assert.equal(await page.evaluate(()=>document.querySelector('input[aria-label="搜索工序"]').value),'');
+await click(page,'锁定活动');await click(page,'核对活动');await click(page,'确认安排');
+let s=await save('search-buttons-and-request-actions',await state(page));assert.match(s.records,/核对活动/);assert.match(s.records,/确认安排/);assert.match(s.records,/安排保持不变/);assert.match(s.detail,/0 分钟/);
+await page.click('label:has-text("正在处理")');
+const busy=await page.evaluate(()=>Object.fromEntries(['核对活动','确认安排','联系组织者'].map(name=>{const button=[...document.querySelectorAll('button')].find(e=>e.textContent.trim()===name);return[name,{disabled:button.disabled,title:button.title}]})));
+await save('busy-disabled-reasons',busy);assert.ok(Object.values(busy).every(value=>value.disabled));assert.match(busy['确认安排'].title,/正在处理/);
+assert.equal((await buttonState('锁定为只读')).disabled,true);
+await page.click('label:has-text("正在处理")');await click(page,'锁定为只读');
+await save('readonly-actions',await state(page));
+assert.equal(await page.evaluate(()=>[...document.querySelectorAll('button')].find(e=>e.textContent.trim()==='确认安排').disabled),true);
+await click(page,'清空活动');s=await save('readonly-empty',await state(page));assert.match(s.detail,/尚未选择活动/);assert.match(s.visible,/0 项活动/);assert.deepEqual(s.errors,[]);assert.deepEqual(s.rejections,[]);
+console.log(await page.snapshot());

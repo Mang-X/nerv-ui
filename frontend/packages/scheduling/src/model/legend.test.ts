@@ -25,15 +25,15 @@ describe('deriveLegendSemantics', () => {
       deriveLegendSemantics(cloneModel(sampleModelWithCalendar), NOW, 'hour').calendar.shift,
     ).toBe(true)
     expect(deriveLegendSemantics(cloneModel(sampleModel), NOW, 'hour').calendar.shift).toBe(false)
-    // 非工作底纹恒在:没有日历时引擎也会按通用作息画。
-    expect(deriveLegendSemantics(cloneModel(sampleModel)).calendar.nonWorking).toBe(true)
+    // P04/P05: absent calendar remains unknown, no invented night/weekend shading.
+    expect(deriveLegendSemantics(cloneModel(sampleModel)).calendar.nonWorking).toBe(false)
   })
 
   // 走查台账 #41:图例=图面事实。班次竖线由引擎逐格判定(单元格起点 === 班次窗口起点),
   // 日级刻度一格是一整天,08:00/16:00 起的班次一条线都画不出来 → 图例也不许列。
   describe('班次边界按当前刻度推导(台账 #41)', () => {
-    // 用本地时间构造,避免测试跟着运行机器时区飘。
-    const localIso = (hour: number) => new Date(2026, 5, 10, hour, 0, 0, 0).toISOString()
+    // The active fixture explicitly uses UTC; calendar instants must use that same zone.
+    const localIso = (hour: number) => new Date(Date.UTC(2026, 5, 10, hour, 0, 0, 0)).toISOString()
     const planWithShiftsAt = (...hours: number[]) => ({
       ...sampleModel,
       calendars: [
@@ -60,6 +60,7 @@ describe('deriveLegendSemantics', () => {
       expect(deriveLegendSemantics(model, NOW, 'hour').calendar.shift).toBe(false)
     })
 
+    // Historical two-argument helper remains approximate; active legend now uses actual model phase.
     // 已知近似(记录假设,不是在断言 DHTMLX 的行为):
     // hour 档假定 2 小时格从**偶数整点**起步。引擎从不设 config.start_date,时间轴范围由任务
     // 时间推导后按刻度对齐,对齐到哪一档单位由 DHTMLX 内部决定——本仓库没有证据,本机也没有
@@ -94,9 +95,9 @@ describe('deriveLegendSemantics', () => {
       expect(deriveLegendSemantics(model, NOW, 'day').calendar.nonWorking).toBe(true)
     })
 
-    it('周 / 月刻度同理不列', () => {
+    it('coarse scales list a midnight shift only when it coincides with an actual cell', () => {
       const model = cloneModel(planWithShiftsAt(0, 8, 16))
-      expect(deriveLegendSemantics(model, NOW, 'week').calendar.shift).toBe(false)
+      expect(deriveLegendSemantics(model, NOW, 'week').calendar.shift).toBe(true)
       expect(deriveLegendSemantics(model, NOW, 'month').calendar.shift).toBe(false)
     })
 

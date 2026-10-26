@@ -1,0 +1,94 @@
+{
+  "policy": "All original RED and FAIL artifacts retained. Later PASS does not erase them.",
+  "productRed": [
+    "red-legend.json",
+    "red-toolbar.json",
+    "red-detail.json",
+    "red-lists.json",
+    "red-host.json",
+    "red-phase.json",
+    "phase-red.json",
+    "red-zero-legend.json",
+    "browser-04-red-recursion.json",
+    "browser-04-red-recursion.log",
+    "browser-14-layout.json",
+    "red-summary-phase.json"
+  ],
+  "intermediateFailures": [
+    {
+      "artifact": "types-01.log",
+      "reason": "Unconstrained fixture generic widened link and other literals."
+    },
+    {
+      "artifact": "types-02.log",
+      "reason": "Fixture used resource workCenterId and null utilization outside the actual current contract; corrected to explicit resource dimensions and absent unknown."
+    },
+    {
+      "artifact": "green-host.json",
+      "reason": "Test selector still used legacy legend title after host label override; corrected selector, not product behavior."
+    },
+    {
+      "artifact": "green-phase.json",
+      "reason": "Copied fixture horizon stayed in October while resource windows were in November; corrected fixture horizon, retained first failure."
+    },
+    {
+      "artifact": "focused-01.json",
+      "reason": "Inherited assertion expected invented non-working shading without calendar; updated to current renderer fact."
+    },
+    {
+      "artifact": "focused-phase-01.json",
+      "reason": "Inherited phase tests mixed browser-local calendar instants with explicit UTC model; coarse midnight assumptions also false. Explicit UTC fixture and real grid expectations retained in final tests."
+    },
+    {
+      "artifact": "host-collection-fail.json",
+      "originalName": "host-final.json",
+      "reason": "Formatter removed semicolons in multi-statement Vue template event. Original failed report and log copied byte-for-byte before final rerun; 290 passed assertions did not make three zero-discovery failed suites pass. Named handlers fixed collection."
+    },
+    {
+      "artifact": "browser-01.log",
+      "reason": "Geometry selector picked selected grid row rather than selected bar; actual repeated records separately retained and isolated by browser-04 RED."
+    },
+    {
+      "artifact": "browser-02.log",
+      "reason": "Option locator mismatch; corrected using observed option DOM and supported XPath."
+    },
+    {
+      "artifact": "browser-03-red-recursion.log",
+      "reason": "Same URL goto preserved prior selection; corrected by an actual reload before counterexample."
+    },
+    {
+      "artifact": "browser-06.log",
+      "reason": "Link incorrectly requested as a button after successful four-scale/theme stages; corrected link selector."
+    },
+    {
+      "artifact": "browser-11.log",
+      "reason": "Native selection accurately said selected but harness demanded extra readonly phrase. Corrected expectation; retained no-pretend-reveal assertion and disabled controls."
+    },
+    {
+      "artifact": "scripts/browser-phase-03.mjs",
+      "reason": "Dev HMR closed the previously opened popover; direct tool output retained in session, no product conclusion from that failed command."
+    },
+    {
+      "artifact": "copy-proof.log",
+      "reason": "Collector expected single/double quotes; actual fixed compiler emitted the same literal in backticks. Initial script/log preserved; corrected collector accepts exactly that order literal and still proves only one condition insertion."
+    }
+  ],
+  "resourceSeatCorrection": "host-final-03 overlapped an initial build for about 10 seconds. Preserved command timestamps. host-serial-final, host-recursion-final, host-layout-final and subsequent builds/browser matrices were executed serially; no parallel agent or independent reviewer was started.",
+  "t3": "status/open/navigation succeeded. Two same-step snapshot failures were exactly Preview automation snapshot timed out after 15000ms. Ego fallback; no upgrade.",
+  "python": "One early no-dependency edit used python3 directly; subsequent Python calls all used uv run --python 3.12 -- python. No pip/global installs. Recorded deviation, not silently normalized command history.",
+  "unrun": [
+    "independent review",
+    "CI",
+    "complete docs10",
+    "packed11",
+    "device",
+    "old consumers13/15",
+    "parent8",
+    "SDK/real APS",
+    "production publication",
+    "commercial authorization",
+    "native 80/125 percent zoom"
+  ],
+  "lastIncrement": "After browser cleanup, fixed a public stale-summary phase counterexample. Fresh full suites/types/root+nested builds, limited compiled one-condition copy proof, and fresh HTTP bodies; no claim that browser was freshly rerun on that final main JS.",
+  "oldHtmlRecovery": "Before the last response audit only the two main JS were copied; old HTML paths were subsequently overwritten with fresh bodies. Both old HTML bodies were exactly recovered from current HTML using original script URLs and independently verified to their original SHA; response-identity-browser.json records this recovery. No failed raw artifact was removed."
+}

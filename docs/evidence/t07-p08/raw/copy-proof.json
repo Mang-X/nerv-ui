@@ -1,0 +1,97 @@
+{
+  "report": [
+    {
+      "lane": "root",
+      "old": {
+        "sha256": "065387f02eff2c7e9ae1b73dbafbe47f3cb195474625e1247adb275299e1abe9",
+        "bytes": 1005898
+      },
+      "current": {
+        "asset": "assets/index-DgDTrs2l.js",
+        "sha256": "b496d9804cf277154a66843a2afb9882d340c3659eb256d22540d257f4646f6b",
+        "bytes": 1005916
+      },
+      "semanticDelta": {
+        "before": "",
+        "after": "&&e.type!==`order`",
+        "onlyInsertion": true
+      },
+      "normalizedReferences": [
+        "OfficePreview-zA_eBbr-.js",
+        "OfficePreview-DxCmjXCH.css",
+        "PdfPreview-ChHnA9-Z.js",
+        "OfficePreview-CsO1C_9D.js",
+        "PdfPreview-DNCtkePz.js"
+      ],
+      "other": [
+        {
+          "asset": "assets/rolldown-runtime-EyZ2wyi3.js",
+          "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+          "sameBytes": true
+        },
+        {
+          "asset": "assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "sha256": "ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573",
+          "sameBytes": true
+        },
+        {
+          "asset": "assets/dhtmlxgantt-DePP4erS.css",
+          "sha256": "27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4",
+          "sameBytes": true
+        },
+        {
+          "asset": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+          "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+          "sameBytes": true
+        }
+      ]
+    },
+    {
+      "lane": "nested",
+      "old": {
+        "sha256": "45a3a3641230b06ef0c52498407a5a042c9799330db875f72f71fe3e5c5e1abc",
+        "bytes": 1005946
+      },
+      "current": {
+        "asset": "assets/index-DqM7xT55.js",
+        "sha256": "b3b02882e47e3be161f74e67804cb73067bfb41757c9589998e6814d9647d776",
+        "bytes": 1005964
+      },
+      "semanticDelta": {
+        "before": "",
+        "after": "&&e.type!==`order`",
+        "onlyInsertion": true
+      },
+      "normalizedReferences": [
+        "OfficePreview-C8GP4UXo.js",
+        "OfficePreview-DxCmjXCH.css",
+        "PdfPreview-BcKNgFsB.js",
+        "OfficePreview-Dxztb7bt.js",
+        "PdfPreview-ua9uxOo2.js"
+      ],
+      "other": [
+        {
+          "asset": "assets/rolldown-runtime-EyZ2wyi3.js",
+          "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+          "sameBytes": true
+        },
+        {
+          "asset": "assets/dhtmlxgantt.es-DLTcQAl2.js",
+          "sha256": "ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573",
+          "sameBytes": true
+        },
+        {
+          "asset": "assets/dhtmlxgantt-DePP4erS.css",
+          "sha256": "27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4",
+          "sameBytes": true
+        },
+        {
+          "asset": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+          "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+          "sameBytes": true
+        }
+      ]
+    }
+  ],
+  "scope": "Only the summary-exclusion predicate changed after the browser matrix. Prior P08 library/studio fixtures contain no order summary tasks; resource continuous overlays do not use this helper. Inherit only those prior sequences with this proof. The new stale-summary counterexample is a public unit lane, not fresh browser or vendor conformance. No statement that all chunks or all possible models are equivalent."
+}

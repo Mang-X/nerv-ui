@@ -1,0 +1,41 @@
+{
+  "records": [
+    {
+      "pid": 39159,
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+      "command": "node docs/evidence/t07-p08/scripts/serve.mjs",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 41977,
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+      "command": "node docs/evidence/t07-p08/scripts/serve.mjs --nested",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 446,
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+      "command": "/Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/cli.js dev --host 127.0.0.1 --port 4307 --strictPort",
+      "signal": "SIGTERM"
+    }
+  ],
+  "ports": [
+    {
+      "port": 4307,
+      "lsofExit": 1,
+      "listener": ""
+    },
+    {
+      "port": 4308,
+      "lsofExit": 1,
+      "listener": ""
+    },
+    {
+      "port": 4309,
+      "lsofExit": 1,
+      "listener": ""
+    }
+  ],
+  "markerAbsent": true,
+  "worktreesRemoved": false
+}

@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /仅提供只读查看/. Input:
+
+'活动记录\n晨间创作\n查看\n07:14:18\n已选择 晨间创作'
+
+    at file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-11.mjs:26:100
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/screenshots/studio-nested.png
+
+ego's nodejs process exited with code 1.

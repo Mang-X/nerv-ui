@@ -5,7 +5,7 @@ pageClass: nv-wide
 
 <script setup>
 import { GanttChart } from '@nerv-iip/scheduling'
-import SchedulingLegend from '../../../../../packages/scheduling/src/components/panels/SchedulingLegend.vue'
+import { SchedulingLegend } from '@nerv-iip/scheduling'
 import { NvButton } from '@nerv-iip/ui'
 import { computed, ref } from 'vue'
 import { makeModel, makeCalendarModel } from '../../.vitepress/schedulingDemo'
@@ -147,7 +147,7 @@ order 仅允许未锁定的单段普通工序；分组、里程碑、时间块�
     <GanttChart :model="galleryModel" scale="hour" :read-only="true" />
   </div>
   <div style="border:1px solid var(--border); border-top:0; border-radius:0 0 8px 8px; overflow:hidden; margin-top:-1px">
-    <SchedulingLegend view="order" :categories="cats" />
+    <SchedulingLegend view="order" :model="galleryModel" scale="hour" :categories="cats" />
   </div>
   <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:.5rem; margin-top:1rem">
     <div v-for="item in ganttLegend" :key="item.label" style="display:flex; gap:.625rem; align-items:flex-start; border:1px solid var(--border); border-radius:8px; padding:.625rem .75rem">
@@ -266,3 +266,7 @@ order 仅允许未锁定的单段普通工序；分组、里程碑、时间块�
 ## 相关
 
 - [ResourceSchedulerBoard 资源甘特图](./resource-scheduler) — 同一模型的资源泳道视角；页内「业务操作编辑工序」演示图外编辑面板改开始时间 / 资源泳道 / 锁定。
+
+## P08 面板组合
+
+SchedulingToolbar、SchedulingLegend、TaskFacts、TaskDetailPanel、ChangeSummaryPanel、ConflictPanel、UnscheduledPanel 均从 `@nerv-iip/scheduling` 主桶消费。完整 props/emits、禁用理由、真实图面语义、受控显隐与 Sheet 详情 recipe 见 [排程面板合同](../../../../../../docs/scheduling-panels.md)。独立宿主为 `/#schedule-panels/library` 与 `/#schedule-panels/studio`，不代表完整文档站或 packed 验收。

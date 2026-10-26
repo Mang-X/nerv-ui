@@ -1,0 +1,12 @@
+Scope: 4 of 5 workspace projects
+src/schedule-panels-fixtures.ts(24,67): error TS2353: Object literal may only specify known properties, and 'workCenterId' does not exist in type 'ScheduleResource'.
+src/schedule-panels-fixtures.ts(25,57): error TS2322: Type 'null' is not assignable to type 'number | undefined'.
+/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 typecheck: `vue-tsc --noEmit -p tsconfig.json`
+Exit status 2
+[ELIFECYCLE] Command failed with exit code 2.
+$ pnpm -r --workspace-concurrency=1 --if-present typecheck
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json

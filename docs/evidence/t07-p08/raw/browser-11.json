@@ -1,0 +1,227 @@
+[
+  {
+    "stage": "nested-studio-lock-and-two-instances",
+    "url": "http://127.0.0.1:4309/p08/#schedule-panels/studio",
+    "title": "创作工作坊",
+    "selected": "选中：晨间创作",
+    "detail": "周一工作坊已锁定工序  · 晨间创作 解锁活动参与人数0备注反馈未知报名无权读取记录暂不可读取空间向阳画室开始11/02 06:30结束11/02 09:30工时3 小时数量0准备0 分钟进度0%",
+    "records": "活动记录\n晨间创作\n锁定\n07:14:14\n已锁定活动\n晨间创作\n查看并定位\n07:14:14\n已定位 晨间创作",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx",
+      "dhtmlx"
+    ],
+    "bars": 5,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": " 锁定活动"
+      },
+      {
+        "trusted": true,
+        "target": "显示或收起参考图"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4309/p08/assets/index-D6A9PsOf.js",
+      "http://127.0.0.1:4309/p08/assets/index-O2T4rZEu.css",
+      "http://127.0.0.1:4309/p08/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4309/p08/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4309/p08/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4309/p08/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "kolkata-scale-小时",
+    "cells": [
+      "Asia/Kolkata · 04:00",
+      "Asia/Kolkata · 06:00",
+      "Asia/Kolkata · 08:00",
+      "Asia/Kolkata · 10:00",
+      "Asia/Kolkata · 12:00",
+      "Asia/Kolkata · 14:00",
+      "Asia/Kolkata · 16:00"
+    ],
+    "orderShift": 2,
+    "orderLegend": "活动分色 活动甘特语义 计划基线 依赖箭头状态 锁定阻塞 空间整理日历 非工作时段 班次边界",
+    "resourceShift": 1,
+    "resourceBlock": 1
+  },
+  {
+    "stage": "kolkata-scale-日",
+    "cells": [
+      "Asia/Kolkata · 11/1周日",
+      "Asia/Kolkata · 11/2周一",
+      "Asia/Kolkata · 11/3周二"
+    ],
+    "orderShift": 0,
+    "orderLegend": "活动分色 活动甘特语义 计划基线 依赖箭头状态 锁定日历 非工作时段",
+    "resourceShift": 1,
+    "resourceBlock": 1
+  },
+  {
+    "stage": "kolkata-scale-周",
+    "cells": [
+      "Asia/Kolkata · 10/26周一",
+      "Asia/Kolkata · 11/2周一",
+      "Asia/Kolkata · 11/9周一"
+    ],
+    "orderShift": 0,
+    "orderLegend": "活动分色 活动甘特语义 计划基线 依赖箭头状态 锁定日历 非工作时段",
+    "resourceShift": 1,
+    "resourceBlock": 1
+  },
+  {
+    "stage": "kolkata-scale-月",
+    "cells": [
+      "Asia/Kolkata · 2026/10",
+      "Asia/Kolkata · 2026/11",
+      "Asia/Kolkata · 2026/12"
+    ],
+    "orderShift": 0,
+    "orderLegend": "活动分色 活动甘特语义 计划基线 依赖箭头状态 锁定日历 非工作时段",
+    "resourceShift": 1,
+    "resourceBlock": 1
+  },
+  {
+    "stage": "nested-asset-inventory",
+    "url": "http://127.0.0.1:4309/p08/#schedule-panels/studio",
+    "title": "创作工作坊",
+    "selected": "选中：晨间创作",
+    "detail": "周一工作坊已锁定工序  · 晨间创作 解锁活动参与人数0备注反馈未知报名无权读取记录暂不可读取空间向阳画室开始11/02 06:30结束11/02 09:30工时3 小时数量0准备0 分钟进度0%",
+    "records": "活动记录\n晨间创作\n锁定\n07:14:14\n已锁定活动\n晨间创作\n查看并定位\n07:14:14\n已定位 晨间创作",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx",
+      "dhtmlx"
+    ],
+    "bars": 5,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": " 锁定活动"
+      },
+      {
+        "trusted": true,
+        "target": "显示或收起参考图"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "小时"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "日"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "周"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "月"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4309/p08/assets/index-D6A9PsOf.js",
+      "http://127.0.0.1:4309/p08/assets/index-O2T4rZEu.css",
+      "http://127.0.0.1:4309/p08/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4309/p08/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4309/p08/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4309/p08/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "native-http503",
+    "url": "http://127.0.0.1:4309/p08/#schedule-panels/studio",
+    "title": "创作工作坊",
+    "selected": "选中：尚未选择活动",
+    "detail": "尚未选择活动",
+    "records": "活动记录\n\n尚无活动记录",
+    "visible": "2 项活动",
+    "engines": [
+      "unavailable"
+    ],
+    "bars": 0,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [],
+    "resources": [
+      "http://127.0.0.1:4309/p08/assets/index-D6A9PsOf.js",
+      "http://127.0.0.1:4309/p08/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4309/p08/assets/index-O2T4rZEu.css",
+      "http://127.0.0.1:4309/p08/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4309/p08/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4309/p08/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "native-actual-select",
+    "url": "http://127.0.0.1:4309/p08/#schedule-panels/studio",
+    "title": "创作工作坊",
+    "selected": "选中：晨间创作",
+    "detail": "周一工作坊工序  · 晨间创作 锁定活动参与人数0备注反馈未知报名无权读取记录暂不可读取空间向阳画室开始11/02 06:30结束11/02 09:30工时3 小时数量0准备0 分钟进度0%",
+    "records": "活动记录\n晨间创作\n查看\n07:14:18\n已选择 晨间创作",
+    "visible": "2 项活动",
+    "engines": [
+      "unavailable"
+    ],
+    "bars": 0,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": "晨间创作，11/2 06:30–11/2 09:30，参与人数 0，备注 ，反馈 未知，报名 无权读取，记录 暂不可读取"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4309/p08/assets/index-D6A9PsOf.js",
+      "http://127.0.0.1:4309/p08/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4309/p08/assets/index-O2T4rZEu.css",
+      "http://127.0.0.1:4309/p08/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4309/p08/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4309/p08/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  }
+]

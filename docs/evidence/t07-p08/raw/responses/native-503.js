@@ -1,0 +1,1 @@
+/* Deliberate P08 vendor-unavailable verification. */

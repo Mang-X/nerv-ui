@@ -52,3 +52,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T07/P04 / #87](https://github.com/Mang-X/nerv-ui/issues/87) 从 `/#schedule-gantt` 展示真实只读 DHTMLX 与双实例，可返回原生时间安排。包/本地资源/生命周期与回落合同见 [引擎接入](docs/scheduling-renderer.md)，实际验证见 [P04 证据](docs/evidence/t07-p04/README.md)。资源投影、编辑和面板仍由 P05–P08 验收，授权 UNKNOWN。
 
 [T07/P06 / #89](https://github.com/Mang-X/nerv-ui/issues/89) 从 `/#schedule-edit/library` 与 `/#schedule-edit/studio` 展示工单图受控移动、双端调整、采用/保留及外部时间替换。锁定/分段和只读保留权威模型；接入与竞态边界见 [引擎接入](docs/scheduling-renderer.md#p06order-受控编辑)，验证见 [P06 记录](docs/evidence/t07-p06/README.md)。资源改派、面板、草案组合继续由 P07–P09 负责。
+
+[T07/P08 / #91](https://github.com/Mang-X/nerv-ui/issues/91) 的八件面板从 `/#schedule-panels/library`、`/#schedule-panels/studio` 进入。工具栏、搜索定位、事实/锁定详情、三类列表与真实图例复用公开组件；可从桌面/既有工单图进入并返回。可选显示输入、受控事件与 InspectorSheet 的公开组合 recipe 见 [面板合同](docs/scheduling-panels.md)，本轮验证见 [P08 证据](docs/evidence/t07-p08/README.md)。

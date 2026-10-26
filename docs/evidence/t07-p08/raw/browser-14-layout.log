@@ -1,0 +1,5 @@
+AssertionError [ERR_ASSERTION]: reference legend must fit the section rather than being clipped
+    at file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-14-layout.mjs:5:53
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+
+ego's nodejs process exited with code 1.
