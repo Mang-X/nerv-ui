@@ -46,7 +46,15 @@ const rows = computed(() => props.display ?? props.shortages?.map(legacyShortage
           >
             <td class="p-2 align-top">
               <p class="font-medium">{{ row.label }}</p>
-              <p class="text-muted-foreground">批次 {{ row.batch ?? '—' }}</p>
+              <p
+                :class="
+                  display === undefined && row.batch
+                    ? 'font-mono text-xs text-muted-foreground'
+                    : 'text-muted-foreground'
+                "
+              >
+                批次 {{ row.batch ?? '—' }}
+              </p>
             </td>
             <td class="p-2 text-right align-top tabular-nums">
               {{ numberText(row.quantity) }} {{ row.unit ?? '—' }}

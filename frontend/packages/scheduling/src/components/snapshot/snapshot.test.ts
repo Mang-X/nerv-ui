@@ -132,6 +132,27 @@ it('keeps batch units and every affected activity behind two disclosure levels w
   expect(w.text()).not.toMatch(/绘画纸|陶泥|秋日批次|晨间写生/)
 })
 
+it('styles a legacy lot code as a technical value without recasting a host batch label', async () => {
+  const { MaterialShortageSummary } = await import('../../index')
+  const w = mount(MaterialShortageSummary, {
+    props: {
+      shortages: [{ materialId: 'M-001', materialLotId: 'LOT-9', shortageQuantity: 3 }],
+    },
+  })
+  mounted.push(w)
+  const batch = () => w.get('tbody tr td:first-child p:last-child')
+  expect(batch().text()).toBe('批次 LOT-9')
+  expect(batch().classes()).toEqual(
+    expect.arrayContaining(['font-mono', 'text-xs', 'text-muted-foreground']),
+  )
+  await w.setProps({
+    display: [{ id: 'paper', label: '绘画纸', batch: '秋日一批', quantity: 3 }],
+  })
+  expect(batch().text()).toBe('批次 秋日一批')
+  expect(batch().classes()).not.toContain('font-mono')
+  expect(batch().classes()).not.toContain('text-xs')
+})
+
 it('aligns shortage quantity cells and limits displayed precision without changing host values', async () => {
   const { MaterialShortageSummary } = await import('../../index')
   const display = [
