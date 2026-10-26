@@ -116,3 +116,18 @@ export type {
   ScheduleSnapshotMetric,
   ScheduleComparisonRow,
 } from './components/comparison/comparison'
+export { default as SchedulingRushInsertionResult } from './components/async-candidates/SchedulingRushInsertionResult.vue'
+export { default as SchedulingCandidatePanel } from './components/async-candidates/SchedulingCandidatePanel.vue'
+export { default as SchedulingInsertionPreview } from './components/async-candidates/SchedulingInsertionPreview.vue'
+export { default as SchedulingDowntimeBanner } from './components/async-candidates/SchedulingDowntimeBanner.vue'
+export type {
+  SchedulingAsyncJob,
+  SchedulingAsyncResult,
+  SchedulingOperationImpact,
+  SchedulingCandidateMetric,
+  SchedulingMovement,
+  SchedulingCandidate,
+  SchedulingCandidateSet,
+  SchedulingHistoryPlan,
+  SchedulingDowntimeItem,
+} from './components/async-candidates/types'

@@ -10,6 +10,7 @@ import ScheduleDemo from './ScheduleDemo.vue'
 import DraftEditingDemo from './DraftEditingDemo.vue'
 import SnapshotRiskDemo from './SnapshotRiskDemo.vue'
 import ScheduleComparisonDemo from './ScheduleComparisonDemo.vue'
+import AsyncCandidateDemo from './AsyncCandidateDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
@@ -89,8 +90,13 @@ function addProject() {
 </script>
 
 <template>
+  <AsyncCandidateDemo
+    v-if="surface === '#schedule-async/library' || surface === '#schedule-async/studio'"
+    :key="surface"
+    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <ScheduleComparisonDemo
-    v-if="surface === '#schedule-compare/library' || surface === '#schedule-compare/studio'"
+    v-else-if="surface === '#schedule-compare/library' || surface === '#schedule-compare/studio'"
     :key="surface"
     :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
   />
@@ -140,6 +146,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#schedule-async/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >异步候选</a
+      >
       <a href="#schedule-compare/library" class="inline-flex min-h-11 items-center px-4 underline"
         >安排对照</a
       >
