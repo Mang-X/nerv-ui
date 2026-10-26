@@ -15,3 +15,5 @@ DHTMLX 固定 9.1.4 Professional Evaluation；vendor 声明与水印保持，授
 P07 资源移动/改派与左右原生 resize 使用受控 `taskDragEnd` 提案，输入不突变。显式维度改派通过新增可选 `assignment: { dimension, id, label }` 表达，保留原 `resourceId`；纯资源兼容泳道仍使用原资源字段。接受/拒绝、取消、小时吸附、跨命名空间及旧 consumer 迁移边界见 [资源编辑合同](../../../docs/scheduling-renderer.md#p07资源受控编辑)。中性独立入口为 `/#schedule-resource-edit/library`、`/#schedule-resource-edit/studio`；[本轮证据](../../../docs/evidence/t07-p07/README.md) 不替代 P09 草案或商业发布验收。
 
 P05 资源只读投影的 `resources/groupValues/groupBy/laneOrder`、可选资源维度归属、0/未知指标、日历/块/冻结与 native 能力边界见 [资源合同](../../../docs/scheduling-renderer.md#p05资源只读投影与分组)。独立入口 `/#schedule-resources/library` 与 `/#schedule-resources/studio`；实际 RED/GREEN 和浏览器证据见 [P05 记录](../../../docs/evidence/t07-p05/README.md)。
+
+P11 的 `MaterialShortageSummary/PlanRisks/PlanConflicts/ResourceLoads` 接收 optional 中性 display 与明确 source，保留旧数组 props；只显示给定事实，不计算物料净额或风险。类型、严重度、0/未知、冻结/当前、只读和 select 合同见 [快照展示](../../../docs/scheduling-snapshot.md)。
