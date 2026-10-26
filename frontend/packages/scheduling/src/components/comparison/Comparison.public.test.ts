@@ -139,6 +139,40 @@ describe('public snapshot comparison', () => {
     ])
   })
 
+  it('rejects missing assignment identities in comparison and recovers after replacement', async () => {
+    const baseline = snapshot('saved', [
+      { semanticKey: 'activity-a', label: '晨间共读', task: task('saved-id') },
+    ])
+    const candidate = snapshot('candidate', [
+      { semanticKey: 'activity-a', label: '晨间共读', task: task('') },
+    ])
+    const wrapper = mount(ScheduleRevisionReview, { props: { baseline, candidate } })
+    for (const invalidId of ['', '  \t  ']) {
+      const invalid = snapshot('candidate', [
+        { semanticKey: 'activity-a', label: '晨间共读', task: task(invalidId) },
+      ])
+      expect(() => compareScheduleSnapshots(baseline, invalid)).toThrow('安排实例身份缺失')
+      await wrapper.setProps({ candidate: invalid })
+      expect(wrapper.get('[role="alert"]').text()).toContain('安排实例身份缺失')
+      expect(wrapper.findAll('[data-change-row]')).toHaveLength(0)
+      expect(wrapper.emitted('select')).toBeUndefined()
+    }
+    const restored = snapshot('candidate', [
+      { semanticKey: 'activity-a', label: '晨间共读', task: task(' opaque-id ') },
+      { semanticKey: 'activity-b', label: '午间共读', state: 'blocked' },
+    ])
+    expect(compareScheduleSnapshots(baseline, restored).map((row) => row.kind)).toEqual([
+      'preserved',
+      'blocked',
+    ])
+    await wrapper.setProps({ candidate: restored })
+    expect(wrapper.find('[role="alert"]').exists()).toBe(false)
+    expect(wrapper.get('[data-semantic-key="activity-b"]').text()).toContain('待安排')
+    await wrapper.get('[data-change-task=" opaque-id "]').trigger('click')
+    expect(wrapper.emitted('select')?.at(-1)).toEqual(['activity-a'])
+    expect(baseline.items[0]?.task?.id).toBe('saved-id')
+  })
+
   it('keeps missing KPI distinct from a true zero and refuses ambiguous semantic keys', async () => {
     const baseline = snapshot('saved', [
       { semanticKey: 'activity-a', label: '晨间共读', task: task('old') },
@@ -296,6 +330,41 @@ describe('public snapshot comparison', () => {
     })
     expect(wrapper.get('[role="alert"]').text()).toContain('实际时刻无效')
     expect(wrapper.emitted('select')).toBeUndefined()
+  })
+
+  it('stops standalone preview for missing assignment identity and restores current selection', async () => {
+    const value = snapshot('preview', [
+      { semanticKey: 'morning', label: '晨间共读', task: task('') },
+    ])
+    value.model = {} as NonNullable<ScheduleSnapshot['model']>
+    const wrapper = mount(SchedulingPreviewResult, {
+      props: { snapshot: value },
+      global: { stubs: { GanttChart: true } },
+    })
+    for (const invalidId of ['', ' \t ']) {
+      const invalid = snapshot('preview', [
+        { semanticKey: 'morning', label: '晨间共读', task: task(invalidId) },
+      ])
+      invalid.model = value.model
+      await wrapper.setProps({
+        snapshot: invalid,
+      })
+      expect(wrapper.get('[role="alert"]').text()).toContain('安排实例身份缺失')
+      expect(wrapper.findComponent({ name: 'GanttChart' }).exists()).toBe(false)
+      expect(wrapper.emitted('select')).toBeUndefined()
+    }
+    const restored = snapshot('preview', [
+      { semanticKey: 'morning', label: '晨间共读', task: task('preview-id') },
+      { semanticKey: 'waiting', label: '午间共读', state: 'blocked' },
+    ])
+    restored.model = value.model
+    await wrapper.setProps({ snapshot: restored })
+    expect(wrapper.find('[role="alert"]').exists()).toBe(false)
+    wrapper.getComponent({ name: 'GanttChart' }).vm.$emit('task-select', 'preview-id')
+    expect(wrapper.emitted('select')?.at(-1)).toEqual(['morning'])
+    await wrapper.setProps({ readOnly: true })
+    wrapper.getComponent({ name: 'GanttChart' }).vm.$emit('task-select', 'preview-id')
+    expect(wrapper.emitted('select')).toHaveLength(1)
   })
 
   it('selects the current semantic item in standalone preview after replacing its snapshot', async () => {

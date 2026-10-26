@@ -73,6 +73,8 @@ export function uniqueItems(snapshot: ScheduleSnapshot) {
     if (!item.semanticKey.trim() || items.has(item.semanticKey))
       throw new Error(`快照「${snapshot.label}」的活动身份缺失或重复，无法安全比较`)
     if (item.task) {
+      if (typeof item.task.id !== 'string' || !item.task.id.trim())
+        throw new Error(`快照「${snapshot.label}」的安排实例身份缺失，无法安全比较`)
       if (assignments.has(item.task.id))
         throw new Error(`快照「${snapshot.label}」的安排实例身份重复，无法安全比较`)
       assignments.add(item.task.id)

@@ -20,4 +20,4 @@ P11 的 `MaterialShortageSummary/PlanRisks/PlanConflicts/ResourceLoads` 接收 o
 
 # P12 静态比较
 
-`ScheduleRevisionReview`、`SchedulingPreviewResult`、`compareScheduleSnapshots` 及 `ScheduleSnapshot` 从主桶 `@nerv-iip/scheduling` 消费。稳定 semanticKey、来源、指标、风险和已保存基线由宿主提供；实例 assignment ID 只在单侧图面有效。详情、时间与旧 app 私有名适配见 [比较合同](../../../../docs/scheduling-comparison.md)。
+`ScheduleRevisionReview`、`SchedulingPreviewResult`、`compareScheduleSnapshots` 及 `ScheduleSnapshot` 从主桶 `@nerv-iip/scheduling` 消费。稳定 semanticKey、来源、指标、风险和已保存基线由宿主提供；实例 assignment ID 只在单侧图面有效。详情、时间与旧 app 私有名适配见 [比较合同](../../../docs/scheduling-comparison.md)。

@@ -40,3 +40,5 @@
 `invariants-r1.json` 逐项回读 16 工程输入与 vendor JS/CSS/d.ts 对基线字节相等；锁 SHA-256 `0cfcb1cc92892690db8aa848165280a49941f0cf8d7b868c721e641e4634ab07`、完整 YAML 对象相等，含 5 importer / 973 package / 973 snapshot 及完整边/peer/optional；scheduling/playground Vue 指向同一 `vue@3.5.39_typescript@6.0.3` 实体。冻结 migration 相对基线无 diff。历史 `main...HEAD --check` RAW exit 2 与本票维护 diff-check 分列，不格式化 raw/vendor/migration。
 
 CI、docs #10、packed #11、device、旧 consumer #13/#15、父 #8 全组合、真实 APS、生产、授权、原生 zoom 均 **UNRUN**。来源旧库静态可读不等于实际旧 consumer 通过；UI 比较不等于 APS 判定。完整原始日志、截图、HTTP manifest、最小源码 archive 与最终 SHA 回读在外部 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-27/t07-p12-implementation-r1/`。
+
+PR110 后续两轮 material 返修分别见 [R1 返修](f1/README.md) 与 [R2 返修](f2/README.md)；上述实施 R1 数值保留其原始时点，不被后续门禁覆盖。
