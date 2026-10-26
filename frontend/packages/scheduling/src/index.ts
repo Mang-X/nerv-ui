@@ -86,3 +86,24 @@ export type {
 } from './components/draft/types'
 export { default as SchedulingDraftFeedback } from './components/draft/SchedulingDraftFeedback.vue'
 export { default as SchedulingDraftClearDialog } from './components/draft/SchedulingDraftClearDialog.vue'
+
+export { default as ResourceLoads } from './components/snapshot/ResourceLoads.vue'
+export type {
+  SnapshotSource,
+  SnapshotDataState,
+  SnapshotActivity,
+  SnapshotShortage,
+  SnapshotRisk,
+  SnapshotSeverity,
+  SnapshotConflict,
+  SnapshotPending,
+  SnapshotConflictsDisplay,
+  SnapshotLoad,
+  LegacySnapshotShortage,
+  LegacySnapshotRisk,
+  LegacySnapshotConflict,
+  LegacySnapshotLoad,
+} from './components/snapshot/snapshot'
+export { default as MaterialShortageSummary } from './components/snapshot/MaterialShortageSummary.vue'
+export { default as PlanRisks } from './components/snapshot/PlanRisks.vue'
+export { default as PlanConflicts } from './components/snapshot/PlanConflicts.vue'
