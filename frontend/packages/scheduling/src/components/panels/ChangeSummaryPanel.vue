@@ -28,15 +28,28 @@ const filteredChanges = computed(() => {
         .includes(query),
     )
     .map((change) => {
-      const before = findTask(props.baseTasks, change)
-      const after = findTask(props.tasks, change)
+      const before = findTask(
+        props.baseTasks,
+        change,
+        change.beforeTaskId === undefined ? change.taskId : change.beforeTaskId,
+      )
+      const after = findTask(
+        props.tasks,
+        change,
+        change.afterTaskId === undefined ? change.taskId : change.afterTaskId,
+      )
       return { ...change, before, after }
     })
 })
-function findTask(tasks: ScheduleTask[] | undefined, change: ScheduleChange) {
+function findTask(
+  tasks: ScheduleTask[] | undefined,
+  change: ScheduleChange,
+  identity: string | null | undefined,
+) {
   // An explicit identity stays authoritative even after removal (including an empty id).
   // Only historical records with no identity may use the unique legacy association.
-  if (change.taskId !== undefined) return tasks?.find((task) => task.id === change.taskId)
+  if (identity === null) return undefined
+  if (identity !== undefined) return tasks?.find((task) => task.id === identity)
   const matches = tasks?.filter(
     (task) => task.orderId === change.orderId && task.operationId === change.operationId,
   )
@@ -65,7 +78,11 @@ const emit = defineEmits<{ select: [taskId: string] }>()
 function selectionReason(c: ScheduleChange) {
   if (c.selectDisabledReason) return c.selectDisabledReason
   if (!c.taskId) return '无关联活动'
-  if (props.tasks && !findTask(props.tasks, c)) return '该活动当前不可查看'
+  if (
+    props.tasks &&
+    !findTask(props.tasks, c, c.afterTaskId === undefined ? c.taskId : c.afterTaskId)
+  )
+    return '该活动当前不可查看'
 }
 function onClick(c: ScheduleChange) {
   if (c.taskId && !selectionReason(c)) emit('select', c.taskId)
@@ -113,8 +130,11 @@ function onClick(c: ScheduleChange) {
           >
             <span class="flex w-full flex-wrap items-center gap-2">
               <NvStatusBadge
-                :tone="changeTone[c.changeType]"
-                :label="c.typeLabel ?? changeTypeLabel[c.changeType]"
+                :tone="c.changeType === 'missing' ? 'neutral' : changeTone[c.changeType]"
+                :label="
+                  c.typeLabel ??
+                  (c.changeType === 'missing' ? '候选未提供' : changeTypeLabel[c.changeType])
+                "
               />
               <span class="flex-1 text-sm font-medium text-foreground">{{
                 c.label ?? c.after?.text ?? c.before?.text ?? '活动'
@@ -123,8 +143,19 @@ function onClick(c: ScheduleChange) {
             </span>
             <span v-if="tasks" class="grid gap-1 text-sm text-muted-foreground">
               <span
-                >资源：{{ c.before?.display?.resourceLabel ?? c.before?.resourceId ?? '未排' }} →
-                {{ c.after?.display?.resourceLabel ?? c.after?.resourceId ?? '未排' }}</span
+                >资源：{{
+                  c.before?.display?.resourceLabel ??
+                  c.before?.resourceId ??
+                  c.beforeAbsentLabel ??
+                  '未排'
+                }}
+                →
+                {{
+                  c.after?.display?.resourceLabel ??
+                  c.after?.resourceId ??
+                  c.afterAbsentLabel ??
+                  '未排'
+                }}</span
               >
               <span>
                 原时间：<template v-if="c.before"
@@ -135,7 +166,7 @@ function onClick(c: ScheduleChange) {
                   <time :datetime="c.before.endUtc">{{
                     formatTime(c.before.endUtc, c.before)
                   }}</time></template
-                ><template v-else>未排</template>
+                ><template v-else>{{ c.beforeAbsentLabel ?? '未排' }}</template>
               </span>
               <span>
                 新时间：<template v-if="c.after"
@@ -146,7 +177,7 @@ function onClick(c: ScheduleChange) {
                   <time :datetime="c.after.endUtc">{{
                     formatTime(c.after.endUtc, c.after)
                   }}</time></template
-                ><template v-else>未排</template>
+                ><template v-else>{{ c.afterAbsentLabel ?? '未排' }}</template>
               </span>
             </span>
             <span class="text-sm text-foreground">原因：{{ c.message }}</span>

@@ -269,12 +269,19 @@ export interface ScheduleChange {
   label?: string
   groupLabel?: string
   typeLabel?: string
+  /** Explicit absent-side wording; omitted values preserve the legacy 未排 display. */
+  beforeAbsentLabel?: string
+  afterAbsentLabel?: string
   selectDisabledReason?: string
   orderId: string
   operationId: string
-  changeType: ChangeType
+  /** Missing is a comparison-only state; legacy ChangeType values remain unchanged. */
+  changeType: ChangeType | 'missing'
   message: string
   taskId?: string
+  /** Explicit per-snapshot assignment IDs for revision comparison; taskId remains the select target. */
+  beforeTaskId?: string | null
+  afterTaskId?: string | null
 }
 
 /** 单个班次工作窗口(窗口之外即非工作时间)。 */

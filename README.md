@@ -58,3 +58,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T07/P09 / #92](https://github.com/Mang-X/nerv-ui/issues/92) 从 `/#schedule-draft/library` 和 `/#schedule-draft/studio` 提供三视图共享的中性草案编辑，支持受控表格/图面调整、锁定、待排恢复与本地撤销。保存和清空依赖明确 callback 成功，不将 undo 当作持久化。公共输入、异步隔离和原应用动作接缝见 [草案合同](docs/scheduling-draft.md)，执行记录见 [P09 证据](docs/evidence/t07-p09/README.md)。
 
 [T07/P11 / #94](https://github.com/Mang-X/nerv-ui/issues/94) 从 `/#schedule-snapshot/library`、`/#schedule-snapshot/studio` 展示中性缺口汇总、风险、冲突与负荷。四件只显示 host 事实，保留零/未知、冻结/当前与预警/阻断的区别；接入与旧 props 迁移见 [快照展示合同](docs/scheduling-snapshot.md)，实际验证见 [P11 证据](docs/evidence/t07-p11/README.md)。
+
+[T07/P12 / #95](https://github.com/Mang-X/nerv-ui/issues/95) 从 `/#schedule-compare/library`、`/#schedule-compare/studio` 展示已保存基线与候选的静态对照。公开组件按宿主 semantic key 关联活动，逐侧显示时间、资源与分段，指标和风险只读来源事实；接入及旧私有组件适配见 [比较合同](docs/scheduling-comparison.md)，执行记录见 [P12 证据](docs/evidence/t07-p12/README.md)。

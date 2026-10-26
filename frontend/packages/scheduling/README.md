@@ -17,3 +17,7 @@ P07 资源移动/改派与左右原生 resize 使用受控 `taskDragEnd` 提案�
 P05 资源只读投影的 `resources/groupValues/groupBy/laneOrder`、可选资源维度归属、0/未知指标、日历/块/冻结与 native 能力边界见 [资源合同](../../../docs/scheduling-renderer.md#p05资源只读投影与分组)。独立入口 `/#schedule-resources/library` 与 `/#schedule-resources/studio`；实际 RED/GREEN 和浏览器证据见 [P05 记录](../../../docs/evidence/t07-p05/README.md)。
 
 P11 的 `MaterialShortageSummary/PlanRisks/PlanConflicts/ResourceLoads` 接收 optional 中性 display 与明确 source，保留旧数组 props；只显示给定事实，不计算物料净额或风险。类型、严重度、0/未知、冻结/当前、只读和 select 合同见 [快照展示](../../../docs/scheduling-snapshot.md)。
+
+# P12 静态比较
+
+`ScheduleRevisionReview`、`SchedulingPreviewResult`、`compareScheduleSnapshots` 及 `ScheduleSnapshot` 从主桶 `@nerv-iip/scheduling` 消费。稳定 semanticKey、来源、指标、风险和已保存基线由宿主提供；实例 assignment ID 只在单侧图面有效。详情、时间与旧 app 私有名适配见 [比较合同](../../../docs/scheduling-comparison.md)。

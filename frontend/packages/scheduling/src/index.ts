@@ -107,3 +107,12 @@ export type {
 export { default as MaterialShortageSummary } from './components/snapshot/MaterialShortageSummary.vue'
 export { default as PlanRisks } from './components/snapshot/PlanRisks.vue'
 export { default as PlanConflicts } from './components/snapshot/PlanConflicts.vue'
+export { default as ScheduleRevisionReview } from './components/comparison/ScheduleRevisionReview.vue'
+export { default as SchedulingPreviewResult } from './components/comparison/SchedulingPreviewResult.vue'
+export { compareScheduleSnapshots } from './components/comparison/comparison'
+export type {
+  ScheduleSnapshot,
+  ScheduleSnapshotItem,
+  ScheduleSnapshotMetric,
+  ScheduleComparisonRow,
+} from './components/comparison/comparison'
