@@ -65,7 +65,8 @@ function sameAssignment(left: ScheduleTask, right: ScheduleTask) {
   )
 }
 
-function uniqueItems(snapshot: ScheduleSnapshot) {
+/** Shared internal identity/time guard for both comparison and standalone preview. */
+export function uniqueItems(snapshot: ScheduleSnapshot) {
   const items = new Map<string, ScheduleSnapshotItem>()
   const assignments = new Set<string>()
   for (const item of snapshot.items) {

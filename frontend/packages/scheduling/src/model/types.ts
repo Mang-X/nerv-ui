@@ -269,10 +269,14 @@ export interface ScheduleChange {
   label?: string
   groupLabel?: string
   typeLabel?: string
+  /** Explicit absent-side wording; omitted values preserve the legacy 未排 display. */
+  beforeAbsentLabel?: string
+  afterAbsentLabel?: string
   selectDisabledReason?: string
   orderId: string
   operationId: string
-  changeType: ChangeType
+  /** Missing is a comparison-only state; legacy ChangeType values remain unchanged. */
+  changeType: ChangeType | 'missing'
   message: string
   taskId?: string
   /** Explicit per-snapshot assignment IDs for revision comparison; taskId remains the select target. */

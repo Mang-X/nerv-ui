@@ -130,8 +130,11 @@ function onClick(c: ScheduleChange) {
           >
             <span class="flex w-full flex-wrap items-center gap-2">
               <NvStatusBadge
-                :tone="changeTone[c.changeType]"
-                :label="c.typeLabel ?? changeTypeLabel[c.changeType]"
+                :tone="c.changeType === 'missing' ? 'neutral' : changeTone[c.changeType]"
+                :label="
+                  c.typeLabel ??
+                  (c.changeType === 'missing' ? '候选未提供' : changeTypeLabel[c.changeType])
+                "
               />
               <span class="flex-1 text-sm font-medium text-foreground">{{
                 c.label ?? c.after?.text ?? c.before?.text ?? '活动'
@@ -140,8 +143,19 @@ function onClick(c: ScheduleChange) {
             </span>
             <span v-if="tasks" class="grid gap-1 text-sm text-muted-foreground">
               <span
-                >资源：{{ c.before?.display?.resourceLabel ?? c.before?.resourceId ?? '未排' }} →
-                {{ c.after?.display?.resourceLabel ?? c.after?.resourceId ?? '未排' }}</span
+                >资源：{{
+                  c.before?.display?.resourceLabel ??
+                  c.before?.resourceId ??
+                  c.beforeAbsentLabel ??
+                  '未排'
+                }}
+                →
+                {{
+                  c.after?.display?.resourceLabel ??
+                  c.after?.resourceId ??
+                  c.afterAbsentLabel ??
+                  '未排'
+                }}</span
               >
               <span>
                 原时间：<template v-if="c.before"
@@ -152,7 +166,7 @@ function onClick(c: ScheduleChange) {
                   <time :datetime="c.before.endUtc">{{
                     formatTime(c.before.endUtc, c.before)
                   }}</time></template
-                ><template v-else>未排</template>
+                ><template v-else>{{ c.beforeAbsentLabel ?? '未排' }}</template>
               </span>
               <span>
                 新时间：<template v-if="c.after"
@@ -163,7 +177,7 @@ function onClick(c: ScheduleChange) {
                   <time :datetime="c.after.endUtc">{{
                     formatTime(c.after.endUtc, c.after)
                   }}</time></template
-                ><template v-else>未排</template>
+                ><template v-else>{{ c.afterAbsentLabel ?? '未排' }}</template>
               </span>
             </span>
             <span class="text-sm text-foreground">原因：{{ c.message }}</span>

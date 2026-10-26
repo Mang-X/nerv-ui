@@ -8,9 +8,13 @@
 
 `compareScheduleSnapshots(baseline, candidate)` 只比较已配对 task 的 `resourceId`、开始/结束实际时刻及各段起止。资源展示名、原因、`blocked` 和指标由宿主提供。无候选 task 且宿主明确给 `state: 'blocked'` 才显示“候选待安排”；其余缺失是“候选未提供”，不猜为什么缺少，也不补完工时间。只有基线完全没有该 semanticKey 时才算新增；基线已有活动但未获 assignment，候选首次有安排属于已调整。新增时基线一侧显示“未提供安排”。组件不改输入；宿主必须把已保存基线、当前草案、候选预览和当前事实分别持有，按保存凭据选择基线，不把当前输入深拷贝后称作已保存。两个快照可独立外部替换，空集合表示该来源无活动记录，不表示方案就绪。
 
+比较表与 P08 摘要对缺侧共用明确文案：新增的基线侧为“未提供安排”，未知的候选侧为“候选未提供”，仅来源显式 `blocked` 才为“待安排”；未知保持 neutral，新增为 success，显式阻断为 danger。P08 `ScheduleChange.changeType` 局部允许 `missing`，不改共享 `ChangeType` 词表；`beforeAbsentLabel`、`afterAbsentLabel` 为可选展示接缝，省略时旧 `changeType` 和“未排”行为保持。候选预览单独使用时也校验同一快照的 semanticKey、assignment ID 与实际时刻；身份有歧义时显示错误并停止图面选择。只读图面在引擎就绪后校准尺寸，窄屏在图面内部横向滚动。
+
 `ScheduleSnapshot` 带 `source: SnapshotSource`，其来源、记录时点、状态、读取状态沿用 P11。记录时点由宿主用明确时区格式化。开始、结束及分段必须是带 UTC/offset 的有效实际时刻；本地无偏移字串会阻止比较，不使用浏览器时区解析。每个 task 的时间用其明确 `timezone` 展示；缺失或无效时显示“时区未解析”，不回退浏览器时区。表格的 before/after、逐段明细和 P08 `ChangeSummaryPanel` 均用各自快照的 task。P08 新增可选 `beforeTaskId/afterTaskId`，显式 `null` 表示该侧无 task；旧 `taskId` 与省略字段的旧行为保留。比较选择事件向宿主发送 semanticKey，宿主从当前候选重查，不能缓存旧 assignment 对象。
 
 `metrics?: readonly ScheduleSnapshotMetric[]` 只格式化宿主值：`undefined/null/NaN` 显示“—”，真实 `0` 显示 `0` 或 `0%`。不从任务数、时间或风险反算；指标缺失和空指标列表各有不同文案。候选 `model?` 只供既有只读 `GanttChart`；`shortages/risks/conflicts` 由 P11 四件中的 `MaterialShortageSummary`、`PlanRisks`、`PlanConflicts` 读取，未提供时显示缺失状态。readonly 关闭选择动作，展开和筛选仍可用。错误、无权、未知和暂不可读取由 `source.state` 控制，不显示过期内容；没有保存、发布或后台成功动作。
+
+两侧都明确给 `metrics: []` 时显示“此来源无指标记录”；任一侧未提供指标且无可列指标时显示“指标未提供”。混合输入逐指标显示双侧来源值，缺值用“—”，真实零值保留。playground 的未保存草案时间用任务显式时区显示到分钟，原实际时刻留在 `<time datetime>` 与模型中。
 
 ## 旧来源与消费者
 

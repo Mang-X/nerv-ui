@@ -49,7 +49,11 @@ for (const venue of ['library', 'studio'] as const) {
     page = mount(App)
     const saved = page.get('[data-semantic-key="morning"] td:nth-child(3)').text()
     await click('修改未保存草案')
-    expect(page.get('[data-draft-state]').text()).toContain('2026-11-02T05:00:00Z')
+    expect(page.get('[data-draft-state]').text()).toContain(
+      venue === 'library' ? '2026/11/02 13:00' : '2026/11/02 10:30',
+    )
+    expect(page.get('[data-draft-state]').text()).not.toContain('2026-11-02T05:00:00Z')
+    expect(page.get('[data-draft-state] time').attributes('datetime')).toBe('2026-11-02T05:00:00Z')
     expect(page.get('[data-semantic-key="morning"] td:nth-child(3)').text()).toBe(saved)
     await click('预览草案候选')
     expect(page.get('[data-semantic-key="morning"] td:nth-child(3)').text()).toBe(saved)

@@ -3,6 +3,7 @@ import { computed, shallowRef } from 'vue'
 import {
   ScheduleRevisionReview,
   SchedulingPreviewResult,
+  scheduleTime,
   type ScheduleSnapshot,
   type SnapshotDataState,
 } from '@nerv-iip/scheduling'
@@ -23,6 +24,18 @@ const state = shallowRef<SnapshotDataState>('available')
 const selected = computed(() =>
   candidate.value.items.find((item) => item.semanticKey === selectedKey.value),
 )
+const draftStart = computed(() => {
+  const task = draft.value.items[0]?.task
+  return task
+    ? scheduleTime(task.startUtc, task.timezone, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    : '—'
+})
 const visibleCandidate = computed<ScheduleSnapshot>(() => ({
   ...candidate.value,
   source: { ...candidate.value.source, state: state.value },
@@ -166,7 +179,11 @@ function select(key: string) {
         </select>
       </label>
       <p data-draft-state>
-        未保存草案起点：{{ draft.items[0]?.task?.startUtc ?? '—' }}。此值不写入已保存基线。
+        未保存草案起点：<time
+          v-if="draft.items[0]?.task"
+          :datetime="draft.items[0]!.task!.startUtc"
+          >{{ draftStart }}</time
+        ><span v-else>—</span>。此值不写入已保存基线。
       </p>
     </section>
     <ScheduleRevisionReview

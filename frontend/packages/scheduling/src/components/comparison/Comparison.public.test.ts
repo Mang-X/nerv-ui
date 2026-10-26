@@ -1,6 +1,8 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, expectTypeOf, it } from 'vitest'
+import { NvStatusBadge } from '@nerv-iip/ui'
 import {
+  ChangeSummaryPanel,
   ScheduleRevisionReview,
   SchedulingPreviewResult,
   compareScheduleSnapshots,
@@ -9,6 +11,7 @@ import {
   type ScheduleSnapshotItem,
   type ScheduleSnapshotMetric,
   type ScheduleTask,
+  type ScheduleChange,
 } from '../../index'
 
 function task(id: string, startUtc = '2026-11-02T01:00:00Z'): ScheduleTask {
@@ -67,7 +70,7 @@ describe('public snapshot comparison', () => {
     expect(wrapper.get('[data-semantic-key="activity-a"]').text()).not.toContain('新增')
     expect(wrapper.get('[data-semantic-key="activity-b"]').text()).toContain('候选未提供')
     expect(wrapper.get('[data-change-task="same-legacy"]').text()).toContain(
-      '资源：未排 → 晨光书房',
+      '资源：未提供安排 → 晨光书房',
     )
     await wrapper.get('[data-change-task="same-legacy"]').trigger('click')
     expect(wrapper.emitted('select')?.at(-1)).toEqual(['activity-c'])
@@ -191,7 +194,10 @@ describe('public snapshot comparison', () => {
     }
     value.risks = []
     value.shortages = []
-    const wrapper = mount(SchedulingPreviewResult, { props: { snapshot: value } })
+    const wrapper = mount(SchedulingPreviewResult, {
+      props: { snapshot: value },
+      global: { stubs: { GanttChart: true } },
+    })
     expect(wrapper.text()).toContain('0')
     expect(wrapper.text()).toContain('等待场地')
     expect(wrapper.text()).not.toContain('已发布')
@@ -200,5 +206,118 @@ describe('public snapshot comparison', () => {
     })
     expect(wrapper.text()).toContain('暂不可读取')
     expect(wrapper.text()).not.toContain('等待场地')
+  })
+
+  it('keeps missing added and explicit blocked states consistent across table and summary', () => {
+    const baseline = snapshot('saved', [
+      { semanticKey: 'missing', label: '原活动', task: task('old') },
+      { semanticKey: 'blocked', label: '待安排活动', task: task('blocked-old') },
+    ])
+    const candidate = snapshot('candidate', [
+      { semanticKey: 'blocked', label: '待安排活动', state: 'blocked' },
+      { semanticKey: 'added', label: '新活动', task: task('new') },
+    ])
+    const wrapper = mount(ScheduleRevisionReview, { props: { baseline, candidate } })
+    const [missing, blocked, added] = wrapper.findAll('[data-change-row]')
+    const projected = wrapper.getComponent(ChangeSummaryPanel).props('changes') as ScheduleChange[]
+    expect(projected.find((item) => item.orderId === 'missing')?.changeType).toBe('missing')
+    expect(missing!.text()).toContain('候选未提供')
+    expect(missing!.text()).toContain('新时间：候选未提供')
+    expect(missing!.text()).not.toContain('未排')
+    expect(missing!.findComponent(NvStatusBadge).props('tone')).toBe('neutral')
+    expect(blocked!.text()).toContain('新时间：待安排')
+    expect(blocked!.findComponent(NvStatusBadge).props('tone')).toBe('danger')
+    expect(added!.text()).toContain('原时间：未提供安排')
+    expect(added!.findComponent(NvStatusBadge).props('tone')).toBe('success')
+    expect(
+      wrapper.get('[data-semantic-key="missing"]').findComponent(NvStatusBadge).props('tone'),
+    ).toBe('neutral')
+    expect(
+      wrapper.get('[data-semantic-key="blocked"]').findComponent(NvStatusBadge).props('tone'),
+    ).toBe('danger')
+    expect(
+      wrapper.get('[data-semantic-key="added"]').findComponent(NvStatusBadge).props('tone'),
+    ).toBe('success')
+  })
+
+  it('distinguishes absent metrics from explicit empty records while retaining zero and one-sided values', async () => {
+    const baseline = snapshot('saved', [])
+    const candidate = snapshot('candidate', [])
+    const wrapper = mount(ScheduleRevisionReview, { props: { baseline, candidate } })
+    expect(wrapper.get('[aria-label="来源指标"]').text()).toContain('指标未提供')
+    await wrapper.setProps({
+      baseline: { ...baseline, metrics: [] },
+      candidate: { ...candidate, metrics: [] },
+    })
+    expect(wrapper.get('[aria-label="来源指标"]').text()).toContain('此来源无指标记录')
+    await wrapper.setProps({
+      baseline: { ...baseline, metrics: [] },
+      candidate: {
+        ...candidate,
+        metrics: [{ id: 'count', label: '活动数', value: 0, format: 'number' }],
+      },
+    })
+    expect(wrapper.get('[aria-label="来源指标"]').text()).toContain('— → 0')
+    await wrapper.setProps({ baseline, candidate: { ...candidate, metrics: [] } })
+    expect(wrapper.get('[aria-label="来源指标"]').text()).toContain('指标未提供')
+  })
+
+  it('rejects duplicate preview assignment identities without emitting a wrong semantic selection', async () => {
+    const value = snapshot('preview', [
+      { semanticKey: 'first', label: '晨间共读', task: task('shared') },
+      { semanticKey: 'second', label: '午间共读', task: task('shared') },
+    ])
+    value.model = {} as NonNullable<ScheduleSnapshot['model']>
+    const wrapper = mount(SchedulingPreviewResult, { props: { snapshot: value } })
+    expect(wrapper.get('[role="alert"]').text()).toContain('安排实例身份重复')
+    expect(wrapper.findComponent({ name: 'GanttChart' }).exists()).toBe(false)
+    expect(wrapper.emitted('select')).toBeUndefined()
+    await wrapper.setProps({
+      snapshot: {
+        ...value,
+        items: [
+          { semanticKey: 'same', label: '晨间共读', task: task('one') },
+          { semanticKey: 'same', label: '午间共读', task: task('two') },
+        ],
+      },
+    })
+    expect(wrapper.get('[role="alert"]').text()).toContain('活动身份缺失或重复')
+    await wrapper.setProps({
+      snapshot: {
+        ...value,
+        items: [
+          {
+            semanticKey: 'first',
+            label: '晨间共读',
+            task: { ...task('one'), startUtc: '2026-11-02T10:00:00' },
+          },
+        ],
+      },
+    })
+    expect(wrapper.get('[role="alert"]').text()).toContain('实际时刻无效')
+    expect(wrapper.emitted('select')).toBeUndefined()
+  })
+
+  it('selects the current semantic item in standalone preview after replacing its snapshot', async () => {
+    const first = snapshot('first', [
+      { semanticKey: 'morning', label: '晨间共读', task: task('reused-id') },
+    ])
+    first.model = {} as NonNullable<ScheduleSnapshot['model']>
+    const wrapper = mount(SchedulingPreviewResult, {
+      props: { snapshot: first },
+      global: { stubs: { GanttChart: true } },
+    })
+    wrapper.getComponent({ name: 'GanttChart' }).vm.$emit('task-select', 'reused-id')
+    expect(wrapper.emitted('select')?.at(-1)).toEqual(['morning'])
+    const second = snapshot('second', [
+      { semanticKey: 'evening', label: '傍晚分享', task: task('reused-id') },
+    ])
+    second.model = first.model
+    await wrapper.setProps({ snapshot: second })
+    wrapper.getComponent({ name: 'GanttChart' }).vm.$emit('task-select', 'reused-id')
+    expect(wrapper.emitted('select')?.at(-1)).toEqual(['evening'])
+    await wrapper.setProps({ readOnly: true })
+    wrapper.getComponent({ name: 'GanttChart' }).vm.$emit('task-select', 'reused-id')
+    expect(wrapper.emitted('select')).toHaveLength(2)
   })
 })

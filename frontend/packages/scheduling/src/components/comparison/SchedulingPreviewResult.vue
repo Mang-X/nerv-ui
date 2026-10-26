@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useTemplateRef, watch } from 'vue'
 import GanttChart from '../GanttChart.vue'
 import MaterialShortageSummary from '../snapshot/MaterialShortageSummary.vue'
 import PlanConflicts from '../snapshot/PlanConflicts.vue'
 import PlanRisks from '../snapshot/PlanRisks.vue'
 import SnapshotContext from '../snapshot/SnapshotContext.vue'
 import { numberText, percentageText } from '../snapshot/snapshot'
-import type { ScheduleSnapshot, ScheduleSnapshotMetric } from './comparison'
+import { uniqueItems, type ScheduleSnapshot, type ScheduleSnapshotMetric } from './comparison'
 
 const props = defineProps<{
   snapshot?: ScheduleSnapshot
@@ -15,23 +15,44 @@ const props = defineProps<{
   readOnly?: boolean
 }>()
 const emit = defineEmits<{ select: [semanticKey: string] }>()
+const chart = useTemplateRef<InstanceType<typeof GanttChart>>('chart')
+watch(
+  () => chart.value?.engineName,
+  (name, _, onCleanup) => {
+    if (name !== 'dhtmlx') return
+    const frame = requestAnimationFrame(() => chart.value?.command({ kind: 'fitToScreen' }))
+    onCleanup(() => cancelAnimationFrame(frame))
+  },
+  { flush: 'post' },
+)
 const available = computed(
   () => !props.snapshot?.source.state || props.snapshot.source.state === 'available',
 )
-const taskKeys = computed(
-  () =>
-    new Map(
-      props.snapshot?.items.flatMap((item) =>
-        item.task ? [[item.task.id, item.semanticKey] as const] : [],
-      ) ?? [],
-    ),
-)
+const validated = computed(() => {
+  if (!props.snapshot) return { taskKeys: new Map<string, string>(), error: '' }
+  try {
+    const items = uniqueItems(props.snapshot)
+    return {
+      taskKeys: new Map(
+        [...items.values()].flatMap((item) =>
+          item.task ? [[item.task.id, item.semanticKey] as const] : [],
+        ),
+      ),
+      error: '',
+    }
+  } catch (error) {
+    return {
+      taskKeys: new Map<string, string>(),
+      error: error instanceof Error ? error.message : '无法安全读取候选安排',
+    }
+  }
+})
 function metricText(metric: ScheduleSnapshotMetric) {
   const text = metric.format === 'percent' ? percentageText(metric.value) : numberText(metric.value)
   return text === '—' ? text : `${text}${metric.unit ? ` ${metric.unit}` : ''}`
 }
 function select(taskId: string) {
-  const key = taskKeys.value.get(taskId)
+  const key = validated.value.taskKeys.get(taskId)
   if (key && !props.readOnly) emit('select', key)
 }
 </script>
@@ -45,7 +66,8 @@ function select(taskId: string) {
     <SnapshotContext title="候选来源" :source="snapshot?.source" :provided="!!snapshot">
       <p>{{ snapshot?.label }}</p>
     </SnapshotContext>
-    <template v-if="snapshot && available">
+    <p v-if="snapshot && available && validated.error" role="alert">{{ validated.error }}</p>
+    <template v-if="snapshot && available && !validated.error">
       <section aria-label="候选指标" class="grid gap-2">
         <h3 class="font-semibold">候选指标</h3>
         <p v-if="snapshot.metrics === undefined">指标未提供</p>
@@ -63,8 +85,8 @@ function select(taskId: string) {
       </section>
       <section aria-label="候选时间图" class="min-w-0 overflow-x-auto">
         <h3 class="font-semibold">候选时间图</h3>
-        <div v-if="snapshot.model" class="h-80 min-w-0">
-          <GanttChart :model="snapshot.model" read-only @task-select="select" />
+        <div v-if="snapshot.model" style="height: 360px; min-width: 80rem">
+          <GanttChart ref="chart" :model="snapshot.model" read-only @task-select="select" />
         </div>
         <p v-else>图面未提供</p>
       </section>

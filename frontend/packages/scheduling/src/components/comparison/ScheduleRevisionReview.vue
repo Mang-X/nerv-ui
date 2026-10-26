@@ -49,6 +49,13 @@ const typeLabels = {
   blocked: '候选待安排',
   missing: '候选未提供',
 } as const
+const rowTones = {
+  preserved: 'neutral',
+  changed: 'info',
+  added: 'success',
+  blocked: 'danger',
+  missing: 'neutral',
+} as const
 const changes = computed<ScheduleChange[]>(() =>
   comparison.value.rows.map((row) => ({
     orderId: row.semanticKey,
@@ -56,14 +63,22 @@ const changes = computed<ScheduleChange[]>(() =>
     groupLabel: row.after?.groupLabel ?? row.before?.groupLabel ?? '',
     label: row.after?.label ?? row.before?.label,
     typeLabel: typeLabels[row.kind],
+    beforeAbsentLabel: row.before?.task ? undefined : '未提供安排',
+    afterAbsentLabel: row.after?.task
+      ? undefined
+      : row.kind === 'blocked'
+        ? '待安排'
+        : '候选未提供',
     changeType:
-      row.kind === 'changed'
-        ? 'moved'
-        : row.kind === 'added'
-          ? 'added'
-          : row.kind === 'preserved'
-            ? 'preserved'
-            : 'blocked',
+      row.kind === 'missing'
+        ? 'missing'
+        : row.kind === 'changed'
+          ? 'moved'
+          : row.kind === 'added'
+            ? 'added'
+            : row.kind === 'preserved'
+              ? 'preserved'
+              : 'blocked',
     message: row.after?.message ?? row.before?.message ?? '来源未提供调整原因',
     taskId: row.after?.task?.id,
     beforeTaskId: row.before?.task?.id ?? null,
@@ -154,7 +169,13 @@ function choose(assignmentId: string) {
     <template v-else>
       <section aria-label="来源指标" class="grid gap-2">
         <h3 class="font-semibold">来源指标</h3>
-        <p v-if="!metrics.length">指标未提供</p>
+        <p v-if="!metrics.length">
+          {{
+            baseline?.metrics === undefined || candidate?.metrics === undefined
+              ? '指标未提供'
+              : '此来源无指标记录'
+          }}
+        </p>
         <dl v-else class="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
           <div
             v-for="metric in metrics"
@@ -201,10 +222,7 @@ function choose(assignmentId: string) {
               >
                 <th class="p-2 font-medium">{{ row.after?.label ?? row.before?.label }}</th>
                 <td class="p-2">
-                  <NvStatusBadge
-                    :label="typeLabels[row.kind]"
-                    :tone="row.kind === 'blocked' ? 'warning' : 'neutral'"
-                  />
+                  <NvStatusBadge :label="typeLabels[row.kind]" :tone="rowTones[row.kind]" />
                 </td>
                 <td class="p-2">
                   <template v-if="row.before?.task">
