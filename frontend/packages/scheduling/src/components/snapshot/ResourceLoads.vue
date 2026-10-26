@@ -4,6 +4,7 @@ import { NvButton, NvStatusBadge } from '@nerv-iip/ui'
 import SnapshotContext from './SnapshotContext.vue'
 import {
   groupRows,
+  legacyUtcMinuteText,
   numberText,
   percentageText,
   type LegacySnapshotLoad,
@@ -29,8 +30,8 @@ const rows = computed<readonly SnapshotLoad[]>(
     (props.loads ?? []).map((load) => ({
       id: JSON.stringify([load.resourceId, load.windowStartUtc, load.windowEndUtc]),
       resource: { id: load.resourceId ?? '', label: load.resourceId ?? '资源名称未提供' },
-      start: load.windowStartUtc ?? '—',
-      end: load.windowEndUtc ?? '—',
+      start: legacyUtcMinuteText(load.windowStartUtc),
+      end: legacyUtcMinuteText(load.windowEndUtc),
       assignedMinutes: load.assignedMinutes,
       availableMinutes: load.availableMinutes,
       utilization: load.utilization,
@@ -87,7 +88,15 @@ function loadText(row: SnapshotLoad) {
       class="rounded-md border border-border p-3"
       :data-load-resource="resource.id"
     >
-      <h4 class="font-medium break-words">{{ resource.label }}</h4>
+      <h4
+        :class="
+          display === undefined && resource.label !== '资源名称未提供'
+            ? 'font-mono text-xs text-muted-foreground break-words'
+            : 'font-medium break-words'
+        "
+      >
+        {{ resource.label }}
+      </h4>
       <div
         v-for="load in resource.active"
         :key="load.id"

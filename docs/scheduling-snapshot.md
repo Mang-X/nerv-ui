@@ -35,6 +35,8 @@ interface SnapshotSource {
 
 明确传 display 时完全替代对应旧输入，包含 `[]`，不拼接旧数组。PlanRisks、PlanConflicts 走 legacy 时须完整提供原两份数组，避免把缺的一份误当空。generatedAtUtc 仅在无 source 时作冻结来源时点展示；新宿主直接提供 source 的显式时区文本。
 
+旧 `windowStartUtc`、`windowEndUtc` 和 `generatedAtUtc` 仅在旧 props 适配时接受带 `Z` 或明确时区偏移的 ISO 时点，显示为运行环境本地时区的绝对时间（到分钟，附时区名）。缺失、无效日期或无偏移的业务墙上时间显示 `—`；原 UTC 值仍用于旧窗口 identity，不改写输入。新 `display.start/end` 与 `source.capturedAt` 是宿主已格式化文本，按原文展示，不由库推断时区。
+
 类型 `SnapshotActivity/Shortage/Risk/Severity/Conflict/Pending/ConflictsDisplay/Load`、`SnapshotSource/DataState` 和四个 Legacy 结构都从主桶导出。运行图不导入 api-client、auth、router 或业务 APS。原始材料及旧断言仍在冻结 migration，未修改；业务旧日期格式器不入库。新 display 的技术 identity 只用于 key/事件，不自动成为可见名称。旧数组仍显示来源原有的工单、工序及资源标识；全缺时提示“活动名称未提供”。需要中性活动名称、位置、时间和结果时由 host 适配 display。
 
 ## 数量、严重度和动作

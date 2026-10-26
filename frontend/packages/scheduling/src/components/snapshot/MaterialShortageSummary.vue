@@ -45,7 +45,15 @@ const rows = computed(() => props.display ?? props.shortages?.map(legacyShortage
             :data-shortage-id="row.id"
           >
             <td class="p-2 align-top">
-              <p class="font-medium">{{ row.label }}</p>
+              <p
+                :class="
+                  display === undefined && row.label !== '物料名称未提供'
+                    ? 'font-mono text-xs text-muted-foreground'
+                    : 'font-medium'
+                "
+              >
+                {{ row.label }}
+              </p>
               <p
                 :class="
                   display === undefined && row.batch
@@ -68,7 +76,15 @@ const rows = computed(() => props.display ?? props.shortages?.map(legacyShortage
                 </summary>
                 <ul class="mt-2 grid gap-2">
                   <li v-for="activity in row.affected" :key="activity.id">
-                    <p class="font-medium">{{ activity.label }}</p>
+                    <p
+                      :class="
+                        display === undefined && activity.label !== '活动名称未提供'
+                          ? 'font-mono text-xs text-muted-foreground'
+                          : 'font-medium'
+                      "
+                    >
+                      {{ activity.label }}
+                    </p>
                     <p v-if="activity.location || activity.time" class="text-muted-foreground">
                       {{ [activity.location, activity.time].filter(Boolean).join(' · ') }}
                     </p>

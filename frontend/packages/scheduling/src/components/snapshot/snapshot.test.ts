@@ -167,7 +167,7 @@ it('styles legacy batch codes in summary and risk details while keeping host bat
     },
   })
   mounted.push(risks)
-  const riskBatch = () => risks.get('[data-risk-shortage] span')
+  const riskBatch = () => risks.get('[data-risk-shortage] span:nth-of-type(2)')
   expect(risks.get('[data-risk-shortage]').text()).toContain('M-001 · 批次 LOT-9 · 缺 3 张')
   expect(riskBatch().text()).toBe('批次 LOT-9')
   expect(riskBatch().classes()).toEqual(
@@ -202,6 +202,203 @@ it('styles legacy batch codes in summary and risk details while keeping host bat
   expect(riskBatch().classes()).not.toContain('font-mono')
   expect(riskBatch().classes()).not.toContain('text-xs')
   expect(risks.text()).not.toContain('LOT-9')
+})
+
+it('styles visible legacy identifiers in all four snapshot views while leaving host labels natural', async () => {
+  const { MaterialShortageSummary, PlanRisks, PlanConflicts } = await import('../../index')
+  const shortage = mount(MaterialShortageSummary, {
+    props: {
+      shortages: [
+        {
+          materialId: 'M-001',
+          materialLotId: 'LOT-9',
+          affectedOperations: [{ orderId: 'ORDER-7', operationId: 'OP-2' }],
+        },
+      ],
+    },
+  })
+  mounted.push(shortage)
+  expect(shortage.get('tbody tr td:first-child p:first-child').classes()).toEqual(
+    expect.arrayContaining(['font-mono', 'text-xs', 'text-muted-foreground']),
+  )
+  expect(shortage.get('tbody li p:first-child').classes()).toEqual(
+    expect.arrayContaining(['font-mono', 'text-xs', 'text-muted-foreground']),
+  )
+  await shortage.setProps({
+    display: [{ id: 'paper', label: '绘画纸', affected: [{ id: 'reading', label: '晨间共读' }] }],
+  })
+  expect(shortage.get('tbody tr td:first-child p:first-child').classes()).not.toContain('font-mono')
+  expect(shortage.get('tbody li p:first-child').classes()).not.toContain('font-mono')
+  await shortage.setProps({ display: [] })
+  expect(shortage.text()).not.toContain('M-001')
+
+  const risks = mount(PlanRisks, {
+    props: {
+      materialRisks: [
+        { orderId: 'ORDER-7', operationId: 'OP-2', shortages: [{ materialId: 'M-001' }] },
+      ],
+      equipmentRisks: [],
+    },
+  })
+  mounted.push(risks)
+  for (const selector of [
+    '[data-risk-group] > summary',
+    '[data-risk-id] h4',
+    '[data-risk-shortage] > span:first-child',
+  ]) {
+    expect(risks.get(selector).classes()).toEqual(
+      expect.arrayContaining(['font-mono', 'text-xs', 'text-muted-foreground']),
+    )
+  }
+  await risks.setProps({
+    display: [
+      {
+        id: 'reading',
+        category: { id: 'material', label: '物料风险' },
+        group: { id: 'order', label: '晨间场次' },
+        label: '共读活动',
+        message: '请核对',
+        shortages: [{ id: 'paper', label: '绘画纸' }],
+        activity: { id: 'activity-1', label: '共读活动' },
+        actionLabel: '查看',
+      },
+    ],
+    readOnly: false,
+  })
+  expect(risks.get('[data-risk-group] > summary').classes()).not.toContain('font-mono')
+  expect(risks.get('[data-risk-id] h4').classes()).not.toContain('font-mono')
+  expect(risks.get('[data-risk-shortage] > span:first-child').classes()).not.toContain('font-mono')
+  await risks.get('[data-risk-id] button').trigger('click')
+  expect(risks.emitted('select')).toEqual([['activity-1']])
+  await risks.setProps({ readOnly: true })
+  expect(risks.find('[data-risk-id] button').exists()).toBe(false)
+
+  const conflicts = mount(PlanConflicts, {
+    props: {
+      conflicts: [
+        { conflictId: 'blocked', orderId: 'ORDER-7', operationId: 'OP-2', severity: 'error' },
+      ],
+      unscheduledOperations: [{ orderId: 'ORDER-8', operationId: 'OP-3' }],
+    },
+  })
+  mounted.push(conflicts)
+  expect(conflicts.get('[data-conflict-id] h4 span').classes()).toEqual(
+    expect.arrayContaining(['font-mono', 'text-xs', 'text-muted-foreground']),
+  )
+  expect(conflicts.get('[data-pending-id] h4').classes()).toEqual(
+    expect.arrayContaining(['font-mono', 'text-xs', 'text-muted-foreground']),
+  )
+  await conflicts.setProps({
+    display: {
+      conflicts: [
+        {
+          id: 'host',
+          label: '共读冲突',
+          message: '请核对',
+          reason: { id: 'room', label: '房间安排' },
+          severity: 'error',
+        },
+      ],
+      unscheduled: [],
+    },
+  })
+  expect(conflicts.get('[data-conflict-id] h4 span').classes()).not.toContain('font-mono')
+  expect(conflicts.text()).not.toContain('ORDER-8')
+
+  const loads = mount(ResourceLoads, {
+    props: { loads: [{ resourceId: 'ROOM-1', assignedMinutes: 0 }] },
+  })
+  mounted.push(loads)
+  expect(loads.get('[data-load-resource] h4').classes()).toEqual(
+    expect.arrayContaining(['font-mono', 'text-xs', 'text-muted-foreground']),
+  )
+  expect(loads.text()).toContain('已排 0 / 可用 — 分钟')
+  await loads.setProps({
+    display: [
+      {
+        id: 'new',
+        resource: { id: 'room', label: '晨光书房' },
+        start: '09:00',
+        end: '10:00',
+        assignedMinutes: null,
+      },
+    ],
+  })
+  expect(loads.get('[data-load-resource] h4').classes()).not.toContain('font-mono')
+  expect(loads.text()).toContain('已排 — / 可用 — 分钟')
+  expect(loads.text()).not.toContain('ROOM-1')
+})
+
+it('shows legacy UTC instants in local minutes in the two checked timezones without rewriting host text', async () => {
+  const { PlanConflicts } = await import('../../index')
+  const expected = {
+    'Asia/Shanghai': ['2026-10-26 09:30', '2026-10-26 10:45'],
+    'America/New_York': ['2026-10-25 21:30', '2026-10-25 22:45'],
+  }[process.env.TZ ?? '']
+  if (!expected) throw new Error(`Set one of the two checked timezones, got ${process.env.TZ}`)
+  const start = '2026-10-26T01:30:45Z'
+  const end = '2026-10-26T02:45:30Z'
+  const loads = mount(ResourceLoads, {
+    props: {
+      loads: [
+        { resourceId: 'ROOM-1', windowStartUtc: start, windowEndUtc: end, assignedMinutes: 0 },
+      ],
+    },
+  })
+  mounted.push(loads)
+  expect(loads.text()).toContain(
+    `${expected[0]}（${process.env.TZ}） 至 ${expected[1]}（${process.env.TZ}）`,
+  )
+  expect(loads.text()).not.toContain(start)
+  expect(loads.text()).toContain('已排 0 / 可用 — 分钟')
+  const conflicts = mount(PlanConflicts, {
+    props: { conflicts: [], unscheduledOperations: [], generatedAtUtc: start },
+  })
+  mounted.push(conflicts)
+  expect(conflicts.get('[aria-label="冲突与未安排记录"]').text()).toContain(
+    `记录时点：${expected[0]}（${process.env.TZ}）`,
+  )
+  expect(conflicts.text()).not.toContain(start)
+  await conflicts.setProps({
+    source: {
+      kind: 'current',
+      label: '现场核对',
+      capturedAt: '宿主时点原文（显式时区）',
+      state: 'available',
+    },
+  })
+  expect(conflicts.text()).toContain('记录时点：宿主时点原文（显式时区）')
+  expect(conflicts.text()).not.toContain(expected[0])
+  await loads.setProps({
+    display: [
+      {
+        id: 'host',
+        resource: { id: 'room', label: '晨光书房' },
+        start: '宿主开始 09:00',
+        end: '宿主结束 10:00',
+        assignedMinutes: null,
+      },
+    ],
+  })
+  expect(loads.text()).toContain('宿主开始 09:00 至 宿主结束 10:00')
+  expect(loads.text()).not.toContain(expected[0])
+  expect(loads.text()).toContain('已排 — / 可用 — 分钟')
+  await loads.setProps({
+    display: undefined,
+    loads: [
+      {
+        resourceId: 'ROOM-1',
+        windowStartUtc: '2026-02-30T01:30:45Z',
+        windowEndUtc: '2026-10-26T09:30:45',
+        assignedMinutes: null,
+      },
+    ],
+  })
+  expect(loads.text()).toContain('— 至 —')
+  expect(loads.text()).not.toContain('2026-02-30')
+  await conflicts.setProps({ source: undefined, generatedAtUtc: 'invalid-utc' })
+  expect(conflicts.text()).toContain('记录时点：—')
+  expect(conflicts.text()).not.toContain('invalid-utc')
 })
 
 it('aligns shortage quantity cells and limits displayed precision without changing host values', async () => {

@@ -117,6 +117,33 @@ export function numberText(value: number | null | undefined): string {
 export function percentageText(value: number | null | undefined): string {
   return typeof value === 'number' && Number.isFinite(value) ? `${Math.round(value * 100)}%` : '—'
 }
+/** Only legacy UTC props are parsed here; host display/source strings are already presentation text. */
+export function legacyUtcMinuteText(value?: string | null): string {
+  const match = value?.match(
+    /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(Z|[+-]\d{2}:\d{2})$/,
+  )
+  if (!match) return '—'
+  const [, year, month, day, hour, minute, second, zone] = match
+  const offsetHour = zone === 'Z' ? 0 : Number(zone!.slice(1, 3))
+  const offsetMinute = zone === 'Z' ? 0 : Number(zone!.slice(4, 6))
+  if (offsetHour > 14 || offsetMinute > 59 || (offsetHour === 14 && offsetMinute !== 0)) return '—'
+  const date = new Date(value!)
+  if (Number.isNaN(date.getTime())) return '—'
+  const offset = zone === 'Z' ? 0 : (zone![0] === '+' ? 1 : -1) * (offsetHour * 60 + offsetMinute)
+  const supplied = new Date(date.getTime() + offset * 60_000)
+  if (
+    supplied.getUTCFullYear() !== Number(year) ||
+    supplied.getUTCMonth() + 1 !== Number(month) ||
+    supplied.getUTCDate() !== Number(day) ||
+    supplied.getUTCHours() !== Number(hour) ||
+    supplied.getUTCMinutes() !== Number(minute) ||
+    supplied.getUTCSeconds() !== Number(second)
+  )
+    return '—'
+  const pad = (part: number) => String(part).padStart(2, '0')
+  const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '本地时间'
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}（${localZone}）`
+}
 export const severityLabels = {
   info: '提示',
   warning: '预警',

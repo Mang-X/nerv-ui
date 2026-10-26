@@ -98,7 +98,13 @@ function select(id: string) {
         class="mt-3"
         :data-risk-group="group.id"
       >
-        <summary class="cursor-pointer font-medium">
+        <summary
+          :class="
+            display === undefined && group.label !== '分组名称未提供'
+              ? 'cursor-pointer font-mono text-xs text-muted-foreground'
+              : 'cursor-pointer font-medium'
+          "
+        >
           {{ group.label }} · {{ group.entries.length }} 项
         </summary>
         <article
@@ -112,7 +118,15 @@ function select(id: string) {
               :tone="severityTones[severity(risk.severity)]"
               :label="severityLabels[severity(risk.severity)]"
             />
-            <h4 class="font-medium">{{ risk.label }}</h4>
+            <h4
+              :class="
+                display === undefined && risk.label !== '活动名称未提供'
+                  ? 'font-mono text-xs text-muted-foreground'
+                  : 'font-medium'
+              "
+            >
+              {{ risk.label }}
+            </h4>
           </div>
           <p>{{ risk.message }}</p>
           <p v-if="risk.activity">
@@ -124,7 +138,15 @@ function select(id: string) {
           <p v-else-if="!risk.shortages.length" class="text-muted-foreground">未记录缺口明细</p>
           <ul v-else class="grid gap-2">
             <li v-for="shortage in risk.shortages" :key="shortage.id" data-risk-shortage>
-              {{ shortage.label }} ·
+              <span
+                :class="
+                  display === undefined && shortage.label !== '物料名称未提供'
+                    ? 'font-mono text-xs text-muted-foreground'
+                    : undefined
+                "
+                >{{ shortage.label }}</span
+              >
+              ·
               <span
                 :class="
                   display === undefined && shortage.batch

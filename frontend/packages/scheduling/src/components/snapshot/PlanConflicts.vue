@@ -5,6 +5,7 @@ import SnapshotContext from './SnapshotContext.vue'
 import {
   groupRows,
   legacyActivityLabel,
+  legacyUtcMinuteText,
   severity,
   severityLabels,
   severityTones,
@@ -55,7 +56,11 @@ const source = computed(
   () =>
     props.source ??
     (props.generatedAtUtc
-      ? { kind: 'snapshot' as const, label: '方案生成记录', capturedAt: props.generatedAtUtc }
+      ? {
+          kind: 'snapshot' as const,
+          label: '方案生成记录',
+          capturedAt: legacyUtcMinuteText(props.generatedAtUtc),
+        }
       : undefined),
 )
 const rows = computed<readonly SnapshotConflict[]>(
@@ -135,7 +140,17 @@ function select(id: string) {
     >
       <div class="flex flex-wrap items-center gap-2">
         <NvStatusBadge tone="danger" label="阻断" />
-        <h4 class="font-medium">{{ row.label }} · {{ row.reason.label }}</h4>
+        <h4 class="font-medium">
+          <span
+            :class="
+              display === undefined && row.label !== '活动名称未提供'
+                ? 'font-mono text-xs text-muted-foreground'
+                : undefined
+            "
+            >{{ row.label }}</span
+          >
+          · {{ row.reason.label }}
+        </h4>
       </div>
       <p>{{ row.message }}</p>
       <p v-if="row.activity">
@@ -162,7 +177,15 @@ function select(id: string) {
     >
       <div class="flex flex-wrap items-center gap-2">
         <NvStatusBadge tone="neutral" label="未安排" />
-        <h4 class="font-medium">{{ item.label }}</h4>
+        <h4
+          :class="
+            display === undefined && item.label !== '活动名称未提供'
+              ? 'font-mono text-xs text-muted-foreground'
+              : 'font-medium'
+          "
+        >
+          {{ item.label }}
+        </h4>
       </div>
       <p>{{ item.reasonLabel }} · {{ item.message }}</p>
     </article>
@@ -188,7 +211,15 @@ function select(id: string) {
               :tone="severityTones[severity(row.severity)]"
               :label="severityLabels[severity(row.severity)]"
             />
-            <h4 class="font-medium">{{ row.label }}</h4>
+            <h4
+              :class="
+                display === undefined && row.label !== '活动名称未提供'
+                  ? 'font-mono text-xs text-muted-foreground'
+                  : 'font-medium'
+              "
+            >
+              {{ row.label }}
+            </h4>
           </div>
           <p>{{ row.message }}</p>
           <p v-if="row.activity">
