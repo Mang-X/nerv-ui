@@ -25,12 +25,12 @@
 
 - `pnpm -C frontend install --frozen-lockfile --offline`：退出 0，缓存复用，无下载。lockfile 与 base 的完整文件 Git blob 同为 `8db34ddd72b1df0c29f0a029f9184643becc60da`，本票所有 package manifests 与 lockfile 对 base 无 diff；因此 importers/packages/snapshots 的完整对象与每条 peer/optional 边继承且字节相同。`@nerv-iip/scheduling`、`@nerv-iip/ui` 和 playground 的 Vue 都解析到同一个 `vue@3.5.39` 实体。
 - `pnpm -C frontend typecheck`：退出 0，四个活动 workspace 的 `vue-tsc` 均通过。纯类型消费者额外 `vue-tsc` 退出 0。误用原生 `tsc` 直接处理 Vue 主桶曾退出 2，因 `.vue`/CSS 声明入口不适用；未将它称为代码失败或通过。
-- 首次 `pnpm -C frontend test`：退出 1，P11 既有时区测试要求显式 `TZ=Asia/Shanghai` 或 `America/New_York`，当次 `TZ` 未设置；保留 `test-1.log`。`TZ=Asia/Shanghai pnpm -C frontend test`：退出 0；ui 805/805、scheduling 322 PASS/4 policy-skipped、ui-mobile 144/144、playground 335/335。4 个 skip 是既有 vendor/stub 门禁策略，不是 real vendor PASS。默认 reporter 未提供 JSON `unhandled` 字段，不能记作 0 或 null。`Could not parse CSS stylesheet` 是各测试环境的独立警告，不计为业务断言 PASS。
+- 首次 `pnpm -C frontend test`：退出 1，P11 既有时区测试要求显式 `TZ=Asia/Shanghai` 或 `America/New_York`，当次 `TZ` 未设置；保留 `test-1.log`。最终 `TZ=Asia/Shanghai pnpm -C frontend test`：退出 0；ui 805/805、scheduling 324 PASS/4 policy-skipped、ui-mobile 144/144、playground 337/337。4 个 skip 是既有 vendor/stub 门禁策略，不是 real vendor PASS。默认 reporter 未提供 JSON `unhandled` 字段，不能记作 0 或 null。`Could not parse CSS stylesheet` 是各测试环境的独立警告，不计为业务断言 PASS。
 - `pnpm -C frontend build`：退出 0；构建日志保留 Rolldown `INVALID_ANNOTATION`（依赖 `@vueuse/core`）和大 chunk 警告，均与成功退出分列。真实 Evaluation JS/CSS 作为已有依赖资源加载不表示授权已知或本票验证了引擎交互。
 - `pnpm -C frontend fmt`：退出 1，报告 `frontend/DESIGN/component-coverage.md`、design-system 的 `file-upload.md`、playground 的 `PDF-SOURCES.md` 与 UI 的 `THIRD_PARTY_NOTICES.md` 四个本票未改的既有文件；没有清洗这些来源或改 formatter。对本票 17 个前端文件单独 `vp fmt --check` 退出 0；根 README、本票合同、证据 README 和文档站页共 4 份人工 Markdown 单独格式检查退出 0，45 个相对链接均存在。
 - `pnpm -C frontend lint`：退出 0，现存 UI、原生文件测试等 warning 保留；本票新路径没有 warning。
 - fresh dist 在浏览器打开两域深链；读书会演练旧请求晚到、失败/重试、完成、保存待确认与确认后文案，工作坊演练真实总数翻页、ETR 到期/恢复、停止后无 spinner、只读理由、窄宽浅色。目视截图：[读书会结果](browser/library-result.png)、[工作坊窄宽浅色](browser/studio-narrow-light.png)。宿主主题和 viewport 已恢复，ego 任务结束。T3 preview 在同一步两次返回原文 `Preview automation snapshot timed out after 15000ms.`，故浏览器改用 ego-browser；不把 T3 失败抹去。
-- 当前浏览器加载的导航、入口 JS/CSS、字体和 DHTMLX JS/CSS 共 7 个同源实际 HTTP URL，逐个状态 200、MIME 符合类型、body 与**本次 final dist** 对应文件逐字节相同。逐项 URL/bytes/SHA256 见外部 `http-dist-byte-compare.json`；该检验不沿用 P12 产物 hash，也不代表真实 APS 或 packed 安装。
+- 当前浏览器加载的导航、入口 JS/CSS、字体和 DHTMLX JS/CSS 共 7 个同源实际 HTTP URL，逐个状态 200、MIME 符合类型、body 与**最终构建的 dist** 对应文件逐字节相同。逐项 URL/bytes/SHA256 见外部 `http-dist-byte-compare-final.json`；该检验不沿用 P12 产物 hash，也不代表真实 APS 或 packed 安装。
 
 ## 范围与未运行
 
