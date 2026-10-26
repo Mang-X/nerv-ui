@@ -47,6 +47,6 @@ Board 与独立 ClearDialog 都支持可选 `formatActionError?: SchedulingDraft
 
 ## 中性 recipe 的证据边界
 
-`DraftEditingDemo.vue` 不导出新业务 composable。它用独立 JSON 快照演示接受/保留、表格资源与时间、锁/解锁、待排恢复、undo/redo、外部换 plan 和失败重试。示例 host 明确把资源映射到空间维度；assignment null 删除对应维度，不伪造设备。保存 callback 仅复制到页面内独立副本；清空 callback 成功后重置手工草案到当前初始安排。刷新即结束，不连接真实 APS/MES 或保存服务。
+`DraftEditingDemo.vue` 不导出新业务 composable。它用独立 JSON 快照演示接受/保留、表格资源与时间、锁/解锁、待排恢复、undo/redo、外部换 plan 和失败重试。两个领域共用同一 recipe：当前资源目录的 `dimensions.workCenter.id` 与空间一对一。表格选择资源时映射到该资源的空间；空间 assignment 则按当前目录反查 room ID，不能把 payload 中保留的 source resourceId 当作目标。空间 id 为 null 时同时清空 room/空间；team 或其它维度的 id/null 只调整该维度，保留独立资源与空间身份。该映射仅归此 host，不改变库/P07 的 assignment/null 合同，也不将任意维度 ID 当作设备。采用、拒绝、详情/两图/表格、独立保存副本和 undo 都由同一快照权威驱动；换 plan 后使用当前目录，不保留旧映射。保存 callback 仅复制到页面内独立副本；清空 callback 成功后重置手工草案到当前初始安排。刷新即结束，不连接真实 APS/MES 或保存服务。
 
 P10 表单/P11 风险/P12 比较/P13 异步候选/P16 工作台未提前实施。完整 docs #10、packed #11、旧应用接入 #13/#15、父 #8、CI、设备、生产发布与商业许可各自验收。当前执行证据、精确测试名称和未运行项见 [P09 证据](evidence/t07-p09/README.md)。

@@ -1,6 +1,6 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
-import { GanttChart, ResourceSchedulerBoard } from '@nerv-iip/scheduling'
+import { GanttChart, ResourceSchedulerBoard, SchedulingDraftBoard } from '@nerv-iip/scheduling'
 import DraftEditingDemo from './DraftEditingDemo.vue'
 let w: ReturnType<typeof mount> | undefined
 afterEach(() => {
@@ -24,6 +24,149 @@ function open(venue: 'library' | 'studio' = 'library') {
   w = mount(DraftEditingDemo, { props: { venue }, attachTo: document.body })
   return w
 }
+it.each(['library', 'studio'] as const)(
+  'neutral %s host maps accepted space assignment to the current room across table detail graphs saved copy and undo',
+  async (venue) => {
+    const page = open(venue)
+    const name = venue === 'library' ? '晨间共读' : '晨间创作'
+    const place = venue === 'library' ? '林间书屋' : '陶艺工坊'
+    const authority = () => page.findComponent(SchedulingDraftBoard).props('model')!
+    const task = () => authority().tasks.find((t) => t.id === 'activity-0')!
+    await click('资源安排图')
+    page.findComponent(ResourceSchedulerBoard).vm.$emit('taskDragEnd', {
+      taskId: 'activity-0',
+      kind: 'reassign',
+      resourceId: 'room-0',
+      startUtc: '2026-10-25T03:00:00Z',
+      endUtc: '2026-10-25T05:00:00Z',
+      assignment: { dimension: 'workCenter', id: 'place-1', label: place },
+    })
+    await flushPromises()
+    expect(task().resourceId).toBe('room-1')
+    expect(task().workCenterId).toBe('place-1')
+    expect(task().dimensions!.workCenter).toEqual({ id: 'place-1', label: place })
+    expect(task().dimensions!.team!.id).toBe('team-0')
+    expect(task().startUtc).toBe('2026-10-25T03:00:00Z')
+    expect(task().endUtc).toBe('2026-10-25T05:00:00Z')
+    expect(task().facts).toEqual([{ label: '位置', value: place }])
+    expect(page.findComponent(ResourceSchedulerBoard).props('model')!.tasks[0]!.resourceId).toBe(
+      'room-1',
+    )
+    await click('表格编辑')
+    await click(name)
+    const resource = () =>
+      page.get(`select[aria-label="${name} 的资源"]`).element as HTMLSelectElement
+    expect(resource().value).toBe('room-1')
+    expect(resource().selectedOptions[0]!.textContent).toBe(place)
+    expect(page.get('[data-draft-detail]').text()).toContain(place)
+    expect(page.get('[data-draft-records]').text()).toContain(
+      `${place} · 2026-10-25 11:00:00 至 2026-10-25 13:00:00`,
+    )
+    await click('活动时间图')
+    expect(page.findComponent(GanttChart).props('model')!.tasks[0]!.resourceId).toBe('room-1')
+    await click('保存草案')
+    expect(page.get('[data-saved-arrangement]').text()).toContain(place)
+    await click('撤销')
+    expect(task().resourceId).toBe('room-0')
+    expect(task().workCenterId).toBe('place-0')
+    expect(page.get('[data-saved-arrangement]').text()).toContain(place)
+    await click('重做')
+    expect(task().resourceId).toBe('room-1')
+    await page.get('select[aria-label="调整处理"]').setValue('reject')
+    await click('资源安排图')
+    page.findComponent(ResourceSchedulerBoard).vm.$emit('taskDragEnd', {
+      taskId: 'activity-0',
+      kind: 'reassign',
+      resourceId: 'room-1',
+      startUtc: '2026-10-25T04:00:00Z',
+      endUtc: '2026-10-25T06:00:00Z',
+      assignment: { dimension: 'workCenter', id: 'place-2', label: '另一空间' },
+    })
+    await flushPromises()
+    expect(task().resourceId).toBe('room-1')
+    expect(task().workCenterId).toBe('place-1')
+    expect(task().startUtc).toBe('2026-10-25T03:00:00Z')
+    expect(page.get('[data-draft-detail]').text()).toContain(place)
+    expect(page.get('[data-draft-records]').text()).toContain('保留原安排')
+    await click('表格编辑')
+    expect(resource().value).toBe('room-1')
+  },
+)
+it.each(['library', 'studio'] as const)(
+  'neutral %s host keeps non-space assignments independent and maps space clear table resource and replacement in both directions',
+  async (venue) => {
+    const page = open(venue)
+    const name = venue === 'library' ? '晨间共读' : '晨间创作'
+    const room2 = venue === 'library' ? '河畔阅览室' : '留白空间'
+    const task = () => page.findComponent(SchedulingDraftBoard).props('model')!.tasks[0]!
+    await click('表格编辑')
+    await click(name)
+    const resource = () => page.get('[data-draft-task="activity-0"] select')
+    await resource().setValue('room-2')
+    expect(task().resourceId).toBe('room-2')
+    expect(task().workCenterId).toBe('place-2')
+    expect(task().dimensions!.workCenter).toEqual({ id: 'place-2', label: room2 })
+    expect(page.get('[data-draft-detail]').text()).toContain(room2)
+    await click('资源安排图')
+    const assign = async (dimension: string, id: string | null, label: string) => {
+      page.findComponent(ResourceSchedulerBoard).vm.$emit('taskDragEnd', {
+        taskId: 'activity-0',
+        kind: 'reassign',
+        resourceId: task().resourceId,
+        startUtc: task().startUtc,
+        endUtc: task().endUtc,
+        assignment: { dimension, id, label },
+      })
+      await flushPromises()
+    }
+    await assign('team', 'team-1', '分享小组')
+    expect(task().dimensions!.team).toEqual({ id: 'team-1', label: '分享小组' })
+    expect(task().resourceId).toBe('room-2')
+    expect(task().workCenterId).toBe('place-2')
+    expect(task().display!.resourceLabel).toBe(room2)
+    await assign('team', null, '未分配')
+    expect(task().dimensions!.team).toBeUndefined()
+    expect(task().resourceId).toBe('room-2')
+    expect(task().dimensions!.workCenter!.id).toBe('place-2')
+    await assign('other', 'room-0', '独立维度')
+    expect(task().dimensions!.other!.id).toBe('room-0')
+    expect(task().resourceId).toBe('room-2')
+    await assign('other', null, '未分配')
+    expect(task().dimensions!.other).toBeUndefined()
+    expect(task().resourceId).toBe('room-2')
+    await assign('workCenter', null, '未分配')
+    expect(task().resourceId).toBeUndefined()
+    expect(task().workCenterId).toBeUndefined()
+    expect(task().dimensions!.workCenter).toBeUndefined()
+    expect(task().display!.resourceLabel).toBe('未分配')
+    expect(task().facts).toEqual([{ label: '位置', value: '未分配' }])
+    await click('表格编辑')
+    expect((resource().element as HTMLSelectElement).value).toBe('')
+    expect(page.get('[data-draft-detail]').text()).toContain('未分配')
+    await click('撤销')
+    expect((resource().element as HTMLSelectElement).value).toBe('room-2')
+    await resource().setValue('')
+    expect(task().resourceId).toBeUndefined()
+    expect(task().workCenterId).toBeUndefined()
+    expect(task().dimensions!.workCenter).toBeUndefined()
+    await click('换一份安排')
+    expect(task().text).toContain('新安排')
+    expect(task().resourceId).toBe('room-0')
+    expect(task().dimensions!.team!.id).toBe('team-0')
+    expect(page.get('[data-saved-arrangement]').text()).toContain('尚未保存')
+    await click('资源安排图')
+    await assign('workCenter', 'place-2', room2)
+    expect(task().resourceId).toBe('room-2')
+    expect(task().workCenterId).toBe('place-2')
+    expect(task().startUtc).toBe('2026-10-25T05:00:00Z')
+    await click('活动时间图')
+    expect(page.findComponent(GanttChart).props('model')!.tasks[0]!.resourceId).toBe('room-2')
+    await click('表格编辑')
+    expect((resource().element as HTMLSelectElement).value).toBe('room-2')
+    await click('撤销')
+    expect((resource().element as HTMLSelectElement).value).toBe('room-0')
+  },
+)
 it('neutral draft host accepts and rejects table edits then visibly undoes and redoes without saving', async () => {
   const page = open()
   await click('表格编辑')

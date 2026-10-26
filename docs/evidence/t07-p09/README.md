@@ -1,5 +1,7 @@
 # T07/P09 · 草案可视编辑实施证据
 
+R3 F4/P2 的最新返修候选见 [中性 host 空间映射](f7/README.md)。历史“三视图资源同步 PASS”受其所列原始矛盾限制，不能继承为完整资源 AC；原 raw/FAIL/UNKNOWN 不覆盖，独立 R4 由父安排。
+
 R1 四项 P2 已返修的本轮候选证据见 [R1 合同返修](f1-f4/README.md)。以下保留初版实施记录；原 R1 拒绝与失败不因新 PASS 被改写。
 
 范围：仅 [#92](https://github.com/Mang-X/nerv-ui/issues/92)，scope M / 高难度。候选分支 `feat/t07-p09-draft-editing`，目标 `integration/nerv-ui-extraction`。实施基线 `d8ca1f5ab26cdbf5572de52bce928a8be01b1f1f` / tree `6855d17bd5c87e331ce5999ccbc5ab589344c912`。本页不证明独立审核、合并、tracker 关闭或发布。

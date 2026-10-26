@@ -165,8 +165,14 @@ function update(
     if (assignment.id === null) delete t.dimensions[assignment.dimension]
     else t.dimensions[assignment.dimension] = { id: assignment.id, label: assignment.label }
     if (assignment.dimension === 'workCenter') {
+      // Only this recipe's space directory defines a room identity; other dimensions stay independent.
+      const room =
+        assignment.id === null
+          ? undefined
+          : model.value.resources.find((r) => r.dimensions?.workCenter?.id === assignment.id)
+      t.resourceId = room?.id
       t.workCenterId = assignment.id ?? undefined
-      t.display = { ...t.display, resourceLabel: assignment.label }
+      t.display = { ...t.display, resourceLabel: room?.text ?? assignment.label }
     }
   }
   if (t.segments?.length === 1) t.segments = [{ startUtc: t.startUtc, endUtc: t.endUtc }]
@@ -175,7 +181,8 @@ function update(
 }
 function move(p: TaskDragPayload) {
   const patch: SchedulingDraftPatch = { startUtc: p.startUtc, endUtc: p.endUtc }
-  if (p.resourceId !== undefined) patch.resourceId = p.resourceId
+  // A dimension drag carries the source resourceId, not a new room choice.
+  if (p.resourceId !== undefined && !p.assignment) patch.resourceId = p.resourceId
   update(p.taskId, patch, p.assignment)
 }
 function lock(id: string, locked: boolean) {
