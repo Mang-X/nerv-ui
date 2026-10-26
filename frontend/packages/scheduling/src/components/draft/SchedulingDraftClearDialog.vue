@@ -10,15 +10,22 @@ import {
   NvAlertDialogTitle,
   NvButton,
 } from '@nerv-iip/ui'
+import { actionFailureMessage } from './action-feedback'
+import type { SchedulingDraftActionError, SchedulingDraftErrorFormatter } from './types'
 import type { SchedulingEditControl } from '../../composables/useSchedulingEdits'
 const open = defineModel<boolean>('open', { required: true })
 const props = defineProps<{
+  formatActionError?: SchedulingDraftErrorFormatter
   pending?: boolean
   disabled?: boolean
   scopeKey?: unknown
   clear?: (control: SchedulingEditControl) => Promise<boolean>
 }>()
-const emit = defineEmits<{ cleared: []; 'update:pending': [pending: boolean] }>()
+const emit = defineEmits<{
+  cleared: []
+  'update:pending': [pending: boolean]
+  actionError: [failure: SchedulingDraftActionError]
+}>()
 const localPending = shallowRef(false)
 watch(localPending, (value) => emit('update:pending', value), { flush: 'sync' })
 const message = shallowRef('')
@@ -56,11 +63,10 @@ async function confirm() {
       emit('cleared')
     } else message.value = '未能清空，草案仍保留，可重试。'
   } catch (error) {
-    if (active())
-      message.value =
-        error instanceof Error
-          ? `未能清空：${error.message}。可重试。`
-          : '未能清空，草案仍保留，可重试。'
+    if (active()) {
+      emit('actionError', { operation: 'clear', error })
+      if (active()) message.value = actionFailureMessage(error, 'clear', props.formatActionError)
+    }
   } finally {
     if (active()) {
       localPending.value = false

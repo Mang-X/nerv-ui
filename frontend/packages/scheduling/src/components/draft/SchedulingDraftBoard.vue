@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, shallowRef, watch } from 'vue'
 import { NvButton } from '@nerv-iip/ui'
 import SchedulingDraftClearDialog from './SchedulingDraftClearDialog.vue'
 import SchedulingDraftFeedback from './SchedulingDraftFeedback.vue'
+import { actionFailureMessage } from './action-feedback'
 import { cloneModel } from '../../model/clone'
 import GanttChart from '../GanttChart.vue'
 import ResourceSchedulerBoard from '../ResourceSchedulerBoard.vue'
@@ -15,6 +16,8 @@ import type { ScheduleModel, ScheduleTask, DraftFeedback, TimeScale } from '../.
 import type { EngineCommand, TaskDragPayload } from '../../engine/engine'
 import type {
   SchedulingDraftAction,
+  SchedulingDraftActionError,
+  SchedulingDraftErrorFormatter,
   SchedulingDraftPatch,
   SchedulingDraftPendingItem,
 } from './types'
@@ -22,6 +25,7 @@ import type {
 const props = defineProps<{
   clear?: SchedulingDraftAction
   save?: SchedulingDraftAction
+  formatActionError?: SchedulingDraftErrorFormatter
   model?: ScheduleModel
   selectedTaskId?: string
   feedback?: DraftFeedback
@@ -36,23 +40,50 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{
   'update:selectedTaskId': [taskId: string]
+  'update:groupBy': [groupBy: string]
   move: [payload: TaskDragPayload]
   update: [taskId: string, patch: SchedulingDraftPatch]
   lock: [taskId: string, locked: boolean]
   lockedAttempt: [taskId: string]
   moveToPending: [taskId: string]
   restorePending: [taskId: string]
+  actionError: [failure: SchedulingDraftActionError]
   cleared: []
   undo: []
   redo: []
 }>()
 const view = shallowRef<'gantt' | 'resource' | 'table'>('gantt')
 const scale = shallowRef<TimeScale>('hour')
+const selectionReset = shallowRef(0)
+// A fresh model envelope clears vendor-native selection through its existing data path,
+// without retiring the active chart while the user's pointer sequence is in progress.
+const graphModel = computed(() => {
+  void selectionReset.value
+  return props.model ? { ...props.model } : undefined
+})
+let syncingSelection = false
 const localSelected = shallowRef('')
 const selectedId = computed(() => props.selectedTaskId ?? localSelected.value)
 const selected = computed(() => props.model?.tasks.find((t) => t.id === selectedId.value))
 const operations = computed(
   () => props.model?.tasks.filter((t) => t.type === 'operation' && !t.blockKind) ?? [],
+)
+// Join feedback to the current model by task.id; stale or orphan feedback is never reassigned.
+const feedbackTasks = computed(() =>
+  (props.model?.tasks ?? []).flatMap((task) => {
+    const issues = props.feedback?.tasks[task.id]?.issues ?? []
+    return issues.length ? [{ task, issues }] : []
+  }),
+)
+const attentionCount = computed(
+  () =>
+    feedbackTasks.value.filter(({ issues }) => issues.some((issue) => issue.kind !== 'unknown'))
+      .length,
+)
+const unknownCount = computed(
+  () =>
+    feedbackTasks.value.filter(({ issues }) => issues.some((issue) => issue.kind === 'unknown'))
+      .length,
 )
 const clearOpen = shallowRef(false)
 const clearPending = shallowRef(false)
@@ -106,11 +137,10 @@ async function saveDraft() {
     if (current())
       saveStatus.value = result === true ? '草案已保存。' : '未能保存，草案仍保留，可重试。'
   } catch (error) {
-    if (current())
-      saveStatus.value =
-        error instanceof Error
-          ? `未能保存：${error.message}。可重试。`
-          : '未能保存，草案仍保留，可重试。'
+    if (current()) {
+      emit('actionError', { operation: 'save', error })
+      if (current()) saveStatus.value = actionFailureMessage(error, 'save', props.formatActionError)
+    }
   } finally {
     if (current()) {
       savePending.value = false
@@ -122,8 +152,21 @@ const gantt = shallowRef<InstanceType<typeof GanttChart>>()
 const resource = shallowRef<InstanceType<typeof ResourceSchedulerBoard>>()
 const group = shallowRef('')
 const actualGroup = computed(
-  () => props.groupBy ?? (group.value || props.model?.groupDimensions?.[0]?.key || 'workCenter'),
+  () =>
+    props.groupBy ??
+    (props.model?.groupDimensions?.some((d) => d.key === group.value)
+      ? group.value
+      : props.model?.groupDimensions?.[0]?.key || 'workCenter'),
 )
+async function changeGroup(event: Event) {
+  const input = event.target as HTMLSelectElement
+  const requested = input.value
+  if (props.groupBy === undefined) group.value = requested
+  if (requested !== actualGroup.value || props.groupBy === undefined)
+    emit('update:groupBy', requested)
+  await nextTick()
+  input.value = actualGroup.value
+}
 const search = shallowRef('')
 const cursor = shallowRef(0)
 const errors = shallowRef<Record<string, string>>({})
@@ -139,9 +182,25 @@ const matches = computed(() =>
 function command(cmd: EngineCommand) {
   ;(view.value === 'gantt' ? gantt.value : resource.value)?.command(cmd)
 }
-function select(id: string) {
-  localSelected.value = id
+function syncSelection() {
+  syncingSelection = true
+  try {
+    command({ kind: 'selectTask', taskId: selected.value?.id ?? '' })
+  } finally {
+    syncingSelection = false
+  }
+}
+async function select(id: string) {
+  // selectTask also emits taskSelect. It is an acknowledgement, not another user request.
+  if (syncingSelection || id === selectedId.value) return
+  if (props.selectedTaskId === undefined) localSelected.value = id
   emit('update:selectedTaskId', id)
+  await nextTick()
+  if (disposed) return
+  syncSelection()
+  // Clear the native selection as well as the engine's visual selection, through
+  // the existing model input; no engine or lifecycle implementation changes.
+  if (!selected.value && id) selectionReset.value++
 }
 function locate(index: number) {
   if (!matches.value.length) return
@@ -149,10 +208,14 @@ function locate(index: number) {
   select(matches.value[cursor.value]!.id)
   command({ kind: 'revealTask', taskId: matches.value[cursor.value]!.id })
 }
+watch([view, gantt, resource, selected, () => props.model], syncSelection, {
+  flush: 'post',
+  deep: true,
+})
 watch(
-  [view, gantt, resource, selectedId],
-  () => {
-    if (selected.value) command({ kind: 'selectTask', taskId: selectedId.value })
+  () => selected.value?.id,
+  (id, previous) => {
+    if (!id && previous) selectionReset.value++
   },
   { flush: 'post' },
 )
@@ -286,11 +349,41 @@ function lock(id: string, locked: boolean) {
       v-model:open="clearOpen"
       :scope-key="clearScope"
       :clear="clearAction"
+      :format-action-error="formatActionError"
+      @action-error="emit('actionError', $event)"
       :pending="pending"
       :disabled="readOnly || savePending"
       @update:pending="clearPending = $event"
       @cleared="emit('cleared')"
     />
+    <section
+      class="grid gap-2 rounded-md border p-3 text-sm"
+      data-testid="draft-feedback-attention"
+      aria-label="即时反馈摘要"
+    >
+      <h3 class="font-semibold">
+        即时反馈<span v-if="feedback"> · {{ attentionCount }} 项活动需核对</span>
+      </h3>
+      <p v-if="!feedback" class="text-muted-foreground">尚未提供校验反馈。</p>
+      <p v-else-if="!feedbackTasks.length" class="text-muted-foreground">
+        未记录待核对问题，不代表校验通过。
+      </p>
+      <p v-if="unknownCount" class="text-muted-foreground">
+        {{ unknownCount }} 项活动校验依据未明。
+      </p>
+      <ul v-if="feedbackTasks.length" class="grid max-h-40 gap-2 overflow-auto">
+        <li v-for="item in feedbackTasks" :key="item.task.id" :data-feedback-task="item.task.id">
+          <NvButton variant="link" @click="select(item.task.id)">{{ item.task.text }}</NvButton>
+          <p
+            v-for="(issue, index) in item.issues"
+            :key="index"
+            :class="issue.kind === 'unknown' ? 'text-muted-foreground' : 'text-warning'"
+          >
+            {{ issue.message }}
+          </p>
+        </li>
+      </ul>
+    </section>
     <p v-if="!model" class="text-sm text-muted-foreground">尚无可编辑的安排。</p>
     <div v-else class="nv-sched-draft-layout">
       <div class="min-w-0">
@@ -301,10 +394,10 @@ function lock(id: string, locked: boolean) {
         >
           <GanttChart
             ref="gantt"
-            :model="model"
+            :model="graphModel"
             :scale="scale"
             :read-only="disabled"
-            @task-select="select"
+            @task-select="(id) => id && select(id)"
             @task-drag-end="move"
             @locked-drag-attempt="emit('lockedAttempt', $event)"
           />
@@ -316,11 +409,7 @@ function lock(id: string, locked: boolean) {
         >
           <label v-if="model.groupDimensions?.length" class="flex items-center gap-2 p-2 text-sm"
             >查看维度
-            <select
-              :value="actualGroup"
-              aria-label="查看维度"
-              @change="group = ($event.target as HTMLSelectElement).value"
-            >
+            <select :value="actualGroup" aria-label="查看维度" @change="changeGroup">
               <option v-for="d in model.groupDimensions" :key="d.key" :value="d.key">
                 {{ d.label }}
               </option>
@@ -329,11 +418,11 @@ function lock(id: string, locked: boolean) {
           <ResourceSchedulerBoard
             class="min-h-0 flex-1"
             ref="resource"
-            :model="model"
+            :model="graphModel"
             :scale="scale"
             :group-by="actualGroup"
             :read-only="disabled"
-            @task-select="select"
+            @task-select="(id) => id && select(id)"
             @task-drag-end="move"
             @locked-drag-attempt="emit('lockedAttempt', $event)"
           />

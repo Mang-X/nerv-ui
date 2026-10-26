@@ -80,6 +80,9 @@ export type {
   SchedulingDraftPatch,
   SchedulingDraftPendingItem,
   SchedulingDraftAction,
+  SchedulingDraftOperation,
+  SchedulingDraftErrorFormatter,
+  SchedulingDraftActionError,
 } from './components/draft/types'
 export { default as SchedulingDraftFeedback } from './components/draft/SchedulingDraftFeedback.vue'
 export { default as SchedulingDraftClearDialog } from './components/draft/SchedulingDraftClearDialog.vue'

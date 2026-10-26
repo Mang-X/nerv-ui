@@ -265,13 +265,15 @@ function cleared() {
         class="underline"
         >{{ reading ? '去创作室' : '去书房' }}</a
       >
-      <h1 class="text-xl font-semibold">{{ reading ? '一起安排共读' : '一起安排创作' }}</h1>
+      <h1 class="text-2xl font-semibold tracking-tight">
+        {{ reading ? '一起安排共读' : '一起安排创作' }}
+      </h1>
     </header>
     <p class="mb-2 text-sm">
       DHTMLX 9.1.4 Professional Evaluation；声明与水印保留，授权范围 UNKNOWN。
     </p>
     <p class="mb-4 text-sm text-muted-foreground">
-      本页使用本地示例安排。撤销与重做只改草案；保存到本页的独立副本，刷新即结束，不连接服务。时间均为上海时间。
+      撤销与重做只改草案；保存到本页的独立副本，刷新即结束，不连接服务。时间均为上海时间。
     </p>
     <div class="mb-4 flex flex-wrap items-center gap-4 text-sm">
       <label

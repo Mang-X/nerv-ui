@@ -370,3 +370,219 @@ it('table end-time and unassigned resource requests retain stable task identity'
   await page.get('select[aria-label="晨间共读 的资源"]').setValue('')
   expect(page.emitted('update')?.at(-1)).toEqual(['stable-a', { resourceId: undefined }])
 })
+
+it.each(['save', 'board-clear', 'standalone-clear'] as const)(
+  'draft action maps technical errors and keeps raw diagnostics for %s',
+  async (surface) => {
+    const raw = new Error(
+      'Gateway HTTP 503 {"operationId":"saveDraft","detail":"internal upstream unavailable"}',
+    )
+    const action = vi.fn().mockRejectedValueOnce(raw).mockResolvedValueOnce(true)
+    const page =
+      surface === 'standalone-clear'
+        ? mount(SchedulingDraftClearDialog, {
+            props: { open: true, clear: action },
+            attachTo: document.body,
+          })
+        : setup({ [surface === 'save' ? 'save' : 'clear']: action })
+    wrapper = page
+    await flushPromises()
+    if (surface === 'save') await click('保存草案')
+    else {
+      if (surface === 'board-clear') await click('清空草案')
+      document.body.querySelector<HTMLButtonElement>('[data-clear-confirm]')!.click()
+    }
+    await flushPromises()
+    expect(document.body.textContent).not.toContain('Gateway')
+    expect(document.body.textContent).not.toContain('operationId')
+    expect(document.body.textContent).toContain('草案仍保留，可重试')
+    expect(page.emitted('actionError')?.at(-1)).toEqual([
+      { operation: surface === 'save' ? 'save' : 'clear', error: raw },
+    ])
+    if (surface !== 'save') {
+      expect(document.body.querySelector('[role="alertdialog"]')).not.toBeNull()
+      expect(page.emitted('cleared')).toBeUndefined()
+      document.body.querySelector<HTMLButtonElement>('[data-clear-confirm]')!.click()
+    } else await click('保存草案')
+    await flushPromises()
+    if (surface === 'save')
+      expect(page.get('[data-draft-save-status]').text()).toContain('草案已保存')
+    else expect(page.emitted('cleared')).toHaveLength(1)
+  },
+)
+
+it('draft selection requests changes once and keeps current authority across rejection replacement deletion and readonly', async () => {
+  const model = structuredClone(initial)
+  model.tasks.push({ ...model.tasks[0]!, id: 'stable-b', text: '午间分享' })
+  const page = setup({ model, selectedTaskId: 'stable-a', readOnly: true })
+  await click('表格编辑')
+  await click('晨间共读')
+  expect(page.emitted('update:selectedTaskId')).toBeUndefined()
+  await click('午间分享')
+  expect(page.emitted('update:selectedTaskId')).toEqual([['stable-b']])
+  expect(page.get('[data-draft-detail]').text()).toContain('晨间共读')
+  await page.setProps({ selectedTaskId: 'stable-b' })
+  expect(page.get('[data-draft-detail]').text()).toContain('午间分享')
+  await page.setProps({
+    model: { ...model, tasks: [{ ...model.tasks[1]!, text: '午间分享 · 当前' }, model.tasks[0]!] },
+  })
+  expect(page.get('[data-draft-detail]').text()).toContain('午间分享 · 当前')
+  await page.setProps({ model: { ...model, tasks: [model.tasks[0]!] } })
+  expect(page.get('[data-draft-detail]').text()).toContain('尚未选择活动')
+  expect(page.emitted('update:selectedTaskId')?.at(-1)).toEqual([''])
+  await page.setProps({ selectedTaskId: '' })
+  await click('活动时间图')
+  await click('资源安排图')
+  await click('表格编辑')
+  expect(page.get('[data-draft-detail]').text()).toContain('尚未选择活动')
+  expect(page.emitted('update:selectedTaskId')).toHaveLength(2)
+})
+
+it('draft grouping requests retain authority on rejection then accept external replacement and default to the first current dimension', async () => {
+  const model = structuredClone(initial)
+  model.groupDimensions = [
+    { key: 'place', label: '空间' },
+    { key: 'team', label: '小组' },
+  ]
+  const page = setup({ model, groupBy: 'place' })
+  await click('资源安排图')
+  const chooser = () => page.get('select[aria-label="查看维度"]')
+  await chooser().setValue('team')
+  expect(page.emitted('update:groupBy')).toEqual([['team']])
+  expect((chooser().element as HTMLSelectElement).value).toBe('place')
+  await page.setProps({ groupBy: 'team' })
+  expect((chooser().element as HTMLSelectElement).value).toBe('team')
+  await page.setProps({ groupBy: 'place' })
+  expect((chooser().element as HTMLSelectElement).value).toBe('place')
+  await page.setProps({ groupBy: undefined })
+  await chooser().setValue('team')
+  expect((chooser().element as HTMLSelectElement).value).toBe('team')
+  await page.setProps({
+    model: {
+      ...model,
+      groupDimensions: [
+        { key: 'room', label: '房间' },
+        { key: 'zone', label: '区域' },
+      ],
+    },
+  })
+  expect((chooser().element as HTMLSelectElement).value).toBe('room')
+  expect(page.emitted('update:groupBy')).toEqual([['team'], ['team']])
+})
+
+it('draft feedback summary discovers current tasks across both graphs and replaces messages identities and unknown empty states', async () => {
+  const model = structuredClone(initial)
+  model.tasks.push({ ...model.tasks[0]!, id: 'stable-b', text: '午间分享' })
+  const feedback = {
+    tasks: {
+      'stable-b': { issues: [{ kind: 'calendar' as const, message: '开放时间待确认' }] },
+      removed: { issues: [{ kind: 'calendar' as const, message: '旧任务不得冒认' }] },
+    },
+  }
+  const page = setup({ model, feedback })
+  const summary = () => page.get('[data-testid="draft-feedback-attention"]')
+  expect(summary().text()).toContain('1 项活动需核对')
+  expect(summary().text()).toContain('开放时间待确认')
+  expect(summary().text()).not.toContain('旧任务不得冒认')
+  await summary().get('button').trigger('click')
+  expect(page.get('[data-draft-detail]').text()).toContain('午间分享')
+  await click('资源安排图')
+  await page.setProps({
+    model: { ...model, tasks: [{ ...model.tasks[1]!, text: '午间分享 · 当前' }, model.tasks[0]!] },
+    feedback: {
+      tasks: { 'stable-b': { issues: [{ kind: 'calendar', message: '请重新确认场地' }] } },
+    },
+  })
+  expect(summary().text()).toContain('午间分享 · 当前')
+  expect(summary().text()).toContain('请重新确认场地')
+  expect(summary().text()).not.toContain('开放时间待确认')
+  await summary().get('button').trigger('click')
+  expect(page.get('[data-draft-detail]').text()).toContain('午间分享 · 当前')
+  await page.setProps({
+    feedback: { tasks: { 'stable-b': { issues: [{ kind: 'unknown', message: '尚无开放依据' }] } } },
+  })
+  expect(summary().text()).toContain('0 项活动需核对')
+  expect(summary().text()).toContain('1 项活动校验依据未明')
+  expect(summary().text()).toContain('尚无开放依据')
+  await page.setProps({ model: { ...model, tasks: [model.tasks[0]!] } })
+  expect(summary().findAll('button')).toHaveLength(0)
+  expect(summary().text()).not.toContain('尚无开放依据')
+  await page.setProps({ feedback: { tasks: {} } })
+  expect(summary().text()).toContain('未记录待核对问题，不代表校验通过')
+  await page.setProps({ feedback: undefined })
+  expect(summary().text()).toContain('尚未提供校验反馈')
+  expect(summary().text()).not.toContain('0 项')
+})
+
+it.each(['save', 'clear'] as const)(
+  'draft action preserves actionable reasons and isolates formatter failures for %s',
+  async (operation) => {
+    const raw = { detail: '请先选择有效的安排，再重试' }
+    const action = vi.fn().mockRejectedValue(raw)
+    const formatter = vi.fn(() => '请先解锁当前安排')
+    const page =
+      operation === 'save'
+        ? setup({ save: action, formatActionError: formatter })
+        : mount(SchedulingDraftClearDialog, {
+            props: { open: true, clear: action, formatActionError: formatter },
+            attachTo: document.body,
+          })
+    wrapper = page
+    const submit = async () => {
+      await flushPromises()
+      if (operation === 'save') await click('保存草案')
+      else document.body.querySelector<HTMLButtonElement>('[data-clear-confirm]')!.click()
+      await flushPromises()
+    }
+    await submit()
+    expect(document.body.textContent).toContain('请先解锁当前安排')
+    expect(formatter).toHaveBeenLastCalledWith(raw, operation)
+    await page.setProps({ formatActionError: () => undefined })
+    await submit()
+    expect(document.body.textContent).toContain('请先选择有效的安排，再重试')
+    await page.setProps({
+      formatActionError: () => {
+        throw new Error('formatter failed')
+      },
+    })
+    await submit()
+    expect(document.body.textContent).toContain('请先选择有效的安排，再重试')
+    expect(document.body.textContent).not.toContain('formatter failed')
+    await page.setProps({ formatActionError: () => 'HTTP 503 {"operationId":"unsafe"}' })
+    await submit()
+    expect(document.body.textContent).not.toContain('operationId')
+    expect(document.body.textContent).toContain('请先选择有效的安排，再重试')
+  },
+)
+
+it('draft save does not format or report a late error after authority replacement', async () => {
+  const result = deferred<boolean>(),
+    formatActionError = vi.fn(() => '过期理由')
+  const page = setup({ save: () => result.promise, formatActionError })
+  await click('保存草案')
+  await page.setProps({
+    model: { ...structuredClone(initial), meta: { ...initial.meta, planId: 'new' } },
+  })
+  result.reject(new Error('Gateway HTTP 503'))
+  await flushPromises()
+  expect(page.get('[data-draft-save-status]').text()).toBe('')
+  expect(formatActionError).not.toHaveBeenCalled()
+  expect(page.emitted('actionError')).toBeUndefined()
+})
+
+it.each([
+  { id: 'compact-http', message: 'HTTP503 服务暂未恢复，请重试' },
+  { id: 'compact-operation', message: 'operationIdsaveDraft 当前操作未完成，请重试' },
+])(
+  'draft action maps compact technical text mixed with a user reason for $id',
+  async ({ message }) => {
+    const page = setup({
+      save: async () => {
+        throw new Error(message)
+      },
+    })
+    await click('保存草案')
+    await flushPromises()
+    expect(page.get('[data-draft-save-status]').text()).toBe('未能保存，草案仍保留，可重试。')
+  },
+)

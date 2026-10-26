@@ -1,5 +1,7 @@
 # T07/P09 · 草案可视编辑实施证据
 
+R1 四项 P2 已返修的本轮候选证据见 [R1 合同返修](f1-f4/README.md)。以下保留初版实施记录；原 R1 拒绝与失败不因新 PASS 被改写。
+
 范围：仅 [#92](https://github.com/Mang-X/nerv-ui/issues/92)，scope M / 高难度。候选分支 `feat/t07-p09-draft-editing`，目标 `integration/nerv-ui-extraction`。实施基线 `d8ca1f5ab26cdbf5572de52bce928a8be01b1f1f` / tree `6855d17bd5c87e331ce5999ccbc5ab589344c912`。本页不证明独立审核、合并、tracker 关闭或发布。
 
 完整本轮命令、原始 JSON/log、浏览器脚本、截图、HTTP body 与 SHA 回读在 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p09-implementation-r1/`；最终对象见该目录 `handoff.md`。不拷贝 node_modules/cache/dist/clean checkout 或历史大目录。公共合同见 [草案合同](../../scheduling-draft.md)。

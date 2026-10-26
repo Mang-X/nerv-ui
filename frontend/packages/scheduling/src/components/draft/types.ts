@@ -15,3 +15,14 @@ export type SchedulingDraftAction = (
   snapshot: ScheduleModel,
   control: SchedulingEditControl,
 ) => Promise<boolean>
+
+export type SchedulingDraftOperation = 'save' | 'clear'
+/** Return a vetted user-facing reason, or undefined for the library fallback. Never return raw API text. */
+export type SchedulingDraftErrorFormatter = (
+  error: unknown,
+  operation: SchedulingDraftOperation,
+) => string | undefined
+export interface SchedulingDraftActionError {
+  operation: SchedulingDraftOperation
+  error: unknown
+}
