@@ -132,6 +132,58 @@ it('keeps batch units and every affected activity behind two disclosure levels w
   expect(w.text()).not.toMatch(/绘画纸|陶泥|秋日批次|晨间写生/)
 })
 
+it('aligns shortage quantity cells and limits displayed precision without changing host values', async () => {
+  const { MaterialShortageSummary } = await import('../../index')
+  const display = [
+    { id: 'small', label: '纸张', quantity: 3, unit: '张', affected: [] },
+    { id: 'medium', label: '胶片', quantity: 20, unit: '张', affected: [] },
+    { id: 'large', label: '颜料', quantity: 100, unit: '盒', affected: [] },
+    { id: 'fraction', label: '墨水', quantity: 1.23456, unit: 'L', affected: [] },
+    { id: 'negative', label: '退料', quantity: -1234.5678, unit: 'kg', affected: [] },
+    { id: 'unknown', label: '未知', quantity: null, unit: '张', affected: [] },
+  ]
+  const w = mount(MaterialShortageSummary, { props: { display } })
+  mounted.push(w)
+  expect(w.get('thead th:nth-child(2)').classes()).toContain('text-right')
+  expect(w.get('thead th:nth-child(2)').classes()).toContain('tabular-nums')
+  const cells = w.findAll('tbody tr td:nth-child(2)')
+  expect(cells).toHaveLength(6)
+  for (const cell of cells) {
+    expect(cell.classes()).toContain('text-right')
+    expect(cell.classes()).toContain('tabular-nums')
+  }
+  expect(cells.map((cell) => cell.text())).toEqual([
+    '3 张',
+    '20 张',
+    '100 盒',
+    '1.235 L',
+    '-1,234.568 kg',
+    '— 张',
+  ])
+  expect(display[3]?.quantity).toBe(1.23456)
+})
+
+it('shows one activity location or time without a dangling separator', async () => {
+  const { MaterialShortageSummary } = await import('../../index')
+  const w = mount(MaterialShortageSummary, {
+    props: {
+      display: [
+        {
+          id: 'one',
+          label: '纸张',
+          affected: [
+            { id: 'place', label: '画室活动', location: '湖畔画室' },
+            { id: 'time', label: '午后活动', time: '14:00' },
+          ],
+        },
+      ],
+    },
+  })
+  mounted.push(w)
+  expect(w.get('li:first-child .text-muted-foreground').text()).toBe('湖畔画室')
+  expect(w.get('li:last-child .text-muted-foreground').text()).toBe('14:00')
+})
+
 it('groups risk facts by category and stable group identity without dropping detailed shortages on replacement', async () => {
   const { PlanRisks } = await import('../../index')
   const display = Array.from({ length: 8 }, (_, i) => ({
@@ -263,6 +315,51 @@ it('shows blocking and unscheduled facts directly while warning and info stay in
   expect(w.text()).not.toMatch(/晨间共读|新书分享|晚间分享|夜间共读/)
   expect(w.text()).toContain('午后共读')
   expect(JSON.stringify(display)).toBe(before)
+})
+
+it('keeps distinct unknown legacy reasons visible without exposing codes or inventing material status', async () => {
+  const { PlanConflicts } = await import('../../index')
+  const w = mount(PlanConflicts, {
+    props: {
+      conflicts: [
+        { conflictId: 'a', severity: 'warning', reasonCode: 'newCapacityRule', message: 'first' },
+        { conflictId: 'b', severity: 'warning', reasonCode: 'newCalendarRule', message: 'second' },
+        { conflictId: 'c', severity: 'warning', reasonCode: 'material', message: 'third' },
+        { conflictId: 'd', severity: 'warning', reasonCode: 'newCapacityRule', message: 'fourth' },
+      ],
+      unscheduledOperations: [],
+    },
+  })
+  mounted.push(w)
+  const headings = w.findAll('[data-notice-group] summary').map((item) => item.text())
+  expect(headings).toHaveLength(3)
+  expect(new Set(headings).size).toBe(3)
+  expect(headings).toContain('预警 · 物料约束 · 1 条（展开明细）')
+  expect(headings.filter((heading) => heading.includes('未识别原因'))).toHaveLength(2)
+  expect(w.text()).not.toMatch(/newCapacityRule|newCalendarRule|物料未齐套/)
+  await w.setProps({
+    conflicts: [
+      {
+        conflictId: 'replacement',
+        severity: 'warning',
+        reasonCode: 'newCalendarRule',
+        message: 'current',
+      },
+    ],
+  })
+  expect(w.findAll('[data-notice-group]')).toHaveLength(1)
+  expect(w.text()).toContain('current')
+  expect(w.text()).not.toMatch(/first|second|third|fourth/)
+  await w.setProps({
+    conflicts: [
+      { conflictId: 'calendar', severity: 'info', reasonCode: 'calendar', message: 'known' },
+      { conflictId: 'missing', severity: 'info', message: 'unspecified' },
+    ],
+  })
+  const finalHeadings = w.findAll('[data-notice-group] summary').map((item) => item.text())
+  expect(finalHeadings).toContain('提示 · 日历不可用 · 1 条（展开明细）')
+  expect(finalHeadings).toContain('提示 · 原因未提供 · 1 条（展开明细）')
+  expect(w.text()).not.toContain('newCalendarRule')
 })
 
 it('distinguishes empty snapshot current unknown missing forbidden and unavailable data for every public display', async () => {

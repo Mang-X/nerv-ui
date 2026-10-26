@@ -1,0 +1,41 @@
+# P11 / PR109 R1 实质项返修（F1）
+
+## 固定范围与身份
+
+- 唯一写入树：`/Users/mang/Project/nerv-ui-worktrees/t07-p11-snapshot-risk`，branch `feat/t07-p11-snapshot-risk`，#94 `scope:M`，draft PR109 对 `integration/nerv-ui-extraction`。开工 HEAD `ddb000629bc855d539d179ccfd9d4ed33d9deda3` / tree `f6d778bca095bba4ba82d1fc5610e31b8da20272`，clean；merge-base `c0f6e41421da5aaeb38e07474413a06b78c2ea0c` / tree `d914c0d1668d786ff587ded0f0af89428b862b42`。最终交付 HEAD/tree/clean 与远端回读见外部 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-27/t07-p11-contract-fix/handoff.md`，避免在同一 Git 提交内自引用 SHA。
+- R1 独立拒绝回执在 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-27/t07-p11-review-r1/review-receipt.md`；本席只返修，不审核、不 ready/merge/close/watch 或启动后继。原 R1 probe、JSON、前席 raw 与 handoff 均保持原字节。R1 搬出的 53 个 `dist-nested` 文件仍在外部 `review-r1/artifacts/dist-nested`，未还原或删除。
+
+## R1 finding → 处理
+
+| Finding | 处理与范围 |
+| --- | --- |
+| Standards P2：锁计数错误 | 原记录的 540 snapshots 是计数错误。当前 PyYAML 解析为 **5 importers / 973 packages / 973 snapshots**；base 与候选的 `frontend/pnpm-lock.yaml` SHA-256 同为 `0cfcb1cc92892690db8aa848165280a49941f0cf8d7b868c721e641e4634ab07`。已纠正维护证据页和 PR 正文；历史 handoff/raw 不改。 |
+| Standards P3：数量列排版 | MaterialShortageSummary 表头及各数量单元加 `text-right tabular-nums`。两领域中性 recipe 提供 3/20/100；实际 Chromium 的列头与单元 `text-align:right`、`font-variant-numeric:tabular-nums`，单元右边界相同。 |
+| Standards P3：数量精度 | `numberText` 只对有限数值作 `toLocaleString(undefined, { maximumFractionDigits: 3 })`；公开输入 1.23456 → 1.235、-1234.5678 → -1,234.568；0 保留、null/非有限仍为 `—`。宿主数值未改。 |
+| Spec P2：legacy 冲突原因 | PlanConflicts 自有 legacy 文案沿冻结 producer 的保守映射，`material` 为“物料约束”。缺失原因为“原因未提供”；未知但不同的 code 仍以原 id 分组，标题用排序后的“未识别原因（第 N 类）”区分，不露技术码、不猜 APS 状态。新 display 的显式 `reason.label` 不改；共享 `model/labels.ts` 不改。 |
+| Standards 建议：孤立分隔符 | 同 owner 窄修，活动只有位置或时间时只显示实际字段。 |
+| Standards 建议：活动/动作重复 | 未观察到行为分歧；本票不扩为结构重构，留独立审核判断。 |
+
+## 需求 → 精确公开测试 → RED/GREEN
+
+公开接缝是 `@nerv-iip/scheduling` 主桶的四件组件与两个 playground deep link。JSON 报告均在外部 `t07-p11-contract-fix/`，`unhandledErrors` 字段为 `null`，不表述成 0。原 R1 probe 文件未改字节：返修前后均 1 FAIL，因为其断言要求直接显示 `newCapacityRule`；该 FAIL 保留，治理目标由下列正式断言覆盖，不把它改成方便的输入。
+
+| 需求 | 精确测试名 | 本轮证据 |
+| --- | --- | --- |
+| 表格 3/20/100 右对齐、tabular 数字；小数、大负数、0/unknown 和宿主原值 | `aligns shortage quantity cells and limits displayed precision without changing host values` | `formal-red.json` 10/13 pass，含本项 FAIL；`formal-green.json` 13/13 pass。 |
+| 仅位置/仅时间无孤立点号 | `shows one activity location or time without a dangling separator` | 同一正式 RED→GREEN。 |
+| 两未知 reason 组可区分、material 保守文案、技术码不露、同类合组、外部替换无旧组 | `keeps distinct unknown legacy reasons visible without exposing codes or inventing material status` | 同一正式 RED→GREEN；原 R1 probe 1 FAIL 保留。 |
+| 两领域真实 3/20/100 数量与 0/unknown | `neutral library snapshot shows 3 20 and 100 as aligned quantity cells`；`neutral studio snapshot shows 3 20 and 100 as aligned quantity cells` | `recipe-red.json` 5/7 pass、两项 FAIL；`recipe-green.json` 7/7 pass。 |
+| warning/error、冻结/当前、0/unknown、数组替换、风险及活动详情 | `shows blocking and unscheduled facts directly while warning and info stay independently grouped by reason identity`；`distinguishes empty snapshot current unknown missing forbidden and unavailable data for every public display`；`neutral library snapshot distinguishes warning only zero idle unknown empty and current records without declaring readiness`；`neutral studio snapshot selection always follows current risk and conflict activity identity after external replacement` | scheduling 最终全桶 300 pass / 4 retained vendor stub skip / 0 fail；playground 最终 323 pass / 0 skip / 0 fail。 |
+
+所有上述测试命令 `vp test run src/...` 或 `vp test run src` 实际 exit 0 的 GREEN 已回读 JSON；原 RED exit 1 原样保留。scheduling 与 playground `vue-tsc --noEmit -p tsconfig.json`、playground `vp build` 均 fresh exit 0；受影响源码 `vp fmt --write` 与 `vp lint` exit 0。build 的 `@embedpdf` crypto externalization、`@vueuse` PURE 注释和大 chunk 提示保留。
+
+## 最终 dist 的真实浏览器与 HTTP
+
+本席 `127.0.0.1:5189` preview 来自最终 fresh build。T3 preview 同一步 snapshot 两次失败，原文均为 `Preview automation snapshot timed out after 15000ms.`；按规则切换 ego-browser，工具失败不算产品失败。实际 Chromium 在 library 和 studio 深链展开数量表，显示 `3 张 / 20 本 / 100 枚 / 0 支 / — 盒`；library 计算样式 `right` + `tabular-nums`，5 个数量单元右边界同为 1167 CSS px。两页在 390 CSS px 下均无文档横溢：[library 数量表](library-table-390.png)、[studio 数量表](studio-table-390.png)。library 还实际展开影响活动、筛选 warning-only 后无 error/未安排、切当前看到缺口 0 与显式 09:45（Asia/Shanghai）且仍“等待现场确认”；studio 替换后新批次可见、旧风险组退出。Ego Space 5 已 `finish({keep:[]})`；T3 自有 tab 已关闭，preview 服务已停止。
+
+HTTP 对最终 dist 的 `/index.html`、主 JS、runtime JS、主 CSS 均实际 GET 200，MIME 分别 HTML/JS/JS/CSS，响应 body 与对应 dist 文件逐字节相同。路径、大小与 SHA-256 见外部 `http/manifest.json`；该比较只支持本轮源码宿主与当前 dist，不代表 packed、旧消费者、真实 APS 或生产。
+
+## 不变性与未运行车道
+
+本票不改冻结 migration、DHTMLX 9.1.4 Professional Evaluation JS/CSS、水印、SDK/auth/权限/算法/查询/持久化、工作区依赖或锁；商业授权仍 UNKNOWN。原记载的 16 个工程输入、完整锁对象和 Vue 单例仅按受影响 diff/锁 blob/实体核对，不升级成新安装或 vendor 验收。`git diff main...HEAD --check` 的历史 RAW exit 2 与维护范围 diff-check exit 0 分列记录于外部 handoff。CI、docs #10、packed #11、device、旧 consumer #13/#15、父 #8 组合、真实 APS、生产、商业发布和原生 zoom 为 UNRUN；4 个 vendor stub skip 是 0 执行。

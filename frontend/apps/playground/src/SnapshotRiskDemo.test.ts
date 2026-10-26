@@ -135,4 +135,15 @@ for (const venue of ['library', 'studio'] as const) {
       ).toHaveLength(0)
     }
   })
+  it(`neutral ${venue} snapshot shows 3 20 and 100 as aligned quantity cells`, async () => {
+    const page = await open(venue)
+    const header = page.get('[aria-label="物料缺口汇总"] thead th:nth-child(2)')
+    expect(header.classes()).toContain('text-right')
+    expect(header.classes()).toContain('tabular-nums')
+    const cells = page.findAll('[aria-label="物料缺口汇总"] tbody tr td:nth-child(2)')
+    expect(cells.slice(0, 3).map((cell) => cell.text())).toEqual(['3 张', '20 本', '100 枚'])
+    expect(cells.slice(0, 3).every((cell) => cell.classes().includes('text-right'))).toBe(true)
+    expect(page.get('[data-shortage-id="pen"]').text()).toContain('0 支')
+    expect(page.get('[data-shortage-id="unknown"]').text()).toContain('— 盒')
+  })
 }

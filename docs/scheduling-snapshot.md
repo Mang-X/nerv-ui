@@ -39,9 +39,10 @@ interface SnapshotSource {
 
 ## 数量、严重度和动作
 
-- 缺口、需求、可用量、已排/可用分钟原样显示有限数值；0 保留。null、undefined、非有限数显示“—”，不补 0。库不重新分配用料。
+- 缺口、需求、可用量、已排/可用分钟只格式化宿主给定的有限数值，最多显示 3 位小数；原输入与事件事实不变，0 保留。null、undefined、非有限数显示“—”，不补 0。库不重新分配用料。
 - utilization 为宿主给定比例，只做百分比格式化。例如已排 30 / 可用 60、utilization 0.8 显示 80%，不会重算成 50%。已排严格为 0 归 idle；缺失/null/非有限值归 unknown；其余有限非零值归 active，不代表资格或健康。
 - 严重度只有显式 `error` 是阻断；`warning`、`info`、未提供或未知分别显示预警、提示、级别未知。文案含“错误”不改变 severity。legacy 风险无 severity 时显示未知，不从物料/设备语义猜等级。原因的旧已知枚举只做文案映射，新 display 的 reason.label 直接由 host 给。
+- PlanConflicts 的 legacy 已知原因使用冻结展示的保守措辞（例如 `material` 为“物料约束”）；缺失原因显示“原因未提供”。同一输入中的不同未识别原因按稳定排序标为“未识别原因（第 N 类）”，保留分组与可见区分而不显示技术码或猜测实际约束；完整语义由宿主通过 `display.reason.label` 给出。
 - PlanRisks/PlanConflicts 新增 optional 展示动作：当前记录含 `activity` 和 `actionLabel`，且显式 `readOnly=false` 时才显示按钮。`disabledReason` 禁用并显示原因；其它读取状态无动作。事件 `select(activityId: string)` 只请求查看当前活动，不修改输入。handler 重新按当前 row.id 取 activity，不保留旧数组对象。readonly 仍可折叠和筛选。
 
 显示 id 在各数组内须唯一且稳定，类别/组/资源/原因各有独立 namespace；相同 label 的不同 id 不会合组。旧输入仅保留原组合 identity；存在重复组合或名称需求时应提供明确 display id，不把数组 index 当领域 identity。外部可替换整个数组或同 id 更新文本/活动；组件无输入 mutation。展开使用原生 details/summary，支持键盘，旧组删除时其节点和内容随当前输入退出。

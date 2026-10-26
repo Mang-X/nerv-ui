@@ -62,6 +62,22 @@ export function snapshotReading(
     activities: [activity, second],
     shortages: [
       paper,
+      {
+        id: 'booklet',
+        label: '活动手册',
+        batch: '秋日一批',
+        quantity: 20,
+        unit: '本',
+        affected: [],
+      },
+      {
+        id: 'sticker',
+        label: '入场贴纸',
+        batch: '秋日一批',
+        quantity: 100,
+        unit: '枚',
+        affected: [],
+      },
       { id: 'pen', label: '记号笔', batch: '秋日一批', quantity: 0, unit: '支', affected: [] },
       { id: 'unknown', label: '备用用料', quantity: null, unit: '盒', affected: null },
     ],

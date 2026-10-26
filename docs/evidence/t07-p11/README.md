@@ -41,6 +41,6 @@ HTTP 对最终 fresh dist 的 `/index.html`、主 JS、runtime JS、主 CSS 实�
 
 ### 不变项与独立车道
 
-`frontend/pnpm-lock.yaml` 相对固定基线字节完全相同，SHA-256 `0cfcb1cc92892690db8aa848165280a49941f0cf8d7b868c721e641e4634ab07`，因此 973 个 package 对象、540 个 snapshot 对象及 importer、依赖边、peer、optional 元数据逐字节未变；16 个受影响工程输入逐路径无 diff。scheduling 与 playground 的 Vue realpath 同为 `vue@3.5.39_typescript@6.0.3`。冻结 migration 四件与 vendor 9.1.4 Evaluation JS/CSS 未改，版权/水印不动，商业授权仍 UNKNOWN。`git diff main...HEAD --check` 原有全历史 RAW exit 2（3,570 行诊断）；本票维护范围的 diff-check 单列，不抹去原失败。
+`frontend/pnpm-lock.yaml` 相对固定基线字节完全相同，SHA-256 `0cfcb1cc92892690db8aa848165280a49941f0cf8d7b868c721e641e4634ab07`，实际为 5 个 importer、973 个 package 对象、973 个 snapshot 对象；importer、依赖边、peer、optional 元数据逐字节未变；16 个受影响工程输入逐路径无 diff。先前本页与 PR109 正文的“540 snapshots”是计数错误，原始 handoff 不改写；本次纠正及返修证据见 [F1](f1/README.md)。scheduling 与 playground 的 Vue realpath 同为 `vue@3.5.39_typescript@6.0.3`。冻结 migration 四件与 vendor 9.1.4 Evaluation JS/CSS 未改，版权/水印不动，商业授权仍 UNKNOWN。`git diff main...HEAD --check` 原有全历史 RAW exit 2（3,570 行诊断）；本票维护范围的 diff-check 单列，不抹去原失败。
 
 本轮实际运行的是新库源码宿主、测试、类型、build、HTTP 与浏览器。CI、docs #10、packed #11、device、旧消费者 #13/#15、父 #8 全组合、真实 APS 后台、生产发布、商业授权及原生 zoom 均 UNRUN；四个 vendor stub skip 不升级为真实引擎 PASS。#94 留给独立 merger，#8 与 spec #1 保持各自状态。

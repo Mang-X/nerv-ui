@@ -33,7 +33,7 @@ const rows = computed(() => props.display ?? props.shortages?.map(legacyShortage
         <thead class="bg-muted text-muted-foreground">
           <tr>
             <th class="p-2 font-medium">物料 / 批次</th>
-            <th class="p-2 font-medium">缺口数量</th>
+            <th class="p-2 text-right font-medium tabular-nums">缺口数量</th>
             <th class="p-2 font-medium">受影响活动</th>
           </tr>
         </thead>
@@ -48,7 +48,7 @@ const rows = computed(() => props.display ?? props.shortages?.map(legacyShortage
               <p class="font-medium">{{ row.label }}</p>
               <p class="text-muted-foreground">批次 {{ row.batch ?? '—' }}</p>
             </td>
-            <td class="p-2 align-top tabular-nums">
+            <td class="p-2 text-right align-top tabular-nums">
               {{ numberText(row.quantity) }} {{ row.unit ?? '—' }}
             </td>
             <td class="p-2 align-top">
@@ -62,7 +62,7 @@ const rows = computed(() => props.display ?? props.shortages?.map(legacyShortage
                   <li v-for="activity in row.affected" :key="activity.id">
                     <p class="font-medium">{{ activity.label }}</p>
                     <p v-if="activity.location || activity.time" class="text-muted-foreground">
-                      {{ activity.location }} · {{ activity.time }}
+                      {{ [activity.location, activity.time].filter(Boolean).join(' · ') }}
                     </p>
                     <p v-if="activity.result">{{ activity.result }}</p>
                   </li>

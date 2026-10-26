@@ -110,7 +110,9 @@ export interface LegacySnapshotLoad {
 }
 
 export function numberText(value: number | null | undefined): string {
-  return typeof value === 'number' && Number.isFinite(value) ? String(value) : '—'
+  return typeof value === 'number' && Number.isFinite(value)
+    ? value.toLocaleString(undefined, { maximumFractionDigits: 3 })
+    : '—'
 }
 export function percentageText(value: number | null | undefined): string {
   return typeof value === 'number' && Number.isFinite(value) ? `${Math.round(value * 100)}%` : '—'

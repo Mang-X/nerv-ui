@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import { NvButton, NvStatusBadge } from '@nerv-iip/ui'
 import SnapshotContext from './SnapshotContext.vue'
-import { conflictReasonLabel } from '../../model/labels'
 import {
   groupRows,
   legacyActivityLabel,
@@ -25,10 +24,31 @@ const props = withDefaults(
   }>(),
   { readOnly: true },
 )
+// Legacy snapshot wording is intentionally conservative. The shared model labels
+// describe a different consumer and must not strengthen a snapshot's claim.
+const legacyReasonLabels: Record<string, string> = {
+  dueDate: '交期风险',
+  capacity: '产能不足',
+  calendar: '日历不可用',
+  material: '物料约束',
+  quality: '质量约束',
+  equipment: '设备约束',
+  tooling: '工装约束',
+  noEligibleResource: '无可用资源',
+  outsideHorizon: '超出排程窗口',
+  invalidLockedAssignment: '锁定分配无效',
+  predecessorUnscheduled: '前序未排',
+}
+const unknownReasonNumbers = computed(() => {
+  const codes = [...(props.conflicts ?? []), ...(props.unscheduledOperations ?? [])]
+    .map((row) => row.reasonCode)
+    .filter((code): code is string => !!code && !Object.hasOwn(legacyReasonLabels, code))
+  return new Map([...new Set(codes)].sort().map((code, index) => [code, index + 1]))
+})
 function legacyReason(code?: string | null) {
-  return code && Object.hasOwn(conflictReasonLabel, code)
-    ? conflictReasonLabel[code as keyof typeof conflictReasonLabel]
-    : '原因未提供'
+  if (!code) return '原因未提供'
+  if (Object.hasOwn(legacyReasonLabels, code)) return legacyReasonLabels[code]!
+  return `未识别原因（第 ${unknownReasonNumbers.value.get(code)} 类）`
 }
 const emit = defineEmits<{ select: [activityId: string] }>()
 const source = computed(
