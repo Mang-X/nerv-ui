@@ -26,3 +26,5 @@
 
 - **应当**与 `GanttChart` 共享同一 `ScheduleModel` 与 `SchedulingEngine`，按页面任务独立使用或组合切换。
 - **不得**为资源视图复制一套数据契约；两视图只是同一模型的不同编排。
+
+P09 组合协调补充：组件实例兼容暴露只读响应式 `engineName`（`loading | dhtmlx | unavailable | error`），直接转发既有 Canvas 状态。需要恢复受控选择的组合在 `dhtmlx` ready 后读取最新权威再发 `command(selectTask)`；loading 期间的普通 command 排队语义不变。该状态不是新的引擎选择或恢复协议，原 props/emits/command 签名不变。

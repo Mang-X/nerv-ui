@@ -42,3 +42,5 @@ defineEmits<{
 
 - **应当**按页面任务独立组合工具栏与详情面板，保持甘特组件只负责工单/工序时间线。
 - **不得**直接导入引擎实现（DHTMLX）；**不得**在模板出现 reasonCode/operationId 等工程语言。
+
+P09 组合协调补充：组件实例兼容暴露只读响应式 `engineName`（`loading | dhtmlx | unavailable | error`），直接转发既有 Canvas 状态。需要恢复受控选择的组合在 `dhtmlx` ready 后读取最新权威再发 `command(selectTask)`；loading 期间的普通 command 排队语义不变。该状态不是新的引擎选择或恢复协议，原 props/emits/command 签名不变。

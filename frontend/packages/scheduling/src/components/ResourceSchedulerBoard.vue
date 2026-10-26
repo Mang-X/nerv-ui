@@ -53,7 +53,9 @@ const canvas = ref<InstanceType<typeof SchedulingCanvas>>()
 function command(cmd: EngineCommand) {
   canvas.value?.command(cmd)
 }
-defineExpose({ command })
+// Read-only forwarding of the existing canvas readiness; command semantics stay unchanged.
+const engineName = computed(() => canvas.value?.engineName ?? 'loading')
+defineExpose({ command, engineName })
 </script>
 
 <template>

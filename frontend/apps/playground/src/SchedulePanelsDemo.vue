@@ -267,6 +267,7 @@ function referenceSelect(id: string) {
 <template>
   <main class="min-h-screen bg-background p-6 text-foreground">
     <header class="mb-4 flex flex-wrap items-center gap-3">
+      <a :href="`#schedule-draft/${venue}`" class="underline">一起安排</a>
       <a href="#" class="underline">桌面</a
       ><a href="#schedule-gantt" class="underline">共读活动图</a>
       <a href="#schedule-resource-edit/library" class="underline">空间安排</a>

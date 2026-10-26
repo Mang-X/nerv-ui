@@ -74,3 +74,15 @@ export type { MaterialReadyFormatter } from './model/material-risk'
 // P08: controlled list actions; domain processing remains with the host.
 export { default as ConflictPanel } from './components/panels/ConflictPanel.vue'
 export { default as UnscheduledPanel } from './components/panels/UnscheduledPanel.vue'
+
+export { default as SchedulingDraftBoard } from './components/draft/SchedulingDraftBoard.vue'
+export type {
+  SchedulingDraftPatch,
+  SchedulingDraftPendingItem,
+  SchedulingDraftAction,
+  SchedulingDraftOperation,
+  SchedulingDraftErrorFormatter,
+  SchedulingDraftActionError,
+} from './components/draft/types'
+export { default as SchedulingDraftFeedback } from './components/draft/SchedulingDraftFeedback.vue'
+export { default as SchedulingDraftClearDialog } from './components/draft/SchedulingDraftClearDialog.vue'
