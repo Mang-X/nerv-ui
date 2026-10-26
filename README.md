@@ -60,3 +60,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T07/P11 / #94](https://github.com/Mang-X/nerv-ui/issues/94) 从 `/#schedule-snapshot/library`、`/#schedule-snapshot/studio` 展示中性缺口汇总、风险、冲突与负荷。四件只显示 host 事实，保留零/未知、冻结/当前与预警/阻断的区别；接入与旧 props 迁移见 [快照展示合同](docs/scheduling-snapshot.md)，实际验证见 [P11 证据](docs/evidence/t07-p11/README.md)。
 
 [T07/P12 / #95](https://github.com/Mang-X/nerv-ui/issues/95) 从 `/#schedule-compare/library`、`/#schedule-compare/studio` 展示已保存基线与候选的静态对照。公开组件按宿主 semantic key 关联活动，逐侧显示时间、资源与分段，指标和风险只读来源事实；接入及旧私有组件适配见 [比较合同](docs/scheduling-comparison.md)，执行记录见 [P12 证据](docs/evidence/t07-p12/README.md)。
+
+[T07/P13 / #96](https://github.com/Mang-X/nerv-ui/issues/96) 从 `/#schedule-async/library`、`/#schedule-async/studio` 展示受控异步候选、插单历史分页、停机影响与保存确认。四件公开组件只读取宿主状态和事实；请求身份、停止、重试、轮询及真实保存由宿主负责。公共输入与旧私有件对应见 [异步候选合同](docs/scheduling-async-candidates.md)，实际证据见 [P13 记录](docs/evidence/t07-p13/README.md)。

@@ -1,8 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": [],
+    "types": ["vite/client"],
     "noEmit": true
   },
-  "include": ["models.ts", "consumption.ts"]
+  "include": ["models.ts", "consumption.ts", "async-candidates-consumption.ts"]
 }

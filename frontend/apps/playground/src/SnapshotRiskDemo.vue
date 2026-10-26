@@ -83,6 +83,9 @@ function restore() {
     data-snapshot-page
   >
     <nav class="flex flex-wrap items-center gap-3" aria-label="核对页面导航">
+      <a href="#schedule-async/library" class="inline-flex min-h-11 items-center underline"
+        >异步候选</a
+      >
       <a href="#desktop" class="inline-flex min-h-11 items-center underline">返回工作空间</a>
       <a href="#schedule-draft/library" class="inline-flex min-h-11 items-center underline"
         >一起安排</a
