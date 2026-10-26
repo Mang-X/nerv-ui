@@ -1,5 +1,7 @@
 # P08 / #91：图例、工具栏与八个详情/列表面板
 
+R2 独立审查拒绝后的两个时区展示 P2 返修见 [F5–F6 记录](f5-f6/README.md)：合法 DST instant 格点与未解析图面的图例边界。本轮实施证据不代独立 R3 批准；原 R1/R2 拒绝与全部历史 FAIL/UNKNOWN 保留。
+
 R1 独立审查拒绝后的四项 P2 返修见 [F1–F4 记录](f1-f4/README.md)。下文保留首轮实施时点的原始结论与证据；其中“summary fresh browser UNRUN”等历史状态不覆盖返修轮的新证据，原 RED/FAIL/UNKNOWN 和 R1 拒绝也不被后续通过消除。
 
 仅 implement-spec 步骤4，scope:M / 中至高难度，一个独立 draft PR。实际工作树 `/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels`，分支 `feat/t07-p08-panels`；开工 clean，base integration `b56ef5f6ba4aada18190887335696864d13ad1d7` / tree `9bbad61c1e1cdb02d0364421d92c55af21ad10c3`。已 fetch + merge 最新 integration，结果 Already up to date，没有 reset。最终 head/tree/clean/PR 与清理和逐项 SHA 回读见 [本轮 handoff](/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p08-implementation-r1/handoff.md)。这是作者实施证据，不是独立 review 或父 #8 组合验收。

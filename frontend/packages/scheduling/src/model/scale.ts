@@ -2,7 +2,7 @@
 // 引擎(画图)与图例(讲图)都从这里取——否则图例会承诺图面画不出来的东西。
 
 import type { ScheduleModel, TimeScale } from './types'
-import { factoryTimeInput, factoryTimeInstant } from './factory-time'
+import { factoryTimeInput } from './factory-time'
 
 export type ResolvedTimeScale = Exclude<TimeScale, 'auto'>
 
@@ -62,59 +62,60 @@ export function shiftBoundaryRendersAt(startUtc: string, scale: ResolvedTimeScal
   )
 }
 
+/** Same explicit-timezone prerequisite as SchedulingCanvas; no browser fallback. */
+export function hasUnresolvedDisplayTimezone(model: ScheduleModel): boolean {
+  const valid = (zone?: string) => !!zone && !!factoryTimeInput('2000-01-01T00:00:00Z', zone)
+  return (
+    !model.timezones?.length ||
+    model.timezones.some((zone) => !valid(zone)) ||
+    model.tasks.some((task) => !valid(task.timezone))
+  )
+}
+
 /** Display grid for the retained 9.1.4 order renderer (vendor Ri / scale_offset_minimal).
  * The range is task-driven, not horizon-driven. Resource overlays use intervals instead.
  * This helper never changes engine configuration or task dates.
  */
 export function orderScaleCells(model: ScheduleModel, scale: ResolvedTimeScale): number[] {
+  if (hasUnresolvedDisplayTimezone(model)) return []
   // Vendor getSubtaskDates excludes project summaries, whose input dates may be stale.
   const tasks = model.tasks.filter((task) => !task.blockKind && task.type !== 'order')
   const dates = tasks
     .flatMap((task) => [Date.parse(task.startUtc), Date.parse(task.endUtc)])
     .filter(Number.isFinite)
   if (!dates.length) return []
-  const timezone = model.timezones?.at(-1)
+  const timezone = model.timezones!.at(-1)!
   const step = scale === 'hour' ? 2 : scale === 'week' ? 7 : 1
   const wall = (at: number) =>
-    timezone === undefined
-      ? new Date(at)
-      : new Date(`${factoryTimeInput(new Date(at).toISOString(), timezone)}Z`)
-  const instant = (date: Date, original: number) =>
-    timezone === undefined
-      ? date.getTime()
-      : Date.parse(
-          factoryTimeInstant(
-            date.toISOString().slice(0, 19),
-            timezone,
-            // factory_hour_start removes the fractional instant. The editing
-            // helper deliberately preserves it, so normalize only this display
-            // reference. Coarser retained factory units keep their offset phase.
-            new Date(
-              scale === 'hour' ? Math.floor(original / 1000) * 1000 : original,
-            ).toISOString(),
-          ) ?? '',
-        )
+    new Date(`${factoryTimeInput(new Date(at).toISOString(), timezone)}Z`)
+  // Match retained factoryUnit display arithmetic from a known instant. Editing
+  // admission deliberately rejects ambiguous wall times and cannot align a grid.
+  const instant = (date: Date, original: number) => {
+    const nominal = date.getTime()
+    const offsetAt = (at: number) => wall(at).getTime() - at
+    const estimate = nominal - offsetAt(original)
+    return nominal - offsetAt(estimate)
+  }
   function start(at: number) {
     const date = wall(at)
     if (!Number.isFinite(+date)) return NaN
-    if (timezone === undefined) {
-      date.setMinutes(0, 0, 0)
-      if (scale !== 'hour') date.setHours(0)
-      if (scale === 'month') date.setDate(1)
-    } else {
-      date.setUTCMinutes(0, 0, 0)
-      if (scale !== 'hour') date.setUTCHours(0)
-      if (scale === 'month') date.setUTCDate(1)
-    }
+    // Preserve which occurrence of a repeated hour the input instant belongs to.
+    if (scale === 'hour')
+      return (
+        at -
+        date.getUTCMinutes() * 60_000 -
+        new Date(at).getUTCSeconds() * 1000 -
+        new Date(at).getUTCMilliseconds()
+      )
+    date.setUTCMinutes(0, 0, 0)
+    date.setUTCHours(0)
+    if (scale === 'month') date.setUTCDate(1)
     return instant(date, at)
   }
   function add(at: number, count: number) {
     if (scale === 'hour') return at + count * 3_600_000
     const date = wall(at)
-    if (timezone === undefined) {
-      if (scale === 'month') date.setMonth(date.getMonth() + count)
-      else date.setDate(date.getDate() + count)
-    } else if (scale === 'month') date.setUTCMonth(date.getUTCMonth() + count)
+    if (scale === 'month') date.setUTCMonth(date.getUTCMonth() + count)
     else date.setUTCDate(date.getUTCDate() + count)
     return instant(date, at)
   }

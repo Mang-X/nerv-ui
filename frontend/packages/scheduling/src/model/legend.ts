@@ -4,7 +4,7 @@
 
 import { BLOCK_KINDS, type BlockKind } from './blocks'
 import { resourceProjection, resourceKey, workCenterKey } from './resource-projection'
-import { resolveTimeScale, orderScaleCells } from './scale'
+import { resolveTimeScale, orderScaleCells, hasUnresolvedDisplayTimezone } from './scale'
 import type { LaneOrder, ScheduleModel, TimeScale } from './types'
 
 export interface SchedulingLegendSemantics {
@@ -71,7 +71,9 @@ export function deriveLegendSemantics(
   view: 'order' | 'resource' = 'order',
   grouping?: { groupBy?: string; laneOrder?: LaneOrder },
 ): SchedulingLegendSemantics {
-  if (!model) return EMPTY
+  // These are diagram semantics. Explicit categories are a separate host palette
+  // in SchedulingLegend and remain available without a resolved diagram.
+  if (!model || hasUnresolvedDisplayTimezone(model)) return EMPTY
   const tasks = model.tasks ?? []
   const projection =
     view === 'resource'

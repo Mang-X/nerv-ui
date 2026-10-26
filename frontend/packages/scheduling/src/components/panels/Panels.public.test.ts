@@ -40,6 +40,265 @@ const model: ScheduleModel = {
   meta: { planId: 'reading', status: 'generated', algorithmVersion: 'host' },
 }
 
+it('legend preserves the first known fold instant when aligning display cells', () => {
+  const operation = {
+    ...model.tasks[0]!,
+    timezone: 'America/New_York',
+    startUtc: '2026-11-01T01:30:00-04:00',
+    endUtc: '2026-11-01T03:30:00-05:00',
+  }
+  const input: ScheduleModel = {
+    ...model,
+    timezones: ['America/New_York'],
+    tasks: [
+      operation,
+      {
+        ...operation,
+        id: 'maintenance',
+        blockKind: 'maintenance',
+        startUtc: '2026-11-01T05:00:00Z',
+        endUtc: '2026-11-01T07:00:00Z',
+      },
+    ],
+    calendars: [
+      {
+        calendarId: 'opening',
+        resourceIds: ['room-a'],
+        workCenterIds: [],
+        shiftWindows: [
+          { startUtc: '2026-11-01T05:00:00Z', endUtc: '2026-11-01T09:00:00Z', shiftCode: 'open' },
+        ],
+      },
+    ],
+  }
+  const before = JSON.stringify(input)
+  const w = mount(SchedulingLegend, { props: { model: input, scale: 'hour' } })
+  expect.soft(w.text()).toContain('班次边界')
+  expect.soft(w.text()).toContain('设备维护')
+  expect(
+    factoryTimeInstant(
+      factoryTimeInput(operation.startUtc, operation.timezone),
+      operation.timezone,
+      operation.startUtc,
+    ),
+  ).toBe(operation.startUtc)
+  expect(
+    factoryTimeInstant('2026-11-01T01:00:00', operation.timezone, operation.startUtc),
+  ).toBeUndefined()
+  expect(JSON.stringify(input)).toBe(before)
+  w.unmount()
+})
+
+it.each([
+  {
+    name: 'before fold',
+    start: '2026-11-01T00:30:00-04:00',
+    end: '2026-11-01T02:30:00-05:00',
+    hit: '2026-11-01T04:00:00Z',
+    miss: '2026-11-01T05:00:00Z',
+  },
+  {
+    name: 'first fold',
+    start: '2026-11-01T01:30:00-04:00',
+    end: '2026-11-01T03:30:00-05:00',
+    hit: '2026-11-01T05:00:00Z',
+    miss: '2026-11-01T06:00:00Z',
+  },
+  {
+    name: 'second fold',
+    start: '2026-11-01T01:30:00-05:00',
+    end: '2026-11-01T03:30:00-05:00',
+    hit: '2026-11-01T06:00:00Z',
+    miss: '2026-11-01T05:00:00Z',
+  },
+  {
+    name: 'after fold',
+    start: '2026-11-01T02:30:00-05:00',
+    end: '2026-11-01T04:30:00-05:00',
+    hit: '2026-11-01T07:00:00Z',
+    miss: '2026-11-01T06:00:00Z',
+  },
+  {
+    name: 'before spring jump',
+    start: '2026-03-08T01:30:00-05:00',
+    end: '2026-03-08T04:30:00-04:00',
+    hit: '2026-03-08T06:00:00Z',
+    miss: '2026-03-08T07:00:00Z',
+  },
+  {
+    name: 'after spring jump',
+    start: '2026-03-08T03:30:00-04:00',
+    end: '2026-03-08T05:30:00-04:00',
+    hit: '2026-03-08T07:00:00Z',
+    miss: '2026-03-08T06:00:00Z',
+  },
+])(
+  'legend matches known instant hour cells $name across equivalent offsets',
+  ({ start, end, hit, miss }) => {
+    const operation = {
+      ...model.tasks[0]!,
+      timezone: 'America/New_York',
+      startUtc: start,
+      endUtc: end,
+    }
+    for (const utc of [false, true]) {
+      const task = utc
+        ? {
+            ...operation,
+            startUtc: new Date(start).toISOString(),
+            endUtc: new Date(end).toISOString(),
+          }
+        : operation
+      for (const [at, visible] of [
+        [hit, true],
+        [miss, false],
+      ] as const) {
+        const until = new Date(Date.parse(at) + 600_000).toISOString()
+        const input: ScheduleModel = {
+          ...model,
+          timezones: ['America/New_York'],
+          tasks: [
+            task,
+            { ...task, id: 'short-block', blockKind: 'maintenance', startUtc: at, endUtc: until },
+          ],
+          calendars: [
+            {
+              calendarId: 'opening',
+              resourceIds: ['room-a'],
+              workCenterIds: [],
+              shiftWindows: [{ startUtc: at, endUtc: until, shiftCode: 'open' }],
+            },
+          ],
+        }
+        const before = JSON.stringify(input)
+        const w = mount(SchedulingLegend, { props: { model: input, scale: 'hour' } })
+        expect(w.text().includes('班次边界')).toBe(visible)
+        expect(w.text().includes('设备维护')).toBe(visible)
+        expect(JSON.stringify(input)).toBe(before)
+        w.unmount()
+      }
+    }
+  },
+)
+
+it.each(['day', 'week', 'month'] as const)(
+  'legend retains vendor calendar arithmetic across DST at scale %s',
+  (scale) => {
+    const operation = {
+      ...model.tasks[0]!,
+      timezone: 'America/New_York',
+      startUtc: '2026-11-01T01:30:00-04:00',
+      endUtc: '2026-11-01T03:30:00-05:00',
+    }
+    const input: ScheduleModel = {
+      ...model,
+      timezones: ['America/New_York'],
+      tasks: [
+        operation,
+        {
+          ...operation,
+          id: 'block',
+          blockKind: 'maintenance',
+          startUtc: '2026-11-01T04:00:00Z',
+          endUtc: '2026-11-02T05:00:00Z',
+        },
+      ],
+      calendars: [
+        {
+          calendarId: 'opening',
+          resourceIds: ['room-a'],
+          workCenterIds: [],
+          shiftWindows: [
+            { startUtc: '2026-11-01T04:00:00Z', endUtc: '2026-11-02T05:00:00Z', shiftCode: 'open' },
+          ],
+        },
+      ],
+    }
+    const w = mount(SchedulingLegend, { props: { model: input, scale } })
+    expect(w.text()).toContain('班次边界')
+    expect(w.text()).toContain('设备维护')
+    w.unmount()
+  },
+)
+
+it.each(['order', 'resource'] as const)(
+  'legend omits all diagram semantics with unresolved timezones in %s view while preserving explicit categories',
+  async (view) => {
+    const input: ScheduleModel = {
+      ...model,
+      tasks: [
+        {
+          ...model.tasks[0]!,
+          timezone: '',
+          locked: true,
+          hasConflict: true,
+          priority: 'high',
+          isRush: true,
+          kitting: 0,
+          changeoverMin: 10,
+          milestoneLabel: '截止',
+          plannedStartUtc: model.tasks[0]!.startUtc,
+          plannedEndUtc: model.tasks[0]!.endUtc,
+        },
+      ],
+      timezones: [],
+      calendars: [
+        {
+          calendarId: 'opening',
+          resourceIds: ['room-a'],
+          workCenterIds: [],
+          shiftWindows: [
+            { startUtc: '2026-10-26T00:00:00Z', endUtc: '2026-10-26T04:00:00Z', shiftCode: 'open' },
+          ],
+        },
+      ],
+    }
+    const before = JSON.stringify(input)
+    const w = mount(SchedulingLegend, {
+      props: {
+        model: input,
+        view,
+        scale: 'hour',
+        now: Date.parse('2026-10-26T02:00:00Z'),
+        categories: [{ key: 'reading', label: '阅读' }],
+      },
+    })
+    expect.soft(w.text()).toContain('阅读')
+    expect.soft(w.findAll('.nerv-leg-title').map((e) => e.text())).toEqual(['工序分色'])
+    await w.setProps({
+      model: {
+        ...input,
+        timezones: ['Asia/Shanghai'],
+        tasks: [{ ...input.tasks[0]!, timezone: 'Asia/Shanghai' }],
+      },
+    })
+    expect(w.text()).toContain('锁定')
+    expect(w.text()).toContain('现在')
+    await w.setProps({ model: input })
+    expect(w.findAll('.nerv-leg-title').map((e) => e.text())).toEqual(['工序分色'])
+    for (const [timezones, timezone] of [
+      [undefined, 'Asia/Shanghai'],
+      [[], 'Asia/Shanghai'],
+      [[''], 'Asia/Shanghai'],
+      [['Invalid/Zone', 'Asia/Shanghai'], 'Asia/Shanghai'],
+      [['Asia/Shanghai'], undefined],
+      [['Asia/Shanghai'], ''],
+      [['Asia/Shanghai'], 'Invalid/Zone'],
+    ] as const) {
+      await w.setProps({
+        model: {
+          ...input,
+          timezones: timezones ? [...timezones] : undefined,
+          tasks: [{ ...input.tasks[0]!, timezone }],
+        },
+      })
+      expect(w.findAll('.nerv-leg-title').map((e) => e.text())).toEqual(['工序分色'])
+    }
+    expect(JSON.stringify(input)).toBe(before)
+    w.unmount()
+  },
+)
+
 it('change explicit identity never borrows replacement legacy pair facts or actions', async () => {
   const a = { ...model.tasks[0]!, display: { resourceLabel: 'A空间' } }
   const b = {

@@ -59,10 +59,10 @@ P08 / [#91](https://github.com/Mang-X/nerv-ui/issues/91) 只处理既有八个�
 
 ## 三个列表
 
-| 面板               | 可选展示/能力输入                                                                                                                             | 事件与 identity                                                                                                           |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| ConflictPanel      | 行 `label/reasonLabel/selectDisabledReason`；组件 `labels: { title?, emptyTitle?, emptyDescription? }`                                        | `select(taskId)`；无 taskId/有禁用理由不能伪造定位                                                                        |
-| UnscheduledPanel   | 行 `label/groupLabel/reasonLabel/actionLabel/actionDisabledReason`；组件 `readOnly?` 与同上 labels                                            | 既有 `fix(orderId, operationId)` 原样保留；宿主决定处理；readonly/原因禁用                                                |
+| 面板               | 可选展示/能力输入                                                                                                                             | 事件与 identity                                                                                                                 |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| ConflictPanel      | 行 `label/reasonLabel/selectDisabledReason`；组件 `labels: { title?, emptyTitle?, emptyDescription? }`                                        | `select(taskId)`；无 taskId/有禁用理由不能伪造定位                                                                              |
+| UnscheduledPanel   | 行 `label/groupLabel/reasonLabel/actionLabel/actionDisabledReason`；组件 `readOnly?` 与同上 labels                                            | 既有 `fix(orderId, operationId)` 原样保留；宿主决定处理；readonly/原因禁用                                                      |
 | ChangeSummaryPanel | 行 `label/groupLabel/typeLabel/selectDisabledReason`；组件 `labels: { title?, filter?, emptyTitle?, emptyDescription? }`；`baseTasks?/tasks?` | `select(taskId)`；显式 taskId 只按 id 查找；仅未提供 taskId 的历史记录可接受唯一旧 order+operation 关联；不展示原始 operationId |
 
 重排或替换数组后动作使用当前行身份。ChangeSummary 不派生 changeType、不算差异/KPI；空记录与筛选无命中分开。before/after 时间分别使用对应任务的显式时区，资源优先使用宿主展示名。P12 后续可复用这些显示输入，不在本票补比较算法。
@@ -78,6 +78,10 @@ P08 / [#91](https://github.com/Mang-X/nerv-ui/issues/91) 只处理既有八个�
 固定 DHTMLX 9.1.4 `Ri()` / `scale_offset_minimal` 的工单范围排除 project 汇总节点后从实际活动日期取最小刻度起点，再向前一格、向后两格；`model/scale.ts` 的展示推导按这一规则和最终工厂时区取格点。旧“偶数整点”假设已被真实 07/09/11…相位反例推翻；`shiftBoundaryRendersAt(startUtc, scale)` 保留旧两参近似签名，但**当前图例不再调用它**。工单班次/时间块只有命中真实格点才列；粗刻度下零点班次恰好命中格点时仍可出现，不能一概声称全无。未解析对齐时不造格点。
 
 小时展示格点与保留的 `factory_hour_start` 一样清除毫秒；这只归一展示参考时刻，`factoryTimeInstant` 的编辑/无操作保存继续保留原始偏移与毫秒。当前保留厂商的粗刻度 offset 转换仍会保留输入的毫秒相位；不能把小时规则推广到日/周/月。上海和 Kolkata 四刻度与真实 cell/连续窗口的本轮对照见返修证据。
+
+格点从已知实际时刻投影，不经过 wall time 编辑准入。小时对齐保留 DST 回拨中输入所属的那一次小时，逐格按实际时长推进；日/周/月沿用当前厂商的日历 offset 数学。合法 offset 与 UTC 字串表达同一 instant 时得到同一展示相位；这不放宽 `factoryTimeInstant` 对编辑后不存在或二义性墙上时间的拒绝策略。
+
+`timezones` 缺省、空或含非法时区，或任一任务时区未解析时，公开 renderer 不建立图面，图例的甘特/卡片/状态/块/日历推导也全部为空，包括非工作底纹与“现在”。不回退浏览器时区。显式 `categories` 仍是宿主独立提供的分类色板，可在无 model 或未解析时展示并保留原显隐请求；它不证明图已渲染，也不代表宿主已应用过滤。宿主若只需随图显示色板，应与图面使用相同的显示条件。
 
 工单 cell 只绘制第一个命中块：先资源泳道，再工作中心泳道；同一泳道按当前模型的块顺序首命中。图例只列至少赢得一个 cell 的种类，完整覆盖时后块可不出现，部分覆盖时仍可能出现两类。不同泳道分别判定。资源视图仍绘制全部相交的连续块窗口；本规则不改变引擎、模型顺序或业务窗口优先级。
 
