@@ -66,3 +66,5 @@ UNRUN：CI 执行、完整 docs #10、packed #11、device、旧消费者 #13/#15
 `browser-route-cleanup-final.json` 和 `browser-restored-final.json`：卸载后 engine/bar/tooltip/ghost 均 0；TZ Asia/Shanghai、visualScale 1，原生 zoom 未改且 UNRUN。Ego Space88 `finish({keep:[]})` 恰一次，closedSpace true/unmanaged 0；T3 自有 tab 正常 window.close 后末 status 无 tab。只清本席服务与 scratch 链接，不删 tree。Ego 提示更新但未升级。本轮真实 native503 回落、完整旧 theme/size/multi-instance 矩阵未重跑，明确有限继承未改 producer；相关正式 lifecycle/namespace/edit regressions 已包含在 fresh scheduling 套件。
 
 最终维护门禁：15 个手写文件 fmt exit0、受影响源码 lint exit0、ticket RAW diff-check exit0、staged diff-check exit0；main RAW diff-check 仍为历史 exit2，原日志不删不改。末次 fetch + merge integration 为 Already up to date，仍是本页指定 base/tree。fmt 的 `../` 参数拒绝、两个新文档初次格式失败及后续修正分别留 raw gate。服务清理首轮安全停止了两个已核 cwd/command 的 PID，遇到非链接 `.vite-temp` 后主动停止；公开回读进程/端口均已退出，再仅删除五个明确自建链接，见 `raw/cleanup-services.json`。
+
+R2 仍拒绝 M1/F1 的通用 HTTP title 与异步初始化回声分支；本轮候选及完整 RED/GREEN 指向 [R2 两项返修](f5-f6/README.md)。原实施与 [R1 返修](f1-f4/README.md) 的通过范围及 FAIL/UNKNOWN 不被后续候选改写；独立 R3 由父安排。

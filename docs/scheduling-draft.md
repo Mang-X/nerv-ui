@@ -21,7 +21,7 @@
 
 事件：`update:groupBy(key)`、`actionError({ operation, error })`、`update:selectedTaskId(id)`、`move(TaskDragPayload)`、`update(taskId, SchedulingDraftPatch)`、`lock(taskId, locked)`、`lockedAttempt(taskId)`、`moveToPending(taskId)`、`restorePending(taskId)`、`undo()`、`redo()`、`cleared()`。patch 仅包含 startUtc/endUtc/resourceId。锁只约束本地编辑，不自动持久化。
 
-图拖动 payload 原样保留 P07 `assignment: { dimension, id, label }`，其中 id 可以为 null。host 决定如何采用；任意空间/小组维度不能冒充 equipment ID。父输入不变即拒绝，图回到原权威状态；表格原生输入也在请求后的 nextTick 回显当前值。采用后必须由父替换/更新 model。换 plan 请求清选中，删除当前 task 同样清理；受控消费者应处理该事件。受控选择请求在 nextTick 回读当前权威 ID：父接受后选择新项，拒绝后恢复原项；相同 ID 的命令回声不再发请求。外部同 ID 改名/重排时详情仍读当前对象。空 ID、删除选中任务或空权威下拒绝选择会清除高亮；Board 通过既有 selectTask 的空 ID 清除引擎选择，并在现有 model 输入上提供新的独立顶层对象以清除原生高亮；不改写宿主输入、不重建当前图实例、不改引擎/command/lifecycle 实现。图面仅回传非空的用户选择，命令空 ID 的回声不会成为新的清除请求。readonly 下仍可选择。切图把当前选择发送到现有 command(selectTask)，搜索使用公开 highlight/reveal 命令。
+图拖动 payload 原样保留 P07 `assignment: { dimension, id, label }`，其中 id 可以为 null。host 决定如何采用；任意空间/小组维度不能冒充 equipment ID。父输入不变即拒绝，图回到原权威状态；表格原生输入也在请求后的 nextTick 回显当前值。采用后必须由父替换/更新 model。换 plan 请求清选中，删除当前 task 同样清理；受控消费者应处理该事件。受控选择请求在 nextTick 回读当前权威 ID：父接受后选择新项，拒绝后恢复原项；命令回声不再发请求，包括异步初始化期间的外部选择更替。Board 通过图组件只读透传的现有 Canvas `engineName` 等待 `dhtmlx` ready；loading 期间不排入 selectTask，ready 边沿仅同步最新权威 ID。重挂后重新读取当前输入，旧实例由现有生命周期退役；不采用固定等待或按 ID 长期屏蔽用户选择。外部同 ID 改名/重排时详情仍读当前对象。空 ID、删除选中任务或空权威下拒绝选择会清除高亮；Board 通过既有 selectTask 的空 ID 清除引擎选择，并在现有 model 输入上提供新的独立顶层对象以清除原生高亮；不改写宿主输入、不重建当前图实例、不改引擎/command/loader/lifecycle 实现。图面仅回传非空的用户选择，命令空 ID 的回声不会成为新的清除请求。readonly 下仍可选择。切图把当前选择发送到现有 command(selectTask)，搜索使用公开 highlight/reveal 命令。
 
 分组选择器发 `update:groupBy(key)` 请求。传入 `groupBy` 时父输入是权威；父不采用时，选择器在 nextTick 恢复当前值，图面和图例始终读取同一 actualGroup。缺省时 Board 自持选择，当前维度表已不含本地选择时回到首个维度；换 plan 重置本地分组。宿主应传当前维度表中的有效 key；维度值/泳道及图例计算继续由现有 P05/P08 producer 处理。
 
@@ -39,7 +39,7 @@ Board 在三个视图上方保留输入驱动的跨任务清单。数量为当�
 
 `SchedulingDraftClearDialog` 可独立消费：必填 `v-model:open`，可选 `pending/disabled/scopeKey/clear`。`clear(control): Promise<boolean>` 兼容旧 `() => Promise<boolean>`；`cleared()` 只在当前操作 true 后触发，同时 `update:open(false)`；`update:pending(boolean)` 可同步外部编辑禁用。false/异常不关对话框；取消不发 cleared。处理期间禁止取消和 Escape。关闭、scopeKey 深层变化、clear callback 更换、disabled 改变或卸载会使旧操作过期；host 应在换方案时关闭对话框。Board 已组合该行为，并在回调成功后发 cleared，由 host 决定如何替换草案。callback 若自行改 model，会使旧请求过期；推荐返回 true 后在 cleared 中完成 UI 状态替换。
 
-Board 与独立 ClearDialog 都支持可选 `formatActionError?: SchedulingDraftErrorFormatter`，签名 `(error: unknown, operation: 'save' | 'clear') => string | undefined`。返回已审定的用户可行动原因，undefined/空串/格式化异常走库默认映射；返回完整 HTTP/API/JSON/堆栈等技术原文也会被拦截。默认从 Error.message 或对象 message/detail/title 取纯中文可读原因，识别出的技术串及未知形状使用“未能保存/清空，草案仍保留，可重试”。安全领域原因保留，库不要求每个宿主先包装异常。formatter 不改变 boolean 成功合同，旧 callback 签名兼容。
+Board 与独立 ClearDialog 都支持可选 `formatActionError?: SchedulingDraftErrorFormatter`，签名 `(error: unknown, operation: 'save' | 'clear') => string | undefined`。返回已审定的用户可行动原因，undefined/空串/格式化异常走库默认映射；返回完整 HTTP/API/JSON/堆栈等技术原文也会被拦截。默认从 Error.message 或对象 message/detail/title 取中文可读原因，允许单个领域术语/标识；成句英文 problem title 不因中文前后缀而放行，HTTP 状态/传输词汇、code/stack/API 路径及其它诊断语法均拦截。可选 formatter 仍可提供已审定的原因，并经过相同技术语法检查。识别出的技术串及未知形状使用“未能保存/清空，草案仍保留，可重试”。安全领域原因保留，库不要求每个宿主先包装异常。formatter 不改变 boolean 成功合同，旧 callback 签名兼容。
 
 当前失败同时发 `actionError({ operation, error })`，保留原始 unknown 对象用于宿主日志/诊断；Board 转发自身保存及内嵌清空事件，独立 ClearDialog 也直接公开此事件。原始对象不默认进入可见状态；过期请求既不格式化、不更新状态，也不发诊断事件。宿主可监听该事件接自己的诊断系统，无需将原文放到 UI。
 

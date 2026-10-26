@@ -182,7 +182,14 @@ const matches = computed(() =>
 function command(cmd: EngineCommand) {
   ;(view.value === 'gantt' ? gantt.value : resource.value)?.command(cmd)
 }
+const selectionEngine = computed(() =>
+  view.value === 'gantt' ? gantt.value : view.value === 'resource' ? resource.value : undefined,
+)
 function syncSelection() {
+  // Do not enqueue selection while the canvas is loading. Its command queue
+  // replays later, outside this synchronous echo guard, with obsolete IDs.
+  // Readiness changes re-read the latest authority on this same instance.
+  if (selectionEngine.value?.engineName !== 'dhtmlx') return
   syncingSelection = true
   try {
     command({ kind: 'selectTask', taskId: selected.value?.id ?? '' })
@@ -208,10 +215,14 @@ function locate(index: number) {
   select(matches.value[cursor.value]!.id)
   command({ kind: 'revealTask', taskId: matches.value[cursor.value]!.id })
 }
-watch([view, gantt, resource, selected, () => props.model], syncSelection, {
-  flush: 'post',
-  deep: true,
-})
+watch(
+  [selectionEngine, () => selectionEngine.value?.engineName, selected, () => props.model],
+  syncSelection,
+  {
+    flush: 'post',
+    deep: true,
+  },
+)
 watch(
   () => selected.value?.id,
   (id, previous) => {

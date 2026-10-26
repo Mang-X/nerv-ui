@@ -6,6 +6,7 @@ import {
   SchedulingDraftClearDialog,
   SchedulingDraftFeedback,
   type ScheduleModel,
+  type SchedulingDraftActionError,
 } from '@nerv-iip/scheduling'
 
 const initial: ScheduleModel = {
@@ -575,6 +576,128 @@ it.each([
   { id: 'compact-operation', message: 'operationIdsaveDraft 当前操作未完成，请重试' },
 ])(
   'draft action maps compact technical text mixed with a user reason for $id',
+  async ({ message }) => {
+    const page = setup({
+      save: async () => {
+        throw new Error(message)
+      },
+    })
+    await click('保存草案')
+    await flushPromises()
+    expect(page.get('[data-draft-save-status]').text()).toBe('未能保存，草案仍保留，可重试。')
+  },
+)
+
+it.each(['save', 'board-clear', 'standalone-clear'] as const)(
+  'draft action classifies HTTP problem titles mixed with Chinese and preserves diagnostics and retry for %s',
+  async (surface) => {
+    const raw = new Error('保存失败：503 Service Unavailable')
+    const action = vi.fn().mockRejectedValueOnce(raw).mockResolvedValueOnce(true)
+    const page =
+      surface === 'standalone-clear'
+        ? mount(SchedulingDraftClearDialog, {
+            props: { open: true, clear: action },
+            attachTo: document.body,
+          })
+        : setup({ [surface === 'save' ? 'save' : 'clear']: action })
+    wrapper = page
+    await flushPromises()
+    if (surface === 'save') await click('保存草案')
+    else {
+      if (surface === 'board-clear') await click('清空草案')
+      document.body.querySelector<HTMLButtonElement>('[data-clear-confirm]')!.click()
+    }
+    await flushPromises()
+    expect(document.body.textContent).not.toContain('Service Unavailable')
+    expect(document.body.textContent).toContain('草案仍保留，可重试')
+    expect((page.emitted('actionError')?.at(-1)?.[0] as SchedulingDraftActionError).error).toBe(raw)
+    if (surface === 'save') await click('保存草案')
+    else {
+      expect(document.body.querySelector('[role="alertdialog"]')).not.toBeNull()
+      expect(page.emitted('cleared')).toBeUndefined()
+      document.body.querySelector<HTMLButtonElement>('[data-clear-confirm]')!.click()
+    }
+    await flushPromises()
+    if (surface === 'save') expect(page.get('[data-draft-save-status]').text()).toBe('草案已保存。')
+    else expect(page.emitted('cleared')).toHaveLength(1)
+  },
+)
+
+it.each([
+  { id: 'bad-request', message: '保存失败：400 Bad Request' },
+  { id: 'authorization', message: '当前清空失败：Unauthorized' },
+  { id: 'not-found', message: '保存失败：404 Not Found' },
+  { id: 'conflict', message: '清空失败：Conflict' },
+  { id: 'unprocessable', message: '保存失败：Unprocessable Content' },
+  { id: 'rate-limit', message: '操作失败：429 Too Many Requests' },
+  { id: 'timeout', message: '保存失败：504 Gateway Timeout' },
+  { id: 'code', message: '保存失败：code=E503' },
+  { id: 'stack', message: '无法保存 at saveDraft (/app/actions.ts:12)' },
+  { id: 'endpoint', message: '保存失败：/v1/plans/active' },
+])('draft action classifies unreviewed technical reasons for $id', async ({ message }) => {
+  const page = setup({
+    save: async () => {
+      throw { detail: message }
+    },
+  })
+  await click('保存草案')
+  await flushPromises()
+  expect(page.get('[data-draft-save-status]').text()).toBe('未能保存，草案仍保留，可重试。')
+})
+it.each([
+  { id: 'domain', message: '方案已被后续方案取代，请重新选择' },
+  { id: 'identifier', message: '请先解锁 CNC 机台，再重试' },
+  { id: 'numeric-room', message: '请先选择 503 号房间，再重试' },
+])('draft action preserves a safe actionable reason for $id', async ({ message }) => {
+  const page = setup({
+    save: async () => {
+      throw { detail: message }
+    },
+  })
+  await click('保存草案')
+  await flushPromises()
+  expect(page.get('[data-draft-save-status]').text()).toBe(
+    `未能保存：${message}。草案仍保留，可重试。`,
+  )
+})
+
+it('draft action keeps an optional vetted formatter and falls back for an undefined throw', async () => {
+  const raw = { title: 'Service Unavailable', status: 503 }
+  const page = setup({
+    save: async () => {
+      throw raw
+    },
+    formatActionError: () => '请先解锁当前安排',
+  })
+  await click('保存草案')
+  await flushPromises()
+  expect(page.get('[data-draft-save-status]').text()).toBe(
+    '未能保存：请先解锁当前安排。草案仍保留，可重试。',
+  )
+  expect((page.emitted('actionError')?.at(-1)?.[0] as SchedulingDraftActionError).error).toBe(raw)
+  await page.setProps({ formatActionError: () => 'Service Unavailable' })
+  await click('保存草案')
+  await flushPromises()
+  expect(page.get('[data-draft-save-status]').text()).toBe('未能保存，草案仍保留，可重试。')
+  await page.setProps({
+    save: async () => {
+      throw undefined
+    },
+    formatActionError: () => undefined,
+  })
+  await click('保存草案')
+  await flushPromises()
+  expect(page.get('[data-draft-save-status]').text()).toBe('未能保存，草案仍保留，可重试。')
+  expect(
+    (page.emitted('actionError')?.at(-1)?.[0] as SchedulingDraftActionError).error,
+  ).toBeUndefined()
+})
+
+it.each([
+  { id: 'single-word-title', message: '保存失败：Locked' },
+  { id: 'compact-problem-title', message: '保存失败：ServiceUnavailable' },
+])(
+  'draft action does not treat unreviewed English words as a domain identifier for $id',
   async ({ message }) => {
     const page = setup({
       save: async () => {
