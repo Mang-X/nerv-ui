@@ -1,5 +1,7 @@
 # P08 / #91：图例、工具栏与八个详情/列表面板
 
+R1 独立审查拒绝后的四项 P2 返修见 [F1–F4 记录](f1-f4/README.md)。下文保留首轮实施时点的原始结论与证据；其中“summary fresh browser UNRUN”等历史状态不覆盖返修轮的新证据，原 RED/FAIL/UNKNOWN 和 R1 拒绝也不被后续通过消除。
+
 仅 implement-spec 步骤4，scope:M / 中至高难度，一个独立 draft PR。实际工作树 `/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels`，分支 `feat/t07-p08-panels`；开工 clean，base integration `b56ef5f6ba4aada18190887335696864d13ad1d7` / tree `9bbad61c1e1cdb02d0364421d92c55af21ad10c3`。已 fetch + merge 最新 integration，结果 Already up to date，没有 reset。最终 head/tree/clean/PR 与清理和逐项 SHA 回读见 [本轮 handoff](/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-26/t07-p08-implementation-r1/handoff.md)。这是作者实施证据，不是独立 review 或父 #8 组合验收。
 
 唯一 owner 为现有八个 panels 和 legend/scale 展示；没有改引擎、engine 事件/命令、loader/useEngine/Canvas、resourceProjection、P06/P07 编辑算法或 frozen migration/reference-adapters。保持包名、Nv 基元、默认旧字段与 public 事件；新增输入均可选。24 个手写源码/直接断言/合同与示例文件超过约15文件信号，但均服务同一已批准展示切片，没有架构/跨 owner 扩张；scope checkpoint 记录于外部测试工作笔记。没有自行 review、ready、merge、close、watch、发布或后继。

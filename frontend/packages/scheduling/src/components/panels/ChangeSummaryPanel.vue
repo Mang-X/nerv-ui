@@ -34,8 +34,9 @@ const filteredChanges = computed(() => {
     })
 })
 function findTask(tasks: ScheduleTask[] | undefined, change: ScheduleChange) {
-  const exact = change.taskId ? tasks?.find((task) => task.id === change.taskId) : undefined
-  if (exact) return exact
+  // An explicit identity stays authoritative even after removal (including an empty id).
+  // Only historical records with no identity may use the unique legacy association.
+  if (change.taskId !== undefined) return tasks?.find((task) => task.id === change.taskId)
   const matches = tasks?.filter(
     (task) => task.orderId === change.orderId && task.operationId === change.operationId,
   )
@@ -61,8 +62,13 @@ function formatTime(value: string, task?: ScheduleTask) {
 }
 const emit = defineEmits<{ select: [taskId: string] }>()
 
+function selectionReason(c: ScheduleChange) {
+  if (c.selectDisabledReason) return c.selectDisabledReason
+  if (!c.taskId) return '无关联活动'
+  if (props.tasks && !findTask(props.tasks, c)) return '该活动当前不可查看'
+}
 function onClick(c: ScheduleChange) {
-  if (c.taskId && !c.selectDisabledReason) emit('select', c.taskId)
+  if (c.taskId && !selectionReason(c)) emit('select', c.taskId)
 }
 </script>
 
@@ -100,8 +106,8 @@ function onClick(c: ScheduleChange) {
           <button
             type="button"
             :data-change-task="c.taskId"
-            :disabled="!c.taskId || !!c.selectDisabledReason"
-            :title="c.selectDisabledReason ?? (!c.taskId ? '无关联活动' : undefined)"
+            :disabled="!!selectionReason(c)"
+            :title="selectionReason(c)"
             class="flex w-full flex-col gap-2 rounded-md border border-border bg-card px-3 py-2 text-left transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             @click="onClick(c)"
           >

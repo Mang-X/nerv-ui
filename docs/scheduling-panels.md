@@ -63,9 +63,11 @@ P08 / [#91](https://github.com/Mang-X/nerv-ui/issues/91) 只处理既有八个�
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | ConflictPanel      | 行 `label/reasonLabel/selectDisabledReason`；组件 `labels: { title?, emptyTitle?, emptyDescription? }`                                        | `select(taskId)`；无 taskId/有禁用理由不能伪造定位                                                                        |
 | UnscheduledPanel   | 行 `label/groupLabel/reasonLabel/actionLabel/actionDisabledReason`；组件 `readOnly?` 与同上 labels                                            | 既有 `fix(orderId, operationId)` 原样保留；宿主决定处理；readonly/原因禁用                                                |
-| ChangeSummaryPanel | 行 `label/groupLabel/typeLabel/selectDisabledReason`；组件 `labels: { title?, filter?, emptyTitle?, emptyDescription? }`；`baseTasks?/tasks?` | `select(taskId)`；按显式 taskId 找展示对象，缺该 id 时仅接受唯一旧 order+operation 关联，不猜多条；不展示原始 operationId |
+| ChangeSummaryPanel | 行 `label/groupLabel/typeLabel/selectDisabledReason`；组件 `labels: { title?, filter?, emptyTitle?, emptyDescription? }`；`baseTasks?/tasks?` | `select(taskId)`；显式 taskId 只按 id 查找；仅未提供 taskId 的历史记录可接受唯一旧 order+operation 关联；不展示原始 operationId |
 
 重排或替换数组后动作使用当前行身份。ChangeSummary 不派生 changeType、不算差异/KPI；空记录与筛选无命中分开。before/after 时间分别使用对应任务的显式时区，资源优先使用宿主展示名。P12 后续可复用这些显示输入，不在本票补比较算法。
+
+`taskId?: string` 的 `undefined` 表示未提供身份；空字符串是显式空身份，不回退旧 pair，也不能定位。提供 `tasks` 后，明确 id 在当前集合不存在时，行保留 change 与可用的 before 信息，缺失侧不借另一个任务的资源或时间，动作禁用并说明“该活动当前不可查看”。不提供 `tasks` 时保持旧的按行 id 发出请求能力；历史无 id 的唯一 pair 仅用于展示，不编造事件身份。输入不修改。
 
 ## 图例与真实刻度
 
@@ -75,6 +77,10 @@ P08 / [#91](https://github.com/Mang-X/nerv-ui/issues/91) 只处理既有八个�
 
 固定 DHTMLX 9.1.4 `Ri()` / `scale_offset_minimal` 的工单范围排除 project 汇总节点后从实际活动日期取最小刻度起点，再向前一格、向后两格；`model/scale.ts` 的展示推导按这一规则和最终工厂时区取格点。旧“偶数整点”假设已被真实 07/09/11…相位反例推翻；`shiftBoundaryRendersAt(startUtc, scale)` 保留旧两参近似签名，但**当前图例不再调用它**。工单班次/时间块只有命中真实格点才列；粗刻度下零点班次恰好命中格点时仍可出现，不能一概声称全无。未解析对齐时不造格点。
 
+小时展示格点与保留的 `factory_hour_start` 一样清除毫秒；这只归一展示参考时刻，`factoryTimeInstant` 的编辑/无操作保存继续保留原始偏移与毫秒。当前保留厂商的粗刻度 offset 转换仍会保留输入的毫秒相位；不能把小时规则推广到日/周/月。上海和 Kolkata 四刻度与真实 cell/连续窗口的本轮对照见返修证据。
+
+工单 cell 只绘制第一个命中块：先资源泳道，再工作中心泳道；同一泳道按当前模型的块顺序首命中。图例只列至少赢得一个 cell 的种类，完整覆盖时后块可不出现，部分覆盖时仍可能出现两类。不同泳道分别判定。资源视图仍绘制全部相交的连续块窗口；本规则不改变引擎、模型顺序或业务窗口优先级。
+
 资源图 P05 使用连续日历/块窗口，不受两小时相位限制；日/周/月也可有窗口边界。图例使用同一 resourceProjection，遵守 P05/P07 维度 identity；不改引擎配置、拖动、生命周期或模型时间。
 
 `hiddenGroups?: readonly string[]` 提供受控显隐；`toggle-category({key, visible})` 是请求，回传前不改变受控态。省略 hiddenGroups 保留旧本地淡化兼容；它不代表过滤图面。`toggleableGroups?: readonly string[]` 限制能真实处理的开关，未传保留旧开关，空数组只允许折叠。示例只开放 category，事件后宿主确实替换图面任务集合，恢复后再显示，因此本例可以称“显隐”；不声称其它组已过滤。保留水印、Evaluation 与授权 UNKNOWN。
@@ -82,3 +88,5 @@ P08 / [#91](https://github.com/Mang-X/nerv-ui/issues/91) 只处理既有八个�
 实际 RED/GREEN、真实浏览器、命令与未运行边界见 [P08 证据](evidence/t07-p08/README.md)。源码独立消费不代表 packed、CI、旧应用、APS、父 #8 或生产发布通过。
 
 缺 vendor 时独立示例只显示现有唯一 native 只读 renderer；DHTMLX 专属图例隐藏，刻度/缩放/当前定位/适配窗口禁用并给出“当前仅提供只读时间查看”。仍可选择活动查看详情，记录写“已选择”而不声称未执行的 reveal；同页失败缓存和 reload 恢复继续遵守 P04 loader 合同。
+
+示例收起活动图后仍可从搜索/列表选择并查看详情，但定位/当前定位/适配窗口不可用，图例随图隐藏。重显保留详情选择，明确提示点击“定位选中活动”重新在图中定位；不冒充已恢复高亮。定位按钮只在有当前活动、图已展开且可接受 vendor 命令时可用。命令返回值没有执行确认，记录使用“已请求定位”，真实选择几何由浏览器证据另行核对。

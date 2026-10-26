@@ -136,26 +136,48 @@ export function deriveLegendSemantics(
     }
     return cursor < horizonEnd
   })
-  const blocks = projection
-    ? projection.lanes.flatMap((lane) => lane.blocks)
-    : tasks.filter(
-        (task) =>
-          task.blockKind &&
-          renderedRows.some(
-            (row) =>
-              (task.resourceId !== undefined && row.resources.includes(task.resourceId)) ||
-              (task.workCenterId !== undefined && row.workCenter === task.workCenterId),
-          ),
-      )
-  const visibleBlockKinds = new Set(
-    blocks
-      .filter((task) =>
-        view === 'resource'
-          ? Date.parse(task.startUtc) < horizonEnd && Date.parse(task.endUtc) > horizonStart
-          : cells.some((at) => at >= Date.parse(task.startUtc) && at < Date.parse(task.endUtc)),
-      )
-      .map((task) => task.blockKind),
-  )
+  const visibleBlockKinds = new Set<BlockKind>()
+  if (projection) {
+    // Resource overlays draw every intersecting interval, including overlaps.
+    for (const lane of projection.lanes)
+      for (const block of lane.blocks)
+        if (Date.parse(block.startUtc) < horizonEnd && Date.parse(block.endUtc) > horizonStart)
+          visibleBlockKinds.add(block.blockKind!)
+  } else {
+    // Retained order cells choose the first matching interval in the first
+    // matching lane: resource before work center, model order within each lane.
+    const indexedBlocks = new Map<string, { start: number; end: number; kind: BlockKind }[]>()
+    for (const block of tasks) {
+      if (!block.blockKind) continue
+      const start = Date.parse(block.startUtc)
+      const end = Date.parse(block.endUtc)
+      if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) continue
+      for (const key of [
+        ...(block.resourceId ? [resourceKey(block.resourceId)] : []),
+        ...(block.workCenterId ? [workCenterKey(block.workCenterId)] : []),
+      ]) {
+        const windows = indexedBlocks.get(key) ?? []
+        windows.push({ start, end, kind: block.blockKind })
+        indexedBlocks.set(key, windows)
+      }
+    }
+    for (const row of renderedRows) {
+      const keys = [
+        ...row.resources.filter(Boolean).map(resourceKey),
+        ...(row.workCenter ? [workCenterKey(row.workCenter)] : []),
+      ]
+      for (const at of cells)
+        for (const key of keys) {
+          const hit = indexedBlocks
+            .get(key)
+            ?.find((window) => at >= window.start && at < window.end)
+          if (hit) {
+            visibleBlockKinds.add(hit.kind)
+            break
+          }
+        }
+    }
+  }
 
   return {
     gantt: {

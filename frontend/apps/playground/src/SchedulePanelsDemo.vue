@@ -62,6 +62,16 @@ const message = shallowRef('选择一项活动查看详情。')
 const records = shallowRef<{ name: string; action: string; time: string; result: string }[]>([])
 const chart = useTemplateRef<InstanceType<typeof GanttChart>>('chart')
 const reference = useTemplateRef<InstanceType<typeof ResourceSchedulerBoard>>('reference')
+const chartCommandReason = computed(() =>
+  !chartVisible.value
+    ? '活动图已收起，请先展开活动图'
+    : !vendorAvailable.value
+      ? '当前仅提供只读时间查看'
+      : !chart.value
+        ? '活动图正在打开，请稍候'
+        : undefined,
+)
+const locateReason = computed(() => (!selected.value ? '请先选择活动' : chartCommandReason.value))
 const model = computed(() => ({
   ...authority.value,
   tasks: hiddenGroups.value.includes('category')
@@ -115,6 +125,7 @@ function record(
   message.value = result
 }
 function command(value: EngineCommand) {
+  if (chartCommandReason.value) return
   chart.value?.command(value)
 }
 function select(id: string) {
@@ -124,13 +135,32 @@ function select(id: string) {
     return
   }
   selectedId.value = id
-  command({ kind: 'selectTask', taskId: id })
-  command({ kind: 'revealTask', taskId: id })
+  if (!chartCommandReason.value) {
+    command({ kind: 'selectTask', taskId: id })
+    command({ kind: 'revealTask', taskId: id })
+  }
   record(
-    vendorAvailable.value ? '查看并定位' : '查看',
-    vendorAvailable.value ? `已定位 ${task.text}` : `已选择 ${task.text}，当前仅提供只读查看`,
+    chartCommandReason.value ? '查看' : '查看并定位',
+    !chartVisible.value
+      ? `已选择 ${task.text}，活动图已收起；展开后点击“定位选中活动”。`
+      : chartCommandReason.value
+        ? `已选择 ${task.text}，${chartCommandReason.value}`
+        : `已请求定位 ${task.text}`,
     task,
   )
+}
+function locate() {
+  if (!locateReason.value) select(selectedId.value)
+}
+function toggleChart() {
+  chartVisible.value = !chartVisible.value
+  message.value = chartVisible.value
+    ? selected.value
+      ? vendorAvailable.value
+        ? '活动图已展开，点击“定位选中活动”在图中查看所选活动。'
+        : '活动图已展开，当前仅提供只读时间查看。'
+      : '活动图已展开，请选择活动。'
+    : '活动图已收起，仍可选择活动查看详情。'
 }
 function chartSelection(id: string) {
   if (selectedId.value === id) return
@@ -215,10 +245,12 @@ function restore() {
   hiddenGroups.value = []
 }
 function today() {
+  if (chartCommandReason.value) return
   command({ kind: 'scrollToToday' })
   record('定位当前', '已请求定位当前时间')
 }
 function fit() {
+  if (chartCommandReason.value) return
   command({ kind: 'fitToScreen' })
   record('适配窗口', '已适配当前阅读宽度')
 }
@@ -280,7 +312,7 @@ function referenceSelect(id: string) {
       <NvButton variant="outline" @click="referenceVisible = !referenceVisible"
         >显示或收起参考图</NvButton
       >
-      <NvButton variant="outline" @click="chartVisible = !chartVisible">显示或收起活动图</NvButton>
+      <NvButton variant="outline" @click="toggleChart">显示或收起活动图</NvButton>
     </div>
     <section
       :style="{ maxWidth: narrow ? '880px' : '100%' }"
@@ -305,8 +337,8 @@ function referenceSelect(id: string) {
           :labels="{ repreview: '核对活动', release: '确认安排', dirty: '活动状态已更新' }"
           :disabled-reasons="{
             scale: !vendorAvailable ? '当前仅提供只读时间查看' : undefined,
-            today: !vendorAvailable ? '当前仅提供只读时间查看' : undefined,
-            fit: !vendorAvailable ? '当前仅提供只读时间查看' : undefined,
+            today: chartCommandReason,
+            fit: chartCommandReason,
             undo: '没有可撤销的调整',
             redo: '没有可重做的调整',
             zoomIn: !vendorAvailable
@@ -339,6 +371,9 @@ function referenceSelect(id: string) {
         <p data-selection>选中：{{ selected?.text ?? '尚未选择活动' }}</p>
         <p data-visible-count>{{ activities.length }} 项活动</p>
         <p role="status">{{ message }}</p>
+        <NvButton variant="outline" :disabled="!!locateReason" :title="locateReason" @click="locate"
+          >定位选中活动</NvButton
+        >
         <NvButton variant="outline" :disabled="!selected" @click="sheetOpen = true"
           >展开活动详情</NvButton
         >
@@ -355,7 +390,7 @@ function referenceSelect(id: string) {
             />
           </div>
           <SchedulingLegend
-            v-if="vendorAvailable"
+            v-if="vendorAvailable && chartVisible"
             :model="model"
             :scale="scale"
             :categories="[{ key: 'weld', label: '活动' }]"

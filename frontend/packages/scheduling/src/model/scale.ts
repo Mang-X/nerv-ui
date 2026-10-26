@@ -86,7 +86,12 @@ export function orderScaleCells(model: ScheduleModel, scale: ResolvedTimeScale):
           factoryTimeInstant(
             date.toISOString().slice(0, 19),
             timezone,
-            new Date(original).toISOString(),
+            // factory_hour_start removes the fractional instant. The editing
+            // helper deliberately preserves it, so normalize only this display
+            // reference. Coarser retained factory units keep their offset phase.
+            new Date(
+              scale === 'hour' ? Math.floor(original / 1000) * 1000 : original,
+            ).toISOString(),
           ) ?? '',
         )
   function start(at: number) {
