@@ -62,3 +62,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T07/P12 / #95](https://github.com/Mang-X/nerv-ui/issues/95) 从 `/#schedule-compare/library`、`/#schedule-compare/studio` 展示已保存基线与候选的静态对照。公开组件按宿主 semantic key 关联活动，逐侧显示时间、资源与分段，指标和风险只读来源事实；接入及旧私有组件适配见 [比较合同](docs/scheduling-comparison.md)，执行记录见 [P12 证据](docs/evidence/t07-p12/README.md)。
 
 [T07/P13 / #96](https://github.com/Mang-X/nerv-ui/issues/96) 从 `/#schedule-async/library`、`/#schedule-async/studio` 展示受控异步候选、插单历史分页、停机影响与保存确认。四件公开组件只读取宿主状态和事实；请求身份、停止、重试、轮询及真实保存由宿主负责。公共输入与旧私有件对应见 [异步候选合同](docs/scheduling-async-candidates.md)，实际证据见 [P13 记录](docs/evidence/t07-p13/README.md)。
+
+[T07/P10 / #93](https://github.com/Mang-X/nerv-ui/issues/93) 从 `/#schedule-request/library`、`/#schedule-request/studio` 提供候选池、窗口与单项请求的中性接入。状态、可见行批量、草稿和异步回执合同见 [请求表单](docs/scheduling-request-forms.md)；本页内存数据与确认不代表实际 APS 或后端保存。[P10 证据](docs/evidence/t07-p10/README.md)保留本票边界。

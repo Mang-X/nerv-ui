@@ -11,6 +11,7 @@ import DraftEditingDemo from './DraftEditingDemo.vue'
 import SnapshotRiskDemo from './SnapshotRiskDemo.vue'
 import ScheduleComparisonDemo from './ScheduleComparisonDemo.vue'
 import AsyncCandidateDemo from './AsyncCandidateDemo.vue'
+import RequestFormsDemo from './RequestFormsDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
@@ -90,8 +91,13 @@ function addProject() {
 </script>
 
 <template>
+  <RequestFormsDemo
+    v-if="surface === '#schedule-request/library' || surface === '#schedule-request/studio'"
+    :key="surface"
+    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <AsyncCandidateDemo
-    v-if="surface === '#schedule-async/library' || surface === '#schedule-async/studio'"
+    v-else-if="surface === '#schedule-async/library' || surface === '#schedule-async/studio'"
     :key="surface"
     :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
   />
@@ -146,6 +152,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#schedule-request/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >项目安排请求</a
+      >
       <a href="#schedule-async/library" class="inline-flex min-h-11 items-center px-4 underline"
         >异步候选</a
       >
