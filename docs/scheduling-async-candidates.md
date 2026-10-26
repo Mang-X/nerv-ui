@@ -35,4 +35,4 @@
 
 ## 验证边界
 
-具体 RED/GREEN、浏览器截图、HTTP 字节核对和未运行车道见 [P13 记录](evidence/t07-p13/README.md)及其 [R1 返修记录](evidence/t07-p13/f1/README.md)。内存来源与真实可见浏览器只能证明公开 UI 和 host recipe 的状态隔离，不能证明真实 APS、真实后端轮询、原库消费或生产发布。DHTMLX 9.1.4 Professional Evaluation 文件、水印与第三方声明未改；授权范围仍为 UNKNOWN。
+具体 RED/GREEN、浏览器截图、HTTP 字节核对和未运行车道见 [P13 记录](evidence/t07-p13/README.md)、[R1 返修记录](evidence/t07-p13/f1/README.md)及 [R2 用户文案返修记录](evidence/t07-p13/f2/README.md)。内存来源与真实可见浏览器只能证明公开 UI 和 host recipe 的状态隔离，不能证明真实 APS、真实后端轮询、原库消费或生产发布。DHTMLX 9.1.4 Professional Evaluation 文件、水印与第三方声明未改；授权范围仍为 UNKNOWN。

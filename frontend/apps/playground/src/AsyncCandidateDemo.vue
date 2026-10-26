@@ -488,7 +488,7 @@ function selectCandidate(id: string, candidateId: string) {
 
 <template>
   <main class="mx-auto grid max-w-7xl gap-6 p-6 text-sm" data-async-candidates-page>
-    <nav class="flex flex-wrap gap-3" aria-label="异步候选页面导航">
+    <nav class="flex flex-wrap gap-3" aria-label="候选安排页面导航">
       <a href="#desktop" class="inline-flex min-h-11 items-center underline">返回工作空间</a>
       <a href="#schedule-compare/library" class="inline-flex min-h-11 items-center underline"
         >安排对照</a
@@ -504,10 +504,10 @@ function selectCandidate(id: string, candidateId: string) {
     </nav>
     <header class="grid gap-2">
       <h1 class="text-2xl font-semibold">
-        {{ venue === 'library' ? '读书会异步候选' : '工作坊异步候选' }}
+        {{ venue === 'library' ? '读书会候选安排' : '工作坊候选安排' }}
       </h1>
       <p class="text-muted-foreground">
-        本页用可手动推进的内存来源演示等待、失败、换任务和保存确认；没有连接实际排程服务。
+        候选结果和保存响应仅在本页内存中生成；没有连接实际排程计算或后端保存。本页显示的“已保存”仅代表当前页面确认，刷新后不保留。
       </p>
       <div class="flex flex-wrap gap-2">
         <NvButton variant="outline" :aria-pressed="isDark" @click="toggle">{{
@@ -526,40 +526,41 @@ function selectCandidate(id: string, candidateId: string) {
     </header>
     <section
       class="grid gap-3 rounded-lg border border-border bg-card p-4"
-      aria-label="内存来源控制"
+      aria-label="本页状态设置"
     >
-      <h2 class="font-semibold">演示来源控制</h2>
+      <h2 class="font-semibold">状态设置</h2>
+      <p class="text-muted-foreground">以下操作仅调整本页结果和保存响应，便于查看不同状态。</p>
       <div class="flex flex-wrap gap-2">
         <NvButton variant="outline" data-fixture="start-job" @click="startJob()">开始核实</NvButton>
         <NvButton variant="outline" data-fixture="running" @click="markRunning"
-          >转为计算中</NvButton
+          >显示计算中</NvButton
         >
         <NvButton variant="outline" data-fixture="replace-job" @click="startJob(true)"
-          >换一个请求</NvButton
+          >重新核实当前方案</NvButton
         >
         <NvButton variant="outline" data-fixture="complete-old" @click="completeOld"
-          >让上一请求晚到</NvButton
+          >接收上轮结果</NvButton
         >
         <NvButton variant="outline" data-fixture="complete-current" @click="complete()"
-          >完成当前请求</NvButton
+          >接收本轮结果</NvButton
         >
         <NvButton variant="outline" data-fixture="fail-current" @click="failCurrent"
-          >使当前请求失败</NvButton
+          >本轮结果不可用</NvButton
         >
         <NvButton variant="outline" data-fixture="fail-old" @click="failOld"
-          >让上一请求失败</NvButton
+          >上轮结果不可用</NvButton
         >
         <NvButton variant="outline" data-fixture="confirm-save" @click="confirmSave"
-          >确认保存成功</NvButton
+          >接收本轮保存确认</NvButton
         >
         <NvButton variant="outline" data-fixture="reject-save" @click="rejectSave"
-          >确认保存失败</NvButton
+          >本轮保存未确认</NvButton
         >
         <NvButton variant="outline" data-fixture="confirm-old-save" @click="confirmOldSave"
-          >让上一保存晚到</NvButton
+          >接收上轮保存确认</NvButton
         >
         <NvButton variant="outline" data-fixture="reject-old-save" @click="rejectOldSave"
-          >让上一保存失败</NvButton
+          >上轮保存未确认</NvButton
         >
       </div>
       <div class="flex flex-wrap gap-2">

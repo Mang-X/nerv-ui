@@ -2,6 +2,32 @@ import { flushPromises, mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
 import AsyncCandidateDemo from './AsyncCandidateDemo.vue'
 
+it('host explains its local result and save responses through user-facing state controls', async () => {
+  const page = mount(AsyncCandidateDemo, { props: { venue: 'library' } })
+  expect(page.text()).toContain('读书会候选安排')
+  expect(page.text()).toContain('候选结果和保存响应仅在本页内存中生成')
+  expect(page.text()).toContain('没有连接实际排程计算或后端保存')
+  expect(page.get('[aria-label="本页状态设置"]').text()).toContain('状态设置')
+  for (const [action, label] of [
+    ['start-job', '开始核实'],
+    ['running', '显示计算中'],
+    ['replace-job', '重新核实当前方案'],
+    ['complete-old', '接收上轮结果'],
+    ['complete-current', '接收本轮结果'],
+    ['fail-current', '本轮结果不可用'],
+    ['fail-old', '上轮结果不可用'],
+    ['confirm-save', '接收本轮保存确认'],
+    ['reject-save', '本轮保存未确认'],
+    ['confirm-old-save', '接收上轮保存确认'],
+    ['reject-old-save', '上轮保存未确认'],
+  ]) {
+    expect(page.get(`[data-fixture="${action}"]`).text()).toBe(label)
+  }
+  expect(page.text()).not.toContain('候选计算完成')
+  expect(page.text()).not.toContain('演示来源控制')
+  page.unmount()
+})
+
 it('host keeps an older completed response outside the new job and accepts only the current result', async () => {
   const page = mount(AsyncCandidateDemo, { props: { venue: 'library' } })
   await page.get('[data-fixture="start-job"]').trigger('click')
@@ -132,7 +158,7 @@ it('same host instance invalidates a created job on source change and accepts a 
   const page = mount(AsyncCandidateDemo, { props: { venue: 'library' } })
   await page.get('[data-fixture="start-job"]').trigger('click')
   await page.setProps({ venue: 'studio' })
-  expect(page.text()).toContain('工作坊异步候选')
+  expect(page.text()).toContain('工作坊候选安排')
   expect(page.text()).not.toContain('已受理，等待计算')
   expect(page.find('[aria-label="急单插单候选"]').exists()).toBe(false)
   await page.get('[data-fixture="start-job"]').trigger('click')
