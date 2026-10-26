@@ -151,6 +151,7 @@ function reset() {
 <template>
   <main class="min-h-screen bg-background p-5 text-foreground">
     <header class="mb-4 flex flex-wrap items-center gap-4">
+      <a :href="`#schedule-draft/${venue}`" class="underline">一起安排</a>
       <a href="#" class="underline">桌面</a><a href="#schedule" class="underline">时间安排</a
       ><a href="#schedule-gantt" class="underline">共读活动图</a
       ><a href="#schedule-resources/library" class="underline">空间安排</a>
