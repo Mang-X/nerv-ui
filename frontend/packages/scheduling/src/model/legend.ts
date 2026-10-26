@@ -4,7 +4,12 @@
 
 import { BLOCK_KINDS, type BlockKind } from './blocks'
 import { resourceProjection, resourceKey, workCenterKey } from './resource-projection'
-import { resolveTimeScale, orderDisplayScale, hasUnresolvedDisplayTimezone } from './scale'
+import {
+  resolveTimeScale,
+  orderDisplayScale,
+  resourceDisplayScale,
+  hasUnresolvedDisplayTimezone,
+} from './scale'
 import { hasInvalidModelTime } from './instant-validation'
 import type { LaneOrder, ScheduleModel, TimeScale } from './types'
 
@@ -35,7 +40,7 @@ export interface SchedulingLegendSemantics {
   blocks: BlockKind[]
   /**
    * 日历:仅有适用日历才推导非工作底纹;
-   * 班次边界要后端带出日历**且当前刻度画得出那条线**才列(工单格点 / 资源连续区间);
+   * 班次边界要输入日历且当前样式确实画出线才列（工单格点；资源零边框节点不列）；
    * 「现在」只在当下位于计划期与实际显示轴内时列出。
    */
   calendar: { nonWorking: boolean; shift: boolean; now: boolean }
@@ -76,13 +81,36 @@ export function deriveLegendSemantics(
   // in SchedulingLegend and remain available without a resolved diagram.
   if (!model || hasUnresolvedDisplayTimezone(model) || hasInvalidModelTime(model)) return EMPTY
   const tasks = model.tasks ?? []
+  const resolvedScale = resolveTimeScale(scale, model.horizon)
+  const resourceDisplay =
+    view === 'resource' ? resourceDisplayScale(model, resolvedScale) : undefined
+  const display =
+    resourceDisplay ?? (view === 'order' ? orderDisplayScale(model, resolvedScale) : undefined)
+  if (!display) return EMPTY
+  const { start: displayStart, end: displayEnd, cells } = display
+  const backgroundEnd = resourceDisplay?.cellEnd ?? displayEnd
   const projection =
     view === 'resource'
-      ? resourceProjection(model, grouping?.groupBy, grouping?.laneOrder)
+      ? resourceProjection(
+          model,
+          grouping?.groupBy ?? model.groupDimensions?.[0]?.key ?? 'workCenter',
+          grouping?.laneOrder,
+        )
       : undefined
   const operations = projection
-    ? projection.lanes.flatMap((lane) => lane.operations)
+    ? projection.lanes
+        .flatMap((lane) => lane.operations)
+        .filter(
+          (task) =>
+            // Retained vendor admits boundary-touching and zero-duration tasks
+            // (thin bars), unlike positive-area background intervals below.
+            Date.parse(task.startUtc) <= displayEnd && Date.parse(task.endUtc) >= displayStart,
+        )
     : tasks.filter((t) => t.type === 'operation' && !t.blockKind)
+  // Resource rows are synthetic, without task flags. All task semantics use
+  // the same P05 operations submitted to the renderer, never excluded summaries,
+  // milestones or background blocks. Lane KPI has its own projection basis.
+  const diagramTasks = projection ? operations : tasks.filter((t) => !t.blockKind)
   const renderedRows = projection
     ? projection.lanes.map((lane) => ({
         resources: lane.resourceIds,
@@ -97,11 +125,6 @@ export function deriveLegendSemantics(
   if (!renderedRows.length) return EMPTY
   const horizonStart = Date.parse(model.horizon?.startUtc ?? '')
   const horizonEnd = Date.parse(model.horizon?.endUtc ?? '')
-  const resolvedScale = resolveTimeScale(scale, model.horizon)
-  const orderDisplay = view === 'order' ? orderDisplayScale(model, resolvedScale) : undefined
-  const cells = orderDisplay?.cells ?? []
-  const displayStart = view === 'order' ? orderDisplay?.start : horizonStart
-  const displayEnd = view === 'order' ? orderDisplay?.end : horizonEnd
   const indexed = new Map<string, { start: number; end: number }[]>()
   for (const calendar of model.calendars ?? []) {
     const windows = calendar.shiftWindows
@@ -124,30 +147,33 @@ export function deriveLegendSemantics(
       return row.resources.flatMap((id) => indexed.get(resourceKey(id))!)
     })
     .filter((windows): windows is { start: number; end: number }[] => windows !== undefined)
-  const shiftBoundaryVisible = rowWindows.some((windows) =>
-    windows.some((window) =>
-      view === 'resource'
-        ? window.start >= horizonStart && window.start < horizonEnd
-        : cells.includes(window.start),
-    ),
-  )
+  // Resource shift fragments currently have zero width and a reset 0px border
+  // under the supported stylesheet composition. A DOM node is not a painted
+  // line. Keep CSS/engine untouched; only order's actual cell stroke is promised.
+  const shiftBoundaryVisible =
+    view === 'order' &&
+    rowWindows.some((windows) => windows.some((window) => cells.includes(window.start)))
   const hasOffwork = rowWindows.some((windows) => {
     if (view === 'order')
       return cells.some((at) => !windows.some((window) => at >= window.start && at < window.end))
-    let cursor = horizonStart
+    let cursor = displayStart
     for (const window of [...windows].sort((a, b) => a.start - b.start)) {
       if (window.end <= cursor) continue
-      if (window.start > cursor) return cursor < horizonEnd
+      if (window.start > cursor) return cursor < backgroundEnd
       cursor = Math.max(cursor, window.end)
     }
-    return cursor < horizonEnd
+    return cursor < backgroundEnd
   })
   const visibleBlockKinds = new Set<BlockKind>()
   if (projection) {
     // Resource overlays draw every intersecting interval, including overlaps.
     for (const lane of projection.lanes)
       for (const block of lane.blocks)
-        if (Date.parse(block.startUtc) < horizonEnd && Date.parse(block.endUtc) > horizonStart)
+        if (
+          Date.parse(block.endUtc) > Date.parse(block.startUtc) &&
+          Date.parse(block.startUtc) < backgroundEnd &&
+          Date.parse(block.endUtc) > displayStart
+        )
           visibleBlockKinds.add(block.blockKind!)
   } else {
     // Retained order cells choose the first matching interval in the first
@@ -187,17 +213,21 @@ export function deriveLegendSemantics(
 
   return {
     gantt: {
-      baseline: operations.some(
-        (t) =>
-          Number.isFinite(Date.parse(t.plannedStartUtc ?? '')) &&
-          Date.parse(t.plannedEndUtc ?? '') > Date.parse(t.plannedStartUtc ?? ''),
-      ),
-      link: (model.links ?? []).some(
-        (link) =>
-          tasks.some((task) => task.id === link.source && !task.blockKind) &&
-          tasks.some((task) => task.id === link.target && !task.blockKind),
-      ),
-      milestone: tasks.some((t) => t.isMilestone || t.milestoneLabel),
+      baseline:
+        view === 'order' &&
+        operations.some(
+          (t) =>
+            Number.isFinite(Date.parse(t.plannedStartUtc ?? '')) &&
+            Date.parse(t.plannedEndUtc ?? '') > Date.parse(t.plannedStartUtc ?? ''),
+        ),
+      link:
+        view === 'order' &&
+        (model.links ?? []).some(
+          (link) =>
+            diagramTasks.some((task) => task.id === link.source) &&
+            diagramTasks.some((task) => task.id === link.target),
+        ),
+      milestone: view === 'order' && diagramTasks.some((t) => t.isMilestone || t.milestoneLabel),
     },
     card: {
       priority: operations.some((t) => !!t.priority),
@@ -206,12 +236,15 @@ export function deriveLegendSemantics(
       changeover: operations.some(
         (t) => typeof t.changeoverMin === 'number' && t.changeoverMin > 0,
       ),
-      bottleneck:
-        (model.resources ?? []).some((r) => (r.utilization ?? 0) > 1) ||
-        (model.loads ?? []).some((l) => l.utilization > 1),
+      bottleneck: projection
+        ? projection.lanes.some(
+            (lane) => Number.isFinite(lane.kpi?.utilization) && lane.kpi!.utilization! > 1,
+          )
+        : (model.resources ?? []).some((r) => (r.utilization ?? 0) > 1) ||
+          (model.loads ?? []).some((l) => l.utilization > 1),
     },
     status: {
-      conflict: tasks.some((t) => t.hasConflict),
+      conflict: diagramTasks.some((t) => t.hasConflict),
       locked: operations.some((t) => t.locked),
       // 有工序真的带物料风险才列;方案全齐套时图例里不出现「缺料待备」。
       materialRisk: operations.some((t) => !!t.materialRisk),

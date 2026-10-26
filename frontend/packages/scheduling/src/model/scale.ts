@@ -85,19 +85,38 @@ export function orderDisplayScale(
   model: ScheduleModel,
   scale: ResolvedTimeScale,
 ): { start: number; end: number; cells: number[] } | undefined {
+  return displayScale(model, scale, 'order')
+}
+
+/** Retained vendor Ri explicit-range branch: floor start, ceil end by one unit,
+ * not by the two-hour/seven-day cell step. cellEnd records the background
+ * template's separate nominal end for the shortened final cell.
+ */
+export function resourceDisplayScale(model: ScheduleModel, scale: ResolvedTimeScale) {
+  return displayScale(model, scale, 'resource')
+}
+
+function displayScale(
+  model: ScheduleModel,
+  scale: ResolvedTimeScale,
+  view: 'order' | 'resource',
+): { start: number; end: number; cellEnd: number; cells: number[] } | undefined {
   if (hasUnresolvedDisplayTimezone(model)) return undefined
   const rows = model.tasks.filter((task) => !task.blockKind)
-  if (!rows.length) return undefined
+  if (view === 'order' && !rows.length) return undefined
   // toGanttTask gives milestones precedence over the order/project type.
   // Mixed diagrams exclude project dates; all-project Ri instead uses the
   // first project's start plus one duration_unit (configured as one hour).
   const tasks = rows.filter((task) => task.type !== 'order' || task.isMilestone)
-  const dates = tasks.length
-    ? tasks.flatMap((task) => [
-        Date.parse(task.startUtc),
-        Date.parse(task.isMilestone ? task.startUtc : task.endUtc),
-      ])
-    : [Date.parse(rows[0]!.startUtc), Date.parse(rows[0]!.startUtc) + 3_600_000]
+  const dates =
+    view === 'resource'
+      ? [Date.parse(model.horizon.startUtc), Date.parse(model.horizon.endUtc)]
+      : tasks.length
+        ? tasks.flatMap((task) => [
+            Date.parse(task.startUtc),
+            Date.parse(task.isMilestone ? task.startUtc : task.endUtc),
+          ])
+        : [Date.parse(rows[0]!.startUtc), Date.parse(rows[0]!.startUtc) + 3_600_000]
   if (dates.some((at) => !Number.isFinite(at))) return undefined
   const timezone = model.timezones!.at(-1)!
   const step = scale === 'hour' ? 2 : scale === 'week' ? 7 : 1
@@ -134,14 +153,25 @@ export function orderDisplayScale(
     else date.setUTCDate(date.getUTCDate() + count)
     return instant(date, at)
   }
-  const first = add(start(Math.min(...dates)), -step)
-  const end = add(start(Math.max(...dates)), 2 * step)
+  const first = view === 'resource' ? start(dates[0]!) : add(start(Math.min(...dates)), -step)
+  const last = view === 'resource' ? dates[1]! : Math.max(...dates)
+  const end =
+    view === 'resource'
+      ? start(last) === last
+        ? last
+        : add(start(last), 1)
+      : add(start(last), 2 * step)
   const cells: number[] = []
+  let cellEnd = first
   for (let at = first; Number.isFinite(at) && at < end; ) {
     cells.push(at)
     const next = add(at, step)
     if (!(next > at)) break
+    cellEnd = next
     at = next
   }
-  return { start: first, end, cells }
+  // Resource timeline_cell_content uses date.add(cell, step), even for the
+  // vendor's shortened final cell. Its fragments therefore have a distinct
+  // nominal end from the task/marker axis. Do not "fix" that engine geometry.
+  return { start: first, end, cellEnd, cells }
 }

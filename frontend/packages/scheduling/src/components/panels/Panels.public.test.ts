@@ -719,7 +719,7 @@ it('legend visibility follows host acknowledgement and resource boundaries use c
       hiddenGroups: [],
     },
   })
-  expect(w.text()).toContain('班次边界')
+  expect(w.text()).not.toContain('班次边界') // current resource fragment has no painted stroke
   await w.get('button[aria-label="隐藏 工序分色"]').trigger('click')
   expect(w.emitted('toggle-category')?.at(-1)).toEqual([{ key: 'category', visible: false }])
   expect(w.get('button[aria-label="隐藏 工序分色"]').attributes('aria-pressed')).toBe('false')
@@ -923,7 +923,7 @@ it('legend follows the real vendor odd hour phase and omits blocks that contain 
   })
   expect.soft(w.text()).toContain('班次边界')
   await w.setProps({ view: 'resource', model: input })
-  expect(w.text()).toContain('班次边界') // continuous P05 overlay does not require grid alignment
+  expect(w.text()).not.toContain('班次边界') // current resource fragment has no painted stroke
   expect(w.text()).toContain('设备维护')
   w.unmount()
 })

@@ -79,7 +79,16 @@ P08 / [#91](https://github.com/Mang-X/nerv-ui/issues/91) 只处理既有八个�
 
 全为 project 的工单图沿厂商专用分支，以首个 project 的开始至开始后一小时（当前 duration_unit）取范围，再按同一刻度扩展；不使用全部父日期的极值。混合普通活动时仍排除旧父日期；`isMilestone` 优先于 order 类型，参与实际活动范围且结束取开始。空任务或仅时间块没有工单行，不推导图例。图例的格点与轴边界来自同一展示计算，不修改任务日期或 engine 配置。
 
-“现在”须同时位于 horizon 与实际显示轴，轴两端均包含。工单轴由任务推导，不等于 horizon；资源轴由 horizon 配置，保留其不同语义。engine 在当下不属于 horizon 时使用的中点参考不是实际现在，图例不将它声明为当前时刻。此范围指完整显示轴，不承诺横向滚动后 marker 一定位于可见 viewport。
+“现在”须同时位于 horizon 与实际显示轴，轴两端均包含。工单轴由任务推导，不等于 horizon；资源轴由 horizon 配置后再按厂商最小单位归一：开始向下取整，结束非整单位时向上加一个单位（不是一个 cell step）。例如 UTC/hour 的 09:30–11:30 实际轴为 09:00–12:00；now 仍须属于原 horizon，背景区间另遵守下述 cell 范围。engine 在当下不属于 horizon 时使用的中点参考不是实际现在，图例不将它声明为当前时刻。此范围指完整显示轴，不承诺横向滚动后 marker 一定位于可见 viewport。
+
+资源图例各字段使用以下有限依据，不从整个模型猜测可见事实：
+
+- 卡片 `priority/rush/kitting/changeover` 和状态 `conflict/locked/materialRisk/equipmentRisk` 使用现有 `resourceProjection(model, groupBy, laneOrder)` 的 operations，并排除与归一轴完全不相交的任务。排除的 summary、独立 milestone 和 block 不贡献这些字段。普通零时长及触及轴端点的任务沿厂商 thin bar 准入保留；齐套 0 是已知值，换型 0 无 badge，缺失不补 0。
+- 未传 `groupBy` 时与 Board 一样采用首个 `groupDimensions.key`，没有维度才回到 workCenter；显式传入时跟随该值。这对应 Board 首次挂载的默认值；Board 已挂载后可能保留内部有效选择，宿主需把该实际 `groupBy` 同时传给图和图例，不能让无状态图例猜内部状态。
+- `card.bottleneck` 只看实际投影泳道的有限 `kpi.utilization > 1`。空泳道是否保留由原 laneOrder 决定；分组后的 KPI 直接复用投影，不拿某个原始 load 的过载代替组的值，不重新实现汇总算法。
+- `blocks` 使用可见泳道的 blocks 与实际背景 cell 范围的正面积相交；零时长或仅触及背景端点不列。厂商末格可能被缩短，但当前模板仍用完整 step 计算区间：上述 hour 轴为 09:00–12:00，背景 cells 为 09:00–11:00、11:00–13:00；week 的最小单位是 day，末格仍按 7 天计算。图例保留该真实绘制差异，不修正 engine 几何。日历继续使用同一泳道的明确资源/工作中心 namespace、完整成员与工作中心优先级，非工作底纹按背景 cells 内的空隙判断。
+- 当前支持样式组合下，资源 `.nv-scheduling-shift-boundary` 节点宽度与计算边框均为 0，故 `calendar.shift=false`，不把节点存在称为可见线。本票不修 engine/CSS；工单的格点班次规则保留。冻结窗口是独立背景，没有现有 legend 字段，不将其冒作 block；投影和 namespace 仍由 P05 producer 拥有。
+- 资源 `gantt.baseline/link/milestone` 全为 false；工单保留自己的真实 milestone 语义。显式分类色板、facts/status 文案与详情不参与资源任务集合推断。
 
 小时展示格点与保留的 `factory_hour_start` 一样清除毫秒；这只归一展示参考时刻，`factoryTimeInstant` 的编辑/无操作保存继续保留原始偏移与毫秒。当前保留厂商的粗刻度 offset 转换仍会保留输入的毫秒相位；不能把小时规则推广到日/周/月。上海和 Kolkata 四刻度与真实 cell/连续窗口的本轮对照见返修证据。
 
