@@ -132,8 +132,8 @@ it('keeps batch units and every affected activity behind two disclosure levels w
   expect(w.text()).not.toMatch(/绘画纸|陶泥|秋日批次|晨间写生/)
 })
 
-it('styles a legacy lot code as a technical value without recasting a host batch label', async () => {
-  const { MaterialShortageSummary } = await import('../../index')
+it('styles legacy batch codes in summary and risk details while keeping host batch labels natural', async () => {
+  const { MaterialShortageSummary, PlanRisks } = await import('../../index')
   const w = mount(MaterialShortageSummary, {
     props: {
       shortages: [{ materialId: 'M-001', materialLotId: 'LOT-9', shortageQuantity: 3 }],
@@ -151,6 +151,57 @@ it('styles a legacy lot code as a technical value without recasting a host batch
   expect(batch().text()).toBe('批次 秋日一批')
   expect(batch().classes()).not.toContain('font-mono')
   expect(batch().classes()).not.toContain('text-xs')
+
+  const risks = mount(PlanRisks, {
+    props: {
+      materialRisks: [
+        {
+          orderId: 'ORDER-7',
+          operationId: 'OP-2',
+          shortages: [
+            { materialId: 'M-001', materialLotId: 'LOT-9', shortageQuantity: 3, uomCode: '张' },
+          ],
+        },
+      ],
+      equipmentRisks: [],
+    },
+  })
+  mounted.push(risks)
+  const riskBatch = () => risks.get('[data-risk-shortage] span')
+  expect(risks.get('[data-risk-shortage]').text()).toContain('M-001 · 批次 LOT-9 · 缺 3 张')
+  expect(riskBatch().text()).toBe('批次 LOT-9')
+  expect(riskBatch().classes()).toEqual(
+    expect.arrayContaining(['font-mono', 'text-xs', 'text-muted-foreground']),
+  )
+  await risks.setProps({
+    display: [
+      {
+        id: 'host-risk',
+        category: { id: 'material', label: '物料风险' },
+        group: { id: 'ORDER-7', label: 'ORDER-7' },
+        label: '共读活动',
+        message: '请核对',
+        shortages: [{ id: 'paper', label: '绘画纸', batch: '秋日一批', quantity: 3, unit: '张' }],
+      },
+    ],
+  })
+  expect(riskBatch().text()).toBe('批次 秋日一批')
+  expect(riskBatch().classes()).not.toContain('font-mono')
+  expect(riskBatch().classes()).not.toContain('text-xs')
+  await risks.setProps({
+    display: undefined,
+    materialRisks: [
+      {
+        orderId: 'ORDER-8',
+        operationId: 'OP-3',
+        shortages: [{ materialId: 'M-002', shortageQuantity: 0, uomCode: '张' }],
+      },
+    ],
+  })
+  expect(risks.get('[data-risk-shortage]').text()).toContain('M-002 · 批次 — · 缺 0 张')
+  expect(riskBatch().classes()).not.toContain('font-mono')
+  expect(riskBatch().classes()).not.toContain('text-xs')
+  expect(risks.text()).not.toContain('LOT-9')
 })
 
 it('aligns shortage quantity cells and limits displayed precision without changing host values', async () => {

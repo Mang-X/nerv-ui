@@ -124,7 +124,16 @@ function select(id: string) {
           <p v-else-if="!risk.shortages.length" class="text-muted-foreground">未记录缺口明细</p>
           <ul v-else class="grid gap-2">
             <li v-for="shortage in risk.shortages" :key="shortage.id" data-risk-shortage>
-              {{ shortage.label }} · 批次 {{ shortage.batch ?? '—' }} · 缺
+              {{ shortage.label }} ·
+              <span
+                :class="
+                  display === undefined && shortage.batch
+                    ? 'font-mono text-xs text-muted-foreground'
+                    : 'text-muted-foreground'
+                "
+                >批次 {{ shortage.batch ?? '—' }}</span
+              >
+              · 缺
               {{ numberText(shortage.quantity) }} {{ shortage.unit ?? '—' }}（需
               {{ numberText(shortage.requiredQuantity) }}，可用
               {{ numberText(shortage.availableQuantity) }}）
