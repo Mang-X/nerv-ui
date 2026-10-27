@@ -1,5 +1,11 @@
+<script lang="ts">
+// useId is hydration-stable within one Vue app. Independent roots can both start at v-0,
+// so assign a page-local suffix after hydration, before the next browser paint.
+let nextAmbientInstance = 0
+</script>
+
 <script setup lang="ts">
-import { computed, useId } from 'vue'
+import { computed, onMounted, shallowRef, useId } from 'vue'
 import ScreenHeader from './ScreenHeader.vue'
 
 // The host owns the seed. Geometry stays deterministic across mounts and instances.
@@ -99,8 +105,10 @@ const props = withDefaults(
   },
 )
 const backdrop = computed(() => genBackdrop(props.seed))
-// Vue's per-component id stays stable when seed changes and differs on sibling mounts.
-const ambientId = `nv-scr-layout-${useId().replace(/[^a-zA-Z0-9_-]/g, '-')}`
+const ambientId = shallowRef(`nv-scr-layout-${useId().replace(/[^a-zA-Z0-9_-]/g, '-')}`)
+onMounted(() => {
+  ambientId.value += `-${nextAmbientInstance++}`
+})
 </script>
 
 <template>
@@ -198,7 +206,8 @@ const ambientId = `nv-scr-layout-${useId().replace(/[^a-zA-Z0-9_-]/g, '-')}`
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    background: transparent;
+    background: radial-gradient(circle, var(--nv-scr-line-2) 0 1px, transparent 1.5px) 0 0 / 28px
+      28px;
     -webkit-mask-image: radial-gradient(
       1300px 760px at 50% 0%,
       rgba(0, 0, 0, 0.85),

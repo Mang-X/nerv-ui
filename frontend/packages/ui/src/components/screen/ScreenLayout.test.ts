@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
-import { expect, it } from 'vitest'
-import { h, nextTick, ref } from 'vue'
+import { expect, it, vi } from 'vitest'
+import { createApp, createSSRApp, h, nextTick, ref } from 'vue'
+import { renderToString } from 'vue/server-renderer'
 import { NvScreenLayout } from '@nerv-iip/ui'
 
 it('renders seed-driven geometry through the public layout and updates only the changed instance', async () => {
@@ -12,6 +13,7 @@ it('renders seed-driven geometry through the public layout and updates only the 
         h(NvScreenLayout, { seed: 'gallery-one', title: '河岸展厅', time: '11:00' }),
       ]),
   })
+  await nextTick()
   const layouts = () => host.findAllComponents(NvScreenLayout)
   const geometry = (index: number) => ({
     paths: layouts()
@@ -51,6 +53,7 @@ it('scopes every SVG reference to its own instance, including after replacing on
         h(NvScreenLayout, { seed: 'same' }),
       ]),
   })
+  await nextTick()
   const inspect = () =>
     host.findAllComponents(NvScreenLayout).map((layout) => {
       const ids = layout.findAll('svg [id]').map((node) => node.attributes('id'))
@@ -71,6 +74,96 @@ it('scopes every SVG reference to its own instance, including after replacing on
   expect(after[1]).toEqual(before[1])
   expect(after[0]).not.toEqual(after[1])
   host.unmount()
+})
+
+it('keeps SVG targets local across independent Vue roots, updates, and remounts', async () => {
+  const random = vi.spyOn(Math, 'random').mockReturnValue(0.5)
+  const roots = [document.createElement('div'), document.createElement('div')]
+  roots.forEach((root) => document.body.appendChild(root))
+  const seeds = [ref('shared'), ref('shared')]
+  const apps = roots.map((root, index) => {
+    const app = createApp({ setup: () => () => h(NvScreenLayout, { seed: seeds[index]!.value }) })
+    app.mount(root)
+    return app
+  })
+  await nextTick()
+  const inspect = () =>
+    roots.map((root) => {
+      const svg = root.querySelector('svg')!
+      const ids = [...svg.querySelectorAll('[id]')].map((node) => node.id)
+      const refs = [...svg.querySelectorAll('path[stroke], mpath')].map((node) =>
+        (node.getAttribute('stroke') || node.getAttribute('href'))!.replace(/^url\(#|^#|\)$/g, ''),
+      )
+      expect(ids).toHaveLength(4)
+      expect(refs).toHaveLength(4)
+      for (const id of refs) {
+        expect(ids).toContain(id)
+        expect(document.getElementById(id)).toBe(svg.querySelector(`[id="${id}"]`))
+      }
+      return { ids, paths: [...svg.querySelectorAll('path')].map((path) => path.getAttribute('d')) }
+    })
+  const before = inspect()
+  expect(before[0]!.paths).toEqual(before[1]!.paths)
+  seeds[0]!.value = 'different'
+  await nextTick()
+  const changed = inspect()
+  expect(changed[0]!.paths).not.toEqual(changed[1]!.paths)
+  expect(changed[0]!.ids).toEqual(before[0]!.ids)
+  expect(changed[1]).toEqual(before[1])
+  seeds[1]!.value = 'another-space'
+  await nextTick()
+  const bothChanged = inspect()
+  expect(bothChanged[0]).toEqual(changed[0])
+  expect(bothChanged[1]!.paths).not.toEqual(changed[1]!.paths)
+  expect(bothChanged[1]!.ids).toEqual(changed[1]!.ids)
+  seeds[1]!.value = 'shared'
+  await nextTick()
+  apps[0]!.unmount()
+  const replacement = createApp({ render: () => h(NvScreenLayout, { seed: 'shared' }) })
+  replacement.mount(roots[0]!)
+  await nextTick()
+  const remounted = inspect()
+  expect(remounted[0]!.paths).toEqual(remounted[1]!.paths)
+  expect(remounted[0]!.ids).not.toEqual(before[0]!.ids)
+  replacement.unmount()
+  apps[1]!.unmount()
+  roots.forEach((root) => root.remove())
+  random.mockRestore()
+})
+
+it('hydrates independent server-rendered roots before assigning browser-local suffixes', async () => {
+  const host = { render: () => h(NvScreenLayout, { seed: 'gallery' }) }
+  const roots = [document.createElement('div'), document.createElement('div')]
+  for (const root of roots) {
+    root.innerHTML = await renderToString(createSSRApp(host))
+    document.body.appendChild(root)
+  }
+  const serverIds = roots.map((root) =>
+    [...root.querySelectorAll('svg [id]')].map((node) => node.id),
+  )
+  expect(serverIds[0]).toEqual(serverIds[1])
+  const warnings = vi.spyOn(console, 'warn').mockImplementation(() => {})
+  const apps = roots.map((root) => {
+    const app = createSSRApp(host)
+    app.mount(root)
+    return app
+  })
+  await nextTick()
+  const clientIds = roots.map((root) =>
+    [...root.querySelectorAll('svg [id]')].map((node) => node.id),
+  )
+  expect(clientIds[0]).toHaveLength(4)
+  expect(clientIds[1]).toHaveLength(4)
+  expect(clientIds[0]).not.toEqual(clientIds[1])
+  expect(warnings).not.toHaveBeenCalled()
+  for (const root of roots) {
+    for (const id of [...root.querySelectorAll('svg [id]')].map((node) => node.id)) {
+      expect(document.getElementById(id)).toBe(root.querySelector(`[id="${id}"]`))
+    }
+  }
+  apps.forEach((app) => app.unmount())
+  warnings.mockRestore()
+  roots.forEach((root) => root.remove())
 })
 
 it('forwards host clock and interactive slots without creating a timer or business defaults', async () => {

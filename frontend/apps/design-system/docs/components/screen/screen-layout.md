@@ -45,7 +45,7 @@ const visited = ref(false)
 | `default` | slot     | 空               | `main` 中的交互内容                              |
 | `header`  | slot     | `NvScreenHeader` | 可完全替换默认页头                               |
 
-根元素继承宿主的 class、style 与原生属性。布局固定 1920×1080；内容区可原生滚动。装饰层 `pointer-events: none`，系统低动效设置会停用彗星和星点呼吸。外层视口缩放、定位、主题及挂钟更新由宿主负责。
+根元素继承宿主的 class、style 与原生属性。布局固定 1920×1080；内容区可原生滚动。淡色点阵与光路只作氛围，装饰层 `pointer-events: none`；系统低动效设置会停用彗星和星点呼吸。独立 Vue 应用根的 SVG 引用在挂载后各自定位到本实例。外层视口缩放、定位、主题及挂钟更新由宿主负责。
 
 <!-- @include: ../../../../../DESIGN/components/screen-layout.md -->
 

@@ -1,5 +1,7 @@
 # T08/R04 #22：种子氛围层与大屏内容壳
 
+> 本页记录 PR116 首轮候选；R1 独立审查指出跨独立 Vue 根 SVG ID 冲突和透明点阵。当前返修及 fresh 证据见 [f1](f1/README.md)。下方首轮 `useId()` 隔离与“点阵保留”描述只反映当时实现和结论，不作为返修后的验证结果。
+
 ## 固定对象与范围
 
 - 实施 worktree：`/Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition`，分支 `feat/t08-r04-screen-composition`；起点 `9bd4621cea462a9799d51a0d1db089d123a257be`，tree `6092d0ce4073dd4899a8edb485f36b0e11530e7b`。2026-10-27 fetch `origin/integration/nerv-ui-extraction` 后仍为同一提交，delta `0/0`。
@@ -9,13 +11,13 @@
 
 ## 来源到公开合同
 
-| 来源行为 | 本票公开行为 |
-| --- | --- |
-| `route.path` 种子，hashStr + mulberry32、Catmull-Rom 双曲线、7×4 抖动星点 | 必填 `seed: string`；同 seed 几何稳定，不同 seed 的路径与星点可观察变化 |
-| 固定 `sl-path-*` 渐变、路由哈希轨道 ID | `useId()` 实例前缀覆盖两条轨道及两条渐变；引用只指向本实例，seed 更新不换 ID |
-| `NvScreenHeader` 与默认业务标题/区域/屏幕，`useNow` 秒级时钟 | 复用原页头；`title/time/date/line/screen` 默认空串并由宿主输入，`header` 可替换；没有计时器 |
-| 内嵌 `NvScreenScaler` 1920×1080 | `NvScreenLayout` 只持有 1920×1080 内容壳；宿主外层复用已有 scaler，fit/width/stretch 和 resize 归 scaler |
-| 点阵、光路、彗星、星点、默认 body slot、reduced-motion | 视觉几何、动效时长与色值保留；类名迁入 `nv-scr-*`、样式层迁入 `nv-components`；装饰 SVG `pointer-events:none`；body `main` 原生滚动保障长内容可达 |
+| 来源行为                                                                  | 本票公开行为                                                                                                                                      |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `route.path` 种子，hashStr + mulberry32、Catmull-Rom 双曲线、7×4 抖动星点 | 必填 `seed: string`；同 seed 几何稳定，不同 seed 的路径与星点可观察变化                                                                           |
+| 固定 `sl-path-*` 渐变、路由哈希轨道 ID                                    | `useId()` 实例前缀覆盖两条轨道及两条渐变；引用只指向本实例，seed 更新不换 ID                                                                      |
+| `NvScreenHeader` 与默认业务标题/区域/屏幕，`useNow` 秒级时钟              | 复用原页头；`title/time/date/line/screen` 默认空串并由宿主输入，`header` 可替换；没有计时器                                                       |
+| 内嵌 `NvScreenScaler` 1920×1080                                           | `NvScreenLayout` 只持有 1920×1080 内容壳；宿主外层复用已有 scaler，fit/width/stretch 和 resize 归 scaler                                          |
+| 点阵、光路、彗星、星点、默认 body slot、reduced-motion                    | 视觉几何、动效时长与色值保留；类名迁入 `nv-scr-*`、样式层迁入 `nv-components`；装饰 SVG `pointer-events:none`；body `main` 原生滚动保障长内容可达 |
 
 新 Nv 名已登记在严格命名集合与独立新增映射，未放宽冻结断言；coverage、设计决策、API/live 文档、侧栏、playground 深链、README 与接入说明同步。未加 token、包入口、DTO、router、SDK 或业务算法；lockfile 和 manifest 的 base→候选 diff 为空。用户提供的 16 个 package/lock 输入与 973 对象基线不因本票升级，完整语义图未复跑；按本票相关身份核验，包与 playground 的 Vue 均指向同一 `vue@3.5.39_typescript@6.0.3` 实体。
 

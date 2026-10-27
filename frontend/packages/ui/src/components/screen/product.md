@@ -68,11 +68,11 @@
 
 ## 组件清单
 
-真实导出以同目录 `index.ts` 和主桶为准，共 36 件组件；下表用于导航，不替代公开 API。
+真实导出以同目录 `index.ts` 和主桶为准，共 37 件组件；下表用于导航，不替代公开 API。
 
 | 分类                    | 当前公共导出                                                                                                                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 舞台 / 容器 / 外壳（8） | `NvScreenScaler` · `NvScreenPanel` · `NvScreenScrollArea` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                                 |
+| 舞台 / 容器 / 外壳（9） | `NvScreenScaler` · `NvScreenLayout` · `NvScreenPanel` · `NvScreenScrollArea` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`              |
 | 指标 / 图表（10）       | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvTaktGantt` |
 | 数据 / 状态（7）        | `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusTag` · `NvScrollBoard`                                        |
 | 控件（9）               | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` · `NvScreenPagination`     |
