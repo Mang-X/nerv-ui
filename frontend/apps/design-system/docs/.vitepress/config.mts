@@ -173,6 +173,10 @@ export default defineConfig({
               text: 'EntityPicker 实体选择 / 级联',
               link: '/components/desktop/entity-picker',
             },
+            {
+              text: 'EntityMultiPicker 可搜索多选',
+              link: '/components/desktop/entity-multi-picker',
+            },
             { text: 'Checkbox 复选框', link: '/components/desktop/checkbox' },
             { text: 'Radio 单选框', link: '/components/desktop/radio' },
             { text: 'Switch 开关', link: '/components/desktop/switch' },

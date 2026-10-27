@@ -12,6 +12,7 @@ title: 桌面 PC 组件
 - **表单**：NvInput、NvField、FileUpload、NvSelect、NvCheckbox、NvRadioGroup、NvSwitch、NvDatePicker、NvTimePicker
 - **数据展示**：NvDataTable、NvDescriptions、NvTimeline、NvTabs、Status
 - **行动摘要**：[NvActionSummary](/components/desktop/action-summary)（五态数量、预览与出口）
+- **可搜索多选**：[NvEntityMultiPicker](/components/desktop/entity-multi-picker)（受控数组、已选标签与宿主搜索）
 - **反馈**：Alert、NvDialog、NvPopconfirm、NvTooltip、Notify、NvLoader、NvCommand
 - **图表**：折线 / 面积 / 柱状 / 环形
 

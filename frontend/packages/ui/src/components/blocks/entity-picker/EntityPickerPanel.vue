@@ -115,8 +115,14 @@ function onScroll(event: Event) {
   }
 }
 
-// 换了搜索词，结果从头开始：滚动位置一起回到顶部。
-watch(query, () => scrollTo(0))
+// 换词后列表从头开始，活动项也必须回到存在的第一行。
+watch(query, () => {
+  activeIndex.value = 0
+  scrollTo(0)
+})
+watch(filtered, (items) => {
+  if (activeIndex.value >= items.length) activeIndex.value = 0
+})
 
 /**
  * 键盘移动高亮项时把它滚进可视区。高亮项已渲染就就近滚入；
