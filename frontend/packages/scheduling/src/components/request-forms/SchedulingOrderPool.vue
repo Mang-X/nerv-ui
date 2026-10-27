@@ -134,11 +134,15 @@ watch(
   },
 )
 watch(
-  () => JSON.stringify([props.sourceKey, hiddenSelectedKeys.value]),
+  () => JSON.stringify([props.sourceKey, props.readOnly, hiddenSelectedKeys.value]),
   () => {
     if (requestedSource !== props.sourceKey) {
       requestedHidden.clear()
       requestedSource = props.sourceKey
+    }
+    if (props.readOnly) {
+      requestedHidden.clear()
+      return
     }
     const hidden = new Set(hiddenSelectedKeys.value)
     for (const key of requestedHidden) if (!hidden.has(key)) requestedHidden.delete(key)

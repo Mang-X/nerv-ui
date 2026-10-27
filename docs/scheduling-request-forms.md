@@ -7,7 +7,7 @@
 ## 公共合同
 
 - 池与候选器的 `state` 显式为 `unready | loading | error | ready`。`unready` 表示范围尚未就绪，未发查询；`error` 带安全文案和 `retry`；`ready` 空数组才是空结果；非空数组经关键词过滤为空时显示无命中。`items` 是当前来源已加载的行，不代表未加载的页。`sourceKey` 标识当前来源。
-- 池的 `include(keys, included)` 仅发送当前显示且允许选择的稳定 `key`，批量按钮不枚举隐藏或其他页。`selectedKeys` 由宿主回写。默认 `selectionOnFilter="retain"` 保留筛选外选择；`clear-hidden` 会在筛选时请求移出隐藏 key。重排和同 key 改文案沿用稳定身份，来源更换时宿主应清除不再适用的选择。
+- 池的 `include(keys, included)` 仅发送当前显示且允许选择的稳定 `key`，批量按钮不枚举隐藏或其他页。`selectedKeys` 由宿主回写。默认 `selectionOnFilter="retain"` 保留筛选外选择；`clear-hidden` 会在筛选时请求移出隐藏 key；只读期间筛选、行替换和受控选择变化都不发选择变更请求，恢复编辑后可按当前隐藏集合重新请求。重排和同 key 改文案沿用稳定身份，来源更换时宿主应清除不再适用的选择。
 - `clear-hidden` 的请求随筛选结果变化而更新，包括宿主替换或改写 `items` 后同 key 不再匹配的情形；组件只发 `include(keys, false)`，不私自改受控 `selectedKeys`。同一隐藏集合的重排不重复请求。优先级输入清空为 `null`（未知），输入 `0` 保留真实零值；非有限输入不写入草稿。
 - `saveItem(key, { priority, isRush })` 是可选的异步回调，**仅返回 `true` 才确认**；缺失、`false`、异常都保留草稿并给出可重试提示。来源切换、只读、行消失或替换、卸载使旧回执失效。来源在确认后回写最新 `items`；草稿不会进入排程撤销栈。
 - 窗口的 `modelValue` 保留 `presetKey` 和 `datetime-local` 原始 `startLocal/endLocal`。`presets`、`validation.valid/message` 由宿主提供；组件既不转换成 UTC，也不内置预设天数、最大跨度或业务容量。宿主必须根据自己的时区与夏令时规则核对后再提交。控件 `idPrefix` 允许同页多实例。

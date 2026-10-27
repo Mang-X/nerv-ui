@@ -132,7 +132,7 @@ function validateHorizon(input: Readonly<SchedulingHorizonInput>): SchedulingHor
     return { valid: false, message: '时间格式无法识别。' }
   if ((endDay - startDay) / 86400000 > 14)
     return { valid: false, message: '本页来源允许的日历跨度最多为 14 天。' }
-  return { valid: true, message: '本页来源已核对日历跨度；实际时区与夏令时由接入方核对。' }
+  return { valid: true, message: '本页已核对日历跨度；请再确认场地时区及夏令时对所选时间的影响。' }
 }
 function dateParts(value: string): [number, number, number] {
   const [year, month, day] = value.slice(0, 10).split('-').map(Number)

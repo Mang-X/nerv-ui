@@ -41,3 +41,17 @@ it('neutral host offers failure retry, pending cancellation, and insert with exp
   expect(page.get('[role="dialog"]').text()).toContain('夜间工作坊')
   page.unmount()
 })
+
+it('neutral host shows a valid custom window without developer handoff or verified timezone claims', async () => {
+  const page = mount(RequestFormsDemo, { props: { venue: 'library' } })
+  await page.get('[data-entry="list"]').trigger('click')
+  await page.get('[data-action="custom"]').trigger('click')
+  await page.get('#single-request-start').setValue('2026-11-01T09:30')
+  await page.get('#single-request-end').setValue('2026-11-02T10:30')
+  const dialog = page.get('[role="dialog"]')
+  expect(dialog.text()).toContain('本页已核对日历跨度')
+  expect(dialog.text()).toContain('请再确认场地时区及夏令时对所选时间的影响')
+  expect(dialog.text()).not.toContain('接入方')
+  expect(dialog.text()).not.toContain('已核对时区')
+  page.unmount()
+})

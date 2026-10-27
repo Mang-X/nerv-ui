@@ -1,6 +1,6 @@
 # T07/P10 实施证据
 
-PR #112 独立 R1 指出的四组 Spec material 返修及原字节探针、正式回归见 [F1 证据](f1/README.md)。下文保留首轮实施时点的证据和未运行边界，不以返修后的 PASS 改写历史记录。
+PR #112 独立 R1 指出的四组 Spec material 返修及原字节探针、正式回归见 [F1 证据](f1/README.md)；独立 R2 两项 P2 返修见 [F2 证据](f2/README.md)。下文保留首轮实施时点的证据和未运行边界，不以返修后的 PASS 改写历史记录。
 
 本票为 [#93](https://github.com/Mang-X/nerv-ui/issues/93) 的 scope M 独立实现。开工 branch `feat/t07-p10-request-forms` 为 clean，base `978a04dd5e8b35e641f4f2b87c6b66866b42c857`、tree `adc49eb2affc29066bbaedc1ec3aee1217025a57`。冻结来源 Nerv-IIP `79b1578f2b75f55709765b5e7882aaf33146c603`、tree `58e30c637acb7efdd393af291e570288b03b5aa9` 只读。完整原日志、浏览器脚本与截图保存在外部 `nerv-delivery-evidence/nerv-ui/2026-10-27/t07-p10-implementation-r1/`；这里仅列可复核结论，不以中性页面声称真实 APS。
 
