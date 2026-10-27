@@ -92,3 +92,7 @@ Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时�
 ## R08 远距主状态灯
 
 `/#screen/status-hero` 展示 `NvScreenStatusHero` 的两种中性来源。200px 外圈和 158px 核心保留来源体量；颜色、标签和静止/4秒/2.4秒/1.2秒节奏由宿主独立输入。宿主保留零、非零和未知失联数量：零不显示辅助说明，非零显示宿主生成的数量，未知明确标为待确认。辅助按钮由插槽提供并在宿主处理；第二实例不随第一实例改变。独立入口、属性与 live 演示见[组件页](../frontend/apps/design-system/docs/components/screen/status-hero.md)；本票证据见[验证记录](evidence/t08-r08/README.md)。组件无旧应用路由、取数或设备状态算法。
+
+## R12：阶段数量流
+
+`/#screen/stage-flow` 从主桶消费 `NvScreenStageFlow`，外层继续使用 `NvScreenScaler`。阅读活动与展览布置两类内存来源可切换、替换、反转、清空、恢复与长文字/窄幅显示；真实零与未知明确区分。旧深链与导航保留。组件按稳定 key 显示宿主数量和显式状态，不推导 WIP 或瓶颈。公共 API 与 live 示例见[阶段数量流](../frontend/apps/design-system/docs/components/screen/stage-flow.md)，实际 DOM/类型/构建及未运行边界见[R12 记录](evidence/t08-r12/README.md)。本轮浏览器、视觉、HTTP 均 UNRUN。
