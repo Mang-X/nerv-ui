@@ -23,6 +23,7 @@
 | 数量步进    | InputNumber（P2 待建）        | `NvStepper`                               | `NvQtyStepper`                     | `—`                        |
 | 输入框      | `NvInput`                     | `NvMobileInput`                           | （复用 PC）                        | `NvScreenInput`            |
 | 选择器      | `NvSelect`                    | `NvPicker`（滚轮）                        | `—`                                | `NvScreenSelect`           |
+| 可搜索多选  | `NvEntityMultiPicker`         | `—`                                       | `—`                                | `—`                        |
 | 复选 / 单选 | `NvCheckbox` · `NvRadioGroup` | `NvMobileCheckbox` · `NvMobileRadioGroup` | `—`                                | `—`                        |
 | 开关        | `NvSwitch`                    | `NvMobileSwitch`                          | `—`                                | `NvScreenSwitch`           |
 | 滑块        | `NvSlider`                    | `NvMobileSlider`                          | `—`                                | `—`                        |
