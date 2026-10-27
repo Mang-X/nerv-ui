@@ -147,3 +147,7 @@ export type {
   SchedulingSingleRequest,
   SchedulingRequestReceipt,
 } from './components/request-forms/types'
+
+export { default as SchedulingDaySchedule } from './components/day/SchedulingDaySchedule.vue'
+export { default as SchedulingDaySheet } from './components/day/SchedulingDaySheet.vue'
+export type { SchedulingDayEntry } from './components/day/types'

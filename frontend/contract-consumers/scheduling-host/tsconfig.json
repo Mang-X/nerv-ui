@@ -4,5 +4,10 @@
     "types": ["vite/client"],
     "noEmit": true
   },
-  "include": ["models.ts", "consumption.ts", "async-candidates-consumption.ts"]
+  "include": [
+    "models.ts",
+    "consumption.ts",
+    "async-candidates-consumption.ts",
+    "day-print-consumption.ts"
+  ]
 }
