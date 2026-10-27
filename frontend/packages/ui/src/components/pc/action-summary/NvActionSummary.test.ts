@@ -70,6 +70,37 @@ describe('NvActionSummary public contract', () => {
     expect(wrapper.get('[data-slot="nv-action-summary-count"]').text()).toBe('0项')
   })
 
+  it('keeps data without previews distinct from explicit empty through host replacements', async () => {
+    const wrapper = mount(NvActionSummary, {
+      props: { ...base, state: 'data', items: [] },
+    })
+
+    for (const [count, readout] of [
+      [3, '3项'],
+      [0, '0项'],
+      [null, '—'],
+    ] as const) {
+      await wrapper.setProps({ state: 'data', count, items: [] })
+      expect(wrapper.get('[data-slot="nv-action-summary-count"]').text()).toBe(readout)
+      expect(wrapper.text()).toContain('暂无最近预览')
+      expect(wrapper.text()).not.toContain('今天已清空')
+      expect(wrapper.findAll('[data-slot="nv-action-summary-item"]')).toHaveLength(0)
+    }
+
+    await wrapper.setProps({ state: 'empty', count: 0 })
+    expect(wrapper.text()).toContain('今天已清空')
+    expect(wrapper.text()).not.toContain('暂无最近预览')
+
+    await wrapper.setProps({
+      state: 'data',
+      count: 3,
+      items: [{ key: 'new', primary: '新安排', secondary: '现在' }],
+    })
+    expect(wrapper.text()).toContain('新安排')
+    expect(wrapper.text()).not.toContain('今天已清空')
+    expect(wrapper.text()).not.toContain('暂无最近预览')
+  })
+
   it('replaces previews from new host input and caps the visible list at four', async () => {
     const wrapper = mount(NvActionSummary, { props: { ...base, state: 'data' } })
     await wrapper.setProps({

@@ -109,7 +109,7 @@ const readout = computed(() =>
       </p>
     </div>
 
-    <div class="mt-4 flex min-h-0 flex-1 flex-col border-t">
+    <div class="mt-4 flex min-h-0 flex-1 flex-col overflow-y-auto border-t">
       <ul v-if="state === 'pending'" class="flex flex-col divide-y" aria-hidden="true">
         <li v-for="row in 3" :key="row" class="flex items-center justify-between gap-3 px-5 py-3">
           <Skeleton class="h-4 w-32 rounded" />
@@ -119,15 +119,18 @@ const readout = computed(() =>
 
       <div
         v-else-if="state === 'error'"
-        class="flex flex-1 flex-col items-center justify-center gap-2 px-6 py-4 text-center"
+        class="flex min-h-0 flex-1 flex-col items-center gap-1 px-6 py-2 text-center"
         role="alert"
       >
-        <span class="grid size-10 place-items-center rounded-full bg-destructive/10"
-          ><AlertTriangleIcon class="size-5 text-destructive-strong" aria-hidden="true"
-        /></span>
-        <p class="text-sm font-medium text-destructive-strong">{{ errorTitle }}</p>
-        <p class="line-clamp-2 text-sm leading-6 text-muted-foreground">{{ errorHint }}</p>
-        <NvButton size="sm" type="button" variant="outline" @click="emit('retry')"
+        <div class="flex min-h-0 w-full flex-1 flex-col items-center gap-2 overflow-y-auto">
+          <span
+            class="mt-auto grid size-10 shrink-0 place-items-center rounded-full bg-destructive/10"
+            ><AlertTriangleIcon class="size-5 text-destructive-strong" aria-hidden="true"
+          /></span>
+          <p class="shrink-0 text-sm font-medium text-destructive-strong">{{ errorTitle }}</p>
+          <p class="mb-auto shrink-0 text-sm leading-6 text-muted-foreground">{{ errorHint }}</p>
+        </div>
+        <NvButton size="sm" type="button" variant="outline" class="shrink-0" @click="emit('retry')"
           ><RefreshCwIcon aria-hidden="true" />{{ retryLabel }}</NvButton
         >
       </div>
@@ -137,16 +140,16 @@ const readout = computed(() =>
         class="flex flex-1 flex-col items-center justify-center gap-2 px-6 py-4 text-center"
         role="alert"
       >
-        <span class="grid size-10 place-items-center rounded-full bg-muted"
+        <span class="grid size-10 shrink-0 place-items-center rounded-full bg-muted"
           ><PlugZapIcon class="size-5 text-muted-foreground" aria-hidden="true"
         /></span>
         <p class="text-sm font-medium text-foreground">{{ unavailableTitle }}</p>
-        <p class="line-clamp-2 text-sm leading-6 text-muted-foreground">{{ unavailableHint }}</p>
+        <p class="text-sm leading-6 text-muted-foreground">{{ unavailableHint }}</p>
       </div>
 
       <ul
         v-else-if="state === 'data' && visibleItems.length"
-        class="flex min-h-0 flex-col divide-y overflow-hidden"
+        class="flex shrink-0 flex-col divide-y"
       >
         <li
           v-for="item in visibleItems"
@@ -164,6 +167,13 @@ const readout = computed(() =>
       </ul>
 
       <div
+        v-else-if="state === 'data'"
+        class="flex flex-1 items-center justify-center px-6 py-4 text-center"
+      >
+        <p class="text-sm text-muted-foreground">暂无最近预览</p>
+      </div>
+
+      <div
         v-else
         class="flex flex-1 flex-col items-center justify-center gap-1 px-6 py-4 text-center"
       >
@@ -176,7 +186,7 @@ const readout = computed(() =>
       v-if="actionLabel"
       type="button"
       :aria-label="actionLabel"
-      class="group flex w-full items-center justify-between gap-2 border-t px-5 py-3 text-left text-sm font-medium text-brand-strong transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+      class="group flex w-full shrink-0 items-center justify-between gap-2 border-t px-5 py-3 text-left text-sm font-medium text-brand-strong transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
       @click="emit('action')"
     >
       <span class="truncate">{{ actionLabel }}</span>

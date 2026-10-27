@@ -1,17 +1,19 @@
 # T08/R16 五态行动摘要卡实施证据
 
+R1 独立评审返修及本轮 fresh 证据见 [f1/README.md](f1/README.md)；以下保留初次实施时点的原始结果与 FAIL/UNRUN，不用后续结果覆盖。
+
 - 票据：[nerv-ui #34](https://github.com/Mang-X/nerv-ui/issues/34)，父票 [#9](https://github.com/Mang-X/nerv-ui/issues/9)，`scope:M`，单接缝、单 PR。当前 spec 是母票 #1 的 v2；旧应用接入与旧库退出已移出本轮。阻塞票 #3 在实施前为 `CLOSED`。
 - 实际工作树：`/Users/mang/Project/nerv-ui-worktrees/t08-r16-action-summary`，分支 `feat/t08-r16-action-summary`。开工 base `f01b079c1ef333141a08247758c39593f2bd32aa` / tree `7d093f7e78c162577c2581e9f68ff7be5e470597`，clean。实现提交 `1babdd1b8db8f35b2aaeb158feba1ef5d955ed58` / tree `9f44de4dcbd9f1bdf24e8f853ea6c677e1340de1`。本证据文件随下一提交进入 PR；最终候选 HEAD/tree/clean 以外部 handoff 的 `git rev-parse` 与 `git status` 读回为准。
 - T01 固定来源 `79b1578f2b75f55709765b5e7882aaf33146c603`。原始素材 `migration/materials/source/frontend/apps/business-console/src/components/workbench/WorkbenchFocusCard.vue` 与 provenance 记录均为 SHA-256 `1cb7bd5a60f8ec3bdc7d0f10b8207c121643327d7b2d5b38de4b0b088b89ff6f`；旧源 checkout HEAD 同为固定来源。旧应用 `pages/index.vue` 的三张卡是只读对照，未替换。
 
 ## 来源能力与公共接缝
 
-| 来源可观察能力 | 新库公共能力 | 验证 |
-| --- | --- | --- |
-| 固定卡形、主张、图标、数值与底部出口 | `NvActionSummary` 固定 19rem 高，复用 `NvCard`、`NvButton`、`Skeleton` 和语义 token | `renders a fixed card with a trusted count, preview, and current action`；浏览器卡高 304px |
-| pending 骨架、error 重试、unavailable 无重试、data 预览、empty 文案 | 宿主显式传 `state` 和各态文案；错误与不可用不退化成空态 | `keeps pending, error, and unavailable distinct from an empty result`；浏览器五态切换 |
-| 不可信读数 `—`，真实零保留 | 可信状态仅显示非负安全整数，`0` 保留 | `treats invalid counts as unknown while preserving a real zero`；浏览器 `0项` / `—` |
-| 最多四条预览、来源更新、CTA/重试 | `items` 只接人可读文本；`retry` / `action` 上抛，宿主决定当前卡片动作 | `replaces previews from new host input and caps the visible list at four`、`routes retry and action to the card currently used without crossing the other card` |
+| 来源可观察能力                                                      | 新库公共能力                                                                        | 验证                                                                                                                                                            |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 固定卡形、主张、图标、数值与底部出口                                | `NvActionSummary` 固定 19rem 高，复用 `NvCard`、`NvButton`、`Skeleton` 和语义 token | `renders a fixed card with a trusted count, preview, and current action`；浏览器卡高 304px                                                                      |
+| pending 骨架、error 重试、unavailable 无重试、data 预览、empty 文案 | 宿主显式传 `state` 和各态文案；错误与不可用不退化成空态                             | `keeps pending, error, and unavailable distinct from an empty result`；浏览器五态切换                                                                           |
+| 不可信读数 `—`，真实零保留                                          | 可信状态仅显示非负安全整数，`0` 保留                                                | `treats invalid counts as unknown while preserving a real zero`；浏览器 `0项` / `—`                                                                             |
+| 最多四条预览、来源更新、CTA/重试                                    | `items` 只接人可读文本；`retry` / `action` 上抛，宿主决定当前卡片动作               | `replaces previews from new host input and caps the visible list at four`、`routes retry and action to the card currently used without crossing the other card` |
 
 `NvMetricCard` 的单值结构不能表达最近预览；新件没有路由、DTO、SDK、认证、业务聚合或旧私有路径依赖。来源的 `to` 改为 `action` 事件，原应用消费者保留原状。桌面 playground `/#action-summary` 和文档站 `components/desktop/action-summary` 各有两张中性卡；文档站页是实时示例源码，运行验证见下方边界。
 

@@ -8,28 +8,37 @@ const BookIcon = defineComponent({ render: () => h('span', '◈') })
 const leftState = ref<NvActionSummaryState>('data')
 const rightState = ref<NvActionSummaryState>('empty')
 const countMode = ref<'three' | 'zero' | 'unknown'>('three')
+const noPreview = ref(false)
 const alternate = ref(false)
 const activity = ref('请选择一张卡片的操作。')
 const { isDark, toggle } = useColorMode()
 
 const leftCount = computed(() =>
-  countMode.value === 'unknown' ? null : countMode.value === 'zero' ? 0 : 3,
+  leftState.value === 'empty'
+    ? 0
+    : countMode.value === 'unknown'
+      ? null
+      : countMode.value === 'zero'
+        ? 0
+        : 3,
 )
 const leftItems = computed(() =>
-  alternate.value
-    ? [
-        {
-          key: 'garden',
-          primary: '傍晚沿着河岸花园散步，顺便看看新开的花',
-          secondary: '今天 18:30 · 从东门出发，经过河岸步道',
-        },
-        { key: 'letter', primary: '给朋友写信', secondary: '19:00 · 今天' },
-      ]
-    : [
-        { key: 'read', primary: '读完这一章', secondary: '09:30 · 今天' },
-        { key: 'walk', primary: '去公园走走', secondary: '11:00 · 今天' },
-        { key: 'tea', primary: '和朋友喝茶', secondary: '15:00 · 今天' },
-      ],
+  noPreview.value
+    ? []
+    : alternate.value
+      ? [
+          {
+            key: 'garden',
+            primary: '傍晚沿着河岸花园散步，顺便看看新开的花',
+            secondary: '今天 18:30 · 从东门出发，经过河岸步道',
+          },
+          { key: 'letter', primary: '给朋友写信', secondary: '19:00 · 今天' },
+        ]
+      : [
+          { key: 'read', primary: '读完这一章', secondary: '09:30 · 今天' },
+          { key: 'walk', primary: '去公园走走', secondary: '11:00 · 今天' },
+          { key: 'tea', primary: '和朋友喝茶', secondary: '15:00 · 今天' },
+        ],
 )
 
 function retry(card: string) {
@@ -92,6 +101,9 @@ function open(card: string) {
       <NvButton variant="outline" class="self-end" @click="alternate = !alternate"
         >换一组安排</NvButton
       >
+      <label class="flex items-center gap-2 self-end text-sm"
+        ><input v-model="noPreview" type="checkbox" /> 暂无最近预览</label
+      >
     </div>
     <div class="grid gap-4 md:grid-cols-2">
       <NvActionSummary
@@ -105,8 +117,8 @@ function open(card: string) {
         :items="leftItems"
         empty-title="今天已清空"
         empty-hint="新安排到来时会出现在这里。"
-        error-title="暂时取不到安排"
-        error-hint="现在无法判断还有多少事项。"
+        error-title="暂时无法读取今天的安排"
+        error-hint="目前无法取得今日安排的最新内容，也不能判断是否还有需要处理的项目。"
         unavailable-title="安排暂不可用"
         unavailable-hint="请稍后查看这一路。"
         action-label="查看全部安排"
