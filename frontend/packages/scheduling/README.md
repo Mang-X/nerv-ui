@@ -21,3 +21,7 @@ P11 的 `MaterialShortageSummary/PlanRisks/PlanConflicts/ResourceLoads` 接收 o
 # P12 静态比较
 
 `ScheduleRevisionReview`、`SchedulingPreviewResult`、`compareScheduleSnapshots` 及 `ScheduleSnapshot` 从主桶 `@nerv-iip/scheduling` 消费。稳定 semanticKey、来源、指标、风险和已保存基线由宿主提供；实例 assignment ID 只在单侧图面有效。详情、时间与旧 app 私有名适配见 [比较合同](../../../docs/scheduling-comparison.md)。
+
+# P14 日安排与打印
+
+`SchedulingDaySchedule`、`SchedulingDaySheet` 与 `SchedulingDayEntry` 提供显式时区日筛选、受控分组和局部打印目标；宿主仍负责方案来源、展示事实及 CSV。见 [日安排打印合同](../../../docs/scheduling-day-print.md)。
