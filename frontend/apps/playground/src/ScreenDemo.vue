@@ -9,6 +9,7 @@ import ScreenIndicatorsDemo from './screen/ScreenIndicatorsDemo.vue'
 import ScreenDataDemo from './screen/ScreenDataDemo.vue'
 import ScreenChartsDemo from './screen/ScreenChartsDemo.vue'
 import ScreenSummaryDemo from './screen/ScreenSummaryDemo.vue'
+import ScreenHeatmapDemo from './screen/ScreenHeatmapDemo.vue'
 import ScreenStageFlowDemo from './screen/ScreenStageFlowDemo.vue'
 import ScreenStatusHeroDemo from './screen/ScreenStatusHeroDemo.vue'
 import ScreenTablesDemo from './screen/ScreenTablesDemo.vue'
@@ -17,6 +18,7 @@ const props = defineProps<{ section?: string }>()
 const backgrounds = computed(() => props.section === '#screen/backgrounds')
 const layout = computed(() => props.section === '#screen/layout')
 const summary = computed(() => props.section === '#screen/summary')
+const heatmap = computed(() => props.section === '#screen/heatmap')
 const stageFlow = computed(() => props.section === '#screen/stage-flow')
 const statusHero = computed(() => props.section === '#screen/status-hero')
 const indicators = computed(() => props.section === '#screen/indicators')
@@ -59,7 +61,8 @@ const { theme, setTheme } = useTheme()
             !tables &&
             !summary &&
             !statusHero &&
-            !stageFlow
+            !stageFlow &&
+            !heatmap
               ? 'page'
               : undefined
           "
@@ -73,6 +76,7 @@ const { theme, setTheme } = useTheme()
         <a href="#screen/tables" :aria-current="tables ? 'page' : undefined">清单与事件</a>
         <a href="#screen/summary" :aria-current="summary ? 'page' : undefined">空间使用概况</a>
         <a href="#screen/status-hero" :aria-current="statusHero ? 'page' : undefined">此刻的现场</a>
+        <a href="#screen/heatmap" :aria-current="heatmap ? 'page' : undefined">一格一刻</a>
         <a href="#screen/stage-flow" :aria-current="stageFlow ? 'page' : undefined">一步一步</a>
         <a href="#desktop">桌面演示</a>
         <a href="#touch">触屏演示</a>
@@ -135,27 +139,30 @@ const { theme, setTheme } = useTheme()
               ? '城市光影舞台'
               : summary
                 ? '城市空间概况舞台'
-                : stageFlow
-                  ? '阶段数量舞台'
-                  : statusHero
-                    ? '现场主状态灯舞台'
-                    : tables
-                      ? '城市空间清单舞台'
-                      : charts
-                        ? '城市空间图表舞台'
-                        : data
-                          ? '城市空间消息舞台'
-                          : indicators
-                            ? '城市空间指标舞台'
-                            : controls
-                              ? '城市空间控件舞台'
-                              : '城市文化空间舞台'
+                : heatmap
+                  ? '分档热力舞台'
+                  : stageFlow
+                    ? '阶段数量舞台'
+                    : statusHero
+                      ? '现场主状态灯舞台'
+                      : tables
+                        ? '城市空间清单舞台'
+                        : charts
+                          ? '城市空间图表舞台'
+                          : data
+                            ? '城市空间消息舞台'
+                            : indicators
+                              ? '城市空间指标舞台'
+                              : controls
+                                ? '城市空间控件舞台'
+                                : '城市文化空间舞台'
         "
       >
         <ScreenBackgroundDemo v-if="backgrounds" />
         <ScreenLayoutDemo v-else-if="layout" />
         <ScreenSummaryDemo v-else-if="summary" />
         <ScreenStatusHeroDemo v-else-if="statusHero" />
+        <ScreenHeatmapDemo v-else-if="heatmap" />
         <ScreenStageFlowDemo v-else-if="stageFlow" />
         <ScreenTablesDemo v-else-if="tables" />
         <ScreenChartsDemo v-else-if="charts" />

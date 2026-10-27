@@ -308,6 +308,7 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 | KpiBar                          | NvKpiBar                                  | R3b 专名(Kpi)主导                                       |
 | AlarmTable                      | NvAlarmTable                              | R3b 专名(Alarm)主导                                     |
 | TrendChart                      | NvScreenTrendChart                        | R3b 通用修饰(Trend)+原语(Chart)                         |
+| line 页 waffle（独立库新增）    | NvScreenHeatmap                           | R5 大屏分档热力格；中性 cells 与显式分档                |
 | line 页内联阶段流（独立库新增） | NvScreenStageFlow                         | R5 大屏 StageFlow 家族；中性阶段数量                    |
 | StatusCard                      | NvScreenStatusCard                        | R5 Status 家族                                          |
 | StatusTag                       | NvScreenStatusTag                         | R5 Status 家族                                          |
@@ -465,3 +466,5 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 `--font-sans`、`--font-heading`。
 
 > **独立库新增（#30/T08 R12）。** R1 原名称为页内结构，无冻结公开名；R2 去除 line/station 业务根；R3 不采用无归属缩写；R4 适用大屏视距；R5 归入阶段流程展示，定名 `NvScreenStageFlow`（`screen/StageFlow.vue`）。状态复用 `NvScreenStatusTag`，不重复 Steps 导航能力。
+
+> **独立库新增（#29/T08 R11）。** R1 页内 waffle 无冻结公开名；R2 去除 OEE/line 领域词；R3 不采用缩写；R4 远距 screen 表面；R5 属热力格家族，定名 `NvScreenHeatmap`（`screen/Heatmap.vue`）。只读数值展示，复用 `NvScreenPanel` 容器，不扩展为图表框架。

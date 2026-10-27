@@ -283,3 +283,32 @@ it('opens the stage quantity deep link and preserves existing stage navigation',
   expect(wrapper.get('a[href="#screen/stage"]').attributes('aria-current')).toBe('page')
   expect(wrapper.find('a[href="#screen/status-hero"]').exists()).toBe(true)
 })
+
+it('routes the heatmap through the scaler with one current link and preserves previous screen navigation', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/heatmap' } })
+  expect(wrapper.get('a[href="#screen/heatmap"]').attributes('aria-current')).toBe('page')
+  expect(wrapper.findAll('a[aria-current="page"]')).toHaveLength(1)
+  expect(wrapper.findAll('[data-slot="nv-screen-heatmap"]')).toHaveLength(2)
+  expect(wrapper.find('[role="region"][aria-label="分档热力舞台"]').exists()).toBe(true)
+  for (const href of [
+    '#desktop',
+    '#touch',
+    '#mobile',
+    '#files',
+    '#screen/stage',
+    '#screen/layout',
+    '#screen/controls',
+    '#screen/indicators',
+    '#screen/charts',
+    '#screen/data',
+    '#screen/tables',
+    '#screen/summary',
+    '#screen/status-hero',
+    '#screen/stage-flow',
+  ]) {
+    expect(wrapper.find(`a[href="${href}"]`).exists()).toBe(true)
+  }
+  await wrapper.setProps({ section: '#screen/stage-flow' })
+  expect(wrapper.find('[data-slot="nv-screen-heatmap"]').exists()).toBe(false)
+  expect(wrapper.get('a[href="#screen/stage-flow"]').attributes('aria-current')).toBe('page')
+})
