@@ -172,6 +172,29 @@ describe('NvEntityMultiPicker public contract', () => {
     expect(group.find('button[aria-label="移除 同名地点 opaque-value-b"]').exists()).toBe(true)
   })
 
+  it('keeps final same-name identities distinct across code hint and value collisions', async () => {
+    const wrapper = render({
+      modelValue: ['center-a', 'center-b', 'center-c'],
+      options: [
+        { value: 'center-a', label: '工作中心', code: '东区' },
+        { value: 'center-b', label: '工作中心', hint: '东区' },
+        { value: 'center-c', label: '工作中心', code: 'center-a' },
+      ],
+    })
+    const group = wrapper.get('[role="group"]')
+    for (const value of ['center-a', 'center-b', 'center-c']) {
+      expect(group.find(`button[aria-label="移除 工作中心 ${value}"]`).exists()).toBe(true)
+      expect(group.text()).toContain(value)
+    }
+    await wrapper.setProps({ options: [] })
+    await group.get('button[aria-label="移除 工作中心 center-b"]').trigger('click')
+    expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual([['center-a', 'center-c']])
+    await wrapper.setProps({ modelValue: ['center-c', 'center-b', 'center-a'] })
+    expect(group.find('button[aria-label="移除 工作中心 center-b"]').exists()).toBe(true)
+    expect(group.find('button[aria-label="移除 工作中心 center-c"]').exists()).toBe(true)
+    expect(group.find('button[aria-label="移除 工作中心 center-a"]').exists()).toBe(true)
+  })
+
   it('uses distinct hints when same-name options share one code', () => {
     const wrapper = render({
       modelValue: ['center-a', 'center-b'],

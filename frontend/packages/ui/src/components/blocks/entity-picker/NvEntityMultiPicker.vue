@@ -73,7 +73,7 @@ const selectedEntries = computed(() => {
     code: selectedOptions.value.get(value)?.code?.trim() ?? '',
     hint: selectedOptions.value.get(value)?.hint?.trim() ?? '',
   }))
-  return entries.map((entry) => {
+  const identified = entries.map((entry) => {
     const duplicates = entries.filter((other) => other.label === entry.label)
     const uniqueCode =
       entry.code &&
@@ -90,6 +90,24 @@ const selectedEntries = computed(() => {
           : entry.code || entry.hint
     return { ...entry, identity, valueIdentity: identity === entry.value }
   })
+  // 不同字段可能产生相同文案；回退值也可能撞上另一项的 code/hint。
+  // 每轮只将碰撞项切换为唯一的完整 value，直到同名项可分别识别。
+  let resolved = identified
+  while (true) {
+    const next = resolved.map((entry) => {
+      const collides = resolved.some(
+        (other) =>
+          other.value !== entry.value &&
+          other.label === entry.label &&
+          other.identity === entry.identity,
+      )
+      return collides && !entry.valueIdentity
+        ? { ...entry, identity: entry.value, valueIdentity: true }
+        : entry
+    })
+    if (next.every((entry, index) => entry === resolved[index])) return resolved
+    resolved = next
+  }
 })
 const availableOptions = computed(() => {
   const seen = new Set<string>()
