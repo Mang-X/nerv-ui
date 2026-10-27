@@ -51,6 +51,9 @@ token 的单一事实来源是 `@nerv-iip/ui` 中的
 | `--nv-warning`         | `oklch(0.75 0.15 75)`       | `oklch(0.8 0.15 80)`        | 降级 / 风险状态                    |
 | `--ring`               | `oklch(0.708 0 0)`          | `oklch(0.556 0 0)`          | 焦点环                             |
 | `--sidebar`            | `oklch(0.985 0 0)`          | `oklch(0.205 0 0)`          | 侧边栏背景                         |
+| `--nv-print-paper`     | `oklch(1 0 0)`              | 同亮色                      | 打印纸面                           |
+| `--nv-print-ink`       | `oklch(0.145 0 0)`          | 同亮色                      | 打印正文                           |
+| `--nv-print-rule`      | `oklch(0.4 0 0)`            | 同亮色                      | 打印表格分隔线                     |
 
 使用匹配的 Tailwind 工具类：`bg-brand`、`text-brand`、`bg-success`、
 `text-warning` 等（通过 `@theme inline` 映射）。高程工具类 `shadow-xs`、

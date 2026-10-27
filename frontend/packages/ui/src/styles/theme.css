@@ -100,6 +100,11 @@
     --nv-brand: oklch(0.54 0.16 256);
     --nv-brand-foreground: oklch(0.985 0 0);
 
+    /* Paper stays light even when the host uses the dark screen theme. */
+    --nv-print-paper: oklch(1 0 0);
+    --nv-print-ink: oklch(0.145 0 0);
+    --nv-print-rule: oklch(0.4 0 0);
+
     /* Status semantics — desaturated for a professional, non-garish read:
        jade (not primary green), deep amber. (Scarlet destructive is a contract name.) */
     --nv-success: oklch(0.6 0.12 160);

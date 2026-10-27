@@ -2,6 +2,8 @@
 
 本票对应 [#97](https://github.com/Mang-X/nerv-ui/issues/97)，scope M，单独 draft PR 交独立 merger。开工 base 为 `87712a6c56c354d788377092920bbf7b904537e9` / tree `074fc6cde14f70cbe913453d12789fc74bff75b5`；最终 head/tree 与 clean 见外部 handoff。本票没有合并、关票、watch 或启动后继。母 #8 与 spec #1 仍 OPEN；前驱 #87 已核 CLOSED。
 
+PR113 R1 三项 material 的后续返修与新增证据见 [f1 记录](f1/README.md)；下文保留初次实施时点的原始门禁和证据边界。
+
 ## 冻结来源与能力处置
 
 旧源 `/Users/mang/.t3/worktrees/Nerv-IIP/t3-5c5dc61d` 固定 HEAD `79b1578f2b75f55709765b5e7882aaf33146c603` / tree `58e30c637acb7efdd393af291e570288b03b5aa9`，只读且 clean。`migration/` 没有改动。研究来源为 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-25/t07-research.md` §3–7 及 P14 附录。

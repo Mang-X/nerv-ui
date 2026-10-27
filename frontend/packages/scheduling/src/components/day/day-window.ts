@@ -25,7 +25,7 @@ export function entriesOnDay(
   groupId: string,
 ) {
   const window = dayWindow(date, timezone)
-  if (!window) return []
+  if (!window) return undefined
   return entries
     .filter((entry) => {
       if (groupId !== 'all' && entry.groupId !== groupId) return false

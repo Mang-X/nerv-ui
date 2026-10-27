@@ -50,6 +50,9 @@ function cleanup() {
   timeout = undefined
   focusTimeout = undefined
   printReturned = false
+  document
+    .querySelector(`.nv-day-print-target[data-print-owner="${owner}"]`)
+    ?.removeAttribute('data-nv-day-print-active')
   if (document.body.getAttribute('data-nv-day-print-owner') === owner)
     document.body.removeAttribute('data-nv-day-print-owner')
   printing.value = false
@@ -69,7 +72,7 @@ function requestGroup(event: Event) {
   ;(event.target as HTMLSelectElement).value = props.groupId
 }
 async function printDay() {
-  if (!validDay.value || !visible.value.length || props.readOnly) return
+  if (!validDay.value || !visible.value?.length || props.readOnly) return
   const current = document.body.getAttribute('data-nv-day-print-owner')
   if (current && current !== owner) return
   if (printing.value) return
@@ -94,10 +97,21 @@ async function printDay() {
 }
 onUnmounted(cleanup)
 watch(
-  () => [props.date, props.groupId, props.timezone, props.entries],
+  () => [
+    props.date,
+    props.groupId,
+    props.timezone,
+    props.entries,
+    props.title,
+    props.planLabel,
+    props.statusLabel,
+    props.readOnly,
+    props.readOnlyReason,
+  ],
   () => {
     if (printing.value) cleanup()
   },
+  { deep: true, flush: 'sync' },
 )
 </script>
 
@@ -115,7 +129,7 @@ watch(
       <button
         type="button"
         data-action="print-day"
-        :disabled="!validDay || !visible.length || readOnly"
+        :disabled="!validDay || !visible?.length || readOnly"
         @click="printDay"
       >
         打印日安排
@@ -125,6 +139,7 @@ watch(
     <p v-else-if="readOnly && readOnlyReason" role="status">{{ readOnlyReason }}</p>
     <p v-if="printError" role="alert">{{ printError }}</p>
     <SchedulingDaySheet
+      v-if="validDay && visible"
       :entries="visible"
       :date="date"
       :group-label="groupLabel"
@@ -141,6 +156,7 @@ watch(
         :data-print-owner="owner"
       >
         <SchedulingDaySheet
+          v-if="validDay && visible"
           :entries="visible"
           :date="date"
           :group-label="groupLabel"

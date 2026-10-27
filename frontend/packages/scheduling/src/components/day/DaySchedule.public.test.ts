@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
+import { nextTick, reactive } from 'vue'
 import { afterEach, expect, it, vi } from 'vitest'
 import { SchedulingDaySchedule, SchedulingDaySheet, type SchedulingDayEntry } from '../../index'
 
@@ -92,6 +92,184 @@ it('controlled date and group requests wait for external replacement and reject 
   await page.setProps({ date: '2026-02-30', timezone: '' })
   expect(page.text()).toContain('日期或时区未解析')
   expect(page.get('[data-action="print-day"]').attributes('disabled')).toBeDefined()
+  page.unmount()
+})
+
+it.each([
+  ['invalid calendar date', '2026-02-30', 'Asia/Shanghai'],
+  ['missing timezone', '2026-11-02', ''],
+  ['unknown IANA timezone', '2026-11-02', 'Unknown/Nowhere'],
+])(
+  '%s is unresolved rather than an empty day and recovers on valid input',
+  async (_case, date, timezone) => {
+    const original = JSON.stringify(entries)
+    const page = mount(SchedulingDaySchedule, {
+      props: { entries, date, groupId: 'all', timezone, title: '日安排' },
+    })
+    expect(page.text()).toContain('日期或时区未解析')
+    expect(page.text()).not.toContain('该日与所选分组没有安排')
+    expect(page.find('[data-day-sheet]').exists()).toBe(false)
+    expect(page.get('[data-action="print-day"]').attributes('disabled')).toBeDefined()
+
+    await page.setProps({ date: '2026-11-02', timezone: 'Asia/Shanghai' })
+    expect(page.get('[data-day-sheet]').text()).toContain('夜读')
+    await page.setProps({ entries: [] })
+    expect(page.get('[data-day-sheet]').text()).toContain('该日与所选分组没有安排')
+    expect(JSON.stringify(entries)).toBe(original)
+    page.unmount()
+  },
+)
+
+it('nested entry changes cancel the current print without changing source ownership', async () => {
+  vi.spyOn(window, 'print').mockImplementation(() => {})
+  const mutable = reactive(entries.map((entry) => ({ ...entry })))
+  const page = mount(SchedulingDaySchedule, {
+    props: {
+      entries: mutable,
+      date: '2026-11-02',
+      groupId: 'all',
+      timezone: 'Asia/Shanghai',
+      title: '日安排',
+    },
+  })
+  await page.get('[data-action="print-day"]').trigger('click')
+  expect(document.body.hasAttribute('data-nv-day-print-owner')).toBe(true)
+  mutable[0]!.label = '夜读调整'
+  expect(document.body.hasAttribute('data-nv-day-print-owner')).toBe(false)
+  await nextTick()
+  expect(document.querySelector('.nv-day-print-target')).toBeNull()
+  expect(page.get('[data-day-sheet]').text()).toContain('夜读调整')
+  page.unmount()
+})
+
+it('readonly replacement cancels print and restored permission permits a new request', async () => {
+  const print = vi.spyOn(window, 'print').mockImplementation(() => {})
+  const page = mount(SchedulingDaySchedule, {
+    props: {
+      entries,
+      date: '2026-11-02',
+      groupId: 'all',
+      timezone: 'Asia/Shanghai',
+      title: '日安排',
+    },
+  })
+  await page.get('[data-action="print-day"]').trigger('click')
+  await page.setProps({ readOnly: true })
+  expect(page.get('[data-action="print-day"]').attributes('disabled')).toBeDefined()
+  expect(document.body.hasAttribute('data-nv-day-print-owner')).toBe(false)
+  await page.setProps({ readOnly: false })
+  await page.get('[data-action="print-day"]').trigger('click')
+  expect(print).toHaveBeenCalledTimes(2)
+  expect(document.querySelectorAll('.nv-day-print-target')).toHaveLength(1)
+  window.dispatchEvent(new Event('afterprint'))
+  await nextTick()
+  expect(document.body.hasAttribute('data-nv-day-print-owner')).toBe(false)
+  page.unmount()
+})
+
+it('a cancelled instance cannot leave a target or delayed focus cleanup for the next owner', async () => {
+  vi.useFakeTimers()
+  try {
+    vi.spyOn(window, 'print').mockImplementation(() => {})
+    const props = { entries, date: '2026-11-02', groupId: 'all', timezone: 'Asia/Shanghai' }
+    const one = mount(SchedulingDaySchedule, { props: { ...props, title: '第一份' } })
+    const two = mount(SchedulingDaySchedule, { props: { ...props, title: '第二份' } })
+    await one.get('[data-action="print-day"]').trigger('click')
+    window.dispatchEvent(new Event('focus'))
+    await one.setProps({ title: '已替换' })
+    expect(
+      document.querySelectorAll('.nv-day-print-target[data-nv-day-print-active]'),
+    ).toHaveLength(0)
+    await two.get('[data-action="print-day"]').trigger('click')
+    const secondOwner = document.body.getAttribute('data-nv-day-print-owner')
+    expect(secondOwner).toBeTruthy()
+    vi.advanceTimersByTime(500)
+    expect(document.body.getAttribute('data-nv-day-print-owner')).toBe(secondOwner)
+    expect(
+      document.querySelectorAll('.nv-day-print-target[data-nv-day-print-active]'),
+    ).toHaveLength(1)
+    one.unmount()
+    expect(document.body.getAttribute('data-nv-day-print-owner')).toBe(secondOwner)
+    window.dispatchEvent(new Event('afterprint'))
+    await nextTick()
+    expect(document.body.hasAttribute('data-nv-day-print-owner')).toBe(false)
+    two.unmount()
+  } finally {
+    vi.useRealTimers()
+  }
+})
+
+it('print cleanup preserves a host body class', async () => {
+  vi.spyOn(window, 'print').mockImplementation(() => {})
+  document.body.classList.add('host-print-context')
+  try {
+    const page = mount(SchedulingDaySchedule, {
+      props: {
+        entries,
+        date: '2026-11-02',
+        groupId: 'all',
+        timezone: 'Asia/Shanghai',
+        title: '日安排',
+      },
+    })
+    await page.get('[data-action="print-day"]').trigger('click')
+    window.dispatchEvent(new Event('afterprint'))
+    await nextTick()
+    expect(document.body.className).toBe('host-print-context')
+    expect(document.body.hasAttribute('data-nv-day-print-owner')).toBe(false)
+    page.unmount()
+  } finally {
+    document.body.classList.remove('host-print-context')
+  }
+})
+
+it('a rejected controlled date request keeps the rendered day until external replacement', async () => {
+  const page = mount(SchedulingDaySchedule, {
+    props: {
+      entries,
+      date: '2026-11-02',
+      groupId: 'all',
+      timezone: 'Asia/Shanghai',
+      title: '日安排',
+    },
+  })
+  await page.get('input[type="date"]').setValue('2026-11-03')
+  expect(page.emitted('update:date')?.at(-1)).toEqual(['2026-11-03'])
+  expect(page.get('input[type="date"]').element).toHaveProperty('value', '2026-11-02')
+  expect(page.get('[data-day-sheet]').text()).toContain('夜读')
+  page.unmount()
+})
+
+it.each([
+  ['title', { title: '替换的标题' }],
+  ['plan label', { planLabel: '替换的方案' }],
+  ['status label', { statusLabel: '替换的状态' }],
+  ['readonly', { readOnly: true }],
+  ['readonly reason', { readOnlyReason: '权限已变化' }],
+  ['date', { date: '2026-11-03' }],
+  ['group', { groupId: 'studio' }],
+  ['timezone', { timezone: 'America/New_York' }],
+  ['entries', { entries: [] }],
+])('external %s replacement releases only the active print target', async (_case, change) => {
+  vi.spyOn(window, 'print').mockImplementation(() => {})
+  const page = mount(SchedulingDaySchedule, {
+    props: {
+      entries,
+      date: '2026-11-02',
+      groupId: 'all',
+      timezone: 'Asia/Shanghai',
+      title: '日安排',
+      planLabel: '原方案',
+      statusLabel: '原状态',
+      readOnlyReason: '原原因',
+    },
+  })
+  await page.get('[data-action="print-day"]').trigger('click')
+  expect(document.body.hasAttribute('data-nv-day-print-owner')).toBe(true)
+  await page.setProps(change)
+  expect(document.body.hasAttribute('data-nv-day-print-owner')).toBe(false)
+  await nextTick()
+  expect(document.querySelector('.nv-day-print-target')).toBeNull()
   page.unmount()
 })
 

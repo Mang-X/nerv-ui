@@ -1,4 +1,4 @@
-import type { SchedulingDayEntry } from '@nerv-iip/scheduling'
+import { SchedulingDaySchedule, type SchedulingDayEntry } from '@nerv-iip/scheduling'
 
 const entries: readonly SchedulingDayEntry[] = [
   {
@@ -27,3 +27,30 @@ const missingSemantic: SchedulingDayEntry = {
   endUtc: '2026-11-02T02:00:00Z',
 }
 void [entries, missingSemantic]
+
+type DayProps = InstanceType<typeof SchedulingDaySchedule>['$props']
+const printInputs: Pick<
+  DayProps,
+  | 'entries'
+  | 'date'
+  | 'groupId'
+  | 'timezone'
+  | 'title'
+  | 'planLabel'
+  | 'statusLabel'
+  | 'readOnly'
+  | 'readOnlyReason'
+> = {
+  entries,
+  date: '2026-11-02',
+  groupId: 'all',
+  timezone: 'Asia/Shanghai',
+  title: '日安排',
+  planLabel: '本页安排',
+  statusLabel: '未保存',
+  readOnly: true,
+  readOnlyReason: '仅供查看',
+}
+// @ts-expect-error readonly is a boolean host input
+const invalidReadOnly: DayProps['readOnly'] = 'true'
+void [printInputs, invalidReadOnly]

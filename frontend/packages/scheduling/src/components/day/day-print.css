@@ -80,30 +80,40 @@
   .nv-day-print-target {
     display: none;
   }
-}
 
-@media print {
-  body[data-nv-day-print-owner] > :not(.nv-day-print-target) {
-    display: none !important;
-  }
-  body[data-nv-day-print-owner] > .nv-day-print-target:not([data-nv-day-print-active]) {
-    display: none !important;
-  }
-  body[data-nv-day-print-owner] > .nv-day-print-target[data-nv-day-print-active] {
-    display: block !important;
-  }
-  body[data-nv-day-print-owner] .nv-day-sheet {
-    color: #000;
-    background: #fff;
-  }
-  body[data-nv-day-print-owner] .nv-day-sheet th,
-  body[data-nv-day-print-owner] .nv-day-sheet td {
-    border-color: #000;
-  }
-  body[data-nv-day-print-owner] .nv-day-sheet thead {
-    display: table-header-group;
-  }
-  body[data-nv-day-print-owner] .nv-day-sheet tr {
-    break-inside: avoid;
+  @media print {
+    body[data-nv-day-print-owner] {
+      background: var(--nv-print-paper) !important;
+    }
+    body[data-nv-day-print-owner] > :not(.nv-day-print-target) {
+      display: none !important;
+    }
+    body[data-nv-day-print-owner] > .nv-day-print-target:not([data-nv-day-print-active]) {
+      display: none !important;
+    }
+    body[data-nv-day-print-owner] > .nv-day-print-target[data-nv-day-print-active] {
+      display: block !important;
+      background: var(--nv-print-paper) !important;
+      color: var(--nv-print-ink) !important;
+      color-scheme: light;
+    }
+    body[data-nv-day-print-owner] .nv-day-sheet {
+      color: var(--nv-print-ink);
+      background: var(--nv-print-paper);
+    }
+    body[data-nv-day-print-owner] .nv-day-sheet-header p,
+    body[data-nv-day-print-owner] .nv-day-sheet td small {
+      color: var(--nv-print-ink);
+    }
+    body[data-nv-day-print-owner] .nv-day-sheet th,
+    body[data-nv-day-print-owner] .nv-day-sheet td {
+      border-color: var(--nv-print-rule);
+    }
+    body[data-nv-day-print-owner] .nv-day-sheet thead {
+      display: table-header-group;
+    }
+    body[data-nv-day-print-owner] .nv-day-sheet tr {
+      break-inside: avoid;
+    }
   }
 }
