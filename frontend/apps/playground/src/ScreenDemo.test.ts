@@ -203,3 +203,17 @@ it('opens tables deep link preserves completed links and resets rows and focus w
   expect(wrapper.get('[aria-label="清单页读数"]').text()).toContain('collection-001')
   expect(document.querySelector('[role="listbox"]')).toBeNull()
 })
+
+it('opens the background-only deep link with two isolated copies and unmounts on route change', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/backgrounds' } })
+  expect(wrapper.findAll('svg.flow')).toHaveLength(2)
+  expect(wrapper.findAll('svg.iso')).toHaveLength(2)
+  expect(wrapper.findAll('svg[viewBox="0 0 1440 810"]')).toHaveLength(2)
+  expect(wrapper.findAll('svg[viewBox="0 0 1200 760"]')).toHaveLength(2)
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('svg.flow').exists()).toBe(false)
+  expect(wrapper.find('svg.iso').exists()).toBe(false)
+  await wrapper.setProps({ section: '#screen/backgrounds' })
+  expect(wrapper.findAll('svg.flow')).toHaveLength(2)
+  expect(wrapper.findAll('svg.iso')).toHaveLength(2)
+})

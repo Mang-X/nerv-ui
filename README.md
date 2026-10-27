@@ -66,3 +66,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T07/P10 / #93](https://github.com/Mang-X/nerv-ui/issues/93) 从 `/#schedule-request/library`、`/#schedule-request/studio` 提供候选池、窗口与单项请求的中性接入。状态、可见行批量、草稿和异步回执合同见 [请求表单](docs/scheduling-request-forms.md)；本页内存数据与确认不代表实际 APS 或后端保存。[P10 证据](docs/evidence/t07-p10/README.md)保留本票边界。
 
 [T07/P14 / #97](https://github.com/Mang-X/nerv-ui/issues/97) 从 `/#schedule-day/library`、`/#schedule-day/studio` 展示显式时区的受控日安排与局部打印目标。半开午夜、跨日、分组、纸面表头和清理合同见[日安排与打印](docs/scheduling-day-print.md)；两页内存安排不代表已保存方案或实际 APS，验证边界见 [P14 证据](docs/evidence/t07-p14/README.md)。
+
+[T08/R02 / #20](https://github.com/Mang-X/nerv-ui/issues/20) 从 `/#screen/backgrounds` 查看流线与等距块体背景的双实例。公开名称、来源默认与宿主用法见[装饰背景文档](frontend/apps/design-system/docs/components/screen/decorative-backgrounds.md)，实际证据见 [R02 记录](docs/evidence/t08-r02/README.md)。

@@ -78,3 +78,7 @@ Hero 只显示来源给出的访问量、费用、变化和 spark；`deltaTone` 
 Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时覆盖图例和段 title。来源负责唯一 row name、段顺序、有限 0–100 百分比及每行总和≤100；不从 axis 文字推算时间。小于100留尾部空白，空 rows/axis/segs 不恢复工业示例；超界输入由宿主验证，不增加归一化规则。可切换来源、未知、大数/长文案、空时段、更新与恢复。
 
 范围只覆盖三件既有组件，#25 三种新卡、#40 recipes、排程框架和领域算法分别交付。固定迁移源保持不变，本次增量仅留独立新库；旧库接入另验。精确公共测试、真实浏览器、资源与证据边界见 [A07 验证记录](evidence/t05-a07/README.md)；A07 不替代父 #6 的完整组合验收。
+
+## T08 R02：流线与等距块体装饰背景
+
+`/#screen/backgrounds` 仅展示 `NvScreenFlowLinesBg` 和 `NvScreenIsometricBlocksBg`，每件两实例。宿主可用既有舞台设置切换主题、缩放和设计尺寸；退出深链后组件卸载，重入重新挂载。两个 SVG 保留原 `viewBox` 与 `slice`，不含共享 `id`；系统减弱动态效果自动停动，静态几何保留。公开属性与来源处置见[组件文档](../frontend/apps/design-system/docs/components/screen/decorative-backgrounds.md)，本轮门禁见[证据](evidence/t08-r02/README.md)。本接缝不承接 FusionBg 数据业务图、种子氛围层或旧应用接入。

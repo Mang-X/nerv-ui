@@ -1,6 +1,6 @@
 # NvUI 命名与 token 映射表
 
-本页是 [ADR 0020：NvUI 组件命名、token 场景命名空间与样式隔离](../../docs/adr/0020-nvui-naming-token-namespaces-and-style-isolation.md)
+本页是 [ADR 0020：NvUI 组件命名、token 场景命名空间与样式隔离](../../migration/reference/source/docs/adr/0020-nvui-naming-token-namespaces-and-style-isolation.md)
 的**参考数据**。命名规则本身仍在那篇 ADR：`Nv` 前缀边界、PC 素名规则、R1–R5 判定流程、
 1.3 废弃处置、token 场景命名空间的划分依据、契约层永久冻结名单。本页只承载按那套规则
 逐件算出的**映射结果**——组件旧名 → 新名全表、`--sb-*` → `--nv-scr-*` 30 项、PC 自有
@@ -255,7 +255,9 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 | Container | NvContainer |     | PageColumns | NvPageColumns |
 | Page      | NvPage      |     | PageSection | NvPageSection |
 
-### A4. screen 层（34 件：33 导出 + 1 未导出）
+### A4. screen 层（来源冻结清单；独立库新增件见下）
+
+> **独立库新增（#20/T08 R02）。** 原应用素材 `FlowLinesBg` → `NvScreenFlowLinesBg`（R3b：流线装饰背景），`IsoFactoryBg` → `NvScreenIsometricBlocksBg`（R3b：等距块体装饰背景，去除 Factory 场景词）。两件仅属 screen 层，没有 PC/触屏跨表面模式。
 
 | 旧名                         | 新名                                      | 依据                                                    |
 | ---------------------------- | ----------------------------------------- | ------------------------------------------------------- |

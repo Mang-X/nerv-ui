@@ -24,6 +24,8 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
   </div>
 </ScreenDemo>
 
+[流线与等距块体装饰背景](./decorative-backgrounds.md)由 #20 单独导出，可在 `/#screen/backgrounds` 查看双实例、主题和缩放。
+
 ## 为什么独立一层
 
 大屏的观看距离(数米外)、环境(公共展示空间或控制室)、硬件(高亮 LED)都和近场的 PC / PDA 不同。强行复用浅色令牌会过曝、对比不足。因此这一层:
