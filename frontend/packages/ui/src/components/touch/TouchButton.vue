@@ -85,23 +85,18 @@ const ChildContent: FunctionalComponent = (_props, { attrs }) => {
       ? [h(NvLoader, { variant: 'ring', size: 'default', class: 'text-current' })]
       : (slots.leading?.() ?? [])
   const original = child.children
+  const originalSlots =
+    original !== null && typeof original === 'object' && !Array.isArray(original)
+      ? (original as Record<string, unknown> & { default?: () => VNodeChild })
+      : undefined
+  const decoratedContent = () => [
+    ...prefix(),
+    ...[(originalSlots ? originalSlots.default?.() : (original as VNodeChild)) ?? []].flat(),
+  ]
   const content =
     typeof child.type === 'string'
-      ? [
-          ...prefix(),
-          ...(Array.isArray(original)
-            ? original
-            : original == null
-              ? []
-              : [original as VNodeChild]),
-        ]
-      : {
-          ...(original as Record<string, unknown>),
-          default: () => [
-            ...prefix(),
-            ...[(original as { default?: () => VNodeChild })?.default?.() ?? []].flat(),
-          ],
-        }
+      ? decoratedContent()
+      : { ...originalSlots, default: decoratedContent }
   const normalized = h(child.type as string, forwarded, content)
   // Preserve the caller's VNode ownership/ref/scope, with newly normalized
   // children and render flags so text children can safely receive the loader.

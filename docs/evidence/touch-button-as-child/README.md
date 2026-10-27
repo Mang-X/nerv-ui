@@ -26,3 +26,13 @@
 **真实浏览器键盘证据尚未运行。** DOM 合成事件不替代 #43 明文要求的真实浏览器；本候选不可据此宣布 #43 完整验收。文档 live/full docs、视觉/HTTP、CI、packed、真实设备/vendor、旧消费者和生产亦 UNRUN。全局格式/main raw 和 docs alias 历史 FAIL 保留，不由本票 scoped PASS 覆盖。旧应用接入/退出按用户范围 NOT_PLANNED。
 
 交独立审查判断代码与剩余验收边界；PR 保持 draft，未自行合并或关闭票。
+
+## R1 数组 children 返修
+
+R1 发现函数组件通过数组传入默认内容时，旧分支把数组误作 slots 对象，加载器保留但原内容丢失。本轮只在本地 ChildContent 中区分 slots 对象与数组/文本 children，共用装饰后的默认内容；原 named slots、VNode ownership/ref/scope 和捕获保护不改。
+
+Requirement coverage：`preserves functional child array content through loading and recovery` 公开回归先 **16 PASS / 1 FAIL**，归一化修复后最终 **17/17 PASS**。断言实际 anchor 的 strong 内容、href、busy、内部 loader、loading 时无 leading 且不激活，恢复后同一宿主、原内容、leading 与一次激活。原 R1 原字节 probe 保留于独立回执，未改断言。最终 UI 类型检查、playground build、目标源码 lint/fmt 通过；测试 JSON 缺少 unhandledErrors 字段，不记作零。
+
+中间 GREEN 尝试仍因测试误用 loader 的 data-slot 选择器失败；实际 NvLoader 使用 role=status，按现有组件契约修正。中间类型检查因 children 联合包含 RawSlots 失败，分支内明确 VNodeChild 类型后通过。首次添加测试因 cwd 路径多写 frontend 未落盘，其后未新增测试的旧 16/16 运行不计 RED。以上原始日志与最终报告分开保留。
+
+真实浏览器键盘验收仍 **UNRUN**，不能以合成 DOM 回归替代。候选继续 draft，#43 不关闭；本轮无浏览器、HTTP 或完整文档站新证据，历史失败与其它未运行边界不变。

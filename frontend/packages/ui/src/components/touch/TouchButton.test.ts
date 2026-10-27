@@ -220,3 +220,33 @@ it('updates compiled asChild content without retaining the loader or losing the 
   expect(wrapper.find('[role="status"]').exists()).toBe(false)
   wrapper.unmount()
 })
+
+it('preserves functional child array content through loading and recovery', async () => {
+  const Child: import('vue').FunctionalComponent = (_props, { attrs, slots }) =>
+    h('a', attrs, slots.default?.())
+  const onClick = vi.fn()
+  const wrapper = mount(NvTouchButton, {
+    props: { asChild: true, loading: true },
+    attrs: { onClick },
+    slots: {
+      default: () => h(Child, { href: '#functional' }, [h('strong', '原内容')]),
+      leading: () => h('span', { 'data-leading': '' }, '→'),
+    },
+  })
+  const host = wrapper.get('a')
+  expect(host.get('strong').text()).toBe('原内容')
+  expect(host.attributes('href')).toBe('#functional')
+  expect(host.attributes('aria-busy')).toBe('true')
+  expect(host.find('[role="status"]').exists()).toBe(true)
+  expect(host.find('[data-leading]').exists()).toBe(false)
+  await host.trigger('click')
+  expect(onClick).not.toHaveBeenCalled()
+  await wrapper.setProps({ loading: false })
+  expect(wrapper.get('a').element).toBe(host.element)
+  expect(host.get('strong').text()).toBe('原内容')
+  expect(host.find('[role="status"]').exists()).toBe(false)
+  expect(host.get('[data-leading]').text()).toBe('→')
+  await host.trigger('click')
+  expect(onClick).toHaveBeenCalledTimes(1)
+  wrapper.unmount()
+})
