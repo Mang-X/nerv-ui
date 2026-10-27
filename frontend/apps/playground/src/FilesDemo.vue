@@ -16,6 +16,7 @@ const routes = [
   ['mobile-lists', '翻阅时光'],
   ['mobile-feedback', '片刻回响'],
   ['screen/stage', '空间舞台'],
+  ['screen/layout', '城市光影'],
   ['screen/controls', '随心安排'],
   ['screen/indicators', '阅读与到访'],
   ['screen/data', '流动消息'],

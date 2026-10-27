@@ -175,6 +175,7 @@ it('opens files directly and returns from every completed surface group', async 
     '#mobile-lists',
     '#mobile-feedback',
     '#screen/stage',
+    '#screen/layout',
     '#screen/controls',
     '#screen/indicators',
     '#screen/data',

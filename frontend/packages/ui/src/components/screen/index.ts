@@ -9,6 +9,7 @@ import './tokens.css'
 // Decorative SVG backgrounds (fixed geometry, no host data dependency)
 export { default as NvScreenFlowLinesBg } from './FlowLinesBg.vue'
 export { default as NvScreenIsometricBlocksBg } from './IsometricBlocksBg.vue'
+export { default as NvScreenLayout } from './ScreenLayout.vue'
 
 // Containers / surfaces
 export { default as NvScreenPanel } from './ScreenPanel.vue'

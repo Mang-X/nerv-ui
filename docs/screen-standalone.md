@@ -82,3 +82,9 @@ Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时�
 ## T08 R02：流线与等距块体装饰背景
 
 `/#screen/backgrounds` 仅展示 `NvScreenFlowLinesBg` 和 `NvScreenIsometricBlocksBg`，每件两实例。宿主可用既有舞台设置切换主题、缩放和设计尺寸；退出深链后组件卸载，重入重新挂载。两个 SVG 保留原 `viewBox` 与 `slice`，不含共享 `id`；系统减弱动态效果自动停动，静态几何保留。公开属性与来源处置见[组件文档](../frontend/apps/design-system/docs/components/screen/decorative-backgrounds.md)，本轮门禁见[证据](evidence/t08-r02/README.md)。本接缝不承接 FusionBg 数据业务图、种子氛围层或旧应用接入。
+
+## T08 R04：种子氛围布局
+
+`/#screen/layout` 消费主桶 `NvScreenLayout`，在外层复用 `NvScreenScaler`。布局保留来源的 1920×1080 点阵、两条曲线、星点、彗星以及页头/内容层次。宿主传 `seed`、标题、时间、日期、区域和屏幕名；不同 seed 更新几何，同 seed 保持几何一致。SVG 轨道与渐变 ID 按组件实例隔离，装饰层穿透指针。默认页头复用 `NvScreenHeader`，也可由 `header` 插槽替换；内容 `main` 插槽保留真实按钮操作，长内容在区域内滚动。
+
+深链中“换一种光影”只改主画面的 seed，“更新时刻”只改宿主持有的时间；阅读和心愿按钮各有可见结果。右侧河岸展厅画面是独立布局实例。布局的设计尺寸固定为来源的 1920×1080，因此本深链锁定设计尺寸选择；外层仍可切换 fit/width/stretch 和主题，并随视口 resize。低动效偏好隐藏彗星、停止星点呼吸，内容和几何保留。离页卸载、重入重新挂载。公开属性与 live 文档见[组件页](../frontend/apps/design-system/docs/components/screen/screen-layout.md)；本票证据见[验证记录](evidence/t08-r04/README.md)。旧应用路由、时钟、数据和消费者保持原属主，排程及其它背景不在本票。

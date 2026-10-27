@@ -69,4 +69,6 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 
 [T08/R02 / #20](https://github.com/Mang-X/nerv-ui/issues/20) 从 `/#screen/backgrounds` 查看流线与等距块体背景的双实例。公开名称、来源默认与宿主用法见[装饰背景文档](frontend/apps/design-system/docs/components/screen/decorative-backgrounds.md)，实际证据见 [R02 记录](docs/evidence/t08-r02/README.md)。
 
+[T08/R04 / #22](https://github.com/Mang-X/nerv-ui/issues/22) 从 `/#screen/layout` 查看种子氛围布局与可交互内容。公共 `NvScreenLayout` 接受宿主 seed 与时钟，外层复用 `NvScreenScaler`；属性、插槽和缩放边界见[组件文档](frontend/apps/design-system/docs/components/screen/screen-layout.md)，本票结果见 [R04 记录](docs/evidence/t08-r04/README.md)。
+
 [T08/R16 / #34](https://github.com/Mang-X/nerv-ui/issues/34) 从 `/#action-summary` 查看两张中性行动摘要卡的五态、真实零、未知数量、预览替换和各自动作。公开输入与来源边界见[组件文档](frontend/apps/design-system/docs/components/desktop/action-summary.md)，本票验证见 [R16 记录](docs/evidence/t08-r16/README.md)。
