@@ -40,6 +40,14 @@ const filtered = computed(() => {
 const visibleKeys = computed(() => filtered.value.map((item) => item.key))
 const selected = computed(() => new Set(props.selectedKeys))
 const anyVisible = computed(() => props.state === 'ready' && visibleKeys.value.length > 0)
+const hiddenSelectedKeys = computed(() => {
+  if (props.selectionOnFilter !== 'clear-hidden' || props.state !== 'ready' || !search.value.trim())
+    return []
+  const visible = new Set(visibleKeys.value)
+  return [...new Set(props.selectedKeys.filter((key) => !visible.has(key)))].sort()
+})
+const requestedHidden = new Set<string>()
+let requestedSource = props.sourceKey
 function reason(item?: SchedulingRequestItem) {
   return props.readOnly ? '当前为只读' : item?.disabledReason || props.editDisabledReason || ''
 }
@@ -52,7 +60,12 @@ function edit(item: SchedulingRequestItem, patch: Partial<SchedulingPriorityDraf
   feedback.delete(item.key)
 }
 function changePriority(item: SchedulingRequestItem, input: string | number) {
-  const priority = Number(input)
+  const raw = String(input).trim()
+  if (!raw) {
+    edit(item, { priority: null })
+    return
+  }
+  const priority = Number(raw)
   if (Number.isFinite(priority)) edit(item, { priority })
 }
 function include(keys: readonly string[], included: boolean) {
@@ -120,12 +133,21 @@ watch(
     for (const key of feedback.keys()) if (!keys.has(key)) feedback.delete(key)
   },
 )
-watch(search, () => {
-  if (props.selectionOnFilter !== 'clear-hidden') return
-  const visible = new Set(visibleKeys.value)
-  const hidden = props.selectedKeys.filter((key) => !visible.has(key))
-  if (hidden.length) emit('include', [...hidden], false)
-})
+watch(
+  () => JSON.stringify([props.sourceKey, hiddenSelectedKeys.value]),
+  () => {
+    if (requestedSource !== props.sourceKey) {
+      requestedHidden.clear()
+      requestedSource = props.sourceKey
+    }
+    const hidden = new Set(hiddenSelectedKeys.value)
+    for (const key of requestedHidden) if (!hidden.has(key)) requestedHidden.delete(key)
+    const newlyHidden = hiddenSelectedKeys.value.filter((key) => !requestedHidden.has(key))
+    for (const key of newlyHidden) requestedHidden.add(key)
+    if (newlyHidden.length) emit('include', newlyHidden, false)
+  },
+  { flush: 'sync' },
+)
 onUnmounted(() => {
   epoch++
 })

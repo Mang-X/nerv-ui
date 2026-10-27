@@ -93,7 +93,7 @@ const count = ref(0)
 const dialogOpen = ref(false)
 const fixedItem = shallowRef<SchedulingRequestItem | null>(null)
 const initialKeyword = ref('')
-const responseMode = ref<'accept' | 'reject' | 'throw' | 'hold'>('accept')
+const responseMode = ref<'accept' | 'reject' | 'throw' | 'hold' | 'incomplete'>('accept')
 const waiting = ref<{ label: string; accept: () => void; reject: () => void }[]>([])
 const notice = ref('')
 const updateTimers = new Set<ReturnType<typeof setTimeout>>()
@@ -160,6 +160,12 @@ function replaceRows() {
     items.value[0]!,
   ]
   notice.value = '项目已重排并更新；选择仍按稳定编号。'
+}
+function renameFirstRow() {
+  items.value = items.value.map((item) =>
+    item.key === 'session-a' ? { ...item, label: '已更新的项目', searchTerms: [] } : item,
+  )
+  notice.value = '首个项目已改名，编号保持不变。'
 }
 function openFixed(index: number) {
   fixedItem.value = items.value[index] ?? null
@@ -232,6 +238,10 @@ async function submit(request: SchedulingSingleRequest): Promise<SchedulingReque
   const receipt = {
     key: `local-${++count.value}`,
     label: `${mode === 'new' ? '新安排' : '加入安排'} · ${items.value.find((item) => item.key === key)?.label ?? key}`,
+  }
+  if (responseMode.value === 'incomplete') {
+    // Simulate a JavaScript host crossing the TypeScript boundary with an incomplete receipt.
+    return { key: receipt.key } as SchedulingRequestReceipt
   }
   let result: SchedulingRequestReceipt | false
   if (responseMode.value === 'hold') result = await hold(`请求 ${key}`, receipt)
@@ -386,13 +396,15 @@ onUnmounted(() => {
           >恢复项目</NvButton
         ><NvButton type="button" size="sm" variant="outline" @click="replaceRows"
           >重排并更新</NvButton
+        ><NvButton type="button" size="sm" variant="outline" @click="renameFirstRow"
+          >更新首个项目名称</NvButton
         ><NvButton type="button" size="sm" variant="outline" @click="switchSource"
           >切换来源</NvButton
         >
       </div>
       <div class="flex flex-wrap gap-2">
         <NvButton
-          v-for="response in ['accept', 'reject', 'throw', 'hold'] as const"
+          v-for="response in ['accept', 'reject', 'throw', 'hold', 'incomplete'] as const"
           :key="response"
           type="button"
           size="sm"
@@ -401,9 +413,13 @@ onUnmounted(() => {
           :data-response="response"
           @click="responseMode = response"
           >{{
-            { accept: '来源接受', reject: '来源未确认', throw: '来源失败', hold: '等待来源确认' }[
-              response
-            ]
+            {
+              accept: '来源接受',
+              reject: '来源未确认',
+              throw: '来源失败',
+              hold: '等待来源确认',
+              incomplete: '来源回执缺信息',
+            }[response]
           }}</NvButton
         ><NvButton
           type="button"

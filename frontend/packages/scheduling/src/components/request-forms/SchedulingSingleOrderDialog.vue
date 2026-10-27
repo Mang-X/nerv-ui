@@ -69,6 +69,11 @@ const validation = computed(
 const reason = computed(() => {
   if (props.readOnly) return props.disabledReason || '当前为只读'
   if (props.disabledReason) return props.disabledReason
+  if (!props.fixedItem && props.candidateState !== 'ready') {
+    if (props.candidateState === 'unready') return '范围尚未就绪，尚未读取候选项目。'
+    if (props.candidateState === 'loading') return '正在读取候选项目，请稍后再试。'
+    return '候选项目读取失败，请重试。'
+  }
   if (!item.value) return props.fixedItem ? '目标项目不可用。' : '请先选择项目。'
   if (item.value.disabledReason) return item.value.disabledReason
   if (mode.value === 'new' && priority.value == null) return '请填写优先级。'
@@ -147,6 +152,16 @@ function changePriority(value: string | number) {
   const next = Number(raw)
   priority.value = raw && Number.isFinite(next) ? next : null
 }
+function isReceipt(value: unknown): value is SchedulingRequestReceipt {
+  if (!value || typeof value !== 'object') return false
+  const { key, label } = value as Partial<SchedulingRequestReceipt>
+  return (
+    typeof key === 'string' &&
+    key.trim().length > 0 &&
+    typeof label === 'string' &&
+    label.trim().length > 0
+  )
+}
 async function submit() {
   if (pending.value || reason.value || !props.submit || !item.value) return
   const chosen = item.value
@@ -167,7 +182,7 @@ async function submit() {
   try {
     const result = await props.submit(request)
     if (!current(ticket, request, chosen)) return
-    if (result === false || !result?.key) {
+    if (!isReceipt(result)) {
       feedback.value = '请求未确认，请检查后重试。'
       return
     }
@@ -185,6 +200,7 @@ function current(ticket: number, request: SchedulingSingleRequest, chosen: Sched
     ticket === epoch &&
     visible.value &&
     !props.readOnly &&
+    (Boolean(props.fixedItem) || props.candidateState === 'ready') &&
     props.sourceKey === request.sourceKey &&
     props.contextKey === request.contextKey &&
     mode.value === request.mode &&
@@ -213,6 +229,13 @@ watch(
   () => props.readOnly,
   () => {
     invalidate(false)
+  },
+  { flush: 'sync' },
+)
+watch(
+  () => props.candidateState,
+  () => {
+    if (!props.fixedItem) invalidate()
   },
   { flush: 'sync' },
 )
