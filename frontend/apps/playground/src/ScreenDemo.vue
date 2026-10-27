@@ -78,7 +78,7 @@ const { theme, setTheme } = useTheme()
         <a href="#mobile-lists">翻阅时光</a>
         <a href="#mobile-feedback">片刻回响</a>
       </nav>
-      <div class="screen-demo-settings" aria-label="舞台设置">
+      <div class="screen-demo-settings" role="group" aria-label="舞台设置">
         <label
           >缩放方式
           <select v-model="mode" aria-label="缩放方式">
@@ -119,6 +119,7 @@ const { theme, setTheme } = useTheme()
     <div class="screen-demo-viewport">
       <NvScreenScaler
         class="screen-demo-scaler"
+        role="region"
         :design-width="dimensions.width"
         :design-height="dimensions.height"
         :mode="mode"

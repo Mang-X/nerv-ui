@@ -100,6 +100,15 @@ it('opens only the completed controls section and unmounts its portal when retur
 it('opens the public status hero deep link and leaves no display after returning to the stage', async () => {
   wrapper = mount(ScreenDemo, { props: { section: '#screen/status-hero' } })
   expect(wrapper.get('a[href="#screen/status-hero"]').attributes('aria-current')).toBe('page')
+  const settings = wrapper.get('[role="group"][aria-label="舞台设置"]')
+  expect(settings.get('select[aria-label="缩放方式"]').element.tagName).toBe('SELECT')
+  expect(wrapper.get('[role="region"][aria-label="现场主状态灯舞台"]').element).toHaveProperty(
+    'tabIndex',
+    0,
+  )
+  const actions = wrapper.get('[role="group"][aria-label="现场来源与状态"]')
+  expect(actions.get('button[name="source-gallery"]').text()).toBe('城市文化空间')
+  expect(actions.get('button[name="status-alarm"]').text()).toBe('紧急')
   expect(wrapper.findAll('[data-status-hero]')).toHaveLength(2)
   await wrapper.get('button[name="status-alarm"]').trigger('click')
   expect(wrapper.get('[data-primary-hero] .nv-scr-sh').classes()).toContain('nv-scr-sh-fast')

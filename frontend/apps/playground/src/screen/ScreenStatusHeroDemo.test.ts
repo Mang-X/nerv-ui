@@ -25,3 +25,17 @@ it('keeps the host source, rhythm, and offline facts independent of the public d
   expect(page.get('[data-action-feedback]').text()).toContain('已查看')
   page.unmount()
 })
+
+it('offers a user-facing control to expand and restore the live status label', async () => {
+  const page = mount(ScreenStatusHeroDemo)
+  const toggle = page.get('button[name="long-label"]')
+  expect(toggle.text()).toBe('显示完整状态')
+  expect(page.get('[data-primary-hero]').text()).not.toContain('请留意现场更新')
+  await toggle.trigger('click')
+  expect(toggle.text()).toBe('收起完整状态')
+  expect(page.get('[data-primary-hero]').text()).toContain('请留意现场更新')
+  await toggle.trigger('click')
+  expect(toggle.text()).toBe('显示完整状态')
+  expect(page.get('[data-primary-hero]').text()).not.toContain('请留意现场更新')
+  page.unmount()
+})

@@ -44,3 +44,14 @@
 ## 尚未证明
 
 本轮未运行 CI、正式版本包消费者、Nerv-IIP 原应用接入、生产、真实设备或真实 vendor。全局 3 个 base fmt FAIL、main raw 2 个 FAIL 仅为交接历史事实，本轮未重跑也未覆盖；4 条 vendor policy 车道执行数为 0。#12–#16 旧应用接入和旧库退出依规格 v2 为 NOT_PLANNED，不是本票遗漏。本文不宣称父 #9、规格 #1 完成。
+
+## PR117 R1 窄返修（2026-10-27）
+
+- 独立 R1 回执指出 `ScreenStatusHeroDemo.vue` 的“现场来源与状态”普通 `div` 被命名但在 AX 树中仍是 `generic`。同一路由还包含宿主“舞台设置”普通 `div` 和有名、可聚焦的 `NvScreenScaler` 根容器。宿主分别给两组操作加 `role="group"`，给舞台加 `role="region"`；本页“现场状态展示”原生 `section` 在 Chromium AX 中已是 `region`。公共件及其 API 不变。
+- “长标题”按钮改为可见的“显示完整状态”／“收起完整状态”，仍由原 `longLabel` 状态和 click handler 切换。未改组件标签、动画或失联计算。
+- RED：在 `frontend/apps/playground` 执行 `../../node_modules/.bin/vp test run src/screen/ScreenStatusHeroDemo.test.ts src/ScreenDemo.test.ts`，旧模板下 2 files、13 tests 中 2 failed、11 passed，exit 1；失败分别是找不到有名 group 和按钮仍显示“长标题”。GREEN：同命令 2 files、13 tests passed，exit 0。宿主测试核三处角色及子控件，文案测试核展开、收起后的可见标签。控制台仍有 `Could not parse CSS stylesheet`；结构化 skipped、todo、unhandled-error 字段未提供，记为缺失。
+- Fresh 受影响门禁：playground `vue-tsc --noEmit -p tsconfig.json`、4 个改动前端文件的 `vp fmt --check` 与 `vp lint` 均 exit 0；一次中途 typecheck 因测试对 `get().exists()` 的错误用法 exit 2，已修后重跑 exit 0。最终 playground `vp build` exit 0、5635 modules，保留既有 `crypto` externalized、VueUse PURE 注释和大 chunk 警告。未重跑不受影响的 UI 全套和文档站。
+- Fresh 浏览器：T3 preview 两次原错均为 `Too many server browser tabs are open. Close one with t3_preview_close, or reuse a tabId from preview_status tabs.`，转 ego-browser。Chromium CDP AX 全树有 `group`“舞台设置”、`region`“现场主状态灯舞台”、`group`“现场来源与状态”、`region`“现场状态展示”；全树 named `generic` 为 0。按钮 click 后为“收起完整状态”与完整标签，聚焦按 Enter 后恢复“显示完整状态”与短标签；三处失联时原辅助按钮 Enter 后反馈“已查看现场说明”。TaskSpace 已关闭。
+- Fresh dist HTTP：本机 `/`、入口 JS、runtime JS、入口 CSS 四个实际响应均 HTTP 200、正文与最终 dist 逐字节相等。入口 CSS SHA-256 `5b088a8b8834330a9e77d89e5714d25ac859efee32795a9b56b8d573ddded3d9`。本地 HTTP 服务已停，不以此证明正式包消费者。
+- 继承依据：R1 输入 HEAD `006a8e6c703b281bbc670acb3650072d6e6b9580`；本次相对它仅改两个 playground 宿主文件及其测试。公共 `StatusHero.vue` blob `13640f99c7244018e1da8e7900007937cb439be0`、组件测试 blob `5572af300175c9eb2ec3603346edc7b050cbcdeb`、文档 live 页 blob `d686a5017edb3dc422542f43d3f3d674eb11dd73`、screen 导出 blob `f4486c96f81fe767596fa4e707b8a6708bd44103` 均未改；其 R1 组件、CSS、文档 live 证据只按原 producer 身份有界继承，不算本轮 fresh。早期 reduced 动画 FAIL、全局 fmt/main raw FAIL 仍为历史事实；完整 docs build、CI、packed/旧消费者、真设备、真 vendor、生产仍 UNRUN。
+- 本次 fetch 后 integration 仍为 `f7c49f2bf6351894b9c7f6efe3f7287abbdde031` / tree `9ef8dd57f75bc845a7958ed8a5f0f71203b8ecf1`，merge-base 相同、delta 空；未 reset。最终候选 HEAD、tree、clean 与 PR 回读见同轮 durable handoff。

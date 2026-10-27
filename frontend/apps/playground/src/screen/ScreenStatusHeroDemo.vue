@@ -55,7 +55,7 @@ function selectSource(index: number) {
       <p>空间运行概况</p>
       <h1>此刻的现场</h1>
     </header>
-    <div class="status-hero-tools" aria-label="现场来源与状态">
+    <div class="status-hero-tools" role="group" aria-label="现场来源与状态">
       <button
         name="source-gallery"
         type="button"
@@ -79,7 +79,9 @@ function selectSource(index: number) {
       <button name="offline-zero" type="button" @click="offlineCount = 0">数据齐全</button>
       <button name="offline-three" type="button" @click="offlineCount = 3">三处失联</button>
       <button name="offline-unknown" type="button" @click="offlineCount = null">数量待确认</button>
-      <button name="long-label" type="button" @click="longLabel = !longLabel">长标题</button>
+      <button name="long-label" type="button" @click="longLabel = !longLabel">
+        {{ longLabel ? '收起完整状态' : '显示完整状态' }}
+      </button>
     </div>
     <section class="status-hero-content" aria-label="现场状态展示">
       <div class="status-hero-panel" data-primary-hero>
