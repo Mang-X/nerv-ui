@@ -272,3 +272,14 @@ it('opens the seeded layout deep link with host actions and remounts cleanly', a
   expect(wrapper.get('.nv-scr-layout__chrome').text()).toContain('10:30')
   expect(wrapper.text()).not.toMatch(/T08|R04|来源|第二实例|示例/)
 })
+
+it('opens the stage quantity deep link and preserves existing stage navigation', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/stage-flow' } })
+  expect(wrapper.get('a[href="#screen/stage-flow"]').attributes('aria-current')).toBe('page')
+  expect(wrapper.get('a[href="#screen/stage"]').attributes('aria-current')).toBeUndefined()
+  expect(wrapper.find('[data-slot="nv-screen-stage-flow"]').exists()).toBe(true)
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('[data-slot="nv-screen-stage-flow"]').exists()).toBe(false)
+  expect(wrapper.get('a[href="#screen/stage"]').attributes('aria-current')).toBe('page')
+  expect(wrapper.find('a[href="#screen/status-hero"]').exists()).toBe(true)
+})

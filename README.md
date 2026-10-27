@@ -76,3 +76,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T08/R16 / #34](https://github.com/Mang-X/nerv-ui/issues/34) 从 `/#action-summary` 查看两张中性行动摘要卡的五态、真实零、未知数量、预览替换和各自动作。公开输入与来源边界见[组件文档](frontend/apps/design-system/docs/components/desktop/action-summary.md)，本票验证见 [R16 记录](docs/evidence/t08-r16/README.md)。
 
 [T08/R14 / #32](https://github.com/Mang-X/nerv-ui/issues/32) 从 `/#entity-multi-picker` 查看两种中性多选宿主：受控数组、已选名称保留与搜索分页。旧逗号字段在宿主转换；公共合同见[组件文档](frontend/apps/design-system/docs/components/desktop/entity-multi-picker.md)，本票证据见 [R14 记录](docs/evidence/t08-r14/README.md)。
+
+[T08/R12 / #30](https://github.com/Mang-X/nerv-ui/issues/30) 从 `/#screen/stage-flow` 查看两类中性阶段数量来源，支持替换、重排、清空、恢复和长文字/窄幅显示。公共合同见[阶段数量流](frontend/apps/design-system/docs/components/screen/stage-flow.md)，实际验证和 UNRUN 边界见[R12 记录](docs/evidence/t08-r12/README.md)。

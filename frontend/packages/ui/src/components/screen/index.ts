@@ -60,3 +60,7 @@ export { default as NvScreenTabs } from './ScreenTabs.vue'
 export { default as NvScreenSegmented } from './ScreenSegmented.vue'
 export { default as NvScreenSwitch } from './ScreenSwitch.vue'
 export { default as NvScreenPagination } from './ScreenPagination.vue'
+
+// Read-only host-owned quantities along a sequence.
+export { default as NvScreenStageFlow } from './StageFlow.vue'
+export type { ScreenStage } from './StageFlow.vue'

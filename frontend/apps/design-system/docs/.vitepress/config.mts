@@ -373,6 +373,7 @@ export default defineConfig({
             { text: 'KpiBar 指标条', link: '/components/screen/kpi-bar' },
             { text: 'AlarmTable 告警表', link: '/components/screen/alarm-table' },
             { text: 'StatusLight 状态灯', link: '/components/screen/status-light' },
+            { text: 'StageFlow 阶段数量流', link: '/components/screen/stage-flow' },
             { text: 'StatusHero 远距主灯', link: '/components/screen/status-hero' },
             { text: 'StatusTag 状态标签', link: '/components/screen/status-tag' },
           ],
