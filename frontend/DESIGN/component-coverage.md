@@ -39,7 +39,7 @@
 | 分页          | （`NvDataTable` 内置）                                                                                        | —（移动用无限滚动，见长列表）   | `—`                                | `NvScreenPagination`                                                                           |
 | 标签页        | `NvTabs`                                                                                                      | `NvMobileTabs`                  | `NvTouchSegmented`（触控用分段件） | `NvScreenTabs`                                                                                 |
 | 描述列表      | `NvDescriptions`                                                                                              | （用 `NvCell`）                 | `—`                                | `—`                                                                                            |
-| 时间安排 | `NvScheduleTimeline`（原生只读，#84） | `—` | `—` | `—` |
+| 时间安排      | `NvScheduleTimeline`（原生只读，#84）                                                                         | `—`                             | `—`                                | `—`                                                                                            |
 | 时间线 / 步骤 | `NvTimeline`                                                                                                  | `NvMobileSteps`                 | `—`                                | `—`                                                                                            |
 | 卡片 / 面板   | `NvCard` · `NvRecordCard`（记录卡）                                                                           | （用 `NvCell`/`NvListRow`）     | （复用 `NvCard`）                  | `NvScreenPanel` · `NvBorderPanel`                                                              |
 | 指标 KPI      | `NvMetricCard`（8 变体）· `NvMetricComparison`（对比）· `NvMetricRing`（环形构成）· `NvMetricStrip`（指标条） | `—`                             | `NvStatTile`                       | `NvKpiBar` · `NvOeeHero`                                                                       |
@@ -65,21 +65,22 @@
 
 ### 反馈 / 覆盖层
 
-| UX 概念         | 桌面 PC                                            | 移动 PDA                                | 一体机 touch | 大屏 screen                                      |
-| --------------- | -------------------------------------------------- | --------------------------------------- | ------------ | ------------------------------------------------ |
-| 对话框          | `NvDialog`                                         | `NvMobileDialog`                        | `—`          | `—`                                              |
-| 警示对话框      | `NvAlertDialog`                                    | （`NvMobileDialog` danger）             | `—`          | `—`                                              |
-| 抽屉 / 面板     | `NvSheet`                                          | `NvBottomSheet` · `NvActionSheet`       | `—`          | `—`                                              |
-| 下拉菜单        | `NvDropdownMenu`                                   | `NvMobileDropdownMenu`                  | `—`          | `—`                                              |
-| 气泡确认        | `NvPopconfirm`                                     | `—`                                     | `—`          | `—`                                              |
-| 文字提示        | `NvTooltip`                                        | `—`                                     | `—`          | `—`                                              |
-| 轻提示 / 通知   | `nvMessage` · `nvNotification`（`NvNotifierHost`） | `NvMobileToast` · `NvNoticeBar`         | （复用 PC）  | `—`                                              |
-| 告警表          | `—`                                                | `—`                                     | `—`          | `NvAlarmTable`                                   |
-| 加载 / 骨架     | `NvSpinner` · `NvLoader`                           | `NvMobileSkeleton` · `NvMobileProgress` | `—`          | `—`                                              |
-| 空态 / 结果     | （原版 Empty 复用）                                | `NvMobileEmpty` · `NvMobileResult`      | `—`          | `—`                                              |
-| 错误重试        | `—`                                                | `NvMobileErrorRetry`                    | `—`          | `—`                                              |
-| 仪表 / 翻牌     | `—`                                                | `—`                                     | `—`          | `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` |
-| 装饰边框 / 分割 | `—`                                                | `NvMobileDivider`                       | `—`          | `NvTechFrame` · `NvGlowDivider`                  |
+| UX 概念         | 桌面 PC                                            | 移动 PDA                                | 一体机 touch | 大屏 screen                                         |
+| --------------- | -------------------------------------------------- | --------------------------------------- | ------------ | --------------------------------------------------- |
+| 对话框          | `NvDialog`                                         | `NvMobileDialog`                        | `—`          | `—`                                                 |
+| 警示对话框      | `NvAlertDialog`                                    | （`NvMobileDialog` danger）             | `—`          | `—`                                                 |
+| 抽屉 / 面板     | `NvSheet`                                          | `NvBottomSheet` · `NvActionSheet`       | `—`          | `—`                                                 |
+| 下拉菜单        | `NvDropdownMenu`                                   | `NvMobileDropdownMenu`                  | `—`          | `—`                                                 |
+| 气泡确认        | `NvPopconfirm`                                     | `—`                                     | `—`          | `—`                                                 |
+| 文字提示        | `NvTooltip`                                        | `—`                                     | `—`          | `—`                                                 |
+| 轻提示 / 通知   | `nvMessage` · `nvNotification`（`NvNotifierHost`） | `NvMobileToast` · `NvNoticeBar`         | （复用 PC）  | `—`                                                 |
+| 告警表          | `—`                                                | `—`                                     | `—`          | `NvAlarmTable`                                      |
+| 加载 / 骨架     | `NvSpinner` · `NvLoader`                           | `NvMobileSkeleton` · `NvMobileProgress` | `—`          | `—`                                                 |
+| 空态 / 结果     | （原版 Empty 复用）                                | `NvMobileEmpty` · `NvMobileResult`      | `—`          | `—`                                                 |
+| 错误重试        | `—`                                                | `NvMobileErrorRetry`                    | `—`          | `—`                                                 |
+| 仪表 / 翻牌     | `—`                                                | `—`                                     | `—`          | `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop`    |
+| 装饰边框 / 分割 | `—`                                                | `NvMobileDivider`                       | `—`          | `NvTechFrame` · `NvGlowDivider`                     |
+| 装饰背景        | `—`                                                | `—`                                     | `—`          | `NvScreenFlowLinesBg` · `NvScreenIsometricBlocksBg` |
 
 ### 手势 / 移动专属
 

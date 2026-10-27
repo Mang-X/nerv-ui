@@ -2,6 +2,7 @@
 import { computed, shallowRef } from 'vue'
 import { NvScreenScaler, useColorMode, useTheme, type ScaleMode } from '@nerv-iip/ui'
 import ScreenStageDemo from './screen/ScreenStageDemo.vue'
+import ScreenBackgroundDemo from './screen/ScreenBackgroundDemo.vue'
 import ScreenControlsDemo from './screen/ScreenControlsDemo.vue'
 import ScreenIndicatorsDemo from './screen/ScreenIndicatorsDemo.vue'
 import ScreenDataDemo from './screen/ScreenDataDemo.vue'
@@ -10,6 +11,7 @@ import ScreenSummaryDemo from './screen/ScreenSummaryDemo.vue'
 import ScreenTablesDemo from './screen/ScreenTablesDemo.vue'
 
 const props = defineProps<{ section?: string }>()
+const backgrounds = computed(() => props.section === '#screen/backgrounds')
 const summary = computed(() => props.section === '#screen/summary')
 const indicators = computed(() => props.section === '#screen/indicators')
 const controls = computed(() => props.section === '#screen/controls')
@@ -35,7 +37,9 @@ const { theme, setTheme } = useTheme()
         <a
           href="#screen/stage"
           :aria-current="
-            !controls && !indicators && !data && !charts && !tables && !summary ? 'page' : undefined
+            !backgrounds && !controls && !indicators && !data && !charts && !tables && !summary
+              ? 'page'
+              : undefined
           "
           >空间舞台</a
         >
@@ -99,22 +103,25 @@ const { theme, setTheme } = useTheme()
         :mode="mode"
         tabindex="0"
         :aria-label="
-          summary
-            ? '城市空间概况舞台'
-            : tables
-              ? '城市空间清单舞台'
-              : charts
-                ? '城市空间图表舞台'
-                : data
-                  ? '城市空间消息舞台'
-                  : indicators
-                    ? '城市空间指标舞台'
-                    : controls
-                      ? '城市空间控件舞台'
-                      : '城市文化空间舞台'
+          backgrounds
+            ? '大屏背景展示舞台'
+            : summary
+              ? '城市空间概况舞台'
+              : tables
+                ? '城市空间清单舞台'
+                : charts
+                  ? '城市空间图表舞台'
+                  : data
+                    ? '城市空间消息舞台'
+                    : indicators
+                      ? '城市空间指标舞台'
+                      : controls
+                        ? '城市空间控件舞台'
+                        : '城市文化空间舞台'
         "
       >
-        <ScreenSummaryDemo v-if="summary" />
+        <ScreenBackgroundDemo v-if="backgrounds" />
+        <ScreenSummaryDemo v-else-if="summary" />
         <ScreenTablesDemo v-else-if="tables" />
         <ScreenChartsDemo v-else-if="charts" />
         <ScreenDataDemo v-else-if="data" />
