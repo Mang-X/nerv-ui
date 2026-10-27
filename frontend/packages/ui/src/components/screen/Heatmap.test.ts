@@ -195,3 +195,55 @@ it('keeps tooltip descriptions local across independent Vue roots and remounts',
   replacement.unmount()
   roots.forEach((root) => root.remove())
 })
+
+it.each(['focus', 'mouseenter'] as const)(
+  'clears removed cell interaction before the same key is inserted after %s',
+  async (event) => {
+    const { reactive, nextTick } = await import('vue')
+    const cells = reactive([{ key: 'a', label: '旧格', value: 1 }])
+    const page = mount(ui.NvScreenHeatmap, {
+      props: { cells, thresholds: [], below: { label: '来源', tone: 'cyan' } },
+    })
+    await page.get('[data-heatmap-cell]').trigger(event)
+    expect(page.get('[role="tooltip"]').text()).toContain('旧格')
+    cells.splice(0, 1)
+    cells.push({ key: 'a', label: '新格', value: 2 })
+    await nextTick()
+    expect(page.find('[role="tooltip"]').exists()).toBe(false)
+    expect(page.get('[data-heatmap-cell]').attributes('aria-describedby')).toBeUndefined()
+    await page.get('[data-heatmap-cell]').trigger(event)
+    expect(page.get('[role="tooltip"]').text()).toBe('新格 · 2 · 来源')
+    page.unmount()
+  },
+)
+
+it('restores the focused cell after pointer departure without losing a different hovered cell on blur', async () => {
+  const page = mount(ui.NvScreenHeatmap, {
+    props: {
+      cells: [
+        { key: 'a', label: '甲', value: 1 },
+        { key: 'b', label: '乙', value: 2 },
+      ],
+      thresholds: [],
+      below: { label: '来源', tone: 'cyan' },
+    },
+  })
+  const [a, b] = page.findAll('[data-heatmap-cell]')
+  await a!.trigger('focus')
+  await b!.trigger('mouseenter')
+  expect(page.get('[role="tooltip"]').text()).toBe('乙 · 2 · 来源')
+  await b!.trigger('mouseleave')
+  expect(page.get('[role="tooltip"]').text()).toBe('甲 · 1 · 来源')
+  expect(a!.attributes('aria-describedby')).toBe(page.get('[role="tooltip"]').attributes('id'))
+  await b!.trigger('mouseenter')
+  await a!.trigger('blur')
+  expect(page.get('[role="tooltip"]').text()).toBe('乙 · 2 · 来源')
+  await b!.trigger('mouseleave')
+  expect(page.find('[role="tooltip"]').exists()).toBe(false)
+  await a!.trigger('focus')
+  await b!.trigger('mouseenter')
+  await a!.trigger('keydown', { key: 'Escape' })
+  await b!.trigger('mouseleave')
+  expect(page.find('[role="tooltip"]').exists()).toBe(false)
+  page.unmount()
+})

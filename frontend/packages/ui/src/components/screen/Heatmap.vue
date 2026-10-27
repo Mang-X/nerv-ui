@@ -45,7 +45,9 @@ const tooltipId = shallowRef(`nv-scr-heatmap-${useId()}`)
 onMounted(() => {
   tooltipId.value += `-${++nextHeatmapInstance}`
 })
-const activeKey = shallowRef<string | number | null>(null)
+const focusedKey = shallowRef<string | number | null>(null)
+const hoveredKey = shallowRef<string | number | null>(null)
+const activeKey = computed(() => hoveredKey.value ?? focusedKey.value)
 const active = computed(() => props.cells.find((cell) => cell.key === activeKey.value))
 // A malformed scale is unknown as a whole: never guess which duplicate wins.
 const ordered = computed(() => {
@@ -71,14 +73,24 @@ function band(value: unknown): ScreenHeatmapBand | null {
   if (!finite(value) || !ordered.value) return null
   return [...ordered.value].reverse().find((entry) => value >= entry.min) ?? props.below
 }
-function clear(key: string | number) {
-  if (activeKey.value === key) activeKey.value = null
+function clearFocus(key: string | number) {
+  if (focusedKey.value === key) focusedKey.value = null
+}
+function clearHover(key: string | number) {
+  if (hoveredKey.value === key) hoveredKey.value = null
+}
+function dismiss() {
+  focusedKey.value = null
+  hoveredKey.value = null
 }
 watch(
-  () => props.cells,
-  () => {
-    if (!active.value) activeKey.value = null
+  () => props.cells.map((cell) => cell.key),
+  (keys) => {
+    if (focusedKey.value !== null && !keys.includes(focusedKey.value)) focusedKey.value = null
+    if (hoveredKey.value !== null && !keys.includes(hoveredKey.value)) hoveredKey.value = null
   },
+  // Observe in-place removal before a later same-tick insertion reuses its key.
+  { flush: 'sync' },
 )
 </script>
 
@@ -104,11 +116,11 @@ watch(
         data-heatmap-cell
         tabindex="0"
         :aria-describedby="active?.key === cell.key ? tooltipId : undefined"
-        @mouseenter="activeKey = cell.key"
-        @mouseleave="clear(cell.key)"
-        @focus="activeKey = cell.key"
-        @blur="clear(cell.key)"
-        @keydown.esc="activeKey = null"
+        @mouseenter="hoveredKey = cell.key"
+        @mouseleave="clearHover(cell.key)"
+        @focus="focusedKey = cell.key"
+        @blur="clearFocus(cell.key)"
+        @keydown.esc="dismiss"
       >
         <span class="nv-scr-heatmap-readable"
           >{{ cell.label }} · <span data-cell-value>{{ display(cell.value) }}</span> ·

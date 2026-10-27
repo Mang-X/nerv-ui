@@ -33,7 +33,7 @@ const thresholds = [{min:4,label:'适中',tone:'cyan'},{min:8,label:'充实',ton
 | `emptyLabel`            | `string`                            | `暂无记录` | 零项时的 status 文本                   |
 | `axisStart` / `axisEnd` | `string`                            | `''`       | 宿主纯文本，空串不补时标               |
 
-无事件或插槽。根节点为普通 div，原生 attrs 可透传，不应给 generic div 设置可访问名称；需要命名容器时由宿主使用 section + aria-labelledby。内部两组列表分别命名为分档图例/分档数值；每格 tabindex=0，无按钮动作。提示位于同组件内，aria-describedby 仅指向当前提示并使用实例局部 ID。
+无事件或插槽。根节点为普通 div，原生 attrs 可透传，不应给 generic div 设置可访问名称；需要命名容器时由宿主使用 section + aria-labelledby。内部两组列表分别命名为分档图例/分档数值；每格 tabindex=0，无按钮动作。提示位于同组件内，aria-describedby 仅指向当前提示并使用实例局部 ID。悬停期间优先展示悬停格；鼠标离开后恢复仍聚焦的格子。格子删除时同步清除其焦点和悬停记录，即使同批重新加入相同 key 也要等待新交互；Escape 清除两种记录。
 
 主桶同时导出类型：
 
