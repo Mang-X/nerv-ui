@@ -31,3 +31,23 @@ describe('ADR 0020 §4.2 — VitePress isolation', () => {
     expect.soft(style).toContain("overrides.css'")
   })
 })
+
+describe('screen decorative backgrounds public documentation', () => {
+  it('has coverage, a single decision source and a live docs-site preview', () => {
+    const coverage = read('../../../DESIGN/component-coverage.md')
+    const decision = read('../../../DESIGN/components/screen-decorative-backgrounds.md')
+    const page = read(
+      '../../../apps/design-system/docs/components/screen/decorative-backgrounds.md',
+    )
+    for (const name of ['NvScreenFlowLinesBg', 'NvScreenIsometricBlocksBg']) {
+      expect(coverage).toContain(name)
+      expect(decision).toContain(name)
+      expect(page).toContain(`<${name} />`)
+    }
+    expect(decision).toMatch(/## 规则[\s\S]*## 判定[\s\S]*## 正例[\s\S]*## 反例/)
+    expect(page).toContain('<ScreenDemo')
+    expect(page).toContain(
+      '<!-- @include: ../../../../../DESIGN/components/screen-decorative-backgrounds.md -->',
+    )
+  })
+})

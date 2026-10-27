@@ -24,22 +24,32 @@ const nodes = [
 </script>
 
 <template>
-  <svg class="flow" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg
+    class="nv-scr-flow"
+    viewBox="0 0 1440 810"
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+  >
     <!-- 底层管路 -->
-    <path v-for="(d, i) in mains" :key="`mr${i}`" class="rail main" :d="d" />
-    <path v-for="(d, i) in branches" :key="`br${i}`" class="rail" :d="d" />
+    <path
+      v-for="(d, i) in mains"
+      :key="`mr${i}`"
+      class="nv-scr-flow-rail nv-scr-flow-main"
+      :d="d"
+    />
+    <path v-for="(d, i) in branches" :key="`br${i}`" class="nv-scr-flow-rail" :d="d" />
     <!-- 流动数据光 -->
     <path
       v-for="(d, i) in mains"
       :key="`mf${i}`"
-      class="flux main"
+      class="nv-scr-flow-flux nv-scr-flow-main"
       :d="d"
       :style="{ animationDelay: `${i * -9}s`, animationDuration: '22s' }"
     />
     <path
       v-for="(d, i) in branches"
       :key="`bf${i}`"
-      class="flux"
+      class="nv-scr-flow-flux"
       :d="d"
       :style="{ animationDelay: `${i * -4}s`, animationDuration: '17s' }"
     />
@@ -47,35 +57,42 @@ const nodes = [
     <g v-for="(n, i) in nodes" :key="`n${i}`">
       <circle
         v-if="n.ping"
-        class="ping"
+        class="nv-scr-flow-ping"
         :cx="n.x"
         :cy="n.y"
         r="4"
         :style="{ animationDelay: `${i * 0.9}s` }"
       />
-      <circle class="node" :cx="n.x" :cy="n.y" r="3.4" :style="{ animationDelay: `${i * 0.6}s` }" />
+      <circle
+        class="nv-scr-flow-node"
+        :cx="n.x"
+        :cy="n.y"
+        r="3.4"
+        :style="{ animationDelay: `${i * 0.6}s` }"
+      />
     </g>
   </svg>
 </template>
 
 <style scoped>
 @layer nv-components {
-  .flow {
+  .nv-scr-flow {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
   }
-  .rail {
+  .nv-scr-flow-rail {
     fill: none;
     stroke: rgba(120, 160, 220, 0.07);
     stroke-width: 1;
   }
-  .rail.main {
+  .nv-scr-flow-rail.nv-scr-flow-main {
     stroke: rgba(120, 160, 220, 0.1);
     stroke-width: 1.5;
   }
-  .flux {
+  .nv-scr-flow-flux {
     fill: none;
     stroke: var(--nv-scr-cyan);
     stroke-width: 1.4;
@@ -86,7 +103,7 @@ const nodes = [
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
-  .flux.main {
+  .nv-scr-flow-flux.nv-scr-flow-main {
     stroke-width: 1.8;
     stroke-dasharray: 16 360;
   }
@@ -95,12 +112,12 @@ const nodes = [
       stroke-dashoffset: -2200;
     }
   }
-  .node {
+  .nv-scr-flow-node {
     fill: var(--nv-scr-cyan);
     filter: drop-shadow(0 0 6px var(--nv-scr-cyan));
     animation: flow-pulse 4.5s ease-in-out infinite;
   }
-  .ping {
+  .nv-scr-flow-ping {
     fill: none;
     stroke: var(--nv-scr-cyan);
     stroke-width: 1.2;
@@ -129,11 +146,11 @@ const nodes = [
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .flux,
-    .ping {
+    .nv-scr-flow-flux,
+    .nv-scr-flow-ping {
       display: none;
     }
-    .node {
+    .nv-scr-flow-node {
       animation: none;
     }
   }

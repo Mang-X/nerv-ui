@@ -5,26 +5,26 @@ import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
 <template>
   <main class="background-demo">
     <header>
-      <p class="background-demo-kicker">大屏装饰背景 / T08 R02</p>
+      <p class="background-demo-kicker">空间光影</p>
       <h1>流线与等距块体</h1>
-      <p>保留来源的 SVG 几何与轻缓动效。缩放、主题及系统低动效由宿主控制。</p>
+      <p>流动的光点与安静的立体网格，为空间增添层次。</p>
     </header>
     <div class="background-demo-grid">
-      <section class="background-demo-sample" aria-label="流线背景大幅示例">
+      <section class="background-demo-sample" aria-label="流线背景横幅">
         <NvScreenFlowLinesBg />
         <span>流线 · 主干 / 支线 / 光点</span>
       </section>
-      <section class="background-demo-sample" aria-label="等距块体背景大幅示例">
+      <section class="background-demo-sample" aria-label="等距块体背景横幅">
         <NvScreenIsometricBlocksBg />
         <span>等距块体 · 网格 / 六组块体</span>
       </section>
-      <section class="background-demo-sample small" aria-label="流线背景第二实例">
+      <section class="background-demo-sample small" aria-label="流线背景短幅">
         <NvScreenFlowLinesBg />
-        <span>流线 · 第二实例</span>
+        <span>流线 · 短幅</span>
       </section>
-      <section class="background-demo-sample small" aria-label="等距块体背景第二实例">
+      <section class="background-demo-sample small" aria-label="等距块体背景短幅">
         <NvScreenIsometricBlocksBg />
-        <span>等距块体 · 第二实例</span>
+        <span>等距块体 · 短幅</span>
       </section>
     </div>
   </main>

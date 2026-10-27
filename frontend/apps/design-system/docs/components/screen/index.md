@@ -10,7 +10,7 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 
 面向公共空间、展馆、运营中心与控制室等远距显示表面的组件层。与桌面 PC、PDA 移动两层**完全解耦**:独立的 `--nv-scr-*` 深色工业蓝令牌(无亮色模式),只遵循统一的设计哲学 —— 克制、去装饰、动效减速无回弹。
 
-独立 playground 从 `/#screen` 或 `/#screen/stage` 进入 A01 的 7 件基础外壳舞台；[独立大屏接入](../../../../../../docs/screen-standalone.md)说明范围。完整 34 件真实导出以包内 `screen/index.ts` 为准，后续六组由 #59–#64 逐票验收，下方历史总览不代表全组 fresh 验收。
+独立 playground 从 `/#screen` 或 `/#screen/stage` 进入 A01 的 7 件基础外壳舞台；[独立大屏接入](../../../../../../docs/screen-standalone.md)说明范围。完整 36 件真实导出以包内 `screen/index.ts` 为准，后续六组由 #59–#64 逐票验收，下方历史总览不代表全组 fresh 验收。
 
 <ScreenDemo>
   <NvScreenPanel style="width: 360px">

@@ -44,47 +44,59 @@ const cubes = blocks.map(({ ix, iy, w, d, h }) => {
 </script>
 
 <template>
-  <svg class="iso" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g class="grid">
+  <svg
+    class="nv-scr-iso"
+    viewBox="0 0 1200 760"
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+  >
+    <g class="nv-scr-iso-grid">
       <line v-for="(l, i) in gridLines" :key="i" :x1="l.x1" :y1="l.y1" :x2="l.x2" :y2="l.y2" />
     </g>
     <g v-for="(c, i) in cubes" :key="`c${i}`">
-      <polygon class="face-l" :points="c.left" />
-      <polygon class="face-r" :points="c.right" />
-      <polygon class="face-t" :points="c.top" />
-      <circle class="node" :cx="c.cx" :cy="c.cy" r="3" :style="{ animationDelay: `${i * 0.5}s` }" />
+      <polygon class="nv-scr-iso-face-l" :points="c.left" />
+      <polygon class="nv-scr-iso-face-r" :points="c.right" />
+      <polygon class="nv-scr-iso-face-t" :points="c.top" />
+      <circle
+        class="nv-scr-iso-node"
+        :cx="c.cx"
+        :cy="c.cy"
+        r="3"
+        :style="{ animationDelay: `${i * 0.5}s` }"
+      />
     </g>
   </svg>
 </template>
 
 <style scoped>
 @layer nv-components {
-  .iso {
+  .nv-scr-iso {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
   }
-  .grid line {
+  .nv-scr-iso-grid line {
     stroke: rgba(120, 160, 220, 0.05);
     stroke-width: 1;
   }
-  .face-t {
+  .nv-scr-iso-face-t {
     fill: rgba(74, 166, 238, 0.05);
     stroke: rgba(120, 190, 245, 0.22);
     stroke-width: 1;
   }
-  .face-l {
+  .nv-scr-iso-face-l {
     fill: rgba(74, 166, 238, 0.022);
     stroke: rgba(120, 160, 220, 0.12);
     stroke-width: 1;
   }
-  .face-r {
+  .nv-scr-iso-face-r {
     fill: rgba(74, 166, 238, 0.04);
     stroke: rgba(120, 160, 220, 0.16);
     stroke-width: 1;
   }
-  .node {
+  .nv-scr-iso-node {
     fill: var(--nv-scr-cyan);
     filter: drop-shadow(0 0 5px var(--nv-scr-cyan));
     animation: iso-pulse 4s ease-in-out infinite;
@@ -99,7 +111,7 @@ const cubes = blocks.map(({ ix, iy, w, d, h }) => {
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .node {
+    .nv-scr-iso-node {
       animation: none;
     }
   }

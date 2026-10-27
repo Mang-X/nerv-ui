@@ -68,7 +68,7 @@
 
 ## 组件清单
 
-真实导出以同目录 `index.ts` 和主桶为准，共 34 件组件；下表用于导航，不替代公开 API。
+真实导出以同目录 `index.ts` 和主桶为准，共 36 件组件；下表用于导航，不替代公开 API。
 
 | 分类                    | 当前公共导出                                                                                                                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -76,6 +76,7 @@
 | 指标 / 图表（10）       | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvTaktGantt` |
 | 数据 / 状态（7）        | `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusTag` · `NvScrollBoard`                                        |
 | 控件（9）               | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` · `NvScreenPagination`     |
+| 装饰背景（2）           | `NvScreenFlowLinesBg` · `NvScreenIsometricBlocksBg`                                                                                                                             |
 
 工具与类型为 `computeScale` / `ScaleMode` / `Scale`、`useScreenData` / `UseScreenDataOptions` / `UseScreenDataReturn`。历史清单中的 WaterLevel 没有当前实现或导出，不计为活动能力。
 
