@@ -266,6 +266,12 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 | FlowLinesBg  | NvScreenFlowLinesBg       | `screen/FlowLinesBg.vue`       | R3b 流线装饰背景      |
 | IsoFactoryBg | NvScreenIsometricBlocksBg | `screen/IsometricBlocksBg.vue` | R3b 去 Factory 场景词 |
 
+> **独立库新增（#22/T08 R04）。** 原应用 `ScreenLayout` 的背景与 header/body 组合映射为 `NvScreenLayout`（R1：screen 层的布局原语）。缩放仍由 `NvScreenScaler` 承担；路由 seed、业务文案与时钟改为宿主输入。
+
+| R04 来源名   | 已公开 Nv 名   | 实际 producer             | 依据            |
+| ------------ | -------------- | ------------------------- | --------------- |
+| ScreenLayout | NvScreenLayout | `screen/ScreenLayout.vue` | R1 大屏布局组合 |
+
 | 旧名                         | 新名                                      | 依据                                                    |
 | ---------------------------- | ----------------------------------------- | ------------------------------------------------------- |
 | ScreenPanel                  | NvScreenPanel                             | R1                                                      |

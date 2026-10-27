@@ -82,6 +82,7 @@
 | 仪表 / 翻牌     | `—`                                                | `—`                                     | `—`          | `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop`    |
 | 装饰边框 / 分割 | `—`                                                | `NvMobileDivider`                       | `—`          | `NvTechFrame` · `NvGlowDivider`                     |
 | 装饰背景        | `—`                                                | `—`                                     | `—`          | `NvScreenFlowLinesBg` · `NvScreenIsometricBlocksBg` |
+| 种子氛围布局    | `—`                                                | `—`                                     | `—`          | `NvScreenLayout`                                    |
 
 ### 手势 / 移动专属
 

@@ -219,3 +219,36 @@ it('opens the background-only deep link with two isolated copies and unmounts on
   expect(wrapper.text()).not.toMatch(/T08|R02|来源|第二实例|示例/)
   expect(wrapper.html()).not.toMatch(/aria-label="[^"]*(?:第二实例|示例)/)
 })
+
+it('opens the seeded layout deep link with host actions and remounts cleanly', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/layout' } })
+  expect(wrapper.findAll('.nv-scr-layout')).toHaveLength(2)
+  expect(wrapper.get('select[aria-label="设计尺寸"]').attributes('disabled')).toBeDefined()
+  const firstPath = wrapper.get('.nv-scr-layout path.nv-scr-layout-path').attributes('d')
+  await wrapper
+    .findAll('button')
+    .find((button) => button.text() === '换一种光影')!
+    .trigger('click')
+  expect(wrapper.get('.nv-scr-layout path.nv-scr-layout-path').attributes('d')).not.toBe(firstPath)
+  await wrapper
+    .findAll('button')
+    .find((button) => button.text() === '更新时刻')!
+    .trigger('click')
+  expect(wrapper.get('.nv-scr-layout__chrome').text()).toContain('10:31')
+  await wrapper
+    .findAll('button')
+    .find((button) => button.text() === '阅读完整介绍')!
+    .trigger('click')
+  expect(wrapper.get('.layout-demo-extra').text()).toContain('河岸展厅保留了这座城市')
+  await wrapper
+    .findAll('button')
+    .find((button) => button.text() === '加入心愿')!
+    .trigger('click')
+  expect(wrapper.get('.layout-demo-feedback').text()).toContain('已记下')
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('.nv-scr-layout').exists()).toBe(false)
+  await wrapper.setProps({ section: '#screen/layout' })
+  expect(wrapper.findAll('.nv-scr-layout')).toHaveLength(2)
+  expect(wrapper.get('.nv-scr-layout__chrome').text()).toContain('10:30')
+  expect(wrapper.text()).not.toMatch(/T08|R04|来源|第二实例|示例/)
+})

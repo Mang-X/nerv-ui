@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, shallowRef } from 'vue'
+import { computed, shallowRef, watch } from 'vue'
 import { NvScreenScaler, useColorMode, useTheme, type ScaleMode } from '@nerv-iip/ui'
 import ScreenStageDemo from './screen/ScreenStageDemo.vue'
 import ScreenBackgroundDemo from './screen/ScreenBackgroundDemo.vue'
+import ScreenLayoutDemo from './screen/ScreenLayoutDemo.vue'
 import ScreenControlsDemo from './screen/ScreenControlsDemo.vue'
 import ScreenIndicatorsDemo from './screen/ScreenIndicatorsDemo.vue'
 import ScreenDataDemo from './screen/ScreenDataDemo.vue'
@@ -12,6 +13,7 @@ import ScreenTablesDemo from './screen/ScreenTablesDemo.vue'
 
 const props = defineProps<{ section?: string }>()
 const backgrounds = computed(() => props.section === '#screen/backgrounds')
+const layout = computed(() => props.section === '#screen/layout')
 const summary = computed(() => props.section === '#screen/summary')
 const indicators = computed(() => props.section === '#screen/indicators')
 const controls = computed(() => props.section === '#screen/controls')
@@ -21,6 +23,13 @@ const data = computed(() => props.section === '#screen/data')
 
 const mode = shallowRef<ScaleMode>('fit')
 const design = shallowRef('1920x1080')
+watch(
+  layout,
+  (active) => {
+    if (active) design.value = '1920x1080'
+  },
+  { immediate: true },
+)
 const dimensions = computed(() => {
   const [width, height] = design.value.split('x').map(Number)
   return { width: width!, height: height! }
@@ -37,12 +46,20 @@ const { theme, setTheme } = useTheme()
         <a
           href="#screen/stage"
           :aria-current="
-            !backgrounds && !controls && !indicators && !data && !charts && !tables && !summary
+            !backgrounds &&
+            !layout &&
+            !controls &&
+            !indicators &&
+            !data &&
+            !charts &&
+            !tables &&
+            !summary
               ? 'page'
               : undefined
           "
           >空间舞台</a
         >
+        <a href="#screen/layout" :aria-current="layout ? 'page' : undefined">城市光影</a>
         <a href="#screen/controls" :aria-current="controls ? 'page' : undefined">随心安排</a>
         <a href="#screen/indicators" :aria-current="indicators ? 'page' : undefined">阅读与到访</a>
         <a href="#screen/charts" :aria-current="charts ? 'page' : undefined">内容与到访</a>
@@ -68,7 +85,7 @@ const { theme, setTheme } = useTheme()
         </label>
         <label
           >设计尺寸
-          <select v-model="design" aria-label="设计尺寸">
+          <select v-model="design" aria-label="设计尺寸" :disabled="layout">
             <option value="1920x1080">1920 × 1080</option>
             <option value="1600x900">1600 × 900</option>
             <option value="1920x1440">1920 × 1440</option>
@@ -105,22 +122,25 @@ const { theme, setTheme } = useTheme()
         :aria-label="
           backgrounds
             ? '大屏背景展示舞台'
-            : summary
-              ? '城市空间概况舞台'
-              : tables
-                ? '城市空间清单舞台'
-                : charts
-                  ? '城市空间图表舞台'
-                  : data
-                    ? '城市空间消息舞台'
-                    : indicators
-                      ? '城市空间指标舞台'
-                      : controls
-                        ? '城市空间控件舞台'
-                        : '城市文化空间舞台'
+            : layout
+              ? '城市光影舞台'
+              : summary
+                ? '城市空间概况舞台'
+                : tables
+                  ? '城市空间清单舞台'
+                  : charts
+                    ? '城市空间图表舞台'
+                    : data
+                      ? '城市空间消息舞台'
+                      : indicators
+                        ? '城市空间指标舞台'
+                        : controls
+                          ? '城市空间控件舞台'
+                          : '城市文化空间舞台'
         "
       >
         <ScreenBackgroundDemo v-if="backgrounds" />
+        <ScreenLayoutDemo v-else-if="layout" />
         <ScreenSummaryDemo v-else-if="summary" />
         <ScreenTablesDemo v-else-if="tables" />
         <ScreenChartsDemo v-else-if="charts" />
