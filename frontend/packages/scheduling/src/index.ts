@@ -131,3 +131,19 @@ export type {
   SchedulingHistoryPlan,
   SchedulingDowntimeItem,
 } from './components/async-candidates/types'
+
+export { default as SchedulingOrderPool } from './components/request-forms/SchedulingOrderPool.vue'
+export { default as SchedulingCandidatePicker } from './components/request-forms/SchedulingCandidatePicker.vue'
+export { default as SchedulingHorizonFields } from './components/request-forms/SchedulingHorizonFields.vue'
+export { default as SchedulingSingleOrderDialog } from './components/request-forms/SchedulingSingleOrderDialog.vue'
+export { default as SingleOrderSchedulingDialog } from './components/request-forms/SchedulingSingleOrderDialog.vue'
+export type {
+  SchedulingRequestItem,
+  SchedulingRequestSourceState,
+  SchedulingPriorityDraft,
+  SchedulingHorizonInput,
+  SchedulingHorizonValidation,
+  SchedulingHorizonPreset,
+  SchedulingSingleRequest,
+  SchedulingRequestReceipt,
+} from './components/request-forms/types'
