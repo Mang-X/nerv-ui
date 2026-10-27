@@ -41,12 +41,12 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 
 ## 组件分类
 
-| 分类         | 组件                                                                                                                                                                |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 容器 / 外壳  | `NvScreenPanel` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                                                               |
-| 指标 / 图表  | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvTaktGantt`                                               |
-| 数据 / 状态  | `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusHero` · `NvScreenStatusTag` · `NvScreenStageFlow` |
-| 控件(大屏化) | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch`                |
+| 分类         | 组件                                                                                                                                                                                        |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 容器 / 外壳  | `NvScreenPanel` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                                                                                       |
+| 指标 / 图表  | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvTaktGantt`                                                                       |
+| 数据 / 状态  | `NvScreenSummaryCard` · `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusHero` · `NvScreenStatusTag` · `NvScreenStageFlow` |
+| 控件(大屏化) | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch`                                        |
 
 从左侧目录进入任一组件查看用法与属性。
 

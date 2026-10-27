@@ -67,3 +67,11 @@ export type { ScreenStage } from './StageFlow.vue'
 
 export { default as NvScreenHeatmap } from './Heatmap.vue'
 export type { ScreenHeatmapCell, ScreenHeatmapBand, ScreenHeatmapThreshold } from './Heatmap.vue'
+
+export { default as NvScreenSummaryCard } from './SummaryCard.vue'
+export type {
+  ScreenSummaryMetric,
+  ScreenSummaryTone,
+  ScreenSummaryStatus,
+  ScreenSummaryItem,
+} from './SummaryCard.vue'

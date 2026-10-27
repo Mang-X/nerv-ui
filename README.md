@@ -80,3 +80,7 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T08/R12 / #30](https://github.com/Mang-X/nerv-ui/issues/30) 从 `/#screen/stage-flow` 查看两类中性阶段数量来源，支持替换、重排、清空、恢复和长文字/窄幅显示。公共合同见[阶段数量流](frontend/apps/design-system/docs/components/screen/stage-flow.md)，实际验证和 UNRUN 边界见[R12 记录](docs/evidence/t08-r12/README.md)。
 
 [T08/R11 / #29](https://github.com/Mang-X/nerv-ui/issues/29) 从 `/#screen/heatmap` 查看阅读占用与展厅温度两类分档热力格，支持聚焦/悬停当前值、替换、空态、未知、网格与分档切换。接口与宿主边界见[分档热力格](frontend/apps/design-system/docs/components/screen/heatmap.md)，实际本地证据及浏览器 UNRUN 见 [R11 记录](docs/evidence/t08-r11/README.md)。
+
+## 入口与摘要卡
+
+`/#screen/summary-cards` 在既有缩放舞台中展示阅读空间与共享花园，支持入口/概况/动态三种卡形、0/1/6 张密度、替换记录与完整说明。公开组件 `NvScreenSummaryCard` 复用已有容器、状态和趋势；导航、统计与数据来源由宿主负责。API 与 live 示例见[组件页](frontend/apps/design-system/docs/components/screen/summary-card.md)，实际验证与 UNRUN 边界见[R07 证据](docs/evidence/t08-r07/README.md)。
