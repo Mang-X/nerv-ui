@@ -52,9 +52,10 @@ import { CheckCircleIcon, PauseIcon, BellRingIcon } from '@lucide/vue'
 <Demo>
   <NvTouchButton variant="brand" size="lg" loading>提交中</NvTouchButton>
   <NvTouchButton size="lg" disabled>禁用</NvTouchButton>
+  <NvTouchButton as-child loading><a href="#touch-actions">阅读记录</a></NvTouchButton>
 </Demo>
 
-`asChild + loading` 的既有组合问题单独跟踪于 [#43](https://github.com/Mang-X/nerv-ui/issues/43)；T03 加载态使用默认原生按钮，`asChild` 仅演示普通链接。
+`asChild` 接受一个真实交互子元素或透传 attrs/slots 的组件；加载状态传到该宿主，环形加载器位于宿主内部，并替代 `leading` 内容。加载结束恢复 `leading`，保留子元素内容、href 和事件；显式禁用继续生效。组件层 DOM 回归见 [#43](https://github.com/Mang-X/nerv-ui/issues/43)，真实浏览器键盘验证仍待运行。
 
 ## 属性
 
