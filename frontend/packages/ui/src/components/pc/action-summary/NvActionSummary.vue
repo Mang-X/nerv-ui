@@ -178,7 +178,7 @@ const readout = computed(() =>
         class="flex flex-1 flex-col items-center justify-center gap-1 px-6 py-4 text-center"
       >
         <p class="text-sm font-medium text-foreground">{{ emptyTitle }}</p>
-        <p class="line-clamp-2 text-sm leading-6 text-muted-foreground">{{ emptyHint }}</p>
+        <p class="text-sm leading-6 text-muted-foreground">{{ emptyHint }}</p>
       </div>
     </div>
 
