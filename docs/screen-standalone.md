@@ -102,3 +102,7 @@ Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时�
 从 `/#screen/heatmap` 进入“一格一刻”，由现有 `ScreenDemo` / `NvScreenScaler` 提供舞台，保留全部旧导航并标记当前页。两张 `NvScreenPanel` 分别提供阅读占用的 4×6 格与展厅温度的 3×4 格；阅读控件可切列数、替换同 key 值、调整分档、置未知、清空与恢复。数值、分档含义和时间纯文本由宿主提供。
 
 公共 API、无效阈值政策及 OEE 宿主适配见[组件文档](../frontend/apps/design-system/docs/components/screen/heatmap.md)；[实施记录](evidence/t08-r11/README.md)区分 DOM 与真实浏览器。完整文档站和产物安装仍归 #10/#11；四类旧应用接入与退出为 NOT_PLANNED。
+
+## 入口与摘要卡
+
+`/#screen/summary-cards` 在既有缩放舞台中展示阅读空间与共享花园，支持入口/概况/动态三种卡形、0/1/6 张密度、替换记录与完整说明。公开组件 `NvScreenSummaryCard` 复用已有容器、状态和趋势；导航、统计与数据来源由宿主负责。API 与 live 示例见[组件页](../frontend/apps/design-system/docs/components/screen/summary-card.md)，实际验证与 UNRUN 边界见[R07 证据](evidence/t08-r07/README.md)。

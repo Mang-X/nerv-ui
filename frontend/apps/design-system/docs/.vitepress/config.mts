@@ -369,6 +369,7 @@ export default defineConfig({
         {
           text: '数据 / 状态',
           items: [
+            { text: 'SummaryCard 入口与摘要', link: '/components/screen/summary-card' },
             { text: 'StatusCard 产线状态卡', link: '/components/screen/status-card' },
             { text: 'KpiBar 指标条', link: '/components/screen/kpi-bar' },
             { text: 'AlarmTable 告警表', link: '/components/screen/alarm-table' },

@@ -8,6 +8,7 @@ import ScreenControlsDemo from './screen/ScreenControlsDemo.vue'
 import ScreenIndicatorsDemo from './screen/ScreenIndicatorsDemo.vue'
 import ScreenDataDemo from './screen/ScreenDataDemo.vue'
 import ScreenChartsDemo from './screen/ScreenChartsDemo.vue'
+import ScreenSummaryCardsDemo from './screen/ScreenSummaryCardsDemo.vue'
 import ScreenSummaryDemo from './screen/ScreenSummaryDemo.vue'
 import ScreenHeatmapDemo from './screen/ScreenHeatmapDemo.vue'
 import ScreenStageFlowDemo from './screen/ScreenStageFlowDemo.vue'
@@ -17,6 +18,7 @@ import ScreenTablesDemo from './screen/ScreenTablesDemo.vue'
 const props = defineProps<{ section?: string }>()
 const backgrounds = computed(() => props.section === '#screen/backgrounds')
 const layout = computed(() => props.section === '#screen/layout')
+const summaryCards = computed(() => props.section === '#screen/summary-cards')
 const summary = computed(() => props.section === '#screen/summary')
 const heatmap = computed(() => props.section === '#screen/heatmap')
 const stageFlow = computed(() => props.section === '#screen/stage-flow')
@@ -60,6 +62,7 @@ const { theme, setTheme } = useTheme()
             !charts &&
             !tables &&
             !summary &&
+            !summaryCards &&
             !statusHero &&
             !stageFlow &&
             !heatmap
@@ -74,6 +77,9 @@ const { theme, setTheme } = useTheme()
         <a href="#screen/charts" :aria-current="charts ? 'page' : undefined">内容与到访</a>
         <a href="#screen/data" :aria-current="data ? 'page' : undefined">流动消息</a>
         <a href="#screen/tables" :aria-current="tables ? 'page' : undefined">清单与事件</a>
+        <a href="#screen/summary-cards" :aria-current="summaryCards ? 'page' : undefined"
+          >空间一瞥</a
+        >
         <a href="#screen/summary" :aria-current="summary ? 'page' : undefined">空间使用概况</a>
         <a href="#screen/status-hero" :aria-current="statusHero ? 'page' : undefined">此刻的现场</a>
         <a href="#screen/heatmap" :aria-current="heatmap ? 'page' : undefined">一格一刻</a>
@@ -137,29 +143,32 @@ const { theme, setTheme } = useTheme()
             ? '大屏背景展示舞台'
             : layout
               ? '城市光影舞台'
-              : summary
-                ? '城市空间概况舞台'
-                : heatmap
-                  ? '分档热力舞台'
-                  : stageFlow
-                    ? '阶段数量舞台'
-                    : statusHero
-                      ? '现场主状态灯舞台'
-                      : tables
-                        ? '城市空间清单舞台'
-                        : charts
-                          ? '城市空间图表舞台'
-                          : data
-                            ? '城市空间消息舞台'
-                            : indicators
-                              ? '城市空间指标舞台'
-                              : controls
-                                ? '城市空间控件舞台'
-                                : '城市文化空间舞台'
+              : summaryCards
+                ? '空间摘要舞台'
+                : summary
+                  ? '城市空间概况舞台'
+                  : heatmap
+                    ? '分档热力舞台'
+                    : stageFlow
+                      ? '阶段数量舞台'
+                      : statusHero
+                        ? '现场主状态灯舞台'
+                        : tables
+                          ? '城市空间清单舞台'
+                          : charts
+                            ? '城市空间图表舞台'
+                            : data
+                              ? '城市空间消息舞台'
+                              : indicators
+                                ? '城市空间指标舞台'
+                                : controls
+                                  ? '城市空间控件舞台'
+                                  : '城市文化空间舞台'
         "
       >
         <ScreenBackgroundDemo v-if="backgrounds" />
         <ScreenLayoutDemo v-else-if="layout" />
+        <ScreenSummaryCardsDemo v-else-if="summaryCards" />
         <ScreenSummaryDemo v-else-if="summary" />
         <ScreenStatusHeroDemo v-else-if="statusHero" />
         <ScreenHeatmapDemo v-else-if="heatmap" />
