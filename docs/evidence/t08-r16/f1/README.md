@@ -1,0 +1,25 @@
+# T08/R16 · PR115 R1 返修证据
+
+范围为 #34 的公共库候选与演示、文档；R1 Standards 1 与 Spec 1 指向同一 `data`/`empty` 缺陷，Spec 2 指向固定卡内错误内容与出口重叠。控制器另行授权补齐 #20/R02 已公开的两件 screen 背景命名登记；该部分独立提交 `18940b1`，没有改 R02 组件、API 或素材。最终 HEAD/tree/clean 与远端 PR 身份见外部 handoff。
+
+## 公开反例与响应
+
+| R1 finding                                                               | RED                                                                                                                                                                         | 返修与 GREEN                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Standards 1 / Spec 1：`state='data', count=3, items=[]` 宣布“今天已清空” | 新增公开组件测试 `keeps data without previews distinct from explicit empty through host replacements` 首跑 4/5、exit 1；实际文本含“今天已清空”。R1 浏览器亦复现该公开输入。 | `data` 空预览只显示“暂无最近预览”，不增 API。测试 5/5、exit 0，逐一断言 count `3`/`0`/未知、显式 `empty` 及宿主替换不留旧文案。fresh dist 375px 实测三种 count 下无误报空态；文档站目标页也实测 `data` 无预览与显式 `empty`。                                                                                                                               |
+| Spec 2：错误态 retry 与 CTA 重叠                                         | 旧 dist 在 375×820、指定长 `errorTitle/errorHint` 下卡高 304px，retry bottom 581px、CTA top 551px，重叠 30px；R1 默认文案重叠 6px。                                         | 内容区可滚动，retry 留在错误面板出口，CTA 不收缩。fresh dist 同一 375×820 输入下卡高 304px、retry bottom 543px、CTA top 551px，相隔 8px；滚至末尾 `scrollTop=26` 时长 hint 完整可见。retry/CTA 在 375px 鼠标点击与 Enter 均到达各自宿主动作。目标 docs live 页卡高 304px、相隔 8px；滚至末尾 `scrollTop=50` 时 hint 完整可见，两个按钮点击与 Enter 均可达。 |
+| R02 冻结命名清单遗漏                                                     | `nvui-naming.contract.test.ts` 首跑 246/247、exit 1，实际公共 barrel 比冻结数组多 `NvScreenFlowLinesBg` 与 `NvScreenIsometricBlocksBg`；base 的 screen barrel 已公开二者。  | 只为两件实际 producer 登记冻结数组及 A4 来源映射，保留静态严格集合断言；同命令 247/247、exit 0。                                                                                                                                                                                                                                                            |
+
+## 同类边界与 fresh 运行
+
+- `NvActionSummary` 的五态分支逐项检查：`pending` 骨架、`error` 可重试、`unavailable` 无重试、`data` 最多四条预览或中性占位、`empty` 只在宿主显式传入时显示；可信数量只在 `data/empty` 保留非负安全整数。没有 DTO、router、SDK、领域聚合或新 props。
+- 包内聚焦命令 `vp test run src/components/pc/action-summary/NvActionSummary.test.ts src/nvui-naming.contract.test.ts src/ui-primitives.contract.test.ts src/design-docs.contract.test.ts src/nvui-doc-coverage.contract.test.ts`：5 文件、263/263、exit 0。playground 聚焦两文件 68/68、exit 0。CLI 仍打印 `Could not parse CSS stylesheet`；没有 JSON reporter，unhandled-error/report 字段 **缺失**。
+- `pnpm -C frontend exec vue-tsc --noEmit -p packages/ui/tsconfig.json` 与对应 `apps/playground/tsconfig.json` 各 exit 0；playground `vp build` exit 0、5623 modules transformed，原 crypto externalized、Rolldown annotation 和 chunk 警告保留。
+- 最终 fresh dist 的 `index.html`、主 JS `index-hUlGJJ09.js`、主 CSS `index-BG84VMuW.css` 与 `127.0.0.1:5186` 的三个 HTTP body 均为 200 且逐字节 `cmp` 相同；SHA-256 分别为 `dab310a9e6dc4ec12732b4c78c0c317d076ba8d8473929360461c3cdfe6055ca`、`3890ac06b0a8aab2aea57141525d873adb5fc4049b6f76d831f74dc764dfe7dd`、`2c3307d6d8b83f8a9a737de857cf28c760192710e536b8e38b5a4da1531fe2cb`。只支持这三个响应身份。
+- 最终浏览器复核第一次仍载入缓存 JS `index-DqyeG3ns.js`，于是 `empty` 切换沿用旧演示的未知数量，检查 exit 1。禁用该页 HTTP 缓存并重新导航后读回实际资源 `index-hUlGJJ09.js`，同组 375px `data` count 3/0/未知、`empty` count 0、长错误几何检查 exit 0。前次失败保留为浏览器缓存身份不符，不充作最终代码失败或抹掉记录。
+- 浏览器用 fresh playground dist 的 `vp preview`，实际视口 375×820 / 1280×800；375px 页面 `scrollWidth=375`，卡高 304px，1280px 两卡宽 488px、高 304px。深/浅主题与五态均读回；四条长预览在内容区滚至末行完整可见，底部 CTA 保持原位；两卡当前 retry/action 身份各自可读回。目标文档站 dev 页在临时只读依赖链接下真实运行，375px 卡宽 277px、高 304px，1280px 两卡宽 255px、高 304px。截图与详细读数见外部 handoff 的 `browser/`。
+- 目标文档页与 `@include`、导航由受影响文档合同核对。设计站全站 typecheck/build 未执行；既有 `@nerv-iip/ui/schedule-model` alias ENOTDIR 属 #10。临时依赖链接在浏览器检查后清理，不能把此目标页 dev 结果扩写为全站门禁。
+
+## 保留的历史与边界
+
+R1 旧 head 的 material findings、246/247 命名 FAIL、实施轮设计站 typecheck exit 2、base 全局 fmt 三个同 blob FAIL 和 main raw diff 两项均保留在原收据；本页的新 PASS 不覆盖其历史身份。全仓测试、CI、真实 vendor、packed/legacy consumer、设备、生产与原库接入 **UNRUN**；四条 vendor policy skip 为零执行，第三方授权 **UNKNOWN**。#12–#16 已 NOT_PLANNED，旧库退出不属 #34。PR115 保持 draft/open，独立 R2 另审。

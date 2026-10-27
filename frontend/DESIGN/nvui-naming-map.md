@@ -52,6 +52,8 @@ PR #1093 的指标家族件、演示走查整改前端批 1、演示走查整改
 > `NvMetric*Part`（`NvMetricTipPart` 等 7 件）：保持品牌层 `Nv` 前缀统一语义，但
 > **不导出、不入 barrel、不入冻结集合**——`*Part` 后缀即「某公开件的私有组成部分」。
 
+> **独立库新增（#34/T08 R16）。** 来源 `WorkbenchFocusCard` → `NvActionSummary`：PC 指针表面的固定五态数量＋预览＋出口卡，结构不同于单值 `NvMetricCard`。按 ADR 0020 §1.1(2) 使用 PC 素名；不导入来源业务路由、DTO 或查询。
+
 > **收口后新增（无旧名，完全不含 Pro）。** 演示走查整改（前端批 1）在 `blocks/` 新增两个
 > 跨模块复用的选择类区块件，直接以 `Nv*` 规范名称落地：
 >
@@ -258,6 +260,11 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 ### A4. screen 层（来源冻结清单；独立库新增件见下）
 
 > **独立库新增（#20/T08 R02）。** 原应用素材 `FlowLinesBg` → `NvScreenFlowLinesBg`（R3b：流线装饰背景），`IsoFactoryBg` → `NvScreenIsometricBlocksBg`（R3b：等距块体装饰背景，去除 Factory 场景词）。两件仅属 screen 层，没有 PC/触屏跨表面模式。
+
+| R02 来源名   | 已公开 Nv 名              | 实际 producer                  | 依据                  |
+| ------------ | ------------------------- | ------------------------------ | --------------------- |
+| FlowLinesBg  | NvScreenFlowLinesBg       | `screen/FlowLinesBg.vue`       | R3b 流线装饰背景      |
+| IsoFactoryBg | NvScreenIsometricBlocksBg | `screen/IsometricBlocksBg.vue` | R3b 去 Factory 场景词 |
 
 | 旧名                         | 新名                                      | 依据                                                    |
 | ---------------------------- | ----------------------------------------- | ------------------------------------------------------- |

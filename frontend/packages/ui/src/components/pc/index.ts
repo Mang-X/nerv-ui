@@ -5,6 +5,7 @@
  * motion, brand-aware focus, built-in loading + status feedback.
  */
 export * from './alert-dialog'
+export * from './action-summary'
 export * from './badge'
 export * from './button'
 export * from './card'
