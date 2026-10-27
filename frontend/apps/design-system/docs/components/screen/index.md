@@ -51,3 +51,5 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 从左侧目录进入任一组件查看用法与属性。
 
 [阶段数量流](stage-flow.md)展示显式阶段数量、状态与连接符，窄容器换行；中性宿主见 `/#screen/stage-flow`。
+
+[分档热力格](./heatmap.md)展示显式数值、图例与宿主时标；独立双来源见 `/#screen/heatmap`。

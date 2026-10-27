@@ -78,3 +78,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T08/R14 / #32](https://github.com/Mang-X/nerv-ui/issues/32) 从 `/#entity-multi-picker` 查看两种中性多选宿主：受控数组、已选名称保留与搜索分页。旧逗号字段在宿主转换；公共合同见[组件文档](frontend/apps/design-system/docs/components/desktop/entity-multi-picker.md)，本票证据见 [R14 记录](docs/evidence/t08-r14/README.md)。
 
 [T08/R12 / #30](https://github.com/Mang-X/nerv-ui/issues/30) 从 `/#screen/stage-flow` 查看两类中性阶段数量来源，支持替换、重排、清空、恢复和长文字/窄幅显示。公共合同见[阶段数量流](frontend/apps/design-system/docs/components/screen/stage-flow.md)，实际验证和 UNRUN 边界见[R12 记录](docs/evidence/t08-r12/README.md)。
+
+[T08/R11 / #29](https://github.com/Mang-X/nerv-ui/issues/29) 从 `/#screen/heatmap` 查看阅读占用与展厅温度两类分档热力格，支持聚焦/悬停当前值、替换、空态、未知、网格与分档切换。接口与宿主边界见[分档热力格](frontend/apps/design-system/docs/components/screen/heatmap.md)，实际本地证据及浏览器 UNRUN 见 [R11 记录](docs/evidence/t08-r11/README.md)。

@@ -64,3 +64,6 @@ export { default as NvScreenPagination } from './ScreenPagination.vue'
 // Read-only host-owned quantities along a sequence.
 export { default as NvScreenStageFlow } from './StageFlow.vue'
 export type { ScreenStage } from './StageFlow.vue'
+
+export { default as NvScreenHeatmap } from './Heatmap.vue'
+export type { ScreenHeatmapCell, ScreenHeatmapBand, ScreenHeatmapThreshold } from './Heatmap.vue'

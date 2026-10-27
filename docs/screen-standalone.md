@@ -96,3 +96,9 @@ Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时�
 ## R12：阶段数量流
 
 `/#screen/stage-flow` 从主桶消费 `NvScreenStageFlow`，外层继续使用 `NvScreenScaler`。阅读活动与展览布置两类内存来源可切换、替换、反转、清空、恢复与长文字/窄幅显示；真实零与未知明确区分。旧深链与导航保留。组件按稳定 key 显示宿主数量和显式状态，不推导 WIP 或瓶颈。公共 API 与 live 示例见[阶段数量流](../frontend/apps/design-system/docs/components/screen/stage-flow.md)，实际 DOM/类型/构建及未运行边界见[R12 记录](evidence/t08-r12/README.md)。本轮浏览器、视觉、HTTP 均 UNRUN。
+
+## R11：分档热力格
+
+从 `/#screen/heatmap` 进入“一格一刻”，由现有 `ScreenDemo` / `NvScreenScaler` 提供舞台，保留全部旧导航并标记当前页。两张 `NvScreenPanel` 分别提供阅读占用的 4×6 格与展厅温度的 3×4 格；阅读控件可切列数、替换同 key 值、调整分档、置未知、清空与恢复。数值、分档含义和时间纯文本由宿主提供。
+
+公共 API、无效阈值政策及 OEE 宿主适配见[组件文档](../frontend/apps/design-system/docs/components/screen/heatmap.md)；[实施记录](evidence/t08-r11/README.md)区分 DOM 与真实浏览器。完整文档站和产物安装仍归 #10/#11；四类旧应用接入与退出为 NOT_PLANNED。
