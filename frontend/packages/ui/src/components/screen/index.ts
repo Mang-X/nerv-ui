@@ -47,6 +47,7 @@ export { default as NvBorderPanel } from './BorderPanel.vue'
 export { default as NvTitleBar } from './TitleBar.vue'
 export { default as NvGlowDivider } from './GlowDivider.vue'
 export { default as NvScreenStatusLight } from './StatusLight.vue'
+export { default as NvScreenStatusHero } from './StatusHero.vue'
 export { default as NvScreenStatusTag } from './StatusTag.vue'
 
 // Controls (big-screen)

@@ -88,3 +88,7 @@ Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时�
 `/#screen/layout` 消费主桶 `NvScreenLayout`，在外层复用 `NvScreenScaler`。布局保留来源的 1920×1080 双曲线、星点、彗星以及页头/内容层次；来源点阵层只有透明背景与 mask，本件用既有色彩令牌补出可见的淡点阵。宿主传 `seed`、标题、时间、日期、区域和屏幕名；不同 seed 更新几何，同 seed 保持几何一致。SVG 轨道与渐变 ID 在同一应用或多个独立 Vue 根中均按组件实例隔离，装饰层穿透指针。默认页头复用 `NvScreenHeader`，也可由 `header` 插槽替换；内容 `main` 插槽保留真实按钮操作，长内容在区域内滚动。
 
 深链中“换一种光影”只改主画面的 seed，“更新时刻”只改宿主持有的时间；阅读和心愿按钮各有可见结果。右侧河岸展厅画面是独立布局实例。布局的设计尺寸固定为来源的 1920×1080，因此本深链锁定设计尺寸选择；外层仍可切换 fit/width/stretch 和主题，并随视口 resize。低动效偏好隐藏彗星、停止星点呼吸，内容和几何保留。离页卸载、重入重新挂载。公开属性与 live 文档见[组件页](../frontend/apps/design-system/docs/components/screen/screen-layout.md)；本票证据见[验证记录](evidence/t08-r04/README.md)。旧应用路由、时钟、数据和消费者保持原属主，排程及其它背景不在本票。
+
+## R08 远距主状态灯
+
+`/#screen/status-hero` 展示 `NvScreenStatusHero` 的两种中性来源。200px 外圈和 158px 核心保留来源体量；颜色、标签和静止/4秒/2.4秒/1.2秒节奏由宿主独立输入。宿主保留零、非零和未知失联数量：零不显示辅助说明，非零显示宿主生成的数量，未知明确标为待确认。辅助按钮由插槽提供并在宿主处理；第二实例不随第一实例改变。独立入口、属性与 live 演示见[组件页](../frontend/apps/design-system/docs/components/screen/status-hero.md)；本票证据见[验证记录](evidence/t08-r08/README.md)。组件无旧应用路由、取数或设备状态算法。
