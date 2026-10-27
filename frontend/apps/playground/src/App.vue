@@ -14,6 +14,7 @@ import AsyncCandidateDemo from './AsyncCandidateDemo.vue'
 import RequestFormsDemo from './RequestFormsDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
 import DayPrintDemo from './DayPrintDemo.vue'
+import ActionSummaryDemo from './ActionSummaryDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
@@ -92,8 +93,9 @@ function addProject() {
 </script>
 
 <template>
+  <ActionSummaryDemo v-if="surface === '#action-summary'" />
   <DayPrintDemo
-    v-if="surface === '#schedule-day/library' || surface === '#schedule-day/studio'"
+    v-else-if="surface === '#schedule-day/library' || surface === '#schedule-day/studio'"
     :key="surface"
     :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
   />
@@ -158,6 +160,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#action-summary" class="inline-flex min-h-11 items-center px-4 underline"
+        >今日小事</a
+      >
       <a href="#schedule-day/library" class="inline-flex min-h-11 items-center px-4 underline"
         >日安排与打印</a
       >

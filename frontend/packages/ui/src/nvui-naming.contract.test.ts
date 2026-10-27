@@ -29,6 +29,7 @@ const transitionalScreenIdentifier = /(?:^|[\s"'`.])sb-/m
 //  named per ADR 0020 §1.1(2) PC 素名规则; see Appendix A 收口后新增块.)
 const NV_ALL = [
   'NvAlarmTable',
+  'NvActionSummary',
   'NvAlertDialog',
   'NvAlertDialogAction',
   'NvAlertDialogCancel',

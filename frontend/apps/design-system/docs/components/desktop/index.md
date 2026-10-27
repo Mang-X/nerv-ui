@@ -11,6 +11,7 @@ title: 桌面 PC 组件
 - **仪表盘**：NvAppShellInset / Sidebar / NvSidebarBrand / NvToolbar（可组合的控制台外壳）
 - **表单**：NvInput、NvField、FileUpload、NvSelect、NvCheckbox、NvRadioGroup、NvSwitch、NvDatePicker、NvTimePicker
 - **数据展示**：NvDataTable、NvDescriptions、NvTimeline、NvTabs、Status
+- **行动摘要**：[NvActionSummary](/components/desktop/action-summary)（五态数量、预览与出口）
 - **反馈**：Alert、NvDialog、NvPopconfirm、NvTooltip、Notify、NvLoader、NvCommand
 - **图表**：折线 / 面积 / 柱状 / 环形
 

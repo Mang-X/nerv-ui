@@ -133,6 +133,7 @@ export default defineConfig({
             { text: 'Badge 徽标', link: '/components/desktop/badge' },
             { text: 'Card 卡片', link: '/components/desktop/card' },
             { text: 'MetricCard 指标卡', link: '/components/desktop/metric' },
+            { text: 'ActionSummary 行动摘要', link: '/components/desktop/action-summary' },
           ],
         },
         {
