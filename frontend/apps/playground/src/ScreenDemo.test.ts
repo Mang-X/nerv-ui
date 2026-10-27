@@ -97,6 +97,17 @@ it('opens only the completed controls section and unmounts its portal when retur
   }
 })
 
+it('opens the public status hero deep link and leaves no display after returning to the stage', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/status-hero' } })
+  expect(wrapper.get('a[href="#screen/status-hero"]').attributes('aria-current')).toBe('page')
+  expect(wrapper.findAll('[data-status-hero]')).toHaveLength(2)
+  await wrapper.get('button[name="status-alarm"]').trigger('click')
+  expect(wrapper.get('[data-primary-hero] .nv-scr-sh').classes()).toContain('nv-scr-sh-fast')
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('[data-status-hero]').exists()).toBe(false)
+  expect(wrapper.get('a[href="#screen/status-hero"]').attributes('aria-current')).toBeUndefined()
+})
+
 it('opens the completed indicators deep link and stops its continuous readings before stage or controls', async () => {
   vi.useFakeTimers()
   try {

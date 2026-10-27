@@ -272,6 +272,12 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 | ------------ | -------------- | ------------------------- | --------------- |
 | ScreenLayout | NvScreenLayout | `screen/ScreenLayout.vue` | R1 大屏布局组合 |
 
+> **独立库新增（#26/T08 R08）。** 原应用 `LineAndonHero` 的 200px 主灯与 158px 核心映射为 `NvScreenStatusHero`。R5：归入大屏 Status 家族，`Hero` 表示远距主视觉体量；不借用 10px `NvScreenStatusLight`。颜色和节奏独立输入，失联说明由宿主生成。
+
+| R08 来源名    | 已公开 Nv 名       | 实际 producer           | 依据                |
+| ------------- | ------------------ | ----------------------- | ------------------- |
+| LineAndonHero | NvScreenStatusHero | `screen/StatusHero.vue` | R5 大屏 Status 家族 |
+
 | 旧名                         | 新名                                      | 依据                                                    |
 | ---------------------------- | ----------------------------------------- | ------------------------------------------------------- |
 | ScreenPanel                  | NvScreenPanel                             | R1                                                      |
@@ -303,6 +309,7 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 | StatusCard                   | NvScreenStatusCard                        | R5 Status 家族                                          |
 | StatusTag                    | NvScreenStatusTag                         | R5 Status 家族                                          |
 | StatusLight                  | NvScreenStatusLight                       | R5 Status 家族                                          |
+| LineAndonHero（独立库新增）  | NvScreenStatusHero                        | R5 Status 家族；远距主灯                                |
 | TitleBar                     | NvTitleBar                                | R4 大屏装饰语汇（PC 对应位为 NvPageHeader，无真实撞名） |
 | TechFrame                    | NvTechFrame                               | R4 大屏装饰专名                                         |
 | BorderPanel                  | NvBorderPanel                             | R4 大屏装饰专名                                         |

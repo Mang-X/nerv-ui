@@ -174,6 +174,7 @@ const NV_ALL = [
   'NvScreenSelect',
   'NvScreenStatusCard',
   'NvScreenStatusLight',
+  'NvScreenStatusHero',
   'NvScreenStatusTag',
   'NvScreenSwitch',
   'NvScreenTable',

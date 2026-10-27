@@ -10,7 +10,7 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 
 面向公共空间、展馆、运营中心与控制室等远距显示表面的组件层。与桌面 PC、PDA 移动两层**完全解耦**:独立的 `--nv-scr-*` 深色工业蓝令牌(无亮色模式),只遵循统一的设计哲学 —— 克制、去装饰、动效减速无回弹。
 
-独立 playground 从 `/#screen` 或 `/#screen/stage` 进入 A01 的 7 件基础外壳舞台；[独立大屏接入](../../../../../../docs/screen-standalone.md)说明范围。当前 37 件具名组件导出以包内 `screen/index.ts` 为准；各组 fresh 验收以对应证据为准，下方历史总览不代表全组 fresh 验收。
+独立 playground 从 `/#screen` 或 `/#screen/stage` 进入 A01 的 7 件基础外壳舞台；[独立大屏接入](../../../../../../docs/screen-standalone.md)说明范围。当前 38 件具名组件导出以包内 `screen/index.ts` 为准；各组 fresh 验收以对应证据为准，下方历史总览不代表全组 fresh 验收。
 
 <ScreenDemo>
   <NvScreenPanel style="width: 360px">
@@ -28,6 +28,8 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 
 [种子氛围布局](./screen-layout.md)组合固定 1920×1080 背景、现有页头与内容插槽；独立宿主入口 `/#screen/layout` 支持缩放与交互。
 
+[远距主状态灯](./status-hero.md)保留主灯体量，颜色与节奏由宿主分别输入；独立宿主入口 `/#screen/status-hero` 展示两类来源和零、非零、未知失联说明。
+
 ## 为什么独立一层
 
 大屏的观看距离(数米外)、环境(公共展示空间或控制室)、硬件(高亮 LED)都和近场的 PC / PDA 不同。强行复用浅色令牌会过曝、对比不足。因此这一层:
@@ -43,7 +45,7 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 容器 / 外壳  | `NvScreenPanel` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                                                |
 | 指标 / 图表  | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvTaktGantt`                                |
-| 数据 / 状态  | `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusTag`                               |
+| 数据 / 状态  | `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusHero` · `NvScreenStatusTag`        |
 | 控件(大屏化) | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` |
 
 从左侧目录进入任一组件查看用法与属性。
