@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { XIcon } from '@lucide/vue'
 import { cn } from '../../../lib/utils'
 import NvEntityPicker from './NvEntityPicker.vue'
@@ -50,26 +50,47 @@ const selectedValues = computed(() => [
 ])
 const selectedSet = computed(() => new Set(selectedValues.value))
 
-// 只保存仍被选中的标签。结果页消失时保留名称；同 key 的新结果更新名称；
-// 宿主移除/替换值后清退缓存，之后再引入该 key 不会误用旧名称。
-const labels = ref(new Map<string, string>())
+// 只保存仍被选中的展示信息。同 key 新结果更新，移除后清退。
+const selectedOptions = ref(new Map<string, EntityPickerOption>())
 watch(
   [() => props.modelValue, () => props.options],
   () => {
-    const next = new Map<string, string>()
+    const next = new Map<string, EntityPickerOption>()
     for (const value of selectedValues.value) {
       const current = props.options.find((option) => option.value === value)
-      const label = current?.label ?? labels.value.get(value)
-      if (label !== undefined) next.set(value, label)
+      const option = current ?? selectedOptions.value.get(value)
+      if (option) next.set(value, { ...option })
     }
-    labels.value = next
+    selectedOptions.value = next
   },
   { immediate: true, deep: true, flush: 'post' },
 )
 
-const selectedEntries = computed(() =>
-  selectedValues.value.map((value) => ({ value, label: labels.value.get(value) ?? value })),
-)
+const selectedEntries = computed(() => {
+  const entries = selectedValues.value.map((value) => ({
+    value,
+    label: selectedOptions.value.get(value)?.label ?? value,
+    code: selectedOptions.value.get(value)?.code?.trim() ?? '',
+    hint: selectedOptions.value.get(value)?.hint?.trim() ?? '',
+  }))
+  return entries.map((entry) => {
+    const duplicates = entries.filter((other) => other.label === entry.label)
+    const uniqueCode =
+      entry.code &&
+      duplicates.every((other) => other.value === entry.value || other.code !== entry.code)
+    const uniqueHint =
+      entry.hint &&
+      duplicates.every((other) => other.value === entry.value || other.hint !== entry.hint)
+    const identity = uniqueCode
+      ? entry.code
+      : uniqueHint
+        ? entry.hint
+        : duplicates.length > 1
+          ? entry.value
+          : entry.code || entry.hint
+    return { ...entry, identity, valueIdentity: identity === entry.value }
+  })
+})
 const availableOptions = computed(() => {
   const seen = new Set<string>()
   return props.options.filter((option) => {
@@ -90,7 +111,17 @@ const availableTotalCount = computed(() => {
 
 function add(value: string) {
   if (props.disabled || !value || selectedSet.value.has(value)) return
+  const option = props.options.find((candidate) => candidate.value === value)
   emit('update:modelValue', [...selectedValues.value, value])
+  if (option) {
+    const picked = { ...option }
+    void nextTick(() => {
+      // 只在宿主实际接受提案后补当页标签；同批切页时 watcher 已看不到原选项。
+      if (!selectedSet.value.has(value) || props.options.some((current) => current.value === value))
+        return
+      selectedOptions.value = new Map(selectedOptions.value).set(value, picked)
+    })
+  }
 }
 
 function remove(value: string) {
@@ -146,10 +177,21 @@ function clear() {
         class="inline-flex max-w-full min-w-0 items-center rounded-full border border-border bg-muted pl-3 text-xs text-foreground"
       >
         <span class="max-w-48 min-w-0 truncate" :title="entry.label">{{ entry.label }}</span>
+        <span
+          v-if="entry.identity"
+          :class="
+            cn(
+              'min-w-0 break-all text-xs text-muted-foreground',
+              entry.valueIdentity && 'font-mono',
+            )
+          "
+        >
+          （{{ entry.identity }}）
+        </span>
         <button
           type="button"
-          class="ml-1 flex size-11 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
-          :aria-label="`移除 ${entry.label}`"
+          class="ml-1 flex size-11 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none enabled:hover:bg-accent enabled:hover:text-foreground enabled:focus-visible:ring-2 enabled:focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          :aria-label="`移除 ${entry.label}${entry.identity ? ` ${entry.identity}` : ''}`"
           :disabled="disabled"
           @click="remove(entry.value)"
         >
@@ -159,7 +201,7 @@ function clear() {
       <button
         type="button"
         aria-label="清空已选"
-        class="min-h-11 rounded-md px-2 text-xs text-muted-foreground outline-none hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+        class="min-h-11 rounded-md px-2 text-xs text-muted-foreground outline-none enabled:hover:bg-accent enabled:hover:text-foreground enabled:focus-visible:ring-2 enabled:focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
         :disabled="disabled"
         @click="clear"
       >

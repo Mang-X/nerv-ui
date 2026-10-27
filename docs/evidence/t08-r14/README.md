@@ -2,6 +2,8 @@
 
 本票仅在 `feat/t08-r14-search-multiselect` 增加 `NvEntityMultiPicker` 的中性数组接缝与两个宿主示例。基线为 integration `6921408cafd961b81b7c4c0e6dd56d683de391a6`、tree `9dc8fc2b9d96e4644a4342f5d4efb2cb56ec7cc1`。候选提交、tree 和最终工作区状态以 durable `2026-10-27/t08-r14-implementation-r1/handoff.md` 为准；本页不预写自引用的提交号。
 
+PR118 R1 三项返修的固定对象、逐项 RED/GREEN、真实浏览器和未运行边界另见 durable `2026-10-27/t08-r14-label-identity-fix/handoff.md`；此索引保留原 R1 实施记录，不覆盖早期 FAIL。
+
 ## 来源与边界
 
 - T01 固定来源 `79b1578f2b75f55709765b5e7882aaf33146c603`。原 `EntityMultiPicker.vue` 在 `migration/t01/provenance.jsonl:319` 映射至只读素材，SHA-256 `6e028242723d2972430e71cb1ec375a1500f27055c95dbd0baabdf7354ac9eff`；原测试在第 318 行，SHA-256 `029d906038921b6b1a9680bcec9f6307050c6874fc732df1f09d79d362fec2ac`。来源文件未改。

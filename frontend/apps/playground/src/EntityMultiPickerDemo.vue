@@ -24,11 +24,15 @@ const disabled = ref(false)
 const invalid = ref(false)
 const showPicker = ref(true)
 const renamed = ref(false)
+const moveAfterPick = ref(false)
 const catalog = computed<EntityPickerOption[]>(() => [
-  { value: 'a,b', label: renamed.value ? '林间小屋新址' : '林间小屋' },
+  { value: 'a,b', label: renamed.value ? '林间小屋新址' : '林间小屋', code: '林间' },
+  { value: 'lake-east', label: '湖畔工作室', code: '东岸' },
+  { value: 'lake-west', label: '湖畔工作室', code: '西岸' },
   ...Array.from({ length: 19 }, (_, index) => ({
     value: `space-${index + 1}`,
     label: `共享空间 ${index + 1}`,
+    code: `第 ${index + 1} 间`,
   })),
 ])
 const matching = computed(() =>
@@ -46,6 +50,11 @@ function loadMore() {
 }
 function replaceSelection() {
   chosenSpaces.value = ['a,b']
+}
+function updateSpaces(values: string[]) {
+  const added = values.some((value) => !chosenSpaces.value.includes(value))
+  chosenSpaces.value = values
+  if (added && moveAfterPick.value) updateSearch('共享空间')
 }
 const { isDark, toggle } = useColorMode()
 </script>
@@ -83,6 +92,9 @@ const { isDark, toggle } = useColorMode()
         <div class="flex flex-wrap gap-2">
           <NvButton variant="outline" size="sm" @click="replaceSelection">换一处</NvButton>
           <NvButton variant="outline" size="sm" @click="renamed = !renamed">更新名称</NvButton>
+          <NvButton variant="outline" size="sm" @click="moveAfterPick = !moveAfterPick">
+            {{ moveAfterPick ? '停留当前清单' : '选后看其他空间' }}
+          </NvButton>
           <NvButton variant="outline" size="sm" @click="disabled = !disabled">
             {{ disabled ? '恢复选择' : '暂停选择' }}
           </NvButton>
@@ -95,7 +107,7 @@ const { isDark, toggle } = useColorMode()
         </div>
         <NvEntityMultiPicker
           v-if="showPicker"
-          v-model="chosenSpaces"
+          :model-value="chosenSpaces"
           :options="pageOptions"
           title="选择空间"
           aria-label="共享空间"
@@ -104,8 +116,8 @@ const { isDark, toggle } = useColorMode()
           :total-count="matching.length"
           :disabled="disabled"
           :invalid="invalid"
-          :show-code="false"
           server-search
+          @update:model-value="updateSpaces"
           @update:search="updateSearch"
           @load-more="loadMore"
         />

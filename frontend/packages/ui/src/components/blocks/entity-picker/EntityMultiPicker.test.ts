@@ -1,5 +1,6 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it } from 'vitest'
+import { defineComponent, h, ref } from 'vue'
 import { NvEntityMultiPicker } from '../../../index'
 
 const options = [
@@ -98,6 +99,94 @@ describe('NvEntityMultiPicker public contract', () => {
     expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual([['0']])
   })
 
+  it('keeps the picked label when the host accepts and changes pages in the same update', async () => {
+    const nextPage = [{ value: 'two', label: '山间来信' }]
+    const Host = defineComponent({
+      setup() {
+        const selected = ref<string[]>([])
+        const page = ref([options[1]])
+        return () =>
+          h(NvEntityMultiPicker, {
+            modelValue: selected.value,
+            options: page.value,
+            title: '选择地点',
+            'onUpdate:modelValue': (values: string[]) => {
+              selected.value = values
+              page.value = nextPage
+            },
+          })
+      },
+    })
+    const wrapper = mount(Host, { attachTo: document.body })
+    mounted.push(wrapper)
+    await open()
+    await choose('河岸花园')
+    expect(wrapper.get('[role="group"]').text()).toContain('河岸花园')
+    expect(wrapper.find('button[aria-label="移除 河岸花园"]').exists()).toBe(true)
+  })
+
+  it('does not retain a rejected proposal for a later host acceptance', async () => {
+    const wrapper = render({ modelValue: [], options: [options[1]] })
+    await open()
+    await choose('河岸花园')
+    expect(wrapper.find('[role="group"]').exists()).toBe(false)
+    await wrapper.setProps({ options: [] })
+    await wrapper.setProps({ modelValue: ['a,b'] })
+    expect(wrapper.get('[role="group"]').text()).toContain('a,b')
+    expect(wrapper.get('[role="group"]').text()).not.toContain('河岸花园')
+  })
+
+  it('distinguishes same-name selections visually and by removal name across page changes', async () => {
+    const wrapper = render({
+      modelValue: ['WC-A', 'WC-B'],
+      options: [
+        { value: 'WC-A', label: '工作中心', code: '甲区' },
+        { value: 'WC-B', label: '工作中心', code: '乙区' },
+      ],
+    })
+    const group = wrapper.get('[role="group"]')
+    expect(group.text()).toContain('工作中心')
+    expect(group.text()).toContain('甲区')
+    expect(group.text()).toContain('乙区')
+    expect(group.find('button[aria-label="移除 工作中心 甲区"]').exists()).toBe(true)
+    expect(group.find('button[aria-label="移除 工作中心 乙区"]').exists()).toBe(true)
+    await wrapper.setProps({ options: [] })
+    expect(group.find('button[aria-label="移除 工作中心 甲区"]').exists()).toBe(true)
+    await group.get('button[aria-label="移除 工作中心 乙区"]').trigger('click')
+    expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual([['WC-A']])
+  })
+
+  it('uses the complete stable value for same-name options without a distinct secondary label', () => {
+    const wrapper = render({
+      modelValue: ['opaque-value-a', 'opaque-value-b'],
+      options: [
+        { value: 'opaque-value-a', label: '同名地点', hint: '开放' },
+        { value: 'opaque-value-b', label: '同名地点', hint: '开放' },
+      ],
+      showCode: false,
+    })
+    const group = wrapper.get('[role="group"]')
+    expect(group.text()).toContain('opaque-value-a')
+    expect(group.text()).toContain('opaque-value-b')
+    expect(group.find('button[aria-label="移除 同名地点 opaque-value-a"]').exists()).toBe(true)
+    expect(group.find('button[aria-label="移除 同名地点 opaque-value-b"]').exists()).toBe(true)
+  })
+
+  it('uses distinct hints when same-name options share one code', () => {
+    const wrapper = render({
+      modelValue: ['center-a', 'center-b'],
+      options: [
+        { value: 'center-a', label: '工作中心', code: 'WC', hint: '东区' },
+        { value: 'center-b', label: '工作中心', code: 'WC', hint: '西区' },
+      ],
+    })
+    const group = wrapper.get('[role="group"]')
+    expect(group.find('button[aria-label="移除 工作中心 东区"]').exists()).toBe(true)
+    expect(group.find('button[aria-label="移除 工作中心 西区"]').exists()).toBe(true)
+    expect(group.text()).not.toContain('center-a')
+    expect(group.text()).not.toContain('center-b')
+  })
+
   it('forwards search, clear and one load-more request per source event', async () => {
     const wrapper = render({
       serverSearch: true,
@@ -155,6 +244,25 @@ describe('NvEntityMultiPicker public contract', () => {
     await wrapper.get('button[aria-label="清空已选"]').trigger('click')
     expect(document.body.querySelector('[role="listbox"]')).toBeNull()
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+  })
+
+  it('disables existing removal and clear controls when the host pauses selection', async () => {
+    const wrapper = render({ modelValue: ['0'] })
+    const remove = wrapper.get('button[aria-label="移除 晨光书房"]')
+    const clear = wrapper.get('button[aria-label="清空已选"]')
+    expect(remove.attributes('disabled')).toBeUndefined()
+    await wrapper.setProps({ disabled: true })
+    for (const control of [remove, clear]) {
+      expect(control.attributes('disabled')).toBe('')
+      await control.trigger('click')
+      await control.trigger('keydown', { key: 'Enter' })
+    }
+    await wrapper.get('button[aria-haspopup]').trigger('click')
+    expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+    expect(document.body.querySelector('[role="listbox"]')).toBeNull()
+    await wrapper.setProps({ disabled: false })
+    await remove.trigger('click')
+    expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual([[]])
   })
 
   it('supports keyboard selection through the shared search listbox', async () => {
