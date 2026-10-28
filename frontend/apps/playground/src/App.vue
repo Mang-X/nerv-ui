@@ -24,6 +24,7 @@ import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 import MobileOverlayDemo from './MobileOverlayDemo.vue'
 import MobileListDemo from './MobileListDemo.vue'
+import MobileFlowDemo from './mobile-flow/MobileFlowDemo.vue'
 import MobileFeedbackDemo from './MobileFeedbackDemo.vue'
 import {
   NvApp,
@@ -172,6 +173,7 @@ function addProject() {
   <ScheduleDemo v-else-if="surface === '#schedule'" />
   <FilesDemo v-else-if="surface === '#files'" />
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
+  <MobileFlowDemo v-else-if="surface === '#mobile-flow'" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
   <MobileOverlayDemo v-else-if="surface === '#mobile-overlays'" />
@@ -226,6 +228,7 @@ function addProject() {
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
         >大屏演示</a
       >
+      <a href="#mobile-flow" class="inline-flex min-h-touch items-center">安排流程</a>
       <a
         href="#mobile-feedback"
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"

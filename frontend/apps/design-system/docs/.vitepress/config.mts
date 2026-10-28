@@ -273,6 +273,7 @@ export default defineConfig({
             { text: 'SearchBar 搜索栏', link: '/components/mobile/search-bar' },
             { text: 'Picker 滚轮选择', link: '/components/mobile/picker' },
             { text: 'DatePicker 日期选择', link: '/components/mobile/date-picker' },
+            { text: '候选与分步执行', link: '/components/mobile/flow-recipe' },
             { text: 'ScanBar 扫码栏', link: '/components/mobile/scan-bar' },
           ],
         },

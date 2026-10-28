@@ -140,3 +140,7 @@ N02 输入扫码接入见下文。后续 [#47](https://github.com/Mang-X/nerv-ui
 库源码只有 `NvMobileTag` 窄修：真实浏览器基线测得关闭按钮 14×14px，与移动层 ≥44px 规则冲突。可关闭标签为按钮保留 44×44px，非关闭态 sm/md 保持原样，props/events/slots 和裸包导出不变。来源为 T01 固定提交 `79b1578f2b75f55709765b5e7882aaf33146c603`；其余十件组件源码与来源字节一致，migration/provenance 不改。旧库未回传，#14 接入时评估同步。
 
 测试名称、原始失败、四态截图、资源身份及 fresh/UNRUN 边界见 [N05 证据](evidence/t04-n05/README.md)。本组完成仍不关闭父 #5/#1；五组组合验收由 controller/独立 merger 接续。#35 列表恢复、#41 相机上传、#43/#51 独立缺陷、#11 packed 产物、物理设备与旧库接入均有各自 owner。
+
+## 候选与分步执行（T08/C03）
+
+`/#mobile-flow` 复用现有移动公开件，提供扫码或键入、稳定 key 候选、数量、详情与显式确认回执。见 [recipe 合同](../frontend/apps/design-system/docs/components/mobile/flow-recipe.md)与[证据](evidence/t08-c03/README.md)。仅本页内存，旧应用接入 NOT_PLANNED。
