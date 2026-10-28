@@ -70,17 +70,17 @@ const download: SchedulingHistoryAction = async (entry, control) => {
 <template>
   <main class="mx-auto grid w-full min-w-0 max-w-[92rem] grid-cols-[minmax(0,1fr)] gap-4 p-4">
     <h1 class="text-2xl font-semibold">{{ venue === 'library' ? '书房' : '创作室' }}安排工作台</h1>
-    <p>中性内存示例 · 草案、已保存快照和当前事实分别提供。未连接计划服务。</p>
+    <p>本页仅供查阅与尝试安排。草案、历史记录与当前安排分别保留，操作不会保存到计划服务。</p>
     <div class="flex flex-wrap gap-2">
       <NvButton variant="outline" @click="toggle">切换主题</NvButton
       ><NvButton variant="outline" @click="readOnly = !readOnly">{{
         readOnly ? '恢复编辑' : '仅可查阅'
       }}</NvButton
       ><NvButton variant="outline" @click="fail = !fail">{{
-        fail ? '恢复操作' : '模拟操作失败'
+        fail ? '恢复操作' : '暂停处理'
       }}</NvButton
-      ><NvButton variant="outline" @click="model = panelModel(venue, true)">替换当前事实</NvButton
-      ><NvButton variant="outline" @click="revision++">替换历史来源</NvButton>
+      ><NvButton variant="outline" @click="model = panelModel(venue, true)">查看最新安排</NvButton
+      ><NvButton variant="outline" @click="revision++">刷新历史记录</NvButton>
     </div>
     <nav aria-label="工作台视图" class="flex flex-wrap gap-2">
       <NvButton

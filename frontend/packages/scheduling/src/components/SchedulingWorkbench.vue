@@ -101,6 +101,17 @@ watch(
   },
   { flush: 'sync' },
 )
+watch(
+  () => props.loading,
+  (loading) => {
+    if (loading) {
+      edits.cancel()
+      selectedTask.value = undefined
+    }
+  },
+  { flush: 'sync' },
+)
+const interactionBlocked = computed(() => props.loading || readOnly.value)
 
 const canRepreview = computed(() => !!props.preview)
 const canRelease = computed(() => !!props.release)
@@ -124,22 +135,25 @@ const legendCategories = computed(() => {
 })
 
 function onTaskSelect(taskId: string) {
+  if (props.loading) return
   selectedTask.value = workingModel.value.tasks.find((t) => t.id === taskId)
   sidebarOpen.value = true // 选中即在侧栏展示详情(不再弹抽屉)
 }
 function onToggleLock(taskId: string, locked: boolean) {
-  if (readOnly.value || edits.busy.value) return
+  if (interactionBlocked.value || edits.busy.value) return
   edits.setLocked(taskId, locked)
   selectedTask.value = workingModel.value.tasks.find((t) => t.id === taskId)
   toast.success(locked ? '已锁定该工序' : '已解锁,可拖拽调整')
 }
 function focusTask(taskId: string) {
+  if (props.loading) return
   sendCommand({ kind: 'selectTask', taskId })
   onTaskSelect(taskId)
 }
 // 锁定块拖拽尝试:节流提示(拖动会连发)并把详情面板聚焦到该块,让「解锁」送到眼前。
 let lastLockedToastAt = 0
 function onLockedDragAttempt(taskId: string) {
+  if (props.loading) return
   selectedTask.value = workingModel.value.tasks.find((t) => t.id === taskId)
   sidebarOpen.value = true
   const now = Date.now()
@@ -148,11 +162,11 @@ function onLockedDragAttempt(taskId: string) {
   toast.info('该工序已锁定,先解锁再拖拽')
 }
 function onDrag(p: TaskDragPayload) {
-  if (!readOnly.value) edits.onTaskDragEnd(p)
+  if (!interactionBlocked.value) edits.onTaskDragEnd(p)
 }
 async function onRepreview() {
   try {
-    if (readOnly.value || !(await edits.repreview())) return
+    if (interactionBlocked.value || !(await edits.repreview())) return
     toast.success('已按锁定项重新排程')
   } catch {
     toast.error('重新排程失败,请稍后重试')
@@ -160,7 +174,7 @@ async function onRepreview() {
 }
 async function onRelease() {
   try {
-    if (readOnly.value || !(await edits.release())) return
+    if (interactionBlocked.value || !(await edits.release())) return
     toast.success('计划已发布')
   } catch {
     toast.error('发布失败,请稍后重试')
@@ -175,11 +189,11 @@ async function onRelease() {
     <slot name="before" />
     <SchedulingToolbar
       :scale="scale"
-      :read-only="readOnly"
-      :can-undo="edits.canUndo.value"
-      :can-redo="edits.canRedo.value"
+      :read-only="interactionBlocked"
+      :can-undo="!loading && edits.canUndo.value"
+      :can-redo="!loading && edits.canRedo.value"
       :dirty="edits.dirty.value"
-      :busy="edits.busy.value"
+      :busy="loading || edits.busy.value"
       :can-repreview="canRepreview"
       :can-release="canRelease"
       @scale-change="scale = $event"
@@ -187,10 +201,16 @@ async function onRelease() {
       @zoom-out="sendCommand({ kind: 'zoomOut' })"
       @today="sendCommand({ kind: 'scrollToToday' })"
       @fit="sendCommand({ kind: 'fitToScreen' })"
-      @undo="edits.undo()"
-      @redo="edits.redo()"
-      @toggle-read-only="!props.readOnly && (readOnly = !readOnly)"
-      :disabled-reasons="props.readOnly ? { toggleReadOnly: '当前仅可查阅' } : undefined"
+      @undo="!loading && edits.undo()"
+      @redo="!loading && edits.redo()"
+      @toggle-read-only="!loading && !props.readOnly && (readOnly = !readOnly)"
+      :disabled-reasons="
+        loading
+          ? { toggleReadOnly: '正在读取安排' }
+          : props.readOnly
+            ? { toggleReadOnly: '当前仅可查阅' }
+            : undefined
+      "
       @repreview="onRepreview"
       @release="onRelease"
     />
@@ -228,7 +248,7 @@ async function onRelease() {
           ref="ganttRef"
           :model="workingModel"
           :scale="scale"
-          :read-only="readOnly"
+          :read-only="interactionBlocked"
           :loading="loading"
           :engine-kind="engineKind"
           @task-select="onTaskSelect"
@@ -241,7 +261,7 @@ async function onRelease() {
           ref="boardRef"
           :model="workingModel"
           :scale="scale"
-          :read-only="readOnly"
+          :read-only="interactionBlocked"
           :loading="loading"
           :engine-kind="engineKind"
           @task-select="onTaskSelect"
@@ -293,7 +313,11 @@ async function onRelease() {
           </div>
 
           <!-- 选中详情(常驻,取代弹出抽屉) -->
-          <TaskDetailPanel :task="selectedTask" :read-only="readOnly" @toggle-lock="onToggleLock" />
+          <TaskDetailPanel
+            :task="selectedTask"
+            :read-only="interactionBlocked"
+            @toggle-lock="onToggleLock"
+          />
 
           <NvTabs default-value="conflicts" class="flex min-h-0 flex-1 flex-col">
             <NvTabsList class="mx-3 mt-3">
@@ -305,7 +329,11 @@ async function onRelease() {
               <ConflictPanel :conflicts="conflicts" @select="focusTask" />
             </NvTabsContent>
             <NvTabsContent value="unscheduled" class="min-h-0 flex-1">
-              <UnscheduledPanel :items="unscheduled" @fix="(o, op) => emit('fix', o, op)" />
+              <UnscheduledPanel
+                :items="unscheduled"
+                :read-only="interactionBlocked"
+                @fix="(o, op) => !interactionBlocked && emit('fix', o, op)"
+              />
             </NvTabsContent>
             <NvTabsContent value="changes" class="min-h-0 flex-1">
               <ChangeSummaryPanel :changes="changes" @select="focusTask" />

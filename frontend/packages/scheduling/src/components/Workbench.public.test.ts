@@ -108,6 +108,24 @@ it('reports download false and success and removes unreadable detail', async () 
   expect(w.find('[aria-label="历史明细"]').exists()).toBe(false)
   w.unmount()
 })
+it.each(['confirm', 'download'] as const)(
+  'accepts only boolean true for the %s receipt',
+  async (kind) => {
+    const action = vi.fn().mockResolvedValueOnce({ ok: false }).mockResolvedValueOnce(true)
+    const w = create({ [kind]: action })
+    await click(w, '明细 · 晨间共读')
+    if (kind === 'confirm') await click(w, '采用安排')
+    const label = kind === 'confirm' ? '确认操作' : '下载安排'
+    await click(w, label)
+    await flushPromises()
+    expect(w.text()).toContain('未能完成，请重试')
+    expect(w.text()).not.toContain(kind === 'confirm' ? '操作已确认' : '下载已准备')
+    await click(w, label)
+    await flushPromises()
+    expect(w.text()).toContain(kind === 'confirm' ? '操作已确认' : '下载已准备')
+    w.unmount()
+  },
+)
 it.each(['readonly', 'replace', 'cancel', 'unmount', 'callback'] as const)(
   'discards delayed confirmation receipts at %s edge',
   async (edge) => {

@@ -1,15 +1,86 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { cloneModel } from '../model/clone'
 import { sampleModel } from '../test-fixtures/models'
 import SchedulingWorkbench from './SchedulingWorkbench.vue'
+import { SchedulingToolbar } from '../index'
 
 async function settle() {
   await flushPromises()
   await nextTick()
   await flushPromises()
 }
+
+it.each(['preview', 'release'] as const)(
+  'loading cancels old %s receipts and blocks edits until ready retry',
+  async (kind) => {
+    const requests: {
+      resolve: (m: typeof sampleModel) => void
+      reject: (e: Error) => void
+      signal: AbortSignal
+    }[] = []
+    const callback = vi.fn(
+      (_value: unknown, control: { signal: AbortSignal }) =>
+        new Promise<typeof sampleModel>((resolve, reject) =>
+          requests.push({ resolve, reject, signal: control.signal }),
+        ),
+    )
+    const w = mount(SchedulingWorkbench, {
+      props: {
+        model: cloneModel(sampleModel),
+        ...(kind === 'preview'
+          ? { preview: callback }
+          : {
+              release: async (...args: Parameters<typeof callback>) => {
+                await callback(...args)
+              },
+            }),
+      },
+      global: { stubs: { GanttChart: true, ResourceSchedulerBoard: true } },
+    })
+    const toolbar = w.getComponent(SchedulingToolbar)
+    const event = kind === 'preview' ? 'repreview' : 'release'
+    toolbar.vm.$emit(event)
+    await nextTick()
+    expect(requests).toHaveLength(1)
+    await w.setProps({ loading: true })
+    expect(requests[0]!.signal.aborted).toBe(true)
+    expect(toolbar.props('readOnly')).toBe(true)
+    toolbar.vm.$emit(event)
+    toolbar.vm.$emit('toggleReadOnly')
+    await nextTick()
+    expect(requests).toHaveLength(1)
+    expect(w.getComponent({ name: 'GanttChart' }).props('readOnly')).toBe(true)
+    await w.setProps({ loading: false })
+    toolbar.vm.$emit(event)
+    await nextTick()
+    expect(requests).toHaveLength(2)
+    requests[0]!.reject(new Error('HTTP stale'))
+    await settle()
+    expect(toolbar.props('busy')).toBe(true)
+    const current = cloneModel(sampleModel)
+    current.tasks[0]!.text = '当前重试结果'
+    requests[1]!.resolve(current)
+    await settle()
+    expect(toolbar.props('busy')).toBe(false)
+    expect(w.getComponent({ name: 'GanttChart' }).props('model').tasks[0].text).toBe(
+      kind === 'preview' ? '当前重试结果' : sampleModel.tasks[0]!.text,
+    )
+    toolbar.vm.$emit(event)
+    await nextTick()
+    await w.setProps({ loading: true })
+    const stale = cloneModel(sampleModel)
+    stale.tasks[0]!.text = '旧成功回执'
+    requests[2]!.resolve(stale)
+    await settle()
+    expect(requests[2]!.signal.aborted).toBe(true)
+    expect(w.getComponent({ name: 'GanttChart' }).props('model').tasks[0].text).not.toBe(
+      '旧成功回执',
+    )
+    w.unmount()
+  },
+)
 
 describe('SchedulingWorkbench', () => {
   it('renders the order gantt view', async () => {

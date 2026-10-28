@@ -171,12 +171,9 @@ async function act(kind: 'confirm' | 'download') {
       { signal: request.signal, source: props.input.source, revision: props.input.revision },
     )
     if (current()) {
-      message.value = ok
-        ? kind === 'download'
-          ? '下载已准备。'
-          : '操作已确认。'
-        : '未能完成，请重试。'
-      if (ok) confirming.value = false
+      message.value =
+        ok === true ? (kind === 'download' ? '下载已准备。' : '操作已确认。') : '未能完成，请重试。'
+      if (ok === true) confirming.value = false
     }
   } catch {
     if (current()) message.value = '未能完成，请稍后重试。'

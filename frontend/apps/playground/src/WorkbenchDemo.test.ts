@@ -53,7 +53,8 @@ it.each(['library', 'studio'] as const)(
     await click('历史安排')
     const history = w.getComponent(SchedulingHistory).props('input')
     await click('工作台')
-    await click('替换当前事实')
+    expect(w.text()).not.toMatch(/中性内存示例|模拟操作失败|替换当前事实|替换历史来源/)
+    await click('查看最新安排')
     expect(w.getComponent(SchedulingWorkbench).props('model')!.tasks[0]!.id).not.toBe(
       original.tasks[0]!.id,
     )
@@ -66,7 +67,7 @@ it.each(['library', 'studio'] as const)(
     await click('确认操作')
     await flushPromises()
     expect(w.text()).toContain('操作已确认')
-    await click('模拟操作失败')
+    await click('暂停处理')
     await click('采用此安排')
     await click('确认操作')
     await flushPromises()
