@@ -285,7 +285,11 @@ function cleared() {
 }
 </script>
 <template>
-  <main class="bg-background p-5 text-foreground">
+  <main
+    class="min-w-0 max-w-full overflow-x-auto bg-background p-2 text-foreground sm:p-5"
+    tabindex="0"
+    aria-label="活动草案示例"
+  >
     <p class="mb-2 text-sm">
       DHTMLX 9.1.4 Professional Evaluation；声明与水印保留，授权范围 UNKNOWN。
     </p>
