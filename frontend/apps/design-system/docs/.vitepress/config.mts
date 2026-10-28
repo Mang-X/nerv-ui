@@ -323,6 +323,7 @@ export default defineConfig({
           text: '长列表',
           items: [
             { text: 'VirtualList 虚拟列表', link: '/components/mobile/virtual-list' },
+            { text: '照片附件', link: '/components/mobile/photo-attachments' },
             { text: '分页列表恢复', link: '/components/mobile/task-list-shell' },
             { text: 'InfiniteList 无限滚动', link: '/components/mobile/infinite-list' },
           ],

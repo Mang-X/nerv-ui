@@ -395,6 +395,8 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 `StepItem`、`ActionItem`、`SwipeAction`、`PickerOption`、`GridItem`、`FabAction`、
 `DropdownOption`）不改名。）
 
+新增 R19：`ShiftHandoverPhotoCapture` → `NvPhotoAttachments`，移动拍照与成功附件组合。R1 无场景词根；R2 无同名原版或 PC 导出；R3 不在 Arco PC 原语名单；R3b 非通用原语后缀；R4 本项目自造组合名，直接 Nv，R5 未命中。仅新增此 canonical 名，原 A6 集合保留。
+
 ### A7. 不参与改名的导出（明确列出，防代码转换误伤）
 
 - `components/ui/` 34 个目录的全部导出（31 个 shadcn 原版目录 + `file-preview`、
