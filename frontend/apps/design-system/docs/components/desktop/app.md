@@ -4,6 +4,7 @@ title: NvApp 与 NvAppHeader 应用外壳
 
 <script setup>
 import { NvAppHeader, NvButton } from '@nerv-iip/ui'
+import AppProviderExample from '../../.vitepress/examples/AppProviderExample.vue'
 import { BellIcon, SearchIcon } from '@lucide/vue'
 </script>
 
@@ -13,7 +14,7 @@ import { BellIcon, SearchIcon } from '@lucide/vue'
 
 ## NvApp 根容器
 
-给整个应用包一层 `NvApp` 后，提示、消息提醒、阅读方向与滚动锁等全局能力即可就位。
+给整个应用包一层 `NvApp`，统一提供提示上下文与通知出口。当前公开属性只有 `tooltipDelay`、`class` 和默认插槽；没有 `dir` 或滚动锁配置属性。
 
 ```vue
 <script setup>
@@ -66,3 +67,20 @@ import { NvApp } from '@nerv-iip/ui'
 | 属性     | 说明            | 类型      | 默认   |
 | -------- | --------------- | --------- | ------ |
 | `sticky` | 吸顶 + 玻璃背景 | `boolean` | `true` |
+
+## 提供者：阅读安排
+
+此例只挂载一个 `NvApp`。公开 `Tooltip`、`TooltipTrigger`、`TooltipContent` 消费它的提示上下文；悬停使用所选延迟，键盘聚焦可直接查看提示。提示的连续访问可能使用提供者的跳过延迟行为。
+
+<Demo>
+  <AppProviderExample />
+</Demo>
+
+默认延迟为 200 毫秒，选择 800 毫秒演示显式设置。`class="min-h-0"` 仅约束文档内示例高度，实际应用通常保留默认的全屏最小高度。
+点击“确认阅读安排”会显示普通通知和本页回执，不会保存数据。通知自带关闭按钮，也可点击“关闭本页通知”；重复确认复用本例通知 ID，离页时仅清理该 ID。文档主题没有全局 Toaster，本例使用 `NvApp` 自带出口，勿再为它叠加一个 Toaster。
+
+### 学习代码
+
+以下为上方运行示例的完整源码，只通过公共主入口消费组件：
+
+<<< @/.vitepress/examples/AppProviderExample.vue
