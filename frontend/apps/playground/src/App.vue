@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import LoginDemo from './login/LoginDemo.vue'
+import ScreenParameterDetailDemo from './screen/ScreenParameterDetailDemo.vue'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import DirectoryDemo from './directory-detail/DirectoryDemo.vue'
 import ScreenDemo from './ScreenDemo.vue'
@@ -25,6 +27,7 @@ import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 import MobileOverlayDemo from './MobileOverlayDemo.vue'
 import MobileListDemo from './MobileListDemo.vue'
+import MobileTaskListDemo from './mobile-task-list/MobileTaskListDemo.vue'
 import MobileFlowDemo from './mobile-flow/MobileFlowDemo.vue'
 import MobileFeedbackDemo from './MobileFeedbackDemo.vue'
 import {
@@ -99,9 +102,18 @@ function addProject() {
 </script>
 
 <template>
+  <LoginDemo
+    v-if="surface.startsWith('#login/')"
+    :space="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
+  <ScreenParameterDetailDemo
+    v-else-if="surface.startsWith('#screen/parameter-detail/')"
+    :key="surface"
+    :context="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <NotificationInboxDemo
     :key="surface"
-    v-if="surface === '#notifications/library' || surface === '#notifications/studio'"
+    v-else-if="surface === '#notifications/library' || surface === '#notifications/studio'"
     :space="surface === '#notifications/library' ? 'library' : 'studio'"
   />
   <NeutralShellDemo
@@ -177,6 +189,10 @@ function addProject() {
   <ScheduleDemo v-else-if="surface === '#schedule'" />
   <FilesDemo v-else-if="surface === '#files'" />
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
+  <MobileTaskListDemo
+    v-else-if="surface.startsWith('#mobile-task-list')"
+    :source="surface.split('/')[1]"
+  />
   <MobileFlowDemo v-else-if="surface === '#mobile-flow'" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
@@ -195,6 +211,7 @@ function addProject() {
       <a href="#shell/library" class="inline-flex min-h-11 items-center px-4 underline">晨光书房</a>
       <a href="#shell/studio" class="inline-flex min-h-11 items-center px-4 underline">周末画室</a>
       <a href="#tree/library" class="inline-flex min-h-11 items-center px-4 underline">空间分区</a>
+      <a href="#login/library">空间登录与改密</a>
       <a href="#entity-multi-picker" class="inline-flex min-h-11 items-center px-4 underline"
         >挑选去处</a
       >
@@ -235,6 +252,7 @@ function addProject() {
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
         >大屏演示</a
       >
+      <a href="#mobile-task-list/library" class="inline-flex min-h-touch items-center">收藏翻阅</a>
       <a href="#mobile-flow" class="inline-flex min-h-touch items-center">安排流程</a>
       <a
         href="#mobile-feedback"

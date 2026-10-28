@@ -68,15 +68,15 @@
 
 ## 组件清单
 
-真实导出以同目录 `index.ts` 和主桶为准，共 42 件组件；下表用于导航，不替代公开 API。
+真实导出以同目录 `index.ts` 和主桶为准，共 45 件组件；下表用于导航，不替代公开 API。
 
-| 分类                    | 当前公共导出                                                                                                                                                                                                  |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 舞台 / 容器 / 外壳（9） | `NvScreenScaler` · `NvScreenLayout` · `NvScreenPanel` · `NvScreenScrollArea` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                                            |
-| 指标 / 图表（11）       | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvTaktGantt` · `NvScreenHeatmap`           |
-| 数据 / 状态（10）       | `NvScreenSummaryCard` · `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusHero` · `NvScreenStatusTag` · `NvScrollBoard` · `NvScreenStageFlow` |
-| 控件（9）               | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` · `NvScreenPagination`                                   |
-| 装饰背景（3）           | `NvScreenFlowLinesBg` · `NvScreenIsometricBlocksBg` · `NvScreenFusionBg`                                                                                                                                      |
+| 分类                     | 当前公共导出                                                                                                                                                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 舞台 / 容器 / 外壳（11） | `NvScreenLoginStage` · `NvScreenDetailDialog` · `NvScreenScaler` · `NvScreenLayout` · `NvScreenPanel` · `NvScreenScrollArea` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`        |
+| 指标 / 图表（12）        | `NvScreenParameter` · `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvTaktGantt` · `NvScreenHeatmap` |
+| 数据 / 状态（10）        | `NvScreenSummaryCard` · `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusHero` · `NvScreenStatusTag` · `NvScrollBoard` · `NvScreenStageFlow`             |
+| 控件（9）                | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` · `NvScreenPagination`                                               |
+| 装饰背景（3）            | `NvScreenFlowLinesBg` · `NvScreenIsometricBlocksBg` · `NvScreenFusionBg`                                                                                                                                                  |
 
 工具与类型为 `computeScale` / `ScaleMode` / `Scale`、`useScreenData` / `UseScreenDataOptions` / `UseScreenDataReturn`。历史清单中的 WaterLevel 没有当前实现或导出，不计为活动能力。
 
@@ -104,3 +104,5 @@
 [阶段数量流](../../../../../apps/design-system/docs/components/screen/stage-flow.md)展示显式阶段数量、状态与连接符，窄容器换行；中性宿主见 `/#screen/stage-flow`。
 
 [分档热力格](../../../../../apps/design-system/docs/components/screen/heatmap.md)展示宿主时标、数值与显式分档；中性双来源见 `/#screen/heatmap`。
+
+中性详情与参数取值：`NvScreenDetailDialog`、`NvScreenParameter`，只组合 screen 视觉与 Reka / NvSparkline；见[详情取值](../../../../../apps/design-system/docs/components/screen/detail-parameter.md)。

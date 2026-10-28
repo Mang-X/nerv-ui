@@ -476,8 +476,23 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 
 > **独立库新增（#24/T08 R06）。** 来源两个应用通知列表、任务与收件箱 → `NvNotificationInbox`，PC 指针表面按素名规则落 `pc/notification-inbox/`。唯一公开组合，不带 DTO、查询或通知引擎。
 
-> **独立库新增（#21/T08 R03）。** R3b：大屏等距节点流背景。
+> **独立库新增（#21/T08 R03）。** R5：保留完整语义并显式标注 screen 表面的等距节点流背景。
 
-| 原名     | 公共名           | 路径                  | 判定                    |
-| -------- | ---------------- | --------------------- | ----------------------- |
-| FusionBg | NvScreenFusionBg | `screen/FusionBg.vue` | R3b screen 专属装饰背景 |
+| 原名     | 公共名           | 路径                  | 判定                   |
+| -------- | ---------------- | --------------------- | ---------------------- |
+| FusionBg | NvScreenFusionBg | `screen/FusionBg.vue` | R5 screen 专属装饰背景 |
+
+## T08/R05 独立新增
+
+| 来源              | 公开名             | 路径                          | 判定               |
+| ----------------- | ------------------ | ----------------------------- | ------------------ |
+| screen login 视觉 | NvScreenLoginStage | `screen/ScreenLoginStage.vue` | R1 screen 专属舞台 |
+
+> 独立库新增（#35/T08 R17）：TaskListShell → NvMobileTaskListShell，移动局部组合；R1 来源无冻结名，R2 去除业务归属，R3 使用完整名，R4 归移动触控表面，R5 保留列表外壳语义。严格主桶集合由 48 增至 49 件。
+
+> 独立库 #28 / T08R10：R1 来源 DeviceDetailModal 无冻结库名；R2 去设备领域名；R3 使用完整 DetailDialog / Parameter；R4 独立 screen 表面；R5 详情 Dialog 家族定名 `NvScreenDetailDialog`，参数组合定名 `NvScreenParameter`。现有 `NvSparkline` 不改名、不重建。
+
+| 来源                     | 公开名               | 路径                      | 判定                |
+| ------------------------ | -------------------- | ------------------------- | ------------------- |
+| DeviceDetailModal 外壳   | NvScreenDetailDialog | `screen/DetailDialog.vue` | R5 详情 Dialog 家族 |
+| DeviceDetailModal 参数区 | NvScreenParameter    | `screen/Parameter.vue`    | R5 参数展示组合     |

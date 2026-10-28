@@ -49,6 +49,7 @@ const NV_ALL = [
   'NvMobileSteps',
   'NvMobileSwitch',
   'NvMobileTabs',
+  'NvMobileTaskListShell',
   'NvMobileTag',
   'NvMobileToast',
   'NvNavBar',

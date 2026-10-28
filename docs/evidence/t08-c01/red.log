@@ -1,0 +1,182 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/login/LoginRecipe.test.ts (17 tests | 16 failed) 30ms
+     × keeps edits controlled and preserves PC trim versus PDA and screen raw credentials 9ms
+     × blocks duplicate submits and only confirms an explicit accepted receipt 2ms
+     × allows retry without losing drafts after reject and hides raw failures 3ms
+     × allows retry without losing drafts after throw and hides raw failures 1ms
+     × allows retry without losing drafts after decline and hides raw failures 1ms
+     × allows retry without losing drafts after missing and hides raw failures 1ms
+     × invalidates late success failure and finally after context 2ms
+     × invalidates late success failure and finally after readonly 2ms
+     × invalidates late success failure and finally after disabled 1ms
+     × invalidates late success failure and finally after mode 1ms
+     × invalidates late success failure and finally after modelValue 1ms
+     × invalidates late success failure and finally after submit 1ms
+     × invalidates late success failure and finally after cancel 1ms
+     × preserves input contracts and one screen form with usable slots and no autofocus 1ms
+     × forwards all change fields without strength or equality policy and distinguishes empty values 1ms
+     × renders only known PDA exit notices and blocks readonly submission 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > keeps edits controlled and preserves PC trim versus PDA and screen raw credentials
+AssertionError: expected undefined to match object { Object (loginName, password) }
+
+- Expected:
+{
+  "loginName": "other",
+  "password": " pw ",
+}
+
++ Received:
+undefined
+
+ ❯ src/login/LoginRecipe.test.ts:18:59
+     16|       const page = setup({ surface, submit })
+     17|       await page.get('[name="loginName"]').setValue('other')
+     18|       expect(page.emitted('update:modelValue')?.[0]?.[0]).toMatchObjec…
+       |                                                           ^
+     19|       await page.setProps({ modelValue: draft() })
+     20|       await page.get('form').trigger('submit')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > blocks duplicate submits and only confirms an explicit accepted receipt
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ src/login/LoginRecipe.test.ts:31:20
+     29|     const page = setup({submit})
+     30|     await page.get('form').trigger('submit'); await page.get('form').t…
+     31|     expect(submit).toHaveBeenCalledTimes(1)
+       |                    ^
+     32|     expect(page.get('button[type="submit"]').attributes('disabled')).t…
+     33|     expect(page.emitted('confirmed')).toBeUndefined()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > allows retry without losing drafts after reject and hides raw failures
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > allows retry without losing drafts after throw and hides raw failures
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > allows retry without losing drafts after decline and hides raw failures
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > allows retry without losing drafts after missing and hides raw failures
+Error: Unable to get [role="alert"] within: <form surface="console" mode="login" context="library" brand="晨光书房"><input name="loginName" value="  Lin  "><button type="submit">继续</button></form>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/login/LoginRecipe.test.ts:46:17
+     44|     const page = setup({submit})
+     45|     await page.get('form').trigger('submit'); await flushPromises()
+     46|     expect(page.get('[role="alert"]').text()).toContain('未能完成')
+       |                 ^
+     47|     expect(page.text()).not.toContain('SECRET SDK')
+     48|     expect((page.get('[name="password"]').element as HTMLInputElement)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > invalidates late success failure and finally after context
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > invalidates late success failure and finally after readonly
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > invalidates late success failure and finally after disabled
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > invalidates late success failure and finally after mode
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > invalidates late success failure and finally after modelValue
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > invalidates late success failure and finally after submit
+AssertionError: expected undefined to be defined
+ ❯ src/login/LoginRecipe.test.ts:72:74
+     70|       if(change !== 'unmount') {
+     71|         expect(page.find('[role="alert"]').exists()).toBe(false)
+     72|         expect(page.get('button[type="submit"]').attributes('disabled'…
+       |                                                                          ^
+     73|         current.resolve({accepted:true}); await flushPromises()
+     74|         expect(page.emitted('confirmed')).toHaveLength(1)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > invalidates late success failure and finally after cancel
+Error: Unable to get [data-cancel] within: <form surface="console" mode="login" context="library" brand="晨光书房"><input name="loginName" value="  Lin  "><button type="submit">继续</button></form>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/login/LoginRecipe.test.ts:60:42
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > preserves input contracts and one screen form with usable slots and no autofocus
+AssertionError: expected undefined to be 'username' // Object.is equality
+
+- Expected:
+"username"
+
++ Received:
+undefined
+
+ ❯ src/login/LoginRecipe.test.ts:83:73
+     81|       const page = setup({surface})
+     82|       expect(page.findAll('form')).toHaveLength(1)
+     83|       expect(page.get('[name="loginName"]').attributes('autocomplete')…
+       |                                                                         ^
+     84|       expect(page.get('[name="password"]').attributes('type')).toBe('p…
+     85|       expect(page.get('[name="password"]').attributes('autocomplete'))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > forwards all change fields without strength or equality policy and distinguishes empty values
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/login/LoginRecipe.test.ts:98:54
+     96|     const submit = vi.fn().mockResolvedValue({accepted:true})
+     97|     const page = setup({mode:'change-password',submit})
+     98|     expect(page.find('[name="loginName"]').exists()).toBe(false)
+       |                                                      ^
+     99|     expect(page.get('[name="newPassword"]').attributes('autocomplete')…
+    100|     expect(page.get('[name="confirmPassword"]').attributes('autocomple…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > renders only known PDA exit notices and blocks readonly submission
+Error: Unable to get [data-notice] within: <form surface="pda" mode="login" context="library" brand="晨光书房" logoutnotice="failed" readonly=""><input name="loginName" value="  Lin  "><button type="submit">继续</button></form>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/login/LoginRecipe.test.ts:112:17
+    110|     const submit = vi.fn()
+    111|     const page = setup({surface:'pda',logoutNotice:'failed',readonly:t…
+    112|     expect(page.get('[data-notice]').text()).toContain('撤销失败')
+       |                 ^
+    113|     await page.get('form').trigger('submit'); expect(submit).not.toHav…
+    114|     await page.setProps({logoutNotice:'timed-out'}); expect(page.get('…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: OLD SECRET
+ ❯ src/login/LoginRecipe.test.ts:67:30
+     65|         await page.get('form').trigger('submit')
+     66|       }
+     67|       if(failure) old.reject(new Error('OLD SECRET')); else old.resolv…
+       |                              ^
+     68|       await flushPromises()
+     69|       expect(page.emitted('confirmed')).toBeUndefined()
+ ❯ ../../node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+This error originated in "src/login/LoginRecipe.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "invalidates late success failure and finally after unmount". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed (1)
+      Tests  16 failed | 1 passed (17)
+     Errors  1 error
+   Start at  20:51:00
+   Duration  860ms (transform 53ms, setup 296ms, import 64ms, tests 30ms, environment 390ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/login/LoginRecipe.test.ts

@@ -88,3 +88,5 @@ function onRefresh() {
 独立运行示例：`/#mobile-lists`（playground）。接入与验证边界见仓库 `docs/mobile-standalone.md`。
 
 </MobileDoc>
+
+受控刷新请求若未被宿主接受（`modelValue` 仍为 `false`），释放后的位移会在下一次渲染后复位；接受请求后保持刷新位移，直到宿主结束加载。
