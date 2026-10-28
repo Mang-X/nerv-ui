@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
+import DirectoryDemo from './directory-detail/DirectoryDemo.vue'
 import ScreenDemo from './ScreenDemo.vue'
 import FilesDemo from './FilesDemo.vue'
 import ResourceScheduleDemo from './ResourceScheduleDemo.vue'
@@ -113,6 +114,9 @@ function addProject() {
     :key="surface"
     :space="surface === '#tree/library' ? 'library' : 'studio'"
   />
+  <DirectoryDemo
+    v-else-if="surface === '#directory-detail' || surface.startsWith('#directory-detail/')"
+  />
   <EntityMultiPickerDemo v-else-if="surface === '#entity-multi-picker'" />
   <ActionSummaryDemo v-else-if="surface === '#action-summary'" />
   <DayPrintDemo
@@ -182,6 +186,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#directory-detail" class="inline-flex min-h-11 items-center px-4 underline"
+        >空间目录</a
+      >
       <a href="#notifications/library" class="inline-flex min-h-11 items-center px-4 underline"
         >消息与安排</a
       >
