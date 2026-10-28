@@ -123,6 +123,23 @@ it.each(['false', 'failure', 'missing', 'success'])(
     }
   },
 )
+it('offers five named save and clear modes that remain selectable', async () => {
+  open(Draft)
+  for (const [label, values] of [
+    ['保存处理', ['success', 'false', 'failure', 'delay-failure', 'missing']],
+    ['清空处理', ['success', 'throw', 'failure', 'retry', 'delay-failure']],
+  ] as const) {
+    const select = page.get<HTMLSelectElement>(`select[aria-label="${label}"]`)
+    expect([...select.element.options].map((option) => option.value)).toEqual(values)
+    expect(
+      [...select.element.options].every((option) => option.textContent!.trim().length > 0),
+    ).toBe(true)
+    for (const value of values) {
+      await select.setValue(value)
+      expect(select.element.value).toBe(value)
+    }
+  }
+})
 it('clear false retries true and cancel keeps the draft unchanged', async () => {
   open(Draft)
   await click('表格编辑')

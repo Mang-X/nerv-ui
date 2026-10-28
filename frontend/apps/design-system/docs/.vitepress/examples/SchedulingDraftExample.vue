@@ -87,6 +87,20 @@ const policy = shallowRef('accept')
 const saveMode = shallowRef('success')
 const clearMode = shallowRef('success')
 const feedbackMode = shallowRef('unknown')
+const saveChoices = [
+  ['success', '完成保存'],
+  ['false', '保留草案'],
+  ['failure', '保存失败'],
+  ['delay-failure', '稍后返回失败'],
+  ['missing', '暂未提供保存'],
+] as const
+const clearChoices = [
+  ['success', '完成清空'],
+  ['throw', '清空异常'],
+  ['failure', '清空失败'],
+  ['retry', '首次失败后重试'],
+  ['delay-failure', '稍后返回失败'],
+] as const
 const saved = shallowRef<ScheduleModel>()
 const visible = shallowRef(true)
 const records = shallowRef<{ activity: string; before: string; after: string; result: string }[]>(
@@ -289,21 +303,17 @@ function cleared() {
       <label
         >保存处理
         <select v-model="saveMode" aria-label="保存处理">
-          <option value="success">完成保存</option>
-          <option value="false">保留草案</option>
-          <option value="failure">保存失败</option>
-          <option value="delay-failure">稍后返回失败</option>
-          <option value="missing">暂未提供保存</option>
+          <option v-for="[value, label] in saveChoices" :key="value" :value="value">
+            {{ label }}
+          </option>
         </select></label
       >
       <label
         >清空处理
         <select v-model="clearMode" aria-label="清空处理">
-          <option value="success">完成清空</option>
-          <option value="throw">清空异常</option>
-          <option value="failure">清空失败</option>
-          <option value="retry">首次失败后重试</option>
-          <option value="delay-failure">稍后返回失败</option>
+          <option v-for="[value, label] in clearChoices" :key="value" :value="value">
+            {{ label }}
+          </option>
         </select></label
       >
       <label
