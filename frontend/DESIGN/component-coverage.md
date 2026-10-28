@@ -155,3 +155,5 @@
 | 组合                                                                                                            | PC           | touch | mobile | screen |
 | --------------------------------------------------------------------------------------------------------------- | ------------ | ----- | ------ | ------ |
 | [中性应用壳](../apps/design-system/docs/components/desktop/neutral-shells.md)（复用 NvAppShellInset，无新导出） | 两种宿主排列 | —     | —      | —      |
+
+C04：大屏分栏 recipe（宿主组合，无新增导出）；阅读活动/展览安排，公开 Panel/ScrollBoard/Table/Pagination/Trend/Pareto/Donut/Freshness；PC/mobile/touch —。
