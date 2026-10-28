@@ -210,7 +210,7 @@ function command(kind: 'zoomIn' | 'zoomOut' | 'scrollToToday' | 'fitToScreen') {
 </script>
 
 <template>
-  <section class="grid gap-3" data-testid="scheduling-saved-plan">
+  <section class="grid grid-cols-1 gap-3" data-testid="scheduling-saved-plan">
     <div
       v-if="viewMessage"
       role="status"
