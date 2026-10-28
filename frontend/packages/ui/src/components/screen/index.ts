@@ -76,6 +76,9 @@ export type {
   ScreenSummaryItem,
 } from './SummaryCard.vue'
 
+export { default as NvScreenStatusWall } from './StatusWall.vue'
+export type { ScreenStatusWallItem, ScreenStatusWallMode } from './StatusWall.vue'
+
 export { default as NvScreenFusionBg } from './FusionBg.vue'
 export type { FusionNode, FusionEdge } from './FusionBg.vue'
 export { default as NvScreenLoginStage } from './ScreenLoginStage.vue'

@@ -102,6 +102,8 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T08/R03 / #21](https://github.com/Mang-X/nerv-ui/issues/21) 在 `/#screen/backgrounds` 增加阅读空间与共享花园等距节点流。API 见[组件文档](frontend/apps/design-system/docs/components/screen/fusion-background.md)，验证边界见[R03 记录](docs/evidence/t08-r03/README.md)。
 [T08/R17 / #35](https://github.com/Mang-X/nerv-ui/issues/35) 的分页恢复组合从 `/#mobile-task-list/library` 与 `/#mobile-task-list/studio` 进入。首次/保留/局部错误、暂停重试与逐页滚动恢复合同见[移动接入](docs/mobile-standalone.md#分页列表恢复t08r17)，本地证据见[R17 记录](docs/evidence/t08-r17/README.md)。
 
+`/#screen/status-wall` 展示城市书房与共享花园的平铺、两种分组密度和延迟概况。公共 API 见[分组状态墙](frontend/apps/design-system/docs/components/screen/status-wall.md)，本地行为与未运行边界见[R09 记录](docs/evidence/t08-r09/README.md)。
+
 [T08R10 / #28](https://github.com/Mang-X/nerv-ui/issues/28) 参数详情从 `/#screen/parameter-detail/library` 与 `/#screen/parameter-detail/studio` 进入，演示中性信息/参数/历史、窗口替换与缺测；接入见[大屏说明](docs/screen-standalone.md#t08r10空间参数详情)，候选证据见[T08R10](docs/evidence/t08-r10/README.md)。
 
 [T08/C01 / #37](https://github.com/Mang-X/nerv-ui/issues/37) 从 `/#login/library` 与 `/#login/studio` 进入两类中性空间的登录/改密组合，支持两类桌面、手持与大屏入口，回执须明确确认。见[组合合同](frontend/apps/design-system/docs/components/desktop/login-recipe.md)与[实施记录](docs/evidence/t08-c01/README.md)。真实会话、密码保存和原应用接入不在本票。

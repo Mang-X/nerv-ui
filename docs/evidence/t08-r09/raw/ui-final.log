@@ -1,0 +1,16 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/nvui-doc-coverage.contract.test.ts (2 tests) 3ms
+ ✓ src/nvui-naming.contract.test.ts (247 tests) 50ms
+ ✓ src/components/screen/StatusWall.test.ts (4 tests) 394ms
+
+ Test Files  3 passed (3)
+      Tests  253 passed (253)
+   Start at  17:17:40
+   Duration  8.42s (transform 14.57s, setup 2.34s, import 18.72s, tests 448ms, environment 2.64s)
+
+JSON report written to /tmp/r09-ui.json
