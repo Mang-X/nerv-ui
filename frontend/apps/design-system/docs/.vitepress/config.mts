@@ -220,7 +220,7 @@ export default defineConfig({
         },
         {
           text: '图表',
-          items: [{ text: 'Chart 图表', link: '/components/desktop/chart' }],
+          items: [{ text: 'Chart 图表与标注', link: '/components/desktop/chart' }],
         },
         {
           text: '排产 Scheduling',

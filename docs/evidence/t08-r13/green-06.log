@@ -1,0 +1,89 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/components/pc/chart/LineAnnotations.test.ts (5 tests | 5 failed) 196ms
+     × projects boundary and duplicate-label rows onto actual shared plot scales 80ms
+     × clips multiple reversed bands with official producer and never expands data domain 33ms
+     × uses current identity after replacement and reorder without replacing focused marker DOM 30ms
+     × updates resize and data/series domains and isolates a second chart 27ms
+     × omits unknown, invalid and unsafe targets and adds no default annotation 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > projects boundary and duplicate-label rows onto actual shared plot scales
+Error: You can only use setProps on your mounted component
+ ❯ VueWrapper.setProps ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7669:19
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:30:65
+     28|   await rendered()
+     29|   const container = producer<XYContainer<unknown>>(w.getComponent(VisX…
+     30|   await (w.getComponent(VisXYContainer as never) as VueWrapper).setPro…
+       |                                                                 ^
+     31|   container.render(0)
+     32|   await rendered()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:37:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > clips multiple reversed bands with official producer and never expands data domain
+Error: You can only use setProps on your mounted component
+ ❯ VueWrapper.setProps ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7669:19
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:30:65
+     28|   await rendered()
+     29|   const container = producer<XYContainer<unknown>>(w.getComponent(VisX…
+     30|   await (w.getComponent(VisXYContainer as never) as VueWrapper).setPro…
+       |                                                                 ^
+     31|   container.render(0)
+     32|   await rendered()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:47:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > uses current identity after replacement and reorder without replacing focused marker DOM
+Error: You can only use setProps on your mounted component
+ ❯ VueWrapper.setProps ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7669:19
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:30:65
+     28|   await rendered()
+     29|   const container = producer<XYContainer<unknown>>(w.getComponent(VisX…
+     30|   await (w.getComponent(VisXYContainer as never) as VueWrapper).setPro…
+       |                                                                 ^
+     31|   container.render(0)
+     32|   await rendered()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:56:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > updates resize and data/series domains and isolates a second chart
+Error: You can only use setProps on your mounted component
+ ❯ VueWrapper.setProps ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7669:19
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:30:65
+     28|   await rendered()
+     29|   const container = producer<XYContainer<unknown>>(w.getComponent(VisX…
+     30|   await (w.getComponent(VisXYContainer as never) as VueWrapper).setPro…
+       |                                                                 ^
+     31|   container.render(0)
+     32|   await rendered()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:70:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > omits unknown, invalid and unsafe targets and adds no default annotation
+Error: You can only use setProps on your mounted component
+ ❯ VueWrapper.setProps ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7669:19
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:30:65
+     28|   await rendered()
+     29|   const container = producer<XYContainer<unknown>>(w.getComponent(VisX…
+     30|   await (w.getComponent(VisXYContainer as never) as VueWrapper).setPro…
+       |                                                                 ^
+     31|   container.render(0)
+     32|   await rendered()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:85:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  15:31:48
+   Duration  2.72s (transform 1.54s, setup 214ms, import 2.00s, tests 196ms, environment 240ms)
+

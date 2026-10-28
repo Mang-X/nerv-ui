@@ -187,3 +187,5 @@ T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / Filter
 | 组合                                     | PC              | PDA           | touch | screen          |
 | ---------------------------------------- | --------------- | ------------- | ----- | --------------- |
 | [登录与改密](components/login-recipe.md) | 两类分栏 recipe | 安全区 recipe | —     | R05 slot recipe |
+
+T08/R13：PC `NvLineChart` 增加可选图内多范围与点定位；touch/mobile/screen 本票均为 `—`，不迁入 SPC 算法。
