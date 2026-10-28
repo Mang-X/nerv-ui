@@ -4,7 +4,7 @@ pageClass: nv-wide
 ---
 
 <script setup>
-import { ResourceSchedulerBoard } from '@nerv-iip/scheduling'
+import { useSchedulingEdits, factoryTimeInput, factoryTimeInstant, ResourceSchedulerBoard } from '@nerv-iip/scheduling'
 import { NvButton, NvField, NvFieldGroup, NvFieldLabel, NvInput, NvSelect, NvSelectContent, NvSelectItem, NvSelectTrigger, NvSelectValue } from '@nerv-iip/ui'
 import { SchedulingLegend } from '@nerv-iip/scheduling'
 import { computed, ref } from 'vue'
@@ -27,31 +27,14 @@ const resLegend = [
   { swatch: 'block-downtime', label: '停机块', desc: '斜纹块(红)= 计划停机,资源不可用。' },
   { swatch: 'block-linechange', label: '换线块', desc: '斜纹块(蓝)= 换线窗口,产线切换准备占用资源。' },
   { swatch: 'block-changeover', label: '换型块', desc: '斜纹块(橙)= 换型窗口,工装/模具换型占用资源(加工中心-03「产品换型」)。' },
-  { swatch: 'offwork', label: '非工作·夜班底纹', desc: '浅底纹 = 20:00–08:00 及周末;小时刻度下还分早/中/夜三班。' },
-  { swatch: 'now', label: '现在线', desc: '竖线 = 当前时刻。' },
+  { swatch: 'offwork', label: '非工作·夜班底纹', desc: '底纹与班次来自 host calendars；当前共享模型无日历，不显示推测班次。' },
+  { swatch: 'now', label: '现在线', desc: '仅当前时刻处于 horizon 内才显示现在线。' },
 ]
 
 const calendarModel = ref(makeCalendarModel())
 
-// 拖拽落点更新模型:改时间(横向)与改派资源/泳道(纵向)。
-// 本 demo 里 resourceId === workCenterId === 泳道 id,故同步更新维度归属让卡片换道。
-function onDrag(p) {
-  model.value = {
-    ...model.value,
-    tasks: model.value.tasks.map((t) => {
-      if (t.id !== p.taskId) return t
-      const rid = p.resourceId ?? t.resourceId
-      return {
-        ...t,
-        startUtc: p.startUtc,
-        endUtc: p.endUtc,
-        resourceId: rid,
-        workCenterId: rid ?? t.workCenterId,
-        dimensions: rid ? { ...t.dimensions, workCenter: { id: rid, label: rid } } : t.dimensions,
-      }
-    }),
-  }
-}
+// 公开编辑 recipe 保留 assignment 维度与显式未分配 marker，不猜设备身份。
+const { onTaskDragEnd: onDrag } = useSchedulingEdits(model)
 
 // 图例分色:取模型里出现的工序色。
 const cats = computed(() => {
@@ -66,7 +49,7 @@ const cats = computed(() => {
 const selectedId = ref(null)
 const selected = computed(() => model.value.tasks.find((t) => t.id === selectedId.value) ?? null)
 const BLOCK = { maintenance: '设备维护', downtime: '计划停机', lineChange: '换线窗口', changeover: '换型窗口' }
-const fmt = (iso) => (iso ? new Date(iso).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—')
+const fmt = (iso) => (iso ? new Date(iso).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC', timeZoneName: 'short' }) : '—')
 
 const readOnlyModel = ref(makeModel())
 const emptyModel = ref({ ...makeModel(), tasks: [], links: [], resources: [] })
@@ -100,17 +83,15 @@ function onEditSelect(id) {
   const t = editModel.value.tasks.find((x) => x.id === id)
   editId.value = t && t.type === 'operation' && !t.isMilestone && !t.blockKind ? id : null
 }
-// <input type="datetime-local"> 用本地无时区串;与 UTC ISO 互转(仅演示,按浏览器本地时区)。
-const toLocalInput = (iso) => {
-  const d = new Date(iso)
-  const p = (n) => String(n).padStart(2, '0')
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`
-}
+// 编辑时间使用显式 UTC 到分钟。
+const toLocalInput = (iso) => factoryTimeInput(iso, 'UTC').slice(0, 16)
+const { onTaskDragEnd: onEditDrag } = useSchedulingEdits(editModel)
 const editStart = computed({
   get: () => (editTask.value ? toLocalInput(editTask.value.startUtc) : ''),
   set: (v) => {
     if (!editTask.value || !v) return
-    const next = new Date(v).toISOString()
+    const next = factoryTimeInstant(v, 'UTC')
+    if (!next || editTask.value.locked) return
     patch(editTask.value.id, (t) => {
       const dur = Date.parse(t.endUtc) - Date.parse(t.startUtc) // 保持原时长,顺移 endUtc
       return { ...t, startUtc: next, endUtc: new Date(Date.parse(next) + dur).toISOString() }
@@ -162,22 +143,14 @@ const fmtDur = (t) => Math.round((Date.parse(t.endUtc) - Date.parse(t.startUtc))
 
 ```vue
 <script setup lang="ts">
-import { ResourceSchedulerBoard, toModel } from '@nerv-iip/scheduling'
+import { ResourceSchedulerBoard, useSchedulingEdits, type ScheduleModel } from '@nerv-iip/scheduling'
 import { ref } from 'vue'
 
-const model = ref(toModel(plan)) // 含 groupDimensions 时左轴维度可切换
-
-function onDrag(p) {
-  // 改时间 / 改派;接后端时改为「锁定 → 重预览」的编辑闭环
-  model.value = {
-    ...model.value,
-    tasks: model.value.tasks.map((t) =>
-      t.id === p.taskId
-        ? { ...t, startUtc: p.startUtc, endUtc: p.endUtc, resourceId: p.resourceId ?? t.resourceId }
-        : t,
-    ),
-  }
-}
+const props = defineProps<{ initial: ScheduleModel }>()
+const model = ref(props.initial)
+// 时间、assignment 与 unassignedDimensions 按公开合同回写，不猜设备身份。
+// 若宿主拒绝本次提案，不调用 onDrag；外部权威替换仍写入 model。
+const { onTaskDragEnd: onDrag } = useSchedulingEdits(model)
 </script>
 
 <template>
@@ -314,7 +287,7 @@ function onDrag(p) {
 
 ### 工作日历 / 班次
 
-引擎按日历自动渲染:**非工作时段与周末**染浅底纹(每日 20:00–次日 08:00、周六/周日),**小时刻度**下顶部插入三班制刻度(**夜班 00–08 / 早班 08–16 / 中班 16–24**,夜班与非工作淡化),**「现在」竖线**标当前时刻。下例 horizon 跨周五 → 周一(含夜间):浅色带即不可排产/夜班时段,周六整列为周末底纹,赶工卡片压在底纹上一目了然。
+底纹和班次边界只来自宿主 calendars；下方保留跨周五到周一的时间模型，但当前模型没有日历，不将周末或夜间自行标为不可排产。现在线仅在当前时刻位于 horizon 内时出现。
 
 <Demo block>
   <div style="height: 320px; width: 100%">
@@ -334,7 +307,7 @@ function onDrag(p) {
 
 <Demo block>
   <div style="height: 460px; width: 100%">
-    <ResourceSchedulerBoard :model="editModel" @task-select="onEditSelect" @task-drag-end="patch($event.taskId, (t) => ({ ...t, startUtc: $event.startUtc, endUtc: $event.endUtc, resourceId: $event.resourceId ?? t.resourceId, workCenterId: $event.resourceId ?? t.workCenterId, dimensions: $event.resourceId ? { ...t.dimensions, workCenter: { id: $event.resourceId, label: $event.resourceId } } : t.dimensions }))" />
+    <ResourceSchedulerBoard :model="editModel" @task-select="onEditSelect" @task-drag-end="onEditDrag" />
   </div>
   <div style="border:1px solid var(--border); border-radius:8px; padding:1rem; margin-top:1rem">
     <div v-if="editTask">
@@ -344,7 +317,7 @@ function onDrag(p) {
       </div>
       <NvFieldGroup>
         <NvField>
-          <NvFieldLabel for="edit-start">开始时间</NvFieldLabel>
+          <NvFieldLabel for="edit-start">开始时间（UTC）</NvFieldLabel>
           <NvInput id="edit-start" v-model="editStart" name="edit-start" type="datetime-local" />
         </NvField>
         <NvField>
@@ -367,7 +340,7 @@ function onDrag(p) {
 
 ```vue
 <script setup lang="ts">
-import { ResourceSchedulerBoard } from '@nerv-iip/scheduling'
+import { useSchedulingEdits, factoryTimeInput, factoryTimeInstant, ResourceSchedulerBoard } from '@nerv-iip/scheduling'
 import { computed, ref } from 'vue'
 
 const model = ref(toModel(plan))
@@ -425,7 +398,7 @@ function setResource(rid: string) {
 **Emits**:`taskSelect(taskId)`、`taskDragEnd(payload)`(`kind: 'move' \| 'resize' \| 'reassign'`)、`conflictClick(taskId)`、`lockedDragAttempt(taskId)`、`update:groupBy(groupBy)`。
 **Expose**:`command(cmd)`。
 
-P07 新增可选 `payload.assignment: { dimension, id, label }` 表达显式维度改派，保留原 `resourceId`；resize 只改端点，取消不提案，宿主回写才接受。纯资源兼容行仍使用原资源字段，不把其它维度 ID 当设备或工作中心。旧的仅按资源字段回写示例不能接受显式维度改派；新接入请按[完整资源编辑合同](../../../../../../docs/scheduling-renderer.md#p07资源受控编辑)处理。两个活动中性入口与本轮证据在那里列出；本页其余面板组合和完整文档站仍由 P08/#10 验收。
+P07 新增可选 `payload.assignment: { dimension, id, label }` 表达显式维度改派，保留原 `resourceId`；resize 只改端点，取消不提案，宿主回写才接受。纯资源兼容行仍使用原资源字段，不把其它维度 ID 当设备或工作中心。本站图面回写复用公开 useSchedulingEdits，保留 unassignedDimensions marker；接入请按[完整资源编辑合同](../../../../../../docs/scheduling-renderer.md#p07资源受控编辑)处理。两个活动中性入口与本轮证据在那里列出；本页其余面板组合和完整文档站仍由 P08/#10 验收。
 
 ## 相关
 
@@ -437,3 +410,5 @@ P07 新增可选 `payload.assignment: { dimension, id, label }` 表达显式维�
 ## P08 面板组合
 
 SchedulingToolbar、SchedulingLegend、TaskFacts、TaskDetailPanel、ChangeSummaryPanel、ConflictPanel、UnscheduledPanel 均从 `@nerv-iip/scheduling` 主桶消费。完整 props/emits、禁用理由、真实图面语义、受控显隐与 Sheet 详情 recipe 见 [排程面板合同](../../../../../../docs/scheduling-panels.md)。独立宿主为 `/#schedule-panels/library` 与 `/#schedule-panels/studio`，不代表完整文档站或 packed 验收。
+
+站内可操作的[排程面板与草案](./scheduling-live)展示公共面板、受控请求与本页内存回执。
