@@ -14,9 +14,11 @@ import ScreenSummaryDemo from './screen/ScreenSummaryDemo.vue'
 import ScreenHeatmapDemo from './screen/ScreenHeatmapDemo.vue'
 import ScreenStageFlowDemo from './screen/ScreenStageFlowDemo.vue'
 import ScreenStatusHeroDemo from './screen/ScreenStatusHeroDemo.vue'
+import ScreenLoginStageDemo from './screen/ScreenLoginStageDemo.vue'
 import ScreenTablesDemo from './screen/ScreenTablesDemo.vue'
 
 const props = defineProps<{ section?: string }>()
+const login = computed(() => props.section?.startsWith('#screen/login/'))
 const recipes = computed(() => props.section === '#screen/recipes')
 const backgrounds = computed(() => props.section === '#screen/backgrounds')
 const layout = computed(() => props.section === '#screen/layout')
@@ -85,6 +87,7 @@ const { theme, setTheme } = useTheme()
           >空间一瞥</a
         >
         <a href="#screen/summary" :aria-current="summary ? 'page' : undefined">空间使用概况</a>
+        <a href="#screen/login/library">走进空间</a>
         <a href="#screen/status-hero" :aria-current="statusHero ? 'page' : undefined">此刻的现场</a>
         <a href="#screen/heatmap" :aria-current="heatmap ? 'page' : undefined">一格一刻</a>
         <a href="#screen/stage-flow" :aria-current="stageFlow ? 'page' : undefined">一步一步</a>
@@ -170,7 +173,8 @@ const { theme, setTheme } = useTheme()
                                   : '城市文化空间舞台'
         "
       >
-        <ScreenDashboardDemo v-if="recipes" />
+        <ScreenLoginStageDemo v-if="login" :garden="section === '#screen/login/garden'" />
+        <ScreenDashboardDemo v-else-if="recipes" />
         <ScreenBackgroundDemo v-else-if="backgrounds" />
         <ScreenLayoutDemo v-else-if="layout" />
         <ScreenSummaryCardsDemo v-else-if="summaryCards" />

@@ -475,3 +475,9 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 独立库 #33：来源 MasterDataTreeNode → `NvTree`。PC 紧凑指针与键盘树，按 R1–R5 取 Nv + 素名；类型 `NvTreeNode`，无 ResourceItem 依赖。
 
 > **独立库新增（#24/T08 R06）。** 来源两个应用通知列表、任务与收件箱 → `NvNotificationInbox`，PC 指针表面按素名规则落 `pc/notification-inbox/`。唯一公开组合，不带 DTO、查询或通知引擎。
+
+## T08/R05 独立新增
+
+| 来源              | 公开名             | 路径                          | 判定               |
+| ----------------- | ------------------ | ----------------------------- | ------------------ |
+| screen login 视觉 | NvScreenLoginStage | `screen/ScreenLoginStage.vue` | R1 screen 专属舞台 |

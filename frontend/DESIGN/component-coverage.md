@@ -163,3 +163,5 @@ C04：大屏分栏 recipe（宿主组合，无新增导出）；阅读活动/展
 | recipe         | 移动                                                                               | 桌面 / touch / screen | 新公开导出 |
 | -------------- | ---------------------------------------------------------------------------------- | --------------------- | ---------- |
 | 候选与分步执行 | ScanBar / Picker / NumberKeyboard / Tag / Result / Steps / AppShellMobile / NavBar | —                     | 无         |
+
+| 插画登录舞台 | `—` | `—` | `—` | `NvScreenLoginStage` |

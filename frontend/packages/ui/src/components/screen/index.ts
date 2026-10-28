@@ -75,3 +75,5 @@ export type {
   ScreenSummaryStatus,
   ScreenSummaryItem,
 } from './SummaryCard.vue'
+
+export { default as NvScreenLoginStage } from './ScreenLoginStage.vue'

@@ -94,3 +94,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T08/C04 / #40](https://github.com/Mang-X/nerv-ui/issues/40) 从 `/#screen/recipes` 进入阅读活动与展览安排，展示受控分栏、队列、分类和更新状态。见[组合合同](frontend/apps/design-system/docs/components/screen/dashboard-recipes.md)与[本地证据](docs/evidence/t08-c04/README.md)。
 
 [T08/C03 / #39](https://github.com/Mang-X/nerv-ui/issues/39) 从 `/#mobile-flow` 查看候选与分步执行，支持键入或扫码、切换安排、外部清空、数字键盘与失败重试。见 [移动接入](docs/mobile-standalone.md#候选与分步执行t08c03)和[本地证据](docs/evidence/t08-c03/README.md)。确认仅保存在本页内存。
+
+[T08/R05 / #23](https://github.com/Mang-X/nerv-ui/issues/23) 从 `/#screen/login/library` 与 `/#screen/login/garden` 展示两类中性空间入口。见[公开合同](frontend/apps/design-system/docs/components/screen/login-stage.md)和[实施证据](docs/evidence/t08-r05/README.md)。本页提交不建立认证会话。
