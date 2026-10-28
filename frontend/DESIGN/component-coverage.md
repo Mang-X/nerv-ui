@@ -164,6 +164,10 @@ C04：大屏分栏 recipe（宿主组合，无新增导出）；阅读活动/展
 | -------------- | ---------------------------------------------------------------------------------- | --------------------- | ---------- |
 | 候选与分步执行 | ScanBar / Picker / NumberKeyboard / Tag / Result / Steps / AppShellMobile / NavBar | —                     | 无         |
 
+| UX 概念      | 桌面 | 移动 | touch | screen               |
+| ------------ | ---- | ---- | ----- | -------------------- |
+| 插画登录舞台 | `—`  | `—`  | `—`   | `NvScreenLoginStage` |
+
 T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / FilterBar / DataTable / Sheet / Timeline，无新增导出。screen/mobile/touch：—。合同见 [目录详情](components/directory-detail.md)。
 
 | UX 概念      | 桌面 | 移动                    | touch | screen |

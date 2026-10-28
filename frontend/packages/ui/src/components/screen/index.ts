@@ -76,5 +76,6 @@ export type {
   ScreenSummaryItem,
 } from './SummaryCard.vue'
 
+export { default as NvScreenLoginStage } from './ScreenLoginStage.vue'
 export { default as NvScreenDetailDialog } from './DetailDialog.vue'
 export { default as NvScreenParameter } from './Parameter.vue'
