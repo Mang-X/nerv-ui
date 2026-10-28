@@ -10,7 +10,10 @@
     "build": "pnpm typecheck && pnpm --filter @nerv-iip/playground build",
     "fmt": "vp fmt --check .",
     "fmt:fix": "vp fmt --write .",
-    "lint": "vp lint ."
+    "lint": "vp lint .",
+    "docs:dev": "pnpm --filter @nerv-iip/design-system dev",
+    "docs:build": "pnpm --filter @nerv-iip/design-system build",
+    "docs:typecheck": "pnpm --filter @nerv-iip/design-system typecheck"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.2",

@@ -1,33 +1,9 @@
-import { existsSync } from 'node:fs'
-import { fileURLToPath, URL } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, postcssIsolateStyles } from 'vitepress'
 import wasm from 'vite-plugin-wasm'
+import { schedulingVendorStyles } from '@nerv-iip/scheduling/vite'
 import llmstxt from 'vitepress-plugin-llms'
-
-const dhxInstalled = existsSync(
-  fileURLToPath(new URL('../../../../node_modules/@dhx/trial-gantt/package.json', import.meta.url)),
-)
-const dhxVendor = fileURLToPath(
-  new URL('../../../../packages/scheduling/vendor/dhtmlx/dhtmlxgantt.es.js', import.meta.url),
-)
-const dhxCssVendor = fileURLToPath(
-  new URL('../../../../packages/scheduling/vendor/dhtmlx/dhtmlxgantt.css', import.meta.url),
-)
-const dhxStub = fileURLToPath(
-  new URL('../../../../packages/scheduling/src/engine/dhtmlx/stub.ts', import.meta.url),
-)
-const dhxCssStub = fileURLToPath(
-  new URL('../../../../packages/scheduling/src/engine/dhtmlx/empty.css', import.meta.url),
-)
-const dhxAlias: Record<string, string> = dhxInstalled
-  ? {}
-  : {
-      '@dhx/trial-gantt/codebase/dhtmlxgantt.css': existsSync(dhxCssVendor)
-        ? dhxCssVendor
-        : dhxCssStub,
-      '@dhx/trial-gantt': existsSync(dhxVendor) ? dhxVendor : dhxStub,
-    }
+import { repositoryLink } from './repositoryLinks'
 
 // 一体机 / 工位触控侧栏 —— 复用给 /components/touch 与 /components/board（工位看板完整示例）。
 const touchSidebar = [
@@ -62,6 +38,19 @@ export default defineConfig({
   title: 'Nerv-IIP 设计系统',
   description: '数字工厂控制平面 · 统一设计系统：设计哲学、设计令牌与组件展示',
   lang: 'zh-CN',
+  markdown: {
+    config(md) {
+      md.core.ruler.after('inline', 'repository-source-links', (state) => {
+        for (const token of state.tokens) {
+          for (const child of token.children ?? []) {
+            if (child.type !== 'link_open') continue
+            const href = child.attrGet('href')
+            if (href && state.env.path) child.attrSet('href', repositoryLink(href, state.env.path))
+          }
+        }
+      })
+    },
+  },
   cleanUrls: true,
   appearance: 'dark', // 默认黑主题，与设计方向一致；导航栏仍可切换亮/暗
   lastUpdated: true,
@@ -425,7 +414,7 @@ export default defineConfig({
     // <script setup> 与 <Demo> 脚手架，属性表与代码围栏保留——变体事实由属性表承载。
     // 站点转多语言后须加 ignoreFiles 排除非默认 locale：插件只产一份根 llms.txt，
     // 会把所有 locale 混排进同一张目录（见 #1889 实测）。
-    plugins: [wasm(), tailwindcss(), llmstxt()],
+    plugins: [schedulingVendorStyles(), wasm(), tailwindcss(), llmstxt()],
     css: {
       // ADR 0020 §4.2 — official style isolation. `postcssIsolateStyles` appends
       // `:not(:where(.vp-raw, .vp-raw *))` to VitePress's own reset selectors so
@@ -440,27 +429,7 @@ export default defineConfig({
       },
     },
     resolve: {
-      alias: {
-        '@nerv-iip/ui/file-preview': fileURLToPath(
-          new URL(
-            '../../../../packages/ui/src/components/ui/file-preview/index.ts',
-            import.meta.url,
-          ),
-        ),
-        '@nerv-iip/ui': fileURLToPath(
-          new URL('../../../../packages/ui/src/index.ts', import.meta.url),
-        ),
-        '@nerv-iip/ui-mobile': fileURLToPath(
-          new URL('../../../../packages/ui-mobile/src/index.ts', import.meta.url),
-        ),
-        '@nerv-iip/scheduling': fileURLToPath(
-          new URL('../../../../packages/scheduling/src/index.ts', import.meta.url),
-        ),
-        '@nerv-iip/api-client': fileURLToPath(
-          new URL('../../../../packages/api-client/src/index.ts', import.meta.url),
-        ),
-        ...dhxAlias,
-      },
+      dedupe: ['vue'],
     },
   },
 })

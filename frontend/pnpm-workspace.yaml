@@ -1,6 +1,7 @@
 packages:
   # Active standalone desktop/touch/mobile host and UI packages.
-  # Scheduling restored by T07/P04; design-system in #10; app-shell in #9.
+  # Scheduling restored by T07/P04; design-system by T09/A; app-shell in #9.
+  - apps/design-system
   - apps/playground
   - packages/ui
   - packages/ui-mobile

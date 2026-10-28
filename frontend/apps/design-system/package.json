@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@lucide/vue": "1.24.0",
-    "@nerv-iip/api-client": "workspace:*",
     "@nerv-iip/scheduling": "workspace:*",
     "@nerv-iip/ui": "workspace:*",
     "@nerv-iip/ui-mobile": "workspace:*",

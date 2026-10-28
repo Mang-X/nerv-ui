@@ -2,7 +2,7 @@
 
 从 Nerv-IIP 提取的 Vue UI 系统，覆盖桌面、触屏、移动、大屏、文件上传/预览、排程、应用壳、主题和设计文档。
 
-当前完成 T01 原样复制基线，并在 [T02 / #3](https://github.com/Mang-X/nerv-ui/issues/3) 提供可独立安装、启动和构建的桌面 playground。[T03 / #4](https://github.com/Mang-X/nerv-ui/issues/4) 在同一宿主增加独立触屏演示：启动后访问 `/#touch`，或从桌面页点击“触屏演示”。五个现有公开组件使用中性内存数据，操作说明与证据见 [T03 验证记录](docs/evidence/t03/README.md)。[T04/N01 / #45](https://github.com/Mang-X/nerv-ui/issues/45) 恢复移动包并增加 `/#mobile` 的页壳导航 11 件演示，接入与后续分工见 [独立移动接入](docs/mobile-standalone.md)。完整迁移由 [母票 #1](https://github.com/Mang-X/nerv-ui/issues/1) 跟踪；其他表面、完整文档站和版本化安装产物尚待后续票验证。
+当前完成 T01 原样复制基线，并在 [T02 / #3](https://github.com/Mang-X/nerv-ui/issues/3) 提供可独立安装、启动和构建的桌面 playground。[T03 / #4](https://github.com/Mang-X/nerv-ui/issues/4) 在同一宿主增加独立触屏演示：启动后访问 `/#touch`，或从桌面页点击“触屏演示”。五个现有公开组件使用中性内存数据，操作说明与证据见 [T03 验证记录](docs/evidence/t03/README.md)。[T04/N01 / #45](https://github.com/Mang-X/nerv-ui/issues/45) 恢复移动包并增加 `/#mobile` 的页壳导航 11 件演示，接入与后续分工见 [独立移动接入](docs/mobile-standalone.md)。完整迁移由 [母票 #1](https://github.com/Mang-X/nerv-ui/issues/1) 跟踪；完整文档站的工程入口已由 T09/A 恢复，站内 live 完整覆盖由 #10 后续子项验证；版本化安装产物由 #11 验证。
 
 ```sh
 pnpm -C frontend install --frozen-lockfile
@@ -16,8 +16,8 @@ Node >=22.18，pnpm 11.22.0；具体命令、CSS 接入、workspace 恢复责任
 
 [T04/N02 / #46](https://github.com/Mang-X/nerv-ui/issues/46) 的输入、扫码与数字键盘从 `/#mobile-input` 直接访问，也可由 `/#mobile` 点击“随心记录”进入。12 件公开组件使用中性内存状态，保留其它入口；扫码在编辑表单或打开浮层时让出焦点。行为、字符串输入约束和浏览器/设备证据边界见 [移动接入](docs/mobile-standalone.md#输入扫码与数字键盘n02)。
 
-- `frontend/packages/ui`、`frontend/packages/ui-mobile`、`frontend/packages/scheduling`、`frontend/apps/playground`：当前活动 workspace。
-- `frontend/packages/app-shell`、`frontend/apps/design-system`：保留的候选源码，待 #9/#8/#10 恢复参与安装和聚合命令。
+- `frontend/packages/ui`、`frontend/packages/ui-mobile`、`frontend/packages/scheduling`、`frontend/apps/playground`、`frontend/apps/design-system`：当前活动 workspace。
+- `frontend/packages/app-shell`：保留的候选源码，待 #9 恢复。
 - `frontend/DESIGN` 与 `DESIGN.md`：设计规则和资料；独立库增量决策优先回到当前接入文档。
 - `frontend/reference-tests`：旧库消费方参考契约，独立库命令不执行它们。
 - `migration/materials/source/frontend`：其他应用完整源码及 auth/business-core 原始素材，待解耦；不在活动 workspace 内。
@@ -117,3 +117,12 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T07/P15 / #98](https://github.com/Mang-X/nerv-ui/issues/98) 从 `/#schedule-saved/library`、`/#schedule-saved/studio` 展示已保存计划只读资源图、树表、详情与搜索。名称、维度、事实与导航权限来自 host；接入见[已保存计划合同](docs/scheduling-saved-plan.md)，验证范围见 [P15 证据](docs/evidence/t07-p15/README.md)。P16 工作台组合与真实运行验收另行执行。
 
 [T07/P16 / #99](https://github.com/Mang-X/nerv-ui/issues/99) 从 `/#schedule-workbench/library`、`/#schedule-workbench/studio` 进入中性工作台、历史及预览组合，所有既有排程入口可往返。见 [公共合同](docs/scheduling-workbench.md) 与 [本票证据](docs/evidence/t07-p16/README.md)。
+
+## 独立文档站（T09/A，#143）
+
+在 `frontend` 执行 `pnpm docs:dev`（127.0.0.1:5180）、`pnpm docs:build`、`pnpm docs:typecheck`。
+默认 `dev` 仍启动 playground；根 `typecheck` 递归覆盖含文档站的活动包，根 `build` 先执行该聚合检查再构建 playground，文档静态产物需显式执行 `docs:build`。
+文档工程合同用 `pnpm -C frontend/apps/design-system exec vp test run --config vitest.config.ts docs.contract.test.ts`，不扩到其它包测试桶。
+174 页原站点保留；跨出站点的真实仓库文件映射到 integration 分支源码，站内死链检查保留。
+VitePress 1.6.4 使用其私有 Vite 5.4.21，playground 使用既有 Vite Plus；三份共享排程样例通过显式本地 adapter 消费当前公共模型，不依赖生成 SDK。
+工程恢复不等于 #10 全部 live 或浏览器验收。决策、来源及运行证据见 [T09/A 记录](docs/evidence/t09-a/README.md)。
