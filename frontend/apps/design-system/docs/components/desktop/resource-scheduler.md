@@ -107,6 +107,7 @@ const editResource = computed({
       resourceId: rid,
       workCenterId: rid,
       dimensions: { ...t.dimensions, workCenter: { id: rid, label: rid } },
+      unassignedDimensions: (t.unassignedDimensions ?? []).filter((dimension) => dimension !== 'workCenter'),
     }))
   },
 })
@@ -373,6 +374,7 @@ function setResource(rid: string) {
     resourceId: rid,
     workCenterId: rid,
     dimensions: { ...t.dimensions, workCenter: { id: rid, label: rid } },
+    unassignedDimensions: (t.unassignedDimensions ?? []).filter((dimension) => dimension !== 'workCenter'),
   }))
 }
 </script>

@@ -3,6 +3,8 @@ import { mount, flushPromises } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import { defineComponent, h } from 'vue'
 import * as S from '@nerv-iip/scheduling'
+import { NvSelect } from '@nerv-iip/ui'
+import { resourceProjection } from '../../packages/scheduling/src/model/resource-projection'
 import ResourcePage from './docs/components/desktop/resource-scheduler.md'
 import Panels from './docs/.vitepress/examples/SchedulingPanelsExample.vue'
 import Draft from './docs/.vitepress/examples/SchedulingDraftExample.vue'
@@ -246,4 +248,46 @@ it('existing resource Markdown accepts dimension assignments and unassigned mark
   expect(
     graph.props('model').tasks.find((t: S.ScheduleTask) => t.id === task.id).resourceId,
   ).toBeUndefined()
+})
+
+it('resource field assignment clears its work-center null override while retaining other empty dimensions', async () => {
+  open(ResourcePage)
+  const graph = page.findAllComponents(Graph).at(-1)!
+  const task = graph
+    .props('model')
+    .tasks.find(
+      (t: S.ScheduleTask) => t.type === 'operation' && !t.locked && !t.blockKind && !t.isMilestone,
+    )
+  graph.vm.$emit('taskSelect', task.id)
+  await flushPromises()
+  for (const dimension of ['team', 'workCenter']) {
+    graph.vm.$emit('taskDragEnd', {
+      taskId: task.id,
+      operationId: task.operationId,
+      resourceId: task.resourceId,
+      startUtc: task.startUtc,
+      endUtc: task.endUtc,
+      kind: 'reassign',
+      assignment: { dimension, id: null, label: '未分配' },
+    })
+    await flushPromises()
+  }
+  expect(
+    resourceProjection(graph.props('model')).keyOf(
+      graph.props('model').tasks.find((t: S.ScheduleTask) => t.id === task.id),
+    ),
+  ).toBe('["workCenter",null]')
+  const picker = page
+    .findAllComponents(NvSelect)
+    .find((select) => select.find('#edit-res').exists())
+  expect(picker).toBeDefined()
+  picker!.vm.$emit('update:modelValue', '焊接-01')
+  await flushPromises()
+  const model = graph.props('model')
+  const current = model.tasks.find((t: S.ScheduleTask) => t.id === task.id)
+  expect(current.resourceId).toBe('焊接-01')
+  expect(current.workCenterId).toBe('焊接-01')
+  expect(current.unassignedDimensions).toEqual(['team'])
+  expect(resourceProjection(model).keyOf(current)).toBe('["workCenter","焊接-01"]')
+  expect(resourceProjection(model, 'team').keyOf(current)).toBe('["team",null]')
 })
