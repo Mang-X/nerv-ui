@@ -217,3 +217,46 @@ it('Parameter_ClampsViewportEndpointsAndRejectsZeroWidth', async () => {
   await nextTick()
   expect(w.find('[data-sample]').exists()).toBe(false)
 })
+it('Dialog_GroupsEachMaskAndContentByActualOpeningOrderAndRemovesClosedLayers', async () => {
+  const { h } = await import('vue')
+  const a = mount(NvScreenDetailDialog, {
+    attachTo: document.body,
+    props: { open: false, title: '书房详情', description: '较长内容', state: 'data' },
+    slots: { info: () => h('p', '一段较长的阅读记录。'.repeat(80)) },
+  })
+  const b = mount(NvScreenDetailDialog, {
+    attachTo: document.body,
+    props: { open: false, title: '画室详情', description: '较短内容', state: 'data' },
+    slots: { info: () => h('p', '当前记录') },
+  })
+  wrappers.push(a, b)
+  function layers() {
+    const nodes = [...document.querySelectorAll('[data-slot="nv-screen-detail-layer"]')]
+    for (const layer of nodes) {
+      expect(layer.parentElement).toBe(document.body)
+      expect(layer.querySelectorAll('[data-slot="nv-screen-detail-mask"]')).toHaveLength(1)
+      expect(layer.querySelectorAll('[role="dialog"]')).toHaveLength(1)
+    }
+    return nodes.map((layer) => layer.querySelector('h2')?.textContent)
+  }
+  expect(layers()).toEqual([])
+  // Opening order deliberately differs from component creation order.
+  await b.setProps({ open: true })
+  await flushPromises()
+  expect(layers()).toEqual(['画室详情'])
+  await a.setProps({ open: true })
+  await flushPromises()
+  expect(layers()).toEqual(['画室详情', '书房详情'])
+  await a.setProps({ open: false })
+  await flushPromises()
+  expect(layers()).toEqual(['画室详情'])
+  await a.setProps({ open: true })
+  await flushPromises()
+  expect(layers()).toEqual(['画室详情', '书房详情'])
+  await b.setProps({ open: false })
+  await flushPromises()
+  expect(layers()).toEqual(['书房详情'])
+  await a.setProps({ open: false })
+  await flushPromises()
+  expect(layers()).toEqual([])
+})

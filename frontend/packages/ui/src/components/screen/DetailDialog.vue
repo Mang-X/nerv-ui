@@ -22,50 +22,58 @@ defineEmits<{ 'update:open': [open: boolean] }>()
 <template>
   <DialogRoot :open="open" @update:open="$emit('update:open', $event)">
     <DialogTrigger v-if="$slots.trigger" as-child><slot name="trigger" /></DialogTrigger>
-    <DialogPortal to="body">
-      <DialogOverlay class="nv-scr-detail-mask" data-slot="nv-screen-detail-mask" />
-      <DialogContent class="nv-scr-detail text-sm" data-slot="nv-screen-detail-dialog">
-        <header class="flex items-start gap-4">
-          <div class="min-w-0 flex-1">
-            <DialogTitle class="text-lg font-semibold">{{ title }}</DialogTitle
-            ><DialogDescription class="text-sm">{{ description }}</DialogDescription>
+    <DialogPortal v-if="open" to="body">
+      <div class="nv-scr-detail-layer" data-slot="nv-screen-detail-layer">
+        <DialogOverlay class="nv-scr-detail-mask" data-slot="nv-screen-detail-mask" />
+        <DialogContent class="nv-scr-detail text-sm" data-slot="nv-screen-detail-dialog">
+          <header class="flex items-start gap-4">
+            <div class="min-w-0 flex-1">
+              <DialogTitle class="text-lg font-semibold">{{ title }}</DialogTitle
+              ><DialogDescription class="text-sm">{{ description }}</DialogDescription>
+            </div>
+            <DialogClose as-child
+              ><ScreenButton aria-label="关闭详情">关闭</ScreenButton></DialogClose
+            >
+          </header>
+          <div class="nv-scr-detail-body nv-scr-scroll">
+            <p
+              v-if="state !== 'data'"
+              :role="state === 'error' ? 'alert' : 'status'"
+              :aria-busy="state === 'pending'"
+            >
+              {{
+                statusText ??
+                (state === 'pending' ? '读取中…' : state === 'error' ? '读取失败' : '暂无数据')
+              }}
+            </p>
+            <template v-else
+              ><section><slot name="info" /></section>
+              <section class="nv-scr-detail-parameters"><slot name="parameter" /></section>
+              <section><slot name="history" /></section
+            ></template>
           </div>
-          <DialogClose as-child
-            ><ScreenButton aria-label="关闭详情">关闭</ScreenButton></DialogClose
-          >
-        </header>
-        <div class="nv-scr-detail-body nv-scr-scroll">
-          <p
-            v-if="state !== 'data'"
-            :role="state === 'error' ? 'alert' : 'status'"
-            :aria-busy="state === 'pending'"
-          >
-            {{
-              statusText ??
-              (state === 'pending' ? '读取中…' : state === 'error' ? '读取失败' : '暂无数据')
-            }}
-          </p>
-          <template v-else
-            ><section><slot name="info" /></section>
-            <section class="nv-scr-detail-parameters"><slot name="parameter" /></section>
-            <section><slot name="history" /></section
-          ></template>
-        </div>
-      </DialogContent>
+        </DialogContent>
+      </div>
     </DialogPortal>
   </DialogRoot>
 </template>
 <style scoped>
 @layer nv-components {
-  .nv-scr-detail-mask {
+  .nv-scr-detail-layer {
     position: fixed;
     inset: 0;
     z-index: 60;
+    isolation: isolate;
+  }
+  .nv-scr-detail-mask {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
     background: color-mix(in srgb, var(--nv-scr-bg) 70%, transparent);
   }
   .nv-scr-detail {
     position: fixed;
-    z-index: 61;
+    z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

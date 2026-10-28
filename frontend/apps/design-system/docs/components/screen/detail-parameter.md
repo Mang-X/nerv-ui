@@ -14,7 +14,7 @@ const samples = ref([0, 12.34567, 8])
 <ScreenDemo>
   <NvScreenDetailDialog v-model:open="open" title="河岸书房" description="2026-10-28 09:30（本地）观察窗口" state="data">
     <template #trigger><NvScreenButton>打开详情</NvScreenButton></template>
-    <template #info><p>位置：河岸东侧；仅中性内存数据。</p></template>
+    <template #info><p>位置：河岸东侧；这里展示示例观察记录。</p></template>
     <template #parameter><NvScreenParameter label="阅读次数" :value="8" unit="次" range="观察范围 0–20 次" :samples="samples" /></template>
     <template #history><NvScreenButton @click="samples = []">替换为缺测窗口</NvScreenButton></template>
   </NvScreenDetailDialog>

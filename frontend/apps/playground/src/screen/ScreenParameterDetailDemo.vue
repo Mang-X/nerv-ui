@@ -39,7 +39,7 @@ function missing() {
       <NvScreenDetailDialog
         v-model:open="open"
         :title="context === 'library' ? '河岸书房' : '晴天画室'"
-        description="内存观察窗口；时间由本宿主提供，无自动查询"
+        description="查看示例观察记录；内容不会自动更新。"
         :state="state"
         :status-text="
           state === 'pending'

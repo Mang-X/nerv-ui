@@ -44,3 +44,7 @@ scope:M，一份独立 Draft PR，只提供中性大屏详情与参数取值接�
 继承：只有来源固定身份和历史设计契约；没有继承 runtime PASS。浏览器真实缩放/portal/焦点/命中/视觉、CI、packed、device、旧 consumer、production、许可发行均 UNRUN（许可状态未重新判定）。body portal 明确采用 viewport CSS px，screen tokens 在 :root；测试中 stub rect 只是比例计算平台输入，绝不称真实缩放证明。焦点 DOM 测试与真实浏览器车道分开。
 
 最小外部归档：`/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-28/t08-r10-implementation-r1/handoff.md`，含各次原始结果、完整 argv、最终 head/tree/clean 与 SHA-256 回读。没有复制 dist/node_modules/cache/checkout。Draft 需要后续独立审核，未自行签整票。
+
+## R1 返修
+
+多实例 Dialog 以实例成组层叠；打开/关闭/重开顺序的 RED→GREEN、宿主文案 optional 与未运行边界见 [F1 记录](f1/README.md)。原 R1 诊断与失败保留，不覆盖旧归档。

@@ -4,6 +4,8 @@
 
 `NvScreenDetailDialog` 只管理受控 open 与 screen 外观，DialogRoot/Portal/Content 的遮罩、Esc、焦点进入/返回由现有 Reka 管理。拒绝 update:open 时保持打开。body portal 使用 viewport CSS px，不复制舞台 transform，:root screen tokens 可用。两个组件各有单一 screen 表面，不复制 PC 视觉。
 
+只在 open 时挂载 portal，每个实例的遮罩和内容位于同一个 body 直属层叠上下文内，按实际 portal 挂载顺序成组叠放。关闭移除整个层；拒绝关闭则保留当前层，不留下关闭状态的全屏容器。层内遮罩低于自身内容，较晚打开层的遮罩可以覆盖较早层的内容。
+
 ## 判定
 
 信息、参数、历史放入 info / parameter / history slots；state 显式为 data / pending / error / empty。等待与失败不混成缺测。参数颜色、范围、单位、时标由宿主输入，不根据数据判断正常、风险或业务结论。参数 samples 必填；value 可为 null。
