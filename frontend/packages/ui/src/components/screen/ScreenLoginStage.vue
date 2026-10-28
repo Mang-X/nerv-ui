@@ -8,7 +8,8 @@ const props = withDefaults(
     imageSrc: string
     imageWidth: number
     imageHeight: number
-    fit?: 'contain' | 'cover'
+    fit?: 'contain' | 'cover' | 'height'
+    anchorX?: number
     glows?: readonly {
       x: number
       y: number
@@ -21,7 +22,7 @@ const props = withDefaults(
     error?: string
     hud?: readonly [string, string, string, string]
   }>(),
-  { fit: 'contain', glows: () => [], hud: () => ['', '', '', ''] },
+  { fit: 'contain', anchorX: 50, glows: () => [], hud: () => ['', '', '', ''] },
 )
 const emit = defineEmits<{ submit: [] }>()
 const loaded = ref(false)
@@ -74,7 +75,43 @@ const particles = [
 <template>
   <section class="nv-scr-login" data-slot="nv-screen-login-stage" :aria-label="title">
     <div class="nv-scr-login-art-col" aria-hidden="true">
+      <div
+        v-if="fit === 'height'"
+        class="nv-scr-login-height-art"
+        :style="{
+          '--nv-scr-login-ratio': imageWidth / imageHeight,
+          '--nv-scr-login-anchor': (anchorX * imageWidth) / (100 * imageHeight),
+        }"
+      >
+        <svg class="nv-scr-login-art" :viewBox="`0 0 ${imageWidth} ${imageHeight}`">
+          <image
+            :key="imageSrc"
+            ref="image"
+            :href="imageSrc"
+            :width="imageWidth"
+            :height="imageHeight"
+            @load="imageState($event, true)"
+            @error="imageState($event, false)"
+          />
+        </svg>
+        <template v-if="loaded">
+          <span
+            v-for="(g, i) in glows"
+            :key="i"
+            class="nv-scr-login-glow"
+            :class="g.tone === 'amber' ? 'nv-scr-login-amber' : ''"
+            :style="{
+              left: `${g.x}%`,
+              top: `${g.y}%`,
+              width: `${g.size}px`,
+              height: `${g.size}px`,
+              animationDelay: `${g.delay ?? 0}s`,
+            }"
+          />
+        </template>
+      </div>
       <svg
+        v-else
         :key="imageSrc"
         class="nv-scr-login-art"
         :viewBox="`0 0 ${imageWidth} ${imageHeight}`"
@@ -180,13 +217,35 @@ const particles = [
     width: 100%;
     height: 100%;
   }
+  .nv-scr-login-height-art {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(100cqh * var(--nv-scr-login-ratio));
+    left: min(0px, calc(50cqw - 100cqh * var(--nv-scr-login-anchor)));
+  }
+  .nv-scr-login-height-art::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--nv-scr-bg) 24%, transparent);
+  }
+  .nv-scr-login-height-art span.nv-scr-login-glow {
+    position: absolute;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--nv-scr-cyan) 12%, transparent);
+  }
+  .nv-scr-login-height-art span.nv-scr-login-amber {
+    background: color-mix(in srgb, var(--nv-scr-amber) 10%, transparent);
+  }
   .nv-scr-login-glow {
     animation: glow-breathe 5.6s ease-in-out infinite;
-    fill: var(--nv-scr-cyan);
+    fill: color-mix(in srgb, var(--nv-scr-cyan) 12%, transparent);
     opacity: 0.12;
   }
   .nv-scr-login-glow.nv-scr-login-amber {
-    fill: var(--nv-scr-amber);
+    fill: color-mix(in srgb, var(--nv-scr-amber) 10%, transparent);
   }
   /* ── 全屏氛围层：漂浮粒子 + 极淡流光 ── */
   .nv-scr-login-fx {
@@ -460,7 +519,7 @@ const particles = [
   .nv-scr-login-art-col {
     position: absolute;
     inset: 0;
-    width: calc(100% - 580px);
+    width: calc(100% - 452px - clamp(28px, 9vw, 170px));
   }
   @media (max-width: 960px) {
     .nv-scr-login-art-col {

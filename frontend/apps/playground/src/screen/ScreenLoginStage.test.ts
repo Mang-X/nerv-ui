@@ -115,3 +115,34 @@ it('keeps login forms outside the fixed design scaler and restores scaling on ot
   expect(page.find('.screen-scaler').exists()).toBe(true)
   page.unmount()
 })
+
+it('supports full-height artwork anchoring with pixel-sized subtle glows without changing contain defaults', async () => {
+  const page = mount(NvScreenLoginStage, {
+    props: {
+      title: '入口',
+      imageSrc: '/source.webp',
+      imageWidth: 1672,
+      imageHeight: 941,
+      fit: 'height',
+      anchorX: 30.5,
+      glows: [{ x: 30, y: 50, size: 80, tone: 'amber', delay: 2 }],
+    },
+  })
+  await page.get('image').trigger('load')
+  const art = page.get('.nv-scr-login-height-art')
+  expect(art.attributes('style')).toContain('--nv-scr-login-ratio: 1.7768331562167907')
+  expect(
+    Number((art.element as HTMLElement).style.getPropertyValue('--nv-scr-login-anchor')),
+  ).toBeCloseTo(0.542, 3)
+  const glow = art.get('span')
+  expect(glow.attributes('style')).toContain('width: 80px')
+  expect(glow.attributes('style')).toContain('left: 30%')
+  expect(glow.attributes('style')).toContain('top: 50%')
+  expect(glow.classes()).toContain('nv-scr-login-amber')
+  await page.setProps({ imageSrc: '/new.webp' })
+  expect(page.find('.nv-scr-login-height-art span').exists()).toBe(false)
+  await page.setProps({ fit: 'contain' })
+  expect(page.find('.nv-scr-login-height-art').exists()).toBe(false)
+  expect(page.get('svg').attributes('preserveAspectRatio')).toBe('xMidYMid meet')
+  page.unmount()
+})
