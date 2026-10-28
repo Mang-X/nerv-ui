@@ -37,7 +37,7 @@ const appending = computed(() => props.pending === 'append')
 const target = shallowRef<number>()
 let requestedFilter: string | undefined
 let epoch = 0
-let filterEpoch = 0
+let requestedPosition: MobileListPosition | undefined
 let active = false
 let attempted: string | undefined
 let requestedPage: string | number | undefined
@@ -55,9 +55,10 @@ function current() {
     owner[2] === props.storage
   )
 }
-function cancel(preserveFilterRequest = false) {
+function cancel() {
   epoch++
-  if (!preserveFilterRequest) filterEpoch++
+  requestedFilter = undefined
+  requestedPosition = undefined
   target.value = undefined
   attempted = undefined
   requestedPage = undefined
@@ -95,21 +96,10 @@ function loadPosition() {
     return
   if (state.filterKey !== props.filterKey) {
     requestedFilter = state.filterKey
-    const source = props.sourceKey,
-      storage = props.storage
-    const ticket = filterEpoch
+    requestedPosition = { ...state }
+    // Acceptance may be asynchronous. Retain intent until the authoritative
+    // filter watcher accepts it, or any explicit cancellation revokes it.
     emit('restoreFilter', state.filterKey)
-    // The host may refuse. Never query or scroll under a speculative filter.
-    void nextTick(() => {
-      if (
-        active &&
-        ticket === filterEpoch &&
-        props.sourceKey === source &&
-        props.storage === storage &&
-        props.filterKey === state?.filterKey
-      )
-        loadPosition()
-    })
     return
   }
   target.value = state.scrollTop
@@ -177,7 +167,8 @@ watch(
   (paused) => {
     if (paused) {
       epoch++
-      filterEpoch++
+      requestedFilter = undefined
+      requestedPosition = undefined
       requestedPage = undefined
     }
   },
@@ -186,14 +177,16 @@ watch(
 watch(
   () => props.filterKey,
   () => {
-    cancel(props.filterKey === requestedFilter)
+    const saved = props.filterKey === requestedFilter ? requestedPosition : undefined
+    cancel()
     owner = identity()
-    // Explicit filter changes start at the top, and never reload another filter's position.
     programmaticTop = 0
     const el = root.value?.querySelector<HTMLElement>('.nv-m-pr-scroll')
     if (el) el.scrollTop = 0
-    if (props.filterKey !== requestedFilter) save(0)
-    requestedFilter = undefined
+    if (saved) {
+      target.value = saved.scrollTop
+      void restore()
+    } else save(0)
   },
 )
 watch(

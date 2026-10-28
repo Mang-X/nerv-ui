@@ -147,4 +147,4 @@ N02 输入扫码接入见下文。后续 [#47](https://github.com/Mang-X/nerv-ui
 
 ## 分页列表恢复（T08/R17）
 
-`/#mobile-task-list/library` 与 `/#mobile-task-list/studio` 展示阅读手记、画室灵感。新增公开 `NvMobileTaskListShell` 后严格导出为 49 件；底层 PullRefresh/InfiniteList 不改。安全错误、游标、稳定行 key、取消和本页内存存储在宿主；不会持久保存到后台。公共 API、live 源码与恢复条件见[列表恢复](../frontend/apps/design-system/docs/components/mobile/task-list-shell.md)，实际验证见[R17 证据](evidence/t08-r17/README.md)。旧应用接入 NOT_PLANNED；#37 不解锁。
+`/#mobile-task-list/library` 与 `/#mobile-task-list/studio` 展示阅读手记、画室灵感。新增公开 `NvMobileTaskListShell` 后严格导出为 49 件；复用现有 PullRefresh/InfiniteList；PullRefresh 补了受控刷新被拒绝后的手势复位，InfiniteList 未改。安全错误、游标、稳定行 key、取消和本页内存存储在宿主；不会持久保存到后台。公共 API、live 源码与恢复条件见[列表恢复](../frontend/apps/design-system/docs/components/mobile/task-list-shell.md)，实际验证见[R17 证据](evidence/t08-r17/README.md)。旧应用接入 NOT_PLANNED；#37 不解锁。

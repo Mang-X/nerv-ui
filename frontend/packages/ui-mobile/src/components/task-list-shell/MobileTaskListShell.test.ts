@@ -334,3 +334,24 @@ it.each([true, false])(
     expect(el.scrollTop).toBe(cancel ? 0 : 900)
   },
 )
+
+it.each([false, true])(
+  'delayed filter acceptance restores only an uncancelled position cancelled=%s',
+  async (cancel) => {
+    const w = setup({
+      loaded: 1,
+      state: 'ready',
+      hasMore: true,
+      storage: { load: () => ({ filterKey: 'saved', scrollTop: 900 }), save: vi.fn() },
+    })
+    const el = dimensions(w, () => 2000)
+    await flushPromises()
+    expect(w.emitted('restoreFilter')).toEqual([['saved']])
+    expect(el.scrollTop).toBe(0)
+    if (cancel) el.dispatchEvent(new Event('wheel', { bubbles: true }))
+    await w.setProps({ filterKey: 'saved', pending: 'initial', state: 'unknown', loaded: 0 })
+    await w.setProps({ pageKey: 1, pending: null, state: 'ready', loaded: 8 })
+    await flushPromises()
+    expect(el.scrollTop).toBe(cancel ? 0 : 900)
+  },
+)
