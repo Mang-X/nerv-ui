@@ -75,7 +75,12 @@ const groups = computed(() => {
 })
 const blocks = computed(() =>
   props.mode === 'flat'
-    ? list.value.map((row) => ({ key: `row:${row.data[0]?.key}`, label: '', items: row.data }))
+    ? list.value.map((row) => ({
+        key: `row:${rows.value[row.index]?.[0]?.key}`,
+        label: '',
+        // VirtualList stores a deep ref; keep public events on current caller items.
+        items: rows.value[row.index] ?? [],
+      }))
     : groups.value,
 )
 const visible = computed(() =>
@@ -143,7 +148,7 @@ onBeforeUnmount(close)
               type="button"
               :disabled="item.disabled"
               :aria-label="`${item.label} · ${item.identity} · ${item.status.label}`"
-              :title="`${item.label} · ${item.identity} · ${item.summary ?? '—'}`"
+              :title="`${item.label} · ${item.identity} · ${item.status.label} · ${item.summary ?? '—'}`"
               @mouseenter="preview(item)"
               @mouseleave="leave(item)"
               @focus="preview(item)"
@@ -151,7 +156,11 @@ onBeforeUnmount(close)
               @click="select(item)"
             >
               <strong>{{ item.label }}</strong>
-              <StatusTag :label="item.status.label" :tone="item.status.tone" />
+              <StatusTag
+                class="nv-scr-wall-status"
+                :label="item.status.label"
+                :tone="item.status.tone"
+              />
               <span class="nv-scr-wall-identity">{{ item.identity }}</span>
               <span class="nv-scr-wall-summary">{{ item.summary ?? '—' }}</span>
             </button>
@@ -229,6 +238,19 @@ onBeforeUnmount(close)
     transform: scale(0.985);
   }
   .nv-scr-wall-cells strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .nv-scr-wall-status {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .nv-scr-wall-status :deep(.nv-scr-tag-label) {
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

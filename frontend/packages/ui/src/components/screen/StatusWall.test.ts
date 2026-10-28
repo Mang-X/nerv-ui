@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
-import { nextTick } from 'vue'
+import { nextTick, markRaw } from 'vue'
 import * as ui from '../../index'
 
 const items = (n = 13) =>
@@ -112,5 +112,26 @@ it('keeps group namespaces separate and updates keyed content through reorder de
   expect(wall.emitted('preview')!.at(-1)).toEqual([null])
   await wall.setProps({ items: [] })
   expect(wall.emitted('visible')!.at(-1)).toEqual([[]])
+  wall.unmount()
+})
+
+it('emits the authoritative item reference from real virtual rows after scrolling and replacement', async () => {
+  vi.spyOn(HTMLElement.prototype, 'clientHeight', 'get').mockReturnValue(268)
+  const data = items(6000)
+  const wall = mount(ui.NvScreenStatusWall, { props: { items: markRaw(data), label: '空间状态' } })
+  await nextTick()
+  await wall.get('button').trigger('mouseenter')
+  expect(wall.emitted('preview')!.at(-1)![0]).toBe(data[0])
+  const viewport = wall.get('[data-wall-viewport]')
+  ;(viewport.element as HTMLElement).scrollTop = 134 * 998
+  await viewport.trigger('scroll')
+  const last = wall.findAll('button').at(-1)!
+  await last.trigger('click')
+  expect(wall.emitted('select')!.at(-1)![0]).toBe(data[5999])
+  const replacement = { ...data[0]!, identity: '当前版本' }
+  await wall.setProps({ items: markRaw([replacement]) })
+  await nextTick()
+  await wall.get('button').trigger('mouseenter')
+  expect(wall.emitted('preview')!.at(-1)![0]).toBe(replacement)
   wall.unmount()
 })

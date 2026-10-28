@@ -67,3 +67,33 @@ it('rejects stale success and failure even when the loader ignores cancellation'
   expect(page.get('[data-preview]').text()).toContain('暂时无法读取')
   page.unmount()
 })
+
+it('commits current flat hover success and failure but rejects replaced late receipts', async () => {
+  const pending: { resolve: (s: string) => void; reject: (e: Error) => void }[] = []
+  const page = mount(Demo, {
+    props: {
+      loadPreview: () =>
+        new Promise<string>((resolve, reject) => pending.push({ resolve, reject })),
+    },
+  })
+  await nextTick()
+  const wall = page.getComponent(NvScreenStatusWall)
+  await wall.get('button').trigger('mouseenter')
+  pending[0]!.resolve('当前概况')
+  await flushPromises()
+  expect(page.get('[data-preview]').text()).toBe('当前概况')
+  await wall.get('button').trigger('mouseenter')
+  pending[1]!.reject(new Error('PRIVATE'))
+  await flushPromises()
+  expect(page.get('[data-preview]').text()).toContain('暂时无法读取')
+  await wall.get('button').trigger('mouseenter')
+  await page.get('[data-replace]').trigger('click')
+  await wall.get('button').trigger('mouseenter')
+  pending[2]!.resolve('旧概况')
+  await flushPromises()
+  expect(page.get('[data-preview]').text()).toContain('正在读取')
+  pending[3]!.resolve('新版本概况')
+  await flushPromises()
+  expect(page.get('[data-preview]').text()).toBe('新版本概况')
+  page.unmount()
+})
