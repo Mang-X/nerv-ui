@@ -75,3 +75,6 @@ export type {
   ScreenSummaryStatus,
   ScreenSummaryItem,
 } from './SummaryCard.vue'
+
+export { default as NvScreenStatusWall } from './StatusWall.vue'
+export type { ScreenStatusWallItem, ScreenStatusWallMode } from './StatusWall.vue'

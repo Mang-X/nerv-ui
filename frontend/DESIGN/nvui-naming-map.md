@@ -261,6 +261,10 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 
 ### A4. screen 层（来源冻结清单；独立库新增件见下）
 
+| R09 来源名       | 已公开 Nv 名       | 实际 producer           | 依据                                                                       |
+| ---------------- | ------------------ | ----------------------- | -------------------------------------------------------------------------- |
+| DeviceStatusWall | NvScreenStatusWall | `screen/StatusWall.vue` | R1 无冻结公共名；R2 去 Device；R3 完整名称；R4 screen 远距；R5 Status 家族 |
+
 > **独立库新增（#20/T08 R02）。** 原应用素材 `FlowLinesBg` → `NvScreenFlowLinesBg`（R3b：流线装饰背景），`IsoFactoryBg` → `NvScreenIsometricBlocksBg`（R3b：等距块体装饰背景，去除 Factory 场景词）。两件仅属 screen 层，没有 PC/触屏跨表面模式。
 
 | R02 来源名   | 已公开 Nv 名              | 实际 producer                  | 依据                  |

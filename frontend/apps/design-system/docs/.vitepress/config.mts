@@ -381,6 +381,7 @@ export default defineConfig({
             { text: 'AlarmTable 告警表', link: '/components/screen/alarm-table' },
             { text: 'StatusLight 状态灯', link: '/components/screen/status-light' },
             { text: '分栏组合', link: '/components/screen/dashboard-recipes' },
+            { text: 'StatusWall 分组状态墙', link: '/components/screen/status-wall' },
             { text: 'Heatmap 分档热力格', link: '/components/screen/heatmap' },
             { text: 'StageFlow 阶段数量流', link: '/components/screen/stage-flow' },
             { text: 'StatusHero 远距主灯', link: '/components/screen/status-hero' },

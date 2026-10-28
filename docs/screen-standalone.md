@@ -110,3 +110,7 @@ Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时�
 ## C04 分栏组合
 
 `/#screen/recipes` 展示阅读活动与展览安排，复用当前 Screen API；受控合同和 live 源码见[组合页](../frontend/apps/design-system/docs/components/screen/dashboard-recipes.md)。浏览器、真实布局与文档站运行 UNRUN。
+
+## 分组状态墙
+
+`/#screen/status-wall` 使用主桶 `NvScreenStatusWall` 和两个中性内存来源。flat 六列固定 stride 有限 DOM，分组两种密度全部渲染；宿主延迟概况在数据/模式/滚动/离页后隔离旧结果。API/live 见[组件页](../frontend/apps/design-system/docs/components/screen/status-wall.md)，本轮浏览器 UNRUN，见[证据](evidence/t08-r09/README.md)。

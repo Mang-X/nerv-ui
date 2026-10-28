@@ -1,0 +1,213 @@
+[
+  {
+    "name": "red",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/screen/StatusWall.test.ts"
+    ],
+    "exit": 1,
+    "log": "red.log"
+  },
+  {
+    "name": "green1",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/screen/StatusWall.test.ts"
+    ],
+    "exit": 1,
+    "log": "green1.log"
+  },
+  {
+    "name": "green2",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/screen/StatusWall.test.ts"
+    ],
+    "exit": 0,
+    "log": "green2.log"
+  },
+  {
+    "name": "host-red",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/apps/playground",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/screen/ScreenStatusWallDemo.test.ts"
+    ],
+    "exit": 1,
+    "log": "host-red.log"
+  },
+  {
+    "name": "host-green1",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/apps/playground",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/screen/ScreenStatusWallDemo.test.ts"
+    ],
+    "exit": 1,
+    "log": "host-green1.log"
+  },
+  {
+    "name": "host-green2",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/apps/playground",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/screen/ScreenStatusWallDemo.test.ts"
+    ],
+    "exit": 0,
+    "log": "host-green2.log"
+  },
+  {
+    "name": "ui-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/screen/StatusWall.test.ts",
+      "src/nvui-naming.contract.test.ts",
+      "src/nvui-doc-coverage.contract.test.ts",
+      "--reporter=default",
+      "--reporter=json",
+      "--outputFile=/tmp/r09-ui.json"
+    ],
+    "exit": 0,
+    "log": "ui-final.log"
+  },
+  {
+    "name": "host-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/apps/playground",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/screen/ScreenStatusWallDemo.test.ts",
+      "src/ScreenDemo.test.ts",
+      "src/nvui-imports.contract.test.ts",
+      "--reporter=default",
+      "--reporter=json",
+      "--outputFile=/tmp/r09-host.json"
+    ],
+    "exit": 0,
+    "log": "host-final.log"
+  },
+  {
+    "name": "ui-types-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "typecheck"
+    ],
+    "exit": 0,
+    "log": "ui-types-final.log"
+  },
+  {
+    "name": "host-types-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/apps/playground",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "typecheck"
+    ],
+    "exit": 0,
+    "log": "host-types-final.log"
+  },
+  {
+    "name": "build",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/apps/playground",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "build"
+    ],
+    "exit": 0,
+    "log": "build.log"
+  },
+  {
+    "name": "lint",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "lint",
+      "packages/ui/src/components/screen/StatusWall.vue",
+      "packages/ui/src/components/screen/StatusWall.test.ts",
+      "packages/ui/src/components/screen/index.ts",
+      "packages/ui/src/nvui-naming.contract.test.ts",
+      "apps/playground/src/screen/ScreenStatusWallDemo.vue",
+      "apps/playground/src/screen/ScreenStatusWallDemo.test.ts",
+      "apps/playground/src/ScreenDemo.vue",
+      "apps/design-system/docs/.vitepress/config.mts"
+    ],
+    "exit": 0,
+    "log": "lint.log"
+  },
+  {
+    "name": "fmt-check",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend",
+    "argv": [
+      "node",
+      "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+      "exec",
+      "vp",
+      "fmt",
+      "--check",
+      "packages/ui/src/components/screen/StatusWall.vue",
+      "packages/ui/src/components/screen/StatusWall.test.ts",
+      "packages/ui/src/components/screen/index.ts",
+      "packages/ui/src/nvui-naming.contract.test.ts",
+      "apps/playground/src/screen/ScreenStatusWallDemo.vue",
+      "apps/playground/src/screen/ScreenStatusWallDemo.test.ts",
+      "apps/playground/src/ScreenDemo.vue",
+      "apps/design-system/docs/.vitepress/config.mts",
+      "DESIGN/components/status-wall.md",
+      "DESIGN/nvui-naming-map.md",
+      "DESIGN/component-coverage.md",
+      "packages/ui/src/components/screen/product.md",
+      "apps/design-system/docs/components/screen/status-wall.md"
+    ],
+    "exit": 0,
+    "log": "fmt-check.log"
+  }
+]
