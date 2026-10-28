@@ -124,3 +124,5 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 | `collapsible`     | `offcanvas` \| `icon` \| `none`，侧栏折叠方式(默认 `icon`) |
 
 > 底层通过 `@nerv-iip/ui` 稳定导出完整 Sidebar 系统(`SidebarProvider` / `Sidebar` / `SidebarRail` / `SidebarInset` / `SidebarTrigger` / `SidebarMenu*`),需要更深定制时也从组件库导入。
+
+列表页的页头、工具栏、行菜单与统计分区组合见[列表布局与行操作](./list-blocks.md)。
