@@ -108,6 +108,8 @@ export interface ScheduleTask {
   workCenterId?: string
   /** 多维分组归属(资源排产板按所选维度铺泳道)。键对应 ScheduleModel.groupDimensions。 */
   dimensions?: Record<string, DimensionValue>
+  /** Explicit empty memberships override both task values and resource-directory inheritance. */
+  unassignedDimensions?: readonly string[]
   startUtc: string
   endUtc: string
   /** 后端实际生产段；缺省表示单段连续排程。 */

@@ -6,10 +6,10 @@
 
 ```ts
 // vite.config.ts：与 Vue / Tailwind 插件一起使用
-import { schedulingVendorStyles } from '@nerv-iip/scheduling/vite'
-export default defineConfig({ plugins: [schedulingVendorStyles(), Vue(), tailwindcss()] })
+import { schedulingVendorStyles } from "@nerv-iip/scheduling/vite";
+export default defineConfig({ plugins: [schedulingVendorStyles(), Vue(), tailwindcss()] });
 // 宿主样式入口，已有 ui 样式与八层序仍须先接入
-import '@nerv-iip/scheduling/styles.css'
+import "@nerv-iip/scheduling/styles.css";
 ```
 
 loader 自己动态加载包的 `/vendor` 与 `/vendor.css`；运行方无需旧 `@dhx/trial-gantt` alias。`/vendor` 的 types 条件指向保留的完整 d.ts，runtime 指向原 JS。包单测配置明确把两个入口映射为 stub/empty.css，不能代替真实引擎验证。源码 workspace 消费不等于 #11 的 packed 安装。
@@ -75,14 +75,14 @@ pnpm -C frontend dev
 
 ```ts
 const resource: ScheduleResource = {
-  id: 'room-7',
-  text: '晨光书房',
+  id: "room-7",
+  text: "晨光书房",
   utilization: 0,
   dimensions: {
-    workCenter: { id: 'space-east', label: '东区空间' },
-    team: { id: 'reading-group', label: '共读小组' },
+    workCenter: { id: "space-east", label: "东区空间" },
+    team: { id: "reading-group", label: "共读小组" },
   },
-}
+};
 ```
 
 KPI 仅从泳道明确关联的资源/负荷取值。单一资源的 utilization/OEE/切换/待料原值保留；输入有限数值 `0` 是已知零，不隐藏。指标在至少一条可见泳道已知时显示，其他泳道缺失或非有限值为“—”，不补零。全部未知的指标隐藏；全部已知零仍显示。利用率 `>1` 显示百分比与“超出容量”。多资源没有可直接归属的非加性事实时保持未知；负荷齐全时利用率保留既有 assigned/available 呈现汇总，available=0 使用输入 utilization，不推导资格、OEE或领域风险。部分资源缺负荷不伪造完整利用率。
@@ -121,17 +121,19 @@ assignment?: { dimension: string; id: string | null; label: string }
 
 例如，接受显式维度提案时，宿主不可变地更新该维度；workCenter 的兼容关系由宿主明确同步。未分配时还要按自身数据关系移除继承归属，不能只删除任务维度却仍让资源维度把它投回原行。库不替宿主选择设备或资格。
 
+Workbench 的本地 `useSchedulingEdits` 接纳路径现消费该合同：显式维度改派更新 `dimensions`，workCenter 同步兼容 `workCenterId`，保留原 `resourceId`；纯资源 `reassign` 则按提案原样设置 `resourceId`（包括 `undefined`）。维度 `id: null` 用任务可选的 `unassignedDimensions` 标记明确空归属，公共资源投影先判断此标记，不再从任务旧值或资源目录继承；重新给该维度分配合法 ID 时移除对应标记。其它维度不变，不选择设备或推断资格。没有此标记的旧输入投影行为保持原样。该本地展示状态进入既有 undo/redo 快照，宿主替换模型仍优先。
+
 ```ts
 function accept(task: ScheduleTask, p: TaskDragPayload): ScheduleTask {
-  const next = { ...task, startUtc: p.startUtc, endUtc: p.endUtc, resourceId: p.resourceId }
+  const next = { ...task, startUtc: p.startUtc, endUtc: p.endUtc, resourceId: p.resourceId };
   if (p.assignment) {
-    const { dimension, id, label } = p.assignment
-    next.dimensions = { ...task.dimensions }
-    if (id === null) delete next.dimensions[dimension]
-    else next.dimensions[dimension] = { id, label }
-    if (dimension === 'workCenter') next.workCenterId = id ?? undefined
+    const { dimension, id, label } = p.assignment;
+    next.dimensions = { ...task.dimensions };
+    if (id === null) delete next.dimensions[dimension];
+    else next.dimensions[dimension] = { id, label };
+    if (dimension === "workCenter") next.workCenterId = id ?? undefined;
   }
-  return next
+  return next;
 }
 ```
 

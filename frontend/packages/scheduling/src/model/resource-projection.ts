@@ -33,17 +33,25 @@ export function resourceProjection(
   const explicit =
     catalog !== undefined ||
     model.tasks.some(
-      (t) => t.dimensions?.[dimension] || (dimension === 'workCenter' && t.workCenterId),
+      (t) =>
+        t.unassignedDimensions?.includes(dimension) ||
+        t.dimensions?.[dimension] ||
+        (dimension === 'workCenter' && t.workCenterId),
     ) ||
     model.resources.some((r) => r.dimensions?.[dimension])
   const valueOf = (task: ScheduleTask) =>
-    task.dimensions?.[dimension] ??
-    resources.get(task.resourceId ?? '')?.dimensions?.[dimension] ??
-    (dimension === 'workCenter' && task.workCenterId
-      ? { id: task.workCenterId, label: task.workCenterId }
-      : !explicit && task.resourceId
-        ? { id: task.resourceId, label: resources.get(task.resourceId)?.text ?? task.resourceId }
-        : undefined)
+    task.unassignedDimensions?.includes(dimension)
+      ? undefined
+      : (task.dimensions?.[dimension] ??
+        resources.get(task.resourceId ?? '')?.dimensions?.[dimension] ??
+        (dimension === 'workCenter' && task.workCenterId
+          ? { id: task.workCenterId, label: task.workCenterId }
+          : !explicit && task.resourceId
+            ? {
+                id: task.resourceId,
+                label: resources.get(task.resourceId)?.text ?? task.resourceId,
+              }
+            : undefined))
   const keyOf = (task: ScheduleTask) => JSON.stringify([dimension, valueOf(task)?.id ?? null])
   const lanes = new Map<string, ResourceLane>()
   function ensure(id: string | undefined, label: string) {

@@ -94,20 +94,34 @@ export function useSchedulingEdits<Context = unknown>(
     if (disposed || busy.value || !model.value.tasks.some((t) => t.id === p.taskId)) return
     commit({
       ...model.value,
-      tasks: model.value.tasks.map((t) =>
-        t.id === p.taskId
-          ? {
-              ...t,
-              startUtc: p.startUtc,
-              endUtc: p.endUtc,
-              resourceId: p.resourceId ?? t.resourceId,
-              segments:
-                t.segments?.length === 1
-                  ? [{ startUtc: p.startUtc, endUtc: p.endUtc }]
-                  : t.segments,
+      tasks: model.value.tasks.map((t) => {
+        if (t.id !== p.taskId) return t
+        const next = {
+          ...t,
+          startUtc: p.startUtc,
+          endUtc: p.endUtc,
+          resourceId: p.resourceId ?? t.resourceId,
+          segments:
+            t.segments?.length === 1 ? [{ startUtc: p.startUtc, endUtc: p.endUtc }] : t.segments,
+        }
+        if (p.kind === 'reassign') {
+          if (p.assignment) {
+            const { dimension, id, label } = p.assignment
+            next.resourceId = t.resourceId
+            next.dimensions = { ...t.dimensions }
+            const retained = (t.unassignedDimensions ?? []).filter((d) => d !== dimension)
+            if (id === null) {
+              delete next.dimensions[dimension]
+              next.unassignedDimensions = [...retained, dimension]
+            } else {
+              next.dimensions[dimension] = { id, label }
+              next.unassignedDimensions = retained
             }
-          : t,
-      ),
+            if (dimension === 'workCenter') next.workCenterId = id ?? undefined
+          } else next.resourceId = p.resourceId
+        }
+        return next
+      }),
     })
   }
   function setLocked(taskId: string, locked: boolean) {
