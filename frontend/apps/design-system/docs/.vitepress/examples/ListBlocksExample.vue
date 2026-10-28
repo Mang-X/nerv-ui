@@ -57,12 +57,18 @@ function replace() {
     <NvSectionCards :columns="columns">
       <NvSectionCard
         description="当前物品"
-        :value="`${records.length} 件`"
-        hint="完整清单，不随搜索变化"
+        :value="`${records.length}`"
+        hint="数量单位：件；完整清单，不随搜索变化"
       />
-      <NvSectionCard description="待整理" value="0 件" footnote="当前没有待整理物品" />
+      <NvSectionCard
+        description="待整理"
+        value="0"
+        footnote="当前没有待整理物品"
+        hint="数量单位：件"
+      />
       <NvSectionCard description="待核实数量" value="—" hint="尚未核实，不计为零" />
-      <NvSectionCard description="物品总重量" value="12.346 kg">
+      <NvSectionCard description="物品总重量" value="12.346">
+        <span class="font-normal text-muted-foreground">重量单位：kg</span>
         <NvButton
           type="button"
           size="sm"

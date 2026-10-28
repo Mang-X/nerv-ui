@@ -16,11 +16,15 @@ it('renders public list blocks with zero unknown and responsive column choices',
   expect(page.findComponent(NvToolbar).exists()).toBe(true)
   expect(page.findAllComponents(NvRowActions)).toHaveLength(3)
   expect(page.findAllComponents(NvSectionCard).map((c) => c.props('value'))).toEqual([
-    '3 件',
-    '0 件',
+    '3',
+    '0',
     '—',
-    '12.346 kg',
+    '12.346',
   ])
+  const cards = page.findAllComponents(NvSectionCard)
+  expect(cards[0]!.text()).toContain('数量单位：件')
+  expect(cards[1]!.text()).toContain('数量单位：件')
+  expect(cards[3]!.text()).toContain('重量单位：kg')
   for (const n of [2, 3, 4]) {
     await page.get('select').setValue(String(n))
     expect(page.getComponent(NvSectionCards).props('columns')).toBe(n)
