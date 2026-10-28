@@ -36,6 +36,7 @@ export default defineConfig({
       'app-provider-host.test.ts',
       'field-group-host.test.ts',
       'field-content-host.test.ts',
+      'dropdown-menu-host.test.ts',
     ],
   },
 })

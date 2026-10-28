@@ -3,6 +3,7 @@ title: NvDropdownMenu 动作菜单
 ---
 
 <script setup>
+import DropdownSelectionExample from '../../.vitepress/examples/DropdownSelectionExample.vue'
 import {
   NvDropdownMenu,
   NvDropdownMenuTrigger,
@@ -117,3 +118,26 @@ import { MoreHorizontalIcon, EyeIcon, PencilIcon, CopyIcon, Trash2Icon } from '@
 | `inset`    | `NvDropdownMenuItem` / `NvDropdownMenuLabel`   | 左侧留白对齐（让出图标位）                  | `boolean`                                | `false`     |
 | `variant`  | `NvDropdownMenuItem`                           | 操作项语义，破坏性操作用 `destructive` 标红 | `'default' \| 'destructive'`             | `'default'` |
 | `disabled` | `NvDropdownMenuItem`                           | 禁用该操作项                                | `boolean`                                | `false`     |
+
+## 选择、分组与层级
+
+打开“阅读偏好”可切换摘要与排序，再从“选择位置”进入子菜单。当前值显示在按钮下方，关闭重开仍保留；回执仅在本页内存中，不会移动文件或同步云端。
+
+<Demo>
+  <DropdownSelectionExample />
+</Demo>
+
+方向键、Enter 和 Escape 交由公开 Reka 菜单处理：上下选择、右方向进入子菜单、左方向返回，Enter 选择，Escape 关闭当前菜单并恢复焦点。示例没有自行注册键盘处理器。`⌘S` **仅是提示文字，没有注册快捷键**；云端同步项禁用，不执行操作。
+
+`NvDropdownMenuGroup` 将显示偏好组织为语义组；基础 `DropdownMenuGroup` 将本页操作组织为另一个组，两者来自同源 Reka Group 职责，并非额外业务能力。RadioGroup 本身负责互斥选择，不用无意义嵌套两个 Group。浮层使用碰撞避让、视口宽度上限及可用高度滚动；窄屏与键盘可达性由独立浏览器席验收。
+
+### 学习源码
+
+<<< @/.vitepress/examples/DropdownSelectionExample.vue
+
+### 公开消费合同
+
+- 根 `v-model:open` 使用 `update:open`；Nv 根默认非模态，Content 默认 `align="start"`、`sideOffset=6`。
+- CheckboxItem 的当前 API 是 `modelValue` / `update:modelValue`（`v-model`），默认 false，可为 `indeterminate`；不是 `v-model:checked`。
+- RadioGroup 使用 `modelValue` / `update:modelValue`，RadioItem 以 `value` 归组；Item 的 `select` 回执当前选择，`disabled` 由库阻止选择。
+- Sub 使用公开 open 合同；SubTrigger/SubContent 负责层级导航与浮层。各件默认插槽提供内容，CheckboxItem/RadioItem 另有 `indicator-icon` 插槽；Shortcut 只呈现默认插槽，不注册事件。
