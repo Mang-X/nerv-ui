@@ -19,6 +19,7 @@ import RequestFormsDemo from './RequestFormsDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
 import PrintableDetailDemo from './PrintableDetailDemo.vue'
 import DayPrintDemo from './DayPrintDemo.vue'
+import SavedPlanDemo from './SavedPlanDemo.vue'
 import ActionSummaryDemo from './ActionSummaryDemo.vue'
 import NotificationInboxDemo from './NotificationInboxDemo.vue'
 import NeutralShellDemo from './NeutralShellDemo.vue'
@@ -105,8 +106,15 @@ function addProject() {
 </script>
 
 <template>
+  <SavedPlanDemo
+    v-if="
+      surface.startsWith('#schedule-saved/library') || surface.startsWith('#schedule-saved/studio')
+    "
+    :venue="surface.startsWith('#schedule-saved/studio') ? 'studio' : 'library'"
+    :surface="surface"
+  />
   <LineAnnotationsDemo
-    v-if="surface.startsWith('#line-annotations/')"
+    v-else-if="surface.startsWith('#line-annotations/')"
     :key="surface"
     :space="surface.includes('/garden') ? 'garden' : 'library'"
   />
@@ -215,6 +223,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#schedule-saved/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >已保存计划</a
+      >
       <a href="#directory-detail" class="inline-flex min-h-11 items-center px-4 underline"
         >空间目录</a
       >

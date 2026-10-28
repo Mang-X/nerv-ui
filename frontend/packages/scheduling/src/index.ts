@@ -151,3 +151,22 @@ export type {
 export { default as SchedulingDaySchedule } from './components/day/SchedulingDaySchedule.vue'
 export { default as SchedulingDaySheet } from './components/day/SchedulingDaySheet.vue'
 export type { SchedulingDayEntry } from './components/day/types'
+
+export { default as SchedulingSavedPlan } from './components/saved-plan/SchedulingSavedPlan.vue'
+export { default as SavedPlanOrders } from './components/saved-plan/SavedPlanOrders.vue'
+export { default as SavedPlanWorkOrderLink } from './components/saved-plan/SavedPlanWorkOrderLink.vue'
+export type {
+  SavedPlanTaskRef,
+  SavedPlanOrder,
+  SavedPlanOrders as SavedPlanOrdersInput,
+  SavedPlanNavigateBase,
+  SavedPlanCommercialGroup,
+  SavedPlanCommercial,
+  SavedPlanLinks,
+  SavedPlanNavigateRequest,
+} from './components/saved-plan/types'
+
+// Source application names retained as aliases; props are the neutral P15 contract.
+export { default as SchedulingPlanGantt } from './components/saved-plan/SchedulingSavedPlan.vue'
+export { default as SchedulingPlanOrders } from './components/saved-plan/SavedPlanOrders.vue'
+export { default as SchedulingWorkOrderLink } from './components/saved-plan/SavedPlanWorkOrderLink.vue'
