@@ -1,0 +1,62 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/components/screen/StatusWall.test.ts (3 tests | 3 failed) 3ms
+   × bounds flat DOM with real virtual rows and reaches both ends at the rendered stride 3ms
+   × preserves identity selection zero unknown groups and closes preview for scroll replacement mode and disabled hover 0ms
+   × invalidates same key new content and isolates two instances and unmount 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/screen/StatusWall.test.ts > bounds flat DOM with real virtual rows and reaches both ends at the rendered stride
+TypeError: Invalid value used as weak map key
+ ❯ registerStub ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1269:11
+ ❯ createInstance ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8023:5
+ ❯ mount ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8263:42
+ ❯ src/components/screen/StatusWall.test.ts:10:16
+      8| it('bounds flat DOM with real virtual rows and reaches both ends at th…
+      9|   vi.spyOn(HTMLElement.prototype, 'clientHeight', 'get').mockReturnVal…
+     10|   const wall = mount(ui.NvScreenStatusWall, { props: { items: items(60…
+       |                ^
+     11|   await nextTick()
+     12|   const viewport = wall.get('[data-wall-viewport]')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/components/screen/StatusWall.test.ts > preserves identity selection zero unknown groups and closes preview for scroll replacement mode and disabled hover
+TypeError: Invalid value used as weak map key
+ ❯ registerStub ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1269:11
+ ❯ createInstance ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8023:5
+ ❯ mount ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8263:42
+ ❯ src/components/screen/StatusWall.test.ts:27:16
+     25| it('preserves identity selection zero unknown groups and closes previe…
+     26|   const data = items()
+     27|   const wall = mount(ui.NvScreenStatusWall, { props: { items: data, la…
+       |                ^
+     28|   expect(wall.get('[role="region"]').attributes('aria-label')).toBe('空…
+     29|   expect(wall.findAll('section')).toHaveLength(2)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/components/screen/StatusWall.test.ts > invalidates same key new content and isolates two instances and unmount
+TypeError: Invalid value used as weak map key
+ ❯ registerStub ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1269:11
+ ❯ createInstance ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8023:5
+ ❯ mount ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8263:42
+ ❯ src/components/screen/StatusWall.test.ts:53:13
+     51| it('invalidates same key new content and isolates two instances and un…
+     52|   const data = items(1)
+     53|   const a = mount(ui.NvScreenStatusWall, { props: { items: data, label…
+       |             ^
+     54|   const b = mount(ui.NvScreenStatusWall, { props: { items: data, label…
+     55|   await a.get('button').trigger('mouseenter')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  17:13:23
+   Duration  2.79s (transform 1.51s, setup 294ms, import 2.03s, tests 3ms, environment 382ms)
+

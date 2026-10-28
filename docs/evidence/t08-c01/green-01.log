@@ -1,0 +1,76 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/login/LoginRecipe.test.ts (17 tests | 6 failed) 104ms
+     × keeps edits controlled and preserves PC trim versus PDA and screen raw credentials 31ms
+     × allows retry without losing drafts after reject and hides raw failures 4ms
+     × allows retry without losing drafts after throw and hides raw failures 2ms
+     × allows retry without losing drafts after decline and hides raw failures 2ms
+     × allows retry without losing drafts after missing and hides raw failures 2ms
+     × preserves input contracts and one screen form with usable slots and no autofocus 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > keeps edits controlled and preserves PC trim versus PDA and screen raw credentials
+Error: wrapper.setValue() cannot be called on DIV
+ ❯ DOMWrapper.setValue ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7332:19
+ ❯ src/login/LoginRecipe.test.ts:17:44
+     15|       const submit = vi.fn().mockResolvedValue({ accepted: true })
+     16|       const page = setup({ surface, submit })
+     17|       await page.get('[name="loginName"]').setValue('other')
+       |                                            ^
+     18|       expect(page.emitted('update:modelValue')?.[0]?.[0]).toMatchObjec…
+     19|       await page.setProps({ modelValue: draft() })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > allows retry without losing drafts after reject and hides raw failures
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > allows retry without losing drafts after throw and hides raw failures
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > allows retry without losing drafts after decline and hides raw failures
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > allows retry without losing drafts after missing and hides raw failures
+AssertionError: expected '' to be ' pw ' // Object.is equality
+
+- Expected
++ Received
+
+-  pw 
+
+ ❯ src/login/LoginRecipe.test.ts:48:79
+     46|     expect(page.get('[role="alert"]').text()).toContain('未能完成')
+     47|     expect(page.text()).not.toContain('SECRET SDK')
+     48|     expect((page.get('[name="password"]').element as HTMLInputElement)…
+       |                                                                               ^
+     49|     expect(page.emitted('confirmed')).toBeUndefined()
+     50|     await page.setProps({submit: () => ({accepted:true})})
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/login/LoginRecipe.test.ts > neutral login recipe public host seam > preserves input contracts and one screen form with usable slots and no autofocus
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/login/LoginRecipe.test.ts:86:83
+     84|       expect(page.get('[name="password"]').attributes('type')).toBe('p…
+     85|       expect(page.get('[name="password"]').attributes('autocomplete'))…
+     86|       expect(page.get('[name="loginName"]').attributes('required') !==…
+       |                                                                                   ^
+     87|       expect(page.find('[autofocus]').exists()).toBe(false)
+     88|       if(surface === 'pda') { expect(page.get('[name="loginName"]').at…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 11 passed (17)
+   Start at  20:51:43
+   Duration  3.37s (transform 2.00s, setup 262ms, import 2.57s, tests 104ms, environment 360ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/login/LoginRecipe.test.ts
