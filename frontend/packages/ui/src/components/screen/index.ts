@@ -76,6 +76,8 @@ export type {
   ScreenSummaryItem,
 } from './SummaryCard.vue'
 
+export { default as NvScreenFusionBg } from './FusionBg.vue'
+export type { FusionNode, FusionEdge } from './FusionBg.vue'
 export { default as NvScreenLoginStage } from './ScreenLoginStage.vue'
 export { default as NvScreenDetailDialog } from './DetailDialog.vue'
 export { default as NvScreenParameter } from './Parameter.vue'

@@ -68,7 +68,7 @@
 
 ## 组件清单
 
-真实导出以同目录 `index.ts` 和主桶为准，共 44 件组件；下表用于导航，不替代公开 API。
+真实导出以同目录 `index.ts` 和主桶为准，共 45 件组件；下表用于导航，不替代公开 API。
 
 | 分类                     | 当前公共导出                                                                                                                                                                                                              |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -76,7 +76,7 @@
 | 指标 / 图表（12）        | `NvScreenParameter` · `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvTaktGantt` · `NvScreenHeatmap` |
 | 数据 / 状态（10）        | `NvScreenSummaryCard` · `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusHero` · `NvScreenStatusTag` · `NvScrollBoard` · `NvScreenStageFlow`             |
 | 控件（9）                | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` · `NvScreenPagination`                                               |
-| 装饰背景（2）            | `NvScreenFlowLinesBg` · `NvScreenIsometricBlocksBg`                                                                                                                                                                       |
+| 装饰背景（3）            | `NvScreenFlowLinesBg` · `NvScreenIsometricBlocksBg` · `NvScreenFusionBg`                                                                                                                                                  |
 
 工具与类型为 `computeScale` / `ScaleMode` / `Scale`、`useScreenData` / `UseScreenDataOptions` / `UseScreenDataReturn`。历史清单中的 WaterLevel 没有当前实现或导出，不计为活动能力。
 

@@ -476,6 +476,12 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 
 > **独立库新增（#24/T08 R06）。** 来源两个应用通知列表、任务与收件箱 → `NvNotificationInbox`，PC 指针表面按素名规则落 `pc/notification-inbox/`。唯一公开组合，不带 DTO、查询或通知引擎。
 
+> **独立库新增（#21/T08 R03）。** R5：保留完整语义并显式标注 screen 表面的等距节点流背景。
+
+| 原名     | 公共名           | 路径                  | 判定                   |
+| -------- | ---------------- | --------------------- | ---------------------- |
+| FusionBg | NvScreenFusionBg | `screen/FusionBg.vue` | R5 screen 专属装饰背景 |
+
 ## T08/R05 独立新增
 
 | 来源              | 公开名             | 路径                          | 判定               |
