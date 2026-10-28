@@ -215,7 +215,7 @@ async function onRelease() {
       @release="onRelease"
     />
 
-    <div class="flex items-center gap-2 border-b border-border/60 px-4 py-2.5">
+    <div class="flex flex-wrap items-center gap-2 border-b border-border/60 px-4 py-2.5">
       <NvTabs v-model="view">
         <NvTabsList>
           <NvTabsTrigger value="order">活动甘特</NvTabsTrigger>
