@@ -133,6 +133,7 @@ export default defineConfig({
             { text: 'Badge 徽标', link: '/components/desktop/badge' },
             { text: 'Card 卡片', link: '/components/desktop/card' },
             { text: 'MetricCard 指标卡', link: '/components/desktop/metric' },
+            { text: '目录筛选与详情', link: '/components/desktop/directory-detail' },
             { text: 'ActionSummary 行动摘要', link: '/components/desktop/action-summary' },
           ],
         },
@@ -321,6 +322,7 @@ export default defineConfig({
           text: '长列表',
           items: [
             { text: 'VirtualList 虚拟列表', link: '/components/mobile/virtual-list' },
+            { text: '分页列表恢复', link: '/components/mobile/task-list-shell' },
             { text: 'InfiniteList 无限滚动', link: '/components/mobile/infinite-list' },
           ],
         },

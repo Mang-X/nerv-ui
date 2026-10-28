@@ -54,3 +54,5 @@ export {
   default as NvMobileDropdownMenuItem,
   type DropdownOption,
 } from './components/dropdown-menu/DropdownMenuItem.vue'
+export { default as NvMobileTaskListShell } from './components/task-list-shell/MobileTaskListShell.vue'
+export type { MobileListPosition, MobileListStorage } from './components/task-list-shell/types'
