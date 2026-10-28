@@ -104,6 +104,11 @@ const currentShortages = computed(() =>
 const currentSummary = computed(() =>
   props.summary?.planId === props.planId ? props.summary : undefined,
 )
+const openPlanDetail = computed(() => {
+  const navigate = props.onOpenPlanDetail
+  const planId = props.planId
+  return navigate ? () => navigate(planId) : undefined
+})
 const selectedConflicts = computed(
   () =>
     currentModel.value?.conflicts.filter((item) => item.taskId === selectedTask.value?.id) ?? [],
@@ -218,7 +223,7 @@ function command(kind: 'zoomIn' | 'zoomOut' | 'scrollToToday' | 'fitToScreen') {
         class="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card p-4"
       >
         <div>
-          <h2 class="text-base font-semibold">{{ planLabel || '已保存计划' }}</h2>
+          <h2 class="text-sm font-semibold">{{ planLabel || '已保存计划' }}</h2>
           <p class="text-sm text-muted-foreground">
             {{ planStatusLabel || '只读'
             }}<span v-if="planRangeLabel"> · {{ planRangeLabel }}</span>
@@ -231,7 +236,7 @@ function command(kind: 'zoomIn' | 'zoomOut' | 'scrollToToday' | 'fitToScreen') {
           :target="planId"
           action="group-link"
           :request="{ kind: 'group', planId, groupKey: planId }"
-          :navigate="() => onOpenPlanDetail?.(planId)"
+          :navigate="openPlanDetail"
         />
         <slot name="actions" :plan-id="planId" />
       </header>

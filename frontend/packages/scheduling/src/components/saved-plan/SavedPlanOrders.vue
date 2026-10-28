@@ -114,7 +114,7 @@ function progress(order: SavedPlanOrders['rows'][number]) {
     class="max-h-[34rem] overflow-y-auto rounded-lg border bg-card xl:w-[19rem] xl:flex-none"
     aria-label="计划工单与活动"
   >
-    <h3 class="sticky top-0 z-10 border-b bg-card px-4 py-3 text-base font-semibold">
+    <h3 class="sticky top-0 z-10 border-b bg-card px-4 py-3 text-sm font-semibold">
       关联分组 · 工单 · 活动
     </h3>
     <p

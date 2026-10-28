@@ -62,6 +62,65 @@ function host(extra: Record<string, unknown> = {}) {
   })
 }
 
+it('plan detail stays pending through summary facts and sidebar updates and retains its current failure', async () => {
+  let reject!: (error: Error) => void
+  const open = vi.fn(
+    () =>
+      new Promise<void>((_resolve, fail) => {
+        reject = fail
+      }),
+  )
+  const wrapper = host({ onOpenPlanDetail: open, selectedTaskId: 'a1' })
+  const button = () => wrapper.get('header [data-action="group-link"]')
+  await button().trigger('click')
+  await wrapper.setProps({ summary: { planId: 'reading', facts: [{ label: '数量', value: 0 }] } })
+  expect(button().attributes('disabled')).toBeDefined()
+  await wrapper.setProps({
+    model: {
+      ...model(),
+      tasks: model().tasks.map((task) => ({
+        ...task,
+        facts: [{ label: '事实', value: '新事实' }],
+      })),
+    },
+  })
+  await wrapper.get('[data-action="toggle-side"]').trigger('click')
+  expect(button().attributes('disabled')).toBeDefined()
+  await button().trigger('click')
+  expect(open).toHaveBeenCalledTimes(1)
+  reject(new Error('HTTP private diagnostic'))
+  await flushPromises()
+  expect(wrapper.get('header [role="alert"]').text()).toBe('暂时无法打开，请稍后重试')
+  expect(button().attributes('disabled')).toBeUndefined()
+  wrapper.unmount()
+})
+
+it('plan detail discards prior receipts when the plan or host callback really changes', async () => {
+  let reject!: (error: Error) => void
+  const old = vi.fn(
+    () =>
+      new Promise<void>((_resolve, fail) => {
+        reject = fail
+      }),
+  )
+  const current = vi.fn()
+  const wrapper = host({ onOpenPlanDetail: old })
+  await wrapper.get('header button').trigger('click')
+  await wrapper.setProps({ planId: 'other', model: model('other') })
+  reject(new Error('old plan'))
+  await flushPromises()
+  expect(wrapper.find('header [role="alert"]').exists()).toBe(false)
+  await wrapper.get('header button').trigger('click')
+  expect(old).toHaveBeenLastCalledWith('other')
+  await wrapper.setProps({ onOpenPlanDetail: current })
+  reject(new Error('old callback'))
+  await flushPromises()
+  expect(wrapper.find('header [role="alert"]').exists()).toBe(false)
+  await wrapper.get('header button').trigger('click')
+  expect(current).toHaveBeenCalledExactlyOnceWith('other')
+  wrapper.unmount()
+})
+
 it('keeps graph, order table and detail on one authoritative task and exact task reference', async () => {
   const wrapper = host()
   expect(wrapper.text()).toContain('阅读邀请')
