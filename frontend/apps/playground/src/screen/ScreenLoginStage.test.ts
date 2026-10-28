@@ -98,3 +98,20 @@ it('coalesces same turn submit before the host pending prop reaches the child', 
   expect(page.emitted('submit')).toHaveLength(1)
   page.unmount()
 })
+
+it('keeps login forms outside the fixed design scaler and restores scaling on other routes', async () => {
+  const { default: ScreenDemo } = await import('../ScreenDemo.vue')
+  const page = mount(ScreenDemo, { props: { section: '#screen/login/library' } })
+  const form = page.get('form').element
+  expect(form.closest('.screen-scaler')).toBeNull()
+  expect(page.find('[aria-label="缩放方式"]').exists()).toBe(false)
+  await page.get('input').setValue('林悦')
+  await page.get('form').trigger('submit')
+  expect(page.get('fieldset').attributes('disabled')).toBeDefined()
+  await page.setProps({ section: '#screen/login/garden' })
+  expect(page.get('form').attributes('aria-label')).toBe('走进共享花园')
+  await page.setProps({ section: '#screen' })
+  expect(page.find('[aria-label="缩放方式"]').exists()).toBe(true)
+  expect(page.find('.screen-scaler').exists()).toBe(true)
+  page.unmount()
+})

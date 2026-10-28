@@ -100,7 +100,7 @@ const { theme, setTheme } = useTheme()
         <a href="#mobile-feedback">片刻回响</a>
       </nav>
       <div class="screen-demo-settings" role="group" aria-label="舞台设置">
-        <label
+        <label v-if="!login"
           >缩放方式
           <select v-model="mode" aria-label="缩放方式">
             <option value="fit">完整显示 fit</option>
@@ -108,7 +108,7 @@ const { theme, setTheme } = useTheme()
             <option value="stretch">铺满 stretch</option>
           </select>
         </label>
-        <label
+        <label v-if="!login"
           >设计尺寸
           <select v-model="design" aria-label="设计尺寸" :disabled="layout">
             <option value="1920x1080">1920 × 1080</option>
@@ -126,7 +126,7 @@ const { theme, setTheme } = useTheme()
         >
           蓝色主题
         </button>
-        <p role="status">
+        <p v-if="!login" role="status">
           {{
             mode === 'width'
               ? '宽度优先：在舞台内向下滚动，可到达底部。'
@@ -137,8 +137,10 @@ const { theme, setTheme } = useTheme()
         </p>
       </div>
     </div>
-    <div class="screen-demo-viewport">
+    <div class="screen-demo-viewport" :class="{ 'screen-demo-login-viewport': login }">
+      <ScreenLoginStageDemo v-if="login" :garden="section === '#screen/login/garden'" />
       <NvScreenScaler
+        v-else
         class="screen-demo-scaler"
         role="region"
         :design-width="dimensions.width"
@@ -173,8 +175,7 @@ const { theme, setTheme } = useTheme()
                                   : '城市文化空间舞台'
         "
       >
-        <ScreenLoginStageDemo v-if="login" :garden="section === '#screen/login/garden'" />
-        <ScreenDashboardDemo v-else-if="recipes" />
+        <ScreenDashboardDemo v-if="recipes" />
         <ScreenBackgroundDemo v-else-if="backgrounds" />
         <ScreenLayoutDemo v-else-if="layout" />
         <ScreenSummaryCardsDemo v-else-if="summaryCards" />
@@ -250,6 +251,10 @@ const { theme, setTheme } = useTheme()
     position: relative;
     flex: 1;
     min-height: 0;
+  }
+  .screen-demo-login-viewport {
+    overflow: auto;
+    color-scheme: dark;
   }
   .screen-demo-scaler {
     position: absolute;
