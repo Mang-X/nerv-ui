@@ -33,10 +33,10 @@ const columns = [
   { key: 'name', label: '安排' },
   { key: 'status', label: '状态' },
 ]
-const detailColumns = [
+const detailColumns = computed(() => [
   { key: 'label', label: '分类' },
-  { key: 'value', label: '数量' },
-]
+  { key: 'value', label: props.input.unit ? `数量（${props.input.unit}）` : '数量' },
+])
 </script>
 <template>
   <section class="nv-scr-recipe" :aria-label="input.title">
@@ -109,7 +109,12 @@ const detailColumns = [
             :columns="detailColumns"
             :rows="input.distribution"
             row-key="label"
-          /><NvScreenPareto :items="input.ranking" :unit="input.unit" /></div
+            ><template #cell-value="{ value }">{{
+              typeof value === 'number' && Number.isFinite(value)
+                ? value.toLocaleString('zh-CN', { maximumFractionDigits: 3 })
+                : '—'
+            }}</template></NvScreenTable
+          ><NvScreenPareto :items="input.ranking" :unit="input.unit" /></div
       ></NvScreenPanel>
     </div>
     <NvScreenTrendChart

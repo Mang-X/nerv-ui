@@ -53,3 +53,28 @@ it('uses current source for chart and detail and distinguishes zero unknown empt
   expect(w.find('[data-details]').exists()).toBe(false)
   w.unmount()
 })
+
+it('keeps chart and detail quantity precision consistent without changing input values', async () => {
+  const input = {
+    ...dashboardInput('reading'),
+    distribution: [
+      { label: '分类甲', value: 1.23456789, color: 'var(--nv-scr-cyan)' },
+      { label: '分类乙', value: 0, color: 'var(--nv-scr-blue)' },
+    ],
+  }
+  const w = mount(Recipe, { props: { input, page: 1, view: 'chart', now: 1000 } })
+  expect(w.text()).toContain('1.235')
+  await w.setProps({ view: 'detail' })
+  const detail = w.get('[data-details]')
+  expect(detail.text()).toContain('1.235')
+  expect(detail.text()).not.toContain('1.23456789')
+  expect(detail.text()).toContain('0')
+  expect(detail.text()).toContain(`数量（${input.unit}）`)
+  expect(input.distribution[0]!.value).toBe(1.23456789)
+  await w.setProps({
+    input: { ...input, distribution: [{ ...input.distribution[0]!, value: 2.5 }] },
+  })
+  expect(w.get('[data-details]').text()).toContain('2.5')
+  expect(w.get('[data-details]').text()).not.toContain('1.235')
+  w.unmount()
+})
