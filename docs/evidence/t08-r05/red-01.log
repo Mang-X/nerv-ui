@@ -1,0 +1,90 @@
+$ vp test run src src/screen/ScreenLoginStage.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ❯ src/screen/ScreenLoginStage.test.ts (2 tests | 2 failed) 7ms
+   × projects artwork and glow points through the same viewBox for contain and cover 5ms
+   × keeps interactive form slots, host controlled pending and disabled, and escaped errors 1ms
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/screen/ScreenLoginStage.test.ts > projects artwork and glow points through the same viewBox for contain and cover
+TypeError: Invalid value used as weak map key
+ ❯ registerStub ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1269:11
+ ❯ createInstance ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8023:5
+ ❯ mount ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8263:42
+ ❯ src/screen/ScreenLoginStage.test.ts:6:16
+      4|
+      5| it('projects artwork and glow points through the same viewBox for cont…
+      6|   const page = mount(NvScreenLoginStage, { props: { title: '晨光书房', ima…
+       |                ^
+      7|   expect(page.get('svg').attributes('viewBox')).toBe('0 0 1000 500')
+      8|   expect(page.get('svg').attributes('preserveAspectRatio')).toBe('xMid…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/screen/ScreenLoginStage.test.ts > keeps interactive form slots, host controlled pending and disabled, and escaped errors
+TypeError: Invalid value used as weak map key
+ ❯ registerStub ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1269:11
+ ❯ createInstance ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8023:5
+ ❯ mount ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8263:42
+ ❯ src/screen/ScreenLoginStage.test.ts:23:16
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 45 passed (46)
+      Tests  2 failed | 431 passed (433)
+   Start at  13:31:36
+   Duration  25.47s (transform 42.85s, setup 30.03s, import 111.10s, tests 47.19s, environment 30.43s)
+
+/Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 test: `vp test run src src/screen/ScreenLoginStage.test.ts`
+Exit status 1

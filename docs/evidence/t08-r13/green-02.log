@@ -1,0 +1,84 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/components/pc/chart/LineAnnotations.test.ts (5 tests | 5 failed) 72ms
+     × projects boundary and duplicate-label rows onto actual shared plot scales 41ms
+     × clips multiple reversed bands with official producer and never expands data domain 12ms
+     × uses current identity after replacement and reorder without replacing focused marker DOM 7ms
+     × updates resize and data/series domains and isolates a second chart 6ms
+     × omits unknown, invalid and unsafe targets and adds no default annotation 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > projects boundary and duplicate-label rows onto actual shared plot scales
+TypeError: Cannot read properties of undefined (reading 'updateContainer')
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:13:13
+     11|   await flushPromises()
+     12|   const container = w.getComponent(VisXYContainer).vm.component!
+     13|   container.updateContainer({ width: 600, height: 300, autoMargin: fal…
+       |             ^
+     14|   container.render(0)
+     15|   await flushPromises()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:20:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > clips multiple reversed bands with official producer and never expands data domain
+TypeError: Cannot read properties of undefined (reading 'updateContainer')
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:13:13
+     11|   await flushPromises()
+     12|   const container = w.getComponent(VisXYContainer).vm.component!
+     13|   container.updateContainer({ width: 600, height: 300, autoMargin: fal…
+       |             ^
+     14|   container.render(0)
+     15|   await flushPromises()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:30:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > uses current identity after replacement and reorder without replacing focused marker DOM
+TypeError: Cannot read properties of undefined (reading 'updateContainer')
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:13:13
+     11|   await flushPromises()
+     12|   const container = w.getComponent(VisXYContainer).vm.component!
+     13|   container.updateContainer({ width: 600, height: 300, autoMargin: fal…
+       |             ^
+     14|   container.render(0)
+     15|   await flushPromises()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:39:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > updates resize and data/series domains and isolates a second chart
+TypeError: Cannot read properties of undefined (reading 'updateContainer')
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:13:13
+     11|   await flushPromises()
+     12|   const container = w.getComponent(VisXYContainer).vm.component!
+     13|   container.updateContainer({ width: 600, height: 300, autoMargin: fal…
+       |             ^
+     14|   container.render(0)
+     15|   await flushPromises()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:53:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > omits unknown, invalid and unsafe targets and adds no default annotation
+TypeError: Cannot read properties of undefined (reading 'updateContainer')
+ ❯ chart src/components/pc/chart/LineAnnotations.test.ts:13:13
+     11|   await flushPromises()
+     12|   const container = w.getComponent(VisXYContainer).vm.component!
+     13|   container.updateContainer({ width: 600, height: 300, autoMargin: fal…
+       |             ^
+     14|   container.render(0)
+     15|   await flushPromises()
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:68:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  15:30:03
+   Duration  2.51s (transform 1.49s, setup 208ms, import 1.92s, tests 72ms, environment 240ms)
+

@@ -385,3 +385,40 @@ it('yields scan focus to sheets and dialogs, keeps keypad confirmation inside th
   await vi.waitFor(() => expect(document.activeElement).toBe(scan.element))
   expect(wrapper.get('[aria-label="提示回显"]').text()).toBe('稍后再写')
 })
+
+it.each([
+  { name: 'ordinary order', reorder: false, target: 'travel' },
+  { name: 'keyed reorder', reorder: true, target: 'pocket' },
+])(
+  'keeps host focus and preference aligned after quick keyup in $name',
+  async ({ reorder, target }) => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+    try {
+      wrapper = mount(MobileInputDemo, { attachTo: document.body })
+      await wrapper.get('[role="radio"][value="desk"]').trigger('click')
+      if (reorder) await wrapper.get('button[aria-label="调整选项顺序"]').trigger('click')
+      const source = wrapper.get<HTMLElement>('[role="radio"][value="desk"]').element
+      source.focus()
+      await nextTick()
+      await vi.runAllTimersAsync()
+      source.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true }),
+      )
+      window.dispatchEvent(new KeyboardEvent('keyup', { key: 'ArrowDown', bubbles: true }))
+      expect(document.activeElement).toBe(source)
+      await nextTick()
+      await vi.runAllTimersAsync()
+      await nextTick()
+      expect(document.activeElement).toBe(wrapper.get(`[role="radio"][value="${target}"]`).element)
+      expect(wrapper.get('[role="radio"][aria-checked="true"]').attributes('value')).toBe(target)
+      expect(wrapper.get('[aria-label="偏好回显"]').text()).toBe(
+        `${target === 'travel' ? '旅途' : '随身'} · 提醒关 · 锁定关`,
+      )
+    } finally {
+      wrapper?.unmount()
+      wrapper = undefined
+      await vi.runAllTimersAsync()
+      vi.useRealTimers()
+    }
+  },
+)

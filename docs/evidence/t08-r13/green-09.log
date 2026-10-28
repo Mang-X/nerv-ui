@@ -1,0 +1,10 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  15:32:50
+   Duration  2.83s (transform 1.53s, setup 206ms, import 1.99s, tests 323ms, environment 244ms)
+

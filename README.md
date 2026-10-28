@@ -95,8 +95,19 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 
 [T08/C03 / #39](https://github.com/Mang-X/nerv-ui/issues/39) 从 `/#mobile-flow` 查看候选与分步执行，支持键入或扫码、切换安排、外部清空、数字键盘与失败重试。见 [移动接入](docs/mobile-standalone.md#候选与分步执行t08c03)和[本地证据](docs/evidence/t08-c03/README.md)。确认仅保存在本页内存。
 
+[T08/R05 / #23](https://github.com/Mang-X/nerv-ui/issues/23) 从 `/#screen/login/library` 与 `/#screen/login/garden` 展示两类中性空间入口。见[公开合同](frontend/apps/design-system/docs/components/screen/login-stage.md)和[实施证据](docs/evidence/t08-r05/README.md)。本页提交不建立认证会话。
+
 [T08/C02 / #38](https://github.com/Mang-X/nerv-ui/issues/38) 从 `/#directory-detail/library`、`/#directory-detail/studio`（兼容 `/#directory-detail`）进入书房与画室目录，共用受控筛选、回调分页和只读详情。见[组合合同](frontend/apps/design-system/docs/components/desktop/directory-detail.md)与[实施证据](docs/evidence/t08-c02/README.md)。
 
+[T08/R03 / #21](https://github.com/Mang-X/nerv-ui/issues/21) 在 `/#screen/backgrounds` 增加阅读空间与共享花园等距节点流。API 见[组件文档](frontend/apps/design-system/docs/components/screen/fusion-background.md)，验证边界见[R03 记录](docs/evidence/t08-r03/README.md)。
 [T08/R17 / #35](https://github.com/Mang-X/nerv-ui/issues/35) 的分页恢复组合从 `/#mobile-task-list/library` 与 `/#mobile-task-list/studio` 进入。首次/保留/局部错误、暂停重试与逐页滚动恢复合同见[移动接入](docs/mobile-standalone.md#分页列表恢复t08r17)，本地证据见[R17 记录](docs/evidence/t08-r17/README.md)。
 
-[T08/R19 / #41](https://github.com/Mang-X/nerv-ui/issues/41) 从 `/#mobile-photos/library`、`/#mobile-photos/studio` 进入照片与成功附件组合。宿主提供传输与回执，公开 `NvPhotoAttachments` 保留原生拍照提示、同文件重选与受控移除；见 [API](frontend/apps/design-system/docs/components/mobile/photo-attachments.md) 与 [实施证据](docs/evidence/t08-r19/README.md)。浏览器、相机、真实设备分别 UNRUN。
+[T08/R19 / #41](https://github.com/Mang-X/nerv-ui/issues/41) 从 `/#mobile-photos/library`、`/#mobile-photos/studio` 进入照片与成功附件组合。宿主提供传输与回执，公开 `NvPhotoAttachments` 保留原生拍照提示、同文件重选与受控移除；见 [API](frontend/apps/design-system/docs/components/mobile/photo-attachments.md) 与 [实施证据](docs/evidence/t08-r19/README.md)。浏览器已独立验收；相机与真实设备仍 UNRUN。
+
+[T08/R13 / #31](https://github.com/Mang-X/nerv-ui/issues/31) 从 `/#line-annotations/library` 与 `/#line-annotations/garden` 查看书房到访、花园用水的图内范围与明细定位，支持重排、替换和系列显隐。公共合同见[图表文档](frontend/apps/design-system/docs/components/desktop/chart.md#折线图范围与定位)，本地数学/DOM 与未运行边界见[R13 证据](docs/evidence/t08-r13/README.md)。
+
+`/#screen/status-wall` 展示城市书房与共享花园的平铺、两种分组密度和延迟概况。公共 API 见[分组状态墙](frontend/apps/design-system/docs/components/screen/status-wall.md)，本地行为与未运行边界见[R09 记录](docs/evidence/t08-r09/README.md)。
+
+[T08R10 / #28](https://github.com/Mang-X/nerv-ui/issues/28) 参数详情从 `/#screen/parameter-detail/library` 与 `/#screen/parameter-detail/studio` 进入，演示中性信息/参数/历史、窗口替换与缺测；接入见[大屏说明](docs/screen-standalone.md#t08r10空间参数详情)，候选证据见[T08R10](docs/evidence/t08-r10/README.md)。
+
+[T08/C01 / #37](https://github.com/Mang-X/nerv-ui/issues/37) 从 `/#login/library` 与 `/#login/studio` 进入两类中性空间的登录/改密组合，支持两类桌面、手持与大屏入口，回执须明确确认。见[组合合同](frontend/apps/design-system/docs/components/desktop/login-recipe.md)与[实施记录](docs/evidence/t08-c01/README.md)。真实会话、密码保存和原应用接入不在本票。
