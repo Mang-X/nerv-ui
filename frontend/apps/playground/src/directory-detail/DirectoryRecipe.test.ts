@@ -148,6 +148,13 @@ it('does not invent accepted filter state when the host rejects a keyword update
   await flushPromises()
   expect(w.emitted('update:filter')?.at(-1)).toEqual([{ ...filter, keyword: '拒绝修改' }])
   expect(w.props('filter').keyword).toBe('')
+  expect((input.element as HTMLInputElement).value).toBe('')
+  await w.setProps({ readonly: true })
+  const count = w.emitted('update:filter')?.length
+  await input.setValue('只读编辑')
+  await flushPromises()
+  expect((input.element as HTMLInputElement).value).toBe('')
+  expect(w.emitted('update:filter')?.length).toBe(count)
   expect(w.text()).toContain('阅读角')
   w.unmount()
 })

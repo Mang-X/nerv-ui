@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onUnmounted, ref, shallowRef, watch } from 'vue'
+import { computed, nextTick, onUnmounted, ref, shallowRef, watch } from 'vue'
 import {
   NvButton,
   NvEntityPicker,
@@ -12,6 +12,7 @@ import {
   NvSheetTitle,
   NvSheetDescription,
   NvTimeline,
+  NvStatusBadge,
   displayValue,
   type NvDataTableColumn,
 } from '@nerv-iip/ui'
@@ -55,6 +56,22 @@ const effectiveFilter = computed(() => ({
 function update(value: Partial<DirectoryFilter>) {
   if (props.readonly) return
   emit('update:filter', { ...effectiveFilter.value, ...value })
+}
+// NvFilterBar's input maintains a passive local value. Reconcile each proposal
+// after the host has synchronously accepted it or left authority unchanged.
+const keyword = shallowRef(props.filter.keyword)
+watch(
+  () => props.filter.keyword,
+  (value) => {
+    keyword.value = value
+  },
+  { flush: 'sync' },
+)
+async function updateKeyword(value: string) {
+  keyword.value = value
+  update({ keyword: value })
+  await nextTick()
+  keyword.value = props.filter.keyword
 }
 function parent(value: string) {
   update({ parent: value, entity: '' })
@@ -128,11 +145,12 @@ watch(
   { flush: 'sync' },
 )
 watch(
-  () => props.filter.parent,
+  () => JSON.stringify([props.filter.entity, effectiveFilter.value.entity, !!props.readonly]),
   () => {
-    if (effectiveFilter.value.entity !== props.filter.entity) update({ entity: '' })
+    if (props.filter.entity && effectiveFilter.value.entity !== props.filter.entity)
+      update({ entity: '' })
   },
-  { flush: 'sync' },
+  { immediate: true },
 )
 async function loadTimeline() {
   const version = ++timelineVersion
@@ -228,10 +246,11 @@ const detailItems = computed(() =>
       />
     </div>
     <NvFilterBar
-      :keyword="filter.keyword"
+      :keyword="keyword"
+      :inert="readonly || undefined"
       search-placeholder="输入名称或编号"
       aria-label="名称或编号查询"
-      @update:keyword="update({ keyword: $event })"
+      @update:keyword="updateKeyword"
       @reset="update({ parent: '', entity: '', keyword: '' })"
     />
     <div v-if="host.create" class="flex flex-wrap gap-3">
@@ -328,7 +347,13 @@ const detailItems = computed(() =>
             ><NvTimeline v-if="timeline.items.length" :items="timeline.items" />
             <p v-else>暂无记录</p></template
           >
-          <p v-else-if="timeline">{{ timeline.message }}</p>
+          <div v-else-if="timeline" class="grid gap-2">
+            <NvStatusBadge
+              :tone="timeline.state === 'forbidden' ? 'warning' : 'neutral'"
+              :label="timeline.state === 'forbidden' ? '受限' : '未关联'"
+            />
+            <p>{{ timeline.message }}</p>
+          </div>
         </div>
       </NvSheetContent>
     </NvSheet>

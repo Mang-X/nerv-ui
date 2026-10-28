@@ -1,7 +1,7 @@
 import { mount, flushPromises, type VueWrapper } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import { reactive, nextTick } from 'vue'
-import { NvEntityPicker, NvSheet } from '@nerv-iip/ui'
+import { NvEntityPicker, NvSheet, NvStatusBadge } from '@nerv-iip/ui'
 import DirectoryRecipe from './DirectoryRecipe.vue'
 import DirectoryDemo from './DirectoryDemo.vue'
 import type { DirectoryHost, DirectoryPage, DirectoryTimeline } from './contract'
@@ -454,3 +454,32 @@ it('refreshes created picker options and isolates the two neutral sources', asyn
     expect.objectContaining({ label: '书房新空间' }),
   )
 })
+
+it('requests clearing a removed same-parent child and never revives an accepted removal', async () => {
+  const input = reactive(host())
+  const w = setup(input)
+  await w.setProps({ filter: { ...filter, entity: 'a' } })
+  await flushPromises()
+  const saved = [...input.entities]
+  input.entities = input.entities.filter((item) => item.value !== 'a')
+  await flushPromises()
+  expect(w.emitted('update:filter')?.at(-1)).toEqual([{ ...filter, entity: '' }])
+  await w.setProps({ filter: { ...filter, entity: '' } })
+  input.entities = saved
+  await flushPromises()
+  expect(w.findAllComponents(NvEntityPicker)[1]!.props('modelValue')).toBe('')
+})
+
+it.each(['forbidden', 'unlinked'] as const)(
+  'gives %s an explicit status presentation',
+  async (state) => {
+    const w = setup(host({ timeline: async () => ({ state, message: '当前记录说明' }) }))
+    await flushPromises()
+    await open(w)
+    const badge = w.findComponent(NvStatusBadge)
+    expect(badge.exists()).toBe(true)
+    expect(badge.props('tone')).toBe(state === 'forbidden' ? 'warning' : 'neutral')
+    expect(badge.props('label')).toBe(state === 'forbidden' ? '受限' : '未关联')
+    expect(document.body.textContent).toContain('当前记录说明')
+  },
+)
