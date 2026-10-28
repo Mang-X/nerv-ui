@@ -483,3 +483,41 @@ it.each(['forbidden', 'unlinked'] as const)(
     expect(document.body.textContent).toContain('当前记录说明')
   },
 )
+
+it('batches selected same-parent option reorders without resetting query detail or current creation', async () => {
+  const creation = deferred<{ receipt: string; row: typeof row }>()
+  const query = vi.fn(async () => ({ rows: [row, other], total: 2 }))
+  const create = vi.fn(() => creation.promise)
+  const input = reactive(
+    host({
+      query,
+      create,
+      entities: [
+        { value: 'a', label: row.name, code: 'A', parent: 'p' },
+        { value: 'b', label: other.name, code: 'B', parent: 'p' },
+      ],
+    }),
+  )
+  const w = setup(input)
+  await w.setProps({ filter: { ...filter, entity: 'a' } })
+  await flushPromises()
+  await open(w)
+  const before = query.mock.calls.length
+  await w.get('input[aria-label="新条目名称"]').setValue('新阅读空间')
+  await click(w, '添加条目')
+  input.entities.reverse()
+  await flushPromises()
+  expect(query).toHaveBeenCalledTimes(before)
+  expect(w.emitted('update:filter')).toBeUndefined()
+  expect(document.body.querySelector('[role="dialog"]')?.textContent).toContain('阅读角')
+  expect(
+    w
+      .findAll('button')
+      .find((b) => b.text() === '添加条目')!
+      .attributes('disabled'),
+  ).toBeDefined()
+  creation.resolve({ receipt: '新增确认', row })
+  await flushPromises()
+  expect(w.text()).toContain('条目已添加。')
+  expect(create).toHaveBeenCalledTimes(1)
+})

@@ -47,9 +47,21 @@ let createController: AbortController | undefined
 const entities = computed(() =>
   props.host.entities.filter((item) => !props.filter.parent || item.parent === props.filter.parent),
 )
+// Preserve membership across intermediate writes of in-place array reorders.
+// Replacing the whole options array remains an immediate authority boundary.
+const membership = shallowRef(props.host.entities.map(({ value, parent }) => ({ value, parent })))
+function syncMembership() {
+  membership.value = props.host.entities.map(({ value, parent }) => ({ value, parent }))
+}
+watch(() => props.host.entities, syncMembership, { flush: 'sync' })
+watch(() => props.host.entities.map(({ value, parent }) => [value, parent]), syncMembership)
 const effectiveFilter = computed(() => ({
   ...props.filter,
-  entity: entities.value.some((item) => item.value === props.filter.entity)
+  entity: membership.value.some(
+    (item) =>
+      item.value === props.filter.entity &&
+      (!props.filter.parent || item.parent === props.filter.parent),
+  )
     ? props.filter.entity
     : '',
 }))
