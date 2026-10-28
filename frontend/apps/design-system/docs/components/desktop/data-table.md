@@ -335,3 +335,5 @@ const pageSize = ref(10)
 | `pageSize`   | 每页条数（`v-model:page-size`） | `number`  | —       |
 | `totalItems` | 总条数                          | `number`  | —       |
 | `showJump`   | 显示跳页输入                    | `boolean` | `false` |
+
+列表页的页头、工具栏、行菜单与统计分区组合见[列表布局与行操作](./list-blocks.md)。

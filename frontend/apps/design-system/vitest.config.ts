@@ -31,6 +31,7 @@ export default defineConfig({
       'request-forms-host.test.ts',
       'async-candidates-host.test.ts',
       'workbench-saved-day-host.test.ts',
+      'list-blocks-host.test.ts',
     ],
   },
 })

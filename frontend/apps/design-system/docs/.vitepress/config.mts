@@ -182,6 +182,7 @@ export default defineConfig({
         {
           text: '数据展示',
           items: [
+            { text: '列表布局与行操作', link: '/components/desktop/list-blocks' },
             { text: 'DataTable 数据表格', link: '/components/desktop/data-table' },
             { text: 'GroupPanel 可折叠分组面板', link: '/components/desktop/group-panel' },
             { text: 'Descriptions 描述列表', link: '/components/desktop/descriptions' },

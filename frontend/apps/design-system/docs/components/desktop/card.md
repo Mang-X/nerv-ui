@@ -122,3 +122,5 @@ import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
 | `class`       | 透传类名（内边距、宽度、栅格由调用方控制） | `string`  | —       |
 
 > 需要带固定标题/底部结构的卡片可用 blocks 里的 `NvSectionCard`；指标卡用 `NvMetricCard`。
+
+列表页的页头、工具栏、行菜单与统计分区组合见[列表布局与行操作](./list-blocks.md)。
