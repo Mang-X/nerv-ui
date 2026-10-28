@@ -17,6 +17,7 @@ function fixture() {
   const disabled = ref(false)
   const disabledItem = ref('')
   const select = vi.fn()
+  const focus = vi.fn()
   const wrapper = mount(
     {
       render: () =>
@@ -38,6 +39,7 @@ function fixture() {
                   value,
                   disabled: value === disabledItem.value,
                   onSelect: select,
+                  onFocus: () => focus(value),
                 },
                 () => value,
               ),
@@ -49,7 +51,7 @@ function fixture() {
   wrappers.push(wrapper)
   const radio = (value: string) =>
     wrapper.get<HTMLElement>(`[role="radio"][value="${value}"]`).element
-  return { wrapper, selected, order, disabled, disabledItem, select, radio }
+  return { wrapper, selected, order, disabled, disabledItem, select, focus, radio }
 }
 function key(
   target: EventTarget,
@@ -229,6 +231,66 @@ it('abandons selection when a same-turn keyed DOM reorder loses focus', async ()
   f.order.value.reverse()
   await settle()
   expect(document.activeElement).toBe(document.body)
+  expect(f.selected.value).toBe('desk')
+  expect(f.select).not.toHaveBeenCalled()
+})
+it('abandons old navigation when the host replaces its controlled value before the repair timer', async () => {
+  const f = fixture()
+  f.radio('desk').focus()
+  await settle()
+  key(f.radio('desk'), 'keydown')
+  key(window, 'keyup')
+  await nextTick()
+  expect(document.activeElement).toBe(f.radio('travel'))
+  f.selected.value = 'pocket'
+  await nextTick()
+  await settle()
+  expect(f.selected.value).toBe('pocket')
+  expect(f.select).not.toHaveBeenCalled()
+})
+it('does not turn a host focus callback redirect into a keyboard selection', async () => {
+  const f = fixture()
+  f.radio('desk').focus()
+  await settle()
+  f.focus.mockImplementation((value) => {
+    if (value === 'travel') f.radio('pocket').focus()
+  })
+  key(f.radio('desk'), 'keydown')
+  key(window, 'keyup')
+  await settle()
+  expect(document.activeElement).toBe(f.radio('pocket'))
+  expect(f.selected.value).toBe('desk')
+  expect(f.select).not.toHaveBeenCalled()
+})
+it.each(['same group', 'outside group'])(
+  'permanently cancels navigation after focus leaves its target for %s even when it returns',
+  async (destination) => {
+    const f = fixture()
+    const outside = document.createElement('button')
+    document.body.append(outside)
+    f.radio('desk').focus()
+    await settle()
+    key(f.radio('desk'), 'keydown')
+    key(window, 'keyup')
+    await nextTick()
+    expect(document.activeElement).toBe(f.radio('travel'))
+    ;(destination === 'same group' ? f.radio('pocket') : outside).focus()
+    f.radio('travel').focus()
+    await settle()
+    expect(document.activeElement).toBe(f.radio('travel'))
+    expect(f.selected.value).toBe('desk')
+    expect(f.select).not.toHaveBeenCalled()
+  },
+)
+it('does not adopt a synchronous host focus change before the queued roving navigation', async () => {
+  const f = fixture()
+  f.radio('desk').focus()
+  await settle()
+  key(f.radio('desk'), 'keydown')
+  key(window, 'keyup')
+  f.radio('travel').focus()
+  await settle()
+  expect(document.activeElement).toBe(f.radio('travel'))
   expect(f.selected.value).toBe('desk')
   expect(f.select).not.toHaveBeenCalled()
 })

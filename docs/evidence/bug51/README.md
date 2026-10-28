@@ -57,3 +57,7 @@ JSON 无 runtime/unhandled 计数字段，两者 UNKNOWN，不填 0。断言通�
 外部 handoff：`/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-28/mobile-radio-quick-keyup-implementation-r1/handoff.md`，记录最终 head/tree/clean 与 PR 完整 UTF-8 正文字节核对。无独立审核、自审、ready、merge、关闭 Issue 或验收评论。
 
 附加工具失败保留：文档 fmt 的相对路径两次被拒绝（PATH must not contain ".."，exit 1）；绝对路径首次 check 报格式差异（exit 1），随后仅格式化本证据文件并复查。
+
+## R1 返修
+
+旧补偿覆盖宿主新值、误认程序化转焦的两项 P2 已实施修复。五项正式 RED→GREEN、原字节对照 probe 与 fresh/UNRUN 边界见 [F1 记录](f1/README.md)。R1 拒绝及原始 FAIL 保留，不据此宣布整票完成。
