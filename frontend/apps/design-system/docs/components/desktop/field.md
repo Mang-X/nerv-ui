@@ -11,6 +11,7 @@ import {
   NvFieldError,
   NvInput,
 } from '@nerv-iip/ui'
+import FieldGroupExample from '../../.vitepress/examples/FieldGroupExample.vue'
 import { ref } from 'vue'
 
 const orderNo = ref('WO-2406-0431')
@@ -95,3 +96,17 @@ const planQty = ref('')
 | `for`         | `NvFieldLabel`  | 关联控件的 `id`（原生属性透传）    | `string`                                     | —            |
 | `errors`      | `NvFieldError`  | 错误信息列表；省略时取默认插槽内容 | `Array<string \| { message?: string }>`      | —            |
 | `variant`     | `NvFieldLegend` | 图例样式                           | `'legend' \| 'label'`                        | `'legend'`   |
+
+## 语义分组与本页确认
+
+`NvFieldSet` 输出原生 `fieldset`，以首个 `NvFieldLegend`（原生 `legend`）为组名。下例使用默认 `legend` 变体；紧凑标签可使用公开的 `variant="label"`。不需要另加 `role="group"` 模拟分组。
+
+<Demo>
+  <FieldGroupExample />
+</Demo>
+
+按 Tab 进入“准备内容”，编辑后用 Enter 提交，或 Tab 到“确认本页安排”按钮再提交。反馈只显示本页当前输入，刷新后不保留。`useId()` 为每个实例生成独立 ID，标签和说明分别关联到真实 input；不会与上方基础示例的 ID 冲突。
+
+学习代码与 live 共用同一份公开 API 消费源码：
+
+<<< ../../.vitepress/examples/FieldGroupExample.vue
