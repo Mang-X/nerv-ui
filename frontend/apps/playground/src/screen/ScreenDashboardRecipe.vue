@@ -35,7 +35,11 @@ const columns = [
 ]
 const detailColumns = computed(() => [
   { key: 'label', label: '分类' },
-  { key: 'value', label: props.input.unit ? `数量（${props.input.unit}）` : '数量' },
+  {
+    key: 'value',
+    label: props.input.unit ? `数量（${props.input.unit}）` : '数量',
+    align: 'right' as const,
+  },
 ])
 </script>
 <template>

@@ -7,3 +7,7 @@ Requirement coverage：`keeps chart and detail quantity precision consistent wit
 Fresh：playground types/build、两份源码 lint/fmt、diffcheck通过；JSON缺 runtime/unhandled字段仍UNKNOWN。UI affected48仅继承。本轮未重跑原R1缺陷探针（其断言用于复现错误而非验证修复）。R1原FAIL及历史globalfmt/mainRAW/docsalias/timeout保留。R1来源全量布局对照尚未完成，需独立R2继续，不能据此宣布Spec完整通过。browser/visual/HTTP/docsLive/CI/packed/device/vendor/APS/productionUNRUN，旧应用接入退出NOT_PLANNED。
 
 命令 cwd playground：`TZ=Asia/Shanghai ../../node_modules/.bin/vp test run src/screen/ScreenDashboardRecipe.test.ts src/screen/ScreenDashboardDemo.test.ts src/ScreenDemo.test.ts --reporter=json --outputFile=<外部报告>`、`../../node_modules/.bin/vue-tsc --noEmit -p tsconfig.json`、`../../node_modules/.bin/vp build`；fmt/lint cwd frontend。文档用oxfmt stdin非空输出cmp。最终对象见外部handoff。
+
+## R2 数量列对齐
+
+数量列显式 align=right，回归 `keeps chart and detail quantity precision consistent without changing input values` 增加真实表头和每行数值 td 的 text-align 断言。旧候选 RED 2 PASS/1 FAIL，修复后含宿主导航 18/18 PASS；types/build/scoped lint/fmt通过。仍保留输入原值、精度、单位和替换断言。来源完整 Spec 对照留独立R3完成；浏览器未跑。R2原FAIL和其它未运行边界不变。
