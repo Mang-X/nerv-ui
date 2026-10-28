@@ -111,7 +111,7 @@ onBeforeUnmount(close)
 
 <template>
   <div
-    class="nv-scr-wall"
+    class="nv-scr-wall text-sm"
     data-slot="nv-screen-status-wall"
     role="region"
     :aria-label="label"
@@ -134,7 +134,7 @@ onBeforeUnmount(close)
           :style="mode === 'flat' ? { height: '122px', marginBottom: '12px' } : undefined"
         >
           <h3 v-if="mode !== 'flat'">
-            {{ block.label }} <small>{{ block.items.length }} 项</small>
+            {{ block.label }} <small class="text-sm">{{ block.items.length }} 项</small>
           </h3>
           <div class="nv-scr-wall-cells">
             <button
@@ -182,7 +182,6 @@ onBeforeUnmount(close)
   }
   .nv-scr-wall-block h3 {
     margin: 0 0 6px;
-    font-size: 14px;
     color: var(--nv-scr-text-2);
   }
   .nv-scr-wall-block small {
@@ -226,8 +225,10 @@ onBeforeUnmount(close)
     cursor: default;
     opacity: 0.6;
   }
+  .nv-scr-wall-cells button:active:not(:disabled) {
+    transform: scale(0.985);
+  }
   .nv-scr-wall-cells strong {
-    font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -235,11 +236,9 @@ onBeforeUnmount(close)
   .nv-scr-wall-identity {
     width: 100%;
     color: var(--nv-scr-muted);
-    font-size: 12px;
   }
   .nv-scr-wall-summary {
     color: var(--nv-scr-text-2);
-    font-size: 13px;
     font-variant-numeric: tabular-nums;
   }
   .nv-scr-wall-identity,
@@ -253,6 +252,11 @@ onBeforeUnmount(close)
   }
   .group-chip .nv-scr-wall-identity {
     width: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nv-scr-wall-cells button:active:not(:disabled) {
+      transform: none;
+    }
   }
 }
 </style>

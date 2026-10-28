@@ -39,3 +39,7 @@ T01 固定来源 `79b1578f2b75f55709765b5e7882aaf33146c603`；未改 source/refe
 浏览器、server、preview、Ego、Playwright 均未启动；browser/visual/HTTP/device/vendor/packed/旧 consumer/production/CI/review UNRUN。四 vendor policy 为 0 执行，非 PASS。全局 fmt3、docs alias ENOTDIR、main RAW2、历史 timeout 未重跑/未修，仅属用户指出的继承背景。本轮局部检查不宣称这些通过。旧应用接入/旧库退出取消为 NOT_PLANNED；#28 和排程未实施。#27 保持 Open，PR 保持 Draft，未自签整票、未审核/合并/关闭/发布验收评论。
 
 归档后的 `git diff --cached --check` 曾报告 FAIL：仅原始 build/test 日志含终端着色输出的尾随空格及末尾空行；实现/文档文件无该问题。为保留原始失败与命令输出字节，本轮未把原始日志格式化。该检查不能报告为全变更 PASS；代码 scoped fmt/lint 与 Markdown 检查独立通过。
+
+## R1 样式返修
+
+两项 Standards P2 及命名依据 optional 的响应见 [F1 记录](f1/README.md)。本轮仅样式和说明，原行为 RED/FAIL 与代码/DOM复核结论保留；真实视觉仍 UNRUN。
