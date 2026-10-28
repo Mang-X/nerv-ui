@@ -5,7 +5,7 @@ import { computed, ref, watch } from 'vue'
 import type { EngineCommand, TaskDragPayload, TimeScale } from '../engine/engine'
 import { useSchedulingEdits, type SchedulingEditsDeps } from '../composables/useSchedulingEdits'
 import { cloneModel } from '../model/clone'
-import type { ScheduleModel, ScheduleTask } from '../model/types'
+import type { ScheduleModel } from '../model/types'
 import SchedulingDraftBoard from './draft/SchedulingDraftBoard.vue'
 import GanttChart from './GanttChart.vue'
 import ResourceSchedulerBoard from './ResourceSchedulerBoard.vue'
@@ -72,7 +72,17 @@ watch(
   { flush: 'sync' },
 )
 
-const selectedTask = ref<ScheduleTask>()
+const selectedTaskId = ref<string>()
+const selectedTask = computed(() =>
+  workingModel.value.tasks.find((task) => task.id === selectedTaskId.value),
+)
+watch(
+  selectedTask,
+  (task) => {
+    if (!task) selectedTaskId.value = undefined
+  },
+  { flush: 'sync' },
+)
 const sidebarOpen = ref(true)
 
 const edits = useSchedulingEdits(workingModel, () => ({
@@ -83,7 +93,7 @@ const edits = useSchedulingEdits(workingModel, () => ({
 watch(
   () => props.model,
   () => {
-    selectedTask.value = undefined
+    selectedTaskId.value = undefined
   },
   { deep: true, flush: 'sync' },
 )
@@ -106,7 +116,7 @@ watch(
   (loading) => {
     if (loading) {
       edits.cancel()
-      selectedTask.value = undefined
+      selectedTaskId.value = undefined
     }
   },
   { flush: 'sync' },
@@ -136,13 +146,13 @@ const legendCategories = computed(() => {
 
 function onTaskSelect(taskId: string) {
   if (props.loading) return
-  selectedTask.value = workingModel.value.tasks.find((t) => t.id === taskId)
+  selectedTaskId.value = workingModel.value.tasks.find((t) => t.id === taskId)?.id
   sidebarOpen.value = true // 选中即在侧栏展示详情(不再弹抽屉)
 }
 function onToggleLock(taskId: string, locked: boolean) {
   if (interactionBlocked.value || edits.busy.value) return
   edits.setLocked(taskId, locked)
-  selectedTask.value = workingModel.value.tasks.find((t) => t.id === taskId)
+  selectedTaskId.value = workingModel.value.tasks.find((t) => t.id === taskId)?.id
   toast.success(locked ? '已锁定该工序' : '已解锁,可拖拽调整')
 }
 function focusTask(taskId: string) {
@@ -154,7 +164,7 @@ function focusTask(taskId: string) {
 let lastLockedToastAt = 0
 function onLockedDragAttempt(taskId: string) {
   if (props.loading) return
-  selectedTask.value = workingModel.value.tasks.find((t) => t.id === taskId)
+  selectedTaskId.value = workingModel.value.tasks.find((t) => t.id === taskId)?.id
   sidebarOpen.value = true
   const now = Date.now()
   if (now - lastLockedToastAt < 1500) return
