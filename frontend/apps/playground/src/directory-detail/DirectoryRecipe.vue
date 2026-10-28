@@ -90,7 +90,15 @@ function invalidateCreate() {
   createMessage.value = ''
 }
 watch(
-  () => [props.host, effectiveFilter.value],
+  [
+    () => props.host.source,
+    () => props.host.query,
+    () => props.host.timeline,
+    () => props.host.create,
+    () => effectiveFilter.value.parent,
+    () => effectiveFilter.value.entity,
+    () => effectiveFilter.value.keyword,
+  ],
   () => {
     invalidateCreate()
     ++queryVersion
@@ -100,7 +108,7 @@ watch(
     if (page.value !== 1) page.value = 1
     else void load()
   },
-  { deep: true, flush: 'sync', immediate: true },
+  { flush: 'sync', immediate: true },
 )
 watch(
   page,
@@ -117,6 +125,7 @@ watch(
     invalidateCreate()
     selectedKey.value = null
   },
+  { flush: 'sync' },
 )
 watch(
   () => props.filter.parent,
@@ -147,7 +156,8 @@ async function loadTimeline() {
     if (version === timelineVersion) timelineLoading.value = false
   }
 }
-watch(selected, () => void loadTimeline(), { flush: 'sync' })
+// Batch array mutations so reorder never observes a transient missing row.
+watch(selected, () => void loadTimeline())
 async function create() {
   const callback = props.host.create
   if (!callback || props.readonly || creating.value || !name.value.trim() || !props.filter.parent)
@@ -199,6 +209,7 @@ const detailItems = computed(() =>
     <div class="grid gap-3 sm:grid-cols-2">
       <NvEntityPicker
         title="选择分区"
+        :show-code="false"
         aria-label="分区"
         :model-value="filter.parent"
         :options="host.parents"
@@ -219,6 +230,7 @@ const detailItems = computed(() =>
     <NvFilterBar
       :keyword="filter.keyword"
       search-placeholder="输入名称或编号"
+      aria-label="名称或编号查询"
       @update:keyword="update({ keyword: $event })"
       @reset="update({ parent: '', entity: '', keyword: '' })"
     />
@@ -229,7 +241,10 @@ const detailItems = computed(() =>
         :disabled="readonly || creating"
         placeholder="新条目名称"
       />
-      <NvButton :disabled="readonly || creating || !name.trim() || !filter.parent" @click="create"
+      <NvButton
+        variant="brand"
+        :disabled="readonly || creating || !name.trim() || !filter.parent"
+        @click="create"
         >添加条目</NvButton
       >
       <p v-if="!filter.parent" class="text-sm text-muted-foreground">请先选择分区。</p>
@@ -288,7 +303,10 @@ const detailItems = computed(() =>
           </p>
           <dl v-for="item in detailItems" :key="item.label" class="text-sm">
             <dt>{{ item.label }}</dt>
-            <dd class="whitespace-pre-wrap break-anywhere tabular-nums">
+            <dd
+              :class="typeof item.value === 'number' ? 'text-right tabular-nums' : ''"
+              class="whitespace-pre-wrap break-anywhere"
+            >
               {{ typeof item.value === 'number' ? number.format(item.value) : item.value }}
             </dd>
           </dl>
@@ -303,7 +321,8 @@ const detailItems = computed(() =>
           </p>
           <p v-if="timelineLoading" role="status">正在加载记录…</p>
           <p v-else-if="timelineError" role="alert">
-            {{ timelineError }} <NvButton @click="loadTimeline">重试记录</NvButton>
+            {{ timelineError }}
+            <NvButton @click="!timelineLoading && loadTimeline()">重试记录</NvButton>
           </p>
           <template v-else-if="timeline?.state === 'ready'"
             ><NvTimeline v-if="timeline.items.length" :items="timeline.items" />

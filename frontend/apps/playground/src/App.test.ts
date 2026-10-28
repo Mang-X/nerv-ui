@@ -194,3 +194,15 @@ it('opens files directly and returns from every completed surface group', async 
     expect(wrapper.get('h1').text()).toBe('留住片刻')
   }
 })
+
+it('routes both directory deep links and preserves the return link', async () => {
+  window.location.hash = '#directory-detail/studio'
+  wrapper = mount(App, { attachTo: document.body })
+  await nextTick()
+  expect(wrapper.findComponent({ name: 'DirectoryRecipe' }).props('host').source).toBe('studio')
+  expect(wrapper.get('a[href="#"]').text()).toBe('返回工作空间')
+  window.location.hash = '#directory-detail/library'
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+  await nextTick()
+  expect(wrapper.findComponent({ name: 'DirectoryRecipe' }).props('host').source).toBe('library')
+})

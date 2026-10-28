@@ -114,7 +114,9 @@ function addProject() {
     :key="surface"
     :space="surface === '#tree/library' ? 'library' : 'studio'"
   />
-  <DirectoryDemo v-else-if="surface === '#directory-detail'" />
+  <DirectoryDemo
+    v-else-if="surface === '#directory-detail' || surface.startsWith('#directory-detail/')"
+  />
   <EntityMultiPickerDemo v-else-if="surface === '#entity-multi-picker'" />
   <ActionSummaryDemo v-else-if="surface === '#action-summary'" />
   <DayPrintDemo

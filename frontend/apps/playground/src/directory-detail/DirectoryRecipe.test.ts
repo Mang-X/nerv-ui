@@ -59,7 +59,7 @@ it('invalidates an in-flight creation when page changes and retains the draft', 
   expect((w.get('input[aria-label="新条目名称"]').element as HTMLInputElement).value).toBe('新空间')
   w.unmount()
 })
-it('ignores query success and failure from a previous source', async () => {
+it('ignores query success from a previous source', async () => {
   let finish!: (value: { rows: (typeof row)[]; total: number }) => void
   const host: DirectoryHost = {
     source: 'old',

@@ -95,4 +95,4 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 
 [T08/C03 / #39](https://github.com/Mang-X/nerv-ui/issues/39) 从 `/#mobile-flow` 查看候选与分步执行，支持键入或扫码、切换安排、外部清空、数字键盘与失败重试。见 [移动接入](docs/mobile-standalone.md#候选与分步执行t08c03)和[本地证据](docs/evidence/t08-c03/README.md)。确认仅保存在本页内存。
 
-[T08/C02 / #38](https://github.com/Mang-X/nerv-ui/issues/38) 从 `/#directory-detail` 进入书房与画室目录，共用受控筛选、回调分页和只读详情。见[组合合同](frontend/apps/design-system/docs/components/desktop/directory-detail.md)与[实施证据](docs/evidence/t08-c02/README.md)。
+[T08/C02 / #38](https://github.com/Mang-X/nerv-ui/issues/38) 从 `/#directory-detail/library`、`/#directory-detail/studio`（兼容 `/#directory-detail`）进入书房与画室目录，共用受控筛选、回调分页和只读详情。见[组合合同](frontend/apps/design-system/docs/components/desktop/directory-detail.md)与[实施证据](docs/evidence/t08-c02/README.md)。

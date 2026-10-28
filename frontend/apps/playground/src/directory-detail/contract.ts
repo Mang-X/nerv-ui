@@ -27,12 +27,15 @@ export interface DirectoryPage {
 export type DirectoryTimeline =
   | { state: 'ready'; items: TimelineItem[] }
   | { state: 'forbidden' | 'unlinked'; message: string }
+/** Callbacks must settle with display-safe host facts. Signal cancellation may be ignored; recipe versions still reject stale results. */
 export interface DirectoryHost {
+  /** Stable source identity; changing it invalidates pending work. */
   source: string
   parents: EntityPickerOption[]
   entities: (EntityPickerOption & { parent: string })[]
   query: (request: DirectoryRequest, signal: AbortSignal) => Promise<DirectoryPage>
   timeline: (row: DirectoryRow, signal: AbortSignal) => Promise<DirectoryTimeline>
+  /** A nonempty string receipt and stable row.key confirm in-host creation. Missing service never implies success. */
   create?: (
     name: string,
     parent: string,
