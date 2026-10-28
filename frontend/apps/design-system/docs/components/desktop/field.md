@@ -11,6 +11,7 @@ import {
   NvFieldError,
   NvInput,
 } from '@nerv-iip/ui'
+import FieldContentExample from '../../.vitepress/examples/FieldContentExample.vue'
 import FieldGroupExample from '../../.vitepress/examples/FieldGroupExample.vue'
 import { ref } from 'vue'
 
@@ -110,3 +111,17 @@ const planQty = ref('')
 学习代码与 live 共用同一份公开 API 消费源码：
 
 <<< ../../.vitepress/examples/FieldGroupExample.vue
+
+## 水平与响应式内容区
+
+`NvFieldContent` 是单个字段的弹性内容区，包裹真实控件和说明；`NvFieldGroup` 才是多个字段的容器。`NvFieldTitle` 输出非 label 的标题，下例赋予标题语义；每个真实控件仍由 `NvFieldLabel` 的 `for` 关联独立 ID。
+
+<Demo>
+  <FieldContentExample />
+</Demo>
+
+主题字段显式使用 `orientation="horizontal"`；内容密度使用 `orientation="responsive"`，按 FieldGroup 容器宽度切换上下与并排。未传 orientation 时公开默认仍为 `vertical`。分隔线的可选插槽显示“显示方式”；省略插槽可只保留线条。Tab 可依次进入输入和原生选择框，修改立即反馈，全部状态仅保存在本页内存。`useId()` 隔离本例多实例及上方 F4 的 ID。
+
+学习代码与 live 共用同一份源码：
+
+<<< ../../.vitepress/examples/FieldContentExample.vue

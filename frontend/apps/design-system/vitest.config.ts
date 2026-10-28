@@ -35,6 +35,7 @@ export default defineConfig({
       'card-structure-host.test.ts',
       'app-provider-host.test.ts',
       'field-group-host.test.ts',
+      'field-content-host.test.ts',
     ],
   },
 })
