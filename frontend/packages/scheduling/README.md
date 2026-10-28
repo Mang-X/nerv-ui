@@ -25,3 +25,5 @@ P11 的 `MaterialShortageSummary/PlanRisks/PlanConflicts/ResourceLoads` 接收 o
 # P14 日安排与打印
 
 `SchedulingDaySchedule`、`SchedulingDaySheet` 与 `SchedulingDayEntry` 提供显式时区日筛选、受控分组和局部打印目标；宿主仍负责方案来源、展示事实及 CSV。见 [日安排打印合同](../../../docs/scheduling-day-print.md)。
+
+P16 公开 `SchedulingWorkbench`、`SchedulingHistory`，复用已有子件组合。完整 props/events/slots/defaults 和来源替代见 [工作台合同](../../../docs/scheduling-workbench.md)。

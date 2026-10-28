@@ -115,3 +115,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T08/C01 / #37](https://github.com/Mang-X/nerv-ui/issues/37) 从 `/#login/library` 与 `/#login/studio` 进入两类中性空间的登录/改密组合，支持两类桌面、手持与大屏入口，回执须明确确认。见[组合合同](frontend/apps/design-system/docs/components/desktop/login-recipe.md)与[实施记录](docs/evidence/t08-c01/README.md)。真实会话、密码保存和原应用接入不在本票。
 
 [T07/P15 / #98](https://github.com/Mang-X/nerv-ui/issues/98) 从 `/#schedule-saved/library`、`/#schedule-saved/studio` 展示已保存计划只读资源图、树表、详情与搜索。名称、维度、事实与导航权限来自 host；接入见[已保存计划合同](docs/scheduling-saved-plan.md)，验证范围见 [P15 证据](docs/evidence/t07-p15/README.md)。P16 工作台组合与真实运行验收另行执行。
+
+[T07/P16 / #99](https://github.com/Mang-X/nerv-ui/issues/99) 从 `/#schedule-workbench/library`、`/#schedule-workbench/studio` 进入中性工作台、历史及预览组合，所有既有排程入口可往返。见 [公共合同](docs/scheduling-workbench.md) 与 [本票证据](docs/evidence/t07-p16/README.md)。

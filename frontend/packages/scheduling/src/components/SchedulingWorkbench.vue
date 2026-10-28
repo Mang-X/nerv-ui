@@ -6,6 +6,7 @@ import type { EngineCommand, TaskDragPayload, TimeScale } from '../engine/engine
 import { useSchedulingEdits, type SchedulingEditsDeps } from '../composables/useSchedulingEdits'
 import { cloneModel } from '../model/clone'
 import type { ScheduleModel, ScheduleTask } from '../model/types'
+import SchedulingDraftBoard from './draft/SchedulingDraftBoard.vue'
 import GanttChart from './GanttChart.vue'
 import ResourceSchedulerBoard from './ResourceSchedulerBoard.vue'
 import ChangeSummaryPanel from './panels/ChangeSummaryPanel.vue'
@@ -30,6 +31,8 @@ const props = withDefaults(
   }>(),
   { loading: false, readOnly: false, engineKind: 'auto', defaultView: 'order' },
 )
+
+defineSlots<{ before(): unknown; after(): unknown }>()
 
 const emit = defineEmits<{ fix: [orderId: string, operationId: string] }>()
 
@@ -56,13 +59,17 @@ watch(
   { immediate: true, deep: true, flush: 'sync' },
 )
 
-const view = ref<'order' | 'resource'>(props.defaultView)
+const view = ref<'order' | 'resource' | 'table'>(props.defaultView)
 const showLegend = ref(true)
 const scale = ref<TimeScale>('auto')
 const readOnly = ref(props.readOnly)
 watch(
   () => props.readOnly,
-  (v) => (readOnly.value = v),
+  (v) => {
+    readOnly.value = v
+    if (v) edits.cancel()
+  },
+  { flush: 'sync' },
 )
 
 const selectedTask = ref<ScheduleTask>()
@@ -82,6 +89,19 @@ watch(
 )
 
 // 只有业务层注入了 preview/release 才展示对应动作,避免只读/演示挂载时出现假成功提示。
+watch(
+  () => [props.preview, props.release],
+  () => edits.cancel(),
+  { flush: 'sync' },
+)
+watch(
+  readOnly,
+  (value) => {
+    if (value) edits.cancel()
+  },
+  { flush: 'sync' },
+)
+
 const canRepreview = computed(() => !!props.preview)
 const canRelease = computed(() => !!props.release)
 
@@ -152,6 +172,7 @@ async function onRelease() {
   <div
     class="flex h-full min-h-[480px] flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm"
   >
+    <slot name="before" />
     <SchedulingToolbar
       :scale="scale"
       :read-only="readOnly"
@@ -168,7 +189,8 @@ async function onRelease() {
       @fit="sendCommand({ kind: 'fitToScreen' })"
       @undo="edits.undo()"
       @redo="edits.redo()"
-      @toggle-read-only="readOnly = !readOnly"
+      @toggle-read-only="!props.readOnly && (readOnly = !readOnly)"
+      :disabled-reasons="props.readOnly ? { toggleReadOnly: '当前仅可查阅' } : undefined"
       @repreview="onRepreview"
       @release="onRelease"
     />
@@ -176,8 +198,9 @@ async function onRelease() {
     <div class="flex items-center gap-2 border-b border-border/60 px-4 py-2.5">
       <NvTabs v-model="view">
         <NvTabsList>
-          <NvTabsTrigger value="order">工单甘特</NvTabsTrigger>
-          <NvTabsTrigger value="resource">资源排产板</NvTabsTrigger>
+          <NvTabsTrigger value="order">活动甘特</NvTabsTrigger>
+          <NvTabsTrigger value="resource">资源安排板</NvTabsTrigger>
+          <NvTabsTrigger value="table">活动表格</NvTabsTrigger>
         </NvTabsList>
       </NvTabs>
       <NvButton
@@ -192,7 +215,13 @@ async function onRelease() {
       </NvButton>
     </div>
 
-    <div class="flex min-h-0 flex-1">
+    <SchedulingDraftBoard
+      v-if="view === 'table'"
+      :model="workingModel"
+      read-only
+      title="活动表格 · 只读"
+    />
+    <div v-else class="flex min-h-0 flex-1 flex-col lg:flex-row">
       <div class="min-w-0 flex-1">
         <GanttChart
           v-if="view === 'order'"
@@ -226,7 +255,7 @@ async function onRelease() {
            overflow-hidden 防止收窄时内容溢出;prefers-reduced-motion 下过渡降级为无。 -->
       <aside
         class="relative shrink-0 overflow-hidden border-l border-border/60 bg-card/60 transition-[width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
-        :class="sidebarOpen ? 'w-[320px]' : 'w-9'"
+        :class="sidebarOpen ? 'w-full lg:w-[320px]' : 'w-9'"
       >
         <!-- 折叠态:细条上的展开按钮(淡入,收起时不可交互) -->
         <button
@@ -243,7 +272,7 @@ async function onRelease() {
 
         <!-- 展开态:详情 + 面板(固定 320 宽,收窄时被 overflow-hidden 裁掉并淡出) -->
         <div
-          class="flex h-full w-[320px] flex-col transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+          class="flex h-full w-full lg:w-[320px] flex-col transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
           :class="sidebarOpen ? 'opacity-100' : 'pointer-events-none opacity-0'"
           :aria-hidden="!sidebarOpen"
         >
@@ -289,9 +318,10 @@ async function onRelease() {
     <SchedulingLegend
       v-if="showLegend"
       :categories="legendCategories"
-      :view="view"
+      :view="view === 'resource' ? 'resource' : 'order'"
       :model="workingModel"
       :scale="scale"
     />
+    <slot name="after" />
   </div>
 </template>
