@@ -191,7 +191,7 @@ async function submit() {
               }
             : {}
         "
-        @submit="submit"
+        @submit="surface === 'screen' && submit()"
       >
         <component
           :is="surface === 'screen' ? 'div' : 'form'"

@@ -245,3 +245,24 @@ it.each([{}, { accepted: 1 }, { accepted: 'true' }, false, null])(
     page.unmount()
   },
 )
+
+it.each(['console', 'business-console', 'pda', 'screen'])(
+  'one native submit calls a synchronous failing host once and permits an explicit retry on %s',
+  async (surface) => {
+    const submit = vi.fn(() => {
+      throw new Error('TECHNICAL_SENTINEL')
+    })
+    const page = setup({ surface, submit })
+    await page.get('form').trigger('submit')
+    await flushPromises()
+    expect(submit).toHaveBeenCalledTimes(1)
+    expect(page.get('[role="alert"]').text()).toBe('未能完成，请重试。')
+    expect(page.text()).not.toContain('TECHNICAL_SENTINEL')
+    expect(page.emitted('confirmed')).toBeUndefined()
+    expect((page.get('[name="password"]').element as HTMLInputElement).value).toBe(' pw ')
+    await page.get('form').trigger('submit')
+    await flushPromises()
+    expect(submit).toHaveBeenCalledTimes(2)
+    page.unmount()
+  },
+)
