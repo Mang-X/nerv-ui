@@ -471,3 +471,5 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 > **独立库新增（#29/T08 R11）。** R1 页内 waffle 无冻结公开名；R2 去除 OEE/line 领域词；R3 不采用缩写；R4 远距 screen 表面；R5 属热力格家族，定名 `NvScreenHeatmap`（`screen/Heatmap.vue`）。只读数值展示，复用 `NvScreenPanel` 容器，不扩展为图表框架。
 
 > **独立库新增（#25/T08 R07）。** R1 三个 app 局部来源无冻结库名；R2 去除 launcher/workshop/line 领域名；R3 使用完整 SummaryCard；R4 远距 screen 表面；R5 归摘要卡家族，定名 `NvScreenSummaryCard`。复用 Panel、StatusLight、StatusTag、Sparkline，仅提供三来源布局，不建立卡片框架。
+
+独立库 #33：来源 MasterDataTreeNode → `NvTree`。PC 紧凑指针与键盘树，按 R1–R5 取 Nv + 素名；类型 `NvTreeNode`，无 ResourceItem 依赖。

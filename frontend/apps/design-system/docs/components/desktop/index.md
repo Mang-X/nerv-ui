@@ -17,3 +17,5 @@ title: 桌面 PC 组件
 - **图表**：折线 / 面积 / 柱状 / 环形
 
 > 想一次看全部？查看 [完整示例总览](/components/desktop/gallery)（所有组件在一页中的沉浸式演示）。
+
+- **层级树**：[NvTree](/components/desktop/tree)（受控展开、选择和节点动作）

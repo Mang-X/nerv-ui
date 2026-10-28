@@ -101,6 +101,7 @@ const NV_ALL = [
   'NvDropdownMenuTrigger',
   'NvEntityPicker',
   'NvEntityMultiPicker',
+  'NvTree',
   'NvField',
   'NvFieldContent',
   'NvFieldDescription',
