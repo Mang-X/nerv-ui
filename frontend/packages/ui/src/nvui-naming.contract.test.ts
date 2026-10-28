@@ -102,6 +102,7 @@ const NV_ALL = [
   'NvEntityPicker',
   'NvEntityMultiPicker',
   'NvTree',
+  'NvNotificationInbox',
   'NvField',
   'NvFieldContent',
   'NvFieldDescription',

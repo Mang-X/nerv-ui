@@ -86,3 +86,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 `/#screen/summary-cards` 在既有缩放舞台中展示阅读空间与共享花园，支持入口/概况/动态三种卡形、0/1/6 张密度、替换记录与完整说明。公开组件 `NvScreenSummaryCard` 复用已有容器、状态和趋势；导航、统计与数据来源由宿主负责。API 与 live 示例见[组件页](frontend/apps/design-system/docs/components/screen/summary-card.md)，实际验证与 UNRUN 边界见[R07 证据](docs/evidence/t08-r07/README.md)。
 
 `/#tree/library` 与 `/#tree/studio` 展示空间分区的受控展开、选择和添加入口。公共 `NvTree` 不携带业务记录；API 见[层级树](frontend/apps/design-system/docs/components/desktop/tree.md)，本地验证及未运行边界见[实施记录](docs/evidence/t08-r15/README.md)。
+
+[T08/R06 / #24](https://github.com/Mang-X/nerv-ui/issues/24) 从 `/#notifications/library`、`/#notifications/studio` 展示消息与任务、受控详情、筛选和标记回执。公共 API 与文档示例见[通知收件箱](frontend/apps/design-system/docs/components/desktop/notification-inbox.md)，实际本地证据及未运行边界见 [R06 记录](docs/evidence/t08-r06/README.md)。

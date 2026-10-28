@@ -473,3 +473,5 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 > **独立库新增（#25/T08 R07）。** R1 三个 app 局部来源无冻结库名；R2 去除 launcher/workshop/line 领域名；R3 使用完整 SummaryCard；R4 远距 screen 表面；R5 归摘要卡家族，定名 `NvScreenSummaryCard`。复用 Panel、StatusLight、StatusTag、Sparkline，仅提供三来源布局，不建立卡片框架。
 
 独立库 #33：来源 MasterDataTreeNode → `NvTree`。PC 紧凑指针与键盘树，按 R1–R5 取 Nv + 素名；类型 `NvTreeNode`，无 ResourceItem 依赖。
+
+> **独立库新增（#24/T08 R06）。** 来源两个应用通知列表、任务与收件箱 → `NvNotificationInbox`，PC 指针表面按素名规则落 `pc/notification-inbox/`。唯一公开组合，不带 DTO、查询或通知引擎。
