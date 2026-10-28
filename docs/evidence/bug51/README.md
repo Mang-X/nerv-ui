@@ -61,3 +61,7 @@ JSON 无 runtime/unhandled 计数字段，两者 UNKNOWN，不填 0。断言通�
 ## R1 返修
 
 旧补偿覆盖宿主新值、误认程序化转焦的两项 P2 已实施修复。五项正式 RED→GREEN、原字节对照 probe 与 fresh/UNRUN 边界见 [F1 记录](f1/README.md)。R1 拒绝及原始 FAIL 保留，不据此宣布整票完成。
+
+## R2 返修
+
+观察窗口不足以区分宿主与 vendor 的同目标聚焦；改用固定版本 producer 的内部移焦信号，详见 [F2 证据](f2/README.md)。原 F1 记录为当时实现，不作为最终机制；所有拒绝和 FAIL 保留。新的补丁分发合同须由 #11 单独验收。

@@ -18,6 +18,7 @@ function fixture() {
   const disabledItem = ref('')
   const select = vi.fn()
   const focus = vi.fn()
+  const keydownCapture = vi.fn()
   const wrapper = mount(
     {
       render: () =>
@@ -40,6 +41,7 @@ function fixture() {
                   disabled: value === disabledItem.value,
                   onSelect: select,
                   onFocus: () => focus(value),
+                  onKeydownCapture: keydownCapture,
                 },
                 () => value,
               ),
@@ -51,7 +53,7 @@ function fixture() {
   wrappers.push(wrapper)
   const radio = (value: string) =>
     wrapper.get<HTMLElement>(`[role="radio"][value="${value}"]`).element
-  return { wrapper, selected, order, disabled, disabledItem, select, focus, radio }
+  return { wrapper, selected, order, disabled, disabledItem, select, focus, keydownCapture, radio }
 }
 function key(
   target: EventTarget,
@@ -289,6 +291,20 @@ it('does not adopt a synchronous host focus change before the queued roving navi
   key(f.radio('desk'), 'keydown')
   key(window, 'keyup')
   f.radio('travel').focus()
+  await settle()
+  expect(document.activeElement).toBe(f.radio('travel'))
+  expect(f.selected.value).toBe('desk')
+  expect(f.select).not.toHaveBeenCalled()
+})
+it('does not adopt host focus queued by the item capture handler before vendor navigation', async () => {
+  const f = fixture()
+  f.radio('desk').focus()
+  await settle()
+  f.keydownCapture.mockImplementation(() => {
+    void nextTick(() => f.radio('travel').focus())
+  })
+  key(f.radio('desk'), 'keydown')
+  key(window, 'keyup')
   await settle()
   expect(document.activeElement).toBe(f.radio('travel'))
   expect(f.selected.value).toBe('desk')

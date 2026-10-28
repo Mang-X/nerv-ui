@@ -20,9 +20,10 @@ let pending:
   | {
       source: HTMLElement
       group: HTMLElement
+      keydown: KeyboardEvent
       target?: HTMLElement
-      acceptingFocus: boolean
       arrived: boolean
+      vendorMoved: boolean
     }
   | undefined
 function cancelNavigation() {
@@ -33,12 +34,6 @@ function cancelNavigation() {
 function captureKeydown(event: KeyboardEvent) {
   cancelNavigation()
   if (!event.defaultPrevented) eligible.add(event)
-  const current = navigation
-  // Register before Reka queues focusFirst in its target keydown handler.
-  // Synchronous host focus changes before that queue are not navigation.
-  void nextTick(() => {
-    if (current === navigation && pending) pending.acceptingFocus = true
-  })
 }
 function isRadio(target: EventTarget | null, group: HTMLElement): target is HTMLElement {
   return (
@@ -53,7 +48,6 @@ function captureBlur(event: FocusEvent) {
   // Only the first source -> radio transition can belong to the queued move.
   // Any later blur cancels permanently, including leave-and-return.
   if (
-    request.acceptingFocus &&
     !request.target &&
     event.target === request.source &&
     isRadio(event.relatedTarget, request.group)
@@ -67,6 +61,13 @@ function captureFocus(event: FocusEvent) {
   if (!request.arrived && event.target === request.target && event.relatedTarget === request.source)
     request.arrived = true
   else cancelNavigation()
+}
+function captureNavigation(event: CustomEvent<KeyboardEvent>) {
+  const request = pending
+  // The pinned Reka patch emits only when focusFirst actually moved focus.
+  // A host that focused the same item first produces no navigation signal.
+  if (request?.arrived && event.detail === request.keydown && event.target === request.target)
+    request.vendorMoved = true
 }
 async function handleKeydown(event: KeyboardEvent) {
   const source = event.target
@@ -89,16 +90,16 @@ async function handleKeydown(event: KeyboardEvent) {
   const request = {
     source,
     group,
-    acceptingFocus: false,
+    keydown: event,
     arrived: false,
+    vendorMoved: false,
     target: undefined as HTMLElement | undefined,
   }
   pending = request
   await nextTick()
   if (current !== navigation) return
-  request.acceptingFocus = false
   const target = request.target
-  if (!request.arrived || !target) {
+  if (!request.vendorMoved || !target) {
     cancelNavigation()
     return
   }
@@ -130,6 +131,7 @@ onBeforeUnmount(cancelNavigation)
     @pointerdown.capture="cancelNavigation"
     @blur.capture="captureBlur"
     @focus.capture="captureFocus"
+    @nv-roving-focus.capture="captureNavigation"
     :class="cn('overflow-hidden rounded-xl border border-border bg-card', props.class)"
   >
     <slot />
