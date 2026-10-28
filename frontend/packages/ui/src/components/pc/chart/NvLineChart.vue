@@ -103,7 +103,15 @@ const validBands = computed(() => {
       const hi = Math.min(Math.max(...domain), Math.max(band.from / factor, band.to / factor))
       return lo > hi ? [] : [{ ...band, from: lo, to: hi }]
     })
-    .map((band, index) => ({ ...band, number: index + 1 }))
+    .map((band, index) => ({
+      ...band,
+      number: index + 1,
+      // Plotband Y labels add the band's startY; anchor the key to plot rows instead.
+      labelOffsetY:
+        4 +
+        index * 18 -
+        (band.axis === 'y' ? Math.min(component.yScale(band.from), component.yScale(band.to)) : 0),
+    }))
 })
 const positionedMarkers = computed(() => {
   void revision.value
@@ -204,7 +212,7 @@ const tooltipTemplate = (d: Row) => {
           :to="band.to"
           :label-text="`[${band.number}]`"
           :label-position="PlotbandLabelPosition.TopInside"
-          :label-offset-y="4 + (band.number - 1) * 18"
+          :label-offset-y="band.labelOffsetY"
           label-color="var(--foreground)"
           :color="`color-mix(in oklch, ${tones[band.tone ?? 'neutral']} 12%, transparent)`"
           :exclude-from-domain-calculation="true"

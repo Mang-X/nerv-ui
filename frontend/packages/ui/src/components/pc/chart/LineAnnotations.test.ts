@@ -143,6 +143,13 @@ describe('line annotations with actual Unovis producer', () => {
         ['x', 'width'],
         ['y', 'height'],
       ]) {
+        if (coordinate === 'y') {
+          const y = Number(text.getAttribute('y'))
+          expect(y).toBe(4 + (number - 1) * 18)
+          const line = producer<Line<unknown>>(w.getComponent(VisLine as never) as VueWrapper)
+          expect(y).toBeLessThanOrEqual(Math.max(...line.yScale.range().map(Number)))
+          continue
+        }
         const start = Number(rect.getAttribute(coordinate))
         const end = start + Number(rect.getAttribute(size))
         expect(Number(text.getAttribute(coordinate))).toBeGreaterThanOrEqual(start)
@@ -277,4 +284,26 @@ it('separates nested same-center range labels and retains full long names with a
   expect(entries[0].text()).toContain('横轴 0–2')
   expect(entries[1].text()).toContain('[2] 完整的内层晚间活动范围')
   expect(entries[1].text()).toContain('横轴 0.5–1.5')
+})
+
+it('places Y range numbers on plot-relative rows regardless of range starts and bottom clipping', async () => {
+  const { w } = await chart({
+    bands: [
+      { id: 'a', axis: 'y', from: 10, to: 20, label: '甲范围' },
+      { id: 'b', axis: 'y', from: 12, to: 22, label: '乙范围' },
+      { id: 'bottom', axis: 'y', from: 0, to: 1, label: '低位范围' },
+    ],
+  })
+  const bands = w.findAllComponents(VisPlotband as never) as VueWrapper[]
+  const ys = bands.map((b) =>
+    Number(producer<Plotband<unknown>>(b).element.querySelector('text')!.getAttribute('y')),
+  )
+  expect(ys).toEqual([4, 22, 40])
+  expect(w.get('[aria-label="范围说明"]').text()).toContain('[3] 低位范围')
+  await w.setProps({ bands: [{ id: 'bottom', axis: 'y', from: 0, to: 1, label: '低位范围' }] })
+  await rendered()
+  const band = w.getComponent(VisPlotband as never) as VueWrapper
+  expect(producer<Plotband<unknown>>(band).element.querySelector('text')!.getAttribute('y')).toBe(
+    '4',
+  )
 })
