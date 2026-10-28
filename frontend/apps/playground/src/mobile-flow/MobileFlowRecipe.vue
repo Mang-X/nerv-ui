@@ -86,7 +86,9 @@ watch(
   { flush: 'sync' },
 )
 function back() {
+  const completed = receipt.value
   invalidate()
+  receipt.value = completed
   step.value = 0
 }
 function scan(code: string) {
@@ -112,11 +114,13 @@ async function execute() {
       signal,
     )
     if (current !== revision) return
-    if (!result?.receipt?.trim()) throw new Error('尚未收到确认，请重试')
+    if (!result?.receipt?.trim()) {
+      error.value = '尚未收到确认，请重试'
+      return
+    }
     receipt.value = result.receipt
-  } catch (cause) {
-    if (current === revision)
-      error.value = cause instanceof Error ? cause.message : '暂时未能完成，请重试'
+  } catch {
+    if (current === revision) error.value = '暂时未能完成，请重试'
   } finally {
     if (current === revision) pending.value = false
   }
