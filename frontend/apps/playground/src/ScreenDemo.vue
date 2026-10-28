@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue'
 import { NvScreenScaler, useColorMode, useTheme, type ScaleMode } from '@nerv-iip/ui'
+import ScreenDashboardDemo from './screen/ScreenDashboardDemo.vue'
 import ScreenStageDemo from './screen/ScreenStageDemo.vue'
 import ScreenBackgroundDemo from './screen/ScreenBackgroundDemo.vue'
 import ScreenLayoutDemo from './screen/ScreenLayoutDemo.vue'
@@ -16,6 +17,7 @@ import ScreenStatusHeroDemo from './screen/ScreenStatusHeroDemo.vue'
 import ScreenTablesDemo from './screen/ScreenTablesDemo.vue'
 
 const props = defineProps<{ section?: string }>()
+const recipes = computed(() => props.section === '#screen/recipes')
 const backgrounds = computed(() => props.section === '#screen/backgrounds')
 const layout = computed(() => props.section === '#screen/layout')
 const summaryCards = computed(() => props.section === '#screen/summary-cards')
@@ -65,7 +67,8 @@ const { theme, setTheme } = useTheme()
             !summaryCards &&
             !statusHero &&
             !stageFlow &&
-            !heatmap
+            !heatmap &&
+            !recipes
               ? 'page'
               : undefined
           "
@@ -77,6 +80,7 @@ const { theme, setTheme } = useTheme()
         <a href="#screen/charts" :aria-current="charts ? 'page' : undefined">内容与到访</a>
         <a href="#screen/data" :aria-current="data ? 'page' : undefined">流动消息</a>
         <a href="#screen/tables" :aria-current="tables ? 'page' : undefined">清单与事件</a>
+        <a href="#screen/recipes" :aria-current="recipes ? 'page' : undefined">安排看板</a>
         <a href="#screen/summary-cards" :aria-current="summaryCards ? 'page' : undefined"
           >空间一瞥</a
         >
@@ -166,7 +170,8 @@ const { theme, setTheme } = useTheme()
                                   : '城市文化空间舞台'
         "
       >
-        <ScreenBackgroundDemo v-if="backgrounds" />
+        <ScreenDashboardDemo v-if="recipes" />
+        <ScreenBackgroundDemo v-else-if="backgrounds" />
         <ScreenLayoutDemo v-else-if="layout" />
         <ScreenSummaryCardsDemo v-else-if="summaryCards" />
         <ScreenSummaryDemo v-else-if="summary" />
