@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LoginDemo from './login/LoginDemo.vue'
 import ScreenParameterDetailDemo from './screen/ScreenParameterDetailDemo.vue'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import DirectoryDemo from './directory-detail/DirectoryDemo.vue'
@@ -101,8 +102,12 @@ function addProject() {
 </script>
 
 <template>
+  <LoginDemo
+    v-if="surface.startsWith('#login/')"
+    :space="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <ScreenParameterDetailDemo
-    v-if="surface.startsWith('#screen/parameter-detail/')"
+    v-else-if="surface.startsWith('#screen/parameter-detail/')"
     :key="surface"
     :context="surface.endsWith('/studio') ? 'studio' : 'library'"
   />
@@ -206,6 +211,7 @@ function addProject() {
       <a href="#shell/library" class="inline-flex min-h-11 items-center px-4 underline">晨光书房</a>
       <a href="#shell/studio" class="inline-flex min-h-11 items-center px-4 underline">周末画室</a>
       <a href="#tree/library" class="inline-flex min-h-11 items-center px-4 underline">空间分区</a>
+      <a href="#login/library">空间登录与改密</a>
       <a href="#entity-multi-picker" class="inline-flex min-h-11 items-center px-4 underline"
         >挑选去处</a
       >
