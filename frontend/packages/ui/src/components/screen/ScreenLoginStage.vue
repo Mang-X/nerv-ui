@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onBeforeUnmount, useTemplateRef } from 'vue'
+import { ref, watch, onBeforeUnmount, useTemplateRef, nextTick } from 'vue'
 const props = withDefaults(
   defineProps<{
     title: string
@@ -45,8 +45,14 @@ watch(
   },
   { flush: 'sync' },
 )
+let submitting = false
 function submit() {
-  if (!props.pending && !props.disabled) emit('submit')
+  if (props.pending || props.disabled || submitting) return
+  submitting = true
+  emit('submit')
+  void nextTick(() => {
+    if (alive) submitting = false
+  })
 }
 const particles = [
   { x: 8, y: 22, s: 7, tone: 'cyan', dur: 12, d: 0, dy: -18 },

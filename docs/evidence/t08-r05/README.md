@@ -30,14 +30,18 @@
 
 - RED：`pnpm -C frontend --filter @nerv-iip/playground test src/screen/ScreenLoginStage.test.ts`，实际脚本扩大为 src 全桶，exit 1；2 failed / 431 passed，保留 `red-01.log`，不重跑全桶。
 - GREEN：`pnpm -C frontend --filter @nerv-iip/playground exec vp test run src/screen/ScreenLoginStage.test.ts`，2/2 然后 3/3；`green-01.log`、`green-02.log`。均含 jsdom CSS parse 提示，不当真实渲染证据。
-- 最终 affected：`pnpm -C frontend --filter @nerv-iip/playground exec vp test run src/screen/ScreenLoginStage.test.ts src/ScreenDemo.test.ts --reporter=json --outputFile=../../../docs/evidence/t08-r05/affected-04.json`，17/17，exit 0。前轮 `affected-03.json` 曾误写 checkout 父目录，已移动归档，只清理自有文件；保留该事实。
+- 最终 affected：`pnpm -C frontend --filter @nerv-iip/playground exec vp test run src/screen/ScreenLoginStage.test.ts src/ScreenDemo.test.ts --reporter=json --outputFile=../../../docs/evidence/t08-r05/affected-05.json`，18/18，exit 0。前轮 `affected-03.json` 曾误写 checkout 父目录，已移动归档，只清理自有文件；保留该事实。
 - `pnpm -C frontend --filter @nerv-iip/ui exec vp test run src/nvui-naming.contract.test.ts src/ui-primitives.contract.test.ts`：255/255，exit 0，`contracts-01.log`。
-- UI types / host types：各自 `pnpm -C frontend --filter <包> typecheck`，exit 0，见 `ui-types-01.log`、`types-03.log`。
-- `pnpm -C frontend --filter @nerv-iip/playground build`：exit 0，`build-02.log`，保留 vendor pure annotation 提示。
-- scoped fmt/lint：`fmt-*.log`、`lint-02.log`；仅改变文件，不触冻结区。根 README 使用非空 stdin 输出再 cmp；人工 Markdown 链接与 diff 检查另记 final-check 日志。
+- UI types / host types：各自 `pnpm -C frontend --filter <包> typecheck`，exit 0，见 `ui-types-01.log`、`types-04.log`。
+- `pnpm -C frontend --filter @nerv-iip/playground build`：exit 0，`build-03.log`，保留 vendor pure annotation 提示。
+- scoped fmt/lint：`fmt-*.log`、`lint-03.log`；仅改变文件，不触冻结区。根 README 使用非空 stdin 输出再 cmp；人工 Markdown 链接与 diff 检查另记 final-check 日志。
 
 测试 JSON success=true，runtime/unhandled 专用字段缺失，数量 UNKNOWN。无继承 PASS 被记为 fresh；历史 global fmt 3/main RAW 2/docs alias ENOTDIR/parallel timeout 未修复、未复跑。vendor policy 不作为真实 vendor 证据。
 
 ## 未运行
 
 browser / 宽窄视觉 / 真实 Enter 与辅助技术 / HTTP / docs live / CI / packed / device / vendor / APS production 全部 UNRUN。许可 UNKNOWN。#43/PR122 不在本票。交父独立审核；尚不能签整票。
+
+## 同轮次重复提交修复
+
+`coalesces same turn submit before the host pending prop reaches the child`：`red-submit-01.log` 实际 1 failed / 4 passed；局部 nextTick 锁后 GREEN，最终 affected 18/18。组件卸载后 nextTick 不改状态；不引入 timer 或认证状态。

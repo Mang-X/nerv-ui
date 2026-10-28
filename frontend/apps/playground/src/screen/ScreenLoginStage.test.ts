@@ -87,3 +87,14 @@ it('lets both neutral hosts own waiting and error without claiming authenticatio
     page.unmount()
   }
 })
+
+it('coalesces same turn submit before the host pending prop reaches the child', async () => {
+  const page = mount(NvScreenLoginStage, {
+    props: { title: '入口', imageSrc: '', imageWidth: 100, imageHeight: 100 },
+  })
+  const form = page.get('form').element
+  form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+  form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+  expect(page.emitted('submit')).toHaveLength(1)
+  page.unmount()
+})
