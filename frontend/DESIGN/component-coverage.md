@@ -177,3 +177,9 @@ T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / Filter
 | UX 概念            | PC  | mobile | touch | screen                                       |
 | ------------------ | --- | ------ | ----- | -------------------------------------------- |
 | 中性详情与参数取值 | —   | —      | —     | `NvScreenDetailDialog` / `NvScreenParameter` |
+
+## C01 宿主组合（非新增组件）
+
+| 组合                                     | PC              | PDA           | touch | screen          |
+| ---------------------------------------- | --------------- | ------------- | ----- | --------------- |
+| [登录与改密](components/login-recipe.md) | 两类分栏 recipe | 安全区 recipe | —     | R05 slot recipe |
