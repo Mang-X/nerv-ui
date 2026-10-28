@@ -225,6 +225,7 @@ export default defineConfig({
         {
           text: '排产 Scheduling',
           items: [
+            { text: '已保存计划只读组合', link: '/components/desktop/scheduling-saved-plan' },
             { text: 'GanttChart 工单甘特图', link: '/components/desktop/gantt-chart' },
             {
               text: 'ResourceSchedulerBoard 资源甘特图',

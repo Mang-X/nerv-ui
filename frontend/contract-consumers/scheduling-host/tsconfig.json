@@ -8,6 +8,7 @@
     "models.ts",
     "consumption.ts",
     "async-candidates-consumption.ts",
-    "day-print-consumption.ts"
+    "day-print-consumption.ts",
+    "saved-plan-consumption.ts"
   ]
 }

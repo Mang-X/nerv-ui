@@ -107,7 +107,9 @@ function addProject() {
 
 <template>
   <SavedPlanDemo
-    v-if="surface.startsWith('#schedule-saved/library') || surface.startsWith('#schedule-saved/studio')"
+    v-if="
+      surface.startsWith('#schedule-saved/library') || surface.startsWith('#schedule-saved/studio')
+    "
     :venue="surface.startsWith('#schedule-saved/studio') ? 'studio' : 'library'"
     :surface="surface"
   />

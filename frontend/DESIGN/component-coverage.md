@@ -190,3 +190,11 @@ T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / Filter
 | [登录与改密](components/login-recipe.md) | 两类分栏 recipe | 安全区 recipe | —     | R05 slot recipe |
 
 T08/R13：PC `NvLineChart` 增加可选图内多范围与点定位；touch/mobile/screen 本票均为 `—`，不迁入 SPC 算法。
+
+## P15 已保存计划（scheduling 专用包）
+
+| 组件                                             | 能力                         | PC            | mobile | touch | screen |
+| ------------------------------------------------ | ---------------------------- | ------------- | ------ | ----- | ------ |
+| SchedulingSavedPlan / SchedulingPlanGantt        | 已保存计划资源图、详情与搜索 | scheduling/PC | —      | —     | —      |
+| SavedPlanOrders / SchedulingPlanOrders           | 关联组、工单、活动树表       | scheduling/PC | —      | —     | —      |
+| SavedPlanWorkOrderLink / SchedulingWorkOrderLink | host 授权导航                | scheduling/PC | —      | —     | —      |
