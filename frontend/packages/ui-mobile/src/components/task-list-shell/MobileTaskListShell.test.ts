@@ -1,3 +1,4 @@
+import { defineComponent, h, ref } from 'vue'
 import { mount, flushPromises } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { NvMobileTaskListShell } from '../../index'
@@ -22,7 +23,7 @@ function setup(extra = {}) {
   mounted.push(w)
   return w
 }
-function dimensions(w: ReturnType<typeof setup>, height: () => number) {
+function dimensions(w: ReturnType<typeof mount>, height: () => number) {
   const el = w.get('.nv-m-pr-scroll').element as HTMLElement
   let top = 0
   Object.defineProperties(el, {
@@ -274,3 +275,62 @@ it('settles a declined pull after pausing during the drag and accepts a fresh re
   await w.setProps({ pending: null, pageKey: 1 })
   expect(area.attributes('style')).toContain('translateY(0px)')
 })
+
+it('wheel over a slotted row button cancels cross-page restoration', async () => {
+  let height = 400
+  const w = mount(NvMobileTaskListShell, {
+    props: {
+      sourceKey: 'a',
+      filterKey: 'all',
+      pageKey: 0,
+      loaded: 1,
+      state: 'ready',
+      hasMore: true,
+      storage: { load: () => ({ filterKey: 'all', scrollTop: 900 }), save: vi.fn() },
+    },
+    slots: { default: '<button>打开手记</button>' },
+  })
+  mounted.push(w)
+  const el = dimensions(w, () => height)
+  await flushPromises()
+  expect(el.scrollTop).toBe(200)
+  expect(w.emitted('loadMore')).toHaveLength(1)
+  await w.setProps({ pending: 'append' })
+  await w.get('.nv-m-pr-scroll button').trigger('wheel', { deltaY: 100 })
+  height = 1400
+  await w.setProps({ pending: null, pageKey: 1, loaded: 2 })
+  await flushPromises()
+  expect(el.scrollTop).toBe(200)
+})
+
+it.each([true, false])(
+  'queued accepted filter restore honors manual cancellation=%s',
+  async (cancel) => {
+    const filter = ref('all')
+    const storage = { load: () => ({ filterKey: 'saved', scrollTop: 900 }), save: vi.fn() }
+    const w = mount(
+      defineComponent({
+        setup() {
+          return () =>
+            h(NvMobileTaskListShell, {
+              sourceKey: 'a',
+              filterKey: filter.value,
+              pageKey: 0,
+              loaded: 1,
+              state: 'ready',
+              hasMore: true,
+              storage: storage,
+              onRestoreFilter: (value: string) => {
+                filter.value = value
+              },
+            })
+        },
+      }),
+    )
+    mounted.push(w)
+    const el = dimensions(w, () => 2000)
+    if (cancel) el.dispatchEvent(new Event('wheel', { bubbles: true }))
+    await flushPromises()
+    expect(el.scrollTop).toBe(cancel ? 0 : 900)
+  },
+)

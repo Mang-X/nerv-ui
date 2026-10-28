@@ -37,6 +37,7 @@ const appending = computed(() => props.pending === 'append')
 const target = shallowRef<number>()
 let requestedFilter: string | undefined
 let epoch = 0
+let filterEpoch = 0
 let active = false
 let attempted: string | undefined
 let requestedPage: string | number | undefined
@@ -54,8 +55,9 @@ function current() {
     owner[2] === props.storage
   )
 }
-function cancel() {
+function cancel(preserveFilterRequest = false) {
   epoch++
+  if (!preserveFilterRequest) filterEpoch++
   target.value = undefined
   attempted = undefined
   requestedPage = undefined
@@ -95,11 +97,13 @@ function loadPosition() {
     requestedFilter = state.filterKey
     const source = props.sourceKey,
       storage = props.storage
+    const ticket = filterEpoch
     emit('restoreFilter', state.filterKey)
     // The host may refuse. Never query or scroll under a speculative filter.
     void nextTick(() => {
       if (
         active &&
+        ticket === filterEpoch &&
         props.sourceKey === source &&
         props.storage === storage &&
         props.filterKey === state?.filterKey
@@ -145,7 +149,8 @@ function scroll(top: number) {
   save(top)
 }
 function manual(event: Event) {
-  if ((event.target as HTMLElement)?.closest('button, select, input, a')) return
+  if (event.type !== 'wheel' && (event.target as HTMLElement)?.closest('button, select, input, a'))
+    return
   cancel()
 }
 function request(kind: 'refresh' | 'loadMore' | 'retry' | 'retryLoadMore') {
@@ -172,6 +177,7 @@ watch(
   (paused) => {
     if (paused) {
       epoch++
+      filterEpoch++
       requestedPage = undefined
     }
   },
@@ -180,7 +186,7 @@ watch(
 watch(
   () => props.filterKey,
   () => {
-    cancel()
+    cancel(props.filterKey === requestedFilter)
     owner = identity()
     // Explicit filter changes start at the top, and never reload another filter's position.
     programmaticTop = 0
