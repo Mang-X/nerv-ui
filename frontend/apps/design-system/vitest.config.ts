@@ -27,6 +27,7 @@ export default defineConfig({
       'docs.contract.test.ts',
       'scheduling-live.contract.test.ts',
       'scheduling-host.test.ts',
+      'snapshot-comparison-host.test.ts',
     ],
   },
 })

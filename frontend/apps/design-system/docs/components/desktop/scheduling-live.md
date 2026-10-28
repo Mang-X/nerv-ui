@@ -28,6 +28,6 @@ SchedulingDraftBoard 内部真实组合 SchedulingDraftFeedback 与 SchedulingDr
 
 save/clear 接收当前模型副本和 AbortSignal，严格 true 才表示成功；false、throw 或缺 callback 均保留草案并给安全提示，可再次尝试。清空取消不执行；重试模式首次 false、第二次 true。延迟失败期间替换来源或收起安排使旧回执失效，不污染新来源。clear 成功在本页恢复当前来源基线，不表示删除服务记录。回调只在点击时创建短时计时器，SSR 不启动常驻任务。
 
-本组合未自定义 slots；使用组件默认内容。完整 props/events 与接纳合同见[面板合同](../../../../../../docs/scheduling-panels.md)、[草案合同](../../../../../../docs/scheduling-draft.md)。兼容别名复用相同公开实现，不重复计数。快照、比较、请求异步、工作台和日安排由后续文档项覆盖。
+本组合未自定义 slots；使用组件默认内容。完整 props/events 与接纳合同见[面板合同](../../../../../../docs/scheduling-panels.md)、[草案合同](../../../../../../docs/scheduling-draft.md)。兼容别名复用相同公开实现，不重复计数。快照与比较见[排程事实与比较](./scheduling-facts)；请求异步、工作台和日安排由后续文档项覆盖。
 
 返回[工单图](./gantt-chart)或[资源图](./resource-scheduler)，原图面全部变体保留。
