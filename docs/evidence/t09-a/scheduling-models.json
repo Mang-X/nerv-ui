@@ -1,0 +1,1399 @@
+[
+  {
+    "tasks": [
+      {
+        "id": "order:WO-2026-001",
+        "orderId": "WO-2026-001",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-001",
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T19:00:00.000Z",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "order:WO-2026-002",
+        "orderId": "WO-2026-002",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-002",
+        "startUtc": "2026-06-10T11:00:00.000Z",
+        "endUtc": "2026-06-10T21:00:00.000Z",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "order:WO-2026-003",
+        "orderId": "WO-2026-003",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-003",
+        "startUtc": "2026-06-10T19:00:00.000Z",
+        "endUtc": "2026-06-11T04:00:00.000Z",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "WO1-10",
+        "orderId": "WO-2026-001",
+        "operationId": "下料",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-001",
+        "type": "operation",
+        "text": "下料",
+        "resourceId": "激光切割-01",
+        "workCenterId": "激光切割-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "激光切割-01",
+            "label": "激光切割-01"
+          },
+          "device": {
+            "id": "DEV-L1",
+            "label": "激光切割机 L1"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T11:00:00.000Z",
+        "dueUtc": "2026-06-11T04:00:00.000Z",
+        "executionResourceId": "激光切割-01",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [],
+        "successors": [
+          "WO-2026-001 · 折弯"
+        ],
+        "product": "前减振器总成",
+        "quantity": 120,
+        "priority": "medium",
+        "kitting": 1,
+        "load": 0.8,
+        "colorKey": "cut",
+        "isRush": false,
+        "status": {
+          "label": "未开始",
+          "tone": "neutral"
+        }
+      },
+      {
+        "id": "WO1-20",
+        "orderId": "WO-2026-001",
+        "operationId": "折弯",
+        "operationSequence": 20,
+        "parentId": "order:WO-2026-001",
+        "type": "operation",
+        "text": "折弯",
+        "resourceId": "折弯-02",
+        "workCenterId": "折弯-02",
+        "dimensions": {
+          "workCenter": {
+            "id": "折弯-02",
+            "label": "折弯-02"
+          },
+          "device": {
+            "id": "DEV-B2",
+            "label": "数控折弯机 B2"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T11:00:00.000Z",
+        "endUtc": "2026-06-10T14:00:00.000Z",
+        "dueUtc": "2026-06-11T04:00:00.000Z",
+        "executionResourceId": "折弯-02",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [
+          "WO-2026-001 · 下料"
+        ],
+        "successors": [
+          "WO-2026-001 · 焊接"
+        ],
+        "product": "前减振器总成",
+        "quantity": 120,
+        "priority": "medium",
+        "kitting": 0.85,
+        "load": 0.8,
+        "colorKey": "bend",
+        "isRush": false,
+        "status": {
+          "label": "未开始",
+          "tone": "neutral"
+        }
+      },
+      {
+        "id": "WO1-30",
+        "orderId": "WO-2026-001",
+        "operationId": "焊接",
+        "operationSequence": 30,
+        "parentId": "order:WO-2026-001",
+        "type": "operation",
+        "text": "焊接",
+        "resourceId": "焊接-01",
+        "workCenterId": "焊接-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "焊接-01",
+            "label": "焊接-01"
+          },
+          "device": {
+            "id": "DEV-W1",
+            "label": "焊接机器人 W1"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-WELD",
+            "label": "焊装线"
+          }
+        },
+        "startUtc": "2026-06-10T14:00:00.000Z",
+        "endUtc": "2026-06-10T19:00:00.000Z",
+        "dueUtc": "2026-06-11T04:00:00.000Z",
+        "executionResourceId": "焊接-01",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [
+          "WO-2026-001 · 折弯"
+        ],
+        "successors": [],
+        "product": "前减振器总成",
+        "quantity": 120,
+        "priority": "medium",
+        "kitting": 0.85,
+        "load": 0.8,
+        "colorKey": "weld",
+        "isRush": false,
+        "status": {
+          "label": "进行中",
+          "tone": "info"
+        },
+        "plannedStartUtc": "2026-06-10T14:00:00.000Z",
+        "plannedEndUtc": "2026-06-10T18:00:00.000Z",
+        "milestoneLabel": "冲焊完成"
+      },
+      {
+        "id": "WO2-10",
+        "orderId": "WO-2026-002",
+        "operationId": "下料",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-002",
+        "type": "operation",
+        "text": "下料",
+        "resourceId": "激光切割-01",
+        "workCenterId": "激光切割-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "激光切割-01",
+            "label": "激光切割-01"
+          },
+          "device": {
+            "id": "DEV-L1",
+            "label": "激光切割机 L1"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T11:00:00.000Z",
+        "endUtc": "2026-06-10T15:00:00.000Z",
+        "dueUtc": "2026-06-11T04:00:00.000Z",
+        "executionResourceId": "激光切割-01",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [],
+        "successors": [
+          "WO-2026-002 · 机加工"
+        ],
+        "product": "后桥壳体",
+        "quantity": 120,
+        "priority": "medium",
+        "kitting": 0.85,
+        "load": 0.8,
+        "colorKey": "cut",
+        "isRush": true,
+        "status": {
+          "label": "未开始",
+          "tone": "neutral"
+        }
+      },
+      {
+        "id": "WO2-20",
+        "orderId": "WO-2026-002",
+        "operationId": "机加工",
+        "operationSequence": 20,
+        "parentId": "order:WO-2026-002",
+        "type": "operation",
+        "text": "机加工",
+        "resourceId": "加工中心-03",
+        "workCenterId": "加工中心-03",
+        "dimensions": {
+          "workCenter": {
+            "id": "加工中心-03",
+            "label": "加工中心-03"
+          },
+          "device": {
+            "id": "DEV-C3",
+            "label": "数控机床 M3"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-MACH",
+            "label": "机加线"
+          }
+        },
+        "startUtc": "2026-06-10T15:00:00.000Z",
+        "endUtc": "2026-06-10T21:00:00.000Z",
+        "dueUtc": "2026-06-11T04:00:00.000Z",
+        "executionResourceId": "加工中心-03",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [
+          "WO-2026-002 · 下料"
+        ],
+        "successors": [],
+        "product": "后桥壳体",
+        "quantity": 120,
+        "priority": "medium",
+        "kitting": 0.85,
+        "load": 0.8,
+        "changeoverMin": 45,
+        "colorKey": "mach",
+        "isRush": true,
+        "status": {
+          "label": "未开始",
+          "tone": "neutral"
+        }
+      },
+      {
+        "id": "WO3-10",
+        "orderId": "WO-2026-003",
+        "operationId": "装配",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-003",
+        "type": "operation",
+        "text": "装配",
+        "resourceId": "焊接-01",
+        "workCenterId": "焊接-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "焊接-01",
+            "label": "焊接-01"
+          },
+          "device": {
+            "id": "DEV-W1",
+            "label": "焊接机器人 W1"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-WELD",
+            "label": "焊装线"
+          }
+        },
+        "startUtc": "2026-06-10T19:00:00.000Z",
+        "endUtc": "2026-06-11T00:00:00.000Z",
+        "dueUtc": "2026-06-11T04:00:00.000Z",
+        "executionResourceId": "焊接-01",
+        "locked": false,
+        "hasConflict": true,
+        "conflictReason": "capacity",
+        "predecessors": [],
+        "successors": [
+          "WO-2026-003 · 总装"
+        ],
+        "product": "转向节",
+        "quantity": 120,
+        "priority": "high",
+        "kitting": 0.6,
+        "load": 1.25,
+        "colorKey": "weld",
+        "isRush": false,
+        "status": {
+          "label": "未开始",
+          "tone": "neutral"
+        },
+        "plannedStartUtc": "2026-06-10T16:00:00.000Z",
+        "plannedEndUtc": "2026-06-10T21:00:00.000Z"
+      },
+      {
+        "id": "WO3-20",
+        "orderId": "WO-2026-003",
+        "operationId": "总装",
+        "operationSequence": 20,
+        "parentId": "order:WO-2026-003",
+        "type": "operation",
+        "text": "总装",
+        "resourceId": "加工中心-03",
+        "workCenterId": "加工中心-03",
+        "dimensions": {
+          "workCenter": {
+            "id": "加工中心-03",
+            "label": "加工中心-03"
+          },
+          "device": {
+            "id": "DEV-C3",
+            "label": "数控机床 M3"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-MACH",
+            "label": "机加线"
+          }
+        },
+        "startUtc": "2026-06-10T21:00:00.000Z",
+        "endUtc": "2026-06-11T04:00:00.000Z",
+        "dueUtc": "2026-06-11T04:00:00.000Z",
+        "executionResourceId": "加工中心-03",
+        "locked": false,
+        "hasConflict": true,
+        "conflictReason": "dueDate",
+        "predecessors": [
+          "WO-2026-003 · 装配"
+        ],
+        "successors": [],
+        "product": "转向节",
+        "quantity": 120,
+        "priority": "high",
+        "kitting": 0.85,
+        "load": 0.8,
+        "colorKey": "mach",
+        "isRush": false,
+        "status": {
+          "label": "未开始",
+          "tone": "neutral"
+        },
+        "plannedStartUtc": "2026-06-10T18:00:00.000Z",
+        "plannedEndUtc": "2026-06-11T01:00:00.000Z"
+      },
+      {
+        "id": "WO1-MS",
+        "orderId": "WO-2026-001",
+        "operationId": "",
+        "operationSequence": 40,
+        "parentId": "order:WO-2026-001",
+        "type": "operation",
+        "text": "冲焊下线",
+        "startUtc": "2026-06-10T19:00:00.000Z",
+        "endUtc": "2026-06-10T19:00:00.000Z",
+        "isMilestone": true,
+        "colorKey": "weld",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "BLK-MNT-1",
+        "orderId": "",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "operation",
+        "text": "定期保养",
+        "resourceId": "折弯-02",
+        "workCenterId": "折弯-02",
+        "dimensions": {
+          "workCenter": {
+            "id": "折弯-02",
+            "label": "折弯-02"
+          },
+          "device": {
+            "id": "DEV-B2",
+            "label": "数控折弯机 B2"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T09:00:00.000Z",
+        "endUtc": "2026-06-10T12:00:00.000Z",
+        "blockKind": "maintenance",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "BLK-CO-1",
+        "orderId": "",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "operation",
+        "text": "产品换型",
+        "resourceId": "加工中心-03",
+        "workCenterId": "加工中心-03",
+        "dimensions": {
+          "workCenter": {
+            "id": "加工中心-03",
+            "label": "加工中心-03"
+          },
+          "device": {
+            "id": "DEV-C3",
+            "label": "数控机床 M3"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-MACH",
+            "label": "机加线"
+          }
+        },
+        "startUtc": "2026-06-10T21:00:00.000Z",
+        "endUtc": "2026-06-10T22:00:00.000Z",
+        "blockKind": "changeover",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "BLK-DT-1",
+        "orderId": "",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "operation",
+        "text": "计划停机",
+        "resourceId": "焊接-01",
+        "workCenterId": "焊接-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "焊接-01",
+            "label": "焊接-01"
+          },
+          "device": {
+            "id": "DEV-W1",
+            "label": "焊接机器人 W1"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-WELD",
+            "label": "焊装线"
+          }
+        },
+        "startUtc": "2026-06-11T00:00:00.000Z",
+        "endUtc": "2026-06-11T03:00:00.000Z",
+        "blockKind": "downtime",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "BLK-LC-1",
+        "orderId": "",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "operation",
+        "text": "换线窗口",
+        "resourceId": "激光切割-01",
+        "workCenterId": "激光切割-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "激光切割-01",
+            "label": "激光切割-01"
+          },
+          "device": {
+            "id": "DEV-L1",
+            "label": "激光切割机 L1"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T15:00:00.000Z",
+        "endUtc": "2026-06-10T17:00:00.000Z",
+        "blockKind": "lineChange",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null
+      }
+    ],
+    "links": [
+      {
+        "id": "WO1-10->WO1-20",
+        "source": "WO1-10",
+        "target": "WO1-20",
+        "type": "finish_to_start"
+      },
+      {
+        "id": "WO1-20->WO1-30",
+        "source": "WO1-20",
+        "target": "WO1-30",
+        "type": "finish_to_start"
+      },
+      {
+        "id": "WO2-10->WO2-20",
+        "source": "WO2-10",
+        "target": "WO2-20",
+        "type": "finish_to_start"
+      },
+      {
+        "id": "WO3-10->WO3-20",
+        "source": "WO3-10",
+        "target": "WO3-20",
+        "type": "finish_to_start"
+      }
+    ],
+    "resources": [
+      {
+        "id": "激光切割-01",
+        "text": "激光切割-01"
+      },
+      {
+        "id": "折弯-02",
+        "text": "折弯-02"
+      },
+      {
+        "id": "焊接-01",
+        "text": "焊接-01"
+      },
+      {
+        "id": "加工中心-03",
+        "text": "加工中心-03"
+      }
+    ],
+    "loads": [
+      {
+        "resourceId": "激光切割-01",
+        "windowStartUtc": "2026-06-10T08:00:00.000Z",
+        "windowEndUtc": "2026-06-11T08:00:00.000Z",
+        "assignedMinutes": 420,
+        "availableMinutes": 480,
+        "utilization": 0.88
+      },
+      {
+        "resourceId": "折弯-02",
+        "windowStartUtc": "2026-06-10T08:00:00.000Z",
+        "windowEndUtc": "2026-06-11T08:00:00.000Z",
+        "assignedMinutes": 180,
+        "availableMinutes": 480,
+        "utilization": 0.38
+      },
+      {
+        "resourceId": "焊接-01",
+        "windowStartUtc": "2026-06-10T08:00:00.000Z",
+        "windowEndUtc": "2026-06-11T08:00:00.000Z",
+        "assignedMinutes": 600,
+        "availableMinutes": 480,
+        "utilization": 1.25
+      },
+      {
+        "resourceId": "加工中心-03",
+        "windowStartUtc": "2026-06-10T08:00:00.000Z",
+        "windowEndUtc": "2026-06-11T08:00:00.000Z",
+        "assignedMinutes": 540,
+        "availableMinutes": 480,
+        "utilization": 1.13
+      }
+    ],
+    "conflicts": [
+      {
+        "id": "cf1",
+        "reason": "capacity",
+        "severity": "warning",
+        "orderId": "WO-2026-003",
+        "operationId": "装配",
+        "resourceId": "焊接-01",
+        "message": "焊接-01 在该时段超出可用产能",
+        "taskId": "WO3-10"
+      },
+      {
+        "id": "cf2",
+        "reason": "dueDate",
+        "severity": "error",
+        "orderId": "WO-2026-003",
+        "operationId": "总装",
+        "resourceId": "加工中心-03",
+        "message": "预计完工晚于交期",
+        "taskId": "WO3-20"
+      }
+    ],
+    "unscheduled": [
+      {
+        "orderId": "WO-2026-004",
+        "operationId": "喷涂",
+        "reason": "material",
+        "message": "面漆未齐套,等待采购到货"
+      }
+    ],
+    "materialRisks": [],
+    "equipmentRisks": [],
+    "changes": [],
+    "groupDimensions": [
+      {
+        "key": "workCenter",
+        "label": "工作中心"
+      }
+    ],
+    "horizon": {
+      "startUtc": "2026-06-10T08:00:00.000Z",
+      "endUtc": "2026-06-11T04:00:00.000Z"
+    },
+    "meta": {
+      "planId": "APS-2026-0610",
+      "status": "generated",
+      "algorithmVersion": "heuristic-1"
+    }
+  },
+  {
+    "tasks": [
+      {
+        "id": "order:WO-2026-051",
+        "orderId": "WO-2026-051",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-051",
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T10:00:00.000Z",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "order:WO-2026-052",
+        "orderId": "WO-2026-052",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-052",
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T10:30:00.000Z",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "order:WO-2026-053",
+        "orderId": "WO-2026-053",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-053",
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T11:00:00.000Z",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "order:WO-2026-054",
+        "orderId": "WO-2026-054",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-054",
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T10:00:00.000Z",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "BD-1",
+        "orderId": "WO-2026-051",
+        "operationId": "下料",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-051",
+        "type": "operation",
+        "text": "下料",
+        "resourceId": "激光切割-01",
+        "workCenterId": "激光切割-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "激光切割-01",
+            "label": "激光切割-01"
+          },
+          "device": {
+            "id": "DEV-L1",
+            "label": "激光切割机 L1"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T10:00:00.000Z",
+        "executionResourceId": "激光切割-01",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [],
+        "successors": [],
+        "product": "横梁支架",
+        "quantity": 80,
+        "colorKey": "cut"
+      },
+      {
+        "id": "BD-2",
+        "orderId": "WO-2026-052",
+        "operationId": "折弯",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-052",
+        "type": "operation",
+        "text": "折弯",
+        "resourceId": "折弯-02",
+        "workCenterId": "折弯-02",
+        "dimensions": {
+          "workCenter": {
+            "id": "折弯-02",
+            "label": "折弯-02"
+          },
+          "device": {
+            "id": "DEV-B2",
+            "label": "数控折弯机 B2"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T10:30:00.000Z",
+        "executionResourceId": "折弯-02",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [],
+        "successors": [],
+        "product": "悬架臂",
+        "quantity": 80,
+        "colorKey": "bend"
+      },
+      {
+        "id": "BD-3",
+        "orderId": "WO-2026-053",
+        "operationId": "焊接",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-053",
+        "type": "operation",
+        "text": "焊接",
+        "resourceId": "焊接-01",
+        "workCenterId": "焊接-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "焊接-01",
+            "label": "焊接-01"
+          },
+          "device": {
+            "id": "DEV-W1",
+            "label": "焊接机器人 W1"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-WELD",
+            "label": "焊装线"
+          }
+        },
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T11:00:00.000Z",
+        "executionResourceId": "焊接-01",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [],
+        "successors": [],
+        "product": "车架总成",
+        "quantity": 80,
+        "colorKey": "weld"
+      },
+      {
+        "id": "BD-4",
+        "orderId": "WO-2026-054",
+        "operationId": "机加工",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-054",
+        "type": "operation",
+        "text": "机加工",
+        "resourceId": "加工中心-03",
+        "workCenterId": "加工中心-03",
+        "dimensions": {
+          "workCenter": {
+            "id": "加工中心-03",
+            "label": "加工中心-03"
+          },
+          "device": {
+            "id": "DEV-C3",
+            "label": "数控机床 M3"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-MACH",
+            "label": "机加线"
+          }
+        },
+        "startUtc": "2026-06-10T08:00:00.000Z",
+        "endUtc": "2026-06-10T10:00:00.000Z",
+        "executionResourceId": "加工中心-03",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [],
+        "successors": [],
+        "product": "齿轮箱体",
+        "quantity": 80,
+        "colorKey": "mach"
+      },
+      {
+        "id": "BD-BLK-LC",
+        "orderId": "",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "operation",
+        "text": "换线窗口",
+        "resourceId": "激光切割-01",
+        "workCenterId": "激光切割-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "激光切割-01",
+            "label": "激光切割-01"
+          },
+          "device": {
+            "id": "DEV-L1",
+            "label": "激光切割机 L1"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T11:00:00.000Z",
+        "endUtc": "2026-06-10T13:00:00.000Z",
+        "blockKind": "lineChange",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "BD-BLK-MNT",
+        "orderId": "",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "operation",
+        "text": "定期保养",
+        "resourceId": "折弯-02",
+        "workCenterId": "折弯-02",
+        "dimensions": {
+          "workCenter": {
+            "id": "折弯-02",
+            "label": "折弯-02"
+          },
+          "device": {
+            "id": "DEV-B2",
+            "label": "数控折弯机 B2"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "2026-06-10T11:00:00.000Z",
+        "endUtc": "2026-06-10T13:00:00.000Z",
+        "blockKind": "maintenance",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "BD-BLK-DT",
+        "orderId": "",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "operation",
+        "text": "计划停机",
+        "resourceId": "焊接-01",
+        "workCenterId": "焊接-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "焊接-01",
+            "label": "焊接-01"
+          },
+          "device": {
+            "id": "DEV-W1",
+            "label": "焊接机器人 W1"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-WELD",
+            "label": "焊装线"
+          }
+        },
+        "startUtc": "2026-06-10T11:30:00.000Z",
+        "endUtc": "2026-06-10T13:30:00.000Z",
+        "blockKind": "downtime",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "BD-BLK-CO",
+        "orderId": "",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "operation",
+        "text": "产品换型",
+        "resourceId": "加工中心-03",
+        "workCenterId": "加工中心-03",
+        "dimensions": {
+          "workCenter": {
+            "id": "加工中心-03",
+            "label": "加工中心-03"
+          },
+          "device": {
+            "id": "DEV-C3",
+            "label": "数控机床 M3"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-MACH",
+            "label": "机加线"
+          }
+        },
+        "startUtc": "2026-06-10T11:00:00.000Z",
+        "endUtc": "2026-06-10T13:00:00.000Z",
+        "blockKind": "changeover",
+        "locked": true,
+        "hasConflict": false,
+        "conflictReason": null
+      }
+    ],
+    "links": [],
+    "resources": [
+      {
+        "id": "激光切割-01",
+        "text": "激光切割-01"
+      },
+      {
+        "id": "折弯-02",
+        "text": "折弯-02"
+      },
+      {
+        "id": "焊接-01",
+        "text": "焊接-01"
+      },
+      {
+        "id": "加工中心-03",
+        "text": "加工中心-03"
+      }
+    ],
+    "loads": [
+      {
+        "resourceId": "激光切割-01",
+        "windowStartUtc": "2026-06-10T08:00:00.000Z",
+        "windowEndUtc": "2026-06-10T14:00:00.000Z",
+        "assignedMinutes": 120,
+        "availableMinutes": 360,
+        "utilization": 0.33
+      },
+      {
+        "resourceId": "折弯-02",
+        "windowStartUtc": "2026-06-10T08:00:00.000Z",
+        "windowEndUtc": "2026-06-10T14:00:00.000Z",
+        "assignedMinutes": 150,
+        "availableMinutes": 360,
+        "utilization": 0.42
+      },
+      {
+        "resourceId": "焊接-01",
+        "windowStartUtc": "2026-06-10T08:00:00.000Z",
+        "windowEndUtc": "2026-06-10T14:00:00.000Z",
+        "assignedMinutes": 180,
+        "availableMinutes": 360,
+        "utilization": 0.5
+      },
+      {
+        "resourceId": "加工中心-03",
+        "windowStartUtc": "2026-06-10T08:00:00.000Z",
+        "windowEndUtc": "2026-06-10T14:00:00.000Z",
+        "assignedMinutes": 120,
+        "availableMinutes": 360,
+        "utilization": 0.33
+      }
+    ],
+    "conflicts": [],
+    "unscheduled": [],
+    "materialRisks": [],
+    "equipmentRisks": [],
+    "changes": [],
+    "groupDimensions": [
+      {
+        "key": "workCenter",
+        "label": "工作中心"
+      }
+    ],
+    "horizon": {
+      "startUtc": "2026-06-10T08:00:00.000Z",
+      "endUtc": "2026-06-10T14:00:00.000Z"
+    },
+    "meta": {
+      "planId": "APS-2026-0610-BLK",
+      "status": "generated",
+      "algorithmVersion": "heuristic-1"
+    }
+  },
+  {
+    "tasks": [
+      {
+        "id": "order:WO-2026-011",
+        "orderId": "WO-2026-011",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-011",
+        "startUtc": "hours:1",
+        "endUtc": "hours:11",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "order:WO-2026-012",
+        "orderId": "WO-2026-012",
+        "operationId": "",
+        "operationSequence": 0,
+        "type": "order",
+        "text": "WO-2026-012",
+        "startUtc": "hours:26",
+        "endUtc": "hours:73",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null
+      },
+      {
+        "id": "CAL-1",
+        "orderId": "WO-2026-011",
+        "operationId": "下料",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-011",
+        "type": "operation",
+        "text": "下料",
+        "resourceId": "激光切割-01",
+        "workCenterId": "激光切割-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "激光切割-01",
+            "label": "激光切割-01"
+          },
+          "device": {
+            "id": "DEV-L1",
+            "label": "激光切割机 L1"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "hours:1",
+        "endUtc": "hours:4",
+        "executionResourceId": "激光切割-01",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [],
+        "successors": [
+          "WO-2026-011 · 焊接"
+        ],
+        "product": "横梁支架",
+        "quantity": 80,
+        "colorKey": "cut"
+      },
+      {
+        "id": "CAL-2",
+        "orderId": "WO-2026-011",
+        "operationId": "焊接",
+        "operationSequence": 20,
+        "parentId": "order:WO-2026-011",
+        "type": "operation",
+        "text": "焊接",
+        "resourceId": "焊接-01",
+        "workCenterId": "焊接-01",
+        "dimensions": {
+          "workCenter": {
+            "id": "焊接-01",
+            "label": "焊接-01"
+          },
+          "device": {
+            "id": "DEV-W1",
+            "label": "焊接机器人 W1"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-WELD",
+            "label": "焊装线"
+          }
+        },
+        "startUtc": "hours:7",
+        "endUtc": "hours:11",
+        "executionResourceId": "焊接-01",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [
+          "WO-2026-011 · 下料"
+        ],
+        "successors": [],
+        "product": "横梁支架",
+        "quantity": 80,
+        "colorKey": "weld"
+      },
+      {
+        "id": "CAL-3",
+        "orderId": "WO-2026-012",
+        "operationId": "机加工",
+        "operationSequence": 10,
+        "parentId": "order:WO-2026-012",
+        "type": "operation",
+        "text": "机加工",
+        "resourceId": "加工中心-03",
+        "workCenterId": "加工中心-03",
+        "dimensions": {
+          "workCenter": {
+            "id": "加工中心-03",
+            "label": "加工中心-03"
+          },
+          "device": {
+            "id": "DEV-C3",
+            "label": "数控机床 M3"
+          },
+          "team": {
+            "id": "T-B",
+            "label": "乙班"
+          },
+          "line": {
+            "id": "LN-MACH",
+            "label": "机加线"
+          }
+        },
+        "startUtc": "hours:26",
+        "endUtc": "hours:31",
+        "executionResourceId": "加工中心-03",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [],
+        "successors": [
+          "WO-2026-012 · 折弯"
+        ],
+        "product": "悬架臂",
+        "quantity": 80,
+        "colorKey": "mach"
+      },
+      {
+        "id": "CAL-4",
+        "orderId": "WO-2026-012",
+        "operationId": "折弯",
+        "operationSequence": 20,
+        "parentId": "order:WO-2026-012",
+        "type": "operation",
+        "text": "折弯",
+        "resourceId": "折弯-02",
+        "workCenterId": "折弯-02",
+        "dimensions": {
+          "workCenter": {
+            "id": "折弯-02",
+            "label": "折弯-02"
+          },
+          "device": {
+            "id": "DEV-B2",
+            "label": "数控折弯机 B2"
+          },
+          "team": {
+            "id": "T-A",
+            "label": "甲班"
+          },
+          "line": {
+            "id": "LN-SHEET",
+            "label": "钣金线"
+          }
+        },
+        "startUtc": "hours:69",
+        "endUtc": "hours:73",
+        "executionResourceId": "折弯-02",
+        "locked": false,
+        "hasConflict": false,
+        "conflictReason": null,
+        "predecessors": [
+          "WO-2026-012 · 机加工"
+        ],
+        "successors": [],
+        "product": "悬架臂",
+        "quantity": 80,
+        "colorKey": "bend"
+      }
+    ],
+    "links": [
+      {
+        "id": "CAL-1->CAL-2",
+        "source": "CAL-1",
+        "target": "CAL-2",
+        "type": "finish_to_start"
+      },
+      {
+        "id": "CAL-3->CAL-4",
+        "source": "CAL-3",
+        "target": "CAL-4",
+        "type": "finish_to_start"
+      }
+    ],
+    "resources": [
+      {
+        "id": "激光切割-01",
+        "text": "激光切割-01"
+      },
+      {
+        "id": "焊接-01",
+        "text": "焊接-01"
+      },
+      {
+        "id": "加工中心-03",
+        "text": "加工中心-03"
+      },
+      {
+        "id": "折弯-02",
+        "text": "折弯-02"
+      }
+    ],
+    "loads": [
+      {
+        "resourceId": "激光切割-01",
+        "windowStartUtc": "hours:0",
+        "windowEndUtc": "hours:76",
+        "assignedMinutes": 180,
+        "availableMinutes": 480,
+        "utilization": 0.38
+      },
+      {
+        "resourceId": "焊接-01",
+        "windowStartUtc": "hours:0",
+        "windowEndUtc": "hours:76",
+        "assignedMinutes": 240,
+        "availableMinutes": 480,
+        "utilization": 0.5
+      },
+      {
+        "resourceId": "折弯-02",
+        "windowStartUtc": "hours:0",
+        "windowEndUtc": "hours:76",
+        "assignedMinutes": 240,
+        "availableMinutes": 480,
+        "utilization": 0.5
+      },
+      {
+        "resourceId": "加工中心-03",
+        "windowStartUtc": "hours:0",
+        "windowEndUtc": "hours:76",
+        "assignedMinutes": 300,
+        "availableMinutes": 480,
+        "utilization": 0.63
+      }
+    ],
+    "conflicts": [],
+    "unscheduled": [],
+    "materialRisks": [],
+    "equipmentRisks": [],
+    "changes": [],
+    "groupDimensions": [
+      {
+        "key": "workCenter",
+        "label": "工作中心"
+      }
+    ],
+    "horizon": {
+      "startUtc": "hours:1",
+      "endUtc": "hours:73"
+    },
+    "meta": {
+      "planId": "APS-2026-0612-CAL",
+      "status": "generated",
+      "algorithmVersion": "heuristic-1"
+    }
+  }
+]

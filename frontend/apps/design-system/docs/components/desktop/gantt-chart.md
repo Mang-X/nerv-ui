@@ -230,7 +230,7 @@ order 仅允许未锁定的单段普通工序；分组、里程碑、时间块�
 
 ## 数据模型
 
-组件只消费引擎无关的 `ScheduleModel`,用 `toModel(plan)` 从 APS `SchedulePlanContract` 映射;换引擎只换适配器,组件层与业务层零改动。`toModel` 只采用契约真实字段(时间/资源/依赖/冲突/未排),卡片增强字段当前 APS 未提供,demo 里后置补样例值以演示能力、**生产不伪造**。
+组件只消费引擎无关的 `ScheduleModel`。宿主通过 `toModel(source, adapter)` 显式提供映射；本站共享样例使用文档本地 `demoPlanModel`，保留时间、资源、依赖、冲突及未排事实，展示增强字段由文档宿主补齐。生产宿主必须提供真实来源，不依赖生成 SDK 或隐式 DTO 映射。
 
 ### 字段能力表
 

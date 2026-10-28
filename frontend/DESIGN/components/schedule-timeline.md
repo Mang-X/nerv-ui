@@ -13,7 +13,7 @@
 - `timezones` 为轴展示时区，任务有自己的 `timezone`。缺失/无效显式显示“时区未解析”；备用轴明确标 UTC，任务保留原始实刻。不默认浏览器时区或第一工厂，不转换未带 offset 的 wall time。
 - `facts`、`statusLabels`、`conflictLabel`、`attentionLabel` 和 `windows` 均由宿主提供；窗口仅做裁剪和投影，不推导冻结资格。合法且落在任务包络内的 `segments` 以分段带显示，保留间隙。任务 identity 与泳道 identity 分开。
 - 状态统一使用 `NvStatusBadge`：显式 `conflictLabel` 为 danger、`attentionLabel` 为 warning；锁定和任意 `statusLabels` 为 neutral，不用文案查业务词表。
-- 排版沿用 [基础规范](../foundation.md#字体排版) 的 `text-sm` 正文尺度：轴、泳道、窗口、分段、任务事实/时间和短时详情统一继承；状态徽章由已有组件拥有。密度不靠自定义小字号，时间盒仍按实际区间投影。
+- 排版沿用 [基础规范](https://github.com/Mang-X/nerv-ui/blob/integration/nerv-ui-extraction/frontend/DESIGN/foundation.md#字体排版) 的 `text-sm` 正文尺度：轴、泳道、窗口、分段、任务事实/时间和短时详情统一继承；状态徽章由已有组件拥有。密度不靠自定义小字号，时间盒仍按实际区间投影。
 - 时间条使用无 padding/border 的投影盒与内描边，内容层单独留白，分段对齐完整时间包络。投影小于 96px 的任务保留原始宽度、可聚焦 identity/title；可展开原生“短时任务详情”，阅读标签/时间/事实/状态并选择同一 taskId。详情按钮不表达时间宽度，不扩大时间条命中范围。浏览器亚像素量化仍适用。
 - 点击只发 `taskSelect(taskId)`；`attentionLabel` 单独强调风险，不推导冲突；有 `conflictLabel` 时才也发 `conflictClick(taskId)`。锁定仍可选择，没有修改/拖拽/权限或查询行为。模型更替是唯一事实来源。
 

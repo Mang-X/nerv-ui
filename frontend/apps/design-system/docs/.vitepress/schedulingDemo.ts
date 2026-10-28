@@ -1,5 +1,5 @@
 // 排产组件文档页共享的样例数据(仅供 design-system demo)。
-// 贴合 APS SchedulePlanContract 形状,经 toModel 归一化;缺口卡片字段(负责人/优先级/
+// 文档宿主静态事实,经显式 adapter 归一化;缺口卡片字段(负责人/优先级/
 // 齐套/维度归属等)补样例值以便展示。每次 makeModel() 返回全新模型,页面各持一份、互不影响。
 //
 // toModel 只映射契约真实字段(时间/资源/依赖/冲突/未排…),不涉及 plannedStart/End、
@@ -7,13 +7,14 @@
 // 里按 ScheduleTask 模型(见 packages/scheduling/src/model/types.ts)后置补齐,以便一处数据
 // 就把图例讲的能力(计划 vs 实际基线 / 里程碑 / 资源时间块 / 齐套分级 / 换型 / 瓶颈)全演出来。
 import { toModel } from '@nerv-iip/scheduling'
-import type { ScheduleModel, ScheduleTask } from '@nerv-iip/scheduling'
+import type { ScheduleModel, ScheduleTask } from '@nerv-iip/scheduling/model'
+import { demoPlanModel, type DemoPlan } from './schedulingDemoAdapter'
 
 const H = 3_600_000
 const base = Date.parse('2026-06-10T08:00:00.000Z')
 const iso = (h: number) => new Date(base + h * H).toISOString()
 
-const demoPlan = {
+const demoPlan: DemoPlan = {
   planId: 'APS-2026-0610',
   status: 'generated',
   algorithmVersion: 'heuristic-1',
@@ -212,7 +213,7 @@ const LOAD: Record<string, number> = { 'WO3-10': 1.25 } // 过载瓶颈(焊接-0
 
 /** 返回一份全新的、可拖拽编辑的示例排程模型。 */
 export function makeModel(): ScheduleModel {
-  const m = toModel(demoPlan as never)
+  const m = toModel(demoPlan, demoPlanModel)
   for (const t of m.tasks) {
     if (t.type !== 'operation') continue
     const wc = WC[t.workCenterId ?? ''] ?? WC['激光切割-01']
@@ -362,7 +363,7 @@ export function makeModel(): ScheduleModel {
 const blkBase = Date.parse('2026-06-10T08:00:00.000Z')
 const blkIso = (h: number) => new Date(blkBase + h * H).toISOString()
 
-const blockDemoPlan = {
+const blockDemoPlan: DemoPlan = {
   planId: 'APS-2026-0610-BLK',
   status: 'generated',
   algorithmVersion: 'heuristic-1',
@@ -467,7 +468,7 @@ const BLK_PRODUCT: Record<string, string> = {
  * 让四类斜纹底纹在 scale="hour" 初始视口一屏内全部可见。返回全新 ScheduleModel。
  */
 export function makeBlockDemoModel(): ScheduleModel {
-  const m = toModel(blockDemoPlan as never)
+  const m = toModel(blockDemoPlan, demoPlanModel)
   for (const t of m.tasks) {
     if (t.type !== 'operation') continue
     const wc = WC[t.workCenterId ?? ''] ?? WC['激光切割-01']
@@ -542,7 +543,7 @@ export function makeBlockDemoModel(): ScheduleModel {
 const calBase = new Date(2026, 5, 12, 12, 0, 0) // 月份 0-based:5 = 6 月
 const calIso = (h: number) => new Date(calBase.getTime() + h * H).toISOString()
 
-const calPlan = {
+const calPlan: DemoPlan = {
   planId: 'APS-2026-0612-CAL',
   status: 'generated',
   algorithmVersion: 'heuristic-1',
@@ -645,7 +646,7 @@ const CAL_PRODUCT: Record<string, string> = { 'WO-2026-011': '横梁支架', 'WO
  * 与 makeModel() 同风格,返回全新 ScheduleModel。
  */
 export function makeCalendarModel(): ScheduleModel {
-  const m = toModel(calPlan as never)
+  const m = toModel(calPlan, demoPlanModel)
   for (const t of m.tasks) {
     if (t.type !== 'operation') continue
     const wc = WC[t.workCenterId ?? ''] ?? WC['激光切割-01']
