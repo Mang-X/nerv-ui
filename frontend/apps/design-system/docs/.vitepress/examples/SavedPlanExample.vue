@@ -209,10 +209,14 @@ function choosePlan(value: 'morning' | 'afternoon') {
 const destination = shallowRef('')
 let finishNavigation: ((success: boolean) => void) | undefined
 const navigationVersion = shallowRef(0)
+function cancelNavigation() {
+  navigationVersion.value++
+  finishNavigation?.(false)
+}
 watch(
-  [currentPlan, factsVersion],
+  [currentPlan, factsVersion, state],
   () => {
-    navigationVersion.value++
+    cancelNavigation()
     destination.value = ''
   },
   { flush: 'sync' },
@@ -224,14 +228,14 @@ watch(
   },
   { flush: 'sync' },
 )
-onUnmounted(() => {
-  navigationVersion.value++
-  finishNavigation?.(false)
-})
+onUnmounted(cancelNavigation)
 function navigate(request: SavedPlanNavigateRequest) {
+  cancelNavigation()
   const version = navigationVersion.value
   return new Promise<void>((resolve, reject) => {
-    finishNavigation = (success) => {
+    const finish = (success: boolean) => {
+      if (finishNavigation !== finish) return
+      finishNavigation = undefined
       if (version !== navigationVersion.value) {
         resolve()
         return
@@ -243,6 +247,7 @@ function navigate(request: SavedPlanNavigateRequest) {
       destination.value = `${request.target} · 仅本页内存回执，未调用业务路由`
       resolve()
     }
+    finishNavigation = finish
   })
 }
 function openDetail(id: string) {
