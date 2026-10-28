@@ -1,0 +1,5 @@
+Could not parse CSS stylesheet
+JSON report written to /Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/docs/evidence/t08-r06/raw/red-valid.json
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/packages/ui:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/pc/notification-inbox/NvNotificationInbox.test.ts '--reporter=json' '--outputFile=../../../docs/evidence/t08-r06/raw/red-valid.json'

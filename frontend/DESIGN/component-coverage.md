@@ -24,6 +24,7 @@
 | 输入框      | `NvInput`                     | `NvMobileInput`                           | （复用 PC）                        | `NvScreenInput`            |
 | 选择器      | `NvSelect`                    | `NvPicker`（滚轮）                        | `—`                                | `NvScreenSelect`           |
 | 可搜索多选  | `NvEntityMultiPicker`         | `—`                                       | `—`                                | `—`                        |
+| 层级树      | `NvTree`                      | `—`                                       | `—`                                | `—`                        |
 | 复选 / 单选 | `NvCheckbox` · `NvRadioGroup` | `NvMobileCheckbox` · `NvMobileRadioGroup` | `—`                                | `—`                        |
 | 开关        | `NvSwitch`                    | `NvMobileSwitch`                          | `—`                                | `NvScreenSwitch`           |
 | 滑块        | `NvSlider`                    | `NvMobileSlider`                          | `—`                                | `—`                        |
@@ -146,3 +147,25 @@
 5. 其余 P2/P3 按业务需要再补（PC Form/InputNumber/Slider/Rate/Result · 移动 Skeleton/Swiper/Upload 等）。
 
 > 补任何新件务必过 `motion-interaction.md` 自检清单（缓动令牌 / 按压+聚焦态 / reduced-motion / 触摸尺寸 / 对比度 / 令牌）。
+
+| 通知列表、详情与收件箱 | `NvNotificationInbox` | — | — | — |
+
+## T08/R01 宿主组合
+
+| 组合                                                                                                            | PC           | touch | mobile | screen |
+| --------------------------------------------------------------------------------------------------------------- | ------------ | ----- | ------ | ------ |
+| [中性应用壳](../apps/design-system/docs/components/desktop/neutral-shells.md)（复用 NvAppShellInset，无新导出） | 两种宿主排列 | —     | —      | —      |
+
+C04：大屏分栏 recipe（宿主组合，无新增导出）；阅读活动/展览安排，公开 Panel/ScrollBoard/Table/Pagination/Trend/Pareto/Donut/Freshness；PC/mobile/touch —。
+
+## T08/C03 组合覆盖
+
+| recipe         | 移动                                                                               | 桌面 / touch / screen | 新公开导出 |
+| -------------- | ---------------------------------------------------------------------------------- | --------------------- | ---------- |
+| 候选与分步执行 | ScanBar / Picker / NumberKeyboard / Tag / Result / Steps / AppShellMobile / NavBar | —                     | 无         |
+
+T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / FilterBar / DataTable / Sheet / Timeline，无新增导出。screen/mobile/touch：—。合同见 [目录详情](components/directory-detail.md)。
+
+| UX 概念      | 桌面 | 移动                    | touch | screen |
+| ------------ | ---- | ----------------------- | ----- | ------ |
+| 分页恢复组合 | —    | `NvMobileTaskListShell` | —     | —      |

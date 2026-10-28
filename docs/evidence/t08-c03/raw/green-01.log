@@ -1,0 +1,14 @@
+[ERR_PNPM_NO_PKG_MANIFEST] No package.json found in /Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero
+[ERROR] Command failed with exit code 1: /Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.mjs install
+
+pnpm: Command failed with exit code 1: /Users/mang/.nvm/versions/node/v24.18.0/bin/node /Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.mjs install
+    at getFinalError (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:89203:14)
+    at makeError (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:91510:21)
+    at getSyncResult (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:93354:10)
+    at spawnSubprocessSync (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:93314:14)
+    at execaCoreSync (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:93244:23)
+    at callBoundExeca (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:95772:23)
+    at boundExeca (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:95749:49)
+    at sync2 (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:95908:10)
+    at runPnpmCli (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:271523:5)
+    at runDepsStatusCheck (file:///Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/dist/pnpm.mjs:273323:7)

@@ -471,3 +471,9 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 > **独立库新增（#29/T08 R11）。** R1 页内 waffle 无冻结公开名；R2 去除 OEE/line 领域词；R3 不采用缩写；R4 远距 screen 表面；R5 属热力格家族，定名 `NvScreenHeatmap`（`screen/Heatmap.vue`）。只读数值展示，复用 `NvScreenPanel` 容器，不扩展为图表框架。
 
 > **独立库新增（#25/T08 R07）。** R1 三个 app 局部来源无冻结库名；R2 去除 launcher/workshop/line 领域名；R3 使用完整 SummaryCard；R4 远距 screen 表面；R5 归摘要卡家族，定名 `NvScreenSummaryCard`。复用 Panel、StatusLight、StatusTag、Sparkline，仅提供三来源布局，不建立卡片框架。
+
+独立库 #33：来源 MasterDataTreeNode → `NvTree`。PC 紧凑指针与键盘树，按 R1–R5 取 Nv + 素名；类型 `NvTreeNode`，无 ResourceItem 依赖。
+
+> **独立库新增（#24/T08 R06）。** 来源两个应用通知列表、任务与收件箱 → `NvNotificationInbox`，PC 指针表面按素名规则落 `pc/notification-inbox/`。唯一公开组合，不带 DTO、查询或通知引擎。
+
+> 独立库新增（#35/T08 R17）：TaskListShell → NvMobileTaskListShell，移动局部组合；R1 来源无冻结名，R2 去除业务归属，R3 使用完整名，R4 归移动触控表面，R5 保留列表外壳语义。严格主桶集合由 48 增至 49 件。

@@ -55,7 +55,7 @@ import { CheckCircleIcon, PauseIcon, BellRingIcon } from '@lucide/vue'
   <NvTouchButton as-child loading><a href="#touch-actions">阅读记录</a></NvTouchButton>
 </Demo>
 
-`asChild` 接受一个真实交互子元素或透传 attrs/slots 的组件；加载状态传到该宿主，环形加载器位于宿主内部，并替代 `leading` 内容。加载结束恢复 `leading`，保留子元素内容、href 和事件；显式禁用继续生效。组件层 DOM 回归见 [#43](https://github.com/Mang-X/nerv-ui/issues/43)，真实浏览器键盘验证仍待运行。
+`asChild` 接受一个真实交互子元素或透传 attrs/slots 的组件；加载状态传到该宿主，环形加载器位于宿主内部，并替代 `leading` 内容。加载结束恢复 `leading`，保留子元素内容、href 和事件；显式禁用继续生效。组件层 DOM 回归见 [#43](https://github.com/Mang-X/nerv-ui/issues/43)，2026-10-28 已完成 Chromium 真实 Tab / Enter / Space 的加载拦截、显式禁用保留与恢复验证（anchor、button、函数组件数组内容）。外部最小消费夹具缺少 Tailwind 转换，完整加载器视觉与触控尺寸未验证，不能由键盘结果推定。
 
 ## 属性
 

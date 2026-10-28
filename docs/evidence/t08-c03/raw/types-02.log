@@ -1,0 +1,5 @@
+$ vue-tsc --noEmit -p tsconfig.json
+src/mobile-flow/MobileFlowRecipe.test.ts(98,43): error TS2345: Argument of type '"input"' is not assignable to parameter of type 'never'.
+/Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 typecheck: `vue-tsc --noEmit -p tsconfig.json`
+Exit status 2
