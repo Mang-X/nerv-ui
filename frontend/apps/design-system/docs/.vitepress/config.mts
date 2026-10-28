@@ -218,6 +218,7 @@ export default defineConfig({
             { text: 'GanttChart 工单甘特图', link: '/components/desktop/gantt-chart' },
             { text: '排程面板与草案', link: '/components/desktop/scheduling-live' },
             { text: '排程事实与比较', link: '/components/desktop/scheduling-facts' },
+            { text: '排程请求与异步候选', link: '/components/desktop/scheduling-requests' },
             {
               text: 'ResourceSchedulerBoard 资源甘特图',
               link: '/components/desktop/resource-scheduler',

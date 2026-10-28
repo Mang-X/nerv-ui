@@ -31,3 +31,5 @@ save/clear 接收当前模型副本和 AbortSignal，严格 true 才表示成功
 本组合未自定义 slots；使用组件默认内容。完整 props/events 与接纳合同见[面板合同](../../../../../../docs/scheduling-panels.md)、[草案合同](../../../../../../docs/scheduling-draft.md)。兼容别名复用相同公开实现，不重复计数。快照与比较见[排程事实与比较](./scheduling-facts)；请求异步、工作台和日安排由后续文档项覆盖。
 
 返回[工单图](./gantt-chart)或[资源图](./resource-scheduler)，原图面全部变体保留。
+
+继续查看[排程请求与异步候选](./scheduling-requests)。
