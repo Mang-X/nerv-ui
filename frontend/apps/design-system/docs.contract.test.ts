@@ -5,6 +5,7 @@ import { createRequire } from 'node:module'
 import { it, expect } from 'vitest'
 import { createServer } from 'vite'
 import { makeModel, makeBlockDemoModel, makeCalendarModel } from './docs/.vitepress/schedulingDemo'
+import { factoryTimeInput } from '@nerv-iip/scheduling/model'
 import { repositoryLink } from './docs/.vitepress/repositoryLinks'
 const app = dirname(fileURLToPath(import.meta.url)),
   root = resolve(app, '../../..')
@@ -71,14 +72,19 @@ it('admits neutral dependencies and forbids SDK imports', () => {
     )
 })
 it('preserves all three complete source model facts', () => {
-  const normalize = (value: unknown, base?: number) =>
-    JSON.parse(
-      JSON.stringify(value, (_k, v) =>
+  const normalize = (value: ReturnType<typeof makeModel>, base?: number) => {
+    const facts = structuredClone(value)
+    // Keep the independent legacy oracle unchanged; display context is checked separately.
+    delete facts.timezones
+    for (const task of facts.tasks) delete task.timezone
+    return JSON.parse(
+      JSON.stringify(facts, (_k, v) =>
         typeof v === 'string' && /^2026-\d\d-\d\dT/.test(v) && base !== undefined
           ? `hours:${(Date.parse(v) - base) / 3600000}`
           : v,
       ),
     )
+  }
   expect([
     normalize(makeModel()),
     normalize(makeBlockDemoModel()),
@@ -89,6 +95,17 @@ it('preserves all three complete source model facts', () => {
   changed.loads[0].utilization = -1
   expect(makeModel().tasks[0].text).toBe('WO-2026-001')
   expect(makeModel().loads[0].utilization).toBe(0.88)
+})
+it('provides an explicit UTC display context for every final demo node', () => {
+  for (const model of [makeModel(), makeBlockDemoModel(), makeCalendarModel()]) {
+    expect(model.timezones).toEqual(['UTC'])
+    expect(model.tasks.length).toBeGreaterThan(0)
+    for (const task of model.tasks) {
+      expect(task.timezone, task.id).toBe('UTC')
+      expect(factoryTimeInput(task.startUtc, task.timezone!)).not.toBe('')
+      expect(factoryTimeInput(task.endUtc, task.timezone!)).not.toBe('')
+    }
+  }
 })
 it('retains the frozen 174 pages and 206 site files', () => {
   const list: string[] = json(resolve(root, 'docs/evidence/t09-a/site-files.json'))

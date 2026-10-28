@@ -14,6 +14,16 @@ const H = 3_600_000
 const base = Date.parse('2026-06-10T08:00:00.000Z')
 const iso = (h: number) => new Date(base + h * H).toISOString()
 
+// Explicit documentation display context, not an inferred factory setting.
+// Apply after all demo-only nodes have been added; source instants stay unchanged.
+function withDemoTimeContext(model: ScheduleModel): ScheduleModel {
+  return {
+    ...model,
+    timezones: ['UTC'],
+    tasks: model.tasks.map((task) => ({ ...task, timezone: 'UTC' })),
+  }
+}
+
 const demoPlan: DemoPlan = {
   planId: 'APS-2026-0610',
   status: 'generated',
@@ -352,7 +362,7 @@ export function makeModel(): ScheduleModel {
 
   // 四类资源时间块全出,演示完整底纹:维护(灰)/换型(橙)/停机(红)/换线(蓝)。
   m.tasks.push(milestone, maintenance, changeover, downtime, lineChange)
-  return m
+  return withDemoTimeContext(m)
 }
 
 // ── 资源时间块(底纹)专用演示 ──────────────────────────────────────────
@@ -532,7 +542,7 @@ export function makeBlockDemoModel(): ScheduleModel {
   // horizon 由 toModel 仅按工序(0–3h)派生,但块延到 5.5h;显式把窗口拉到 0–6h,
   // 让声明范围完整覆盖工序 + 四类块,scale="hour" 初始视口一屏内全部可见。
   m.horizon = { startUtc: blkIso(0), endUtc: blkIso(6) }
-  return m
+  return withDemoTimeContext(m)
 }
 
 // ── 工作日历 / 班次演示 ────────────────────────────────────────────────
@@ -663,5 +673,5 @@ export function makeCalendarModel(): ScheduleModel {
       line: { id: wc.line[0], label: wc.line[1] },
     }
   }
-  return m
+  return withDemoTimeContext(m)
 }
