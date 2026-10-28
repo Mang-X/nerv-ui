@@ -34,6 +34,7 @@ export default defineConfig({
       'list-blocks-host.test.ts',
       'card-structure-host.test.ts',
       'app-provider-host.test.ts',
+      'field-group-host.test.ts',
     ],
   },
 })
