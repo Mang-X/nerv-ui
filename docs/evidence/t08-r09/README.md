@@ -37,3 +37,5 @@ T01 固定来源 `79b1578f2b75f55709765b5e7882aaf33146c603`；未改 source/refe
 最终 fresh：公共/治理 253/253（3 files），宿主/导航/import 107/107（3 files）；两包 typecheck 和 playground build exit 0。全部是 DOM/受控平台测量，非真实 resize/命中/视觉证明。完整 argv/cwd、独立 exit 与格式/链接结果见外部 handoff 和 raw。结构化 runtime/unhandled 字段缺失为 UNKNOWN，未填 0；日志中的 jsdom CSS parse 和第三方 PURE annotation 警告保留。
 
 浏览器、server、preview、Ego、Playwright 均未启动；browser/visual/HTTP/device/vendor/packed/旧 consumer/production/CI/review UNRUN。四 vendor policy 为 0 执行，非 PASS。全局 fmt3、docs alias ENOTDIR、main RAW2、历史 timeout 未重跑/未修，仅属用户指出的继承背景。本轮局部检查不宣称这些通过。旧应用接入/旧库退出取消为 NOT_PLANNED；#28 和排程未实施。#27 保持 Open，PR 保持 Draft，未自签整票、未审核/合并/关闭/发布验收评论。
+
+归档后的 `git diff --cached --check` 曾报告 FAIL：仅原始 build/test 日志含终端着色输出的尾随空格及末尾空行；实现/文档文件无该问题。为保留原始失败与命令输出字节，本轮未把原始日志格式化。该检查不能报告为全变更 PASS；代码 scoped fmt/lint 与 Markdown 检查独立通过。
