@@ -10,12 +10,35 @@ const items = ref([
   { key: 'rooms', label: studio ? '水彩与素描的共享创作空间' : '诗歌与绘本的安静阅读空间' },
   { key: 'rest', label: '暂未开放', disabled: true },
 ])
-const currentKey = ref('welcome')
+const domains = ref([
+  { key: 'quiet', label: '静享时光' },
+  { key: 'together', label: '相聚时光' },
+])
+const domainKey = ref('quiet')
+const pageKeys = ref<Record<string, string>>({ quiet: 'welcome', together: 'gather' })
+const otherItems = [
+  { key: 'gather', label: '相聚日程' },
+  { key: 'garden', label: '花园小聚' },
+]
+const pages = computed(() => (domainKey.value === 'quiet' ? items.value : otherItems))
+const sideItems = computed(() =>
+  studio ? pages.value : [{ key: 'moments', label: '美好时光', children: pages.value }],
+)
+const currentKey = computed({
+  get: () => pageKeys.value[domainKey.value],
+  set: (key) => {
+    pageKeys.value[domainKey.value] = key
+  },
+})
+function selectDomain(key: string) {
+  if (accept.value) domainKey.value = key
+}
+
 const user = ref<{ key: string; name: string } | undefined>({ key: 'lin', name: '林悦' })
 const message = ref('欢迎回来')
 const accept = ref(true)
 const current = computed(
-  () => items.value.find((item) => item.key === currentKey.value)?.label ?? '请选择空间',
+  () => pages.value.find((item) => item.key === currentKey.value)?.label ?? '请选择空间',
 )
 function navigate(key: string) {
   if (accept.value) currentKey.value = key
@@ -36,7 +59,10 @@ function replace() {
   <NeutralShell
     :title="title"
     :layout="studio ? 'top' : 'side'"
-    :items="items"
+    :items="sideItems"
+    :top-domains="domains"
+    :current-domain-key="domainKey"
+    @select-domain="selectDomain"
     :current-key="currentKey"
     :user="user"
     :recent="items.slice(0, 1)"
@@ -63,6 +89,17 @@ function replace() {
     <NvBadge variant="neutral">{{ user ? '自在浏览' : '期待再见' }}</NvBadge>
     <p role="status">{{ message }}</p>
     <div class="flex flex-wrap gap-2">
+      <template v-if="!studio"
+        ><NvButton
+          v-for="domain in domains"
+          :key="domain.key"
+          :data-host-domain="domain.key"
+          :aria-pressed="domain.key === domainKey"
+          variant="outline"
+          @click="selectDomain(domain.key)"
+          >{{ domain.label }}</NvButton
+        ></template
+      >
       <NvButton variant="outline" @click="items = [...items].reverse()">换个顺序</NvButton>
       <NvButton variant="outline" @click="replace">迎接新朋友</NvButton>
       <NvButton variant="outline" @click="accept = !accept">{{

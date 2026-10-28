@@ -1,6 +1,6 @@
 ## 决策与来源
 
-R01 复用 `NvAppShellInset` 的折叠、侧栏与 header 槽，以及 NvButton/NvDropdownMenu/NvBadge。仅演示侧栏与顶部溢出两种已有来源排列；菜单、虚拟位置、用户和动作归宿主。无新导出、token、CSS 或搜索服务。
+R01 复用 `NvAppShellInset` 的折叠、侧栏与 header 槽，以及 NvButton/NvDropdownMenu/NvBadge。恢复侧栏父子折叠与域/页分离的顶部导航两种来源结构；菜单、虚拟位置、用户和动作归宿主。无新导出、token、CSS 或搜索服务。
 
 来源固定 SHA `79b1578f2b75f55709765b5e7882aaf33146c603`：候选 `frontend/packages/app-shell/src/AppShell.vue`、`AppShellT.vue`、`NavMain.vue`、`NavSide.vue`、`NavTopDomains.vue`、`NavUser.vue`（T01 活动复制）；原应用 `migration/materials/source/frontend/apps/business-console/src/layouts/BusinessLayout.vue` 及 console `DefaultLayout.vue`。固定参考位于 `migration/reference/source`；素材原字节未改。
 
@@ -22,3 +22,11 @@ R01 复用 `NvAppShellInset` 的折叠、侧栏与 header 槽，以及 NvButton/
 | playground / 文档 live                         | 直接消费本票 host 组合与公共 UI 主桶                  |
 
 旧应用接入与旧库退出 NOT_PLANNED。许可 UNKNOWN；本页不构成来源视觉一致性证明。
+
+### R1 导航恢复
+
+顶部在离流测量层测量全部标签与“更多”，按容器宽度和实际 gap 保留 0..N 项；全部可容纳时不显示更多。容器不足时先为更多留空间，更多本身可收缩并截断。容器和测量层由 ResizeObserver 观察，标签/文案替换、字体 ready 重算，卸载断开观察与迟到字体回调。更多内含当前域时，闭合触发器保留当前态。
+
+`topDomains/currentDomainKey` 与 `items/currentKey` 独立；域选择只发 `selectDomain`，host 采用后才更换域内菜单。侧栏 `children` 按稳定 key 折叠，父项显示当前子项状态；重排或改名不改变折叠身份，页改变时展开当前父项。library 演示父子菜单，studio 演示顶部域切换，两页都由内存 host 保存各域当前页。拒绝切换不更改高亮。
+
+品牌 logo 和搜索、更多、退出、侧栏、域导航、星标、最近访问及用户菜单 labels 可替换，未引入 i18n 服务。测量单测只证明确定性 DOM 行为，不代表浏览器视觉通过。

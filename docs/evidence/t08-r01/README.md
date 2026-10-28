@@ -40,3 +40,17 @@ Node v24.18.0，frontend pnpm 11.22.0。没有安装或升级依赖。原始每�
 JSON 未提供 runtime/unhandled 字段，均为 UNKNOWN，不按 0 处理。历史 globalfmt3 同 blob/main RAW2/docs alias ENOTDIR/parallel DraftEditingDemo timeout 保持历史 FAIL，不在本票修复，也不继承为本票 PASS。vendor policy skip 0 不作真实 vendor 证据。
 
 browser/visual/HTTP/docs live/CI/packed/device/vendor/APS/生产均 UNRUN；license UNKNOWN。#43/PR122 的真实 browser keyboard AC 未跑，本票保持 draft open。旧应用接入及退出 NOT_PLANNED；没有自审、ready、merge、close、watch、安排审核或启动后继。
+
+## R1 三项导航恢复（本轮 f1）
+
+R1 receipt 的 Standards 0 / Spec 3 P2 为历史 FAIL，未抹除。本轮仅修复 F1 响应溢出、F2 域/页与父子层级、F3 文案输入。固定首项降级已移除，当前设计见 DESIGN include。
+
+- F1：`measures zero through all domains on resize and label replacement and disconnects`，旧候选 RED；恢复后 GREEN。确定性 clientWidth/offsetWidth 和 ResizeObserver 控制，覆盖 0/1/全部、替换、重排、当前溢出实际动作和 disconnect。
+- F2：`keeps domain and page identities controlled and parent folds stable after replacement`，旧候选 RED；恢复后 GREEN。`library/studio switches domain-local pages only when the host accepts and remembers each page` 另对旧 host 各自 RED，恢复后 GREEN。
+- F3：`replaces every shell copy channel including menu actions and navigation labels`，旧候选 RED；恢复后 GREEN。
+- 原 8 条语义与断言保留，fresh 最终 host 13/13；types、playground build、范围 lint/fmt 通过。构建保留 crypto externalization、PURE annotation、chunk size 诊断。
+- 原日志独立保存于 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-28/t08-r01-navigation-restore/`。red-01 是根 cwd 命令失败，不算行为 RED；red-02 为 8 PASS/3 FAIL；red-host-01 为 2 PASS/2 FAIL；green-01 有 3 FAIL（零尺寸分支、observer 测试干扰和菜单时序），green-02/03 与 final 通过。types-01 测试回调隐式 this FAIL，types-02 通过。JSON 未提供 runtime/unhandled 字段，UNKNOWN。
+- 历史 globalfmt3/main RAW2/docs alias ENOTDIR/parallel timeout 原样保留；本轮未顺修或全桶重跑。旧 256 UI 结果为继承，不作 fresh。
+- browser/视觉/HTTP/docs live/CI/packed/device/vendor/APS/production UNRUN；license UNKNOWN。旧应用接入退出 NOT_PLANNED。#43/PR122 keyboard 硬 AC 未跑，draft open 分离。
+
+无新依赖、候选 workspace 恢复、原始素材修改或新公共导出；无审核/ready/merge/close/watch/子代理/后继。持久 handoff 记录最终 SHA/tree/clean、命令、来源与读取边界。
