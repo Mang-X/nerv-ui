@@ -3,6 +3,7 @@ title: NvCard 卡片
 ---
 
 <script setup>
+import CardStructureExample from '../../.vitepress/examples/CardStructureExample.vue'
 import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
 </script>
 
@@ -124,3 +125,51 @@ import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
 > 需要带固定标题/底部结构的卡片可用 blocks 里的 `NvSectionCard`；指标卡用 `NvMetricCard`。
 
 列表页的页头、工具栏、行菜单与统计分区组合见[列表布局与行操作](./list-blocks.md)。
+
+## 公开结构子件
+
+下面使用四个公开结构子件组织头部与底部，内容仍使用已有 `NvCardContent`。四件均接受 `class` 与默认插槽，没有标题属性或具名插槽；`NvCardTitle` 输出 div，不自动建立 heading 层级。`NvCard` 默认 `interactive=false`，已有纵向间距；这里只在底部按钮确认本页状态，不连接后端，刷新后不保留。标题、描述与正文完整换行，底部允许折行。
+
+<Demo>
+  <CardStructureExample />
+</Demo>
+
+学习代码与上方 live 使用同一组合：
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import {
+  NvButton,
+  NvCard,
+  NvCardHeader,
+  NvCardTitle,
+  NvCardDescription,
+  NvCardContent,
+  NvCardFooter,
+} from '@nerv-iip/ui'
+
+const confirmed = ref(false)
+</script>
+
+<template>
+  <NvCard class="w-full min-w-0 max-w-lg break-words">
+    <NvCardHeader>
+      <NvCardTitle>周末共读与手作交流安排</NvCardTitle>
+      <NvCardDescription>
+        邀请邻里一起阅读、交流与整理共享空间。无论是初次参加，还是带着新的想法再次到来，都可以按自己的节奏参与。
+      </NvCardDescription>
+    </NvCardHeader>
+    <NvCardContent class="space-y-2 text-sm">
+      <p>请带上一本愿意分享的书，也可以空手前来，听听大家最近读到的故事。</p>
+      <p>交流结束后，我们会一起整理书架，将想继续讨论的话题留给下一次相聚。</p>
+    </NvCardContent>
+    <NvCardFooter class="flex-wrap gap-3">
+      <NvButton type="button" variant="outline" @click="confirmed = true">确认阅读安排</NvButton>
+      <p role="status" class="min-w-0 text-sm text-muted-foreground">
+        {{ confirmed ? '已在本页确认阅读安排；刷新后不保留。' : '尚未确认' }}
+      </p>
+    </NvCardFooter>
+  </NvCard>
+</template>
+```
