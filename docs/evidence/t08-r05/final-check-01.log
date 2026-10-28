@@ -1,0 +1,9 @@
+Final affected: 17 PASS; runtime/unhandled fields UNKNOWN
+PASS ['git', 'diff', '--check']
+PASS ['git', 'diff', '--exit-code', '--', 'migration', 'frontend/packages/ui/src/components/ui']
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 293ms on 12 files using 10 threads.
+ 
+Local markdown links PASS; root/evidence Markdown stdin nonempty and cmp PASS

@@ -1,0 +1,19 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition",
+  "command": [
+    "node",
+    "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+    "-C",
+    "frontend/packages/ui",
+    "exec",
+    "vp",
+    "test",
+    "run",
+    "src/components/pc/chart/LineAnnotations.test.ts",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile=../../../docs/evidence/t08-r13/red-05.json"
+  ],
+  "exitCode": 1,
+  "runtimeUnhandled": "UNKNOWN unless explicit runner report states count; inspect full log"
+}

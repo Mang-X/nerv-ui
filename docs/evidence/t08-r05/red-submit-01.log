@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/screen/ScreenLoginStage.test.ts (5 tests | 1 failed) 64ms
+   × coalesces same turn submit before the host pending prop reaches the child 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/screen/ScreenLoginStage.test.ts > coalesces same turn submit before the host pending prop reaches the child
+AssertionError: expected [ [], [] ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ src/screen/ScreenLoginStage.test.ts:96:33
+     94|  form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}))
+     95|  form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}))
+     96|  expect(page.emitted('submit')).toHaveLength(1)
+       |                                 ^
+     97|  page.unmount()
+     98| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  13:37:42
+   Duration  3.45s (transform 2.03s, setup 291ms, import 2.64s, tests 64ms, environment 374ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/screen/ScreenLoginStage.test.ts

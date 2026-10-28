@@ -1,0 +1,12 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition",
+  "command": [
+    "node",
+    "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+    "-C",
+    "frontend/packages/ui",
+    "typecheck"
+  ],
+  "exitCode": 0,
+  "runtimeUnhandled": "UNKNOWN unless explicit runner report states count; inspect full log"
+}

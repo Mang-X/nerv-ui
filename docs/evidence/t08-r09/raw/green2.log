@@ -1,0 +1,10 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui
+
+Could not parse CSS stylesheet
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  17:15:10
+   Duration  2.49s (transform 1.44s, setup 206ms, import 1.88s, tests 108ms, environment 235ms)
+

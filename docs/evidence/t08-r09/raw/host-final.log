@@ -1,0 +1,16 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/apps/playground
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/nvui-imports.contract.test.ts (92 tests) 48ms
+ ✓ src/screen/ScreenStatusWallDemo.test.ts (2 tests) 91ms
+ ✓ src/ScreenDemo.test.ts (13 tests) 313ms
+
+ Test Files  3 passed (3)
+      Tests  107 passed (107)
+   Start at  17:17:40
+   Duration  8.82s (transform 10.62s, setup 2.52s, import 13.20s, tests 451ms, environment 2.57s)
+
+JSON report written to /tmp/r09-host.json
