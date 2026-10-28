@@ -178,6 +178,7 @@ export default defineConfig({
               link: '/components/desktop/entity-multi-picker',
             },
             { text: '通知收件箱', link: '/components/desktop/notification-inbox' },
+            { text: '中性应用壳', link: '/components/desktop/neutral-shells' },
             { text: '层级树', link: '/components/desktop/tree' },
             { text: 'Checkbox 复选框', link: '/components/desktop/checkbox' },
             { text: 'Radio 单选框', link: '/components/desktop/radio' },
