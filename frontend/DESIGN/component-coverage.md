@@ -147,3 +147,5 @@
 5. 其余 P2/P3 按业务需要再补（PC Form/InputNumber/Slider/Rate/Result · 移动 Skeleton/Swiper/Upload 等）。
 
 > 补任何新件务必过 `motion-interaction.md` 自检清单（缓动令牌 / 按压+聚焦态 / reduced-motion / 触摸尺寸 / 对比度 / 令牌）。
+
+| 通知列表、详情与收件箱 | `NvNotificationInbox` | — | — | — |

@@ -242,3 +242,5 @@ export {
 export * from './components/pc/schedule-timeline'
 
 export { NvTree, type NvTreeNode } from './components/pc/tree'
+
+export { NvNotificationInbox, type NvNotificationItem } from './components/pc/notification-inbox'

@@ -15,6 +15,7 @@ import RequestFormsDemo from './RequestFormsDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
 import DayPrintDemo from './DayPrintDemo.vue'
 import ActionSummaryDemo from './ActionSummaryDemo.vue'
+import NotificationInboxDemo from './NotificationInboxDemo.vue'
 import TreeDemo from './TreeDemo.vue'
 import EntityMultiPickerDemo from './EntityMultiPickerDemo.vue'
 import TouchDemo from './TouchDemo.vue'
@@ -95,8 +96,13 @@ function addProject() {
 </script>
 
 <template>
+  <NotificationInboxDemo
+    :key="surface"
+    v-if="surface === '#notifications/library' || surface === '#notifications/studio'"
+    :space="surface === '#notifications/library' ? 'library' : 'studio'"
+  />
   <TreeDemo
-    v-if="surface === '#tree/library' || surface === '#tree/studio'"
+    v-else-if="surface === '#tree/library' || surface === '#tree/studio'"
     :key="surface"
     :space="surface === '#tree/library' ? 'library' : 'studio'"
   />
@@ -168,6 +174,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#notifications/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >消息与安排</a
+      >
       <a href="#tree/library" class="inline-flex min-h-11 items-center px-4 underline">空间分区</a>
       <a href="#entity-multi-picker" class="inline-flex min-h-11 items-center px-4 underline"
         >挑选去处</a
