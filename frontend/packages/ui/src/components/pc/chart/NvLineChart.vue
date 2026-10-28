@@ -94,14 +94,16 @@ const validBands = computed(() => {
   void revision.value
   const component = line.value?.component
   if (!component || !props.data.length || !props.series.length) return []
-  return (props.bands ?? []).flatMap((band) => {
-    if (!Number.isFinite(band.from) || !Number.isFinite(band.to)) return []
-    const domain = (band.axis === 'x' ? component.xScale : component.yScale).domain().map(Number)
-    const factor = band.axis === 'y' ? divisor.value : 1
-    const lo = Math.max(Math.min(...domain), Math.min(band.from / factor, band.to / factor))
-    const hi = Math.min(Math.max(...domain), Math.max(band.from / factor, band.to / factor))
-    return lo > hi ? [] : [{ ...band, from: lo, to: hi }]
-  })
+  return (props.bands ?? [])
+    .flatMap((band) => {
+      if (!Number.isFinite(band.from) || !Number.isFinite(band.to)) return []
+      const domain = (band.axis === 'x' ? component.xScale : component.yScale).domain().map(Number)
+      const factor = band.axis === 'y' ? divisor.value : 1
+      const lo = Math.max(Math.min(...domain), Math.min(band.from / factor, band.to / factor))
+      const hi = Math.min(Math.max(...domain), Math.max(band.from / factor, band.to / factor))
+      return lo > hi ? [] : [{ ...band, from: lo, to: hi }]
+    })
+    .map((band, index) => ({ ...band, number: index + 1 }))
 })
 const positionedMarkers = computed(() => {
   void revision.value
@@ -125,6 +127,10 @@ const positionedMarkers = computed(() => {
     return [{ ...marker, x: x + rect.left, y: y + rect.top }]
   })
 })
+const bandNumber = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 3 })
+function boundary(value: number, axis: 'x' | 'y') {
+  return bandNumber.format(axis === 'y' ? value * divisor.value : value)
+}
 const safeHref = (href?: string) => (href && /^#[^\s]+$/.test(href) ? href : undefined)
 const activate = (id: string, event: MouseEvent | KeyboardEvent) => {
   const current = props.markers?.find((marker) => marker.id === id)
@@ -196,9 +202,9 @@ const tooltipTemplate = (d: Row) => {
           :axis="band.axis"
           :from="band.from"
           :to="band.to"
-          :label-text="band.label"
+          :label-text="`[${band.number}]`"
           :label-position="PlotbandLabelPosition.TopInside"
-          :label-offset-y="4"
+          :label-offset-y="4 + (band.number - 1) * 18"
           label-color="var(--foreground)"
           :color="`color-mix(in oklch, ${tones[band.tone ?? 'neutral']} 12%, transparent)`"
           :exclude-from-domain-calculation="true"
@@ -246,7 +252,14 @@ const tooltipTemplate = (d: Row) => {
       class="mt-2 flex flex-wrap gap-3 text-xs text-muted-foreground"
       aria-label="范围说明"
     >
-      <li v-for="band in validBands" :key="band.id">{{ band.label }}</li>
+      <li v-for="band in validBands" :key="band.id" class="min-w-0 break-words">
+        [{{ band.number }}] {{ band.label }}
+        <span class="tabular-nums"
+          >（{{ band.axis === 'x' ? '横轴' : '纵轴' }} {{ boundary(band.from, band.axis) }}–{{
+            boundary(band.to, band.axis)
+          }}）</span
+        >
+      </li>
     </ul>
   </div>
 </template>
@@ -254,6 +267,7 @@ const tooltipTemplate = (d: Row) => {
 <style scoped>
 @layer nv-components {
   .nv-line-plot {
+    min-width: 0;
     position: relative;
   }
   .nv-line-marker {
@@ -271,6 +285,7 @@ const tooltipTemplate = (d: Row) => {
     outline-offset: 2px;
   }
   .nv-chart {
+    min-width: 0;
     width: 100%;
     --vis-axis-grid-color: var(--border);
     --vis-axis-tick-label-color: var(--muted-foreground);

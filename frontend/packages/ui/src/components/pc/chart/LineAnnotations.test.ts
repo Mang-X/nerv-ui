@@ -119,7 +119,7 @@ describe('line annotations with actual Unovis producer', () => {
     const rect = producer<Plotband<unknown>>(bands[0]).element.querySelector('rect')!
     expect(rect.getAttribute('width')).toBe('522')
   })
-  it('labels each same-tone range inside its actual region regardless of input order and replacement', async () => {
+  it('associates each same-tone range with a numbered plot label and complete legend after reorder and replacement', async () => {
     const { w } = await chart({
       bands: [
         { id: 'late', axis: 'x', from: 1.5, to: 2, label: '晚段' },
@@ -127,17 +127,18 @@ describe('line annotations with actual Unovis producer', () => {
         { id: 'high', axis: 'y', from: 150, to: 250, label: '高区' },
       ],
     })
-    function region(label: string) {
+    function region(label: string, number: number) {
+      expect(w.get('[aria-label="范围说明"]').text()).toContain(`[${number}] ${label}`)
       const band = w
         .findAllComponents(VisPlotband as never)
         .find((b) =>
-          producer<Plotband<unknown>>(b as VueWrapper).element.textContent?.includes(label),
+          producer<Plotband<unknown>>(b as VueWrapper).element.textContent?.includes(`[${number}]`),
         )
       expect(band, `region containing ${label}`).toBeDefined()
       const element = producer<Plotband<unknown>>(band as VueWrapper).element
       const rect = element.querySelector('rect')!
       const text = element.querySelector('text')!
-      expect(text.textContent).toBe(label)
+      expect(text.textContent).toBe(`[${number}]`)
       for (const [coordinate, size] of [
         ['x', 'width'],
         ['y', 'height'],
@@ -149,13 +150,13 @@ describe('line annotations with actual Unovis producer', () => {
       }
       return Number(rect.getAttribute('x'))
     }
-    expect(region('早段')).toBeLessThan(region('晚段'))
-    region('高区')
+    expect(region('早段', 2)).toBeLessThan(region('晚段', 1))
+    region('高区', 3)
     await w.setProps({
       bands: [{ id: 'early', axis: 'x', from: 0.5, to: 1, label: '当前段' }],
     })
     await rendered()
-    region('当前段')
+    region('当前段', 1)
     expect(w.findAllComponents(VisPlotband as never)).toHaveLength(1)
     expect(w.find('svg').text()).not.toMatch(/早段|晚段|高区/)
     await w.setProps({ bands: [] })
@@ -256,4 +257,24 @@ describe('line annotations with actual Unovis producer', () => {
     expect(html).toContain('84 件')
     expect(html).toContain('2026-10-28 10:00')
   })
+})
+
+it('separates nested same-center range labels and retains full long names with axis endpoints', async () => {
+  const { w } = await chart({
+    bands: [
+      { id: 'outer', axis: 'x', from: 0, to: 2, label: '完整的外层早间阅读范围' },
+      { id: 'inner', axis: 'x', from: 0.5, to: 1.5, label: '完整的内层晚间活动范围' },
+    ],
+  })
+  const bands = w.findAllComponents(VisPlotband as never) as VueWrapper[]
+  const labels = bands.map((b) => producer<Plotband<unknown>>(b).element.querySelector('text')!)
+  expect(labels.map((t) => t.textContent)).toEqual(['[1]', '[2]'])
+  expect(
+    Math.abs(Number(labels[0].getAttribute('y')) - Number(labels[1].getAttribute('y'))),
+  ).toBeGreaterThanOrEqual(18)
+  const entries = w.get('[aria-label="范围说明"]').findAll('li')
+  expect(entries[0].text()).toContain('[1] 完整的外层早间阅读范围')
+  expect(entries[0].text()).toContain('横轴 0–2')
+  expect(entries[1].text()).toContain('[2] 完整的内层晚间活动范围')
+  expect(entries[1].text()).toContain('横轴 0.5–1.5')
 })

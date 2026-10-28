@@ -69,7 +69,7 @@ function locate(marker: NvLineMarker, event: MouseEvent | KeyboardEvent) {
         >{{ showSecond ? '隐藏' : '显示' }}前次记录</NvButton
       >
     </div>
-    <section aria-label="时段趋势" class="rounded-xl border bg-card p-6">
+    <section aria-label="时段趋势" class="min-w-0 rounded-xl border bg-card p-6">
       <NvLineChart
         :data="rows"
         x-key="time"
