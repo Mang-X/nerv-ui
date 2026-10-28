@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { PrimitiveProps } from 'reka-ui'
-import type { HTMLAttributes } from 'vue'
+import type { HTMLAttributes, FunctionalComponent, VNode, VNodeChild } from 'vue'
+import { cloneVNode, Comment, Fragment, h, isVNode, mergeProps, useSlots } from 'vue'
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 import { Primitive } from 'reka-ui'
@@ -52,10 +53,69 @@ const props = withDefaults(
   >(),
   { as: 'button', block: false },
 )
-function guardActivation(event: MouseEvent) {
+const slots = useSlots()
+// Keep Primitive's polymorphic host as its only child. Decorations belong inside
+// that host, rather than becoming the first node selected by Primitive Slot.
+const ChildContent: FunctionalComponent = (_props, { attrs }) => {
+  const flatten = (nodes: VNode[]): VNode[] =>
+    nodes.flatMap((node) =>
+      node.type === Fragment
+        ? flatten(Array.isArray(node.children) ? node.children.filter(isVNode) : [])
+        : [node],
+    )
+  const nodes = flatten(slots.default?.() ?? [])
+  const index = nodes.findIndex((node) => node.type !== Comment)
+  if (index < 0) return nodes
+  const child = nodes[index]!
+  const childProps = { ...child.props }
+  delete childProps.ref
+  const forwarded = mergeProps(
+    attrs,
+    childProps,
+    props.loading || props.disabled
+      ? {
+          disabled: true,
+          'aria-disabled': true,
+          'aria-busy': props.loading || childProps['aria-busy'],
+        }
+      : {},
+  )
+  const prefix = () =>
+    props.loading
+      ? [h(NvLoader, { variant: 'ring', size: 'default', class: 'text-current' })]
+      : (slots.leading?.() ?? [])
+  const original = child.children
+  const originalSlots =
+    original !== null && typeof original === 'object' && !Array.isArray(original)
+      ? (original as Record<string, unknown> & { default?: () => VNodeChild })
+      : undefined
+  const decoratedContent = () => [
+    ...prefix(),
+    ...[(originalSlots ? originalSlots.default?.() : (original as VNodeChild)) ?? []].flat(),
+  ]
+  const content =
+    typeof child.type === 'string'
+      ? decoratedContent()
+      : { ...originalSlots, default: decoratedContent }
+  const normalized = h(child.type as string, forwarded, content)
+  // Preserve the caller's VNode ownership/ref/scope, with newly normalized
+  // children and render flags so text children can safely receive the loader.
+  nodes[index] = Object.assign(cloneVNode({ ...child, props: {} }, forwarded), {
+    children: normalized.children,
+    shapeFlag: normalized.shapeFlag,
+    patchFlag: normalized.patchFlag,
+  })
+  return nodes.length === 1 ? nodes[0] : nodes
+}
+ChildContent.inheritAttrs = false
+
+function guardActivation(event: Event) {
   if (!props.loading && !props.disabled) return
   event.preventDefault()
   event.stopImmediatePropagation()
+}
+function guardKeyActivation(event: KeyboardEvent) {
+  if (event.key === 'Enter' || event.key === ' ') guardActivation(event)
 }
 </script>
 
@@ -68,11 +128,16 @@ function guardActivation(event: MouseEvent) {
     :disabled="disabled || loading || undefined"
     :aria-disabled="disabled || loading || undefined"
     @click.capture="guardActivation"
+    @keydown.capture="guardKeyActivation"
+    @keyup.capture="guardKeyActivation"
     :class="cn(touchButtonVariants({ variant, size, block }), props.class)"
   >
-    <NvLoader v-if="loading" variant="ring" size="default" class="text-current" />
-    <slot v-else name="leading" />
-    <slot />
+    <ChildContent v-if="asChild" />
+    <template v-else>
+      <NvLoader v-if="loading" variant="ring" size="default" class="text-current" />
+      <slot v-else name="leading" />
+      <slot />
+    </template>
   </Primitive>
 </template>
 

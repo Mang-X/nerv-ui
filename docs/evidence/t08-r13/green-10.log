@@ -1,0 +1,52 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ✓ src/components/pc/chart/LineAnnotations.test.ts (6 tests) 397ms
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 2 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: Cannot read properties of undefined (reading 'baseVal')
+ ❯ parseSvg ../../node_modules/.pnpm/d3-interpolate@3.0.1/node_modules/d3-interpolate/src/transform/parse.js:15:35
+ ❯ ../../node_modules/.pnpm/d3-interpolate@3.0.1/node_modules/d3-interpolate/src/transform/index.js:48:9
+ ❯ SVGGElement.<anonymous> ../../node_modules/.pnpm/d3-transition@3.0.1_d3-selection@3.0.0/node_modules/d3-transition/src/transition/attr.js:53:47
+ ❯ SVGGElement.tween ../../node_modules/.pnpm/d3-transition@3.0.1_d3-selection@3.0.0/node_modules/d3-transition/src/transition/attrTween.js:29:19
+ ❯ start ../../node_modules/.pnpm/d3-transition@3.0.1_d3-selection@3.0.0/node_modules/d3-transition/src/transition/schedule.js:123:35
+ ❯ schedule ../../node_modules/.pnpm/d3-transition@3.0.1_d3-selection@3.0.0/node_modules/d3-transition/src/transition/schedule.js:66:32
+ ❯ timerFlush ../../node_modules/.pnpm/d3-timer@3.0.1/node_modules/d3-timer/src/timer.js:61:48
+ ❯ wake ../../node_modules/.pnpm/d3-timer@3.0.1/node_modules/d3-timer/src/timer.js:71:5
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "keeps single zero points, omits unknown values and projects large finite differences without NaN". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: Cannot read properties of undefined (reading 'baseVal')
+ ❯ parseSvg ../../node_modules/.pnpm/d3-interpolate@3.0.1/node_modules/d3-interpolate/src/transform/parse.js:15:35
+ ❯ ../../node_modules/.pnpm/d3-interpolate@3.0.1/node_modules/d3-interpolate/src/transform/index.js:48:9
+ ❯ SVGGElement.<anonymous> ../../node_modules/.pnpm/d3-transition@3.0.1_d3-selection@3.0.0/node_modules/d3-transition/src/transition/attr.js:53:47
+ ❯ SVGGElement.tween ../../node_modules/.pnpm/d3-transition@3.0.1_d3-selection@3.0.0/node_modules/d3-transition/src/transition/attrTween.js:29:19
+ ❯ start ../../node_modules/.pnpm/d3-transition@3.0.1_d3-selection@3.0.0/node_modules/d3-transition/src/transition/schedule.js:123:35
+ ❯ schedule ../../node_modules/.pnpm/d3-transition@3.0.1_d3-selection@3.0.0/node_modules/d3-transition/src/transition/schedule.js:66:32
+ ❯ timerFlush ../../node_modules/.pnpm/d3-timer@3.0.1/node_modules/d3-timer/src/timer.js:61:48
+ ❯ wake ../../node_modules/.pnpm/d3-timer@3.0.1/node_modules/d3-timer/src/timer.js:71:5
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+     Errors  2 errors
+   Start at  15:34:23
+   Duration  2.94s (transform 1.58s, setup 207ms, import 2.03s, tests 397ms, environment 244ms)
+
+JSON report written to /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/docs/evidence/t08-r13/green-10.json

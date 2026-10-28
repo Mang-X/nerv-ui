@@ -55,6 +55,7 @@ const NV_ALL = [
   'NvNavBar',
   'NvNoticeBar',
   'NvNumberKeyboard',
+  'NvPhotoAttachments',
   'NvPicker',
   'NvPullRefresh',
   'NvScanBar',

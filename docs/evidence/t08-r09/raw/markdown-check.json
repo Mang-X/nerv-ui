@@ -1,0 +1,95 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates",
+  "format": [
+    {
+      "file": "README.md",
+      "argv": [
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/node_modules/.bin/oxfmt",
+        "--stdin-filepath",
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/README.md"
+      ],
+      "exit": 0,
+      "nonempty": true,
+      "cmp": true
+    },
+    {
+      "file": "docs/screen-standalone.md",
+      "argv": [
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/node_modules/.bin/oxfmt",
+        "--stdin-filepath",
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/docs/screen-standalone.md"
+      ],
+      "exit": 0,
+      "nonempty": true,
+      "cmp": true
+    },
+    {
+      "file": "docs/evidence/t08-r09/README.md",
+      "argv": [
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/node_modules/.bin/oxfmt",
+        "--stdin-filepath",
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/docs/evidence/t08-r09/README.md"
+      ],
+      "exit": 0,
+      "nonempty": true,
+      "cmp": true
+    },
+    {
+      "file": "frontend/DESIGN/components/status-wall.md",
+      "argv": [
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/node_modules/.bin/oxfmt",
+        "--stdin-filepath",
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/DESIGN/components/status-wall.md"
+      ],
+      "exit": 0,
+      "nonempty": true,
+      "cmp": true
+    },
+    {
+      "file": "frontend/DESIGN/component-coverage.md",
+      "argv": [
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/node_modules/.bin/oxfmt",
+        "--stdin-filepath",
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/DESIGN/component-coverage.md"
+      ],
+      "exit": 0,
+      "nonempty": true,
+      "cmp": true
+    },
+    {
+      "file": "frontend/DESIGN/nvui-naming-map.md",
+      "argv": [
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/node_modules/.bin/oxfmt",
+        "--stdin-filepath",
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/DESIGN/nvui-naming-map.md"
+      ],
+      "exit": 0,
+      "nonempty": true,
+      "cmp": true
+    },
+    {
+      "file": "frontend/packages/ui/src/components/screen/product.md",
+      "argv": [
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/node_modules/.bin/oxfmt",
+        "--stdin-filepath",
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui/src/components/screen/product.md"
+      ],
+      "exit": 0,
+      "nonempty": true,
+      "cmp": true
+    },
+    {
+      "file": "frontend/apps/design-system/docs/components/screen/status-wall.md",
+      "argv": [
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/node_modules/.bin/oxfmt",
+        "--stdin-filepath",
+        "/Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/apps/design-system/docs/components/screen/status-wall.md"
+      ],
+      "exit": 0,
+      "nonempty": true,
+      "cmp": true
+    }
+  ],
+  "relativeLinks": 106,
+  "exit": 0
+}

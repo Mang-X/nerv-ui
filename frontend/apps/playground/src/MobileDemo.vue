@@ -70,6 +70,7 @@ const controlClass =
 <template>
   <NvAppShellMobile class="relative">
     <template #header>
+      <a href="#mobile-photos/library" class="inline-flex min-h-11 items-center px-4">留住光影</a>
       <NvNavBar title="随行手记" back @back="page = 'discover'">
         <template #right>
           <button

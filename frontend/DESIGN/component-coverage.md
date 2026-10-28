@@ -16,22 +16,23 @@
 
 ### 操作 / 表单
 
-| UX 概念     | 桌面 PC (`--nv-*`, 36–40px)   | 移动 PDA (`--nv-m-*`, 40–48px)            | 一体机 touch (`--nv-t-*`, 56–72px) | 大屏 screen (`--nv-scr-*`) |
-| ----------- | ----------------------------- | ----------------------------------------- | ---------------------------------- | -------------------------- |
-| 按钮        | `NvButton`                    | `NvMobileButton`                          | `NvTouchButton`                    | `NvScreenButton`           |
-| 分段切换    | `NvTabs`（分段样式）          | `NvMobileTabs`（分段样式）                | `NvTouchSegmented`                 | `NvScreenSegmented`        |
-| 数量步进    | InputNumber（P2 待建）        | `NvStepper`                               | `NvQtyStepper`                     | `—`                        |
-| 输入框      | `NvInput`                     | `NvMobileInput`                           | （复用 PC）                        | `NvScreenInput`            |
-| 选择器      | `NvSelect`                    | `NvPicker`（滚轮）                        | `—`                                | `NvScreenSelect`           |
-| 可搜索多选  | `NvEntityMultiPicker`         | `—`                                       | `—`                                | `—`                        |
-| 层级树      | `NvTree`                      | `—`                                       | `—`                                | `—`                        |
-| 复选 / 单选 | `NvCheckbox` · `NvRadioGroup` | `NvMobileCheckbox` · `NvMobileRadioGroup` | `—`                                | `—`                        |
-| 开关        | `NvSwitch`                    | `NvMobileSwitch`                          | `—`                                | `NvScreenSwitch`           |
-| 滑块        | `NvSlider`                    | `NvMobileSlider`                          | `—`                                | `—`                        |
-| 日期        | `NvDatePicker`                | `NvMobileDatePicker`                      | `—`                                | `—`                        |
-| 搜索        | `NvCommand`（⌘K）             | `NvSearchBar`                             | `—`                                | `NvScreenSearch`           |
-| 筛选条      | `NvFilterBar`                 | `—`                                       | `—`                                | `—`                        |
-| 表单分节    | `NvFormSection`               | `—`                                       | `—`                                | `—`                        |
+| UX 概念        | 桌面 PC (`--nv-*`, 36–40px)   | 移动 PDA (`--nv-m-*`, 40–48px)            | 一体机 touch (`--nv-t-*`, 56–72px) | 大屏 screen (`--nv-scr-*`) |
+| -------------- | ----------------------------- | ----------------------------------------- | ---------------------------------- | -------------------------- |
+| 照片与成功附件 | `—`                           | `NvPhotoAttachments`                      | `—`                                | `—`                        |
+| 按钮           | `NvButton`                    | `NvMobileButton`                          | `NvTouchButton`                    | `NvScreenButton`           |
+| 分段切换       | `NvTabs`（分段样式）          | `NvMobileTabs`（分段样式）                | `NvTouchSegmented`                 | `NvScreenSegmented`        |
+| 数量步进       | InputNumber（P2 待建）        | `NvStepper`                               | `NvQtyStepper`                     | `—`                        |
+| 输入框         | `NvInput`                     | `NvMobileInput`                           | （复用 PC）                        | `NvScreenInput`            |
+| 选择器         | `NvSelect`                    | `NvPicker`（滚轮）                        | `—`                                | `NvScreenSelect`           |
+| 可搜索多选     | `NvEntityMultiPicker`         | `—`                                       | `—`                                | `—`                        |
+| 层级树         | `NvTree`                      | `—`                                       | `—`                                | `—`                        |
+| 复选 / 单选    | `NvCheckbox` · `NvRadioGroup` | `NvMobileCheckbox` · `NvMobileRadioGroup` | `—`                                | `—`                        |
+| 开关           | `NvSwitch`                    | `NvMobileSwitch`                          | `—`                                | `NvScreenSwitch`           |
+| 滑块           | `NvSlider`                    | `NvMobileSlider`                          | `—`                                | `—`                        |
+| 日期           | `NvDatePicker`                | `NvMobileDatePicker`                      | `—`                                | `—`                        |
+| 搜索           | `NvCommand`（⌘K）             | `NvSearchBar`                             | `—`                                | `NvScreenSearch`           |
+| 筛选条         | `NvFilterBar`                 | `—`                                       | `—`                                | `—`                        |
+| 表单分节       | `NvFormSection`               | `—`                                       | `—`                                | `—`                        |
 
 ### 数据展示
 
@@ -50,6 +51,7 @@
 | 看板          | `NvKanban`                                                                                                    | `—`                             | `—`                                | `—`                                                                                            |
 | 图表          | `NvBarChart`/`NvLineChart`/`NvAreaChart`/`NvDonutChart`                                                       | `—`                             | （复用 PC）                        | `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvSparkline` · `NvScreenTrendChart` |
 | 甘特          | `—`                                                                                                           | `—`                             | `—`                                | `NvTaktGantt`                                                                                  |
+| 分组状态墙    | —                                                                                                             | —                               | —                                  | `NvScreenStatusWall`                                                                           |
 | 分档热力格    | —                                                                                                             | —                               | —                                  | `NvScreenHeatmap`                                                                              |
 | 入口与摘要卡  | —                                                                                                             | —                               | —                                  | `NvScreenSummaryCard`                                                                          |
 | 阶段数量流    | —                                                                                                             | —                               | —                                  | `NvScreenStageFlow`                                                                            |
@@ -164,8 +166,27 @@ C04：大屏分栏 recipe（宿主组合，无新增导出）；阅读活动/展
 | -------------- | ---------------------------------------------------------------------------------- | --------------------- | ---------- |
 | 候选与分步执行 | ScanBar / Picker / NumberKeyboard / Tag / Result / Steps / AppShellMobile / NavBar | —                     | 无         |
 
+| UX 概念      | 桌面 | 移动 | touch | screen               |
+| ------------ | ---- | ---- | ----- | -------------------- |
+| 插画登录舞台 | `—`  | `—`  | `—`   | `NvScreenLoginStage` |
+
 T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / FilterBar / DataTable / Sheet / Timeline，无新增导出。screen/mobile/touch：—。合同见 [目录详情](components/directory-detail.md)。
 
-| UX 概念      | 桌面 | 移动                    | touch | screen |
-| ------------ | ---- | ----------------------- | ----- | ------ |
-| 分页恢复组合 | —    | `NvMobileTaskListShell` | —     | —      |
+| UX 概念        | 桌面 | 移动                    | touch | screen             |
+| -------------- | ---- | ----------------------- | ----- | ------------------ |
+| 等距节点流背景 | —    | —                       | —     | `NvScreenFusionBg` |
+| UX 概念        | 桌面 | 移动                    | touch | screen             |
+| ------------   | ---- | ----------------------- | ----- | ------             |
+| 分页恢复组合   | —    | `NvMobileTaskListShell` | —     | —                  |
+
+| UX 概念            | PC  | mobile | touch | screen                                       |
+| ------------------ | --- | ------ | ----- | -------------------------------------------- |
+| 中性详情与参数取值 | —   | —      | —     | `NvScreenDetailDialog` / `NvScreenParameter` |
+
+## C01 宿主组合（非新增组件）
+
+| 组合                                     | PC              | PDA           | touch | screen          |
+| ---------------------------------------- | --------------- | ------------- | ----- | --------------- |
+| [登录与改密](components/login-recipe.md) | 两类分栏 recipe | 安全区 recipe | —     | R05 slot recipe |
+
+T08/R13：PC `NvLineChart` 增加可选图内多范围与点定位；touch/mobile/screen 本票均为 `—`，不迁入 SPC 算法。

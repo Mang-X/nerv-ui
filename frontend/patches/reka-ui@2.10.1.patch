@@ -1,0 +1,78 @@
+diff --git a/dist/RovingFocus/RovingFocusItem.cjs b/dist/RovingFocus/RovingFocusItem.cjs
+index 4084eb5c0957f4593ec3d0bb9026cbef4b3cf866..b5c55a87ca7933ff1141f7764ff1e676b0d14336 100644
+--- a/dist/RovingFocus/RovingFocusItem.cjs
++++ b/dist/RovingFocus/RovingFocusItem.cjs
+@@ -72,7 +72,10 @@ var RovingFocusItem_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ *
+ 					const currentIndex = candidateNodes.indexOf(event.currentTarget);
+ 					candidateNodes = context.loop.value ? require_RovingFocus_utils.wrapArray(candidateNodes, currentIndex + 1) : candidateNodes.slice(currentIndex + 1);
+ 				}
+-				(0, vue.nextTick)(() => require_RovingFocus_utils.focusFirst(candidateNodes));
++				(0, vue.nextTick)(() => require_RovingFocus_utils.focusFirst(candidateNodes, false, (candidate) => {
++					// nerv-ui #51: signal only a focus actually performed by this key event.
++					candidate.dispatchEvent(new CustomEvent("nv-roving-focus", { bubbles: true, detail: event }));
++				}));
+ 			}
+ 		}
+ 		return (_ctx, _cache) => {
+diff --git a/dist/RovingFocus/RovingFocusItem.js b/dist/RovingFocus/RovingFocusItem.js
+index 6155dee36a32a1f4e7460e8972a2bb37f9fa6da4..fe9618a391ff6920db9f8ae8a1e40355a135ae9b 100644
+--- a/dist/RovingFocus/RovingFocusItem.js
++++ b/dist/RovingFocus/RovingFocusItem.js
+@@ -71,7 +71,10 @@ var RovingFocusItem_vue_vue_type_script_setup_true_lang_default = /* @__PURE__ *
+ 					const currentIndex = candidateNodes.indexOf(event.currentTarget);
+ 					candidateNodes = context.loop.value ? wrapArray(candidateNodes, currentIndex + 1) : candidateNodes.slice(currentIndex + 1);
+ 				}
+-				nextTick(() => focusFirst(candidateNodes));
++				nextTick(() => focusFirst(candidateNodes, false, (candidate) => {
++					// nerv-ui #51: signal only a focus actually performed by this key event.
++					candidate.dispatchEvent(new CustomEvent("nv-roving-focus", { bubbles: true, detail: event }));
++				}));
+ 			}
+ 		}
+ 		return (_ctx, _cache) => {
+diff --git a/dist/RovingFocus/utils.cjs b/dist/RovingFocus/utils.cjs
+index 9a1371097ffe1fb7c214752594827d6c614bb002..d27d4515dda28cdc930fd05d558fe32c31c4c56f 100644
+--- a/dist/RovingFocus/utils.cjs
++++ b/dist/RovingFocus/utils.cjs
+@@ -26,12 +26,16 @@ function getFocusIntent(event, orientation, dir) {
+ 	if (orientation === "horizontal" && ["ArrowUp", "ArrowDown"].includes(key)) return void 0;
+ 	return MAP_KEY_TO_FOCUS_INTENT[key];
+ }
+-function focusFirst(candidates, preventScroll = false) {
++function focusFirst(candidates, preventScroll = false, onFocused) {
+ 	const PREVIOUSLY_FOCUSED_ELEMENT = require_shared_getActiveElement.getActiveElement();
+ 	for (const candidate of candidates) {
+ 		if (candidate === PREVIOUSLY_FOCUSED_ELEMENT) return;
+ 		candidate.focus({ preventScroll });
+-		if (require_shared_getActiveElement.getActiveElement() !== PREVIOUSLY_FOCUSED_ELEMENT) return;
++		const activeElement = require_shared_getActiveElement.getActiveElement();
++		if (activeElement !== PREVIOUSLY_FOCUSED_ELEMENT) {
++			if (activeElement === candidate) onFocused?.(candidate);
++			return;
++		}
+ 	}
+ }
+ /**
+diff --git a/dist/RovingFocus/utils.js b/dist/RovingFocus/utils.js
+index 400c81ccf62c69d22e544144fbc624bd582121a8..c863cf41fd0355bd366b92d6fbec03cf59cef2ec 100644
+--- a/dist/RovingFocus/utils.js
++++ b/dist/RovingFocus/utils.js
+@@ -26,12 +26,16 @@ function getFocusIntent(event, orientation, dir) {
+ 	if (orientation === "horizontal" && ["ArrowUp", "ArrowDown"].includes(key)) return void 0;
+ 	return MAP_KEY_TO_FOCUS_INTENT[key];
+ }
+-function focusFirst(candidates, preventScroll = false) {
++function focusFirst(candidates, preventScroll = false, onFocused) {
+ 	const PREVIOUSLY_FOCUSED_ELEMENT = getActiveElement();
+ 	for (const candidate of candidates) {
+ 		if (candidate === PREVIOUSLY_FOCUSED_ELEMENT) return;
+ 		candidate.focus({ preventScroll });
+-		if (getActiveElement() !== PREVIOUSLY_FOCUSED_ELEMENT) return;
++		const activeElement = getActiveElement();
++		if (activeElement !== PREVIOUSLY_FOCUSED_ELEMENT) {
++			if (activeElement === candidate) onFocused?.(candidate);
++			return;
++		}
+ 	}
+ }
+ /**

@@ -1,0 +1,533 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/components/pc/chart/LineAnnotations.test.ts (7 tests | 7 failed) 376ms
+     × projects boundary and duplicate-label rows onto actual shared plot scales 102ms
+     × clips multiple reversed bands with official producer and never expands data domain 39ms
+     × uses current identity after replacement and reorder without replacing focused marker DOM 41ms
+     × updates resize and data/series domains and isolates a second chart 78ms
+     × omits unknown, invalid and unsafe targets and adds no default annotation 36ms
+     × keeps single zero points, omits unknown values and projects large finite differences without NaN 31ms
+     × follows actual axis auto margins and formats current tooltip data with units 47ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > projects boundary and duplicate-label rows onto actual shared plot scales
+AssertionError: expected [] to have a length of 2 but got +0
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:100:21
+     98|     })
+     99|     const markers = w.findAll('[data-slot=nv-line-marker]')
+    100|     expect(markers).toHaveLength(2)
+       |                     ^
+    101|     expect((markers[0].element as HTMLElement).style.left).toBe('62px')
+    102|     expect((markers[1].element as HTMLElement).style.left).toBe('584px…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > clips multiple reversed bands with official producer and never expands data domain
+AssertionError: expected [] to have a length of 2 but got +0
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:116:19
+    114|     })
+    115|     const bands = w.findAllComponents(VisPlotband as never) as VueWrap…
+    116|     expect(bands).toHaveLength(2)
+       |                   ^
+    117|     expect(bands[0].props()).toMatchObject({ from: 0, to: 2, excludeFr…
+    118|     expect(bands[1].props()).toMatchObject({ from: -10, to: 300 })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > uses current identity after replacement and reorder without replacing focused marker DOM
+Error: Unable to get [data-marker-id=a] within: <div data-v-ceb7c9d8="" class="nv-chart" markers="[object Object]">
+  <div data-v-ceb7c9d8="" class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1"><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-1);"></span> 甲</span><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-2);"></span> 乙</span></div>
+  <div data-v-ceb7c9d8="" data-vis-xy-container="" class="unovis-xy-container" role="figure">
+    <div data-v-ceb7c9d8="" data-vis-component=""></div>
+    <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+    <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+    <div data-v-ceb7c9d8="" data-vis-crosshair="" color="var(--chart-1),var(--chart-2)" template="(d) => {
+			const rows = props.series.map((s, i) => `<div class=&quot;nv-vis-row&quot;><span class=&quot;nv-vis-dot&quot; style=&quot;background:${escapeHtml(cssColor(colors.value[i]))}&quot;></span><span>${escapeHtml(s.label)}</span><b>${escapeHtml(d[s.key])}${escapeHtml(props.valueSuffix)}</b></div>`).join(&quot;&quot;);
+			return `<div class=&quot;nv-vis-card&quot;><div class=&quot;nv-vis-head&quot;>${escapeHtml(d[props.xKey])}</div>${rows}</div>`;
+		}"></div>
+    <div data-v-ceb7c9d8="" data-vis-tooltip=""></div><svg style="display: block;" xmlns="http://www.w3.org/2000/svg" height="260" aria-hidden="true" class="css-15uhmcb" width="600">
+      <g class="css-1i6bj7n-axis-component" axis-type="x" transform="translate(58,240)">
+        <g fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+          <path class="domain" stroke="currentColor" d="M0.5, 0 V0.5 H530.5 V0"></path>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(4.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(135,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))"></tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(265.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(396,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))"></tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(526.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">09:00</tspan>
+              </tspan>
+            </text>
+          </g>
+        </g>
+        <g class="css-1o9c2r8-grid" style="opacity: 0;"></g>
+      </g>
+      <g class="css-1i6bj7n-axis-component" axis-type="y" transform="translate(58,8)">
+        <g fill="none" font-size="10" font-family="sans-serif" text-anchor="end" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+          <path class="domain" stroke="currentColor" d="M0, 232.5 H0.5 V0.5 H0"></path>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,224.17741935483872)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">0</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,150.9516129032258)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">100</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,77.72580645161291)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">200</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,4.5)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">300</tspan>
+              </tspan>
+            </text>
+          </g>
+        </g>
+        <g class="css-1o9c2r8-grid" fill="none" font-size="10" font-family="sans-serif" text-anchor="end" style="opacity: 1;">
+          <path class="domain" stroke="currentColor" d="M0.5,231.5V4.5"></path>
+          <g class="tick" opacity="1" transform="translate(0,224.17741935483872)">
+            <line stroke="currentColor" x2="530"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,187.56451612903226)">
+            <line stroke="currentColor" x2="530"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,150.9516129032258)">
+            <line stroke="currentColor" x2="530"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,114.33870967741936)">
+            <line stroke="currentColor" x2="530"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,77.72580645161291)">
+            <line stroke="currentColor" x2="530"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,41.11290322580644)">
+            <line stroke="currentColor" x2="530"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,4.5)">
+            <line stroke="currentColor" x2="530"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+        </g>
+      </g>
+      <g class="css-13qg9kf-line-component" transform="translate(58,8)" style="clip-path: url(&quot;#45daf4c000030e15fb0000-4d4122f0000-fa18e7f0000-f01c99f0000-9c4684a000069f33d80000590551e0000&quot;);" animating="">
+        <g class="css-1iwf0di-line">
+          <path class="css-142r7hb-linePath" stroke="var(--chart-1)" stroke-opacity="1" stroke-width="2" d="M4,231C91,228.559,178,226.118,265,223.677C352,221.237,439,218.796,526,216.355"></path>
+          <path class="css-n8nujq-lineSelectionHelper" d="M4,231C91,228.559,178,226.118,265,223.677C352,221.237,439,218.796,526,216.355"></path>
+          <path class="css-1rr4gz0-interpolated-path" d="M4,231 L526,231" style="opacity: 0;"></path>
+        </g>
+        <g class="css-1iwf0di-line">
+          <path class="css-142r7hb-linePath" stroke="var(--chart-2)" stroke-opacity="1" stroke-width="2" d="M4,150.452C91,126.043,178,101.634,265,77.226C352,52.817,439,28.409,526,4"></path>
+          <path class="css-n8nujq-lineSelectionHelper" d="M4,150.452C91,126.043,178,101.634,265,77.226C352,52.817,439,28.409,526,4"></path>
+          <path class="css-1rr4gz0-interpolated-path" d="M4,231 L526,231" style="opacity: 0;"></path>
+        </g>
+      </g>
+      <g class="css-1813gb2-crosshair-component" style="opacity: 0; clip-path: url(&quot;#45daf4c000030e15fb0000-4d4122f0000-fa18e7f0000-f01c99f0000-9c4684a000069f33d80000590551e0000&quot;);" transform="translate(58,8)" animating="">
+        <line class="css-16gcv4z"></line>
+      </g>
+      <clipPath id="45daf4c000030e15fb0000-4d4122f0000-fa18e7f0000-f01c99f0000-9c4684a000069f33d80000590551e0000">
+        <rect x="-2" y="-2" width="534" height="236"></rect>
+      </clipPath>
+      <defs>
+        <filter id="saturate" filterUnits="objectBoundingBox">
+          <feColorMatrix type="saturate" in="SourceGraphic" values="1.35"></feColorMatrix>
+        </filter>
+      </defs>
+      <defs></defs>
+    </svg>
+    <div class="css-135213i-tooltip css-38lglc"></div>
+  </div>
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:126:19
+    124|       markers: [{ id: 'a', index: 1, seriesKey: 'a', label: '旧标签', hre…
+    125|     })
+    126|     const old = w.get('[data-marker-id=a]').element as HTMLElement
+       |                   ^
+    127|     old.focus()
+    128|     await w.setProps({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > updates resize and data/series domains and isolates a second chart
+Error: Unable to get [data-marker-id=a] within: <div data-v-ceb7c9d8="" class="nv-chart" markers="[object Object]">
+  <div data-v-ceb7c9d8="" class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1"><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-1);"></span> 甲</span><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-2);"></span> 乙</span></div>
+  <div data-v-ceb7c9d8="" data-vis-xy-container="" class="unovis-xy-container" role="figure">
+    <div data-v-ceb7c9d8="" data-vis-component=""></div>
+    <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+    <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+    <div data-v-ceb7c9d8="" data-vis-crosshair="" color="var(--chart-1),var(--chart-2)" template="(d) => {
+			const rows = props.series.map((s, i) => `<div class=&quot;nv-vis-row&quot;><span class=&quot;nv-vis-dot&quot; style=&quot;background:${escapeHtml(cssColor(colors.value[i]))}&quot;></span><span>${escapeHtml(s.label)}</span><b>${escapeHtml(d[s.key])}${escapeHtml(props.valueSuffix)}</b></div>`).join(&quot;&quot;);
+			return `<div class=&quot;nv-vis-card&quot;><div class=&quot;nv-vis-head&quot;>${escapeHtml(d[props.xKey])}</div>${rows}</div>`;
+		}"></div>
+    <div data-v-ceb7c9d8="" data-vis-tooltip=""></div><svg style="display: block;" xmlns="http://www.w3.org/2000/svg" height="260" aria-hidden="true" class="css-15uhmcb" width="800">
+      <g class="css-1i6bj7n-axis-component" axis-type="x" transform="translate(58,240)">
+        <g fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+          <path class="domain" stroke="currentColor" d="M0.5, 0 V0.5 H730.5 V0"></path>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(4.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(185,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))"></tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(365.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(546,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))"></tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(726.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">09:00</tspan>
+              </tspan>
+            </text>
+          </g>
+        </g>
+        <g class="css-1o9c2r8-grid" style="opacity: 0;"></g>
+      </g>
+      <g class="css-1i6bj7n-axis-component" axis-type="y" transform="translate(58,8)">
+        <g fill="none" font-size="10" font-family="sans-serif" text-anchor="end" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+          <path class="domain" stroke="currentColor" d="M0, 232.5 H0.5 V0.5 H0"></path>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,224.17741935483872)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">0</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,150.9516129032258)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">100</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,77.72580645161291)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">200</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,4.5)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">300</tspan>
+              </tspan>
+            </text>
+          </g>
+        </g>
+        <g class="css-1o9c2r8-grid" fill="none" font-size="10" font-family="sans-serif" text-anchor="end" style="opacity: 1;">
+          <path class="domain" stroke="currentColor" d="M0.5,231.5V4.5"></path>
+          <g class="tick" opacity="1" transform="translate(0,224.17741935483872)">
+            <line stroke="currentColor" x2="730"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,187.56451612903226)">
+            <line stroke="currentColor" x2="730"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,150.9516129032258)">
+            <line stroke="currentColor" x2="730"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,114.33870967741936)">
+            <line stroke="currentColor" x2="730"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,77.72580645161291)">
+            <line stroke="currentColor" x2="730"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,41.11290322580644)">
+            <line stroke="currentColor" x2="730"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,4.5)">
+            <line stroke="currentColor" x2="730"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+        </g>
+      </g>
+      <g class="css-13qg9kf-line-component" transform="translate(58,8)" style="clip-path: url(&quot;#da1b4d50000b5bc3550000-8a5f1050000-9c5778a0000-af711e50000-27693a100006ca08780000cbb747b0000&quot;);" animating="">
+        <g class="css-1iwf0di-line">
+          <path class="css-142r7hb-linePath" stroke="var(--chart-1)" stroke-opacity="1" stroke-width="2" d="M4,231C124.333,228.559,244.667,226.118,365,223.677C485.333,221.237,605.667,218.796,726,216.355"></path>
+          <path class="css-n8nujq-lineSelectionHelper" d="M4,231C124.333,228.559,244.667,226.118,365,223.677C485.333,221.237,605.667,218.796,726,216.355"></path>
+          <path class="css-1rr4gz0-interpolated-path" d="M4,231 L526,231" style="opacity: 0;"></path>
+        </g>
+        <g class="css-1iwf0di-line">
+          <path class="css-142r7hb-linePath" stroke="var(--chart-2)" stroke-opacity="1" stroke-width="2" d="M4,150.452C124.333,126.043,244.667,101.634,365,77.226C485.333,52.817,605.667,28.409,726,4"></path>
+          <path class="css-n8nujq-lineSelectionHelper" d="M4,150.452C124.333,126.043,244.667,101.634,365,77.226C485.333,52.817,605.667,28.409,726,4"></path>
+          <path class="css-1rr4gz0-interpolated-path" d="M4,231 L526,231" style="opacity: 0;"></path>
+        </g>
+      </g>
+      <g class="css-1813gb2-crosshair-component" style="opacity: 0; clip-path: url(&quot;#da1b4d50000b5bc3550000-8a5f1050000-9c5778a0000-af711e50000-27693a100006ca08780000cbb747b0000&quot;);" transform="translate(58,8)" animating="">
+        <line class="css-16gcv4z"></line>
+      </g>
+      <clipPath id="da1b4d50000b5bc3550000-8a5f1050000-9c5778a0000-af711e50000-27693a100006ca08780000cbb747b0000">
+        <rect x="-2" y="-2" width="734" height="236"></rect>
+      </clipPath>
+      <defs>
+        <filter id="saturate" filterUnits="objectBoundingBox">
+          <feColorMatrix type="saturate" in="SourceGraphic" values="1.35"></feColorMatrix>
+        </filter>
+      </defs>
+      <defs></defs>
+    </svg>
+    <div class="css-135213i-tooltip css-38lglc"></div>
+  </div>
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:149:15
+    147|     container.render(0)
+    148|     await rendered()
+    149|     expect((w.get('[data-marker-id=a]').element as HTMLElement).style.…
+       |               ^
+    150|     expect((other.w.get('[data-marker-id=a]').element as HTMLElement).…
+    151|     await w.setProps({ series: [{ key: 'a', label: '甲' }] })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > omits unknown, invalid and unsafe targets and adds no default annotation
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:168:53
+    166|       ],
+    167|     })
+    168|     expect(w.findAll('[data-slot=nv-line-marker]')).toHaveLength(1)
+       |                                                     ^
+    169|     expect(w.get('[data-marker-id=safe]').element.tagName).toBe('BUTTO…
+    170|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > keeps single zero points, omits unknown values and projects large finite differences without NaN
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:177:54
+    175|       markers: [{ id: 'zero', index: 0, seriesKey: 'a', label: '零' }],
+    176|     })
+    177|     expect(w.find('[data-marker-id=zero]').exists()).toBe(true)
+       |                                                      ^
+    178|     await w.setProps({ data: [{ time: 'now', a: '' }] })
+    179|     expect(w.find('[data-marker-id=zero]').exists()).toBe(false)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > follows actual axis auto margins and formats current tooltip data with units
+Error: Unable to get [data-marker-id=first] within: <div data-v-ceb7c9d8="" class="nv-chart" markers="[object Object]">
+  <div data-v-ceb7c9d8="" class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1"><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-1);"></span> 甲</span><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-2);"></span> 乙</span></div>
+  <div data-v-ceb7c9d8="" data-vis-xy-container="" class="unovis-xy-container" role="figure">
+    <div data-v-ceb7c9d8="" data-vis-component=""></div>
+    <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+    <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+    <div data-v-ceb7c9d8="" data-vis-crosshair="" color="var(--chart-1),var(--chart-2)" template="(d) => {
+			const rows = props.series.map((s, i) => `<div class=&quot;nv-vis-row&quot;><span class=&quot;nv-vis-dot&quot; style=&quot;background:${escapeHtml(cssColor(colors.value[i]))}&quot;></span><span>${escapeHtml(s.label)}</span><b>${escapeHtml(d[s.key])}${escapeHtml(props.valueSuffix)}</b></div>`).join(&quot;&quot;);
+			return `<div class=&quot;nv-vis-card&quot;><div class=&quot;nv-vis-head&quot;>${escapeHtml(d[props.xKey])}</div>${rows}</div>`;
+		}"></div>
+    <div data-v-ceb7c9d8="" data-vis-tooltip=""></div><svg style="display: block;" xmlns="http://www.w3.org/2000/svg" height="260" aria-hidden="true" class="css-15uhmcb" width="600">
+      <g class="css-1i6bj7n-axis-component" axis-type="x" transform="translate(98,240)">
+        <g fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+          <path class="domain" stroke="currentColor" d="M0.5, 0 V0.5 H490.5 V0"></path>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(4.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(125,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))"></tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(245.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(366,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))"></tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(486.5,0)">
+            <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="0" dy="NaNem" dominant-baseline="central">09:00</tspan>
+              </tspan>
+            </text>
+          </g>
+        </g>
+        <g class="css-1o9c2r8-grid" style="opacity: 0;"></g>
+      </g>
+      <g class="css-1i6bj7n-axis-component" axis-type="y" transform="translate(98,8)">
+        <g fill="none" font-size="10" font-family="sans-serif" text-anchor="end" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+          <path class="domain" stroke="currentColor" d="M0, 232.5 H0.5 V0.5 H0"></path>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,224.17741935483872)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">0</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,150.9516129032258)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">100</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,77.72580645161291)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">200</tspan>
+              </tspan>
+            </text>
+          </g>
+          <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0,4.5)">
+            <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-14" class="css-2o0ga9-tick-label">
+              <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                <tspan x="-14" dy="NaNem" dominant-baseline="hanging">300</tspan>
+              </tspan>
+            </text>
+          </g>
+        </g>
+        <g class="css-1o9c2r8-grid" fill="none" font-size="10" font-family="sans-serif" text-anchor="end" style="opacity: 1;">
+          <path class="domain" stroke="currentColor" d="M0.5,231.5V4.5"></path>
+          <g class="tick" opacity="1" transform="translate(0,224.17741935483872)">
+            <line stroke="currentColor" x2="490"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,187.56451612903226)">
+            <line stroke="currentColor" x2="490"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,150.9516129032258)">
+            <line stroke="currentColor" x2="490"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,114.33870967741936)">
+            <line stroke="currentColor" x2="490"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,77.72580645161291)">
+            <line stroke="currentColor" x2="490"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,41.11290322580644)">
+            <line stroke="currentColor" x2="490"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+          <g class="tick" opacity="1" transform="translate(0,4.5)">
+            <line stroke="currentColor" x2="490"></line><text fill="currentColor" x="-3" dy="0.32em"></text>
+          </g>
+        </g>
+      </g>
+      <g class="css-13qg9kf-line-component" transform="translate(98,8)" style="clip-path: url(&quot;#4c4c51c0000aa991060000-1369dd00000-625e40d0000-bfb3dc0000-c50475d0000dae71fe0000cc4adb70000&quot;);" animating="">
+        <g class="css-1iwf0di-line">
+          <path class="css-142r7hb-linePath" stroke="var(--chart-1)" stroke-opacity="1" stroke-width="2" d="M4,231C84.333,228.559,164.667,226.118,245,223.677C325.333,221.237,405.667,218.796,486,216.355"></path>
+          <path class="css-n8nujq-lineSelectionHelper" d="M4,231C84.333,228.559,164.667,226.118,245,223.677C325.333,221.237,405.667,218.796,486,216.355"></path>
+          <path class="css-1rr4gz0-interpolated-path" d="M4,231 L526,231" style="opacity: 0;"></path>
+        </g>
+        <g class="css-1iwf0di-line">
+          <path class="css-142r7hb-linePath" stroke="var(--chart-2)" stroke-opacity="1" stroke-width="2" d="M4,150.452C84.333,126.043,164.667,101.634,245,77.226C325.333,52.817,405.667,28.409,486,4"></path>
+          <path class="css-n8nujq-lineSelectionHelper" d="M4,150.452C84.333,126.043,164.667,101.634,245,77.226C325.333,52.817,405.667,28.409,486,4"></path>
+          <path class="css-1rr4gz0-interpolated-path" d="M4,231 L526,231" style="opacity: 0;"></path>
+        </g>
+      </g>
+      <g class="css-1813gb2-crosshair-component" style="opacity: 0; clip-path: url(&quot;#4c4c51c0000aa991060000-1369dd00000-625e40d0000-bfb3dc0000-c50475d0000dae71fe0000cc4adb70000&quot;);" transform="translate(98,8)" animating="">
+        <line class="css-16gcv4z"></line>
+      </g>
+      <clipPath id="4c4c51c0000aa991060000-1369dd00000-625e40d0000-bfb3dc0000-c50475d0000dae71fe0000cc4adb70000">
+        <rect x="-2" y="-2" width="494" height="236"></rect>
+      </clipPath>
+      <defs>
+        <filter id="saturate" filterUnits="objectBoundingBox">
+          <feColorMatrix type="saturate" in="SourceGraphic" values="1.35"></feColorMatrix>
+        </filter>
+      </defs>
+      <defs></defs>
+    </svg>
+    <div class="css-135213i-tooltip css-38lglc"></div>
+  </div>
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:205:15
+    203|     container.render(0)
+    204|     await rendered()
+    205|     expect((w.get('[data-marker-id=first]').element as HTMLElement).st…
+       |               ^
+    206|     await w.setProps({ data: [{ time: '2026-10-28 10:00', a: 42, b: 84…
+    207|     container.render(0)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed (7)
+   Start at  15:39:02
+   Duration  3.49s (transform 1.64s, setup 346ms, import 2.18s, tests 376ms, environment 498ms)
+
+JSON report written to /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/docs/evidence/t08-r13/red-05.json

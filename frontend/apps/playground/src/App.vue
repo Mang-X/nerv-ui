@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import LoginDemo from './login/LoginDemo.vue'
+import ScreenParameterDetailDemo from './screen/ScreenParameterDetailDemo.vue'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
+import LineAnnotationsDemo from './LineAnnotationsDemo.vue'
 import DirectoryDemo from './directory-detail/DirectoryDemo.vue'
 import ScreenDemo from './ScreenDemo.vue'
 import FilesDemo from './FilesDemo.vue'
@@ -22,6 +25,7 @@ import NeutralShellDemo from './NeutralShellDemo.vue'
 import TreeDemo from './TreeDemo.vue'
 import EntityMultiPickerDemo from './EntityMultiPickerDemo.vue'
 import TouchDemo from './TouchDemo.vue'
+import PhotoAttachmentsDemo from './PhotoAttachmentsDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 import MobileOverlayDemo from './MobileOverlayDemo.vue'
@@ -101,9 +105,23 @@ function addProject() {
 </script>
 
 <template>
+  <LineAnnotationsDemo
+    v-if="surface.startsWith('#line-annotations/')"
+    :key="surface"
+    :space="surface.includes('/garden') ? 'garden' : 'library'"
+  />
+  <LoginDemo
+    v-else-if="surface.startsWith('#login/')"
+    :space="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
+  <ScreenParameterDetailDemo
+    v-else-if="surface.startsWith('#screen/parameter-detail/')"
+    :key="surface"
+    :context="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <NotificationInboxDemo
     :key="surface"
-    v-if="surface === '#notifications/library' || surface === '#notifications/studio'"
+    v-else-if="surface === '#notifications/library' || surface === '#notifications/studio'"
     :space="surface === '#notifications/library' ? 'library' : 'studio'"
   />
   <NeutralShellDemo
@@ -184,6 +202,10 @@ function addProject() {
     v-else-if="surface.startsWith('#mobile-task-list')"
     :source="surface.split('/')[1]"
   />
+  <PhotoAttachmentsDemo
+    v-else-if="surface.startsWith('#mobile-photos')"
+    :source="surface.split('/')[1]"
+  />
   <MobileFlowDemo v-else-if="surface === '#mobile-flow'" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
@@ -201,7 +223,9 @@ function addProject() {
       >
       <a href="#shell/library" class="inline-flex min-h-11 items-center px-4 underline">晨光书房</a>
       <a href="#shell/studio" class="inline-flex min-h-11 items-center px-4 underline">周末画室</a>
+      <a href="#line-annotations/library" class="text-sm text-brand">时段标注</a>
       <a href="#tree/library" class="inline-flex min-h-11 items-center px-4 underline">空间分区</a>
+      <a href="#login/library">空间登录与改密</a>
       <a href="#entity-multi-picker" class="inline-flex min-h-11 items-center px-4 underline"
         >挑选去处</a
       >
