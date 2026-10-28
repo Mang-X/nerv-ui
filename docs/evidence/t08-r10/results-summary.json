@@ -1,0 +1,23 @@
+{
+  "ui": {
+    "numTotalTests": 357,
+    "numPassedTests": 357,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "success": true,
+    "unhandledErrors": "UNKNOWN",
+    "unhandledCount": "UNKNOWN",
+    "runtimeErrors": "UNKNOWN"
+  },
+  "host": {
+    "numTotalTests": 94,
+    "numPassedTests": 94,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "success": true,
+    "unhandledErrors": "UNKNOWN",
+    "unhandledCount": "UNKNOWN",
+    "runtimeErrors": "UNKNOWN"
+  },
+  "screenNamedComponents": 43
+}

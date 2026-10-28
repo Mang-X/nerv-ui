@@ -175,6 +175,7 @@ it('opens files directly and returns from every completed surface group', async 
     '#mobile-lists',
     '#mobile-feedback',
     '#screen/stage',
+    '#screen/layout',
     '#screen/controls',
     '#screen/indicators',
     '#screen/data',
@@ -192,4 +193,31 @@ it('opens files directly and returns from every completed surface group', async 
     await nextTick()
     expect(wrapper.get('h1').text()).toBe('留住片刻')
   }
+})
+
+it('routes both directory deep links and preserves the return link', async () => {
+  window.location.hash = '#directory-detail/studio'
+  wrapper = mount(App, { attachTo: document.body })
+  await nextTick()
+  expect(wrapper.findComponent({ name: 'DirectoryRecipe' }).props('host').source).toBe('studio')
+  expect(wrapper.get('a[href="#"]').text()).toBe('返回工作空间')
+  window.location.hash = '#directory-detail/library'
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+  await nextTick()
+  expect(wrapper.findComponent({ name: 'DirectoryRecipe' }).props('host').source).toBe('library')
+})
+
+it('routes photo deep links and returns to the mobile entry without losing existing routes', async () => {
+  window.location.hash = '#mobile-photos/library'
+  wrapper = mount(App, { attachTo: document.body })
+  expect(wrapper.get('h1').text()).toBe('阅读剪影')
+  expect(wrapper.get('a[href="#mobile"]').text()).toBe('返回随行')
+  window.location.hash = '#mobile-photos/studio'
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+  await nextTick()
+  expect(wrapper.get('h1').text()).toBe('画室色彩')
+  window.location.hash = '#mobile'
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+  await nextTick()
+  expect(wrapper.get('a[href="#mobile-photos/library"]').text()).toBe('留住光影')
 })

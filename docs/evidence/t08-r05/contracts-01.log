@@ -1,0 +1,11 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/packages/ui
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+ Test Files  2 passed (2)
+      Tests  255 passed (255)
+   Start at  13:33:31
+   Duration  4.40s (transform 5.44s, setup 653ms, import 7.09s, tests 43ms, environment 765ms)
+

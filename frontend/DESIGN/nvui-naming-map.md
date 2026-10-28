@@ -1,6 +1,6 @@
 # NvUI 命名与 token 映射表
 
-本页是 [ADR 0020：NvUI 组件命名、token 场景命名空间与样式隔离](../../docs/adr/0020-nvui-naming-token-namespaces-and-style-isolation.md)
+本页是 [ADR 0020：NvUI 组件命名、token 场景命名空间与样式隔离](../../migration/reference/source/docs/adr/0020-nvui-naming-token-namespaces-and-style-isolation.md)
 的**参考数据**。命名规则本身仍在那篇 ADR：`Nv` 前缀边界、PC 素名规则、R1–R5 判定流程、
 1.3 废弃处置、token 场景命名空间的划分依据、契约层永久冻结名单。本页只承载按那套规则
 逐件算出的**映射结果**——组件旧名 → 新名全表、`--sb-*` → `--nv-scr-*` 30 项、PC 自有
@@ -51,6 +51,10 @@ PR #1093 的指标家族件、演示走查整改前端批 1、演示走查整改
 > `NvMetricCard` 的各 variant 下半区拆为 `pc/card/parts/` 内部实现件，命名
 > `NvMetric*Part`（`NvMetricTipPart` 等 7 件）：保持品牌层 `Nv` 前缀统一语义，但
 > **不导出、不入 barrel、不入冻结集合**——`*Part` 后缀即「某公开件的私有组成部分」。
+
+> **独立库新增（#34/T08 R16）。** 来源 `WorkbenchFocusCard` → `NvActionSummary`：PC 指针表面的固定五态数量＋预览＋出口卡，结构不同于单值 `NvMetricCard`。按 ADR 0020 §1.1(2) 使用 PC 素名；不导入来源业务路由、DTO 或查询。
+
+> **独立库新增（#32/T08 R14）。** 来源应用侧 `EntityMultiPicker` → `NvEntityMultiPicker`：在既有 `NvEntityPicker` 上组合数组受控选择、去重、标签保留与移除。PC 指针紧凑表面的复用区块，按 ADR 0020 §1.1(2) 取 `Nv` + 素名，落 `blocks/entity-picker/`；旧逗号字符串及查询、权限仍由宿主转换。该映射复评并取代来源文件“多选不进 ui”的旧局部决定，不改写其历史。
 
 > **收口后新增（无旧名，完全不含 Pro）。** 演示走查整改（前端批 1）在 `blocks/` 新增两个
 > 跨模块复用的选择类区块件，直接以 `Nv*` 规范名称落地：
@@ -255,44 +259,71 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 | Container | NvContainer |     | PageColumns | NvPageColumns |
 | Page      | NvPage      |     | PageSection | NvPageSection |
 
-### A4. screen 层（34 件：33 导出 + 1 未导出）
+### A4. screen 层（来源冻结清单；独立库新增件见下）
 
-| 旧名                         | 新名                                      | 依据                                                    |
-| ---------------------------- | ----------------------------------------- | ------------------------------------------------------- |
-| ScreenPanel                  | NvScreenPanel                             | R1                                                      |
-| ScreenScrollArea             | NvScreenScrollArea                        | R1                                                      |
-| ScreenScaler                 | NvScreenScaler                            | R1                                                      |
-| ScreenHeader                 | NvScreenHeader                            | R1                                                      |
-| ScreenButton                 | NvScreenButton                            | R1                                                      |
-| ScreenTable                  | NvScreenTable                             | R1                                                      |
-| ScreenSelect                 | NvScreenSelect                            | R1                                                      |
-| ScreenSearch                 | NvScreenSearch                            | R1                                                      |
-| ScreenInput                  | NvScreenInput                             | R1                                                      |
-| ScreenTabs                   | NvScreenTabs                              | R1                                                      |
-| ScreenSegmented              | NvScreenSegmented                         | R1                                                      |
-| ScreenSwitch                 | NvScreenSwitch                            | R1                                                      |
-| ScreenPagination             | NvScreenPagination                        | R1                                                      |
-| ScreenBarChart               | NvScreenBarChart                          | R1                                                      |
-| ScreenDonut                  | NvScreenDonut                             | R1                                                      |
-| ScreenPareto                 | NvScreenPareto                            | R1                                                      |
-| OeeHero                      | NvOeeHero                                 | R4 工业专名                                             |
-| TaktGantt                    | NvTaktGantt                               | R4 工业专名                                             |
-| DigitalFlop                  | NvDigitalFlop                             | R4 大屏专名                                             |
-| RingGauge                    | NvRingGauge                               | R3b 专名图形                                            |
-| CapsuleBar                   | NvCapsuleBar                              | R3b 专名主导                                            |
-| Sparkline                    | NvSparkline                               | R3b 专名图形                                            |
-| ScrollBoard                  | NvScrollBoard                             | R4 大屏专名                                             |
-| KpiBar                       | NvKpiBar                                  | R3b 专名(Kpi)主导                                       |
-| AlarmTable                   | NvAlarmTable                              | R3b 专名(Alarm)主导                                     |
-| TrendChart                   | NvScreenTrendChart                        | R3b 通用修饰(Trend)+原语(Chart)                         |
-| StatusCard                   | NvScreenStatusCard                        | R5 Status 家族                                          |
-| StatusTag                    | NvScreenStatusTag                         | R5 Status 家族                                          |
-| StatusLight                  | NvScreenStatusLight                       | R5 Status 家族                                          |
-| TitleBar                     | NvTitleBar                                | R4 大屏装饰语汇（PC 对应位为 NvPageHeader，无真实撞名） |
-| TechFrame                    | NvTechFrame                               | R4 大屏装饰专名                                         |
-| BorderPanel                  | NvBorderPanel                             | R4 大屏装饰专名                                         |
-| GlowDivider                  | NvGlowDivider                             | R4 大屏装饰专名                                         |
-| WaterLevel（未导出、零引用） | 待 MAN-435 定：导出为 NvWaterLevel 或删除 | 1.3                                                     |
+| R09 来源名       | 已公开 Nv 名       | 实际 producer           | 依据                                                     |
+| ---------------- | ------------------ | ----------------------- | -------------------------------------------------------- |
+| DeviceStatusWall | NvScreenStatusWall | `screen/StatusWall.vue` | R5 Status 家族；适配时去除 Device 领域词，限定 screen 层 |
+
+> **独立库新增（#20/T08 R02）。** 原应用素材 `FlowLinesBg` → `NvScreenFlowLinesBg`（R3b：流线装饰背景），`IsoFactoryBg` → `NvScreenIsometricBlocksBg`（R3b：等距块体装饰背景，去除 Factory 场景词）。两件仅属 screen 层，没有 PC/触屏跨表面模式。
+
+| R02 来源名   | 已公开 Nv 名              | 实际 producer                  | 依据                  |
+| ------------ | ------------------------- | ------------------------------ | --------------------- |
+| FlowLinesBg  | NvScreenFlowLinesBg       | `screen/FlowLinesBg.vue`       | R3b 流线装饰背景      |
+| IsoFactoryBg | NvScreenIsometricBlocksBg | `screen/IsometricBlocksBg.vue` | R3b 去 Factory 场景词 |
+
+> **独立库新增（#22/T08 R04）。** 原应用 `ScreenLayout` 的背景与 header/body 组合映射为 `NvScreenLayout`（R1：screen 层的布局原语）。缩放仍由 `NvScreenScaler` 承担；路由 seed、业务文案与时钟改为宿主输入。
+
+| R04 来源名   | 已公开 Nv 名   | 实际 producer             | 依据            |
+| ------------ | -------------- | ------------------------- | --------------- |
+| ScreenLayout | NvScreenLayout | `screen/ScreenLayout.vue` | R1 大屏布局组合 |
+
+> **独立库新增（#26/T08 R08）。** 原应用 `LineAndonHero` 的 200px 主灯与 158px 核心映射为 `NvScreenStatusHero`。R5：归入大屏 Status 家族，`Hero` 表示远距主视觉体量；不借用 10px `NvScreenStatusLight`。颜色和节奏独立输入，失联说明由宿主生成。
+
+| R08 来源名    | 已公开 Nv 名       | 实际 producer           | 依据                |
+| ------------- | ------------------ | ----------------------- | ------------------- |
+| LineAndonHero | NvScreenStatusHero | `screen/StatusHero.vue` | R5 大屏 Status 家族 |
+
+| 旧名                                               | 新名                                      | 依据                                                    |
+| -------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------- |
+| ScreenPanel                                        | NvScreenPanel                             | R1                                                      |
+| ScreenScrollArea                                   | NvScreenScrollArea                        | R1                                                      |
+| ScreenScaler                                       | NvScreenScaler                            | R1                                                      |
+| ScreenHeader                                       | NvScreenHeader                            | R1                                                      |
+| ScreenButton                                       | NvScreenButton                            | R1                                                      |
+| ScreenTable                                        | NvScreenTable                             | R1                                                      |
+| ScreenSelect                                       | NvScreenSelect                            | R1                                                      |
+| ScreenSearch                                       | NvScreenSearch                            | R1                                                      |
+| ScreenInput                                        | NvScreenInput                             | R1                                                      |
+| ScreenTabs                                         | NvScreenTabs                              | R1                                                      |
+| ScreenSegmented                                    | NvScreenSegmented                         | R1                                                      |
+| ScreenSwitch                                       | NvScreenSwitch                            | R1                                                      |
+| ScreenPagination                                   | NvScreenPagination                        | R1                                                      |
+| ScreenBarChart                                     | NvScreenBarChart                          | R1                                                      |
+| ScreenDonut                                        | NvScreenDonut                             | R1                                                      |
+| ScreenPareto                                       | NvScreenPareto                            | R1                                                      |
+| OeeHero                                            | NvOeeHero                                 | R4 工业专名                                             |
+| TaktGantt                                          | NvTaktGantt                               | R4 工业专名                                             |
+| DigitalFlop                                        | NvDigitalFlop                             | R4 大屏专名                                             |
+| RingGauge                                          | NvRingGauge                               | R3b 专名图形                                            |
+| CapsuleBar                                         | NvCapsuleBar                              | R3b 专名主导                                            |
+| Sparkline                                          | NvSparkline                               | R3b 专名图形                                            |
+| ScrollBoard                                        | NvScrollBoard                             | R4 大屏专名                                             |
+| KpiBar                                             | NvKpiBar                                  | R3b 专名(Kpi)主导                                       |
+| AlarmTable                                         | NvAlarmTable                              | R3b 专名(Alarm)主导                                     |
+| TrendChart                                         | NvScreenTrendChart                        | R3b 通用修饰(Trend)+原语(Chart)                         |
+| Launcher/WorkshopHealth/WorkshopLine（独立库新增） | NvScreenSummaryCard                       | R5 大屏摘要家族；三个中性展示变体                       |
+| line 页 waffle（独立库新增）                       | NvScreenHeatmap                           | R5 大屏分档热力格；中性 cells 与显式分档                |
+| line 页内联阶段流（独立库新增）                    | NvScreenStageFlow                         | R5 大屏 StageFlow 家族；中性阶段数量                    |
+| StatusCard                                         | NvScreenStatusCard                        | R5 Status 家族                                          |
+| StatusTag                                          | NvScreenStatusTag                         | R5 Status 家族                                          |
+| StatusLight                                        | NvScreenStatusLight                       | R5 Status 家族                                          |
+| LineAndonHero（独立库新增）                        | NvScreenStatusHero                        | R5 Status 家族；远距主灯                                |
+| TitleBar                                           | NvTitleBar                                | R4 大屏装饰语汇（PC 对应位为 NvPageHeader，无真实撞名） |
+| TechFrame                                          | NvTechFrame                               | R4 大屏装饰专名                                         |
+| BorderPanel                                        | NvBorderPanel                             | R4 大屏装饰专名                                         |
+| GlowDivider                                        | NvGlowDivider                             | R4 大屏装饰专名                                         |
+| WaterLevel（未导出、零引用）                       | 待 MAN-435 定：导出为 NvWaterLevel 或删除 | 1.3                                                     |
 
 （`scale.ts`/`useScreenData.ts` 的全部导出不改名。）
 
@@ -363,6 +394,8 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 （`cn`、`MOBILE_OVERLAY_TARGET` 及全部独立类型（`TabItem`、`MobileTabItem`、
 `StepItem`、`ActionItem`、`SwipeAction`、`PickerOption`、`GridItem`、`FabAction`、
 `DropdownOption`）不改名。）
+
+新增 R19：`ShiftHandoverPhotoCapture` → `NvPhotoAttachments`，移动拍照与成功附件组合。R1 无场景词根；R2 无同名原版或 PC 导出；R3 不在 Arco PC 原语名单；R3b 非通用原语后缀；R4 本项目自造组合名，直接 Nv，R5 未命中。仅新增此 canonical 名，原 A6 集合保留。
 
 ### A7. 不参与改名的导出（明确列出，防代码转换误伤）
 
@@ -438,3 +471,38 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 `--muted(-foreground)`、`--accent(-foreground)`、`--destructive(-foreground)`、
 `--border`、`--input`、`--ring`、`--chart-1..5`、`--sidebar-*`、`--radius`、
 `--font-sans`、`--font-heading`。
+
+> **独立库新增（#30/T08 R12）。** R1 原名称为页内结构，无冻结公开名；R2 去除 line/station 业务根；R3 不采用无归属缩写；R4 适用大屏视距；R5 归入阶段流程展示，定名 `NvScreenStageFlow`（`screen/StageFlow.vue`）。状态复用 `NvScreenStatusTag`，不重复 Steps 导航能力。
+
+> **独立库新增（#29/T08 R11）。** R1 页内 waffle 无冻结公开名；R2 去除 OEE/line 领域词；R3 不采用缩写；R4 远距 screen 表面；R5 属热力格家族，定名 `NvScreenHeatmap`（`screen/Heatmap.vue`）。只读数值展示，复用 `NvScreenPanel` 容器，不扩展为图表框架。
+
+> **独立库新增（#25/T08 R07）。** R1 三个 app 局部来源无冻结库名；R2 去除 launcher/workshop/line 领域名；R3 使用完整 SummaryCard；R4 远距 screen 表面；R5 归摘要卡家族，定名 `NvScreenSummaryCard`。复用 Panel、StatusLight、StatusTag、Sparkline，仅提供三来源布局，不建立卡片框架。
+
+独立库 #33：来源 MasterDataTreeNode → `NvTree`。PC 紧凑指针与键盘树，按 R1–R5 取 Nv + 素名；类型 `NvTreeNode`，无 ResourceItem 依赖。
+
+> **独立库新增（#24/T08 R06）。** 来源两个应用通知列表、任务与收件箱 → `NvNotificationInbox`，PC 指针表面按素名规则落 `pc/notification-inbox/`。唯一公开组合，不带 DTO、查询或通知引擎。
+
+> **独立库新增（#21/T08 R03）。** R5：保留完整语义并显式标注 screen 表面的等距节点流背景。
+
+| 原名     | 公共名           | 路径                  | 判定                   |
+| -------- | ---------------- | --------------------- | ---------------------- |
+| FusionBg | NvScreenFusionBg | `screen/FusionBg.vue` | R5 screen 专属装饰背景 |
+
+## T08/R05 独立新增
+
+| 来源              | 公开名             | 路径                          | 判定               |
+| ----------------- | ------------------ | ----------------------------- | ------------------ |
+| screen login 视觉 | NvScreenLoginStage | `screen/ScreenLoginStage.vue` | R1 screen 专属舞台 |
+
+> 独立库新增（#35/T08 R17）：TaskListShell → NvMobileTaskListShell，移动局部组合；R1 来源无冻结名，R2 去除业务归属，R3 使用完整名，R4 归移动触控表面，R5 保留列表外壳语义。严格主桶集合由 48 增至 49 件。
+
+### T08/R13 折线图标注类型
+
+复用 PC `NvLineChart`，不新增运行时组件。主桶仅增加 `NvLineBand`、`NvLineMarker` 两个类型（PC 素名 + Nv）；`LineSeries` 为原有兼容类型，保持原名。
+
+> 独立库 #28 / T08R10：R1 来源 DeviceDetailModal 无冻结库名；R2 去设备领域名；R3 使用完整 DetailDialog / Parameter；R4 独立 screen 表面；R5 详情 Dialog 家族定名 `NvScreenDetailDialog`，参数组合定名 `NvScreenParameter`。现有 `NvSparkline` 不改名、不重建。
+
+| 来源                     | 公开名               | 路径                      | 判定                |
+| ------------------------ | -------------------- | ------------------------- | ------------------- |
+| DeviceDetailModal 外壳   | NvScreenDetailDialog | `screen/DetailDialog.vue` | R5 详情 Dialog 家族 |
+| DeviceDetailModal 参数区 | NvScreenParameter    | `screen/Parameter.vue`    | R5 参数展示组合     |

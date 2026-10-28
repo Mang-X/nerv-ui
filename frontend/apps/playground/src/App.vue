@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import LoginDemo from './login/LoginDemo.vue'
+import ScreenParameterDetailDemo from './screen/ScreenParameterDetailDemo.vue'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
+import LineAnnotationsDemo from './LineAnnotationsDemo.vue'
+import DirectoryDemo from './directory-detail/DirectoryDemo.vue'
 import ScreenDemo from './ScreenDemo.vue'
 import FilesDemo from './FilesDemo.vue'
 import ResourceScheduleDemo from './ResourceScheduleDemo.vue'
@@ -13,13 +17,22 @@ import ScheduleComparisonDemo from './ScheduleComparisonDemo.vue'
 import AsyncCandidateDemo from './AsyncCandidateDemo.vue'
 import RequestFormsDemo from './RequestFormsDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
+import PrintableDetailDemo from './PrintableDetailDemo.vue'
 import DayPrintDemo from './DayPrintDemo.vue'
 import SavedPlanDemo from './SavedPlanDemo.vue'
+import ActionSummaryDemo from './ActionSummaryDemo.vue'
+import NotificationInboxDemo from './NotificationInboxDemo.vue'
+import NeutralShellDemo from './NeutralShellDemo.vue'
+import TreeDemo from './TreeDemo.vue'
+import EntityMultiPickerDemo from './EntityMultiPickerDemo.vue'
 import TouchDemo from './TouchDemo.vue'
+import PhotoAttachmentsDemo from './PhotoAttachmentsDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 import MobileOverlayDemo from './MobileOverlayDemo.vue'
 import MobileListDemo from './MobileListDemo.vue'
+import MobileTaskListDemo from './mobile-task-list/MobileTaskListDemo.vue'
+import MobileFlowDemo from './mobile-flow/MobileFlowDemo.vue'
 import MobileFeedbackDemo from './MobileFeedbackDemo.vue'
 import {
   NvApp,
@@ -98,6 +111,41 @@ function addProject() {
     :venue="surface.startsWith('#schedule-saved/studio') ? 'studio' : 'library'"
     :surface="surface"
   />
+  <LineAnnotationsDemo
+    v-else-if="surface.startsWith('#line-annotations/')"
+    :key="surface"
+    :space="surface.includes('/garden') ? 'garden' : 'library'"
+  />
+  <LoginDemo
+    v-else-if="surface.startsWith('#login/')"
+    :space="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
+  <ScreenParameterDetailDemo
+    v-else-if="surface.startsWith('#screen/parameter-detail/')"
+    :key="surface"
+    :context="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
+  <NotificationInboxDemo
+    :key="surface"
+    v-else-if="surface === '#notifications/library' || surface === '#notifications/studio'"
+    :space="surface === '#notifications/library' ? 'library' : 'studio'"
+  />
+  <NeutralShellDemo
+    v-else-if="surface === '#shell/library' || surface === '#shell/studio'"
+    :key="surface"
+    :space="surface === '#shell/library' ? 'library' : 'studio'"
+  />
+  <TreeDemo
+    v-else-if="surface === '#tree/library' || surface === '#tree/studio'"
+    :key="surface"
+    :space="surface === '#tree/library' ? 'library' : 'studio'"
+  />
+  <DirectoryDemo
+    v-else-if="surface === '#directory-detail' || surface.startsWith('#directory-detail/')"
+  />
+  <PrintableDetailDemo v-else-if="surface === '#printable-detail'" />
+  <EntityMultiPickerDemo v-else-if="surface === '#entity-multi-picker'" />
+  <ActionSummaryDemo v-else-if="surface === '#action-summary'" />
   <DayPrintDemo
     v-else-if="surface === '#schedule-day/library' || surface === '#schedule-day/studio'"
     :key="surface"
@@ -156,6 +204,15 @@ function addProject() {
   <ScheduleDemo v-else-if="surface === '#schedule'" />
   <FilesDemo v-else-if="surface === '#files'" />
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
+  <MobileTaskListDemo
+    v-else-if="surface.startsWith('#mobile-task-list')"
+    :source="surface.split('/')[1]"
+  />
+  <PhotoAttachmentsDemo
+    v-else-if="surface.startsWith('#mobile-photos')"
+    :source="surface.split('/')[1]"
+  />
+  <MobileFlowDemo v-else-if="surface === '#mobile-flow'" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
   <MobileOverlayDemo v-else-if="surface === '#mobile-overlays'" />
@@ -166,6 +223,24 @@ function addProject() {
     <NvAppHeader>
       <a href="#schedule-saved/library" class="inline-flex min-h-11 items-center px-4 underline"
         >已保存计划</a
+      >
+      <a href="#directory-detail" class="inline-flex min-h-11 items-center px-4 underline"
+        >空间目录</a
+      >
+      <a href="#notifications/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >消息与安排</a
+      >
+      <a href="#shell/library" class="inline-flex min-h-11 items-center px-4 underline">晨光书房</a>
+      <a href="#shell/studio" class="inline-flex min-h-11 items-center px-4 underline">周末画室</a>
+      <a href="#line-annotations/library" class="text-sm text-brand">时段标注</a>
+      <a href="#tree/library" class="inline-flex min-h-11 items-center px-4 underline">空间分区</a>
+      <a href="#login/library">空间登录与改密</a>
+      <a href="#entity-multi-picker" class="inline-flex min-h-11 items-center px-4 underline"
+        >挑选去处</a
+      >
+      <a href="#printable-detail" class="underline">生活手记</a>
+      <a href="#action-summary" class="inline-flex min-h-11 items-center px-4 underline"
+        >今日小事</a
       >
       <a href="#schedule-day/library" class="inline-flex min-h-11 items-center px-4 underline"
         >日安排与打印</a
@@ -201,6 +276,8 @@ function addProject() {
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
         >大屏演示</a
       >
+      <a href="#mobile-task-list/library" class="inline-flex min-h-touch items-center">收藏翻阅</a>
+      <a href="#mobile-flow" class="inline-flex min-h-touch items-center">安排流程</a>
       <a
         href="#mobile-feedback"
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"

@@ -1,0 +1,67 @@
+[
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/components/task-list/TaskListShell.vue",
+    "sha256": "876c8542bc02c830b9d24810b6ad8a02cc1383345eb9f0dc69da9321b2fa77a9",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/components/task-list/TaskListShell.test.ts",
+    "sha256": "64789de15ef391c4fd20023779b7cb6b4f05e92fe257ad3b5804057556aac196",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/components/RetryableListError.vue",
+    "sha256": "253e0e9de51104fcef6d91ab91f2e11eabaab25cbd110e0af0bf69ba63123fe3",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/composables/useTaskListPagination.ts",
+    "sha256": "c5f6710f4702ca9bdf692dcbb94386327719e1bbabff2741df8a2ac812a8b37f",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/composables/useScopeBoundListResponse.ts",
+    "sha256": "6a36b2f2cc9cdf090889d3eccacb64b1080c893176afa04623ceba18b167445c",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/pages/index.vue",
+    "sha256": "9ed55e4693334c613ac7c5ebfab939b0828de8774649bdd133c88e585691139d",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/components/wms/WarehouseTaskExecutionView.vue",
+    "sha256": "543c7820e9ddd3d7008e9d5d790697e77a51d725111964210fbb63dea6af060b",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/components/wms/WmsPagedListFrame.vue",
+    "sha256": "707cc8beeb8ad98be930367f978d921037cc925a2247798aaa3881e3e3056b64",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/components/quality/QualityTaskListStep.vue",
+    "sha256": "b692462de3285ed1bdb4d527302a42acdf351ba8ab11528859736f1a80c561ba",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/pages/mes/operation.vue",
+    "sha256": "70794d3d0ac77baf940b532a5404d5374e500e76d9926f60f0a3fff384f38264",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/pages/equipment/alarms.vue",
+    "sha256": "52b716990607de793a79949b2c1fac591dc9a88c7a4636e8a8f376ae8b82b1bd",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/pages/equipment/repair.vue",
+    "sha256": "ee2eec2bba83459ab0973716037bd839b5cc123f045fc73d2f4c653ed868e36e",
+    "disposition": "read-only source; no old-application integration"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/business-pda/src/pages/equipment/work-orders/index.vue",
+    "sha256": "53343c44372c3a843b7132a256dc8061dd901d35fc5fda6650f38f517e67a97b",
+    "disposition": "read-only source; no old-application integration"
+  }
+]

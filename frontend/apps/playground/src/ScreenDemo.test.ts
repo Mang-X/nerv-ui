@@ -97,6 +97,26 @@ it('opens only the completed controls section and unmounts its portal when retur
   }
 })
 
+it('opens the public status hero deep link and leaves no display after returning to the stage', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/status-hero' } })
+  expect(wrapper.get('a[href="#screen/status-hero"]').attributes('aria-current')).toBe('page')
+  const settings = wrapper.get('[role="group"][aria-label="舞台设置"]')
+  expect(settings.get('select[aria-label="缩放方式"]').element.tagName).toBe('SELECT')
+  expect(wrapper.get('[role="region"][aria-label="现场主状态灯舞台"]').element).toHaveProperty(
+    'tabIndex',
+    0,
+  )
+  const actions = wrapper.get('[role="group"][aria-label="现场来源与状态"]')
+  expect(actions.get('button[name="source-gallery"]').text()).toBe('城市文化空间')
+  expect(actions.get('button[name="status-alarm"]').text()).toBe('紧急')
+  expect(wrapper.findAll('[data-status-hero]')).toHaveLength(2)
+  await wrapper.get('button[name="status-alarm"]').trigger('click')
+  expect(wrapper.get('[data-primary-hero] .nv-scr-sh').classes()).toContain('nv-scr-sh-fast')
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('[data-status-hero]').exists()).toBe(false)
+  expect(wrapper.get('a[href="#screen/status-hero"]').attributes('aria-current')).toBeUndefined()
+})
+
 it('opens the completed indicators deep link and stops its continuous readings before stage or controls', async () => {
   vi.useFakeTimers()
   try {
@@ -202,4 +222,93 @@ it('opens tables deep link preserves completed links and resets rows and focus w
   await wrapper.setProps({ section: '#screen/tables' })
   expect(wrapper.get('[aria-label="清单页读数"]').text()).toContain('collection-001')
   expect(document.querySelector('[role="listbox"]')).toBeNull()
+})
+
+it('opens the background-only deep link with two isolated copies and unmounts on route change', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/backgrounds' } })
+  expect(wrapper.findAll('svg.nv-scr-flow[viewBox="0 0 1440 810"]')).toHaveLength(2)
+  expect(wrapper.findAll('svg.nv-scr-iso[viewBox="0 0 1200 760"]')).toHaveLength(2)
+  expect(wrapper.findAll('svg.nv-scr-fusion')).toHaveLength(2)
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('svg.nv-scr-flow[viewBox="0 0 1440 810"]').exists()).toBe(false)
+  expect(wrapper.find('svg.nv-scr-iso[viewBox="0 0 1200 760"]').exists()).toBe(false)
+  expect(wrapper.find('svg.nv-scr-fusion').exists()).toBe(false)
+  await wrapper.setProps({ section: '#screen/backgrounds' })
+  expect(wrapper.findAll('svg.nv-scr-flow[viewBox="0 0 1440 810"]')).toHaveLength(2)
+  expect(wrapper.findAll('svg.nv-scr-iso[viewBox="0 0 1200 760"]')).toHaveLength(2)
+  expect(wrapper.text()).not.toMatch(/T08|R02|来源|第二实例|示例/)
+  expect(wrapper.html()).not.toMatch(/aria-label="[^"]*(?:第二实例|示例)/)
+})
+
+it('opens the seeded layout deep link with host actions and remounts cleanly', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/layout' } })
+  expect(wrapper.findAll('.nv-scr-layout')).toHaveLength(2)
+  expect(wrapper.get('select[aria-label="设计尺寸"]').attributes('disabled')).toBeDefined()
+  const firstPath = wrapper.get('.nv-scr-layout path.nv-scr-layout-path').attributes('d')
+  await wrapper
+    .findAll('button')
+    .find((button) => button.text() === '换一种光影')!
+    .trigger('click')
+  expect(wrapper.get('.nv-scr-layout path.nv-scr-layout-path').attributes('d')).not.toBe(firstPath)
+  await wrapper
+    .findAll('button')
+    .find((button) => button.text() === '更新时刻')!
+    .trigger('click')
+  expect(wrapper.get('.nv-scr-layout__chrome').text()).toContain('10:31')
+  await wrapper
+    .findAll('button')
+    .find((button) => button.text() === '阅读完整介绍')!
+    .trigger('click')
+  expect(wrapper.get('.layout-demo-extra').text()).toContain('河岸展厅保留了这座城市')
+  await wrapper
+    .findAll('button')
+    .find((button) => button.text() === '加入心愿')!
+    .trigger('click')
+  expect(wrapper.get('.layout-demo-feedback').text()).toContain('已记下')
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('.nv-scr-layout').exists()).toBe(false)
+  await wrapper.setProps({ section: '#screen/layout' })
+  expect(wrapper.findAll('.nv-scr-layout')).toHaveLength(2)
+  expect(wrapper.get('.nv-scr-layout__chrome').text()).toContain('10:30')
+  expect(wrapper.text()).not.toMatch(/T08|R04|来源|第二实例|示例/)
+})
+
+it('opens the stage quantity deep link and preserves existing stage navigation', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/stage-flow' } })
+  expect(wrapper.get('a[href="#screen/stage-flow"]').attributes('aria-current')).toBe('page')
+  expect(wrapper.get('a[href="#screen/stage"]').attributes('aria-current')).toBeUndefined()
+  expect(wrapper.find('[data-slot="nv-screen-stage-flow"]').exists()).toBe(true)
+  await wrapper.setProps({ section: '#screen/stage' })
+  expect(wrapper.find('[data-slot="nv-screen-stage-flow"]').exists()).toBe(false)
+  expect(wrapper.get('a[href="#screen/stage"]').attributes('aria-current')).toBe('page')
+  expect(wrapper.find('a[href="#screen/status-hero"]').exists()).toBe(true)
+})
+
+it('routes the heatmap through the scaler with one current link and preserves previous screen navigation', async () => {
+  wrapper = mount(ScreenDemo, { props: { section: '#screen/heatmap' } })
+  expect(wrapper.get('a[href="#screen/heatmap"]').attributes('aria-current')).toBe('page')
+  expect(wrapper.findAll('a[aria-current="page"]')).toHaveLength(1)
+  expect(wrapper.findAll('[data-slot="nv-screen-heatmap"]')).toHaveLength(2)
+  expect(wrapper.find('[role="region"][aria-label="分档热力舞台"]').exists()).toBe(true)
+  for (const href of [
+    '#desktop',
+    '#touch',
+    '#mobile',
+    '#files',
+    '#screen/stage',
+    '#screen/layout',
+    '#screen/controls',
+    '#screen/indicators',
+    '#screen/charts',
+    '#screen/data',
+    '#screen/tables',
+    '#screen/summary',
+    '#screen/status-hero',
+    '#screen/stage-flow',
+  ]) {
+    expect(wrapper.find(`a[href="${href}"]`).exists()).toBe(true)
+  }
+  await wrapper.setProps({ section: '#screen/stage-flow' })
+  expect(wrapper.find('[data-slot="nv-screen-heatmap"]').exists()).toBe(false)
+  expect(wrapper.get('a[href="#screen/stage-flow"]').attributes('aria-current')).toBe('page')
 })

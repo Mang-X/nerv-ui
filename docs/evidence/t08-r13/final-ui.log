@@ -1,0 +1,16 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ✓ src/date-chart-readiness.contract.test.ts (2 tests) 4ms
+ ✓ src/nvui-naming.contract.test.ts (247 tests) 62ms
+ ✓ src/components/pc/chart/LineAnnotations.test.ts (7 tests) 579ms
+
+ Test Files  3 passed (3)
+      Tests  256 passed (256)
+   Start at  15:40:32
+   Duration  6.57s (transform 9.73s, setup 2.70s, import 13.09s, tests 645ms, environment 1.85s)
+
+JSON report written to /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/docs/evidence/t08-r13/final-ui.json

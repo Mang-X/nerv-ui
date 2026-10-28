@@ -1,0 +1,30 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/LineAnnotationsDemo.test.ts (2 tests | 2 failed) 22ms
+     × locates current same-id detail after reorder and replacement in library 18ms
+     × locates current same-id detail after reorder and replacement in garden 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/LineAnnotationsDemo.test.ts > line annotation hosts > locates current same-id detail after reorder and replacement in library
+ FAIL  src/LineAnnotationsDemo.test.ts > line annotation hosts > locates current same-id detail after reorder and replacement in garden
+TypeError: Cannot read properties of undefined (reading '0')
+ ❯ src/LineAnnotationsDemo.test.ts:20:45
+     18|       try {
+     19|         const chart = w.getComponent(NvLineChart)
+     20|         const first = chart.props('markers')![0]
+       |                                             ^
+     21|         await w.get('[data-reorder]').trigger('click')
+     22|         await w.get('[data-replace]').trigger('click')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  15:39:06
+   Duration  2.64s (transform 1.64s, setup 220ms, import 2.09s, tests 22ms, environment 248ms)
+
+JSON report written to /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/docs/evidence/t08-r13/host-red-01.json

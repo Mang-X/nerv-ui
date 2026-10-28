@@ -17,6 +17,8 @@ pnpm -C frontend --filter @nerv-iip/playground preview --port 4173 --strictPort
 
 `build` 先对 UI 与 playground 执行 `vue-tsc`，再构建宿主。`test` 串行运行活动包：UI 行为/库内契约与 playground 行为/导入契约。`test:docs` 单独检查文档源码覆盖、命名与 VitePress 布局；通过不代表文档站独立运行。
 
+T08/R14 的中性可搜索多选示例位于 `/#entity-multi-picker`：一侧展示宿主的旧逗号字段转换，另一侧展示宿主管理搜索结果与分页。公共数组合同、标签缓存时机和事件见[组件文档](../frontend/apps/design-system/docs/components/desktop/entity-multi-picker.md)，本票执行结果见[R14 记录](evidence/t08-r14/README.md)。
+
 宿主为 `frontend/apps/playground`。它只用 `@nerv-iip/ui` 的 workspace 公共导出，没有源码 alias、旧仓库路径、业务 SDK 或后端。演示包括表单新增、表格搜索/排序/分页、详情 dialog、布局、明暗及强调色。数据只存在内存，刷新重置；主题遵循库已有 localStorage 行为。小型宿主不会替代完整文档站。
 
 ## 独立库决策：公开 CSS 接入边界
@@ -52,11 +54,11 @@ pnpm -C frontend --filter @nerv-iip/playground preview --port 4173 --strictPort
 
 T02 建立的活动成员为 `packages/ui`、`apps/playground`。T04/N01 / #45 增加 `packages/ui-mobile`，根 TypeScript 配置同步包含移动源码；移动接入见 [独立移动接入](mobile-standalone.md)。旧 app/API 路径 alias 和生成任务仍已移除。暂不参与安装/聚合命令的目录及源码全部保留：
 
-| 成员                  | 恢复责任                                     |
-| --------------------- | -------------------------------------------- |
+| 成员                  | 恢复责任                                                   |
+| --------------------- | ---------------------------------------------------------- |
 | `packages/scheduling` | P04/#87 已恢复；[运行与资源接入](./scheduling-renderer.md) |
-| `apps/design-system`  | #10：全部文档站解耦后恢复                    |
-| `packages/app-shell`  | #9：应用壳与散落 UI 责任细拆后恢复           |
+| `apps/design-system`  | #10：全部文档站解耦后恢复                                  |
+| `packages/app-shell`  | #9：应用壳与散落 UI 责任细拆后恢复                         |
 
 lockfile 按当前活动集合保留来源解析。初版 `621ca3d8` 虽然新增 resolved package keys 为 `[]`，却把保留的 `wrap-ansi@7.0.0` 两条边改到来源中已存在的较新版本；这不是纯裁剪，独立审核 F1 已拒绝集成。keys-only 比较不能证明无升级，原失败记录保留。
 

@@ -1,0 +1,496 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/components/pc/chart/LineAnnotations.test.ts (5 tests | 5 failed) 343ms
+     × projects boundary and duplicate-label rows onto actual shared plot scales 86ms
+     × clips multiple reversed bands with official producer and never expands data domain 50ms
+     × uses current identity after replacement and reorder without replacing focused marker DOM 49ms
+     × updates resize and data/series domains and isolates a second chart 114ms
+     × omits unknown, invalid and unsafe targets and adds no default annotation 44ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > projects boundary and duplicate-label rows onto actual shared plot scales
+AssertionError: expected [] to have a length of 2 but got +0
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:31:21
+     29|     const { w } = await chart({ markers: [{ id: 'a', index: 0, seriesK…
+     30|     const markers = w.findAll('[data-slot=nv-line-marker]')
+     31|     expect(markers).toHaveLength(2)
+       |                     ^
+     32|     expect((markers[0].element as HTMLElement).style.left).toBe('70px')
+     33|     expect((markers[1].element as HTMLElement).style.left).toBe('570px…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > clips multiple reversed bands with official producer and never expands data domain
+AssertionError: expected { axis: 'x', from: +0, to: 1, …(18) } to match object { from: +0, to: 2, …(1) }
+(18 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "excludeFromDomainCalculation": true,
+    "from": 0,
+-   "to": 2,
++   "to": 1,
+  }
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:42:30
+     40|     const bands = w.findAllComponents(VisPlotband as never) as VueWrap…
+     41|     expect(bands).toHaveLength(2)
+     42|     expect(bands[0].props()).toMatchObject({ from: 0, to: 2, excludeFr…
+       |                              ^
+     43|     expect(bands[1].props()).toMatchObject({ from: -10, to: 300 })
+     44|     const rect = producer<Plotband<unknown>>(bands[0]).element.querySe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > uses current identity after replacement and reorder without replacing focused marker DOM
+Error: Unable to get [data-marker-id=a] within: <div data-v-ceb7c9d8="" class="nv-chart">
+  <div data-v-ceb7c9d8="" class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1"><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-1);"></span> 甲</span><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-2);"></span> 乙</span></div>
+  <div data-v-ceb7c9d8="" class="nv-line-plot">
+    <div data-v-ceb7c9d8="" data-vis-xy-container="" class="unovis-xy-container" role="figure">
+      <div data-v-ceb7c9d8="" data-vis-component=""></div>
+      <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+      <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+      <div data-v-ceb7c9d8="" data-vis-crosshair="" color="var(--chart-1),var(--chart-2)" template="(d) => {
+			const rows = props.series.map((s, i) => `<div class=&quot;nv-vis-row&quot;><span class=&quot;nv-vis-dot&quot; style=&quot;background:${escapeHtml(cssColor(colors.value[i]))}&quot;></span><span>${escapeHtml(s.label)}</span><b>${escapeHtml(d[s.key])}${escapeHtml(props.valueSuffix)}</b></div>`).join(&quot;&quot;);
+			return `<div class=&quot;nv-vis-card&quot;><div class=&quot;nv-vis-head&quot;>${escapeHtml(d[props.xKey])}</div>${rows}</div>`;
+		}"></div>
+      <div data-v-ceb7c9d8="" data-vis-tooltip=""></div><svg style="display: block;" xmlns="http://www.w3.org/2000/svg" height="260" aria-hidden="true" class="css-15uhmcb" width="0">
+        <g class="css-1i6bj7n-axis-component" axis-type="x">
+          <g></g>
+          <g class="css-1o9c2r8-grid"></g>
+          <g opacity="0" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+            <path class="domain" stroke="currentColor" d="M0.5, 0 V0.5 H0.5 V0"></path>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+                </tspan>
+              </text>
+            </g>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">09:00</tspan>
+                </tspan>
+              </text>
+            </g>
+          </g>
+          <g opacity="0" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+            <path class="domain" stroke="currentColor" d="M0.5, 0 V0.5 H0.5 V0"></path>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+                </tspan>
+              </text>
+            </g>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">09:00</tspan>
+                </tspan>
+              </text>
+            </g>
+          </g>
+        </g>
+        <g class="css-1i6bj7n-axis-component" axis-type="y">
+          <g></g>
+          <g class="css-1o9c2r8-grid"></g>
+        </g>
+        <g class="css-13qg9kf-line-component"></g>
+        <g class="css-1813gb2-crosshair-component" style="opacity: 0;">
+          <line class="css-16gcv4z"></line>
+        </g>
+        <clipPath id="7fb08e90000f4e39ca0000-f24ff5a0000-7a1570000-1ca21360000-7d1de460000c340da30000aecb8de0000">
+          <rect></rect>
+        </clipPath>
+        <defs>
+          <filter id="saturate" filterUnits="objectBoundingBox">
+            <feColorMatrix type="saturate" in="SourceGraphic" values="1.35"></feColorMatrix>
+          </filter>
+        </defs>
+        <defs></defs>
+      </svg>
+      <div class="css-135213i-tooltip css-38lglc"></div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:49:19
+     47|   it('uses current identity after replacement and reorder without repl…
+     48|     const { w } = await chart({ markers: [{ id: 'a', index: 1, seriesK…
+     49|     const old = w.get('[data-marker-id=a]').element as HTMLElement
+       |                   ^
+     50|     old.focus()
+     51|     await w.setProps({ markers: [{ id: 'b', index: 2, seriesKey: 'a', …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > updates resize and data/series domains and isolates a second chart
+Error: Unable to get [data-marker-id=a] within: <div data-v-ceb7c9d8="" class="nv-chart">
+  <div data-v-ceb7c9d8="" class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1"><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-1);"></span> 甲</span><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-2);"></span> 乙</span></div>
+  <div data-v-ceb7c9d8="" class="nv-line-plot">
+    <div data-v-ceb7c9d8="" data-vis-xy-container="" class="unovis-xy-container" role="figure">
+      <div data-v-ceb7c9d8="" data-vis-component=""></div>
+      <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+      <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+      <div data-v-ceb7c9d8="" data-vis-crosshair="" color="var(--chart-1),var(--chart-2)" template="(d) => {
+			const rows = props.series.map((s, i) => `<div class=&quot;nv-vis-row&quot;><span class=&quot;nv-vis-dot&quot; style=&quot;background:${escapeHtml(cssColor(colors.value[i]))}&quot;></span><span>${escapeHtml(s.label)}</span><b>${escapeHtml(d[s.key])}${escapeHtml(props.valueSuffix)}</b></div>`).join(&quot;&quot;);
+			return `<div class=&quot;nv-vis-card&quot;><div class=&quot;nv-vis-head&quot;>${escapeHtml(d[props.xKey])}</div>${rows}</div>`;
+		}"></div>
+      <div data-v-ceb7c9d8="" data-vis-tooltip=""></div><svg style="display: block;" xmlns="http://www.w3.org/2000/svg" height="260" aria-hidden="true" class="css-15uhmcb" width="0">
+        <g class="css-1i6bj7n-axis-component" axis-type="x">
+          <g></g>
+          <g class="css-1o9c2r8-grid"></g>
+          <g opacity="0" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+            <path class="domain" stroke="currentColor" d="M0.5, 0 V0.5 H0.5 V0"></path>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+                </tspan>
+              </text>
+            </g>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">09:00</tspan>
+                </tspan>
+              </text>
+            </g>
+          </g>
+          <g opacity="0" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+            <path class="domain" stroke="currentColor" d="M0.5, 0 V0.5 H0.5 V0"></path>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+                </tspan>
+              </text>
+            </g>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">09:00</tspan>
+                </tspan>
+              </text>
+            </g>
+          </g>
+          <g opacity="0" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="css-ykn1gz-axis css-6tctdn-hide-tick-line css-2imrto-hide-domain">
+            <path class="domain" stroke="currentColor" d="M0.5, 0 V0.5 H0.5 V0"></path>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">08:00</tspan>
+                </tspan>
+              </text>
+            </g>
+            <g class="tick css-1501h5p-tick" opacity="1" transform="translate(0.5,0)">
+              <line stroke="currentColor" y2="6"></line><text fill="currentColor" class="css-2o0ga9-tick-label">
+                <tspan xmlns="http://www.w3.org/2000/svg" font-family="var(--vis-axis-font-family, var(--vis-font-family))">
+                  <tspan x="0" dy="NaNem" dominant-baseline="central">09:00</tspan>
+                </tspan>
+              </text>
+            </g>
+          </g>
+        </g>
+        <g class="css-1i6bj7n-axis-component" axis-type="y">
+          <g></g>
+          <g class="css-1o9c2r8-grid"></g>
+        </g>
+        <g class="css-13qg9kf-line-component"></g>
+        <g class="css-1813gb2-crosshair-component" style="opacity: 0;">
+          <line class="css-16gcv4z"></line>
+        </g>
+        <clipPath id="ec0e6000012d85170000-da714d00000-2e9dd9f0000-b7d483a0000-48b34b8000066326fd000034c29e50000">
+          <rect></rect>
+        </clipPath>
+        <defs>
+          <filter id="saturate" filterUnits="objectBoundingBox">
+            <feColorMatrix type="saturate" in="SourceGraphic" values="1.35"></feColorMatrix>
+          </filter>
+        </defs>
+        <defs></defs>
+      </svg>
+      <div class="css-135213i-tooltip css-38lglc"></div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:67:15
+     65|     container.render(0)
+     66|     await rendered()
+     67|     expect((w.get('[data-marker-id=a]').element as HTMLElement).style.…
+       |               ^
+     68|     expect((other.w.get('[data-marker-id=a]').element as HTMLElement).…
+     69|     await w.setProps({ series: [{ key: 'a', label: '甲' }] })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > omits unknown, invalid and unsafe targets and adds no default annotation
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:81:53
+     79|     expect(w.findAll('[data-slot=nv-line-marker]')).toHaveLength(0)
+     80|     await w.setProps({ markers: [{ id: 'bad', index: -1, seriesKey: 'a…
+     81|     expect(w.findAll('[data-slot=nv-line-marker]')).toHaveLength(1)
+       |                                                     ^
+     82|     expect(w.get('[data-marker-id=safe]').element.tagName).toBe('BUTTO…
+     83|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 13 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "projects boundary and duplicate-label rows onto actual shared plot scales". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "projects boundary and duplicate-label rows onto actual shared plot scales". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "clips multiple reversed bands with official producer and never expands data domain". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "clips multiple reversed bands with official producer and never expands data domain". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "uses current identity after replacement and reorder without replacing focused marker DOM". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "uses current identity after replacement and reorder without replacing focused marker DOM". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "updates resize and data/series domains and isolates a second chart". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "updates resize and data/series domains and isolates a second chart". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "updates resize and data/series domains and isolates a second chart". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "updates resize and data/series domains and isolates a second chart". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "updates resize and data/series domains and isolates a second chart". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "omits unknown, invalid and unsafe targets and adds no default annotation". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: axisRenderHelperGroup.node(...).getBBox is not a function
+ ❯ Proxy.preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/components/axis/index.js:40:58
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:323:22
+ ❯ Proxy._setAutoMargin ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:322:18
+ ❯ Proxy._preRender ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/containers/xy-container/index.js:164:18
+ ❯ ../../node_modules/.pnpm/@unovis+ts@1.6.7_supports-color@7.2.0/node_modules/@unovis/ts/core/container/index.js:69:18
+ ❯ invokeTheCallbackFunction ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/generated/idl/Function.js:19:26
+ ❯ runAnimationFrameCallbacks ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:635:13
+ ❯ Timeout.<anonymous> ../../node_modules/.pnpm/jsdom@29.1.1_@noble+hashes@2.4.0/node_modules/jsdom/lib/jsdom/browser/Window.js:613:11
+ ❯ listOnTimeout node:internal/timers:605:17
+
+This error originated in "src/components/pc/chart/LineAnnotations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "omits unknown, invalid and unsafe targets and adds no default annotation". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+     Errors  13 errors
+   Start at  15:30:55
+   Duration  2.86s (transform 1.55s, setup 209ms, import 2.00s, tests 343ms, environment 240ms)
+

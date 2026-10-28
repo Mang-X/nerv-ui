@@ -145,3 +145,5 @@ badge、表格摘要、表单帮助、toast 或菜单中放置开发、验证或
 10. **新组件**遵循 `governance.md` 中的选件阶梯与 DoD（选件阶梯 / 新组件六件套）。
 11. **作用域 CSS 例外**：只有登录页（`login.vue`）可用 `<style scoped>` 实现流式 `clamp()` 标题。其他所有新组件只能使用 Tailwind 工具类。
 12. **交互验收口径**：`patterns/interaction-patterns.md` 的"规则/判定/正例/反例"是评审打回依据，写页面前先过一遍对应章节。
+
+应用内可打印详情组合：[生活手记 recipe](../../docs/evidence/t08-r18/README.md)，不新增公共领域组件。

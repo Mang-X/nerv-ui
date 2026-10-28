@@ -1,0 +1,55 @@
+{
+  "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603",
+  "trackedInputFilesScanned": 1322,
+  "patterns": [
+    "NvLineChart",
+    "QualitySpcCharts",
+    "violationBands",
+    "violationMarkers",
+    "VisLine",
+    "LineChartPro"
+  ],
+  "hits": [
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/components/equipment/TelemetryTrendPanel.vue",
+      "sha256": "b5e448218c6273799a8a34e6fbc972fc58cc988ee71da553cb5cc7a01fb0d15f",
+      "lines": 119
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/components/quality/QualityAnalysisCharts.test.ts",
+      "sha256": "78b32798d7047fe9a2d800e70e1471f1d6359bf59eecb96ee7cd1de4601f635c",
+      "lines": 323
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/components/quality/QualitySpcCharts.vue",
+      "sha256": "a467dd22edbfc1d23ec1da08ed66d748b3f01db13f69b5f7f19115149a71df56",
+      "lines": 184
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/composables/useBusinessQualityAnalysis.ts",
+      "sha256": "06eb80fc49842bdbab427b8515f2c68c4092ca555032f68c7323f20c4a4fe068",
+      "lines": 455
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/pages/equipment/telemetry/oee.vue",
+      "sha256": "352c966b46f1d7311b271f3070feb46cc313fe6779d4b35eb19ed97d9fae8b60",
+      "lines": 504
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/pages/equipment/telemetryPages.test.ts",
+      "sha256": "8fcf950ff6f8d6c411e5674968239b9d2d62eb9c0bfba8e9ef50be51a16f260b",
+      "lines": 981
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/pages/maintenance/reliability.vue",
+      "sha256": "137493760ca8c1cec4287a9dbc4b9ab76c532a3219b91a06c24a01dbca9fe4dc",
+      "lines": 427
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/pages/quality/analysis.vue",
+      "sha256": "e9e0d528477a573c1cd8eb872bac4ae12d34abf76fe027ac7baea9fa75487127",
+      "lines": 855
+    }
+  ],
+  "disposition": "All copied inputs retained byte-for-byte; only chart geometry and stable anchor interaction adapted. Source SDK/SPC/models remain host responsibilities."
+}

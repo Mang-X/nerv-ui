@@ -10,7 +10,7 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 
 面向公共空间、展馆、运营中心与控制室等远距显示表面的组件层。与桌面 PC、PDA 移动两层**完全解耦**:独立的 `--nv-scr-*` 深色工业蓝令牌(无亮色模式),只遵循统一的设计哲学 —— 克制、去装饰、动效减速无回弹。
 
-独立 playground 从 `/#screen` 或 `/#screen/stage` 进入 A01 的 7 件基础外壳舞台；[独立大屏接入](../../../../../../docs/screen-standalone.md)说明范围。完整 34 件真实导出以包内 `screen/index.ts` 为准，后续六组由 #59–#64 逐票验收，下方历史总览不代表全组 fresh 验收。
+独立 playground 从 `/#screen` 或 `/#screen/stage` 进入 A01 的 7 件基础外壳舞台；[独立大屏接入](../../../../../../docs/screen-standalone.md)说明范围。当前 39 件具名组件导出以包内 `screen/index.ts` 为准；各组 fresh 验收以对应证据为准，下方历史总览不代表全组 fresh 验收。
 
 <ScreenDemo>
   <NvScreenPanel style="width: 360px">
@@ -24,6 +24,12 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
   </div>
 </ScreenDemo>
 
+[流线与等距块体装饰背景](./decorative-backgrounds.md)由 #20 单独导出，可在 `/#screen/backgrounds` 查看双实例、主题和缩放。
+
+[种子氛围布局](./screen-layout.md)组合固定 1920×1080 背景、现有页头与内容插槽；独立宿主入口 `/#screen/layout` 支持缩放与交互。
+
+[远距主状态灯](./status-hero.md)保留主灯体量，颜色与节奏由宿主分别输入；独立宿主入口 `/#screen/status-hero` 展示两类来源和零、非零、未知失联说明。
+
 ## 为什么独立一层
 
 大屏的观看距离(数米外)、环境(公共展示空间或控制室)、硬件(高亮 LED)都和近场的 PC / PDA 不同。强行复用浅色令牌会过曝、对比不足。因此这一层:
@@ -35,11 +41,17 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 
 ## 组件分类
 
-| 分类         | 组件                                                                                                                                                 |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 容器 / 外壳  | `NvScreenPanel` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                                                |
-| 指标 / 图表  | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvTaktGantt`                                |
-| 数据 / 状态  | `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusTag`                               |
-| 控件(大屏化) | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` |
+| 分类         | 组件                                                                                                                                                                                        |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 容器 / 外壳  | `NvScreenPanel` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                                                                                       |
+| 指标 / 图表  | `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvTaktGantt`                                                                       |
+| 数据 / 状态  | `NvScreenSummaryCard` · `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusHero` · `NvScreenStatusTag` · `NvScreenStageFlow` |
+| 控件(大屏化) | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch`                                        |
 
 从左侧目录进入任一组件查看用法与属性。
+
+[阶段数量流](stage-flow.md)展示显式阶段数量、状态与连接符，窄容器换行；中性宿主见 `/#screen/stage-flow`。
+
+[分档热力格](./heatmap.md)展示显式数值、图例与宿主时标；独立双来源见 `/#screen/heatmap`。
+
+[等距节点流背景](./fusion-background.md)展示阅读空间与共享花园的中性拓扑。

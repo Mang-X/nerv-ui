@@ -6,6 +6,11 @@
  */
 import './tokens.css'
 
+// Decorative SVG backgrounds (fixed geometry, no host data dependency)
+export { default as NvScreenFlowLinesBg } from './FlowLinesBg.vue'
+export { default as NvScreenIsometricBlocksBg } from './IsometricBlocksBg.vue'
+export { default as NvScreenLayout } from './ScreenLayout.vue'
+
 // Containers / surfaces
 export { default as NvScreenPanel } from './ScreenPanel.vue'
 export { default as NvScreenScrollArea } from './ScreenScrollArea.vue'
@@ -42,6 +47,7 @@ export { default as NvBorderPanel } from './BorderPanel.vue'
 export { default as NvTitleBar } from './TitleBar.vue'
 export { default as NvGlowDivider } from './GlowDivider.vue'
 export { default as NvScreenStatusLight } from './StatusLight.vue'
+export { default as NvScreenStatusHero } from './StatusHero.vue'
 export { default as NvScreenStatusTag } from './StatusTag.vue'
 
 // Controls (big-screen)
@@ -54,3 +60,27 @@ export { default as NvScreenTabs } from './ScreenTabs.vue'
 export { default as NvScreenSegmented } from './ScreenSegmented.vue'
 export { default as NvScreenSwitch } from './ScreenSwitch.vue'
 export { default as NvScreenPagination } from './ScreenPagination.vue'
+
+// Read-only host-owned quantities along a sequence.
+export { default as NvScreenStageFlow } from './StageFlow.vue'
+export type { ScreenStage } from './StageFlow.vue'
+
+export { default as NvScreenHeatmap } from './Heatmap.vue'
+export type { ScreenHeatmapCell, ScreenHeatmapBand, ScreenHeatmapThreshold } from './Heatmap.vue'
+
+export { default as NvScreenSummaryCard } from './SummaryCard.vue'
+export type {
+  ScreenSummaryMetric,
+  ScreenSummaryTone,
+  ScreenSummaryStatus,
+  ScreenSummaryItem,
+} from './SummaryCard.vue'
+
+export { default as NvScreenStatusWall } from './StatusWall.vue'
+export type { ScreenStatusWallItem, ScreenStatusWallMode } from './StatusWall.vue'
+
+export { default as NvScreenFusionBg } from './FusionBg.vue'
+export type { FusionNode, FusionEdge } from './FusionBg.vue'
+export { default as NvScreenLoginStage } from './ScreenLoginStage.vue'
+export { default as NvScreenDetailDialog } from './DetailDialog.vue'
+export { default as NvScreenParameter } from './Parameter.vue'

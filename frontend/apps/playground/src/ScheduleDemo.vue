@@ -121,6 +121,7 @@ const routes = [
   ['mobile-feedback', '片刻回响'],
   ['files', '留住片刻'],
   ['screen/stage', '空间舞台'],
+  ['screen/layout', '城市光影'],
   ['screen/controls', '随心安排'],
   ['screen/indicators', '阅读与到访'],
   ['screen/data', '流动消息'],
