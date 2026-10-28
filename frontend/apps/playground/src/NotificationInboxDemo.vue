@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { computed, ref, shallowRef } from 'vue'
+import { computed, ref, shallowRef, watch } from 'vue'
 import { NvNotificationInbox, NvButton, type NvNotificationItem } from '@nerv-iip/ui'
 const props = defineProps<{ space: 'library' | 'studio' }>()
 const selected = shallowRef<string | null>(null)
 const filter = shallowRef('all')
 const loading = shallowRef(false)
 const error = shallowRef('')
-const pending = ref<string[]>([])
+const markTarget = shallowRef<NvNotificationItem | null>(null)
+const pending = computed(() => (markTarget.value ? [markTarget.value.key] : []))
 const accept = shallowRef(true)
 const records = ref<NvNotificationItem[]>([
   {
@@ -31,17 +32,26 @@ const records = ref<NvNotificationItem[]>([
 const visible = computed(() =>
   records.value.filter((item) => filter.value !== 'unread' || item.read === false),
 )
+watch(
+  records,
+  (current) => {
+    if (markTarget.value && !current.includes(markTarget.value)) markTarget.value = null
+  },
+  { flush: 'sync' },
+)
 function mark(item: NvNotificationItem) {
-  pending.value = [item.key]
+  if (!records.value.includes(item)) return
+  markTarget.value = item
   error.value = ''
 }
 function finish(success: boolean) {
+  const target = markTarget.value
+  if (!target) return
+  markTarget.value = null
+  if (!records.value.includes(target)) return
   if (success)
-    records.value = records.value.map((item) =>
-      pending.value.includes(item.key) ? { ...item, read: true } : item,
-    )
+    records.value = records.value.map((item) => (item === target ? { ...item, read: true } : item))
   else error.value = '暂时无法标记，请稍后重试。'
-  pending.value = []
 }
 function loaded() {
   loading.value = false

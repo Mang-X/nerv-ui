@@ -28,3 +28,27 @@ describe('notification hosts', () => {
       expect(w.find('[role=alert]').exists()).toBe(false)
     })
 })
+
+it.each(['library', 'studio'] as const)(
+  'ignores old mark outcomes after same-key replacement and permits a current retry in %s',
+  async (space) => {
+    const w = mount(NotificationInboxDemo, { props: { space } })
+    await w.get('[data-open]').trigger('click')
+    await w.get('[data-mark]').trigger('click')
+    await w.get('[data-replace]').trigger('click')
+    expect(w.get('[data-detail]').text()).toContain('安排已更新')
+    expect(w.get('[data-mark]').attributes('disabled')).toBeUndefined()
+    expect(w.get('[data-success]').attributes('disabled')).toBeDefined()
+    await w.get('[data-success]').trigger('click')
+    await w.get('[data-failure]').trigger('click')
+    expect(w.find('[role=alert]').exists()).toBe(false)
+    expect(w.find('[data-mark]').exists()).toBe(true)
+    await w.get('[data-mark]').trigger('click')
+    await w.get('[data-failure]').trigger('click')
+    expect(w.get('[role=alert]').text()).toContain('无法标记')
+    await w.get('[data-mark]').trigger('click')
+    await w.get('[data-success]').trigger('click')
+    expect(w.find('[data-mark]').exists()).toBe(false)
+    w.unmount()
+  },
+)
