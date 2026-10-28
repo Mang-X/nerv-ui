@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ScreenParameterDetailDemo from './screen/ScreenParameterDetailDemo.vue'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import DirectoryDemo from './directory-detail/DirectoryDemo.vue'
 import ScreenDemo from './ScreenDemo.vue'
@@ -100,9 +101,14 @@ function addProject() {
 </script>
 
 <template>
+  <ScreenParameterDetailDemo
+    v-if="surface.startsWith('#screen/parameter-detail/')"
+    :key="surface"
+    :context="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <NotificationInboxDemo
     :key="surface"
-    v-if="surface === '#notifications/library' || surface === '#notifications/studio'"
+    v-else-if="surface === '#notifications/library' || surface === '#notifications/studio'"
     :space="surface === '#notifications/library' ? 'library' : 'studio'"
   />
   <NeutralShellDemo

@@ -365,6 +365,7 @@ export default defineConfig({
             { text: 'RingGauge 环形仪表', link: '/components/screen/ring-gauge' },
             { text: 'CapsuleBar 胶囊进度', link: '/components/screen/capsule-bar' },
             { text: 'DigitalFlop 数字翻牌', link: '/components/screen/digital-flop' },
+            { text: '详情与参数取值', link: '/components/screen/detail-parameter' },
             { text: 'Sparkline 迷你趋势', link: '/components/screen/sparkline' },
             { text: 'TrendChart 趋势图', link: '/components/screen/trend-chart' },
             { text: 'ScreenBarChart 柱状图', link: '/components/screen/screen-bar-chart' },

@@ -1,0 +1,311 @@
+[
+  {
+    "receipt": "docslinks.json",
+    "result": {
+      "scope": "six new local owner links/includes only; historical aliases not repaired",
+      "links": [
+        [
+          "README.md",
+          "docs/screen-standalone.md"
+        ],
+        [
+          "README.md",
+          "docs/evidence/t08-r10/README.md"
+        ],
+        [
+          "docs/screen-standalone.md",
+          "../frontend/apps/design-system/docs/components/screen/detail-parameter.md"
+        ],
+        [
+          "docs/screen-standalone.md",
+          "evidence/t08-r10/README.md"
+        ],
+        [
+          "frontend/packages/ui/src/components/screen/product.md",
+          "../../../../../apps/design-system/docs/components/screen/detail-parameter.md"
+        ],
+        [
+          "frontend/apps/design-system/docs/components/screen/detail-parameter.md",
+          "../../../../../DESIGN/components/screen-detail-parameter.md"
+        ]
+      ],
+      "exit": 0
+    }
+  },
+  {
+    "receipt": "fmt-write.json",
+    "result": {
+      "argv": [
+        "node",
+        "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+        "exec",
+        "vp",
+        "fmt",
+        "--write",
+        "DESIGN/components/screen-detail-parameter.md",
+        "apps/design-system/docs/components/screen/detail-parameter.md",
+        "apps/playground/src/screen/ScreenParameterDetailDemo.test.ts",
+        "apps/playground/src/screen/ScreenParameterDetailDemo.vue",
+        "packages/ui/src/components/screen/DetailDialog.vue",
+        "packages/ui/src/components/screen/DetailParameter.test.ts",
+        "packages/ui/src/components/screen/Parameter.vue",
+        "DESIGN/component-coverage.md",
+        "DESIGN/nvui-naming-map.md",
+        "apps/design-system/docs/.vitepress/config.mts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ScreenDemo.vue",
+        "packages/ui/src/components/screen/index.ts",
+        "packages/ui/src/components/screen/product.md",
+        "packages/ui/src/nvui-naming.contract.test.ts"
+      ],
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+      "exit": 0
+    }
+  },
+  {
+    "receipt": "host-build.json",
+    "result": {
+      "argv": [
+        "node",
+        "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+        "exec",
+        "vp",
+        "build"
+      ],
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/apps/playground",
+      "exit": 0
+    }
+  },
+  {
+    "receipt": "host-tests.json",
+    "result": {
+      "argv": [
+        "node",
+        "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src/screen/ScreenParameterDetailDemo.test.ts",
+        "src/nvui-imports.contract.test.ts",
+        "--reporter=json",
+        "--outputFile=/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-28/t08-r10-implementation-r1/host-report.json"
+      ],
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/apps/playground",
+      "exit": 0
+    }
+  },
+  {
+    "receipt": "host-types.json",
+    "result": {
+      "argv": [
+        "node",
+        "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+        "exec",
+        "vue-tsc",
+        "--noEmit",
+        "-p",
+        "tsconfig.json"
+      ],
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/apps/playground",
+      "exit": 0
+    }
+  },
+  {
+    "receipt": "root-markdown-format.json",
+    "result": [
+      {
+        "argv": [
+          "node",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/node_modules/.pnpm/oxfmt@0.57.0_svelte@5.56.4_vite-plus@0.2.4_@types+node@26.1.1_@voidzero-dev+vite-plus-c_f8fe2b69936b4de745a2e497e905fd2e/node_modules/oxfmt/bin/oxfmt",
+          "--stdin-filepath",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/docs/evidence/t08-r10/README.md"
+        ],
+        "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+        "exit": 0,
+        "nonempty": true,
+        "cmp": true
+      },
+      {
+        "argv": [
+          "node",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/node_modules/.pnpm/oxfmt@0.57.0_svelte@5.56.4_vite-plus@0.2.4_@types+node@26.1.1_@voidzero-dev+vite-plus-c_f8fe2b69936b4de745a2e497e905fd2e/node_modules/oxfmt/bin/oxfmt",
+          "--stdin-filepath",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/DESIGN/components/screen-detail-parameter.md"
+        ],
+        "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+        "exit": 0,
+        "nonempty": true,
+        "cmp": true
+      },
+      {
+        "argv": [
+          "node",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/node_modules/.pnpm/oxfmt@0.57.0_svelte@5.56.4_vite-plus@0.2.4_@types+node@26.1.1_@voidzero-dev+vite-plus-c_f8fe2b69936b4de745a2e497e905fd2e/node_modules/oxfmt/bin/oxfmt",
+          "--stdin-filepath",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/apps/design-system/docs/components/screen/detail-parameter.md"
+        ],
+        "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+        "exit": 0,
+        "nonempty": true,
+        "cmp": true
+      },
+      {
+        "argv": [
+          "node",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/node_modules/.pnpm/oxfmt@0.57.0_svelte@5.56.4_vite-plus@0.2.4_@types+node@26.1.1_@voidzero-dev+vite-plus-c_f8fe2b69936b4de745a2e497e905fd2e/node_modules/oxfmt/bin/oxfmt",
+          "--stdin-filepath",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/README.md"
+        ],
+        "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+        "exit": 0,
+        "nonempty": true,
+        "cmp": true
+      },
+      {
+        "argv": [
+          "node",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/node_modules/.pnpm/oxfmt@0.57.0_svelte@5.56.4_vite-plus@0.2.4_@types+node@26.1.1_@voidzero-dev+vite-plus-c_f8fe2b69936b4de745a2e497e905fd2e/node_modules/oxfmt/bin/oxfmt",
+          "--stdin-filepath",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/docs/screen-standalone.md"
+        ],
+        "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+        "exit": 0,
+        "nonempty": true,
+        "cmp": true
+      },
+      {
+        "argv": [
+          "node",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/node_modules/.pnpm/oxfmt@0.57.0_svelte@5.56.4_vite-plus@0.2.4_@types+node@26.1.1_@voidzero-dev+vite-plus-c_f8fe2b69936b4de745a2e497e905fd2e/node_modules/oxfmt/bin/oxfmt",
+          "--stdin-filepath",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/DESIGN/component-coverage.md"
+        ],
+        "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+        "exit": 0,
+        "nonempty": true,
+        "cmp": true
+      },
+      {
+        "argv": [
+          "node",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/node_modules/.pnpm/oxfmt@0.57.0_svelte@5.56.4_vite-plus@0.2.4_@types+node@26.1.1_@voidzero-dev+vite-plus-c_f8fe2b69936b4de745a2e497e905fd2e/node_modules/oxfmt/bin/oxfmt",
+          "--stdin-filepath",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/DESIGN/nvui-naming-map.md"
+        ],
+        "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+        "exit": 0,
+        "nonempty": true,
+        "cmp": true
+      },
+      {
+        "argv": [
+          "node",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/node_modules/.pnpm/oxfmt@0.57.0_svelte@5.56.4_vite-plus@0.2.4_@types+node@26.1.1_@voidzero-dev+vite-plus-c_f8fe2b69936b4de745a2e497e905fd2e/node_modules/oxfmt/bin/oxfmt",
+          "--stdin-filepath",
+          "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/packages/ui/src/components/screen/product.md"
+        ],
+        "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+        "exit": 0,
+        "nonempty": true,
+        "cmp": true
+      }
+    ]
+  },
+  {
+    "receipt": "scoped-fmt.json",
+    "result": {
+      "argv": [
+        "node",
+        "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+        "exec",
+        "vp",
+        "fmt",
+        "--check",
+        "DESIGN/components/screen-detail-parameter.md",
+        "apps/design-system/docs/components/screen/detail-parameter.md",
+        "apps/playground/src/screen/ScreenParameterDetailDemo.test.ts",
+        "apps/playground/src/screen/ScreenParameterDetailDemo.vue",
+        "packages/ui/src/components/screen/DetailDialog.vue",
+        "packages/ui/src/components/screen/DetailParameter.test.ts",
+        "packages/ui/src/components/screen/Parameter.vue",
+        "DESIGN/component-coverage.md",
+        "DESIGN/nvui-naming-map.md",
+        "apps/design-system/docs/.vitepress/config.mts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ScreenDemo.vue",
+        "packages/ui/src/components/screen/index.ts",
+        "packages/ui/src/components/screen/product.md",
+        "packages/ui/src/nvui-naming.contract.test.ts"
+      ],
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+      "exit": 0
+    }
+  },
+  {
+    "receipt": "scoped-lint.json",
+    "result": {
+      "argv": [
+        "node",
+        "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+        "exec",
+        "vp",
+        "lint",
+        "apps/playground/src/screen/ScreenParameterDetailDemo.test.ts",
+        "apps/playground/src/screen/ScreenParameterDetailDemo.vue",
+        "packages/ui/src/components/screen/DetailDialog.vue",
+        "packages/ui/src/components/screen/DetailParameter.test.ts",
+        "packages/ui/src/components/screen/Parameter.vue",
+        "apps/design-system/docs/.vitepress/config.mts",
+        "apps/playground/src/App.vue",
+        "apps/playground/src/ScreenDemo.vue",
+        "packages/ui/src/components/screen/index.ts",
+        "packages/ui/src/nvui-naming.contract.test.ts"
+      ],
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend",
+      "exit": 0
+    }
+  },
+  {
+    "receipt": "ui-tests.json",
+    "result": {
+      "argv": [
+        "node",
+        "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+        "exec",
+        "vp",
+        "test",
+        "run",
+        "src/components/screen/DetailParameter.test.ts",
+        "src/components/screen/ScreenIndicators.test.ts",
+        "src/nvui-naming.contract.test.ts",
+        "src/ui-primitives.contract.test.ts",
+        "src/foundation-conventions.contract.test.ts",
+        "src/design-system.contract.test.ts",
+        "src/design-docs.contract.test.ts",
+        "src/nvui-doc-coverage.contract.test.ts",
+        "src/docs-layout.contract.test.ts",
+        "--reporter=json",
+        "--outputFile=/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-28/t08-r10-implementation-r1/ui-report.json"
+      ],
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/packages/ui",
+      "exit": 0
+    }
+  },
+  {
+    "receipt": "ui-types.json",
+    "result": {
+      "argv": [
+        "node",
+        "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+        "exec",
+        "vue-tsc",
+        "--noEmit",
+        "-p",
+        "tsconfig.json"
+      ],
+      "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p12-snapshot-compare/frontend/packages/ui",
+      "exit": 0
+    }
+  }
+]
