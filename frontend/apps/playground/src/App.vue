@@ -25,6 +25,7 @@ import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 import MobileOverlayDemo from './MobileOverlayDemo.vue'
 import MobileListDemo from './MobileListDemo.vue'
+import MobileTaskListDemo from './mobile-task-list/MobileTaskListDemo.vue'
 import MobileFlowDemo from './mobile-flow/MobileFlowDemo.vue'
 import MobileFeedbackDemo from './MobileFeedbackDemo.vue'
 import {
@@ -177,6 +178,10 @@ function addProject() {
   <ScheduleDemo v-else-if="surface === '#schedule'" />
   <FilesDemo v-else-if="surface === '#files'" />
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
+  <MobileTaskListDemo
+    v-else-if="surface.startsWith('#mobile-task-list')"
+    :source="surface.split('/')[1]"
+  />
   <MobileFlowDemo v-else-if="surface === '#mobile-flow'" />
   <MobileFeedbackDemo v-else-if="surface === '#mobile-feedback'" />
   <MobileListDemo v-else-if="surface === '#mobile-lists'" />
@@ -235,6 +240,7 @@ function addProject() {
         class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm underline focus-visible:outline-2"
         >大屏演示</a
       >
+      <a href="#mobile-task-list/library" class="inline-flex min-h-touch items-center">收藏翻阅</a>
       <a href="#mobile-flow" class="inline-flex min-h-touch items-center">安排流程</a>
       <a
         href="#mobile-feedback"
