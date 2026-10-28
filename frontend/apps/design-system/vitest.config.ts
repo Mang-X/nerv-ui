@@ -32,6 +32,7 @@ export default defineConfig({
       'async-candidates-host.test.ts',
       'workbench-saved-day-host.test.ts',
       'list-blocks-host.test.ts',
+      'card-structure-host.test.ts',
     ],
   },
 })
