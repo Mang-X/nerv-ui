@@ -84,6 +84,11 @@ function onUp() {
     distance.value = props.threshold
     loading.value = true
     emit('refresh')
+    // A controlled host can decline the refresh without changing false.
+    // Reconcile the gesture after its synchronous update has been rendered.
+    void nextTick(() => {
+      if (!loading.value) onCancel()
+    })
   } else {
     distance.value = 0
   }
