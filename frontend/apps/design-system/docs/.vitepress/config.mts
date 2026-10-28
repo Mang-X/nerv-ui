@@ -352,6 +352,7 @@ export default defineConfig({
             { text: 'TechFrame 科技边框', link: '/components/screen/tech-frame' },
             { text: 'TitleBar 标题栏', link: '/components/screen/title-bar' },
             { text: 'ScreenHeader 大屏页头', link: '/components/screen/screen-header' },
+            { text: '等距节点流背景', link: '/components/screen/fusion-background' },
             { text: 'ScreenLayout 氛围布局', link: '/components/screen/screen-layout' },
             { text: 'GlowDivider 辉光分割', link: '/components/screen/glow-divider' },
           ],

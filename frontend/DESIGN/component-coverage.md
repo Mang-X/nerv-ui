@@ -165,3 +165,5 @@ C04：大屏分栏 recipe（宿主组合，无新增导出）；阅读活动/展
 | 候选与分步执行 | ScanBar / Picker / NumberKeyboard / Tag / Result / Steps / AppShellMobile / NavBar | —                     | 无         |
 
 T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / FilterBar / DataTable / Sheet / Timeline，无新增导出。screen/mobile/touch：—。合同见 [目录详情](components/directory-detail.md)。
+
+| 等距节点流背景 | — | — | — | `NvScreenFusionBg` |

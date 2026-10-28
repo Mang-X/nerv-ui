@@ -167,6 +167,7 @@ const NV_ALL = [
   'NvScreenInput',
   'NvScreenIsometricBlocksBg',
   'NvScreenLayout',
+  'NvScreenFusionBg',
   'NvScreenPagination',
   'NvScreenPanel',
   'NvScreenPareto',

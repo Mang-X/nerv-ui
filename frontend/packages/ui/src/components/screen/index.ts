@@ -75,3 +75,6 @@ export type {
   ScreenSummaryStatus,
   ScreenSummaryItem,
 } from './SummaryCard.vue'
+
+export { default as NvScreenFusionBg } from './FusionBg.vue'
+export type { FusionNode, FusionEdge } from './FusionBg.vue'
