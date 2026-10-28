@@ -192,6 +192,7 @@ it('paused shell rejects pull gesture without false refreshing spinner', async (
   await flushPromises()
   expect(w.emitted('refresh')).toBeUndefined()
   expect(w.text()).not.toContain('刷新中')
+  expect(el.attributes('style')).toContain('translateY(0px)')
 })
 it('pause cancels in-flight restore page and resume requests the same committed page', async () => {
   const w = setup({
@@ -245,4 +246,31 @@ it('persists committed filter immediately even without a scroll', async () => {
   const w = setup({ storage: { load: () => undefined, save } })
   await w.setProps({ filterKey: 'saved' })
   expect(save).toHaveBeenLastCalledWith('a', { filterKey: 'saved', scrollTop: 0 })
+})
+
+it('settles a declined pull after pausing during the drag and accepts a fresh resumed gesture', async () => {
+  const w = setup({ state: 'ready', loaded: 1, hasMore: true })
+  const area = w.get('.nv-m-pr-inner')
+  function move() {
+    area.element.dispatchEvent(
+      new MouseEvent('pointerdown', { clientY: 0, buttons: 1, bubbles: true }),
+    )
+    area.element.dispatchEvent(
+      new MouseEvent('pointermove', { clientY: 200, buttons: 1, bubbles: true }),
+    )
+  }
+  move()
+  await w.setProps({ paused: true })
+  await area.trigger('pointerup')
+  await flushPromises()
+  expect(w.emitted('refresh')).toBeUndefined()
+  expect(area.attributes('style')).toContain('translateY(0px)')
+  await w.setProps({ paused: false })
+  move()
+  await area.trigger('pointerup')
+  await w.setProps({ pending: 'refresh' })
+  expect(w.emitted('refresh')).toHaveLength(1)
+  expect(area.attributes('style')).toContain('translateY(56px)')
+  await w.setProps({ pending: null, pageKey: 1 })
+  expect(area.attributes('style')).toContain('translateY(0px)')
 })
