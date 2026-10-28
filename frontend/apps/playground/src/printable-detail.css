@@ -1,0 +1,28 @@
+@layer app {
+  .nv-detail-print-target {
+    display: none;
+  }
+  @media print {
+    body[data-detail-print-owner] > :not(.nv-detail-print-target[data-detail-print-active]) {
+      display: none !important;
+    }
+    body[data-detail-print-owner] > .nv-detail-print-target[data-detail-print-active] {
+      display: block !important;
+      color-scheme: light;
+      background: var(--nv-print-paper) !important;
+      color: var(--nv-print-ink) !important;
+      padding: 1rem;
+    }
+    body[data-detail-print-owner] .nv-detail-body * {
+      color: var(--nv-print-ink) !important;
+      background: var(--nv-print-paper) !important;
+      border-color: var(--nv-print-rule) !important;
+    }
+    body[data-detail-print-owner] [data-print-hidden] {
+      display: none !important;
+    }
+    .nv-detail-body dl {
+      break-inside: avoid;
+    }
+  }
+}
