@@ -157,3 +157,9 @@
 | [中性应用壳](../apps/design-system/docs/components/desktop/neutral-shells.md)（复用 NvAppShellInset，无新导出） | 两种宿主排列 | —     | —      | —      |
 
 C04：大屏分栏 recipe（宿主组合，无新增导出）；阅读活动/展览安排，公开 Panel/ScrollBoard/Table/Pagination/Trend/Pareto/Donut/Freshness；PC/mobile/touch —。
+
+## T08/C03 组合覆盖
+
+| recipe         | 移动                                                                               | 桌面 / touch / screen | 新公开导出 |
+| -------------- | ---------------------------------------------------------------------------------- | --------------------- | ---------- |
+| 候选与分步执行 | ScanBar / Picker / NumberKeyboard / Tag / Result / Steps / AppShellMobile / NavBar | —                     | 无         |
