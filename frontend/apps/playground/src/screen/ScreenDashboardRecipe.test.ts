@@ -81,3 +81,18 @@ it('keeps chart and detail quantity precision consistent without changing input 
   expect(w.get('[data-details]').text()).not.toContain('1.235')
   w.unmount()
 })
+
+it('keeps primary units visually subordinate while preserving zero unknown and replacement', async () => {
+  const w = mount(Recipe, {
+    props: { input: dashboardInput('reading'), page: 1, view: 'chart', now: 1000 },
+  })
+  expect(w.get('[data-primary]').text()).toContain('0')
+  expect(w.get('[data-primary] small').attributes('style')).toContain('font-weight: 400')
+  expect(w.get('[data-primary] small').attributes('style')).toContain('color: var(--nv-scr-muted)')
+  await w.setProps({ input: dashboardInput('exhibition') })
+  expect(w.get('[data-primary]').text()).toContain('12')
+  expect(w.get('[data-primary] small').text()).toBe('件')
+  await w.setProps({ input: { ...dashboardInput('reading'), primary: null } })
+  expect(w.find('[data-primary] small').exists()).toBe(false)
+  w.unmount()
+})

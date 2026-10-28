@@ -11,3 +11,7 @@ Fresh：playground types/build、两份源码 lint/fmt、diffcheck通过；JSON�
 ## R2 数量列对齐
 
 数量列显式 align=right，回归 `keeps chart and detail quantity precision consistent without changing input values` 增加真实表头和每行数值 td 的 text-align 断言。旧候选 RED 2 PASS/1 FAIL，修复后含宿主导航 18/18 PASS；types/build/scoped lint/fmt通过。仍保留输入原值、精度、单位和替换断言。来源完整 Spec 对照留独立R3完成；浏览器未跑。R2原FAIL和其它未运行边界不变。
+
+## R3 KPI 单位层级
+
+主KPI单位独立正常字重400与弱色screen muted，不再继承数字强调；补同处optional KPI tracking-tight及技术编号muted。`keeps primary units visually subordinate while preserving zero unknown and replacement` 从RED3PASS/1FAIL到含宿主导航GREEN19/19，验证公开DOM单位样式、零/12单位替换、unknown无单位。该测试证明声明样式而非真实视觉测量。types/build/scopedlintfmt和本文stdin比对通过。R3已完成Spec来源对照，仅有限继承；browser/CI等仍UNRUN，历史FAIL保持。

@@ -53,12 +53,14 @@ const detailColumns = computed(() => [
       </nav>
     </header>
     <NvScreenPanel :title="input.primaryLabel"
-      ><strong data-primary class="nv-scr-recipe-primary"
+      ><strong data-primary class="nv-scr-recipe-primary tracking-tight"
         >{{
           input.primary === null
             ? '未确认'
             : input.primary.toLocaleString('zh-CN', { maximumFractionDigits: 3 })
-        }}<small v-if="input.primary !== null"> {{ input.unit }}</small></strong
+        }}<small v-if="input.primary !== null" style="font-weight: 400; color: var(--nv-scr-muted)">
+          {{ input.unit }}</small
+        ></strong
       >
       <p>{{ input.secondary }}</p></NvScreenPanel
     >
@@ -170,6 +172,7 @@ const detailColumns = computed(() => [
     font-size: 18px;
   }
   .nv-scr-recipe-code {
+    color: var(--nv-scr-muted);
     font:
       12px ui-monospace,
       monospace;
