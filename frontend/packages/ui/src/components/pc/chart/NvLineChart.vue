@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from 'vue'
 import { computed, shallowRef } from 'vue'
 import type { Line, XYContainerConfigInterface } from '@unovis/ts'
+import { PlotbandLabelPosition } from '@unovis/ts'
 import {
   VisAxis,
   VisCrosshair,
@@ -195,6 +196,10 @@ const tooltipTemplate = (d: Row) => {
           :axis="band.axis"
           :from="band.from"
           :to="band.to"
+          :label-text="band.label"
+          :label-position="PlotbandLabelPosition.TopInside"
+          :label-offset-y="4"
+          label-color="var(--foreground)"
           :color="`color-mix(in oklch, ${tones[band.tone ?? 'neutral']} 12%, transparent)`"
           :exclude-from-domain-calculation="true"
           :duration="0"

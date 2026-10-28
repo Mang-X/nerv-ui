@@ -54,3 +54,7 @@ Node v24.18.0；全部正式命令显式使用缓存 `node /Users/mang/.cache/no
 fresh：最终 UI/命名/chart readiness、两宿主、docs contracts、UI/host types、playground build、scoped lint/fmt、根 Markdown stdin 非空/cmp、人工相对链接检查、diff check 见 final-\* receipt。green-only docs contract 与 build 不称 RED/GREEN。旧 C02 vendor 432 PASS + timeout 的完整日志缺失，保持继承 UNKNOWN/未重跑；global fmt3/main RAW2/docs alias ENOTDIR/parallel timeout 不顺修、不以本轮窄门禁洗绿。
 
 UNRUN：browser/实际 plot 视觉与 resize、HTTP、docs Live/文档构建、CI、packed consumer、device、vendor 专项、APS/production。许可 UNKNOWN。旧应用接入 NOT_PLANNED。本票只交 draft 候选，必要真实运行 AC 缺口交父独立 review；不自签整票、不 ready/merge/close/watch、不安排审核、不启动后继代理。
+
+## R1 返修
+
+同色范围标签关联的 RED/GREEN、原字节 probe 和未运行边界见 [F1 记录](f1/README.md)。R1 指出的全段 raw diff-check exit 2 为原始日志空白，之前笼统的“diff check 通过”仅适用于实现限定范围；不以 scoped exit 0 覆盖此失败。

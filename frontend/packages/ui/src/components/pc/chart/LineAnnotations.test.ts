@@ -119,6 +119,48 @@ describe('line annotations with actual Unovis producer', () => {
     const rect = producer<Plotband<unknown>>(bands[0]).element.querySelector('rect')!
     expect(rect.getAttribute('width')).toBe('522')
   })
+  it('labels each same-tone range inside its actual region regardless of input order and replacement', async () => {
+    const { w } = await chart({
+      bands: [
+        { id: 'late', axis: 'x', from: 1.5, to: 2, label: '晚段' },
+        { id: 'early', axis: 'x', from: 0, to: 0.5, label: '早段' },
+        { id: 'high', axis: 'y', from: 150, to: 250, label: '高区' },
+      ],
+    })
+    function region(label: string) {
+      const band = w
+        .findAllComponents(VisPlotband as never)
+        .find((b) =>
+          producer<Plotband<unknown>>(b as VueWrapper).element.textContent?.includes(label),
+        )
+      expect(band, `region containing ${label}`).toBeDefined()
+      const element = producer<Plotband<unknown>>(band as VueWrapper).element
+      const rect = element.querySelector('rect')!
+      const text = element.querySelector('text')!
+      expect(text.textContent).toBe(label)
+      for (const [coordinate, size] of [
+        ['x', 'width'],
+        ['y', 'height'],
+      ]) {
+        const start = Number(rect.getAttribute(coordinate))
+        const end = start + Number(rect.getAttribute(size))
+        expect(Number(text.getAttribute(coordinate))).toBeGreaterThanOrEqual(start)
+        expect(Number(text.getAttribute(coordinate))).toBeLessThanOrEqual(end)
+      }
+      return Number(rect.getAttribute('x'))
+    }
+    expect(region('早段')).toBeLessThan(region('晚段'))
+    region('高区')
+    await w.setProps({
+      bands: [{ id: 'early', axis: 'x', from: 0.5, to: 1, label: '当前段' }],
+    })
+    await rendered()
+    region('当前段')
+    expect(w.findAllComponents(VisPlotband as never)).toHaveLength(1)
+    expect(w.find('svg').text()).not.toMatch(/早段|晚段|高区/)
+    await w.setProps({ bands: [] })
+    expect(w.findAllComponents(VisPlotband as never)).toHaveLength(0)
+  })
   it('uses current identity after replacement and reorder without replacing focused marker DOM', async () => {
     const { w } = await chart({
       markers: [{ id: 'a', index: 1, seriesKey: 'a', label: '旧标签', href: '#detail-a' }],

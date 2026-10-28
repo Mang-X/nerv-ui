@@ -208,6 +208,8 @@ const statusMix = [
 
 X 是行索引，不是时间戳。`xKey` 仅作标签，相同标签仍是两个位置。宿主重排行时同步 marker.index；id 在每个输入集合内必须唯一、稳定。范围反转自动排序，先裁剪到当前共享域；完全轴外或非有限范围省略，等值范围宽/高为零。
 
+每个范围的 `label` 随官方 Plotband 绘制在自身区域的顶部中央，同色范围也不依赖输入顺序辨认。图外说明保留完整文字；极窄、重叠范围的标签可读性仍需结合宿主数据和实际视口核验。
+
 marker 绑定当前可见 series 的当前行数值；缺行、缺 series、空字符串、null、非有限值省略，零和负值保留。单点复用 producer 的退化域规则；空数据不显示标注。所有 series 共用域，范围不参与扩域。
 
 官方 `VisPlotband` 直接取 producer scale，点取 `VisLine.component.xScale/yScale`，位置用 `onRenderComplete` 的 margin。没有 DOM 私有属性或猜测 inset。标注模式关闭插值动画，避免点与正在运动的线错位；原无标注模式保留原行为。极大有限 Y 值按共同因子归一后传给同一 producer，轴与 tooltip 保留原单位。
