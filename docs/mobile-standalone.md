@@ -148,3 +148,9 @@ N02 输入扫码接入见下文。后续 [#47](https://github.com/Mang-X/nerv-ui
 ## 分页列表恢复（T08/R17）
 
 `/#mobile-task-list/library` 与 `/#mobile-task-list/studio` 展示阅读手记、画室灵感。新增公开 `NvMobileTaskListShell` 后严格导出为 49 件；复用现有 PullRefresh/InfiniteList；PullRefresh 补了受控刷新被拒绝后的手势复位，InfiniteList 未改。安全错误、游标、稳定行 key、取消和本页内存存储在宿主；不会持久保存到后台。公共 API、live 源码与恢复条件见[列表恢复](../frontend/apps/design-system/docs/components/mobile/task-list-shell.md)，实际验证见[R17 证据](evidence/t08-r17/README.md)。旧应用接入 NOT_PLANNED；#37 不解锁。
+
+## 照片与成功附件（T08/R19）
+
+`/#mobile-photos/library` 与 `/#mobile-photos/studio` 展示阅读剪影和画室色彩，可从 `/#mobile` 的“留住光影”进入并返回。支持选择、失败重试、成功回执后入列、按 key 移除、清空和切换；本页回执不会保存照片。
+
+新增公开组件 `NvPhotoAttachments`，移动包 canonical 组件共 50 件（含子件，实际 barrel 为准）。传输、用途、限额、实际 complete 回执与安全文案均归宿主；[API 与 live 示例](../frontend/apps/design-system/docs/components/mobile/photo-attachments.md)说明取消和受控归属。固定来源与本轮本地证据见 [R19 记录](evidence/t08-r19/README.md)。原生属性和 jsdom File 输入不构成真实拍照证据；浏览器、相机与设备均 UNRUN。原应用接入/旧库退出 NOT_PLANNED。

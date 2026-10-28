@@ -21,6 +21,7 @@ import NeutralShellDemo from './NeutralShellDemo.vue'
 import TreeDemo from './TreeDemo.vue'
 import EntityMultiPickerDemo from './EntityMultiPickerDemo.vue'
 import TouchDemo from './TouchDemo.vue'
+import PhotoAttachmentsDemo from './PhotoAttachmentsDemo.vue'
 import MobileDemo from './MobileDemo.vue'
 import MobileInputDemo from './MobileInputDemo.vue'
 import MobileOverlayDemo from './MobileOverlayDemo.vue'
@@ -180,6 +181,10 @@ function addProject() {
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
   <MobileTaskListDemo
     v-else-if="surface.startsWith('#mobile-task-list')"
+    :source="surface.split('/')[1]"
+  />
+  <PhotoAttachmentsDemo
+    v-else-if="surface.startsWith('#mobile-photos')"
     :source="surface.split('/')[1]"
   />
   <MobileFlowDemo v-else-if="surface === '#mobile-flow'" />

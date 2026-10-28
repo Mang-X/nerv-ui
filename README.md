@@ -98,3 +98,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T08/C02 / #38](https://github.com/Mang-X/nerv-ui/issues/38) 从 `/#directory-detail/library`、`/#directory-detail/studio`（兼容 `/#directory-detail`）进入书房与画室目录，共用受控筛选、回调分页和只读详情。见[组合合同](frontend/apps/design-system/docs/components/desktop/directory-detail.md)与[实施证据](docs/evidence/t08-c02/README.md)。
 
 [T08/R17 / #35](https://github.com/Mang-X/nerv-ui/issues/35) 的分页恢复组合从 `/#mobile-task-list/library` 与 `/#mobile-task-list/studio` 进入。首次/保留/局部错误、暂停重试与逐页滚动恢复合同见[移动接入](docs/mobile-standalone.md#分页列表恢复t08r17)，本地证据见[R17 记录](docs/evidence/t08-r17/README.md)。
+
+[T08/R19 / #41](https://github.com/Mang-X/nerv-ui/issues/41) 从 `/#mobile-photos/library`、`/#mobile-photos/studio` 进入照片与成功附件组合。宿主提供传输与回执，公开 `NvPhotoAttachments` 保留原生拍照提示、同文件重选与受控移除；见 [API](frontend/apps/design-system/docs/components/mobile/photo-attachments.md) 与 [实施证据](docs/evidence/t08-r19/README.md)。浏览器、相机、真实设备分别 UNRUN。
