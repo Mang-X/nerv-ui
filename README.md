@@ -88,3 +88,5 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 `/#tree/library` 与 `/#tree/studio` 展示空间分区的受控展开、选择和添加入口。公共 `NvTree` 不携带业务记录；API 见[层级树](frontend/apps/design-system/docs/components/desktop/tree.md)，本地验证及未运行边界见[实施记录](docs/evidence/t08-r15/README.md)。
 
 [T08/R06 / #24](https://github.com/Mang-X/nerv-ui/issues/24) 从 `/#notifications/library`、`/#notifications/studio` 展示消息与任务、受控详情、筛选和标记回执。公共 API 与文档示例见[通知收件箱](frontend/apps/design-system/docs/components/desktop/notification-inbox.md)，实际本地证据及未运行边界见 [R06 记录](docs/evidence/t08-r06/README.md)。
+
+[T08/R01 / #19](https://github.com/Mang-X/nerv-ui/issues/19) 从 `/#shell/library` 与 `/#shell/studio` 进入中性应用壳组合。菜单、用户、受控位置与命令入口均为内存宿主输入；公共骨架、API 与 live 示例见[中性应用壳](frontend/apps/design-system/docs/components/desktop/neutral-shells.md)，实际执行边界见 [R01 记录](docs/evidence/t08-r01/README.md)。候选 app-shell 包恢复及原应用接入另行验收。

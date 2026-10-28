@@ -149,3 +149,9 @@
 > 补任何新件务必过 `motion-interaction.md` 自检清单（缓动令牌 / 按压+聚焦态 / reduced-motion / 触摸尺寸 / 对比度 / 令牌）。
 
 | 通知列表、详情与收件箱 | `NvNotificationInbox` | — | — | — |
+
+## T08/R01 宿主组合
+
+| 组合                                                                                                            | PC           | touch | mobile | screen |
+| --------------------------------------------------------------------------------------------------------------- | ------------ | ----- | ------ | ------ |
+| [中性应用壳](../apps/design-system/docs/components/desktop/neutral-shells.md)（复用 NvAppShellInset，无新导出） | 两种宿主排列 | —     | —      | —      |
