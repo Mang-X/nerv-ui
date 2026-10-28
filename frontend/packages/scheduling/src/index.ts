@@ -170,3 +170,11 @@ export type {
 export { default as SchedulingPlanGantt } from './components/saved-plan/SchedulingSavedPlan.vue'
 export { default as SchedulingPlanOrders } from './components/saved-plan/SavedPlanOrders.vue'
 export { default as SchedulingWorkOrderLink } from './components/saved-plan/SavedPlanWorkOrderLink.vue'
+
+export { default as SchedulingWorkbench } from './components/SchedulingWorkbench.vue'
+export { default as SchedulingHistory } from './components/SchedulingHistory.vue'
+export type {
+  SchedulingHistoryEntry,
+  SchedulingHistoryInput,
+  SchedulingHistoryAction,
+} from './components/history-types'

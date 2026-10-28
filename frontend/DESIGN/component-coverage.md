@@ -198,3 +198,12 @@ T08/R13：PC `NvLineChart` 增加可选图内多范围与点定位；touch/mobil
 | SchedulingSavedPlan / SchedulingPlanGantt        | 已保存计划资源图、详情与搜索 | scheduling/PC | —      | —     | —      |
 | SavedPlanOrders / SchedulingPlanOrders           | 关联组、工单、活动树表       | scheduling/PC | —      | —     | —      |
 | SavedPlanWorkOrderLink / SchedulingWorkOrderLink | host 授权导航                | scheduling/PC | —      | —     | —      |
+
+## P16 工作台组合（scheduling 专用包）
+
+| 组件                | PC                               | mobile | touch | screen |
+| ------------------- | -------------------------------- | ------ | ----- | ------ |
+| SchedulingWorkbench | 活动/资源图、P09表格、P08面板    | —      | —     | —      |
+| SchedulingHistory   | 中性历史过滤分页、详情与操作回执 | —      | —     | —      |
+
+决策与使用边界见 [工作台组合](components/scheduling-workbench.md)。

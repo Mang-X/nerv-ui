@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import WorkbenchDemo from './WorkbenchDemo.vue'
 import LoginDemo from './login/LoginDemo.vue'
 import ScreenParameterDetailDemo from './screen/ScreenParameterDetailDemo.vue'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
@@ -106,8 +107,41 @@ function addProject() {
 </script>
 
 <template>
+  <nav
+    v-if="surface.startsWith('#schedule')"
+    aria-label="排程全部入口"
+    class="flex min-w-0 flex-wrap gap-3 border-b bg-background p-3 text-sm text-foreground"
+  >
+    <a href="#">桌面</a>
+    <a href="#schedule-workbench/library">书房工作台</a
+    ><a href="#schedule-workbench/studio">创作室工作台</a>
+    <a
+      v-for="[target, label] in [
+        ['schedule', '时间线'],
+        ['schedule-gantt', '引擎预览'],
+        ['schedule-resources/library', '资源只读'],
+        ['schedule-edit/library', '活动编辑'],
+        ['schedule-resource-edit/library', '资源编辑'],
+        ['schedule-panels/library', '面板'],
+        ['schedule-draft/library', '草案'],
+        ['schedule-request/library', '申请'],
+        ['schedule-snapshot/library', '快照'],
+        ['schedule-compare/library', '比较'],
+        ['schedule-async/library', '异步候选'],
+        ['schedule-day/library', '日安排打印'],
+        ['schedule-saved/library', '已保存计划'],
+      ]"
+      :key="target"
+      :href="`#${target}`"
+      >{{ label }}</a
+    >
+  </nav>
+  <WorkbenchDemo
+    v-if="surface === '#schedule-workbench/library' || surface === '#schedule-workbench/studio'"
+    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
+  />
   <SavedPlanDemo
-    v-if="
+    v-else-if="
       surface.startsWith('#schedule-saved/library') || surface.startsWith('#schedule-saved/studio')
     "
     :venue="surface.startsWith('#schedule-saved/studio') ? 'studio' : 'library'"
@@ -223,6 +257,9 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#schedule-workbench/library" class="inline-flex min-h-11 items-center px-4 underline"
+        >安排工作台</a
+      >
       <a href="#schedule-saved/library" class="inline-flex min-h-11 items-center px-4 underline"
         >已保存计划</a
       >
