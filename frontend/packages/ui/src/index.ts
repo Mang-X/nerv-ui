@@ -240,3 +240,5 @@ export {
 } from './components/ui/file-preview/filePreviewKind'
 
 export * from './components/pc/schedule-timeline'
+
+export { NvTree, type NvTreeNode } from './components/pc/tree'

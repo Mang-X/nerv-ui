@@ -15,6 +15,7 @@ import RequestFormsDemo from './RequestFormsDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
 import DayPrintDemo from './DayPrintDemo.vue'
 import ActionSummaryDemo from './ActionSummaryDemo.vue'
+import TreeDemo from './TreeDemo.vue'
 import EntityMultiPickerDemo from './EntityMultiPickerDemo.vue'
 import TouchDemo from './TouchDemo.vue'
 import MobileDemo from './MobileDemo.vue'
@@ -94,7 +95,12 @@ function addProject() {
 </script>
 
 <template>
-  <EntityMultiPickerDemo v-if="surface === '#entity-multi-picker'" />
+  <TreeDemo
+    v-if="surface === '#tree/library' || surface === '#tree/studio'"
+    :key="surface"
+    :space="surface === '#tree/library' ? 'library' : 'studio'"
+  />
+  <EntityMultiPickerDemo v-else-if="surface === '#entity-multi-picker'" />
   <ActionSummaryDemo v-else-if="surface === '#action-summary'" />
   <DayPrintDemo
     v-else-if="surface === '#schedule-day/library' || surface === '#schedule-day/studio'"
@@ -162,6 +168,7 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
+      <a href="#tree/library" class="inline-flex min-h-11 items-center px-4 underline">空间分区</a>
       <a href="#entity-multi-picker" class="inline-flex min-h-11 items-center px-4 underline"
         >挑选去处</a
       >

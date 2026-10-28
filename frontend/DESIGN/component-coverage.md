@@ -24,6 +24,7 @@
 | 输入框      | `NvInput`                     | `NvMobileInput`                           | （复用 PC）                        | `NvScreenInput`            |
 | 选择器      | `NvSelect`                    | `NvPicker`（滚轮）                        | `—`                                | `NvScreenSelect`           |
 | 可搜索多选  | `NvEntityMultiPicker`         | `—`                                       | `—`                                | `—`                        |
+| 层级树      | `NvTree`                      | `—`                                       | `—`                                | `—`                        |
 | 复选 / 单选 | `NvCheckbox` · `NvRadioGroup` | `NvMobileCheckbox` · `NvMobileRadioGroup` | `—`                                | `—`                        |
 | 开关        | `NvSwitch`                    | `NvMobileSwitch`                          | `—`                                | `NvScreenSwitch`           |
 | 滑块        | `NvSlider`                    | `NvMobileSlider`                          | `—`                                | `—`                        |
