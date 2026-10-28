@@ -113,4 +113,8 @@ Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时�
 
 ## 分组状态墙
 
-`/#screen/status-wall` 使用主桶 `NvScreenStatusWall` 和两个中性内存来源。flat 六列固定 stride 有限 DOM，分组两种密度全部渲染；宿主延迟概况在数据/模式/滚动/离页后隔离旧结果。API/live 见[组件页](../frontend/apps/design-system/docs/components/screen/status-wall.md)，本轮浏览器 UNRUN，见[证据](evidence/t08-r09/README.md)。
+`/#screen/status-wall` 使用主桶 `NvScreenStatusWall` 和两个中性内存来源。flat 六列固定 stride 有限 DOM，分组两种密度全部渲染；宿主延迟概况在数据/模式/滚动/离页后隔离旧结果。API/live 见[组件页](../frontend/apps/design-system/docs/components/screen/status-wall.md)，独立浏览器已验证滚动、身份与状态布局，完整范围及未运行项见[证据](evidence/t08-r09/README.md)。
+
+## T08R10：空间参数详情
+
+从 `/#screen/parameter-detail/library` / `/#screen/parameter-detail/studio` 深链进入两种中性内存宿主。支持返回、替换、缺测、等待、失败、恢复与空记录；无真实查询、定时轮询和业务状态推断。`NvScreenDetailDialog` portal 到 body，按 viewport 的 CSS px 居中并限制 94vw/92dvh，不继承舞台 transform；screen token 定义在 :root。`NvScreenParameter` 使用 viewport rect 计算归一比例，光标使用本地百分比。DOM 模拟测量不证明真实 browser 缩放与焦点/命中；该车道 UNRUN。API 见[详情取值](../frontend/apps/design-system/docs/components/screen/detail-parameter.md)，证据见[T08R10](evidence/t08-r10/README.md)。旧应用接入/旧库退出已取消，NOT_PLANNED。

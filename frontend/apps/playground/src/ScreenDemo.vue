@@ -15,9 +15,11 @@ import ScreenStatusWallDemo from './screen/ScreenStatusWallDemo.vue'
 import ScreenHeatmapDemo from './screen/ScreenHeatmapDemo.vue'
 import ScreenStageFlowDemo from './screen/ScreenStageFlowDemo.vue'
 import ScreenStatusHeroDemo from './screen/ScreenStatusHeroDemo.vue'
+import ScreenLoginStageDemo from './screen/ScreenLoginStageDemo.vue'
 import ScreenTablesDemo from './screen/ScreenTablesDemo.vue'
 
 const props = defineProps<{ section?: string }>()
+const login = computed(() => props.section?.startsWith('#screen/login/'))
 const recipes = computed(() => props.section === '#screen/recipes')
 const backgrounds = computed(() => props.section === '#screen/backgrounds')
 const layout = computed(() => props.section === '#screen/layout')
@@ -54,6 +56,7 @@ const { theme, setTheme } = useTheme()
   <div class="screen-demo">
     <div class="screen-demo-tools">
       <nav aria-label="显示表面" class="screen-demo-nav">
+        <a href="#screen/parameter-detail/library">空间参数详情</a>
         <a href="#files" class="inline-flex min-h-11 items-center px-3 underline">留住片刻</a>
         <a
           href="#screen/stage"
@@ -88,6 +91,7 @@ const { theme, setTheme } = useTheme()
           >空间一瞥</a
         >
         <a href="#screen/summary" :aria-current="summary ? 'page' : undefined">空间使用概况</a>
+        <a href="#screen/login/library">走进空间</a>
         <a href="#screen/status-hero" :aria-current="statusHero ? 'page' : undefined">此刻的现场</a>
         <a href="#screen/status-wall" :aria-current="statusWall ? 'page' : undefined">此刻各处</a>
         <a href="#screen/heatmap" :aria-current="heatmap ? 'page' : undefined">一格一刻</a>
@@ -101,7 +105,7 @@ const { theme, setTheme } = useTheme()
         <a href="#mobile-feedback">片刻回响</a>
       </nav>
       <div class="screen-demo-settings" role="group" aria-label="舞台设置">
-        <label
+        <label v-if="!login"
           >缩放方式
           <select v-model="mode" aria-label="缩放方式">
             <option value="fit">完整显示 fit</option>
@@ -109,7 +113,7 @@ const { theme, setTheme } = useTheme()
             <option value="stretch">铺满 stretch</option>
           </select>
         </label>
-        <label
+        <label v-if="!login"
           >设计尺寸
           <select v-model="design" aria-label="设计尺寸" :disabled="layout">
             <option value="1920x1080">1920 × 1080</option>
@@ -127,7 +131,7 @@ const { theme, setTheme } = useTheme()
         >
           蓝色主题
         </button>
-        <p role="status">
+        <p v-if="!login" role="status">
           {{
             mode === 'width'
               ? '宽度优先：在舞台内向下滚动，可到达底部。'
@@ -138,8 +142,10 @@ const { theme, setTheme } = useTheme()
         </p>
       </div>
     </div>
-    <div class="screen-demo-viewport">
+    <div class="screen-demo-viewport" :class="{ 'screen-demo-login-viewport': login }">
+      <ScreenLoginStageDemo v-if="login" :garden="section === '#screen/login/garden'" />
       <NvScreenScaler
+        v-else
         class="screen-demo-scaler"
         role="region"
         :design-width="dimensions.width"
@@ -253,6 +259,10 @@ const { theme, setTheme } = useTheme()
     position: relative;
     flex: 1;
     min-height: 0;
+  }
+  .screen-demo-login-viewport {
+    overflow: auto;
+    color-scheme: dark;
   }
   .screen-demo-scaler {
     position: absolute;

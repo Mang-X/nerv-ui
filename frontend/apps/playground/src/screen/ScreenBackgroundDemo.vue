@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FusionDemo from './FusionDemo.vue'
 import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
 </script>
 
@@ -27,6 +28,7 @@ import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
         <span>等距块体 · 短幅</span>
       </section>
     </div>
+    <FusionDemo />
   </main>
 </template>
 
