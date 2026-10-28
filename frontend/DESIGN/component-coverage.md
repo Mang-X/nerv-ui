@@ -169,3 +169,7 @@ T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / Filter
 | UX 概念      | 桌面 | 移动                    | touch | screen |
 | ------------ | ---- | ----------------------- | ----- | ------ |
 | 分页恢复组合 | —    | `NvMobileTaskListShell` | —     | —      |
+
+| UX 概念            | PC  | mobile | touch | screen                                       |
+| ------------------ | --- | ------ | ----- | -------------------------------------------- |
+| 中性详情与参数取值 | —   | —      | —     | `NvScreenDetailDialog` / `NvScreenParameter` |

@@ -1,0 +1,27 @@
+[
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/components/equipment/DeviceDetailModal.vue",
+    "sha256": "0aaf51e03725292fa8a36a5b251a5f452e872473759b252918bf5fd77219c066",
+    "baseBytesEqual": true
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/data/contracts/equipment.ts",
+    "sha256": "1aaf18262564732b83111b424477d35bb25bb29cbd9474ea8b86e230f81b24c8",
+    "baseBytesEqual": true
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/components/equipment/paramColors.ts",
+    "sha256": "5ddf4a523498bd0f9071d122894dc2175f06811f64a696aff5983dcd9beef109",
+    "baseBytesEqual": true
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/pages/equipment.vue",
+    "sha256": "2d665e9e5b8d51e08581d3f855b0fe22270f9f6b6d3add48a5fb4509a808d744",
+    "baseBytesEqual": true
+  },
+  {
+    "path": "frontend/packages/ui/src/components/screen/Sparkline.vue",
+    "sha256": "d6b0e5dacb7f6ae338fa666b289f9c16f31fe5840cbc0ccbe5aae8f45d5dbcd5",
+    "baseBytesEqual": true
+  }
+]
