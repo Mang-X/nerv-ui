@@ -33,7 +33,23 @@ function cancelNavigation() {
 }
 function captureKeydown(event: KeyboardEvent) {
   cancelNavigation()
-  if (!event.defaultPrevented) eligible.add(event)
+  if (event.defaultPrevented) return
+  eligible.add(event)
+  const source = event.target
+  const group = event.currentTarget
+  if (
+    group instanceof HTMLElement &&
+    isRadio(source, group) &&
+    ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key) &&
+    !event.altKey &&
+    !event.ctrlKey &&
+    !event.metaKey &&
+    !event.shiftKey
+  ) {
+    // A trusted event can run Vue's microtasks between native listeners.
+    // Own the source transition before the item's producer handler runs.
+    pending = { source, group, keydown: event, arrived: false, vendorMoved: false }
+  }
 }
 function isRadio(target: EventTarget | null, group: HTMLElement): target is HTMLElement {
   return (
@@ -87,15 +103,9 @@ async function handleKeydown(event: KeyboardEvent) {
   )
     return
   const current = navigation
-  const request = {
-    source,
-    group,
-    keydown: event,
-    arrived: false,
-    vendorMoved: false,
-    target: undefined as HTMLElement | undefined,
-  }
-  pending = request
+  const request = pending
+  // Capture may already have been cancelled by authoritative updates or focus.
+  if (!request || request.keydown !== event) return
   await nextTick()
   if (current !== navigation) return
   const target = request.target
