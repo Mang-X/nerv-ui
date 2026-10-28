@@ -3,6 +3,12 @@
     display: none;
   }
   @media print {
+    html:has(body[data-detail-print-owner]),
+    body[data-detail-print-owner] {
+      color-scheme: light;
+      background: var(--nv-print-paper) !important;
+      color: var(--nv-print-ink) !important;
+    }
     body[data-detail-print-owner] > :not(.nv-detail-print-target[data-detail-print-active]) {
       display: none !important;
     }
