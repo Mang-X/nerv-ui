@@ -178,6 +178,8 @@ const NV_ALL = [
   'NvScreenStageFlow',
   'NvScreenHeatmap',
   'NvScreenSummaryCard',
+  'NvScreenDetailDialog',
+  'NvScreenParameter',
   'NvScreenStatusCard',
   'NvScreenStatusLight',
   'NvScreenStatusHero',

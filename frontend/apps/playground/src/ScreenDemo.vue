@@ -52,6 +52,7 @@ const { theme, setTheme } = useTheme()
   <div class="screen-demo">
     <div class="screen-demo-tools">
       <nav aria-label="显示表面" class="screen-demo-nav">
+        <a href="#screen/parameter-detail/library">空间参数详情</a>
         <a href="#files" class="inline-flex min-h-11 items-center px-3 underline">留住片刻</a>
         <a
           href="#screen/stage"

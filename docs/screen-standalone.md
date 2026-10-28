@@ -110,3 +110,7 @@ Takt 保留 run/idle/stop/alarm 四个 palette 通道，以 `toneLabels` 同时�
 ## C04 分栏组合
 
 `/#screen/recipes` 展示阅读活动与展览安排，复用当前 Screen API；受控合同和 live 源码见[组合页](../frontend/apps/design-system/docs/components/screen/dashboard-recipes.md)。浏览器、真实布局与文档站运行 UNRUN。
+
+## T08R10：空间参数详情
+
+从 `/#screen/parameter-detail/library` / `/#screen/parameter-detail/studio` 深链进入两种中性内存宿主。支持返回、替换、缺测、等待、失败、恢复与空记录；无真实查询、定时轮询和业务状态推断。`NvScreenDetailDialog` portal 到 body，按 viewport 的 CSS px 居中并限制 94vw/92dvh，不继承舞台 transform；screen token 定义在 :root。`NvScreenParameter` 使用 viewport rect 计算归一比例，光标使用本地百分比。DOM 模拟测量不证明真实 browser 缩放与焦点/命中；该车道 UNRUN。API 见[详情取值](../frontend/apps/design-system/docs/components/screen/detail-parameter.md)，证据见[T08R10](evidence/t08-r10/README.md)。旧应用接入/旧库退出已取消，NOT_PLANNED。

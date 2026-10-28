@@ -75,3 +75,6 @@ export type {
   ScreenSummaryStatus,
   ScreenSummaryItem,
 } from './SummaryCard.vue'
+
+export { default as NvScreenDetailDialog } from './DetailDialog.vue'
+export { default as NvScreenParameter } from './Parameter.vue'
