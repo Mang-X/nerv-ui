@@ -156,3 +156,17 @@ function restoreDay() {
     </div>
   </section>
 </template>
+
+<style scoped>
+@layer nv-components {
+  @media print {
+    :global(html:has(body[data-nv-day-print-owner])) {
+      background: var(--nv-print-paper) !important;
+      color-scheme: light !important;
+    }
+    :global(body[data-nv-day-print-owner]) {
+      color-scheme: light !important;
+    }
+  }
+}
+</style>
