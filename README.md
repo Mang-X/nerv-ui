@@ -102,6 +102,8 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 [T08/R03 / #21](https://github.com/Mang-X/nerv-ui/issues/21) 在 `/#screen/backgrounds` 增加阅读空间与共享花园等距节点流。API 见[组件文档](frontend/apps/design-system/docs/components/screen/fusion-background.md)，验证边界见[R03 记录](docs/evidence/t08-r03/README.md)。
 [T08/R17 / #35](https://github.com/Mang-X/nerv-ui/issues/35) 的分页恢复组合从 `/#mobile-task-list/library` 与 `/#mobile-task-list/studio` 进入。首次/保留/局部错误、暂停重试与逐页滚动恢复合同见[移动接入](docs/mobile-standalone.md#分页列表恢复t08r17)，本地证据见[R17 记录](docs/evidence/t08-r17/README.md)。
 
+可打印只读详情从 `/#printable-detail` 进入“生活手记”，打印不保存内容。已核验浏览器 print media 与引擎 PDF 输出；原生预览窗口、OS 事件及实纸未验。[R18 证据与边界](docs/evidence/t08-r18/README.md)。
+
 [T08/R19 / #41](https://github.com/Mang-X/nerv-ui/issues/41) 从 `/#mobile-photos/library`、`/#mobile-photos/studio` 进入照片与成功附件组合。宿主提供传输与回执，公开 `NvPhotoAttachments` 保留原生拍照提示、同文件重选与受控移除；见 [API](frontend/apps/design-system/docs/components/mobile/photo-attachments.md) 与 [实施证据](docs/evidence/t08-r19/README.md)。浏览器已独立验收；相机与真实设备仍 UNRUN。
 
 [T08/R13 / #31](https://github.com/Mang-X/nerv-ui/issues/31) 从 `/#line-annotations/library` 与 `/#line-annotations/garden` 查看书房到访、花园用水的图内范围与明细定位，支持重排、替换和系列显隐。公共合同见[图表文档](frontend/apps/design-system/docs/components/desktop/chart.md#折线图范围与定位)，本地数学/DOM 与未运行边界见[R13 证据](docs/evidence/t08-r13/README.md)。

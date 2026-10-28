@@ -17,6 +17,7 @@ import ScheduleComparisonDemo from './ScheduleComparisonDemo.vue'
 import AsyncCandidateDemo from './AsyncCandidateDemo.vue'
 import RequestFormsDemo from './RequestFormsDemo.vue'
 import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
+import PrintableDetailDemo from './PrintableDetailDemo.vue'
 import DayPrintDemo from './DayPrintDemo.vue'
 import ActionSummaryDemo from './ActionSummaryDemo.vue'
 import NotificationInboxDemo from './NotificationInboxDemo.vue'
@@ -136,6 +137,7 @@ function addProject() {
   <DirectoryDemo
     v-else-if="surface === '#directory-detail' || surface.startsWith('#directory-detail/')"
   />
+  <PrintableDetailDemo v-else-if="surface === '#printable-detail'" />
   <EntityMultiPickerDemo v-else-if="surface === '#entity-multi-picker'" />
   <ActionSummaryDemo v-else-if="surface === '#action-summary'" />
   <DayPrintDemo
@@ -227,6 +229,7 @@ function addProject() {
       <a href="#entity-multi-picker" class="inline-flex min-h-11 items-center px-4 underline"
         >挑选去处</a
       >
+      <a href="#printable-detail" class="underline">生活手记</a>
       <a href="#action-summary" class="inline-flex min-h-11 items-center px-4 underline"
         >今日小事</a
       >
