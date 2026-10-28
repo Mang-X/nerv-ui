@@ -21,8 +21,8 @@ const ganttLegend = [
   { swatch: 'milestone', label: '里程碑菱形', desc: '菱形节点(冲焊下线)无时长;条尾小菱形+标签为阶段点(冲焊完成)。' },
   { swatch: 'conflict', label: '冲突描边', desc: '红色粗描边 = 产能/交期冲突,点选查看原因。' },
   { swatch: 'locked', label: '锁定虚线', desc: '虚线框 = 已锁定,重预览时不被算法挪动。' },
-  { swatch: 'offwork', label: '非工作底纹', desc: '浅底纹 = 每日 20:00–次日 08:00 及周末,引擎自动着色。' },
-  { swatch: 'now', label: '现在线', desc: '竖线 = 当前时刻,横切进度与延误。' },
+  { swatch: 'offwork', label: '非工作底纹', desc: '非工作底纹由 host calendars 决定；当前共享模型未提供日历，不猜作息。' },
+  { swatch: 'now', label: '现在线', desc: '仅当前时刻处于 horizon 内才显示现在线。' },
 ]
 
 const calendarModel = ref(makeCalendarModel())
@@ -60,7 +60,7 @@ const cats = computed(() => {
 //    (只读查阅面传 read-only,隐藏锁定/解锁按钮);这里为压缩文档示例只写了简易 inspector。
 const selectedId = ref(null)
 const selected = computed(() => model.value.tasks.find((t) => t.id === selectedId.value) ?? null)
-const fmt = (iso) => (iso ? new Date(iso).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—')
+const fmt = (iso) => (iso ? new Date(iso).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC', timeZoneName: 'short' }) : '—')
 
 // 只读 / 加载 / 空态各自持一份独立模型,互不影响。
 const readOnlyModel = ref(makeModel())
@@ -220,7 +220,7 @@ order 仅允许未锁定的单段普通工序；分组、里程碑、时间块�
 
 ### 工作日历 / 班次
 
-引擎按日历自动着底纹:**每日 20:00–次日 08:00** 与**周末**染成非工作/夜班浅底纹,**「现在」竖线**标当前时刻。下例 horizon 跨周五 → 周一(含夜间),浅色带即不可排产时段——赶工工序(周五夜班、周六加班)会明显压在底纹上。
+日历底纹与班次需要宿主显式提供 calendars。保留下方跨周末时间模型；当前模型未提供日历，不按浏览器本地时间猜测 08:00–20:00 作息。
 
 <Demo block>
   <div style="height: 300px; width: 100%">
@@ -270,3 +270,5 @@ order 仅允许未锁定的单段普通工序；分组、里程碑、时间块�
 ## P08 面板组合
 
 SchedulingToolbar、SchedulingLegend、TaskFacts、TaskDetailPanel、ChangeSummaryPanel、ConflictPanel、UnscheduledPanel 均从 `@nerv-iip/scheduling` 主桶消费。完整 props/emits、禁用理由、真实图面语义、受控显隐与 Sheet 详情 recipe 见 [排程面板合同](../../../../../../docs/scheduling-panels.md)。独立宿主为 `/#schedule-panels/library` 与 `/#schedule-panels/studio`，不代表完整文档站或 packed 验收。
+
+站内可操作的[排程面板与草案](./scheduling-live)展示公共面板、受控请求与本页内存回执。
