@@ -9,3 +9,7 @@ Requirement coverage：`does not invent accepted filter state when the host reje
 ## R2 原地候选重排
 
 候选合法性基于局部value/parent快照：整数组替换同步更新，原地逐槽变化批处理更新，再让有效child参与请求失效判断。显示options仍用当前原始列表，原来的source/filter/readonly同步失效不改。新增 `batches selected same-parent option reorders without resetting query detail or current creation` 公开回归先RED1FAIL，修后目录44/44 PASS；覆盖已选a、同父a/b reverse后query次数不变/无清理提案/详情仍在/创建仍pending且原合法回执成功。原真实候选删除、同key替换及全部旧43断言仍通过。types/build/scopedlintfmt/diffcheck通过。独立runtime/unhandled缺字段UNKNOWN；原R2probe和所有历史FAIL保留，未跑browser/CI等。
+
+## R3 回执提交时校验
+
+create捕获source/filter/page上下文；成功、失败和finally提交前同时检查当前version、readonly、callback、source/page/filter以及直接读取最终原地候选归属。该校验不依赖membership watcher的调度先后；合法同批重排最终归属相同仍接受，真正删除/换父拒绝，草稿不清空。`rejects queued creation receipt before a same-tick candidate delete without losing draft` 与move两条旧候选RED2FAIL，修后目录46/46 PASS，原合法reverse/splice边界与全部旧用例保留。types/build/scopedlintfmt/diffcheck通过，JSONruntime/unhandled缺字段UNKNOWN。原R3probe及历史FAIL保留，浏览器和CI等UNRUN。

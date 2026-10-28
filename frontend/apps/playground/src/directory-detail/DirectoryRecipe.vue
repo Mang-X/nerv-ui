@@ -192,22 +192,48 @@ async function create() {
   const callback = props.host.create
   if (!callback || props.readonly || creating.value || !name.value.trim() || !props.filter.parent)
     return
+  const request = {
+    source: props.host.source,
+    filter: { ...effectiveFilter.value },
+    page: page.value,
+  }
   const version = ++createVersion
+  function isCurrent() {
+    // Read final live membership at commit time, independently of batched
+    // rendering: a queued result can run before the membership watcher.
+    const entity = props.host.entities.some(
+      (item) =>
+        item.value === props.filter.entity &&
+        (!props.filter.parent || item.parent === props.filter.parent),
+    )
+      ? props.filter.entity
+      : ''
+    return (
+      version === createVersion &&
+      !props.readonly &&
+      props.host.create === callback &&
+      props.host.source === request.source &&
+      page.value === request.page &&
+      props.filter.parent === request.filter.parent &&
+      props.filter.keyword === request.filter.keyword &&
+      entity === request.filter.entity
+    )
+  }
   const controller = new AbortController()
   createController = controller
   creating.value = true
   createMessage.value = ''
   try {
     const result = await callback(name.value.trim(), props.filter.parent, controller.signal)
-    if (version !== createVersion) return
+    if (!isCurrent()) return
     if (!result.receipt.trim() || !result.row.key) throw new Error('Missing receipt')
     createMessage.value = '条目已添加。'
     name.value = ''
     void load()
   } catch {
-    if (version === createVersion) createMessage.value = '暂时无法添加，请重试。'
+    if (isCurrent()) createMessage.value = '暂时无法添加，请重试。'
   } finally {
-    if (version === createVersion) creating.value = false
+    if (isCurrent()) creating.value = false
   }
 }
 onUnmounted(() => {

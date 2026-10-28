@@ -521,3 +521,24 @@ it('batches selected same-parent option reorders without resetting query detail 
   expect(w.text()).toContain('条目已添加。')
   expect(create).toHaveBeenCalledTimes(1)
 })
+
+it.each(['delete', 'move'] as const)(
+  'rejects queued creation receipt before a same-tick candidate %s without losing draft',
+  async (boundary) => {
+    const creation = deferred<{ receipt: string; row: typeof row }>()
+    const input = reactive(host({ create: () => creation.promise }))
+    const w = setup(input)
+    await w.setProps({ filter: { ...filter, entity: 'a' } })
+    await flushPromises()
+    await w.get('input[aria-label="新条目名称"]').setValue('当前草稿')
+    await click(w, '添加条目')
+    creation.resolve({ receipt: '过期确认', row })
+    if (boundary === 'delete') input.entities.splice(0, 1)
+    else input.entities[0]!.parent = 'q'
+    await flushPromises()
+    expect((w.get('input[aria-label="新条目名称"]').element as HTMLInputElement).value).toBe(
+      '当前草稿',
+    )
+    expect(w.text()).not.toContain('条目已添加。')
+  },
+)
