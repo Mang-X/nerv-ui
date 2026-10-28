@@ -28,6 +28,8 @@ export default defineConfig({
       'scheduling-live.contract.test.ts',
       'scheduling-host.test.ts',
       'snapshot-comparison-host.test.ts',
+      'request-forms-host.test.ts',
+      'async-candidates-host.test.ts',
     ],
   },
 })
