@@ -30,6 +30,7 @@ export default defineConfig({
       'snapshot-comparison-host.test.ts',
       'request-forms-host.test.ts',
       'async-candidates-host.test.ts',
+      'workbench-saved-day-host.test.ts',
     ],
   },
 })

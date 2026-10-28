@@ -214,6 +214,8 @@ export default defineConfig({
         {
           text: '排产 Scheduling',
           items: [
+            { text: '工作台与历史', link: '/components/desktop/scheduling-workbench' },
+            { text: '日安排与打印', link: '/components/desktop/scheduling-day-print' },
             { text: '已保存计划只读组合', link: '/components/desktop/scheduling-saved-plan' },
             { text: 'GanttChart 工单甘特图', link: '/components/desktop/gantt-chart' },
             { text: '排程面板与草案', link: '/components/desktop/scheduling-live' },
