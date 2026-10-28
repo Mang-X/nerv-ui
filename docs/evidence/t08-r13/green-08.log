@@ -1,0 +1,131 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/components/pc/chart/LineAnnotations.test.ts (5 tests | 4 failed) 322ms
+     × projects boundary and duplicate-label rows onto actual shared plot scales 104ms
+     × clips multiple reversed bands with official producer and never expands data domain 50ms
+     × uses current identity after replacement and reorder without replacing focused marker DOM 45ms
+     × updates resize and data/series domains and isolates a second chart 85ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > projects boundary and duplicate-label rows onto actual shared plot scales
+AssertionError: expected [] to have a length of 2 but got +0
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:40:21
+     38|     const { w } = await chart({ markers: [{ id: 'a', index: 0, seriesK…
+     39|     const markers = w.findAll('[data-slot=nv-line-marker]')
+     40|     expect(markers).toHaveLength(2)
+       |                     ^
+     41|     expect((markers[0].element as HTMLElement).style.left).toBe('74px')
+     42|     expect((markers[1].element as HTMLElement).style.left).toBe('566px…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > clips multiple reversed bands with official producer and never expands data domain
+AssertionError: expected '8' to be '492' // Object.is equality
+
+Expected: "492"
+Received: "8"
+
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:54:40
+     52|     expect(bands[1].props()).toMatchObject({ from: -10, to: 300 })
+     53|     const rect = producer<Plotband<unknown>>(bands[0]).element.querySe…
+     54|     expect(rect.getAttribute('width')).toBe('492')
+       |                                        ^
+     55|   })
+     56|   it('uses current identity after replacement and reorder without repl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > uses current identity after replacement and reorder without replacing focused marker DOM
+Error: Unable to get [data-marker-id=a] within: <div data-v-ceb7c9d8="" class="nv-chart">
+  <div data-v-ceb7c9d8="" class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1"><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-1);"></span> 甲</span><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-2);"></span> 乙</span></div>
+  <div data-v-ceb7c9d8="" class="nv-line-plot">
+    <div data-v-ceb7c9d8="" data-vis-xy-container="" class="unovis-xy-container" role="figure">
+      <div data-v-ceb7c9d8="" data-vis-component=""></div>
+      <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+      <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+      <div data-v-ceb7c9d8="" data-vis-crosshair="" color="var(--chart-1),var(--chart-2)" template="(d) => {
+			const rows = props.series.map((s, i) => `<div class=&quot;nv-vis-row&quot;><span class=&quot;nv-vis-dot&quot; style=&quot;background:${escapeHtml(cssColor(colors.value[i]))}&quot;></span><span>${escapeHtml(s.label)}</span><b>${escapeHtml(d[s.key])}${escapeHtml(props.valueSuffix)}</b></div>`).join(&quot;&quot;);
+			return `<div class=&quot;nv-vis-card&quot;><div class=&quot;nv-vis-head&quot;>${escapeHtml(d[props.xKey])}</div>${rows}</div>`;
+		}"></div>
+      <div data-v-ceb7c9d8="" data-vis-tooltip=""></div><svg style="display: block;" xmlns="http://www.w3.org/2000/svg" height="300" aria-hidden="true" class="css-15uhmcb" width="600">
+        <clipPath id="7dca4890000eef33280000-1c10ec0000-cf0006d0000-3bbce8e0000-6b64f650000193f9d700002ad3f880000">
+          <rect x="-2" y="-2" width="404" height="228"></rect>
+        </clipPath>
+        <defs>
+          <filter id="saturate" filterUnits="objectBoundingBox">
+            <feColorMatrix type="saturate" in="SourceGraphic" values="1.35"></feColorMatrix>
+          </filter>
+        </defs>
+        <defs></defs>
+      </svg>
+      <div class="css-135213i-tooltip css-38lglc"></div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:61:14
+     59|     old.focus()
+     60|     await w.setProps({ markers: [{ id: 'b', index: 2, seriesKey: 'a', …
+     61|     expect(w.get('[data-marker-id=a]').element).toBe(old)
+       |              ^
+     62|     expect(document.activeElement).toBe(old)
+     63|     await w.get('[data-marker-id=a]').trigger('keydown', { key: ' ' })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/components/pc/chart/LineAnnotations.test.ts > line annotations with actual Unovis producer > updates resize and data/series domains and isolates a second chart
+Error: Unable to get [data-marker-id=a] within: <div data-v-ceb7c9d8="" class="nv-chart">
+  <div data-v-ceb7c9d8="" class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1"><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-1);"></span> 甲</span><span data-v-ceb7c9d8="" class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><span data-v-ceb7c9d8="" class="size-2 rounded-full" style="background: var(--chart-2);"></span> 乙</span></div>
+  <div data-v-ceb7c9d8="" class="nv-line-plot">
+    <div data-v-ceb7c9d8="" data-vis-xy-container="" class="unovis-xy-container" role="figure">
+      <div data-v-ceb7c9d8="" data-vis-component=""></div>
+      <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+      <div data-v-ceb7c9d8="" data-vis-axis=""></div>
+      <div data-v-ceb7c9d8="" data-vis-crosshair="" color="var(--chart-1),var(--chart-2)" template="(d) => {
+			const rows = props.series.map((s, i) => `<div class=&quot;nv-vis-row&quot;><span class=&quot;nv-vis-dot&quot; style=&quot;background:${escapeHtml(cssColor(colors.value[i]))}&quot;></span><span>${escapeHtml(s.label)}</span><b>${escapeHtml(d[s.key])}${escapeHtml(props.valueSuffix)}</b></div>`).join(&quot;&quot;);
+			return `<div class=&quot;nv-vis-card&quot;><div class=&quot;nv-vis-head&quot;>${escapeHtml(d[props.xKey])}</div>${rows}</div>`;
+		}"></div>
+      <div data-v-ceb7c9d8="" data-vis-tooltip=""></div><svg style="display: block;" xmlns="http://www.w3.org/2000/svg" height="300" aria-hidden="true" class="css-15uhmcb" width="800">
+        <clipPath id="43de80c0000628d2a80000-086f0340000-0bc61d70000-179d12f0000-f12e1890000b8d4173000010b15440000">
+          <rect x="-2" y="-2" width="664" height="224"></rect>
+        </clipPath>
+        <defs>
+          <filter id="saturate" filterUnits="objectBoundingBox">
+            <feColorMatrix type="saturate" in="SourceGraphic" values="1.35"></feColorMatrix>
+          </filter>
+        </defs>
+        <defs></defs>
+      </svg>
+      <div class="css-135213i-tooltip css-38lglc"></div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/pc/chart/LineAnnotations.test.ts:76:15
+     74|     container.render(0)
+     75|     await rendered()
+     76|     expect((w.get('[data-marker-id=a]').element as HTMLElement).style.…
+       |               ^
+     77|     expect((other.w.get('[data-marker-id=a]').element as HTMLElement).…
+     78|     await w.setProps({ series: [{ key: 'a', label: '甲' }] })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  15:32:23
+   Duration  3.82s (transform 2.32s, setup 213ms, import 2.94s, tests 322ms, environment 271ms)
+

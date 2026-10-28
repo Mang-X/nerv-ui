@@ -477,3 +477,7 @@ Tailwind 桥（`@theme inline`）左侧名保持（`--color-success`、`--color-
 > **独立库新增（#24/T08 R06）。** 来源两个应用通知列表、任务与收件箱 → `NvNotificationInbox`，PC 指针表面按素名规则落 `pc/notification-inbox/`。唯一公开组合，不带 DTO、查询或通知引擎。
 
 > 独立库新增（#35/T08 R17）：TaskListShell → NvMobileTaskListShell，移动局部组合；R1 来源无冻结名，R2 去除业务归属，R3 使用完整名，R4 归移动触控表面，R5 保留列表外壳语义。严格主桶集合由 48 增至 49 件。
+
+### T08/R13 折线图标注类型
+
+复用 PC `NvLineChart`，不新增运行时组件。主桶仅增加 `NvLineBand`、`NvLineMarker` 两个类型（PC 素名 + Nv）；`LineSeries` 为原有兼容类型，保持原名。

@@ -35,3 +35,13 @@ const series: LineSeries[] = [
   <NvLineChart :data="rows" x-key="date" :series="series" :height="260" />
 </template>
 ```
+
+## 图内范围与定位（T08/R13）
+
+规则：只在宿主提供范围和点身份时显示，沿用既有折线图与 token。使用 `bands` 读时间/值域范围，`markers` 定位当前记录；阈值和语义由宿主负责。
+
+判定：普通时间序列可标注；计算控制限、推导异常与业务状态不在图表内。
+
+正例：按数据行索引提供多个范围、稳定 id 和明细锚点，重排时宿主同步 index。
+
+反例：在卡片外框用百分比覆盖 plot，或者无输入时自动画“正常范围”。

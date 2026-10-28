@@ -1,0 +1,21 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition",
+  "command": [
+    "node",
+    "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+    "-C",
+    "frontend/packages/ui",
+    "exec",
+    "vp",
+    "test",
+    "run",
+    "src/design-docs.contract.test.ts",
+    "src/nvui-doc-coverage.contract.test.ts",
+    "src/docs-layout.contract.test.ts",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile=../../../docs/evidence/t08-r13/docs-contract-01.json"
+  ],
+  "exitCode": 0,
+  "runtimeUnhandled": "UNKNOWN unless explicit runner report states count; inspect full log"
+}

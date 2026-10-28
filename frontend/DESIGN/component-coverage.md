@@ -169,3 +169,5 @@ T08/C02 目录筛选与详情为 PC 组合 recipe，复用 EntityPicker / Filter
 | UX 概念      | 桌面 | 移动                    | touch | screen |
 | ------------ | ---- | ----------------------- | ----- | ------ |
 | 分页恢复组合 | —    | `NvMobileTaskListShell` | —     | —      |
+
+T08/R13：PC `NvLineChart` 增加可选图内多范围与点定位；touch/mobile/screen 本票均为 `—`，不迁入 SPC 算法。

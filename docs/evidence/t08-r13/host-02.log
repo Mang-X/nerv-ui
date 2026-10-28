@@ -1,0 +1,15 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/apps/playground
+
+Could not parse CSS stylesheet
+stderr | src/LineAnnotationsDemo.test.ts > line annotation hosts > locates current same-id detail after reorder and replacement in library
+Unovis | Crosshair: Y accessors have not been configured. Please check if they're present in the configuration object
+
+ ✓ src/LineAnnotationsDemo.test.ts (2 tests) 105ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  15:35:57
+   Duration  3.05s (transform 1.74s, setup 260ms, import 2.26s, tests 105ms, environment 351ms)
+
+JSON report written to /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/docs/evidence/t08-r13/host-02.json
