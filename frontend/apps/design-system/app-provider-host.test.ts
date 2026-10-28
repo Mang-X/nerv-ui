@@ -20,18 +20,29 @@ it('uses one public app outlet and switches default and explicit tooltip delay',
   await page.get('select').setValue('200')
   expect(page.getComponent(NvApp).props('tooltipDelay')).toBe(200)
 })
-it('acknowledges locally and dismisses only its own notification on close and unmount', async () => {
-  const dismiss = vi.spyOn(toast, 'dismiss')
-  page = mount(Example)
-  expect(page.get('[role="status"]').text()).toBe('尚未确认阅读安排。')
-  await page.get('[data-action="notify"]').trigger('click')
-  expect(page.get('[role="status"]').text()).toBe('已在本页确认阅读安排；刷新后不保留。')
-  await page.get('[data-action="close"]').trigger('click')
-  const ownId = dismiss.mock.calls[0]?.[0]
-  expect(ownId).toBeDefined()
-  await page.get('[data-action="notify"]').trigger('click')
-  page.unmount()
-  page = undefined
-  expect(dismiss.mock.calls.length).toBeGreaterThanOrEqual(2)
-  expect(dismiss.mock.calls.every(([id]) => id === ownId)).toBe(true)
+it('uses the real notification identity for first close repeat update and unmount without dismissing another owner', async () => {
+  const baseline = new Set(toast.getToasts().map((item) => item.id))
+  const otherId = toast('另一处的通知')
+  const own = () =>
+    toast.getToasts().filter((item) => !baseline.has(item.id) && item.id !== otherId)
+  try {
+    page = mount(Example)
+    expect(page.get('[role="status"]').text()).toBe('尚未确认阅读安排。')
+    await page.get('[data-action="notify"]').trigger('click')
+    expect(page.get('[role="status"]').text()).toBe('已在本页确认阅读安排；刷新后不保留。')
+    expect(own()).toHaveLength(1)
+    const ownId = own()[0]!.id
+    await page.get('[data-action="close"]').trigger('click')
+    expect(own()).toHaveLength(0)
+    expect(toast.getToasts().some((item) => item.id === otherId)).toBe(true)
+    await page.get('[data-action="notify"]').trigger('click')
+    await page.get('[data-action="notify"]').trigger('click')
+    expect(own().map((item) => item.id)).toEqual([ownId])
+    page.unmount()
+    page = undefined
+    expect(own()).toHaveLength(0)
+    expect(toast.getToasts().some((item) => item.id === otherId)).toBe(true)
+  } finally {
+    for (const item of toast.getToasts()) if (!baseline.has(item.id)) toast.dismiss(item.id)
+  }
 })

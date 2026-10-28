@@ -8,7 +8,7 @@ let notification: string | number | undefined
 function notify() {
   confirmed.value = true
   notification = toast('阅读安排已确认', {
-    id: notification,
+    ...(notification === undefined ? {} : { id: notification }),
     description: '仅在本页演示，刷新后不保留。',
     closeButton: true,
   })
