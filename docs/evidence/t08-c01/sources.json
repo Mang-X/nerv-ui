@@ -1,0 +1,167 @@
+{
+  "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603",
+  "files": [
+    {
+      "source": "frontend/apps/console/src/pages/login.vue",
+      "target": "migration/materials/source/frontend/apps/console/src/pages/login.vue",
+      "blob": "9f112f9c0ef9b07bcb927974ab6c1aff45762623",
+      "sha256": "fa904d7a5c426c797918b52b6a2fdd7dfdc40637704bad0fb279e95611964e92",
+      "bytes": 2955
+    },
+    {
+      "source": "frontend/apps/console/src/stores/auth.ts",
+      "target": "migration/materials/source/frontend/apps/console/src/stores/auth.ts",
+      "blob": "083be2d45af865ded863682c461d9d156ff7d044",
+      "sha256": "05a318668073e94ec63803b76b5ded047ac142ca9fab24aba3a4f8a219d19202",
+      "bytes": 390
+    },
+    {
+      "source": "frontend/apps/business-console/src/pages/login.vue",
+      "target": "migration/materials/source/frontend/apps/business-console/src/pages/login.vue",
+      "blob": "11b3b4be3db036f64644da3a1136459677a248e5",
+      "sha256": "504b5907990168e991aae20ba40a745da879a7fcf5243924f1fdcddfdf54be33",
+      "bytes": 2686
+    },
+    {
+      "source": "frontend/apps/business-console/src/stores/auth.ts",
+      "target": "migration/materials/source/frontend/apps/business-console/src/stores/auth.ts",
+      "blob": "0b60f0ff4699ea52941d9f8f22b23f280499b3b8",
+      "sha256": "7508ed09ab964841088ec464d2469b1cee616d71c770553792b640de3771e816",
+      "bytes": 390
+    },
+    {
+      "source": "frontend/apps/business-pda/src/pages/login.vue",
+      "target": "migration/materials/source/frontend/apps/business-pda/src/pages/login.vue",
+      "blob": "0d0c44aea0c3aac99a8d0fd0960f952bc77f9ce4",
+      "sha256": "f3c26458b51ba12b18b6fd3b7f4da26a2dae678c2051361f1eab8dd0c18ed7a6",
+      "bytes": 2912
+    },
+    {
+      "source": "frontend/apps/business-pda/src/stores/auth.ts",
+      "target": "migration/materials/source/frontend/apps/business-pda/src/stores/auth.ts",
+      "blob": "1b2e7f3f590aae316642e63769836084a0835908",
+      "sha256": "237a5e4089ed5026a8a56ba473bf90bd8adadea64ea0568a7e430963b60f0da6",
+      "bytes": 372
+    },
+    {
+      "source": "frontend/apps/screen/src/pages/login.vue",
+      "target": "migration/materials/source/frontend/apps/screen/src/pages/login.vue",
+      "blob": "c4a24bc5667cec62207c5a5d45ac24159c5eb102",
+      "sha256": "cd0309208c764a08918e156e2ea7221f72606f1f8d663294cc61cfd6e0a53425",
+      "bytes": 15706
+    },
+    {
+      "source": "frontend/apps/screen/src/stores/auth.ts",
+      "target": "migration/materials/source/frontend/apps/screen/src/stores/auth.ts",
+      "blob": "eee2bd8af8fcd2d654d9239dfcc1bd24ce92fce6",
+      "sha256": "11528400f0edc4a9a19a3d9e78748a03bfe1b7af0436437d1e859915b08d1627",
+      "bytes": 713
+    },
+    {
+      "source": "frontend/apps/console/src/pages/change-password.vue",
+      "target": "migration/materials/source/frontend/apps/console/src/pages/change-password.vue",
+      "blob": "6ac3c6b26f931e7063a2aed1b23f2c0f70ed277f",
+      "sha256": "258a26a97b094124fcf4b4b9114a8869e268439031136aa084d68d64c834e5cb",
+      "bytes": 4388
+    },
+    {
+      "source": "frontend/apps/console/src/api/auth.ts",
+      "target": "migration/materials/source/frontend/apps/console/src/api/auth.ts",
+      "blob": "2c9f5ddadbf214f704b79cf5b8bca86008a73a2d",
+      "sha256": "556f1f5cd48b04e21b99af3d3bea052c9c9b1018b5818ce879c5f71e839c8951",
+      "bytes": 1763
+    },
+    {
+      "source": "frontend/apps/business-console/src/pages/change-password.vue",
+      "target": "migration/materials/source/frontend/apps/business-console/src/pages/change-password.vue",
+      "blob": "78507469dba0b1fea8dc11afed706f2b7414b9e7",
+      "sha256": "d515604642510437a2884e592ae9bf7121132b625f642153af651831b12f1af8",
+      "bytes": 4436
+    },
+    {
+      "source": "frontend/apps/business-console/src/api/auth.ts",
+      "target": "migration/materials/source/frontend/apps/business-console/src/api/auth.ts",
+      "blob": "ea04f3f2c9d635e4ec243dde3e0a6b0658792cc6",
+      "sha256": "0d26ec029f1339ce80d8541810c09cc79d635b80e5b793be7391e771eb24e7d1",
+      "bytes": 1043
+    },
+    {
+      "source": "frontend/apps/business-pda/src/pages/change-password.vue",
+      "target": "migration/materials/source/frontend/apps/business-pda/src/pages/change-password.vue",
+      "blob": "fc02c314c418be91fefc4e4cf5d4963e249013f4",
+      "sha256": "969ae89b6982e76c61e787bd5483dce4a2937d5f2c30d1f4a7b65f82bad12991",
+      "bytes": 4017
+    },
+    {
+      "source": "frontend/apps/business-pda/src/api/auth.ts",
+      "target": "migration/materials/source/frontend/apps/business-pda/src/api/auth.ts",
+      "blob": "2694d2b592aff92fbdffa94df4d0cf7510b3aee1",
+      "sha256": "0a158395c7b645b8fe4a21543a13753e66035728332e34053a9039082f23083c",
+      "bytes": 1058
+    },
+    {
+      "source": "frontend/apps/console/src/components/auth/LoginForm.vue",
+      "target": "migration/materials/source/frontend/apps/console/src/components/auth/LoginForm.vue",
+      "blob": "3434ff62a2a27f85e8275401e92fa9dfa5d8baf0",
+      "sha256": "8fcf4e0420b28b41092539ee89b2f52a207a3d6f14bd1bc82b8f703afbc2cd06",
+      "bytes": 2682
+    },
+    {
+      "source": "frontend/apps/console/src/router/redirects.ts",
+      "target": "migration/materials/source/frontend/apps/console/src/router/redirects.ts",
+      "blob": "fd415ee0fda2d984f670f01c2f37e10513e25d5f",
+      "sha256": "91a9aefdc4eb7e31424891bb9b4715dc2c8c3cea674822c104b74ada7eeb1cf4",
+      "bytes": 54
+    },
+    {
+      "source": "frontend/apps/business-console/src/components/auth/LoginForm.vue",
+      "target": "migration/materials/source/frontend/apps/business-console/src/components/auth/LoginForm.vue",
+      "blob": "33e74625ed516dec7c3d92d6fb10172389468409",
+      "sha256": "abbf2ba86391c6543cd71faa37dee046974a878b0be90ad9ff0a9c20cd249a9d",
+      "bytes": 2905
+    },
+    {
+      "source": "frontend/apps/business-console/src/router/redirects.ts",
+      "target": "migration/materials/source/frontend/apps/business-console/src/router/redirects.ts",
+      "blob": "fd415ee0fda2d984f670f01c2f37e10513e25d5f",
+      "sha256": "91a9aefdc4eb7e31424891bb9b4715dc2c8c3cea674822c104b74ada7eeb1cf4",
+      "bytes": 54
+    },
+    {
+      "source": "frontend/apps/console/src/layouts/DefaultLayout.vue",
+      "target": "migration/materials/source/frontend/apps/console/src/layouts/DefaultLayout.vue",
+      "blob": "f54f2f52e29a8d1618ff0b576674f0fbf98085f2",
+      "sha256": "3530cd9c7dfdf18a77eb9e3eb8c97b47d2b7f8d89d206dede2f9f04676054758",
+      "bytes": 3242
+    },
+    {
+      "source": "frontend/apps/business-console/src/layouts/BusinessLayout.vue",
+      "target": "migration/materials/source/frontend/apps/business-console/src/layouts/BusinessLayout.vue",
+      "blob": "01976e7c3a6e79a9614f03f5defa91c742d4806c",
+      "sha256": "103faca4ac7b30e97b8ec93ae8e150bdf5b53922ff4c1a9007baf07b71672873",
+      "bytes": 4247
+    },
+    {
+      "source": "frontend/apps/business-pda/src/composables/usePdaProfile.ts",
+      "target": "migration/materials/source/frontend/apps/business-pda/src/composables/usePdaProfile.ts",
+      "blob": "43bef52063617ec027c10d4eddfbf955336f1692",
+      "sha256": "4aa87075e9ede523a67f6865b25f3158a5201afa9b6a882673370316f7e97655",
+      "bytes": 9565
+    },
+    {
+      "source": "frontend/apps/screen/src/stores/realAuth.ts",
+      "target": "migration/materials/source/frontend/apps/screen/src/stores/realAuth.ts",
+      "blob": "77f8c3dcd5d45c27885902a10fddd0a628fbd428",
+      "sha256": "685c0b9f82eb1c45576375fafd190c5f7fc28d60509ec08d164c007c7d6f21fa",
+      "bytes": 574
+    },
+    {
+      "source": "frontend/apps/screen/src/assets/login-hero.webp",
+      "target": "migration/materials/source/frontend/apps/screen/src/assets/login-hero.webp",
+      "blob": "0c655f5aea6039d882c715eef7505bba9c96c081",
+      "sha256": "272962c778b1fc555653d46a3a97195abe52c96da0eace8990b446d9050afb42",
+      "bytes": 91594
+    }
+  ],
+  "result": "all source bytes match T01 provenance"
+}
