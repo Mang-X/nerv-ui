@@ -188,6 +188,10 @@ const radioValue = ref('std')
 const planTime = ref('08:30')
 const planDate = ref('2026-06-18')
 const dialogOpen = ref(false)
+function confirmDispatch() {
+  dialogOpen.value = false
+  nvMessage.info('已选择将 WO-2406-0431 派发到 A 线')
+}
 
 const proLoading = ref(false)
 function runProAction() {
@@ -1029,7 +1033,8 @@ const progress = computed(
                     <NvDialogHeader>
                       <NvDialogTitle>确认派发工单</NvDialogTitle>
                       <NvDialogDescription>
-                        WO-2406-0431 将派发到 A 线，锁定物料并生成领料单。
+                        本地演示：选择将 WO-2406-0431 派发到 A
+                        线；确认仅显示选择回执，不执行派工、锁料或生成领料单。
                       </NvDialogDescription>
                     </NvDialogHeader>
                     <div class="rounded-lg border border-border bg-muted/40 p-4 text-sm">
@@ -1046,7 +1051,7 @@ const progress = computed(
                       <NvDialogClose as-child
                         ><NvButton variant="ghost">取消</NvButton></NvDialogClose
                       >
-                      <NvButton variant="brand" @click="dialogOpen = false">确认派发</NvButton>
+                      <NvButton variant="brand" @click="confirmDispatch">确认派发</NvButton>
                     </NvDialogFooter>
                   </NvDialogContent>
                 </NvDialog>
