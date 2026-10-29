@@ -26,6 +26,7 @@ export default defineConfig({
     include: [
       'docs.contract.test.ts',
       'entity-dialog-host.test.ts',
+      'entity-create-host.test.ts',
       'filter-bar-host.test.ts',
       'scheduling-live.contract.test.ts',
       'scheduling-host.test.ts',
