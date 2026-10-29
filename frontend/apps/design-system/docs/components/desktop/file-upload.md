@@ -342,7 +342,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 
 ## 紧凑上传
 
-`variant="compact"` 压缩 dropzone 与行高，适合表单侧栏、抽屉和空间受限的配置面板。
+`variant="compact"` 压缩 dropzone 与行高，适合表单侧栏、抽屉和空间受限的配置面板。本例选入文件后自动开始上传；需要集中提交时可参考上方的手动上传入口。
 
 <Demo title="紧凑上传" block>
   <FileUpload
@@ -356,7 +356,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     environment-id="env-prod"
     :accepted-content-types="['application/pdf', 'text/plain']"
     :max-files="4"
-    :auto-upload="false"
+    :auto-upload="true"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
     :transport="demoTransport"
@@ -379,7 +379,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     environment-id="env-prod"
     :accepted-content-types="['application/pdf', 'text/plain']"
     :max-files="4"
-    :auto-upload="false"
+    :auto-upload="true"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
     :transport="uploadWithNativeFileStorageTransport"
