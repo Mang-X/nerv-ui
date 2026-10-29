@@ -6,6 +6,12 @@ PDF、Word、PowerPoint 和 Excel 预览都在统一工具栏内提供快速定�
 
 <script setup>
 import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { ref } from 'vue'
+
+const openedSource = ref('')
+function onOpenSource(src) {
+  openedSource.value = src
+}
 
 const samples = {
   image: '/file-preview/quality-evidence.svg',
@@ -18,18 +24,24 @@ const samples = {
 
 所有预览工具栏以中文说明翻页、缩放、旋转与打开源文件操作；文件名保留原名供用户识别。
 
+点击“打开”后，示例下方显示当前源文件链接；点击链接可在新标签页打开文档站提供的文件。此处不调用业务下载接口。
+
 ## 示例
 
 ### 图片预览
 
 <Demo title="图片预览" block>
   <FilePreview
+    @open-source="onOpenSource"
     :src="samples.image"
     file-name="quality-evidence.svg"
     content-type="image/svg+xml"
     :size-bytes="734003"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{ openedSource.split('/').pop() }}</a>
+  </p>
 </Demo>
 
 示例图片是文档用样张，不作为色板或业务图形规范。真实业务侧只需要传入浏览器可访问的 `src`。
@@ -37,16 +49,28 @@ const samples = {
 ```vue
 <script setup lang="ts">
 import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { ref } from 'vue'
+
+const openedSource = ref('')
+function onOpenSource(src: string) {
+  openedSource.value = src
+}
 </script>
 
 <template>
   <FilePreview
+    @open-source="onOpenSource"
     src="/file-preview/quality-evidence.svg"
     file-name="quality-evidence.svg"
     content-type="image/svg+xml"
     :size-bytes="734003"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{
+      openedSource.split('/').pop()
+    }}</a>
+  </p>
 </template>
 ```
 
@@ -54,27 +78,43 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
 
 <Demo title="PDF 预览" block>
   <FilePreview
+    @open-source="onOpenSource"
     :src="samples.pdf"
     file-name="quality-evidence-report.pdf"
     content-type="application/pdf"
     :size-bytes="1129"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{ openedSource.split('/').pop() }}</a>
+  </p>
 </Demo>
 
 ```vue
 <script setup lang="ts">
 import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { ref } from 'vue'
+
+const openedSource = ref('')
+function onOpenSource(src: string) {
+  openedSource.value = src
+}
 </script>
 
 <template>
   <FilePreview
+    @open-source="onOpenSource"
     src="/file-preview/quality-evidence-report.pdf"
     file-name="quality-evidence-report.pdf"
     content-type="application/pdf"
     :size-bytes="1129"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{
+      openedSource.split('/').pop()
+    }}</a>
+  </p>
 </template>
 ```
 
@@ -82,27 +122,43 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
 
 <Demo title="Word / DOCX 预览" block>
   <FilePreview
+    @open-source="onOpenSource"
     :src="samples.docx"
     file-name="quality-work-instruction.docx"
     content-type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     :size-bytes="3062"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{ openedSource.split('/').pop() }}</a>
+  </p>
 </Demo>
 
 ```vue
 <script setup lang="ts">
 import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { ref } from 'vue'
+
+const openedSource = ref('')
+function onOpenSource(src: string) {
+  openedSource.value = src
+}
 </script>
 
 <template>
   <FilePreview
+    @open-source="onOpenSource"
     src="/file-preview/quality-work-instruction.docx"
     file-name="quality-work-instruction.docx"
     content-type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     :size-bytes="3062"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{
+      openedSource.split('/').pop()
+    }}</a>
+  </p>
 </template>
 ```
 
@@ -112,27 +168,43 @@ Excel 示例使用一个包含 `Inspection / Trend / Summary` 3 个工作表的�
 
 <Demo title="Excel / XLSX 预览" block>
   <FilePreview
+    @open-source="onOpenSource"
     :src="samples.xlsx"
     file-name="inspection-metrics.xlsx"
     content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     :size-bytes="6424"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{ openedSource.split('/').pop() }}</a>
+  </p>
 </Demo>
 
 ```vue
 <script setup lang="ts">
 import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { ref } from 'vue'
+
+const openedSource = ref('')
+function onOpenSource(src: string) {
+  openedSource.value = src
+}
 </script>
 
 <template>
   <FilePreview
+    @open-source="onOpenSource"
     src="/file-preview/inspection-metrics.xlsx"
     file-name="inspection-metrics.xlsx"
     content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     :size-bytes="6424"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{
+      openedSource.split('/').pop()
+    }}</a>
+  </p>
 </template>
 ```
 
@@ -140,27 +212,43 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
 
 <Demo title="PowerPoint / PPTX 预览" block>
   <FilePreview
+    @open-source="onOpenSource"
     :src="samples.pptx"
     file-name="preview-review-deck.pptx"
     content-type="application/vnd.openxmlformats-officedocument.presentationml.presentation"
     :size-bytes="4353"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{ openedSource.split('/').pop() }}</a>
+  </p>
 </Demo>
 
 ```vue
 <script setup lang="ts">
 import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { ref } from 'vue'
+
+const openedSource = ref('')
+function onOpenSource(src: string) {
+  openedSource.value = src
+}
 </script>
 
 <template>
   <FilePreview
+    @open-source="onOpenSource"
     src="/file-preview/preview-review-deck.pptx"
     file-name="preview-review-deck.pptx"
     content-type="application/vnd.openxmlformats-officedocument.presentationml.presentation"
     :size-bytes="4353"
     :height="430"
   />
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{
+      openedSource.split('/').pop()
+    }}</a>
+  </p>
 </template>
 ```
 
@@ -169,12 +257,14 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
 <Demo title="状态示例" block>
   <div class="grid gap-4 lg:grid-cols-3">
     <FilePreview
+    @open-source="onOpenSource"
       file-name="待上传预览源.pdf"
       content-type="application/pdf"
       :height="260"
       :show-header="false"
     />
     <FilePreview
+    @open-source="onOpenSource"
       :src="samples.image"
       file-name="图片加载失败.png"
       content-type="image/png"
@@ -183,6 +273,7 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
       :show-header="false"
     />
     <FilePreview
+    @open-source="onOpenSource"
       :src="samples.pdf"
       file-name="不支持的图纸格式.dwg"
       content-type="application/acad"
@@ -190,22 +281,33 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
       :show-header="false"
     />
   </div>
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{ openedSource.split('/').pop() }}</a>
+  </p>
 </Demo>
 
 ```vue
 <script setup lang="ts">
 import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { ref } from 'vue'
+
+const openedSource = ref('')
+function onOpenSource(src: string) {
+  openedSource.value = src
+}
 </script>
 
 <template>
   <div class="grid gap-4 lg:grid-cols-3">
     <FilePreview
+      @open-source="onOpenSource"
       file-name="待上传预览源.pdf"
       content-type="application/pdf"
       :height="260"
       :show-header="false"
     />
     <FilePreview
+      @open-source="onOpenSource"
       src="/file-preview/quality-evidence.svg"
       file-name="图片加载失败.png"
       content-type="image/png"
@@ -214,6 +316,7 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
       :show-header="false"
     />
     <FilePreview
+      @open-source="onOpenSource"
       src="/file-preview/quality-evidence-report.pdf"
       file-name="不支持的图纸格式.dwg"
       content-type="application/acad"
@@ -221,6 +324,11 @@ import { FilePreview } from '@nerv-iip/ui/file-preview'
       :show-header="false"
     />
   </div>
+  <p v-if="openedSource" role="status">
+    已选择源文件：<a :href="openedSource" target="_blank" rel="noopener noreferrer">{{
+      openedSource.split('/').pop()
+    }}</a>
+  </p>
 </template>
 ```
 
