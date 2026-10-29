@@ -121,6 +121,7 @@ export default defineConfig({
             { text: 'Spinner 加载', link: '/components/desktop/spinner' },
             { text: 'Badge 徽标', link: '/components/desktop/badge' },
             { text: 'Card 卡片', link: '/components/desktop/card' },
+            { text: '看板与记录卡', link: '/components/desktop/kanban-record' },
             { text: 'MetricCard 指标卡', link: '/components/desktop/metric' },
             { text: '空间登录与改密', link: '/components/desktop/login-recipe' },
             { text: '目录筛选与详情', link: '/components/desktop/directory-detail' },

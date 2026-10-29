@@ -40,6 +40,7 @@ export default defineConfig({
       'alert-dialog-host.test.ts',
       'form-select-host.test.ts',
       'metric-comparison-host.test.ts',
+      'kanban-record-host.test.ts',
     ],
   },
 })
