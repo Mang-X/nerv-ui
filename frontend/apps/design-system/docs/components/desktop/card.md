@@ -11,6 +11,20 @@ import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
 
 承载分组信息的「表面」原语。`NvCard` 基于 `@nerv-iip/ui` 稳定导出的卡片基础能力复制重建——发丝级描边 + 顶部内嵌高光读作单一清晰表面。它本身不含内边距与排版，内容由调用方组织（通常 `p-6` 头部 + 内容，放进 `grid`）；`interactive` 为可点击卡片叠加克制的悬浮上浮。
 
+## 本页工单详情
+
+下方“可交互”卡片通过原生链接定位到对应详情；以下内容为固定只读样例。
+
+<section id="card-order-0426" class="scroll-mt-20" aria-labelledby="card-order-0426-title">
+  <h3 id="card-order-0426-title">液压阀体工单详情</h3>
+  <p>工单 <strong>WO-2406-0426</strong>，产品 <strong>液压阀体 V3</strong>，当前状态：进行中。这里展示本页固定样例，不执行工单变更。</p>
+</section>
+
+<section id="card-order-0430" class="scroll-mt-20" aria-labelledby="card-order-0430-title">
+  <h3 id="card-order-0430-title">电机定子工单详情</h3>
+  <p>工单 <strong>WO-2406-0430</strong>，产品 <strong>电机定子叠片</strong>，当前状态：已完成；数量 <strong>5000 件</strong>，良率 <strong>99.2%</strong>。这里展示本页固定样例，不执行工单变更。</p>
+</section>
+
 ## 基础
 
 惯用结构：头部（标题 + 副标题 + 可选状态）紧凑置顶，内容在下，放进栅格自适应。
@@ -85,16 +99,6 @@ import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
     </a>
   </div>
 </Demo>
-
-<section id="card-order-0426" class="scroll-mt-20" aria-labelledby="card-order-0426-title">
-  <h3 id="card-order-0426-title">液压阀体工单详情</h3>
-  <p>工单 <strong>WO-2406-0426</strong>，产品 <strong>液压阀体 V3</strong>，当前状态：进行中。这里展示本页固定样例，不执行工单变更。</p>
-</section>
-
-<section id="card-order-0430" class="scroll-mt-20" aria-labelledby="card-order-0430-title">
-  <h3 id="card-order-0430-title">电机定子工单详情</h3>
-  <p>工单 <strong>WO-2406-0430</strong>，产品 <strong>电机定子叠片</strong>，当前状态：已完成；数量 <strong>5000 件</strong>，良率 <strong>99.2%</strong>。这里展示本页固定样例，不执行工单变更。</p>
-</section>
 
 学习代码中，链接与对应详情目标由宿主一起提供；`NvCard` 本身不处理导航：
 
