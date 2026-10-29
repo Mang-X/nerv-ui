@@ -5,6 +5,7 @@ title: NvEntityMultiPicker 可搜索多选
 <script setup>
 import { NvEntityMultiPicker } from '@nerv-iip/ui'
 import { ref } from 'vue'
+import EntitySearchExample from '../../.vitepress/examples/EntitySearchExample.vue'
 
 const selected = ref(['旧日庭院'])
 const options = [
@@ -29,6 +30,19 @@ const options = [
     />
   </div>
 </Demo>
+
+## 宿主搜索与滚动追加
+
+搜索词和当前候选窗口由本例宿主持有：从完整 24 项内存目录过滤，先显示 8 项，再由列表滚动
+触发 `load-more` 追加下一批。换词会重置窗口，已选标签保持；可搜索 `SPACE-017` 验证初始
+窗口之外的候选。单选族页面复用同一示例源码。
+本例同步查询内存，不模拟网络延迟、去抖或迟到响应；这些时序仍由真实接入宿主负责。
+
+<Demo block>
+  <EntitySearchExample />
+</Demo>
+
+<<< @/.vitepress/examples/EntitySearchExample.vue
 
 ## 公共合同
 

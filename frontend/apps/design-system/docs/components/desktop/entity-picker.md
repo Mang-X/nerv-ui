@@ -7,6 +7,7 @@ import { NvEntityPicker, NvCascadePicker, NvField, NvFieldLabel } from '@nerv-ii
 import { computed, ref } from 'vue'
 import EntityDialogExample from '../../.vitepress/examples/EntityDialogExample.vue'
 import EntityCreateExample from '../../.vitepress/examples/EntityCreateExample.vue'
+import EntitySearchExample from '../../.vitepress/examples/EntitySearchExample.vue'
 
 const material = ref('')
 const materialOptions = [
@@ -140,6 +141,19 @@ const scopeLevels = computed(() => [
 </Demo>
 
 <<< @/.vitepress/examples/EntityCreateExample.vue
+
+### 宿主搜索与滚动追加
+
+此例通过 `NvEntityMultiPicker` 复用底层 `NvEntityPicker` 的受控搜索与 `load-more` 合同。
+宿主在完整的 24 项内存目录中搜索，初始显示 8 项，向下滚动追加下一批；换词后重置当前窗口，
+已选标签保留。可直接搜索初始窗口外的 `SPACE-017`，观察当前搜索词、匹配进度和选择回写。
+这是同步内存查询，不模拟网络、去抖或迟到响应；真实请求的时序仍由接入宿主处理。
+
+<Demo block>
+  <EntitySearchExample />
+</Demo>
+
+<<< @/.vitepress/examples/EntitySearchExample.vue
 
 ## NvCascadePicker 级联选择器
 
