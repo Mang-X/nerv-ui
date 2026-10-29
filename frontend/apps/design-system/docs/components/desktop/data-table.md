@@ -11,6 +11,7 @@ import {
   NvPagination,
   NvButton,
   NvStatusBadge,
+  NvNotifierHost,
   nvMessage,
 } from '@nerv-iip/ui'
 import { PlusIcon, ListFilterIcon } from '@lucide/vue'
@@ -77,6 +78,12 @@ const pageSize = ref(10)
 完整的高级数据表体验。`NvDataTable` 内置工具栏（搜索 · 字段筛选 · 列显隐 · 密度）、可排序表头、行选择与可点击页码分页；默认在客户端处理筛选/排序/分页。工具栏 `NvDataTableToolbar` 与分页 `NvPagination` 也可独立使用。
 
 ## 完整表格
+
+本页刷新、重试和导出按钮的消息共用一个 `NvNotifierHost`，只展示操作回执。接入应用时在根部挂载一次；已有 Host 时不要重复添加。
+
+<ClientOnly>
+  <NvNotifierHost />
+</ClientOnly>
 
 <Demo block>
   <NvDataTable
