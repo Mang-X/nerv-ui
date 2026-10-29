@@ -32,7 +32,9 @@ const scopeLevels = computed(() => [
     .filter((l) => !scope.value.workshop || l.workshop === scope.value.workshop)
     .map(({ value, label }) => ({ value, label })) },
   { key: 'device', label: '设备', options: deviceCatalog
-    .filter((d) => !scope.value.line || d.line === scope.value.line)
+    .filter((d) => (!scope.value.line || d.line === scope.value.line)
+      && lineCatalog.some((l) => l.value === d.line
+        && (!scope.value.workshop || l.workshop === scope.value.workshop)))
     .map(({ value, label }) => ({ value, label })) },
 ])
 </script>
@@ -117,7 +119,7 @@ const scopeLevels = computed(() => [
 
 每级第一项固定为「全部」（值 = 空串），代表不在该层收窄；选中上级会自动把下游层级
 清回「全部」。**层级间的选项过滤由调用方组装**（组件不感知业务字段），如按已选车间
-过滤产线目录。
+过滤产线目录。设备候选需同时满足已选车间与产线：产线为“全部”时仍只包含当前车间的设备；车间也为“全部”时才显示各车间设备。
 
 <Demo>
   <div style="max-width: 640px">
@@ -132,7 +134,7 @@ const scopeLevels = computed(() => [
   :levels="[
     { key: 'workshop', label: '车间', options: workshopOptions },
     { key: 'line', label: '产线', options: lineOptionsFilteredByWorkshop },
-    { key: 'device', label: '设备', options: deviceOptionsFilteredByLine },
+    { key: 'device', label: '设备', options: deviceOptionsFilteredByWorkshopAndLine },
   ]"
 />
 ```
