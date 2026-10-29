@@ -52,7 +52,8 @@ function selectMinute(m: number) {
 function now() {
   const d = new Date()
   const m = Math.round(d.getMinutes() / props.minuteStep) * props.minuteStep
-  commit(d.getHours(), Math.min(59, m))
+  const lastMinute = minutes.value[minutes.value.length - 1] ?? 0
+  commit(d.getHours(), Math.min(lastMinute, m))
 }
 
 watch(open, (isOpen) => {
