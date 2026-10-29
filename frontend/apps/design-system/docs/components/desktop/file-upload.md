@@ -437,7 +437,9 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 `variant="table"` 用连续行承载混合文件，适合批量附件清单、工程文档、检验记录和导入文件复核。
 
 <Demo title="表格上传" block>
+  <div class="max-w-full overflow-x-auto" role="region" aria-label="上传文件表格，可横向滚动" tabindex="0">
   <FileUpload
+    class="min-w-[640px]"
     ref="tableUpload"
     variant="table"
     purpose="engineering-document"
@@ -456,6 +458,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     :complete-upload-session="completeUploadSession"
     :transport="demoTransport"
   />
+  </div>
 </Demo>
 
 ```vue
@@ -464,24 +467,32 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 </script>
 
 <template>
-  <FileUpload
-    variant="table"
-    purpose="engineering-document"
-    owner-service="ProductEngineering"
-    owner-type="EngineeringDocument"
-    owner-id="doc-pack-2406"
-    organization-id="org-demo"
-    environment-id="env-prod"
-    :accepted-content-types="[
-      'application/pdf',
-      'image/png',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    ]"
-    :max-files="8"
-    :create-upload-session="createUploadSession"
-    :complete-upload-session="completeUploadSession"
-    :transport="uploadWithNativeFileStorageTransport"
-  />
+  <div
+    class="max-w-full overflow-x-auto"
+    role="region"
+    aria-label="上传文件表格，可横向滚动"
+    tabindex="0"
+  >
+    <FileUpload
+      class="min-w-[640px]"
+      variant="table"
+      purpose="engineering-document"
+      owner-service="ProductEngineering"
+      owner-type="EngineeringDocument"
+      owner-id="doc-pack-2406"
+      organization-id="org-demo"
+      environment-id="env-prod"
+      :accepted-content-types="[
+        'application/pdf',
+        'image/png',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      ]"
+      :max-files="8"
+      :create-upload-session="createUploadSession"
+      :complete-upload-session="completeUploadSession"
+      :transport="uploadWithNativeFileStorageTransport"
+    />
+  </div>
 </template>
 ```
 
