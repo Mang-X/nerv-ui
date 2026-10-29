@@ -63,7 +63,7 @@ K 键以焦点所在实例为归属；焦点在壳外时由第一个存活监听
 .nv-doc-shell-frame [data-slot='sidebar-wrapper'] {
   min-height: 100%;
 }
-.nv-doc-shell-frame [data-slot='sidebar-container'] {
+.nv-doc-shell-frame [data-slot='nv-sidebar-container'] {
   height: 100%;
 }
 </style>
