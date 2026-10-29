@@ -4,6 +4,7 @@ pageClass: nv-wide
 ---
 
 <script setup>
+import BaseTableExample from '../../.vitepress/examples/BaseTableExample.vue'
 import {
   NvDataTable,
   NvDataTableToolbar,
@@ -337,3 +338,21 @@ const pageSize = ref(10)
 | `showJump`   | 显示跳页输入                    | `boolean` | `false` |
 
 列表页的页头、工具栏、行菜单与统计分区组合见[列表布局与行操作](./list-blocks.md)。
+
+## 基础 Table 组合
+
+基础 `Table` 适合直接组织少量记录；下方展示物品、数量和单位三列，表题随当前记录数更新，页脚只合计当前记录。真实数量 0 仍显示为 0；清空后显示独立空行，合计为 0。恢复只影响本页内存，刷新后重新开始。
+
+<Demo block>
+  <BaseTableExample />
+</Demo>
+
+`TableCaption`、`TableFooter` 和 `TableEmpty` 均来自主桶 `@nerv-iip/ui`。空行的 `colspan` 与三列表头使用同一列数组；这与上方 `NvDataTable` 的内建空态是两种组合。数量右对齐，最多三位小数；单位单列弱化显示，不参与数量格式化。
+
+窄屏可先用 Tab 聚焦物品清单滚动区域，再用方向键横向查看末列。按钮支持 Tab 聚焦及 Enter/Space 激活。
+
+### 组合源码
+
+live 与学习代码共用以下文件：
+
+<<< @/.vitepress/examples/BaseTableExample.vue
