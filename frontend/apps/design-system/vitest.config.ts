@@ -39,6 +39,7 @@ export default defineConfig({
       'dropdown-menu-host.test.ts',
       'alert-dialog-host.test.ts',
       'form-select-host.test.ts',
+      'metric-comparison-host.test.ts',
     ],
   },
 })
