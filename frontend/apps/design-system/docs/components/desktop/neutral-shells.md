@@ -13,7 +13,7 @@ import NeutralShellDemo from '../../../../playground/src/NeutralShellDemo.vue'
     <NeutralShellDemo space="library">
       <template #navigation>
         <a href="/" class="p-2 underline">返回文档首页</a>
-        <a href="#studio-shell" class="p-2 underline">周末画室</a>
+        <a href="/components/desktop/neutral-shells?space=studio#studio-shell" target="_self" class="p-2 underline">周末画室</a>
       </template>
     </NeutralShellDemo>
   </section>
@@ -23,7 +23,7 @@ import NeutralShellDemo from '../../../../playground/src/NeutralShellDemo.vue'
     <NeutralShellDemo space="studio">
       <template #navigation>
         <a href="/" class="p-2 underline">返回文档首页</a>
-        <a href="#library-shell" class="p-2 underline">晨光书房</a>
+        <a href="/components/desktop/neutral-shells?space=library#library-shell" target="_self" class="p-2 underline">晨光书房</a>
       </template>
     </NeutralShellDemo>
   </section>
@@ -31,7 +31,7 @@ import NeutralShellDemo from '../../../../playground/src/NeutralShellDemo.vue'
 
 两个可操作入口：`/#shell/library`（侧栏）与 `/#shell/studio`（顶部溢出）。live 示例直接复用 playground 源码，未恢复候选 app-shell 包，也未新增公共组件导出。
 
-文档通过 `NeutralShellDemo` 的 `navigation` 插槽提供首页链接与本页两个实例的锚点互跳；playground 不传插槽时保留原 hash 导航。
+文档通过 `NeutralShellDemo` 的 `navigation` 插槽提供首页链接与两个实例的定位入口。空间链接在当前标签页重新载入文档并定位对应实例，示例状态随页面重新开始；playground 不传插槽时保留原 hash 导航。
 
 ## 宿主适配 API
 
