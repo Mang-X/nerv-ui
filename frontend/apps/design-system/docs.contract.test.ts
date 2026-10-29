@@ -136,3 +136,26 @@ it('links the fixed scheduling sidebar to the existing readonly timeline page', 
   ).toEqual([{ text: '只读时间安排', link: '/components/desktop/schedule-timeline' }])
   expect(existsSync(resolve(app, 'docs/components/desktop/schedule-timeline.md'))).toBe(true)
 })
+
+it('registers component layers before stylesheets in both documentation HTML paths', async () => {
+  const { default: config } = await import('./docs/.vitepress/config.mts')
+  const html =
+    '<!DOCTYPE html><html><head><link rel="stylesheet" href="/assets/site.css"></head><body>page</body></html>'
+  const devPlugin = (
+    config.vite!.plugins as { name?: string; transformIndexHtml?: unknown }[]
+  ).find((plugin) => plugin.name === 'docs-css-layer-order')
+  expect(devPlugin).toBeDefined()
+  const hooks = [config.transformHtml, devPlugin!.transformIndexHtml]
+  for (const hook of hooks) {
+    expect(typeof hook).toBe('function')
+    const output = (hook as (html: string) => string)(html)
+    expect(output).toBe(
+      html.replace(
+        '<head>',
+        '<head><style data-docs-layer-order>@layer theme, nv-tokens, base, components, nv-components;</style>',
+      ),
+    )
+    expect(output.indexOf('@layer theme')).toBeLessThan(output.indexOf('<link'))
+    expect((hook as (html: string) => string)(output)).toBe(output)
+  }
+})
