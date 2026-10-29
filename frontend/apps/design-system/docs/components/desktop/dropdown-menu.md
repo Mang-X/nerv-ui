@@ -4,6 +4,8 @@ title: NvDropdownMenu 动作菜单
 
 <script setup>
 import DropdownSelectionExample from '../../.vitepress/examples/DropdownSelectionExample.vue'
+import { ref } from 'vue'
+const actionReceipt = ref('请选择一项操作。')
 import {
   NvDropdownMenu,
   NvDropdownMenuTrigger,
@@ -30,6 +32,8 @@ import {
 
 `NvDropdownMenuTrigger` 配合 `as-child` 包裹一个图标按钮触发，`NvDropdownMenuContent` 通过 `align` 对齐到触发器一侧。
 
+本页显示所选操作，不实际编辑、复制或删除记录；接入应用时由宿主执行操作。
+
 <Demo>
   <NvDropdownMenu>
     <NvDropdownMenuTrigger as-child>
@@ -39,25 +43,26 @@ import {
     </NvDropdownMenuTrigger>
     <NvDropdownMenuContent align="end" class="w-44">
       <NvDropdownMenuLabel>操作</NvDropdownMenuLabel>
-      <NvDropdownMenuItem>
+      <NvDropdownMenuItem @select="actionReceipt = '已选择：查看详情'">
         <EyeIcon aria-hidden="true" />
         查看详情
       </NvDropdownMenuItem>
-      <NvDropdownMenuItem>
+      <NvDropdownMenuItem @select="actionReceipt = '已选择：编辑'">
         <PencilIcon aria-hidden="true" />
         编辑
       </NvDropdownMenuItem>
-      <NvDropdownMenuItem>
+      <NvDropdownMenuItem @select="actionReceipt = '已选择：复制单号'">
         <CopyIcon aria-hidden="true" />
         复制单号
       </NvDropdownMenuItem>
       <NvDropdownMenuSeparator />
-      <NvDropdownMenuItem variant="destructive">
+      <NvDropdownMenuItem variant="destructive" @select="actionReceipt = '已选择：删除'">
         <Trash2Icon aria-hidden="true" />
         删除
       </NvDropdownMenuItem>
     </NvDropdownMenuContent>
   </NvDropdownMenu>
+  <p role="status" class="w-full text-sm text-muted-foreground">{{ actionReceipt }}</p>
 </Demo>
 
 ```vue
@@ -72,6 +77,8 @@ import {
   NvButton,
 } from '@nerv-iip/ui'
 import { MoreHorizontalIcon, EyeIcon, PencilIcon, CopyIcon, Trash2Icon } from '@lucide/vue'
+import { ref } from 'vue'
+const actionReceipt = ref('请选择一项操作。')
 </script>
 
 <template>
@@ -83,15 +90,22 @@ import { MoreHorizontalIcon, EyeIcon, PencilIcon, CopyIcon, Trash2Icon } from '@
     </NvDropdownMenuTrigger>
     <NvDropdownMenuContent align="end" class="w-44">
       <NvDropdownMenuLabel>操作</NvDropdownMenuLabel>
-      <NvDropdownMenuItem> <EyeIcon aria-hidden="true" />查看详情 </NvDropdownMenuItem>
-      <NvDropdownMenuItem> <PencilIcon aria-hidden="true" />编辑 </NvDropdownMenuItem>
-      <NvDropdownMenuItem> <CopyIcon aria-hidden="true" />复制单号 </NvDropdownMenuItem>
+      <NvDropdownMenuItem @select="actionReceipt = '已选择：查看详情'">
+        <EyeIcon aria-hidden="true" />查看详情
+      </NvDropdownMenuItem>
+      <NvDropdownMenuItem @select="actionReceipt = '已选择：编辑'">
+        <PencilIcon aria-hidden="true" />编辑
+      </NvDropdownMenuItem>
+      <NvDropdownMenuItem @select="actionReceipt = '已选择：复制单号'">
+        <CopyIcon aria-hidden="true" />复制单号
+      </NvDropdownMenuItem>
       <NvDropdownMenuSeparator />
-      <NvDropdownMenuItem variant="destructive">
+      <NvDropdownMenuItem variant="destructive" @select="actionReceipt = '已选择：删除'">
         <Trash2Icon aria-hidden="true" />删除
       </NvDropdownMenuItem>
     </NvDropdownMenuContent>
   </NvDropdownMenu>
+  <p role="status">{{ actionReceipt }}</p>
 </template>
 ```
 
