@@ -76,3 +76,7 @@ Node `v24.18.0`；固定入口：
 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-29/t09-navigation-menu-size-implementation-r1/handoff.md`
 保存完整命令、raw 日志/JSON、最小 before/after 源码副本、SHA-256 与回读结果。
 R3 原始 receipt/raw 保留在同日 `t09-f-parent-acceptance-r3/`，不复制 dist 或依赖树入仓。
+
+## R1 中宽消费边界响应
+
+390亮暗三面板全部链接真实可点击，原24px问题已闭合；640px生产面板444px仍以只占触发器宽的导航root居中，稳定left=-22导致左裁。当前唯一live消费是该文档页。仅将live及学习代码的NvNavigationMenu root铺满预览宽度，触发器仍居中、shared viewport仍按root居中，不新增全局碰撞定位/API。原R1 P2保留，新640及resize几何待独立复验。

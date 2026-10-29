@@ -34,7 +34,7 @@ import {
 将“生产 / 设备 / 质量”做成可展开面板，“设置”作为直达链接。
 
 <Demo popout>
-  <NvNavigationMenu>
+  <NvNavigationMenu class="w-full max-w-none">
     <NvNavigationMenuList>
       <NvNavigationMenuItem>
         <NvNavigationMenuTrigger>生产</NvNavigationMenuTrigger>
@@ -134,7 +134,7 @@ import {
 </Demo>
 
 ```vue
-<NvNavigationMenu>
+<NvNavigationMenu class="w-full max-w-none">
   <NvNavigationMenuList>
     <NvNavigationMenuItem>
       <NvNavigationMenuTrigger>生产</NvNavigationMenuTrigger>
