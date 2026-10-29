@@ -28,17 +28,44 @@ it('uses the public avatar composition and recovers through simulated preloader 
   await nextTick()
   expect(page.get('img').isVisible()).toBe(true)
   expect(page.find('[data-slot="avatar-fallback"]').exists()).toBe(false)
-  await page.get('select').setValue('broken')
+  await page
+    .findAll('button')
+    .find((button) => button.text() === '无法加载的图片')!
+    .trigger('click')
+  expect(
+    page
+      .findAll('button')
+      .find((button) => button.text() === '无法加载的图片')!
+      .attributes('aria-pressed'),
+  ).toBe('true')
   images.at(-1)!.dispatchEvent(new Event('error'))
   await nextTick()
   expect(page.get('img').isVisible()).toBe(false)
   expect(page.getComponent(AvatarFallback).text()).toBe('阅友')
   expect(page.text()).toContain('图片无法加载')
-  await page.get('select').setValue('none')
+  await page
+    .findAll('button')
+    .find((button) => button.text() === '无图片')!
+    .trigger('click')
+  expect(
+    page
+      .findAll('button')
+      .find((button) => button.text() === '无图片')!
+      .attributes('aria-pressed'),
+  ).toBe('true')
   expect(page.findComponent(AvatarImage).exists()).toBe(false)
   expect(page.getComponent(AvatarFallback).text()).toBe('阅友')
   expect(page.text()).toContain('未提供图片')
-  await page.get('select').setValue('valid')
+  await page
+    .findAll('button')
+    .find((button) => button.text() === '本地有效图片')!
+    .trigger('click')
+  expect(
+    page
+      .findAll('button')
+      .find((button) => button.text() === '本地有效图片')!
+      .attributes('aria-pressed'),
+  ).toBe('true')
   images.at(-1)!.dispatchEvent(new Event('load'))
   await nextTick()
   expect(page.get('img').isVisible()).toBe(true)

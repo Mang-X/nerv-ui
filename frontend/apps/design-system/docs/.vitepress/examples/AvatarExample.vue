@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { withBase } from 'vitepress'
-import { Avatar, AvatarImage, AvatarFallback } from '@nerv-iip/ui'
+import { Avatar, AvatarImage, AvatarFallback, NvButton } from '@nerv-iip/ui'
 
 const mode = ref<'valid' | 'broken' | 'none'>('valid')
 const src = computed(() =>
@@ -11,17 +11,32 @@ const src = computed(() =>
 
 <template>
   <section class="w-full min-w-0 space-y-4 break-words" aria-label="阅读伙伴图像">
-    <label class="flex flex-wrap items-center gap-2 text-sm">
-      图片来源
-      <select
-        v-model="mode"
-        class="rounded-md border border-border bg-background p-2 text-foreground"
+    <div role="group" aria-label="图片来源" class="flex flex-wrap gap-2">
+      <NvButton
+        type="button"
+        variant="secondary"
+        :aria-pressed="mode === 'valid'"
+        @click="mode = 'valid'"
       >
-        <option value="valid">本地有效图片</option>
-        <option value="broken">无法加载的图片</option>
-        <option value="none">无图片</option>
-      </select>
-    </label>
+        本地有效图片
+      </NvButton>
+      <NvButton
+        type="button"
+        variant="secondary"
+        :aria-pressed="mode === 'broken'"
+        @click="mode = 'broken'"
+      >
+        无法加载的图片
+      </NvButton>
+      <NvButton
+        type="button"
+        variant="secondary"
+        :aria-pressed="mode === 'none'"
+        @click="mode = 'none'"
+      >
+        无图片
+      </NvButton>
+    </div>
     <div class="flex flex-wrap items-center gap-3">
       <Avatar :key="mode">
         <AvatarImage v-if="mode !== 'none'" :src="src" alt="阅读伙伴的本地图像" />

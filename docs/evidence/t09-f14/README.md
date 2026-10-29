@@ -15,3 +15,9 @@ scope:S；关联 #179，父 #10。仅文档 Avatar / AvatarImage / AvatarFallbac
 ## 独立席
 
 browser / HTTP / 真实加载失败恢复 / 1440与390亮暗 / 鼠标键盘：UNRUN；runtime 数字 UNKNOWN。CI checks 空不算 PASS；packed/device/prod：UNRUN。旧应用接入、退出、取消：NOT_PLANNED。仅 draft，不自审/runtime签署/ready/merge/close/watch，不改父票。
+
+## 输入控制收尾
+
+R1/R2 在真实页面和仓外原生 select 对照中都未能通过输入工具提交选项；根因仍为工具/原生菜单边界，不能确认为实现 P2。R1 两份空 browser raw 的证据缺口保留。为使本例三个独立来源直接可操作，示例改用既有 NvButton，提供有名操作组与当前 aria-pressed；没有修改 Avatar 或基础选择器。
+
+原精确行为回归改为实际按钮 click，并断言当前按下状态；旧控制下先 1 FAIL，再运行新控制的完整 docs 86/86 PASS。图片 load/error 仍只是单元模拟，真实键盘留独立复验。原 85 项测试不变；同页学习文案同步为 Tab、Enter/空格。外部原始 RED/GREEN 与准备路径错误保留于 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-29/t09-f14-button-controls-fix/`。
