@@ -194,7 +194,7 @@ onMounted(async () => {
     owner-id="inspection-2406-17"
     organization-id="org-demo"
     environment-id="env-prod"
-    :accepted-content-types="['application/pdf', 'image/png', 'image/jpeg']"
+    :accepted-content-types="['application/pdf', 'image/png', 'image/jpeg', 'image/svg+xml']"
     :max-files="4"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
@@ -217,7 +217,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     owner-id="inspection-2406-17"
     organization-id="org-demo"
     environment-id="env-prod"
-    :accepted-content-types="['application/pdf', 'image/png', 'image/jpeg']"
+    :accepted-content-types="['application/pdf', 'image/png', 'image/jpeg', 'image/svg+xml']"
     :max-files="4"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
@@ -309,7 +309,7 @@ const upload = ref<FileUploadExpose | null>(null)
     owner-id="operator-2406"
     organization-id="org-demo"
     environment-id="env-prod"
-    :accepted-content-types="['image/png', 'image/jpeg']"
+    :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
     :max-files="1"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
@@ -331,7 +331,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     owner-id="operator-2406"
     organization-id="org-demo"
     environment-id="env-prod"
-    :accepted-content-types="['image/png', 'image/jpeg']"
+    :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
     :max-files="1"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
@@ -401,7 +401,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     owner-id="ncr-2406-21"
     organization-id="org-demo"
     environment-id="env-prod"
-    :accepted-content-types="['image/png', 'image/jpeg']"
+    :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
     :max-files="6"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
@@ -423,7 +423,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     owner-id="ncr-2406-21"
     organization-id="org-demo"
     environment-id="env-prod"
-    :accepted-content-types="['image/png', 'image/jpeg']"
+    :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
     :max-files="6"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
@@ -451,6 +451,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     :accepted-content-types="[
       'application/pdf',
       'image/png',
+      'image/svg+xml',
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     ]"
     :max-files="8"
@@ -485,6 +486,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
       :accepted-content-types="[
         'application/pdf',
         'image/png',
+        'image/svg+xml',
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       ]"
       :max-files="8"
@@ -510,7 +512,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     owner-id="eqp-press-07"
     organization-id="org-demo"
     environment-id="env-prod"
-    :accepted-content-types="['image/png', 'image/jpeg']"
+    :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
     :max-files="4"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
@@ -532,7 +534,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     owner-id="eqp-press-07"
     organization-id="org-demo"
     environment-id="env-prod"
-    :accepted-content-types="['image/png', 'image/jpeg']"
+    :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
     :max-files="4"
     :create-upload-session="createUploadSession"
     :complete-upload-session="completeUploadSession"
