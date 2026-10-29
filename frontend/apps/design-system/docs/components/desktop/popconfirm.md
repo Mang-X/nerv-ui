@@ -3,12 +3,18 @@ title: NvPopconfirm 气泡确认
 ---
 
 <script setup>
-import { NvPopconfirm, NvButton, nvMessage } from '@nerv-iip/ui'
+import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
 </script>
 
 # NvPopconfirm 气泡确认
 
 行内危险操作或主操作的二次确认，气泡锚定在触发元素旁，比整页对话框更轻量。
+
+本页确认结果通过消息显示，两个示例共用一个 `NvNotifierHost`。接入应用时在根部挂载一次；已有 Host 时不要重复添加。
+
+<ClientOnly>
+  <NvNotifierHost />
+</ClientOnly>
 
 ## 危险操作
 
