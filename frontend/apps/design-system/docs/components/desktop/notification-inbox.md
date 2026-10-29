@@ -8,15 +8,23 @@ import { ref } from 'vue'
 const selected = ref(null)
 const items = ref([{ key: 'book', title: '预约书籍可以领取', summary: '请到服务台领取。', read: false, statuses: [{ label: '待领取', tone: 'info' }] }])
 function mark(item) { items.value = items.value.map(current => current.key === item.key ? { ...current, read: true } : current) }
+const refreshCount = ref(0)
+function refresh() {
+  items.value = items.value.map(item => ({ ...item }))
+  refreshCount.value += 1
+}
 </script>
 
 # NvNotificationInbox
 
 <Demo>
-  <NvNotificationInbox title="阅读消息" :items="items" v-model:selected-key="selected" @mark-read="mark" />
+  <NvNotificationInbox title="阅读消息" :items="items" v-model:selected-key="selected" @mark-read="mark" @refresh="refresh" />
+  <p role="status" class="w-full text-sm text-muted-foreground">
+    {{ refreshCount ? `阅读消息已刷新（第 ${refreshCount} 次）。` : '阅读消息已就绪。' }}
+  </p>
 </Demo>
 
-此例是同步内存宿主；异步接入须由宿主确认结果后更新记录。完整双领域示例源码为 `frontend/apps/playground/src/NotificationInboxDemo.vue`，入口 `/#notifications/library`、`/#notifications/studio`。
+此例是同步内存宿主；刷新重新读取当前内存快照，保留已读状态与所选详情，并显示本页刷新次数，不请求后台。异步接入须由宿主确认结果后更新记录。完整双领域示例源码为 `frontend/apps/playground/src/NotificationInboxDemo.vue`，入口 `/#notifications/library`、`/#notifications/studio`。
 
 ## API
 
