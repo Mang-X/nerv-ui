@@ -144,7 +144,11 @@ const fmtDur = (t) => Math.round((Date.parse(t.endUtc) - Date.parse(t.startUtc))
 
 ```vue
 <script setup lang="ts">
-import { ResourceSchedulerBoard, useSchedulingEdits, type ScheduleModel } from '@nerv-iip/scheduling'
+import {
+  ResourceSchedulerBoard,
+  useSchedulingEdits,
+  type ScheduleModel,
+} from '@nerv-iip/scheduling'
 import { ref } from 'vue'
 
 const props = defineProps<{ initial: ScheduleModel }>()
@@ -341,7 +345,12 @@ const { onTaskDragEnd: onDrag } = useSchedulingEdits(model)
 
 ```vue
 <script setup lang="ts">
-import { useSchedulingEdits, factoryTimeInput, factoryTimeInstant, ResourceSchedulerBoard } from '@nerv-iip/scheduling'
+import {
+  useSchedulingEdits,
+  factoryTimeInput,
+  factoryTimeInstant,
+  ResourceSchedulerBoard,
+} from '@nerv-iip/scheduling'
 import { computed, ref } from 'vue'
 
 const model = ref(toModel(plan))
@@ -374,7 +383,9 @@ function setResource(rid: string) {
     resourceId: rid,
     workCenterId: rid,
     dimensions: { ...t.dimensions, workCenter: { id: rid, label: rid } },
-    unassignedDimensions: (t.unassignedDimensions ?? []).filter((dimension) => dimension !== 'workCenter'),
+    unassignedDimensions: (t.unassignedDimensions ?? []).filter(
+      (dimension) => dimension !== 'workCenter',
+    ),
   }))
 }
 </script>

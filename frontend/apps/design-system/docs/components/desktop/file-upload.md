@@ -554,14 +554,14 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 
 ## 暴露方法
 
-| 方法                       | 用途                                      |
-| -------------------------- | ----------------------------------------- |
-| `addFiles(files)`          | 从外部文件选择器、粘贴或业务模板加入队列  |
-| `uploadQueued()`           | 上传所有 queued 行                        |
-| `pauseAll() / resumeAll()` | 暂停或恢复上传中的行                      |
+| 方法                       | 用途                                         |
+| -------------------------- | -------------------------------------------- |
+| `addFiles(files)`          | 从外部文件选择器、粘贴或业务模板加入队列     |
+| `uploadQueued()`           | 上传所有 queued 行                           |
+| `pauseAll() / resumeAll()` | 暂停或恢复上传中的行                         |
 | `retryFailed()`            | 重试失败行；与单行重试一致，过期会话重新创建 |
-| `clear()`                  | 清空队列，不发出 synthetic completed 事件 |
-| `browse()`                 | 打开原生文件选择器                        |
+| `clear()`                  | 清空队列，不发出 synthetic completed 事件    |
+| `browse()`                 | 打开原生文件选择器                           |
 
 ## 暴露状态
 
