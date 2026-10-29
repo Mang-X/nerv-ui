@@ -82,7 +82,7 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 .nv-shell-demo [data-slot='sidebar-wrapper'],
 .nv-shell-demo .group\/sidebar-wrapper { min-height: 0 !important; height: 100% !important; }
 /* 固定定位的侧栏容器原为 h-svh（整屏高），收进预览框高度 */
-.nv-shell-demo [data-slot='sidebar-container'] { height: 100% !important; }
+.nv-shell-demo [data-slot='nv-sidebar-container'] { height: 100% !important; }
 </style>
 
 ```vue
