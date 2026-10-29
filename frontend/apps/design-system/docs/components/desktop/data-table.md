@@ -349,7 +349,7 @@ const pageSize = ref(10)
 
 `TableCaption`、`TableFooter` 和 `TableEmpty` 均来自主桶 `@nerv-iip/ui`。空行的 `colspan` 与三列表头使用同一列数组；这与上方 `NvDataTable` 的内建空态是两种组合。数量右对齐，最多三位小数；单位单列弱化显示，不参与数量格式化。
 
-窄屏可先用 Tab 聚焦物品清单滚动区域，再用方向键横向查看末列。按钮支持 Tab 聚焦及 Enter/Space 激活。
+窄屏可先用 Tab 聚焦物品清单的实际滚动容器，再用左右方向键横向查看末列；外层边框不额外加入 Tab 顺序。按钮支持 Tab 聚焦及 Enter/Space 激活。
 
 ### 组合源码
 

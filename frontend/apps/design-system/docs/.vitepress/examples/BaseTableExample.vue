@@ -34,13 +34,13 @@ const formatQuantity = (value: number) =>
       >
       <NvButton variant="outline" @click="hasRecords = true">恢复本页记录</NvButton>
     </div>
-    <div
-      role="region"
-      aria-label="物品清单，可横向滚动查看单位列"
-      tabindex="0"
-      class="max-w-full overflow-x-auto rounded-md border focus-visible:outline-2 focus-visible:outline-ring"
-    >
-      <Table class="min-w-[30rem]">
+    <div class="max-w-full rounded-md border">
+      <Table
+        role="region"
+        aria-label="物品清单，可横向滚动查看单位列"
+        tabindex="0"
+        class="min-w-[30rem]"
+      >
         <TableCaption>物品清单 · 当前 {{ records.length }} 条</TableCaption>
         <TableHeader>
           <TableRow>
