@@ -16,6 +16,8 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 
 控制台页面的标准外壳区块：组合 `@nerv-iip/ui` 稳定导出的 `Sidebar` 系统（可折叠 / `NvSidebarRail` / 移动抽屉）、inset 内容区与顶部栏。搭建控制台页面应从它起步，而不是手工拼装分区组件。侧栏导航用 `SidebarGroup` / `SidebarMenu` / `SidebarMenuButton` 组织。
 
+本页“控制台”面包屑返回文档首页，当前“工单总览”保持不可点击；此处不连接真实业务控制台。
+
 ## 完整外壳
 
 <Demo>
@@ -53,7 +55,7 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
     <template #header>
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem><BreadcrumbLink href="#">控制台</BreadcrumbLink></BreadcrumbItem>
+          <BreadcrumbItem><BreadcrumbLink href="/">控制台</BreadcrumbLink></BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem><BreadcrumbPage>工单总览</BreadcrumbPage></BreadcrumbItem>
         </BreadcrumbList>
@@ -106,7 +108,15 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
       </SidebarMenuItem>
     </SidebarMenu>
   </template>
-  <template #header><Breadcrumb>…</Breadcrumb></template>
+  <template #header>
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem><BreadcrumbLink href="/">控制台</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem><BreadcrumbPage>工单总览</BreadcrumbPage></BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  </template>
 
   <!-- 主内容（default slot） -->
 </NvAppShellInset>
