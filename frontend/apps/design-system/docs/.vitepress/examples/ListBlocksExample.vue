@@ -17,6 +17,15 @@ const records = ref([
   { id: 'easel', name: '画架', quantity: null },
   { id: 'box', name: '空盒', quantity: 0 },
 ])
+const initialCount = records.value.length
+const countTrend = computed(() => {
+  const difference = records.value.length - initialCount
+  return {
+    value: difference === 0 ? '持平' : `${difference > 0 ? '+' : ''}${difference}`,
+    direction:
+      difference === 0 ? ('flat' as const) : difference > 0 ? ('up' as const) : ('down' as const),
+  }
+})
 const filtered = computed(() => records.value.filter((r) => r.name.includes(search.value.trim())))
 const receipt = ref('操作仅在本页展示，不更改物品。')
 const format = (n: number | null) =>
@@ -58,7 +67,8 @@ function replace() {
       <NvSectionCard
         description="当前物品"
         :value="`${records.length}`"
-        hint="数量单位：件；完整清单，不随搜索变化"
+        :trend="countTrend"
+        hint="数量单位：件；与初始清单比较，不随搜索变化"
       />
       <NvSectionCard description="待整理" value="0" hint="数量单位：件；当前没有待整理物品" />
       <NvSectionCard description="待核实数量" value="—" hint="尚未核实，不计为零" />
