@@ -42,6 +42,7 @@ const forwarded = useForwardProps(reactiveOmit(props, 'class'))
    is the centred flex slot, so there is no horizontal slide. */
   .nv-nav-viewport {
     width: var(--reka-navigation-menu-viewport-width);
+    max-width: calc(100vw - 2rem);
     height: var(--reka-navigation-menu-viewport-height);
     transition:
       width 0.3s var(--nv-ease-out-expo, ease-out),

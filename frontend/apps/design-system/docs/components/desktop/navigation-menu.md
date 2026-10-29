@@ -39,7 +39,7 @@ import {
       <NvNavigationMenuItem>
         <NvNavigationMenuTrigger>生产</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
-          <ul class="grid w-[420px] grid-cols-2 gap-1">
+          <ul class="grid w-[420px] max-w-full grid-cols-1 gap-1 sm:grid-cols-2">
             <li>
               <NvNavigationMenuLink href="#">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
@@ -78,7 +78,7 @@ import {
       <NvNavigationMenuItem>
         <NvNavigationMenuTrigger>设备</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
-          <ul class="grid w-[320px] gap-1">
+          <ul class="grid w-[320px] max-w-full gap-1">
             <li>
               <NvNavigationMenuLink href="#">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
@@ -101,7 +101,7 @@ import {
       <NvNavigationMenuItem>
         <NvNavigationMenuTrigger>质量</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
-          <ul class="grid w-[320px] gap-1">
+          <ul class="grid w-[320px] max-w-full gap-1">
             <li>
               <NvNavigationMenuLink href="#">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
@@ -139,7 +139,7 @@ import {
     <NvNavigationMenuItem>
       <NvNavigationMenuTrigger>生产</NvNavigationMenuTrigger>
       <NvNavigationMenuContent>
-        <ul class="grid w-[420px] grid-cols-2 gap-1">
+        <ul class="grid w-[420px] max-w-full grid-cols-1 gap-1 sm:grid-cols-2">
           <li>
             <NvNavigationMenuLink href="/work-orders">
               <div class="text-sm font-medium text-foreground">工单</div>
@@ -160,6 +160,11 @@ import {
   </NvNavigationMenuList>
 </NvNavigationMenu>
 ```
+
+共享视口中的内容按内在宽度测量，并为屏幕两侧各保留 `1rem`。网格通过
+`max-w-full` 随内容区收窄，生产入口在窄屏单列、`sm` 起恢复桌面双列；
+设备与质量保留单列。自定义内容也应允许换行、收缩，避免固定子元素超出内容区。
+关闭内置视口（`viewport=false`）时仍沿用原有的内容布局方式。
 
 ## 组成
 
