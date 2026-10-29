@@ -7,6 +7,7 @@ PDF、Word、PowerPoint 和 Excel 预览都在统一工具栏内提供快速定�
 <script setup>
 import { FilePreview } from '@nerv-iip/ui/file-preview'
 import { ref } from 'vue'
+import PdfPagesExample from '../../.vitepress/examples/PdfPagesExample.vue'
 
 const openedSource = ref('')
 function onOpenSource(src) {
@@ -117,6 +118,18 @@ function onOpenSource(src: string) {
   </p>
 </template>
 ```
+
+### 多页 PDF 导航
+
+以下样本包含三个内容不同的页面，可使用上一页、下一页和页码下拉切换。
+样本原样复用本仓库 playground 的本地合成资料；原单页 PDF 示例保持不变。
+窄屏在预览区域内横向滚动，站点正文不随工具栏撑宽。
+
+<Demo title="多页 PDF 导航" block>
+  <PdfPagesExample />
+</Demo>
+
+<<< @/.vitepress/examples/PdfPagesExample.vue
 
 ### Word / DOCX 预览
 
