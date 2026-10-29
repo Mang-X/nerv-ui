@@ -1172,24 +1172,38 @@ const progress = computed(
               <NvStatusBadge :value="String(value)" :pulse="value === 'running'" />
             </template>
             <template #bulk-actions>
-              <NvButton variant="outline" size="sm">导出所选</NvButton>
+              <NvButton
+                variant="outline"
+                size="sm"
+                @click="nvMessage.info(`已选择导出 ${tableSelected.length} 张工单`)"
+                >导出所选</NvButton
+              >
               <NvPopconfirm
                 :title="`确认作废选中的 ${tableSelected.length} 张工单？`"
                 description="作废后不可恢复，已领用物料需手动退库。"
                 confirm-text="作废"
-                @confirm="nvMessage.error('已作废所选工单')"
+                @confirm="nvMessage.info(`已选择作废 ${tableSelected.length} 张工单`)"
               >
                 <NvButton variant="outline" size="sm">作废</NvButton>
               </NvPopconfirm>
-              <NvButton variant="brand" size="sm">下发排产</NvButton>
+              <NvButton
+                variant="brand"
+                size="sm"
+                @click="nvMessage.info(`已选择下发 ${tableSelected.length} 张工单`)"
+                >下发排产</NvButton
+              >
             </template>
             <template #actions>
-              <NvButton variant="brand" size="sm">
+              <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择新建工单')">
                 <template #leading><PlusIcon /></template>
                 新建工单
               </NvButton>
             </template>
           </NvDataTable>
+
+          <p class="mt-3 text-sm text-muted-foreground">
+            本区操作显示选择回执，不会创建、作废、下发工单或执行文件导出、打印。
+          </p>
 
           <!-- 操作栏 NvToolbar（独立）-->
           <div class="mt-8 mb-3">
@@ -1212,18 +1226,18 @@ const progress = computed(
             show-density
             refreshable
             show-more
-            @refresh="nvMessage.info('正在刷新…')"
-            @export="nvMessage.success('已导出 CSV')"
-            @print="nvMessage.info('已发送到打印机')"
+            @refresh="nvMessage.info('已选择刷新工具栏列表')"
+            @export="nvMessage.info('已选择导出工具栏列表')"
+            @print="nvMessage.info('已选择打印工具栏列表')"
           >
             <template #filters>
-              <NvButton variant="outline" size="sm">
+              <NvButton variant="outline" size="sm" @click="nvMessage.info('已选择工具栏筛选')">
                 <template #leading><ListFilterIcon /></template>
                 筛选
               </NvButton>
             </template>
             <template #actions>
-              <NvButton variant="brand" size="sm">
+              <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择从工具栏新建工单')">
                 <template #leading><PlusIcon /></template>
                 新建工单
               </NvButton>
