@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { NvButton, NvBadge, NvDropdownMenuItem } from '@nerv-iip/ui'
 import NeutralShell from './NeutralShell.vue'
+import NeutralShellNavigation from './NeutralShellNavigation.vue'
 const props = defineProps<{ space: 'library' | 'studio' }>()
 const studio = props.space === 'studio'
 const title = studio ? '周末画室' : '晨光书房'
@@ -79,12 +80,16 @@ function replace() {
         >个人安排</NvDropdownMenuItem
       ></template
     >
-    <template #sidebar-footer
-      ><a href="#" class="p-2 underline">返回首页</a
-      ><a :href="studio ? '#shell/library' : '#shell/studio'" class="p-2 underline">{{
-        studio ? '晨光书房' : '周末画室'
-      }}</a></template
-    >
+    <template #sidebar-footer>
+      <NeutralShellNavigation>
+        <slot name="navigation">
+          <a href="#" class="p-2 underline">返回首页</a>
+          <a :href="studio ? '#shell/library' : '#shell/studio'" class="p-2 underline">{{
+            studio ? '晨光书房' : '周末画室'
+          }}</a>
+        </slot>
+      </NeutralShellNavigation>
+    </template>
     <h1 class="text-xl font-semibold">{{ current }}</h1>
     <NvBadge variant="neutral">{{ user ? '自在浏览' : '期待再见' }}</NvBadge>
     <p role="status">{{ message }}</p>
