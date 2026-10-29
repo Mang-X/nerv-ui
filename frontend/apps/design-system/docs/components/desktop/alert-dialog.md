@@ -20,6 +20,11 @@ import { Trash2Icon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const alertOpen = ref(false)
+const deleteReceipt = ref('尚未选择删除工单')
+
+function confirmDelete() {
+  deleteReceipt.value = '已在本页选择删除 WO-2406-0431；未执行实际删除'
+}
 </script>
 
 # NvAlertDialog 警告对话框
@@ -62,7 +67,7 @@ const alertOpen = ref(false)
 
 ## 基础用法
 
-通过 `NvAlertDialogTrigger` 触发，`v-model:open` 双向绑定开关状态；点击「删除」执行确认逻辑后关闭。
+通过 `NvAlertDialogTrigger` 触发，`v-model:open` 双向绑定开关状态。本例点击「删除」只记录本页选择回执，Action 同步关闭；取消不更新已有回执。
 
 <Demo>
   <NvAlertDialog v-model:open="alertOpen">
@@ -76,16 +81,18 @@ const alertOpen = ref(false)
       <NvAlertDialogHeader>
         <NvAlertDialogTitle>确认删除工单</NvAlertDialogTitle>
         <NvAlertDialogDescription>
-          WO-2406-0431 删除后不可恢复，关联的领料单与排程记录将一并失效。请确认是否继续。
+          本地演示：确认只记录删除 WO-2406-0431 的选择，不删除工单，也不使领料单或排程记录失效。
         </NvAlertDialogDescription>
       </NvAlertDialogHeader>
       <NvAlertDialogFooter>
         <NvAlertDialogCancel>取消</NvAlertDialogCancel>
-        <NvAlertDialogAction variant="destructive" @click="alertOpen = false">删除</NvAlertDialogAction>
+        <NvAlertDialogAction variant="destructive" @click="confirmDelete">删除</NvAlertDialogAction>
       </NvAlertDialogFooter>
     </NvAlertDialogContent>
   </NvAlertDialog>
 </Demo>
+
+<p role="status" class="text-sm text-muted-foreground">{{ deleteReceipt }}</p>
 
 ```vue
 <script setup>
@@ -103,6 +110,11 @@ import {
 } from '@nerv-iip/ui'
 import { ref } from 'vue'
 const alertOpen = ref(false)
+const deleteReceipt = ref('尚未选择删除工单')
+
+function confirmDelete() {
+  deleteReceipt.value = '已在本页选择删除 WO-2406-0431；未执行实际删除'
+}
 </script>
 
 <template>
@@ -114,18 +126,17 @@ const alertOpen = ref(false)
       <NvAlertDialogHeader>
         <NvAlertDialogTitle>确认删除工单</NvAlertDialogTitle>
         <NvAlertDialogDescription
-          >WO-2406-0431
-          删除后不可恢复，关联的领料单与排程记录将一并失效。请确认是否继续。</NvAlertDialogDescription
+          >本地演示：确认只记录删除 WO-2406-0431
+          的选择，不删除工单，也不使领料单或排程记录失效。</NvAlertDialogDescription
         >
       </NvAlertDialogHeader>
       <NvAlertDialogFooter>
         <NvAlertDialogCancel>取消</NvAlertDialogCancel>
-        <NvAlertDialogAction variant="destructive" @click="alertOpen = false"
-          >删除</NvAlertDialogAction
-        >
+        <NvAlertDialogAction variant="destructive" @click="confirmDelete">删除</NvAlertDialogAction>
       </NvAlertDialogFooter>
     </NvAlertDialogContent>
   </NvAlertDialog>
+  <p role="status" class="text-sm text-muted-foreground">{{ deleteReceipt }}</p>
 </template>
 ```
 
