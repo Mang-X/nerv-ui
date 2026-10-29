@@ -92,7 +92,7 @@ const host = computed<DirectoryHost>(() => {
 </script>
 <template>
   <main class="mx-auto max-w-5xl space-y-6 p-6">
-    <a href="#">返回工作空间</a>
+    <slot name="back"><a href="#">返回工作空间</a></slot>
     <h1 class="text-2xl font-semibold tracking-tight">找一处好时光</h1>
     <p class="text-sm text-muted-foreground">
       选择分区，查找空间并阅读开放记录。添加的条目保留在本页。
