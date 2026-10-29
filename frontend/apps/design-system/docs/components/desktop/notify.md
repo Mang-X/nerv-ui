@@ -36,12 +36,15 @@ function fireNotification(kind) {
 
 > 应用入口处放置 `<NvNotifierHost />`，本页示例已内置。
 
+<ClientOnly>
+  <NvNotifierHost />
+</ClientOnly>
+
 ## 轻提示 Message
 
 `nvMessage.{info|success|warning|error}(标题)`，适合无需详述的即时结果。
 
 <Demo>
-  <NvNotifierHost />
   <div class="flex flex-wrap gap-2">
     <NvButton size="sm" variant="outline" @click="fireMessage('success')">成功</NvButton>
     <NvButton size="sm" variant="outline" @click="fireMessage('info')">信息</NvButton>
@@ -67,7 +70,6 @@ import { nvMessage } from '@nerv-iip/ui'
 `nvNotification.{info|success|warning|error}(标题, { description })`，右上角卡片，适合带上下文的异步结果。
 
 <Demo>
-  <NvNotifierHost />
   <div class="flex flex-wrap gap-2">
     <NvButton size="sm" variant="outline" @click="fireNotification('success')">成功</NvButton>
     <NvButton size="sm" variant="outline" @click="fireNotification('info')">信息</NvButton>
