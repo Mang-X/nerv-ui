@@ -5,6 +5,16 @@ import { schedulingVendorStyles } from '@nerv-iip/scheduling/vite'
 import llmstxt from 'vitepress-plugin-llms'
 import { repositoryLink } from './repositoryLinks'
 
+// CSS extraction can place scoped SFC layers before the theme's order statement.
+// Register the intended order in HTML before any stylesheet, in dev and built pages.
+function registerCssLayers(html: string) {
+  if (html.includes('<style data-docs-layer-order>')) return html
+  return html.replace(
+    '<head>',
+    '<head><style data-docs-layer-order>@layer theme, nv-tokens, base, components, nv-components;</style>',
+  )
+}
+
 // 一体机 / 工位触控侧栏 —— 复用给 /components/touch 与 /components/board（工位看板完整示例）。
 const touchSidebar = [
   {
@@ -38,6 +48,7 @@ export default defineConfig({
   title: 'Nerv-IIP 设计系统',
   description: '数字工厂控制平面 · 统一设计系统：设计哲学、设计令牌与组件展示',
   lang: 'zh-CN',
+  transformHtml: registerCssLayers,
   markdown: {
     config(md) {
       md.core.ruler.after('inline', 'repository-source-links', (state) => {
@@ -427,7 +438,16 @@ export default defineConfig({
     // <script setup> 与 <Demo> 脚手架，属性表与代码围栏保留——变体事实由属性表承载。
     // 站点转多语言后须加 ignoreFiles 排除非默认 locale：插件只产一份根 llms.txt，
     // 会把所有 locale 混排进同一张目录（见 #1889 实测）。
-    plugins: [schedulingVendorStyles(), wasm(), tailwindcss(), llmstxt()],
+    plugins: [
+      {
+        name: 'docs-css-layer-order',
+        transformIndexHtml: registerCssLayers,
+      },
+      schedulingVendorStyles(),
+      wasm(),
+      tailwindcss(),
+      llmstxt(),
+    ],
     css: {
       // ADR 0020 §4.2 — official style isolation. `postcssIsolateStyles` appends
       // `:not(:where(.vp-raw, .vp-raw *))` to VitePress's own reset selectors so
@@ -438,7 +458,14 @@ export default defineConfig({
       // (`<Demo>`/`<ScreenDemo>`/`<MobileDoc>` roots). Replaces the old per-case
       // `.vp-doc` counter-rules; the removed `revert-layer` hack stays removed.
       postcss: {
-        plugins: [postcssIsolateStyles({ includeFiles: [/base\.css/, /vp-doc\.css/] })],
+        plugins: [
+          postcssIsolateStyles({
+            includeFiles: [/base\.css/, /vp-doc\.css/],
+            // TimePicker candidates teleport to body, outside Demo's vp-raw root.
+            // Keep the exemption local to those columns; component styles own selection.
+            prefix: ':not(:where(.vp-raw, .vp-raw *, .nv-tp-col, .nv-tp-col *))',
+          }),
+        ],
       },
     },
     resolve: {

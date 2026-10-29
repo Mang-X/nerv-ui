@@ -1,13 +1,8 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-// IMPORTANT: import style.css BEFORE the .vue components below. Its first line
-// declares the cascade-layer order (`@layer theme, nv-tokens, base, components,
-// nv-components;`), and Vite injects CSS in module-evaluation order. If a component
-// SFC (`<style scoped> @layer nv-components {…}`) is evaluated first, `nv-components`
-// registers ahead of `base`, so Tailwind Preflight's `*{ padding: 0 }` (layer base)
-// beats every scoped-CSS component (NvMobileGrid / NvFab / bordered NvDescriptions /
-// pagination / dialog collapse to zero padding). Importing style.css first pins the
-// order. Do NOT move this below the component imports.
+// Keep the theme import before component modules for development injection.
+// config.mts also registers layer order before stylesheets in HTML: production
+// CSS extraction can reorder scoped SFC styles ahead of this source import.
 import './style.css'
 import '@nerv-iip/scheduling/vendor.css'
 import Demo from './Demo.vue'
