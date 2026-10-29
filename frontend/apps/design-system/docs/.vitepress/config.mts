@@ -438,7 +438,14 @@ export default defineConfig({
       // (`<Demo>`/`<ScreenDemo>`/`<MobileDoc>` roots). Replaces the old per-case
       // `.vp-doc` counter-rules; the removed `revert-layer` hack stays removed.
       postcss: {
-        plugins: [postcssIsolateStyles({ includeFiles: [/base\.css/, /vp-doc\.css/] })],
+        plugins: [
+          postcssIsolateStyles({
+            includeFiles: [/base\.css/, /vp-doc\.css/],
+            // TimePicker candidates teleport to body, outside Demo's vp-raw root.
+            // Keep the exemption local to those columns; component styles own selection.
+            prefix: ':not(:where(.vp-raw, .vp-raw *, .nv-tp-col, .nv-tp-col *))',
+          }),
+        ],
       },
     },
     resolve: {
