@@ -5,6 +5,7 @@ title: Chart 图表
 <script setup>
 import BaseChartExample from '../../.vitepress/examples/BaseChartExample.vue'
 import { NvAreaChart, NvLineChart, NvBarChart, NvDonutChart } from '@nerv-iip/ui'
+import { ref } from 'vue'
 
 const annotations = [{ id: 'review', axis: 'x', from: 1, to: 3, label: '查看周二至周四', tone: 'info' }]
 const points = [{ id: 'thu', index: 3, seriesKey: 'actual', label: '周四实际产量' }]
@@ -30,6 +31,17 @@ const planActualSeries = [
   { key: 'plan', label: '计划' },
   { key: 'actual', label: '实际' },
 ]
+
+const selectedPoint = ref('尚未选择定位点')
+
+function selectMarker(marker) {
+  const current = points.find((point) => point.id === marker.id)
+  if (!current) return
+  const row = planActual[current.index]
+  const series = planActualSeries.find((item) => item.key === current.seriesKey)
+  if (!row || !series) return
+  selectedPoint.value = `${current.label}：${row.day}，${series.label} ${row[current.seriesKey]} 件，计划 ${row.plan} 件。`
+}
 
 const outputByCenter = [
   { center: 'CNC-07', good: 412, scrap: 18 },
@@ -197,9 +209,64 @@ const statusMix = [
 
 ## 折线图范围与定位
 
+宿主在点击或键盘激活当前定位点后，从同一份当前数据读取系列与行，并在图下显示明细；初始尚未选择。不连接业务服务，也不自动跳转页面。
+
 <Demo>
-  <NvLineChart :data="planActual" x-key="day" :series="planActualSeries" :bands="annotations" :markers="points" value-suffix=" 件" />
+  <div class="w-full min-w-0">
+    <NvLineChart :data="planActual" x-key="day" :series="planActualSeries" :bands="annotations" :markers="points" value-suffix=" 件" @marker-click="selectMarker" />
+    <p role="status" class="mt-3 text-sm text-muted-foreground">{{ selectedPoint }}</p>
+  </div>
 </Demo>
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import { NvLineChart } from '@nerv-iip/ui'
+
+const planActual = [
+  { day: '周一', plan: 900, actual: 860 },
+  { day: '周二', plan: 950, actual: 980 },
+  { day: '周三', plan: 1000, actual: 940 },
+  { day: '周四', plan: 1000, actual: 1060 },
+  { day: '周五', plan: 1100, actual: 1020 },
+  { day: '周六', plan: 700, actual: 720 },
+]
+const planActualSeries = [
+  { key: 'plan', label: '计划' },
+  { key: 'actual', label: '实际' },
+]
+const annotations = [
+  { id: 'review', axis: 'x', from: 1, to: 3, label: '查看周二至周四', tone: 'info' },
+]
+const points = [{ id: 'thu', index: 3, seriesKey: 'actual', label: '周四实际产量' }]
+
+const selectedPoint = ref('尚未选择定位点')
+
+function selectMarker(marker) {
+  const current = points.find((point) => point.id === marker.id)
+  if (!current) return
+  const row = planActual[current.index]
+  const series = planActualSeries.find((item) => item.key === current.seriesKey)
+  if (!row || !series) return
+  selectedPoint.value = `${current.label}：${row.day}，${series.label} ${row[current.seriesKey]} 件，计划 ${row.plan} 件。`
+}
+</script>
+
+<template>
+  <div class="w-full min-w-0">
+    <NvLineChart
+      :data="planActual"
+      x-key="day"
+      :series="planActualSeries"
+      :bands="annotations"
+      :markers="points"
+      value-suffix=" 件"
+      @marker-click="selectMarker"
+    />
+    <p role="status" class="mt-3 text-sm text-muted-foreground">{{ selectedPoint }}</p>
+  </div>
+</template>
+```
 
 | 输入          | 合同                                                                                                                       | 默认     |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------- | -------- |
