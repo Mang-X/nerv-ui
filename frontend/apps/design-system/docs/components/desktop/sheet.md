@@ -28,6 +28,8 @@ const sheetOpen = ref(false)
 
 通过 `NvSheetTrigger` 触发，`v-model:open` 双向绑定开关状态。`NvSheetContent` 的 `side` 控制滑入方向，默认 `right`。
 
+右上角内置关闭按钮与正文内边距分开布局，并位于标题层上方；也可用底部取消按钮或 Esc 关闭。
+
 <Demo>
   <NvSheet v-model:open="sheetOpen">
     <NvSheetTrigger as-child>

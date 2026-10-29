@@ -51,11 +51,11 @@ describe('NvSheetContent 版式契约', () => {
    * 判定表全压在面板右缘上。根因是基类只有 `gap-4`，**一点水平 padding 都没有**，
    * 而 21 个调用点没有一个自己写 `px-*`——也就是说所有抽屉都两侧贴死。
    */
-  it('正文子元素带水平内边距，头尾排除在外（否则双重内边距且背景缩进）', async () => {
+  it('正文子元素带水平内边距，头尾与内置关闭按钮排除在外', async () => {
     await mountSheet()
     const classes = contentClasses()
     expect(classes).toContain(
-      '[&>*:not([data-slot=nv-sheet-header]):not([data-slot=nv-sheet-footer])]:px-4',
+      '[&>*:not([data-slot=nv-sheet-header]):not([data-slot=nv-sheet-footer]):not([data-slot=nv-sheet-close])]:px-4',
     )
   })
 
