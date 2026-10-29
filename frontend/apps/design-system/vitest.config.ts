@@ -38,6 +38,7 @@ export default defineConfig({
       'field-content-host.test.ts',
       'dropdown-menu-host.test.ts',
       'alert-dialog-host.test.ts',
+      'form-select-host.test.ts',
     ],
   },
 })
