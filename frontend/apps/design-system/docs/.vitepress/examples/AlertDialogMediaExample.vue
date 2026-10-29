@@ -45,7 +45,7 @@ const baseReceipt = ref('尚未确认')
               >一起阅读、交流与整理共享空间。请带上一本愿意分享的书，为其他读者留出通道。本次确认只记录在本页内存，刷新后不保留，不会删除或保存任何业务记录。</NvAlertDialogDescription
             >
           </NvAlertDialogHeader>
-          <NvAlertDialogFooter class="flex-wrap">
+          <NvAlertDialogFooter class="static flex-wrap">
             <NvAlertDialogCancel class="h-auto whitespace-normal"
               >暂不确认，继续阅读说明</NvAlertDialogCancel
             >
