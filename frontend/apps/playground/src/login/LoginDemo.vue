@@ -46,8 +46,10 @@ onBeforeUnmount(invalidate)
 <template>
   <main>
     <nav class="flex flex-wrap gap-3 p-4" aria-label="空间入口">
-      <a href="#login/library">晨光书房</a><a href="#login/studio">周末画室</a
-      ><a href="#">返回首页</a>
+      <slot name="navigation">
+        <a href="#login/library">晨光书房</a><a href="#login/studio">周末画室</a
+        ><a href="#">返回首页</a>
+      </slot>
     </nav>
     <div class="flex flex-wrap items-center gap-3 p-4">
       <label
