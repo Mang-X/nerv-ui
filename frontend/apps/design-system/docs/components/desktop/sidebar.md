@@ -3,6 +3,7 @@ title: Sidebar 侧栏
 ---
 
 <script setup>
+import SidebarPartsExample from '../../.vitepress/examples/SidebarPartsExample.vue'
 import { ref } from 'vue'
 import {
   SidebarProvider, NvSidebar, SidebarHeader, SidebarContent, SidebarFooter,
@@ -386,3 +387,22 @@ const todo = ref('待派工单')
   .nv-nv-scr-chevron, .nv-nv-scr-sub { transition: none; }
 }
 </style>
+
+
+## 分组内容与菜单等待态
+
+此局部组合从主桶消费 `SidebarGroupContent` 与 `SidebarMenuSkeleton`，无需整页侧栏或新增 provider。分组内容承载等待占位和本页菜单，等待期间不提供可点击导航；上方状态文字说明等待含义。
+
+<Demo>
+  <ClientOnly>
+    <SidebarPartsExample />
+  </ClientOnly>
+</Demo>
+
+“显示图标”可切换 `showIcon` 两态；“显示本页菜单”结束等待。选择收藏或阅读记录后，上方反馈当前菜单；再次等待再恢复时保留选择。所有操作仅改变本页内存状态，刷新重置，无网络请求。标准按钮支持 Tab 聚焦及 Enter/Space 激活，真实浏览器验证由独立席执行。
+
+`SidebarMenuSkeleton` 的宽度由 producer 的 `Math.random` 产生；本例通过文档消费侧 `ClientOnly` 避免服务端与客户端随机宽度不一致，不改基础组件。Sidebar 本体合同仍为 UNRESOLVED，不由此局部示例签署。
+
+### 同源学习代码
+
+<<< ../../.vitepress/examples/SidebarPartsExample.vue
