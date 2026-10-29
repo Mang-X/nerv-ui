@@ -3,7 +3,7 @@ title: NvCommand 命令面板
 ---
 
 <script setup>
-import { NvCommand, NvButton, nvMessage } from '@nerv-iip/ui'
+import { NvCommand, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
 import {
   ActivityIcon,
   GaugeIcon,
@@ -44,6 +44,12 @@ function onCommandSelect(item) {
 
 ## 基础用法
 
+选择命令后显示执行回执。应用根部需挂载一次 `NvNotifierHost`，本页使用独立的页面级 Host。
+
+<ClientOnly>
+  <NvNotifierHost />
+</ClientOnly>
+
 <Demo>
   <NvButton variant="ghost" size="sm" @click="cmdOpen = true">
     <template #leading><SearchIcon aria-hidden="true" /></template>
@@ -54,7 +60,7 @@ function onCommandSelect(item) {
 
 ```vue
 <script setup>
-import { NvCommand, NvButton, nvMessage } from '@nerv-iip/ui'
+import { NvCommand, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
 import { GaugeIcon, LayersIcon, PlusIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
@@ -86,6 +92,8 @@ function onCommandSelect(item) {
 </script>
 
 <template>
+  <!-- 应用根部只挂载一次；已有 Host 时不重复添加。 -->
+  <NvNotifierHost />
   <NvButton @click="cmdOpen = true">命令面板 ⌘K</NvButton>
   <NvCommand v-model:open="cmdOpen" :groups="cmdGroups" @select="onCommandSelect" />
 </template>
