@@ -25,3 +25,9 @@
 browser/HTTP/1440/390 亮暗/真实鼠标、Tab、方向键、Enter/线条位置与横竖对齐/document overflow 全部 UNRUN，留父独立席；runtime 数字 UNKNOWN。CI 空不是 PASS；packed/device/production 独立 UNRUN。旧应用接入退出 NOT_PLANNED。未委派、自审、runtime签署、ready、merge、close、watch 或更改父票。
 
 外部最小 raw/source/SHA 回读：`/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-29/t09-f21-implementation-r1/handoff.md`，不含 dist/deps。
+
+## R1 键盘说明收尾
+
+R1 真实横竖键盘核实公开 TabsList 缺省 loop=false；原文“默认循环”错误。仅将说明改为首尾不循环，移动跳过禁用项；显式 TabsList loop 才请求循环。示例/测试/producer不变，不把不循环改成新功能。R1原反例及历史FAIL保留；新文案最终build和真实剩余矩阵见独立复验。
+
+外部 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-29/t09-f21-loop-copy-fix/handoff.md` 保存对象、fresh精确2项及types/build；完整97旧结果仅有界继承。本页额外空行由格式器清理，无旧Nv正文改写。
