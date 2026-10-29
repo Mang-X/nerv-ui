@@ -28,6 +28,8 @@ const stepTime = ref()
 
 ## 分钟步长
 
+“此刻”使用当前小时，按步长取最近分钟；若取整超过本小时最后一个候选，使用最后候选，不跨到下一小时。例如 5 分钟步长在 14:58 或 14:59 取 14:55，1 分钟步长保持当前分钟。
+
 <Demo>
   <div style="max-width: 240px">
     <NvTimePicker v-model="stepTime" :minute-step="5" placeholder="按 5 分钟选择" />
