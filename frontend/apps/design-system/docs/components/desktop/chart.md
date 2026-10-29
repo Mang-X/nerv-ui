@@ -3,6 +3,7 @@ title: Chart 图表
 ---
 
 <script setup>
+import BaseChartExample from '../../.vitepress/examples/BaseChartExample.vue'
 import { NvAreaChart, NvLineChart, NvBarChart, NvDonutChart } from '@nerv-iip/ui'
 
 const annotations = [{ id: 'review', axis: 'x', from: 1, to: 3, label: '查看周二至周四', tone: 'info' }]
@@ -219,3 +220,19 @@ marker 绑定当前可见 series 的当前行数值；缺行、缺 series、空�
 可操作双宿主：`/#line-annotations/library` 与 `/#line-annotations/garden`。浏览器尺寸、轴文字实际测量和视觉对齐仍须独立验收。
 
 <!--@include: ../../../../../DESIGN/components/chart.md-->
+
+## 基础 Chart 容器、图例与提示
+
+<Demo>
+  <BaseChartExample />
+</Demo>
+
+三件均通过公开主桶消费。`ChartContainer` 接收 `config` 和 class，只布局并渲染 slot；不注入 config、不计算图形。`ChartLegendContent` 由宿主传入 `items`，`ChartTooltipContent` 只展示 slot。
+
+已有 NvBarChart 没有当前项选择事件；本例采用最小宿主布局，以原生 meter 表示相对数量、按钮选择当前项，不声称自动绑定图表 hover。点击或 Tab 聚焦条目即可查看下方常驻提示，Enter/Space 同样可选；提示不浮出容器。长名称完整换行，数字最多三位小数，零值保留。
+
+同一份本页数据派生图面、图例和提示；替换保留 key 对应身份并读取新值，失去当前 key 时明确显示未选择。隐藏不丢失数据，清空与恢复均同步派生内容。图例仅是说明，不承担选项操作。所有状态仅在本页内存中，刷新重置。
+
+### 同源学习代码
+
+<<< ../../.vitepress/examples/BaseChartExample.vue
