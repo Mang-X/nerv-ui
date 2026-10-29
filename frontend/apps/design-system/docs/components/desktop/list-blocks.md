@@ -24,4 +24,6 @@ import ListBlocksExample from '../../.vitepress/examples/ListBlocksExample.vue'
 
 搜索只改变可见列表；统计仍表示完整清单。`0` 是真实数量，`—` 表示尚未核实。数量最多三位小数、右对齐，单位与编号分别呈现。页头沿用组件的面包屑标题，正文使用页面标题字体。
 
+“当前物品”卡的趋势与初始清单数量比较，初始为“持平”；更换清单后同步显示差值。该趋势通过 `NvSectionCard` 实际渲染基础 `CardAction` 的头部布局，与品牌 `NvCardAction` 是不同组件。
+
 完整宿主源码见仓库 `frontend/apps/design-system/docs/.vitepress/examples/ListBlocksExample.vue`。需要完整导航外壳时参见[应用外壳](./dashboard.md)，需要排序分页表格时参见[数据表格](./data-table.md)。本页不替代这些既有示例。

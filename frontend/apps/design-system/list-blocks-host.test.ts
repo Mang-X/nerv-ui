@@ -1,7 +1,14 @@
 // @vitest-environment jsdom
 import { afterEach, expect, it } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
-import { NvPageHeader, NvToolbar, NvRowActions, NvSectionCard, NvSectionCards } from '@nerv-iip/ui'
+import {
+  CardAction,
+  NvPageHeader,
+  NvToolbar,
+  NvRowActions,
+  NvSectionCard,
+  NvSectionCards,
+} from '@nerv-iip/ui'
 import Example from './docs/.vitepress/examples/ListBlocksExample.vue'
 let page: VueWrapper
 afterEach(() => page?.unmount())
@@ -10,6 +17,18 @@ async function click(label: string) {
   expect(button, label).toBeDefined()
   await button!.trigger('click')
 }
+it('renders the base card action and keeps its count comparison current', async () => {
+  page = mount(Example)
+  const card = page.findAllComponents(NvSectionCard)[0]!
+  expect(card.getComponent(CardAction).get('[data-slot="card-action"]').text()).toBe('持平')
+  await page.get('[aria-label="搜索物品"]').setValue('空')
+  await click('倒序排列')
+  expect(card.getComponent(CardAction).text()).toBe('持平')
+  expect(card.props('value')).toBe('3')
+  await click('更换清单')
+  expect(card.props('value')).toBe('1')
+  expect(card.getComponent(CardAction).text()).toBe('-2')
+})
 it('renders public list blocks with zero unknown and responsive column choices', async () => {
   page = mount(Example)
   expect(page.getComponent(NvPageHeader).props('title')).toBe('共享物品')
