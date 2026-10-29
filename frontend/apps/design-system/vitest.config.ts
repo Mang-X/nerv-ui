@@ -34,6 +34,7 @@ export default defineConfig({
       'list-blocks-host.test.ts',
       'card-structure-host.test.ts',
       'empty-host.test.ts',
+      'base-table-host.test.ts',
       'avatar-host.test.ts',
       'popover-host.test.ts',
       'app-provider-host.test.ts',
