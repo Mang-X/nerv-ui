@@ -5,6 +5,7 @@ title: NvEntityPicker / NvCascadePicker 实体选择与级联选择
 <script setup>
 import { NvEntityPicker, NvCascadePicker, NvField, NvFieldLabel } from '@nerv-iip/ui'
 import { computed, ref } from 'vue'
+import EntityDialogExample from '../../.vitepress/examples/EntityDialogExample.vue'
 
 const material = ref('')
 const materialOptions = [
@@ -43,15 +44,17 @@ const scopeLevels = computed(() => [
 
 两个 `blocks/` 层的**选择类区块件**，都是"仅选不填"：把手输编码换成从主数据目录里挑。
 
-| 组件                            | 语义                               | 典型场景                                  |
-| ------------------------------- | ---------------------------------- | ----------------------------------------- |
-| **NvEntityPicker** 实体选择弹窗 | 按钮触发可搜索的实体选择**对话框** | 物料 / SKU / 质量特性等上百条的主数据目录 |
-| **NvCascadePicker** 级联选择器  | 一行多级依赖选择，上级变化清空下游 | 车间 → 产线 → 设备 的范围下钻             |
+| 组件                           | 语义                                 | 典型场景                          |
+| ------------------------------ | ------------------------------------ | --------------------------------- |
+| **NvEntityPicker** 实体选择器  | 默认可搜索的下拉，也可显式使用对话框 | 物料 / SKU / 质量特性等主数据目录 |
+| **NvCascadePicker** 级联选择器 | 一行多级依赖选择，上级变化清空下游   | 车间 → 产线 → 设备 的范围下钻     |
 
-## NvEntityPicker 实体选择弹窗
+## NvEntityPicker 实体选择器
 
-相比 [`NvSearchSelect`](/components/desktop/combobox) 的弹出列表，对话框给出更大的展示
-空间：每行展示**名称 + 编码 + 辅助信息**。`clearable` 时触发按钮出现清除叉。
+默认 `variant="dropdown"` 就地展开可搜索列表；需要更大展示空间时显式使用
+`variant="dialog"`。两种形态均展示**名称 + 编码 + 辅助信息**。
+`clearable` 时触发按钮出现清除叉；只需枚举值时可使用更轻的
+[`NvSearchSelect`](/components/desktop/combobox)。
 
 下拉里只放用户做选择要用的东西：不写数据来自哪个模块，也不报「共 N 条」。目录大到要服务端
 搜索时（`server-search` + `total-count`），结果多于当前列出的条目才在底部提示「输入关键字继续
@@ -95,6 +98,18 @@ const scopeLevels = computed(() => [
 字段下方有错误提示时，把提示的 id 传给 `aria-describedby`，组件会把它转发到触发按钮上，读屏
 在这个字段上能念到错误。它必须作为组件属性传入：组件的根节点不是 DOM 元素，写在外层包装上的同名
 属性不会落到按钮上。
+
+### 对话框形态
+
+此例显式使用 `variant="dialog"`，与上方默认下拉持有各自的选择值。可按名称或编码搜索，
+选择后在本页显示当前名称与编码；关闭或按 Escape 不改变已选值，清除后回到未选。
+示例使用本地候选，不提交业务变更。
+
+<Demo block>
+  <EntityDialogExample />
+</Demo>
+
+<<< @/.vitepress/examples/EntityDialogExample.vue
 
 ### 就地新增
 
