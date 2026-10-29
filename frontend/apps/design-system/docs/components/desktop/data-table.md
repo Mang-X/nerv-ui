@@ -79,7 +79,7 @@ const pageSize = ref(10)
 
 ## 完整表格
 
-本页刷新、重试和导出按钮的消息共用一个 `NvNotifierHost`，只展示操作回执。接入应用时在根部挂载一次；已有 Host 时不要重复添加。
+本页操作消息共用一个 `NvNotifierHost`，只展示刷新、重试、导出、打印等操作回执，不执行真实业务或生成文件。接入应用时在根部挂载一次；已有 Host 时不要重复添加。
 
 <ClientOnly>
   <NvNotifierHost />
@@ -105,11 +105,11 @@ const pageSize = ref(10)
       <NvStatusBadge :value="String(value)" :pulse="value === 'running'" />
     </template>
     <template #bulk-actions>
-      <NvButton variant="outline" size="sm">导出所选</NvButton>
-      <NvButton variant="brand" size="sm">下发排产</NvButton>
+      <NvButton variant="outline" size="sm" @click="nvMessage.info(`导出范围：${selected.length} 张已选工单`)">导出所选</NvButton>
+      <NvButton variant="brand" size="sm" @click="nvMessage.info(`下发范围：${selected.length} 张已选工单`)">下发排产</NvButton>
     </template>
     <template #actions>
-      <NvButton variant="brand" size="sm">
+      <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择表格页新建工单')">
         <template #leading><PlusIcon /></template>
         新建工单
       </NvButton>
@@ -219,15 +219,16 @@ const pageSize = ref(10)
     show-more
     @refresh="nvMessage.info('正在刷新…')"
     @export="nvMessage.success('已导出 CSV')"
+    @print="nvMessage.info('已选择打印当前工单列表')"
   >
     <template #filters>
-      <NvButton variant="outline" size="sm">
+      <NvButton variant="outline" size="sm" @click="nvMessage.info('已选择工具栏筛选工单')">
         <template #leading><ListFilterIcon /></template>
         筛选
       </NvButton>
     </template>
     <template #actions>
-      <NvButton variant="brand" size="sm">
+      <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择工具栏新建工单')">
         <template #leading><PlusIcon /></template>
         新建工单
       </NvButton>
@@ -246,6 +247,8 @@ const pageSize = ref(10)
   searchable
   show-density
   refreshable
+  show-more
+  @print="nvMessage.info('已选择打印当前工单列表')"
 />
 ```
 
