@@ -42,16 +42,16 @@ Node `v24.18.0`；固定入口：
 `node /Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs`（11.22.0）。
 下列命令均以该入口调用，全部 exit 0；完整命令/原始输出见外部 handoff/raw。
 
-| cwd（相对仓库） | 命令/证据 | 实际结果 |
-| --- | --- | --- |
-| `frontend/packages/ui` | `exec vp test run`，ui-primitives / nvui-naming / blocks / design-system / design-docs / nvui-doc-coverage / docs-layout 七文件 | 7 文件、287/287 |
-| `frontend/apps/design-system` | `exec vitest run --config vitest.config.ts` | 27 文件、101/101 |
-| `frontend` | `--filter @nerv-iip/ui typecheck` | PASS |
-| `frontend` | `docs:typecheck` | PASS |
-| `frontend` | `docs:build` | client/server/render 完成，33.23s |
-| `frontend` | `exec vp lint packages/ui/src/components/pc/navigation-menu apps/design-system/docs/components/desktop/navigation-menu.md` | PASS |
-| `frontend` | `exec vp fmt --check packages/ui/src/components/pc/navigation-menu apps/design-system` | 全部 281 文件 PASS，包含整 docs 格式门禁 |
-| 仓库 | `git diff --check`、基线与当前 Markdown 路径比较、菜单文字计数、源码副本 byte readback | PASS；183/183 页路径保留 |
+| cwd（相对仓库）               | 命令/证据                                                                                                                       | 实际结果                                 |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| `frontend/packages/ui`        | `exec vp test run`，ui-primitives / nvui-naming / blocks / design-system / design-docs / nvui-doc-coverage / docs-layout 七文件 | 7 文件、287/287                          |
+| `frontend/apps/design-system` | `exec vitest run --config vitest.config.ts`                                                                                     | 27 文件、101/101                         |
+| `frontend`                    | `--filter @nerv-iip/ui typecheck`                                                                                               | PASS                                     |
+| `frontend`                    | `docs:typecheck`                                                                                                                | PASS                                     |
+| `frontend`                    | `docs:build`                                                                                                                    | client/server/render 完成，33.23s        |
+| `frontend`                    | `exec vp lint packages/ui/src/components/pc/navigation-menu apps/design-system/docs/components/desktop/navigation-menu.md`      | PASS                                     |
+| `frontend`                    | `exec vp fmt --check packages/ui/src/components/pc/navigation-menu apps/design-system`                                          | 全部 281 文件 PASS，包含整 docs 格式门禁 |
+| 仓库                          | `git diff --check`、基线与当前 Markdown 路径比较、菜单文字计数、源码副本 byte readback                                          | PASS；183/183 页路径保留                 |
 
 两份 JSON 报告 success=true、failed/pending tests=0；runtime/unhandled 独立数字字段缺失，
 均为 UNKNOWN，不推导成 0。日志保留 `Could not parse CSS stylesheet`、Rollup PURE 注解和
