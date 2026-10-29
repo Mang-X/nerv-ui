@@ -25,6 +25,7 @@ export default defineConfig({
     environment: 'node',
     include: [
       'docs.contract.test.ts',
+      'filter-bar-host.test.ts',
       'scheduling-live.contract.test.ts',
       'scheduling-host.test.ts',
       'snapshot-comparison-host.test.ts',
