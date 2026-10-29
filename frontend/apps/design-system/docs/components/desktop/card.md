@@ -55,35 +55,61 @@ import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
 
 ## 可交互
 
-加 `interactive`，悬停时整卡轻微上浮，用于可点击的卡片入口。
+`interactive` 只提供悬停上浮外观；导航由宿主使用原生链接接纳。本例点击卡片或聚焦后按 Enter，跳至本页对应工单的只读详情，不连接业务服务。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2">
-    <NvCard interactive class="p-5">
-      <div class="flex items-start justify-between gap-3">
-        <div>
-          <div class="text-sm font-semibold text-foreground">液压阀体 V3</div>
-          <div class="mt-0.5 font-mono text-xs text-muted-foreground">WO-2406-0426</div>
+    <a href="#card-order-0426" class="block rounded-xl text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring">
+      <NvCard interactive class="h-full p-5">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="text-sm font-semibold text-foreground">液压阀体 V3</div>
+            <div class="mt-0.5 font-mono text-xs text-muted-foreground">WO-2406-0426</div>
+          </div>
+          <NvBadge variant="brand">进行中</NvBadge>
         </div>
-        <NvBadge variant="brand">进行中</NvBadge>
-      </div>
-      <div class="mt-4 text-sm text-muted-foreground">点击进入工单详情 →</div>
-    </NvCard>
-    <NvCard interactive class="p-5">
-      <div class="flex items-start justify-between gap-3">
-        <div>
-          <div class="text-sm font-semibold text-foreground">电机定子叠片</div>
-          <div class="mt-0.5 font-mono text-xs text-muted-foreground">WO-2406-0430</div>
+        <div class="mt-4 text-sm text-muted-foreground">查看本页工单详情 →</div>
+      </NvCard>
+    </a>
+    <a href="#card-order-0430" class="block rounded-xl text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring">
+      <NvCard interactive class="h-full p-5">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="text-sm font-semibold text-foreground">电机定子叠片</div>
+            <div class="mt-0.5 font-mono text-xs text-muted-foreground">WO-2406-0430</div>
+          </div>
+          <NvBadge variant="success">已完成</NvBadge>
         </div>
-        <NvBadge variant="success">已完成</NvBadge>
-      </div>
-      <div class="mt-4 text-sm text-muted-foreground">5000 件 · 良率 99.2%。</div>
-    </NvCard>
+        <div class="mt-4 text-sm text-muted-foreground">5000 件 · 良率 99.2%。查看本页工单详情 →</div>
+      </NvCard>
+    </a>
   </div>
 </Demo>
 
+### 液压阀体工单详情 {#card-order-0426}
+
+工单 **WO-2406-0426**，产品 **液压阀体 V3**，当前状态：进行中。这里展示本页固定样例，不执行工单变更。
+
+### 电机定子工单详情 {#card-order-0430}
+
+工单 **WO-2406-0430**，产品 **电机定子叠片**，当前状态：已完成；数量 **5000 件**，良率 **99.2%**。这里展示本页固定样例，不执行工单变更。
+
+学习代码中，链接与对应详情目标由宿主一起提供；`NvCard` 本身不处理导航：
+
 ```vue
-<NvCard interactive class="p-5"><!-- 悬停上浮 --></NvCard>
+<a
+  href="#order-detail"
+  class="block rounded-xl text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+>
+  <NvCard interactive class="p-5">
+    <div class="text-sm font-semibold">液压阀体 V3 · WO-2406-0426</div>
+    <div class="text-sm text-muted-foreground">查看本页工单详情 →</div>
+  </NvCard>
+</a>
+<section id="order-detail" class="scroll-mt-20">
+  <h3>液压阀体工单详情</h3>
+  <p>工单 WO-2406-0426，产品液压阀体 V3，当前状态：进行中。</p>
+</section>
 ```
 
 ## 插槽组合
