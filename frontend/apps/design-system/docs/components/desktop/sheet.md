@@ -18,6 +18,12 @@ import { SlidersHorizontalIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const sheetOpen = ref(false)
+const applyReceipt = ref('尚未应用示例条件')
+
+function applyExampleFilters() {
+  sheetOpen.value = false
+  applyReceipt.value = '已在本页选择示例条件：A 线；待派发；2026-06-01 至 2026-06-30'
+}
 </script>
 
 # NvSheet 抽屉
@@ -28,7 +34,7 @@ const sheetOpen = ref(false)
 
 通过 `NvSheetTrigger` 触发，`v-model:open` 双向绑定开关状态。`NvSheetContent` 的 `side` 控制滑入方向，默认 `right`。
 
-右上角内置关闭按钮与正文内边距分开布局，并位于标题层上方；也可用底部取消按钮或 Esc 关闭。
+右上角内置关闭按钮与正文内边距分开布局，并位于标题层上方；也可用底部取消按钮或 Esc 关闭。本例条件不可编辑；只有“应用”更新回执，取消、Esc 或关闭保留此前结果。
 
 <Demo>
   <NvSheet v-model:open="sheetOpen">
@@ -42,32 +48,34 @@ const sheetOpen = ref(false)
       <NvSheetHeader>
         <NvSheetTitle>高级筛选</NvSheetTitle>
         <NvSheetDescription>
-          按产线、状态与时间范围筛选工单，结果实时刷新列表。
+          以下为固定只读条件，仅展示抽屉布局。应用后在本页显示条件回执，不筛选实际工单列表。
         </NvSheetDescription>
       </NvSheetHeader>
       <div class="flex flex-col gap-4 px-4">
         <div class="flex flex-col gap-1.5">
-          <label class="text-sm text-muted-foreground">产线</label>
-          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">A 线 / B 线 / C 线</div>
+          <span class="text-sm text-muted-foreground">产线</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">A 线</div>
         </div>
         <div class="flex flex-col gap-1.5">
-          <label class="text-sm text-muted-foreground">工单状态</label>
-          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">待派发 · 生产中 · 已完工</div>
+          <span class="text-sm text-muted-foreground">工单状态</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">待派发</div>
         </div>
         <div class="flex flex-col gap-1.5">
-          <label class="text-sm text-muted-foreground">计划完工日期</label>
-          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm tabular-nums">2406-01 ~ 2406-30</div>
+          <span class="text-sm text-muted-foreground">计划完工日期</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm tabular-nums">2026-06-01 至 2026-06-30</div>
         </div>
       </div>
       <NvSheetFooter>
         <NvSheetClose as-child>
           <NvButton variant="ghost">取消</NvButton>
         </NvSheetClose>
-        <NvButton variant="brand" @click="sheetOpen = false">应用</NvButton>
+        <NvButton variant="brand" @click="applyExampleFilters">应用</NvButton>
       </NvSheetFooter>
     </NvSheetContent>
   </NvSheet>
 </Demo>
+
+<p role="status" class="text-sm text-muted-foreground">{{ applyReceipt }}</p>
 
 ```vue
 <script setup>
@@ -84,6 +92,12 @@ import {
 } from '@nerv-iip/ui'
 import { ref } from 'vue'
 const sheetOpen = ref(false)
+const applyReceipt = ref('尚未应用示例条件')
+
+function applyExampleFilters() {
+  sheetOpen.value = false
+  applyReceipt.value = '已在本页选择示例条件：A 线；待派发；2026-06-01 至 2026-06-30'
+}
 </script>
 
 <template>
@@ -94,17 +108,33 @@ const sheetOpen = ref(false)
     <NvSheetContent side="right">
       <NvSheetHeader>
         <NvSheetTitle>高级筛选</NvSheetTitle>
-        <NvSheetDescription>按产线、状态与时间范围筛选工单，结果实时刷新列表。</NvSheetDescription>
+        <NvSheetDescription
+          >以下为固定只读条件，仅展示抽屉布局。应用后在本页显示条件回执，不筛选实际工单列表。</NvSheetDescription
+        >
       </NvSheetHeader>
       <div class="flex flex-col gap-4 px-4">
-        <!-- 表单字段 -->
+        <div class="flex flex-col gap-1.5">
+          <span class="text-sm text-muted-foreground">产线</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">A 线</div>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <span class="text-sm text-muted-foreground">工单状态</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">待派发</div>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <span class="text-sm text-muted-foreground">计划完工日期</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm tabular-nums">
+            2026-06-01 至 2026-06-30
+          </div>
+        </div>
       </div>
       <NvSheetFooter>
         <NvSheetClose as-child><NvButton variant="ghost">取消</NvButton></NvSheetClose>
-        <NvButton variant="brand" @click="sheetOpen = false">应用</NvButton>
+        <NvButton variant="brand" @click="applyExampleFilters">应用</NvButton>
       </NvSheetFooter>
     </NvSheetContent>
   </NvSheet>
+  <p role="status" class="text-sm text-muted-foreground">{{ applyReceipt }}</p>
 </template>
 ```
 
