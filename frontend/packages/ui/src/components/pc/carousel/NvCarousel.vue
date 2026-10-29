@@ -42,6 +42,7 @@ const dragging = ref(false)
 let startX = 0
 let startOffset = 0
 let down = false
+let hovered = false
 let timer: number | undefined
 
 function sync() {
@@ -103,7 +104,7 @@ function onUp() {
 
 function startAutoplay() {
   stopAutoplay()
-  if (!props.autoplay || count.value <= 1) return
+  if (hovered || down || !props.autoplay || count.value <= 1) return
   timer = window.setInterval(() => {
     if (active.value >= count.value - 1) {
       // loop wraps to the first slide; non-loop stops at the last slide — matches
@@ -119,6 +120,15 @@ function startAutoplay() {
 function stopAutoplay() {
   if (timer) window.clearInterval(timer)
   timer = undefined
+}
+
+function onEnter() {
+  hovered = true
+  stopAutoplay()
+}
+function onLeave() {
+  hovered = false
+  startAutoplay()
 }
 
 let ro: ResizeObserver | undefined
@@ -178,8 +188,8 @@ watch(() => props.autoplay, startAutoplay)
           $props.class,
         )
       "
-      @pointerenter="stopAutoplay"
-      @pointerleave="startAutoplay"
+      @pointerenter="onEnter"
+      @pointerleave="onLeave"
     >
       <div
         ref="trackEl"

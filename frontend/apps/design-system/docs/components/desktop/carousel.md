@@ -25,6 +25,8 @@ const orders = [
 
 `autoplay` 设置自动切换间隔（毫秒），`loop` 控制首尾循环。鼠标移入时暂停，箭头随悬停状态浮现。
 
+悬停期间点击、拖拽释放或更新数据不会恢复自动播放；指针离开且已释放后，按当前间隔继续播放。
+
 <Demo block>
   <NvCarousel :autoplay="3500" loop class="aspect-[21/9]">
     <div
