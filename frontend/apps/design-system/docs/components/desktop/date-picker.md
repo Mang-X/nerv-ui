@@ -72,13 +72,13 @@ const locale = ref('zh-CN')
 <Demo>
   <div style="display:flex;gap:12px;flex-wrap:wrap">
     <div style="max-width: 200px">
-      <NvDatePicker v-model="planDate" placeholder="选择日期" clearable class="w-full sm:w-44" />
+      <NvDatePicker v-model="planDate" placeholder="选择日期" clearable class="w-full sm:w-48" />
     </div>
   </div>
 </Demo>
 
 ```vue
-<NvDatePicker v-model="planDate" placeholder="选择日期" clearable class="w-full sm:w-44" />
+<NvDatePicker v-model="planDate" placeholder="选择日期" clearable class="w-full sm:w-48" />
 ```
 
 ## 日期范围 DateRangePicker
