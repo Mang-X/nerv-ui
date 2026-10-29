@@ -39,6 +39,7 @@ export default defineConfig({
       'sidebar-parts-host.test.ts',
       'base-dates-host.test.ts',
       'base-chart-host.test.ts',
+      'base-tabs-host.test.ts',
       'avatar-host.test.ts',
       'popover-host.test.ts',
       'app-provider-host.test.ts',
