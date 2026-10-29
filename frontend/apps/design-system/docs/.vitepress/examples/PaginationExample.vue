@@ -69,9 +69,7 @@ const pageCount = Math.ceil(records.length / itemsPerPage)
       <p>链接 1 返回上方受控结果，链接 2 定位本节；仅在本页定位，不切换结果页。</p>
       <nav aria-label="章节链接" class="flex flex-wrap gap-2">
         <PaginationLink href="#controlled-results" aria-label="1：受控结果">1</PaginationLink>
-        <PaginationLink href="#link-navigation" is-active aria-label="2：本页章节导航"
-          >2</PaginationLink
-        >
+        <PaginationLink href="#link-navigation" aria-label="2：本页章节导航">2</PaginationLink>
       </nav>
     </section>
   </div>

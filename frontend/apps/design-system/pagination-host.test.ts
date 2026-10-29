@@ -35,7 +35,7 @@ it('uses real local anchors separately from page buttons without nested controls
     '#controlled-results',
     '#link-navigation',
   ])
-  expect(links[1]!.attributes('aria-current')).toBe('page')
+  expect(links[1]!.attributes('aria-current')).toBeUndefined()
   expect(links[0]!.attributes('aria-current')).toBeUndefined()
   for (const link of links) expect(host.find(link.attributes('href')!).exists()).toBe(true)
   expect(host.find('button a, a button, button button, a a').exists()).toBe(false)

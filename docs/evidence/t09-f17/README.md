@@ -19,3 +19,9 @@
 ## 独立证据边界
 
 browser/HTTP/1440/390 亮暗/真实鼠标与 Tab/Enter：UNRUN，留父独立席；runtime 数字 UNKNOWN。CI 空不算 PASS；packed/device/production：UNRUN。旧应用接入退出：NOT_PLANNED。不自审、不 runtime 签署、不 ready/merge/close/watch/后继。
+
+## R1 链接当前态收尾
+
+R1 真实点击章节1后，章节2仍固定声明当前页。示例的两个链接实际是页内章节跳转，不代表结果页码，因此移除固定 isActive；不维护虚构的页码状态，不改 PaginationLink producer。受控分页按钮仍按当前结果页输出 aria-current。学习文案同步说明章节链接不声明当前结果页。
+
+`uses real local anchors separately from page buttons without nested controls` 改为两条章节链接都不输出 aria-current；旧实现 1 FAIL / 1 PASS，改后完整 docs 90/90 PASS。真实链接目标与键盘复验留独立席；原始日志保留于 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-29/t09-f17-anchor-current-fix/`。历史 FAIL/UNKNOWN 保留。
