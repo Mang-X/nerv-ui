@@ -221,7 +221,6 @@ marker 绑定当前可见 series 的当前行数值；缺行、缺 series、空�
 
 <!--@include: ../../../../../DESIGN/components/chart.md-->
 
-
 ## 基础 Chart 容器、图例与提示
 
 <Demo>
