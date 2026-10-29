@@ -8,11 +8,17 @@ import DirectoryDemo from '../../../../playground/src/directory-detail/Directory
 
 # 目录筛选与只读详情
 
-<Demo><DirectoryDemo /></Demo>
+<Demo>
+  <DirectoryDemo>
+    <template #back><a href="/">返回文档首页</a></template>
+  </DirectoryDemo>
+</Demo>
 
 <!--@include: ../../../../../DESIGN/components/directory-detail.md-->
 
 ## 宿主合同
+
+文档通过 `DirectoryDemo` 的 `back` 插槽提供返回文档首页的入口；playground 未传插槽时保留返回工作空间的默认链接。
 
 可运行源码为 `apps/playground/src/directory-detail`。`DirectoryHost` 提供 source、parents、entities、query、timeline 和可选 create；具体类型在同目录 `contract.ts`。query 接收筛选快照、从 1 开始的页码和每页数量，返回完整窗口及总数。timeline 返回 ready/items、forbidden/message 或 unlinked/message，抛错只显示安全文案和重试。
 
