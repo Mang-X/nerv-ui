@@ -6,6 +6,10 @@ title: NvMetricCard 指标卡
 import LocalMetricComparisonExample from '../../.vitepress/examples/localMetricComparisonExample.vue'
 import { NvMetricCard, NvMetricRing, NvMetricStrip } from '@nerv-iip/ui'
 import { WrenchIcon, CircleCheckIcon, ClockIcon, TriangleAlertIcon } from '@lucide/vue'
+import { ref } from 'vue'
+
+const actionFeedback = ref('请选择处理入口。')
+const facetFeedback = ref('请选择一个维度。')
 </script>
 
 # NvMetricCard 指标卡
@@ -211,26 +215,39 @@ import { WrenchIcon, CircleCheckIcon, ClockIcon, TriangleAlertIcon } from '@luci
 
 整卡按 `tone` 极淡浸染 + tone 化数值 + 底部处理入口。`action` 有 `href` 时渲染链接，否则触发 `action` 事件（路由交给调用方）。正常态收敛为中性卡面。
 
+本页在卡片下方显示所选入口，不执行真实业务操作；接入应用时由宿主完成导航或处理。
+
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
-    <NvMetricCard variant="alert" tone="danger" label="超期未完工" :value="6" unit="单" :status="{ label: '需处理', tone: 'danger' }" foot-start="最久已超期 3 天 · WO-2607-0214" :action="{ label: '去处理' }" />
-    <NvMetricCard variant="alert" tone="warning" label="临期库存批次" :value="16" unit="批" :status="{ label: '7 天内', tone: 'warning' }" foot-start="涉及 5 个物料 · 最近 07-26 到效期" :action="{ label: '查看批次' }" />
-    <NvMetricCard variant="alert" tone="success" label="未确认报警" :value="0" unit="条" :status="{ label: '正常', tone: 'success' }" foot-start="近 24h 已确认 14 条" :action="{ label: '报警记录' }" />
+    <NvMetricCard variant="alert" tone="danger" label="超期未完工" :value="6" unit="单" :status="{ label: '需处理', tone: 'danger' }" foot-start="最久已超期 3 天 · WO-2607-0214" :action="{ label: '去处理' }" @action="actionFeedback = '已选择：超期未完工'" />
+    <NvMetricCard variant="alert" tone="warning" label="临期库存批次" :value="16" unit="批" :status="{ label: '7 天内', tone: 'warning' }" foot-start="涉及 5 个物料 · 最近 07-26 到效期" :action="{ label: '查看批次' }" @action="actionFeedback = '已选择：临期库存批次'" />
+    <NvMetricCard variant="alert" tone="success" label="未确认报警" :value="0" unit="条" :status="{ label: '正常', tone: 'success' }" foot-start="近 24h 已确认 14 条" :action="{ label: '报警记录' }" @action="actionFeedback = '已选择：未确认报警'" />
   </div>
+  <p role="status" class="w-full text-sm text-muted-foreground">{{ actionFeedback }}</p>
 </Demo>
 
 ```vue
-<NvMetricCard
-  variant="alert"
-  tone="danger"
-  label="超期未完工"
-  :value="6"
-  unit="单"
-  :status="{ label: '需处理', tone: 'danger' }"
-  foot-start="最久已超期 3 天 · WO-2607-0214"
-  :action="{ label: '去处理' }"
-  @action="goToOverdueList"
-/>
+<script setup>
+import { ref } from 'vue'
+import { NvMetricCard } from '@nerv-iip/ui'
+
+const actionFeedback = ref('请选择处理入口。')
+</script>
+
+<template>
+  <NvMetricCard
+    variant="alert"
+    tone="danger"
+    label="超期未完工"
+    :value="6"
+    unit="单"
+    :status="{ label: '需处理', tone: 'danger' }"
+    foot-start="最久已超期 3 天 · WO-2607-0214"
+    :action="{ label: '去处理' }"
+    @action="actionFeedback = '已选择：超期未完工'"
+  />
+  <p role="status">{{ actionFeedback }}</p>
+</template>
 ```
 
 ## facets 维度拆解型
@@ -250,6 +267,7 @@ import { WrenchIcon, CircleCheckIcon, ClockIcon, TriangleAlertIcon } from '@luci
         { label: '半成品', value: 4 },
         { label: '成品', value: 3 },
       ]"
+      @facet="(facet) => facetFeedback = `已选择：待质检批次 / ${facet.label}`"
     />
     <NvMetricCard
       variant="facets"
@@ -262,8 +280,10 @@ import { WrenchIcon, CircleCheckIcon, ClockIcon, TriangleAlertIcon } from '@luci
         { label: '待机', value: 4 },
         { label: '断线', value: 4, tone: 'danger' },
       ]"
+      @facet="(facet) => facetFeedback = `已选择：在线设备 / ${facet.label}`"
     />
   </div>
+  <p role="status" class="w-full text-sm text-muted-foreground">{{ facetFeedback }}</p>
 </Demo>
 
 ## NvMetricRing 环形构成型
