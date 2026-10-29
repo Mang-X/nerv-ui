@@ -86,13 +86,15 @@ import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
   </div>
 </Demo>
 
-### 液压阀体工单详情 {#card-order-0426}
+<section id="card-order-0426" class="scroll-mt-20" aria-labelledby="card-order-0426-title">
+  <h3 id="card-order-0426-title">液压阀体工单详情</h3>
+  <p>工单 <strong>WO-2406-0426</strong>，产品 <strong>液压阀体 V3</strong>，当前状态：进行中。这里展示本页固定样例，不执行工单变更。</p>
+</section>
 
-工单 **WO-2406-0426**，产品 **液压阀体 V3**，当前状态：进行中。这里展示本页固定样例，不执行工单变更。
-
-### 电机定子工单详情 {#card-order-0430}
-
-工单 **WO-2406-0430**，产品 **电机定子叠片**，当前状态：已完成；数量 **5000 件**，良率 **99.2%**。这里展示本页固定样例，不执行工单变更。
+<section id="card-order-0430" class="scroll-mt-20" aria-labelledby="card-order-0430-title">
+  <h3 id="card-order-0430-title">电机定子工单详情</h3>
+  <p>工单 <strong>WO-2406-0430</strong>，产品 <strong>电机定子叠片</strong>，当前状态：已完成；数量 <strong>5000 件</strong>，良率 <strong>99.2%</strong>。这里展示本页固定样例，不执行工单变更。</p>
+</section>
 
 学习代码中，链接与对应详情目标由宿主一起提供；`NvCard` 本身不处理导航：
 
