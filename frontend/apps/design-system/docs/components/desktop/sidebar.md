@@ -3,6 +3,7 @@ title: Sidebar 侧栏
 ---
 
 <script setup>
+import BaseSidebarExample from '../../.vitepress/examples/BaseSidebarExample.vue'
 import SidebarPartsExample from '../../.vitepress/examples/SidebarPartsExample.vue'
 import { ref } from 'vue'
 import {
@@ -388,7 +389,6 @@ const todo = ref('待派工单')
 }
 </style>
 
-
 ## 分组内容与菜单等待态
 
 此局部组合从主桶消费 `SidebarGroupContent` 与 `SidebarMenuSkeleton`，无需整页侧栏或新增 provider。分组内容承载等待占位和本页菜单，等待期间不提供可点击导航；上方状态文字说明等待含义。
@@ -406,3 +406,17 @@ const todo = ref('待派工单')
 ### 同源学习代码
 
 <<< ../../.vitepress/examples/SidebarPartsExample.vue
+
+## 原版 Sidebar：固定、桌面折叠与移动抽屉
+
+这里直接使用主桶 `Sidebar`，与上面的 `NvSidebar` 分开演示。选择「固定侧栏」走 `collapsible="none"`，在移动宽度也保持固定；选择「可折叠侧栏」在桌面走 `icon` 分支，点击切换按钮折叠/展开，在 390px 走移动 Sheet。两种模式共用当前菜单记录，不穷举全部变体。
+
+`SidebarProvider` 的真实判断是 `useMediaQuery('(max-width: 768px)')`；`open` 控制桌面状态，`openMobile` 属于 context，不是 Provider 的根 v-model prop。主桶公开 `useSidebar`，也可由 Provider 内的宿主子组件使用；本例直接在 slot 使用公开 `SidebarTrigger` 切换移动状态，`aria-label` 经真实 fallthrough 覆盖按钮的可访问名称。
+
+原版移动内容隐藏了内置关闭按钮，本例额外提供「关闭阅读导航」按钮和可见说明；`NvSidebar` 的中文内置关闭和 header 留白属于品牌增强，不能归给原版。原版默认 `Toggle Sidebar`、`Sidebar`、`Displays the mobile sidebar.` 历史合同不改。Esc 关闭由当前 Sheet producer 处理；本例 opener 是 context Trigger 而非 SheetTrigger，真实键盘回焦与 resize 必须独立验证，不能从 DOM 模拟推定。
+
+桌面容器沿用本页 transform containing-block 隔离方式，约束固定侧栏高度，避免覆盖全站导航；移动 Sheet 仍通过原生 portal 呈现。以下 live 与学习源码来自同一文件，原 Nv 例和分组/骨架例保留。
+
+<Demo><BaseSidebarExample /></Demo>
+
+<<< @/.vitepress/examples/BaseSidebarExample.vue
