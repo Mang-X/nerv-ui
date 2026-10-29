@@ -8,9 +8,9 @@ import { ref } from 'vue'
 
 const device = ref('')
 const deviceSuggestions = [
-  { value: 'DEV-SMT-01', label: '贴片机 01' },
-  { value: 'DEV-SMT-02', label: '贴片机 02' },
-  { value: 'DEV-PRESS-01', label: '冲压机 01' },
+  { value: 'DEV-SMT-01', label: '贴片机 01', hint: 'DEV-SMT-01' },
+  { value: 'DEV-SMT-02', label: '贴片机 02', hint: 'DEV-SMT-02' },
+  { value: 'DEV-PRESS-01', label: '冲压机 01', hint: 'DEV-PRESS-01' },
 ]
 
 const technician = ref('')
@@ -34,7 +34,7 @@ const technicianOptions = [
 ## NvCombobox 输入联想框
 
 输入即过滤 `suggestions`；命中建议可一键填入，也可继续输入未在建议中的自定义值。
-仅在存在匹配建议时展开弹层，避免自由录入时反复弹出空态。
+仅在存在匹配建议时展开弹层，避免自由录入时反复弹出空态。本例将设备编号同时放入 `hint`，因此编号与名称都可用于检索。
 
 <Demo>
   <div style="max-width: 320px">
@@ -54,7 +54,7 @@ const technicianOptions = [
 ```vue
 <NvCombobox
   v-model="device"
-  :suggestions="[{ value: 'DEV-SMT-01', label: '贴片机 01' }]"
+  :suggestions="[{ value: 'DEV-SMT-01', label: '贴片机 01', hint: 'DEV-SMT-01' }]"
   placeholder="搜索设备台账或直接输入"
 />
 ```
