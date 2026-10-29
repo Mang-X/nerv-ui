@@ -6,6 +6,13 @@ title: NvApp 与 NvAppHeader 应用外壳
 import { NvAppHeader, NvButton } from '@nerv-iip/ui'
 import AppProviderExample from '../../.vitepress/examples/AppProviderExample.vue'
 import { BellIcon, SearchIcon } from '@lucide/vue'
+import { ref } from 'vue'
+
+const headerReceipt = ref('')
+let headerActionCount = 0
+function onHeaderAction(action) {
+  headerReceipt.value = `已选择${action}（第 ${++headerActionCount} 次）`
+}
 </script>
 
 # NvApp 与 NvAppHeader 应用外壳
@@ -49,19 +56,39 @@ import { NvApp } from '@nerv-iip/ui'
       <a class="rounded-md px-2 py-1 text-muted-foreground">设备</a>
     </nav>
     <template #trailing>
-      <NvButton variant="ghost" size="icon" aria-label="搜索"><SearchIcon class="size-4" /></NvButton>
-      <NvButton variant="ghost" size="icon" aria-label="通知"><BellIcon class="size-4" /></NvButton>
-      <NvButton variant="brand" size="sm">新建工单</NvButton>
+      <NvButton variant="ghost" size="icon" aria-label="搜索" @click="onHeaderAction('搜索')"><SearchIcon class="size-4" /></NvButton>
+      <NvButton variant="ghost" size="icon" aria-label="通知" @click="onHeaderAction('通知')"><BellIcon class="size-4" /></NvButton>
+      <NvButton variant="brand" size="sm" @click="onHeaderAction('新建工单')">新建工单</NvButton>
     </template>
   </NvAppHeader>
+  <p v-if="headerReceipt" role="status">{{ headerReceipt }}</p>
 </Demo>
 
+点击顶部操作后，本例显示当前选择及次数；不会创建工单或调用搜索、通知服务。
+
 ```vue
-<NvAppHeader>
-  <template #leading><Logo /> Nerv-IIP</template>
-  <nav><!-- 居中导航 --></nav>
-  <template #trailing><!-- 操作 --></template>
-</NvAppHeader>
+<script setup>
+import { NvAppHeader, NvButton } from '@nerv-iip/ui'
+import { ref } from 'vue'
+const headerReceipt = ref('')
+let headerActionCount = 0
+function onHeaderAction(action) {
+  headerReceipt.value = `已选择${action}（第 ${++headerActionCount} 次）`
+}
+</script>
+
+<template>
+  <NvAppHeader>
+    <template #leading>Nerv-IIP</template>
+    <nav><!-- 居中导航 --></nav>
+    <template #trailing>
+      <NvButton @click="onHeaderAction('搜索')">搜索</NvButton>
+      <NvButton @click="onHeaderAction('通知')">通知</NvButton>
+      <NvButton @click="onHeaderAction('新建工单')">新建工单</NvButton>
+    </template>
+  </NvAppHeader>
+  <p v-if="headerReceipt" role="status">{{ headerReceipt }}</p>
+</template>
 ```
 
 | 属性     | 说明            | 类型      | 默认   |
