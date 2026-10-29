@@ -86,7 +86,7 @@ import {
   SparklesIcon,
   TriangleAlertIcon,
 } from '@lucide/vue'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 // 页面标题由 VitePress frontmatter 提供（原 definePage 已移除）
 
@@ -276,6 +276,16 @@ function fireNotification(kind: 'info' | 'success' | 'warning' | 'error') {
 
 // ---- ⌘K command palette ----
 const cmdOpen = ref(false)
+// 与文档站搜索共享快捷键；在捕获阶段确定当前入口。
+function onCommandHotkey(event: KeyboardEvent) {
+  if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== 'k') return
+  if (document.querySelector('#localsearch-input')) return
+  event.preventDefault()
+  event.stopImmediatePropagation()
+  if (!event.repeat) cmdOpen.value = !cmdOpen.value
+}
+onMounted(() => window.addEventListener('keydown', onCommandHotkey, true))
+onBeforeUnmount(() => window.removeEventListener('keydown', onCommandHotkey, true))
 const cmdGroups: CommandGroup[] = [
   {
     label: '导航',
@@ -1393,7 +1403,12 @@ const progress = computed(
         </div>
       </footer>
 
-      <NvCommand v-model:open="cmdOpen" :groups="cmdGroups" @select="onCommandSelect" />
+      <NvCommand
+        :hotkey="false"
+        v-model:open="cmdOpen"
+        :groups="cmdGroups"
+        @select="onCommandSelect"
+      />
       <NvNotifierHost />
     </div>
   </NvTooltipProvider>
