@@ -188,6 +188,7 @@ export default defineConfig({
           items: [
             { text: '列表布局与行操作', link: '/components/desktop/list-blocks' },
             { text: 'DataTable 数据表格', link: '/components/desktop/data-table' },
+            { text: 'Pagination 基础分页', link: '/components/desktop/pagination' },
             { text: 'GroupPanel 可折叠分组面板', link: '/components/desktop/group-panel' },
             { text: 'Descriptions 描述列表', link: '/components/desktop/descriptions' },
             { text: 'Timeline 时间线', link: '/components/desktop/timeline' },
