@@ -6,6 +6,7 @@ title: NvEntityPicker / NvCascadePicker 实体选择与级联选择
 import { NvEntityPicker, NvCascadePicker, NvField, NvFieldLabel } from '@nerv-iip/ui'
 import { computed, ref } from 'vue'
 import EntityDialogExample from '../../.vitepress/examples/EntityDialogExample.vue'
+import EntityCreateExample from '../../.vitepress/examples/EntityCreateExample.vue'
 
 const material = ref('')
 const materialOptions = [
@@ -129,6 +130,16 @@ const scopeLevels = computed(() => [
   @create="workshopDialogOpen = true"
 />
 ```
+
+下面的新增入口打开本页表单。填写名称后确认，宿主生成唯一的 `LOCAL-` 示例编码，
+把新项追加到候选并选中；取消不改变当前选择，空白名称不能确认。数据只在本页内存中，
+刷新后不保留，不会创建真实业务目录。
+
+<Demo block>
+  <EntityCreateExample />
+</Demo>
+
+<<< @/.vitepress/examples/EntityCreateExample.vue
 
 ## NvCascadePicker 级联选择器
 
