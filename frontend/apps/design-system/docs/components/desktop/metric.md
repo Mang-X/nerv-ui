@@ -3,6 +3,7 @@ title: NvMetricCard 指标卡
 ---
 
 <script setup>
+import LocalMetricComparisonExample from '../../.vitepress/examples/localMetricComparisonExample.vue'
 import { NvMetricCard, NvMetricRing, NvMetricStrip } from '@nerv-iip/ui'
 import { WrenchIcon, CircleCheckIcon, ClockIcon, TriangleAlertIcon } from '@lucide/vue'
 </script>
@@ -419,3 +420,17 @@ import { WrenchIcon, CircleCheckIcon, ClockIcon, TriangleAlertIcon } from '@luci
 | `seriesUnit`        | tooltip 数值单位                                                                                                                                                                                                                                 | `string`                                         |
 
 任一格给了 `series`，整行会为迷你图预留等高位置，避免"有图的格比没图的高一截"把卡片下沿拉参差。
+
+## 基线与实际对照
+
+`NvMetricComparison` 的 `baseline`、`actual` 均为 `{ label: string, value: number }`。下例通过公开主桶消费，切换到访/耗用会替换两侧标签与数值；方向可独立切换，当前输入在卡片下方反馈。
+
+`betterWhen` 为 `higher`（默认）或 `lower`，控制差值的优劣颜色；差值始终为实际减基线，达成率始终为实际除以基线。0/0 显示 **100%**，基线 0、实际非零显示 **—**，不能解读为 0% 或缺测输入。当前 API 不接受 null。
+
+本例以标题表达量纲，不传可选 `unit`；短标签避免既有截断槽丢失全文，完整场景说明在卡片外换行。组件数值最多两位小数、达成率取整；此例使用整数，不代表所有 unit 路径的排版验收。
+
+<Demo>
+  <LocalMetricComparisonExample />
+</Demo>
+
+<<< @/.vitepress/examples/localMetricComparisonExample.vue
