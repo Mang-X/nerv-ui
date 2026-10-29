@@ -52,15 +52,15 @@ function toggleAppearance() {
           <Button
             variant="outline"
             size="lg"
-            class="nv-doc-search h-9 text-muted-foreground md:w-56 md:justify-between"
+            class="nv-doc-search h-9 text-muted-foreground lg:w-56 lg:justify-between"
             aria-label="搜索文档"
             @click="openSearch"
           >
             <span class="flex items-center gap-1.5">
               <Search class="size-4" />
-              <span class="nv-doc-search-text hidden md:inline">搜索文档…</span>
+              <span class="nv-doc-search-text hidden lg:inline">搜索文档…</span>
             </span>
-            <kbd class="nv-doc-kbd hidden md:inline-flex">{{ isMac ? '⌘' : 'Ctrl' }} K</kbd>
+            <kbd class="nv-doc-kbd hidden lg:inline-flex">{{ isMac ? '⌘' : 'Ctrl' }} K</kbd>
           </Button>
         </div>
       </ClientOnly>
