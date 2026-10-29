@@ -487,7 +487,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
         'application/pdf',
         'image/png',
         'image/svg+xml',
-        'image/svg+xml',
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       ]"
       :max-files="8"
