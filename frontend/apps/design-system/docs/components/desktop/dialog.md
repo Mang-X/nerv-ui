@@ -3,6 +3,7 @@ title: NvDialog 对话框
 ---
 
 <script setup>
+import BaseDialogExample from '../../.vitepress/examples/BaseDialogExample.vue'
 import {
   NvDialog,
   NvDialogTrigger,
@@ -198,3 +199,21 @@ Footer 不向父容器外扩展，也不抵消父容器底部内边距，因此�
 | ---------- | ----------------------------------- | ------------------------------ | --------- | ------- |
 | `open`     | `NvDialog`                          | 受控开关状态（`v-model:open`） | `boolean` | `false` |
 | `as-child` | `NvDialogTrigger` / `NvDialogClose` | 将渲染合并到子元素             | `boolean` | `false` |
+
+## 基础 Dialog：固定与滚动内容
+
+以下为基础主桶原版合同示例，与上方 Nv 组合分别展示；仅有本页开关，不保存业务数据。
+
+<Demo>
+  <BaseDialogExample />
+</Demo>
+
+::: details 查看同源源码
+<<< ../../.vitepress/examples/BaseDialogExample.vue
+:::
+
+固定 `DialogContent` 使用 `show-close-button=false` 隐藏右上关闭钮，仍由 `DialogFooter show-close-button` 提供真实关闭出口。页脚默认 **Close** 为原版 producer 的英文合同，保留原文；它处于文档流中并以负外边距抵消固定 Content 的内边距，并非 Nv 的吸底页脚。原版 `DialogOverlay` 由 Content 内部直接导入并渲染，不需要额外叠加遮罩。
+
+两种 Content 的 `id` / `data-reading` attrs 均透传到内层对话框节点。固定标题使用 `as="h3"`、描述使用 `as-child` 合并到 `div`；长文标题使用 `as-child` 合并到 `h2`、描述使用 `as="p"`，说明链接保留为真实 `a` 节点，标题/描述 ID 与对话框无障碍关系由 Reka 关联。
+
+`DialogScrollContent` 由外层遮罩滚动，正文末端后接关闭页脚，右上也保留原版 Close。窄屏只在消费端限制宽度留边。可用关闭按钮或 Esc 退出，再开可重新阅读；标准焦点恢复到各自触发器。当前 producer 的 pointer-down-outside guard 会阻止滚动条区域指针导致误关闭，但合成 DOM 事件不代表 OS 原生滚动条实测。1440/390 亮暗阅读、真实 Tab/Enter/Esc、鼠标滚动到末端、遮罩及原生滚动条保护均须由独立浏览器席验收；本页不将这些未运行结果写为通过。
