@@ -8,8 +8,16 @@ import NeutralShellDemo from '../../../../playground/src/NeutralShellDemo.vue'
 
 # 中性应用壳组合
 
-<ClientOnly><div class="vp-raw"><NeutralShellDemo space="library" /></div></ClientOnly>
-<ClientOnly><div class="vp-raw"><NeutralShellDemo space="studio" /></div></ClientOnly>
+<ClientOnly>
+  <section class="vp-raw nv-doc-shell-frame" aria-label="晨光书房应用壳示例">
+    <NeutralShellDemo space="library" />
+  </section>
+</ClientOnly>
+<ClientOnly>
+  <section class="vp-raw nv-doc-shell-frame" aria-label="周末画室应用壳示例">
+    <NeutralShellDemo space="studio" />
+  </section>
+</ClientOnly>
 
 两个可操作入口：`/#shell/library`（侧栏）与 `/#shell/studio`（顶部溢出）。live 示例直接复用 playground 源码，未恢复候选 app-shell 包，也未新增公共组件导出。
 
@@ -38,3 +46,24 @@ import NeutralShellDemo from '../../../../playground/src/NeutralShellDemo.vue'
 K 键以焦点所在实例为归属；焦点在壳外时由第一个存活监听者认领。已 preventDefault 或 repeat 的事件不处理。卸载移除实例监听。弹出菜单属于 portal，宿主不应让多个壳同时争用一个全局命令入口。侧栏折叠及其 B 快捷键仍遵循既有公共骨架合同。
 
 <!-- @include: ../../../../../DESIGN/components/neutral-shells.md -->
+
+<style>
+/* A transformed host contains each shell's fixed desktop sidebar, as on the Sidebar page. */
+.nv-doc-shell-frame {
+  position: relative;
+  transform: translateZ(0);
+  isolation: isolate;
+  height: 36rem;
+  max-width: 100%;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-block: 1rem;
+}
+.nv-doc-shell-frame [data-slot='sidebar-wrapper'] {
+  min-height: 100%;
+}
+.nv-doc-shell-frame [data-slot='sidebar-container'] {
+  height: 100%;
+}
+</style>
