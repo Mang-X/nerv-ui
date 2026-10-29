@@ -37,6 +37,7 @@ export default defineConfig({
       'base-table-host.test.ts',
       'pagination-host.test.ts',
       'sidebar-parts-host.test.ts',
+      'base-dates-host.test.ts',
       'avatar-host.test.ts',
       'popover-host.test.ts',
       'app-provider-host.test.ts',

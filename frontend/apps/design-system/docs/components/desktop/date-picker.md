@@ -5,6 +5,7 @@ title: NvDatePicker 日期选择器
 <script setup>
 import { NvDatePicker, NvDateRangePicker } from '@nerv-iip/ui'
 import { ref } from 'vue'
+import BaseDatesExample from '../../.vitepress/examples/BaseDatesExample.vue'
 
 const planDate = ref('2026-06-18')
 const emptyDate = ref()
@@ -94,6 +95,7 @@ const locale = ref('zh-CN')
 <script setup>
 import { NvDateRangePicker } from '@nerv-iip/ui'
 import { ref } from 'vue'
+import BaseDatesExample from '../../.vitepress/examples/BaseDatesExample.vue'
 
 const range = ref({ start: '2026-06-10', end: '2026-06-18' })
 </script>
@@ -127,3 +129,22 @@ const range = ref({ start: '2026-06-10', end: '2026-06-18' })
 | `placeholder` | 未选中占位文本 | `string`                                                 | `选择日期范围` |
 | `disabled`    | 是否禁用       | `boolean`                                                | `false`        |
 | `class`       | 触发按钮宽度   | `HTMLAttributes['class']`                                | —              |
+
+
+## 基础 DatePicker / DateRangePicker 安排
+
+本组合通过公开主桶消费基础日期件，打开内部真实 Calendar / RangeCalendar；与上方 Nv 日期件分别展示。
+
+<Demo>
+  <BaseDatesExample />
+</Demo>
+
+选择单日后回传 `string | null` 的 `update:modelValue` 与 `apply`，并关闭浮层；清除回传 null 与 `clear`。范围模型为 `DateRangeValue`（`from` / `to`），部分选择更新当前值，双端齐全才 `apply` 并关闭；清除整个范围回传 null 与 `clear`。null 表示未选择，不表示未知状态。
+
+页面完整显示当前日期与双端、待选终点及采用/清除反馈。“外部替换”及“恢复初始安排”只替换本页模型，不冒充选择事件；禁用时两个日期入口均不可打开，启用后可继续操作。所有状态在本页内存中，刷新重置，无保存或后端能力。
+
+范围日历内部为两个月，窄屏按现有 producer 纵向排列；内容较长时请滚动到末端“清除”。本例不覆盖内部布局。真实窄屏、亮暗、滚动和键盘可达性由独立浏览器席验收，不能用单元 DOM 证据代替。
+
+### 基础日期同源学习代码
+
+<<< ../../.vitepress/examples/BaseDatesExample.vue
