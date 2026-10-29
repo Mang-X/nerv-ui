@@ -130,7 +130,6 @@ const range = ref({ start: '2026-06-10', end: '2026-06-18' })
 | `disabled`    | 是否禁用       | `boolean`                                                | `false`        |
 | `class`       | 触发按钮宽度   | `HTMLAttributes['class']`                                | —              |
 
-
 ## 基础 DatePicker / DateRangePicker 安排
 
 本组合通过公开主桶消费基础日期件，打开内部真实 Calendar / RangeCalendar；与上方 Nv 日期件分别展示。

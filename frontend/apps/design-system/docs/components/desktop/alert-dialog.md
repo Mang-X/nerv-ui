@@ -150,7 +150,6 @@ const alertOpen = ref(false)
 | `variant`  | `NvAlertDialogAction` / `NvAlertDialogCancel` | 按钮样式，破坏性操作用 `destructive` | `NvButton['variant']` | `default` / `outline` |
 | `size`     | `NvAlertDialogAction` / `NvAlertDialogCancel` | 按钮尺寸                             | `NvButton['size']`    | `default`             |
 
-
 ## 媒体与基础结构
 
 下面两个中性对话框只提供同步本页确认回执，没有真实删除、SDK 请求或异步保存。取消不改变回执；确认按钮点击立即关闭。Escape、取消初始焦点和关闭后焦点归还由当前 Reka 负责，不另写键盘处理。
