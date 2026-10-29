@@ -437,23 +437,40 @@ const tableAll: WoRow[] = Array.from({ length: 48 }, (_, i) => ({
 const tableColumns: NvDataTableColumn<WoRow>[] = [
   {
     key: 'code',
+    width: '160px',
     header: '工单号',
     sortable: true,
     filter: 'text',
     cellClass: 'font-mono text-xs',
     hideable: false,
   },
-  { key: 'product', header: '产品', sortable: true, filter: 'text', cellClass: 'font-medium' },
+  {
+    key: 'product',
+    width: '180px',
+    header: '产品',
+    sortable: true,
+    filter: 'text',
+    cellClass: 'font-medium',
+  },
   {
     key: 'center',
+    width: '150px',
     header: '工作中心',
     filter: 'enum',
     cellClass: 'font-mono text-xs text-muted-foreground',
   },
-  { key: 'owner', header: '负责人', filter: 'enum' },
-  { key: 'qty', header: '数量', align: 'end', sortable: true, cellClass: 'tabular-nums' },
+  { key: 'owner', width: '100px', header: '负责人', filter: 'enum' },
+  {
+    key: 'qty',
+    width: '110px',
+    header: '数量',
+    align: 'end',
+    sortable: true,
+    cellClass: 'tabular-nums',
+  },
   {
     key: 'status',
+    width: '120px',
     header: '状态',
     filter: 'enum',
     filterOptions: [
