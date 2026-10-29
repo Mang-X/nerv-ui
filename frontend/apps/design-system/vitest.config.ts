@@ -33,6 +33,7 @@ export default defineConfig({
       'workbench-saved-day-host.test.ts',
       'list-blocks-host.test.ts',
       'card-structure-host.test.ts',
+      'empty-host.test.ts',
       'app-provider-host.test.ts',
       'field-group-host.test.ts',
       'field-content-host.test.ts',
