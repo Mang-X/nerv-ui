@@ -316,7 +316,7 @@ const todo = ref('待派工单')
 .nv-sb [data-slot='sidebar-wrapper'],
 .nv-sb .group\/sidebar-wrapper { min-height: 0 !important; height: 100% !important; }
 .nv-nv-scr-collapse { transform: translateZ(0); }
-.nv-nv-scr-collapse [data-slot='sidebar-container'] { height: 100% !important; }
+.nv-nv-scr-collapse [data-slot='nv-sidebar-container'] { height: 100% !important; }
 
 /* ── rhythm: give first-level items the same breathing room as sub-items ── */
 .nv-sb [data-slot='sidebar-menu'] { gap: 0.1875rem; }
