@@ -20,6 +20,12 @@ import { GaugeIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const dialogOpen = ref(false)
+const dispatchReceipt = ref('尚未选择派发工单')
+
+function confirmDispatch() {
+  dialogOpen.value = false
+  dispatchReceipt.value = '已选择将 WO-2406-0431 派发到 A 线'
+}
 const scrollOpen = ref(false)
 const scrollMode = ref('content')
 const rowCount = ref(12)
@@ -39,7 +45,7 @@ function openScrollExample(mode) {
 
 ## 基础用法
 
-通过 `NvDialogTrigger` 触发，`v-model:open` 双向绑定开关状态。
+通过 `NvDialogTrigger` 触发，`v-model:open` 双向绑定开关状态。本例确认后在本页显示选择回执；取消、Esc 或关闭不会更新回执，已有回执保留。
 
 <Demo>
   <NvDialog v-model:open="dialogOpen">
@@ -53,7 +59,7 @@ function openScrollExample(mode) {
       <NvDialogHeader>
         <NvDialogTitle>确认派发工单</NvDialogTitle>
         <NvDialogDescription>
-          WO-2406-0431 将派发到 A 线，锁定物料并生成领料单。
+          本地演示：选择将 WO-2406-0431 派发到 A 线；确认仅显示选择回执，不执行派工、锁料或生成领料单。
         </NvDialogDescription>
       </NvDialogHeader>
       <div class="rounded-lg border border-border bg-muted/40 p-4 text-sm">
@@ -70,11 +76,13 @@ function openScrollExample(mode) {
         <NvDialogClose as-child>
           <NvButton variant="ghost">取消</NvButton>
         </NvDialogClose>
-        <NvButton variant="brand" @click="dialogOpen = false">确认派发</NvButton>
+        <NvButton variant="brand" @click="confirmDispatch">确认派发</NvButton>
       </NvDialogFooter>
     </NvDialogContent>
   </NvDialog>
 </Demo>
+
+<p role="status" class="text-sm text-muted-foreground">{{ dispatchReceipt }}</p>
 
 ```vue
 <script setup>
@@ -91,6 +99,12 @@ import {
 } from '@nerv-iip/ui'
 import { ref } from 'vue'
 const dialogOpen = ref(false)
+const dispatchReceipt = ref('尚未选择派发工单')
+
+function confirmDispatch() {
+  dialogOpen.value = false
+  dispatchReceipt.value = '已选择将 WO-2406-0431 派发到 A 线'
+}
 </script>
 
 <template>
@@ -102,15 +116,17 @@ const dialogOpen = ref(false)
       <NvDialogHeader>
         <NvDialogTitle>确认派发工单</NvDialogTitle>
         <NvDialogDescription
-          >WO-2406-0431 将派发到 A 线，锁定物料并生成领料单。</NvDialogDescription
+          >本地演示：选择将 WO-2406-0431 派发到 A
+          线；确认仅显示选择回执，不执行派工、锁料或生成领料单。</NvDialogDescription
         >
       </NvDialogHeader>
       <NvDialogFooter>
         <NvDialogClose as-child><NvButton variant="ghost">取消</NvButton></NvDialogClose>
-        <NvButton variant="brand" @click="dialogOpen = false">确认派发</NvButton>
+        <NvButton variant="brand" @click="confirmDispatch">确认派发</NvButton>
       </NvDialogFooter>
     </NvDialogContent>
   </NvDialog>
+  <p role="status" class="text-sm text-muted-foreground">{{ dispatchReceipt }}</p>
 </template>
 ```
 
