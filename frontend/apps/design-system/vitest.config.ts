@@ -37,6 +37,7 @@ export default defineConfig({
       'field-group-host.test.ts',
       'field-content-host.test.ts',
       'dropdown-menu-host.test.ts',
+      'alert-dialog-host.test.ts',
     ],
   },
 })

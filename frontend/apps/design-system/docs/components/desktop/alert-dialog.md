@@ -3,6 +3,7 @@ title: NvAlertDialog 警告对话框
 ---
 
 <script setup>
+import AlertDialogMediaExample from '../../.vitepress/examples/AlertDialogMediaExample.vue'
 import {
   NvAlertDialog,
   NvAlertDialogTrigger,
@@ -148,3 +149,20 @@ const alertOpen = ref(false)
 | `as-child` | `NvAlertDialogTrigger`                        | 将渲染合并到子元素                   | `boolean`             | `false`               |
 | `variant`  | `NvAlertDialogAction` / `NvAlertDialogCancel` | 按钮样式，破坏性操作用 `destructive` | `NvButton['variant']` | `default` / `outline` |
 | `size`     | `NvAlertDialogAction` / `NvAlertDialogCancel` | 按钮尺寸                             | `NvButton['size']`    | `default`             |
+
+
+## 媒体与基础结构
+
+下面两个中性对话框只提供同步本页确认回执，没有真实删除、SDK 请求或异步保存。取消不改变回执；确认按钮点击立即关闭。Escape、取消初始焦点和关闭后焦点归还由当前 Reka 负责，不另写键盘处理。
+
+品牌组合实际使用 `NvAlertDialogMedia`，不是基础 Media 的别名。品牌 Action/Cancel 组合 `NvButton`；基础 Action/Cancel 使用基础 buttonVariants。两套 Content 的遮罩、布局与 size 合同不同，Header/Media/Title 的响应式选择器也不同。Description 共享 Reka 语义但样式 producer 独立，Footer 布局独立。因此基础八件在同一个结构组合中共同消费，无需逐个建立页面。
+
+装饰媒体隐藏读屏；Title/Description 交由 Reka 生成关联 ID。消费方通过公开 class 让长按钮换行、内容区滚动；实际窄屏、亮暗与键盘表现由独立浏览器验收。
+
+<Demo>
+  <AlertDialogMediaExample />
+</Demo>
+
+### 完整学习源码
+
+<<< ../../.vitepress/examples/AlertDialogMediaExample.vue
