@@ -31,7 +31,7 @@ import {
 
 ## 工厂控制台
 
-将“生产 / 设备 / 质量”做成可展开面板，“设置”作为直达链接。
+将“生产 / 设备 / 质量”做成可展开面板，“设置”作为直达链接。本页各入口跳转到已有的对应能力文档；“设置”进入色彩与动态色说明，不连接真实工厂业务。
 
 <Demo popout>
   <NvNavigationMenu class="w-full max-w-none">
@@ -41,7 +41,7 @@ import {
         <NvNavigationMenuContent>
           <ul class="grid w-[420px] max-w-full grid-cols-1 gap-1 sm:grid-cols-2">
             <li>
-              <NvNavigationMenuLink href="#">
+              <NvNavigationMenuLink href="/components/desktop/data-table">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <ClipboardListIcon aria-hidden="true" /><span>工单</span>
                 </div>
@@ -49,7 +49,7 @@ import {
               </NvNavigationMenuLink>
             </li>
             <li>
-              <NvNavigationMenuLink href="#">
+              <NvNavigationMenuLink href="/components/desktop/gantt-chart">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <CalendarRangeIcon aria-hidden="true" /><span>排产</span>
                 </div>
@@ -57,7 +57,7 @@ import {
               </NvNavigationMenuLink>
             </li>
             <li>
-              <NvNavigationMenuLink href="#">
+              <NvNavigationMenuLink href="/components/desktop/metric">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <BarChart3Icon aria-hidden="true" /><span>报表</span>
                 </div>
@@ -65,7 +65,7 @@ import {
               </NvNavigationMenuLink>
             </li>
             <li>
-              <NvNavigationMenuLink href="#">
+              <NvNavigationMenuLink href="/components/desktop/dashboard">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <ActivityIcon aria-hidden="true" /><span>实时看板</span>
                 </div>
@@ -80,7 +80,7 @@ import {
         <NvNavigationMenuContent>
           <ul class="grid w-[320px] max-w-full gap-1">
             <li>
-              <NvNavigationMenuLink href="#">
+              <NvNavigationMenuLink href="/components/desktop/metric">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <GaugeIcon aria-hidden="true" /><span>OEE 监控</span>
                 </div>
@@ -88,7 +88,7 @@ import {
               </NvNavigationMenuLink>
             </li>
             <li>
-              <NvNavigationMenuLink href="#">
+              <NvNavigationMenuLink href="/components/desktop/timeline">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <WrenchIcon aria-hidden="true" /><span>点检保养</span>
                 </div>
@@ -103,7 +103,7 @@ import {
         <NvNavigationMenuContent>
           <ul class="grid w-[320px] max-w-full gap-1">
             <li>
-              <NvNavigationMenuLink href="#">
+              <NvNavigationMenuLink href="/components/desktop/status">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <ShieldCheckIcon aria-hidden="true" /><span>在线判定</span>
                 </div>
@@ -111,7 +111,7 @@ import {
               </NvNavigationMenuLink>
             </li>
             <li>
-              <NvNavigationMenuLink href="#">
+              <NvNavigationMenuLink href="/components/desktop/directory-detail">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <ScanLineIcon aria-hidden="true" /><span>追溯</span>
                 </div>
@@ -122,7 +122,7 @@ import {
         </NvNavigationMenuContent>
       </NvNavigationMenuItem>
       <NvNavigationMenuItem>
-        <NvNavigationMenuLink bar href="#">
+        <NvNavigationMenuLink bar href="/foundations/color">
           <span class="flex items-center gap-1.5">
             <SettingsIcon aria-hidden="true" /><span>设置</span>
           </span>
@@ -141,7 +141,7 @@ import {
       <NvNavigationMenuContent>
         <ul class="grid w-[420px] max-w-full grid-cols-1 gap-1 sm:grid-cols-2">
           <li>
-            <NvNavigationMenuLink href="/work-orders">
+            <NvNavigationMenuLink href="/components/desktop/data-table">
               <div class="text-sm font-medium text-foreground">工单</div>
               <div class="text-xs text-muted-foreground">下达、跟踪与报工 WO-2406</div>
             </NvNavigationMenuLink>
@@ -153,7 +153,7 @@ import {
 
     <!-- 直达链接：不展开面板 -->
     <NvNavigationMenuItem>
-      <NvNavigationMenuLink bar href="/settings">设置</NvNavigationMenuLink>
+      <NvNavigationMenuLink bar href="/foundations/color">设置</NvNavigationMenuLink>
     </NvNavigationMenuItem>
 
     <NvNavigationMenuIndicator />
