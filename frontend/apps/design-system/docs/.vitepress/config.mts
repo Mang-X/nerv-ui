@@ -216,6 +216,7 @@ export default defineConfig({
         {
           text: '排产 Scheduling',
           items: [
+            { text: '只读时间安排', link: '/components/desktop/schedule-timeline' },
             { text: '工作台与历史', link: '/components/desktop/scheduling-workbench' },
             { text: '日安排与打印', link: '/components/desktop/scheduling-day-print' },
             { text: '已保存计划只读组合', link: '/components/desktop/scheduling-saved-plan' },

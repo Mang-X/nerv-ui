@@ -121,3 +121,18 @@ it('links repository sources and preserves detectable dead links', () => {
   for (const href of ['./button.md', './missing.md', '../../../../../../docs/missing.md'])
     expect(repositoryLink(href, page)).toBe(href)
 })
+
+it('links the fixed scheduling sidebar to the existing readonly timeline page', async () => {
+  const { default: config } = await import('./docs/.vitepress/config.mts')
+  const sidebar = config.themeConfig!.sidebar as Record<
+    string,
+    { text: string; items: { text: string; link: string }[] }[]
+  >
+  const scheduling = sidebar['/components/desktop'].find(
+    (group) => group.text === '排产 Scheduling',
+  )!
+  expect(
+    scheduling.items.filter((item) => item.link === '/components/desktop/schedule-timeline'),
+  ).toEqual([{ text: '只读时间安排', link: '/components/desktop/schedule-timeline' }])
+  expect(existsSync(resolve(app, 'docs/components/desktop/schedule-timeline.md'))).toBe(true)
+})
