@@ -23,7 +23,7 @@ const scrollOpen = ref(false)
         <DialogHeader>
           <DialogTitle as="h3">留一点阅读时间</DialogTitle>
           <DialogDescription as-child>
-            <div>选一本喜欢的书。<a href="#基础-dialog固定与滚动内容">查看阅读说明</a></div>
+            <div>选一本喜欢的书。<a href="#基础-dialog-固定与滚动内容">查看阅读说明</a></div>
           </DialogDescription>
         </DialogHeader>
         <p>在窗边坐一会儿，让翻页的声音陪伴片刻。</p>
@@ -42,7 +42,7 @@ const scrollOpen = ref(false)
         <DialogHeader>
           <DialogTitle as-child><h2>沿着书页散步</h2></DialogTitle>
           <DialogDescription as="p"
-            >向下阅读到末端。<a href="#基础-dialog固定与滚动内容"
+            >向下阅读到末端。<a href="#基础-dialog-固定与滚动内容"
               >查看阅读说明</a
             ></DialogDescription
           >
