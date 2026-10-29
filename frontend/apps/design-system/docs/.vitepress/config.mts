@@ -120,6 +120,7 @@ export default defineConfig({
             { text: 'Button 按钮', link: '/components/desktop/button' },
             { text: 'Empty 空状态', link: '/components/desktop/empty' },
             { text: 'Avatar 图像与回退', link: '/components/desktop/avatar' },
+            { text: 'Popover 结构与焦点', link: '/components/desktop/popover' },
             { text: 'Spinner 加载', link: '/components/desktop/spinner' },
             { text: 'Badge 徽标', link: '/components/desktop/badge' },
             { text: 'Card 卡片', link: '/components/desktop/card' },
