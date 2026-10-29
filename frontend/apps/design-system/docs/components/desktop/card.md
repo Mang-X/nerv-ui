@@ -128,7 +128,9 @@ import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
 
 ## 公开结构子件
 
-下面使用四个公开结构子件组织头部与底部，内容仍使用已有 `NvCardContent`。四件均接受 `class` 与默认插槽，没有标题属性或具名插槽；`NvCardTitle` 输出 div，不自动建立 heading 层级。`NvCard` 默认 `interactive=false`，已有纵向间距；这里只在底部按钮确认本页状态，不连接后端，刷新后不保留。标题、描述与正文完整换行，底部允许折行。
+下面使用五个公开结构子件组织头部与底部，内容仍使用已有 `NvCardContent`。五件均接受 `class` 与默认插槽，没有标题属性或具名插槽；`NvCardTitle` 输出 div，不自动建立 heading 层级。`NvCard` 默认 `interactive=false`，已有纵向间距；头部按钮显示参与提示，底部按钮确认本页状态，不连接后端，刷新后不保留。标题、描述与正文完整换行，底部允许折行。
+
+品牌 `NvCardAction` 与基础 `CardAction` 是不同 producer。当前品牌 Header 的自动布局选择器匹配基础 `card-action` / `card-description`，因此本例通过公开 `class` 显式设置列：窄屏操作位于描述下方，宽屏位于右侧；文字列使用 `minmax(0,1fr)` 完整换行。Action 只是布局 div，按钮提供操作语义，回执只在本页显示。
 
 <Demo>
   <CardStructureExample />
@@ -143,6 +145,7 @@ import {
   NvButton,
   NvCard,
   NvCardHeader,
+  NvCardAction,
   NvCardTitle,
   NvCardDescription,
   NvCardContent,
@@ -150,19 +153,34 @@ import {
 } from '@nerv-iip/ui'
 
 const confirmed = ref(false)
+const tipsViewed = ref(false)
 </script>
 
 <template>
   <NvCard class="w-full min-w-0 max-w-lg break-words">
-    <NvCardHeader>
-      <NvCardTitle>周末共读与手作交流安排</NvCardTitle>
-      <NvCardDescription>
+    <NvCardHeader class="grid-cols-[minmax(0,1fr)] sm:grid-cols-[minmax(0,1fr)_auto]">
+      <NvCardTitle class="min-w-0">周末共读与手作交流安排</NvCardTitle>
+      <NvCardDescription class="min-w-0">
         邀请邻里一起阅读、交流与整理共享空间。无论是初次参加，还是带着新的想法再次到来，都可以按自己的节奏参与。
       </NvCardDescription>
+      <NvCardAction
+        class="col-start-1 row-start-3 row-span-1 justify-self-start sm:col-start-2 sm:row-start-1 sm:row-span-2 sm:justify-self-end"
+      >
+        <NvButton type="button" variant="outline" size="sm" @click="tipsViewed = true">
+          查看参与提示
+        </NvButton>
+      </NvCardAction>
     </NvCardHeader>
     <NvCardContent class="space-y-2 text-sm">
       <p>请带上一本愿意分享的书，也可以空手前来，听听大家最近读到的故事。</p>
       <p>交流结束后，我们会一起整理书架，将想继续讨论的话题留给下一次相聚。</p>
+      <p role="status" class="text-muted-foreground">
+        {{
+          tipsViewed
+            ? '参与提示：按自己的节奏参与即可；仅在本页显示，刷新后不保留。'
+            : '尚未查看参与提示'
+        }}
+      </p>
     </NvCardContent>
     <NvCardFooter class="flex-wrap gap-3">
       <NvButton type="button" variant="outline" @click="confirmed = true">确认阅读安排</NvButton>
