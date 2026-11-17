@@ -49,7 +49,7 @@ import {
               </NvNavigationMenuLink>
             </li>
             <li>
-              <NvNavigationMenuLink href="/components/desktop/gantt-chart">
+              <NvNavigationMenuLink href="/components/desktop/dashboard">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <CalendarRangeIcon aria-hidden="true" /><span>排产</span>
                 </div>
