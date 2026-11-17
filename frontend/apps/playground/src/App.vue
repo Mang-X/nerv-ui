@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import WorkbenchDemo from './WorkbenchDemo.vue'
 import LoginDemo from './login/LoginDemo.vue'
 import ScreenParameterDetailDemo from './screen/ScreenParameterDetailDemo.vue'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
@@ -7,20 +6,7 @@ import LineAnnotationsDemo from './LineAnnotationsDemo.vue'
 import DirectoryDemo from './directory-detail/DirectoryDemo.vue'
 import ScreenDemo from './ScreenDemo.vue'
 import FilesDemo from './FilesDemo.vue'
-import ResourceScheduleDemo from './ResourceScheduleDemo.vue'
-import RealGanttDemo from './RealGanttDemo.vue'
-import OrderEditingDemo from './OrderEditingDemo.vue'
-import ResourceEditingDemo from './ResourceEditingDemo.vue'
-import ScheduleDemo from './ScheduleDemo.vue'
-import DraftEditingDemo from './DraftEditingDemo.vue'
-import SnapshotRiskDemo from './SnapshotRiskDemo.vue'
-import ScheduleComparisonDemo from './ScheduleComparisonDemo.vue'
-import AsyncCandidateDemo from './AsyncCandidateDemo.vue'
-import RequestFormsDemo from './RequestFormsDemo.vue'
-import SchedulePanelsDemo from './SchedulePanelsDemo.vue'
 import PrintableDetailDemo from './PrintableDetailDemo.vue'
-import DayPrintDemo from './DayPrintDemo.vue'
-import SavedPlanDemo from './SavedPlanDemo.vue'
 import ActionSummaryDemo from './ActionSummaryDemo.vue'
 import NotificationInboxDemo from './NotificationInboxDemo.vue'
 import NeutralShellDemo from './NeutralShellDemo.vue'
@@ -107,48 +93,8 @@ function addProject() {
 </script>
 
 <template>
-  <nav
-    v-if="surface.startsWith('#schedule')"
-    aria-label="排程全部入口"
-    class="flex min-w-0 flex-wrap gap-3 border-b bg-background p-3 text-sm text-foreground"
-  >
-    <a href="#">桌面</a>
-    <a href="#schedule-workbench/library">书房工作台</a
-    ><a href="#schedule-workbench/studio">创作室工作台</a>
-    <a
-      v-for="[target, label] in [
-        ['schedule', '时间线'],
-        ['schedule-gantt', '引擎预览'],
-        ['schedule-resources/library', '资源只读'],
-        ['schedule-edit/library', '活动编辑'],
-        ['schedule-resource-edit/library', '资源编辑'],
-        ['schedule-panels/library', '面板'],
-        ['schedule-draft/library', '草案'],
-        ['schedule-request/library', '申请'],
-        ['schedule-snapshot/library', '快照'],
-        ['schedule-compare/library', '比较'],
-        ['schedule-async/library', '异步候选'],
-        ['schedule-day/library', '日安排打印'],
-        ['schedule-saved/library', '已保存计划'],
-      ]"
-      :key="target"
-      :href="`#${target}`"
-      >{{ label }}</a
-    >
-  </nav>
-  <WorkbenchDemo
-    v-if="surface === '#schedule-workbench/library' || surface === '#schedule-workbench/studio'"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <SavedPlanDemo
-    v-else-if="
-      surface.startsWith('#schedule-saved/library') || surface.startsWith('#schedule-saved/studio')
-    "
-    :venue="surface.startsWith('#schedule-saved/studio') ? 'studio' : 'library'"
-    :surface="surface"
-  />
   <LineAnnotationsDemo
-    v-else-if="surface.startsWith('#line-annotations/')"
+    v-if="surface.startsWith('#line-annotations/')"
     :key="surface"
     :space="surface.includes('/garden') ? 'garden' : 'library'"
   />
@@ -182,62 +128,6 @@ function addProject() {
   <PrintableDetailDemo v-else-if="surface === '#printable-detail'" />
   <EntityMultiPickerDemo v-else-if="surface === '#entity-multi-picker'" />
   <ActionSummaryDemo v-else-if="surface === '#action-summary'" />
-  <DayPrintDemo
-    v-else-if="surface === '#schedule-day/library' || surface === '#schedule-day/studio'"
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <RequestFormsDemo
-    v-else-if="surface === '#schedule-request/library' || surface === '#schedule-request/studio'"
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <AsyncCandidateDemo
-    v-else-if="surface === '#schedule-async/library' || surface === '#schedule-async/studio'"
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <ScheduleComparisonDemo
-    v-else-if="surface === '#schedule-compare/library' || surface === '#schedule-compare/studio'"
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <SnapshotRiskDemo
-    v-else-if="surface === '#schedule-snapshot/library' || surface === '#schedule-snapshot/studio'"
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <DraftEditingDemo
-    v-else-if="surface === '#schedule-draft/library' || surface === '#schedule-draft/studio'"
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <SchedulePanelsDemo
-    v-else-if="surface === '#schedule-panels/library' || surface === '#schedule-panels/studio'"
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <ResourceEditingDemo
-    v-else-if="
-      surface === '#schedule-resource-edit/library' || surface === '#schedule-resource-edit/studio'
-    "
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <OrderEditingDemo
-    v-else-if="surface === '#schedule-edit/library' || surface === '#schedule-edit/studio'"
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <ResourceScheduleDemo
-    v-else-if="
-      surface === '#schedule-resources/library' || surface === '#schedule-resources/studio'
-    "
-    :key="surface"
-    :venue="surface.endsWith('/studio') ? 'studio' : 'library'"
-  />
-  <RealGanttDemo v-else-if="surface === '#schedule-gantt'" />
-  <ScheduleDemo v-else-if="surface === '#schedule'" />
   <FilesDemo v-else-if="surface === '#files'" />
   <ScreenDemo v-else-if="surface.startsWith('#screen')" :section="surface" />
   <MobileTaskListDemo
@@ -257,12 +147,6 @@ function addProject() {
   <TouchDemo v-else-if="surface.startsWith('#touch')" />
   <NvApp v-else>
     <NvAppHeader>
-      <a href="#schedule-workbench/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >安排工作台</a
-      >
-      <a href="#schedule-saved/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >已保存计划</a
-      >
       <a href="#directory-detail" class="inline-flex min-h-11 items-center px-4 underline"
         >空间目录</a
       >
@@ -281,34 +165,6 @@ function addProject() {
       <a href="#action-summary" class="inline-flex min-h-11 items-center px-4 underline"
         >今日小事</a
       >
-      <a href="#schedule-day/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >日安排与打印</a
-      >
-      <a href="#schedule-request/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >项目安排请求</a
-      >
-      <a href="#schedule-async/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >异步候选</a
-      >
-      <a href="#schedule-compare/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >安排对照</a
-      >
-      <a href="#schedule-snapshot/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >安排核对</a
-      >
-      <a href="#schedule-draft/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >一起安排</a
-      >
-      <a href="#schedule-panels/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >活动安排</a
-      >
-      <a href="#schedule-edit/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >安排共读</a
-      >
-      <a href="#schedule-resources/library" class="inline-flex min-h-11 items-center px-4 underline"
-        >空间安排</a
-      >
-      <a href="#schedule" class="inline-flex min-h-11 items-center px-4 underline">时间安排</a>
       <a href="#files" class="inline-flex min-h-11 items-center px-4 underline">留住片刻</a>
       <a
         href="#screen"

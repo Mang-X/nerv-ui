@@ -1,5 +1,0 @@
-{
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": { "types": [], "noEmit": true },
-  "include": ["models.ts", "public.test.ts"]
-}

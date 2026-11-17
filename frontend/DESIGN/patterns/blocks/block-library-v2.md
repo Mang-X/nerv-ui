@@ -29,8 +29,7 @@
 
 ### NvAppShellInset
 
-dashboard-01 `variant="inset"` 浮动面板外壳骨架（导航属 FE-3 的 `AppShellT`，见
-`blocks/app-shell.md`）。
+dashboard-01 `variant="inset"` 浮动面板外壳骨架（导航属原 `AppShellT` 候选，未随本库保留）。
 
 | Slot             | 用途                                        |
 | ---------------- | ------------------------------------------- |

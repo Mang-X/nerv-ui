@@ -4,7 +4,6 @@ import DefaultTheme from 'vitepress/theme'
 // config.mts also registers layer order before stylesheets in HTML: production
 // CSS extraction can reorder scoped SFC styles ahead of this source import.
 import './style.css'
-import '@nerv-iip/scheduling/vendor.css'
 import Demo from './Demo.vue'
 import Layout from './Layout.vue'
 import MobileDoc from './MobileDoc.vue'

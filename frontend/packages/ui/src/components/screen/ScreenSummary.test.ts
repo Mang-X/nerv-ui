@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, expect, it } from 'vitest'
 import { defineComponent, h } from 'vue'
-import { NvOeeHero, NvScreenStatusCard, NvTaktGantt } from '@nerv-iip/ui'
+import { NvOeeHero, NvScreenStatusCard } from '@nerv-iip/ui'
 const wrappers: ReturnType<typeof mount>[] = []
 function render(component: any, props: any = {}) {
   const w = mount(component, { props })
@@ -118,98 +118,4 @@ it('status covers every fixed domain label and unit then restores omitted defaul
   await w.setProps({ labels: undefined, unit: undefined })
   expect(w.get('.nv-scr-lc-stats i').text()).toBe('计划产量')
   expect(w.get('.nv-scr-lc-stats b').text()).toBe('— 件')
-})
-it('takt legacy title axis rows palettes and hover text remain', () => {
-  const w = render(NvTaktGantt)
-  expect(w.text()).toContain('节拍 Takt 58s')
-  expect(w.findAll('.nv-scr-tg-row')).toHaveLength(3)
-  expect(w.get('.nv-scr-tg-axis').text()).toContain('09:30')
-  expect(w.findAll('.nv-scr-tg-legend span').map((n) => n.text())).toEqual([
-    '运行',
-    '待机',
-    '停机',
-    '报警',
-  ])
-  expect(w.get('.nv-scr-tg-seg').attributes('title')).toBe('焊接线 A · 运行 34%')
-})
-it('takt neutral labels drive legend and every ordered segment title width and updates', async () => {
-  const w = render(NvTaktGantt, {
-    title: '空间时段',
-    axis: ['开馆', '闭馆'],
-    toneLabels: { run: '占用', idle: '开放', stop: '闭馆', alarm: '异常' },
-    rows: [
-      {
-        name: '书房',
-        segs: [
-          ['run', 25],
-          ['idle', 25],
-          ['stop', 25],
-          ['alarm', 25],
-        ],
-      },
-    ],
-  })
-  expect(w.findAll('.nv-scr-tg-legend span').map((n) => n.text())).toEqual([
-    '占用',
-    '开放',
-    '闭馆',
-    '异常',
-  ])
-  expect(
-    w
-      .findAll('.nv-scr-tg-seg')
-      .map((n) => [n.attributes('title'), (n.element as HTMLElement).style.width]),
-  ).toEqual(['占用', '开放', '闭馆', '异常'].map((label) => [`书房 · ${label} 25%`, '25%']))
-  await w.setProps({
-    title: '服务时段',
-    axis: ['上午', '下午'],
-    toneLabels: { run: '服务中', idle: '可预约', stop: '休息', alarm: '暂停' },
-    rows: [
-      {
-        name: '服务台',
-        segs: [
-          ['alarm', 10],
-          ['run', 90],
-        ],
-      },
-    ],
-  })
-  expect(w.get('.nv-scr-panel-t').text()).toBe('服务时段')
-  expect(w.get('.nv-scr-tg-axis').text()).toBe('上午下午')
-  expect(w.findAll('.nv-scr-tg-seg').map((n) => n.attributes('title'))).toEqual([
-    '服务台 · 暂停 10%',
-    '服务台 · 服务中 90%',
-  ])
-  expect(w.findAll('.nv-scr-tg-seg').map((n) => n.classes().at(-1))).toEqual(['alarm', 'run'])
-})
-it('takt explicit empty axis rows and segments never restore industrial examples and partial labels fallback', async () => {
-  const w = render(NvTaktGantt, { title: '', axis: [], rows: [], toneLabels: { run: '占用' } })
-  expect(w.findAll('.nv-scr-tg-row')).toHaveLength(0)
-  expect(w.findAll('.nv-scr-tg-axis span')).toHaveLength(0)
-  expect(w.text()).not.toMatch(/焊接|装配|CNC|Takt/)
-  expect(w.findAll('.nv-scr-tg-legend span').map((n) => n.text())).toEqual([
-    '占用',
-    '待机',
-    '停机',
-    '报警',
-  ])
-  await w.setProps({
-    rows: [
-      { name: '空时段', segs: [] },
-      {
-        name: '部分开放',
-        segs: [
-          ['idle', 0],
-          ['run', 50],
-        ],
-      },
-      { name: '全时段', segs: [['stop', 100]] },
-    ],
-  })
-  expect(w.findAll('.nv-scr-tg-row')).toHaveLength(3)
-  expect(w.findAll('.nv-scr-tg-seg').map((n) => (n.element as HTMLElement).style.width)).toEqual([
-    '0%',
-    '50%',
-    '100%',
-  ])
 })

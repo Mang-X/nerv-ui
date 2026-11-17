@@ -112,14 +112,10 @@ badge、表格摘要、表单帮助、toast 或菜单中放置开发、验证或
 | 带搜索 / 筛选的 CRUD 列表页                                                     | 列表页                              | `patterns/pages/list-page.md`                                          |
 | 行内创建实体                                                                    | 新建对话框                          | `patterns/flows/create-dialog.md`                                      |
 | 确认破坏性操作                                                                  | 破坏性操作确认                      | `patterns/flows/confirm-destroy.md`                                    |
-| 应用框架（侧边栏 + 顶栏）                                                       | 应用外壳                            | `patterns/blocks/app-shell.md`                                         |
 | 带标题和描述的页头                                                              | 页头                                | `patterns/blocks/page-header.md`                                       |
 | 搜索 + 筛选 + 主操作栏                                                          | 工具栏                              | `patterns/blocks/toolbar.md`                                           |
 | 带加载 / 空状态的数据表                                                         | 数据表                              | `patterns/blocks/data-table.md`                                        |
 | 分页表格页脚                                                                    | 分页栏                              | `patterns/blocks/pagination-bar.md`                                    |
-| 工单 / 资源排程可视化                                                           | GanttChart / ResourceSchedulerBoard | `components/gantt-chart.md` / `components/resource-scheduler-board.md` |
-
-> **排程可视化组件**（工单甘特图 `GanttChart` / 资源甘特图 `ResourceSchedulerBoard`）来自独立包 **`@nerv-iip/scheduling`**（非 `@nerv-iip/ui`）：引擎无关契约 + DHTMLX 适配器（试用开发 / 正式手动分发），无本地引擎时优雅占位。组件契约见 `components/gantt-chart.md`、`components/resource-scheduler-board.md`；引擎接缝见包 `README.md`。
 
 ## 路线图
 
