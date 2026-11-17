@@ -369,7 +369,17 @@ function onOpenSource(src: string) {
 
 `src` 为空时组件显示独立空状态，不把缺少来源误判为不支持格式。图片预览会在原生 `load` 后触发 `ready`，在原生 `error` 后进入统一错误状态；PDF 预览使用 EmbedPDF 的 document / viewport / scroll / render / zoom 插件，文档加载完成后触发 `ready`，加载失败后进入统一错误状态；Office 预览在对应 OOXML viewer 完成 `load` 后触发 `ready`。
 
-PDF 预览依赖 `@embedpdf/engines` 的 wasm 资源。消费 `FilePreview` PDF 路径的 Vite 应用需要启用 `vite-plugin-wasm`；design-system 文档和 `@nerv-iip/ui` 测试配置已经包含该插件。普通 UI primitives 导入不会主动加载 PDF / OOXML 渲染器，`FilePreview` 通过稳定子入口 `@nerv-iip/ui/file-preview` 暴露。
+PDF 预览依赖 `@embedpdf/engines` 的 wasm 资源。在源码/workspace 形态下（仓内 playground、design-system），消费 `FilePreview` PDF 路径的 Vite 应用启用已锁定的 `vite-plugin-wasm`。普通 UI primitives 导入不会主动加载 PDF / OOXML 渲染器，`FilePreview` 通过稳定子入口 `@nerv-iip/ui/file-preview` 暴露。
+
+### packed 产物形态（T10-4）：重依赖是可选 peer
+
+`@nerv-iip/ui` 的 packed tgz 把 `@embedpdf/*`（×7）与 `@silurus/ooxml` 声明为 **`peerDependencies` + `peerDependenciesMeta.optional: true`**：
+
+- **只用主桶 / 不渲 PDF·Office 的宿主**：装 `@nerv-iip/ui` 不会传递拉入 embedpdf/ooxml 及其约 150 MB 的字体包、约 9 MB 的 ooxml，也不会引入 react/svelte/preact 框架 peer——安装树里**没有**这些包。
+- **要渲 PDF/Office 的宿主**：自己把下列 8 个可选 peer 加进 `dependencies`（版本须落在 peer 声明的范围内）：
+  `@embedpdf/core`、`@embedpdf/engines`、`@embedpdf/plugin-document-manager`、`@embedpdf/plugin-render`、`@embedpdf/plugin-scroll`、`@embedpdf/plugin-viewport`、`@embedpdf/plugin-zoom`（均 `2.14.4`）、`@silurus/ooxml`（`0.72.2`）。
+  只用图片预览的宿主可以不装它们。
+- **wasm 资产**：pdfium 与三个 ooxml `*_parser_bg.wasm` 已随 tgz 以 `dist/assets/*.wasm` 分发，`?url` 经 `new URL(..., import.meta.url)` 解析——**packed 宿主无需 `vite-plugin-wasm`**（该插件只在源码形态消费时需要）。dev 下 wasm URL 相对库 chunk 解析，build 下宿主 bundler 把资产 hoist 到自身 assets 目录，两种模式均 200。
 
 ## 动效
 

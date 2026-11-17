@@ -43,17 +43,9 @@
     "test:docs": "vp test run src/design-docs.contract.test.ts src/nvui-doc-coverage.contract.test.ts src/docs-layout.contract.test.ts"
   },
   "dependencies": {
-    "@embedpdf/core": "2.14.4",
-    "@embedpdf/engines": "2.14.4",
-    "@embedpdf/plugin-document-manager": "2.14.4",
-    "@embedpdf/plugin-render": "2.14.4",
-    "@embedpdf/plugin-scroll": "2.14.4",
-    "@embedpdf/plugin-viewport": "2.14.4",
-    "@embedpdf/plugin-zoom": "2.14.4",
     "@fontsource-variable/inter": "^5.2.8",
     "@internationalized/date": "^3.12.2",
     "@lucide/vue": "1.24.0",
-    "@silurus/ooxml": "0.72.2",
     "@tanstack/vue-table": "^8.21.3",
     "@unovis/ts": "^1.6.7",
     "@unovis/vue": "^1.6.7",
@@ -74,7 +66,41 @@
     "vitest": "4.1.10"
   },
   "peerDependencies": {
+    "@embedpdf/core": "2.14.4",
+    "@embedpdf/engines": "2.14.4",
+    "@embedpdf/plugin-document-manager": "2.14.4",
+    "@embedpdf/plugin-render": "2.14.4",
+    "@embedpdf/plugin-scroll": "2.14.4",
+    "@embedpdf/plugin-viewport": "2.14.4",
+    "@embedpdf/plugin-zoom": "2.14.4",
+    "@silurus/ooxml": "0.72.2",
     "reka-ui": "^2.10.1",
     "vue": "^3.5.0"
+  },
+  "peerDependenciesMeta": {
+    "@embedpdf/core": {
+      "optional": true
+    },
+    "@embedpdf/engines": {
+      "optional": true
+    },
+    "@embedpdf/plugin-document-manager": {
+      "optional": true
+    },
+    "@embedpdf/plugin-render": {
+      "optional": true
+    },
+    "@embedpdf/plugin-scroll": {
+      "optional": true
+    },
+    "@embedpdf/plugin-viewport": {
+      "optional": true
+    },
+    "@embedpdf/plugin-zoom": {
+      "optional": true
+    },
+    "@silurus/ooxml": {
+      "optional": true
+    }
   }
 }
