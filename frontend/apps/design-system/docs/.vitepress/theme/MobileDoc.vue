@@ -20,7 +20,7 @@ provide(MOBILE_OVERLAY_TARGET, '.nv-mdoc-screen')
 <template>
   <div class="nv-mdoc">
     <div class="nv-mdoc-main vp-doc">
-      <!-- PDA pages are `layout: page`, so the Layout `#doc-before` badge doesn't
+      <!-- 移动 pages are `layout: page`, so the Layout `#doc-before` badge doesn't
            fire here — render the scene-availability badge at the top of the prose
            column instead. Auto-detects the mobile family from the route. -->
       <SceneBadge />

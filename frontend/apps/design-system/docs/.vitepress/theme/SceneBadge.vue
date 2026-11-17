@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Scene-availability badge (MAN-437 / #791). Rendered once at the top of every
 // component page (injected via Layout `#doc-before` for doc-layout surfaces and
-// via MobileDoc for the PDA pages), it answers two questions for any component:
+// via MobileDoc for the 移动 pages), it answers two questions for any component:
 //   1. 场景归属 — which surface layer owns this component (highlighted chip);
 //   2. 其他场景对应件 — the counterpart on each other surface, linked, or marked
 //      unavailable when the component is surface-exclusive.
@@ -48,8 +48,8 @@ const exclusive = computed(() => scene.value && !scene.value.family)
 </script>
 
 <template>
-  <div v-if="scene" class="nv-scene vp-raw" role="note" aria-label="场景可用性">
-    <span class="nv-scene-lead">场景可用性</span>
+  <div v-if="scene" class="nv-scene vp-raw" role="note" aria-label="形态可用性">
+    <span class="nv-scene-lead">形态可用性</span>
     <div class="nv-scene-chips">
       <template v-for="c in chips" :key="c.surface">
         <a
@@ -68,7 +68,7 @@ const exclusive = computed(() => scene.value && !scene.value.family)
           :aria-current="c.isCurrent ? 'page' : undefined"
           :title="
             c.isCurrent
-              ? `${c.label}：本页所属表面`
+              ? `${c.label}：本页所属形态`
               : c.available
                 ? c.label
                 : `${c.label}：暂无对应件`
@@ -81,7 +81,7 @@ const exclusive = computed(() => scene.value && !scene.value.family)
       </template>
     </div>
     <span class="nv-scene-owner">
-      {{ exclusive ? '本表面专属' : '归属' }} · <code>{{ ownerPkg }}</code>
+      {{ exclusive ? '本形态专属' : '归属' }} · <code>{{ ownerPkg }}</code>
     </span>
   </div>
 </template>

@@ -1,7 +1,7 @@
 // Cross-surface component family map (MAN-437 / #791).
 //
-// The design system ships FOUR surfaces (ADR 0020 four-surface map): PC 桌面,
-// PDA 移动, 一体机 touch, 大屏 screen. A single UX concept (a button, a header, a
+// The design system ships FOUR surfaces (ADR 0020 four-surface map): desktop,
+// mobile, pad(touch), screen. A single UX concept (a button, a header, a
 // data table) is realized once per surface with surface-native sizing/tokens —
 // never "one component, two modes". This map records those correspondences so the
 // per-page scene-availability badge (`<SceneBadge>`) can show, for any component,
@@ -27,9 +27,9 @@ export interface SurfaceMeta {
 export const SURFACES: Surface[] = ['desktop', 'mobile', 'touch', 'screen']
 
 export const SURFACE_META: Record<Surface, SurfaceMeta> = {
-  desktop: { seg: 'desktop', label: '桌面 PC', pkg: '@nerv-iip/ui · pc/blocks/layout' },
-  mobile: { seg: 'mobile', label: 'PDA 移动', pkg: '@nerv-iip/ui-mobile' },
-  touch: { seg: 'touch', label: '一体机', pkg: '@nerv-iip/ui · touch/' },
+  desktop: { seg: 'desktop', label: '桌面', pkg: '@nerv-iip/ui · pc/blocks/layout' },
+  mobile: { seg: 'mobile', label: '移动', pkg: '@nerv-iip/ui-mobile' },
+  touch: { seg: 'touch', label: '触屏', pkg: '@nerv-iip/ui · touch/' },
   screen: { seg: 'screen', label: '大屏', pkg: '@nerv-iip/ui · screen/' },
 }
 

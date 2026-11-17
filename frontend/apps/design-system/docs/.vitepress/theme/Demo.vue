@@ -3,7 +3,7 @@
 // slotted component demo in a bordered, padded surface using our design tokens.
 // Wrapped in ClientOnly so interactive components (overlays, charts, gestures)
 // never break the SSR build.
-// `mobile` renders the demo in a narrow, centered phone-width column so PDA
+// `mobile` renders the demo in a narrow, centered phone-width column so 移动
 // components are previewed at a realistic width.
 // `popout` lets a panel that opens below the demo (NavigationMenu mega-menu,
 // dropdowns) escape the preview box: the box drops `overflow:hidden`, top-aligns

@@ -40,7 +40,7 @@ function toggleAppearance() {
 <template>
   <Layout>
     <!-- Scene-availability badge above the article title for doc-layout surfaces
-         (desktop / touch / screen). PDA pages use `layout: page` + MobileDoc, which
+         (desktop / touch / screen). 移动 pages use `layout: page` + MobileDoc, which
          injects its own <SceneBadge>. Renders nothing on non-component pages. -->
     <template #doc-before>
       <SceneBadge />
