@@ -25,8 +25,8 @@ const precise = ref('08:15:42')
 当前时间：{{ time ?? '—' }} / {{ precise ?? '—' }}
 
 <Demo>
-  <NvTimePicker v-model:value="time" hour-cycle="12" />
-  <NvTimePicker v-model:value="time" min="09:00" max="17:30" />
+  <NvTimePicker locale="zh-CN" v-model:value="time" hour-cycle="12" />
+  <NvTimePicker locale="zh-CN" v-model:value="time" min="09:00" max="17:30" />
 </Demo>
 
 <Demo>

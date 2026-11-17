@@ -20,14 +20,15 @@ const unavailable = ['2026-11-21', { from: '2026-11-24', to: '2026-11-27' }]
 ## 示例
 
 <Demo>
-  <NvDatePicker v-model:value="picked" clearable />
-  <NvDatePicker v-model:value="picked" clearable style="width: 260px" />
+  <NvDatePicker locale="zh-CN" v-model:value="picked" clearable />
+  <NvDatePicker locale="zh-CN" v-model:value="picked" clearable style="width: 260px" />
 </Demo>
 
 当前选择：{{ picked ?? '—' }}
 
 <Demo>
   <NvDatePicker
+    locale="zh-CN"
     v-model:value="limited"
     month="2026-11"
     min="2026-11-05"
@@ -35,6 +36,7 @@ const unavailable = ['2026-11-21', { from: '2026-11-24', to: '2026-11-27' }]
     placeholder="限 11/05 – 11/25"
   />
   <NvDatePicker
+    locale="zh-CN"
     v-model:value="limited"
     month="2026-11"
     :unavailable="unavailable"
@@ -43,14 +45,14 @@ const unavailable = ['2026-11-21', { from: '2026-11-24', to: '2026-11-27' }]
 </Demo>
 
 <Demo>
-  <NvDatePicker v-model:value="double" :months="2" placeholder="双月并排" />
-  <NvDatePicker v-model:value="picked" :months="2" :close-on-select="false" placeholder="选后不关闭弹层" />
+  <NvDatePicker locale="zh-CN" v-model:value="double" :months="2" placeholder="双月并排" />
+  <NvDatePicker locale="zh-CN" v-model:value="picked" :months="2" :close-on-select="false" placeholder="选后不关闭弹层" />
 </Demo>
 
 <Demo>
-  <NvDatePicker default-value="2026-11-02" :fixed-weeks="true" :show-outside-days="false" placeholder="固定行数 / 隐藏非本月" />
-  <NvDatePicker disabled default-value="2026-11-18" />
-  <NvDatePicker read-only default-value="2026-11-18" placeholder="只读" />
+  <NvDatePicker locale="zh-CN" default-value="2026-11-02" :fixed-weeks="true" :show-outside-days="false" placeholder="固定行数 / 隐藏非本月" />
+  <NvDatePicker locale="zh-CN" disabled default-value="2026-11-18" />
+  <NvDatePicker locale="zh-CN" read-only default-value="2026-11-18" placeholder="只读" />
 </Demo>
 
 ## API
