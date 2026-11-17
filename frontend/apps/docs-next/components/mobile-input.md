@@ -24,8 +24,8 @@ const phone = ref('')
 
 <Demo>
   <NvMobileInput placeholder="不可编辑" disabled />
-  <NvMobileInput placeholder="校验失败示例" invalid value="格式不正确" />
-  <NvMobileInput placeholder="只读" readonly value="只读内容" />
+  <NvMobileInput placeholder="校验失败示例" invalid default-value="格式不正确" />
+  <NvMobileInput placeholder="只读" readonly default-value="只读内容" />
 </Demo>
 
 <Demo>
