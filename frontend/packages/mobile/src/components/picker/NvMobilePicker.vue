@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from '@ui-sdk/vue/dialog'
 import * as stylex from '@stylexjs/stylex'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { focus, glass, overlay } from '../../theme/shared.stylex'
 import PickerWheel from './PickerWheel.vue'
 import { styles } from './Picker.styles'
@@ -76,6 +76,11 @@ function syncDraft() {
 }
 
 syncDraft()
+
+watch(
+  () => props.modelValue,
+  () => syncDraft(),
+)
 
 function onOpenChange(open: boolean) {
   if (open) syncDraft()

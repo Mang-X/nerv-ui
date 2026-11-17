@@ -30,6 +30,13 @@ const toneStyles = {
   danger: styles.toneDanger,
 } as const
 
+const dotTones = {
+  accent: styles.dotAccent,
+  success: styles.dotSuccess,
+  warning: styles.dotWarning,
+  danger: styles.dotDanger,
+} as const
+
 const rootSx = computed(() =>
   stylex.props(
     styles.root,
@@ -41,7 +48,9 @@ const rootSx = computed(() =>
 const labelSx = computed(() =>
   stylex.props(styles.label, props.tone === 'default' ? styles.textDefault : null),
 )
-const dotSx = computed(() => stylex.props(styles.dot))
+const dotSx = computed(() =>
+  stylex.props(styles.dot, props.tone === 'default' ? styles.dot : dotTones[props.tone]),
+)
 </script>
 
 <template>

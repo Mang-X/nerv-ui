@@ -1,5 +1,4 @@
 import * as stylex from '@stylexjs/stylex'
-import { focus } from '../../theme/shared.stylex'
 import { scr, scrType } from '../../tokens.stylex'
 
 export const styles = stylex.create({
@@ -22,5 +21,4 @@ export const styles = stylex.create({
   manualViewport: { overflowY: 'auto' },
   track: { willChange: 'transform' },
   empty: { color: scr.fgSubtle, fontSize: scrType.sm, margin: 0, paddingBlock: 12 },
-  focus: focus.subtle,
 })

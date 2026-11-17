@@ -104,10 +104,9 @@ const yearBounds = computed<[number, number]>(() => {
     ]
   }
   const current = new Date().getFullYear()
-  return [
-    minParts.value?.year ?? current - 50,
-    maxParts.value?.year ?? current + 20,
-  ]
+  const start = minParts.value?.year ?? current - 50
+  const end = maxParts.value?.year ?? current + 20
+  return [Math.min(start, end), Math.max(start, end)]
 })
 
 const yearOptions = computed(() => {
@@ -147,6 +146,11 @@ const dayOptions = computed(() =>
     label: `${index + 1}日`,
     value: index + 1,
   })),
+)
+
+watch(
+  () => props.modelValue,
+  () => syncDraft(),
 )
 
 watch(

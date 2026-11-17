@@ -72,7 +72,7 @@ const columnCount = computed(() =>
   Number.isInteger(props.columns) && props.columns > 0 ? props.columns : 6,
 )
 
-const gridSx = computed(() => stylex.props(styles.grid, focus.subtle))
+const gridSx = computed(() => stylex.props(styles.grid))
 
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value)
@@ -98,7 +98,7 @@ const renderCells = computed(() =>
 )
 
 function cellSx(band: ScreenHeatmapBand | null) {
-  return stylex.props(styles.cell, band && bandStyles[band.tone])
+  return stylex.props(styles.cell, focus.subtle, band && bandStyles[band.tone])
 }
 
 function valueSx(band: ScreenHeatmapBand | null) {

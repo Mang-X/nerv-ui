@@ -26,7 +26,7 @@ const props = withDefaults(
     closeLabel?: string
   }>(),
   {
-    open: false,
+    open: undefined,
     title: undefined,
     description: undefined,
     ariaLabel: '底部面板',

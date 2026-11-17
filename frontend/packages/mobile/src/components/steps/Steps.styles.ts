@@ -38,8 +38,8 @@ export const styles = stylex.create({
     alignItems: 'center',
     width: '100%',
   },
-  markerStatic: {
-    cursor: 'default',
+  flexOne: {
+    flex: 1,
   },
   rail: {
     display: 'flex',

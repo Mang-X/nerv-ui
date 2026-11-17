@@ -15,7 +15,7 @@ const props = withDefaults(
     value?: string
   }>(),
   {
-    modelValue: false,
+    modelValue: undefined,
     disabled: false,
     readonly: false,
     required: false,

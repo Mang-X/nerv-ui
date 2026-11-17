@@ -179,7 +179,7 @@ const hoverX = computed(() => (hover.value === null ? 0 : xAt(hover.value)))
     <template v-else>
       <div :class="bodySx.className" :style="bodySx.style">
         <div :class="stylex.props(styles.yAxis).className" aria-hidden="true">
-          <span v-for="tick in axisLabels" :key="tick">{{ unit ? `${tick} ${unit}` : tick }}</span>
+          <span v-for="tick in axisLabels" :key="tick">{{ tick }}</span>
         </div>
         <div :class="stylex.props(styles.plot).className" :style="{ height: `${height}px` }">
           <svg

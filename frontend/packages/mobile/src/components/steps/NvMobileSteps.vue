@@ -114,7 +114,6 @@ function goTo(index: number) {
               index < currentIndex && styles.connectorDone,
             ).className
           "
-          style="flex: 1"
         />
       </div>
 
@@ -128,7 +127,6 @@ function goTo(index: number) {
               index <= currentIndex && styles.connectorDone,
             ).className
           "
-          style="flex: 1"
         />
         <button
           type="button"
@@ -154,7 +152,6 @@ function goTo(index: number) {
               index < currentIndex && styles.connectorDone,
             ).className
           "
-          style="flex: 1"
         />
       </div>
 
@@ -162,10 +159,10 @@ function goTo(index: number) {
         :class="
           stylex.props(
             styles.content,
+            styles.flexOne,
             direction === 'horizontal' && styles.contentHorizontal,
           ).className
         "
-        style="flex: 1"
       >
         <span
           :class="stylex.props(styles.title, index === currentIndex && styles.titleActive).className"

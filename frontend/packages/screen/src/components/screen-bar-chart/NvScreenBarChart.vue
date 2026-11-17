@@ -72,6 +72,12 @@ function yAt(value: number) {
   return plotHeight.value - PAD_B - ((value - scale.value.min) / range) * (plotHeight.value - PAD_T - PAD_B)
 }
 
+/** Zero line, clamped into the visible scale for all-negative data. */
+function zeroY() {
+  const zero = Math.max(scale.value.min, Math.min(scale.value.max, 0))
+  return yAt(zero)
+}
+
 interface RenderBar {
   key: string
   x: number
@@ -95,14 +101,15 @@ const bars = computed<RenderBar[]>(() => {
     const tone = entry.tone ?? (seriesIndex === 0 ? 'accent' : 'muted')
     entry.data.forEach((raw, index) => {
       if (typeof raw !== 'number' || !Number.isFinite(raw)) return
-      const y = yAt(Math.max(scale.value.min, raw))
-      const height = Math.max(0, plotHeight.value - PAD_B - y)
+      const clamped = Math.max(scale.value.min, Math.min(scale.value.max, raw))
+      const zero = zeroY()
+      const valueY = yAt(clamped)
       out.push({
         key: `${seriesIndex}-${index}`,
         x: slot * index + (slot - groupWidth) / 2 + barWidth * seriesIndex,
-        y,
+        y: Math.min(zero, valueY),
         width: Math.max(1, barWidth * 0.92),
-        height,
+        height: Math.abs(zero - valueY),
         categoryIndex: index,
         value: raw,
         style: stylex.props(styles.bar, barTones[tone]),
@@ -162,7 +169,7 @@ const readout = computed(() => {
     <template v-else>
       <div :class="stylex.props(styles.plotWrap).className">
         <div :class="stylex.props(styles.yAxis).className" aria-hidden="true">
-          <span v-for="label in yLabels" :key="label">{{ unit ? `${label} ${unit}` : label }}</span>
+          <span v-for="label in yLabels" :key="label">{{ label }}</span>
         </div>
         <div :class="stylex.props(styles.plot).className" :style="{ height: `${height}px` }">
           <svg

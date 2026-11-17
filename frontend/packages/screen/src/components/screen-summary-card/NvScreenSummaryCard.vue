@@ -63,12 +63,20 @@ const fillStyles: Record<SummaryTone, stylex.StyleXStyles | null> = {
   danger: styles.fillDanger,
 }
 
-const sparkTones: Record<SummaryTone, stylex.StyleXStyles> = {
-  default: styles.sparkAccent,
-  accent: styles.sparkAccent,
-  success: styles.sparkSuccess,
-  warning: styles.sparkWarning,
-  danger: styles.sparkDanger,
+const sparkStrokes: Record<SummaryTone, stylex.StyleXStyles> = {
+  default: styles.sparkStrokeAccent,
+  accent: styles.sparkStrokeAccent,
+  success: styles.sparkStrokeSuccess,
+  warning: styles.sparkStrokeWarning,
+  danger: styles.sparkStrokeDanger,
+}
+
+const sparkFills: Record<SummaryTone, stylex.StyleXStyles> = {
+  default: styles.sparkFillAccent,
+  accent: styles.sparkFillAccent,
+  success: styles.sparkFillSuccess,
+  warning: styles.sparkFillWarning,
+  danger: styles.sparkFillDanger,
 }
 
 const uid = `nv-scr-summary-${useId()}`
@@ -90,10 +98,10 @@ const spark = computed(() => {
 })
 
 const sparkLineSx = computed(() =>
-  stylex.props(styles.sparkLine, sparkTones[props.trendTone]),
+  stylex.props(styles.sparkLine, sparkStrokes[props.trendTone]),
 )
 const sparkAreaSx = computed(() =>
-  stylex.props(styles.sparkArea, sparkTones[props.trendTone]),
+  stylex.props(styles.sparkArea, sparkFills[props.trendTone]),
 )
 
 function metricText(metric: SummaryMetric | SummaryComparison): string {

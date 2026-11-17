@@ -1,6 +1,7 @@
 <script setup lang="ts" generic="T">
 import * as stylex from '@stylexjs/stylex'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { focus } from '../../theme/shared.stylex'
 import { styles } from './ScreenScrollArea.styles'
 import type { ScreenScrollAreaProps } from './types'
 
@@ -17,14 +18,15 @@ const props = withDefaults(
 const emit = defineEmits<{ visible: [indexes: number[]] }>()
 
 const viewport = ref<HTMLElement | null>(null)
+const track = ref<HTMLElement | null>(null)
 const original = ref<HTMLElement | null>(null)
 const pointerInside = ref(false)
 const focused = ref(false)
 const reducedMotion = ref(false)
+const half = ref(0)
 let frame = 0
 let last = 0
 let offset = 0
-let half = 0
 let observer: ResizeObserver | undefined
 let media: MediaQueryList | undefined
 
@@ -32,11 +34,11 @@ const manual = computed(() => reducedMotion.value || focused.value)
 
 const rootSx = computed(() => stylex.props(styles.root))
 const viewportSx = computed(() =>
-  stylex.props(styles.viewport, manual.value && styles.manualViewport, styles.focus),
+  stylex.props(styles.viewport, manual.value && styles.manualViewport, focus.subtle),
 )
 const trackSx = computed(() => stylex.props(styles.track))
 
-const loopRows = computed(() => (half > 0 && !manual.value ? props.items : []))
+const loopRows = computed(() => (half.value > 0 && !manual.value ? props.items : []))
 
 function keyFor(item: T, index: number): string | number {
   return props.rowKey ? props.rowKey(item, index) : index
@@ -46,13 +48,13 @@ function measure() {
   const el = original.value
   const frameEl = viewport.value
   if (!el || !frameEl) {
-    half = 0
+    half.value = 0
     return
   }
   const measured = el.scrollHeight
-  half = measured > frameEl.clientHeight ? measured : 0
-  if (!half) offset = 0
-  else offset = -(((-offset % half) + half) % half)
+  half.value = measured > frameEl.clientHeight ? measured : 0
+  if (!half.value) offset = 0
+  else offset = -(((-offset % half.value) + half.value) % half.value)
   emit('visible', props.items.map((_, index) => index))
 }
 
@@ -60,38 +62,44 @@ function run(now: number) {
   if (!last) last = now
   const delta = now - last
   last = now
-  if (manual.value || half === 0 || (props.pauseOnHover && pointerInside.value)) {
+  if (manual.value || half.value === 0 || (props.pauseOnHover && pointerInside.value)) {
     frame = requestAnimationFrame(run)
     return
   }
   offset -= (props.speed * delta) / 1000
-  offset = -(((-offset % half) + half) % half)
-  if (original.value) original.value.style.transform = `translateY(${offset}px)`
+  offset = -(((-offset % half.value) + half.value) % half.value)
+  if (track.value) track.value.style.transform = `translateY(${offset}px)`
   frame = requestAnimationFrame(run)
 }
 
 function onMotion(event: MediaQueryListEvent) {
   reducedMotion.value = event.matches
   if (reducedMotion.value) offset = 0
+  if (track.value) track.value.style.transform = 'translateY(0px)'
 }
 
 function onWheel(event: WheelEvent) {
-  if (!manual.value || !half) return
+  if (!manual.value || !half.value) return
   const current = viewport.value
   if (!current) return
   event.preventDefault()
-  current.scrollTop = ((current.scrollTop + event.deltaY) % half + half) % half
+  current.scrollTop = ((current.scrollTop + event.deltaY) % half.value + half.value) % half.value
 }
 
 async function onFocusIn(event: FocusEvent) {
   focused.value = true
   offset = 0
-  if (original.value) original.value.style.transform = 'translateY(0px)'
+  if (track.value) track.value.style.transform = 'translateY(0px)'
   const target = event.target
   await nextTick()
   if (target instanceof HTMLElement && viewport.value?.contains(target) && target !== viewport.value) {
     target.scrollIntoView?.({ block: 'nearest', inline: 'nearest' })
   }
+}
+
+function onFocusOut(event: FocusEvent) {
+  const next = event.relatedTarget
+  focused.value = next instanceof Node && Boolean(viewport.value?.contains(next))
 }
 
 onMounted(() => {
@@ -131,18 +139,17 @@ defineExpose({ measure })
       :style="viewportSx.style"
       tabindex="0"
       @focusin="onFocusIn"
-      @focusout="focused = !!$event.relatedTarget && viewport?.contains($event.relatedTarget as Node)"
+      @focusout="onFocusOut"
       @mouseenter="pointerInside = true"
       @mouseleave="pointerInside = false"
       @wheel="onWheel"
     >
       <p v-if="!items.length" :class="stylex.props(styles.empty).className">{{ emptyLabel }}</p>
-      <div :class="trackSx.className" :style="trackSx.style">
+      <div ref="track" :class="trackSx.className" :style="trackSx.style">
         <div ref="original">
           <div
             v-for="(item, index) in items"
             :key="`primary-${keyFor(item, index)}`"
-            data-marquee-row
           >
             <slot name="row" :item="item" :index="index" />
           </div>
@@ -151,7 +158,6 @@ defineExpose({ measure })
           <div
             v-for="(item, index) in loopRows"
             :key="`repeat-${keyFor(item, index)}`"
-            data-marquee-row
           >
             <slot name="row" :item="item" :index="index" />
           </div>

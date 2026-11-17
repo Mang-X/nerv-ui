@@ -56,5 +56,9 @@ export const styles = stylex.create({
     color: scr.danger,
   },
   textDefault: { color: scr.fgMuted },
+  dotAccent: { backgroundColor: scr.accent, boxShadow: `0 0 6px ${scr.accent}` },
+  dotSuccess: { backgroundColor: scr.success, boxShadow: `0 0 6px ${scr.success}` },
+  dotWarning: { backgroundColor: scr.warning, boxShadow: `0 0 6px ${scr.warning}` },
+  dotDanger: { backgroundColor: scr.danger, boxShadow: `0 0 6px ${scr.danger}` },
   radius: { borderRadius: scrShape.radius },
 })
