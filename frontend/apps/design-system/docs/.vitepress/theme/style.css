@@ -26,6 +26,14 @@
 @source '../../../../../packages/ui-mobile/src';
 @source '../../../../../packages/scheduling/src';
 
+/* Packaged component scoped styles: the workspace links resolve to dist (产物化后
+   exports 指 ./dist/*.js), and tsdown extracts every SFC <style scoped> into
+   dist/style.css — but nothing imports it. In dev the dist render functions carry
+   no <style> injection, so scoped rules (focus glow, glass, drag affordance)
+   silently drop. Import the built stylesheets here so docs dev/prod both see them. */
+@import '../../../../../packages/ui/dist/style.css';
+@import '../../../../../packages/ui-mobile/dist/style.css';
+
 /* Modal-overlay scroll lock without layout shift.
    True modals (Dialog / AlertDialog / Sheet) MUST lock background scroll. reka does
    that with `body { overflow: hidden }`, which only actually stops the viewport when
