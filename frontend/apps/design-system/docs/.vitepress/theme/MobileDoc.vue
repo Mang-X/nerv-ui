@@ -25,12 +25,14 @@ interface Device {
   skin: string
   /** screen logical resolution shown in the spec line */
   spec: string
+  /** logical screen aspect ratio (px height / px width) */
+  ratio: number
 }
 const DEVICES: Device[] = [
-  { id: 'iphone15pro', name: 'iPhone 15 Pro', skin: 'iphone15pro', spec: '6.1″ · 灵动岛 · 2556×1179' },
-  { id: 'iphonese', name: 'iPhone SE', skin: 'iphonese', spec: '4.7″ · Home 键 · 1334×750' },
-  { id: 'pixel8', name: 'Pixel 8', skin: 'pixel8', spec: '6.2″ · 打孔 · 2400×1080' },
-  { id: 'galaxy-s24', name: 'Galaxy S24', skin: 'galaxy-s24', spec: '6.2″ · 打孔 · 2340×1080' },
+  { id: 'iphone15pro', name: 'iPhone 15 Pro', skin: 'iphone15pro', spec: '6.1″ · 灵动岛 · 2556×1179', ratio: 2556 / 1179 },
+  { id: 'iphonese', name: 'iPhone SE', skin: 'iphonese', spec: '4.7″ · Home 键 · 1334×750', ratio: 1334 / 750 },
+  { id: 'pixel8', name: 'Pixel 8', skin: 'pixel8', spec: '6.2″ · 打孔 · 2400×1080', ratio: 2400 / 1080 },
+  { id: 'galaxy-s24', name: 'Galaxy S24', skin: 'galaxy-s24', spec: '6.2″ · 打孔 · 2340×1080', ratio: 2340 / 1080 },
 ]
 const device = ref<Device>(DEVICES[0])
 const skinClass = computed(() => `nv-mdoc-skin-${device.value.skin}`)
@@ -65,7 +67,11 @@ function pick(d: Device) {
           </div>
           <!-- `vp-raw` isolates the phone preview from VitePress base/vp-doc
                resets (ADR 0020 §4.2); the prose column keeps its `vp-doc`. -->
-          <div class="nv-mdoc-phone vp-raw" :class="skinClass">
+          <div
+            class="nv-mdoc-phone vp-raw"
+            :class="skinClass"
+            :style="{ '--nv-mdoc-ratio': String(device.ratio) }"
+          >
             <div class="nv-mdoc-statusbar">
               <span class="nv-mdoc-time font-semibold tabular-nums">9:41</span>
               <span class="nv-mdoc-battery" aria-hidden="true">
@@ -187,7 +193,10 @@ function pick(d: Device) {
   background: color-mix(in oklch, var(--foreground) 70%, transparent);
 }
 .nv-mdoc-screen {
-  height: 560px;
+  /* screen height follows the device's real aspect ratio: height = shell width
+     × (device px height / device px width), passed via --nv-mdoc-ratio, but
+     never taller than the viewport minus the chrome around it. */
+  height: min(calc(360px * var(--nv-mdoc-ratio, 2.17)), calc(100vh - 11rem));
   overflow-y: auto;
   background: var(--background);
   scrollbar-width: thin;
