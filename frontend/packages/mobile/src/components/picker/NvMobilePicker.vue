@@ -78,8 +78,9 @@ function syncDraft() {
 syncDraft()
 
 watch(
-  () => props.modelValue,
+  () => [props.modelValue, props.columns] as const,
   () => syncDraft(),
+  { deep: true },
 )
 
 function onOpenChange(open: boolean) {

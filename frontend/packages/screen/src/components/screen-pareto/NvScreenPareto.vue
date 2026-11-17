@@ -67,7 +67,7 @@ const summary = computed(() => {
   const top = cumulative.value.at(-1) ?? 0
   const tail =
     typeof props.total === 'number' && totalValue.value > 0
-      ? props.total - ordered.value.reduce((acc, item) => acc + item.value, 0)
+      ? Math.max(0, props.total - ordered.value.reduce((acc, item) => acc + item.value, 0))
       : null
   return { top, tail }
 })

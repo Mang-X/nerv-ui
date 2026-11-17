@@ -24,7 +24,14 @@ const separatorSx = computed(() => stylex.props(styles.separator))
 </script>
 
 <template>
-  <div role="toolbar" :aria-label="ariaLabel" :class="rootSx.className" :style="rootSx.style">
+  <div
+    role="toolbar"
+    :aria-label="ariaLabel"
+    :aria-disabled="disabled || undefined"
+    :inert="disabled || undefined"
+    :class="rootSx.className"
+    :style="rootSx.style"
+  >
     <div :class="groupSx.className" :style="groupSx.style">
       <slot />
     </div>

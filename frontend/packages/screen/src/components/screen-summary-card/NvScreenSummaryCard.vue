@@ -56,8 +56,8 @@ const toneStyles: Record<SummaryTone, stylex.StyleXStyles | null> = {
 }
 
 const fillStyles: Record<SummaryTone, stylex.StyleXStyles | null> = {
-  default: null,
-  accent: null,
+  default: styles.fill,
+  accent: styles.fill,
   success: styles.fillSuccess,
   warning: styles.fillWarning,
   danger: styles.fillDanger,

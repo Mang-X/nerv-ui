@@ -63,7 +63,7 @@ const labels = { level: '级别', time: '发生时间', source: '来源', messag
 | `density` | 行高预设 | `md \| sm` | `md` |
 | `zebra` | 斑马纹 | `boolean` | `true` |
 | `emptyLabel` | 空数据文案 | `string` | `暂无告警` |
-| `aria-label` | 表格区域的无障碍名称 | `string` | `告警列表` |
+| `ariaLabel` | 表格区域的无障碍名称 | `string` | `告警列表` |
 
 ### AlarmRecord
 

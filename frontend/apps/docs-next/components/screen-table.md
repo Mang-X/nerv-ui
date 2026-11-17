@@ -72,7 +72,7 @@ const rows = [
 | `density` | 行高预设，`sm` 收紧纵向内边距 | `md \| sm` | `md` |
 | `zebra` | 斑马纹 | `boolean` | `true` |
 | `emptyLabel` | 空数据文案 | `string` | `暂无数据` |
-| `aria-label` | 表格区域的无障碍名称 | `string` | `数据表` |
+| `ariaLabel` | 表格区域的无障碍名称 | `string` | `数据表` |
 
 ### ScreenTableColumn
 

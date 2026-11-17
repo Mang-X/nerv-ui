@@ -46,9 +46,9 @@ const props = withDefaults(defineProps<MobileDatePickerProps>(), {
 const emit = defineEmits<{
   'update:open': [open: boolean]
   'open-change': [open: boolean]
-  'update:modelValue': [value: string]
-  change: [value: string]
-  confirm: [value: string]
+  'update:modelValue': [value: string | null]
+  change: [value: string | null]
+  confirm: [value: string | null]
   cancel: []
 }>()
 

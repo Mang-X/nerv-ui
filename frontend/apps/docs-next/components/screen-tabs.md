@@ -71,7 +71,7 @@ const items = [
 | `disabled` | 禁用整组 | `boolean` | `false` |
 | `showPanels` | 渲染面板；仅在存在面板插槽时生效 | `boolean` | `true` |
 | `keepPanels` | 面板卸载后保留 DOM | `boolean` | `false` |
-| `aria-label` | 标签栏的无障碍名称 | `string` | `标签页` |
+| `ariaLabel` | 标签栏的无障碍名称 | `string` | `标签页` |
 
 ### ScreenTabItem
 

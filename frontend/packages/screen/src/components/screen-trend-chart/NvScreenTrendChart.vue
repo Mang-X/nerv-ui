@@ -75,6 +75,8 @@ const bodySx = computed(() => stylex.props(styles.body))
 const svgSx = computed(() => stylex.props(styles.svg))
 const gridSx = computed(() => stylex.props(styles.grid))
 
+/** X axis spans the longest series; shorter series are left-aligned on the
+ *  same index scale (callers should pass equal-length series for aligned trends). */
 const sampleCount = computed(() => {
   let count = 0
   for (const entry of props.series) count = Math.max(count, entry.data.length)
