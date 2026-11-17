@@ -4,11 +4,12 @@ title: NvRingGauge 环形仪表
 
 <script setup>
 import { computed, ref } from 'vue'
-import { NvRingGauge, NvScreenPanel } from '@nerv-iip/ui'
-const value = ref(72.5)
-const finiteValue = computed(() =>
-  typeof value.value === 'number' && Number.isFinite(value.value) ? value.value : undefined,
-)
+import { NvRingGauge, NvScreenInput, NvScreenPanel } from '@nerv-iip/ui'
+const input = ref('72.5')
+const finiteValue = computed(() => {
+  const n = Number(input.value)
+  return input.value.trim() !== '' && Number.isFinite(n) ? n : undefined
+})
 </script>
 
 # NvRingGauge 环形仪表
@@ -19,7 +20,7 @@ const finiteValue = computed(() =>
 
 <ScreenDemo>
   <NvScreenPanel title="空间比例" style="width: 360px">
-    <input v-model.number="value" type="number" aria-label="预订比例" />
+    <NvScreenInput v-model="input" ariaLabel="预订比例" />
     <NvRingGauge v-if="finiteValue !== undefined" :value="finiteValue" label="预订比例" />
     <p v-else role="status">比例未知</p>
     <NvRingGauge :value="0" label="阅读比例" :size="120" :value-size="24" />

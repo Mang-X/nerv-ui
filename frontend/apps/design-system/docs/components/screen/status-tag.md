@@ -4,10 +4,11 @@ title: NvScreenStatusTag 状态标签
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenStatusTag } from '@nerv-iip/ui'
+import { NvScreenInput, NvScreenSelect, NvScreenStatusTag } from '@nerv-iip/ui'
 const tone = ref('run')
 const label = ref('欢迎来坐坐')
 const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']
+const toneOptions = tones.map((item) => ({ label: item, value: item }))
 </script>
 
 # NvScreenStatusTag 状态标签
@@ -17,9 +18,9 @@ const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']
 ## 动态标签
 
 <ScreenDemo>
-  <div>
-    <select v-model="tone" aria-label="标签颜色"><option v-for="item in tones" :key="item">{{ item }}</option></select>
-    <input v-model="label" aria-label="标签文字" />
+  <div class="status-tag-doc">
+    <NvScreenSelect v-model="tone" :options="toneOptions" placeholder="标签颜色" />
+    <NvScreenInput v-model="label" ariaLabel="标签文字" />
     <NvScreenStatusTag :tone="tone" :label="label" />
   </div>
 </ScreenDemo>
@@ -38,3 +39,9 @@ const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']
 | `label` | 标签文字，由宿主提供状态含义 | `string`                                                              | `'运行中'`，保留旧默认 |
 
 独立接入时显式传入中性文字；不要用默认“运行中”代表未知。文字随 prop 更新，状态不靠颜色单独识别。长标签须有足够宿主宽度，标签本身不自动推断缩写或业务规则。
+
+<style>
+.status-tag-doc { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; color: var(--nv-scr-text); }
+.status-tag-doc .nv-scr-sel { width: 160px; }
+.status-tag-doc .nv-scr-in { flex: 1; min-width: 200px; }
+</style>

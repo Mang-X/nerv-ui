@@ -4,7 +4,7 @@ title: NvScreenFlowLinesBg 与 NvScreenIsometricBlocksBg
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
 
 const flowClicks = ref(0)
 const isoClicks = ref(0)
@@ -17,11 +17,11 @@ const isoClicks = ref(0)
 <ScreenDemo wide>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
     <div style="position: relative; height: 260px; overflow: hidden; background: var(--nv-scr-bg)">
-      <button type="button" style="position: absolute; top: 48%; left: 36%; z-index: 0; padding: 8px; color: white; background: #155b78" @click="flowClicks++">流线前的按钮：{{ flowClicks }}</button>
+      <NvScreenButton type="button" variant="secondary" style="position: absolute; top: 48%; left: 36%; z-index: 0" @click="flowClicks++">流线前的按钮：{{ flowClicks }}</NvScreenButton>
       <NvScreenFlowLinesBg />
     </div>
     <div style="position: relative; height: 260px; overflow: hidden; background: var(--nv-scr-bg)">
-      <button type="button" style="position: absolute; top: 48%; left: 36%; z-index: 0; padding: 8px; color: white; background: #155b78" @click="isoClicks++">块体前的按钮：{{ isoClicks }}</button>
+      <NvScreenButton type="button" variant="secondary" style="position: absolute; top: 48%; left: 36%; z-index: 0" @click="isoClicks++">块体前的按钮：{{ isoClicks }}</NvScreenButton>
       <NvScreenIsometricBlocksBg />
     </div>
   </div>

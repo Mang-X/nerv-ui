@@ -4,7 +4,7 @@ title: NvScreenLayout 种子氛围布局
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenLayout } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenLayout } from '@nerv-iip/ui'
 const visited = ref(false)
 </script>
 
@@ -18,7 +18,7 @@ const visited = ref(false)
       <section class="nv-scr-layout-doc-content">
         <h2>河岸展厅</h2>
         <p>沿着河岸，读一座城。</p>
-        <button type="button" @click="visited = !visited">{{ visited ? '已加入心愿' : '加入心愿' }}</button>
+        <NvScreenButton type="button" variant="secondary" @click="visited = !visited">{{ visited ? '已加入心愿' : '加入心愿' }}</NvScreenButton>
       </section>
     </NvScreenLayout>
   </div>
@@ -27,7 +27,7 @@ const visited = ref(false)
 ```vue
 <NvScreenScaler>
   <NvScreenLayout :seed="spaceId" title="城市文化空间" :time="hostTime">
-    <button type="button" @click="openGuide">查看导览</button>
+    <NvScreenButton type="button" @click="openGuide">查看导览</NvScreenButton>
   </NvScreenLayout>
 </NvScreenScaler>
 ```
@@ -55,7 +55,7 @@ const visited = ref(false)
 .nv-scr-layout-doc-content { display: grid; justify-items: start; align-content: start; gap: 24px; padding: 100px; color: var(--nv-scr-text); font-size: 36px; }
 .nv-scr-layout-doc-content h2 { margin: 0; font-size: 64px; line-height: 1.2; }
 .nv-scr-layout-doc-content p { margin: 0; font-size: 36px; line-height: 1.5; }
-.nv-scr-layout-doc-content button { padding: 20px 32px; border: 1px solid var(--nv-scr-cyan); color: var(--nv-scr-text); background: var(--nv-scr-bg-accent); font: inherit; cursor: pointer; }
+.nv-scr-layout-doc-content .nv-scr-btn { padding: 20px 32px; height: auto; font: inherit; }
 @media (max-width: 1700px) { .nv-scr-layout-doc-preview { height: 390px; } .nv-scr-layout-doc-preview > .nv-scr-layout { transform: scale(.34); } }
 @media (max-width: 700px) { .nv-scr-layout-doc-preview { height: 180px; } .nv-scr-layout-doc-preview > .nv-scr-layout { transform: scale(.15); } }
 </style>

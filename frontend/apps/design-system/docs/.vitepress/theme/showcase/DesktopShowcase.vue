@@ -700,10 +700,10 @@ const progress = computed(
               <span class="text-xs text-muted-foreground">12 色 · OKLCH 同明度</span>
             </div>
             <div class="mt-4 grid grid-cols-6 gap-3 sm:grid-cols-12">
-              <button
+              <!-- intentional native control: 色板样本是包含色块+名称的复合按钮，NvButton 的标准排版会覆盖色块布局 -->
+              <button type="button"
                 v-for="[name, value] in accentEntries"
                 :key="name"
-                type="button"
                 class="group/sw flex flex-col items-center gap-1.5 outline-none"
                 :aria-label="`品牌色 ${accentNames[name] ?? name}`"
                 :aria-pressed="accent === value"

@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { BookOpenIcon } from '@lucide/vue'
 import {
+  NvButton,
   Sidebar,
   SidebarProvider,
   SidebarTrigger,
@@ -19,22 +20,24 @@ const current = ref('随手收藏')
 <template>
   <section aria-label="原版阅读侧栏" class="w-full min-w-0 space-y-3">
     <div class="flex flex-wrap gap-2">
-      <button
+      <NvButton
         type="button"
-        class="rounded-md border px-3 py-2"
+        variant="outline"
+        size="sm"
         :aria-pressed="fixed"
         @click="fixed = true"
       >
         固定侧栏
-      </button>
-      <button
+      </NvButton>
+      <NvButton
         type="button"
-        class="rounded-md border px-3 py-2"
+        variant="outline"
+        size="sm"
         :aria-pressed="!fixed"
         @click="fixed = false"
       >
         可折叠侧栏
-      </button>
+      </NvButton>
     </div>
     <p role="status">当前菜单：{{ current }}</p>
     <div class="base-sidebar-frame">

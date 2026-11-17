@@ -4,7 +4,7 @@ title: NvDigitalFlop 数字翻牌
 
 <script setup>
 import { ref } from 'vue'
-import { NvDigitalFlop, NvScreenPanel } from '@nerv-iip/ui'
+import { NvDigitalFlop, NvScreenButton, NvScreenPanel } from '@nerv-iip/ui'
 const value = ref(1284)
 </script>
 
@@ -19,11 +19,11 @@ const value = ref(1284)
 <ScreenDemo>
   <NvScreenPanel title="到访计数" style="width: 600px; overflow: auto">
     <NvDigitalFlop :value="value" suffix="人次" />
-    <div>
-      <button @click="value = 2400.5">增加</button>
-      <button @click="value = 12.25">减少</button>
-      <button @click="value = '12 345.67 · 待核对'">显示文字</button>
-      <button @click="value = 0">有效零值</button>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <NvScreenButton variant="secondary" @click="value = 2400.5">增加</NvScreenButton>
+      <NvScreenButton variant="secondary" @click="value = 12.25">减少</NvScreenButton>
+      <NvScreenButton variant="secondary" @click="value = '12 345.67 · 待核对'">显示文字</NvScreenButton>
+      <NvScreenButton variant="secondary" @click="value = 0">有效零值</NvScreenButton>
     </div>
   </NvScreenPanel>
 </ScreenDemo>

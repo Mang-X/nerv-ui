@@ -4,17 +4,22 @@ title: NvScreenStatusWall 分组状态墙
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenStatusWall, NvScreenPanel } from '@nerv-iip/ui'
+import { NvScreenPanel, NvScreenSelect, NvScreenStatusWall } from '@nerv-iip/ui'
 const mode = ref('flat')
 const current = ref(null)
 const items = [{key:'a',label:'阅读角',identity:'东区 1 号',status:{label:'待确认',tone:'amber'},summary:'0 人',group:{key:'east',label:'东区'}},{key:'b',label:'阅读角',identity:'西区 2 号',status:{label:'开放',tone:'green'},summary:null,group:{key:'west',label:'西区'}}]
+const modeOptions = [
+  { label: '平铺', value: 'flat' },
+  { label: '分组紧凑格', value: 'group-grid' },
+  { label: '分组横条', value: 'group-chip' },
+]
 </script>
 
 # NvScreenStatusWall 分组状态墙
 
 <ScreenDemo>
   <div style="width:100%">
-    <label>排列 <select v-model="mode"><option value="flat">平铺</option><option value="group-grid">分组紧凑格</option><option value="group-chip">分组横条</option></select></label>
+    <label class="status-wall-field">排列 <NvScreenSelect v-model="mode" :options="modeOptions" placeholder="排列方式" /></label>
     <div style="height:280px"><NvScreenStatusWall :items="items" :mode="mode" label="阅读位置" @preview="current = $event" /></div>
     <NvScreenPanel title="位置概况">{{ current ? current.identity : '悬停或聚焦查看概况' }}</NvScreenPanel>
   </div>
@@ -57,3 +62,8 @@ type ScreenStatusWallMode = 'flat' | 'group-grid' | 'group-chip'
 来源固定 `79b1578f2b75f55709765b5e7882aaf33146c603` 的 StatusWall：保留平铺行虚拟、两种分组密度、hover/select/visible 与滚动关闭。去掉领域 DTO、五态统计、paramColors、详情请求、250ms 防抖和 30 秒缓存；延迟只在示例宿主。完整详情及迷你趋势不迁入本墙。旧应用接入和旧库退出已取消，NOT_PLANNED。
 
 <!-- @include: ../../../../../DESIGN/components/status-wall.md -->
+
+<style>
+.status-wall-field { display: inline-flex; align-items: center; gap: 8px; color: var(--nv-scr-text); }
+.status-wall-field .nv-scr-sel { width: 200px; }
+</style>

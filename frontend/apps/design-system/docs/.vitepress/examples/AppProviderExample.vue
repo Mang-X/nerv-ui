@@ -1,6 +1,18 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref } from 'vue'
-import { NvApp, NvButton, Tooltip, TooltipTrigger, TooltipContent, toast } from '@nerv-iip/ui'
+import {
+  NvApp,
+  NvButton,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  toast,
+} from '@nerv-iip/ui'
 
 const delay = ref(200)
 const confirmed = ref(false)
@@ -27,10 +39,13 @@ onBeforeUnmount(closeNotification)
       </p>
       <label class="flex max-w-full flex-wrap items-center gap-2 text-sm">
         提示延迟
-        <select v-model="delay" class="rounded-md border border-border bg-background p-2">
-          <option :value="200">默认 200 毫秒</option>
-          <option :value="800">显式 800 毫秒</option>
-        </select>
+        <NvSelect v-model="delay">
+          <NvSelectTrigger class="w-44"><NvSelectValue placeholder="选择延迟" /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem :value="200">默认 200 毫秒</NvSelectItem>
+            <NvSelectItem :value="800">显式 800 毫秒</NvSelectItem>
+          </NvSelectContent>
+        </NvSelect>
       </label>
       <Tooltip>
         <TooltipTrigger as-child>

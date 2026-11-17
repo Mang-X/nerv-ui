@@ -9,6 +9,11 @@ import {
   EmptyDescription,
   EmptyContent,
   NvButton,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
 } from '@nerv-iip/ui'
 
 const hasContent = ref(true)
@@ -30,13 +35,13 @@ function restore() {
       <NvButton type="button" :disabled="!hasContent" @click="clear">清空本页安排</NvButton>
       <label class="flex flex-wrap items-center gap-2 text-sm">
         空态图示
-        <select
-          v-model="variant"
-          class="rounded-md border border-border bg-background p-2 text-foreground"
-        >
-          <option value="default">文字图示</option>
-          <option value="icon">图标图示</option>
-        </select>
+        <NvSelect v-model="variant">
+          <NvSelectTrigger class="w-36"><NvSelectValue placeholder="选择图示" /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem value="default">文字图示</NvSelectItem>
+            <NvSelectItem value="icon">图标图示</NvSelectItem>
+          </NvSelectContent>
+        </NvSelect>
       </label>
     </div>
     <ul v-if="hasContent" aria-label="当前安排">

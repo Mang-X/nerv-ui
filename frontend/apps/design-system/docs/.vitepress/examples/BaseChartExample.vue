@@ -44,8 +44,8 @@ function replace() {
         class="!m-0 grid min-w-0 gap-3 !p-0 list-none"
       >
         <li v-for="item in visible" :key="item.key" class="min-w-0">
-          <button
-            type="button"
+          <!-- intentional native control: 整行复合图表条目作为可点按钮，NvButton 的标准内边距与排版会破坏布局 -->
+          <button type="button"
             class="w-full min-w-0 rounded-md border border-border p-3 text-left whitespace-normal break-words focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
             :aria-pressed="currentKey === item.key"
             @click="currentKey = item.key"

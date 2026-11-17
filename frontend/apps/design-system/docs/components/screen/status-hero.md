@@ -4,13 +4,20 @@ title: NvScreenStatusHero 远距主状态灯
 
 <script setup>
 import { computed, ref } from 'vue'
-import { NvScreenStatusHero } from '@nerv-iip/ui'
+import {
+  NvScreenButton,
+  NvScreenInput,
+  NvScreenSelect,
+  NvScreenStatusHero,
+} from '@nerv-iip/ui'
 const tone = ref('green')
 const rhythm = ref('steady')
 const label = ref('开放中')
 const offline = ref(0)
 const viewed = ref(false)
 const hint = computed(() => offline.value === null ? '失联数量待确认' : offline.value > 0 ? `${offline.value} 处数据失联` : null)
+const toneOptions = ['neutral', 'cyan', 'green', 'amber', 'red'].map((item) => ({ label: item, value: item }))
+const rhythmOptions = ['still', 'steady', 'slow', 'fast'].map((item) => ({ label: item, value: item }))
 </script>
 
 # NvScreenStatusHero 远距主状态灯
@@ -19,14 +26,14 @@ const hint = computed(() => offline.value === null ? '失联数量待确认' : o
 
 <ScreenDemo>
   <div class="status-hero-doc">
-    <label>颜色 <select v-model="tone" aria-label="主灯颜色"><option v-for="item in ['neutral','cyan','green','amber','red']" :key="item">{{ item }}</option></select></label>
-    <label>节奏 <select v-model="rhythm" aria-label="主灯节奏"><option v-for="item in ['still','steady','slow','fast']" :key="item">{{ item }}</option></select></label>
-    <label>状态 <input v-model="label" aria-label="主灯文字" /></label>
-    <button type="button" @click="offline = offline === 0 ? 2 : offline === 2 ? null : 0">切换数据状态</button>
+    <label class="status-hero-field">颜色 <NvScreenSelect v-model="tone" :options="toneOptions" placeholder="主灯颜色" /></label>
+    <label class="status-hero-field">节奏 <NvScreenSelect v-model="rhythm" :options="rhythmOptions" placeholder="主灯节奏" /></label>
+    <label class="status-hero-field">状态 <NvScreenInput v-model="label" ariaLabel="主灯文字" /></label>
+    <NvScreenButton type="button" variant="secondary" @click="offline = offline === 0 ? 2 : offline === 2 ? null : 0">切换数据状态</NvScreenButton>
     <NvScreenStatusHero :tone="tone" :rhythm="rhythm" :label="label">
       <template v-if="hint" #auxiliary>
         <p>{{ hint }}</p>
-        <button type="button" @click="viewed = true">查看现场说明</button>
+        <NvScreenButton type="button" variant="secondary" @click="viewed = true">查看现场说明</NvScreenButton>
       </template>
     </NvScreenStatusHero>
     <p role="status">{{ viewed ? '已查看现场说明' : '现场信息持续更新' }}</p>
@@ -47,9 +54,9 @@ const hint = computed(() => offline.value === null ? '失联数量待确认' : o
 <!-- @include: ../../../../../DESIGN/components/status-hero.md -->
 
 <style>
-.status-hero-doc { display: flex; flex-wrap: wrap; align-items: start; gap: 16px; color: var(--nv-scr-text); }
-.status-hero-doc label { display: flex; gap: 8px; align-items: center; }
+.status-hero-doc { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; color: var(--nv-scr-text); }
+.status-hero-doc .status-hero-field { display: flex; gap: 8px; align-items: center; }
+.status-hero-doc .status-hero-field .nv-scr-sel,
+.status-hero-doc .status-hero-field .nv-scr-in { width: 160px; }
 .status-hero-doc .nv-scr-sh { flex-basis: 100%; }
-.status-hero-doc input, .status-hero-doc select, .status-hero-doc button { padding: 8px 12px; color: var(--nv-scr-text); background: var(--nv-scr-bg-accent); border: 1px solid var(--nv-scr-line-2); border-radius: var(--nv-scr-radius); }
-.status-hero-doc button { cursor: pointer; }
 </style>

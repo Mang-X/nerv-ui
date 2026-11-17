@@ -5,7 +5,7 @@ title: NvAppShellMobile 应用外壳
 
 <script setup>
 import { ref } from 'vue'
-import { NvAppShellMobile, NvNavBar, NvTabBar, NvCellGroup, NvCell, NvMobileTag } from '@nerv-iip/ui-mobile'
+import { NvAppShellMobile, NvMobileButton, NvNavBar, NvTabBar, NvCellGroup, NvCell, NvMobileTag } from '@nerv-iip/ui-mobile'
 import { LayoutGrid, ClipboardList, Bell, User } from '@lucide/vue'
 
 const tab = ref('home')
@@ -36,10 +36,10 @@ const tasks = [
 <template #header>
 <NvNavBar title="移动工作台">
 <template #right>
-<button type="button" class="relative flex size-9 items-center justify-center rounded-full text-foreground active:bg-accent" aria-label="告警">
+<NvMobileButton type="button" variant="text" class="relative size-11 rounded-full p-0 text-foreground" aria-label="告警">
 <Bell class="size-5" aria-hidden="true" />
 <span class="absolute top-2 right-2 size-1.5 rounded-full bg-destructive" aria-hidden="true" />
-</button>
+</NvMobileButton>
 </template>
 </NvNavBar>
 </template>

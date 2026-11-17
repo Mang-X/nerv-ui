@@ -4,7 +4,7 @@ title: NvSparkline 迷你趋势
 
 <script setup>
 import { ref } from 'vue'
-import { NvSparkline, NvScreenPanel } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenPanel, NvSparkline } from '@nerv-iip/ui'
 const data = ref([8, 11, 9, 14, 12, 17])
 </script>
 
@@ -18,8 +18,10 @@ const data = ref([8, 11, 9, 14, 12, 17])
   <NvScreenPanel title="阅读次数" style="width: 360px">
     <div style="height: 56px"><NvSparkline :data="data" area /></div>
     <p>阅读次数：{{ data.join(' → ') || '暂无数据' }}</p>
-    <button @click="data = [0, 10, 0]">替换为三点</button>
-    <button @click="data = []">清空</button>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <NvScreenButton variant="secondary" @click="data = [0, 10, 0]">替换为三点</NvScreenButton>
+      <NvScreenButton variant="secondary" @click="data = []">清空</NvScreenButton>
+    </div>
   </NvScreenPanel>
   <NvScreenPanel title="预订次数" style="width: 360px">
     <div style="height: 56px"><NvSparkline :data="[10, 0]" area color="var(--nv-scr-indigo)" /></div>

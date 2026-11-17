@@ -4,7 +4,7 @@ title: NvOeeHero 核心指标
 
 <script setup>
 import { ref, computed } from 'vue'
-import { NvOeeHero, NvScreenPanel } from '@nerv-iip/ui'
+import { NvOeeHero, NvScreenInput, NvScreenPanel } from '@nerv-iip/ui'
 const reading = ref('2,460')
 const known = computed(() => reading.value.trim() !== '')
 </script>
@@ -18,8 +18,8 @@ const known = computed(() => reading.value.trim() !== '')
 宿主明确指定 `deltaTone="positive"`，无需在文本前添加假负号。清空输入表示未知，同时显式清空 spark，恢复 `0` 表示真实零。格式化及缺测判断由宿主负责。
 
 <ScreenDemo>
-  <div style="width: 600px">
-    <label>费用读数 <input v-model="reading" aria-label="费用读数" /></label>
+  <div class="oee-hero-doc" style="width: 600px">
+    <label class="oee-hero-field">费用读数 <NvScreenInput v-model="reading" ariaLabel="费用读数" /></label>
     <NvScreenPanel title="费用变化">
       <NvOeeHero label="文化空间 · 当日费用" :value="known ? reading : '—'" unit="元" :delta="known ? '较昨日 -5% · 节省' : ''" delta-tone="positive" :spark="known ? [90, 82, 86, 72, 64] : []" />
     </NvScreenPanel>
@@ -55,3 +55,9 @@ const known = computed(() => reading.value.trim() !== '')
 | `spark`     | 有限、常规量级的数字序列；少于两点不绘制    | `number[]`                              | 原内置示例序列 |
 
 `NvOeeHero` 是裸内容，放入 `NvScreenPanel`。显式 `spark=[]` 不恢复示例；多实例使用各自的渐变定义。不接收 null、NaN、Infinity，也不根据主数字推算曲线。
+
+<style>
+.oee-hero-doc { display: flex; flex-direction: column; gap: 12px; color: var(--nv-scr-text); }
+.oee-hero-field { display: flex; align-items: center; gap: 8px; }
+.oee-hero-field .nv-scr-in { flex: 1; }
+</style>

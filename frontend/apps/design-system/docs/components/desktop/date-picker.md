@@ -3,7 +3,15 @@ title: NvDatePicker 日期选择器
 ---
 
 <script setup>
-import { NvDatePicker, NvDateRangePicker } from '@nerv-iip/ui'
+import {
+  NvDatePicker,
+  NvDateRangePicker,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+} from '@nerv-iip/ui'
 import { ref } from 'vue'
 import BaseDatesExample from '../../.vitepress/examples/BaseDatesExample.vue'
 
@@ -35,10 +43,15 @@ const locale = ref('zh-CN')
 
 <Demo>
   <div style="display:flex;flex-direction:column;gap:12px;max-width:240px">
-    <select v-model="locale" aria-label="日期显示语言">
-      <option value="zh-CN">简体中文</option>
-      <option value="en-US">English (US)</option>
-    </select>
+    <NvSelect v-model="locale">
+      <NvSelectTrigger aria-label="日期显示语言">
+        <NvSelectValue placeholder="日期显示语言" />
+      </NvSelectTrigger>
+      <NvSelectContent>
+        <NvSelectItem value="zh-CN">简体中文</NvSelectItem>
+        <NvSelectItem value="en-US">English (US)</NvSelectItem>
+      </NvSelectContent>
+    </NvSelect>
     <NvDatePicker v-model="planDate" :locale="locale" clearable />
   </div>
 </Demo>
