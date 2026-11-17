@@ -7,8 +7,9 @@ import { ref } from 'vue'
 import { cn } from '../../lib/utils'
 
 /**
- * Mobile switch — a 51×44 switch surface and native action target.
- * Bigger than the desktop SwitchPro; reads as a native control on touch.
+ * Mobile switch — a 51×31 native pill inside a 51×44 touch target. The SwitchRoot
+ * is the transparent hit area (44px baseline); the inner span is the visible pill
+ * (standard iOS-ish ratio), so the control reads right and still taps easy.
  */
 const props = defineProps<SwitchRootProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<SwitchRootEmits>()
@@ -28,15 +29,15 @@ const pressed = ref(false)
     @pointercancel="pressed = false"
     :class="
       cn(
-        'nv-m-mswitch nv-focusable inline-flex h-11 w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35 outline-none disabled:cursor-not-allowed disabled:opacity-50',
+        'nv-m-mswitch nv-focusable inline-flex h-11 w-[51px] shrink-0 cursor-pointer items-center justify-center rounded-full outline-none disabled:cursor-not-allowed disabled:opacity-50',
         props.class,
       )
     "
   >
-    <!-- With asChild this neutral span becomes the actual, exposed switch root. -->
-    <span>
+    <!-- Visible pill (51×31, standard ratio) inside the 51×44 transparent hit area. -->
+    <span class="nv-m-mswitch-pill pointer-events-none inline-flex h-[31px] w-[51px] items-center self-center rounded-full px-0.5">
       <SwitchThumb
-        class="nv-m-mswitch-thumb pointer-events-none block size-[27px] rounded-full bg-white shadow-[0_2px_4px_rgb(0_0_0/0.2)] ring-0 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+        class="nv-m-mswitch-thumb pointer-events-none block size-[25px] rounded-full bg-white shadow-[0_2px_4px_rgb(0_0_0/0.2)] ring-0 data-[state=checked]:translate-x-[22px] data-[state=unchecked]:translate-x-0.5"
         :class="pressed && 'is-pressed'"
       />
     </span>
@@ -48,6 +49,15 @@ const pressed = ref(false)
   .nv-m-mswitch {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+  }
+  /* Visible pill carries the state fill; SwitchRoot is the transparent hit area. */
+  .nv-m-mswitch[data-state='checked'] .nv-m-mswitch-pill {
+    background-color: var(--nv-brand);
+  }
+  .nv-m-mswitch[data-state='unchecked'] .nv-m-mswitch-pill {
+    background-color: color-mix(in oklch, var(--muted-foreground) 35%, transparent);
+  }
+  .nv-m-mswitch-pill {
     transition: background-color 0.2s var(--nv-ease-out-quart, ease-out);
   }
   .nv-m-mswitch-thumb {
