@@ -13,17 +13,17 @@ const sort = ref('newest')
 
 const statusOptions = [
   { label: '全部状态', value: '' },
-  { label: '待开工', value: 'pending' },
-  { label: '生产中', value: 'running' },
-  { label: '已完工', value: 'done' },
+  { label: '待开始', value: 'pending' },
+  { label: '进行中', value: 'running' },
+  { label: '已完成', value: 'done' },
   { label: '已暂停', value: 'paused' },
 ]
 const centerOptions = [
-  { label: '全部工作中心', value: '' },
-  { label: 'CNC 加工', value: 'cnc' },
-  { label: '焊接', value: 'weld' },
-  { label: '装配', value: 'assembly' },
-  { label: '质检', value: 'qc' },
+  { label: '全部分组', value: '' },
+  { label: 'Alpha 组', value: 'alpha' },
+  { label: 'Beta 组', value: 'beta' },
+  { label: 'Gamma 组', value: 'gamma' },
+  { label: 'Delta 组', value: 'delta' },
 ]
 const sortOptions = [
   { label: '最新创建', value: 'newest' },
@@ -32,9 +32,9 @@ const sortOptions = [
 ]
 
 const rows = [
-  { code: 'WO-2406-0421', product: '齿轮箱端盖', center: 'CNC 02' },
-  { code: 'WO-2406-0426', product: '液压阀体 V3', center: '装配 01' },
-  { code: 'WO-2406-0433', product: '主轴箱体', center: '焊接 03' },
+  { code: 'REC-2406-0421', product: '季度回顾草稿', center: 'Alpha 02' },
+  { code: 'REC-2406-0426', product: '设计评审纪要', center: 'Beta 01' },
+  { code: 'REC-2406-0433', product: '发布检查清单', center: 'Gamma 03' },
 ]
 </script>
 
@@ -47,7 +47,7 @@ const rows = [
     <div class="overflow-hidden rounded-xl border border-border">
       <NvMobileDropdownMenu>
         <NvMobileDropdownMenuItem v-model="status" title="状态" :options="statusOptions" />
-        <NvMobileDropdownMenuItem v-model="center" title="工作中心" :options="centerOptions" />
+        <NvMobileDropdownMenuItem v-model="center" title="分组" :options="centerOptions" />
         <NvMobileDropdownMenuItem v-model="sort" title="排序" :options="sortOptions" />
       </NvMobileDropdownMenu>
       <NvCell
@@ -77,8 +77,8 @@ import { ref } from 'vue'
 const status = ref('')
 const statusOptions = [
   { label: '全部状态', value: '' },
-  { label: '生产中', value: 'running' },
-  { label: '已完工', value: 'done' },
+  { label: '进行中', value: 'running' },
+  { label: '已完成', value: 'done' },
 ]
 </script>
 

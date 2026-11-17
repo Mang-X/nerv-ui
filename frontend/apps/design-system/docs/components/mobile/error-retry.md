@@ -29,13 +29,13 @@ function reset() {
     <p class="nv-mdoc-label">基础用法</p>
     <NvMobileErrorRetry
       v-if="!recovered"
-      message="工单列表加载失败，请检查网络后重试"
+      message="记录列表加载失败，请检查网络后重试"
       :pending="pending"
       test-id="doc-list-error"
       @retry="onRetry"
     />
     <div v-else class="rounded-lg border border-border bg-card px-4 py-3 text-sm">
-      <p class="text-muted-foreground">已恢复：12 条待处理工单</p>
+      <p class="text-muted-foreground">已恢复：12 条待处理记录</p>
       <NvMobileButton variant="outline" size="sm" class="mt-2" @click="reset">重置示例</NvMobileButton>
     </div>
   </section>
@@ -62,7 +62,7 @@ function onRetry() {
 </script>
 
 <template>
-  <NvMobileErrorRetry message="工单列表加载失败" :pending="pending" @retry="onRetry" />
+  <NvMobileErrorRetry message="记录列表加载失败" :pending="pending" @retry="onRetry" />
 </template>
 ```
 

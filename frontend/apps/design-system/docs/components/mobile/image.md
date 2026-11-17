@@ -19,11 +19,11 @@ const broken = 'https://invalid.nerv-iip.local/not-found.jpg'
     <p class="nv-mdoc-label">填充模式</p>
     <div class="grid grid-cols-2 gap-3">
       <div>
-        <NvMobileImage :src="photo" fit="cover" ratio="1" radius="lg" alt="设备照片" />
+        <NvMobileImage :src="photo" fit="cover" ratio="1" radius="lg" alt="资源照片" />
         <p class="mt-1 text-center text-xs text-muted-foreground">cover 裁切填满</p>
       </div>
       <div>
-        <NvMobileImage :src="tall" fit="contain" ratio="1" radius="lg" alt="产线照片" class="bg-muted" />
+        <NvMobileImage :src="tall" fit="contain" ratio="1" radius="lg" alt="区域照片" class="bg-muted" />
         <p class="mt-1 text-center text-xs text-muted-foreground">contain 完整留边</p>
       </div>
     </div>
@@ -31,8 +31,8 @@ const broken = 'https://invalid.nerv-iip.local/not-found.jpg'
   <section>
     <p class="nv-mdoc-label">圆角 / 比例</p>
     <div class="flex items-center gap-3">
-      <NvMobileImage :src="photo" radius="full" class="size-16" alt="操作员头像" />
-      <NvMobileImage :src="photo" ratio="16/9" radius="md" alt="工位看板" class="flex-1" />
+      <NvMobileImage :src="photo" radius="full" class="size-16" alt="成员头像" />
+      <NvMobileImage :src="photo" ratio="16/9" radius="md" alt="分组看板" class="flex-1" />
     </div>
   </section>
   <section>

@@ -31,10 +31,10 @@ const threshold = ref(85)
     <NvMobileSlider :model-value="60" disabled />
   </section>
   <section>
-    <p class="nv-mdoc-label">设备告警阈值</p>
+    <p class="nv-mdoc-label">资源告警阈值</p>
     <div class="rounded-xl border border-border bg-card p-3">
       <div class="mb-2 flex items-center justify-between text-sm">
-        <span class="font-medium text-foreground">CNC-07 主轴温度阈值</span>
+        <span class="font-medium text-foreground">RES-07 温度阈值</span>
         <span class="text-muted-foreground tabular-nums">{{ threshold }} ℃</span>
       </div>
       <NvMobileSlider v-model="threshold" :min="40" :max="120" :step="1" show-bubble />

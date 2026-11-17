@@ -18,8 +18,8 @@ const checkC = ref(false)
 
   <section>
     <p class="nv-mdoc-label">基础用法</p>
-    <NvMobileCheckbox v-model="checkA">首检合格后转批量</NvMobileCheckbox>
-    <NvMobileCheckbox v-model="checkB">完工自动生成入库单</NvMobileCheckbox>
+    <NvMobileCheckbox v-model="checkA">检查合格后转下一步</NvMobileCheckbox>
+    <NvMobileCheckbox v-model="checkB">完成后自动生成归档单</NvMobileCheckbox>
   </section>
   <section>
     <p class="nv-mdoc-label">禁用</p>
@@ -36,8 +36,8 @@ const checkC = ref(false)
 整行可点击，`v-model` 绑定布尔值。
 
 ```vue
-<NvMobileCheckbox v-model="checkA">首检合格后转批量</NvMobileCheckbox>
-<NvMobileCheckbox v-model="checkB">完工自动生成入库单</NvMobileCheckbox>
+<NvMobileCheckbox v-model="checkA">检查合格后转下一步</NvMobileCheckbox>
+<NvMobileCheckbox v-model="checkB">完成后自动生成归档单</NvMobileCheckbox>
 ```
 
 ## 禁用

@@ -9,7 +9,7 @@ import { ref } from 'vue'
 
 const actionOpen = ref(false)
 const actions = [
-  { label: '拆分工单', value: 'split' },
+  { label: '拆分记录', value: 'split' },
   { label: '补打标签', value: 'reprint' },
   { label: '报告异常', value: 'fault', danger: true },
 ]
@@ -30,7 +30,7 @@ function onAction(value) {
     </NvMobileButton>
     <NvActionSheet
       v-model:open="actionOpen"
-      title="工单操作"
+      title="记录操作"
       :actions="actions"
       @select="onAction"
     />
@@ -52,7 +52,7 @@ import { ref } from 'vue'
 
 const actionOpen = ref(false)
 const actions = [
-  { label: '拆分工单', value: 'split' },
+  { label: '拆分记录', value: 'split' },
   { label: '补打标签', value: 'reprint' },
   { label: '报告异常', value: 'fault', danger: true },
 ]
@@ -65,7 +65,7 @@ function onAction(value) {
   <NvMobileButton variant="default" size="md" block @click="actionOpen = true">
     打开动作面板
   </NvMobileButton>
-  <NvActionSheet v-model:open="actionOpen" title="工单操作" :actions="actions" @select="onAction" />
+  <NvActionSheet v-model:open="actionOpen" title="记录操作" :actions="actions" @select="onAction" />
 </template>
 ```
 

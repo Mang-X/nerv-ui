@@ -9,16 +9,16 @@ import { ref } from 'vue'
 
 const refreshing = ref(false)
 const refreshList = ref([
-  '齿轮箱端盖 · WO-2406-0421',
-  '液压阀体 V3 · WO-2406-0426',
-  '电机定子叠片 · WO-2406-0430',
-  '前桥壳体 A2 · WO-2406-0413',
-  '转向节 L · WO-2406-0419',
+  '季度回顾草稿 · REC-2406-0421',
+  '设计评审纪要 · REC-2406-0426',
+  '发布检查清单 · REC-2406-0430',
+  '用户访谈记录 · REC-2406-0413',
+  '周报汇总 L · REC-2406-0419',
 ])
 let refreshSeq = 0
 function onRefresh() {
   window.setTimeout(() => {
-    refreshList.value.unshift(`新到工单 · WO-2406-05${10 + refreshSeq++}`)
+    refreshList.value.unshift(`新到记录 · REC-2406-05${10 + refreshSeq++}`)
     refreshing.value = false
   }, 1200)
 }
@@ -52,10 +52,10 @@ import { NvCell, NvPullRefresh } from '@nerv-iip/ui-mobile'
 import { ref } from 'vue'
 
 const refreshing = ref(false)
-const list = ref(['齿轮箱端盖 · WO-2406-0421', '液压阀体 V3 · WO-2406-0426'])
+const list = ref(['季度回顾草稿 · REC-2406-0421', '设计评审纪要 · REC-2406-0426'])
 function onRefresh() {
   window.setTimeout(() => {
-    list.value.unshift('新到工单 · WO-2406-0510')
+    list.value.unshift('新到记录 · REC-2406-0510')
     refreshing.value = false
   }, 1200)
 }

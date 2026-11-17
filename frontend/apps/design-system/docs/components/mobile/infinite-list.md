@@ -7,8 +7,8 @@ title: NvInfiniteList 无限滚动
 import { ref } from 'vue'
 import { NvInfiniteList, NvCell, NvMobileTag } from '@nerv-iip/ui-mobile'
 
-const products = ['齿轮箱端盖', '液压阀体 V3', '主轴箱体', '法兰盘 D80', '伺服电机座', '导轨滑块']
-const stations = ['焊接 03', '装配 01', 'CNC 02', '热处理 01', '总装 02']
+const products = ['季度回顾草稿', '设计评审纪要', '发布检查清单', '用户访谈记录', '服务部署计划', '回归测试报告']
+const stations = ['步骤 03', '步骤 01', '步骤 02', '步骤 04', '步骤 05']
 const tones = ['success', 'brand', 'warning', 'default']
 
 function makeBatch(p) {
@@ -16,7 +16,7 @@ function makeBatch(p) {
     const seq = p * 8 + i + 1
     const done = (seq * 7) % 100
     return {
-      code: `WO-2406-${String(400 + seq).padStart(4, '0')}`,
+      code: `REC-2406-${String(400 + seq).padStart(4, '0')}`,
       product: products[seq % products.length],
       station: stations[seq % stations.length],
       qty: `${done}%`,
@@ -46,12 +46,12 @@ function onLoad() {
 <template #phone>
 
   <section>
-    <p class="nv-mdoc-label">上拉加载更多 · 工单流水</p>
+    <p class="nv-mdoc-label">上拉加载更多 · 记录流水</p>
     <div class="overflow-hidden rounded-xl border border-border">
       <NvInfiniteList
         v-model="loading"
         :finished="finished"
-        finished-text="已加载全部工单"
+        finished-text="已加载全部记录"
         class="h-[460px]"
         @load="onLoad"
       >

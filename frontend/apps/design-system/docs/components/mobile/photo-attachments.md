@@ -33,4 +33,4 @@ import Demo from '../../../../playground/src/PhotoAttachmentsDemo.vue'
 `PhotoUpload = (file: File, context: { signal: AbortSignal; purpose: string }) => Promise<PhotoAttachment>`。
 事件：`update:attachments(PhotoAttachment[])` 请求更新；`diagnostic(unknown)` 仅诊断，不渲染原始异常。无 slot、无 expose、无 provider 或 SDK。没有内置大小上限，不验证传输协议。
 
-[源码](../../../../../packages/ui-mobile/src/components/photo-attachments/PhotoAttachments.vue)、[类型](../../../../../packages/ui-mobile/src/components/photo-attachments/types.ts)、[中性宿主](../../../../playground/src/PhotoAttachmentsDemo.vue)。`/#mobile-photos/library` 与 `/#mobile-photos/studio` 使用明确的本页回执适配；无实际后端保存。浏览器、相机与物理设备证据分别 UNRUN。
+[源码](../../../../../packages/ui-mobile/src/components/photo-attachments/PhotoAttachments.vue)、[类型](../../../../../packages/ui-mobile/src/components/photo-attachments/types.ts)、[中性宿主](../../../../playground/src/PhotoAttachmentsDemo.vue)。`/#mobile-photos/library` 与 `/#mobile-photos/studio` 使用明确的本页回执适配；无实际后端保存。浏览器、相机与真机证据分别 UNRUN。

@@ -9,19 +9,19 @@ import { NvVirtualList, NvMobileTag } from '@nerv-iip/ui-mobile'
 const states = [
   { label: '运行', variant: 'success' },
   { label: '待机', variant: 'default' },
-  { label: '点检', variant: 'warning' },
+  { label: '检查', variant: 'warning' },
   { label: '报警', variant: 'danger' },
 ]
-const names = ['CNC 加工中心', '立式注塑机', '激光焊接台', 'AGV 搬运车', '视觉检测站', '贴片机']
+const names = ['聚合服务', '索引节点', '同步任务', '代理网关', '监控探针', '归档作业']
 
-// 6000 台设备 —— 数据驱动，仅渲染可视窗口
+// 6000 条资源 —— 数据驱动，仅渲染可视窗口
 const equipment = Array.from({ length: 6000 }, (_, i) => {
   const n = 1001 + i
   const s = states[n % states.length]
   return {
-    code: `EQ-${n}`,
+    code: `RES-${n}`,
     name: names[n % names.length],
-    line: `${String.fromCharCode(65 + (n % 4))} 线`,
+    line: `${String.fromCharCode(65 + (n % 4))} 组`,
     label: s.label,
     variant: s.variant,
   }
@@ -33,7 +33,7 @@ const equipment = Array.from({ length: 6000 }, (_, i) => {
 <template #phone>
 
   <section>
-    <p class="nv-mdoc-label">6000 台设备 · 仅渲染可视窗口</p>
+    <p class="nv-mdoc-label">6000 条资源 · 仅渲染可视窗口</p>
     <div class="overflow-hidden rounded-xl border border-border">
       <NvVirtualList :items="equipment" :item-height="64" class="h-[460px]">
         <template #default="{ item }">
@@ -54,7 +54,7 @@ const equipment = Array.from({ length: 6000 }, (_, i) => {
 
 # NvVirtualList 虚拟列表
 
-定高虚拟滚动。无论数据有多少行，都只渲染**可视窗口 + 缓冲区**的少量节点，滚动时回收复用，因此一万行以上也能保持顺滑——适合 PDA 上设备台账、批次流水、物料明细这类超长列表。自包含实现，不依赖外部虚拟滚动库。
+定高虚拟滚动。无论数据有多少行，都只渲染**可视窗口 + 缓冲区**的少量节点，滚动时回收复用，因此一万行以上也能保持顺滑——适合移动端资源台账、批次流水、条目明细这类超长列表。自包含实现，不依赖外部虚拟滚动库。
 
 ## 基础用法
 

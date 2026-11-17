@@ -10,11 +10,11 @@ import { computed, ref } from 'vue'
 const pickerOpen = ref(false)
 const pickerLine = ref('line-a')
 const pickerOptions = [
-  { label: 'A 线 · 精密加工', value: 'line-a' },
-  { label: 'B 线 · 锻压', value: 'line-b' },
-  { label: 'C 线 · 总装', value: 'line-c' },
-  { label: 'D 线 · 热处理', value: 'line-d' },
-  { label: 'E 线 · 喷涂', value: 'line-e' },
+  { label: 'A 组 · 项目Alpha', value: 'line-a' },
+  { label: 'B 组 · 项目Beta', value: 'line-b' },
+  { label: 'C 组 · 项目Gamma', value: 'line-c' },
+  { label: 'D 组 · 项目Delta', value: 'line-d' },
+  { label: 'E 组 · 项目Echo', value: 'line-e' },
 ]
 const pickerLabel = computed(
   () => pickerOptions.find((o) => o.value === pickerLine.value)?.label ?? '请选择',
@@ -28,13 +28,13 @@ const pickerLabel = computed(
   <section>
     <p class="nv-mdoc-label">基础用法</p>
     <NvCellGroup>
-      <NvCell title="目标产线" :value="pickerLabel" arrow @click="pickerOpen = true" />
+      <NvCell title="目标分组" :value="pickerLabel" arrow @click="pickerOpen = true" />
     </NvCellGroup>
     <NvPicker
       v-model:open="pickerOpen"
       v-model="pickerLine"
       :options="pickerOptions"
-      title="选择产线"
+      title="选择分组"
     />
   </section>
 </template>
@@ -52,9 +52,9 @@ const pickerLabel = computed(
 const pickerOpen = ref(false)
 const pickerLine = ref('line-a')
 const pickerOptions = [
-  { label: 'A 线 · 精密加工', value: 'line-a' },
-  { label: 'B 线 · 锻压', value: 'line-b' },
-  { label: 'C 线 · 总装', value: 'line-c' },
+  { label: 'A 组 · 项目Alpha', value: 'line-a' },
+  { label: 'B 组 · 项目Beta', value: 'line-b' },
+  { label: 'C 组 · 项目Gamma', value: 'line-c' },
 ]
 const pickerLabel = computed(
   () => pickerOptions.find((o) => o.value === pickerLine.value)?.label ?? '请选择',
@@ -63,13 +63,13 @@ const pickerLabel = computed(
 
 <template>
   <NvCellGroup>
-    <NvCell title="目标产线" :value="pickerLabel" arrow @click="pickerOpen = true" />
+    <NvCell title="目标分组" :value="pickerLabel" arrow @click="pickerOpen = true" />
   </NvCellGroup>
   <NvPicker
     v-model:open="pickerOpen"
     v-model="pickerLine"
     :options="pickerOptions"
-    title="选择产线"
+    title="选择分组"
   />
 </template>
 ```

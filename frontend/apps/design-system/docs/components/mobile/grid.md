@@ -12,13 +12,13 @@ import {
 import { ref } from 'vue'
 
 const gridItems = [
-  { key: 'wo', icon: ClipboardListIcon, text: '工单', badge: 12 },
+  { key: 'rec', icon: ClipboardListIcon, text: '记录', badge: 12 },
   { key: 'scan', icon: ScanLineIcon, text: '扫码' },
-  { key: 'mtl', icon: BoxesIcon, text: '物料', badge: true },
-  { key: 'report', icon: ChartColumnIcon, text: '报工' },
-  { key: 'device', icon: WrenchIcon, text: '设备' },
-  { key: 'plan', icon: TruckIcon, text: '排产' },
-  { key: 'team', icon: UsersIcon, text: '班组' },
+  { key: 'mtl', icon: BoxesIcon, text: '条目', badge: true },
+  { key: 'report', icon: ChartColumnIcon, text: '提交' },
+  { key: 'res', icon: WrenchIcon, text: '资源' },
+  { key: 'plan', icon: TruckIcon, text: '计划' },
+  { key: 'team', icon: UsersIcon, text: '团队' },
   { key: 'alert', icon: BellIcon, text: '告警', badge: 3 },
 ]
 const last = ref('')
@@ -53,9 +53,9 @@ import { NvMobileGrid } from '@nerv-iip/ui-mobile'
 import { ClipboardListIcon, ScanLineIcon, BoxesIcon, BellIcon } from '@lucide/vue'
 
 const gridItems = [
-  { key: 'wo', icon: ClipboardListIcon, text: '工单', badge: 12 },
+  { key: 'rec', icon: ClipboardListIcon, text: '记录', badge: 12 },
   { key: 'scan', icon: ScanLineIcon, text: '扫码' },
-  { key: 'mtl', icon: BoxesIcon, text: '物料', badge: true },
+  { key: 'mtl', icon: BoxesIcon, text: '条目', badge: true },
   { key: 'alert', icon: BellIcon, text: '告警', badge: 3 },
 ]
 function onGrid(item) {

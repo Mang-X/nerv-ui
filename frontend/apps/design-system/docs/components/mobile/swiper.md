@@ -8,15 +8,15 @@ import { NvSwiper, NvMobileButton, NvMobileTag } from '@nerv-iip/ui-mobile'
 import { ref } from 'vue'
 
 const panels = [
-  { title: '产线 A 区', sub: '稼动率 92%', tone: 'var(--nv-brand)' },
-  { title: '产线 B 区', sub: '稼动率 78%', tone: 'oklch(0.62 0.15 150)' },
-  { title: '产线 C 区', sub: '稼动率 64%', tone: 'oklch(0.65 0.15 40)' },
+  { title: '区域 A', sub: '利用率 92%', tone: 'var(--nv-brand)' },
+  { title: '区域 B', sub: '利用率 78%', tone: 'oklch(0.62 0.15 150)' },
+  { title: '区域 C', sub: '利用率 64%', tone: 'oklch(0.65 0.15 40)' },
 ]
 
 const orders = [
-  { code: 'WO-2406-0421', product: '齿轮箱端盖', qty: '120 / 200', station: '焊接 03' },
-  { code: 'WO-2406-0426', product: '液压阀体 V3', qty: '60 / 80', station: '装配 01' },
-  { code: 'WO-2406-0433', product: '主轴箱体', qty: '15 / 50', station: 'CNC 02' },
+  { code: 'REC-2406-0421', product: '季度回顾草稿', qty: '120 / 200', station: '步骤 03' },
+  { code: 'REC-2406-0426', product: '设计评审纪要', qty: '60 / 80', station: '步骤 01' },
+  { code: 'REC-2406-0433', product: '发布检查清单', qty: '15 / 50', station: '步骤 02' },
 ]
 const current = ref(0)
 </script>
@@ -40,7 +40,7 @@ const current = ref(0)
     </NvSwiper>
   </section>
   <section>
-    <p class="nv-mdoc-label">数据驱动 · 工单卡片（可交互，指示器内置底部）</p>
+    <p class="nv-mdoc-label">数据驱动 · 记录卡片（可交互，指示器内置底部）</p>
     <NvSwiper v-model:index="current" :items="orders" :frame="false">
       <template #default="{ item }">
         <div class="w-full shrink-0 px-1 pb-7">
@@ -51,7 +51,7 @@ const current = ref(0)
             </div>
             <div class="mt-2 text-lg font-medium">{{ item.product }}</div>
             <div class="mt-1 text-sm text-muted-foreground">完成进度 {{ item.qty }}</div>
-            <NvMobileButton variant="primary" size="sm" block class="mt-3">报工</NvMobileButton>
+            <NvMobileButton variant="primary" size="sm" block class="mt-3">提交</NvMobileButton>
           </div>
         </div>
       </template>

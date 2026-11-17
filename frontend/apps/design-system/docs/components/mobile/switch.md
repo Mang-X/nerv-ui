@@ -26,10 +26,10 @@ const locked = ref(true)
   <section>
     <p class="nv-mdoc-label">配合单元格</p>
     <NvCellGroup>
-      <NvCell title="加急插单">
+      <NvCell title="加急标记">
         <template #value><NvMobileSwitch v-model="rush" /></template>
       </NvCell>
-      <NvCell title="完工自动入库">
+      <NvCell title="完成后自动归档">
         <template #value><NvMobileSwitch v-model="autoStock" /></template>
       </NvCell>
     </NvCellGroup>
@@ -58,7 +58,7 @@ const locked = ref(true)
 
 ```vue
 <NvCellGroup>
-  <NvCell title="加急插单">
+  <NvCell title="加急标记">
     <template #value><NvMobileSwitch v-model="rush" /></template>
   </NvCell>
 </NvCellGroup>

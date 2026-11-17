@@ -8,13 +8,13 @@ import { NvSwipeCell } from '@nerv-iip/ui-mobile'
 import { ref } from 'vue'
 
 const swipeActions = [
-  { label: '完工', value: 'finish', tone: 'brand' },
+  { label: '完成', value: 'finish', tone: 'brand' },
   { label: '暂停', value: 'pause' },
   { label: '删除', value: 'remove', tone: 'danger' },
 ]
 const swipeRows = [
-  { code: 'WO-2406-0421', product: '齿轮箱端盖' },
-  { code: 'WO-2406-0426', product: '液压阀体 V3' },
+  { code: 'REC-2406-0421', product: '季度回顾草稿' },
+  { code: 'REC-2406-0426', product: '设计评审纪要' },
 ]
 const last = ref('')
 function onSwipe(value) {
@@ -61,7 +61,7 @@ function onSwipe(value) {
 import { NvSwipeCell } from '@nerv-iip/ui-mobile'
 
 const swipeActions = [
-  { label: '完工', value: 'finish', tone: 'brand' },
+  { label: '完成', value: 'finish', tone: 'brand' },
   { label: '暂停', value: 'pause' },
   { label: '删除', value: 'remove', tone: 'danger' },
 ]
@@ -74,8 +74,8 @@ function onSwipe(value) {
   <NvSwipeCell :actions="swipeActions" @select="onSwipe">
     <div class="flex items-center gap-3 px-4 py-3">
       <div class="flex-1">
-        <div class="text-[15px]">齿轮箱端盖</div>
-        <div class="text-sm text-muted-foreground">WO-2406-0421</div>
+        <div class="text-[15px]">季度回顾草稿</div>
+        <div class="text-sm text-muted-foreground">REC-2406-0421</div>
       </div>
     </div>
   </NvSwipeCell>
