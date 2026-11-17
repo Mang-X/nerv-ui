@@ -9,7 +9,7 @@ import { ScanLineIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const search = ref('')
-const code = ref('WO-2406-0413')
+const code = ref('REC-2406-0413')
 </script>
 
 <MobileDoc>
@@ -18,11 +18,11 @@ const code = ref('WO-2406-0413')
 
   <section>
     <p class="nv-mdoc-label">基础用法</p>
-    <NvMobileInput v-model="code" placeholder="请输入工单号" />
+    <NvMobileInput v-model="code" placeholder="请输入记录号" />
   </section>
   <section>
     <p class="nv-mdoc-label">前缀插槽</p>
-    <NvMobileInput v-model="search" placeholder="搜索工单 / 物料">
+    <NvMobileInput v-model="search" placeholder="搜索记录 / 条目">
       <template #leading><ScanLineIcon aria-hidden="true" /></template>
     </NvMobileInput>
   </section>
@@ -37,7 +37,7 @@ const code = ref('WO-2406-0413')
 `v-model` 双向绑定文本值。
 
 ```vue
-<NvMobileInput v-model="value" placeholder="请输入工单号" />
+<NvMobileInput v-model="value" placeholder="请输入记录号" />
 ```
 
 ## 前缀插槽
@@ -45,7 +45,7 @@ const code = ref('WO-2406-0413')
 `#leading` 插槽嵌入前缀图标，`#trailing` 嵌入后缀图标。
 
 ```vue
-<NvMobileInput v-model="search" placeholder="搜索工单 / 物料">
+<NvMobileInput v-model="search" placeholder="搜索记录 / 条目">
   <template #leading><ScanLineIcon aria-hidden="true" /></template>
 </NvMobileInput>
 ```

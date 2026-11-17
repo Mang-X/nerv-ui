@@ -15,13 +15,13 @@ import { EllipsisIcon } from '@lucide/vue'
   <section>
     <p class="nv-mdoc-label">基础用法</p>
     <div class="border-b border-border bg-card">
-      <NvNavBar title="工单详情" />
+      <NvNavBar title="记录详情" />
     </div>
   </section>
   <section>
     <p class="nv-mdoc-label">返回与右侧操作</p>
     <div class="border-b border-border bg-card">
-      <NvNavBar title="WO-2406-0413" back>
+      <NvNavBar title="REC-2406-0413" back>
         <template #right>
           <NvMobileButton variant="text" size="sm" aria-label="更多">
             <EllipsisIcon class="size-5" aria-hidden="true" />
@@ -41,7 +41,7 @@ import { EllipsisIcon } from '@lucide/vue'
 仅标题居中的最简形态。
 
 ```vue
-<NvNavBar title="工单详情" />
+<NvNavBar title="记录详情" />
 ```
 
 ## 返回与右侧操作
@@ -49,7 +49,7 @@ import { EllipsisIcon } from '@lucide/vue'
 `back` 显示左侧返回按钮，`#right` 插槽放置操作。返回按钮真实占位为 44×44px，内部按压圆面保留 36×36px；图标随新按钮中心向右移动 4px。顶部栏仍为 48px 高，标题与左右插槽保留原接口。
 
 ```vue
-<NvNavBar title="WO-2406-0413" back @back="goBack">
+<NvNavBar title="REC-2406-0413" back @back="goBack">
   <template #right>
     <NvMobileButton variant="text" size="sm" aria-label="更多">
       <EllipsisIcon class="size-5" />

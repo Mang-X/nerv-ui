@@ -23,13 +23,13 @@ const sheetOpen = ref(false)
     <NvBottomSheet v-model:open="sheetOpen" title="更多操作">
       <div class="space-y-2 py-1">
         <NvMobileButton variant="default" size="lg" block class="justify-start gap-3" @click="sheetOpen = false">
-          <SplitIcon class="size-5" aria-hidden="true" />拆分工单
+          <SplitIcon class="size-5" aria-hidden="true" />拆分记录
         </NvMobileButton>
         <NvMobileButton variant="default" size="lg" block class="justify-start gap-3" @click="sheetOpen = false">
           <PrinterIcon class="size-5" aria-hidden="true" />补打标签
         </NvMobileButton>
         <NvMobileButton variant="default" size="lg" block class="justify-start gap-3" @click="sheetOpen = false">
-          <WrenchIcon class="size-5" aria-hidden="true" />设备维护
+          <WrenchIcon class="size-5" aria-hidden="true" />资源维护
         </NvMobileButton>
         <NvMobileButton variant="danger" size="lg" block class="justify-start gap-3" @click="sheetOpen = false">
           <XCircleIcon class="size-5" aria-hidden="true" />报告异常
@@ -71,7 +71,7 @@ const sheetOpen = ref(false)
         class="justify-start gap-3"
         @click="sheetOpen = false"
       >
-        <SplitIcon class="size-5" aria-hidden="true" />拆分工单
+        <SplitIcon class="size-5" aria-hidden="true" />拆分记录
       </NvMobileButton>
       <NvMobileButton
         variant="danger"

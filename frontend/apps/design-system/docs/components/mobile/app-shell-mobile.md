@@ -17,15 +17,15 @@ const tabs = [
 ]
 
 const kpis = [
-  { label: '今日产量', value: '1,284', unit: '件' },
-  { label: '稼动率', value: '92', unit: '%' },
-  { label: '待处理', value: '7', unit: '单' },
+  { label: '今日完成', value: '1,284', unit: '条' },
+  { label: '完成率', value: '92', unit: '%' },
+  { label: '待处理', value: '7', unit: '项' },
 ]
 
 const tasks = [
-  { code: 'WO-2406-0421', product: '齿轮箱端盖', station: '焊接 03', label: '进行中', variant: 'brand' },
-  { code: 'WO-2406-0426', product: '液压阀体 V3', station: '装配 01', label: '待报工', variant: 'warning' },
-  { code: 'WO-2406-0433', product: '主轴箱体', station: 'CNC 02', label: '已超时', variant: 'danger' },
+  { code: 'TASK-2406-0421', product: '季度回顾草稿', station: '步骤 03', label: '进行中', variant: 'brand' },
+  { code: 'TASK-2406-0426', product: '设计评审纪要', station: '步骤 01', label: '待提交', variant: 'warning' },
+  { code: 'TASK-2406-0433', product: '发布检查清单', station: '步骤 02', label: '已超时', variant: 'danger' },
 ]
 </script>
 
@@ -34,7 +34,7 @@ const tasks = [
 <template #phone>
 <NvAppShellMobile class="h-full">
 <template #header>
-<NvNavBar title="车间工作台">
+<NvNavBar title="移动工作台">
 <template #right>
 <button type="button" class="relative flex size-9 items-center justify-center rounded-full text-foreground active:bg-accent" aria-label="告警">
 <Bell class="size-5" aria-hidden="true" />
@@ -62,9 +62,9 @@ const tasks = [
 </NvCell>
 </NvCellGroup>
 <NvCellGroup title="快捷入口">
-<NvCell title="扫码报工" arrow />
-<NvCell title="设备点检" arrow />
-<NvCell title="物料申请" arrow />
+<NvCell title="扫码登记" arrow />
+<NvCell title="例行检查" arrow />
+<NvCell title="新建申请" arrow />
 <NvCell title="异常上报" arrow />
 </NvCellGroup>
 </div>
@@ -76,7 +76,7 @@ const tasks = [
 
 # NvAppShellMobile 应用外壳
 
-PDA 页面的整体骨架：吸顶的 `header`、可滚动的内容区、吸底的 `footer`，三段式布局占满整屏（`h-dvh`）。头/尾默认带毛玻璃背景与分隔线，并自动避让设备安全区（刘海、底部小白条）。内容区独立滚动、滚动条隐藏，头尾始终可见。
+移动页面的整体骨架：吸顶的 `header`、可滚动的内容区、吸底的 `footer`，三段式布局占满整屏（`h-dvh`）。头/尾默认带毛玻璃背景与分隔线，并自动避让屏幕安全区（刘海、底部小白条）。内容区独立滚动、滚动条隐藏，头尾始终可见。
 
 ## 基础用法
 
@@ -85,7 +85,7 @@ PDA 页面的整体骨架：吸顶的 `header`、可滚动的内容区、吸底�
 ```vue
 <NvAppShellMobile>
   <template #header>
-    <NvNavBar title="车间工作台" />
+    <NvNavBar title="移动工作台" />
   </template>
 
   <!-- 可滚动主体 -->

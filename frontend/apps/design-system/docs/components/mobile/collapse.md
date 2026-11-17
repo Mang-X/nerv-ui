@@ -14,14 +14,14 @@ import { NvMobileCollapse } from '@nerv-iip/ui-mobile'
   <section>
     <p class="nv-mdoc-label">基础用法</p>
     <div class="mx-3 divide-y divide-border overflow-hidden rounded-xl border border-border">
-      <NvMobileCollapse title="工艺参数" :open="true">
-        主轴转速 2400 rpm · 进给 180 mm/min · 冷却液开
+      <NvMobileCollapse title="运行参数" :open="true">
+        转速 2400 rpm · 进给 180 mm/min · 冷却开
       </NvMobileCollapse>
-      <NvMobileCollapse title="物料清单">
-        铝棒 6061-T6 ×1 · 密封圈 ×2 · 标准件若干
+      <NvMobileCollapse title="条目清单">
+        条目A ×1 · 条目B ×2 · 标准件若干
       </NvMobileCollapse>
-      <NvMobileCollapse title="质检记录">
-        首检合格（08:12 张伟）· 巡检 2 次无异常
+      <NvMobileCollapse title="检查记录">
+        初审合格（08:12 张伟）· 复查 2 次无异常
       </NvMobileCollapse>
     </div>
   </section>
@@ -29,7 +29,7 @@ import { NvMobileCollapse } from '@nerv-iip/ui-mobile'
     <p class="nv-mdoc-label">受控展开</p>
     <div class="mx-3 overflow-hidden rounded-xl border border-border">
       <NvMobileCollapse title="异常处理记录">
-        WC-ASM-04 报警 → 已派单维修 → 12:40 恢复
+        RES-ASM-04 报警 → 已派人处理 → 12:40 恢复
       </NvMobileCollapse>
     </div>
   </section>
@@ -44,11 +44,11 @@ import { NvMobileCollapse } from '@nerv-iip/ui-mobile'
 非受控使用，`:open` 仅设置初始展开状态。
 
 ```vue
-<NvMobileCollapse title="工艺参数" :open="true">
-  主轴转速 2400 rpm · 进给 180 mm/min · 冷却液开
+<NvMobileCollapse title="运行参数" :open="true">
+  转速 2400 rpm · 进给 180 mm/min · 冷却开
 </NvMobileCollapse>
-<NvMobileCollapse title="物料清单">
-  铝棒 6061-T6 ×1 · 密封圈 ×2 · 标准件若干
+<NvMobileCollapse title="条目清单">
+  条目A ×1 · 条目B ×2 · 标准件若干
 </NvMobileCollapse>
 ```
 
@@ -64,7 +64,7 @@ const open = ref(false)
 
 <template>
   <NvMobileCollapse v-model:open="open" title="异常处理记录">
-    WC-ASM-04 报警 → 已派单维修 → 12:40 恢复
+    RES-ASM-04 报警 → 已派人处理 → 12:40 恢复
   </NvMobileCollapse>
 </template>
 ```

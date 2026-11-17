@@ -17,11 +17,11 @@ const keyword2 = ref('')
 
   <section>
     <p class="nv-mdoc-label">基础用法</p>
-    <NvSearchBar v-model="keyword" placeholder="搜索工单 / 物料 / 设备" />
+    <NvSearchBar v-model="keyword" placeholder="搜索记录 / 条目 / 成员" />
   </section>
   <section>
     <p class="nv-mdoc-label">可取消</p>
-    <NvSearchBar v-model="keyword2" cancelable placeholder="搜索工单 / 物料 / 设备" />
+    <NvSearchBar v-model="keyword2" cancelable placeholder="搜索记录 / 条目 / 成员" />
   </section>
 </template>
 
@@ -34,7 +34,7 @@ const keyword2 = ref('')
 `v-model` 绑定关键词，回车触发 `@search`；关键词被清空（点清除按钮或退格删到空）也会补发一次 `@search`，携带空串。
 
 ```vue
-<NvSearchBar v-model="keyword" placeholder="搜索工单 / 物料 / 设备" />
+<NvSearchBar v-model="keyword" placeholder="搜索记录 / 条目 / 成员" />
 ```
 
 ## 可取消
@@ -45,7 +45,7 @@ const keyword2 = ref('')
 <NvSearchBar
   v-model="keyword"
   cancelable
-  placeholder="搜索工单 / 物料 / 设备"
+  placeholder="搜索记录 / 条目 / 成员"
   @search="onSearch"
   @cancel="onCancel"
 />

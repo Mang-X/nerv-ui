@@ -22,7 +22,7 @@ const batch = ref(50)
   <section>
     <p class="nv-mdoc-label">配合表单行</p>
     <div style="display:flex;align-items:center;justify-content:space-between;width:100%;border:1px solid var(--border);border-radius:12px;background:var(--card);padding:12px 16px">
-      <span style="font-size:15px">报工数量</span>
+      <span style="font-size:15px">提交数量</span>
       <NvStepper v-model="qty" :min="1" :max="999" />
     </div>
   </section>
@@ -46,7 +46,7 @@ const batch = ref(50)
 
 ## 配合表单行
 
-与标签横向排列，构成报工数量等表单行。
+与标签横向排列，构成提交数量等表单行。
 
 ```vue
 <NvStepper v-model="qty" :min="1" :max="999" />

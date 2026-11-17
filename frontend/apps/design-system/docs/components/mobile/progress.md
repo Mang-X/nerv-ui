@@ -32,11 +32,11 @@ import { NvMobileProgress } from '@nerv-iip/ui-mobile'
     </div>
   </section>
   <section>
-    <p class="nv-mdoc-label">工单报工进度</p>
+    <p class="nv-mdoc-label">任务完成进度</p>
     <div class="rounded-xl border border-border bg-card p-3">
       <div class="mb-1.5 flex items-center justify-between text-sm">
-        <span class="font-medium text-foreground">WO-20260617-0382</span>
-        <span class="text-muted-foreground">已报 860 / 1200</span>
+        <span class="font-medium text-foreground">TASK-20260617-0382</span>
+        <span class="text-muted-foreground">已完成 860 / 1200</span>
       </div>
       <NvMobileProgress :value="72" tone="brand" show-label />
     </div>
@@ -45,7 +45,7 @@ import { NvMobileProgress } from '@nerv-iip/ui-mobile'
 
 # NvMobileProgress 进度条
 
-线性进度条。圆角轨道承载语义色填充，数值变化时填充宽度平滑过渡（已适配 `prefers-reduced-motion`）。用于报工进度、上传进度等 PDA 场景。右侧手机模拟器为实时组件。
+线性进度条。圆角轨道承载语义色填充，数值变化时填充宽度平滑过渡（已适配 `prefers-reduced-motion`）。用于完成进度、上传进度等移动场景。右侧手机模拟器为实时组件。
 
 ## 基础
 

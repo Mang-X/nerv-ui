@@ -14,9 +14,9 @@ import { NvNoticeBar } from '@nerv-iip/ui-mobile'
   <section>
     <p class="nv-mdoc-label">色调</p>
     <div class="w-full space-y-2">
-      <NvNoticeBar tone="info">今日计划已重排，受影响工单 6 张</NvNoticeBar>
-      <NvNoticeBar tone="warning">B 线物料不足：液压阀体 V3 缺口 452 件</NvNoticeBar>
-      <NvNoticeBar tone="danger">WC-ASM-04 设备报警，请尽快处理</NvNoticeBar>
+      <NvNoticeBar tone="info">今日计划已重排，受影响记录 6 条</NvNoticeBar>
+      <NvNoticeBar tone="warning">B 组库存不足：设计评审纪要 缺口 452 条</NvNoticeBar>
+      <NvNoticeBar tone="danger">RES-ASM-04 资源报警，请尽快处理</NvNoticeBar>
     </div>
   </section>
 </template>
@@ -35,9 +35,9 @@ import { NvNoticeBar } from '@nerv-iip/ui-mobile'
 </script>
 
 <template>
-  <NvNoticeBar tone="info">今日计划已重排，受影响工单 6 张</NvNoticeBar>
-  <NvNoticeBar tone="warning">B 线物料不足：液压阀体 V3 缺口 452 件</NvNoticeBar>
-  <NvNoticeBar tone="danger">WC-ASM-04 设备报警，请尽快处理</NvNoticeBar>
+  <NvNoticeBar tone="info">今日计划已重排，受影响记录 6 条</NvNoticeBar>
+  <NvNoticeBar tone="warning">B 组库存不足：设计评审纪要 缺口 452 条</NvNoticeBar>
+  <NvNoticeBar tone="danger">RES-ASM-04 资源报警，请尽快处理</NvNoticeBar>
 </template>
 ```
 

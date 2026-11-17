@@ -14,8 +14,8 @@ import { NvMobileEmpty, NvMobileButton } from '@nerv-iip/ui-mobile'
   <section>
     <p class="nv-mdoc-label">基础用法</p>
     <div class="w-full rounded-xl border border-border bg-card">
-      <NvMobileEmpty description="暂无待处理工单">
-        <NvMobileButton variant="primary" size="sm">去接单</NvMobileButton>
+      <NvMobileEmpty description="暂无待处理记录">
+        <NvMobileButton variant="primary" size="sm">去领取</NvMobileButton>
       </NvMobileEmpty>
     </div>
   </section>
@@ -35,8 +35,8 @@ import { NvMobileEmpty, NvMobileButton } from '@nerv-iip/ui-mobile'
 </script>
 
 <template>
-  <NvMobileEmpty description="暂无待处理工单">
-    <NvMobileButton variant="primary" size="sm">去接单</NvMobileButton>
+  <NvMobileEmpty description="暂无待处理记录">
+    <NvMobileButton variant="primary" size="sm">去领取</NvMobileButton>
   </NvMobileEmpty>
 </template>
 ```

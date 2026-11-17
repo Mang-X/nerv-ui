@@ -16,8 +16,8 @@ import { NvMobileTag } from '@nerv-iip/ui-mobile'
     <div class="flex flex-wrap items-center gap-1.5">
       <NvMobileTag>常规</NvMobileTag>
       <NvMobileTag variant="brand">优先</NvMobileTag>
-      <NvMobileTag variant="success">已入库</NvMobileTag>
-      <NvMobileTag variant="warning">待质检</NvMobileTag>
+      <NvMobileTag variant="success">已归档</NvMobileTag>
+      <NvMobileTag variant="warning">待检查</NvMobileTag>
       <NvMobileTag variant="danger">超期</NvMobileTag>
     </div>
   </section>
@@ -31,9 +31,9 @@ import { NvMobileTag } from '@nerv-iip/ui-mobile'
   <section>
     <p class="nv-mdoc-label">可关闭</p>
     <div class="flex flex-wrap items-center gap-1.5">
-      <NvMobileTag variant="brand" closable>注塑</NvMobileTag>
-      <NvMobileTag variant="success" closable>CNC</NvMobileTag>
-      <NvMobileTag variant="default" closable>装配</NvMobileTag>
+      <NvMobileTag variant="brand" closable>Alpha</NvMobileTag>
+      <NvMobileTag variant="success" closable>Beta</NvMobileTag>
+      <NvMobileTag variant="default" closable>Gamma</NvMobileTag>
     </div>
   </section>
 </template>
@@ -47,8 +47,8 @@ import { NvMobileTag } from '@nerv-iip/ui-mobile'
 `default / brand / success / warning / danger` 五种语义色。
 
 ```vue
-<NvMobileTag variant="success">已入库</NvMobileTag>
-<NvMobileTag variant="warning">待质检</NvMobileTag>
+<NvMobileTag variant="success">已归档</NvMobileTag>
+<NvMobileTag variant="warning">待检查</NvMobileTag>
 <NvMobileTag variant="danger">超期</NvMobileTag>
 ```
 
@@ -66,7 +66,7 @@ import { NvMobileTag } from '@nerv-iip/ui-mobile'
 加 `closable` 显示关闭按钮，点击触发 `close` 事件，由父组件移除该标签。
 
 ```vue
-<NvMobileTag variant="brand" closable @close="remove(t)">注塑</NvMobileTag>
+<NvMobileTag variant="brand" closable @close="remove(t)">Alpha</NvMobileTag>
 ```
 
 ## 属性

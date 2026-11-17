@@ -9,9 +9,9 @@ import { ClipboardListIcon, ScanLineIcon, WrenchIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const fabActions = [
-  { key: 'scan', icon: ScanLineIcon, text: '扫码入库' },
-  { key: 'wo', icon: ClipboardListIcon, text: '新建工单' },
-  { key: 'repair', icon: WrenchIcon, text: '设备报修' },
+  { key: 'scan', icon: ScanLineIcon, text: '扫码登记' },
+  { key: 'rec', icon: ClipboardListIcon, text: '新建记录' },
+  { key: 'repair', icon: WrenchIcon, text: '故障上报' },
 ]
 const last = ref('')
 function onFabSelect(action) {
@@ -48,9 +48,9 @@ import { NvFab } from '@nerv-iip/ui-mobile'
 import { ClipboardListIcon, ScanLineIcon, WrenchIcon } from '@lucide/vue'
 
 const fabActions = [
-  { key: 'scan', icon: ScanLineIcon, text: '扫码入库' },
-  { key: 'wo', icon: ClipboardListIcon, text: '新建工单' },
-  { key: 'repair', icon: WrenchIcon, text: '设备报修' },
+  { key: 'scan', icon: ScanLineIcon, text: '扫码登记' },
+  { key: 'rec', icon: ClipboardListIcon, text: '新建记录' },
+  { key: 'repair', icon: WrenchIcon, text: '故障上报' },
 ]
 function onFabSelect(action) {
   console.log('已触发：', action.text)

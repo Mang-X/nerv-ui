@@ -7,10 +7,10 @@ title: NvMobileSteps 步骤条
 import { NvMobileSteps } from '@nerv-iip/ui-mobile'
 
 const procSteps = [
-  { label: '下料' },
-  { label: '加工', note: '进行中' },
-  { label: '质检' },
-  { label: '入库' },
+  { label: '提交' },
+  { label: '处理', note: '进行中' },
+  { label: '检查' },
+  { label: '归档' },
 ]
 </script>
 
@@ -45,10 +45,10 @@ const procSteps = [
 import { NvMobileSteps } from '@nerv-iip/ui-mobile'
 
 const procSteps = [
-  { label: '下料' },
-  { label: '加工', note: '进行中' },
-  { label: '质检' },
-  { label: '入库' },
+  { label: '提交' },
+  { label: '处理', note: '进行中' },
+  { label: '检查' },
+  { label: '归档' },
 ]
 </script>
 

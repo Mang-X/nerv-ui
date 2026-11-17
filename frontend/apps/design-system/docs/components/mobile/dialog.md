@@ -22,9 +22,9 @@ const dangerOpen = ref(false)
     </NvMobileButton>
     <NvMobileDialog
       v-model:open="confirmOpen"
-      title="下发到产线？"
-      description="工单 WO-2406-0413 将下发至 A 线排队，物料即时锁定。"
-      confirm-text="下发"
+      title="发布到分组？"
+      description="记录 REC-2406-0413 将发布至 A 组排队，关联条目即时锁定。"
+      confirm-text="发布"
     />
   </section>
   <section>
@@ -34,9 +34,9 @@ const dangerOpen = ref(false)
     </NvMobileButton>
     <NvMobileDialog
       v-model:open="dangerOpen"
-      title="确认作废该工单？"
-      description="作废后不可恢复，已领用物料需手动退库。"
-      confirm-text="作废"
+      title="确认删除该记录？"
+      description="删除后不可恢复，已关联的条目需手动解除。"
+      confirm-text="删除"
       confirm-tone="danger"
     />
   </section>
@@ -64,10 +64,10 @@ const confirmOpen = ref(false)
   </NvMobileButton>
   <NvMobileDialog
     v-model:open="confirmOpen"
-    title="下发到产线？"
-    description="工单 WO-2406-0413 将下发至 A 线排队，物料即时锁定。"
-    confirm-text="下发"
-    @confirm="() => console.log('已下发')"
+    title="发布到分组？"
+    description="记录 REC-2406-0413 将发布至 A 组排队，关联条目即时锁定。"
+    confirm-text="发布"
+    @confirm="() => console.log('已发布')"
   />
 </template>
 ```
@@ -79,9 +79,9 @@ const confirmOpen = ref(false)
 ```vue
 <NvMobileDialog
   v-model:open="dangerOpen"
-  title="确认作废该工单？"
-  description="作废后不可恢复，已领用物料需手动退库。"
-  confirm-text="作废"
+  title="确认删除该记录？"
+  description="删除后不可恢复，已关联的条目需手动解除。"
+  confirm-text="删除"
   confirm-tone="danger"
 />
 ```

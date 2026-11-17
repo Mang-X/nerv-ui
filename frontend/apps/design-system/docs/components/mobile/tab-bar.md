@@ -10,7 +10,7 @@ import { ref } from 'vue'
 
 const tab = ref('orders')
 const tabs = [
-  { value: 'orders', label: '工单', icon: ClipboardListIcon },
+  { value: 'orders', label: '记录', icon: ClipboardListIcon },
   { value: 'scan', label: '扫码', icon: ScanLineIcon },
   { value: 'me', label: '我的', icon: UserIcon },
 ]
@@ -45,7 +45,7 @@ import { ref } from 'vue'
 
 const tab = ref('orders')
 const tabs = [
-  { value: 'orders', label: '工单', icon: ClipboardListIcon },
+  { value: 'orders', label: '记录', icon: ClipboardListIcon },
   { value: 'scan', label: '扫码', icon: ScanLineIcon },
   { value: 'me', label: '我的', icon: UserIcon },
 ]

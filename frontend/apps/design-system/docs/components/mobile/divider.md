@@ -13,9 +13,9 @@ import { NvMobileDivider } from '@nerv-iip/ui-mobile'
 
   <section>
     <p class="nv-mdoc-label">基础分割</p>
-    <div class="text-[15px] text-foreground">工单 WO-20406</div>
+    <div class="text-[15px] text-foreground">记录 REC-20406</div>
     <NvMobileDivider />
-    <div class="text-sm text-muted-foreground">注塑车间 · A2 产线</div>
+    <div class="text-sm text-muted-foreground">项目Alpha · A2 分组</div>
   </section>
   <section>
     <p class="nv-mdoc-label">带文字</p>
@@ -26,9 +26,9 @@ import { NvMobileDivider } from '@nerv-iip/ui-mobile'
     <div class="flex items-center text-sm text-muted-foreground">
       <span>计划 320</span>
       <NvMobileDivider direction="vertical" class="mx-3" />
-      <span>已产 286</span>
+      <span>完成 286</span>
       <NvMobileDivider direction="vertical" class="mx-3" />
-      <span>不良 4</span>
+      <span>异常 4</span>
     </div>
   </section>
 </template>
@@ -60,7 +60,7 @@ import { NvMobileDivider } from '@nerv-iip/ui-mobile'
 ```vue
 <span>计划 320</span>
 <NvMobileDivider direction="vertical" class="mx-3" />
-<span>已产 286</span>
+<span>完成 286</span>
 ```
 
 ## 属性

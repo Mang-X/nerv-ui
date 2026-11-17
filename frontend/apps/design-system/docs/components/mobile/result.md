@@ -16,8 +16,8 @@ import { NvMobileButton, NvMobileResult } from '@nerv-iip/ui-mobile'
     <div class="w-full rounded-xl border border-border bg-card">
       <NvMobileResult
         status="success"
-        title="本班产出已同步"
-        description="已完成 4,210 件，良率 99.2%。"
+        title="今日进度已同步"
+        description="已完成 4,210 条，完成率 99.2%。"
       />
     </div>
   </section>
@@ -26,7 +26,7 @@ import { NvMobileButton, NvMobileResult } from '@nerv-iip/ui-mobile'
     <div class="w-full rounded-xl border border-border bg-card">
       <NvMobileResult
         status="error"
-        title="工单上报失败"
+        title="记录上报失败"
         description="网关连接超时，请检查网络后重试。"
       >
         <template #actions>
@@ -53,8 +53,8 @@ import { NvMobileResult } from '@nerv-iip/ui-mobile'
 <template>
   <NvMobileResult
     status="success"
-    title="本班产出已同步"
-    description="已完成 4,210 件，良率 99.2%。"
+    title="今日进度已同步"
+    description="已完成 4,210 条，完成率 99.2%。"
   />
 </template>
 ```
@@ -67,7 +67,7 @@ import { NvMobileResult } from '@nerv-iip/ui-mobile'
 <template>
   <NvMobileResult
     status="error"
-    title="工单上报失败"
+    title="记录上报失败"
     description="网关连接超时，请检查网络后重试。"
   >
     <template #actions>

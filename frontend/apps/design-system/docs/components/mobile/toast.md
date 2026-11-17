@@ -34,7 +34,7 @@ function runLoadingToast() {
     <p class="nv-mdoc-label">文字与状态</p>
     <div class="grid grid-cols-2 gap-2">
       <NvMobileButton variant="default" size="md" @click="fireToast('text', '已复制单号')">文字</NvMobileButton>
-      <NvMobileButton variant="default" size="md" @click="fireToast('success', '报工成功')">成功</NvMobileButton>
+      <NvMobileButton variant="default" size="md" @click="fireToast('success', '提交成功')">成功</NvMobileButton>
       <NvMobileButton variant="default" size="md" @click="fireToast('error', '网络异常')">失败</NvMobileButton>
     </div>
     <NvMobileToast v-model:show="toastShow" :type="toastType" :message="toastMsg" />
@@ -72,7 +72,7 @@ function fireToast(type, msg) {
 </script>
 
 <template>
-  <NvMobileButton @click="fireToast('success', '报工成功')">成功</NvMobileButton>
+  <NvMobileButton @click="fireToast('success', '提交成功')">成功</NvMobileButton>
   <NvMobileToast v-model:show="toastShow" :type="toastType" :message="toastMsg" />
 </template>
 ```

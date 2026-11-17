@@ -22,7 +22,7 @@ function onScan(value) {
     <div style="display:flex;flex-direction:column;gap:12px;width:100%">
       <NvScanBar placeholder="对准条码 / 二维码" @scan="onScan" />
       <NvCellGroup>
-        <NvCell v-for="(s, i) in scans" :key="`${s}-${i}`" :title="s" note="物料条码" />
+        <NvCell v-for="(s, i) in scans" :key="`${s}-${i}`" :title="s" note="条目条码" />
       </NvCellGroup>
     </div>
   </section>
@@ -47,7 +47,7 @@ function onScan(value) {
 <template>
   <NvScanBar placeholder="对准条码 / 二维码" @scan="onScan" />
   <NvCellGroup>
-    <NvCell v-for="(s, i) in scans" :key="`${s}-${i}`" :title="s" note="物料条码" />
+    <NvCell v-for="(s, i) in scans" :key="`${s}-${i}`" :title="s" note="条目条码" />
   </NvCellGroup>
 </template>
 ```

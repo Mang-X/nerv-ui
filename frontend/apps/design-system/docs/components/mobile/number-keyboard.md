@@ -24,20 +24,20 @@ const workerShow = ref(false)
       class="flex h-11 items-center justify-between rounded-xl border border-border bg-card px-3"
       @click="qtyShow = true"
     >
-      <span class="text-sm text-muted-foreground">完工数量</span>
+      <span class="text-sm text-muted-foreground">完成数量</span>
       <span class="text-base font-medium tabular-nums text-foreground">
         {{ qty || '点此录入' }}
       </span>
     </div>
-    <NvNumberKeyboard v-model="qty" v-model:show="qtyShow" title="录入完工数量" extra-key="." />
+    <NvNumberKeyboard v-model="qty" v-model:show="qtyShow" title="录入完成数量" extra-key="." />
   </section>
   <section>
-    <p class="nv-mdoc-label">录入工号（纯数字、无小数点）</p>
+    <p class="nv-mdoc-label">录入编号（纯数字、无小数点）</p>
     <div
       class="flex h-11 items-center justify-between rounded-xl border border-border bg-card px-3"
       @click="workerShow = true"
     >
-      <span class="text-sm text-muted-foreground">操作工号</span>
+      <span class="text-sm text-muted-foreground">成员编号</span>
       <span class="text-base font-medium tabular-nums text-foreground">
         {{ worker || '点此录入' }}
       </span>
@@ -45,7 +45,7 @@ const workerShow = ref(false)
     <NvNumberKeyboard
       v-model="worker"
       v-model:show="workerShow"
-      title="录入操作工号"
+      title="录入成员编号"
       extra-key=""
       :maxlength="6"
       confirm-text="确定"
@@ -55,7 +55,7 @@ const workerShow = ref(false)
 
 # NvNumberKeyboard 数字键盘
 
-PDA 屏幕数字键盘（Arco 表单形态）。底部固定面板由 `v-model:show` 控制升降，大触控键适配戴手套操作。编辑字符串 `v-model`，每次按键同时触发 `press` 事件。用于录入数量、工号、称重等场景。右侧手机模拟器为实时组件，点击输入区域唤起键盘。
+移动端屏幕数字键盘（Arco 表单形态）。底部固定面板由 `v-model:show` 控制升降，大触控键适配戴手套操作。编辑字符串 `v-model`，每次按键同时触发 `press` 事件。用于录入数量、编号、称重等场景。右侧手机模拟器为实时组件，点击输入区域唤起键盘。
 
 数字键盘属于移动端优先输入浮层：即使从 `NvBottomSheet` 等 modal 浮层内唤起，也会保持在业务浮层之上并接管实际触点。点击键盘背板或「完成」只关闭键盘；业务抽屉关闭时，宿主仍应同步把 `v-model:show` 置为 `false`。
 
@@ -64,7 +64,7 @@ PDA 屏幕数字键盘（Arco 表单形态）。底部固定面板由 `v-model:s
 `extra-key` 为左下角按键，默认 `.`（小数点，自动去重）。
 
 ```vue
-<NvNumberKeyboard v-model="qty" v-model:show="show" title="录入完工数量" extra-key="." />
+<NvNumberKeyboard v-model="qty" v-model:show="show" title="录入完成数量" extra-key="." />
 ```
 
 ## 录入工号

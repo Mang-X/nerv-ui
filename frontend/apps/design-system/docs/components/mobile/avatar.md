@@ -38,7 +38,7 @@ import { NvMobileAvatar } from '@nerv-iip/ui-mobile'
 
 # NvMobileAvatar 头像
 
-展示用户或设备的图像头像。`src` 加载失败或缺省时，自动回退为姓名首字（中文取前两字）；无姓名则显示通用人形图标，底色为柔和的 `bg-muted`。右侧手机模拟器为实时组件，随页面滚动吸顶。
+展示用户或资源的图像头像。`src` 加载失败或缺省时，自动回退为姓名首字（中文取前两字）；无姓名则显示通用人形图标，底色为柔和的 `bg-muted`。右侧手机模拟器为实时组件，随页面滚动吸顶。
 
 ## 尺寸
 
@@ -51,7 +51,7 @@ import { NvMobileAvatar } from '@nerv-iip/ui-mobile'
 
 ## 形状
 
-默认 `circle` 圆形头像；`square` 圆角方形适合设备 / 物料缩略图。
+默认 `circle` 圆形头像；`square` 圆角方形适合资源 / 条目缩略图。
 
 ```vue
 <NvMobileAvatar shape="circle" name="陈" />

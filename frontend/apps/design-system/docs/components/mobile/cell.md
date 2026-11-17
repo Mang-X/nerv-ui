@@ -18,10 +18,10 @@ const lockMaterial = ref(true)
     <p class="nv-mdoc-label">基础用法</p>
     <div class="px-3">
       <NvCellGroup>
-        <NvCell title="工单号" value="WO-2406-0413" />
-        <NvCell title="产品" value="前桥壳体 A2" />
-        <NvCell title="工艺路线" note="3 道工序" arrow />
-        <NvCell title="加急插单">
+        <NvCell title="记录号" value="REC-2406-0413" />
+        <NvCell title="条目" value="季度回顾 A2" />
+        <NvCell title="处理流程" note="3 个步骤" arrow />
+        <NvCell title="加急标记">
           <template #value><NvMobileSwitch v-model="lockMaterial" /></template>
         </NvCell>
       </NvCellGroup>
@@ -30,8 +30,8 @@ const lockMaterial = ref(true)
   <section>
     <p class="nv-mdoc-label">分组标题</p>
     <div class="px-3">
-      <NvCellGroup title="生产信息">
-        <NvCell title="目标产线" value="A 线 · 精密加工" arrow />
+      <NvCellGroup title="计划信息">
+        <NvCell title="目标分组" value="A 组 · 项目Alpha" arrow />
         <NvCell title="计划日期" value="2026-06-18" arrow />
       </NvCellGroup>
     </div>
@@ -48,10 +48,10 @@ const lockMaterial = ref(true)
 
 ```vue
 <NvCellGroup>
-  <NvCell title="工单号" value="WO-2406-0413" />
-  <NvCell title="产品" value="前桥壳体 A2" />
-  <NvCell title="工艺路线" note="3 道工序" arrow @click="openRoute" />
-  <NvCell title="加急插单">
+  <NvCell title="记录号" value="REC-2406-0413" />
+  <NvCell title="条目" value="季度回顾 A2" />
+  <NvCell title="处理流程" note="3 个步骤" arrow @click="openRoute" />
+  <NvCell title="加急标记">
     <template #value><NvMobileSwitch v-model="lockMaterial" /></template>
   </NvCell>
 </NvCellGroup>
@@ -62,8 +62,8 @@ const lockMaterial = ref(true)
 `NvCellGroup` 的 `title` 在卡片上方显示分组标题。
 
 ```vue
-<NvCellGroup title="生产信息">
-  <NvCell title="目标产线" value="A 线 · 精密加工" arrow />
+<NvCellGroup title="计划信息">
+  <NvCell title="目标分组" value="A 组 · 项目Alpha" arrow />
   <NvCell title="计划日期" value="2026-06-18" arrow />
 </NvCellGroup>
 ```
