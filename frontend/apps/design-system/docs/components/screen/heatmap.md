@@ -52,9 +52,9 @@ interface ScreenHeatmapThreshold extends ScreenHeatmapBand {
 }
 ```
 
-## 原 OEE 宿主适配
+## 原指标分档宿主适配
 
-来源 line 页的 `oeeBucket` 按 ≥85、≥70、≥55、<55 分档。库不内置这些业务常量；旧宿主可明确输入：
+历史来源按 `scoreBucket` 以 ≥85、≥70、≥55、<55 分档。库不内置这些业务常量；旧宿主可明确输入：
 
 ```ts
 const thresholds = [
@@ -64,9 +64,9 @@ const thresholds = [
 ]
 const below = { label: '不足 55', tone: 'red' }
 // key、小时文本、起止轴标均来自宿主明确的数据窗口；不使用组件内时钟。
-const cells = hourlyRows.map((row) => ({ key: row.id, label: row.hourLabel, value: row.oee }))
+const cells = hourlyRows.map((row) => ({ key: row.id, label: row.hourLabel, value: row.score }))
 ```
 
-这只是源语义适配说明，未验证旧应用接入或实际 OEE。中性宿主展示阅读与温度，不代替生产验收。
+这只是源语义适配说明，未验证旧应用接入或实际指标。中性宿主展示阅读与温度，不代替真实环境验收。
 
 <!-- @include: ../../../../../DESIGN/components/heatmap.md -->

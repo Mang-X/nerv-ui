@@ -9,15 +9,15 @@ import { CheckCircleIcon, PauseIcon, BellRingIcon } from '@lucide/vue'
 
 # NvTouchButton 触控按钮
 
-工位一体机的大触控按钮：**≥56px** 触控目标、动作语义色、按下整体缩放 0.97 的强反馈。区别于 PC 紧凑的 NvButton 与移动贴近原生的 NvMobileButton——它为"戴手套也点得准、一眼看到该点哪"而放大。
+Pad 大触控按钮：**≥56px** 触控目标、动作语义色、按下整体缩放 0.97 的强反馈。区别于 PC 紧凑的 NvButton 与移动贴近原生的 NvMobileButton——它为"戴手套也点得准、一眼看到该点哪"而放大。
 
 ## 变体
 
-按动作语义选色：`brand` 完工、`success` 报工、`warning` 暂停、`destructive` 危险、`outline` / `ghost` 次级。
+按动作语义选色：`brand` 完成、`success` 提交、`warning` 暂停、`destructive` 危险、`outline` / `ghost` 次级。
 
 <Demo>
-  <NvTouchButton variant="success"><template #leading><CheckCircleIcon aria-hidden="true" /></template>报工</NvTouchButton>
-  <NvTouchButton variant="brand">完工</NvTouchButton>
+  <NvTouchButton variant="success"><template #leading><CheckCircleIcon aria-hidden="true" /></template>提交</NvTouchButton>
+  <NvTouchButton variant="brand">完成</NvTouchButton>
   <NvTouchButton variant="warning"><template #leading><PauseIcon aria-hidden="true" /></template>暂停</NvTouchButton>
   <NvTouchButton variant="outline"><template #leading><BellRingIcon aria-hidden="true" /></template>呼叫</NvTouchButton>
   <NvTouchButton variant="ghost">复位</NvTouchButton>
@@ -26,14 +26,14 @@ import { CheckCircleIcon, PauseIcon, BellRingIcon } from '@lucide/vue'
 ```vue
 <NvTouchButton variant="success">
   <template #leading><CheckCircleIcon /></template>
-  报工
+  提交
 </NvTouchButton>
 <NvTouchButton variant="warning">暂停</NvTouchButton>
 ```
 
 ## 尺寸
 
-`md` 44px、`lg` 56px（默认）、`xl` 72px——工位主操作用 `xl`，副操作用 `lg`。加 `block` 占满整行。
+`md` 44px、`lg` 56px（默认）、`xl` 72px——Pad 主操作用 `xl`，副操作用 `lg`。加 `block` 占满整行。
 
 <Demo>
   <NvTouchButton size="md">md · 44px</NvTouchButton>
@@ -42,7 +42,7 @@ import { CheckCircleIcon, PauseIcon, BellRingIcon } from '@lucide/vue'
 </Demo>
 
 <Demo block>
-  <NvTouchButton variant="success" size="xl" block>整宽报工</NvTouchButton>
+  <NvTouchButton variant="success" size="xl" block>整宽提交</NvTouchButton>
 </Demo>
 
 ## 加载态

@@ -149,8 +149,8 @@ const shadowScale = [
   { name: 'lg', cls: 'shadow-lg' },
 ]
 const typeScale = [
-  { label: '页面标题', cls: 'text-2xl font-semibold tracking-tight', sample: '数字工厂控制平面' },
-  { label: '区块标题', cls: 'text-lg font-semibold', sample: '在制工单总览' },
+  { label: '页面标题', cls: 'text-2xl font-semibold tracking-tight', sample: '实时运营控制台' },
+  { label: '区块标题', cls: 'text-lg font-semibold', sample: '待处理记录总览' },
   { label: '正文', cls: 'text-sm', sample: '默认表格与表单内容，密度优先于装饰。' },
   {
     label: '辅助 / 弱化',
@@ -160,7 +160,7 @@ const typeScale = [
   {
     label: '等宽',
     cls: 'font-mono text-xs text-muted-foreground',
-    sample: 'WO-2406-0413 · 8f3a-21c0',
+    sample: 'REC-2406-0413 · 8f3a-21c0',
   },
 ]
 
@@ -190,7 +190,7 @@ const planDate = ref('2026-06-18')
 const dialogOpen = ref(false)
 function confirmDispatch() {
   dialogOpen.value = false
-  nvMessage.info('已选择将 WO-2406-0431 派发到 A 线')
+  nvMessage.info('已选择将 REC-2406-0431 分配到分组 A')
 }
 
 const proLoading = ref(false)
@@ -198,39 +198,39 @@ function runProAction() {
   proLoading.value = true
   window.setTimeout(() => {
     proLoading.value = false
-    nvNotification.success('工单已派发', {
-      description: 'WO-2406-0431 已进入 A 线排队队列，物料已锁定。',
+    nvNotification.success('记录已分配', {
+      description: 'REC-2406-0431 已进入分组 A 排队队列，资源已锁定。',
     })
   }, 1500)
 }
 
 const proMetrics = [
   {
-    label: '产能利用率',
+    label: '利用率',
     value: '87.4%',
     trend: { value: '+4.2%', direction: 'up' as const },
     hint: '近 7 日均值',
     series: [72, 74, 73, 78, 80, 79, 83, 85, 87],
   },
   {
-    label: 'OEE 综合效率',
+    label: '综合利用率',
     value: '78.6%',
     trend: { value: '-1.1%', direction: 'down' as const },
     hint: '目标 82%',
     series: [82, 81, 83, 80, 79, 80, 78, 79, 78],
   },
   {
-    label: '当班产出',
+    label: '当期产出',
     value: '4,210',
     trend: { value: '+312', direction: 'up' as const },
-    hint: '件 · 截至 16:00',
+    hint: '条 · 截至 16:00',
     series: [2100, 2400, 2800, 3000, 3300, 3600, 3900, 4050, 4210],
   },
   {
-    label: '在线良率',
+    label: '在线合格率',
     value: '99.2%',
     trend: { value: '0.0%', direction: 'flat' as const },
-    hint: '质检实时判定',
+    hint: '实时判定',
     series: [99.0, 99.3, 99.1, 99.2, 99.0, 99.4, 99.2, 99.1, 99.2],
   },
 ]
@@ -245,35 +245,35 @@ const loaderVariants = [
 // ---- Feedback ----
 function fireMessage(kind: 'info' | 'success' | 'warning' | 'error') {
   const map = {
-    info: () => nvMessage.info('已同步 MES 网关'),
+    info: () => nvMessage.info('已同步上游服务'),
     success: () => nvMessage.success('保存成功'),
-    warning: () => nvMessage.warning('库存接近下限'),
+    warning: () => nvMessage.warning('余量接近下限'),
     error: () => nvMessage.error('网络连接中断'),
   }
   map[kind]()
 }
 function fireLongMessage() {
   nvMessage.info(
-    'WO-2406-0413 前桥壳体 A2 已下发至 A 线排队队列，物料已锁定，预计 14:20 开工，请关注节拍与首检结果。',
+    'REC-2406-0413 发布检查清单已下发至分组 A 排队队列，资源已锁定，预计 14:20 开始，请关注节奏与首次复核结果。',
   )
 }
 function fireBurst() {
   nvMessage.success('已保存草稿')
-  window.setTimeout(() => nvMessage.info('已同步 MES 网关'), 140)
-  window.setTimeout(() => nvMessage.warning('库存接近下限'), 280)
+  window.setTimeout(() => nvMessage.info('已同步上游服务'), 140)
+  window.setTimeout(() => nvMessage.warning('余量接近下限'), 280)
 }
 function fireNotification(kind: 'info' | 'success' | 'warning' | 'error') {
   const map = {
     info: () =>
-      nvNotification.info('排产已更新', { description: '今日计划重排，受影响工单 6 张。' }),
+      nvNotification.info('计划已更新', { description: '今日安排重排，受影响记录 6 条。' }),
     success: () =>
-      nvNotification.success('保养工单已创建', { description: 'CNC-07 · 今晚 22:00 执行。' }),
+      nvNotification.success('保养记录已创建', { description: 'RES-07 · 今晚 22:00 执行。' }),
     warning: () =>
-      nvNotification.warning('B 线物料不足', {
-        description: '液压阀体 V3 缺口 452 件，已转采购申请。',
+      nvNotification.warning('分组 B 资源不足', {
+        description: '设计评审纪要缺口 452 条，已转入申请。',
       }),
     error: () =>
-      nvNotification.error('派工失败', { description: '工作中心 WC-ASM-04 处于阻塞状态。' }),
+      nvNotification.error('分配失败', { description: '资源组 RES-04 处于阻塞状态。' }),
   }
   map[kind]()
 }
@@ -295,7 +295,7 @@ const cmdGroups: CommandGroup[] = [
     label: '导航',
     items: [
       { id: 'instances', label: '实例总览', hint: 'G I', icon: LayersIcon },
-      { id: 'orders', label: '工单工作台', hint: 'G O', icon: GaugeIcon },
+      { id: 'orders', label: '记录工作台', hint: 'G O', icon: GaugeIcon },
       { id: 'iam', label: '用户与权限', icon: ActivityIcon, keywords: 'user role permission' },
     ],
   },
@@ -304,13 +304,13 @@ const cmdGroups: CommandGroup[] = [
     items: [
       {
         id: 'new-wo',
-        label: '新建工单',
+        label: '新建记录',
         hint: '⌘N',
         icon: PlusIcon,
-        keywords: 'create work order',
+        keywords: 'create record',
       },
-      { id: 'dispatch', label: '派发到产线', icon: RocketIcon, keywords: 'dispatch line' },
-      { id: 'search-material', label: '搜索物料编码', icon: SearchIcon, keywords: 'material' },
+      { id: 'dispatch', label: '分配到分组', icon: RocketIcon, keywords: 'dispatch group' },
+      { id: 'search-material', label: '搜索资源编码', icon: SearchIcon, keywords: 'resource' },
     ],
   },
 ]
@@ -341,15 +341,15 @@ const planActualSeries = [
   { key: 'actual', label: '实际' },
 ]
 const outputByCenter = [
-  { center: 'CNC-07', good: 412, scrap: 18 },
-  { center: 'FORGE-02', good: 1200, scrap: 24 },
-  { center: 'CNC-11', good: 96, scrap: 6 },
-  { center: 'ASM-04', good: 188, scrap: 12 },
-  { center: 'STAMP-01', good: 2740, scrap: 60 },
+  { center: 'RES-07', good: 412, scrap: 18 },
+  { center: 'RES-02', good: 1200, scrap: 24 },
+  { center: 'RES-11', good: 96, scrap: 6 },
+  { center: 'RES-04', good: 188, scrap: 12 },
+  { center: 'RES-01', good: 2740, scrap: 60 },
 ]
 const outputByCenterSeries = [
-  { key: 'good', label: '良品' },
-  { key: 'scrap', label: '废品' },
+  { key: 'good', label: '合格' },
+  { key: 'scrap', label: '退回' },
 ]
 const statusMix = [
   { label: '执行中', value: 38 },
@@ -358,44 +358,44 @@ const statusMix = [
   { label: '阻塞', value: 6 },
 ]
 
-// ---- Workorders table ----
+// ---- Records table ----
 const workOrders = [
   {
-    code: 'WO-2406-0413',
-    product: '前桥壳体 A2',
-    center: 'WC-CNC-07',
+    code: 'REC-2406-0413',
+    product: '发布检查清单',
+    center: 'RES-07',
     qty: 480,
     done: 412,
     status: 'running',
   },
   {
-    code: 'WO-2406-0419',
-    product: '转向节 L',
-    center: 'WC-FORGE-02',
+    code: 'REC-2406-0419',
+    product: '用户访谈记录',
+    center: 'RES-02',
     qty: 1200,
     done: 1200,
     status: 'completed',
   },
   {
-    code: 'WO-2406-0421',
-    product: '齿轮箱端盖',
-    center: 'WC-CNC-11',
+    code: 'REC-2406-0421',
+    product: '季度回顾草稿',
+    center: 'RES-11',
     qty: 320,
     done: 96,
     status: 'ready',
   },
   {
-    code: 'WO-2406-0426',
-    product: '液压阀体 V3',
-    center: 'WC-ASM-04',
+    code: 'REC-2406-0426',
+    product: '设计评审纪要',
+    center: 'RES-04',
     qty: 640,
     done: 188,
     status: 'blocked',
   },
   {
-    code: 'WO-2406-0430',
-    product: '电机定子叠片',
-    center: 'WC-STAMP-01',
+    code: 'REC-2406-0430',
+    product: '运营周报汇总',
+    center: 'RES-01',
     qty: 5000,
     done: 2740,
     status: 'pending',
@@ -412,26 +412,26 @@ interface WoRow {
   status: string
 }
 const WO_PRODUCTS = [
-  '前桥壳体 A2',
-  '转向节 L',
-  '齿轮箱端盖',
-  '液压阀体 V3',
-  '电机定子叠片',
-  '制动卡钳',
-  '减速器壳体',
-  '半轴齿轮',
-  '油泵端盖',
-  '冷却水套',
-  '法兰盘 D80',
-  '同步带轮',
+  '发布检查清单',
+  '用户访谈记录',
+  '季度回顾草稿',
+  '设计评审纪要',
+  '运营周报汇总',
+  '入门指引',
+  '采购申请单',
+  '客户回访纪要',
+  '交付验收单',
+  '库存盘点表',
+  '法务评审意见',
+  '培训签到表',
 ]
-const WO_CENTERS = ['WC-CNC-07', 'WC-FORGE-02', 'WC-CNC-11', 'WC-ASM-04', 'WC-STAMP-01']
+const WO_CENTERS = ['RES-07', 'RES-02', 'RES-11', 'RES-04', 'RES-01']
 const WO_OWNERS = ['张伟', '李娜', '王强', '刘洋', '陈静']
 const WO_STATUS = ['running', 'completed', 'ready', 'blocked', 'pending']
 const WO_QTYS = [480, 1200, 320, 640, 5000, 260, 180, 900, 420, 760, 1500, 340]
 // Deterministic seed (no random) so the showcase renders identically every time.
 const tableAll: WoRow[] = Array.from({ length: 48 }, (_, i) => ({
-  code: `WO-2406-${String(401 + i * 3).padStart(4, '0')}`,
+  code: `REC-2406-${String(401 + i * 3).padStart(4, '0')}`,
   product: WO_PRODUCTS[i % WO_PRODUCTS.length],
   center: WO_CENTERS[i % WO_CENTERS.length],
   owner: WO_OWNERS[i % WO_OWNERS.length],
@@ -442,7 +442,7 @@ const tableColumns: NvDataTableColumn<WoRow>[] = [
   {
     key: 'code',
     width: '160px',
-    header: '工单号',
+    header: '记录号',
     sortable: true,
     filter: 'text',
     cellClass: 'font-mono text-xs',
@@ -451,7 +451,7 @@ const tableColumns: NvDataTableColumn<WoRow>[] = [
   {
     key: 'product',
     width: '180px',
-    header: '产品',
+    header: '条目',
     sortable: true,
     filter: 'text',
     cellClass: 'font-medium',
@@ -459,7 +459,7 @@ const tableColumns: NvDataTableColumn<WoRow>[] = [
   {
     key: 'center',
     width: '150px',
-    header: '工作中心',
+    header: '资源组',
     filter: 'enum',
     cellClass: 'font-mono text-xs text-muted-foreground',
   },
@@ -480,13 +480,13 @@ const tableColumns: NvDataTableColumn<WoRow>[] = [
     filterOptions: [
       { label: '执行中', value: 'running' },
       { label: '已完成', value: 'completed' },
-      { label: '可开工', value: 'ready' },
+      { label: '可开始', value: 'ready' },
       { label: '阻塞', value: 'blocked' },
       { label: '待处理', value: 'pending' },
     ],
   },
 ]
-const tableSelected = ref<(string | number)[]>(['WO-2406-0401'])
+const tableSelected = ref<(string | number)[]>(['REC-2406-0401'])
 const tableTabs = [
   { label: '全部', value: '' },
   { label: '执行中', value: 'running' },
@@ -495,7 +495,7 @@ const tableTabs = [
   { label: '阻塞', value: 'blocked' },
 ]
 function onTableRefresh() {
-  nvMessage.success('已刷新工单列表')
+  nvMessage.success('已刷新记录列表')
 }
 
 // ---- 独立操作栏 NvToolbar 演示 ----
@@ -516,57 +516,57 @@ const pgManySize = ref(10)
 const pgFewPage = ref(1)
 const pgFewSize = ref(10)
 
-// ---- 描述列表 Descriptions 演示（工单详情）----
+// ---- 描述列表 Descriptions 演示（记录详情）----
 const woDescItems: DescriptionItem[] = [
-  { key: 'code', label: '工单号', value: 'WO-2406-0413' },
-  { label: '产品', value: '前桥壳体 A2' },
-  { label: '工作中心', value: 'WC-CNC-07' },
+  { key: 'code', label: '记录号', value: 'REC-2406-0413' },
+  { label: '条目', value: '发布检查清单' },
+  { label: '资源组', value: 'RES-07' },
   { label: '负责人', value: '张伟' },
-  { label: '计划数量', value: '480 件' },
-  { label: '已完成', value: '312 件' },
+  { label: '计划数量', value: '480 条' },
+  { label: '已完成', value: '312 条' },
   { key: 'status', label: '状态', value: 'running' },
   { label: '优先级', value: '高' },
-  { label: '交期', value: '2026-06-22' },
-  { label: '备注', value: '首件需三坐标全尺寸检测，合格后方可批量。', span: 3 },
+  { label: '到期', value: '2026-06-22' },
+  { label: '备注', value: '首条需全量校验，合格后方可批量。', span: 3 },
 ]
 const descClampItems: DescriptionItem[] = [
-  { label: '首件检验工艺要求', value: '三坐标全尺寸' },
-  { label: '关联物料批次号', value: 'MTL-7782-0034' },
-  { label: '客户与交付地点', value: '一汽解放 · 长春' },
-  { label: '首检报告存储路径', value: 'first-article-v3.pdf' },
+  { label: '首条校验要求', value: '全量校验' },
+  { label: '关联批次号', value: 'BATCH-7782-0034' },
+  { label: '客户与交付地点', value: '示例客户 · 上海' },
+  { label: '复核报告存储路径', value: 'review-v3.pdf' },
 ]
 
-// ---- 时间线 Timeline 演示（工序流转日志）----
+// ---- 时间线 Timeline 演示（步骤流转日志）----
 const woTimeline: TimelineItem[] = [
   {
     key: 'created',
-    title: '工单创建',
+    title: '记录创建',
     label: '06-17 08:12',
-    description: '由 MES 排产自动下发，物料已预占。',
+    description: '由计划服务自动下发，所需资源已预留。',
     tone: 'neutral',
     icon: FilePlus2Icon,
   },
   {
     key: 'kitted',
-    title: '物料齐套',
+    title: '资源就绪',
     label: '06-17 08:40',
-    description: '5 项物料从 WH-A 出库并送达线边仓。',
+    description: '5 项资源从仓库 A 调出并送达目标位置。',
     tone: 'success',
     icon: PackageCheckIcon,
   },
   {
     key: 'started',
-    title: '开工',
+    title: '开始处理',
     label: '06-17 09:05',
-    description: '张伟在 WC-CNC-07 扫码开工，节拍 42s/件。',
+    description: '张伟在 RES-07 扫码开始，节奏 42s/条。',
     tone: 'brand',
     icon: PlayIcon,
   },
   {
     key: 'warn',
-    title: '首检预警',
+    title: '复核预警',
     label: '06-17 09:21',
-    description: '孔径 Φ12.02 接近上公差，已通知工艺复核。',
+    description: '指标 Φ12.02 接近上限，已通知复核。',
     tone: 'warning',
     icon: TriangleAlertIcon,
   },
@@ -628,10 +628,10 @@ const progress = computed(
         <div class="nv-hero-glow" aria-hidden="true" />
         <div class="relative mx-auto max-w-6xl px-6 py-20">
           <p class="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-            <NvStatusDot tone="info" pulse /> 工业智能平台 · 控制平面组件库
+            <NvStatusDot tone="info" pulse /> 多形态组件库 · 桌面形态
           </p>
           <h1 class="mt-5 max-w-2xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-            克制、精确、可信赖的工厂界面语言
+            克制、精确、可信赖的界面语言
           </h1>
           <p class="mt-5 max-w-xl text-base text-muted-foreground text-pretty">
             近黑主色，去饱和语义色，亮暗双主题，12
@@ -832,7 +832,7 @@ const progress = computed(
                 class="min-w-28"
                 @click="runProAction"
               >
-                {{ proLoading ? '派发中' : '确认派工' }}
+                {{ proLoading ? '分配中' : '确认分配' }}
               </NvButton>
             </div>
           </div>
@@ -863,7 +863,7 @@ const progress = computed(
               <div class="mt-4 grid gap-4">
                 <div class="grid gap-2">
                   <Label for="nv-search">搜索</Label>
-                  <NvInput id="nv-search" v-model="searchValue" placeholder="搜索工单号 / 产品">
+                  <NvInput id="nv-search" v-model="searchValue" placeholder="搜索记录号 / 条目">
                     <template #leading><SearchIcon aria-hidden="true" /></template>
                     <template #trailing>
                       <kbd
@@ -874,36 +874,36 @@ const progress = computed(
                   </NvInput>
                 </div>
                 <div class="grid gap-2">
-                  <Label for="nv-line">目标产线</Label>
+                  <Label for="nv-line">目标分组</Label>
                   <NvSelect v-model="lineValue">
                     <NvSelectTrigger id="nv-line"
-                      ><NvSelectValue placeholder="选择产线"
+                      ><NvSelectValue placeholder="选择分组"
                     /></NvSelectTrigger>
                     <NvSelectContent>
-                      <NvSelectItem value="line-a">A 线 · 精密加工</NvSelectItem>
-                      <NvSelectItem value="line-b">B 线 · 锻压</NvSelectItem>
-                      <NvSelectItem value="line-c">C 线 · 总装</NvSelectItem>
+                      <NvSelectItem value="line-a">分组 A · 精密区</NvSelectItem>
+                      <NvSelectItem value="line-b">分组 B · 东仓区</NvSelectItem>
+                      <NvSelectItem value="line-c">分组 C · 西仓区</NvSelectItem>
                     </NvSelectContent>
                   </NvSelect>
                 </div>
                 <div class="grid gap-2">
-                  <Label>计划开工日期</Label>
+                  <Label>计划开始日期</Label>
                   <NvDatePicker v-model="planDate" placeholder="选择日期" />
                 </div>
                 <div class="grid gap-2">
-                  <Label>计划开工时间</Label>
+                  <Label>计划开始时间</Label>
                   <NvTimePicker v-model="planTime" :minute-step="5" placeholder="选择时间" />
                 </div>
                 <label class="flex items-center gap-2.5 text-sm">
                   <NvCheckbox v-model="agreed" />
-                  派发后立即锁定物料并生成领料单
+                  分配后立即锁定资源并生成申请单
                 </label>
                 <div class="flex items-center justify-between">
-                  <span class="text-sm">加急插单</span>
+                  <span class="text-sm">加急插入</span>
                   <NvSwitch v-model="switchOn" />
                 </div>
                 <div class="grid gap-2">
-                  <span class="text-sm font-medium">质检策略</span>
+                  <span class="text-sm font-medium">复核策略</span>
                   <NvRadioGroup v-model="radioValue">
                     <NvRadioGroupItem value="std">标准全检</NvRadioGroupItem>
                     <NvRadioGroupItem value="sample">抽样检验</NvRadioGroupItem>
@@ -925,7 +925,7 @@ const progress = computed(
                   <NvTabsTrigger value="maint">维护</NvTabsTrigger>
                 </NvTabsList>
                 <NvTabsContent value="overview" class="pt-4">
-                  <p class="text-sm text-muted-foreground">当班共 12 条产线运行，2 条待料。</p>
+                  <p class="text-sm text-muted-foreground">当期共 12 个分组运行，2 个等待回填。</p>
                   <div class="mt-4 space-y-2">
                     <div class="flex items-center justify-between text-sm">
                       <span>计划达成</span
@@ -935,10 +935,10 @@ const progress = computed(
                   </div>
                 </NvTabsContent>
                 <NvTabsContent value="quality" class="pt-4">
-                  <p class="text-sm text-muted-foreground">在线判定良率 99.2%，无重大不合格。</p>
+                  <p class="text-sm text-muted-foreground">在线判定合格率 99.2%，无重大不合格。</p>
                 </NvTabsContent>
                 <NvTabsContent value="maint" class="pt-4">
-                  <p class="text-sm text-muted-foreground">CNC-07 计划保养窗口：今晚 22:00。</p>
+                  <p class="text-sm text-muted-foreground">RES-07 计划保养窗口：今晚 22:00。</p>
                 </NvTabsContent>
               </NvTabs>
             </NvCard>
@@ -1016,7 +1016,7 @@ const progress = computed(
                       悬停提示
                     </NvButton>
                   </NvTooltipTrigger>
-                  <NvTooltipContent>实时采集自 MES 网关</NvTooltipContent>
+                  <NvTooltipContent>实时采集自上游服务</NvTooltipContent>
                 </NvTooltip>
                 <NvButton variant="ghost" size="sm" @click="cmdOpen = true">
                   <template #leading><SearchIcon aria-hidden="true" /></template>
@@ -1031,10 +1031,10 @@ const progress = computed(
                   </NvDialogTrigger>
                   <NvDialogContent>
                     <NvDialogHeader>
-                      <NvDialogTitle>确认派发工单</NvDialogTitle>
+                      <NvDialogTitle>确认分配记录</NvDialogTitle>
                       <NvDialogDescription>
-                        本地演示：选择将 WO-2406-0431 派发到 A
-                        线；确认仅显示选择回执，不执行派工、锁料或生成领料单。
+                        本地演示：选择将 REC-2406-0431 分配到分组
+                        A；确认仅显示选择回执，不执行分配、锁定或生成申请单。
                       </NvDialogDescription>
                     </NvDialogHeader>
                     <div class="rounded-lg border border-border bg-muted/40 p-4 text-sm">
@@ -1043,7 +1043,7 @@ const progress = computed(
                         ><span class="tabular-nums">480</span>
                       </div>
                       <div class="mt-2 flex justify-between">
-                        <span class="text-muted-foreground">预计工时</span
+                        <span class="text-muted-foreground">预计耗时</span
                         ><span class="tabular-nums">14.5 h</span>
                       </div>
                     </div>
@@ -1051,7 +1051,7 @@ const progress = computed(
                       <NvDialogClose as-child
                         ><NvButton variant="ghost">取消</NvButton></NvDialogClose
                       >
-                      <NvButton variant="brand" @click="confirmDispatch">确认派发</NvButton>
+                      <NvButton variant="brand" @click="confirmDispatch">确认分配</NvButton>
                     </NvDialogFooter>
                   </NvDialogContent>
                 </NvDialog>
@@ -1065,7 +1065,7 @@ const progress = computed(
           <div class="nv-eyebrow">
             <h2 class="text-xl font-semibold tracking-tight">数据可视化</h2>
             <p class="mt-1.5 text-sm text-muted-foreground">
-              基于 unovis：面积、折线、柱状、环形覆盖常见工厂场景；颜色走令牌，随品牌色重着色。
+              基于 unovis：面积、折线、柱状、环形覆盖常见可视化场景；颜色走令牌，随品牌色重着色。
             </p>
           </div>
 
@@ -1073,16 +1073,16 @@ const progress = computed(
             <NvCard class="p-6">
               <div class="flex items-center justify-between">
                 <div>
-                  <h3 class="text-sm font-semibold">当班累计产出</h3>
+                  <h3 class="text-sm font-semibold">当期累计产出</h3>
                   <p class="mt-0.5 text-xs text-muted-foreground">面积图 · 每 2 小时采样</p>
                 </div>
                 <NvStatusBadge value="running" pulse />
               </div>
-              <NvAreaChart class="mt-4" :data="outputSeries" :height="220" value-suffix=" 件" />
+              <NvAreaChart class="mt-4" :data="outputSeries" :height="220" value-suffix=" 条" />
             </NvCard>
 
             <NvCard class="p-6">
-              <h3 class="text-sm font-semibold">计划 vs 实际产量</h3>
+              <h3 class="text-sm font-semibold">计划 vs 实际数量</h3>
               <p class="mt-0.5 text-xs text-muted-foreground">多系列折线 · 本周</p>
               <NvLineChart
                 class="mt-4"
@@ -1090,13 +1090,13 @@ const progress = computed(
                 x-key="day"
                 :series="planActualSeries"
                 :height="220"
-                value-suffix=" 件"
+                value-suffix=" 条"
               />
             </NvCard>
 
             <NvCard class="p-6">
-              <h3 class="text-sm font-semibold">各工作中心产出</h3>
-              <p class="mt-0.5 text-xs text-muted-foreground">分组柱状 · 良品 / 废品</p>
+              <h3 class="text-sm font-semibold">各资源组产出</h3>
+              <p class="mt-0.5 text-xs text-muted-foreground">分组柱状 · 合格 / 退回</p>
               <NvBarChart
                 class="mt-4"
                 :data="outputByCenter"
@@ -1107,13 +1107,13 @@ const progress = computed(
             </NvCard>
 
             <NvCard class="p-6">
-              <h3 class="text-sm font-semibold">工单状态构成</h3>
+              <h3 class="text-sm font-semibold">记录状态构成</h3>
               <p class="mt-0.5 mb-4 text-xs text-muted-foreground">环形占比 · 实时</p>
               <NvDonutChart
                 :data="statusMix"
                 :height="180"
                 central-label="118"
-                central-sub-label="工单"
+                central-sub-label="记录"
               />
             </NvCard>
           </div>
@@ -1137,9 +1137,9 @@ const progress = computed(
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>工单号</TableHead>
-                  <TableHead>产品</TableHead>
-                  <TableHead>工作中心</TableHead>
+                  <TableHead>记录号</TableHead>
+                  <TableHead>条目</TableHead>
+                  <TableHead>资源组</TableHead>
                   <TableHead class="text-right">进度</TableHead>
                   <TableHead>状态</TableHead>
                 </TableRow>
@@ -1172,20 +1172,20 @@ const progress = computed(
             <h3 class="text-sm font-semibold">数据表格 NvDataTable</h3>
             <p class="mt-1 text-xs text-muted-foreground">
               工具栏 + 快捷筛选标签 + 字段筛选 + 列显隐 + 密度 + 行选择 + 可点击页码 —— 客户端处理
-              {{ tableAll.length }} 条工单。
+              {{ tableAll.length }} 条记录。
             </p>
           </div>
           <NvDataTable
             :columns="tableColumns"
             :rows="tableAll"
             row-key="code"
-            title="工单列表"
-            description="近 30 天投放产线的全部工单"
+            title="记录列表"
+            description="近 30 天分配至各分组的全部记录"
             :tabs="tableTabs"
             tab-key="status"
             selectable
             refreshable
-            search-placeholder="搜索工单号 / 产品 / 工作中心…"
+            search-placeholder="搜索记录号 / 条目 / 资源组…"
             :page-size="10"
             v-model:selected="tableSelected"
             @refresh="onTableRefresh"
@@ -1197,34 +1197,34 @@ const progress = computed(
               <NvButton
                 variant="outline"
                 size="sm"
-                @click="nvMessage.info(`已选择导出 ${tableSelected.length} 张工单`)"
+                @click="nvMessage.info(`已选择导出 ${tableSelected.length} 条记录`)"
                 >导出所选</NvButton
               >
               <NvPopconfirm
-                :title="`确认作废选中的 ${tableSelected.length} 张工单？`"
-                description="作废后不可恢复，已领用物料需手动退库。"
+                :title="`确认作废选中的 ${tableSelected.length} 条记录？`"
+                description="作废后不可恢复，已占用资源需手动退回。"
                 confirm-text="作废"
-                @confirm="nvMessage.info(`已选择作废 ${tableSelected.length} 张工单`)"
+                @confirm="nvMessage.info(`已选择作废 ${tableSelected.length} 条记录`)"
               >
                 <NvButton variant="outline" size="sm">作废</NvButton>
               </NvPopconfirm>
               <NvButton
                 variant="brand"
                 size="sm"
-                @click="nvMessage.info(`已选择下发 ${tableSelected.length} 张工单`)"
-                >下发排产</NvButton
+                @click="nvMessage.info(`已选择下发 ${tableSelected.length} 条记录`)"
+                >下发安排</NvButton
               >
             </template>
             <template #actions>
-              <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择新建工单')">
+              <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择新建记录')">
                 <template #leading><PlusIcon /></template>
-                新建工单
+                新建记录
               </NvButton>
             </template>
           </NvDataTable>
 
           <p class="mt-3 text-sm text-muted-foreground">
-            本区操作显示选择回执，不会创建、作废、下发工单或执行文件导出、打印。
+            本区操作显示选择回执，不会创建、作废、下发记录或执行文件导出、打印。
           </p>
 
           <!-- 操作栏 NvToolbar（独立）-->
@@ -1240,11 +1240,11 @@ const progress = computed(
             v-model:search="tbSearch"
             v-model:tab="tbTab"
             v-model:density="tbDensity"
-            title="工单列表"
+            title="记录列表"
             :count="48"
             :tabs="tbTabs"
             searchable
-            search-placeholder="搜索工单…"
+            search-placeholder="搜索记录…"
             show-density
             refreshable
             show-more
@@ -1259,9 +1259,9 @@ const progress = computed(
               </NvButton>
             </template>
             <template #actions>
-              <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择从工具栏新建工单')">
+              <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择从工具栏新建记录')">
                 <template #leading><PlusIcon /></template>
-                新建工单
+                新建记录
               </NvButton>
             </template>
           </NvDataTableToolbar>
@@ -1307,13 +1307,13 @@ const progress = computed(
           <div class="nv-eyebrow">
             <h2 class="text-xl font-semibold tracking-tight">详情展示</h2>
             <p class="mt-1.5 text-sm text-muted-foreground">
-              键值详情（Descriptions）与工序流转（Timeline）—— 工单 / 设备详情页核心。
+              键值详情（Descriptions）与步骤流转（Timeline）—— 记录 / 资源详情页核心。
             </p>
           </div>
 
           <div class="mt-6 grid gap-4 lg:grid-cols-3">
             <NvCard class="p-6 lg:col-span-2">
-              <h3 class="text-sm font-semibold">工单详情 · Descriptions</h3>
+              <h3 class="text-sm font-semibold">记录详情 · Descriptions</h3>
               <p class="mt-0.5 mb-4 text-xs text-muted-foreground">键值详情列表 · 3 列网格</p>
               <NvDescriptions :items="woDescItems" :columns="3">
                 <template #code="{ item }">
@@ -1326,9 +1326,9 @@ const progress = computed(
             </NvCard>
 
             <NvCard class="p-6">
-              <h3 class="text-sm font-semibold">工序日志 · Timeline</h3>
-              <p class="mt-0.5 mb-4 text-xs text-muted-foreground">工序流转 · 进行中脉冲</p>
-              <NvTimeline :items="woTimeline" pending pending-text="精加工中…" />
+              <h3 class="text-sm font-semibold">步骤日志 · Timeline</h3>
+              <p class="mt-0.5 mb-4 text-xs text-muted-foreground">步骤流转 · 进行中脉冲</p>
+              <NvTimeline :items="woTimeline" pending pending-text="进行中…" />
             </NvCard>
           </div>
 
@@ -1366,20 +1366,20 @@ const progress = computed(
             <h3 class="mb-3 text-sm font-semibold">气泡确认 · Popconfirm</h3>
             <NvCard class="flex flex-wrap items-center gap-3 p-5">
               <NvPopconfirm
-                title="确认删除该工单？"
+                title="确认删除该记录？"
                 description="删除后不可恢复。"
                 confirm-text="删除"
-                @confirm="nvMessage.error('工单已删除')"
+                @confirm="nvMessage.error('记录已删除')"
               >
-                <NvButton variant="outline" size="sm">删除工单</NvButton>
+                <NvButton variant="outline" size="sm">删除记录</NvButton>
               </NvPopconfirm>
               <NvPopconfirm
-                title="确认下发到产线？"
+                title="确认下发到分组？"
                 confirm-text="下发"
                 confirm-tone="brand"
-                @confirm="nvMessage.success('已下发排产')"
+                @confirm="nvMessage.success('已下发安排')"
               >
-                <NvButton variant="brand" size="sm">下发排产</NvButton>
+                <NvButton variant="brand" size="sm">下发安排</NvButton>
               </NvPopconfirm>
               <span class="text-xs text-muted-foreground">行内危险操作 / 主操作二次确认</span>
             </NvCard>

@@ -66,7 +66,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 // 页面标题由 VitePress frontmatter 提供（原 definePage 已移除）
 
-// 状态栏时钟（设备外观框用）
+// 状态栏时钟（外观框用）
 const clock = ref('9:41')
 let timer: ReturnType<typeof setInterval> | undefined
 function tick() {
@@ -95,13 +95,13 @@ const scanActive = ref(false)
 
 // 宫格 Grid
 const gridItems: GridItem[] = [
-  { key: 'wo', icon: ClipboardListIcon, text: '工单', badge: 12 },
+  { key: 'wo', icon: ClipboardListIcon, text: '记录', badge: 12 },
   { key: 'scan', icon: ScanLineIcon, text: '扫码' },
-  { key: 'mtl', icon: BoxesIcon, text: '物料', badge: true },
-  { key: 'report', icon: ChartColumnIcon, text: '报工' },
-  { key: 'device', icon: WrenchIcon, text: '设备' },
-  { key: 'plan', icon: TruckIcon, text: '排产' },
-  { key: 'team', icon: UsersIcon, text: '班组' },
+  { key: 'mtl', icon: BoxesIcon, text: '清单', badge: true },
+  { key: 'report', icon: ChartColumnIcon, text: '提交' },
+  { key: 'device', icon: WrenchIcon, text: '资源' },
+  { key: 'plan', icon: TruckIcon, text: '计划' },
+  { key: 'team', icon: UsersIcon, text: '团队' },
   { key: 'alert', icon: BellIcon, text: '告警', badge: 3 },
 ]
 function onGrid(item: GridItem) {
@@ -110,9 +110,9 @@ function onGrid(item: GridItem) {
 
 // NvFab 悬浮按钮
 const fabActions: FabAction[] = [
-  { key: 'scan', icon: ScanLineIcon, text: '扫码入库' },
-  { key: 'wo', icon: ClipboardListIcon, text: '新建工单' },
-  { key: 'repair', icon: WrenchIcon, text: '设备报修' },
+  { key: 'scan', icon: ScanLineIcon, text: '扫码登记' },
+  { key: 'wo', icon: ClipboardListIcon, text: '新建记录' },
+  { key: 'repair', icon: WrenchIcon, text: '资源报修' },
 ]
 function onFabSelect(action: FabAction) {
   nvMessage.success(`已触发：${action.text}`)
@@ -135,11 +135,11 @@ function runLoadingToast() {
     fireToast('success', '提交成功')
   }, 1600)
 }
-const scans = ref<string[]>(['MTL-7782-0034'])
+const scans = ref<string[]>(['BATCH-7782-0034'])
 
 const tabDemo = ref('orders')
 const demoTabs: TabItem[] = [
-  { value: 'orders', label: '工单', icon: ClipboardListIcon },
+  { value: 'orders', label: '记录', icon: ClipboardListIcon },
   { value: 'scan', label: '扫码', icon: ScanLineIcon },
   { value: 'me', label: '我的', icon: UserIcon },
 ]
@@ -155,14 +155,14 @@ const topTabs: MobileTabItem[] = [
 const checkA = ref(true)
 const checkB = ref(false)
 const procSteps: StepItem[] = [
-  { label: '下料' },
-  { label: '加工', note: '进行中' },
-  { label: '质检' },
-  { label: '入库' },
+  { label: '准备' },
+  { label: '处理', note: '进行中' },
+  { label: '复核' },
+  { label: '归档' },
 ]
 const actionOpen = ref(false)
 const actions: ActionItem[] = [
-  { label: '拆分工单', value: 'split' },
+  { label: '拆分记录', value: 'split' },
   { label: '补打标签', value: 'reprint' },
   { label: '报告异常', value: 'fault', danger: true },
 ]
@@ -176,8 +176,8 @@ const swipeActions: SwipeAction[] = [
   { label: '删除', value: 'remove', tone: 'danger' },
 ]
 const swipeRows = [
-  { code: 'WO-2406-0421', product: '齿轮箱端盖' },
-  { code: 'WO-2406-0426', product: '液压阀体 V3' },
+  { code: 'REC-2406-0421', product: '季度回顾草稿' },
+  { code: 'REC-2406-0426', product: '设计评审纪要' },
 ]
 function onSwipe(value: string) {
   nvMessage.info(`侧滑操作：${value}`)
@@ -186,11 +186,11 @@ function onSwipe(value: string) {
 const pickerOpen = ref(false)
 const pickerLine = ref('line-a')
 const pickerOptions: PickerOption[] = [
-  { label: 'A 线 · 精密加工', value: 'line-a' },
-  { label: 'B 线 · 锻压', value: 'line-b' },
-  { label: 'C 线 · 总装', value: 'line-c' },
-  { label: 'D 线 · 热处理', value: 'line-d' },
-  { label: 'E 线 · 喷涂', value: 'line-e' },
+  { label: '分组 A · 精密区', value: 'line-a' },
+  { label: '分组 B · 东仓区', value: 'line-b' },
+  { label: '分组 C · 西仓区', value: 'line-c' },
+  { label: '分组 D · 北区', value: 'line-d' },
+  { label: '分组 E · 南区', value: 'line-e' },
 ]
 const pickerLabel = computed(
   () => pickerOptions.find((o) => o.value === pickerLine.value)?.label ?? '请选择',
@@ -201,16 +201,16 @@ const dateVal = ref('2026-06-18')
 
 const refreshing = ref(false)
 const refreshList = ref([
-  '齿轮箱端盖 · WO-2406-0421',
-  '液压阀体 V3 · WO-2406-0426',
-  '电机定子叠片 · WO-2406-0430',
-  '前桥壳体 A2 · WO-2406-0413',
-  '转向节 L · WO-2406-0419',
+  '季度回顾草稿 · REC-2406-0421',
+  '设计评审纪要 · REC-2406-0426',
+  '发布检查清单 · REC-2406-0430',
+  '用户访谈记录 · REC-2406-0413',
+  '运营周报汇总 · REC-2406-0419',
 ])
 let refreshSeq = 0
 function onRefresh() {
   window.setTimeout(() => {
-    refreshList.value.unshift(`新到工单 · WO-2406-05${10 + refreshSeq++}`)
+    refreshList.value.unshift(`新到记录 · REC-2406-05${10 + refreshSeq++}`)
     refreshing.value = false
     nvMessage.success('已刷新')
   }, 1200)
@@ -232,7 +232,7 @@ function onLoadMore() {
 // 虚拟滚动：2000 条
 const bigList = Array.from({ length: 2000 }, (_, i) => ({
   id: i + 1,
-  code: `WO-2406-${String(i + 1).padStart(4, '0')}`,
+  code: `REC-2406-${String(i + 1).padStart(4, '0')}`,
   qty: ((i * 37) % 900) + 100,
 }))
 
@@ -242,9 +242,9 @@ function onScan(value: string) {
 }
 function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
   const map = {
-    success: () => nvMessage.success('报工成功'),
-    info: () => nvMessage.info('已同步网关'),
-    warning: () => nvMessage.warning('库存接近下限'),
+    success: () => nvMessage.success('提交成功'),
+    info: () => nvMessage.info('已同步服务'),
+    warning: () => nvMessage.warning('余量接近下限'),
     error: () => nvMessage.error('网络中断'),
   }
   map[kind]()
@@ -298,15 +298,15 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
             <p class="nv-m-eyebrow">单元格 NvCell</p>
             <div class="px-3">
               <NvCellGroup>
-                <NvCell title="工单号" value="WO-2406-0413" />
-                <NvCell title="产品" value="前桥壳体 A2" />
+                <NvCell title="记录号" value="REC-2406-0413" />
+                <NvCell title="条目" value="发布检查清单" />
                 <NvCell
-                  title="工艺路线"
-                  note="3 道工序"
+                  title="流程路线"
+                  note="3 个步骤"
                   arrow
-                  @click="nvMessage.info('查看工艺')"
+                  @click="nvMessage.info('查看流程')"
                 />
-                <NvCell title="加急插单">
+                <NvCell title="加急插入">
                   <template #value><NvMobileSwitch v-model="lockMaterial" /></template>
                 </NvCell>
               </NvCellGroup>
@@ -317,17 +317,17 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
           <section id="m-form">
             <p class="nv-m-eyebrow">表单控件</p>
             <div class="space-y-4 px-3">
-              <NvMobileInput v-model="search" placeholder="搜索工单 / 物料">
+              <NvMobileInput v-model="search" placeholder="搜索记录 / 资源">
                 <template #leading><ScanLineIcon aria-hidden="true" /></template>
               </NvMobileInput>
               <div
                 class="flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3"
               >
-                <span class="text-[15px]">报工数量</span>
+                <span class="text-[15px]">提交数量</span>
                 <NvStepper v-model="qty" :min="1" :max="999" />
               </div>
               <div>
-                <p class="mb-2 px-1 text-sm text-muted-foreground">质检策略</p>
+                <p class="mb-2 px-1 text-sm text-muted-foreground">复核策略</p>
                 <NvMobileRadioGroup v-model="inspect">
                   <NvMobileRadioItem value="std">标准全检</NvMobileRadioItem>
                   <NvMobileRadioItem value="sample">抽样检验</NvMobileRadioItem>
@@ -353,9 +353,9 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
           <section>
             <p class="nv-m-eyebrow">通知条 NvNoticeBar</p>
             <div class="space-y-2">
-              <NvNoticeBar tone="info">今日计划已重排，受影响工单 6 张</NvNoticeBar>
-              <NvNoticeBar tone="warning">B 线物料不足：液压阀体 V3 缺口 452 件</NvNoticeBar>
-              <NvNoticeBar tone="danger">WC-ASM-04 设备报警，请尽快处理</NvNoticeBar>
+              <NvNoticeBar tone="info">今日计划已重排，受影响记录 6 条</NvNoticeBar>
+              <NvNoticeBar tone="warning">分组 B 资源不足：设计评审纪要缺口 452 条</NvNoticeBar>
+              <NvNoticeBar tone="danger">RES-04 资源报警，请尽快处理</NvNoticeBar>
             </div>
           </section>
 
@@ -364,14 +364,14 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
             <p class="nv-m-eyebrow">列表行 NvListRow</p>
             <div class="overflow-hidden border-y border-border">
               <NvListRow
-                title="齿轮箱端盖"
-                subtitle="WO-2406-0421 · 320 件"
-                @select="nvMessage.info('打开工单')"
+                title="季度回顾草稿"
+                subtitle="REC-2406-0421 · 320 条"
+                @select="nvMessage.info('打开记录')"
               />
               <NvListRow
-                title="液压阀体 V3"
-                subtitle="WO-2406-0426 · 640 件"
-                @select="nvMessage.info('打开工单')"
+                title="设计评审纪要"
+                subtitle="REC-2406-0426 · 640 条"
+                @select="nvMessage.info('打开记录')"
               />
             </div>
           </section>
@@ -449,10 +449,10 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
           <section>
             <p class="nv-m-eyebrow">居中提示 NvMobileToast</p>
             <div class="grid grid-cols-2 gap-2 px-3">
-              <NvMobileButton variant="default" size="md" @click="fireToast('text', '已复制单号')"
+              <NvMobileButton variant="default" size="md" @click="fireToast('text', '已复制编号')"
                 >文字</NvMobileButton
               >
-              <NvMobileButton variant="default" size="md" @click="fireToast('success', '报工成功')"
+              <NvMobileButton variant="default" size="md" @click="fireToast('success', '提交成功')"
                 >成功</NvMobileButton
               >
               <NvMobileButton variant="default" size="md" @click="fireToast('error', '网络异常')"
@@ -470,8 +470,8 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
             <div class="mx-3 rounded-xl border border-border bg-card">
               <NvMobileResult
                 status="success"
-                title="本班产出已同步"
-                description="已完成 4,210 件，良率 99.2%。"
+                title="当期产出已同步"
+                description="已完成 4,210 条，合格率 99.2%。"
               />
             </div>
           </section>
@@ -482,7 +482,7 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
             <div class="space-y-3 px-3">
               <NvScanBar :active="scanActive" placeholder="对准条码 / 二维码" @scan="onScan" />
               <NvCellGroup>
-                <NvCell v-for="(s, i) in scans" :key="`${s}-${i}`" :title="s" note="物料条码" />
+                <NvCell v-for="(s, i) in scans" :key="`${s}-${i}`" :title="s" note="批次条码" />
               </NvCellGroup>
             </div>
           </section>
@@ -490,7 +490,7 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
           <!-- 搜索栏 -->
           <section>
             <p class="nv-m-eyebrow">搜索栏 NvSearchBar</p>
-            <NvSearchBar v-model="searchKw" cancelable placeholder="搜索工单 / 物料 / 设备" />
+            <NvSearchBar v-model="searchKw" cancelable placeholder="搜索记录 / 资源 / 分组" />
           </section>
 
           <!-- 顶部标签 -->
@@ -512,8 +512,8 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
           <section>
             <p class="nv-m-eyebrow">复选框 NvMobileCheckbox</p>
             <div class="px-4">
-              <NvMobileCheckbox v-model="checkA">首检合格后转批量</NvMobileCheckbox>
-              <NvMobileCheckbox v-model="checkB">完工自动生成入库单</NvMobileCheckbox>
+              <NvMobileCheckbox v-model="checkA">复核合格后转批量</NvMobileCheckbox>
+              <NvMobileCheckbox v-model="checkB">完成后自动生成归档单</NvMobileCheckbox>
             </div>
           </section>
 
@@ -549,14 +549,14 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
             <div
               class="mx-3 divide-y divide-border overflow-hidden rounded-xl border border-border"
             >
-              <NvMobileCollapse title="工艺参数" :open="true">
-                主轴转速 2400 rpm · 进给 180 mm/min · 冷却液开
+              <NvMobileCollapse title="参数配置" :open="true">
+                采样 2400 rpm · 步进 180 /min · 自动冷却开
               </NvMobileCollapse>
-              <NvMobileCollapse title="物料清单">
-                铝棒 6061-T6 ×1 · 密封圈 ×2 · 标准件若干
+              <NvMobileCollapse title="资源清单">
+                主体材料 ×1 · 密封件 ×2 · 附件若干
               </NvMobileCollapse>
-              <NvMobileCollapse title="质检记录">
-                首检合格（08:12 张伟）· 巡检 2 次无异常
+              <NvMobileCollapse title="复核记录">
+                首条合格（08:12 张伟）· 抽检 2 次无异常
               </NvMobileCollapse>
             </div>
           </section>
@@ -588,7 +588,7 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
             <p class="nv-m-eyebrow">滚轮选择 NvPicker</p>
             <div class="px-3">
               <NvCellGroup>
-                <NvCell title="目标产线" :value="pickerLabel" arrow @click="pickerOpen = true" />
+                <NvCell title="目标分组" :value="pickerLabel" arrow @click="pickerOpen = true" />
                 <NvCell title="计划日期" :value="dateVal" arrow @click="dateOpen = true" />
               </NvCellGroup>
             </div>
@@ -603,7 +603,7 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
               </NvPullRefresh>
             </div>
             <p class="mt-2 px-4 text-xs text-muted-foreground">
-              在列表顶部下拉以刷新（追加新工单）。
+              在列表顶部下拉以刷新（追加新记录）。
             </p>
           </section>
 
@@ -620,7 +620,7 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
                 <NvCell
                   v-for="n in infList"
                   :key="n"
-                  :title="`工单条目 #${n}`"
+                  :title="`记录条目 #${n}`"
                   note="滚动到底自动加载"
                 />
               </NvInfiniteList>
@@ -636,7 +636,7 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
                 <template #default="{ item }">
                   <div class="flex h-full items-center gap-3 border-b border-border px-4">
                     <span class="font-mono text-sm text-muted-foreground">{{ item.code }}</span>
-                    <span class="ml-auto text-sm tabular-nums">{{ item.qty }} 件</span>
+                    <span class="ml-auto text-sm tabular-nums">{{ item.qty }} 条</span>
                   </div>
                 </template>
               </NvVirtualList>
@@ -647,8 +647,8 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
           <section>
             <p class="nv-m-eyebrow">空状态 NvMobileEmpty</p>
             <div class="mx-3 rounded-xl border border-border bg-card">
-              <NvMobileEmpty description="暂无待处理工单">
-                <NvMobileButton variant="primary" size="sm">去接单</NvMobileButton>
+              <NvMobileEmpty description="暂无待处理记录">
+                <NvMobileButton variant="primary" size="sm">去领取</NvMobileButton>
               </NvMobileEmpty>
             </div>
           </section>
@@ -668,7 +668,7 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
         class="justify-start gap-3"
         @click="sheetOpen = false"
       >
-        <SplitIcon class="size-5" aria-hidden="true" />拆分工单
+        <SplitIcon class="size-5" aria-hidden="true" />拆分记录
       </NvMobileButton>
       <NvMobileButton
         variant="default"
@@ -686,7 +686,7 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
         class="justify-start gap-3"
         @click="sheetOpen = false"
       >
-        <WrenchIcon class="size-5" aria-hidden="true" />设备维护
+        <WrenchIcon class="size-5" aria-hidden="true" />资源维护
       </NvMobileButton>
       <NvMobileButton
         variant="danger"
@@ -700,31 +700,31 @@ function fireMessage(kind: 'success' | 'info' | 'warning' | 'error') {
     </div>
   </NvBottomSheet>
 
-  <NvActionSheet v-model:open="actionOpen" title="工单操作" :actions="actions" @select="onAction" />
+  <NvActionSheet v-model:open="actionOpen" title="记录操作" :actions="actions" @select="onAction" />
 
   <NvPicker
     v-model:open="pickerOpen"
     v-model="pickerLine"
     :options="pickerOptions"
-    title="选择产线"
+    title="选择分组"
   />
 
   <NvMobileDatePicker v-model:open="dateOpen" v-model="dateVal" title="计划日期" />
 
   <NvMobileDialog
     v-model:open="confirmOpen"
-    title="下发到产线？"
-    description="工单 WO-2406-0413 将下发至 A 线排队，物料即时锁定。"
+    title="下发到分组？"
+    description="记录 REC-2406-0413 将下发至分组 A 排队，资源即时锁定。"
     confirm-text="下发"
-    @confirm="nvMessage.success('已下发到 A 线')"
+    @confirm="nvMessage.success('已下发到分组 A')"
   />
   <NvMobileDialog
     v-model:open="dangerOpen"
-    title="确认作废该工单？"
-    description="作废后不可恢复，已领用物料需手动退库。"
+    title="确认作废该记录？"
+    description="作废后不可恢复，已占用资源需手动退回。"
     confirm-text="作废"
     confirm-tone="danger"
-    @confirm="nvMessage.error('工单已作废')"
+    @confirm="nvMessage.error('记录已作废')"
   />
 
   <NvMobileToast v-model:show="toastShow" :type="toastType" :message="toastMsg" />

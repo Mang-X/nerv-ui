@@ -49,21 +49,21 @@ const states = [
 </template>
 ```
 
-## 设备状态分布
+## 资源状态分布
 
 多段构成 + 自定义尺寸/厚度。
 
 <ScreenDemo>
   <NvScreenDonut :segments="states" :size="132" :thickness="13">
     <b style="font-size: 24px; font-weight: 800; color: var(--nv-scr-text)">62</b>
-    <span style="margin-top: 4px; font-size: 11px; color: var(--nv-scr-muted)">设备总数</span>
+    <span style="margin-top: 4px; font-size: 11px; color: var(--nv-scr-muted)">资源总数</span>
   </NvScreenDonut>
 </ScreenDemo>
 
 ```vue
-<NvScreenDonut :segments="deviceStates" :size="132" :thickness="13">
+<NvScreenDonut :segments="resourceStates" :size="132" :thickness="13">
   <b class="num">62</b>
-  <span class="cap">设备总数</span>
+  <span class="cap">资源总数</span>
 </NvScreenDonut>
 ```
 

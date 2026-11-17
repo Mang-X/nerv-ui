@@ -29,7 +29,7 @@ import {
 } from '@nerv-iip/ui'
 import { ref } from 'vue'
 
-const input = ref('WO-2406-0312')
+const input = ref('REC-2406-0312')
 const search = ref('')
 const sel = ref('line-a')
 const seg = ref('today')
@@ -39,7 +39,7 @@ const page = ref(2)
 
 const lines = [
   {
-    name: '焊接线 A',
+    name: '分组 A',
     state: '运行',
     label: '运行中',
     tone: 'run',
@@ -49,7 +49,7 @@ const lines = [
     downtime: '28 分钟',
   },
   {
-    name: '装配线 B',
+    name: '分组 B',
     state: '待机',
     label: '待机中',
     tone: 'idle',
@@ -59,7 +59,7 @@ const lines = [
     downtime: '42 分钟',
   },
   {
-    name: 'CNC 线 C',
+    name: '分组 C',
     state: '报警',
     label: '报警中',
     tone: 'alarm',
@@ -75,10 +75,10 @@ const tones = { run: '运行中', idle: '待机', alarm: '报警' } as const
 <template>
   <div class="g-stage">
     <NvScreenHeader
-      title="智能工厂 · 大屏组件总览"
+      title="实时总览 · 大屏组件总览"
       time="2024-06-12 10:24:36"
       date="星期三"
-      line="全部产线"
+      line="全部分组"
       screen="组件库 Gallery"
     />
 
@@ -86,7 +86,7 @@ const tones = { run: '运行中', idle: '待机', alarm: '报警' } as const
     <div class="g-grid">
       <div class="g-cell">
         <span class="g-t">NvScreenPanel</span
-        ><NvScreenPanel title="设备综合效率"
+        ><NvScreenPanel title="综合利用率"
           ><div class="g-fill">面板内容 · hairline + 白高光</div></NvScreenPanel
         >
       </div>
@@ -102,7 +102,7 @@ const tones = { run: '运行中', idle: '待机', alarm: '报警' } as const
       </div>
       <div class="g-cell">
         <span class="g-t">NvTitleBar</span>
-        <div class="g-pad2"><NvTitleBar title="产线综合监控" sub="REAL-TIME OVERVIEW" /></div>
+        <div class="g-pad2"><NvTitleBar title="分组综合监控" sub="REAL-TIME OVERVIEW" /></div>
       </div>
       <div class="g-cell g-span2">
         <span class="g-t">NvGlowDivider</span>
@@ -153,19 +153,19 @@ const tones = { run: '运行中', idle: '待机', alarm: '报警' } as const
       <div class="g-cell">
         <span class="g-t">NvOeeHero</span
         ><NvScreenPanel
-          ><NvOeeHero label="设备综合效率 OEE" :value="92.4" unit="%" delta="较昨日 +2.7%"
+          ><NvOeeHero label="综合利用率" :value="92.4" unit="%" delta="较昨日 +2.7%"
         /></NvScreenPanel>
       </div>
       <div class="g-cell">
         <span class="g-t">NvRingGauge</span
         ><NvScreenPanel
-          ><div class="g-center"><NvRingGauge :value="78" label="稼动率" /></div
+          ><div class="g-center"><NvRingGauge :value="78" label="利用率" /></div
         ></NvScreenPanel>
       </div>
       <div class="g-cell">
         <span class="g-t">NvDigitalFlop</span
         ><NvScreenPanel
-          ><div class="g-center"><NvDigitalFlop :value="1156" suffix="件" /></div
+          ><div class="g-center"><NvDigitalFlop :value="1156" suffix="条" /></div
         ></NvScreenPanel>
       </div>
       <div class="g-cell">
@@ -221,7 +221,7 @@ const tones = { run: '运行中', idle: '待机', alarm: '报警' } as const
       </div>
       <div class="g-cell">
         <span class="g-t">NvScreenInput</span
-        ><NvScreenPanel><NvScreenInput v-model="input" suffix="件" /></NvScreenPanel>
+        ><NvScreenPanel><NvScreenInput v-model="input" suffix="条" /></NvScreenPanel>
       </div>
       <div class="g-cell">
         <span class="g-t">NvScreenSearch</span

@@ -17,14 +17,14 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 传 `title` 出一条标题行,默认插槽放真实内容 —— 这里嵌一个核心指标块。
 
 <ScreenDemo>
-  <NvScreenPanel title="焊接线 A · 设备综合效率" style="width: 420px">
-    <NvOeeHero label="OEE" :value="92.4" unit="%" delta="较昨日 +2.7%" />
+  <NvScreenPanel title="分组 A · 综合利用率" style="width: 420px">
+    <NvOeeHero label="利用率" :value="92.4" unit="%" delta="较昨日 +2.7%" />
   </NvScreenPanel>
 </ScreenDemo>
 
 ```vue
-<NvScreenPanel title="焊接线 A · 设备综合效率">
-  <NvOeeHero label="OEE" :value="92.4" unit="%" delta="较昨日 +2.7%" />
+<NvScreenPanel title="分组 A · 综合利用率">
+  <NvOeeHero label="利用率" :value="92.4" unit="%" delta="较昨日 +2.7%" />
 </NvScreenPanel>
 ```
 
@@ -33,15 +33,15 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 `accent` 在顶边压一条发光色条,用来给整块面板一个状态签名 —— 运行绿、报警红。`extra` 插槽落在标题行右侧放辅助信息。
 
 <ScreenDemo>
-  <NvScreenPanel title="装配线 B · 实时产出" accent="green" style="width: 360px">
-    <template #extra>WO-2406-0312</template>
+  <NvScreenPanel title="分组 B · 实时产出" accent="green" style="width: 360px">
+    <template #extra>REC-2406-0312</template>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
-      <div style="display:flex;justify-content:space-between"><span style="color:var(--nv-scr-muted)">当班计划</span><span>1 200 件</span></div>
-      <div style="display:flex;justify-content:space-between"><span style="color:var(--nv-scr-muted)">已完成</span><span>934 件</span></div>
-      <div style="display:flex;justify-content:space-between"><span style="color:var(--nv-scr-muted)">实时节拍</span><span>48.2 s / 件</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--nv-scr-muted)">当期计划</span><span>1 200 条</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--nv-scr-muted)">已完成</span><span>934 条</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--nv-scr-muted)">实时节奏</span><span>48.2 s / 条</span></div>
     </div>
   </NvScreenPanel>
-  <NvScreenPanel title="CNC 线 C · 主轴温度" accent="red" style="width: 360px">
+  <NvScreenPanel title="分组 C · 核心温度" accent="red" style="width: 360px">
     <template #extra>已超阈值</template>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
       <div style="display:flex;justify-content:space-between"><span style="color:var(--nv-scr-muted)">当前</span><span style="color:var(--nv-scr-red)">78.6 ℃</span></div>
@@ -52,9 +52,9 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 </ScreenDemo>
 
 ```vue
-<NvScreenPanel title="装配线 B · 实时产出" accent="green">
-  <template #extra>WO-2406-0312</template>
-  <!-- 产线明细 -->
+<NvScreenPanel title="分组 B · 实时产出" accent="green">
+  <template #extra>REC-2406-0312</template>
+  <!-- 分组明细 -->
 </NvScreenPanel>
 ```
 
