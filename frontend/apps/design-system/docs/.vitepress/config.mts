@@ -322,6 +322,7 @@ export default defineConfig({
             { text: 'Progress 进度条', link: '/components/mobile/progress' },
             { text: 'Result 结果页', link: '/components/mobile/result' },
             { text: 'Empty 空状态', link: '/components/mobile/empty' },
+            { text: 'ErrorRetry 错误重试', link: '/components/mobile/error-retry' },
           ],
         },
         {
