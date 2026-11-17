@@ -58,7 +58,17 @@ const pressed = ref(false)
     background-color: color-mix(in oklch, var(--muted-foreground) 35%, transparent);
   }
   .nv-m-mswitch-pill {
-    transition: background-color 0.2s var(--nv-ease-out-quart, ease-out);
+    transition:
+      background-color 0.2s var(--nv-ease-out-quart, ease-out),
+      box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
+  }
+  /* Focus ring draws on the pill (51×31), not the 51×44 hit area — so the halo
+     hugs the actual switch shape, not the taller tap target. `:focus-within`
+     also catches focus landing on the inner SwitchThumb button. */
+  .nv-m-mswitch:focus-within .nv-m-mswitch-pill {
+    outline: none;
+    border-color: var(--nv-brand);
+    box-shadow: var(--nv-focus-ring);
   }
   .nv-m-mswitch-thumb {
     /* Tailwind v4 glides the thumb via the `translate` property — name it in the
