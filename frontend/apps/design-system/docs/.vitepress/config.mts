@@ -80,7 +80,6 @@ export default defineConfig({
           { text: '动效', link: '/foundations/motion' },
         ],
       },
-      { text: '模式', link: '/patterns/interaction-patterns', activeMatch: '/patterns/' },
       { text: '桌面', link: '/components/desktop/', activeMatch: '/components/desktop' },
       { text: '移动', link: '/components/mobile/', activeMatch: '/components/mobile' },
       { text: '触屏', link: '/components/touch/', activeMatch: '/components/(touch|board)' },
@@ -106,13 +105,6 @@ export default defineConfig({
             { text: '色彩与动态色', link: '/foundations/color' },
             { text: '动效', link: '/foundations/motion' },
           ],
-        },
-      ],
-      // 交互模式 —— 业务前端横切交互规范（正文源自 frontend/DESIGN/patterns/，经 @include 嵌入）
-      '/patterns/': [
-        {
-          text: '交互模式',
-          items: [{ text: '交互模式规范 v1', link: '/patterns/interaction-patterns' }],
         },
       ],
       // 桌面 PC —— 组件库式：每个组件一页，按分类分组；多组件/组合场景归入「配方 / 场景」。
