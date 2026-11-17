@@ -34,9 +34,9 @@ const procSteps = [
 
 # NvMobileSteps 步骤条
 
-横向流程指示器（Vant / tdesign-mobile 风格）：连接线随进度推进填充品牌色，已完成节点显示对勾。
+横向流程指示器：连接线随进度推进填充品牌色，已完成节点显示对勾。
 
-## 基础用法
+## 示例
 
 `current` 指定当前步骤索引，之前的节点显示对勾。
 
@@ -57,15 +57,15 @@ const procSteps = [
 </template>
 ```
 
-## 全部完成
-
 `current` 超过末位索引时，所有节点均为完成态。
 
 ```vue
 <NvMobileSteps :steps="procSteps" :current="4" />
 ```
 
-## 属性
+## API
+
+### NvMobileSteps 属性
 
 | 属性      | 说明                      | 类型         | 默认 |
 | --------- | ------------------------- | ------------ | ---- |

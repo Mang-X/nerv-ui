@@ -25,7 +25,7 @@ import { NvNoticeBar } from '@nerv-iip/ui-mobile'
 
 单行通知条，带前置语义图标与色调，文本溢出截断，适合页面顶部的提示与预警。
 
-## 色调
+## 示例
 
 `tone` 切换 info / warning / danger 三种语义色，默认插槽承载文案。
 
@@ -41,7 +41,9 @@ import { NvNoticeBar } from '@nerv-iip/ui-mobile'
 </template>
 ```
 
-## 属性
+## API
+
+### NvNoticeBar 属性
 
 | 属性   | 说明     | 类型                        | 默认   |
 | ------ | -------- | --------------------------- | ------ |

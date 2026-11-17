@@ -29,9 +29,9 @@ import { NvListRow } from '@nerv-iip/ui-mobile'
 
 # NvListRow 列表行
 
-可点击的列表行：主标题 + 可选副标题，尾部箭头表示可进入。适合记录、条目等列表场景。右侧手机模拟器为实时组件，随页面滚动吸顶。
+可点击的列表行：主标题 + 可选副标题，尾部箭头表示可进入。适合记录、条目等列表场景。
 
-## 基础用法
+## 示例
 
 可点击行尾部显示箭头，点击或回车触发 `@select`。
 
@@ -39,15 +39,15 @@ import { NvListRow } from '@nerv-iip/ui-mobile'
 <NvListRow title="季度回顾草稿" subtitle="REC-2406-0421 · 320 条" @select="open('REC-2406-0421')" />
 ```
 
-## 非交互行
-
 传 `:interactive="false"` 隐藏箭头并禁用点击，用于纯展示行。
 
 ```vue
 <NvListRow title="团队" subtitle="Alpha 组 · 张伟" :interactive="false" />
 ```
 
-## 属性
+## API
+
+### NvListRow 属性
 
 | 属性          | 说明                 | 类型      | 默认   |
 | ------------- | -------------------- | --------- | ------ |
@@ -55,6 +55,17 @@ import { NvListRow } from '@nerv-iip/ui-mobile'
 | `subtitle`    | 副标题               | `string`  | —      |
 | `interactive` | 可点击并显示尾部箭头 | `boolean` | `true` |
 
-事件：`@select`（点击或回车，仅在 `interactive` 为真时触发）。插槽：`#meta` 标题下方附加内容、`#trailing` 尾部自定义内容。
+### 事件
+
+| 事件     | 说明                                     | 回调参数 |
+| -------- | ---------------------------------------- | -------- |
+| `select` | 点击或回车（仅在 `interactive` 为真时） | —        |
+
+### 插槽
+
+| 插槽       | 说明             |
+| ---------- | ---------------- |
+| `meta`     | 标题下方附加内容 |
+| `trailing` | 尾部自定义内容   |
 
 </MobileDoc>

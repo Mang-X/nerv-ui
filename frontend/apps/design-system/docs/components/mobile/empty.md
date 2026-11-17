@@ -25,7 +25,7 @@ import { NvMobileEmpty, NvMobileButton } from '@nerv-iip/ui-mobile'
 
 无数据时的占位提示，弱化的图标配说明文字，可在默认插槽放置引导操作。
 
-## 基础用法
+## 示例
 
 `description` 设置说明文字，默认插槽承载引导按钮。
 
@@ -41,13 +41,15 @@ import { NvMobileEmpty, NvMobileButton } from '@nerv-iip/ui-mobile'
 </template>
 ```
 
-## 属性
+## API
+
+### NvMobileEmpty 属性
 
 | 属性          | 说明     | 类型     | 默认 |
 | ------------- | -------- | -------- | ---- |
 | `description` | 说明文字 | `string` | —    |
 
-## 插槽
+### 插槽
 
 | 插槽      | 说明                         |
 | --------- | ---------------------------- |

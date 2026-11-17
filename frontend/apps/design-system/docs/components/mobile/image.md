@@ -45,16 +45,14 @@ const broken = 'https://invalid.nerv-iip.local/not-found.jpg'
 
 懒加载图片。加载中显示静默的微光占位（shimmer），加载失败回退为破图图标与「加载失败」文案。支持 `object-fit`、圆角与固定纵横比（提前占位，避免布局抖动）。
 
-## 填充模式
+## 示例
 
-`fit="cover"` 裁切铺满，`fit="contain"` 完整显示并在两侧留边。`ratio` 锁定宽高比。
+`fit="cover"` 裁切铺满，`fit="contain"` 完整显示并在两侧留边；`ratio` 锁定宽高比。
 
 ```vue
 <NvMobileImage :src="photo" fit="cover" ratio="1" radius="lg" />
 <NvMobileImage :src="photo" fit="contain" ratio="16/9" />
 ```
-
-## 圆角与比例
 
 `radius` 提供 `none / sm / md / lg / full` 五档；`full` 配合方形尺寸即圆形头像。
 
@@ -62,7 +60,9 @@ const broken = 'https://invalid.nerv-iip.local/not-found.jpg'
 <NvMobileImage :src="avatar" radius="full" class="size-16" />
 ```
 
-## 属性
+## API
+
+### NvMobileImage 属性
 
 | 属性     | 说明            | 类型                             | 默认    |
 | -------- | --------------- | -------------------------------- | ------- |

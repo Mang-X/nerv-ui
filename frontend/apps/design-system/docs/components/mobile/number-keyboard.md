@@ -55,21 +55,19 @@ const workerShow = ref(false)
 
 # NvNumberKeyboard 数字键盘
 
-移动端屏幕数字键盘（Arco 表单形态）。底部固定面板由 `v-model:show` 控制升降，大触控键适配戴手套操作。编辑字符串 `v-model`，每次按键同时触发 `press` 事件。用于录入数量、编号、称重等场景。右侧手机模拟器为实时组件，点击输入区域唤起键盘。
+移动端屏幕数字键盘。底部固定面板由 `v-model:show` 控制升降，大触控键适配戴手套操作。编辑字符串 `v-model`，每次按键同时触发 `press` 事件。用于录入数量、编号、称重等场景。
 
 数字键盘属于移动端优先输入浮层：即使从 `NvBottomSheet` 等 modal 浮层内唤起，也会保持在业务浮层之上并接管实际触点。点击键盘背板或「完成」只关闭键盘；业务抽屉关闭时，宿主仍应同步把 `v-model:show` 置为 `false`。
 
-## 录入数量
+## 示例
 
-`extra-key` 为左下角按键，默认 `.`（小数点，自动去重）。
+`extra-key` 为左下角按键，默认 `.`（小数点，自动去重），适合录入数量。
 
 ```vue
 <NvNumberKeyboard v-model="qty" v-model:show="show" title="录入完成数量" extra-key="." />
 ```
 
-## 录入工号
-
-设 `extra-key=""` 隐藏小数点，`0` 键自动加宽占满；`maxlength` 限制位数。
+设 `extra-key=""` 隐藏小数点，`0` 键自动加宽占满；`maxlength` 限制位数，适合录入编号。
 
 ```vue
 <NvNumberKeyboard
@@ -81,7 +79,9 @@ const workerShow = ref(false)
 />
 ```
 
-## 属性
+## API
+
+### NvNumberKeyboard 属性
 
 | 属性           | 说明                              | 类型      | 默认     |
 | -------------- | --------------------------------- | --------- | -------- |
@@ -92,7 +92,7 @@ const workerShow = ref(false)
 | `maxlength`    | 最大字符数                        | `number`  | —        |
 | `confirmText`  | 确认按钮文案                      | `string`  | `完成`   |
 
-## 事件
+### 事件
 
 | 事件      | 说明                        | 回调参数        |
 | --------- | --------------------------- | --------------- |

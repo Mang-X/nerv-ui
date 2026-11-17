@@ -41,7 +41,7 @@ function onAction(value) {
 
 从底部升起的动作列表，堆叠备选操作并单独分隔「取消」，点击后回传所选值。
 
-## 基础用法
+## 示例
 
 由触发按钮控制 `open`，`select` 事件回传 `value`。`danger` 项以危险色呈现。
 
@@ -69,7 +69,9 @@ function onAction(value) {
 </template>
 ```
 
-## 属性
+## API
+
+### NvActionSheet 属性
 
 | 属性          | 说明                       | 类型           | 默认    |
 | ------------- | -------------------------- | -------------- | ------- |
@@ -81,7 +83,7 @@ function onAction(value) {
 
 `ActionItem`：`{ label: string; value: string; danger?: boolean }`
 
-## 事件
+### 事件
 
 | 事件     | 说明           | 回调参数          |
 | -------- | -------------- | ----------------- |

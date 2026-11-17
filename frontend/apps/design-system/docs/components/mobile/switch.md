@@ -42,17 +42,13 @@ const locked = ref(true)
 
 # NvMobileSwitch 开关
 
-可见轨道与 `role="switch"` 动作根统一占 51×44px，thumb 仍为 27px；背景由公开根 `class` 覆盖。`asChild` 保留 Reka 单根合成，根不会被装饰节点的 `aria-hidden`、尺寸或指针样式覆盖。非原生根的键盘焦点仍由消费者显式传入 `tabindex="0"`；`v-model`、disabled、键盘、focus 和表单 name/value 仍由原有 Reka 根处理。开关拨动带弹性滑动，触摸端读起来如原生控件。右侧手机模拟器为实时组件，随页面滚动吸顶。
+iOS 风格开关，拨动带弹性滑动，`v-model` 绑定布尔状态。
 
-## 基础用法
-
-`v-model` 绑定布尔状态。
+## 示例
 
 ```vue
 <NvMobileSwitch v-model="rush" />
 ```
-
-## 配合单元格
 
 嵌入 `NvCell` 的 `#value` 插槽，构成设置项行。
 
@@ -64,19 +60,23 @@ const locked = ref(true)
 </NvCellGroup>
 ```
 
-## 禁用
-
 传 `disabled` 禁止拨动。
 
 ```vue
 <NvMobileSwitch v-model="value" disabled />
 ```
 
-## 属性
+## API
+
+### NvMobileSwitch 属性
 
 | 属性       | 说明     | 类型      | 默认    |
 | ---------- | -------- | --------- | ------- |
 | `v-model`  | 开关状态 | `boolean` | `false` |
 | `disabled` | 是否禁用 | `boolean` | `false` |
+
+## 设计说明
+
+可见轨道与 `role="switch"` 动作根统一占 51×44px，thumb 仍为 27px；背景由公开根 `class` 覆盖。`asChild` 保留 Reka 单根合成，根不会被装饰节点的 `aria-hidden`、尺寸或指针样式覆盖。非原生根的键盘焦点仍由消费者显式传入 `tabindex="0"`；`v-model`、disabled、键盘、focus 和表单 name/value 仍由原有 Reka 根处理。
 
 </MobileDoc>

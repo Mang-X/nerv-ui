@@ -36,9 +36,9 @@ const priority = ref('normal')
 
 # NvMobileRadioGroup 单选框
 
-在一组互斥选项中单选，呈 iOS 设置项样式：标签居左，选中项右侧显示品牌勾选。`NvMobileRadioGroup` 承载选中值，`NvMobileRadioItem` 为每个选项。右侧手机模拟器为实时组件，随页面滚动吸顶。
+在一组互斥选项中单选，呈 iOS 设置项样式：标签居左，选中项右侧显示品牌勾选。`NvMobileRadioGroup` 承载选中值，`NvMobileRadioItem` 为每个选项。
 
-## 基础用法
+## 示例
 
 `NvMobileRadioGroup` 的 `v-model` 绑定当前选中项的 `value`。
 
@@ -50,8 +50,6 @@ const priority = ref('normal')
 </NvMobileRadioGroup>
 ```
 
-## 含禁用项
-
 单个 `NvMobileRadioItem` 传 `disabled` 即可禁止选择。
 
 ```vue
@@ -62,13 +60,9 @@ const priority = ref('normal')
 </NvMobileRadioGroup>
 ```
 
-## 键盘与受控选择
+## API
 
-方向键沿当前可用选项移动焦点并请求选择；快速松键和选项重排仍使用当前身份。Tab 和程序化聚焦本身不请求选择。宿主更新选中值或把焦点移走时，尚未完成的旧键盘补偿会失效。
-
-当前 workspace 的快速松键兼容依赖固定 Reka 2.10.1 的[局部补丁](../../../../../patches/README.md)。独立安装产物携带补丁的验证由 #11 单列，尚未验收；2026-10-28 已通过真实 Chromium CDP 快速 keydown/keyup、受控更新与转焦取消复验；这是浏览器事件验证，不是物理键盘认证。物理键盘与 CI 仍未验收。
-
-## 属性
+### NvMobileRadioGroup / NvMobileRadioItem 属性
 
 | 属性       | 说明                                | 类型      | 默认    |
 | ---------- | ----------------------------------- | --------- | ------- |
@@ -76,8 +70,16 @@ const priority = ref('normal')
 | `value`    | 选项值（`NvMobileRadioItem`）       | `string`  | —       |
 | `disabled` | 是否禁用该项（`NvMobileRadioItem`） | `boolean` | `false` |
 
+### 插槽
+
 | 插槽                             | 说明         |
 | -------------------------------- | ------------ |
 | `default`（`NvMobileRadioItem`） | 选项标签内容 |
+
+## 设计说明
+
+方向键沿当前可用选项移动焦点并请求选择；快速松键和选项重排仍使用当前身份。Tab 和程序化聚焦本身不请求选择。宿主更新选中值或把焦点移走时，尚未完成的旧键盘补偿会失效。
+
+当前 workspace 的快速松键兼容依赖固定 Reka 2.10.1 的[局部补丁](../../../../../patches/README.md)。独立安装产物携带补丁的验证由 #11 单列，尚未验收；2026-10-28 已通过真实 Chromium CDP 快速 keydown/keyup、受控更新与转焦取消复验；这是浏览器事件验证，不是物理键盘认证。物理键盘与 CI 仍未验收。
 
 </MobileDoc>

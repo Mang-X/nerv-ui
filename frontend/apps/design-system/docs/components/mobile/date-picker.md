@@ -26,9 +26,9 @@ const dateVal = ref('2026-06-18')
 
 # NvMobileDatePicker 日期选择
 
-年 / 月 / 日三列滚轮日期选择器（Vant / tdesign-mobile 风格），承载于底部抽屉。`v-model:open` 控制显隐，`v-model` 绑定 `YYYY-MM-DD` 字符串，需配合触发器与 open ref 使用。右侧手机模拟器为实时组件，随页面滚动吸顶。
+年 / 月 / 日三列滚轮日期选择器，承载于底部抽屉。`v-model:open` 控制显隐，`v-model` 绑定 `YYYY-MM-DD` 字符串，需配合触发器与 open ref 使用。
 
-## 基础用法
+## 示例
 
 点击单元格打开抽屉，滚动选择年月日后确定提交。
 
@@ -46,7 +46,9 @@ const dateVal = ref('2026-06-18')
 </template>
 ```
 
-## 属性
+## API
+
+### NvMobileDatePicker 属性
 
 | 属性           | 说明                     | 类型      | 默认         |
 | -------------- | ------------------------ | --------- | ------------ |

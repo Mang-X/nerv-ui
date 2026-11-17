@@ -44,9 +44,9 @@ const threshold = ref(85)
 
 # NvMobileSlider 滑块
 
-单滑块范围选择。品牌色填充轨道，滑块 ≥44px 触控热区，指针拖动（与底部抽屉、滑动单元格等使用同一套指针手势）。用于数量、阈值等连续调节。右侧手机模拟器为实时组件。
+单滑块范围选择。品牌色填充轨道，滑块 ≥44px 触控热区，指针拖动（与底部抽屉、滑动单元格等使用同一套指针手势）。用于数量、阈值等连续调节。
 
-## 基础
+## 示例
 
 `v-model` 绑定数字，默认范围 0–100。
 
@@ -54,15 +54,11 @@ const threshold = ref(85)
 <NvMobileSlider v-model="basic" />
 ```
 
-## 步进与气泡
-
 `min / max / step` 控制范围与步长；加 `show-bubble` 在拖动时于滑块上方显示当前值。
 
 ```vue
 <NvMobileSlider v-model="stepped" :min="0" :max="100" :step="5" show-bubble />
 ```
-
-## 禁用
 
 `disabled` 置灰且不响应拖动。
 
@@ -70,7 +66,9 @@ const threshold = ref(85)
 <NvMobileSlider :model-value="60" disabled />
 ```
 
-## 属性
+## API
+
+### NvMobileSlider 属性
 
 | 属性         | 说明               | 类型      | 默认    |
 | ------------ | ------------------ | --------- | ------- |

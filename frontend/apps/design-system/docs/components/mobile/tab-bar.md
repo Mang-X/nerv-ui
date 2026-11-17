@@ -31,9 +31,9 @@ const tabs = [
 
 # NvTabBar 标签栏
 
-底部主导航（tdesign-mobile 风格）：每个标签为图标 + 文字，选中态使用品牌色，触控区 ≥ 48px。
+底部主导航：每个标签为图标 + 文字，选中态使用品牌色，触控区 ≥ 48px。
 
-## 基础用法
+## 示例
 
 底部固定主导航，点击切换选中态。
 
@@ -56,13 +56,21 @@ const tabs = [
 </template>
 ```
 
-## 属性
+## API
+
+### NvTabBar 属性
 
 | 属性         | 说明                            | 类型        | 默认 |
 | ------------ | ------------------------------- | ----------- | ---- |
 | `modelValue` | 当前选中的 `value`（`v-model`） | `string`    | —    |
 | `items`      | 标签项数组                      | `TabItem[]` | —    |
 
-`TabItem`：`{ value: string; label: string; icon?: Component }`。事件：`@update:modelValue`。
+`TabItem`：`{ value: string; label: string; icon?: Component }`。
+
+### 事件
+
+| 事件                | 说明           | 回调参数          |
+| ------------------- | -------------- | ----------------- |
+| `update:modelValue` | 选中标签变化   | `(value: string)` |
 
 </MobileDoc>
