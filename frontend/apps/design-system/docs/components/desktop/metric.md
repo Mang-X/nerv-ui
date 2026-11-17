@@ -24,12 +24,12 @@ const facetFeedback = ref('请选择一个维度。')
 | ----------- | ----------------------------------------- | ------------------------------ |
 | `default`   | 可选曲线（向后兼容旧用法，本页不出 demo） | 存量页面沿用                   |
 | `icon`      | 无，tone 图标位 + 环比 chip               | 页头一行多张总览，最省纵向空间 |
-| `sparkline` | 迷你曲线 + 区间/统计脚注                  | 报工量、稼动率趋势             |
-| `target`    | 带目标刻度的进度条 + 缺口                 | 月产量达成、履约率             |
-| `breakdown` | 分段条 + 图例计数（五 tone）              | 工单 / 质检 / 批次状态构成     |
-| `bars`      | 迷你柱，当前柱强调                        | 日产量、日报警次数             |
-| `alert`     | tone 浸染卡面 + 处理入口                  | 超期工单、临期批次             |
-| `facets`    | 维度 chip 组（可点击成筛选）              | 待质检批次 = 原料 / 半成品…    |
+| `sparkline` | 迷你曲线 + 区间/统计脚注                  | 提交量、利用率趋势             |
+| `target`    | 带目标刻度的进度条 + 缺口                 | 月度目标达成、履约率           |
+| `breakdown` | 分段条 + 图例计数（五 tone）              | 任务 / 审核 / 批次状态构成     |
+| `bars`      | 迷你柱，当前柱强调                        | 日完成量、日报警次数           |
+| `alert`     | tone 浸染卡面 + 处理入口                  | 超期任务、临期批次             |
+| `facets`    | 维度 chip 组（可点击成筛选）              | 待审核批次 = 类别 A / 类别 B…  |
 
 ## icon 图标紧凑型
 
@@ -39,10 +39,10 @@ const facetFeedback = ref('请选择一个维度。')
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2">
-    <NvMetricCard variant="icon" tone="brand" :icon="WrenchIcon" label="在制工单" :value="38" :trend="{ value: '+15.2%', direction: 'up' }" :series="[33, 34, 32, 35, 36, 37, 38]" :series-labels="['07-17','07-18','07-19','07-20','07-21','07-22','07-23']" series-unit=" 张" />
-    <NvMetricCard variant="icon" tone="success" :icon="CircleCheckIcon" label="一次合格率" value="98.6" unit="%" :trend="{ value: '0.4pt', direction: 'up' }" />
-    <NvMetricCard variant="icon" tone="warning" :icon="ClockIcon" label="待派工" :value="9" :trend="{ value: '持平', direction: 'flat' }" />
-    <NvMetricCard variant="icon" tone="danger" :icon="TriangleAlertIcon" label="超期工单" :value="6" :trend="{ value: '2', direction: 'up', tone: 'danger' }" />
+    <NvMetricCard variant="icon" tone="brand" :icon="WrenchIcon" label="进行中任务" :value="38" :trend="{ value: '+15.2%', direction: 'up' }" :series="[33, 34, 32, 35, 36, 37, 38]" :series-labels="['07-17','07-18','07-19','07-20','07-21','07-22','07-23']" series-unit=" 条" />
+    <NvMetricCard variant="icon" tone="success" :icon="CircleCheckIcon" label="一次通过率" value="98.6" unit="%" :trend="{ value: '0.4pt', direction: 'up' }" />
+    <NvMetricCard variant="icon" tone="warning" :icon="ClockIcon" label="待分配" :value="9" :trend="{ value: '持平', direction: 'flat' }" />
+    <NvMetricCard variant="icon" tone="danger" :icon="TriangleAlertIcon" label="超期任务" :value="6" :trend="{ value: '2', direction: 'up', tone: 'danger' }" />
   </div>
 </Demo>
 
@@ -51,7 +51,7 @@ const facetFeedback = ref('请选择一个维度。')
   variant="icon"
   tone="danger"
   :icon="TriangleAlertIcon"
-  label="超期工单"
+  label="超期任务"
   :value="6"
   :trend="{ value: '2', direction: 'up', tone: 'danger' }"
 />
@@ -67,19 +67,19 @@ const facetFeedback = ref('请选择一个维度。')
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
     <NvMetricCard
       variant="sparkline"
-      label="今日报工数量"
+      label="今日完成数"
       value="1,284"
-      unit="件"
+      unit="条"
       :trend="{ value: '8.2%', direction: 'up' }"
       :series="[1052, 1118, 1086, 1204, 1163, 1272, 1229, 1284]"
       :series-labels="['07-16','07-17','07-18','07-19','07-20','07-21','07-22','07-23']"
-      series-unit=" 件"
+      series-unit=" 条"
       foot-start="近 7 日"
-      foot-end="日均 1,176 件"
+      foot-end="日均 1,176 条"
     />
     <NvMetricCard
       variant="sparkline"
-      label="设备综合稼动率"
+      label="综合利用率"
       value="76.8"
       unit="%"
       :trend="{ value: '3.1pt', direction: 'down' }"
@@ -95,15 +95,15 @@ const facetFeedback = ref('请选择一个维度。')
 ```vue
 <NvMetricCard
   variant="sparkline"
-  label="今日报工数量"
+  label="今日完成数"
   value="1,284"
-  unit="件"
+  unit="条"
   :trend="{ value: '8.2%', direction: 'up' }"
   :series="[1052, 1118, 1086, 1204, 1163, 1272, 1229, 1284]"
   :series-labels="['07-16', ..., '07-23']"
-  series-unit=" 件"
+  series-unit=" 条"
   foot-start="近 7 日"
-  foot-end="日均 1,176 件"
+  foot-end="日均 1,176 条"
 />
 ```
 
@@ -113,45 +113,45 @@ const facetFeedback = ref('请选择一个维度。')
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
-    <NvMetricCard variant="target" label="本月产量达成" value="13,847" unit="件" target-label="目标 15,000 件" :progress="92.3" foot-start="达成 92.3%" foot-end="缺口 1,153 件 · 剩 5 天" />
-    <NvMetricCard variant="target" label="计划准时完工率" value="96.4" unit="%" target-label="目标 95%" :progress="96.4" :target-marker="95" progress-tone="success" foot-start="已达标" foot-end="高于目标 1.4pt" />
-    <NvMetricCard variant="target" label="交付订单履约" value="18" unit="/ 26 单" target-label="本周应发 26 单" :progress="69.2" progress-tone="warning" foot-start="完成 69.2%" foot-end="8 单待发 · 2 单临期" />
+    <NvMetricCard variant="target" label="本月目标达成" value="13,847" unit="条" target-label="目标 15,000 条" :progress="92.3" foot-start="达成 92.3%" foot-end="缺口 1,153 条 · 剩 5 天" />
+    <NvMetricCard variant="target" label="计划准时完成率" value="96.4" unit="%" target-label="目标 95%" :progress="96.4" :target-marker="95" progress-tone="success" foot-start="已达标" foot-end="高于目标 1.4pt" />
+    <NvMetricCard variant="target" label="交付履约" value="18" unit="/ 26 单" target-label="本周应发 26 单" :progress="69.2" progress-tone="warning" foot-start="完成 69.2%" foot-end="8 单待发 · 2 单临期" />
   </div>
 </Demo>
 
 ```vue
 <NvMetricCard
   variant="target"
-  label="本月产量达成"
+  label="本月目标达成"
   value="13,847"
-  unit="件"
-  target-label="目标 15,000 件"
+  unit="条"
+  target-label="目标 15,000 条"
   :progress="92.3"
   foot-start="达成 92.3%"
-  foot-end="缺口 1,153 件 · 剩 5 天"
+  foot-end="缺口 1,153 条 · 剩 5 天"
 />
 ```
 
 ## breakdown 状态分布型
 
-总数 + 分段条 + 图例计数，一张卡回答「38 个工单都处在什么状态」。分段色沿用五 tone，和表格里的状态徽章同源；悬浮分段或图例项联动高亮。
+总数 + 分段条 + 图例计数，一张卡回答「38 条记录都处在什么状态」。分段色沿用五 tone，和表格里的状态徽章同源；悬浮分段或图例项联动高亮。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
     <NvMetricCard
       variant="breakdown"
-      label="在制工单"
+      label="进行中任务"
       :value="38"
       :segments="[
         { label: '进行中', value: 24, tone: 'brand' },
-        { label: '待派工', value: 9, tone: 'neutral' },
+        { label: '待分配', value: 9, tone: 'neutral' },
         { label: '已暂停', value: 3, tone: 'warning' },
         { label: '超期', value: 2, tone: 'danger' },
       ]"
     />
     <NvMetricCard
       variant="breakdown"
-      label="库存批次"
+      label="记录批次"
       :value="142"
       :segments="[
         { label: '正常', value: 118, tone: 'success' },
@@ -165,11 +165,11 @@ const facetFeedback = ref('请选择一个维度。')
 ```vue
 <NvMetricCard
   variant="breakdown"
-  label="在制工单"
+  label="进行中任务"
   :value="38"
   :segments="[
     { label: '进行中', value: 24, tone: 'brand' },
-    { label: '待派工', value: 9, tone: 'neutral' },
+    { label: '待分配', value: 9, tone: 'neutral' },
     { label: '超期', value: 2, tone: 'danger' },
   ]"
 />
@@ -177,18 +177,18 @@ const facetFeedback = ref('请选择一个维度。')
 
 ## bars 迷你柱状型
 
-离散周期量（日产量、日报警数）用柱状比曲线更贴切。`current-index` 标出今日柱做强调，`bar-tones` 可给异常日单独染色。悬浮任一柱其余淡出。
+离散周期量（日完成量、日报警数）用柱状比曲线更贴切。`current-index` 标出今日柱做强调，`bar-tones` 可给异常日单独染色。悬浮任一柱其余淡出。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
     <NvMetricCard
       variant="bars"
-      label="日产量"
+      label="日完成量"
       value="12,480"
-      unit="件"
+      unit="条"
       :series="[7050, 8680, 6370, 9760, 8130, 11250, 12480]"
       :series-labels="['07-17','07-18','07-19','07-20','07-21','07-22','07-23（今日）']"
-      series-unit=" 件"
+      series-unit=" 条"
       :current-index="6"
       :trend="{ value: '4.9%', direction: 'up' }"
       foot-start="07-17"
@@ -196,7 +196,7 @@ const facetFeedback = ref('请选择一个维度。')
     />
     <NvMetricCard
       variant="bars"
-      label="设备报警次数"
+      label="报警次数"
       value="14"
       unit="次"
       :series="[5, 4, 6, 5, 7, 6, 14]"
@@ -219,8 +219,8 @@ const facetFeedback = ref('请选择一个维度。')
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
-    <NvMetricCard variant="alert" tone="danger" label="超期未完工" :value="6" unit="单" :status="{ label: '需处理', tone: 'danger' }" foot-start="最久已超期 3 天 · WO-2607-0214" :action="{ label: '去处理' }" @action="actionFeedback = '已选择：超期未完工'" />
-    <NvMetricCard variant="alert" tone="warning" label="临期库存批次" :value="16" unit="批" :status="{ label: '7 天内', tone: 'warning' }" foot-start="涉及 5 个物料 · 最近 07-26 到效期" :action="{ label: '查看批次' }" @action="actionFeedback = '已选择：临期库存批次'" />
+    <NvMetricCard variant="alert" tone="danger" label="超期未完成" :value="6" unit="条" :status="{ label: '需处理', tone: 'danger' }" foot-start="最久已超期 3 天 · REC-2607-0214" :action="{ label: '去处理' }" @action="actionFeedback = '已选择：超期未完成'" />
+    <NvMetricCard variant="alert" tone="warning" label="临期批次" :value="16" unit="批" :status="{ label: '7 天内', tone: 'warning' }" foot-start="涉及 5 个条目 · 最近 07-26 到期" :action="{ label: '查看批次' }" @action="actionFeedback = '已选择：临期批次'" />
     <NvMetricCard variant="alert" tone="success" label="未确认报警" :value="0" unit="条" :status="{ label: '正常', tone: 'success' }" foot-start="近 24h 已确认 14 条" :action="{ label: '报警记录' }" @action="actionFeedback = '已选择：未确认报警'" />
   </div>
   <p role="status" class="w-full text-sm text-muted-foreground">{{ actionFeedback }}</p>
@@ -238,13 +238,13 @@ const actionFeedback = ref('请选择处理入口。')
   <NvMetricCard
     variant="alert"
     tone="danger"
-    label="超期未完工"
+    label="超期未完成"
     :value="6"
-    unit="单"
+    unit="条"
     :status="{ label: '需处理', tone: 'danger' }"
-    foot-start="最久已超期 3 天 · WO-2607-0214"
+    foot-start="最久已超期 3 天 · REC-2607-0214"
     :action="{ label: '去处理' }"
-    @action="actionFeedback = '已选择：超期未完工'"
+    @action="actionFeedback = '已选择：超期未完成'"
   />
   <p role="status">{{ actionFeedback }}</p>
 </template>
@@ -258,29 +258,29 @@ const actionFeedback = ref('请选择处理入口。')
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
     <NvMetricCard
       variant="facets"
-      label="待质检批次"
+      label="待审核批次"
       :value="12"
       unit="批"
       :trend="{ value: '今日 +4', direction: 'flat' }"
       :facets="[
-        { label: '原料', value: 5 },
-        { label: '半成品', value: 4 },
-        { label: '成品', value: 3 },
+        { label: '类别 A', value: 5 },
+        { label: '类别 B', value: 4 },
+        { label: '类别 C', value: 3 },
       ]"
-      @facet="(facet) => facetFeedback = `已选择：待质检批次 / ${facet.label}`"
+      @facet="(facet) => facetFeedback = `已选择：待审核批次 / ${facet.label}`"
     />
     <NvMetricCard
       variant="facets"
-      label="在线设备"
+      label="在线资源"
       :value="28"
-      unit="台"
-      :trend="{ value: '共 32 台', direction: 'flat' }"
+      unit="个"
+      :trend="{ value: '共 32 个', direction: 'flat' }"
       :facets="[
         { label: '运行', value: 24 },
-        { label: '待机', value: 4 },
+        { label: '空闲', value: 4 },
         { label: '断线', value: 4, tone: 'danger' },
       ]"
-      @facet="(facet) => facetFeedback = `已选择：在线设备 / ${facet.label}`"
+      @facet="(facet) => facetFeedback = `已选择：在线资源 / ${facet.label}`"
     />
   </div>
   <p role="status" class="w-full text-sm text-muted-foreground">{{ facetFeedback }}</p>
@@ -290,24 +290,24 @@ const actionFeedback = ref('请选择处理入口。')
 
 `breakdown` 的环形表达：每段一种语义色，各自对应一条图例，中心放**最该被看到的数**（通常是总数）。悬浮任一段弧或图例行——该段加粗点亮、其余淡出，中心随即切成该段的读数与占比，所以不需要一个 tooltip 盖住卡片自己。段的身份由亮起的弧和未淡出的图例行表达，中心只留数值与占比（环内放不下标签）。
 
-> 只适用于**部分与整体**（工单状态 / 齐套 / 库位）。**相乘型比率不能画成环**：OEE = A × P × Q，A/P/Q 并不是环的三段；那类指标用 `variant="facets"` 或独立成行呈现。
+> 只适用于**部分与整体**（任务状态 / 资源就绪 / 存储位置）。**相乘型比率不能画成环**：利用率综合 = A × P × Q，A/P/Q 并不是环的三段；那类指标用 `variant="facets"` 或独立成行呈现。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2">
     <NvMetricRing
-      label="在制工单构成"
+      label="进行中任务构成"
       :value="35"
-      center-caption="总工单"
+      center-caption="总任务"
       :segments="[
         { label: '进行中', value: 24, tone: 'brand' },
-        { label: '待派工', value: 9, tone: 'neutral' },
+        { label: '待分配', value: 9, tone: 'neutral' },
         { label: '超期', value: 2, tone: 'danger' },
       ]"
     />
     <NvMetricRing
-      label="成品库库位"
+      label="存储位置"
       :value="512"
-      center-caption="总库位"
+      center-caption="总位置"
       :segments="[
         { label: '已占用', value: 340, tone: 'brand' },
         { label: '可用', value: 160, tone: 'success' },
@@ -315,31 +315,31 @@ const actionFeedback = ref('请选择处理入口。')
       ]"
     />
     <NvMetricRing
-      label="批次合格情况"
+      label="批次审核情况"
       :value="1000"
       center-caption="总批次"
       :segments="[
-        { label: '合格', value: 997, tone: 'success' },
-        { label: '让步接收', value: 2, tone: 'warning' },
-        { label: '判废', value: 1, tone: 'danger' },
+        { label: '通过', value: 997, tone: 'success' },
+        { label: '条件通过', value: 2, tone: 'warning' },
+        { label: '拒绝', value: 1, tone: 'danger' },
       ]"
     />
   </div>
 </Demo>
 
-> 极小但非零的占比（如 1/1000 的判废）也保留可见弧——最该被看见的异常段不会被分段间隙吞掉。
+> 极小但非零的占比（如 1/1000 的拒绝项）也保留可见弧——最该被看见的异常段不会被分段间隙吞掉。
 > 占比分母取各段**正值之和**（小数/负值/非有限值不参与，零总量只画底环）。分段间隙随数量
 > 自适应收窄，最小可见弧在 ~75 段内始终守住；超过则各段仍按占比画出非零弧（不再消失）但会
 > 低于该下限——此时建议把细碎类别聚合成「其他」再传入。
 
 ```vue
 <NvMetricRing
-  label="在制工单构成"
+  label="进行中任务构成"
   :value="35"
-  center-caption="总工单"
+  center-caption="总任务"
   :segments="[
     { label: '进行中', value: 24, tone: 'brand' },
-    { label: '待派工', value: 9, tone: 'neutral' },
+    { label: '待分配', value: 9, tone: 'neutral' },
     { label: '超期', value: 2, tone: 'danger' },
   ]"
 />
@@ -353,10 +353,10 @@ const actionFeedback = ref('请选择处理入口。')
   <NvMetricStrip
     class="w-full"
     :cells="[
-      { label: '今日产量', value: '12,480', unit: '件', delta: { value: '+4.9%', direction: 'up' }, series: [11020, 11460, 11180, 11890, 11640, 12130, 12480], seriesLabels: ['07-17','07-18','07-19','07-20','07-21','07-22','07-23'], seriesUnit: ' 件' },
-      { label: '报工工单', value: '26', unit: '单', meta: '待审核 3 单', metaTone: 'neutral' },
-      { label: '一次合格率', value: '98.6', unit: '%', delta: { value: '+0.4pt', direction: 'up' }, series: [98.1, 98.0, 98.3, 98.2, 98.4, 98.5, 98.6], seriesLabels: ['07-17','07-18','07-19','07-20','07-21','07-22','07-23'], seriesUnit: '%' },
-      { label: '超期工单', value: '2', unit: '单', valueTone: 'danger', delta: { value: '+2', direction: 'up', tone: 'danger' }, meta: '最久超期 3 天' },
+      { label: '今日完成', value: '12,480', unit: '条', delta: { value: '+4.9%', direction: 'up' }, series: [11020, 11460, 11180, 11890, 11640, 12130, 12480], seriesLabels: ['07-17','07-18','07-19','07-20','07-21','07-22','07-23'], seriesUnit: ' 条' },
+      { label: '已提交记录', value: '26', unit: '条', meta: '待审核 3 条', metaTone: 'neutral' },
+      { label: '一次通过率', value: '98.6', unit: '%', delta: { value: '+0.4pt', direction: 'up' }, series: [98.1, 98.0, 98.3, 98.2, 98.4, 98.5, 98.6], seriesLabels: ['07-17','07-18','07-19','07-20','07-21','07-22','07-23'], seriesUnit: '%' },
+      { label: '超期任务', value: '2', unit: '条', valueTone: 'danger', delta: { value: '+2', direction: 'up', tone: 'danger' }, meta: '最久超期 3 天' },
     ]"
   />
 </Demo>
@@ -365,17 +365,17 @@ const actionFeedback = ref('请选择处理入口。')
 <NvMetricStrip
   :cells="[
     {
-      label: '今日产量',
+      label: '今日完成',
       value: '12,480',
-      unit: '件',
+      unit: '条',
       // 变化幅度由 series 首尾算出，末点就是 value——线和数字永远对得上
       delta: { value: '+4.9%', direction: 'up' },
       series: [11020, 11460, 11180, 11890, 11640, 12130, 12480],
       seriesLabels: ['07-17', ..., '07-23'],
-      seriesUnit: ' 件',
+      seriesUnit: ' 条',
     },
     // 涨了是坏事：箭头照实朝上，tone 手动压成 danger
-    { label: '超期工单', value: '2', unit: '单', valueTone: 'danger',
+    { label: '超期任务', value: '2', unit: '条', valueTone: 'danger',
       delta: { value: '+2', direction: 'up', tone: 'danger' }, meta: '最久超期 3 天' },
   ]"
 />
@@ -416,7 +416,7 @@ const actionFeedback = ref('请选择处理入口。')
 | --------------- | -------------------------------------------------------- | ------------------- | ---- |
 | `label`         | 卡标题                                                   | `string`            | —    |
 | `value`         | 中心读数，默认展示的数（常为总数，不带单位避免环内截断） | `string \| number`  | —    |
-| `centerCaption` | 中心数下方小字，如 `总工单` / `总库位`                   | `string`            | —    |
+| `centerCaption` | 中心数下方小字，如 `总任务` / `总位置`                   | `string`            | —    |
 | `segments`      | 各分段 `{ label, value, tone?, key? }`                   | `NvMetricSegment[]` | `[]` |
 
 悬浮分段或图例行时，中心自动切换为该段的数值与占比，无需额外配置。
@@ -434,7 +434,7 @@ const actionFeedback = ref('请选择处理入口。')
 | 字段                | 说明                                                                                                                                                                                                                                             | 类型                                             |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
 | `meta` / `metaTone` | 副行文本与其趋势图标；`metaTone` 取 `'up' \| 'down' \| 'flat' \| 'neutral'`，向上/下附趋势图标与语义色                                                                                                                                           | `string` / `NvMetricDeltaDirection \| 'neutral'` |
-| `delta`             | 副行变化 chip。**真正的变化幅度优先用它，而不是 `meta`**：它带 `tone` 覆盖，能表达"涨了是坏事"（超期工单 +3 保持上箭头但读 danger），这是 `metaTone` 做不到的（它把 up 硬映射成 success）。两者同时给出时 chip 在前、`meta` 作为灰字注脚跟在后面 | `NvMetricDelta`                                  |
+| `delta`             | 副行变化 chip。**真正的变化幅度优先用它，而不是 `meta`**：它带 `tone` 覆盖，能表达"涨了是坏事"（超期任务 +3 保持上箭头但读 danger），这是 `metaTone` 做不到的（它把 up 硬映射成 success）。两者同时给出时 chip 在前、`meta` 作为灰字注脚跟在后面 | `NvMetricDelta`                                  |
 | `series`            | 该格的迷你走势（≥2 点）。**末点必须就是 `value` 那个数**——指标条读作"数字 + 产生它的形状"，线落在别处即自相矛盾                                                                                                                                  | `number[]`                                       |
 | `seriesLabels`      | 逐点标签（十字准线 tooltip）                                                                                                                                                                                                                     | `string[]`                                       |
 | `seriesUnit`        | tooltip 数值单位                                                                                                                                                                                                                                 | `string`                                         |

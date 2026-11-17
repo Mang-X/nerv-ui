@@ -16,17 +16,17 @@ import { NvPageSection, NvPageGrid } from '@nerv-iip/ui'
   <NvPageSection
     class="w-full !py-8"
     eyebrow="控制平面"
-    title="一处掌握全厂"
-    description="工单、设备、质检与节拍，按区块清晰编排。"
+    title="一处掌握全局"
+    description="记录、资源、审核与指标，按区块清晰编排。"
   >
     <NvPageGrid :cols="3">
-      <div v-for="t in ['工单','设备','质检']" :key="t" class="rounded-xl border border-border bg-card p-4 text-center text-sm text-muted-foreground">{{ t }}</div>
+      <div v-for="t in ['记录','资源','审核']" :key="t" class="rounded-xl border border-border bg-card p-4 text-center text-sm text-muted-foreground">{{ t }}</div>
     </NvPageGrid>
   </NvPageSection>
 </Demo>
 
 ```vue
-<NvPageSection eyebrow="控制平面" title="一处掌握全厂" description="…">
+<NvPageSection eyebrow="控制平面" title="一处掌握全局" description="…">
   <NvPageGrid :cols="3"><!-- 卡片 --></NvPageGrid>
 </NvPageSection>
 ```

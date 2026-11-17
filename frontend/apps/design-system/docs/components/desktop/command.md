@@ -30,16 +30,16 @@ const cmdGroups = [
     label: '导航',
     items: [
       { id: 'instances', label: '实例总览', hint: 'G I', icon: LayersIcon },
-      { id: 'orders', label: '工单工作台', hint: 'G O', icon: GaugeIcon },
+      { id: 'orders', label: '记录工作台', hint: 'G O', icon: GaugeIcon },
       { id: 'iam', label: '用户与权限', icon: ActivityIcon, keywords: 'user role permission' },
     ],
   },
   {
     label: '快捷操作',
     items: [
-      { id: 'new-wo', label: '新建工单', hint: '⌘N', icon: PlusIcon, keywords: 'create work order' },
-      { id: 'dispatch', label: '派发到产线', icon: RocketIcon, keywords: 'dispatch line' },
-      { id: 'search-material', label: '搜索物料编码', icon: SearchIcon, keywords: 'material' },
+      { id: 'new-rec', label: '新建记录', hint: '⌘N', icon: PlusIcon, keywords: 'create record' },
+      { id: 'dispatch', label: '指派给分组', icon: RocketIcon, keywords: 'assign group' },
+      { id: 'search-item', label: '搜索条目编码', icon: SearchIcon, keywords: 'item' },
     ],
   },
 ]
@@ -92,18 +92,18 @@ const cmdGroups = [
     label: '导航',
     items: [
       { id: 'instances', label: '实例总览', hint: 'G I', icon: LayersIcon },
-      { id: 'orders', label: '工单工作台', hint: 'G O', icon: GaugeIcon },
+      { id: 'orders', label: '记录工作台', hint: 'G O', icon: GaugeIcon },
     ],
   },
   {
     label: '快捷操作',
     items: [
       {
-        id: 'new-wo',
-        label: '新建工单',
+        id: 'new-rec',
+        label: '新建记录',
         hint: '⌘N',
         icon: PlusIcon,
-        keywords: 'create work order',
+        keywords: 'create record',
       },
     ],
   },
@@ -127,7 +127,7 @@ function onCommandSelect(item) {
 | ------------- | -------------------------- | ---------------- | ----------------------- |
 | `open`        | 受控开关（`v-model:open`） | `boolean`        | `false`                 |
 | `groups`      | 命令分组数据               | `CommandGroup[]` | —                       |
-| `placeholder` | 搜索框占位符               | `string`         | `搜索命令、工单、产线…` |
+| `placeholder` | 搜索框占位符               | `string`         | `搜索命令、记录、分组…` |
 | `hotkey`      | 是否启用 ⌘K 全局快捷键     | `boolean`        | `true`                  |
 
 ## 数据结构

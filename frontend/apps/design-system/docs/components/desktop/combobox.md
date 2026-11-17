@@ -8,16 +8,16 @@ import { ref } from 'vue'
 
 const device = ref('')
 const deviceSuggestions = [
-  { value: 'DEV-SMT-01', label: '贴片机 01', hint: 'DEV-SMT-01' },
-  { value: 'DEV-SMT-02', label: '贴片机 02', hint: 'DEV-SMT-02' },
-  { value: 'DEV-PRESS-01', label: '冲压机 01', hint: 'DEV-PRESS-01' },
+  { value: 'RES-A-01', label: '资源 A-01', hint: 'RES-A-01' },
+  { value: 'RES-A-02', label: '资源 A-02', hint: 'RES-A-02' },
+  { value: 'RES-B-01', label: '资源 B-01', hint: 'RES-B-01' },
 ]
 
 const technician = ref('')
 const technicianOptions = [
-  { value: 'u1', label: '张工', hint: 'E001' },
-  { value: 'u2', label: '李工', hint: 'E002' },
-  { value: 'u3', label: '王工', hint: 'E003' },
+  { value: 'u1', label: '张三', hint: 'E001' },
+  { value: 'u2', label: '李四', hint: 'E002' },
+  { value: 'u3', label: '王五', hint: 'E003' },
 ]
 </script>
 
@@ -28,23 +28,23 @@ const technicianOptions = [
 
 | 控件                          | 语义                              | 是否允许自由录入 | 典型场景                                     |
 | ----------------------------- | --------------------------------- | ---------------- | -------------------------------------------- |
-| **NvCombobox** 输入联想框     | 文本输入即过滤建议，值 = 输入文本 | ✅ 允许          | 设备编号、测量特性（有历史候选、也可能新填） |
-| **NvSearchSelect** 弹出选择框 | 按钮触发可搜索的弹出单选          | ❌ 仅选不填      | 技师目录、停机原因、维护结果（固定集合）     |
+| **NvCombobox** 输入联想框     | 文本输入即过滤建议，值 = 输入文本 | ✅ 允许          | 资源编号、标签（有历史候选、也可能新填）   |
+| **NvSearchSelect** 弹出选择框 | 按钮触发可搜索的弹出单选          | ❌ 仅选不填      | 成员目录、状态原因、处理结果（固定集合）   |
 
 ## NvCombobox 输入联想框
 
 输入即过滤 `suggestions`；命中建议可一键填入，也可继续输入未在建议中的自定义值。
-仅在存在匹配建议时展开弹层，避免自由录入时反复弹出空态。本例将设备编号同时放入 `hint`，因此编号与名称都可用于检索。
+仅在存在匹配建议时展开弹层，避免自由录入时反复弹出空态。本例将资源编号同时放入 `hint`，因此编号与名称都可用于检索。
 
 <Demo>
   <div style="max-width: 320px">
     <NvField>
-      <NvFieldLabel for="cb-device">设备编号</NvFieldLabel>
+      <NvFieldLabel for="cb-device">资源编号</NvFieldLabel>
       <NvCombobox
         id="cb-device"
         v-model="device"
         :suggestions="deviceSuggestions"
-        placeholder="搜索设备台账或直接输入，如 DEV-SMT-01"
+        placeholder="搜索资源或直接输入，如 RES-A-01"
       />
     </NvField>
     <p style="margin-top: 8px; font-size: 13px; color: var(--vp-c-text-2)">当前值：{{ device || '（空）' }}</p>
@@ -54,27 +54,27 @@ const technicianOptions = [
 ```vue
 <NvCombobox
   v-model="device"
-  :suggestions="[{ value: 'DEV-SMT-01', label: '贴片机 01', hint: 'DEV-SMT-01' }]"
-  placeholder="搜索设备台账或直接输入"
+  :suggestions="[{ value: 'RES-A-01', label: '资源 A-01', hint: 'RES-A-01' }]"
+  placeholder="搜索资源或直接输入"
 />
 ```
 
 ## NvSearchSelect 弹出选择框
 
 从固定集合里选一个；触发按钮展示所选标签，弹层顶部带搜索框，比长下拉更好定位。
-`options` 支持 `hint`（如工号）辅助识别。
+`options` 支持 `hint`（如成员编号）辅助识别。
 字段校验失败时可传 `aria-invalid` 与 `aria-describedby`；组件会将它们转发到实际获得焦点的触发按钮。
 
 <Demo>
   <div style="max-width: 320px">
     <NvField>
-      <NvFieldLabel for="ss-tech">指派技师</NvFieldLabel>
+      <NvFieldLabel for="ss-tech">指派成员</NvFieldLabel>
       <NvSearchSelect
         id="ss-tech"
         v-model="technician"
         :options="technicianOptions"
         placeholder="未指派"
-        search-placeholder="搜索技师姓名 / 工号…"
+        search-placeholder="搜索成员姓名 / 编号…"
       />
     </NvField>
     <p style="margin-top: 8px; font-size: 13px; color: var(--vp-c-text-2)">当前值：{{ technician || '（未选）' }}</p>
@@ -84,14 +84,14 @@ const technicianOptions = [
 ```vue
 <NvSearchSelect
   v-model="technician"
-  :options="[{ value: 'u1', label: '张工', hint: 'E001' }]"
+  :options="[{ value: 'u1', label: '张三', hint: 'E001' }]"
   placeholder="未指派"
-  search-placeholder="搜索技师姓名 / 工号…"
+  search-placeholder="搜索成员姓名 / 编号…"
 />
 ```
 
 ## 选型
 
-- 值可能不在集合内（会新登记设备、特性因产线而异）→ **NvCombobox**。
+- 值可能不在集合内（会新登记资源、标签因分组而异）→ **NvCombobox**。
 - 值必须来自固定集合（人员目录、编码字典）→ **NvSearchSelect**。
 - 集合极小（≤5 且稳定）且无需搜索 → 用 [`NvSelect`](/components/desktop/select)。

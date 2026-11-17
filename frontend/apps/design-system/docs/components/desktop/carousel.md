@@ -6,14 +6,14 @@ title: NvCarousel 轮播图
 import { NvCarousel } from '@nerv-iip/ui'
 
 const lines = [
-  { zone: '焊接 A 区', oee: '92%', tone: 'var(--nv-brand)' },
-  { zone: '装配 B 区', oee: '78%', tone: 'oklch(0.62 0.15 150)' },
-  { zone: 'CNC C 区', oee: '64%', tone: 'oklch(0.65 0.16 40)' },
+  { zone: 'Alpha 组', oee: '92%', tone: 'var(--nv-brand)' },
+  { zone: 'Beta 组', oee: '78%', tone: 'oklch(0.62 0.15 150)' },
+  { zone: 'Gamma 组', oee: '64%', tone: 'oklch(0.65 0.16 40)' },
 ]
 const orders = [
-  { code: 'WO-2406-0421', product: '齿轮箱端盖', station: '焊接 03' },
-  { code: 'WO-2406-0426', product: '液压阀体 V3', station: '装配 01' },
-  { code: 'WO-2406-0433', product: '主轴箱体', station: 'CNC 02' },
+  { code: 'REC-2406-0421', product: '示例项 1', station: '节点 03' },
+  { code: 'REC-2406-0426', product: '示例项 2', station: '节点 01' },
+  { code: 'REC-2406-0433', product: '示例项 3', station: '节点 02' },
 ]
 </script>
 
@@ -36,7 +36,7 @@ const orders = [
       :style="{ background: l.tone }"
     >
       <div class="text-2xl font-semibold">{{ l.zone }}</div>
-      <div class="mt-1 text-sm opacity-90">OEE {{ l.oee }}</div>
+      <div class="mt-1 text-sm opacity-90">利用率 {{ l.oee }}</div>
     </div>
   </NvCarousel>
 </Demo>

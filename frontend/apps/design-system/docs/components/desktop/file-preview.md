@@ -432,4 +432,4 @@ XLSX 提供前后工作表与下拉选择；内置底栏隐藏，表格绘图区
 
 包装层持有来源 GET 的 `AbortController`，在响应和响应体完成后分别检查当前来源；切换 src、格式和离页后丢弃旧字节，避免再创建 viewer。动态导入与 viewer.load 完成后也检查来源，旧回调不更新当前导航或转发 ready/error。每代 render surface 独立，释放旧 viewer、observer、待执行定时器和 RAF；已开始的浏览器读取和解析不承诺可抢占。非 ZIP 字节先报错，防止上游把它们显示为一页空白；此签名检查不是完整文件安全验证，也不保证所有损坏 ZIP 都能诊断。
 
-`/#files` 独立供应原 DOCX/XLSX/PPTX、明确分页的三页 DOCX、三种坏文件与 404 地址；本地文件选择也接受这三种 Office 扩展名，只生成宿主 Blob URL。原样本、生成方式、资源 SHA 和真实浏览器证据见 [F05 记录](../../../../../../docs/evidence/t06-f05/README.md)。父 #7 组合、完整文档站 #10、packed host #11、设备 #41 和旧消费方 #12–15 分别验收。
+`/#files` 独立供应原 DOCX/XLSX/PPTX、明确分页的三页 DOCX、三种坏文件与 404 地址；本地文件选择也接受这三种 Office 扩展名，只生成宿主 Blob URL。原样本、生成方式、资源 SHA 和真实浏览器证据见 [F05 记录](../../../../../../docs/evidence/t06-f05/README.md)。父 #7 组合、完整文档站 #10、packed host #11、运行形态 #41 和旧消费方 #12–15 分别验收。

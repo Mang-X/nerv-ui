@@ -20,11 +20,11 @@ import { GaugeIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const dialogOpen = ref(false)
-const dispatchReceipt = ref('尚未选择派发工单')
+const dispatchReceipt = ref('尚未选择指派记录')
 
 function confirmDispatch() {
   dialogOpen.value = false
-  dispatchReceipt.value = '已选择将 WO-2406-0431 派发到 A 线'
+  dispatchReceipt.value = '已选择将 REC-2406-0431 指派给 Alpha 组'
 }
 const scrollOpen = ref(false)
 const scrollMode = ref('content')
@@ -52,14 +52,14 @@ function openScrollExample(mode) {
     <NvDialogTrigger as-child>
       <NvButton variant="brand">
         <template #leading><GaugeIcon aria-hidden="true" /></template>
-        派发工单
+        指派记录
       </NvButton>
     </NvDialogTrigger>
     <NvDialogContent>
       <NvDialogHeader>
-        <NvDialogTitle>确认派发工单</NvDialogTitle>
+        <NvDialogTitle>确认指派记录</NvDialogTitle>
         <NvDialogDescription>
-          本地演示：选择将 WO-2406-0431 派发到 A 线；确认仅显示选择回执，不执行派工、锁料或生成领料单。
+          本地演示：选择将 REC-2406-0431 指派给 Alpha 组；确认仅显示选择回执，不执行指派、锁定或生成关联单据。
         </NvDialogDescription>
       </NvDialogHeader>
       <div class="rounded-lg border border-border bg-muted/40 p-4 text-sm">
@@ -68,7 +68,7 @@ function openScrollExample(mode) {
           <span class="tabular-nums">480</span>
         </div>
         <div class="mt-2 flex justify-between">
-          <span class="text-muted-foreground">预计工时</span>
+          <span class="text-muted-foreground">预计耗时</span>
           <span class="tabular-nums">14.5 h</span>
         </div>
       </div>
@@ -76,7 +76,7 @@ function openScrollExample(mode) {
         <NvDialogClose as-child>
           <NvButton variant="ghost">取消</NvButton>
         </NvDialogClose>
-        <NvButton variant="brand" @click="confirmDispatch">确认派发</NvButton>
+        <NvButton variant="brand" @click="confirmDispatch">确认指派</NvButton>
       </NvDialogFooter>
     </NvDialogContent>
   </NvDialog>
@@ -99,30 +99,30 @@ import {
 } from '@nerv-iip/ui'
 import { ref } from 'vue'
 const dialogOpen = ref(false)
-const dispatchReceipt = ref('尚未选择派发工单')
+const dispatchReceipt = ref('尚未选择指派记录')
 
 function confirmDispatch() {
   dialogOpen.value = false
-  dispatchReceipt.value = '已选择将 WO-2406-0431 派发到 A 线'
+  dispatchReceipt.value = '已选择将 REC-2406-0431 指派给 Alpha 组'
 }
 </script>
 
 <template>
   <NvDialog v-model:open="dialogOpen">
     <NvDialogTrigger as-child>
-      <NvButton variant="brand">派发工单</NvButton>
+      <NvButton variant="brand">指派记录</NvButton>
     </NvDialogTrigger>
     <NvDialogContent>
       <NvDialogHeader>
-        <NvDialogTitle>确认派发工单</NvDialogTitle>
+        <NvDialogTitle>确认指派记录</NvDialogTitle>
         <NvDialogDescription
-          >本地演示：选择将 WO-2406-0431 派发到 A
-          线；确认仅显示选择回执，不执行派工、锁料或生成领料单。</NvDialogDescription
+          >本地演示：选择将 REC-2406-0431 指派给 Alpha
+          组；确认仅显示选择回执，不执行指派、锁定或生成关联单据。</NvDialogDescription
         >
       </NvDialogHeader>
       <NvDialogFooter>
         <NvDialogClose as-child><NvButton variant="ghost">取消</NvButton></NvDialogClose>
-        <NvButton variant="brand" @click="confirmDispatch">确认派发</NvButton>
+        <NvButton variant="brand" @click="confirmDispatch">确认指派</NvButton>
       </NvDialogFooter>
     </NvDialogContent>
   </NvDialog>

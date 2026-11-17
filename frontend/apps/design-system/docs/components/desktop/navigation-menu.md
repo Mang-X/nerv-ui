@@ -29,31 +29,31 @@ import {
 
 横向控制台导航条：触发器展开下方的大型菜单面板，视口随面板内容动画改变大小与位置，指示器滑向当前激活项。简单入口用纯链接。`NvNavigationMenu` 家族在 reka 原语之上复制重建，仅采用我们的设计令牌，从不修改原版。
 
-## 工厂控制台
+## 控制台
 
-将“生产 / 设备 / 质量”做成可展开面板，“设置”作为直达链接。本页各入口跳转到已有的对应能力文档；“设置”进入色彩与动态色说明，不连接真实工厂业务。
+将“工作 / 资源 / 审核”做成可展开面板，“设置”作为直达链接。本页各入口跳转到已有的对应能力文档；“设置”进入色彩与动态色说明，不连接真实业务。
 
 <Demo popout>
   <NvNavigationMenu class="w-full max-w-none">
     <NvNavigationMenuList>
       <NvNavigationMenuItem>
-        <NvNavigationMenuTrigger>生产</NvNavigationMenuTrigger>
+        <NvNavigationMenuTrigger>工作</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
           <ul class="grid w-[420px] max-w-full grid-cols-1 gap-1 sm:grid-cols-2">
             <li>
               <NvNavigationMenuLink href="/components/desktop/data-table">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
-                  <ClipboardListIcon aria-hidden="true" /><span>工单</span>
+                  <ClipboardListIcon aria-hidden="true" /><span>记录</span>
                 </div>
-                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">下达、跟踪与报工 WO-2406</div>
+                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">下达、跟踪与提交 REC-2406</div>
               </NvNavigationMenuLink>
             </li>
             <li>
               <NvNavigationMenuLink href="/components/desktop/dashboard">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
-                  <CalendarRangeIcon aria-hidden="true" /><span>排产</span>
+                  <CalendarRangeIcon aria-hidden="true" /><span>计划</span>
                 </div>
-                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">甘特排程与产能平衡</div>
+                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">甘特视图与容量平衡</div>
               </NvNavigationMenuLink>
             </li>
             <li>
@@ -61,7 +61,7 @@ import {
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <BarChart3Icon aria-hidden="true" /><span>报表</span>
                 </div>
-                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">产量、节拍与达成率</div>
+                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">完成量、利用率与达成率</div>
               </NvNavigationMenuLink>
             </li>
             <li>
@@ -69,37 +69,37 @@ import {
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <ActivityIcon aria-hidden="true" /><span>实时看板</span>
                 </div>
-                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">产线 L01–L12 在线状态</div>
+                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">分组 L01–L12 在线状态</div>
               </NvNavigationMenuLink>
             </li>
           </ul>
         </NvNavigationMenuContent>
       </NvNavigationMenuItem>
       <NvNavigationMenuItem>
-        <NvNavigationMenuTrigger>设备</NvNavigationMenuTrigger>
+        <NvNavigationMenuTrigger>资源</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
           <ul class="grid w-[320px] max-w-full gap-1">
             <li>
               <NvNavigationMenuLink href="/components/desktop/metric">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
-                  <GaugeIcon aria-hidden="true" /><span>OEE 监控</span>
+                  <GaugeIcon aria-hidden="true" /><span>利用率监控</span>
                 </div>
-                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">可用率 / 性能 / 良率</div>
+                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">可用率 / 性能 / 达标率</div>
               </NvNavigationMenuLink>
             </li>
             <li>
               <NvNavigationMenuLink href="/components/desktop/timeline">
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
-                  <WrenchIcon aria-hidden="true" /><span>点检保养</span>
+                  <WrenchIcon aria-hidden="true" /><span>例行维护</span>
                 </div>
-                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">CNC-07 今晚 22:00 窗口</div>
+                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">RES-07 今晚 22:00 窗口</div>
               </NvNavigationMenuLink>
             </li>
           </ul>
         </NvNavigationMenuContent>
       </NvNavigationMenuItem>
       <NvNavigationMenuItem>
-        <NvNavigationMenuTrigger>质量</NvNavigationMenuTrigger>
+        <NvNavigationMenuTrigger>审核</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
           <ul class="grid w-[320px] max-w-full gap-1">
             <li>
@@ -107,7 +107,7 @@ import {
                 <div class="flex items-center gap-2 text-sm font-medium text-foreground">
                   <ShieldCheckIcon aria-hidden="true" /><span>在线判定</span>
                 </div>
-                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">当班良率 99.2%</div>
+                <div class="mt-0.5 pl-6 text-xs text-muted-foreground">当前达标率 99.2%</div>
               </NvNavigationMenuLink>
             </li>
             <li>
@@ -137,16 +137,16 @@ import {
 <NvNavigationMenu class="w-full max-w-none">
   <NvNavigationMenuList>
     <NvNavigationMenuItem>
-      <NvNavigationMenuTrigger>生产</NvNavigationMenuTrigger>
+      <NvNavigationMenuTrigger>工作</NvNavigationMenuTrigger>
       <NvNavigationMenuContent>
         <ul class="grid w-[420px] max-w-full grid-cols-1 gap-1 sm:grid-cols-2">
           <li>
             <NvNavigationMenuLink href="/components/desktop/data-table">
-              <div class="text-sm font-medium text-foreground">工单</div>
-              <div class="text-xs text-muted-foreground">下达、跟踪与报工 WO-2406</div>
+              <div class="text-sm font-medium text-foreground">记录</div>
+              <div class="text-xs text-muted-foreground">下达、跟踪与提交 REC-2406</div>
             </NvNavigationMenuLink>
           </li>
-          <!-- 排产 / 报表 / 实时看板… -->
+          <!-- 计划 / 报表 / 实时看板… -->
         </ul>
       </NvNavigationMenuContent>
     </NvNavigationMenuItem>
@@ -162,8 +162,8 @@ import {
 ```
 
 共享视口中的内容按内在宽度测量，并为屏幕两侧各保留 `1rem`。网格通过
-`max-w-full` 随内容区收窄，生产入口在窄屏单列、`sm` 起恢复桌面双列；
-设备与质量保留单列。自定义内容也应允许换行、收缩，避免固定子元素超出内容区。
+`max-w-full` 随内容区收窄，工作入口在窄屏单列、`sm` 起恢复桌面双列；
+资源与审核保留单列。自定义内容也应允许换行、收缩，避免固定子元素超出内容区。
 关闭内置视口（`viewport=false`）时仍沿用原有的内容布局方式。
 
 ## 组成

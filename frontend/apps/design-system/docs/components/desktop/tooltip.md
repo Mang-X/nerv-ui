@@ -30,7 +30,7 @@ import { ActivityIcon } from '@lucide/vue'
           悬停提示
         </NvButton>
       </NvTooltipTrigger>
-      <NvTooltipContent>实时采集自 MES 网关</NvTooltipContent>
+      <NvTooltipContent>实时采集自数据网关</NvTooltipContent>
     </NvTooltip>
   </NvTooltipProvider>
 </Demo>
@@ -41,7 +41,7 @@ import { ActivityIcon } from '@lucide/vue'
     <NvTooltipTrigger as-child>
       <NvButton variant="ghost" size="sm">悬停提示</NvButton>
     </NvTooltipTrigger>
-    <NvTooltipContent>实时采集自 MES 网关</NvTooltipContent>
+    <NvTooltipContent>实时采集自数据网关</NvTooltipContent>
   </NvTooltip>
 </NvTooltipProvider>
 ```
@@ -55,7 +55,7 @@ import { ActivityIcon } from '@lucide/vue'
     <div class="flex gap-3">
       <NvTooltip>
         <NvTooltipTrigger as-child><NvButton variant="outline" size="sm">上方</NvButton></NvTooltipTrigger>
-        <NvTooltipContent side="top">节拍 42s / 件</NvTooltipContent>
+        <NvTooltipContent side="top">频率 42s / 次</NvTooltipContent>
       </NvTooltip>
       <NvTooltip>
         <NvTooltipTrigger as-child><NvButton variant="outline" size="sm">右侧</NvButton></NvTooltipTrigger>
@@ -63,7 +63,7 @@ import { ActivityIcon } from '@lucide/vue'
       </NvTooltip>
       <NvTooltip>
         <NvTooltipTrigger as-child><NvButton variant="outline" size="sm">下方</NvButton></NvTooltipTrigger>
-        <NvTooltipContent side="bottom">交期 2026-06-22</NvTooltipContent>
+        <NvTooltipContent side="bottom">截止 2026-06-22</NvTooltipContent>
       </NvTooltip>
     </div>
   </NvTooltipProvider>

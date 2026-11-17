@@ -22,7 +22,7 @@ const applyReceipt = ref('尚未应用示例条件')
 
 function applyExampleFilters() {
   sheetOpen.value = false
-  applyReceipt.value = '已在本页选择示例条件：A 线；待派发；2026-06-01 至 2026-06-30'
+  applyReceipt.value = '已在本页选择示例条件：Alpha 组；待指派；2026-06-01 至 2026-06-30'
 }
 </script>
 
@@ -48,20 +48,20 @@ function applyExampleFilters() {
       <NvSheetHeader>
         <NvSheetTitle>高级筛选</NvSheetTitle>
         <NvSheetDescription>
-          以下为固定只读条件，仅展示抽屉布局。应用后在本页显示条件回执，不筛选实际工单列表。
+          以下为固定只读条件，仅展示抽屉布局。应用后在本页显示条件回执，不筛选实际记录列表。
         </NvSheetDescription>
       </NvSheetHeader>
       <div class="flex flex-col gap-4 px-4">
         <div class="flex flex-col gap-1.5">
-          <span class="text-sm text-muted-foreground">产线</span>
-          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">A 线</div>
+          <span class="text-sm text-muted-foreground">分组</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">Alpha 组</div>
         </div>
         <div class="flex flex-col gap-1.5">
-          <span class="text-sm text-muted-foreground">工单状态</span>
-          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">待派发</div>
+          <span class="text-sm text-muted-foreground">记录状态</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">待指派</div>
         </div>
         <div class="flex flex-col gap-1.5">
-          <span class="text-sm text-muted-foreground">计划完工日期</span>
+          <span class="text-sm text-muted-foreground">计划完成日期</span>
           <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm tabular-nums">2026-06-01 至 2026-06-30</div>
         </div>
       </div>
@@ -96,7 +96,7 @@ const applyReceipt = ref('尚未应用示例条件')
 
 function applyExampleFilters() {
   sheetOpen.value = false
-  applyReceipt.value = '已在本页选择示例条件：A 线；待派发；2026-06-01 至 2026-06-30'
+  applyReceipt.value = '已在本页选择示例条件：Alpha 组；待指派；2026-06-01 至 2026-06-30'
 }
 </script>
 
@@ -109,20 +109,20 @@ function applyExampleFilters() {
       <NvSheetHeader>
         <NvSheetTitle>高级筛选</NvSheetTitle>
         <NvSheetDescription
-          >以下为固定只读条件，仅展示抽屉布局。应用后在本页显示条件回执，不筛选实际工单列表。</NvSheetDescription
+          >以下为固定只读条件，仅展示抽屉布局。应用后在本页显示条件回执，不筛选实际记录列表。</NvSheetDescription
         >
       </NvSheetHeader>
       <div class="flex flex-col gap-4 px-4">
         <div class="flex flex-col gap-1.5">
-          <span class="text-sm text-muted-foreground">产线</span>
-          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">A 线</div>
+          <span class="text-sm text-muted-foreground">分组</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">Alpha 组</div>
         </div>
         <div class="flex flex-col gap-1.5">
-          <span class="text-sm text-muted-foreground">工单状态</span>
-          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">待派发</div>
+          <span class="text-sm text-muted-foreground">记录状态</span>
+          <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm">待指派</div>
         </div>
         <div class="flex flex-col gap-1.5">
-          <span class="text-sm text-muted-foreground">计划完工日期</span>
+          <span class="text-sm text-muted-foreground">计划完成日期</span>
           <div class="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm tabular-nums">
             2026-06-01 至 2026-06-30
           </div>

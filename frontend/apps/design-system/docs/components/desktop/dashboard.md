@@ -16,7 +16,7 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 
 控制台页面的标准外壳区块：组合 `@nerv-iip/ui` 稳定导出的 `Sidebar` 系统（可折叠 / `NvSidebarRail` / 移动抽屉）、inset 内容区与顶部栏。搭建控制台页面应从它起步，而不是手工拼装分区组件。侧栏导航用 `SidebarGroup` / `SidebarMenu` / `SidebarMenuButton` 组织。
 
-本页“控制台”面包屑返回文档首页，当前“工单总览”保持不可点击；此处不连接真实业务控制台。
+本页“控制台”面包屑返回文档首页，当前“记录总览”保持不可点击；此处不连接真实业务控制台。
 
 ## 完整外壳
 
@@ -24,21 +24,21 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 <div class="nv-shell-demo w-full">
   <NvAppShellInset collapsible="icon">
     <template #sidebar-header>
-      <NvSidebarBrand name="Nerv-IIP" sub="总装一厂 · 早班" logo="N" />
+      <NvSidebarBrand name="Nerv-IIP" sub="Alpha 组 · 值班" logo="N" />
     </template>
     <template #sidebar>
       <SidebarGroup>
-        <SidebarGroupLabel>生产</SidebarGroupLabel>
+        <SidebarGroupLabel>工作区</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem><SidebarMenuButton :is-active="true"><LayoutDashboardIcon /><span>总览</span></SidebarMenuButton></SidebarMenuItem>
-          <SidebarMenuItem><SidebarMenuButton><BoxesIcon /><span>工单</span></SidebarMenuButton></SidebarMenuItem>
-          <SidebarMenuItem><SidebarMenuButton><ClipboardCheckIcon /><span>质检</span></SidebarMenuButton></SidebarMenuItem>
+          <SidebarMenuItem><SidebarMenuButton><BoxesIcon /><span>记录</span></SidebarMenuButton></SidebarMenuItem>
+          <SidebarMenuItem><SidebarMenuButton><ClipboardCheckIcon /><span>审核</span></SidebarMenuButton></SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroup>
       <SidebarGroup>
         <SidebarGroupLabel>资源</SidebarGroupLabel>
         <SidebarMenu>
-          <SidebarMenuItem><SidebarMenuButton><WrenchIcon /><span>设备</span><NvSidebarDot tone="ok" /></SidebarMenuButton></SidebarMenuItem>
+          <SidebarMenuItem><SidebarMenuButton><WrenchIcon /><span>资源</span><NvSidebarDot tone="ok" /></SidebarMenuButton></SidebarMenuItem>
           <SidebarMenuItem><SidebarMenuButton><SettingsIcon /><span>设置</span></SidebarMenuButton></SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroup>
@@ -47,7 +47,7 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton size="lg">
-            <NvSidebarUser name="张伟" role="班长 · 早班" initials="张" />
+            <NvSidebarUser name="张伟" role="组长 · 值班" initials="张" />
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
@@ -57,14 +57,14 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
         <BreadcrumbList>
           <BreadcrumbItem><BreadcrumbLink href="/">控制台</BreadcrumbLink></BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem><BreadcrumbPage>工单总览</BreadcrumbPage></BreadcrumbItem>
+          <BreadcrumbItem><BreadcrumbPage>记录总览</BreadcrumbPage></BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     </template>
     <div class="grid gap-4 sm:grid-cols-3">
-      <div class="rounded-xl border border-border bg-card p-4"><div class="text-xs text-muted-foreground">今日产出</div><div class="mt-1 text-2xl font-semibold tabular-nums">412 件</div></div>
-      <div class="rounded-xl border border-border bg-card p-4"><div class="text-xs text-muted-foreground">在制工单</div><div class="mt-1 text-2xl font-semibold tabular-nums">18</div></div>
-      <div class="rounded-xl border border-border bg-card p-4"><div class="text-xs text-muted-foreground">设备 OEE</div><div class="mt-1 text-2xl font-semibold tabular-nums">78.6%</div></div>
+      <div class="rounded-xl border border-border bg-card p-4"><div class="text-xs text-muted-foreground">今日完成</div><div class="mt-1 text-2xl font-semibold tabular-nums">412 条</div></div>
+      <div class="rounded-xl border border-border bg-card p-4"><div class="text-xs text-muted-foreground">进行中记录</div><div class="mt-1 text-2xl font-semibold tabular-nums">18</div></div>
+      <div class="rounded-xl border border-border bg-card p-4"><div class="text-xs text-muted-foreground">资源利用率</div><div class="mt-1 text-2xl font-semibold tabular-nums">78.6%</div></div>
     </div>
   </NvAppShellInset>
 </div>
@@ -89,13 +89,13 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 
 ```vue
 <NvAppShellInset collapsible="icon">
-  <template #sidebar-header><NvSidebarBrand name="Nerv-IIP" sub="总装一厂 · 早班" logo="N" /></template>
+  <template #sidebar-header><NvSidebarBrand name="Nerv-IIP" sub="Alpha 组 · 值班" logo="N" /></template>
   <template #sidebar>
     <SidebarGroup>
-      <SidebarGroupLabel>生产</SidebarGroupLabel>
+      <SidebarGroupLabel>工作区</SidebarGroupLabel>
       <SidebarMenu>
         <SidebarMenuItem><SidebarMenuButton :is-active="true"><LayoutDashboardIcon /><span>总览</span></SidebarMenuButton></SidebarMenuItem>
-        <SidebarMenuItem><SidebarMenuButton><WrenchIcon /><span>设备</span><NvSidebarDot tone="ok" /></SidebarMenuButton></SidebarMenuItem>
+        <SidebarMenuItem><SidebarMenuButton><WrenchIcon /><span>资源</span><NvSidebarDot tone="ok" /></SidebarMenuButton></SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
   </template>
@@ -103,7 +103,7 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
     <SidebarMenu>
       <SidebarMenuItem>
         <SidebarMenuButton size="lg">
-          <NvSidebarUser name="张伟" role="班长 · 早班" initials="张" />
+          <NvSidebarUser name="张伟" role="组长 · 值班" initials="张" />
         </SidebarMenuButton>
       </SidebarMenuItem>
     </SidebarMenu>
@@ -113,7 +113,7 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
       <BreadcrumbList>
         <BreadcrumbItem><BreadcrumbLink href="/">控制台</BreadcrumbLink></BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem><BreadcrumbPage>工单总览</BreadcrumbPage></BreadcrumbItem>
+        <BreadcrumbItem><BreadcrumbPage>记录总览</BreadcrumbPage></BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   </template>

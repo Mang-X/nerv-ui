@@ -7,24 +7,24 @@ import { nvMessage, nvNotification, NvNotifierHost, NvButton } from '@nerv-iip/u
 
 function fireMessage(kind) {
   const map = {
-    info: () => nvMessage.info('已同步 MES 网关'),
+    info: () => nvMessage.info('已同步数据网关'),
     success: () => nvMessage.success('保存成功'),
-    warning: () => nvMessage.warning('库存接近下限'),
+    warning: () => nvMessage.warning('配额接近下限'),
     error: () => nvMessage.error('网络连接中断'),
   }
   map[kind]()
 }
 function fireBurst() {
   nvMessage.success('已保存草稿')
-  setTimeout(() => nvMessage.info('已同步 MES 网关'), 140)
-  setTimeout(() => nvMessage.warning('库存接近下限'), 280)
+  setTimeout(() => nvMessage.info('已同步数据网关'), 140)
+  setTimeout(() => nvMessage.warning('配额接近下限'), 280)
 }
 function fireNotification(kind) {
   const map = {
-    info: () => nvNotification.info('排产已更新', { description: '今日计划重排，受影响工单 6 张。' }),
-    success: () => nvNotification.success('保养工单已创建', { description: 'CNC-07 · 今晚 22:00 执行。' }),
-    warning: () => nvNotification.warning('B 线物料不足', { description: '液压阀体 V3 缺口 452 件，已转采购申请。' }),
-    error: () => nvNotification.error('派工失败', { description: '工作中心 WC-ASM-04 处于阻塞状态。' }),
+    info: () => nvNotification.info('计划已更新', { description: '今日安排重排，受影响条目 6 条。' }),
+    success: () => nvNotification.success('任务已创建', { description: 'RES-07 · 今晚 22:00 执行。' }),
+    warning: () => nvNotification.warning('配额即将用尽', { description: 'Beta 组本月配额剩 5%，请提前申请扩容。' }),
+    error: () => nvNotification.error('指派失败', { description: '资源节点 RES-ASM-04 处于阻塞状态。' }),
   }
   map[kind]()
 }
@@ -86,8 +86,8 @@ import { nvNotification } from '@nerv-iip/ui'
 <template>
   <NvButton
     @click="
-      nvNotification.warning('B 线物料不足', {
-        description: '液压阀体 V3 缺口 452 件，已转采购申请。',
+      nvNotification.warning('配额即将用尽', {
+        description: 'Beta 组本月配额剩 5%，请提前申请扩容。',
       })
     "
     >预警</NvButton

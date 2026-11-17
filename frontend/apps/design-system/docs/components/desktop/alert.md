@@ -15,15 +15,15 @@ import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
 
 <Demo>
   <Alert class="max-w-md">
-    <AlertTitle>排产已锁定</AlertTitle>
-    <AlertDescription>今日 A 线计划已下发，物料预占完成，开工后不可再调整顺序。</AlertDescription>
+    <AlertTitle>计划已锁定</AlertTitle>
+    <AlertDescription>今日分组 A 计划已下发，所需资源已锁定，开始后不可再调整顺序。</AlertDescription>
   </Alert>
 </Demo>
 
 ```vue
 <Alert>
-  <AlertTitle>排产已锁定</AlertTitle>
-  <AlertDescription>今日 A 线计划已下发，物料预占完成，开工后不可再调整顺序。</AlertDescription>
+  <AlertTitle>计划已锁定</AlertTitle>
+  <AlertDescription>今日分组 A 计划已下发，所需资源已锁定，开始后不可再调整顺序。</AlertDescription>
 </Alert>
 ```
 
@@ -34,7 +34,7 @@ import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
 <Demo>
   <Alert class="max-w-md">
     <InfoIcon aria-hidden="true" />
-    <AlertTitle>MES 网关已同步</AlertTitle>
+    <AlertTitle>数据网关已同步</AlertTitle>
     <AlertDescription>最近一次采集于 16:00，下一次将在 5 分钟后自动拉取。</AlertDescription>
   </Alert>
 </Demo>
@@ -42,7 +42,7 @@ import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
 ```vue
 <Alert>
   <InfoIcon aria-hidden="true" />
-  <AlertTitle>MES 网关已同步</AlertTitle>
+  <AlertTitle>数据网关已同步</AlertTitle>
   <AlertDescription>最近一次采集于 16:00，下一次将在 5 分钟后自动拉取。</AlertDescription>
 </Alert>
 ```
@@ -52,16 +52,16 @@ import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
 <Demo>
   <Alert variant="destructive" class="max-w-md">
     <TriangleAlertIcon aria-hidden="true" />
-    <AlertTitle>工作中心阻塞</AlertTitle>
-    <AlertDescription>WC-ASM-04 处于阻塞状态，已暂停派工，请先处理设备报警。</AlertDescription>
+    <AlertTitle>资源节点阻塞</AlertTitle>
+    <AlertDescription>RES-ASM-04 处于阻塞状态，已暂停指派，请先处理报警。</AlertDescription>
   </Alert>
 </Demo>
 
 ```vue
 <Alert variant="destructive">
   <TriangleAlertIcon aria-hidden="true" />
-  <AlertTitle>工作中心阻塞</AlertTitle>
-  <AlertDescription>WC-ASM-04 处于阻塞状态，已暂停派工，请先处理设备报警。</AlertDescription>
+  <AlertTitle>资源节点阻塞</AlertTitle>
+  <AlertDescription>RES-ASM-04 处于阻塞状态，已暂停指派，请先处理报警。</AlertDescription>
 </Alert>
 ```
 

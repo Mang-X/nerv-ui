@@ -18,9 +18,9 @@ import { NvPage, NvPageAside } from '@nerv-iip/ui'
       <NvPageAside>
         <nav class="space-y-1 text-sm">
           <a class="block rounded-md bg-accent px-2 py-1.5 font-medium text-brand-strong">概览</a>
-          <a class="block rounded-md px-2 py-1.5 text-muted-foreground">工单 WO</a>
-          <a class="block rounded-md px-2 py-1.5 text-muted-foreground">工序 OP</a>
-          <a class="block rounded-md px-2 py-1.5 text-muted-foreground">设备 EQ</a>
+          <a class="block rounded-md px-2 py-1.5 text-muted-foreground">记录</a>
+          <a class="block rounded-md px-2 py-1.5 text-muted-foreground">步骤</a>
+          <a class="block rounded-md px-2 py-1.5 text-muted-foreground">资源</a>
         </nav>
       </NvPageAside>
     </template>
@@ -33,8 +33,8 @@ import { NvPage, NvPageAside } from '@nerv-iip/ui'
         <p class="mb-2 text-xs font-medium text-muted-foreground">本页目录</p>
         <ul class="space-y-1 text-sm text-muted-foreground">
           <li>基本信息</li>
-          <li>工艺路线</li>
-          <li>质检记录</li>
+          <li>流程设置</li>
+          <li>审核记录</li>
         </ul>
       </NvPageAside>
     </template>

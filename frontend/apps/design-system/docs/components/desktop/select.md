@@ -13,7 +13,7 @@ import {
 import { ref } from 'vue'
 import LocalFormSectionExample from '../../.vitepress/examples/localFormSectionExample.vue'
 
-const lineValue = ref('line-a')
+const groupValue = ref('group-a')
 const statusValue = ref()
 </script>
 
@@ -25,24 +25,24 @@ const statusValue = ref()
 
 <Demo>
   <div style="max-width: 280px">
-    <NvSelect v-model="lineValue">
-      <NvSelectTrigger><NvSelectValue placeholder="选择产线" /></NvSelectTrigger>
+    <NvSelect v-model="groupValue">
+      <NvSelectTrigger><NvSelectValue placeholder="选择分组" /></NvSelectTrigger>
       <NvSelectContent>
-        <NvSelectItem value="line-a">A 线 · 精密加工</NvSelectItem>
-        <NvSelectItem value="line-b">B 线 · 锻压</NvSelectItem>
-        <NvSelectItem value="line-c">C 线 · 总装</NvSelectItem>
+        <NvSelectItem value="group-a">Alpha 组 · 设计</NvSelectItem>
+        <NvSelectItem value="group-b">Beta 组 · 实现</NvSelectItem>
+        <NvSelectItem value="group-c">Gamma 组 · 验证</NvSelectItem>
       </NvSelectContent>
     </NvSelect>
   </div>
 </Demo>
 
 ```vue
-<NvSelect v-model="lineValue">
-  <NvSelectTrigger><NvSelectValue placeholder="选择产线" /></NvSelectTrigger>
+<NvSelect v-model="groupValue">
+  <NvSelectTrigger><NvSelectValue placeholder="选择分组" /></NvSelectTrigger>
   <NvSelectContent>
-    <NvSelectItem value="line-a">A 线 · 精密加工</NvSelectItem>
-    <NvSelectItem value="line-b">B 线 · 锻压</NvSelectItem>
-    <NvSelectItem value="line-c">C 线 · 总装</NvSelectItem>
+    <NvSelectItem value="group-a">Alpha 组 · 设计</NvSelectItem>
+    <NvSelectItem value="group-b">Beta 组 · 实现</NvSelectItem>
+    <NvSelectItem value="group-c">Gamma 组 · 验证</NvSelectItem>
   </NvSelectContent>
 </NvSelect>
 ```
@@ -52,10 +52,10 @@ const statusValue = ref()
 <Demo>
   <div style="max-width: 280px">
     <NvSelect v-model="statusValue">
-      <NvSelectTrigger><NvSelectValue placeholder="选择工单状态" /></NvSelectTrigger>
+      <NvSelectTrigger><NvSelectValue placeholder="选择条目状态" /></NvSelectTrigger>
       <NvSelectContent>
-        <NvSelectItem value="running">执行中</NvSelectItem>
-        <NvSelectItem value="ready">可开工</NvSelectItem>
+        <NvSelectItem value="running">进行中</NvSelectItem>
+        <NvSelectItem value="ready">已就绪</NvSelectItem>
         <NvSelectItem value="completed">已完成</NvSelectItem>
         <NvSelectItem value="blocked">阻塞</NvSelectItem>
       </NvSelectContent>
@@ -65,9 +65,9 @@ const statusValue = ref()
 
 ```vue
 <NvSelect v-model="statusValue">
-  <NvSelectTrigger><NvSelectValue placeholder="选择工单状态" /></NvSelectTrigger>
+  <NvSelectTrigger><NvSelectValue placeholder="选择条目状态" /></NvSelectTrigger>
   <NvSelectContent>
-    <NvSelectItem value="running">执行中</NvSelectItem>
+    <NvSelectItem value="running">进行中</NvSelectItem>
     <NvSelectItem value="completed">已完成</NvSelectItem>
   </NvSelectContent>
 </NvSelect>

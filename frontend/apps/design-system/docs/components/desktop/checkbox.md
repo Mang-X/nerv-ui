@@ -7,8 +7,8 @@ import { NvCheckbox } from '@nerv-iip/ui'
 import { ref } from 'vue'
 
 const agreed = ref(true)
-const lockMaterial = ref(false)
-const genPicking = ref(true)
+const lockItems = ref(false)
+const genOrder = ref(true)
 </script>
 
 # NvCheckbox 复选框
@@ -20,14 +20,14 @@ const genPicking = ref(true)
 <Demo>
   <label style="display:flex;align-items:center;gap:10px;font-size:14px">
     <NvCheckbox v-model="agreed" />
-    派发后立即锁定物料并生成领料单
+    提交后立即锁定条目并生成清单
   </label>
 </Demo>
 
 ```vue
 <label style="display:flex;align-items:center;gap:10px">
   <NvCheckbox v-model="agreed" />
-  派发后立即锁定物料并生成领料单
+  提交后立即锁定条目并生成清单
 </label>
 ```
 
@@ -36,21 +36,21 @@ const genPicking = ref(true)
 <Demo>
   <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
     <label style="display:flex;align-items:center;gap:10px">
-      <NvCheckbox v-model="lockMaterial" /> 锁定物料
+      <NvCheckbox v-model="lockItems" /> 锁定条目
     </label>
     <label style="display:flex;align-items:center;gap:10px">
-      <NvCheckbox v-model="genPicking" /> 生成领料单
+      <NvCheckbox v-model="genOrder" /> 生成清单
     </label>
     <label style="display:flex;align-items:center;gap:10px;opacity:.6">
-      <NvCheckbox :disabled="true" /> 自动报工（暂不可用）
+      <NvCheckbox :disabled="true" /> 自动提交（暂不可用）
     </label>
   </div>
 </Demo>
 
 ```vue
-<label><NvCheckbox v-model="lockMaterial" /> 锁定物料</label>
-<label><NvCheckbox v-model="genPicking" /> 生成领料单</label>
-<label><NvCheckbox disabled /> 自动报工（暂不可用）</label>
+<label><NvCheckbox v-model="lockItems" /> 锁定条目</label>
+<label><NvCheckbox v-model="genOrder" /> 生成清单</label>
+<label><NvCheckbox disabled /> 自动提交（暂不可用）</label>
 ```
 
 ## 属性

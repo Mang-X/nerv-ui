@@ -7,29 +7,29 @@ pageClass: nv-wide
 import { NvDescriptions, NvStatusBadge } from '@nerv-iip/ui'
 
 const items = [
-  { key: 'code', label: '工单号', value: 'WO-2406-0413' },
-  { label: '产品', value: '前桥壳体 A2' },
-  { label: '工作中心', value: 'WC-CNC-07' },
+  { key: 'code', label: '记录号', value: 'REC-2406-0413' },
+  { label: '名称', value: '示例条目 A2' },
+  { label: '所属节点', value: 'RES-07' },
   { label: '负责人', value: '张伟' },
-  { label: '计划数量', value: '480 件' },
-  { label: '已完成', value: '312 件' },
+  { label: '计划数量', value: '480 条' },
+  { label: '已完成', value: '312 条' },
   { key: 'status', label: '状态', value: 'running' },
   { label: '优先级', value: '高' },
-  { label: '交期', value: '2026-06-22' },
-  { label: '备注', value: '首件需三坐标全尺寸检测，合格后方可批量。', span: 3 },
+  { label: '截止日期', value: '2026-06-22' },
+  { label: '备注', value: '首条需完整检查，通过后方可继续录入其余条目。', span: 3 },
 ]
 
 const clampItems = [
-  { label: '首件检验工艺要求', value: '三坐标全尺寸' },
-  { label: '关联物料批次号', value: 'MTL-7782-0034' },
-  { label: '客户与交付地点', value: '一汽解放 · 长春' },
-  { label: '首检报告存储路径', value: 'first-article-v3.pdf' },
+  { label: '首条检查要求', value: '全字段核对' },
+  { label: '关联批次号', value: 'BAT-7782-0034' },
+  { label: '归属与交付地点', value: '示例客户 · 某地' },
+  { label: '检查报告存储路径', value: 'first-check-v3.pdf' },
 ]
 </script>
 
 # NvDescriptions 描述列表
 
-工单 / 设备等实体详情页的键值列表。`NvDescriptions` 支持多列网格、单元格跨列、`#<key>` 自定义值插槽，以及带边框的正式记录样式。
+记录 / 资源等实体详情页的键值列表。`NvDescriptions` 支持多列网格、单元格跨列、`#<key>` 自定义值插槽，以及带边框的正式记录样式。
 
 ## 网格
 

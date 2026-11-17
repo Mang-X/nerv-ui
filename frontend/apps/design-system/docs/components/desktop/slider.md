@@ -7,7 +7,7 @@ import { NvSlider } from '@nerv-iip/ui'
 import { ref } from 'vue'
 
 const util = ref([75])
-const taktRange = ref([45, 75])
+const durationRange = ref([45, 75])
 const step = ref([60])
 </script>
 
@@ -22,7 +22,7 @@ const step = ref([60])
 <Demo>
   <div class="flex w-full max-w-md flex-col gap-3">
     <div class="flex justify-between text-sm text-muted-foreground">
-      <span>稼动率告警阈值</span><span class="font-medium text-foreground">{{ util[0] }}%</span>
+      <span>利用率告警阈值</span><span class="font-medium text-foreground">{{ util[0] }}%</span>
     </div>
     <NvSlider v-model="util" :max="100" :step="1" />
   </div>
@@ -39,14 +39,14 @@ const step = ref([60])
 <Demo>
   <div class="flex w-full max-w-md flex-col gap-3">
     <div class="flex justify-between text-sm text-muted-foreground">
-      <span>节拍区间（秒）</span><span class="font-medium text-foreground">{{ taktRange[0] }} – {{ taktRange[1] }}</span>
+      <span>时长区间（秒）</span><span class="font-medium text-foreground">{{ durationRange[0] }} – {{ durationRange[1] }}</span>
     </div>
-    <NvSlider v-model="taktRange" :min="0" :max="120" :step="5" />
+    <NvSlider v-model="durationRange" :min="0" :max="120" :step="5" />
   </div>
 </Demo>
 
 ```vue
-<NvSlider v-model="taktRange" :min="0" :max="120" :step="5" />
+<NvSlider v-model="durationRange" :min="0" :max="120" :step="5" />
 ```
 
 ## 步长与禁用

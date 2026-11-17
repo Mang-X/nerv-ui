@@ -8,7 +8,7 @@ import { NvAreaChart, NvLineChart, NvBarChart, NvDonutChart } from '@nerv-iip/ui
 import { ref } from 'vue'
 
 const annotations = [{ id: 'review', axis: 'x', from: 1, to: 3, label: '查看周二至周四', tone: 'info' }]
-const points = [{ id: 'thu', index: 3, seriesKey: 'actual', label: '周四实际产量' }]
+const points = [{ id: 'thu', index: 3, seriesKey: 'actual', label: '周四实际值' }]
 const outputSeries = [
   { label: '08:00', value: 420 },
   { label: '10:00', value: 680 },
@@ -44,15 +44,15 @@ function selectMarker(marker) {
 }
 
 const outputByCenter = [
-  { center: 'CNC-07', good: 412, scrap: 18 },
-  { center: 'FORGE-02', good: 1200, scrap: 24 },
-  { center: 'CNC-11', good: 96, scrap: 6 },
-  { center: 'ASM-04', good: 188, scrap: 12 },
-  { center: 'STAMP-01', good: 2740, scrap: 60 },
+  { center: 'RES-07', good: 412, scrap: 18 },
+  { center: 'RES-02', good: 1200, scrap: 24 },
+  { center: 'RES-11', good: 96, scrap: 6 },
+  { center: 'RES-04', good: 188, scrap: 12 },
+  { center: 'RES-01', good: 2740, scrap: 60 },
 ]
 const outputByCenterSeries = [
-  { key: 'good', label: '良品' },
-  { key: 'scrap', label: '废品' },
+  { key: 'good', label: '合格' },
+  { key: 'scrap', label: '不合格' },
 ]
 
 const statusMix = [
@@ -65,11 +65,11 @@ const statusMix = [
 
 # Chart 图表
 
-基于 unovis 的一组工厂场景图表：面积、折线、柱状、环形。颜色取自设计令牌，随运行时品牌色重新着色。
+基于 unovis 的一组数据可视化图表：面积、折线、柱状、环形。颜色取自设计令牌，随运行时品牌色重新着色。
 
 ## 面积图 NvAreaChart
 
-单系列累计趋势，适合当班产出等时间序列。
+单系列累计趋势，适合当日完成数等时间序列。
 
 <Demo>
   <div class="w-full">
@@ -94,7 +94,7 @@ const outputSeries = [
 
 ## 折线图 NvLineChart
 
-多系列对比，例如计划与实际产量。
+多系列对比，例如计划与实际完成数。
 
 <Demo>
   <div class="w-full">
@@ -127,7 +127,7 @@ const planActualSeries = [
 
 ## 柱状图 NvBarChart
 
-分类（可分组）对比，例如各工作中心的良品 / 废品。
+分类（可分组）对比，例如各资源的合格 / 不合格。
 
 <Demo>
   <div class="w-full">
@@ -138,12 +138,12 @@ const planActualSeries = [
 ```vue
 <script setup>
 const outputByCenter = [
-  { center: 'CNC-07', good: 412, scrap: 18 },
-  { center: 'FORGE-02', good: 1200, scrap: 24 },
+  { center: 'RES-07', good: 412, scrap: 18 },
+  { center: 'RES-02', good: 1200, scrap: 24 },
 ]
 const outputByCenterSeries = [
-  { key: 'good', label: '良品' },
-  { key: 'scrap', label: '废品' },
+  { key: 'good', label: '合格' },
+  { key: 'scrap', label: '不合格' },
 ]
 </script>
 
@@ -154,11 +154,11 @@ const outputByCenterSeries = [
 
 ## 环形图 NvDonutChart
 
-占比构成，例如工单状态分布，支持中心标签。
+占比构成，例如条目状态分布，支持中心标签。
 
 <Demo>
   <div class="w-full max-w-sm">
-    <NvDonutChart :data="statusMix" :height="180" central-label="118" central-sub-label="工单" />
+    <NvDonutChart :data="statusMix" :height="180" central-label="118" central-sub-label="条目" />
   </div>
 </Demo>
 
@@ -173,7 +173,7 @@ const statusMix = [
 </script>
 
 <template>
-  <NvDonutChart :data="statusMix" :height="180" central-label="118" central-sub-label="工单" />
+  <NvDonutChart :data="statusMix" :height="180" central-label="118" central-sub-label="条目" />
 </template>
 ```
 
@@ -238,7 +238,7 @@ const planActualSeries = [
 const annotations = [
   { id: 'review', axis: 'x', from: 1, to: 3, label: '查看周二至周四', tone: 'info' },
 ]
-const points = [{ id: 'thu', index: 3, seriesKey: 'actual', label: '周四实际产量' }]
+const points = [{ id: 'thu', index: 3, seriesKey: 'actual', label: '周四实际值' }]
 
 const selectedPoint = ref('尚未选择定位点')
 
