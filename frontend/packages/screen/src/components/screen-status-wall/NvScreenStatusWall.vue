@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
+import { darkTheme } from '../../theme/tokens.stylex'
 import { focus } from '../../theme/shared.stylex'
 import NvScreenStatusTag from '../screen-status-tag/NvScreenStatusTag.vue'
 import { styles } from './ScreenStatusWall.styles'
@@ -21,7 +22,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{ select: [item: StatusWallItem] }>()
 
-const rootSx = computed(() => stylex.props(styles.root))
+const rootSx = computed(() => stylex.props(darkTheme, styles.root))
 const viewportSx = computed(() => stylex.props(styles.viewport, focus.subtle))
 const cellsSx = computed(() => stylex.props(styles.cells))
 

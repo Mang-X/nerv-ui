@@ -80,6 +80,7 @@ export const styles = stylex.create({
     fontVariantNumeric: 'tabular-nums',
     overflowWrap: 'anywhere',
   },
+  metricUnit: { marginInlineStart: 4, color: scr.fgMuted, fontSize: scrType.xs, fontWeight: 500 },
   progress: { display: 'flex', flexDirection: 'column', gap: 6 },
   progressHead: {
     display: 'flex',

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as stylex from '@stylexjs/stylex'
-import { computed, useSlots } from 'vue'
+import { computed } from 'vue'
+import { darkTheme } from '../../theme/tokens.stylex'
 import { focus } from '../../theme/shared.stylex'
 import { styles } from './AlarmTable.styles'
 import type {
@@ -30,8 +31,6 @@ const props = withDefaults(
     ariaLabel: '告警列表',
   },
 )
-
-const slots = useSlots()
 
 const defaultLevelLabels: Record<AlarmLevel, string> = {
   critical: '紧急',
@@ -63,7 +62,7 @@ const statusStyles: Record<AlarmTone, stylex.StyleXStyles> = {
 }
 
 const hasStatus = computed(() => props.rows.some((row) => row.status !== undefined))
-const rootSx = computed(() => stylex.props(styles.root, focus.subtle))
+const rootSx = computed(() => stylex.props(darkTheme, styles.root, focus.subtle))
 const tableSx = computed(() => stylex.props(styles.table))
 const headSx = computed(() => stylex.props(styles.headCell))
 

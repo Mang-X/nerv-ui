@@ -62,7 +62,9 @@ export const styles = stylex.create({
     transitionProperty: 'color',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
     ':hover': { color: scr.fg },
     ':disabled': { cursor: 'not-allowed', opacity: 0.45 },
     ':is([data-checked])': {

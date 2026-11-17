@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as stylex from '@stylexjs/stylex'
 import { computed, shallowRef, watch } from 'vue'
+import { darkTheme } from '../../theme/tokens.stylex'
 import { focus } from '../../theme/shared.stylex'
 import { formatOptional } from '../../charts/geometry'
 import { styles } from './ScreenHeatmap.styles'
@@ -54,6 +55,8 @@ const legendStyles: Record<HeatmapTone, stylex.StyleXStyles> = {
 
 const focusedKey = shallowRef<string | number | null>(null)
 const hoveredKey = shallowRef<string | number | null>(null)
+
+const rootSx = computed(() => stylex.props(darkTheme, styles.root))
 
 const activeKey = computed(() => hoveredKey.value ?? focusedKey.value)
 const active = computed(() => props.cells.find((cell) => cell.key === activeKey.value) ?? null)
@@ -150,7 +153,7 @@ const tipText = computed(() => {
 </script>
 
 <template>
-  <div :class="stylex.props(styles.root).className">
+  <div :class="rootSx.className" :style="rootSx.style">
     <ul :class="stylex.props(styles.legend).className" aria-label="分档图例">
       <li
         v-for="entry in legendEntries"

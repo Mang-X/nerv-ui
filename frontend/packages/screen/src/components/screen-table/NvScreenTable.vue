@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as stylex from '@stylexjs/stylex'
 import { computed, useSlots } from 'vue'
+import { darkTheme } from '../../theme/tokens.stylex'
 import { focus } from '../../theme/shared.stylex'
 import { styles } from './ScreenTable.styles'
 import type {
@@ -49,7 +50,7 @@ const toneDot = {
   danger: styles.dotDanger,
 } as const
 
-const rootSx = computed(() => stylex.props(styles.root, focus.subtle))
+const rootSx = computed(() => stylex.props(darkTheme, styles.root, focus.subtle))
 const tableSx = computed(() => stylex.props(styles.table))
 
 interface RenderCell {

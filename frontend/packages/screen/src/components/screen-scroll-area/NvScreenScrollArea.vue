@@ -1,6 +1,7 @@
 <script setup lang="ts" generic="T">
 import * as stylex from '@stylexjs/stylex'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { darkTheme } from '../../theme/tokens.stylex'
 import { focus } from '../../theme/shared.stylex'
 import { styles } from './ScreenScrollArea.styles'
 import type { ScreenScrollAreaProps } from './types'
@@ -32,7 +33,7 @@ let media: MediaQueryList | undefined
 
 const manual = computed(() => reducedMotion.value || focused.value)
 
-const rootSx = computed(() => stylex.props(styles.root))
+const rootSx = computed(() => stylex.props(darkTheme, styles.root))
 const viewportSx = computed(() =>
   stylex.props(styles.viewport, manual.value && styles.manualViewport, focus.subtle),
 )

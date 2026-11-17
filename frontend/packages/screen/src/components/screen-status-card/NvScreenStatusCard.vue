@@ -101,7 +101,7 @@ function metricToneStyle(tone: StatusCardTone | undefined) {
       >
         <dt :class="stylex.props(styles.metricLabel).className">{{ metric.label }}</dt>
         <dd :class="stylex.props(styles.metricValue, metricToneStyle(metric.tone)).className">
-          {{ metric.value }}<span v-if="metric.unit"> {{ metric.unit }}</span>
+          {{ metric.value }}<span v-if="metric.unit" :class="stylex.props(styles.metricUnit).className">{{ metric.unit }}</span>
         </dd>
       </div>
     </dl>
