@@ -161,14 +161,14 @@
        focus-within (wrapper) so the halo reads identically on bare inputs and
        decorated frames. Components must not hand-roll their own ring. */
     --nv-focus-ring:
-      0 0 0 3px color-mix(in oklch, var(--nv-brand) 22%, transparent),
-      0 1px 2px 0 color-mix(in oklch, black 6%, transparent);
+      0 0 0 1px var(--nv-brand),
+      0 0 0 4px color-mix(in oklch, var(--nv-brand) 18%, transparent);
     --nv-focus-ring-strong:
-      0 0 0 3px color-mix(in oklch, var(--nv-brand) 30%, transparent),
-      0 1px 2px 0 color-mix(in oklch, black 6%, transparent);
+      0 0 0 1px var(--nv-brand),
+      0 0 0 4px color-mix(in oklch, var(--nv-brand) 26%, transparent);
     --nv-focus-ring-destructive:
-      0 0 0 3px color-mix(in oklch, var(--destructive) 22%, transparent),
-      0 1px 2px 0 color-mix(in oklch, black 6%, transparent);
+      0 0 0 1px var(--destructive),
+      0 0 0 4px color-mix(in oklch, var(--destructive) 18%, transparent);
 
     /* ── One-cycle aliases (ADR 0020 §5 S1) — old name → --nv-* new name.
        Removed next cycle. Downstream direct `var(--brand)`/… refs ride these,
@@ -373,27 +373,6 @@
     --nv-overlay-transform-origin: var(--reka-select-content-transform-origin);
   }
 
-  /* ── Unified focus affordance ─────────────────────────────────────────
-     Apply to the element that carries the ring (the input itself, or the
-     decorated trigger/wrapper). Both paths read the same glow so keyboard
-     focus and click/hover-driven focus-within look identical. */
-  .nv-focusable {
-    transition:
-      box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out),
-      border-color var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
-  }
-  .nv-focusable:focus-visible,
-  .nv-focusable:focus-within {
-    outline: none;
-    box-shadow: var(--nv-focus-ring);
-  }
-  .nv-focusable[data-invalid]:focus-visible,
-  .nv-focusable[data-invalid]:focus-within,
-  .nv-focusable[aria-invalid='true']:focus-visible,
-  .nv-focusable[aria-invalid='true']:focus-within {
-    box-shadow: var(--nv-focus-ring-destructive);
-  }
-
   .nv-dropdown-menu-content {
     --nv-overlay-transform-origin: var(--reka-dropdown-menu-content-transform-origin);
   }
@@ -476,5 +455,32 @@
   }
   to {
     opacity: 0;
+  }
+}
+
+/* ── Unified focus affordance ─────────────────────────────────────────
+   One focus halo for every interactive input/trigger, drawn from
+   --nv-focus-ring(-*). Apply `.nv-focusable` to the element that carries the
+   ring (bare input, or a decorated wrapper); focus-visible (keyboard) and
+   focus-within (wrapper) read the same glow. Direction C (评审裁定):
+   1px brand ring + 4px brand halo — sharp brand line plus restrained glow. */
+@utility nv-focusable {
+  transition:
+    box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out),
+    border-color var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
+
+  &:focus-visible,
+  &:focus-within {
+    outline: none;
+    border-color: var(--nv-brand);
+    box-shadow: var(--nv-focus-ring);
+  }
+
+  &[data-invalid]:focus-visible,
+  &[data-invalid]:focus-within,
+  &[aria-invalid='true']:focus-visible,
+  &[aria-invalid='true']:focus-within {
+    border-color: var(--destructive);
+    box-shadow: var(--nv-focus-ring-destructive);
   }
 }
