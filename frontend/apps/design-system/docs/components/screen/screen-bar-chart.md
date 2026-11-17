@@ -14,7 +14,9 @@ const hours = Array.from({ length: 12 }, (_, i) => `${String(8 + i).padStart(2, 
 
 纵向柱状图——小时流量 / 日产量这类**离散量**的正确形态("一段一个数",柱比面积曲线诚实)。支持 1–2 条序列并排对比;柱体语义色**上实下消**渐隐(与数字强调线同源语言,静态不发光);悬停整列高亮 + HTML 信息卡逐序列读数(文字层不随 SVG 拉伸变形)。基于独立的 `--nv-scr-*` 令牌。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 `series` 传 `{ label, color, data }[]`;高度由外层容器决定。
 
@@ -40,7 +42,7 @@ const hours = Array.from({ length: 12 }, (_, i) => `${String(8 + i).padStart(2, 
 </template>
 ```
 
-## 双序列对比
+### 双序列对比
 
 两条序列按组并排(如出入库对照)。
 
@@ -67,7 +69,7 @@ const hours = Array.from({ length: 12 }, (_, i) => `${String(8 + i).padStart(2, 
 />
 ```
 
-## 自动巡显
+### 自动巡显
 
 `autoplay` 开启后信息卡逐列自动巡显(挂墙无人操作也能读到每一格的数);鼠标悬停即暂停、移出恢复。`prefers-reduced-motion` 下不自动巡显。
 
@@ -88,6 +90,8 @@ const hours = Array.from({ length: 12 }, (_, i) => `${String(8 + i).padStart(2, 
 
 ## API
 
+### NvScreenBarChart 属性
+
 | Prop          | 类型                       | 默认    | 说明                                |
 | ------------- | -------------------------- | ------- | ----------------------------------- |
 | `series`      | `{ label, color, data }[]` | —       | 1–2 条序列(并排分组柱),`data` 等长  |
@@ -96,7 +100,7 @@ const hours = Array.from({ length: 12 }, (_, i) => `${String(8 + i).padStart(2, 
 | `autoplay`    | `boolean`                  | `false` | 信息卡自动巡显(用户悬停时暂停)      |
 | `autoplayMs`  | `number`                   | `2400`  | 巡显间隔(毫秒)                      |
 
-## 独立来源、缺测与巡显（T05/A05）
+## 设计说明
 
 保持原 props/default/主桶导出。`series[].data` 按索引共用最长通道的槽位，建议等长；短数组末尾缺测在信息卡中显示 `—`，真实零值显示 `0` 且柱高为零。空数据没有巡显卡片；缩短、重排或替换来源后，悬停按当前横坐标重新选槽，文字来自当前序列。series label 应唯一，hoverLabels 应逐点表达当前来源身份；xLabels 仍可稀疏等距显示。
 
@@ -118,8 +122,6 @@ const hours = Array.from({ length: 12 }, (_, i) => `${String(8 + i).padStart(2, 
 
 独立演示：`/#screen/charts`。两实例各自持有 SVG gradient 与交互状态；长标签卡片在图内折行，左右半区翻转。真实缩放/坐标证据与 mock mousemove 的逻辑边界分别记录在 `docs/evidence/t05-a05/README.md`。
 
-### 信息卡边界（A05 / F1）
-
-卡片最大宽度为图宽的一半减去内边距余量；槽中心在右半区（>50%）时向左打开，正中点仍向右，10px 间隔计入可用半区。长 hover label 保留全文并自然折行，读数保持当前槽的全部序列值，不按标签长度裁字。
+信息卡边界：卡片最大宽度为图宽的一半减去内边距余量；槽中心在右半区（>50%）时向左打开，正中点仍向右，10px 间隔计入可用半区。长 hover label 保留全文并自然折行，读数保持当前槽的全部序列值，不按标签长度裁字。
 
 卡片保留自然内容高度，不加省略、行数上限或内部滚动。高度仍由宿主提供；对 `overflow:hidden` 的宿主，应给折行后的 label、所有序列行和顶部 4px 留足高度，必要时增高图表容器。本轮实测 100 个 W、两序列在 600×180，三序列在 400×240 下完整可读；这不是任意长度标签和任意小容器都可容纳的保证。真实 `getBoundingClientRect`、文本行 Range 和读数可见性见 [F1 证据](../../../../../../docs/evidence/t05-a05/f1/README.md)。

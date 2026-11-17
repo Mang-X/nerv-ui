@@ -23,7 +23,7 @@ const shiftOptions = [
 
 Pad 大触控的分段控制器：**48px** 高，一点即切，适合 2–4 个互斥视图。比 Pad 上的下拉选择少一次展开-选择的路径。与大屏的 NvScreenSegmented 同源，尺寸按大触控放大。
 
-## 基础
+## 示例
 
 `v-model` 绑定当前值，`options` 提供 `{ value, label }` 列表。组件保持受控：点击或按键发出 `update:modelValue`，选中态由宿主回传的值决定。
 
@@ -47,22 +47,22 @@ const viewOptions = [
 <NvTouchSegmented v-model="view" :options="viewOptions" />
 ```
 
-## 多段
-
 段数建议 ≤4，超过改用列表或标签页。
 
 <Demo>
   <NvTouchSegmented v-model="shift" :options="shiftOptions" />
 </Demo>
 
-## 属性
+## API
+
+### NvTouchSegmented 属性
 
 | 属性         | 说明       | 类型                                 | 默认 |
 | ------------ | ---------- | ------------------------------------ | ---- |
 | `modelValue` | 当前选中值 | `string`                             | —    |
 | `options`    | 选项列表   | `{ value: string; label: string }[]` | —    |
 
-## 事件
+### 事件
 
 | 事件                | 说明       | 载荷     |
 | ------------------- | ---------- | -------- |

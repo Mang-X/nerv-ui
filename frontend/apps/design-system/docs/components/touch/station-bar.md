@@ -10,7 +10,7 @@ import { NvStationBar, NvThemeToggle } from '@nerv-iip/ui'
 
 Pad 顶部的标识栏：左侧大号区域 / 资源名 + 实时状态点（可脉冲），右侧自由插槽放时钟、班次、操作员。是 Pad 看板的页头，对应 PC 的 NvAppHeader、移动的 NvNavBar、大屏的 NvScreenHeader。
 
-## 基础
+## 示例
 
 `station` 区域 / 资源名，`statusLabel` + `tone` 状态，`pulse` 让状态点呼吸（运行中）。
 
@@ -38,15 +38,15 @@ Pad 顶部的标识栏：左侧大号区域 / 资源名 + 实时状态点（可�
 </NvStationBar>
 ```
 
-## 暂停态
-
 停止时用 `tone="warning"` 并停止脉冲，状态一眼可辨。
 
 <Demo block>
   <NvStationBar station="RES-07 · 东仓区" status-label="已暂停" tone="warning" :pulse="false" />
 </Demo>
 
-## 属性
+## API
+
+### NvStationBar 属性
 
 | 属性          | 说明             | 类型                                              | 默认      |
 | ------------- | ---------------- | ------------------------------------------------- | --------- |
@@ -55,7 +55,7 @@ Pad 顶部的标识栏：左侧大号区域 / 资源名 + 实时状态点（可�
 | `tone`        | 状态语气         | `success \| warning \| danger \| info \| neutral` | `success` |
 | `pulse`       | 状态点是否脉冲   | `boolean`                                         | `true`    |
 
-## 插槽
+### 插槽
 
 | 插槽    | 说明                             |
 | ------- | -------------------------------- |

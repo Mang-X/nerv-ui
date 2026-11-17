@@ -26,7 +26,9 @@ const shifts = [
 
 大屏下拉:暗色触发器落下一块发光选项面板,选中行显青色并带勾,面板浮在青色阴影上。键盘可驱动(↑ / ↓ / Enter / Esc),具备 listbox 语义,点击外部即收起。通过 `v-model` 绑定选项 `value`,基于独立的 `--nv-scr-*` 令牌。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 `options` 传 `{ label, value }` 列表,`v-model` 持有选中的 `value`。
 
@@ -52,7 +54,7 @@ const lines = [
 </template>
 ```
 
-## 占位与禁用
+### 占位与禁用
 
 未选中时显示 `placeholder`;`disabled` 整体淡出。
 
@@ -72,7 +74,9 @@ const lines = [
 <NvScreenSelect :options="lines" disabled placeholder="区域锁定" />
 ```
 
-## 属性
+## API
+
+### NvScreenSelect 属性
 
 | 属性          | 说明             | 类型                                           | 默认           |
 | ------------- | ---------------- | ---------------------------------------------- | -------------- |
@@ -81,7 +85,7 @@ const lines = [
 | `placeholder` | 未选中时的占位   | `string`                                       | `'请选择分组'` |
 | `disabled`    | 禁用             | `boolean`                                      | `false`        |
 
-## 浮层、键盘与动态选项
+## 设计说明
 
 Enter / Space / ↓ / ↑ 打开；打开后 ↑ / ↓ 移动活动项，Enter / Space 选择。Esc 关闭并保留触发器焦点，Tab 关闭并继续浏览器的焦点顺序；外点关闭时保留外部目标焦点。选值后回到触发器。禁用会关闭已开的浮层，所有选择动作均受禁用 guard 约束。
 

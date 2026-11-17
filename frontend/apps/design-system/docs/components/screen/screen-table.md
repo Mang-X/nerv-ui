@@ -22,7 +22,7 @@ const visibleRows = computed(() => rows.slice((page.value - 1) * 5, page.value *
 
 固定深色、发丝行线、按列对齐。组件只呈现宿主传入的行；查询、排序、分页和领域状态留在宿主。
 
-## 中性清单与真实分页
+## 示例
 
 <ScreenDemo wide>
   <NvScreenTable :columns="columns" :rows="visibleRows" row-key="id" style="max-height:260px" tabindex="0" aria-label="馆藏清单">
@@ -50,7 +50,9 @@ const visibleRows = computed(() => rows.value.slice((page.value - 1) * 5, page.v
 </template>
 ```
 
-## 属性
+## API
+
+### NvScreenTable 属性
 
 | 属性      | 说明                        | 类型                                                                      | 默认           |
 | --------- | --------------------------- | ------------------------------------------------------------------------- | -------------- |
@@ -58,11 +60,13 @@ const visibleRows = computed(() => rows.value.slice((page.value - 1) * 5, page.v
 | `rows`    | 只展示传入数组，不切页/去重 | `Record<string, unknown>[]`                                               | 兼容示例       |
 | `rowKey`  | 唯一且稳定的行字段          | `string`                                                                  | `'wo'`（兼容） |
 
-## 插槽
+### 插槽
 
 | 插槽         | 参数             | 说明                                                      |
 | ------------ | ---------------- | --------------------------------------------------------- |
 | `cell-<key>` | `{ row, value }` | 当前行及原值；回调使用 `row.id`，不使用行位置或业务参考号 |
+
+## 设计说明
 
 默认文本不以真值过滤：`0` 为 `0`、空字符串为空、`—` 保留。中性实体须显式设置 `row-key="id"`；同参考号不同 ID 可以同时存在。宿主保证 key 经 `String(key)` 转换后唯一且稳定（数字 `0` 与字符串 `'0'` 会成为同一 key），组件不按参考号去重。省略 props 的兼容示例继续可用。
 

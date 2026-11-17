@@ -14,7 +14,9 @@ const page2 = ref(6)
 
 大屏数据表格的分页器:总数 + 当前区间读数、上一页 / 下一页、带省略号的页码窗口(`1 … p-1 p p+1 … N`)。当前页青色填充,控件按下纯缩放、无位移。`v-model:page` 驱动当前页,`total` + `pageSize` 推算页数。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 <ScreenDemo wide>
   <NvScreenPanel>
@@ -26,7 +28,7 @@ const page2 = ref(6)
 <NvScreenPagination v-model:page="page" :total="248" :page-size="10" />
 ```
 
-## 省略号窗口
+### 省略号窗口
 
 页数较多时,中间区段用省略号收起,首尾页常驻。
 
@@ -36,7 +38,9 @@ const page2 = ref(6)
   </NvScreenPanel>
 </ScreenDemo>
 
-## 属性
+## API
+
+### NvScreenPagination 属性
 
 | 属性           | 说明     | 类型     | 默认 |
 | -------------- | -------- | -------- | ---- |
@@ -44,7 +48,7 @@ const page2 = ref(6)
 | `total`        | 总条数   | `number` | —    |
 | `pageSize`     | 每页条数 | `number` | `10` |
 
-## 受控与输入责任
+## 设计说明
 
 `total` 为已知、有限、非负整数；`pageSize` 应为有限正整数，`page` 是宿主维护的有效页号（1 起）。空列表 `total=0` 显示「共 0 条 · 0」，保留禁用前后按钮的第 1 页。未知总数不传假 0：宿主显示「总数未知」并隐藏此分页器。
 

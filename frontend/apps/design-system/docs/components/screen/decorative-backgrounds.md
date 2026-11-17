@@ -14,6 +14,8 @@ const isoClicks = ref(0)
 
 `NvScreenFlowLinesBg` 与 `NvScreenIsometricBlocksBg` 是没有必填属性的 SVG 装饰件。它们使用 screen 层的 `--nv-scr-*` 色彩，根 SVG 为 `position: absolute; inset: 0`；宿主给包裹容器设置 `position: relative`、明确尺寸与深色背景。组件继承宿主的 `class`、`style` 等 SVG 属性，不读取业务数据或路由。
 
+## 示例
+
 <ScreenDemo wide>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
     <div style="position: relative; height: 260px; overflow: hidden; background: var(--nv-scr-bg)">
@@ -44,10 +46,14 @@ import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
 </template>
 ```
 
+## API
+
 | 组件                        | 固定 `viewBox` | 比例             | 保留的视觉                                     |
 | --------------------------- | -------------- | ---------------- | ---------------------------------------------- |
 | `NvScreenFlowLinesBg`       | `0 0 1440 810` | `xMidYMid slice` | 两条主干、四条支线、流光、八个节点与三个扩散环 |
 | `NvScreenIsometricBlocksBg` | `0 0 1200 760` | `xMidYMid slice` | 20 条投影网格线、六组立方体和六个呼吸节点      |
+
+## 设计说明
 
 两者均 `aria-hidden="true"`，默认以 `pointer-events: none` 让指针穿过装饰层；宿主若显式覆写该属性，须自行处理交互层级。系统开启减弱动态效果时，流光与扩散环停止显示，节点不再呼吸；静态主支线、网格、块体和节点仍可见。它们不定义 SVG `id`，可并排或重复挂载。
 

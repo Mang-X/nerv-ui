@@ -12,7 +12,9 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 
 独立运行入口为 playground 的 `/#screen/stage`；[接入说明](../../../../../../docs/screen-standalone.md)列出公共 CSS、返回导航和验收范围。下方 VitePress 预览仍由 #10 单独恢复。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 传 `title` 出一条标题行,默认插槽放真实内容 —— 这里嵌一个核心指标块。
 
@@ -28,7 +30,7 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 </NvScreenPanel>
 ```
 
-## 状态色条
+### 状态色条
 
 `accent` 在顶边压一条发光色条,用来给整块面板一个状态签名 —— 运行绿、报警红。`extra` 插槽落在标题行右侧放辅助信息。
 
@@ -58,7 +60,9 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 </NvScreenPanel>
 ```
 
-## 属性
+## API
+
+### NvScreenPanel 属性
 
 | 属性     | 说明                        | 类型                                                | 默认 |
 | -------- | --------------------------- | --------------------------------------------------- | ---- |
@@ -66,7 +70,7 @@ import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
 | `accent` | 顶边状态色条                | `'cyan' \| 'green' \| 'amber' \| 'red' \| 'indigo'` | —    |
 | `class`  | 透传到根 `<section>` 的类名 | `string`                                            | —    |
 
-## 插槽
+### 插槽
 
 | 插槽          | 说明                                     |
 | ------------- | ---------------------------------------- |

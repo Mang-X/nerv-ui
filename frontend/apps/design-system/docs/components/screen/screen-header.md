@@ -12,7 +12,9 @@ import { NvScreenHeader } from '@nerv-iip/ui'
 
 独立运行入口为 playground 的 `/#screen/stage`；[接入说明](../../../../../../docs/screen-standalone.md)列出公共 CSS、返回导航和验收范围。下方 VitePress 预览仍由 #10 单独恢复。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 横向占满整列,填入真实标题与挂钟时间。
 
@@ -36,7 +38,7 @@ import { NvScreenHeader } from '@nerv-iip/ui'
 />
 ```
 
-## 精简工具区
+### 精简工具区
 
 按需传空串隐去不需要的工具 —— 这里只保留时间与当前分组。
 
@@ -61,7 +63,9 @@ import { NvScreenHeader } from '@nerv-iip/ui'
 />
 ```
 
-## 属性
+## API
+
+### NvScreenHeader 属性
 
 | 属性     | 说明                         | 类型     | 默认                      |
 | -------- | ---------------------------- | -------- | ------------------------- |
