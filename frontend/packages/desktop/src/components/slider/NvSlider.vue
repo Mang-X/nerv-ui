@@ -22,7 +22,6 @@ const props = withDefaults(defineProps<NvSliderProps>(), {
   showValue: false,
 })
 
-const emit = defineEmits<{ 'update:value': [value: NvSliderValue] }>()
 
 const thumbCount = computed(() => {
   if (Array.isArray(props.value)) return Math.max(props.value.length, 1)
@@ -51,7 +50,6 @@ const valueSx = computed(() => stylex.props(styles.value))
     :orientation="orientation"
     :class="[rootSx.className, $attrs.class]"
     :style="[rootSx.style, $attrs.style]"
-    @update:value="emit('update:value', $event)"
   >
     <SliderControl :class="controlSx.className" :style="controlSx.style">
       <SliderTrack :class="trackSx.className" :style="trackSx.style">

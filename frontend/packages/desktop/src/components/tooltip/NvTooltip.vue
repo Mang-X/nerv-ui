@@ -10,7 +10,6 @@ withDefaults(defineProps<NvTooltipProps>(), {
   type: 'description',
 })
 
-const emit = defineEmits<{ 'update:open': [open: boolean] }>()
 </script>
 
 <template>
@@ -22,7 +21,6 @@ const emit = defineEmits<{ 'update:open': [open: boolean] }>()
     :close-delay="closeDelay"
     :disabled="disabled"
     :type="type"
-    @update:open="emit('update:open', $event)"
   >
     <slot />
   </Tooltip>

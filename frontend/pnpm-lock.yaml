@@ -95,12 +95,27 @@ importers:
       '@nerv-ui/desktop':
         specifier: workspace:*
         version: link:../../packages/desktop
+      '@nerv-ui/mobile':
+        specifier: workspace:*
+        version: link:../../packages/mobile
+      '@nerv-ui/pad':
+        specifier: workspace:*
+        version: link:../../packages/pad
+      '@nerv-ui/screen':
+        specifier: workspace:*
+        version: link:../../packages/screen
       '@nerv-ui/theme':
         specifier: workspace:*
         version: link:../../packages/theme
       '@stylexjs/stylex':
         specifier: 0.19.2
         version: 0.19.2
+      '@ui-sdk/core':
+        specifier: 0.1.0-beta.6
+        version: 0.1.0-beta.6
+      '@ui-sdk/vue':
+        specifier: 0.1.0-beta.6
+        version: 0.1.0-beta.6(@ui-sdk/core@0.1.0-beta.6)(vue@3.5.39(typescript@6.0.3))
     devDependencies:
       '@stylexjs/unplugin':
         specifier: 0.19.2

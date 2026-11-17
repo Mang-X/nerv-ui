@@ -10,8 +10,13 @@
   },
   "dependencies": {
     "@nerv-ui/desktop": "workspace:*",
+    "@nerv-ui/mobile": "workspace:*",
+    "@nerv-ui/pad": "workspace:*",
+    "@nerv-ui/screen": "workspace:*",
+    "@nerv-ui/theme": "workspace:*",
     "@stylexjs/stylex": "0.19.2",
-    "@nerv-ui/theme": "workspace:*"
+    "@ui-sdk/core": "0.1.0-beta.6",
+    "@ui-sdk/vue": "0.1.0-beta.6"
   },
   "devDependencies": {
     "@stylexjs/unplugin": "0.19.2",

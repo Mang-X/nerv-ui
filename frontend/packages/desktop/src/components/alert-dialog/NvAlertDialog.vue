@@ -6,7 +6,6 @@ defineOptions({ inheritAttrs: false })
 
 withDefaults(defineProps<NvAlertDialogProps>(), { defaultOpen: false, dismissible: true })
 
-const emit = defineEmits<{ 'update:open': [open: boolean] }>()
 </script>
 
 <template>
@@ -15,7 +14,6 @@ const emit = defineEmits<{ 'update:open': [open: boolean] }>()
     :open="open"
     :default-open="defaultOpen"
     :dismissible="dismissible"
-    @update:open="emit('update:open', $event)"
   >
     <slot />
   </AlertDialog>

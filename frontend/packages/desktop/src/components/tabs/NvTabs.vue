@@ -13,7 +13,6 @@ withDefaults(defineProps<NvTabsProps>(), {
   loop: true,
 })
 
-const emit = defineEmits<{ 'update:value': [value: string | null] }>()
 
 const sx = computed(() => stylex.props(styles.root))
 </script>
@@ -28,7 +27,6 @@ const sx = computed(() => stylex.props(styles.root))
     :loop="loop"
     :class="[sx.className, $attrs.class]"
     :style="[sx.style, $attrs.style]"
-    @update:value="emit('update:value', $event)"
   >
     <slot />
   </Tabs>

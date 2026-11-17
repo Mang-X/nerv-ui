@@ -12,7 +12,6 @@ defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(defineProps<NvCheckboxProps>(), { disabled: false, required: false })
 
-const emit = defineEmits<{ 'update:checked': [checked: NvCheckedState] }>()
 
 const generatedId = useId()
 const fieldId = computed(() => props.id ?? `nv-checkbox-${generatedId}`)
@@ -35,7 +34,6 @@ const labelSx = computed(() => stylex.props(styles.label))
       :name="name"
       :class="boxSx.className"
       :style="boxSx.style"
-      @update:checked="emit('update:checked', $event)"
     >
       <CheckboxIndicator :class="indicatorSx.className" :style="indicatorSx.style">
         <MinusIcon v-if="checked === 'indeterminate'" :size="12" aria-hidden="true" />

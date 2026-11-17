@@ -13,7 +13,6 @@ withDefaults(defineProps<NvRadioGroupProps>(), {
   required: false,
 })
 
-const emit = defineEmits<{ 'update:value': [value: string | null] }>()
 
 const sx = computed(() => stylex.props(styles.group))
 </script>
@@ -29,7 +28,6 @@ const sx = computed(() => stylex.props(styles.group))
     :name="name"
     :class="[sx.className]"
     :style="[sx.style]"
-    @update:value="emit('update:value', $event)"
   >
     <slot />
   </RadioGroup>

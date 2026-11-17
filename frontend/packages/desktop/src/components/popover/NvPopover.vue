@@ -10,7 +10,6 @@ withDefaults(defineProps<NvPopoverProps>(), {
   openOnHover: false,
 })
 
-const emit = defineEmits<{ 'update:open': [open: boolean] }>()
 </script>
 
 <template>
@@ -22,7 +21,6 @@ const emit = defineEmits<{ 'update:open': [open: boolean] }>()
     :open-on-hover="openOnHover"
     :delay="delay"
     :close-delay="closeDelay"
-    @update:open="emit('update:open', $event)"
   >
     <slot />
   </Popover>

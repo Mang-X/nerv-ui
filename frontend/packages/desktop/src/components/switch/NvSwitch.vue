@@ -11,7 +11,6 @@ defineOptions({ inheritAttrs: false })
 
 withDefaults(defineProps<NvSwitchProps>(), { disabled: false, required: false })
 
-const emit = defineEmits<{ 'update:checked': [checked: boolean] }>()
 
 const sx = computed(() => stylex.props(styles.root, focus.ring))
 const thumbSx = computed(() => stylex.props(styles.thumb))
@@ -27,7 +26,6 @@ const thumbSx = computed(() => stylex.props(styles.thumb))
     :name="name"
     :class="[sx.className, $attrs.class]"
     :style="[sx.style, $attrs.style]"
-    @update:checked="emit('update:checked', $event)"
   >
     <SwitchThumb :class="thumbSx.className" :style="thumbSx.style" />
   </Switch>

@@ -11,7 +11,6 @@ withDefaults(defineProps<NvSheetProps>(), {
   dismissible: true,
 })
 
-const emit = defineEmits<{ 'update:open': [open: boolean] }>()
 </script>
 
 <template>
@@ -22,7 +21,6 @@ const emit = defineEmits<{ 'update:open': [open: boolean] }>()
     :side="side"
     :modal="modal"
     :dismissible="dismissible"
-    @update:open="emit('update:open', $event)"
   >
     <slot />
   </Drawer>

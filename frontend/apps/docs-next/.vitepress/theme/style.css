@@ -2,3 +2,15 @@
   --vp-c-brand-1: oklch(0.54 0.16 256);
   --vp-c-brand-2: oklch(0.54 0.16 256);
 }
+
+/* 大屏组件按深色底设计，文档示例统一放进深色舞台。 */
+.nv-screen-stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background: #0b1220;
+}
