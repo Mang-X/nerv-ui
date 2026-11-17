@@ -17,6 +17,10 @@ const modeOptions = [
 
 # NvScreenStatusWall 分组状态墙
 
+按分组展示状态墙，虚拟滚动，hover/focus 显示预览卡。live 源码仅表示文档接线。本轮未运行文档站或真实浏览器。带 250ms 内存延迟的两个中性宿主从 `/#screen/status-wall` 进入。
+
+## 示例
+
 <ScreenDemo>
   <div style="width:100%">
     <label class="status-wall-field">排列 <NvScreenSelect v-model="mode" :options="modeOptions" placeholder="排列方式" /></label>
@@ -25,14 +29,16 @@ const modeOptions = [
   </div>
 </ScreenDemo>
 
-live 源码仅表示文档接线。本轮未运行文档站或真实浏览器。带 250ms 内存延迟的两个中性宿主从 `/#screen/status-wall` 进入。
+## API
+
+### NvScreenStatusWall 属性
 
 | 属性       | 类型                            | 默认/说明                            |
 | ---------- | ------------------------------- | ------------------------------------ |
-| items      | readonly ScreenStatusWallItem[] | 必填；key 唯一稳定，不使用名称作 key |
-| label      | string                          | 必填；命名 region                    |
-| mode       | ScreenStatusWallMode            | flat；另有 group-grid、group-chip    |
-| emptyLabel | string                          | 暂无记录                             |
+| `items`    | `readonly ScreenStatusWallItem[]` | 必填；key 唯一稳定，不使用名称作 key |
+| `label`    | `string`                        | 必填；命名 region                    |
+| `mode`     | `ScreenStatusWallMode`          | `flat`；另有 `group-grid`、`group-chip` |
+| `emptyLabel` | `string`                      | `暂无记录`                           |
 
 ```ts
 interface ScreenStatusWallItem {
@@ -47,17 +53,19 @@ interface ScreenStatusWallItem {
 type ScreenStatusWallMode = 'flat' | 'group-grid' | 'group-chip'
 ```
 
-类型和组件均从 `@nerv-iip/ui` 主桶导入。identity 是可辨的人类位置描述；技术 key 不作为默认可见文字。摘要纯文本，真实零不得被空值判断丢弃，null/undefined 显示 —。分组按 key 关联，同名组可独立，未分组与名为 ungrouped 的组互不冲突。
+### 事件
 
 | 事件    | 载荷                         | 行为                                                                |
 | ------- | ---------------------------- | ------------------------------------------------------------------- |
-| select  | ScreenStatusWallItem         | 原生按钮点击或键盘激活；先关闭预览                                  |
-| preview | ScreenStatusWallItem 或 null | hover/focus 打开；离开/失焦/Escape/滚动/items 或 mode 更替/卸载关闭 |
-| visible | string[]                     | flat 为虚拟窗口含 overscan；分组为全部输入 key；初始与变更时发出    |
+| select  | `ScreenStatusWallItem`       | 原生按钮点击或键盘激活；先关闭预览                                  |
+| preview | `ScreenStatusWallItem` 或 null | hover/focus 打开；离开/失焦/Escape/滚动/items 或 mode 更替/卸载关闭 |
+| visible | `string[]`                   | flat 为虚拟窗口含 overscan；分组为全部输入 key；初始与变更时发出    |
+
+## 设计说明
+
+类型和组件均从 `@nerv-iip/ui` 主桶导入。identity 是可辨的人类位置描述；技术 key 不作为默认可见文字。摘要纯文本，真实零不得被空值判断丢弃，null/undefined 显示 —。分组按 key 关联，同名组可独立，未分组与名为 ungrouped 的组互不冲突。
 
 无请求、轮询、缓存或详情 slot。宿主在墙外组合现有面板接收 preview；disabled 项无 hover、focus 或选择动作。按钮原生 title 保留全文，ARIA 名称包括标签、身份、状态。组件固定行几何，不根据摘要自动扩高；宿主提供确定高度和适合六列的宽度。有限 DOM 与 stride 的测试使用受控 clientHeight 和真实 useVirtualList，不能代表真实 resize、命中、视距或视觉通过。
-
-## 来源与适配
 
 来源固定 `79b1578f2b75f55709765b5e7882aaf33146c603` 的 StatusWall：保留平铺行虚拟、两种分组密度、hover/select/visible 与滚动关闭。去掉领域 DTO、五态统计、paramColors、详情请求、250ms 防抖和 30 秒缓存；延迟只在示例宿主。完整详情及迷你趋势不迁入本墙。旧应用接入和旧库退出已取消，NOT_PLANNED。
 

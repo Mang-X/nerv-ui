@@ -15,7 +15,7 @@ const toneOptions = tones.map((item) => ({ label: item, value: item }))
 
 圆点、文字与淡色边框共同表达状态。文字通过 **label prop** 提供，本组件没有用于替换标签的默认 slot。`run`、`idle`、`alarm` 分别映射到绿色、琥珀色、红色，原始颜色名也可直接使用。颜色同义不等于文字含义相同。
 
-## 动态标签
+## 示例
 
 <ScreenDemo>
   <div class="status-tag-doc">
@@ -31,12 +31,16 @@ const toneOptions = tones.map((item) => ({ label: item, value: item }))
 <NvScreenStatusTag tone="cyan" label="尚未统计" />
 ```
 
-## 属性
+## API
+
+### NvScreenStatusTag 属性
 
 | 属性    | 说明                         | 类型                                                                  | 默认                   |
 | ------- | ---------------------------- | --------------------------------------------------------------------- | ---------------------- |
 | `tone`  | 别名或原始颜色               | `'run' \| 'idle' \| 'alarm' \| 'cyan' \| 'green' \| 'amber' \| 'red'` | `'run'`                |
 | `label` | 标签文字，由宿主提供状态含义 | `string`                                                              | `'运行中'`，保留旧默认 |
+
+## 设计说明
 
 独立接入时显式传入中性文字；不要用默认“运行中”代表未知。文字随 prop 更新，状态不靠颜色单独识别。长标签须有足够宿主宽度，标签本身不自动推断缩写或业务规则。
 

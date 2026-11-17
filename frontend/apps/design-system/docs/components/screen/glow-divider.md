@@ -12,7 +12,9 @@ import { NvGlowDivider } from '@nerv-iip/ui'
 
 独立运行入口为 playground 的 `/#screen/stage`；[接入说明](../../../../../../docs/screen-standalone.md)列出公共 CSS、返回导航和验收范围。下方 VitePress 预览仍由 #10 单独恢复。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 横向占满整列,默认带流光。常用来把页头与下方内容、或两个分区隔开。
 
@@ -28,7 +30,7 @@ import { NvGlowDivider } from '@nerv-iip/ui'
 <div>当期 934 / 1 200 条 · 节奏 48.2 s</div>
 ```
 
-## 静态分割
+### 静态分割
 
 `flow` 设为 `false` 关掉流光,只留渐变线与中心光点 —— 适合密集排布、不想引入动态的场合。
 
@@ -40,7 +42,9 @@ import { NvGlowDivider } from '@nerv-iip/ui'
 <NvGlowDivider :flow="false" />
 ```
 
-## 属性
+## API
+
+### NvGlowDivider 属性
 
 | 属性   | 说明                                         | 类型      | 默认   |
 | ------ | -------------------------------------------- | --------- | ------ |

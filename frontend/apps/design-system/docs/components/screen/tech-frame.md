@@ -12,7 +12,9 @@ import { NvTechFrame } from '@nerv-iip/ui'
 
 独立运行入口为 playground 的 `/#screen/stage`；[接入说明](../../../../../../docs/screen-standalone.md)列出公共 CSS、返回导航和验收范围。下方 VitePress 预览仍由 #10 单独恢复。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 边框无内置背景,直接包住一块自带尺寸的内容。默认青色。
 
@@ -35,7 +37,7 @@ import { NvTechFrame } from '@nerv-iip/ui'
 </NvTechFrame>
 ```
 
-## 状态配色
+### 状态配色
 
 `accent` 同时着色边与折角,用来表达整框状态 —— 运行绿、报警红。
 
@@ -61,13 +63,15 @@ import { NvTechFrame } from '@nerv-iip/ui'
 <NvTechFrame accent="red"><!-- 核心超温 --></NvTechFrame>
 ```
 
-## 属性
+## API
+
+### NvTechFrame 属性
 
 | 属性     | 说明         | 类型                                    | 默认     |
 | -------- | ------------ | --------------------------------------- | -------- |
 | `accent` | 边与折角配色 | `'cyan' \| 'green' \| 'amber' \| 'red'` | `'cyan'` |
 
-## 插槽
+### 插槽
 
 | 插槽 | 说明                           |
 | ---- | ------------------------------ |

@@ -15,7 +15,9 @@ const bad = ref('')
 
 大屏文本输入:一口下沉的暗井,聚焦点亮青色环;`error` 态把细线与环换成红色(并标记 `aria-invalid`),状态不只靠颜色传达。可选 `suffix` 在右侧钉一个单位(件 / kWh / %)。通过 `v-model`(字符串)绑定,基于独立的 `--nv-scr-*` 令牌。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 `v-model` 绑定字符串值;`suffix` 固定一个单位。
 
@@ -38,7 +40,7 @@ const qty = ref('1240')
 </template>
 ```
 
-## 错误与禁用
+### 错误与禁用
 
 `error` 标红提示校验失败;`disabled` 整体淡出并禁止输入。
 
@@ -54,7 +56,9 @@ const qty = ref('1240')
 <NvScreenInput model-value="河岸展厅" disabled />
 ```
 
-## 属性
+## API
+
+### NvScreenInput 属性
 
 | 属性          | 说明                          | 类型      | 默认       |
 | ------------- | ----------------------------- | --------- | ---------- |
@@ -64,6 +68,6 @@ const qty = ref('1240')
 | `suffix`      | 右侧单位                      | `string`  | —          |
 | `disabled`    | 禁用                          | `boolean` | `false`    |
 
-## 字符串与校验边界
+## 设计说明
 
 `update:modelValue` 保留字符串，包括 `'0'`、空串和用户尚未填好的文本。`error` 只负责视觉和 `aria-invalid`，校验、错误说明、零与缺失的区分由宿主决定；禁用使用原生 input disabled。`ariaLabel`（可选 string，无默认值）用于缺少可见标签时命名输入。

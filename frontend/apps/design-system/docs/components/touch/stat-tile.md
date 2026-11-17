@@ -10,7 +10,7 @@ import { NvStatTile } from '@nerv-iip/ui'
 
 Pad 看板的**超大可读** KPI 块：大号等宽数字，隔一段距离也一眼看清；可选 `tone` 给面板与数字染色，用于"健康度一瞥"。与大屏 NvKpiBar 定位相近，尺寸与留白按 Pad 近距离触控放大。
 
-## 语气（tone）
+## 示例
 
 `neutral` 中性、`brand` 品牌、`success` 良好、`warning` 关注、`danger` 异常。
 
@@ -28,7 +28,9 @@ Pad 看板的**超大可读** KPI 块：大号等宽数字，隔一段距离也�
 <NvStatTile label="合格率" value="99.2" unit="%" tone="success" />
 ```
 
-## 属性
+## API
+
+### NvStatTile 属性
 
 | 属性    | 说明              | 类型                                               | 默认      |
 | ------- | ----------------- | -------------------------------------------------- | --------- |
@@ -37,7 +39,7 @@ Pad 看板的**超大可读** KPI 块：大号等宽数字，隔一段距离也�
 | `unit`  | 单位（可选）      | `string`                                           | —         |
 | `tone`  | 语气 / 健康度着色 | `neutral \| brand \| success \| warning \| danger` | `neutral` |
 
-## 插槽
+### 插槽
 
 | 插槽      | 说明                       |
 | --------- | -------------------------- |

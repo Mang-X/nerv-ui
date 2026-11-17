@@ -13,6 +13,8 @@ const thresholds = [{min:4,label:'适中',tone:'cyan'},{min:8,label:'充实',ton
 
 宿主提供数值、分档、单位和时间文本；悬停或 Tab 聚焦查看当前格子的全文提示。独立入口 `/#screen/heatmap` 提供阅读占用 4×6、展厅温度 3×4 两类中性来源，以及替换、未知、空态、网格和分档切换。下列 live 源码是文档接线，未代表本轮实际文档站运行。
 
+## 示例
+
 <ScreenDemo>
   <div style="width:100%;min-width:0">
     <NvScreenButton type="button" variant="secondary" @click="cells = cells.length ? [] : [{key:'a',label:'周三 08:00',value:0}]">切换记录</NvScreenButton>
@@ -20,7 +22,9 @@ const thresholds = [{min:4,label:'适中',tone:'cyan'},{min:8,label:'充实',ton
   </div>
 </ScreenDemo>
 
-## 属性
+## API
+
+### NvScreenHeatmap 属性
 
 | 属性                    | 类型                                | 默认       | 说明                                   |
 | ----------------------- | ----------------------------------- | ---------- | -------------------------------------- |
@@ -32,8 +36,6 @@ const thresholds = [{min:4,label:'适中',tone:'cyan'},{min:8,label:'充实',ton
 | `unknownLabel`          | `string`                            | `未知`     | 未知值或无效阈值的分档标签             |
 | `emptyLabel`            | `string`                            | `暂无记录` | 零项时的 status 文本                   |
 | `axisStart` / `axisEnd` | `string`                            | `''`       | 宿主纯文本，空串不补时标               |
-
-无事件或插槽。根节点为普通 div，原生 attrs 可透传，不应给 generic div 设置可访问名称；需要命名容器时由宿主使用 section + aria-labelledby。内部两组列表分别命名为分档图例/分档数值；每格 tabindex=0，无按钮动作。提示位于同组件内，aria-describedby 仅指向当前提示并使用实例局部 ID。悬停期间优先展示悬停格；鼠标离开后恢复仍聚焦的格子。格子删除时同步清除其焦点和悬停记录，即使同批重新加入相同 key 也要等待新交互；Escape 清除两种记录。
 
 主桶同时导出类型：
 
@@ -52,7 +54,9 @@ interface ScreenHeatmapThreshold extends ScreenHeatmapBand {
 }
 ```
 
-## 原指标分档宿主适配
+## 设计说明
+
+无事件或插槽。根节点为普通 div，原生 attrs 可透传，不应给 generic div 设置可访问名称；需要命名容器时由宿主使用 section + aria-labelledby。内部两组列表分别命名为分档图例/分档数值；每格 tabindex=0，无按钮动作。提示位于同组件内，aria-describedby 仅指向当前提示并使用实例局部 ID。悬停期间优先展示悬停格；鼠标离开后恢复仍聚焦的格子。格子删除时同步清除其焦点和悬停记录，即使同批重新加入相同 key 也要等待新交互；Escape 清除两种记录。
 
 历史来源按 `scoreBucket` 以 ≥85、≥70、≥55、<55 分档。库不内置这些业务常量；旧宿主可明确输入：
 

@@ -12,6 +12,8 @@ const result = ref('请选择空间')
 
 独立宿主 `/#screen/summary-cards` 提供两个中性来源、三个变体、0/1/6 张布局与数据替换。
 
+## 示例
+
 <ScreenDemo>
   <div style="width:100%;min-width:0">
     <NvScreenSummaryCard identity="reading" title="河岸阅读空间" variant="launcher" description="今日的开放与到访" :metrics="[{ key: 'arrived', label: '到访', value: 0 }, { key: 'pending', label: '待确认', value: null }]" :status="{ label: '欢迎到访', tone: 'green' }" :chips="[{ key: 'east', label: '东侧阅读区', tone: 'green' }]" chips-label="开放区域" action-label="查看安排" @action="result = '已选择河岸阅读空间'" />
@@ -19,7 +21,9 @@ const result = ref('请选择空间')
   </div>
 </ScreenDemo>
 
-## 属性
+## API
+
+### NvScreenSummaryCard 属性
 
 | 属性                         | 类型                                          | 默认 | 说明                                              |
 | ---------------------------- | --------------------------------------------- | ---- | ------------------------------------------------- |
@@ -55,6 +59,20 @@ interface ScreenSummaryMetric {
 }
 ```
 
-事件 `action(identity: string | number)` 仅由真实按钮触发；宿主负责导航。`icon` 插槽只承载装饰图标，内部不放交互。根沿用 Panel 的 section 与原生 attrs；可由宿主提供 `aria-labelledby`。趋势使用 `role="img"` 和 `trendLabel`，其内部 SVG 为装饰。无内置 DTO、SDK、路由或状态算法。
+### 事件
+
+| 事件     | 载荷               | 说明                     |
+| -------- | ------------------ | ------------------------ |
+| `action` | `string \| number` | 仅由真实按钮触发；宿主负责导航 |
+
+### 插槽
+
+| 插槽   | 说明                                         |
+| ------ | -------------------------------------------- |
+| `icon` | 只承载装饰图标，内部不放交互                 |
+
+## 设计说明
+
+根沿用 Panel 的 section 与原生 attrs；可由宿主提供 `aria-labelledby`。趋势使用 `role="img"` 和 `trendLabel`，其内部 SVG 为装饰。无内置 DTO、SDK、路由或状态算法。
 
 <!-- @include: ../../../../../DESIGN/components/summary-card.md -->

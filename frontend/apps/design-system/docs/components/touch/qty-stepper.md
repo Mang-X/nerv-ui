@@ -14,7 +14,7 @@ const batch = ref(50)
 
 Pad 大数量步进器：**56px** 高、超大 ± 触控键、等宽数字读数，clamp 到 `[min, max]`、步长可调。区别于移动端紧凑的 NvStepper——它为"戴手套快速加减数量"而放大。
 
-## 基础
+## 示例
 
 `v-model` 绑定数值，`min` / `max` 约束范围，`step` 设定步长；触界时对应按钮自动禁用。
 
@@ -30,15 +30,15 @@ const qty = ref(12)
 <NvQtyStepper v-model="qty" :min="1" :max="480" :step="1" />
 ```
 
-## 自定义步长
-
 批量录入可用较大步长，例如按整包 50 条递增。
 
 <Demo>
   <NvQtyStepper v-model="batch" :min="0" :max="500" :step="50" />
 </Demo>
 
-## 属性
+## API
+
+### NvQtyStepper 属性
 
 | 属性         | 说明     | 类型     | 默认       |
 | ------------ | -------- | -------- | ---------- |
@@ -47,7 +47,7 @@ const qty = ref(12)
 | `max`        | 最大值   | `number` | `Infinity` |
 | `step`       | 步长     | `number` | `1`        |
 
-## 事件
+### 事件
 
 | 事件                | 说明     | 载荷     |
 | ------------------- | -------- | -------- |

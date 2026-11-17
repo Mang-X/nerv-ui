@@ -12,7 +12,9 @@ import { NvBorderPanel } from '@nerv-iip/ui'
 
 独立运行入口为 playground 的 `/#screen/stage`；[接入说明](../../../../../../docs/screen-standalone.md)列出公共 CSS、返回导航和验收范围。下方 VitePress 预览仍由 #10 单独恢复。
 
-## 基础用法
+## 示例
+
+### 基础用法
 
 传 `title` 在顶边缺口处带出居中标题,默认插槽放内容。
 
@@ -33,7 +35,7 @@ import { NvBorderPanel } from '@nerv-iip/ui'
 </NvBorderPanel>
 ```
 
-## 无标题
+### 无标题
 
 不传 `title` 时只剩纯描边外壳,角标与顶边缺口仍在,适合包一段不需要抬头的内容。
 
@@ -53,13 +55,15 @@ import { NvBorderPanel } from '@nerv-iip/ui'
 </NvBorderPanel>
 ```
 
-## 属性
+## API
+
+### NvBorderPanel 属性
 
 | 属性    | 说明         | 类型     | 默认 |
 | ------- | ------------ | -------- | ---- |
 | `title` | 顶边居中标题 | `string` | —    |
 
-## 插槽
+### 插槽
 
 | 插槽    | 说明                            |
 | ------- | ------------------------------- |

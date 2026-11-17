@@ -12,6 +12,8 @@ const visited = ref(false)
 
 以宿主 `seed` 生成两条光路与星点，再放入页头和内容。独立 playground 的 `/#screen/layout` 提供完整交互与缩放。
 
+## 示例
+
 <ScreenDemo wide>
   <div class="nv-scr-layout-doc-preview">
     <NvScreenLayout seed="city-gallery" title="城市文化空间" time="10:30" date="周二" line="今日开放" screen="城市客厅">
@@ -32,7 +34,9 @@ const visited = ref(false)
 </NvScreenScaler>
 ```
 
-## 属性与插槽
+## API
+
+### NvScreenLayout 属性
 
 | 项        | 类型     | 默认             | 说明                                             |
 | --------- | -------- | ---------------- | ------------------------------------------------ |
@@ -42,8 +46,15 @@ const visited = ref(false)
 | `date`    | `string` | `''`             | 日期或星期文字                                   |
 | `line`    | `string` | `''`             | 区域文字                                         |
 | `screen`  | `string` | `''`             | 屏幕名称                                         |
-| `default` | slot     | 空               | `main` 中的交互内容                              |
-| `header`  | slot     | `NvScreenHeader` | 可完全替换默认页头                               |
+
+### 插槽
+
+| 插槽      | 说明                 |
+| --------- | -------------------- |
+| `default` | `main` 中的交互内容  |
+| `header`  | 可完全替换默认页头   |
+
+## 设计说明
 
 根元素继承宿主的 class、style 与原生属性。布局固定 1920×1080；内容区可原生滚动。淡色点阵与光路只作氛围，装饰层 `pointer-events: none`；系统低动效设置会停用彗星和星点呼吸。独立 Vue 应用根的 SVG 引用在挂载后各自定位到本实例。外层视口缩放、定位、主题及挂钟更新由宿主负责。
 

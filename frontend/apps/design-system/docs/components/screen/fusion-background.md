@@ -6,17 +6,25 @@ title: NvScreenFusionBg
 import FusionDemo from '../../../../playground/src/screen/FusionDemo.vue'
 </script>
 
-# 等距节点与有向流
-
-<ScreenDemo wide><FusionDemo /></ScreenDemo>
+# NvScreenFusionBg 等距节点与有向流
 
 通过主桶 `@nerv-iip/ui` 导入 `NvScreenFusionBg`、`FusionNode`、`FusionEdge`。独立宿主入口 `/#screen/backgrounds`。
 
-| 属性  | 类型         | 默认 |
-| ----- | ------------ | ---- |
-| nodes | FusionNode[] | []   |
-| edges | FusionEdge[] | []   |
-| cell  | number       | 34   |
+## 示例
+
+<ScreenDemo wide><FusionDemo /></ScreenDemo>
+
+## API
+
+### NvScreenFusionBg 属性
+
+| 属性    | 类型           | 默认 |
+| ------- | -------------- | ---- |
+| `nodes` | `FusionNode[]` | `[]` |
+| `edges` | `FusionEdge[]` | `[]` |
+| `cell`  | `number`       | `34` |
+
+## 设计说明
 
 节点为 `{ id, sx, sy, w, d, h, label, caption?, icon?, tone }`；tone 显式为 cyan/green/amber/indigo。图标是可信 Vue 显示组件，不接收业务记录；label/caption 使用文本插值。完整长名称在宿主图下重复提供可读文本。
 
