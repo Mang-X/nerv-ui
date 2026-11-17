@@ -20,12 +20,26 @@
    `@supports` so non-blur browsers keep the opaque fill. */
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   [data-slot='popover-content'],
+  [data-slot='nv-popover-content'],
+  [data-slot='hover-card-content'],
+  [data-slot='nv-hover-card-content'],
+  [data-slot='context-menu-content'],
+  [data-slot='nv-context-menu-content'],
   [data-slot='dropdown-menu-content'],
   [data-slot='dropdown-menu-sub-content'],
   [data-slot='nv-dropdown-menu-content'],
   [data-slot='nv-dropdown-menu-sub-content'],
   [data-slot='select-content'],
   [data-slot='nv-select-content'],
+  [data-slot='combobox-content'],
+  [data-slot='nv-combobox-content'],
+  [data-slot='nv-cascade-picker-content'],
+  [data-slot='nv-entity-picker-content'],
+  [data-slot='nv-entity-multi-picker-content'],
+  [data-slot='calendar'],
+  [data-slot='nv-calendar-content'],
+  [data-slot='nv-date-picker-content'],
+  [data-slot='nv-navigation-menu-viewport'],
   [data-slot='command-dialog'] {
     background-color: color-mix(in oklch, var(--popover) 76%, transparent);
     -webkit-backdrop-filter: blur(16px) saturate(1.6);
