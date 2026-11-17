@@ -202,8 +202,18 @@ token 名称按场景命名空间隔离，看名字即知归属。规则见 [ADR
 | 文字 | `--foreground` `--muted-foreground` `--*-strong`                | 含高对比强调变体                        |
 | 品牌 | `--nv-brand` `--nv-brand-strong` `--nv-brand-foreground`        | 运行时动态色                            |
 | 语义 | `--destructive` `--border` `--ring` `--accent`                  | 状态与边线                              |
+| 聚焦 | `--nv-focus-ring` `--nv-focus-ring-strong` `--nv-focus-ring-destructive` | 输入件统一聚焦环（1px brand 实线 + 4px 光晕），配合 `.nv-focusable` |
+| 弹层 | `--nv-glass-*`（bg/border/filter/shadow） | 弹层玻璃统一（overrides.css `@supports` 白名单：`blur(16px) saturate(1.6)` + popover/card 半透明） |
 | 动效 | `--nv-ease-out-quart / expo / in-out-quart`                     | 统一缓动，见[动效](/foundations/motion) |
 | 大屏 | `--nv-scr-cyan` `--nv-scr-bg` `--nv-scr-text` `--nv-scr-radius` | 独立工业蓝层（30 项）                   |
+
+## 交互契约
+
+三件事全组件共享一套，不自写：
+
+- **聚焦环**：所有输入/触发件的可聚焦元素挂 `.nv-focusable`（`@utility`），聚焦出 `0 0 0 1px var(--nv-brand) + 0 0 0 4px brand18%` 环 + border 同步 brand；`data-invalid`/`aria-invalid` 走 destructive 变体。禁止手写 `focus-visible:ring-*`、scoped `:focus-within` 特例。
+- **弹层玻璃**：overrides.css `@supports backdrop-filter` 白名单按 `data-slot` 统一发玻璃（`blur(16px) saturate(1.6)` + 半透明底色）；组件不手写 `bg-popover`/`bg-card`/`backdrop-blur-*`。
+- **动画**：位移/时长统一走 `--nv-duration-*/--nv-ease-*` 与 `.nv-overlay-content`；弹层进出场统一 `animate-in/fade/zoom-in-95`。
 
 ## 新增令牌
 

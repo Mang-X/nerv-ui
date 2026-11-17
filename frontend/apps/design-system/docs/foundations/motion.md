@@ -38,5 +38,7 @@
 
 - 触摸反馈优先用**背景 / 不位移**的属性，少用 `transform: scale`（会造成布局位移）。
 - 退出动画要和进入同样讲究——避免"看起来没有动画"的突兀消失。
-- 覆盖层用半透明 + `backdrop-blur` 的玻璃质感，克制不过分。
+- 覆盖层用半透明 + `backdrop-blur` 的玻璃质感，克制不过分（弹层统一走 overrides.css `@supports` 白名单，组件不手写）。
+- 弹层进出场统一 `animate-in / fade-in / zoom-in-95` + `animate-out / fade-out / zoom-out-95`，时长走 `--nv-duration-*`。
+- 聚焦环统一 `.nv-focusable`（`1px brand + 4px 光晕`，见[设计令牌](/foundations/tokens) 交互契约）。
 - 尊重 `prefers-reduced-motion`：所有过渡都有 `reduce` 降级。
