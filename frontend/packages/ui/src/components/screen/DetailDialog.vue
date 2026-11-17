@@ -71,6 +71,41 @@ defineEmits<{ 'update:open': [open: boolean] }>()
     z-index: 0;
     background: color-mix(in srgb, var(--nv-scr-bg) 70%, transparent);
   }
+  /* 进出场 — 遮罩淡入；本体居中缩放淡入（scale 收缩、无回弹，与全系统动效契约一致）。
+     动画挂在元素自身而非 `[data-state]`：teleport 后的 `[data-state=open]` 会被宿主
+     `tw-animate`/`animate-in` 的 data-state 选择器抢走。`v-if` 每次开合都重新挂载，
+     进场动画随挂载触发；卸载即消失（组件即插即卸的设计边界，非本轮结构改动范围）。 */
+  .nv-scr-detail-mask {
+    animation: nv-scr-detail-fade var(--nv-duration-fade, 160ms) linear both;
+  }
+  .nv-scr-detail {
+    animation: nv-scr-detail-in var(--nv-duration-fast-invoke, 187ms)
+      var(--nv-scr-ease-emphasized) both;
+  }
+  @keyframes nv-scr-detail-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes nv-scr-detail-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nv-scr-detail-mask,
+    .nv-scr-detail {
+      animation: none;
+    }
+  }
   /* Glass material (translucent fill + backdrop blur) comes from the shared
      overrides.css `data-slot='nv-dialog-content'` rule; the opaque fill below
      is the no-blur fallback. */

@@ -60,6 +60,11 @@
     --nv-scr-sheen: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 1px 3px rgba(0, 0, 0, 0.5);
     --nv-scr-radius: 8px;
 
+    /* floating-overlay glass — the screen layer is fixed dark, so its teleported
+       panels keep a dark translucent fill instead of the shared light
+       --popover/--card glass used on desktop/mobile. */
+    --nv-scr-glass-bg: rgba(13, 22, 40, 0.82);
+
     /* motion — reference the shared Nv curves (value defined once in theme.css). */
     --nv-scr-ease: var(--nv-ease-out-quart);
     --nv-scr-ease-emphasized: var(--nv-ease-out-expo);

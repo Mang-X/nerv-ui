@@ -72,6 +72,14 @@
     -webkit-backdrop-filter: blur(10px) saturate(1.4);
     backdrop-filter: blur(10px) saturate(1.4);
   }
+  /* Screen-layer overlays are fixed dark: they keep the same blur/saturate
+     glass recipe but ride the dark --nv-scr-glass-bg instead of the light
+     --popover/--card fill, so a select panel / detail dialog stays readable
+     over the near-black board regardless of host light/dark theme. */
+  .nv-scr-sel-panel[data-slot='nv-select-content'],
+  .nv-scr-detail[data-slot='nv-dialog-content'] {
+    background-color: var(--nv-scr-glass-bg, rgba(13, 22, 40, 0.82));
+  }
 }
 
 /* ── Sidebar — unified PREMIUM selected state (Linear / Vercel form) ──
