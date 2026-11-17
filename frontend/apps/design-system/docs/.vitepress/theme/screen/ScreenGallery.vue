@@ -23,7 +23,6 @@ import {
   NvScreenStatusCard,
   NvScreenStatusLight,
   NvScreenStatusTag,
-  NvTaktGantt,
   NvTechFrame,
   NvTitleBar,
   NvScreenTrendChart,
@@ -181,7 +180,6 @@ const tones = { run: '运行中', idle: '待机', alarm: '报警' } as const
       <div class="g-cell g-span2">
         <span class="g-t">NvScreenTrendChart</span><NvScreenTrendChart />
       </div>
-      <div class="g-cell g-span2"><span class="g-t">NvTaktGantt</span><NvTaktGantt /></div>
     </div>
 
     <h3 class="g-cat">数据 · 状态</h3>

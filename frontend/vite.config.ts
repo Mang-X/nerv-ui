@@ -38,7 +38,6 @@ export default defineConfig({
       'packages/api-client/openapi/**',
       'packages/api-client/src/generated/**',
       ...frozenShadcnSourceIgnorePatterns,
-      'packages/scheduling/vendor/dhtmlx/**',
     ],
   },
   lint: {
@@ -50,7 +49,6 @@ export default defineConfig({
       'apps/docs/docs/.vitepress/dist/**',
       'packages/api-client/src/generated/**',
       ...frozenShadcnSourceIgnorePatterns,
-      'packages/scheduling/vendor/dhtmlx/**',
     ],
   },
 })

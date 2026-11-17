@@ -10,7 +10,6 @@ import ScreenIndicatorsDemo from './screen/ScreenIndicatorsDemo.vue'
 import ScreenDataDemo from './screen/ScreenDataDemo.vue'
 import ScreenChartsDemo from './screen/ScreenChartsDemo.vue'
 import ScreenSummaryCardsDemo from './screen/ScreenSummaryCardsDemo.vue'
-import ScreenSummaryDemo from './screen/ScreenSummaryDemo.vue'
 import ScreenStatusWallDemo from './screen/ScreenStatusWallDemo.vue'
 import ScreenHeatmapDemo from './screen/ScreenHeatmapDemo.vue'
 import ScreenStageFlowDemo from './screen/ScreenStageFlowDemo.vue'
@@ -24,7 +23,6 @@ const recipes = computed(() => props.section === '#screen/recipes')
 const backgrounds = computed(() => props.section === '#screen/backgrounds')
 const layout = computed(() => props.section === '#screen/layout')
 const summaryCards = computed(() => props.section === '#screen/summary-cards')
-const summary = computed(() => props.section === '#screen/summary')
 const statusWall = computed(() => props.section === '#screen/status-wall')
 const heatmap = computed(() => props.section === '#screen/heatmap')
 const stageFlow = computed(() => props.section === '#screen/stage-flow')
@@ -68,7 +66,6 @@ const { theme, setTheme } = useTheme()
             !data &&
             !charts &&
             !tables &&
-            !summary &&
             !summaryCards &&
             !statusHero &&
             !stageFlow &&
@@ -90,7 +87,6 @@ const { theme, setTheme } = useTheme()
         <a href="#screen/summary-cards" :aria-current="summaryCards ? 'page' : undefined"
           >空间一瞥</a
         >
-        <a href="#screen/summary" :aria-current="summary ? 'page' : undefined">空间使用概况</a>
         <a href="#screen/login/library">走进空间</a>
         <a href="#screen/status-hero" :aria-current="statusHero ? 'page' : undefined">此刻的现场</a>
         <a href="#screen/status-wall" :aria-current="statusWall ? 'page' : undefined">此刻各处</a>
@@ -159,9 +155,7 @@ const { theme, setTheme } = useTheme()
               ? '城市光影舞台'
               : summaryCards
                 ? '空间摘要舞台'
-                : summary
-                  ? '城市空间概况舞台'
-                  : statusWall
+                : statusWall
                     ? '各处状态舞台'
                     : heatmap
                       ? '分档热力舞台'
@@ -186,7 +180,6 @@ const { theme, setTheme } = useTheme()
         <ScreenBackgroundDemo v-else-if="backgrounds" />
         <ScreenLayoutDemo v-else-if="layout" />
         <ScreenSummaryCardsDemo v-else-if="summaryCards" />
-        <ScreenSummaryDemo v-else-if="summary" />
         <ScreenStatusHeroDemo v-else-if="statusHero" />
         <ScreenStatusWallDemo v-else-if="statusWall" />
         <ScreenHeatmapDemo v-else-if="heatmap" />

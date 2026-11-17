@@ -52,19 +52,4 @@ it('status documentation actual inputs clear reading to unknown and allow unit s
     w.unmount()
   }
 })
-it('takt documentation actual toggle empties axis and rows then restores all neutral segment titles', async () => {
-  const w = example('takt-gantt')
-  try {
-    expect(w.get('.nv-scr-tg-seg').attributes('title')).toBe('书房 · 占用 25%')
-    await w.get('button').trigger('click')
-    expect(w.find('.nv-scr-tg-row').exists()).toBe(false)
-    expect(w.find('.nv-scr-tg-axis span').exists()).toBe(false)
-    expect(w.text()).not.toContain('焊接')
-    await w.get('button').trigger('click')
-    expect(w.findAll('.nv-scr-tg-seg').map((n) => n.attributes('title'))).toEqual(
-      ['占用', '开放', '闭馆', '异常'].map((s) => `书房 · ${s} 25%`),
-    )
-  } finally {
-    w.unmount()
-  }
-})
+

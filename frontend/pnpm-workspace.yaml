@@ -1,11 +1,10 @@
 packages:
   # Active standalone desktop/touch/mobile host and UI packages.
-  # Scheduling restored by T07/P04; design-system by T09/A; app-shell in #9.
+  # design-system restored by T09/A.
   - apps/design-system
   - apps/playground
   - packages/ui
   - packages/ui-mobile
-  - packages/scheduling
 allowBuilds:
   # maplibre-gl ships only via @unovis/ts' map components, which we don't use
   # (we use the XY area/line charts). Skip its native build to keep install lean.

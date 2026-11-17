@@ -68,7 +68,6 @@ token 之上。
 | `@nerv-iip/ui/theme.css`                | 样式分项入口（T02）              | 自行组织样式的宿主                                                                         |
 | `@nerv-iip/ui/overrides.css`            | 样式分项入口（T02）              | 宿主决定导入层级                                                                           |
 | `@nerv-iip/ui-mobile/styles/mobile.css` | 既有移动样式入口（T04/N01 恢复） | 宿主样式入口；安全区 utilities 与移动包内 Tailwind 扫描源                                  |
-| `@nerv-iip/ui/schedule-model`           | 纯契约子入口（T07/P02）          | scheduling/model 与独立 contract consumer；只含 visual types/严格 instant parser，不含组件 |
 
 `test-support` 装的是各包 vitest `setupFiles` 用的支撑件（unovis tooltip 定时器收口等）
 与这条 import hygiene 门禁自身的实现，不进主桶 `src/index.ts`，因此不属于组件边界、也不受

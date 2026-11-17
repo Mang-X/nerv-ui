@@ -32,7 +32,6 @@ export { default as NvScreenTrendChart } from './TrendChart.vue'
 export { default as NvScreenBarChart } from './ScreenBarChart.vue'
 export { default as NvScreenDonut } from './ScreenDonut.vue'
 export { default as NvScreenPareto } from './ScreenPareto.vue'
-export { default as NvTaktGantt } from './TaktGantt.vue'
 
 // Data & status
 export { default as NvScreenStatusCard } from './StatusCard.vue'

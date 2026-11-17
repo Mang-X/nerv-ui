@@ -1,7 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, postcssIsolateStyles } from 'vitepress'
 import wasm from 'vite-plugin-wasm'
-import { schedulingVendorStyles } from '@nerv-iip/scheduling/vite'
 import llmstxt from 'vitepress-plugin-llms'
 import { repositoryLink } from './repositoryLinks'
 
@@ -229,23 +228,6 @@ export default defineConfig({
           text: '图表',
           items: [{ text: 'Chart 图表与标注', link: '/components/desktop/chart' }],
         },
-        {
-          text: '排产 Scheduling',
-          items: [
-            { text: '只读时间安排', link: '/components/desktop/schedule-timeline' },
-            { text: '工作台与历史', link: '/components/desktop/scheduling-workbench' },
-            { text: '日安排与打印', link: '/components/desktop/scheduling-day-print' },
-            { text: '已保存计划只读组合', link: '/components/desktop/scheduling-saved-plan' },
-            { text: 'GanttChart 工单甘特图', link: '/components/desktop/gantt-chart' },
-            { text: '排程面板与草案', link: '/components/desktop/scheduling-live' },
-            { text: '排程事实与比较', link: '/components/desktop/scheduling-facts' },
-            { text: '排程请求与异步候选', link: '/components/desktop/scheduling-requests' },
-            {
-              text: 'ResourceSchedulerBoard 资源甘特图',
-              link: '/components/desktop/resource-scheduler',
-            },
-          ],
-        },
       ],
       // PDA 移动 —— 组件库式：每个组件一页，按分类分组
       '/components/mobile': [
@@ -389,7 +371,6 @@ export default defineConfig({
             { text: 'ScreenBarChart 柱状图', link: '/components/screen/screen-bar-chart' },
             { text: 'ScreenDonut 环形占比', link: '/components/screen/screen-donut' },
             { text: 'ScreenPareto 帕累托', link: '/components/screen/screen-pareto' },
-            { text: 'TaktGantt 节拍甘特', link: '/components/screen/takt-gantt' },
           ],
         },
         {
@@ -444,7 +425,6 @@ export default defineConfig({
         name: 'docs-css-layer-order',
         transformIndexHtml: registerCssLayers,
       },
-      schedulingVendorStyles(),
       wasm(),
       tailwindcss(),
       llmstxt(),

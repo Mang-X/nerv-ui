@@ -302,7 +302,6 @@ it('routes the heatmap through the scaler with one current link and preserves pr
     '#screen/charts',
     '#screen/data',
     '#screen/tables',
-    '#screen/summary',
     '#screen/status-hero',
     '#screen/stage-flow',
   ]) {

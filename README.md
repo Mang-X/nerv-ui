@@ -1,6 +1,6 @@
 # nerv-ui
 
-从 Nerv-IIP 提取的 Vue UI 系统，覆盖桌面、触屏、移动、大屏、文件上传/预览、排程、应用壳、主题和设计文档。
+从 Nerv-IIP 提取的 Vue UI 系统，覆盖桌面、触屏、移动、大屏、文件上传/预览、主题和设计文档。排程相关组件与 app-shell 于 #300 撤出本库（范围收敛为四形态）。
 
 当前完成 T01 原样复制基线，并在 [T02 / #3](https://github.com/Mang-X/nerv-ui/issues/3) 提供可独立安装、启动和构建的桌面 playground。[T03 / #4](https://github.com/Mang-X/nerv-ui/issues/4) 在同一宿主增加独立触屏演示：启动后访问 `/#touch`，或从桌面页点击“触屏演示”。五个现有公开组件使用中性内存数据，操作说明与证据见 [T03 验证记录](docs/evidence/t03/README.md)。[T04/N01 / #45](https://github.com/Mang-X/nerv-ui/issues/45) 恢复移动包并增加 `/#mobile` 的页壳导航 11 件演示，接入与后续分工见 [独立移动接入](docs/mobile-standalone.md)。完整迁移由 [母票 #1](https://github.com/Mang-X/nerv-ui/issues/1) 跟踪；完整文档站的工程入口已由 T09/A 恢复，站内 live 完整覆盖由 #10 后续子项验证；版本化安装产物由 #11 验证。
 
@@ -16,8 +16,7 @@ Node >=22.18，pnpm 11.22.0；具体命令、CSS 接入、workspace 恢复责任
 
 [T04/N02 / #46](https://github.com/Mang-X/nerv-ui/issues/46) 的输入、扫码与数字键盘从 `/#mobile-input` 直接访问，也可由 `/#mobile` 点击“随心记录”进入。12 件公开组件使用中性内存状态，保留其它入口；扫码在编辑表单或打开浮层时让出焦点。行为、字符串输入约束和浏览器/设备证据边界见 [移动接入](docs/mobile-standalone.md#输入扫码与数字键盘n02)。
 
-- `frontend/packages/ui`、`frontend/packages/ui-mobile`、`frontend/packages/scheduling`、`frontend/apps/playground`、`frontend/apps/design-system`：当前活动 workspace。
-- `frontend/packages/app-shell`：保留的候选源码，待 #9 恢复。
+- `frontend/packages/ui`、`frontend/packages/ui-mobile`、`frontend/apps/playground`、`frontend/apps/design-system`：当前活动 workspace。
 - `frontend/DESIGN` 与 `DESIGN.md`：设计规则和资料；独立库增量决策优先回到当前接入文档。
 - `frontend/reference-tests`：旧库消费方参考契约，独立库命令不执行它们。
 - `migration/materials/source/frontend`：其他应用完整源码及 auth/business-core 原始素材，待解耦；不在活动 workspace 内。
@@ -43,30 +42,6 @@ T01 来源固定为 [Mang-X/Nerv-IIP](https://github.com/Mang-X/Nerv-IIP/tree/79
 
 [T06/F01 / #72](https://github.com/Mang-X/nerv-ui/issues/72) 从 `/#files` 进入“留住片刻”，可从所有既有表面进入并返回。七种上传排列使用本页内存适配器，默认手动开始；本地图片提供缩放、旋转及状态恢复。接入与限制见 [独立文件接入](docs/files-standalone.md)，实际证据见 [F01 验证记录](docs/evidence/t06-f01/README.md)。PDF/Office、上传竞态及原生 HTTP 由 #73–#76 接续。
 
-[T07/P01 / #84](https://github.com/Mang-X/nerv-ui/issues/84) 从 `/#schedule` 进入“给片刻留个位置”，通过主桶 `NvScheduleTimeline` 显示中性任务、泳道、事实、分段、依赖与保留窗口，支持选择与外部模型更替。可由桌面进入并返回所有既有表面；接入/时间合同见[组件文档](frontend/apps/design-system/docs/components/desktop/schedule-timeline.md)，实际证据见 [P01 记录](docs/evidence/t07-p01/README.md)。P01 的只读 native 不代表真实 DHTMLX 或父 #8 已完成；当时未恢复的 scheduling workspace 由 P04 接续。
-
-[T07/P02 / #85](https://github.com/Mang-X/nerv-ui/issues/85) 提供候选 `@nerv-iip/scheduling/model` 的独立纯契约入口，复用 P01 visual types/renderer，事实、状态文案、任务时区与保留区间由宿主输入。旧 DTO 参数迁移、独立消费命令和 prepared-contract 边界见 [排程展示模型](docs/scheduling-model.md)；scheduling workspace/主桶整体运行仍由 P03/P04 接续。
-
-P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合同](docs/scheduling-host.md)；P03 的独立 public consumer 不代表整包验收；当前 scheduling 整包与真实 vendor 的独立证据见 P04。
-
-[T07/P04 / #87](https://github.com/Mang-X/nerv-ui/issues/87) 从 `/#schedule-gantt` 展示真实只读 DHTMLX 与双实例，可返回原生时间安排。包/本地资源/生命周期与回落合同见 [引擎接入](docs/scheduling-renderer.md)，实际验证见 [P04 证据](docs/evidence/t07-p04/README.md)。资源投影、编辑和面板仍由 P05–P08 验收，授权 UNKNOWN。
-
-[T07/P06 / #89](https://github.com/Mang-X/nerv-ui/issues/89) 从 `/#schedule-edit/library` 与 `/#schedule-edit/studio` 展示工单图受控移动、双端调整、采用/保留及外部时间替换。锁定/分段和只读保留权威模型；接入与竞态边界见 [引擎接入](docs/scheduling-renderer.md#p06order-受控编辑)，验证见 [P06 记录](docs/evidence/t07-p06/README.md)。资源改派、面板、草案组合继续由 P07–P09 负责。
-
-[T07/P08 / #91](https://github.com/Mang-X/nerv-ui/issues/91) 的八件面板从 `/#schedule-panels/library`、`/#schedule-panels/studio` 进入。工具栏、搜索定位、事实/锁定详情、三类列表与真实图例复用公开组件；可从桌面/既有工单图进入并返回。可选显示输入、受控事件与 InspectorSheet 的公开组合 recipe 见 [面板合同](docs/scheduling-panels.md)，本轮验证见 [P08 证据](docs/evidence/t07-p08/README.md)。
-
-[T07/P09 / #92](https://github.com/Mang-X/nerv-ui/issues/92) 从 `/#schedule-draft/library` 和 `/#schedule-draft/studio` 提供三视图共享的中性草案编辑，支持受控表格/图面调整、锁定、待排恢复与本地撤销。保存和清空依赖明确 callback 成功，不将 undo 当作持久化。公共输入、异步隔离和原应用动作接缝见 [草案合同](docs/scheduling-draft.md)，执行记录见 [P09 证据](docs/evidence/t07-p09/README.md)。
-
-[T07/P11 / #94](https://github.com/Mang-X/nerv-ui/issues/94) 从 `/#schedule-snapshot/library`、`/#schedule-snapshot/studio` 展示中性缺口汇总、风险、冲突与负荷。四件只显示 host 事实，保留零/未知、冻结/当前与预警/阻断的区别；接入与旧 props 迁移见 [快照展示合同](docs/scheduling-snapshot.md)，实际验证见 [P11 证据](docs/evidence/t07-p11/README.md)。
-
-[T07/P12 / #95](https://github.com/Mang-X/nerv-ui/issues/95) 从 `/#schedule-compare/library`、`/#schedule-compare/studio` 展示已保存基线与候选的静态对照。公开组件按宿主 semantic key 关联活动，逐侧显示时间、资源与分段，指标和风险只读来源事实；接入及旧私有组件适配见 [比较合同](docs/scheduling-comparison.md)，执行记录见 [P12 证据](docs/evidence/t07-p12/README.md)。
-
-[T07/P13 / #96](https://github.com/Mang-X/nerv-ui/issues/96) 从 `/#schedule-async/library`、`/#schedule-async/studio` 展示受控异步候选、插单历史分页、停机影响与保存确认。四件公开组件只读取宿主状态和事实；请求身份、停止、重试、轮询及真实保存由宿主负责。公共输入与旧私有件对应见 [异步候选合同](docs/scheduling-async-candidates.md)，实际证据见 [P13 记录](docs/evidence/t07-p13/README.md)。
-
-[T07/P10 / #93](https://github.com/Mang-X/nerv-ui/issues/93) 从 `/#schedule-request/library`、`/#schedule-request/studio` 提供候选池、窗口与单项请求的中性接入。状态、可见行批量、草稿和异步回执合同见 [请求表单](docs/scheduling-request-forms.md)；本页内存数据与确认不代表实际 APS 或后端保存。[P10 证据](docs/evidence/t07-p10/README.md)保留本票边界。
-
-[T07/P14 / #97](https://github.com/Mang-X/nerv-ui/issues/97) 从 `/#schedule-day/library`、`/#schedule-day/studio` 展示显式时区的受控日安排与局部打印目标。半开午夜、跨日、分组、纸面表头和清理合同见[日安排与打印](docs/scheduling-day-print.md)；两页内存安排不代表已保存方案或实际 APS，验证边界见 [P14 证据](docs/evidence/t07-p14/README.md)。
-
 [T08/R02 / #20](https://github.com/Mang-X/nerv-ui/issues/20) 从 `/#screen/backgrounds` 查看流线与等距块体背景的双实例。公开名称、来源默认与宿主用法见[装饰背景文档](frontend/apps/design-system/docs/components/screen/decorative-backgrounds.md)，实际证据见 [R02 记录](docs/evidence/t08-r02/README.md)。
 
 [T08/R04 / #22](https://github.com/Mang-X/nerv-ui/issues/22) 从 `/#screen/layout` 查看种子氛围布局与可交互内容。公共 `NvScreenLayout` 接受宿主 seed 与时钟，外层复用 `NvScreenScaler`；属性、插槽和缩放边界见[组件文档](frontend/apps/design-system/docs/components/screen/screen-layout.md)，本票结果见 [R04 记录](docs/evidence/t08-r04/README.md)。
@@ -89,7 +64,7 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 
 [T08/R06 / #24](https://github.com/Mang-X/nerv-ui/issues/24) 从 `/#notifications/library`、`/#notifications/studio` 展示消息与任务、受控详情、筛选和标记回执。公共 API 与文档示例见[通知收件箱](frontend/apps/design-system/docs/components/desktop/notification-inbox.md)，实际本地证据及未运行边界见 [R06 记录](docs/evidence/t08-r06/README.md)。
 
-[T08/R01 / #19](https://github.com/Mang-X/nerv-ui/issues/19) 从 `/#shell/library` 与 `/#shell/studio` 进入中性应用壳组合。菜单、用户、受控位置与命令入口均为内存宿主输入；公共骨架、API 与 live 示例见[中性应用壳](frontend/apps/design-system/docs/components/desktop/neutral-shells.md)，实际执行边界见 [R01 记录](docs/evidence/t08-r01/README.md)。候选 app-shell 包恢复及原应用接入另行验收。
+[T08/R01 / #19](https://github.com/Mang-X/nerv-ui/issues/19) 从 `/#shell/library` 与 `/#shell/studio` 进入中性应用壳组合。菜单、用户、受控位置与命令入口均为内存宿主输入；公共骨架、API 与 live 示例见[中性应用壳](frontend/apps/design-system/docs/components/desktop/neutral-shells.md)，实际执行边界见 [R01 记录](docs/evidence/t08-r01/README.md)。候选 app-shell 包已于 #300 移出本库。
 
 [T08/C04 / #40](https://github.com/Mang-X/nerv-ui/issues/40) 从 `/#screen/recipes` 进入阅读活动与展览安排，展示受控分栏、队列、分类和更新状态。见[组合合同](frontend/apps/design-system/docs/components/screen/dashboard-recipes.md)与[本地证据](docs/evidence/t08-c04/README.md)。
 
@@ -114,15 +89,11 @@ P03 宿主回调、旧公开签名迁移和 test-only 入口见 [排程宿主合
 
 [T08/C01 / #37](https://github.com/Mang-X/nerv-ui/issues/37) 从 `/#login/library` 与 `/#login/studio` 进入两类中性空间的登录/改密组合，支持两类桌面、手持与大屏入口，回执须明确确认。见[组合合同](frontend/apps/design-system/docs/components/desktop/login-recipe.md)与[实施记录](docs/evidence/t08-c01/README.md)。真实会话、密码保存和原应用接入不在本票。
 
-[T07/P15 / #98](https://github.com/Mang-X/nerv-ui/issues/98) 从 `/#schedule-saved/library`、`/#schedule-saved/studio` 展示已保存计划只读资源图、树表、详情与搜索。名称、维度、事实与导航权限来自 host；接入见[已保存计划合同](docs/scheduling-saved-plan.md)，验证范围见 [P15 证据](docs/evidence/t07-p15/README.md)。P16 工作台组合与真实运行验收另行执行。
-
-[T07/P16 / #99](https://github.com/Mang-X/nerv-ui/issues/99) 从 `/#schedule-workbench/library`、`/#schedule-workbench/studio` 进入中性工作台、历史及预览组合，所有既有排程入口可往返。见 [公共合同](docs/scheduling-workbench.md) 与 [本票证据](docs/evidence/t07-p16/README.md)。
-
 ## 独立文档站（T09/A，#143）
 
 在 `frontend` 执行 `pnpm docs:dev`（127.0.0.1:5180）、`pnpm docs:build`、`pnpm docs:typecheck`。
 默认 `dev` 仍启动 playground；根 `typecheck` 递归覆盖含文档站的活动包，根 `build` 先执行该聚合检查再构建 playground，文档静态产物需显式执行 `docs:build`。
 文档工程合同用 `pnpm -C frontend/apps/design-system exec vp test run --config vitest.config.ts docs.contract.test.ts`，不扩到其它包测试桶。
 174 页原站点保留；跨出站点的真实仓库文件映射到 integration 分支源码，站内死链检查保留。
-VitePress 1.6.4 使用其私有 Vite 5.4.21，playground 使用既有 Vite Plus；三份共享排程样例通过显式本地 adapter 消费当前公共模型，不依赖生成 SDK。
+VitePress 1.6.4 使用其私有 Vite 5.4.21，playground 使用既有 Vite Plus。
 工程恢复不等于 #10 全部 live 或浏览器验收。决策、来源及运行证据见 [T09/A 记录](docs/evidence/t09-a/README.md)。

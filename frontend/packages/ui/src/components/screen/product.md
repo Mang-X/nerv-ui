@@ -68,12 +68,12 @@
 
 ## 组件清单
 
-真实导出以同目录 `index.ts` 和主桶为准，共 46 件组件；下表用于导航，不替代公开 API。
+真实导出以同目录 `index.ts` 和主桶为准，共 45 件组件；下表用于导航，不替代公开 API。
 
 | 分类                     | 当前公共导出                                                                                                                                                                                                                         |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 舞台 / 容器 / 外壳（11） | `NvScreenLoginStage` · `NvScreenDetailDialog` · `NvScreenScaler` · `NvScreenLayout` · `NvScreenPanel` · `NvScreenScrollArea` · `NvBorderPanel` · `NvTechFrame` · `NvTitleBar` · `NvScreenHeader` · `NvGlowDivider`                   |
-| 指标 / 图表（12）        | `NvScreenParameter` · `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvTaktGantt` · `NvScreenHeatmap`            |
+| 指标 / 图表（11）        | `NvScreenParameter` · `NvOeeHero` · `NvRingGauge` · `NvCapsuleBar` · `NvDigitalFlop` · `NvSparkline` · `NvScreenTrendChart` · `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvScreenHeatmap`                          |
 | 数据 / 状态（11）        | `NvScreenStatusWall` · `NvScreenSummaryCard` · `NvScreenStatusCard` · `NvScreenFreshness` · `NvKpiBar` · `NvAlarmTable` · `NvScreenStatusLight` · `NvScreenStatusHero` · `NvScreenStatusTag` · `NvScrollBoard` · `NvScreenStageFlow` |
 | 控件（9）                | `NvScreenButton` · `NvScreenInput` · `NvScreenSelect` · `NvScreenSearch` · `NvScreenTable` · `NvScreenTabs` · `NvScreenSegmented` · `NvScreenSwitch` · `NvScreenPagination`                                                          |
 | 装饰背景（3）            | `NvScreenFlowLinesBg` · `NvScreenIsometricBlocksBg` · `NvScreenFusionBg`                                                                                                                                                             |

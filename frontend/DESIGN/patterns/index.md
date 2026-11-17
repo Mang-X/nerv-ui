@@ -31,7 +31,6 @@
 | 场景                                               | 交互模式  | 文件                         |
 | -------------------------------------------------- | --------- | ---------------------------- |
 | FE-2 区块库总览（Nv\* 区块清单 + 取代关系）        | 区块库 v2 | `blocks/block-library-v2.md` |
-| 应用框架：顶部领域 + 侧边导航（AppShellT）         | 应用外壳  | `blocks/app-shell.md`        |
 | 以面包屑（breadcrumb）为标题的页头（NvPageHeader） | 页头      | `blocks/page-header.md`      |
 | 搜索 + 筛选 + 操作栏（NvToolbar）                  | 工具栏    | `blocks/toolbar.md`          |
 | 实体列表表格（NvDataTable）                        | 数据表    | `blocks/data-table.md`       |

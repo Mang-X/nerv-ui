@@ -22,7 +22,6 @@ const routes = [
   ['screen/data', '流动消息'],
   ['screen/charts', '内容与到访'],
   ['screen/tables', '清单与事件'],
-  ['screen/summary', '空间使用概况'],
 ]
 </script>
 <template>

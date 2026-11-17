@@ -181,7 +181,6 @@ it('opens files directly and returns from every completed surface group', async 
     '#screen/data',
     '#screen/charts',
     '#screen/tables',
-    '#screen/summary',
   ]) {
     expect(wrapper.find(`a[href="${hash}"]`).exists()).toBe(true)
     window.location.hash = hash

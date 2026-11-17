@@ -42,7 +42,6 @@
 | 分页          | （`NvDataTable` 内置）                                                                                        | —（移动用无限滚动，见长列表）   | `—`                                | `NvScreenPagination`                                                                           |
 | 标签页        | `NvTabs`                                                                                                      | `NvMobileTabs`                  | `NvTouchSegmented`（触控用分段件） | `NvScreenTabs`                                                                                 |
 | 描述列表      | `NvDescriptions`                                                                                              | （用 `NvCell`）                 | `—`                                | `—`                                                                                            |
-| 时间安排      | `NvScheduleTimeline`（原生只读，#84）                                                                         | `—`                             | `—`                                | `—`                                                                                            |
 | 时间线 / 步骤 | `NvTimeline`                                                                                                  | `NvMobileSteps`                 | `—`                                | `—`                                                                                            |
 | 卡片 / 面板   | `NvCard` · `NvRecordCard`（记录卡）                                                                           | （用 `NvCell`/`NvListRow`）     | （复用 `NvCard`）                  | `NvScreenPanel` · `NvBorderPanel`                                                              |
 | 行动摘要      | `NvActionSummary`（五态、数量、预览、出口）                                                                   | `—`                             | `—`                                | `—`                                                                                            |
@@ -50,7 +49,6 @@
 | 行操作        | `NvRowActions`（行内菜单封装）                                                                                | `—`                             | `—`                                | `—`                                                                                            |
 | 看板          | `NvKanban`                                                                                                    | `—`                             | `—`                                | `—`                                                                                            |
 | 图表          | `NvBarChart`/`NvLineChart`/`NvAreaChart`/`NvDonutChart`                                                       | `—`                             | （复用 PC）                        | `NvScreenBarChart` · `NvScreenDonut` · `NvScreenPareto` · `NvSparkline` · `NvScreenTrendChart` |
-| 甘特          | `—`                                                                                                           | `—`                             | `—`                                | `NvTaktGantt`                                                                                  |
 | 分组状态墙    | —                                                                                                             | —                               | —                                  | `NvScreenStatusWall`                                                                           |
 | 分档热力格    | —                                                                                                             | —                               | —                                  | `NvScreenHeatmap`                                                                              |
 | 入口与摘要卡  | —                                                                                                             | —                               | —                                  | `NvScreenSummaryCard`                                                                          |
@@ -193,17 +191,8 @@ T08/R13：PC `NvLineChart` 增加可选图内多范围与点定位；touch/mobil
 
 ## P15 已保存计划（scheduling 专用包）
 
-| 组件                                             | 能力                         | PC            | mobile | touch | screen |
-| ------------------------------------------------ | ---------------------------- | ------------- | ------ | ----- | ------ |
-| SchedulingSavedPlan / SchedulingPlanGantt        | 已保存计划资源图、详情与搜索 | scheduling/PC | —      | —     | —      |
-| SavedPlanOrders / SchedulingPlanOrders           | 关联组、工单、活动树表       | scheduling/PC | —      | —     | —      |
-| SavedPlanWorkOrderLink / SchedulingWorkOrderLink | host 授权导航                | scheduling/PC | —      | —     | —      |
+> 随 `@nerv-iip/scheduling` 于 #300 撤出本库；本节保留历史矩阵记录，不再描述当前导出。
 
 ## P16 工作台组合（scheduling 专用包）
 
-| 组件                | PC                               | mobile | touch | screen |
-| ------------------- | -------------------------------- | ------ | ----- | ------ |
-| SchedulingWorkbench | 活动/资源图、P09表格、P08面板    | —      | —     | —      |
-| SchedulingHistory   | 中性历史过滤分页、详情与操作回执 | —      | —     | —      |
-
-决策与使用边界见 [工作台组合](components/scheduling-workbench.md)。
+> 同上：随 `@nerv-iip/scheduling` 于 #300 撤出本库；本节保留历史矩阵记录，不再描述当前导出。
