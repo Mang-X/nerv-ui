@@ -1,5 +1,5 @@
 ---
-title: Notify 消息提醒
+title: NvNotifierHost 消息提醒
 ---
 
 <script setup>
@@ -30,7 +30,7 @@ function fireNotification(kind) {
 }
 </script>
 
-# Notify 消息提醒
+# NvNotifierHost 消息提醒
 
 两类反馈通道：`nvMessage` 顶部居中、单行、短暂自停；`nvNotification` 右上角卡片，带标题与描述。二者皆为命令式函数调用，需在应用根部挂载一次 `NvNotifierHost`。
 

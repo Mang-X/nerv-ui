@@ -1,5 +1,5 @@
 ---
-title: Chart 图表
+title: NvChart 族图表
 ---
 
 <script setup>
@@ -63,7 +63,7 @@ const statusMix = [
 ]
 </script>
 
-# Chart 图表
+# NvChart 族图表
 
 基于 unovis 的一组数据可视化图表：面积、折线、柱状、环形。颜色取自设计令牌，随运行时品牌色重新着色。
 

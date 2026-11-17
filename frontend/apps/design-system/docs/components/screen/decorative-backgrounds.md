@@ -1,5 +1,5 @@
 ---
-title: NvScreenFlowLinesBg 与 NvScreenIsometricBlocksBg
+title: NvScreenFlowLinesBg 与 NvScreenIsometricBlocksBg 装饰背景
 ---
 
 <script setup lang="ts">
@@ -10,7 +10,7 @@ const flowClicks = ref(0)
 const isoClicks = ref(0)
 </script>
 
-# 大屏装饰背景
+# NvScreenFlowLinesBg 与 NvScreenIsometricBlocksBg 装饰背景
 
 `NvScreenFlowLinesBg` 与 `NvScreenIsometricBlocksBg` 是没有必填属性的 SVG 装饰件。它们使用 screen 层的 `--nv-scr-*` 色彩，根 SVG 为 `position: absolute; inset: 0`；宿主给包裹容器设置 `position: relative`、明确尺寸与深色背景。组件继承宿主的 `class`、`style` 等 SVG 属性，不读取业务数据或路由。
 

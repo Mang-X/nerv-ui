@@ -1,12 +1,12 @@
 ---
-title: Spinner 加载
+title: NvSpinner 加载
 ---
 
 <script setup>
 import { NvButton, NvSpinner } from '@nerv-iip/ui'
 </script>
 
-# Spinner 加载
+# NvSpinner 加载
 
 <!-- 决策正文嵌入 DESIGN 唯一事实源，修改使用规则请改源文件。 -->
 <!--@include: ../../../../../DESIGN/components/skeleton-spinner.md-->

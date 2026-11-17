@@ -10,7 +10,7 @@ const selected = ref(null)
 const nodes = ref([{ key: 'books', label: '晨光书房', children: [{ key: 'poems', label: '诗歌角' }] }])
 </script>
 
-# NvTree
+# NvTree 层级树
 
 ## 示例
 

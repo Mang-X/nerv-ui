@@ -1,12 +1,12 @@
 ---
-title: FilterBar 受控筛选
+title: NvFilterBar 受控筛选
 ---
 
 <script setup>
 import FilterBarExample from '../../.vitepress/examples/FilterBarExample.vue'
 </script>
 
-# FilterBar 受控筛选
+# NvFilterBar 受控筛选
 
 按类别、活动日期、日期范围和名称查找活动。结果只来自本页内存，数量单位为场，不发起真实查询或保存。范围边界包含当日；只选起点或终点时仅限制该侧。
 
