@@ -9,8 +9,11 @@ import type { NvTimePickerProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-const props = withDefaults(defineProps<NvTimePickerProps>(), {
+withDefaults(defineProps<NvTimePickerProps>(), {
   granularity: 'minute',
+  disabled: undefined,
+  readOnly: undefined,
+  required: undefined,
 })
 
 const fieldSx = computed(() => stylex.props(styles.field, focus.ring))

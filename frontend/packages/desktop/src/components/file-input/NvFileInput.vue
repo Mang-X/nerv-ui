@@ -24,6 +24,9 @@ const props = withDefaults(defineProps<NvFileInputProps>(), {
   dropzone: true,
   showList: true,
   listLabel: '已选文件',
+  multiple: undefined,
+  required: undefined,
+  disabled: undefined,
 })
 
 const emit = defineEmits<{ reject: [reasons: string[]] }>()
@@ -44,8 +47,6 @@ function onReject(rejected: { reasons: readonly string[] }[]) {
     rejected.flatMap((entry) => Array.from(entry.reasons)),
   )
 }
-
-const listBindings = computed(() => (props.showList ? { 'aria-label': props.listLabel } : {}))
 </script>
 
 <template>
@@ -81,7 +82,7 @@ const listBindings = computed(() => (props.showList ? { 'aria-label': props.list
     </FileInputTrigger>
     <FileInputList
       v-if="showList"
-      v-bind="listBindings"
+      :aria-label="listLabel"
       :class="listSx.className"
       :style="listSx.style"
     >

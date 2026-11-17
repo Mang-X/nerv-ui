@@ -9,11 +9,6 @@ export interface NvAutocompleteProps {
   defaultOpen?: boolean
   /** Suggestion strings; anything typed stays valid. */
   items?: string[]
-  /**
-   * Suggestions shown while the field is empty, like recent searches.
-   * Pair with `open-on-focus`.
-   */
-  emptyItems?: string[]
   /** How typing narrows the suggestions. */
   filter?: NvAutocompleteFilter
   /** Completes the text with the first matching suggestion, rest selected. */

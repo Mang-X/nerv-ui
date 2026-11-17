@@ -34,6 +34,13 @@ const props = withDefaults(defineProps<NvDateRangePickerProps>(), {
   triggerLabel: '打开日历',
   prevLabel: '上个月',
   nextLabel: '下个月',
+  open: undefined,
+  disabled: undefined,
+  readOnly: undefined,
+  required: undefined,
+  fixedWeeks: undefined,
+  showOutsideDays: undefined,
+  closeOnSelect: undefined,
   months: 2,
   side: 'bottom',
   align: 'start',
@@ -120,6 +127,7 @@ const gridOffsets = computed(() => Array.from({ length: props.months }, (_, inde
       <CalendarIcon :size="16" aria-hidden="true" />
     </DatePickerTrigger>
     <DatePickerContent
+      aria-label="选择日期范围"
       :side="side"
       :align="align"
       :side-offset="sideOffset ?? 6"

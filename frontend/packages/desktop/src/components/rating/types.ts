@@ -18,4 +18,6 @@ export interface NvRatingProps {
   loop?: boolean
   /** Accessible name for the rating group. */
   ariaLabel?: string
+  /** Names a score for each star's radio. Defaults to `"<n> 星"`. */
+  getValueLabel?: (value: number, max: number) => string
 }

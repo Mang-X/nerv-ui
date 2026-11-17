@@ -19,12 +19,25 @@ import type { NvAutocompleteProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-const props = withDefaults(defineProps<NvAutocompleteProps>(), {
+withDefaults(defineProps<NvAutocompleteProps>(), {
   placeholder: '输入以联想…',
   ariaLabel: '联想输入',
   clearable: false,
   clearLabel: '清除',
   emptyText: '无匹配建议',
+  // Boolean props omitted by the caller must stay undefined so ui-sdk keeps
+  // its own uncontrolled state; passing false would control `open` et al.
+  open: undefined,
+  inlineComplete: undefined,
+  autoHighlight: undefined,
+  openOnFocus: undefined,
+  submitOnSelect: undefined,
+  disabled: undefined,
+  readOnly: undefined,
+  required: undefined,
+  // `filter` is typed as `... | false`; Vue otherwise resolves an omitted
+  // Boolean-union prop to `false`, which would disable filtering entirely.
+  filter: undefined,
 })
 
 const fieldSx = computed(() => stylex.props(styles.field, focus.ring))
@@ -36,6 +49,11 @@ const emptySx = computed(() => stylex.props(styles.empty))
 const listSx = computed(() => stylex.props(styles.list))
 const itemSx = computed(() => stylex.props(styles.item, focus.subtle))
 const itemTextSx = computed(() => stylex.props(styles.itemText))
+
+/** The list hands back filtered suggestion data; the wrapper deals in strings. */
+function visibleItems(items: unknown): string[] {
+  return Array.isArray(items) ? (items as string[]) : []
+}
 </script>
 
 <template>
@@ -46,7 +64,6 @@ const itemTextSx = computed(() => stylex.props(styles.itemText))
     :open="open"
     :default-open="defaultOpen"
     :items="items"
-    :empty-items="emptyItems"
     :filter="filter"
     :inline-complete="inlineComplete"
     :auto-highlight="autoHighlight"
@@ -91,9 +108,13 @@ const itemTextSx = computed(() => stylex.props(styles.itemText))
           <span v-if="state.empty">{{ emptyText }}</span>
         </template>
       </AutocompleteEmpty>
-      <AutocompleteList :class="listSx.className" :style="listSx.style">
+      <AutocompleteList
+        v-slot="{ state }"
+        :class="listSx.className"
+        :style="listSx.style"
+      >
         <AutocompleteItem
-          v-for="item in items ?? []"
+          v-for="item in visibleItems(state.items)"
           :key="item"
           :value="item"
           :class="itemSx.className"

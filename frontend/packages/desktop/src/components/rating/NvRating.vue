@@ -13,6 +13,11 @@ withDefaults(defineProps<NvRatingProps>(), {
   max: 5,
   step: 1,
   loop: false,
+  deselectable: undefined,
+  disabled: undefined,
+  readOnly: undefined,
+  required: undefined,
+  getValueLabel: (value: number) => `${value} 星`,
 })
 
 const rootSx = computed(() => stylex.props(styles.root))
@@ -35,6 +40,7 @@ const iconSx = computed(() => stylex.props(styles.icon))
     :form="form"
     :loop="loop"
     :aria-label="ariaLabel"
+    :get-value-label="getValueLabel"
     :class="[rootSx.className, $attrs.class]"
     :style="[rootSx.style, $attrs.style]"
   >

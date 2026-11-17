@@ -27,6 +27,9 @@ const props = withDefaults(defineProps<NvCommandProps>(), {
   emptyText: '没有匹配的命令',
   autoHighlight: true,
   loop: true,
+  // `filter` is typed as `... | false`; Vue otherwise resolves an omitted
+  // Boolean-union prop to `false`, which would disable filtering entirely.
+  filter: undefined,
 })
 
 const emit = defineEmits<{ action: [value: string] }>()

@@ -32,6 +32,15 @@ const props = withDefaults(defineProps<NvDatePickerProps>(), {
   triggerLabel: '打开日历',
   prevLabel: '上个月',
   nextLabel: '下个月',
+  // Optional Booleans default to false when omitted, which would make the
+  // wrapper pass a controlled `open`/`closeOnSelect` the caller never asked for.
+  open: undefined,
+  disabled: undefined,
+  readOnly: undefined,
+  required: undefined,
+  fixedWeeks: undefined,
+  showOutsideDays: undefined,
+  closeOnSelect: undefined,
   months: 1,
   side: 'bottom',
   align: 'start',
@@ -42,7 +51,6 @@ const props = withDefaults(defineProps<NvDatePickerProps>(), {
 // wrapper must never attach one the caller didn't ask for.
 const fieldSx = computed(() => stylex.props(styles.field, focus.ring))
 const inputSx = computed(() => stylex.props(styles.input))
-const separatorSx = computed(() => stylex.props(styles.separator))
 const triggerSx = computed(() => stylex.props(styles.trigger, focus.ring))
 const clearSx = computed(() => stylex.props(styles.clear, focus.subtle))
 const contentSx = computed(() => stylex.props(glass.surface, styles.content, presence.fadeZoom))
@@ -110,6 +118,7 @@ const gridOffsets = computed(() => Array.from({ length: props.months }, (_, inde
       <CalendarIcon :size="16" aria-hidden="true" />
     </DatePickerTrigger>
     <DatePickerContent
+      aria-label="选择日期"
       :side="side"
       :align="align"
       :side-offset="sideOffset ?? 6"

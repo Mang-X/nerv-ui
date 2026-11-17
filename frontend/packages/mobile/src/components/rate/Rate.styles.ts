@@ -1,0 +1,51 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, motion, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  root: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 4,
+    color: color.border,
+    fontFamily: typography.fontSans,
+    '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
+    '[data-readonly]': { cursor: 'default' },
+  },
+  item: {
+    position: 'relative',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    width: 44,
+    height: 44,
+    borderRadius: 10,
+    outlineStyle: 'none',
+    color: color.mutedFg,
+    transitionProperty: 'color, transform, opacity',
+    transitionDuration: motion.durationFast,
+    transitionTimingFunction: motion.easeOut,
+    '[data-filled]': { color: color.brand },
+    '[data-partial]': { color: color.brand },
+    '[data-highlighted]': { color: color.brand },
+    '[data-disabled]': { cursor: 'not-allowed' },
+    ':has(:focus-visible)': {
+      outlineStyle: 'solid',
+      outlineWidth: 1,
+      outlineColor: color.brand,
+      outlineOffset: -10,
+      borderRadius: 999,
+    },
+    ':active:not([data-disabled])': { transform: 'scale(0.94)' },
+  },
+  iconSm: { width: 18, height: 18 },
+  iconMd: { width: 24, height: 24 },
+  iconLg: { width: 30, height: 30 },
+  value: {
+    marginInlineStart: 4,
+    color: color.mutedFg,
+    fontSize: typography.sizeSm,
+    lineHeight: typography.lineSm,
+    fontVariantNumeric: 'tabular-nums',
+  },
+})

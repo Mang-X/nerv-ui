@@ -7,7 +7,6 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxItemIndicator,
-  ComboboxItemText,
   ComboboxList,
   ComboboxStatus,
   ComboboxTrigger,
@@ -32,6 +31,19 @@ const props = withDefaults(defineProps<NvComboboxProps>(), {
   emptyText: '无匹配选项',
   loadingText: '搜索中…',
   showTrigger: true,
+  // Boolean props omitted by the caller must stay undefined so ui-sdk keeps
+  // its own uncontrolled state; passing false would control `open` et al.
+  open: undefined,
+  multiple: undefined,
+  allowCustomValue: undefined,
+  loop: undefined,
+  disabled: undefined,
+  readOnly: undefined,
+  required: undefined,
+  // `filter` is typed as `... | false`; Vue otherwise resolves an omitted
+  // Boolean-union prop to `false`, which would disable filtering entirely.
+  filter: undefined,
+  autoHighlight: undefined,
 })
 
 // Async mode keeps the query controlled on our side and lets the loader own
@@ -99,6 +111,14 @@ const indicatorSx = computed(() => stylex.props(styles.indicator))
 function visibleItems(items: unknown): NvComboboxItem[] {
   return Array.isArray(items) ? (items as NvComboboxItem[]) : []
 }
+
+/**
+ * Sync mode passes its items as data, async results arrive as data too, so both
+ * render the list's filtered `state.items`; the wrapper only accepts flat items.
+ */
+function sourceItems(items: unknown): NvComboboxItem[] {
+  return visibleItems(items)
+}
 </script>
 
 <template>
@@ -152,7 +172,7 @@ function visibleItems(items: unknown): NvComboboxItem[] {
       </ComboboxEmpty>
       <ComboboxList v-slot="{ state }" :class="listSx.className" :style="listSx.style">
         <ComboboxItem
-          v-for="item in visibleItems(state.items)"
+          v-for="item in sourceItems(state.items)"
           :key="item.value"
           :value="item.value"
           :label="item.label"
@@ -161,9 +181,7 @@ function visibleItems(items: unknown): NvComboboxItem[] {
           :class="itemSx.className"
           :style="itemSx.style"
         >
-          <ComboboxItemText :class="itemTextSx.className" :style="itemTextSx.style">
-            {{ item.label }}
-          </ComboboxItemText>
+          <span :class="itemTextSx.className" :style="itemTextSx.style">{{ item.label }}</span>
           <ComboboxItemIndicator :class="indicatorSx.className" :style="indicatorSx.style">
             <CheckIcon :size="14" aria-hidden="true" />
           </ComboboxItemIndicator>
