@@ -64,7 +64,7 @@ watch(
       v-for="(t, i) in items"
       :key="`${typeof t.value}:${t.value}`"
       type="button"
-      class="nv-scr-tb-item"
+      class="nv-scr-tb-item nv-focusable"
       role="tab"
       :class="{ on: t.value === model }"
       :aria-selected="t.value === model"
@@ -107,7 +107,7 @@ watch(
     font-weight: 500;
     white-space: nowrap;
     cursor: pointer;
-    transition: color 0.2s var(--nv-scr-ease);
+    transition: color var(--nv-duration-base, 220ms) var(--nv-scr-ease);
   }
   .nv-scr-tb-item:hover:not(.on) {
     color: var(--nv-scr-text-2);
@@ -120,11 +120,6 @@ watch(
     color: var(--nv-scr-cyan);
     font-weight: 600;
   }
-  .nv-scr-tb-item:focus-visible {
-    outline: none;
-    border-radius: 4px;
-    box-shadow: inset 0 0 0 2px var(--nv-scr-cyan-dim);
-  }
   /* sliding underline ink */
   .nv-scr-tb-ink {
     position: absolute;
@@ -135,8 +130,8 @@ watch(
     background: var(--nv-scr-cyan);
     box-shadow: 0 0 10px var(--nv-scr-cyan-dim);
     transition:
-      transform 0.28s var(--nv-scr-ease-emphasized),
-      width 0.28s var(--nv-scr-ease-emphasized);
+      transform var(--nv-duration-slow, 320ms) var(--nv-scr-ease-emphasized),
+      width var(--nv-duration-slow, 320ms) var(--nv-scr-ease-emphasized);
   }
 
   @media (prefers-reduced-motion: reduce) {

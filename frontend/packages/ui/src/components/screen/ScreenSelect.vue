@@ -189,7 +189,7 @@ onBeforeUnmount(() => {
     <button
       ref="trigger"
       type="button"
-      class="nv-scr-sel-trigger"
+      class="nv-scr-sel-trigger nv-focusable"
       role="combobox"
       aria-haspopup="listbox"
       :aria-expanded="open"
@@ -209,7 +209,9 @@ onBeforeUnmount(() => {
       <ul
         v-if="open"
         ref="panel"
-        class="nv-scr-sel-panel nv-scr-scroll"
+        class="nv-scr-sel-panel nv-scr-scroll nv-overlay-content"
+        data-slot="nv-select-content"
+        data-state="open"
         role="listbox"
         :id="listId"
         :style="{
@@ -263,12 +265,12 @@ onBeforeUnmount(() => {
     text-align: left;
     cursor: pointer;
     transition:
-      border-color 0.18s var(--nv-scr-ease),
-      box-shadow 0.18s var(--nv-scr-ease);
+      border-color var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease),
+      box-shadow var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease);
   }
-  .nv-scr-sel.open .nv-scr-sel-trigger,
-  .nv-scr-sel-trigger:focus-visible {
-    outline: none;
+  /* Open state — cyan hairline + outer glow; distinct from the focus affordance
+     (which is the shared .nv-focusable brand ring). */
+  .nv-scr-sel.open .nv-scr-sel-trigger {
     border-color: var(--nv-scr-cyan);
     box-shadow:
       inset 0 1px 2px rgba(0, 0, 0, 0.4),
@@ -291,14 +293,17 @@ onBeforeUnmount(() => {
   .nv-scr-sel-caret {
     flex: none;
     color: var(--nv-scr-muted);
-    transition: transform 0.2s var(--nv-scr-ease);
+    transition: transform var(--nv-duration-base, 220ms) var(--nv-scr-ease);
   }
   .nv-scr-sel.open .nv-scr-sel-caret {
     transform: rotate(180deg);
     color: var(--nv-scr-cyan);
   }
 
-  /* teleported to <body> — fixed so no ancestor overflow can clip it */
+  /* teleported to <body> — fixed so no ancestor overflow can clip it.
+     Glass material (translucent fill + backdrop blur) comes from the shared
+     overrides.css `data-slot='nv-select-content'` rule; the opaque fill below
+     is the no-blur fallback and is overridden when glass applies. */
   .nv-scr-sel-panel {
     position: fixed;
     box-sizing: border-box;
@@ -310,10 +315,7 @@ onBeforeUnmount(() => {
     max-height: 264px;
     overflow-y: auto;
     border-radius: var(--nv-scr-radius);
-    /* glass — translucent dark + blur, white highlight edge, no colored bloom */
-    background: rgba(11, 15, 24, 0.72);
-    backdrop-filter: blur(16px) saturate(1.3);
-    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    background-color: var(--nv-scr-bg-accent);
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.1),

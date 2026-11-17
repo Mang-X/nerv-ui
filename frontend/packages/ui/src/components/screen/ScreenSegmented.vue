@@ -100,7 +100,7 @@ function move(dir: 1 | -1) {
       v-for="(o, i) in options"
       :key="`${typeof o.value}:${o.value}`"
       type="button"
-      class="nv-scr-sg-opt"
+      class="nv-scr-sg-opt nv-focusable"
       role="radio"
       :class="{ on: o.value === model }"
       :aria-checked="o.value === model"
@@ -138,8 +138,8 @@ function move(dir: 1 | -1) {
     opacity: 0;
     pointer-events: none;
     transition:
-      transform 0.28s var(--nv-scr-ease-emphasized),
-      width 0.28s var(--nv-scr-ease-emphasized);
+      transform var(--nv-duration-slow, 320ms) var(--nv-scr-ease-emphasized),
+      width var(--nv-duration-slow, 320ms) var(--nv-scr-ease-emphasized);
   }
   .nv-scr-sg-thumb.ready {
     opacity: 1;
@@ -156,7 +156,7 @@ function move(dir: 1 | -1) {
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
     cursor: pointer;
-    transition: color 0.28s var(--nv-scr-ease);
+    transition: color var(--nv-duration-slow, 320ms) var(--nv-scr-ease);
   }
   .nv-scr-sg-opt:hover:not(.on) {
     color: var(--nv-scr-text-2);
@@ -168,13 +168,6 @@ function move(dir: 1 | -1) {
   .nv-scr-sg-opt.on {
     color: #04141a;
     font-weight: 600;
-  }
-  .nv-scr-sg-opt:focus-visible {
-    outline: none;
-    border-radius: calc(var(--nv-scr-radius) - 2px);
-    box-shadow:
-      0 0 0 2px var(--nv-scr-bg),
-      0 0 0 4px var(--nv-scr-cyan-dim);
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -3,9 +3,9 @@ import { Search, X } from '@lucide/vue'
 
 /**
  * Screen — big-board search box. A lucide search glyph anchors the left, the
- * well lights a cyan ring on focus, and once there's text a clear button (×)
- * appears to wipe it. Built on the independent `--nv-scr-*` tokens via `v-model`
- * (string).
+ * well carries the shared `.nv-focusable` brand ring on focus, and once there's
+ * text a clear button (×) appears to wipe it. Built on the independent
+ * `--nv-scr-*` tokens via `v-model` (string).
  */
 const model = defineModel<string>({ default: '' })
 
@@ -25,7 +25,7 @@ function clear() {
 </script>
 
 <template>
-  <div class="nv-scr-se" :class="{ disabled }">
+  <div class="nv-scr-se nv-focusable" :class="{ disabled }">
     <Search class="nv-scr-se-icon" :size="16" aria-hidden="true" />
     <input
       v-model="model"
@@ -38,7 +38,7 @@ function clear() {
     <button
       v-if="model"
       type="button"
-      class="nv-scr-se-clear"
+      class="nv-scr-se-clear nv-focusable"
       aria-label="清除"
       :disabled="disabled"
       @click="clear"
@@ -64,7 +64,6 @@ function clear() {
     box-shadow:
       inset 0 1px 0 var(--nv-scr-highlight),
       inset 0 1px 2px rgba(0, 0, 0, 0.4);
-    transition: box-shadow 0.18s var(--nv-scr-ease);
   }
   .nv-scr-se::before {
     content: '';
@@ -80,29 +79,10 @@ function clear() {
     mask-composite: exclude;
     pointer-events: none;
     z-index: 0;
-    transition: background 0.18s var(--nv-scr-ease);
   }
   .nv-scr-se > * {
     position: relative;
     z-index: 1;
-  }
-  .nv-scr-se:focus-within {
-    box-shadow:
-      inset 0 1px 0 var(--nv-scr-highlight),
-      inset 0 1px 2px rgba(0, 0, 0, 0.4),
-      0 0 0 3px var(--nv-scr-cyan-dim);
-  }
-  .nv-scr-se:focus-within::before {
-    background: linear-gradient(
-      90deg,
-      var(--nv-scr-cyan),
-      rgba(70, 150, 230, 0.55) 30%,
-      rgba(70, 150, 230, 0.55) 70%,
-      var(--nv-scr-cyan)
-    );
-  }
-  .nv-scr-se:focus-within .nv-scr-se-icon {
-    color: var(--nv-scr-cyan);
   }
   .nv-scr-se.disabled {
     opacity: 0.5;
@@ -110,7 +90,6 @@ function clear() {
   .nv-scr-se-icon {
     flex: none;
     color: var(--nv-scr-muted);
-    transition: color 0.18s var(--nv-scr-ease);
   }
   .nv-scr-se-field {
     flex: 1;
@@ -147,9 +126,9 @@ function clear() {
     color: var(--nv-scr-muted);
     cursor: pointer;
     transition:
-      background 0.15s var(--nv-scr-ease),
-      color 0.15s var(--nv-scr-ease),
-      transform 0.15s var(--nv-scr-ease);
+      background var(--nv-duration-fast, 150ms) var(--nv-scr-ease),
+      color var(--nv-duration-fast, 150ms) var(--nv-scr-ease),
+      transform var(--nv-duration-fast, 150ms) var(--nv-scr-ease);
   }
   .nv-scr-se-clear:active {
     transform: scale(0.88);
@@ -158,16 +137,8 @@ function clear() {
     background: rgba(255, 255, 255, 0.12);
     color: var(--nv-scr-text);
   }
-  .nv-scr-se-clear:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 2px var(--nv-scr-bg),
-      0 0 0 4px var(--nv-scr-cyan-dim);
-  }
 
   @media (prefers-reduced-motion: reduce) {
-    .nv-scr-se,
-    .nv-scr-se-icon,
     .nv-scr-se-clear {
       transition: none;
     }

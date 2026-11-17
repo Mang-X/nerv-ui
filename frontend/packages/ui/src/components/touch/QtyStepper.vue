@@ -39,14 +39,14 @@ function inc() {
     data-slot="qty-stepper"
     :class="
       cn(
-        'inline-flex h-14 items-stretch overflow-hidden rounded-xl border border-border bg-card',
+        'nv-focusable inline-flex h-14 items-stretch overflow-hidden rounded-xl border border-border bg-card',
         props.class,
       )
     "
   >
     <button
       type="button"
-      class="nv-step flex w-14 items-center justify-center text-foreground transition-colors hover:bg-muted active:bg-accent disabled:opacity-40"
+      class="nv-step flex w-14 items-center justify-center text-foreground transition-colors outline-none hover:bg-muted active:bg-accent disabled:opacity-40"
       :disabled="!canDec"
       aria-label="减少"
       @click="dec"
@@ -60,7 +60,7 @@ function inc() {
     </div>
     <button
       type="button"
-      class="nv-step flex w-14 items-center justify-center text-foreground transition-colors hover:bg-muted active:bg-accent disabled:opacity-40"
+      class="nv-step flex w-14 items-center justify-center text-foreground transition-colors outline-none hover:bg-muted active:bg-accent disabled:opacity-40"
       :disabled="!canInc"
       aria-label="增加"
       @click="inc"

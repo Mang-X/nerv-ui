@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
     width: 8px;
     padding: 2px 1px;
     background: transparent;
-    transition: opacity 0.22s var(--nv-scr-ease);
+    transition: opacity var(--nv-duration-base, 220ms) var(--nv-scr-ease);
     z-index: 2;
   }
   .nv-scr-sa-thumb {
@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
     min-height: 28px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.13);
-    transition: background 0.18s var(--nv-scr-ease);
+    transition: background var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease);
   }
   .nv-scr-sa-bar:hover .nv-scr-sa-thumb,
   .nv-scr-sa-bar[data-state='visible']:active .nv-scr-sa-thumb {

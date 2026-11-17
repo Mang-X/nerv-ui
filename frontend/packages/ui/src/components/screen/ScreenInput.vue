@@ -1,10 +1,11 @@
 <script setup lang="ts">
 /**
- * Screen — big-board text field. A sunken dark well that lights a cyan ring on
- * focus; an `error` state swaps the hairline and ring to red (and flags
- * `aria-invalid`) so the state never rides on color alone. An optional `suffix`
- * pins a unit (件 / kWh / %) to the right. Built on the independent `--nv-scr-*`
- * tokens via `v-model` (string).
+ * Screen — big-board text field. A sunken dark well whose focus affordance is
+ * the shared `.nv-focusable` brand ring; an `error` state swaps the hairline to
+ * red and routes `data-invalid`/`aria-invalid` so the destructive ring variant
+ * fires (state never rides on color alone). An optional `suffix` pins a unit
+ * (件 / kWh / %) to the right. Built on the independent `--nv-scr-*` tokens via
+ * `v-model` (string).
  */
 const model = defineModel<string>({ default: '' })
 
@@ -26,7 +27,11 @@ withDefaults(
 </script>
 
 <template>
-  <div class="nv-scr-in" :class="{ error, disabled }">
+  <div
+    class="nv-scr-in nv-focusable"
+    :class="{ error, disabled }"
+    :data-invalid="error || undefined"
+  >
     <input
       v-model="model"
       class="nv-scr-in-field"
@@ -56,7 +61,6 @@ withDefaults(
       inset 0 1px 0 var(--nv-scr-highlight),
       inset 0 1px 2px rgba(0, 0, 0, 0.4);
     font-variant-numeric: tabular-nums;
-    transition: box-shadow 0.18s var(--nv-scr-ease);
   }
   /* gradient hairline — brighter down the two sides + white top highlight (like the panels) */
   .nv-scr-in::before {
@@ -73,26 +77,10 @@ withDefaults(
     mask-composite: exclude;
     pointer-events: none;
     z-index: 0;
-    transition: background 0.18s var(--nv-scr-ease);
   }
   .nv-scr-in > * {
     position: relative;
     z-index: 1;
-  }
-  .nv-scr-in:focus-within {
-    box-shadow:
-      inset 0 1px 0 var(--nv-scr-highlight),
-      inset 0 1px 2px rgba(0, 0, 0, 0.4),
-      0 0 0 3px var(--nv-scr-cyan-dim);
-  }
-  .nv-scr-in:focus-within::before {
-    background: linear-gradient(
-      90deg,
-      var(--nv-scr-cyan),
-      rgba(70, 150, 230, 0.55) 30%,
-      rgba(70, 150, 230, 0.55) 70%,
-      var(--nv-scr-cyan)
-    );
   }
   .nv-scr-in.error::before {
     background: linear-gradient(
@@ -102,12 +90,6 @@ withDefaults(
       rgba(239, 90, 99, 0.5) 70%,
       var(--nv-scr-red)
     );
-  }
-  .nv-scr-in.error:focus-within {
-    box-shadow:
-      inset 0 1px 0 var(--nv-scr-highlight),
-      inset 0 1px 2px rgba(0, 0, 0, 0.4),
-      0 0 0 3px rgba(255, 23, 68, 0.4);
   }
   .nv-scr-in.disabled {
     opacity: 0.5;
@@ -137,12 +119,6 @@ withDefaults(
     font-size: 13px;
     color: var(--nv-scr-muted);
     white-space: nowrap;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .nv-scr-in {
-      transition: none;
-    }
   }
 }
 </style>

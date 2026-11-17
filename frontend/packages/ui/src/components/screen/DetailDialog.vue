@@ -25,7 +25,7 @@ defineEmits<{ 'update:open': [open: boolean] }>()
     <DialogPortal v-if="open" to="body">
       <div class="nv-scr-detail-layer" data-slot="nv-screen-detail-layer">
         <DialogOverlay class="nv-scr-detail-mask" data-slot="nv-screen-detail-mask" />
-        <DialogContent class="nv-scr-detail text-sm" data-slot="nv-screen-detail-dialog">
+        <DialogContent class="nv-scr-detail text-sm" data-slot="nv-dialog-content">
           <header class="flex items-start gap-4">
             <div class="min-w-0 flex-1">
               <DialogTitle class="text-lg font-semibold">{{ title }}</DialogTitle
@@ -71,6 +71,9 @@ defineEmits<{ 'update:open': [open: boolean] }>()
     z-index: 0;
     background: color-mix(in srgb, var(--nv-scr-bg) 70%, transparent);
   }
+  /* Glass material (translucent fill + backdrop blur) comes from the shared
+     overrides.css `data-slot='nv-dialog-content'` rule; the opaque fill below
+     is the no-blur fallback. */
   .nv-scr-detail {
     position: fixed;
     z-index: 1;
@@ -84,7 +87,7 @@ defineEmits<{ 'update:open': [open: boolean] }>()
     padding: 24px;
     border: 1px solid var(--nv-scr-line-2);
     border-radius: var(--nv-scr-radius);
-    background: var(--nv-scr-bg-accent);
+    background-color: var(--nv-scr-bg-accent);
     color: var(--nv-scr-text);
     overflow-wrap: anywhere;
   }

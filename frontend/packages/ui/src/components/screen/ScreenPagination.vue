@@ -71,7 +71,7 @@ function go(p: number) {
     <div class="nv-scr-pg-ctrl">
       <button
         type="button"
-        class="nv-scr-pg-btn"
+        class="nv-scr-pg-btn nv-focusable"
         :disabled="page <= 1"
         aria-label="上一页"
         @click="go(page - 1)"
@@ -82,7 +82,7 @@ function go(p: number) {
         v-for="(p, i) in pages"
         :key="i"
         type="button"
-        class="nv-scr-pg-num"
+        class="nv-scr-pg-num nv-focusable"
         :class="{ on: p === page, gap: p === '…' }"
         :disabled="p === '…'"
         :aria-current="p === page ? 'page' : undefined"
@@ -92,7 +92,7 @@ function go(p: number) {
       </button>
       <button
         type="button"
-        class="nv-scr-pg-btn"
+        class="nv-scr-pg-btn nv-focusable"
         :disabled="page >= pageCount"
         aria-label="下一页"
         @click="go(page + 1)"
@@ -138,10 +138,10 @@ function go(p: number) {
     font-variant-numeric: tabular-nums;
     cursor: pointer;
     transition:
-      background 0.18s var(--nv-scr-ease),
-      border-color 0.18s var(--nv-scr-ease),
-      color 0.18s var(--nv-scr-ease),
-      transform 0.18s var(--nv-scr-ease);
+      background var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease),
+      border-color var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease),
+      color var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease),
+      transform var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease);
   }
   .nv-scr-pg-btn:hover:not(:disabled),
   .nv-scr-pg-num:hover:not(:disabled):not(.on):not(.gap) {
@@ -169,13 +169,6 @@ function go(p: number) {
   .nv-scr-pg-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
-  }
-  .nv-scr-pg-btn:focus-visible,
-  .nv-scr-pg-num:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 2px var(--nv-scr-bg),
-      0 0 0 4px var(--nv-scr-cyan-dim);
   }
 
   @media (prefers-reduced-motion: reduce) {

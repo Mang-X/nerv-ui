@@ -146,6 +146,7 @@ onBeforeUnmount(close)
               v-for="item in block.items"
               :key="item.key"
               type="button"
+              class="nv-focusable"
               :disabled="item.disabled"
               :aria-label="`${item.label} · ${item.identity} · ${item.status.label}`"
               :title="`${item.label} · ${item.identity} · ${item.status.label} · ${item.summary ?? '—'}`"
@@ -225,8 +226,7 @@ onBeforeUnmount(close)
     border-radius: var(--nv-scr-radius);
     cursor: pointer;
   }
-  .nv-scr-wall-cells button:hover:not(:disabled),
-  .nv-scr-wall-cells button:focus-visible {
+  .nv-scr-wall-cells button:hover:not(:disabled) {
     outline: 2px solid var(--nv-scr-cyan);
     outline-offset: -2px;
   }

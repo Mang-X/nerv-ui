@@ -75,7 +75,7 @@ function key(event: KeyboardEvent) {
     <p v-if="range" class="break-words">{{ range }}</p>
     <div
       data-plot
-      class="nv-scr-parameter-plot"
+      class="nv-scr-parameter-plot nv-focusable"
       tabindex="0"
       role="group"
       :aria-label="`${label}趋势，方向键取值，Home/End 首尾`"
@@ -121,10 +121,7 @@ function key(event: KeyboardEvent) {
     position: relative;
     height: 68px;
     margin-block: 12px;
-  }
-  .nv-scr-parameter-plot:focus-visible {
-    outline: 2px solid var(--nv-scr-cyan);
-    outline-offset: 4px;
+    border-radius: calc(var(--nv-scr-radius) - 3px);
   }
   .nv-scr-parameter-cursor {
     position: absolute;

@@ -14,7 +14,7 @@ import NvLoader from '../pc/loader/NvLoader.vue'
  * press feedback. Reduces operation paths: one obvious tap per intent.
  */
 const touchButtonVariants = cva(
-  'nv-tbtn relative inline-flex shrink-0 select-none items-center justify-center gap-2.5 rounded-xl text-base font-semibold whitespace-nowrap outline-none transition-[background,box-shadow,transform] duration-150 focus-visible:ring-4 focus-visible:ring-ring/40 disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none [&_svg:not([class*=size-])]:size-5 [&_svg]:shrink-0',
+  'nv-tbtn nv-focusable relative inline-flex shrink-0 select-none items-center justify-center gap-2.5 rounded-xl text-base font-semibold whitespace-nowrap outline-none transition-[background,box-shadow,transform] duration-(--nv-duration-fast) disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none [&_svg:not([class*=size-])]:size-5 [&_svg]:shrink-0',
   {
     variants: {
       variant: {

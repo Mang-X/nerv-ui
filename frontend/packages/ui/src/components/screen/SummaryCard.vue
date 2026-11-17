@@ -143,7 +143,7 @@ const fill = computed(() =>
     <button
       v-if="actionLabel"
       type="button"
-      class="nv-scr-summary-action"
+      class="nv-scr-summary-action nv-focusable"
       :aria-label="`${actionLabel}：${title}`"
       @click="emit('action', identity)"
     >
@@ -337,18 +337,14 @@ const fill = computed(() =>
     text-align: left;
     cursor: pointer;
     transition:
-      color 0.2s var(--nv-scr-ease),
-      transform 0.12s var(--nv-scr-ease);
+      color var(--nv-duration-base, 220ms) var(--nv-scr-ease),
+      transform var(--nv-duration-fast, 150ms) var(--nv-scr-ease);
   }
   .nv-scr-summary-action:hover {
     color: var(--nv-scr-cyan);
   }
   .nv-scr-summary-action:active {
     transform: scale(0.985);
-  }
-  .nv-scr-summary-action:focus-visible {
-    outline: 2px solid var(--nv-scr-cyan);
-    outline-offset: 3px;
   }
   .nv-scr-summary :is(h3, p, dt, dd, span, button) {
     overflow-wrap: anywhere;
