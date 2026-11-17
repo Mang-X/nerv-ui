@@ -206,4 +206,45 @@ export type {
   NvDataTableSortDirection,
 } from './components/data-table/types'
 
+// Layout & hierarchy
+export { default as NvTree } from './components/tree/NvTree.vue'
+export { default as NvDescriptions } from './components/descriptions/NvDescriptions.vue'
+export { default as NvDescriptionsItem } from './components/descriptions/NvDescriptionsItem.vue'
+export { default as NvCarousel } from './components/carousel/NvCarousel.vue'
+export { default as NvCarouselItem } from './components/carousel/NvCarouselItem.vue'
+export { default as NvTimeline } from './components/timeline/NvTimeline.vue'
+export { default as NvTimelineItem } from './components/timeline/NvTimelineItem.vue'
+export { default as NvToggle } from './components/toggle/NvToggle.vue'
+export { default as NvToggleGroup } from './components/toggle/NvToggleGroup.vue'
+export { default as NvToolbar } from './components/toolbar/NvToolbar.vue'
+export { default as NvResizable } from './components/resizable/NvResizable.vue'
+export { default as NvScrollArea } from './components/scroll-area/NvScrollArea.vue'
+
+export type { NvTreeItem, NvTreeMode, NvTreeProps, NvTreeValue } from './components/tree/types'
+export type {
+  NvDescriptionsItemProps,
+  NvDescriptionsLayout,
+  NvDescriptionsProps,
+} from './components/descriptions/types'
+export type { NvCarouselItemProps, NvCarouselProps } from './components/carousel/types'
+export type {
+  NvTimelineItemProps,
+  NvTimelineProps,
+  NvTimelineStatus,
+} from './components/timeline/types'
+export type {
+  NvToggleGroupOrientation,
+  NvToggleGroupProps,
+  NvToggleProps,
+  NvToggleSize,
+  NvToggleVariant,
+} from './components/toggle/types'
+export type { NvToolbarOrientation, NvToolbarProps } from './components/toolbar/types'
+export type { NvResizableOrientation, NvResizableProps } from './components/resizable/types'
+export type {
+  NvScrollAreaOrientation,
+  NvScrollAreaProps,
+  NvScrollAreaType,
+} from './components/scroll-area/types'
+
 export { darkTheme } from './theme/tokens.stylex'
