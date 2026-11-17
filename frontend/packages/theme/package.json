@@ -3,11 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts"
+  ],
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
-    "./tokens.stylex": { "types": "./dist/tokens.stylex.d.ts", "import": "./dist/tokens.stylex.js" },
-    "./shared.stylex": { "types": "./dist/shared.stylex.d.ts", "import": "./dist/shared.stylex.js" },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tokens.stylex": {
+      "types": "./dist/tokens.stylex.d.ts",
+      "import": "./dist/tokens.stylex.js"
+    },
+    "./shared.stylex": {
+      "types": "./dist/shared.stylex.d.ts",
+      "import": "./dist/shared.stylex.js"
+    },
     "./styles.css": "./dist/style.css"
   },
   "scripts": {
