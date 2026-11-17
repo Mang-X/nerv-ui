@@ -1,22 +1,10 @@
 # 交互模式规范（Interaction Patterns）v1
 
-> 状态：v1（前端第二波 W0 立标，2026-07）。
-> 适用：`apps/business-console` 全部业务域；§6 适用 `apps/business-pda`。
-> 定位：**后续 W2/W3 所有功能 issue 的交互验收依据**——每节 = 规则 + 判定 + 真实正/反例。反例出处均为当前代码，是"为什么立这条"的证据，同时构成各域整改清单（整改随各域 issue 落地，不在本文范围）。
-> 关联（本文内以路径引用，不作链接）：列表基线 `frontend/DESIGN/patterns/pages/list-workbench.md`；主数据页型 `frontend/DESIGN/patterns/pages/master-data-templates.md`（**本文 §1 取代其 §5"Dialog 默认"的承载判定**，其余不变）；反馈规范 `frontend/DESIGN/patterns/feedback-and-notifications.md`；确认流 `frontend/DESIGN/patterns/flows/confirm-destroy.md`。
-
-## 0. 怎么用本规范
-
-- 每条判定都是**能回答"是/否"的问句**——答"否"即不合规，评审据此打回，不引申、不辩经。
-- 代码片段分两类：**出处片段**（`路径:行号`，逐字摘自现网代码，`…` 为省略行）与**目标骨架**（标注"骨架/目标写法"，尚无现网实现）。
-- 现网组件还做不到的能力集中在 §8（能力缺口）：**缺口不作为存量页面的打回理由**；缺口补齐前新页面按各节标注的"过渡下限"执行，补齐后按目标形态。
-- 功能 issue 的验收标准直接引用 **§7 验收速查**（可整块粘贴）。
-
----
+业务域（`apps/business-console`/`apps/business-pda`）交互验收依据：每节 = 规则 + 判定问句 + 正反例。反例出处为现网代码行号，新页面提交前对照 **§7 速查** 自检。关联规范：`pages/list-workbench.md`、`pages/master-data-templates.md`（本文 §1 取代其 §5「Dialog 默认」）、`feedback-and-notifications.md`、`flows/confirm-destroy.md`。
 
 ## 1. 表单承载分级：Dialog / Sheet / 独立页
 
-现状痛点：**"一切皆 Dialog"**——建档、登记、报工、多段变更全部居中弹窗，字段一多就竖着挤、遮住列表、放不下动态行。
+反模式：「一切皆 Dialog」——建档、登记、报工、多段变更全居中弹窗，字段一多就挤、遮列表、放不下动态行。
 
 ### 规则
 
@@ -79,7 +67,7 @@ PDA 表单承载另见 §6.2（单 Sheet ≤3 字段 + 拆步）。
 
 ## 2. 行操作分级
 
-现状痛点：高频动作藏进下拉菜单——角色每天点几十次的动作要先开菜单再选项。
+反模式：高频动作藏进下拉菜单——高频动作要先开菜单再选。
 
 ### 规则
 
@@ -164,7 +152,7 @@ PDA 表单承载另见 §6.2（单 Sheet ≤3 字段 + 拆步）。
 
 ## 3. 列表-详情模式
 
-现状痛点：列表-详情承载混用——工单有独立详情页，NCR/ECO 这类同等重量的对象却挤在抽屉里、甚至没有详情载体。
+反模式：列表-详情承载混用——工单有独立详情页，NCR/ECO 同级对象挤抽屉或无详情。
 
 ### 规则
 
@@ -210,7 +198,7 @@ function openFull() {
 
 ## 4. 操作后引导与查询失效
 
-现状痛点：操作成功只有一个 toast（甚至一行常驻文字），用户不知道"刚创建的单在哪、下一步干什么"；跨域写操作后关联列表不刷新，要手动刷新才见结果。
+反模式：成功只有 toast，无「下一步去哪」；跨域写操作后关联列表不刷新。
 
 ### 4.1 成功态必答「下一步去哪」
 
@@ -239,46 +227,12 @@ function openFull() {
 
 ### 4.2 跨域写操作后的查询失效（Pinia Colada 键约定）
 
-**事实基础（生成层）**：查询键由 `@nerv-iip/api-client` 生成（`packages/api-client/src/generated/@pinia/colada.gen.ts`）。`xxxQueryOptions` 的 `key` = `createQueryKey('<operationId>', options)`，形状为：
+查询键身份 = OpenAPI `operationId`。规则：
 
-```ts
-[{ _id: '<operationId>', baseUrl, query?, tags? }]
-```
-
-**键身份 = OpenAPI operationId（即 `_id`）**。全部约定围绕它展开：
-
-1. **失效以 operationId 为单位**，用谓词匹配 `key[0]._id`。现行形态（保留为标准）——出处 `apps/business-console/src/composables/useBusinessQuality.ts:127`：
-
-```ts
-queryCache.invalidateQueries({ predicate: isBusinessQuery('listBusinessConsoleQualityNcrs') })
-```
-
-2. **写后必失效（同域）**：每个 `useMutation` 的 `onSuccess` 必须失效**本域所有读到该聚合的键**——list + detail + overview/summary。范例（`useBusinessMes.ts:375`）：
-
-```ts
-void invalidateMesQueries(queryCache, [
-  'getBusinessConsoleMesOverview',
-  'listBusinessConsoleMesOperationTasks',
-  'getBusinessConsoleMesWipSummary',
-  'listBusinessConsoleMesWorkOrders',
-]).catch(ignoreBackgroundError)
-```
-
-3. **跨域失效**：写操作改动他域读模型时，在**同一个 `onSuccess`** 里一并失效他域 operationId；键清单写在发起域 composable，逐键注释目标域。**反例** —— 完工入库只失效 MES 两个键、不失效库存（`useBusinessMes.ts:856`）：
-
-```ts
-onSuccess() {
-  void invalidateMesQueries(queryCache, [
-    'listBusinessConsoleMesFinishedGoodsReceiptRequests',
-    'getBusinessConsoleMesOverview',
-  ]).catch(ignoreBackgroundError)
-}
-```
-
-入库改变库存，但 `getBusinessConsoleInventoryAvailability` 等库存键不失效——用户切到库存页看到的是旧数据，要手动刷新才见货。
-
-4. **手动 `refreshXxx()` 只服务用户显式刷新按钮**，不得替代 `onSuccess` 失效链。
-5. **收口**：`isBusinessQuery` 目前在 7 个域 composable 各复制一份（useBusinessMasterData / Inventory / Mes / Quality / Planning / Scheduling / useProductEngineering）——上提共享工具、支持 `id | ids[]`（§8 能力项）。
+1. **失效以 operationId 为单位**，谓词匹配 `key[0]._id`：`queryCache.invalidateQueries({ predicate: isBusinessQuery('<operationId>') })`。
+2. **写后必失效（同域）**：每个 `useMutation` 的 `onSuccess` 失效**本域所有读到该聚合的键**——list + detail + overview/summary。
+3. **跨域失效**：写改动他域读模型时，同一 `onSuccess` 一并失效他域 operationId，键清单写发起域 composable 并注释目标域。
+4. **手动 `refreshXxx()` 只服务显式刷新按钮**，不替代失效链。
 
 **判定**
 
@@ -444,15 +398,13 @@ const shiftFilter = ref('all')
 
 ---
 
-## 8. 能力缺口（W2 能力项；不作为存量打回理由）
+## 8. 能力缺口（不作为存量打回理由）
 
-| 缺口                                                           | 现状出处                                                      | 目标                                                    |
-| -------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------- |
-| `NvDataTable` 空态只有 `emptyMessage` 文案位，无 `#empty` 插槽 | `packages/ui/src/components/pc/data-table/NvDataTable.vue:48` | 增 `#empty` 插槽，接 `Empty` 组件族渲染按钮 CTA（§5.1） |
-| `notifySuccess` 不支持附带动作按钮（「查看 X」）               | `apps/business-console/src/utils/notify.ts`                   | 评估 toast action；支持前用容器内成功态（§4.1）         |
-| `isBusinessQuery` 在 7 个域 composable 重复定义                | `useBusinessQuality.ts:72` 等                                 | 上提共享模块，签名支持 `id \| ids[]`（§4.2）            |
-| `Stepper` 触点 32px 不达标                                     | `packages/ui-mobile/src/components/stepper/Stepper.vue:48`    | 触点提到 ≥44px，或数量录入改走 `NumberKeyboard`（§6.4） |
-| `Steps` / `NumberKeyboard` 已导出零接入                        | `ui-mobile/src/index.ts:21,44`                                | 随 PDA W2/W3 issue 按 §6 接入                           |
+| 缺口 | 现状 | 目标 |
+| --- | --- | --- |
+| `notifySuccess` 不支持附带动作按钮（「查看 X」） | `apps/business-console/src/utils/notify.ts` | 评估 toast action；支持前用容器内成功态（§4.1） |
+
+已落地：✔ `#empty` 插槽（`NvDataTable.vue:912`，§5.1 可直接用按钮 CTA）｜✔ `isBusinessQuery` 已上提共享（签名 `id | ids[]`）｜✔ `Stepper` 触点 44px（`size-11`，§6.4 达标）｜✔ `Steps`/`NumberKeyboard` 已接入（mobile/docs 在用）
 
 ---
 
