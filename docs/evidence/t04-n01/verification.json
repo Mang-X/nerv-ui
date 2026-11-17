@@ -1,0 +1,47 @@
+{
+  "base": "49a4db7c8348fc7058db611a4defd5153d91eaa5",
+  "fresh": {
+    "ui": {
+      "files": 43,
+      "tests": 644
+    },
+    "mobileBehavior": {
+      "files": 12,
+      "tests": 73
+    },
+    "mobileNaming": {
+      "files": 1,
+      "tests": 6
+    },
+    "mobileStaticDocs": {
+      "files": 1,
+      "tests": 2
+    },
+    "uiStaticDocs": {
+      "files": 3,
+      "tests": 6
+    },
+    "host": {
+      "files": 4,
+      "tests": 22
+    },
+    "cleanFrozenInstall": 0,
+    "uiMobileHostVueTsc": 0,
+    "rootVueTsc": 0,
+    "finalBuild": 0,
+    "scopedFormat": 0,
+    "scopedLint": 0
+  },
+  "browser": "fresh Chromium desktop UA; 390x844 and 844x390 CSS viewports",
+  "inherited": "T01 source and historical T02/T03 evidence only; original 11 mobile behavior suites freshly rerun",
+  "unrun": [
+    "CI",
+    "package artifact #11",
+    "physical devices/nonzero safe insets",
+    "full docs host",
+    "original consumers/fullstack",
+    "#43",
+    "other 37 independent demos"
+  ],
+  "review": "parent-owned independent merger pending"
+}

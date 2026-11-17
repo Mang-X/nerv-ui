@@ -1,0 +1,8 @@
+2026-10-24 T3 own incognito tab tab_v_6faab953-90e1-4ff7-b4aa-20aa9696713e
+Initial open about:blank: Preview automation open failed: Invalid preview URL (parse: https:; input length 11).
+Corrected URL http://127.0.0.1:4317/#mobile initial server-startup result: chrome-error://chromewebdata/
+Navigate after server ready: http://127.0.0.1:4317/#mobile success.
+Resize argument corrections: missing mode; mode fixed invalid (expected fill/freeform/preset).
+Snapshot attempt 1: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Snapshot attempt 2: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Two failures on same snapshot step -> fallback to ego-browser own tab. No product failure inferred from automation timeouts.

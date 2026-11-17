@@ -1,0 +1,7 @@
+{
+  "redExit": 1,
+  "greenExit": 0,
+  "restoredByteEqual": true,
+  "sha256": "a11e2f6be6acf6572972e7ddd512af0b72c1299ad894cfd6fc39a52a144491c1",
+  "scope": "controlled omission of scope disposal only; no committed mutation"
+}

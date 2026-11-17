@@ -1,0 +1,7 @@
+{
+  "fullExit": 2,
+  "scopedExit": 0,
+  "rawWhitespaceRetained": true,
+  "earlierRawReport": "full-diffcheck.log",
+  "note": "Final status after copying raw report. Final raw stdout remains /tmp/nerv-ui-t04-n05/full-diffcheck-after-archive.log to avoid recursive raw-log diagnostics."
+}

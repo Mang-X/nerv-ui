@@ -1,0 +1,26 @@
+{
+  "files": [
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/README.md",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/docs/desktop-standalone.md",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/DESIGN/governance.md",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/design-system/docs/components/mobile/fab.md",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground/index.html",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground/package.json",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground/src/App.test.ts",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground/src/App.vue",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground/src/assets/main.css",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui-mobile/package.json",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui-mobile/src/components/fab/Fab.vue",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui-mobile/src/styles/mobile.css",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui/src/test-support/nvuiImportHygiene.test.ts",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui/src/test-support/nvuiImportHygiene.ts",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/pnpm-workspace.yaml",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/tsconfig.json",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/docs/evidence/t04-n01/README.md",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/docs/mobile-standalone.md",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground/src/MobileDemo.test.ts",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground/src/MobileDemo.vue",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/packages/ui-mobile/src/components/fab/Fab.test.ts"
+  ],
+  "exit": 0
+}

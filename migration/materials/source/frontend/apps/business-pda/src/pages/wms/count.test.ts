@@ -1,0 +1,497 @@
+import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
+import {
+  NvBottomSheet,
+  NvMobileDropdownMenuItem,
+  NvNumberKeyboard,
+  NvPullRefresh,
+} from '@nerv-iip/ui-mobile'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { computed, ref } from 'vue'
+import { RequestTimeoutError } from '@/api/request-timeout'
+import type { BusinessConsoleWmsCountExecutionItem } from '@nerv-iip/api-client'
+
+const push = vi.fn()
+const authPermissionCodes = ref(['business.inventory.counts.manage'])
+const routeGuardState = vi.hoisted(() => ({
+  guard: undefined as (() => boolean) | undefined,
+}))
+const candidateState = vi.hoisted(() => ({ refresh: vi.fn(async () => {}) }))
+vi.mock('vue-router', () => ({
+  onBeforeRouteLeave: vi.fn((guard: () => boolean) => {
+    routeGuardState.guard = guard
+  }),
+  useRouter: () => ({ push }),
+  RouterView: { template: '<div />' },
+}))
+vi.mock('@/composables/useWmsOperationalCandidates', async () => {
+  const { shallowRef } = await import('vue')
+  return {
+    useWmsOperationalCandidates: () => ({
+      locationOptions: shallowRef([]),
+      lotOptions: shallowRef([]),
+      ready: shallowRef(true),
+      searchKeyword: shallowRef(''),
+      scanOverrides: shallowRef({}),
+      truncated: shallowRef(false),
+      pending: shallowRef(false),
+      error: shallowRef(),
+      refresh: candidateState.refresh,
+    }),
+  }
+})
+vi.mock('@/stores/auth', () => ({
+  useAuthStore: () => ({
+    get principal() {
+      return {
+        permissionCodes: authPermissionCodes.value,
+      }
+    },
+  }),
+}))
+
+// 真实组合式用真实的 ref/computed，贴合运行时解包行为。
+const wmsState = vi.hoisted(() => ({
+  filters: {
+    skip: 0,
+    take: 100,
+    status: undefined as string | undefined,
+    keyword: undefined as string | undefined,
+    locationCode: undefined as string | undefined,
+  },
+  executions: [
+    {
+      countExecutionId: '11111111-1111-1111-1111-111111111111',
+      countNo: 'CT-2026-0001',
+      skuCode: 'SKU-A',
+      uomCode: 'EA',
+      siteCode: 'S1',
+      locationCode: 'A-01',
+      expectedQuantity: 10,
+      status: 'Open',
+      createdAtUtc: '2026-06-11T08:00:00Z',
+    },
+    {
+      countExecutionId: '22222222-2222-2222-2222-222222222222',
+      countNo: 'CT-2026-0002',
+      skuCode: 'SKU-B',
+      uomCode: 'EA',
+      siteCode: 'S1',
+      locationCode: 'A-02',
+      expectedQuantity: 5,
+      status: 'Completed',
+      createdAtUtc: '2026-06-11T09:00:00Z',
+    },
+  ] as BusinessConsoleWmsCountExecutionItem[],
+  completeCount: vi.fn(
+    (
+      _countExecutionId: string,
+      _input: { countedQuantity: number; idempotencyKey: string },
+      options?: { attempt: 'initial' | 'retry'; onCommandAttempt?: () => void },
+    ) => {
+      options?.onCommandAttempt?.()
+      return Promise.resolve()
+    },
+  ),
+  completePending: false,
+  error: null as unknown,
+  pending: false,
+  refresh: vi.fn(async () => {}),
+  loadMore: vi.fn(async () => {}),
+}))
+const scopeKey = ref<string | undefined>('self:emp049')
+
+vi.mock('@/composables/useBusinessWms', () => ({
+  useWmsCount: () => ({
+    filters: wmsState.filters,
+    scopeKey,
+    scopeOptions: computed(() => [
+      { label: '我的任务', value: 'self:emp049' },
+      { label: '一号仓盘点作业池', value: 'work-pool:WMS-SITE-001-COUNT' },
+    ]),
+    selectedScopeLabel: computed(() =>
+      scopeKey.value === 'self:emp049' ? '我的任务' : '一号仓盘点作业池',
+    ),
+    executions: computed(() => wmsState.executions),
+    total: computed(() => wmsState.executions.length),
+    organizationId: computed(() => 'org-001'),
+    environmentId: computed(() => 'env-dev'),
+    scopeReady: computed(() => true),
+    hasSuccessfulResponse: computed(() => !wmsState.pending && !wmsState.error),
+    hasFailedResponse: computed(() => false),
+    pending: computed(() => wmsState.pending),
+    refreshing: computed(() => false),
+    loadingMore: computed(() => false),
+    error: computed(() => wmsState.error),
+    refresh: wmsState.refresh,
+    loadMore: wmsState.loadMore,
+    completeCount: wmsState.completeCount,
+    completePending: computed(() => wmsState.completePending),
+  }),
+}))
+
+import CountPage from './count.vue'
+
+function resetState() {
+  authPermissionCodes.value = ['business.inventory.counts.manage']
+  wmsState.filters.keyword = undefined
+  wmsState.filters.status = undefined
+  scopeKey.value = 'self:emp049'
+  wmsState.filters.locationCode = undefined
+  wmsState.executions = [
+    {
+      countExecutionId: '11111111-1111-1111-1111-111111111111',
+      countNo: 'CT-2026-0001',
+      skuCode: 'SKU-A',
+      uomCode: 'EA',
+      siteCode: 'S1',
+      locationCode: 'A-01',
+      expectedQuantity: 10,
+      status: 'Open',
+      createdAtUtc: '2026-06-11T08:00:00Z',
+    },
+    {
+      countExecutionId: '22222222-2222-2222-2222-222222222222',
+      countNo: 'CT-2026-0002',
+      skuCode: 'SKU-B',
+      uomCode: 'EA',
+      siteCode: 'S1',
+      locationCode: 'A-02',
+      expectedQuantity: 5,
+      status: 'Completed',
+      createdAtUtc: '2026-06-11T09:00:00Z',
+    },
+  ]
+  wmsState.completePending = false
+  wmsState.error = null
+  wmsState.pending = false
+  wmsState.completeCount.mockClear()
+  wmsState.refresh.mockClear()
+  candidateState.refresh.mockClear()
+  wmsState.loadMore.mockClear()
+  push.mockClear()
+}
+
+async function enterCount(wrapper: VueWrapper, value: string) {
+  wrapper.findComponent(NvNumberKeyboard).vm.$emit('update:modelValue', value)
+  await wrapper.vm.$nextTick()
+}
+
+describe('WMS 盘点', () => {
+  beforeEach(() => resetState())
+
+  // DomainInvariant / PublicContract：#4522 与父 #1146 r1，批次来自公开响应且绑定所选任务。
+  it('同物料同库位的两个批次分别展示，切换任务后完成上下文与提交仍属于所选任务', async () => {
+    wmsState.executions = ['LOT-4522-A', 'LOT-4522-B'].map((lotNo, index) => ({
+      ...wmsState.executions[0]!,
+      countExecutionId: `count-${index}`,
+      countNo: `CT-4522-${index}`,
+      lotNo,
+      expectedQuantity: 15,
+    }))
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    const rows = wrapper.findAll('[data-row]')
+    expect(rows[0]!.text()).toContain('批次 LOT-4522-A')
+    expect(rows[0]!.text()).not.toContain('LOT-4522-B')
+    expect(rows[1]!.text()).toContain('批次 LOT-4522-B')
+
+    await rows[0]!.trigger('click')
+    expect(document.querySelector('[role="dialog"]')?.textContent).toContain('LOT-4522-A')
+    wrapper.getComponent(NvBottomSheet).vm.$emit('update:open', false)
+    await wrapper.vm.$nextTick()
+    await rows[1]!.trigger('click')
+    const sheet = () => document.querySelector('[role="dialog"]')?.textContent
+    expect(sheet()).toContain('CT-4522-1')
+    expect(sheet()).toContain('LOT-4522-B')
+    expect(sheet()).not.toContain('LOT-4522-A')
+    await enterCount(wrapper, '14')
+    expect(sheet()).toContain('差异 -1')
+    document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!.click()
+    await flushPromises()
+    expect(wmsState.completeCount).toHaveBeenCalledWith(
+      'count-1',
+      { countedQuantity: 14, idempotencyKey: expect.any(String) },
+      expect.objectContaining({ attempt: 'initial' }),
+    )
+  })
+
+  it.each([undefined, null, ''])(
+    '响应批次为 %s 时列表和操作上下文如实显示无批次',
+    async (lotNo) => {
+      wmsState.executions[0]!.lotNo = lotNo
+      const wrapper = mount(CountPage, { attachTo: document.body })
+      const row = wrapper.findAll('[data-row]')[0]!
+      expect(row.text()).toContain('批次 无批次')
+      await row.trigger('click')
+      expect(document.querySelector('[role="dialog"]')?.textContent).toContain('无批次')
+    },
+  )
+
+  it('渲染盘点号、SKU、库位、预期数与中文状态（不出现原始状态码或 GUID）', () => {
+    const wrapper = mount(CountPage)
+    const text = wrapper.text()
+    expect(text).toContain('CT-2026-0001')
+    expect(text).toContain('CT-2026-0002')
+    expect(text).toContain('SKU-A')
+    expect(text).toContain('A-01')
+    expect(text).toContain('10')
+    // 中文状态
+    expect(text).toContain('待盘点')
+    expect(text).toContain('已完成')
+    // 不暴露工程语言：原始状态码 / GUID
+    expect(text).not.toContain('pending')
+    expect(text).not.toContain('inprogress')
+    expect(text).not.toContain('11111111-1111-1111-1111-111111111111')
+  })
+
+  it('扫库位写入 filters.locationCode', async () => {
+    const wrapper = mount(CountPage)
+    const input = wrapper.get('input[placeholder^="扫描当前范围库位"]')
+    await input.setValue('A-02')
+    await input.trigger('keydown.enter')
+    expect(wmsState.filters.locationCode).toBe('A-02')
+  })
+
+  it('可从 WMS 可信目录切换作业范围和状态，不要求手输筛选值', async () => {
+    const wrapper = mount(CountPage)
+    const fields = wrapper.findAllComponents(NvMobileDropdownMenuItem)
+
+    expect(fields).toHaveLength(2)
+    fields[0]!.vm.$emit('update:modelValue', 'work-pool:WMS-SITE-001-COUNT')
+    fields[1]!.vm.$emit('update:modelValue', 'Completed')
+    await wrapper.vm.$nextTick()
+
+    expect(scopeKey.value).toBe('work-pool:WMS-SITE-001-COUNT')
+    expect(wmsState.filters.status).toBe('Completed')
+  })
+
+  it('实盘数使用移动端数字键盘录入', async () => {
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+
+    document.querySelector<HTMLElement>('[data-testid="counted-quantity"]')!.click()
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.findComponent(NvNumberKeyboard).props('show')).toBe(true)
+  })
+
+  it('只读盘点用户仍可查看任务，但不能进入完成动作', async () => {
+    authPermissionCodes.value = ['business.wms.counts.read']
+    const wrapper = mount(CountPage, { attachTo: document.body })
+
+    expect(wrapper.text()).toContain('CT-2026-0001')
+    await wrapper.findAll('[data-row]')[0]!.trigger('click')
+
+    expect(document.querySelector('[data-testid="confirm-complete"]')).toBeNull()
+    expect(wmsState.completeCount).not.toHaveBeenCalled()
+  })
+
+  it('抽屉打开后权限失效也不得提交盘点完成', async () => {
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0]!.trigger('click')
+    await enterCount(wrapper, '8')
+
+    authPermissionCodes.value = ['business.wms.counts.read']
+    await wrapper.vm.$nextTick()
+    document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!.click()
+    await flushPromises()
+
+    expect(wmsState.completeCount).not.toHaveBeenCalled()
+  })
+
+  it('点任务 → 抽屉 → 实盘数未填时确认按钮禁用', async () => {
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    const confirm = document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!
+    expect(confirm).toBeTruthy()
+    expect(confirm.disabled).toBe(true)
+    confirm.click()
+    expect(wmsState.completeCount).not.toHaveBeenCalled()
+    wrapper.unmount()
+  })
+
+  it('填写实盘数后 → 以该执行 id 与 {countedQuantity,idempotencyKey} 调用 completeCount', async () => {
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '8')
+    const confirm = document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!
+    expect(confirm.disabled).toBe(false)
+    confirm.click()
+    expect(wmsState.completeCount).toHaveBeenCalledTimes(1)
+    const [id, input] = wmsState.completeCount.mock.calls[0] as [
+      string,
+      { countedQuantity: number; idempotencyKey: string },
+    ]
+    expect(id).toBe('11111111-1111-1111-1111-111111111111')
+    expect(input.countedQuantity).toBe(8)
+    // 页面生成稳定幂等键并随实盘数一并传入。
+    expect(typeof input.idempotencyKey).toBe('string')
+    expect(input.idempotencyKey.length).toBeGreaterThan(0)
+    wrapper.unmount()
+  })
+
+  it('重试（不重新点任务）复用同一 idempotencyKey；重新点任务为新操作换新键', async () => {
+    wmsState.completeCount.mockImplementationOnce(
+      (_id: string, _input: unknown, options?: { onCommandAttempt?: () => void }) => {
+        options?.onCommandAttempt?.()
+        return Promise.reject(new RequestTimeoutError())
+      },
+    )
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '8')
+    const confirm = document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!
+    confirm.click()
+    await flushPromises()
+    await enterCount(wrapper, '9')
+    confirm.click()
+    await flushPromises()
+    expect(wmsState.completeCount).toHaveBeenCalledTimes(2)
+    const firstKey = (wmsState.completeCount.mock.calls[0][1] as { idempotencyKey: string })
+      .idempotencyKey
+    const retryKey = (wmsState.completeCount.mock.calls[1][1] as { idempotencyKey: string })
+      .idempotencyKey
+    expect(retryKey).toBe(firstKey)
+
+    // 重试成功 → 进入成功态；点「继续」回列表清空选择与 operationKey。
+    const continueBtn = wrapper.findAll('button').find((b) => b.text() === '继续')!
+    expect(continueBtn).toBeTruthy()
+    await continueBtn.trigger('click')
+
+    // 重新点任务（新操作）→ 新键。
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '3')
+    document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!.click()
+    await flushPromises()
+    expect(wmsState.completeCount).toHaveBeenCalledTimes(3)
+    const newOpKey = (wmsState.completeCount.mock.calls[2][1] as { idempotencyKey: string })
+      .idempotencyKey
+    expect(newOpKey).not.toBe(firstKey)
+    wrapper.unmount()
+  })
+
+  it('确定性 422 后编辑实盘数会轮换 key，并按 initial 新意图提交', async () => {
+    wmsState.completeCount.mockImplementationOnce(
+      (_id: string, _input: unknown, options?: { onCommandAttempt?: () => void }) => {
+        options?.onCommandAttempt?.()
+        return Promise.reject({ success: false, statusCode: 422, message: '实盘数无效' })
+      },
+    )
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '8')
+    const confirm = document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!
+    confirm.click()
+    await flushPromises()
+    const firstKey = (wmsState.completeCount.mock.calls[0][1] as { idempotencyKey: string })
+      .idempotencyKey
+    await enterCount(wrapper, '9')
+    confirm.click()
+    await flushPromises()
+
+    const secondKey = (wmsState.completeCount.mock.calls[1][1] as { idempotencyKey: string })
+      .idempotencyKey
+    expect(secondKey).not.toBe(firstKey)
+    expect(wmsState.completeCount.mock.calls[1][2]).toMatchObject({ attempt: 'initial' })
+    wrapper.unmount()
+  })
+
+  it('结果未知时所有关闭入口都保留冻结盘点意图', async () => {
+    wmsState.completeCount.mockImplementationOnce(
+      (_id: string, _input: unknown, options?: { onCommandAttempt?: () => void }) => {
+        options?.onCommandAttempt?.()
+        return Promise.reject(new RequestTimeoutError())
+      },
+    )
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '8')
+    document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!.click()
+    await flushPromises()
+
+    const sheet = wrapper.findAllComponents(NvBottomSheet).find((sheet) => sheet.props('open'))!
+    sheet.vm.$emit('update:open', false)
+    await wrapper.vm.$nextTick()
+    expect(sheet.props('open')).toBe(true)
+    const cancel = [...document.body.querySelectorAll<HTMLButtonElement>('button')].find(
+      (button) => button.textContent?.trim() === '取消',
+    )
+    expect(cancel?.disabled).toBe(true)
+    expect(
+      document
+        .querySelector<HTMLElement>('[data-testid="counted-quantity"]')
+        ?.getAttribute('aria-disabled'),
+    ).toBe('true')
+    expect(routeGuardState.guard?.()).toBe(false)
+    wrapper.unmount()
+  })
+
+  it('实盘数为负时确认按钮禁用', async () => {
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '-1')
+    const confirm = document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!
+    expect(confirm.disabled).toBe(true)
+    wrapper.unmount()
+  })
+
+  it('completePending 时确认按钮禁用（防重）', async () => {
+    wmsState.completePending = true
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '8')
+    const confirm = document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!
+    expect(confirm.disabled).toBe(true)
+    wrapper.unmount()
+  })
+
+  it('完成后显示成功 Result', async () => {
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '8')
+    document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!.click()
+    await wrapper.vm.$nextTick()
+    await wrapper.vm.$nextTick()
+    const result = wrapper.find('[data-result][data-status="success"]')
+    expect(result.exists()).toBe(true)
+    expect(wrapper.text()).toContain('盘点已提交')
+    wrapper.unmount()
+  })
+
+  it('409 后刷新并关闭旧抽屉、清除过期选择', async () => {
+    wmsState.completeCount.mockRejectedValueOnce({
+      success: false,
+      message: 'lifecycle-conflict',
+    })
+    const wrapper = mount(CountPage, { attachTo: document.body })
+    await wrapper.findAll('[data-row]')[0].trigger('click')
+    await enterCount(wrapper, '8')
+    document.querySelector<HTMLButtonElement>('[data-testid="confirm-complete"]')!.click()
+    await flushPromises()
+
+    expect(wmsState.refresh).toHaveBeenCalledTimes(1)
+    expect(document.querySelector('[data-testid="confirm-complete"]')).toBeNull()
+    expect(document.body.textContent).toContain('状态已被其他操作更新')
+    wrapper.unmount()
+  })
+
+  it('错误时显示错误横幅', () => {
+    wmsState.error = new Error('boom')
+    const wrapper = mount(CountPage)
+    expect(wrapper.find('[data-testid="error-banner"]').exists()).toBe(true)
+  })
+
+  it('下拉刷新同时刷新任务与作业候选', async () => {
+    const wrapper = mount(CountPage)
+    wrapper.getComponent(NvPullRefresh).vm.$emit('refresh')
+    await flushPromises()
+
+    expect(wmsState.refresh).toHaveBeenCalledTimes(1)
+    expect(candidateState.refresh).toHaveBeenCalledTimes(1)
+  })
+
+  it('无盘点任务且无错误时显示空态', () => {
+    wmsState.executions = []
+    const wrapper = mount(CountPage)
+    expect(wrapper.text()).toContain('暂无盘点任务')
+  })
+})

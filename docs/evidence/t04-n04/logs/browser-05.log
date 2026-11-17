@@ -1,0 +1,43 @@
+{ viewport: [ 390, 844 ], dark: false, overflow: false, main: [ { scrollTop: 534, clientHeight: 783, scrollHeight: 2274, overflow: 'auto' } ], scrollers: [ { slot: 'pull-refresh-scroll', scrollTop: 0, clientHeight: 254, scrollHeight: 672, scrollWidth: 333, clientWidth: 333, rect: { x: 21, y: 110, width: 348, height: 254, top: 110, right: 369, bottom: 364, left: 21 }, overflow: 'auto' }, { slot: 'infinite-list', scrollTop: 0, clientHeight: 254, scrollHeight: 428, scrollWidth: 333, clientWidth: 333, rect: { x: 20, y: 621, width: 350, height: 256, top: 621, right: 370, bottom: 877, left: 20 }, overflow: 'auto' }, { slot: 'virtual-list', scrollTop: 0, clientHeight: 238, scrollHeight: 48000, scrollWidth: 333, clientWidth: 333, rect: { x: 20, y: 1073, width: 350, height: 240, top: 1073, right: 370, bottom: 1313, left: 20 }, overflow: 'auto' } ], windowRows: [ 'letter-1', 'letter-2', 'letter-3', 'letter-4', 'letter-5', 'letter-6', 'letter-7', 'letter-8', 'letter-9' ], outputs: [ [ '滑动动作回显', '湖畔来信 · bookmark' ], [ '刷新状态', '已更新 · 请求 3 次' ], [ '分页状态', '可以继续 · 8 封 · 请求 0 次' ], [ '信笺回显', '尚未选择信笺' ], [ '轮播状态', '第 1 / 3 页 · 切换 0 次' ] ] }
+[p1 "NvUI · 项目清单" | space "nerv-ui N04 lists 20261024"(9): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=1, loc=css:button[aria-label="切换明暗"]]
+        text "深色"
+    container [ref=2]
+      container "刷新来信"
+        output "刷新状态" [ref=12]
+          text "已更新 · 请求 3 次"
+        paragraph
+          text "信箱滚动 0px"
+        container [ref=13]
+          text "第 2 次来信 1"
+          text "第 2 次来信 2"
+          text "第 2 次来信 3"
+          text "第 2 次来信 4"
+          text "第 2 次来信 5"
+      container "继续翻阅"
+        heading
+          text "继续翻阅"
+        paragraph
+          text "在来信内滚动到底部，分批收下 24 封来信。"
+        container
+          checkbox "下次加载失败" [ref=14, loc=css:input[aria-label="下次加载失败"]]
+          text "下次加载失败"
+        container
+          button [ref=15]
+            text "重新开始"
+          button [ref=16]
+            text "清空信箱"
+        output "分页状态" [ref=17]
+          text "可以继续 · 8 封 · 请求 0 次"
+        container [ref=18]
+          text "来信 1"
+          text "来信 2"
+          text "来信 3"
+          text "来信 4"
+          text "来信 5"
+
+

@@ -1,0 +1,48 @@
+
+ RUN  v4.1.10 /private/tmp/nerv-ui-t03-merger-20261024
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+stdout | segmented-probe.test.ts > keeps controlled selection and keyboard focus aligned with reorder=true
+{"reorder":true,"dom":["Rest","Read","Listen"],"emitted":[["listen"]],"selected":"Listen","focused":"Rest","tabIndices":["-1","-1","0"]}
+
+ ❯ segmented-probe.test.ts (2 tests | 1 failed) 25ms
+   × keeps controlled selection and keyboard focus aligned with reorder=true 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  segmented-probe.test.ts > keeps controlled selection and keyboard focus aligned with reorder=true
+AssertionError: expected <button data-v-3f593823 …(5)></button> to be <button data-v-3f593823 …(5)></button> // Object.is equality
+
+- Expected
++ Received
+
+  <button
+-   aria-selected="true"
+-   class="nv-seg h-full rounded-lg px-5 text-base font-medium whitespace-nowrap transition-colors bg-card text-foreground shadow-sm"
++   aria-selected="false"
++   class="nv-seg h-full rounded-lg px-5 text-base font-medium whitespace-nowrap transition-colors text-muted-foreground hover:text-foreground"
+    data-v-3f593823=""
+    role="tab"
+-   tabindex="0"
++   tabindex="-1"
+    type="button"
+  >
+-   Listen
++   Rest
+  </button>
+
+ ❯ segmented-probe.test.ts:16:39
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 11 passed (12)
+   Start at  17:36:44
+   Duration  3.82s (transform 4.15s, setup 717ms, import 5.70s, tests 85ms, environment 920ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t03-touch/frontend/packages/ui:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run --config /private/tmp/nerv-ui-t03-merger-20261024/probe.config.mjs

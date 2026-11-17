@@ -1,0 +1,158 @@
+{ resources: [ { url: 'http://127.0.0.1:5204/', status: 200, headers: { 'cache-control': 'no-cache', 'content-type': 'text/html', date: 'Sun, 25 Oct 2026 04:26:37 GMT', etag: 'W/"202-cCs+6AvmUjtpo3TK0sXVMugzbgg"', vary: 'Origin' }, path: '/tmp/nerv-ui-t06-f03/raw/responses/0.bin' }, { url: 'http://127.0.0.1:5204/assets/index-C5rfCsAZ.js', status: 200, headers: { 'access-control-allow-origin': 'http://127.0.0.1:5204', 'cache-control': 'no-cache', 'content-encoding': 'gzip', 'content-type': 'text/javascript', date: 'Sun, 25 Oct 2026 04:26:37 GMT', etag: 'W/"838142-1792902209996"', 'last-modified': 'Sun, 25 Oct 2026 04:23:29 GMT', vary: 'Origin' }, path: '/tmp/nerv-ui-t06-f03/raw/responses/1.bin' }, { url: 'http://127.0.0.1:5204/assets/index-Dei0BNwZ.css', status: 200, headers: { 'access-control-allow-origin': 'http://127.0.0.1:5204', 'cache-control': 'no-cache', 'content-encoding': 'gzip', 'content-type': 'text/css', date: 'Sun, 25 Oct 2026 04:26:37 GMT', etag: 'W/"298729-1792902209999"', 'last-modified': 'Sun, 25 Oct 2026 04:23:29 GMT', vary: 'Origin' }, path: '/tmp/nerv-ui-t06-f03/raw/responses/2.bin' }, { url: 'http://127.0.0.1:5204/assets/inter-latin-wght-normal-Dx4kXJAl.woff2', status: 200, headers: { 'access-control-allow-origin': 'http://127.0.0.1:5204', 'cache-control': 'no-cache', 'content-length': '48256', 'content-type': 'font/woff2', date: 'Sun, 25 Oct 2026 04:26:37 GMT', etag: 'W/"48256-1792902210000"', 'last-modified': 'Sun, 25 Oct 2026 04:23:30 GMT', vary: 'Origin' }, path: '/tmp/nerv-ui-t06-f03/raw/responses/3.bin' }, { url: 'http://127.0.0.1:5204/files/quality-evidence.svg', status: 200, headers: { 'cache-control': 'no-cache', 'content-encoding': 'gzip', 'content-type': 'image/svg+xml', date: 'Sun, 25 Oct 2026 04:26:38 GMT', etag: 'W/"1079-1792902209807"', 'last-modified': 'Sun, 25 Oct 2026 04:23:29 GMT', vary: 'Origin' }, path: '/tmp/nerv-ui-t06-f03/raw/responses/4.bin' }, { url: 'http://127.0.0.1:5204/files/garden.png', status: 200, headers: { 'cache-control': 'no-cache', 'content-length': '10878', 'content-type': 'image/png', date: 'Sun, 25 Oct 2026 04:26:38 GMT', etag: 'W/"10878-1792902209807"', 'last-modified': 'Sun, 25 Oct 2026 04:23:29 GMT', vary: 'Origin' }, path: '/tmp/nerv-ui-t06-f03/raw/responses/5.bin' }, { url: 'http://127.0.0.1:5204/files/coast.jpg', status: 200, headers: { 'cache-control': 'no-cache', 'content-length': '16037', 'content-type': 'image/jpeg', date: 'Sun, 25 Oct 2026 04:26:38 GMT', etag: 'W/"16037-1792902209806"', 'last-modified': 'Sun, 25 Oct 2026 04:23:29 GMT', vary: 'Origin' }, path: '/tmp/nerv-ui-t06-f03/raw/responses/6.bin' } ], narrow: { width: 390, scroll: 390, scale: 1, dpr: 1 } }
+[p1 "NvUI · 项目清单" | space "nerv-ui-f03-20261025"(33): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container "显示表面"
+      anchor [ref=326, loc=href:/#desktop, url=http://127.0.0.1:5204/#desktop]
+        text "桌面演示"
+      anchor [ref=327, loc=href:/#touch, url=http://127.0.0.1:5204/#touch]
+        text "触屏演示"
+      anchor [ref=328, loc=href:/#mobile, url=http://127.0.0.1:5204/#mobile]
+        text "随行手记"
+      anchor [ref=329, loc=href:/#mobile-input, url=http://127.0.0.1:5204/#mobile-input]
+        text "随心记录"
+      anchor [ref=330, loc=href:/#mobile-overlays, url=http://127.0.0.1:5204/#mobile-overlays]
+        text "片刻安排"
+      anchor [ref=331, loc=href:/#mobile-lists, url=http://127.0.0.1:5204/#mobile-lists]
+        text "翻阅时光"
+      anchor [ref=332, loc=href:/#mobile-feedback, url=http://127.0.0.1:5204/#mobile-feedback]
+        text "片刻回响"
+      anchor [ref=333, loc=href:/#screen/stage, url=http://127.0.0.1:5204/#screen/stage]
+        text "空间舞台"
+      anchor [ref=334, loc=href:/#screen/controls, url=http://127.0.0.1:5204/#screen/controls]
+        text "随心安排"
+      anchor [ref=335, loc=href:/#screen/indicators, url=http://127.0.0.1:5204/#screen/indicators]
+        text "阅读与到访"
+      anchor [ref=336, loc=href:/#screen/data, url=http://127.0.0.1:5204/#screen/data]
+        text "流动消息"
+      anchor [ref=337, loc=href:/#screen/charts, url=http://127.0.0.1:5204/#screen/charts]
+        text "内容与到访"
+      anchor [ref=338, loc=href:/#screen/tables, url=http://127.0.0.1:5204/#screen/tables]
+        text "清单与事件"
+      anchor [ref=339, loc=href:/#screen/summary, url=http://127.0.0.1:5204/#screen/summary]
+        text "空间使用概况"
+    container
+      container
+        heading
+          text "留住片刻"
+        paragraph
+          text "整理旅途中的图片与便笺，放大看看值得记住的细节。文件只留在本页。"
+      container
+        button [ref=340]
+          text "切换亮色"
+        button [ref=341]
+          text "蓝色强调色"
+    container
+      text "传输方式"
+      combobox "传输方式" [ref=342, loc=css:select[aria-label="传输方式"]]
+        text "本机原生 HTTP"
+    container
+      container "本机原生传输"
+        heading
+          text "本机原生传输"
+        paragraph
+          text "只发送内置 2 MiB + 17 字节夹具。回执代表本机模拟端点确认，不是生产 FileStorage。PUT 只显示等待与传输完成，传输完成后还需确认回执。"
+        container
+          container
+            text "协议"
+            combobox "原生协议" [ref=343, loc=css:select[aria-label="原生协议"]]
+              text "tus"
+          container
+            text "场景"
+            combobox "原生场景" [ref=344, loc=css:select[aria-label="原生场景"]]
+              text "成功"
+          container
+            text "排列"
+            combobox "原生排列" [ref=345, loc=css:select[aria-label="原生排列"]]
+              text "queue"
+        button [ref=346]
+          svg_root
+          text "拖拽文件到这里，或点击浏览"
+          text "支持 .bin · 单个文件不超过 2.0 MB · 最多 1 个文件"
+          text "还可上传 0 个文件"
+        text "文件 (1/1)"
+        text "总计 2.0 MB"
+        button [ref=347]
+          svg_root
+          text "添加文件"
+        button [ref=348]
+          svg_root
+          text "清空"
+        svg_root
+        text "native-fixture.bin"
+        text "已完成"
+        text "File - 2.0 MB"
+        progressindicator "100%"
+        button "移除 native-fixture.bin" [ref=349, loc=css:button[aria-label="移除 native-fixture.bin"]]
+          svg_root
+        container
+          button [ref=350]
+            text "加入已知二进制夹具"
+          button [ref=351]
+            text "开始原生上传"
+          button [ref=352]
+            text "取消原生传输"
+          button [ref=353]
+            text "恢复原生传输"
+          button [ref=354]
+            text "清空原生队列"
+          button [ref=355]
+            text "读取端点"
+          button [ref=356]
+            text "重置端点"
+        output "本机成功回执" [ref=357]
+          text "native-fixture.bin: fixture-23"
+        container [ref=358]
+          text "端点只读记录"
+      container "看见细节"
+        container
+          heading
+            text "看见细节"
+          paragraph
+            text "本地图片可缩放与旋转。其它文件保留原文件入口。"
+        container
+          text "预览内容"
+          combobox "预览内容" [ref=359, loc=css:select[aria-label="预览内容"]]
+            text "图形记录 SVG"
+        container
+          text "预览本地图片"
+          textbox "预览本地图片" [ref=360, loc=css:input[aria-label="预览本地图片"]]
+            button [ref=361]
+              text "选择文件"
+            text "未选择任何文件"
+        container
+          container
+            checkbox [ref=362]
+            text "等待来源"
+          container
+            checkbox [ref=363]
+            text "来源暂不可用"
+        container
+          container
+            container
+              svg_root
+              container
+                text "quality-evidence.svg"
+                text "Image"
+            button "打开 quality-evidence.svg" [ref=364, loc=css:button[aria-label="打开 quality-evidence.svg"]]
+              svg_root
+          container
+            container
+              button "缩小 quality-evidence.svg" [ref=365, loc=css:button[aria-label="缩小 quality-evidence.svg"]]
+                svg_root
+              text "100%"
+              button "放大 quality-evidence.svg" [ref=366, loc=css:button[aria-label="放大 quality-evidence.svg"]]
+                svg_root
+              button "向左旋转 quality-evidence.svg" [ref=367, loc=css:button[aria-label="向左旋转 quality-evidence.svg"]]
+                svg_root
+              button "向右旋转 quality-evidence.svg" [ref=368, loc=css:button[aria-label="向右旋转 quality-evidence.svg"]]
+                svg_root
+            image
+        container
+          button [ref=369]
+            text "打开本地原图"
+          text "先在预览中请求，再点击此处打开。"
+        output "预览事件" [ref=370]
+          text "ready image · 已打开 0 次 · 本地预览 0"
+
+

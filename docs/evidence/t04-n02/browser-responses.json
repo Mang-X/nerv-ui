@@ -1,0 +1,50 @@
+{
+  "url": "http://127.0.0.1:4174/#mobile-input",
+  "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "resources": [
+    {
+      "url": "http://127.0.0.1:4174/",
+      "status": 200,
+      "type": "text/html",
+      "bytes": 427,
+      "sha256": "281d0418e0597a2139de09426b80f71f5b89924f5ed2f33443727a4c0000f526"
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/index-DXSqS3NZ.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 453997,
+      "sha256": "35cb4008721faee7ab49d6ed46862f2dfca6949e7b35716c7cc99c8b6c65c945"
+    },
+    {
+      "url": "chrome-extension://meleenglfggcmcajknpeeeiobnpfmahc/fetch-interceptor.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 15938,
+      "sha256": "cdda0df4479b7b7afd4c2f965d01eda0d947e9c973a6bf988c8ca883e865b3f3"
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/index-Bp6Bq-fD.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 221531,
+      "sha256": "6e3b9322f55869f0708cb40dcbc07e1f57498448e46c4a3f3b30704167910193"
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "type": "font/woff2",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62"
+    }
+  ],
+  "state": {
+    "title": "landscape-dark",
+    "scan": "1 次 · landscape-dark",
+    "number": "-0.5",
+    "confirmed": "confirm：-0.5"
+  },
+  "origins": [
+    "http://127.0.0.1:4174"
+  ]
+}

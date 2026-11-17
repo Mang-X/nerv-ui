@@ -1,0 +1,7 @@
+author:	MangMax
+association:	member
+edited:	false
+status:	none
+--
+T08 研究发现移动拍照上传入口需独立验收，已建 #41（父项 #9，阻塞 #5 与本票）。本票先交付可注入传输和文件预览的通用接缝；#41 接续验证 capture/environment、重选同文件、pending/error/移除和仅成功回执入列。桌面 FileUpload 示例不能代替移动相机/设备验收；不在本票引入真实设备或后端硬依赖。
+--

@@ -1,0 +1,18 @@
+{
+  "before": {
+    "top": 512.5,
+    "header": 0,
+    "footer": 787,
+    "fab": 716
+  },
+  "after": {
+    "top": 628.5,
+    "header": 0,
+    "footer": 787,
+    "fab": 716,
+    "windowY": 0,
+    "overflow": 390,
+    "viewport": 390,
+    "lastRow": 675
+  }
+}

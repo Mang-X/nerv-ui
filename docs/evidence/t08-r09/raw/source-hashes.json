@@ -1,0 +1,50 @@
+[
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/components/equipment/DeviceStatusWall.vue",
+    "sha256": "3c20c8c19bcda006b5b8140b93030693f0a0ef76d6ec0146cd2fcdf75455c53d",
+    "unchangedFromBase": true,
+    "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/components/equipment/device-wall-layout.ts",
+    "sha256": "cac00da5fe984c17ac92efb576655c103953031e38ab36d07bd3a1b8471ec9c7",
+    "unchangedFromBase": true,
+    "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/components/equipment/device-wall-layout.test.ts",
+    "sha256": "4b9ac66427570ffc72693cd8a98639a813b5e757ba5e87cfeae94f4c2846b8b4",
+    "unchangedFromBase": true,
+    "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/components/equipment/paramColors.ts",
+    "sha256": "5ddf4a523498bd0f9071d122894dc2175f06811f64a696aff5983dcd9beef109",
+    "unchangedFromBase": true,
+    "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/data/contracts/equipment.ts",
+    "sha256": "1aaf18262564732b83111b424477d35bb25bb29cbd9474ea8b86e230f81b24c8",
+    "unchangedFromBase": true,
+    "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/data/fetchers/equipment.ts",
+    "sha256": "538b5d884edebb174ba1b384e287284be9a5c4b2f322c376f1a01dcede23048d",
+    "unchangedFromBase": true,
+    "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/pages/equipment.vue",
+    "sha256": "2d665e9e5b8d51e08581d3f855b0fe22270f9f6b6d3add48a5fb4509a808d744",
+    "unchangedFromBase": true,
+    "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603"
+  },
+  {
+    "path": "migration/materials/source/frontend/apps/screen/src/data/mock/equipment.ts",
+    "sha256": "89af04d997004283815e929fb182a1e7e9d04db9a066495cf5a2aad4296258df",
+    "unchangedFromBase": true,
+    "sourceCommit": "79b1578f2b75f55709765b5e7882aaf33146c603"
+  }
+]

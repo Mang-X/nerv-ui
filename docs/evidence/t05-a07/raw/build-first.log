@@ -1,0 +1,12 @@
+$ pnpm typecheck && pnpm --filter @nerv-iip/playground build
+$ pnpm -r --workspace-concurrency=1 --if-present typecheck
+Scope: 3 of 4 workspace projects
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+src/screen/ScreenSummaryDemo.test.ts(47,254): error TS2339: Property 'exists' does not exist on type 'Omit<DOMWrapper<Element>, "exists">'.
+/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 typecheck: `vue-tsc --noEmit -p tsconfig.json`
+Exit status 2
+[ELIFECYCLE] Command failed with exit code 2.
+[ELIFECYCLE] Command failed with exit code 2.

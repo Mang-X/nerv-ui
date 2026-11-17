@@ -1,0 +1,73 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/files/nativeTransport.test.ts (15 tests | 9 failed) 16ms
+   × rejects unconfirmed PATCH offset null with bounded requests 3ms
+   × rejects unconfirmed PATCH offset  with bounded requests 1ms
+   × rejects unconfirmed PATCH offset NaN with bounded requests 1ms
+   × rejects unconfirmed PATCH offset -1 with bounded requests 0ms
+   × rejects unconfirmed PATCH offset 0.5 with bounded requests 0ms
+   × rejects unconfirmed PATCH offset 9 with bounded requests 0ms
+   × rejects unconfirmed PATCH offset 2 with bounded requests 0ms
+   × rejects unconfirmed PATCH offset 1 with bounded requests 1ms
+   × rejects unconfirmed PATCH offset 4 with bounded requests 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset null with bounded requests
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset  with bounded requests
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset -1 with bounded requests
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset 0.5 with bounded requests
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset 2 with bounded requests
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset 1 with bounded requests
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset 4 with bounded requests
+AssertionError: expected [Function] to throw error matching /Invalid tus PATCH Upload-Offset|did n…/ but got 'Upload failed with HTTP 500.'
+
+- Expected:
+/Invalid tus PATCH Upload-Offset|did not confirm/
+
++ Received:
+"Upload failed with HTTP 500."
+
+ ❯ src/files/nativeTransport.test.ts:37:58
+     35|   vi.stubGlobal('fetch', fetcher)
+     36|   const ctx = context()
+     37|   await expect(uploadWithNativeFileStorageTransport(ctx)).rejects.toTh…
+       |                                                          ^
+     38|   expect(fetcher).toHaveBeenCalledTimes(2)
+     39|   expect(ctx.onProgress).toHaveBeenCalledExactlyOnceWith(25)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset NaN with bounded requests
+ FAIL  src/files/nativeTransport.test.ts > rejects unconfirmed PATCH offset 9 with bounded requests
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ src/files/nativeTransport.test.ts:37:58
+     35|   vi.stubGlobal('fetch', fetcher)
+     36|   const ctx = context()
+     37|   await expect(uploadWithNativeFileStorageTransport(ctx)).rejects.toTh…
+       |                                                          ^
+     38|   expect(fetcher).toHaveBeenCalledTimes(2)
+     39|   expect(ctx.onProgress).toHaveBeenCalledExactlyOnceWith(25)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 6 passed (15)
+   Start at  12:10:08
+   Duration  6.78s (transform 4.78s, setup 362ms, import 5.75s, tests 16ms, environment 489ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/files/nativeTransport.test.ts

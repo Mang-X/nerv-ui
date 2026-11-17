@@ -1,0 +1,41 @@
+{
+  "openError": "Preview automation open failed: Invalid preview URL (parse: https:; input length 11).",
+  "navigationErrors": [
+    "Preview automation navigate failed: Navigation to http://127.0.0.1:5199/#files failed: ERR_CONNECTION_REFUSED",
+    "Preview automation navigate timed out after 15000ms."
+  ],
+  "snapshot1": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Preview snapshot failed: Preview automation snapshot timed out after 15000ms."
+      }
+    ],
+    "structuredContent": {
+      "error": {
+        "_tag": "PreviewAutomationTimeoutError",
+        "operation": "snapshot",
+        "failureCount": 1,
+        "message": "Preview automation snapshot timed out after 15000ms."
+      }
+    },
+    "isError": true
+  },
+  "snapshot2": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Preview snapshot failed: Preview automation snapshot timed out after 15000ms."
+      }
+    ],
+    "structuredContent": {
+      "error": {
+        "_tag": "PreviewAutomationTimeoutError",
+        "operation": "snapshot",
+        "failureCount": 1,
+        "message": "Preview automation snapshot timed out after 15000ms."
+      }
+    },
+    "isError": true
+  }
+}

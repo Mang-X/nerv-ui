@@ -1,0 +1,42 @@
+{
+  "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+  "all": [
+    {
+      "url": "http://127.0.0.1:4287/assets/index-BRtcrzIR.js",
+      "initiator": "script",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/rolldown-runtime-EyZ2wyi3.js",
+      "initiator": "other",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/index--tB6K1KV.css",
+      "initiator": "link",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/dhtmlxgantt-DePP4erS.css",
+      "initiator": "link",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "initiator": "script",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4287/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "initiator": "css",
+      "status": 200
+    }
+  ],
+  "scripts": [
+    "http://127.0.0.1:4287/assets/index-BRtcrzIR.js"
+  ],
+  "css": [
+    "http://127.0.0.1:4287/assets/index--tB6K1KV.css",
+    "http://127.0.0.1:4287/assets/dhtmlxgantt-DePP4erS.css"
+  ]
+}

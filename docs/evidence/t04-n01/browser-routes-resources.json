@@ -1,0 +1,83 @@
+{
+  "fab": {
+    "message": "随行操作：收好行程 · save · 1",
+    "expanded": "false"
+  },
+  "routes": [
+    {
+      "hash": "#desktop",
+      "title": "让想法有序向前"
+    },
+    {
+      "hash": "#touch",
+      "title": "共享阅读角"
+    },
+    {
+      "hash": "#mobile",
+      "title": "周末随行"
+    }
+  ],
+  "runtime": {
+    "url": "http://127.0.0.1:4317/#mobile",
+    "heading": "周末随行",
+    "rows": [
+      "湖畔书屋步行 10 分钟 · 可随时停留",
+      "水岸长椅步行 15 分钟 · 可随时停留",
+      "芦苇小桥步行 20 分钟 · 可随时停留",
+      "向晚茶室步行 25 分钟 · 可随时停留",
+      "白鹭观景台步行 30 分钟 · 可随时停留",
+      "湖心花园步行 35 分钟 · 可随时停留"
+    ],
+    "runtimeErrors": [],
+    "resources": [
+      {
+        "url": "http://127.0.0.1:4317/assets/index-COjIw8zt.js",
+        "status": 200,
+        "type": "text/javascript",
+        "bytes": 409038,
+        "sha256": "4edb6187840b7f7014ddba2f4964aedc537ea7a3a11d26efe0a27a4f4ff35cab"
+      },
+      {
+        "url": "http://127.0.0.1:4317/assets/index-sZgCj8PD.css",
+        "status": 200,
+        "type": "text/css",
+        "bytes": 214842,
+        "sha256": "a3c6c33a1a6075265c4790dacb2cdb92a72f6f496d8bbe4274c2ca2dc39528cc"
+      },
+      {
+        "url": "http://127.0.0.1:4317/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+        "status": 200,
+        "type": "font/woff2",
+        "bytes": 48256,
+        "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62"
+      }
+    ],
+    "fonts": "loaded",
+    "requests": [
+      {
+        "name": "http://127.0.0.1:4317/assets/index-COjIw8zt.js",
+        "type": "script"
+      },
+      {
+        "name": "http://127.0.0.1:4317/assets/index-sZgCj8PD.css",
+        "type": "link"
+      },
+      {
+        "name": "http://127.0.0.1:4317/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+        "type": "css"
+      },
+      {
+        "name": "http://127.0.0.1:4317/assets/index-COjIw8zt.js",
+        "type": "fetch"
+      },
+      {
+        "name": "http://127.0.0.1:4317/assets/index-sZgCj8PD.css",
+        "type": "fetch"
+      },
+      {
+        "name": "http://127.0.0.1:4317/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+        "type": "fetch"
+      }
+    ]
+  }
+}

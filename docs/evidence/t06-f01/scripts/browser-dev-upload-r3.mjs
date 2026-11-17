@@ -1,0 +1,54 @@
+const fs=await import('node:fs/promises');
+const task=await taskSpace(26), page=task.page('p1');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1366,height:900,deviceScaleFactor:1,mobile:false});
+await page.reload();await page.waitForFunction(()=>document.querySelector('img')?.naturalWidth>0);
+await page.cdp('Network.enable',{});
+await page.evaluate(()=>{window.__filesAudit={urls:[],revoked:[],writes:[],errors:[]};const a=window.__filesAudit,c=URL.createObjectURL.bind(URL),r=URL.revokeObjectURL.bind(URL),f=window.fetch.bind(window);URL.createObjectURL=function(blob){const u=c(blob);a.urls.push({url:u,type:blob.type,size:blob.size});return u};URL.revokeObjectURL=function(u){a.revoked.push(u);return r(u)};window.fetch=function(input,init){const method=init?.method||input?.method||'GET';if(!['GET','HEAD'].includes(method.toUpperCase()))a.writes.push({method,url:String(input)});return f(input,init)};addEventListener('error',e=>{if(e.target===window)a.errors.push(e.message)});addEventListener('unhandledrejection',e=>a.errors.push(String(e.reason)))});
+const records=[];
+const capture=async(label)=>{const data=await page.evaluate(()=>({counts:document.querySelector('[aria-label="传输计数"]')?.textContent,rows:[...document.querySelectorAll('[data-slot="file-upload-row"]')].map(e=>({status:e.dataset.status,text:e.textContent.trim()})),receipts:document.querySelector('[aria-label="成功回执"]')?.textContent,alerts:[...document.querySelectorAll('[role="alert"]')].map(e=>e.textContent),audit:window.__filesAudit}));records.push({label,...data});await fs.writeFile('/tmp/nerv-ui-t06-f01/raw/dev-upload.json',JSON.stringify(records,null,2));return data};
+const assert=(v,m)=>{if(!v)throw Error(m)};
+const picker='[data-slot="file-upload"] input[type=file]';
+const click=async name=>page.click(`button:text-is("${name}")`);
+const count=await capture('empty before picker');assert(count.counts.includes('create 0 · transport 0 · complete 0'),'initial counters');
+const chooser=page.waitForFileChooser({timeout:10000});await page.click('[data-slot="file-upload-dropzone"]');await (await chooser).setFiles('/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground/public/files/notes.txt');
+await page.waitForSelector('[data-slot="file-upload-row"][data-status=queued]');
+await fs.writeFile('/tmp/nerv-ui-t06-f01/raw/dev-upload-partial.json',JSON.stringify(records,null,2));
+const selected=await capture('chooser file selected, before upload');assert(selected.counts.includes('create 0 · transport 0 · complete 0'),'manual selection must be inert');assert(selected.audit.writes.length===0,'no network writes');
+await click('开始上传');await page.waitForFunction(()=>document.querySelector('[aria-label="传输计数"]').textContent.includes('pending 1'));
+await click('推进传输');await page.click('button[aria-label="暂停 notes.txt"]');await page.waitForSelector('[data-slot="file-upload-row"][data-status=paused]');
+const paused=await capture('paused after 25 percent');assert(paused.counts.includes('complete 0'),'pause must not complete');
+await page.click('button[aria-label="继续 notes.txt"]');await page.waitForSelector('[data-slot="file-upload-row"][data-status=uploading]');await click('本次传输失败');await page.waitForSelector('[data-slot="file-upload-row"][data-status=failed]');
+const failed=await capture('injected failure');assert(failed.receipts.includes('尚无成功文件'),'failure receipt');
+await page.click('button[aria-label="重试 notes.txt"]');await page.waitForSelector('[data-slot="file-upload-row"][data-status=uploading]');for(let i=0;i<3;i++)await click('推进传输');await page.waitForSelector('[data-slot="file-upload-row"][data-status=completed]');
+await capture('retry completed');
+await page.setInputFiles(picker,['/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground/public/files/notes.txt']);await page.waitForSelector('[data-slot="file-upload-row"][data-status=queued]');
+await click('开始上传');for(let i=0;i<3;i++)await click('推进传输');await page.waitForFunction(()=>document.querySelectorAll('[aria-label="成功回执"] li').length===2);
+await capture('same file reselection completed snapshot has two ids');
+// Remove one of two identically named rows through its public button.
+await page.click('button[aria-label="移除 notes.txt"] >> nth=0');await page.waitForFunction(()=>document.querySelectorAll('[aria-label="成功回执"] li').length===1);await capture('removed completed receipt is replaced');
+await click('清空文件');await page.waitForFunction(()=>document.querySelectorAll('[data-slot="file-upload-row"]').length===0);await capture('clear explicitly cleared receipts');
+await page.selectOption('select[aria-label="可选文件类型"]','extension');
+await page.evaluate(()=>{const d=new DataTransfer();d.items.add(new File(['bad'],'wrong.jpg',{type:'image/jpeg'}));d.items.add(new File(['x'.repeat(32769)],'too-large.txt',{type:'text/plain'}));d.items.add(new File(['ok'],'drop.txt',{type:'text/plain'}));document.querySelector('[data-slot="file-upload-dropzone"]').dispatchEvent(new DragEvent('drop',{bubbles:true,cancelable:true,dataTransfer:d}))});
+await page.waitForSelector('[data-slot="file-upload-row"][data-status=rejected]');const rejected=await capture('synthetic DataTransfer real drop handler limits');assert(rejected.alerts.join().includes('文件类型不符合要求')&&rejected.alerts.join().includes('文件超过最大大小限制'),'rejection reasons');
+assert(rejected.receipts.includes('尚无成功文件'),'rejected not receipt');
+await click('清空文件');await page.selectOption('select[aria-label="最多文件"]','1');
+await page.evaluate(()=>{const d=new DataTransfer();d.items.add(new File(['a'],'one.txt',{type:'text/plain'}));d.items.add(new File(['b'],'two.txt',{type:'text/plain'}));document.querySelector('[data-slot="file-upload-dropzone"]').dispatchEvent(new DragEvent('drop',{bubbles:true,cancelable:true,dataTransfer:d}))});await page.waitForFunction(()=>document.querySelector('[role=alert]')?.textContent.includes('最大文件数量'));await capture('maxFiles one accepts one and rejects adjacent');
+await click('清空文件');await page.selectOption('select[aria-label="最多文件"]','5');await page.selectOption('select[aria-label="可选文件类型"]','mixed');
+// All seven existing layouts consume the same public FileUpload, with controlled local bytes.
+for(const variant of ['default','queue','compact','avatar','gallery','table','image']){
+ await page.selectOption('select[aria-label="上传排列方式"]',variant);
+ await page.setInputFiles(picker,['/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground/public/files/garden.png']);
+ await page.waitForFunction(()=>[...document.querySelectorAll('[data-slot="file-upload-thumbnail"]')].some(i=>i.naturalWidth===640));
+ const data=await capture(`variant ${variant}, actual thumbnail decode`);assert(data.rows.length===1||variant==='avatar','variant selected row');
+ await click('清空文件');
+}
+await page.selectOption('select[aria-label="上传排列方式"]','queue');await click('加入 48 份便笺');await page.waitForSelector('[data-slot="file-upload-virtual-list"]');
+const before=await page.evaluate(()=>{const s=document.querySelector('[data-slot="file-upload-virtual-list"]');return {scroll:s.scrollTop,height:s.clientHeight,total:s.scrollHeight,rows:[...s.querySelectorAll('[data-slot="file-upload-row"]')].map(e=>e.textContent.trim()),pageWidth:document.documentElement.scrollWidth,width:innerWidth}});records.push({label:'48 notes initial virtual window',...before});assert(before.rows.length<48&&before.total>before.height,'real virtual scroll geometry');
+const point=await page.evaluate(()=>{const b=document.querySelector('[data-slot="file-upload-virtual-list"]').getBoundingClientRect();return{x:b.x+b.width/2,y:b.y+100}});await page.cdp('Input.dispatchMouseEvent',{type:'mouseWheel',x:point.x,y:point.y,deltaX:0,deltaY:3300});await page.waitForFunction(()=>document.querySelector('[data-slot="file-upload-virtual-list"]').scrollTop>2000);
+records.push({label:'virtual scrolled',data:await page.evaluate(()=>{const s=document.querySelector('[data-slot="file-upload-virtual-list"]');return {scroll:s.scrollTop,rows:[...s.querySelectorAll('[data-slot="file-upload-row"]')].map(e=>e.textContent.trim())}})});
+await page.click('button[aria-label="移除 moment-40.txt"]');await capture('removed a real virtual row');await click('清空文件');
+const final=await capture('final clear');assert(final.audit.writes.length===0,'entire injected lane zero network writes');assert(final.audit.errors.length===0,'no runtime errors');
+await fs.writeFile('/tmp/nerv-ui-t06-f01/raw/dev-upload.json',JSON.stringify(records,null,2));
+await fs.writeFile('/tmp/nerv-ui-t06-f01/raw/dev-upload-network.json',JSON.stringify(await page.events(),null,2));
+console.log({records:records.length,finalCounts:final.counts,urlsCreated:final.audit.urls.length,urlsRevoked:final.audit.revoked.length});
+console.log(await page.snapshot());

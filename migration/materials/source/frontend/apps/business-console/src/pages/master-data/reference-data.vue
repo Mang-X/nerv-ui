@@ -1,0 +1,461 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleCreateReferenceDataCodeRequest,
+  BusinessConsoleResourceItem,
+} from '@nerv-iip/api-client'
+import type { NvDataTableColumn, NvDataTableSort } from '@nerv-iip/ui'
+import CarriedContextSummary from '@/components/business/CarriedContextSummary.vue'
+import IncludeDisabledFilter from '@/components/masterData/IncludeDisabledFilter.vue'
+import MasterDataLifecycleDialog from '@/components/masterData/MasterDataLifecycleDialog.vue'
+import MasterDataRowActions from '@/components/masterData/MasterDataRowActions.vue'
+import { useIncludeDisabledFilter } from '@/composables/masterDataIncludeDisabled'
+import { useMasterDataLifecycleConfirm } from '@/composables/masterDataLifecycleConfirm'
+import {
+  useReferenceDataCodes,
+  useMasterDataResourceActions,
+} from '@/composables/useBusinessMasterData'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import {
+  NvButton,
+  NvDataTable,
+  NvDialog,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogFooter,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvDialogTrigger,
+  NvField,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvInput,
+  NvPageHeader,
+  NvSpinner,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { PlusIcon, RefreshCwIcon } from '@lucide/vue'
+import { computed, reactive, ref, shallowRef, watch } from 'vue'
+import { inlineErrorMessage, notifyOperationFailure, notifySuccess } from '@/utils/notify'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '数据字典',
+    requiredPermissions: ['business.masterdata.resources.read'],
+  },
+})
+
+// 平台预置的受控值分组（CodeSet → 中文名，对齐产品文档 §5.1）。Phase 1 作左侧固定主列表，
+// Phase 2 后端字典就绪后可改为动态拉取，UI 不变。
+// kind 决定可维护性：system-enum=系统枚举（只读，不可新增）；platform-preset=平台预置（可新增）；
+// factory-custom=工厂自定义（可新增）。对齐数据字典规则 §2 的治理分级。
+interface CodeSetMeta {
+  codeSet: string
+  label: string
+  kind: 'system-enum' | 'platform-preset' | 'factory-custom'
+}
+const CODE_SETS: CodeSetMeta[] = [
+  { codeSet: 'material-type', label: '物料类型', kind: 'system-enum' },
+  // 产品/物料分类已升为分类树主数据（#400，见 /master-data/product-categories），从数据字典迁出。
+  { codeSet: 'uom-dimension', label: '计量量纲', kind: 'system-enum' },
+  { codeSet: 'batch-tracking-policy', label: '批次策略', kind: 'system-enum' },
+  { codeSet: 'serial-tracking-policy', label: '序列策略', kind: 'system-enum' },
+  { codeSet: 'shelf-life-policy', label: '保质期策略', kind: 'system-enum' },
+  { codeSet: 'storage-condition', label: '仓储条件', kind: 'platform-preset' },
+  { codeSet: 'barcode-rule', label: '条码规则', kind: 'platform-preset' },
+  { codeSet: 'partner-type', label: '伙伴角色', kind: 'system-enum' },
+  // 技能已升为技能目录主数据（#402，见 /master-data/skill-catalog），从数据字典迁出。
+  { codeSet: 'skill-level', label: '技能等级', kind: 'system-enum' },
+  // 标准工序（#397）/ 质量原因（#401，见 /quality/reason-codes）已升为主数据，从数据字典迁出。
+  { codeSet: 'compliance-tag', label: '合规标签', kind: 'platform-preset' },
+  { codeSet: 'device-status', label: '设备状态', kind: 'system-enum' },
+  { codeSet: 'line-type', label: '产线类型', kind: 'system-enum' },
+  { codeSet: 'work-center-type', label: '工作中心粒度', kind: 'system-enum' },
+]
+
+const {
+  codes,
+  codesError,
+  codesPending,
+  codesTotal,
+  createCode,
+  createCodePending,
+  filters,
+  refreshCodes,
+} = useReferenceDataCodes()
+// 字典条目的身份是 (codeSet, code) 两段，行操作必须带上当前分组，否则后端定位不到对象、
+// 停用/启用/编辑回填一律 400（#1593）。传 ref 而非快照：切换左侧分组后动作要跟着走。
+const selectedCodeSet = ref(CODE_SETS[0]!.codeSet)
+const codeActions = useMasterDataResourceActions('reference-data', selectedCodeSet)
+// 停用/启用确认框收在页面层单实例，行操作只负责指向当前行（#1591）。
+const lifecycle = useMasterDataLifecycleConfirm()
+
+const keyword = ref('')
+const sort = ref<NvDataTableSort | null>(null)
+const page = ref(1)
+const pageSize = ref('10')
+// 停用后的条目默认不在列表里，「启用」入口就永远够不到；开关打开后回到第 1 页重新取数（#1594）。
+const includeDisabled = useIncludeDisabledFilter([filters], () => {
+  page.value = 1
+})
+
+const createOpen = shallowRef(false)
+const createShowErrors = ref(false)
+// 编辑态：null=新建，否则=正在编辑的码值编码（codeSet/code 是身份，编辑态只读）。
+const editingCode = shallowRef<string | null>(null)
+const editLoading = shallowRef(false)
+
+const selectedCodeSetMeta = computed(
+  () => CODE_SETS.find((s) => s.codeSet === selectedCodeSet.value) ?? CODE_SETS[0]!,
+)
+const selectedLabel = computed(() => codeSetLabel(selectedCodeSet.value))
+// 系统枚举由平台维护，不可新增条目；平台预置 / 工厂自定义可新增。
+const selectedCodeSetCanAdd = computed(() => selectedCodeSetMeta.value.kind !== 'system-enum')
+
+const listRows = computed(() => {
+  const kw = keyword.value.trim().toLowerCase()
+  if (!kw) return codes.value
+  return codes.value.filter((row) =>
+    [row.code, row.displayName].some((value) => (value ?? '').toLowerCase().includes(kw)),
+  )
+})
+const sortedRows = computed(() => {
+  if (!sort.value) return listRows.value
+  const { key, direction } = sort.value
+  const factor = direction === 'asc' ? 1 : -1
+  return [...listRows.value].sort(
+    (a, b) =>
+      String(a[key as keyof BusinessConsoleResourceItem] ?? '').localeCompare(
+        String(b[key as keyof BusinessConsoleResourceItem] ?? ''),
+        'zh-Hans-CN',
+      ) * factor,
+  )
+})
+const pageSizeNumber = computed(() => Number(pageSize.value) || 10)
+const pagedRows = computed(() => sortedRows.value)
+
+const listErrorMessage = computed(() => inlineErrorMessage(codesError.value))
+
+const columns: NvDataTableColumn<BusinessConsoleResourceItem>[] = [
+  { key: 'code', header: '编码', cellClass: 'font-medium', accessor: (r) => r.code ?? '无' },
+  { key: 'displayName', header: '名称', accessor: (r) => r.displayName ?? '无' },
+  { key: 'active', header: '状态', width: 'w-24' },
+  { key: 'actions', header: '操作', align: 'end', width: 'w-16' },
+]
+
+const CREATE_FORM_DEFAULTS = {
+  codeSet: selectedCodeSet.value,
+  code: '',
+  name: '',
+}
+const createForm = reactive({
+  organizationId: filters.organizationId,
+  environmentId: filters.environmentId,
+  ...CREATE_FORM_DEFAULTS,
+})
+const canCreateCode = computed(
+  () =>
+    selectedCodeSetCanAdd.value &&
+    [createForm.codeSet, createForm.code, createForm.name].every(isNonEmpty),
+)
+// 提交校验区分新建/编辑：新建受 kind 守卫（系统枚举不可新增）；编辑只改名称，
+// 名称非空即可——系统枚举允许改名（治理规则：Name 可改，只是不能新增/改 code）。
+const canSubmitCode = computed(() =>
+  editingCode.value ? isNonEmpty(createForm.name) : canCreateCode.value,
+)
+
+// 选中 CodeSet 即服务端过滤（真分页：codeSet + skip/take 都交给后端）。
+watch(
+  selectedCodeSet,
+  (value) => {
+    filters.codeSet = value
+    page.value = 1
+  },
+  { immediate: true },
+)
+
+watch([keyword, pageSize], () => {
+  page.value = 1
+})
+
+watch(
+  [page, pageSize],
+  () => {
+    filters.skip = (page.value - 1) * pageSizeNumber.value
+    filters.take = pageSizeNumber.value
+  },
+  { immediate: true },
+)
+
+function selectCodeSet(codeSet: string) {
+  selectedCodeSet.value = codeSet
+  keyword.value = ''
+}
+function codeSetLabel(codeSet: string) {
+  return CODE_SETS.find((s) => s.codeSet === codeSet)?.label ?? codeSet
+}
+function rowKey(row: BusinessConsoleResourceItem) {
+  return `${row.codeSet ?? selectedCodeSet.value}:${row.code ?? row.displayName ?? ''}`
+}
+function codeDetailFields(row: BusinessConsoleResourceItem) {
+  return [
+    { label: '所属字典', value: codeSetLabel(row.codeSet ?? selectedCodeSet.value) },
+    { label: '编码', value: row.code ?? '' },
+    { label: '名称', value: row.displayName ?? '' },
+  ]
+}
+function resetCreateForm() {
+  Object.assign(createForm, { ...CREATE_FORM_DEFAULTS, codeSet: selectedCodeSet.value })
+}
+function openCreate() {
+  editingCode.value = null
+  resetCreateForm()
+  createShowErrors.value = false
+  createForm.organizationId = filters.organizationId
+  createForm.environmentId = filters.environmentId
+  createForm.codeSet = selectedCodeSet.value
+  createOpen.value = true
+}
+async function openEdit(row: BusinessConsoleResourceItem) {
+  if (!row.code) return
+  editingCode.value = row.code
+  createShowErrors.value = false
+  editLoading.value = true
+  createOpen.value = true
+  try {
+    const d = await codeActions.fetchDetail(row.code)
+    Object.assign(createForm, {
+      codeSet: row.codeSet ?? selectedCodeSet.value,
+      code: row.code,
+      name: d?.name ?? row.displayName ?? '',
+    })
+  } finally {
+    editLoading.value = false
+  }
+}
+async function submitCode() {
+  if (!canSubmitCode.value) {
+    createShowErrors.value = true
+    return
+  }
+  try {
+    if (editingCode.value) {
+      await codeActions.update(editingCode.value, { name: createForm.name.trim() })
+      notifySuccess(`字典条目「${createForm.name.trim()}」已更新。`)
+    } else {
+      const body: BusinessConsoleCreateReferenceDataCodeRequest = {
+        organizationId: createForm.organizationId.trim(),
+        environmentId: createForm.environmentId.trim(),
+        codeSet: createForm.codeSet.trim(),
+        code: createForm.code.trim(),
+        name: createForm.name.trim(),
+      }
+      await createCode(body)
+      notifySuccess(`字典条目「${body.name}」已创建。`)
+      selectedCodeSet.value = body.codeSet
+    }
+    resetCreateForm()
+    editingCode.value = null
+    createShowErrors.value = false
+    createOpen.value = false
+  } catch (error) {
+    notifyOperationFailure('保存字典条目失败', error, '保存字典条目失败，请稍后重试。')
+  }
+}
+function syncFormOnOpen(open: boolean) {
+  if (!open) return
+  createShowErrors.value = false
+  createForm.organizationId = filters.organizationId
+  createForm.environmentId = filters.environmentId
+  createForm.codeSet = selectedCodeSet.value
+}
+function isNonEmpty(value: string) {
+  return value.trim().length > 0
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="数据字典"
+      :breadcrumbs="[{ label: '基础数据' }]"
+      :count="`${CODE_SETS.length} 个字典分组`"
+    >
+      <template #actions>
+        <NvButton
+          size="sm"
+          variant="outline"
+          type="button"
+          :disabled="codesPending"
+          @click="refreshCodes"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+        <NvDialog v-model:open="createOpen" @update:open="syncFormOnOpen">
+          <NvDialogTrigger as-child>
+            <NvButton
+              size="sm"
+              type="button"
+              :disabled="!selectedCodeSetCanAdd"
+              @click="openCreate"
+            >
+              <PlusIcon aria-hidden="true" />
+              新建字典条目
+            </NvButton>
+          </NvDialogTrigger>
+          <NvDialogContent class="sm:max-w-lg">
+            <NvDialogHeader>
+              <NvDialogTitle>{{
+                editingCode ? `编辑字典条目 · ${editingCode}` : '新建字典条目'
+              }}</NvDialogTitle>
+              <NvDialogDescription class="sr-only">{{
+                editingCode
+                  ? `字典 ${codeSetLabel(createForm.codeSet)}，条目 ${editingCode}`
+                  : `所属字典：${codeSetLabel(createForm.codeSet)}`
+              }}</NvDialogDescription>
+            </NvDialogHeader>
+            <form class="grid gap-4" @submit.prevent="submitCode">
+              <!-- 所属字典由左侧所选分组带出；编辑态编码也固定，一并只读展示。 -->
+              <CarriedContextSummary
+                label="字典归属"
+                :items="[
+                  { label: '所属字典', value: codeSetLabel(createForm.codeSet) },
+                  { label: '条目编码', value: editingCode ?? '' },
+                ]"
+              />
+              <p
+                v-if="createShowErrors && !canSubmitCode"
+                class="text-sm text-destructive"
+                role="alert"
+              >
+                请完整填写带 * 的必填项（已标红）。
+              </p>
+
+              <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+                <NvField
+                  v-if="!editingCode"
+                  :data-invalid="createShowErrors && !isNonEmpty(createForm.code)"
+                >
+                  <NvFieldLabel for="ref-code"
+                    >编码 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput
+                    id="ref-code"
+                    v-model="createForm.code"
+                    autocomplete="off"
+                    aria-required="true"
+                    required
+                  />
+                </NvField>
+                <NvField :data-invalid="createShowErrors && !isNonEmpty(createForm.name)">
+                  <NvFieldLabel for="ref-name"
+                    >名称 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput
+                    id="ref-name"
+                    v-model="createForm.name"
+                    autocomplete="off"
+                    aria-required="true"
+                    required
+                  />
+                </NvField>
+              </NvFieldGroup>
+
+              <NvDialogFooter>
+                <NvButton type="button" variant="outline" @click="createOpen = false"
+                  >取消</NvButton
+                >
+                <NvButton
+                  type="submit"
+                  :disabled="
+                    createCodePending ||
+                    codeActions.updatePending.value ||
+                    editLoading ||
+                    !canSubmitCode
+                  "
+                >
+                  <NvSpinner
+                    v-if="createCodePending || codeActions.updatePending.value"
+                    aria-hidden="true"
+                  />
+                  {{ editingCode ? '保存修改' : '保存条目' }}
+                </NvButton>
+              </NvDialogFooter>
+            </form>
+          </NvDialogContent>
+        </NvDialog>
+      </template>
+    </NvPageHeader>
+
+    <div class="grid items-start gap-4 md:grid-cols-[220px_minmax(0,1fr)]">
+      <nav class="grid h-fit gap-1 rounded-lg border p-2" aria-label="字典分组">
+        <NvButton
+          v-for="s in CODE_SETS"
+          :key="s.codeSet"
+          type="button"
+          variant="ghost"
+          size="sm"
+          class="justify-start"
+          :class="s.codeSet === selectedCodeSet ? 'bg-accent text-accent-foreground' : ''"
+          :aria-pressed="s.codeSet === selectedCodeSet"
+          @click="selectCodeSet(s.codeSet)"
+        >
+          {{ s.label }}
+        </NvButton>
+      </nav>
+
+      <div class="grid min-h-[32rem] content-start gap-4">
+        <NvToolbar
+          v-model:search="keyword"
+          :search-placeholder="`在「${selectedLabel}」内筛选编码、名称`"
+        >
+          <template #filters>
+            <IncludeDisabledFilter v-model="includeDisabled" />
+          </template>
+        </NvToolbar>
+
+        <p v-if="listErrorMessage" class="text-sm text-destructive" role="alert">
+          {{ listErrorMessage }}
+        </p>
+
+        <NvDataTable
+          manual
+          :page="page"
+          :page-size="pageSize"
+          :total-items="codesTotal"
+          @update:page="page = $event"
+          @update:page-size="(v) => (pageSize = String(v))"
+          :searchable="false"
+          :column-settings="false"
+          v-model:sort="sort"
+          :columns="columns"
+          :rows="pagedRows"
+          :row-key="rowKey"
+          :client-sort="false"
+          :loading="codesPending"
+          :empty-message="
+            selectedCodeSetCanAdd
+              ? `「${selectedLabel}」暂无条目。可新建字典条目。`
+              : `「${selectedLabel}」暂无条目。该分组由平台维护。`
+          "
+        >
+          <template #cell-active="{ row }">
+            <NvStatusBadge :value="row.active === false ? 'disabled' : 'active'" />
+          </template>
+          <template #cell-actions="{ row }">
+            <MasterDataRowActions
+              :row="row"
+              entity-label="字典条目"
+              :detail-fields="codeDetailFields(row)"
+              @toggle="(row) => lifecycle.request(row, codeActions, '字典条目')"
+              @edit="openEdit"
+            />
+          </template>
+        </NvDataTable>
+      </div>
+    </div>
+    <MasterDataLifecycleDialog :controller="lifecycle" />
+  </BusinessLayout>
+</template>

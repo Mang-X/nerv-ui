@@ -1,0 +1,180 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t07-p07-resource-editing/frontend/packages/scheduling
+
+Could not parse CSS stylesheet
+stdout | src/components/ResourceSchedulerBoard.public.test.ts > public resource reassignment preserves input and resource identity and clears rejected drag visuals
+P07 public geometry [
+  [
+    'gantt_data_area',
+    null,
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    ''
+  ],
+  [
+    'gantt_task_line nerv-order nerv-selected gantt_project gantt_bar_project gantt_dependent_task',
+    'lane:Empty',
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    ''
+  ],
+  [
+    'gantt_task_line nerv-order nerv-selected gantt_project gantt_bar_project gantt_dependent_task gantt_split_parent',
+    'lane:Over',
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    ''
+  ],
+  [
+    'gantt_task_line nerv-order nerv-selected gantt_project gantt_bar_project gantt_dependent_task gantt_split_parent',
+    'lane:Unknown',
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    ''
+  ],
+  [
+    'gantt_task_line nerv-order nerv-selected gantt_project gantt_bar_project gantt_dependent_task gantt_split_parent',
+    'lane:Zero',
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    ''
+  ],
+  [
+    'gantt_task_line gantt_bar_task gantt_split_child',
+    'c',
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    ''
+  ],
+  [
+    'gantt_task_line gantt_bar_task gantt_split_child',
+    'b',
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    ''
+  ],
+  [
+    'gantt_task_line gantt_bar_task gantt_split_child',
+    'a',
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    ''
+  ],
+  [
+    'nerv-drop-cancel',
+    null,
+    {
+      left: 100,
+      top: 0,
+      right: 220,
+      bottom: 264,
+      width: 120,
+      height: 264,
+      x: 100,
+      y: 0,
+      toJSON: [Function: toJSON]
+    },
+    'none'
+  ]
+]
+P07 public move <div class="nerv-drop-hint" style="display: none;"><span class="nerv-drop-tip"></span></div> <div class="nerv-drop-cancel" style="display: flex;"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg><span>拖到此处取消改派</span></div>
+
+ ❯ src/components/ResourceSchedulerBoard.public.test.ts (15 tests | 1 failed | 14 skipped) 510ms
+   × public resource reassignment preserves input and resource identity and clears rejected drag visuals 510ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/ResourceSchedulerBoard.public.test.ts > public resource reassignment preserves input and resource identity and clears rejected drag visuals
+AssertionError: expected 'none' to be 'flex' // Object.is equality
+
+Expected: "flex"
+Received: "none"
+
+ ❯ src/components/ResourceSchedulerBoard.public.test.ts:176:81
+    174|   resourcePointer('mousemove', 260, 600)
+    175|   console.log('P07 public move', document.querySelector('.nerv-drop-hi…
+    176|   expect(document.querySelector<HTMLElement>('.nerv-drop-hint')!.style…
+       |                                                                                 ^
+    177|   resourcePointer('mouseup', 260, 600)
+    178|   expect.soft(document.querySelectorAll('.nerv-drag-source')).toHaveLe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 14 skipped (15)
+   Start at  05:23:43
+   Duration  3.08s (transform 1.77s, setup 0ms, import 2.26s, tests 510ms, environment 249ms)
+

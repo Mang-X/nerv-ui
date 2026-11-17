@@ -1,0 +1,12 @@
+[
+  {
+    "name": "full",
+    "exit": 2,
+    "diagnostics": 36
+  },
+  {
+    "name": "scoped",
+    "exit": 0,
+    "diagnostics": 0
+  }
+]

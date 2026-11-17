@@ -1,0 +1,6 @@
+{
+  file: 'docs/scheduling-panels.md',
+  exit: 0,
+  unchanged: true,
+  check: false
+}

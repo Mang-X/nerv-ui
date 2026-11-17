@@ -1,0 +1,26 @@
+{
+  "target": {
+    "path": "/Users/mang/Project/nerv-ui-worktrees/t06-f02-upload-lifecycle",
+    "head": "e763c0fdc3e2800975578ab402b479d56f23c6fd",
+    "tree": "36ca2be30e958b26d7535d9868652c430468fc81",
+    "branch": "feat/t06-f02-upload-lifecycle",
+    "status": "M docs/files-standalone.md\n M frontend/apps/design-system/docs/components/desktop/file-upload.md\n M frontend/apps/playground/src/files/UploadPanel.vue\n M frontend/apps/playground/src/files/memoryUpload.test.ts\n M frontend/apps/playground/src/files/memoryUpload.ts\n M frontend/packages/ui/src/components/ui/file-upload/useFileUpload.ts\n?? docs/evidence/t06-f02/\n?? frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+    "main": "599031a688496679e300458f56a1896d41ac8f81"
+  },
+  "root": {
+    "path": "/Users/mang/Project/nerv-ui",
+    "head": "e763c0fdc3e2800975578ab402b479d56f23c6fd",
+    "tree": "36ca2be30e958b26d7535d9868652c430468fc81",
+    "branch": "integration/nerv-ui-extraction",
+    "status": "",
+    "main": "599031a688496679e300458f56a1896d41ac8f81"
+  },
+  "source": {
+    "path": "/Users/mang/.t3/worktrees/Nerv-IIP/t3-5c5dc61d",
+    "head": "79b1578f2b75f55709765b5e7882aaf33146c603",
+    "tree": "58e30c637acb7efdd393af291e570288b03b5aa9",
+    "branch": "t3/extract-ui-component-library",
+    "status": "",
+    "main": "ecb7626378e446dcc361cfc4f3c43227ba7e8364"
+  }
+}

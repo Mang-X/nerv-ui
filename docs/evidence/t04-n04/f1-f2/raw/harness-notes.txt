@@ -1,0 +1,2 @@
+保留全部 FAIL：首次probe root/cwd错误为模块未找到，修正/private/tmp后实际8执行4FAIL；docs fmt以..路径被拒绝，绝对路径成功；扩大fmt扫描原交付source-review.md失败，冻结附件不改写，维护源码/人工docs排除它后独立通过。原路径docs/adr/0020在独立库不存在，按migration/t01与migration/reference/source固定来源读取，不建shim。首次read误找LetterInbox.vue，实际owner为RefreshList.vue。以上均非产品finding。
+F1中间实现同步offset但未同步坐标原点；追加连续50px公开回归取得2FAIL，最终lastX/startX同步后7PASS。中间build和browser完整保留intermediate-v1，最后新产物重新验证。

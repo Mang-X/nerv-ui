@@ -1,0 +1,1936 @@
+[
+  {
+    "name": "custom-cancel-Escape",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "custom-cancel-cancel-zone",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 17:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "custom-cancel-outside",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 08:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "custom-cancel-read-only",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "custom-cancel-lock",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "custom-cancel-authority",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；河畔阅览室 · 分享小组；10/25 16:00 至 10/25 19:00",
+      "count": 0,
+      "status": "已换为另一份活动安排。",
+      "source": {
+        "x": 935,
+        "y": 256.5,
+        "width": 249,
+        "height": 264,
+        "top": 256.5,
+        "right": 1184,
+        "bottom": 520.5,
+        "left": 935
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "custom-cancel-dimension",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "native-cancel-Escape",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "native-cancel-read-only-restored",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "native-cancel-authority-before-native",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；河畔阅览室 · 分享小组；10/25 16:00 至 10/25 19:00",
+      "count": 0,
+      "status": "已选择活动，可查看时间与位置。",
+      "source": {
+        "x": 935,
+        "y": 256.5,
+        "width": 249,
+        "height": 264,
+        "top": 256.5,
+        "right": 1184,
+        "bottom": 520.5,
+        "left": 935
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "native-cancel-read-only-before-native",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "source": {
+        "x": 439,
+        "y": 256.5,
+        "width": 248,
+        "height": 264,
+        "top": 256.5,
+        "right": 687,
+        "bottom": 520.5,
+        "left": 439
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "unmount-active-editing-reference-survives",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/library",
+      "authority": "阅读与交流；晨光书房 · 共读小组；10/25 10:00 至 10/25 13:00",
+      "count": 0,
+      "status": "已恢复最初安排。",
+      "ghost": [
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 1,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "route-cleanup",
+    "state": {
+      "url": "http://127.0.0.1:4287/#",
+      "count": 0,
+      "ghost": [],
+      "faded": 0,
+      "tips": [],
+      "charts": 0,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "studio-team-accepted",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/studio",
+      "authority": "速写与配色；木作工坊 · 午后小组；10/25 10:00 至 10/25 13:00",
+      "count": 1,
+      "status": "已采用新的活动安排。",
+      "source": {
+        "x": 440.64556884765625,
+        "y": 306.7517395019531,
+        "width": 244.7088623046875,
+        "height": 260.4965515136719,
+        "top": 306.7517395019531,
+        "right": 685.3544311523438,
+        "bottom": 567.248291015625,
+        "left": 440.64556884765625
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "改派 午后小组 · 10:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  },
+  {
+    "name": "studio-reentrant-authority-replacement",
+    "state": {
+      "url": "http://127.0.0.1:4287/#schedule-resource-edit/studio",
+      "authority": "速写与配色；绘画工坊 · 午后小组；10/25 16:00 至 10/25 19:00",
+      "count": 2,
+      "status": "已换为另一份活动安排。",
+      "source": {
+        "x": 935,
+        "y": 305,
+        "width": 249,
+        "height": 264,
+        "top": 305,
+        "right": 1184,
+        "bottom": 569,
+        "left": 935
+      },
+      "ghost": [
+        {
+          "display": "none",
+          "text": "调整到 11:00",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "text": "拖到此处取消改派",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "faded": 0,
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "charts": 2,
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,26 @@
+$ pnpm typecheck && pnpm --filter @nerv-iip/playground build
+$ pnpm -r --workspace-concurrency=1 --if-present typecheck
+Scope: 3 of 4 workspace projects
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+src/components/swiper/Swiper.test.ts(28,23): error TS2322: Type '({ item }: { item: string; }) => string' is not assignable to type 'WithArray<string | VNode<RendererNode, RendererElement, { [key: string]: any; }> | (new () => any) | { template: string; } | ((props: {}) => any)> | undefined'.
+  Type '({ item }: { item: string; }) => string' is not assignable to type '(props: {}) => any'.
+    Types of parameters '__0' and 'props' are incompatible.
+      Property 'item' is missing in type '{}' but required in type '{ item: string; }'.
+src/components/virtual-list/VirtualList.test.ts(31,16): error TS2322: Type '({ item, index }: { item: string; index: number; }) => VNode<RendererNode, RendererElement, { [key: string]: any; }>' is not assignable to type 'WithArray<string | VNode<RendererNode, RendererElement, { [key: string]: any; }> | (new () => any) | { template: string; } | ((props: { item: unknown; index: number; }) => any)> | undefined'.
+  Type '({ item, index }: { item: string; index: number; }) => VNode<RendererNode, RendererElement, { [key: string]: any; }>' is not assignable to type '(props: { item: unknown; index: number; }) => any'.
+    Types of parameters '__0' and 'props' are incompatible.
+      Type '{ item: unknown; index: number; }' is not assignable to type '{ item: string; index: number; }'.
+        Types of property 'item' are incompatible.
+          Type 'unknown' is not assignable to type 'string'.
+src/components/virtual-list/VirtualList.test.ts(52,16): error TS2322: Type '({ item, index }: { item: { id: string; }; index: number; }) => VNode<RendererNode, RendererElement, { [key: string]: any; }>' is not assignable to type 'WithArray<string | VNode<RendererNode, RendererElement, { [key: string]: any; }> | (new () => any) | { template: string; } | ((props: { item: unknown; index: number; }) => any)> | undefined'.
+  Type '({ item, index }: { item: { id: string; }; index: number; }) => VNode<RendererNode, RendererElement, { [key: string]: any; }>' is not assignable to type '(props: { item: unknown; index: number; }) => any'.
+    Types of parameters '__0' and 'props' are incompatible.
+      Type '{ item: unknown; index: number; }' is not assignable to type '{ item: { id: string; }; index: number; }'.
+        Types of property 'item' are incompatible.
+          Type 'unknown' is not assignable to type '{ id: string; }'.
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/ui-mobile@0.1.0 typecheck: `vue-tsc --noEmit -p tsconfig.json`
+Exit status 2
+[ELIFECYCLE] Command failed with exit code 2.
+[ELIFECYCLE] Command failed with exit code 2.

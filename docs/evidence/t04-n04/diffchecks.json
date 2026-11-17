@@ -1,0 +1,27 @@
+[
+  {
+    "name": "full-diffcheck",
+    "args": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit": 2
+  },
+  {
+    "name": "scoped-source-manual-diffcheck",
+    "args": [
+      "git",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      "frontend",
+      "README.md",
+      "docs/mobile-standalone.md",
+      "docs/evidence/t04-n04/README.md"
+    ],
+    "exit": 0
+  }
+]

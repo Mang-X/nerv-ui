@@ -1,0 +1,5 @@
+Error: real ready event
+    at assert (file:////[eval2]:4:51)
+    at file:////[eval2]:8:49
+
+ego's nodejs process exited with code 1.

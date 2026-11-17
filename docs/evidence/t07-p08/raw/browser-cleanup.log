@@ -1,0 +1,3 @@
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+{ before: { url: 'http://127.0.0.1:4308/#schedule-panels/library', timezone: 'Asia/Shanghai', visualScale: 1, width: 2300, height: 1225, dpr: 2, theme: 'dark' }, result: { spaceId: 78, closedSpace: true, keptManagedLabels: [], closedManagedLabels: [ 'p1' ], preservedUnmanagedCount: 0 } }
+

@@ -1,0 +1,43 @@
+$ pnpm typecheck && pnpm --filter @nerv-iip/playground build
+$ pnpm -r --workspace-concurrency=1 --if-present typecheck
+Scope: 3 of 4 workspace projects
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vp build
+vite v8.1.3 building client environment for production...
+transforming...✓ 5349 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                              0.42 kB │ gzip:   0.30 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2     10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2      11.23 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2       18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2          18.99 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2   25.96 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2          48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2      85.06 kB
+dist/assets/index-sZgCj8PD.css                             214.84 kB │ gzip:  33.32 kB
+dist/assets/index-COjIw8zt.js                              409.03 kB │ gzip: 125.70 kB
+
+[INVALID_ANNOTATION] A comment "/* #__PURE__ */" in "../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js" contains an annotation that Rolldown cannot interpret due to the position of the comment.
+      ╭─[ ../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js:3362:1 ]
+      │
+ 3362 │ /* #__PURE__ */
+      │ ───────┬───────
+      │        ╰───────── comment ignored due to position
+      │
+      │ Help: For more information on how to use pure annotations correctly, check the documentation: https://rolldown.rs/in-depth/dead-code-elimination#pure
+──────╯
+
+[INVALID_ANNOTATION] A comment "/* #__PURE__ */" in "../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js" contains an annotation that Rolldown cannot interpret due to the position of the comment.
+      ╭─[ ../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js:5780:23 ]
+      │
+ 5780 │ const defaultState = (/* #__PURE__ */ {
+      │                       ───────┬───────
+      │                              ╰───────── comment ignored due to position
+      │
+      │ Help: For more information on how to use pure annotations correctly, check the documentation: https://rolldown.rs/in-depth/dead-code-elimination#pure
+──────╯
+
+✓ built in 2.48s

@@ -1,0 +1,65 @@
+{ responses: [ { url: 'http://127.0.0.1:4187/', buildPath: 'index.html', status: 200, bytes: 427, sha256: 'd2c80cb78f0cc1da960f4e038d2eca36f84ec3ffda449e69e78d53a20ae6258f', equal: true, method: 'browser-origin fetch of actual loaded resource URL' }, { url: 'http://127.0.0.1:4187/assets/index-BLJiylYt.js', buildPath: 'assets/index-BLJiylYt.js', status: 200, bytes: 493168, sha256: '8cde92f8f4d9921e7185c1153ba575d30ad1e4ad3988fc140ca62045fd3235f5', equal: true, method: 'browser-origin fetch of actual loaded resource URL' }, { url: 'http://127.0.0.1:4187/assets/index-rATJgbff.css', buildPath: 'assets/index-rATJgbff.css', status: 200, bytes: 225779, sha256: 'e24b87aba1421c0570e26bda3885b8aad7cae09ad8af3edfd1c035e9524d0eac', equal: true, method: 'browser-origin fetch of actual loaded resource URL' }, { url: 'http://127.0.0.1:4187/assets/inter-latin-wght-normal-Dx4kXJAl.woff2', buildPath: 'assets/inter-latin-wght-normal-Dx4kXJAl.woff2', status: 200, bytes: 48256, sha256: '3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62', equal: true, method: 'browser-origin fetch of actual loaded resource URL' } ], dist: 10 }
+[p1 "NvUI · 项目清单" | space "N04 F3 fix 20261024"(13): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=57, loc=css:button[aria-label="切换明暗"]]
+        text "浅色"
+    container [ref=58]
+      container "刷新来信"
+        output "刷新状态" [ref=59]
+          text "已更新 · 请求 2 次"
+        paragraph
+          text "信箱滚动 0px"
+        container [ref=60]
+          text "第 2 次来信 1"
+          text "第 2 次来信 2"
+          text "第 2 次来信 3"
+          text "第 2 次来信 4"
+          text "第 2 次来信 5"
+      container "继续翻阅"
+        heading
+          text "继续翻阅"
+        paragraph
+          text "在来信内滚动到底部，分批收下 24 封来信。"
+        container
+          checkbox "下次加载失败" [ref=61, loc=css:input[aria-label="下次加载失败"]]
+          text "下次加载失败"
+        container
+          button [ref=62]
+            text "重新开始"
+          button [ref=63]
+            text "清空信箱"
+        output "分页状态" [ref=64]
+          text "可以继续 · 8 封 · 请求 0 次"
+        container [ref=65]
+          text "来信 1"
+          text "来信 2"
+          text "来信 3"
+          text "来信 4"
+          text "来信 5"
+      container "千封信笺"
+        heading
+          text "千封信笺"
+        paragraph
+          text "在窗口内翻阅 1000 封信笺，点击记住一封。"
+        container
+          button [ref=66]
+            text "倒序信笺"
+          container
+            checkbox "隐藏全部信笺" [ref=67, loc=css:input[aria-label="隐藏全部信笺"]]
+            text "隐藏全部信笺"
+        output "信笺回显" [ref=68]
+          text "尚未选择信笺"
+        container [ref=69]
+          button [ref=70]
+            text "信笺 1"
+          button [ref=71]
+            text "信笺 2"
+          button [ref=72]
+            text "信笺 3"
+          button [ref=73]
+            text "信笺 4"
+
+

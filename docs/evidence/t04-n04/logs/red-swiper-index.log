@@ -1,0 +1,34 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+ ❯ src/components/swiper/Swiper.test.ts (1 test | 1 failed) 33ms
+   × moves the rendered track when the host changes the controlled index without emitting a user change 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/swiper/Swiper.test.ts > moves the rendered track when the host changes the controlled index without emitting a user change
+AssertionError: expected 'transform: translate3d(0px, 0, 0);' to contain 'translate3d(-600px'
+
+Expected: "translate3d(-600px"
+Received: "transform: translate3d(0px, 0, 0);"
+
+ ❯ src/components/swiper/Swiper.test.ts:16:65
+     14|   expect(wrapper.get('.nv-m-swiper-track').attributes('style')).toCont…
+     15|   await wrapper.setProps({ index: 2 })
+     16|   expect(wrapper.get('.nv-m-swiper-track').attributes('style')).toCont…
+       |                                                                 ^
+     17|   expect(wrapper.emitted('change')).toBeUndefined()
+     18|   wrapper.unmount()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  21:19:55
+   Duration  18.35s (transform 9.66s, setup 0ms, import 14.36s, tests 33ms, environment 3.60s)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/swiper/Swiper.test.ts

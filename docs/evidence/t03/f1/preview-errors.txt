@@ -1,0 +1,7 @@
+Initial preview_open about:blank: Preview automation open failed: Invalid preview URL (parse: https:; input length 11).
+Initial preview_open 4173 before service ready: chrome-error://chromewebdata/.
+Temporary harness navigation before successful harness build: Error response (404).
+After server ready, preview_navigate http://127.0.0.1:4178/#touch: available=true, title=NvUI · 项目清单.
+Snapshot attempt 1: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Snapshot attempt 2: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Fallback: ego-browser per two failures at same snapshot step; failures excluded from browser PASS evidence.

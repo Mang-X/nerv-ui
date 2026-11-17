@@ -1,0 +1,27 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/FilesDemo.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/FilesDemo.test.ts [ src/FilesDemo.test.ts ]
+SyntaxError: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+191 |          variant="outline"
+192 |          @click="
+193 |            upload?.resumeAll()
+    |  ^
+194 |            upload?.retryFailed()
+195 |          "
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  12:16:21
+   Duration  4.38s (transform 2.60s, setup 396ms, import 0ms, tests 0ms, environment 506ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/FilesDemo.test.ts

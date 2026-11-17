@@ -1,0 +1,37 @@
+[
+  {
+    "path": "frontend/apps/playground/public/files/quality-work-instruction.docx",
+    "bytes": 3062,
+    "sha256": "2530d31ba3d3c5045a879bd9acddb9b4dad54e8aed569d0cee09b2da50648dcc"
+  },
+  {
+    "path": "frontend/apps/playground/public/files/reading-journey.docx",
+    "bytes": 2918,
+    "sha256": "6acfd447174abd87bfc0e7c152bb582be7fb87bc0dd0f665409dcdd2b2aeea20"
+  },
+  {
+    "path": "frontend/apps/playground/public/files/inspection-metrics.xlsx",
+    "bytes": 6424,
+    "sha256": "a2b21b1dcedcf3ce031a2948d3c3476563342cbd172dee110df0a27599d4a100"
+  },
+  {
+    "path": "frontend/apps/playground/public/files/preview-review-deck.pptx",
+    "bytes": 4353,
+    "sha256": "6025f8f08a490758e0b68ddfdc602fa742045fba6e82310cae1ecac67ca46fa7"
+  },
+  {
+    "path": "frontend/apps/playground/public/files/broken.docx",
+    "bytes": 54,
+    "sha256": "5a483351a413101af6f5e520ba080a0180ed5ae8739d7d96dc6e08e6cfe2ce54"
+  },
+  {
+    "path": "frontend/apps/playground/public/files/broken.xlsx",
+    "bytes": 54,
+    "sha256": "5a483351a413101af6f5e520ba080a0180ed5ae8739d7d96dc6e08e6cfe2ce54"
+  },
+  {
+    "path": "frontend/apps/playground/public/files/broken.pptx",
+    "bytes": 54,
+    "sha256": "5a483351a413101af6f5e520ba080a0180ed5ae8739d7d96dc6e08e6cfe2ce54"
+  }
+]

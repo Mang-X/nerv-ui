@@ -1,0 +1,255 @@
+[
+  {
+    "step": "actual portrait light",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<body>\n    <div id=\"app\" data-v-app=\"\"><div class=\"flex h-dvh flex-col bg-background text-foreground relative\"><header data-shell=\"header\" class=\"pt-safe px-safe sticky top-0 z-20 ",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "湖畔 · lake"
+        },
+        {
+          "label": "日期回显",
+          "text": "2024-01-31"
+        },
+        {
+          "label": "安排回显",
+          "text": "尚未收下安排"
+        },
+        {
+          "label": "提醒回显",
+          "text": "尚无提醒 · 取消 0 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "尚未选择动作"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 未选节奏 · 尚无 change"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    }
+  },
+  {
+    "step": "actual date leap draft hit",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<button data-v-7f4c63c7=\"\" data-v-7381c481=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-me",
+      "dialogs": [
+        {
+          "text": "抽屉内容取消哪天出发确定2023年2024年2025年1月2月3月4月5月6月7月8月9月10月11月12月1日2日3日4日5日6日7日8日9日10日11日12日13日14日15日16日17日18日19日20日21日22日23日24日25日26日27日28日29日",
+          "rect": {
+            "x": 0,
+            "y": 553,
+            "width": 390,
+            "height": 291,
+            "top": 553,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "庭院 · garden"
+        },
+        {
+          "label": "日期回显",
+          "text": "2024-01-31"
+        },
+        {
+          "label": "安排回显",
+          "text": "尚未收下安排"
+        },
+        {
+          "label": "提醒回显",
+          "text": "尚无提醒 · 取消 0 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "尚未选择动作"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 未选节奏 · 尚无 change"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [
+        {
+          "layer": "backdrop",
+          "z": "40",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844,
+            "top": 0,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        },
+        {
+          "layer": "surface",
+          "z": "50",
+          "rect": {
+            "x": 0,
+            "y": 553,
+            "width": 390,
+            "height": 291,
+            "top": 553,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          }
+        }
+      ],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    },
+    "confirmHit": {
+      "x": 343,
+      "y": 596,
+      "width": 62,
+      "height": 40,
+      "top": 576,
+      "bottom": 616,
+      "hit": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll": {
+        "x": 195,
+        "y": 422,
+        "top": 62,
+        "bottom": 844,
+        "height": 844
+      },
+      "active": "<button data-v-7f4c63c7=\"\" data-v-7381c481=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-me"
+    }
+  },
+  {
+    "step": "actual picker/date confirm cancel empty reorder",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": false,
+      "docOverflow": false,
+      "active": "<button data-v-7f4c63c7=\"\" data-slot=\"mobile-button\" class=\"nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-now",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "庭院 · garden"
+        },
+        {
+          "label": "日期回显",
+          "text": "2025-02-28"
+        },
+        {
+          "label": "安排回显",
+          "text": "尚未收下安排"
+        },
+        {
+          "label": "提醒回显",
+          "text": "尚无提醒 · 取消 0 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "尚未选择动作"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 未选节奏 · 尚无 change"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    }
+  }
+]

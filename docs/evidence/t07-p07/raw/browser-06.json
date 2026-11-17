@@ -1,0 +1,103 @@
+[
+  {
+    "name": "native-positive-hour-minimum",
+    "state": {
+      "authority": "速写与配色；木作工坊 · 晨间小组；10/25 10:00 至 10/25 11:00",
+      "count": 1,
+      "records": "1. 速写与配色 · 调整结束时间调整前：木作工坊 · 晨间小组；10/25 10:00 至 10/25 13:00本次调整：木作工坊 · 晨间小组；10/25 10:00 至 10/25 11:00处理结果：已采用新的活动安排。当前安排：木作工坊 · 晨间小组；10/25 10:00 至 10/25 11:00",
+      "status": "已采用新的活动安排。",
+      "tips": [
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "display": "none",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ],
+      "ghost": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "probe": {
+        "errors": [],
+        "rejections": [],
+        "down": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "viewport": [
+        2300,
+        1225
+      ]
+    }
+  }
+]

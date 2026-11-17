@@ -1,0 +1,61 @@
+{ state: '已更新 · 请求 1 次', text: ' 下拉刷新第 1 次来信 1第 1 次来信 2第 1 次来信 3第 1 次来信 4第 1 次来信 5第 1 次来信 6第 1 次来信 7第 1 次来信 8第 1 次来信 9第 1 次来信 10第 1 次来信 11第 1 次来信 12', transform: 'translateY(0px)', events: [ { type: 'pointermove', y: 391, pointerType: 'mouse', trusted: true }, { type: 'pointerdown', y: 391, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 403, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 415, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 427, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 439, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 451, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 463, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 475, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 487, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 499, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 511, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 523, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 535, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 547, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 559, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 546.2857055664062, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 533.5714111328125, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 520.8571166992188, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 508.1428527832031, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 495.4285583496094, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 482.71429443359375, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 470, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 457.28570556640625, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 444.5714416503906, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 431.8571472167969, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 419.1428527832031, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 406.4285583496094, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 393.71429443359375, pointerType: 'mouse', trusted: true }, { type: 'pointermove', y: 381, pointerType: 'mouse', trusted: true } ] }
+[p1 "NvUI · 项目清单" | space "N04 F3 fix 20261024"(13): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=20, loc=css:button[aria-label="切换明暗"]]
+        text "深色"
+    container [ref=21]
+      container "一封来信"
+        output "滑动动作回显" [ref=22]
+          text "尚未选择动作"
+      container "刷新来信"
+        heading
+          text "刷新来信"
+        paragraph
+          text "在信箱内滚动，回到顶端后向下拉动刷新。"
+        container
+          checkbox "下次刷新失败" [ref=23, loc=css:input[aria-label="下次刷新失败"]]
+          text "下次刷新失败"
+        button [ref=24]
+          text "立即更新"
+        output "刷新状态" [ref=25]
+          text "已更新 · 请求 1 次"
+        paragraph
+          text "信箱滚动 0px"
+        container [ref=26]
+          text "第 1 次来信 1"
+          text "第 1 次来信 2"
+          text "第 1 次来信 3"
+          text "第 1 次来信 4"
+          text "第 1 次来信 5"
+      container "继续翻阅"
+        heading
+          text "继续翻阅"
+        paragraph
+          text "在来信内滚动到底部，分批收下 24 封来信。"
+        container
+          checkbox "下次加载失败" [ref=27, loc=css:input[aria-label="下次加载失败"]]
+          text "下次加载失败"
+        container
+          button [ref=28]
+            text "重新开始"
+          button [ref=29]
+            text "清空信箱"
+        output "分页状态" [ref=30]
+          text "可以继续 · 8 封 · 请求 0 次"
+        container [ref=31]
+          text "来信 1"
+          text "来信 2"
+          text "来信 3"
+          text "来信 4"
+          text "来信 5"
+      container "千封信笺"
+        heading
+          text "千封信笺"
+        paragraph
+          text "在窗口内翻阅 1000 封信笺，点击记住一封。"
+        button [ref=32]
+
+

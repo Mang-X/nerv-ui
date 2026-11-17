@@ -1,0 +1,8 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /尚未选择活动/. Input:
+
+'周一读书会工序  · 晨间共读 锁定活动参与人数0备注反馈未知报名无权读取记录暂不可读取空间晨光书房开始11/02 09:00结束11/02 12:00工时3 小时数量0准备0 分钟进度0%'
+
+    at file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-03-red-recursion.mjs:5:54
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+
+ego's nodejs process exited with code 1.

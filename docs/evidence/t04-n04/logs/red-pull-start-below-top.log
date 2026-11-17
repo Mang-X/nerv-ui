@@ -1,0 +1,39 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts (2 tests | 1 failed) 52ms
+   × does not start a refresh when a gesture began below the scroll top 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pull-refresh/PullRefresh.gestures.test.ts > does not start a refresh when a gesture began below the scroll top
+AssertionError: expected [ [] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [],
+]
+
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts:30:38
+     28|   area.dispatchEvent(new MouseEvent('pointerup'))
+     29|   await nextTick()
+     30|   expect(wrapper.emitted('refresh')).toBeUndefined()
+       |                                      ^
+     31|   expect(wrapper.get('.nv-m-pr-inner').attributes('style')).toContain(…
+     32|   wrapper.unmount()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  21:27:12
+   Duration  8.18s (transform 5.10s, setup 0ms, import 7.19s, tests 52ms, environment 758ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/pull-refresh/PullRefresh.gestures.test.ts

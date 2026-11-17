@@ -1,0 +1,5 @@
+Error: initial counters
+    at assert (file:////[eval2]:10:34)
+    at file:////[eval2]:13:50
+
+ego's nodejs process exited with code 1.

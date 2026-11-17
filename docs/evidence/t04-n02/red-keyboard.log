@@ -1,0 +1,204 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileInputDemo.test.ts (5 tests | 2 failed) 361ms
+   × keeps selection identity through option reordering and external value changes 78ms
+   × edits keypad strings with decimal, sign, limit, delete and alternate extra keys then confirms 28ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileInputDemo.test.ts > keeps selection identity through option reordering and external value changes
+AssertionError: expected <input type="text" …(6)></input> to be <button role="radio" …(11)>…(2)</button> // Object.is equality
+
+- Expected
++ Received
+
+- <button
+-   aria-checked="true"
+-   class="nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40"
+-   data-active=""
+-   data-reka-collection-item=""
+-   data-slot="mobile-radio-item"
+-   data-state="checked"
+-   data-v-064a213b=""
+-   required="false"
+-   role="radio"
+-   tabindex="0"
+-   type="button"
+-   value="pocket"
+- >
+-   
+-   
+-   <span
+-     data-v-064a213b=""
+-   >
+-     
+-     随身
+-     
+-   </span>
+-   <span
+-     data-state="checked"
+-     data-v-064a213b=""
+-   >
+-     
+-     <svg
+-       aria-hidden="true"
+-       class="lucide lucide-check-icon lucide-check nv-m-mradio-tick size-5 text-brand"
+-       data-v-064a213b=""
+-       fill="none"
+-       height="24"
+-       stroke="currentColor"
+-       stroke-linecap="round"
+-       stroke-linejoin="round"
+-       stroke-width="2"
+-       viewBox="0 0 24 24"
+-       width="24"
+-       xmlns="http://www.w3.org/2000/svg"
+-     >
+-       <path
+-         d="M20 6 9 17l-5-5"
++ <input
++   autocapitalize="off"
++   autocomplete="off"
++   class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"
++   inputmode="none"
++   placeholder="键入编码后按回车"
++   spellcheck="false"
++   type="text"
+  />
+-     </svg>
+-     
+-   </span>
+-   
+-   
+- </button>
+
+ ❯ src/MobileInputDemo.test.ts:99:34
+     97|   // Reka defers roving-focus navigation to the next task.
+     98|   await new Promise((resolve) => setTimeout(resolve, 0))
+     99|   expect(document.activeElement).toBe(wrapper.get('[role="radio"][valu…
+       |                                  ^
+    100|   expect(wrapper.get('[role="radio"][aria-checked="true"]').attributes…
+    101|   await wrapper.get('[role="switch"][aria-label="灵感提醒"]').trigger('cli…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/MobileInputDemo.test.ts > edits keypad strings with decimal, sign, limit, delete and alternate extra keys then confirms
+Error: Unable to get #note-number within: <div class="flex h-dvh flex-col bg-background text-foreground">
+  <header data-shell="header" class="pt-safe px-safe sticky top-0 z-20 shrink-0 border-b border-border/70 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
+    <div data-slot="nav-bar" class="relative flex h-12 items-center justify-center gap-2 px-2">
+      <div class="absolute left-1 flex items-center">
+        <!--v-if-->
+      </div>
+      <div class="truncate px-12 text-base font-semibold">随心记录</div>
+      <div class="absolute right-1 flex items-center gap-1"><button type="button" aria-label="切换明暗" aria-pressed="false" class="size-11">深色</button></div>
+    </div>
+  </header>
+  <main data-shell="content" class="px-safe min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+    <div class="mx-auto max-w-2xl space-y-6 px-5 pt-5 pb-12">
+      <header class="space-y-2">
+        <p class="text-sm text-muted-foreground">留住生活里的小小灵感</p>
+        <h1 class="text-2xl font-semibold">随心记录</h1>
+        <nav aria-label="演示入口" class="flex flex-wrap gap-4 text-sm underline"><a href="#mobile" class="inline-flex min-h-touch items-center">随行手记</a><a href="#desktop" class="inline-flex min-h-touch items-center">桌面演示</a><a href="#touch" class="inline-flex min-h-touch items-center">触屏演示</a></nav>
+      </header>
+      <section aria-labelledby="words-heading" class="space-y-4 rounded-2xl border border-border bg-card p-4">
+        <h2 id="words-heading" class="text-lg font-semibold">写下灵感</h2><label for="note-title" class="block text-sm font-medium">标题</label>
+        <div data-v-ba322848="" data-slot="mobile-input" class="nv-m-minput flex h-11 items-center gap-2.5 rounded-xl border border-border bg-card px-3.5"><span data-v-ba322848="" class="flex shrink-0 items-center text-muted-foreground [&amp;_svg]:size-5">记</span><input data-v-ba322848="" data-slot="mobile-input-field" class="h-full w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground disabled:opacity-50" id="note-title" name="title" maxlength="24" autocomplete="off" placeholder="给今天起个名字"><span data-v-ba322848="" class="flex shrink-0 items-center text-muted-foreground [&amp;_svg]:size-5"><span class="whitespace-nowrap text-xs">0/24 字</span></span></div><output aria-label="标题回显" class="block text-sm text-muted-foreground">未命名 · 0 字</output>
+        <div data-v-f0486d0d="" data-slot="search-bar" class="flex items-center py-2 px-0">
+          <div data-v-f0486d0d="" class="min-h-touch flex flex-1 items-center gap-2 rounded-full bg-muted px-3.5"><svg data-v-f0486d0d="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search size-4 shrink-0 text-muted-foreground" aria-hidden="true">
+              <path d="m21 21-4.34-4.34"></path>
+              <circle cx="11" cy="11" r="8"></circle>
+            </svg><input data-v-f0486d0d="" type="search" placeholder="寻找湖畔、书屋或花园" aria-label="寻找去处" class="min-h-touch w-full min-w-0 bg-transparent text-[15px] outline-none placeholder:text-muted-foreground [&amp;::-webkit-search-cancel-button]:hidden">
+            <transition-stub data-v-f0486d0d="" name="nv-m-sb-clear" appear="false" persisted="false" css="true">
+              <!--v-if-->
+            </transition-stub>
+          </div>
+          <div data-v-f0486d0d="" class="nv-m-sb-cancel"><button data-v-f0486d0d="" type="button" class="min-h-touch min-w-12 text-[15px] whitespace-nowrap text-brand active:opacity-60"> 取消 </button></div>
+        </div>
+        <p aria-label="搜索结果" class="text-sm">湖畔 · 书屋 · 花园</p><output aria-label="搜索事件" class="block text-xs text-muted-foreground">尚未搜索</output>
+      </section>
+      <section aria-labelledby="details-heading" class="space-y-4 rounded-2xl border border-border bg-card p-4">
+        <h2 id="details-heading" class="text-lg font-semibold">一点小细节</h2>
+        <div class="flex min-h-touch flex-wrap items-center justify-between gap-3"><span>留存份数（1–5）</span>
+          <div data-v-3d40570b="" data-slot="stepper" class="nv-m-stepper inline-flex h-8 items-stretch overflow-hidden rounded-lg border border-border bg-card"><button data-v-3d40570b="" type="button" class="nv-m-stepper-btn grid w-8 place-items-center text-foreground disabled:opacity-30" aria-label="减少"><svg data-v-3d40570b="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus size-4" aria-hidden="true">
+                <path d="M5 12h14"></path>
+              </svg></button><input data-v-3d40570b="" type="number" inputmode="numeric" class="w-11 border-x border-border bg-transparent text-center text-[15px] font-medium tabular-nums outline-none [appearance:textfield] [&amp;::-webkit-inner-spin-button]:appearance-none [&amp;::-webkit-outer-spin-button]:appearance-none" value="2"><button data-v-3d40570b="" type="button" class="nv-m-stepper-btn grid w-8 place-items-center text-foreground disabled:opacity-30" aria-label="增加"><svg data-v-3d40570b="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus size-4" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="M12 5v14"></path>
+              </svg></button></div>
+        </div><output aria-label="份数回显" class="block text-sm text-muted-foreground">2 份</output>
+        <p class="text-sm">今天有多喜欢？轻点半颗星，再点一次取消。</p>
+        <div data-v-7b312779="" data-slot="rate" class="inline-flex items-center" role="slider" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5" aria-label="今日评分"><button data-v-7b312779="" type="button" class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default" aria-label="1 星"><span data-v-7b312779="" class="nv-m-rate-glyph relative block size-7"><!-- empty base --><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg><!-- filled overlay, clipped to fill ratio --><span data-v-7b312779="" class="absolute inset-0 overflow-hidden" style="width: 0%;"><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></span></span></button><button data-v-7b312779="" type="button" class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default" aria-label="2 星"><span data-v-7b312779="" class="nv-m-rate-glyph relative block size-7"><!-- empty base --><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg><!-- filled overlay, clipped to fill ratio --><span data-v-7b312779="" class="absolute inset-0 overflow-hidden" style="width: 0%;"><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></span></span></button><button data-v-7b312779="" type="button" class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default" aria-label="3 星"><span data-v-7b312779="" class="nv-m-rate-glyph relative block size-7"><!-- empty base --><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg><!-- filled overlay, clipped to fill ratio --><span data-v-7b312779="" class="absolute inset-0 overflow-hidden" style="width: 0%;"><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></span></span></button><button data-v-7b312779="" type="button" class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default" aria-label="4 星"><span data-v-7b312779="" class="nv-m-rate-glyph relative block size-7"><!-- empty base --><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg><!-- filled overlay, clipped to fill ratio --><span data-v-7b312779="" class="absolute inset-0 overflow-hidden" style="width: 0%;"><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></span></span></button><button data-v-7b312779="" type="button" class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default" aria-label="5 星"><span data-v-7b312779="" class="nv-m-rate-glyph relative block size-7"><!-- empty base --><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star absolute inset-0 size-7 text-muted-foreground/35" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg><!-- filled overlay, clipped to fill ratio --><span data-v-7b312779="" class="absolute inset-0 overflow-hidden" style="width: 0%;"><svg data-v-7b312779="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star size-7 fill-current text-amber-400" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg></span></span></button></div><output aria-label="评分回显" class="block text-sm text-muted-foreground">0 星</output>
+        <p id="progress-label" class="text-sm">灵感进度</p>
+        <div data-v-84b4eda5="" data-slot="slider" class="nv-m-slider relative flex h-11 items-center select-none mx-5" aria-labelledby="progress-label">
+          <div data-v-84b4eda5="" class="relative h-1.5 w-full rounded-full bg-muted">
+            <!-- filled portion -->
+            <div data-v-84b4eda5="" class="absolute inset-y-0 left-0 rounded-full bg-brand" style="width: 20%;"></div><!-- thumb (44px hit area centered on the value position) -->
+            <div data-v-84b4eda5="" class="nv-m-slider-thumb absolute top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center" style="left: 20%;" role="slider" tabindex="0" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" aria-disabled="false">
+              <!-- Two concentric discs (WinUI3): a solid brand outer circle with a
+             smaller dark circle sitting directly inside it (no ring/gap). The
+             inner disc is small at rest, grows on hover, shrinks while pressed. --><span data-v-84b4eda5="" class="nv-m-slider-ring grid size-5 place-items-center rounded-full bg-brand shadow-[0_1px_5px_rgb(0_0_0/0.35)]"><span data-v-84b4eda5="" class="nv-m-slider-dot block size-3.5 rounded-full bg-background"></span></span>
+              <!--v-if-->
+            </div>
+          </div>
+        </div><output aria-label="进度回显" class="block text-sm text-muted-foreground">20%</output><button data-v-a3bc4b5b="" data-slot="mobile-button" class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 bg-brand text-brand-foreground h-12 px-5 text-base w-full" type="button" aria-label="保存记录">保存记录</button>
+        <div class="flex flex-wrap items-center gap-3"><button data-v-a3bc4b5b="" data-slot="mobile-button" class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 bg-destructive/10 text-destructive h-8 px-3 text-[13px]" type="button">清空标题</button><button data-v-a3bc4b5b="" data-slot="mobile-button" class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 bg-transparent text-brand h-10 px-4 text-[15px]" type="button">重新感受</button><button data-v-a3bc4b5b="" data-slot="mobile-button" class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 bg-muted text-foreground h-10 px-4 text-[15px]" type="button" disabled="" aria-label="暂不可用">暂不可用</button></div><output aria-label="操作回显" class="block text-sm text-muted-foreground">尚未保存</output>
+      </section>
+      <section aria-labelledby="preferences-heading" class="space-y-4 rounded-2xl border border-border bg-card p-4">
+        <h2 id="preferences-heading" class="text-lg font-semibold">记录偏好</h2>
+        <div data-slot="mobile-radio-group" class="overflow-hidden rounded-xl border border-border bg-card" aria-label="记录方式" tabindex="-1" dir="ltr" style="outline: none;" role="radiogroup" aria-required="false"><button role="radio" type="button" aria-checked="true" data-state="checked" required="false" data-reka-collection-item="" tabindex="-1" data-active="" data-v-064a213b="" data-slot="mobile-radio-item" class="nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40" value="pocket"><span data-v-064a213b="">随身</span><span data-v-064a213b="" data-state="checked"><svg data-v-064a213b="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check nv-m-mradio-tick size-5 text-brand" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span></button>
+          <!--v-if--><button role="radio" type="button" aria-checked="false" data-state="unchecked" required="false" data-reka-collection-item="" tabindex="-1" data-v-064a213b="" data-slot="mobile-radio-item" class="nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40" value="desk"><span data-v-064a213b="">书桌</span>
+            <!---->
+          </button>
+          <!--v-if--><button role="radio" type="button" aria-checked="false" data-state="unchecked" required="false" data-reka-collection-item="" tabindex="-1" data-v-064a213b="" data-slot="mobile-radio-item" class="nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40" value="travel"><span data-v-064a213b="">旅途</span>
+            <!---->
+          </button>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        <div class="flex min-h-touch items-center justify-between gap-3"><label for="note-reminder">灵感提醒</label><button id="note-reminder" role="switch" type="button" aria-label="灵感提醒" aria-checked="false" aria-required="false" data-state="unchecked" data-v-e1d3872a="" data-slot="mobile-switch" class="nv-m-mswitch inline-flex h-[31px] w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-brand/30 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35" value="on"><span data-v-e1d3872a="" data-state="unchecked" class="nv-m-mswitch-thumb pointer-events-none block size-[27px] rounded-full bg-white shadow-[0_2px_4px_rgb(0_0_0/0.2)] ring-0 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"></span></button>
+          <!--v-if-->
+        </div><button data-v-7530af67="" type="button" data-slot="mobile-checkbox" role="checkbox" aria-checked="false" class="nv-m-mcheck flex min-h-11 w-full items-center gap-3 text-left text-[15px] select-none disabled:opacity-40" aria-label="锁定评分与进度"><span data-v-7530af67="" class="nv-m-mcheck-box grid size-[22px] shrink-0 place-items-center rounded-md border-2 transition-[colors,transform] border-muted-foreground/40 bg-transparent"><svg data-v-7530af67="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check nv-m-mcheck-tick size-3.5 scale-0 opacity-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><span data-v-7530af67="" class="min-w-0 flex-1">锁定评分与进度</span></button><output aria-label="偏好回显" class="block text-sm text-muted-foreground">随身 · 提醒关 · 锁定关</output>
+        <div class="flex flex-wrap gap-3"><button data-v-a3bc4b5b="" data-slot="mobile-button" class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]" type="button" aria-label="调整选项顺序">调整顺序</button><button data-v-a3bc4b5b="" data-slot="mobile-button" class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&amp;_svg:not([class*=size-])]:size-[1.05em] [&amp;_svg]:shrink-0 bg-muted text-foreground h-10 px-4 text-[15px]" type="button" aria-label="恢复偏好">恢复偏好</button></div>
+      </section>
+      <section aria-labelledby="capture-heading" class="space-y-4 rounded-2xl border border-border bg-card p-4">
+        <h2 id="capture-heading" class="text-lg font-semibold">接住一串灵感</h2>
+        <div class="flex min-h-touch items-center justify-between gap-3"><label for="scan-enabled">持续接收扫码</label><button id="scan-enabled" role="switch" type="button" aria-label="持续接收扫码" aria-checked="true" aria-required="false" data-state="checked" data-v-e1d3872a="" data-slot="mobile-switch" class="nv-m-mswitch inline-flex h-[31px] w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-brand/30 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35" value="on"><span data-v-e1d3872a="" data-state="checked" class="nv-m-mswitch-thumb pointer-events-none block size-[27px] rounded-full bg-white shadow-[0_2px_4px_rgb(0_0_0/0.2)] ring-0 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"></span></button>
+          <!--v-if-->
+        </div>
+        <p aria-label="扫码状态" role="status" class="text-sm text-muted-foreground">扫码接收中</p><label data-scan-region="" class="block space-y-2"><span class="text-sm font-medium">便签编码</span>
+          <div class="flex items-center gap-2 rounded-lg border border-border bg-card px-3 min-h-touch"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan-line-icon lucide-scan-line size-5 shrink-0 text-brand" aria-hidden="true">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+              <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+              <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+              <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+              <path d="M7 12h10"></path>
+            </svg><input type="text" inputmode="none" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="键入编码后按回车" class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"></div>
+        </label><output aria-label="扫码回显" class="block break-all text-sm">0 次 · 尚无记录</output>
+        <p class="text-xs leading-relaxed text-muted-foreground">回车收下编码并清空输入。编辑其它输入框时暂停接收，离开后恢复；也可关闭持续接收。</p>
+      </section>
+    </div>
+  </main>
+  <!--v-if-->
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/MobileInputDemo.test.ts:148:25
+    146|   wrapper = mount(MobileInputDemo, { attachTo: document.body })
+    147|   const body = new DOMWrapper(document.body)
+    148|   const field = wrapper.get<HTMLInputElement>('#note-number')
+       |                         ^
+    149|   expect(field.attributes()).toMatchObject({ readonly: '', inputmode: …
+    150|   await field.trigger('click')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  18:47:28
+   Duration  4.79s (transform 3.02s, setup 241ms, import 3.82s, tests 361ms, environment 281ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileInputDemo.test.ts

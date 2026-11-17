@@ -1,0 +1,369 @@
+[
+  {
+    "stage": "zoom-current-fit-and-undo-redo-reasons",
+    "url": "http://127.0.0.1:4308/#schedule-panels/library",
+    "title": "周一读书会",
+    "selected": "选中：尚未选择活动",
+    "detail": "尚未选择活动",
+    "records": "活动记录\n读书会\n适配窗口\n07:18:18\n已适配当前阅读宽度\n读书会\n定位当前\n07:18:17\n已请求定位当前时间\n读书会\n调整刻度\n07:18:17\n已调整时间刻度\n读书会\n调整刻度\n07:18:17\n已调整时间刻度",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx"
+    ],
+    "bars": 2,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": "缩小"
+      },
+      {
+        "trusted": true,
+        "target": "放大"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "月"
+      },
+      {
+        "trusted": true,
+        "target": "定位到当前"
+      },
+      {
+        "trusted": true,
+        "target": "适配窗口"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4308/assets/index-BO7H86MP.js",
+      "http://127.0.0.1:4308/assets/index-BtGh0fLp.css",
+      "http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "search-buttons-and-request-actions",
+    "url": "http://127.0.0.1:4308/#schedule-panels/library",
+    "title": "周一读书会",
+    "selected": "选中：晨间共读",
+    "detail": "周一读书会已锁定工序  · 晨间共读 解锁活动参与人数0备注反馈未知报名无权读取记录暂不可读取空间晨光书房开始11/02 09:00结束11/02 12:00工时3 小时数量0准备0 分钟进度0%",
+    "records": "活动记录\n晨间共读\n确认安排\n07:18:19\n已记录确认请求，安排保持不变\n晨间共读\n核对活动\n07:18:19\n已记录核对请求，安排保持不变\n晨间共读\n锁定\n07:18:19\n已锁定活动\n晨间共读\n查看并定位\n07:18:19\n已定位 晨间共读\n午间共读\n查看并定位\n07:18:18\n已定位 午间共读\n晨间共读\n查看并定位\n07:18:18\n已定位 晨间共读\n读书会\n适配窗口\n07:18:18\n已适配当前阅读宽度\n读书会\n定位当前\n07:18:17\n已请求定位当前时间\n读书会\n调整刻度\n07:18:17\n已调整时间刻度\n读书会\n调整刻度\n07:18:17\n已调整时间刻度",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx"
+    ],
+    "bars": 2,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": "缩小"
+      },
+      {
+        "trusted": true,
+        "target": "放大"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "月"
+      },
+      {
+        "trusted": true,
+        "target": "定位到当前"
+      },
+      {
+        "trusted": true,
+        "target": "适配窗口"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "小时"
+      },
+      {
+        "trusted": true,
+        "target": "下一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "下一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "上一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "清空搜索"
+      },
+      {
+        "trusted": true,
+        "target": " 锁定活动"
+      },
+      {
+        "trusted": true,
+        "target": " 核对活动"
+      },
+      {
+        "trusted": true,
+        "target": " 确认安排"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4308/assets/index-BO7H86MP.js",
+      "http://127.0.0.1:4308/assets/index-BtGh0fLp.css",
+      "http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "busy-disabled-reasons",
+    "核对活动": {
+      "disabled": true,
+      "title": "正在处理，请稍候"
+    },
+    "确认安排": {
+      "disabled": true,
+      "title": "正在处理，请稍候"
+    },
+    "联系组织者": {
+      "disabled": true,
+      "title": "正在处理，请稍候"
+    }
+  },
+  {
+    "stage": "readonly-actions",
+    "url": "http://127.0.0.1:4308/#schedule-panels/library",
+    "title": "周一读书会",
+    "selected": "选中：晨间共读",
+    "detail": "周一读书会已锁定工序  · 晨间共读参与人数0备注反馈未知报名无权读取记录暂不可读取空间晨光书房开始11/02 09:00结束11/02 12:00工时3 小时数量0准备0 分钟进度0%",
+    "records": "活动记录\n晨间共读\n切换查看方式\n07:18:20\n当前为只读\n晨间共读\n确认安排\n07:18:19\n已记录确认请求，安排保持不变\n晨间共读\n核对活动\n07:18:19\n已记录核对请求，安排保持不变\n晨间共读\n锁定\n07:18:19\n已锁定活动\n晨间共读\n查看并定位\n07:18:19\n已定位 晨间共读\n午间共读\n查看并定位\n07:18:18\n已定位 午间共读\n晨间共读\n查看并定位\n07:18:18\n已定位 晨间共读\n读书会\n适配窗口\n07:18:18\n已适配当前阅读宽度\n读书会\n定位当前\n07:18:17\n已请求定位当前时间\n读书会\n调整刻度\n07:18:17\n已调整时间刻度\n读书会\n调整刻度\n07:18:17\n已调整时间刻度",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx"
+    ],
+    "bars": 2,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": "缩小"
+      },
+      {
+        "trusted": true,
+        "target": "放大"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "月"
+      },
+      {
+        "trusted": true,
+        "target": "定位到当前"
+      },
+      {
+        "trusted": true,
+        "target": "适配窗口"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "小时"
+      },
+      {
+        "trusted": true,
+        "target": "下一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "下一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "上一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "清空搜索"
+      },
+      {
+        "trusted": true,
+        "target": " 锁定活动"
+      },
+      {
+        "trusted": true,
+        "target": " 核对活动"
+      },
+      {
+        "trusted": true,
+        "target": " 确认安排"
+      },
+      {
+        "trusted": true,
+        "target": "正在处理"
+      },
+      {
+        "trusted": true,
+        "target": "正在处理"
+      },
+      {
+        "trusted": true,
+        "target": "锁定为只读"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4308/assets/index-BO7H86MP.js",
+      "http://127.0.0.1:4308/assets/index-BtGh0fLp.css",
+      "http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "readonly-empty",
+    "url": "http://127.0.0.1:4308/#schedule-panels/library",
+    "title": "周一读书会",
+    "selected": "选中：尚未选择活动",
+    "detail": "尚未选择活动",
+    "records": "活动记录\n晨间共读\n切换查看方式\n07:18:20\n当前为只读\n晨间共读\n确认安排\n07:18:19\n已记录确认请求，安排保持不变\n晨间共读\n核对活动\n07:18:19\n已记录核对请求，安排保持不变\n晨间共读\n锁定\n07:18:19\n已锁定活动\n晨间共读\n查看并定位\n07:18:19\n已定位 晨间共读\n午间共读\n查看并定位\n07:18:18\n已定位 午间共读\n晨间共读\n查看并定位\n07:18:18\n已定位 晨间共读\n读书会\n适配窗口\n07:18:18\n已适配当前阅读宽度\n读书会\n定位当前\n07:18:17\n已请求定位当前时间\n读书会\n调整刻度\n07:18:17\n已调整时间刻度\n读书会\n调整刻度\n07:18:17\n已调整时间刻度",
+    "visible": "0 项活动",
+    "engines": [
+      "dhtmlx"
+    ],
+    "bars": 0,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": "缩小"
+      },
+      {
+        "trusted": true,
+        "target": "放大"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "月"
+      },
+      {
+        "trusted": true,
+        "target": "定位到当前"
+      },
+      {
+        "trusted": true,
+        "target": "适配窗口"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "小时"
+      },
+      {
+        "trusted": true,
+        "target": "下一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "下一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "上一个匹配"
+      },
+      {
+        "trusted": true,
+        "target": "清空搜索"
+      },
+      {
+        "trusted": true,
+        "target": " 锁定活动"
+      },
+      {
+        "trusted": true,
+        "target": " 核对活动"
+      },
+      {
+        "trusted": true,
+        "target": " 确认安排"
+      },
+      {
+        "trusted": true,
+        "target": "正在处理"
+      },
+      {
+        "trusted": true,
+        "target": "正在处理"
+      },
+      {
+        "trusted": true,
+        "target": "锁定为只读"
+      },
+      {
+        "trusted": true,
+        "target": "清空活动"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4308/assets/index-BO7H86MP.js",
+      "http://127.0.0.1:4308/assets/index-BtGh0fLp.css",
+      "http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  }
+]

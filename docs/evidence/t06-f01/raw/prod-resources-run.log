@@ -1,0 +1,155 @@
+{ resources: [ { url: 'http://127.0.0.1:5197/', status: 200, mime: 'text/html', bytes: 514, distEqual: true }, { url: 'http://127.0.0.1:5197/assets/index-CNz5veZP.css', status: 200, mime: 'text/css', bytes: 298640, distEqual: true }, { url: 'http://127.0.0.1:5197/assets/rolldown-runtime-EyZ2wyi3.js', status: 200, mime: 'text/javascript', bytes: 612, distEqual: true }, { url: 'http://127.0.0.1:5197/assets/index-DftmXO1S.js', status: 200, mime: 'text/javascript', bytes: 829299, distEqual: true }, { url: 'http://127.0.0.1:5197/files/quality-evidence.svg', status: 200, mime: 'image/svg+xml', bytes: 1079, distEqual: true }, { url: 'http://127.0.0.1:5197/assets/inter-latin-wght-normal-Dx4kXJAl.woff2', status: 200, mime: 'font/woff2', bytes: 48256, distEqual: true }, { url: 'http://127.0.0.1:5197/files/garden.png', status: 200, mime: 'image/png', bytes: 10878, distEqual: true }, { url: 'http://127.0.0.1:5197/files/coast.jpg', status: 200, mime: 'image/jpeg', bytes: 16037, distEqual: true } ], writes: 0, lazy: 0 }
+[p1 "NvUI · 项目清单" | space "nerv-ui-t06-f01-20261025"(26): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container "显示表面"
+      anchor [ref=434, loc=href:/#desktop, url=http://127.0.0.1:5197/#desktop]
+        text "桌面演示"
+      anchor [ref=435, loc=href:/#touch, url=http://127.0.0.1:5197/#touch]
+        text "触屏演示"
+      anchor [ref=436, loc=href:/#mobile, url=http://127.0.0.1:5197/#mobile]
+        text "随行手记"
+      anchor [ref=437, loc=href:/#mobile-input, url=http://127.0.0.1:5197/#mobile-input]
+        text "随心记录"
+      anchor [ref=438, loc=href:/#mobile-overlays, url=http://127.0.0.1:5197/#mobile-overlays]
+        text "片刻安排"
+      anchor [ref=439, loc=href:/#mobile-lists, url=http://127.0.0.1:5197/#mobile-lists]
+        text "翻阅时光"
+      anchor [ref=440, loc=href:/#mobile-feedback, url=http://127.0.0.1:5197/#mobile-feedback]
+        text "片刻回响"
+      anchor [ref=441, loc=href:/#screen/stage, url=http://127.0.0.1:5197/#screen/stage]
+        text "空间舞台"
+      anchor [ref=442, loc=href:/#screen/controls, url=http://127.0.0.1:5197/#screen/controls]
+        text "随心安排"
+      anchor [ref=443, loc=href:/#screen/indicators, url=http://127.0.0.1:5197/#screen/indicators]
+        text "阅读与到访"
+      anchor [ref=444, loc=href:/#screen/data, url=http://127.0.0.1:5197/#screen/data]
+        text "流动消息"
+      anchor [ref=445, loc=href:/#screen/charts, url=http://127.0.0.1:5197/#screen/charts]
+        text "内容与到访"
+      anchor [ref=446, loc=href:/#screen/tables, url=http://127.0.0.1:5197/#screen/tables]
+        text "清单与事件"
+      anchor [ref=447, loc=href:/#screen/summary, url=http://127.0.0.1:5197/#screen/summary]
+        text "空间使用概况"
+    container
+      container
+        heading
+          text "留住片刻"
+        paragraph
+          text "整理旅途中的图片与便笺，放大看看值得记住的细节。文件只留在本页。"
+      container
+        button [ref=448]
+          text "切换亮色"
+        button [ref=449]
+          text "蓝色强调色"
+    container
+      container "整理文件"
+        container
+          heading
+            text "整理文件"
+          paragraph
+            text "只在本页暂存，离开即清空。上传进度由你推进。"
+        container
+          container
+            text "排列方式"
+            combobox "上传排列方式" [ref=450, loc=css:select[aria-label="上传排列方式"]]
+              text "queue"
+          container
+            text "文件类型"
+            combobox "可选文件类型" [ref=451, loc=css:select[aria-label="可选文件类型"]]
+              text "图片、文本、PDF"
+          container
+            text "最多文件"
+            combobox "最多文件" [ref=452, loc=css:select[aria-label="最多文件"]]
+              text "5"
+          container
+            checkbox [ref=453]
+            text "选中即开始"
+          container
+            checkbox [ref=454]
+            text "锁定选择"
+        button [ref=455]
+          svg_root
+          text "拖拽文件到这里，或点击浏览"
+          text "支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf · 单个文件不超过 32.0 KB · 最多 5 个文件"
+          text "还可上传 5 个文件"
+        container
+          button [ref=456]
+            text "开始上传"
+          button [ref=457]
+            text "暂停全部"
+          button [ref=458]
+            text "继续全部"
+          button [ref=459]
+            text "清空文件"
+        container
+          container
+            button [ref=460]
+              text "推进传输"
+            button [ref=461]
+              text "本次传输失败"
+            button [ref=462]
+              text "加入 48 份便笺"
+          paragraph
+            text "每次推进至 25%、65%、100%；失败后可在文件行重试。"
+          output "传输计数" [ref=463]
+            text "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0"
+        container "成功回执"
+          heading
+            text "已暂存文件"
+          paragraph
+            text "尚无成功文件"
+        container [ref=464]
+          text "查看本次操作记录"
+      container "看见细节"
+        container
+          heading
+            text "看见细节"
+          paragraph
+            text "本地图片可缩放与旋转。其它文件保留原文件入口。"
+        container
+          text "预览内容"
+          combobox "预览内容" [ref=465, loc=css:select[aria-label="预览内容"]]
+            text "海岸 JPEG"
+        container
+          text "预览本地图片"
+          textbox "预览本地图片" [ref=466, loc=css:input[aria-label="预览本地图片"]]
+            button [ref=467]
+              text "选择文件"
+            text "未选择任何文件"
+        container
+          container
+            checkbox [ref=468]
+            text "等待来源"
+          container
+            checkbox [ref=469]
+            text "来源暂不可用"
+        container
+          container
+            container
+              svg_root
+              container
+                text "coast.jpg"
+                text "Image"
+            button "打开 coast.jpg" [ref=470, loc=css:button[aria-label="打开 coast.jpg"]]
+              svg_root
+          container
+            container
+              button "缩小 coast.jpg" [ref=471, loc=css:button[aria-label="缩小 coast.jpg"]]
+                svg_root
+              text "100%"
+              button "放大 coast.jpg" [ref=472, loc=css:button[aria-label="放大 coast.jpg"]]
+                svg_root
+              button "向左旋转 coast.jpg" [ref=473, loc=css:button[aria-label="向左旋转 coast.jpg"]]
+                svg_root
+              button "向右旋转 coast.jpg" [ref=474, loc=css:button[aria-label="向右旋转 coast.jpg"]]
+                svg_root
+            image
+        container
+          button [ref=475]
+            text "打开本地原图"
+          text "先在预览中请求，再点击此处打开。"
+        output "预览事件" [ref=476]
+          text "ready image · 已打开 0 次 · 本地预览 0"
+
+

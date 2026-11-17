@@ -1,0 +1,40 @@
+[
+  {
+    "name": "portrait-light",
+    "path": "/tmp/nerv-ui-t03-f1/portrait-light.png",
+    "viewport": [
+      768,
+      1024
+    ],
+    "mode": "light",
+    "theme": "neutral",
+    "scripts": [
+      "http://127.0.0.1:4178/assets/index-CoupmcNx.js"
+    ],
+    "png": {
+      "width": 753,
+      "height": 2114,
+      "sha256": "50746700e36dc5c0789532eb531066b2f8a201cd2c76d130e00b428cf3bbc7b7"
+    },
+    "savedFile": "portrait-light.png"
+  },
+  {
+    "name": "landscape-dark",
+    "path": "/tmp/nerv-ui-t03-f1/landscape-dark.png",
+    "viewport": [
+      1024,
+      768
+    ],
+    "mode": "dark",
+    "theme": "blue",
+    "scripts": [
+      "http://127.0.0.1:4178/assets/index-CoupmcNx.js"
+    ],
+    "png": {
+      "width": 1009,
+      "height": 1766,
+      "sha256": "96411160372f2b11ff976beb8bb3639df467b3ef2fbd6103b839ba21881dd013"
+    },
+    "savedFile": "landscape-dark.png"
+  }
+]

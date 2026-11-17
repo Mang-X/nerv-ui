@@ -1,0 +1,42 @@
+{
+  "name": "@nerv-iip/ui-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/style.css",
+    "./styles/mobile.css": "./src/styles/mobile.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "test": "vp test run src --exclude src/nvui-doc-coverage.contract.test.ts",
+    "test:docs": "vp test run src/nvui-doc-coverage.contract.test.ts"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0",
+    "@nerv-iip/ui": "workspace:*"
+  },
+  "dependencies": {
+    "@lucide/vue": "1.24.0",
+    "@vueuse/core": "^14.3.0",
+    "reka-ui": "^2.10.1"
+  },
+  "devDependencies": {
+    "@tsdown/css": "^0.23.7",
+    "@vitejs/plugin-vue": "6.0.8",
+    "@vue/test-utils": "2.4.11",
+    "jsdom": "29.1.1",
+    "tsdown": "0.23.7",
+    "unplugin-vue": "^8.0.1",
+    "vitest": "4.1.10"
+  }
+}

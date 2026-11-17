@@ -1,0 +1,13 @@
+Checking formatting...
+
+/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/docs/files-standalone.md (239ms)
+apps/design-system/docs/components/desktop/file-preview.md (459ms)
+apps/design-system/docs/components/desktop/file-upload.md (221ms)
+apps/playground/src/MobileDemo.vue (429ms)
+apps/playground/src/MobileFeedbackDemo.vue (212ms)
+apps/playground/src/MobileInputDemo.vue (306ms)
+apps/playground/src/MobileListDemo.vue (204ms)
+apps/playground/src/MobileOverlayDemo.vue (48ms)
+
+Format issues found in above 8 files. Run without `--check` to fix.
+Finished in 642ms on 23 files using 10 threads.

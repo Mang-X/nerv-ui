@@ -1,0 +1,289 @@
+<script setup lang="ts">
+import type { Component } from 'vue'
+import {
+  BadgeCheck,
+  Bell,
+  ClipboardCheck,
+  ClipboardList,
+  Cog,
+  FilePen,
+  ListChecks,
+  LogIn,
+  LogOut,
+  PackageCheck,
+  PackageMinus,
+  PackagePlus,
+  PackageSearch,
+  Wrench,
+} from '@lucide/vue'
+import { PDA_TASK_KINDS } from '@nerv-iip/business-core'
+import { useUnacknowledgedAlarmCount } from '@/composables/useBusinessEquipmentAlarms'
+import RetryableListError from '@/components/RetryableListError.vue'
+import {
+  HOME_PERMISSIONS,
+  usePdaIdentity,
+  usePendingInspectionSummary,
+  useWarehouseSummary,
+  type WarehouseSummaryEntryState,
+} from '@/composables/useWorkbenchHome'
+import {
+  NvAppShellMobile,
+  NvCell,
+  NvCellGroup,
+  NvMobileAvatar,
+  NvMobileGrid,
+  NvMobileTag,
+  type GridItem,
+} from '@nerv-iip/ui-mobile'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import PdaBarcodeResolver from '@/components/barcode/PdaBarcodeResolver.vue'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '工作台',
+  },
+})
+
+const router = useRouter()
+const identity = usePdaIdentity()
+const warehouse = useWarehouseSummary()
+const inspection = usePendingInspectionSummary()
+
+// 工作台报警角标：服务端 status=raised total（全量未确认数，不受列表首页 take 上限影响），
+// 与「查看报警」入口联动（确认/搁置后经查询失效自动回落）。仅有报警读权限时查询。
+const canSeeAlarms = computed(() => identity.can(HOME_PERMISSIONS.alarms))
+const { unacknowledgedCount } = useUnacknowledgedAlarmCount(canSeeAlarms)
+
+/** 首页身份行：岗位 · 班组（都有才拼接，缺失不占位）。 */
+const identitySubtitle = computed(() => {
+  const worker = identity.worker.value
+  const parts = [worker?.jobTitle, worker?.teams?.[0]?.teamName].filter(Boolean)
+  return parts.join(' · ')
+})
+
+/**
+ * 仓储计数取不到时格子里写什么。**绝不回落成 `0`**：`0` 断言的是「一件都没有」，
+ * 而这几种情形断言的是「这个人/这一刻看不到数」，现场据此导出的行动完全不同（#3474）。
+ *
+ * 用词跟 PDA 既有**可见**口径走，不用开发口径：读不到一律说「加载失败」（同文件
+ * `待检任务加载失败，请重试。`、`TaskListShell` 的 `任务加载失败，请重试。`）。
+ * 「取数」在 PDA 只出现在注释里，从来没上过屏。
+ */
+const WAREHOUSE_STATE_TEXT: Record<WarehouseSummaryEntryState, string> = {
+  counted: '',
+  loading: '…',
+  denied: '无范围',
+  failed: '加载失败',
+}
+
+/**
+ * 板块级说明。全被拒时说清「不是 0」；只有部分格被拒时不能把整块说死，否则又会
+ * 谎报另一个方向（真读到的那几格是真的）。
+ *
+ * 三句都要带**下一步动作**：只说「这不是 0」是在向用户解释缺陷，操作工据此做不了任何事。
+ */
+const warehouseScopeNote = computed(() => {
+  if (warehouse.scopeDenied.value) {
+    return '当前账号没有仓储数据范围，看不到任何仓储单据——这不是「0 件」。请联系管理员分配仓库范围。'
+  }
+  if (warehouse.hasDeniedEntry.value) {
+    return '标「无范围」的项目没有分配给当前账号，其数量不可知，不是 0。需要这几项请联系管理员分配仓库范围。'
+  }
+  if (warehouse.hasFailedEntry.value) {
+    return '标「加载失败」的项目本次没读到，数量不可知，不是 0。请下拉刷新或稍后重试。'
+  }
+  return ''
+})
+
+const INSPECTION_PREVIEW = 3
+const scopedInspectionTasks = computed(() =>
+  inspection.scopeReady.value ? inspection.tasks.value : [],
+)
+const inspectionPreview = computed(() => scopedInspectionTasks.value.slice(0, INSPECTION_PREVIEW))
+const inspectionFailure = computed(() =>
+  inspection.error.value
+    ? inspection.error.value
+    : inspection.hasFailedResponse.value
+      ? new Error('待检任务加载失败，请重试。')
+      : null,
+)
+
+/** 快捷应用按登录人权限裁剪：无读权限的入口不出现（点了也是 403）。 */
+const KIND_PERMISSIONS: Record<string, string> = {
+  'wms.inbound': 'business.wms.receipts.read',
+  'wms.putaway': 'business.wms.receipts.read',
+  'wms.pick': 'business.wms.shipments.read',
+  'wms.review': 'business.wms.receipts.read',
+  'wms.count': 'business.wms.counts.read',
+  'mes.report': 'business.mes.reporting.read',
+  'mes.issue': 'business.mes.materials.read',
+  'mes.receipt': 'business.mes.receipts.read',
+  'mes.operation': 'business.mes.operations.read',
+  // 交班要写（建单），接班入口先要读（列表）；两条权限不同，入口必须分别裁剪。
+  'mes.handover': 'business.mes.handovers.manage',
+  'mes.handover-accept': 'business.mes.handovers.read',
+  'equipment.repair': 'business.maintenance.work-orders.read',
+  'equipment.inspect': 'business.maintenance.plans.read',
+  'equipment.alarms': 'business.iiot.alarms.read',
+  'quality.tasks': 'business.quality.inspection-records.read',
+}
+
+const KIND_ICONS: Record<string, Component> = {
+  'wms.inbound': PackageCheck,
+  'wms.putaway': PackagePlus,
+  'wms.pick': PackageSearch,
+  'wms.review': ClipboardCheck,
+  'wms.count': ListChecks,
+  'mes.report': FilePen,
+  'mes.issue': PackageMinus,
+  'mes.receipt': PackagePlus,
+  'mes.operation': Cog,
+  'mes.handover': LogOut,
+  'mes.handover-accept': LogIn,
+  'equipment.repair': Wrench,
+  'equipment.inspect': ClipboardList,
+  'equipment.alarms': Bell,
+  'quality.tasks': BadgeCheck,
+}
+
+const visibleKinds = computed(() =>
+  PDA_TASK_KINDS.filter((kind) => {
+    const permission = KIND_PERMISSIONS[kind.id]
+    return kind.routeReady && (!permission || identity.can(permission))
+  }),
+)
+
+const gridItems = computed<GridItem[]>(() =>
+  visibleKinds.value.map((kind) => ({
+    key: kind.id,
+    text: kind.label,
+    icon: KIND_ICONS[kind.id],
+    badge:
+      kind.id === 'equipment.alarms' && canSeeAlarms.value && unacknowledgedCount.value > 0
+        ? unacknowledgedCount.value
+        : undefined,
+  })),
+)
+
+function onGridSelect(item: GridItem) {
+  const kind = visibleKinds.value.find((k) => k.id === item.key)
+  if (kind) router.push(kind.route).catch(() => {})
+}
+
+function openRoute(route: string) {
+  router.push(route).catch(() => {})
+}
+</script>
+
+<template>
+  <NvAppShellMobile>
+    <template #header>
+      <div class="flex items-center gap-3 px-4 py-3">
+        <NvMobileAvatar :name="identity.displayName.value" size="md" />
+        <div class="min-w-0 flex-1">
+          <h1 class="truncate text-base font-semibold text-foreground" data-testid="home-name">
+            {{ identity.displayName.value || '工作台' }}
+          </h1>
+          <p v-if="identitySubtitle" class="truncate text-xs text-muted-foreground">
+            {{ identitySubtitle }}
+          </p>
+        </div>
+        <NvMobileTag v-if="identity.worker.value?.employeeNo" size="sm">
+          {{ identity.worker.value.employeeNo }}
+        </NvMobileTag>
+      </div>
+    </template>
+
+    <div class="space-y-5 p-4">
+      <PdaBarcodeResolver />
+
+      <!-- 仓储任务（有 WMS 读权限的仓储角色可见） -->
+      <section v-if="warehouse.enabled.value" data-testid="home-warehouse">
+        <h2 class="mb-2 text-sm font-medium text-muted-foreground">仓储任务</h2>
+        <p
+          v-if="warehouseScopeNote"
+          class="mb-2 rounded-xl border border-dashed border-border bg-card px-3 py-2 text-xs text-muted-foreground"
+          data-testid="home-warehouse-scope-note"
+        >
+          {{ warehouseScopeNote }}
+        </p>
+        <div class="grid grid-cols-4 gap-2">
+          <button
+            v-for="entry in warehouse.entries.value"
+            :key="entry.key"
+            type="button"
+            class="flex min-h-touch flex-col items-center justify-center gap-0.5 rounded-xl border border-border bg-card py-3 active:bg-accent"
+            :data-testid="`home-warehouse-${entry.key}`"
+            :data-state="entry.state"
+            @click="openRoute(entry.route)"
+          >
+            <span
+              v-if="entry.state === 'counted'"
+              class="text-lg font-semibold tabular-nums text-foreground"
+              :data-testid="`home-warehouse-${entry.key}-value`"
+              >{{ entry.count }}</span
+            >
+            <span
+              v-else
+              class="text-xs font-medium text-muted-foreground"
+              :data-testid="`home-warehouse-${entry.key}-value`"
+              >{{ WAREHOUSE_STATE_TEXT[entry.state] }}</span
+            >
+            <span class="text-xs text-muted-foreground">{{ entry.label }}</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 检验任务（有质检读权限的检验员可见） -->
+      <section v-if="inspection.visible.value" data-testid="home-inspection">
+        <div class="mb-2 flex items-baseline justify-between">
+          <h2 class="text-sm font-medium text-muted-foreground">组织范围待检</h2>
+          <span class="text-xs text-muted-foreground">
+            共 <span class="font-semibold text-foreground">{{ inspection.total.value }}</span> 项
+          </span>
+        </div>
+        <RetryableListError
+          v-if="inspectionFailure"
+          :error="inspectionFailure"
+          :pending="inspection.pending.value"
+          fallback="待检任务加载失败，请重试。"
+          test-id="home-inspection-error"
+          @retry="() => inspection.refresh()"
+        />
+        <NvCellGroup
+          v-if="inspectionPreview.length > 0"
+          class="overflow-hidden rounded-xl border border-border"
+        >
+          <NvCell
+            v-for="task in inspectionPreview"
+            :key="task.inspectionTaskId"
+            :title="task.skuCode || '检验任务'"
+            :note="task.batchNo ? `批次 ${task.batchNo}` : ''"
+            :value="task.quantity != null ? `${task.quantity} ${task.uomCode ?? ''}` : ''"
+            arrow
+            @click="openRoute('/quality/tasks')"
+          />
+        </NvCellGroup>
+        <div
+          v-else-if="
+            inspection.scopeReady.value &&
+            !inspection.pending.value &&
+            !inspection.error.value &&
+            inspection.hasSuccessfulResponse.value
+          "
+          class="rounded-xl border border-dashed border-border bg-card px-4 py-6 text-center text-sm text-muted-foreground"
+        >
+          暂无待检任务
+        </div>
+      </section>
+
+      <!-- 快捷应用（按权限裁剪） -->
+      <section data-testid="home-apps">
+        <h2 class="mb-2 text-sm font-medium text-muted-foreground">快捷应用</h2>
+        <NvMobileGrid :items="gridItems" :columns="4" bordered @select="onGridSelect" />
+      </section>
+    </div>
+  </NvAppShellMobile>
+</template>

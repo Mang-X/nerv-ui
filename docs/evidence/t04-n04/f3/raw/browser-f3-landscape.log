@@ -1,0 +1,23 @@
+PASS f3-final-844-dark 12 cases
+[p1 "NvUI · 项目清单" | space "N04 F3 fix 20261024"(13): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=44, loc=css:button[aria-label="切换明暗"]]
+        text "浅色"
+    container [ref=45]
+      container "刷新来信"
+        paragraph
+          text "信箱滚动 0px"
+        container [ref=46]
+          text "初次来信 1"
+          text "初次来信 2"
+          text "初次来信 3"
+          text "初次来信 4"
+          text "初次来信 5"
+      container "继续翻阅"
+        heading
+          text "继续翻阅"
+
+

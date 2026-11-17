@@ -1,0 +1,10 @@
+import fs from 'node:fs'; import {spawnSync} from 'node:child_process';
+const root='/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists';
+const dir='/tmp/nerv-ui-t04-n04-merger-r2-20261024';
+const [name,...args]=process.argv.slice(2);
+const start=new Date().toISOString();
+const cwd=name.startsWith('public-')||name==='r2-counterexamples'||name==='m1-retract'?'/private/tmp/nerv-ui-t04-n04-merger-r2-20261024/probe':root;
+const r=spawnSync(args[0],args.slice(1),{cwd,env:{...process.env,PATH:`/tmp/nerv-ui-t04-n04-fix/bin:${process.env.PATH}`},encoding:'utf8',maxBuffer:80*1024*1024});
+fs.writeFileSync(`${dir}/raw/${name}.log`,(r.stdout??'')+(r.stderr??''));
+fs.writeFileSync(`${dir}/raw/${name}.run.json`,JSON.stringify({cwd,command:args,start,end:new Date().toISOString(),exit:r.status,signal:r.signal,error:r.error?.message},null,2));
+console.log(JSON.stringify({name,exit:r.status,tail:((r.stdout??'')+(r.stderr??'')).slice(-1700)})); process.exitCode=r.status??1;

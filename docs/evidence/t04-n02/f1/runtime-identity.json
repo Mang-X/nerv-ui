@@ -1,0 +1,43 @@
+{
+  "vueIdentityCount": 1,
+  "results": [
+    {
+      "package": "packages/ui",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js",
+      "ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/packages/ui/src/index.ts"
+    },
+    {
+      "package": "packages/ui-mobile",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js",
+      "ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/packages/ui/src/index.ts"
+    },
+    {
+      "package": "apps/playground",
+      "vue": "/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/node_modules/.pnpm/vue@3.5.39_typescript@6.0.3/node_modules/vue/index.js",
+      "ui": "/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/packages/ui/src/index.ts",
+      "mobile": "/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/packages/ui-mobile/src/index.ts"
+    }
+  ],
+  "validatedSourceHashes": [
+    {
+      "path": "frontend/apps/playground/src/App.vue",
+      "sha256": "612df3e576c587c6b471d38aeb76e0442e3e61c0288bb3c4ef68c91f1175ebc7"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileInputDemo.vue",
+      "sha256": "e78bf440c092ad0b9699f7b810317be9af9617fd26d0c2206a9045e02c11cb19"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-input/MobileInputFields.vue",
+      "sha256": "e06314e87104b2ce175d03e8f82f46b04dcabfe5430293a44c29ab217359cef1"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-input/MobileCaptureInput.vue",
+      "sha256": "e2712c1b04e70f34f7608b3583d47e13e4a2ad1906a44ba421a4788bfb761950"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/slider/MobileSlider.vue",
+      "sha256": "045e7b51a71d538bad5a40aafc7b3c66b66e64b1ddafec54d65046e103728040"
+    }
+  ]
+}

@@ -1,0 +1,1508 @@
+[
+  {
+    "type": "input",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keydown",
+    "key": "Enter",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keyup",
+    "key": "Enter",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keydown",
+    "key": " ",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keyup",
+    "key": " ",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-note"
+  },
+  {
+    "type": "input",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-note"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "sheet-note"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-note"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "keydown",
+    "key": "Enter",
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Enter",
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "keydown",
+    "key": "Escape",
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Escape",
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "sheet-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "keydown",
+    "key": "Enter",
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "keyup",
+    "key": "Enter",
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "keydown",
+    "key": "Enter",
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "dialog-note"
+  },
+  {
+    "type": "keyup",
+    "key": "Enter",
+    "trusted": true,
+    "target": "dialog-note"
+  },
+  {
+    "type": "input",
+    "key": null,
+    "trusted": true,
+    "target": "dialog-note"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "dialog-note"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "capture-heading"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keydown",
+    "key": "Enter",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Enter",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "数字键盘模式"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "note-number"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keydown",
+    "key": " ",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keyup",
+    "key": " ",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开数值抽屉"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "打开记录提示"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "note-title"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-title"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "note-title"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "note-title"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "寻找去处"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "寻找去处"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "寻找去处"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "寻找去处"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "BUTTON"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "减少"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "减少"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "减少"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "减少"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "增加"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "增加"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "增加"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "增加"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "1 星"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "1 星"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "1 星"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "1 星"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "2 星"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "2 星"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "2 星"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "2 星"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "3 星"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "3 星"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "3 星"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "3 星"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "4 星"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "4 星"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "4 星"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "4 星"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "5 星"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "5 星"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "5 星"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "5 星"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "DIV"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "DIV"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "DIV"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "DIV"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "保存记录"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "保存记录"
+  },
+  {
+    "type": "keydown",
+    "key": "Enter",
+    "trusted": true,
+    "target": "保存记录"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "保存记录"
+  },
+  {
+    "type": "keyup",
+    "key": "Enter",
+    "trusted": true,
+    "target": "保存记录"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "保存记录"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "capture-heading"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Enter",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keyup",
+    "key": "Enter",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "X",
+    "trusted": false,
+    "target": "BODY"
+  },
+  {
+    "type": "keydown",
+    "key": "Y",
+    "trusted": false,
+    "target": "BODY"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "清空数值"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "capture-heading"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "input",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Enter",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keyup",
+    "key": "Enter",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "INPUT"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "持续接收扫码"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "持续接收扫码"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "持续接收扫码"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "持续接收扫码"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "切换明暗"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "切换明暗"
+  },
+  {
+    "type": "keydown",
+    "key": " ",
+    "trusted": true,
+    "target": "切换明暗"
+  },
+  {
+    "type": "keyup",
+    "key": " ",
+    "trusted": true,
+    "target": "切换明暗"
+  },
+  {
+    "type": "click",
+    "key": null,
+    "trusted": true,
+    "target": "切换明暗"
+  },
+  {
+    "type": "keydown",
+    "key": "Tab",
+    "trusted": true,
+    "target": "切换明暗"
+  },
+  {
+    "type": "focusout",
+    "key": null,
+    "trusted": true,
+    "target": "切换明暗"
+  },
+  {
+    "type": "focusin",
+    "key": null,
+    "trusted": true,
+    "target": "A"
+  },
+  {
+    "type": "keyup",
+    "key": "Tab",
+    "trusted": true,
+    "target": "A"
+  }
+]

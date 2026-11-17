@@ -1,0 +1,9 @@
+@layer theme, nv-tokens, base, components, nv-components, utilities, nv-overrides, app;
+@import '@nerv-iip/ui/styles.css';
+@import '@nerv-iip/ui-mobile/styles/mobile.css';
+
+@layer app {
+  body {
+    margin: 0;
+  }
+}

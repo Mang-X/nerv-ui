@@ -1,0 +1,59 @@
+docs/evidence/t04-n02/browser-01.log:152: new blank line at EOF.
+docs/evidence/t04-n02/browser-02.log:81: new blank line at EOF.
+docs/evidence/t04-n02/browser-06.log:2: new blank line at EOF.
+docs/evidence/t04-n02/browser-08.log:2: new blank line at EOF.
+docs/evidence/t04-n02/browser-11.log:9: new blank line at EOF.
+docs/evidence/t04-n02/browser-12.log:49: new blank line at EOF.
+docs/evidence/t04-n02/browser-13.log:2: new blank line at EOF.
+docs/evidence/t04-n02/build.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/build.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/build.log:38: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/build.log:40: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/build.log:43: new blank line at EOF.
+docs/evidence/t04-n02/green-adjustments.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-entry.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-keyboard.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-overlay-focus.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-scan-focus-repaired.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-scan-focus.log:30: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:31: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:35: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:37: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:43: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:70: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:72: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-selection.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-text-search.log:10: new blank line at EOF.
+docs/evidence/t04-n02/host-behavior-final.log:15: new blank line at EOF.
+docs/evidence/t04-n02/host-format-expression-failure.log:34: new blank line at EOF.
+docs/evidence/t04-n02/host-reordered-input-selector-failure.log:41: new blank line at EOF.
+docs/evidence/t04-n02/red-keyboard.log:31: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:32: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:36: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:38: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:44: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:71: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:74: trailing whitespace.
++-   
+docs/evidence/t04-n02/slider-public-green.log:10: new blank line at EOF.

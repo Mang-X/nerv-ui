@@ -1,0 +1,91 @@
+{
+  "url": "http://127.0.0.1:4317/#mobile",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+  },
+  "dark": false,
+  "header": {
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 61,
+      "bottom": 61,
+      "right": 390
+    },
+    "css": {
+      "paddingTop": "12px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "paddingRight": "0px",
+      "position": "sticky",
+      "overflowY": "visible",
+      "minHeight": "auto",
+      "height": "61px"
+    }
+  },
+  "main": {
+    "rect": {
+      "x": 0,
+      "y": 61,
+      "width": 390,
+      "height": 726,
+      "bottom": 787,
+      "right": 390
+    },
+    "css": {
+      "paddingTop": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "paddingRight": "0px",
+      "position": "static",
+      "overflowY": "auto",
+      "minHeight": "0px",
+      "height": "726px"
+    },
+    "scrollHeight": 1355,
+    "clientHeight": 726
+  },
+  "footer": {
+    "rect": {
+      "x": 0,
+      "y": 787,
+      "width": 390,
+      "height": 57,
+      "bottom": 844,
+      "right": 390
+    },
+    "css": {
+      "paddingTop": "0px",
+      "paddingBottom": "8px",
+      "paddingLeft": "0px",
+      "paddingRight": "0px",
+      "position": "sticky",
+      "overflowY": "visible",
+      "minHeight": "auto",
+      "height": "57px"
+    }
+  },
+  "fab": {
+    "rect": {
+      "x": 257,
+      "y": 716,
+      "width": 117,
+      "height": 56,
+      "bottom": 772,
+      "right": 374
+    },
+    "hit": true
+  },
+  "tabMinHeight": "48px",
+  "rowMinHeight": "56px",
+  "overflow": {
+    "root": 390,
+    "body": 390,
+    "main": 390,
+    "viewport": 390
+  }
+}

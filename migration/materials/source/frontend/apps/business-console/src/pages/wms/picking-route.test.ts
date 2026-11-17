@@ -1,0 +1,465 @@
+import type { BusinessConsoleCreateWmsPickingTaskRequest } from '@nerv-iip/api-client'
+import { flushPromises, mount } from '@vue/test-utils'
+import { computed, reactive, shallowRef } from 'vue'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import PickingPage from './picking.vue'
+
+// 名录解析不是这些用例的被测对象；给稳定桩（解析不出名称→页面回退显编码），
+// 避免真实实现去取业务上下文 store 而要求测试装 Pinia。
+vi.mock('@/composables/useSkuNames', async () => {
+  const { computed } = await import('vue')
+  return {
+    useSkuNames: () => ({
+      resolveSkuName: () => undefined,
+      resolveSkuLabel: (code?: string | null) => code ?? '未指定物料',
+      skuByCode: computed(() => new Map<string, string>()),
+      skusPending: computed(() => false),
+    }),
+  }
+})
+vi.mock('@/composables/useBusinessPartnerNames', async () => {
+  const { computed } = await import('vue')
+  return {
+    useBusinessPartnerNames: () => ({
+      resolvePartner: () => undefined,
+      resolvePartnerLabel: (code?: string | null, fallback = '未指定') => code ?? fallback,
+      partnerByCode: computed(() => new Map<string, string>()),
+      partners: computed(() => []),
+      partnersPending: computed(() => false),
+    }),
+  }
+})
+vi.mock('@/composables/useMasterDataDisplayNames', async () => {
+  const { computed } = await import('vue')
+  const emptyIndex = computed(() => new Map<string, string>())
+  return {
+    useMasterDataDisplayNames: () => ({
+      resolveDevice: () => undefined,
+      resolveLocation: () => undefined,
+      resolveWorkCenter: () => undefined,
+      resolveTeam: () => undefined,
+      resolveUom: () => undefined,
+      resolveWorkshop: () => undefined,
+      resolveLine: () => undefined,
+      formatUom: (code?: string | null, fallback = '') => code ?? fallback,
+      locationByCode: emptyIndex,
+      workCenterByCode: emptyIndex,
+      teamByCode: emptyIndex,
+      uomByCode: emptyIndex,
+      workshopByCode: emptyIndex,
+      lineByCode: emptyIndex,
+    }),
+  }
+})
+
+const routeState = vi.hoisted(() => ({
+  query: {} as Record<string, string>,
+}))
+
+const wmsState = vi.hoisted(() => ({
+  taskQuantities: {} as { plannedQuantity?: number; executedQuantity?: number; uomCode?: string },
+  filters: undefined as { keyword?: string; locationCode?: string; status?: string } | undefined,
+  completePicking: vi.fn(async () => undefined),
+  createPicking:
+    vi.fn<(id: string, body: BusinessConsoleCreateWmsPickingTaskRequest) => Promise<undefined>>(),
+  key: vi.fn(),
+  refreshPickingTasks: vi.fn(async () => undefined),
+}))
+const candidateState = vi.hoisted(() => ({ refresh: vi.fn(async () => undefined) }))
+const routeGuardState = vi.hoisted(() => ({
+  guard: undefined as (() => boolean) | undefined,
+}))
+
+vi.mock('vue-router', () => ({
+  RouterLink: {
+    props: ['to'],
+    template: '<a data-router-link :data-to="JSON.stringify(to)"><slot /></a>',
+  },
+  useRoute: () => routeState,
+  onBeforeRouteLeave: vi.fn((guard: () => boolean) => {
+    routeGuardState.guard = guard
+  }),
+}))
+
+vi.mock('@/composables/usePagedList', async () => {
+  const { shallowRef } = await import('vue')
+
+  return {
+    usePagedList: () => ({
+      page: shallowRef(1),
+      pageSize: shallowRef(100),
+    }),
+  }
+})
+
+vi.mock('@/composables/useWmsWorkScope', () => ({
+  bindWmsWorkScopeFilters: (filters: { scopeKind?: string; scopeId?: string; skip: number }) => {
+    filters.scopeKind = 'self'
+    filters.scopeId = 'emp049'
+    filters.skip = 0
+    return {
+      scopeKey: shallowRef('self:emp049'),
+      scopeOptions: computed(() => [{ label: '我的任务', value: 'self:emp049' }]),
+      selectedScopeLabel: computed(() => '我的任务'),
+      hasSelection: computed(() => true),
+      pending: shallowRef(false),
+      error: shallowRef(undefined),
+      refresh: vi.fn(async () => undefined),
+    }
+  },
+}))
+
+vi.mock('@/composables/useBusinessWms', () => ({
+  createWmsIdempotencyKey: () => wmsState.key(),
+  // 拣货任务必须挂在已存在的出库单下：出库单选择器的目录来源。
+  useWmsOutboundOrders: () => ({
+    filters: reactive({ skip: 0, take: 200 }),
+    outboundOrders: computed(() => [
+      {
+        outboundOrderId: 'ob-1',
+        outboundOrderNo: 'OB-001',
+        siteCode: 'S1',
+        lines: [{ lineNo: '1', skuCode: 'SKU-001', requestedQuantity: 5, uomCode: 'EA' }],
+      },
+    ]),
+    outboundOrdersError: shallowRef(undefined),
+    outboundOrdersPending: shallowRef(false),
+    outboundOrdersTotal: computed(() => 1),
+    refreshOutboundOrders: vi.fn(),
+  }),
+  useWmsPickingTasks: () => {
+    const filters = reactive({
+      environmentId: 'env-dev',
+      keyword: undefined as string | undefined,
+      locationCode: undefined as string | undefined,
+      organizationId: 'org-001',
+      status: undefined as string | undefined,
+      take: 100,
+    })
+    wmsState.filters = filters
+
+    return {
+      createPicking: wmsState.createPicking,
+      createPickingError: shallowRef(undefined),
+      createPickingPending: shallowRef(false),
+      filters,
+      pickingTasks: computed(() => [
+        {
+          allowedActions: ['complete'],
+          fromLocationCode: 'A-01',
+          plannedQuantity: 5,
+          siteCode: 'S1',
+          skuCode: 'SKU-001',
+          sourceOrderNo: 'OB-001',
+          status: 'inProgress',
+          taskNo: 'PICK-001',
+          toLocationCode: 'STAGE-01',
+          uomCode: 'EA',
+          warehouseTaskId: 'pick-1',
+          ...wmsState.taskQuantities,
+        },
+      ]),
+      pickingTasksError: shallowRef(undefined),
+      pickingTasksPending: shallowRef(false),
+      pickingTasksTotal: computed(() => 0),
+      completePicking: wmsState.completePicking,
+      pickingActionPending: shallowRef(false),
+      refreshPickingTasks: wmsState.refreshPickingTasks,
+    }
+  },
+}))
+
+const uiStubs = {
+  BusinessLayout: { template: '<main><slot /></main>' },
+  DirectoryPicker: {
+    props: ['modelValue', 'id', 'formSiteCode', 'siteMissingText'],
+    emits: ['update:modelValue'],
+    template:
+      '<input :id="id" :data-form-site="formSiteCode" :data-site-missing="siteMissingText" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+  },
+  NvButton: { template: '<button v-bind="$attrs"><slot /></button>' },
+  NvDataTable: {
+    props: ['rows', 'columns'],
+    template: `<table data-ui-table><thead><tr><th v-for="column in columns.filter((c) => !c.defaultHidden)" :key="column.key">{{ column.header }}</th></tr></thead><tbody><tr v-for="(row, i) in rows" :key="i">
+      <td v-for="column in columns.filter((c) => !c.defaultHidden)" :key="column.key" :data-cell="column.key">
+        <slot :name="'cell-' + column.key" :row="row">{{ column.accessor ? column.accessor(row) : row[column.key] }}</slot>
+      </td>
+    </tr></tbody></table>`,
+  },
+  NvDialog: { template: '<div><slot /></div>' },
+  NvDialogClose: { template: '<div><slot /></div>' },
+  NvDialogContent: { template: '<div><slot /></div>' },
+  NvDialogDescription: { template: '<p><slot /></p>' },
+  NvDialogFooter: { template: '<div><slot /></div>' },
+  NvDialogHeader: { template: '<div><slot /></div>' },
+  NvDialogTitle: { template: '<h2><slot /></h2>' },
+  NvField: { template: '<div><slot /></div>' },
+  NvFieldError: { props: ['errors'], template: '<p role="alert">{{ errors?.join("；") }}</p>' },
+  NvFieldGroup: { template: '<div><slot /></div>' },
+  NvFieldLabel: { template: '<label><slot /></label>' },
+  NvInput: {
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    template:
+      '<input :value="modelValue" v-bind="$attrs" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+  },
+  PageHeader: {
+    props: ['title', 'count'],
+    template: '<header><h1>{{ title }}</h1>{{ count }}<slot name="actions" /></header>',
+  },
+  NvStatusBadge: { props: ['value'], template: '<span>{{ value }}</span>' },
+  Toolbar: { template: '<div><slot name="filters" /></div>' },
+}
+
+describe('WMS picking route context', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    routeState.query = {}
+    routeGuardState.guard = undefined
+    wmsState.filters = undefined
+    wmsState.taskQuantities = {}
+    let keyIndex = 0
+    wmsState.key.mockImplementation(() => `picking-intent-${++keyIndex}`)
+    wmsState.createPicking.mockReset().mockResolvedValue(undefined)
+  })
+
+  it.each([
+    ['确定性拒绝', { status: 400 }, false],
+    ['网络中断', new TypeError('Failed to fetch'), true],
+    ['服务端失败', { status: 503 }, true],
+    ['请求超时', { status: 408 }, true],
+  ])('拣货创建：%s 后同载荷沿用键，编辑后仅确定失败才换键', async (_label, error, unknown) => {
+    wmsState.createPicking.mockRejectedValue(error)
+    const wrapper = mount(PickingPage, {
+      global: {
+        stubs: {
+          ...uiStubs,
+          NvEntityPicker: {
+            props: ['modelValue', 'options', 'id'],
+            emits: ['update:modelValue'],
+            template:
+              '<input :id="id" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+          },
+        },
+      },
+    })
+    await wrapper
+      .findAll('button')
+      .find((b) => b.text() === '新建拣货任务')!
+      .trigger('click')
+    await wrapper.get('#wms-picking-outbound').setValue('OB-001')
+    await wrapper.get('#wms-picking-from').setValue('A-01')
+    await wrapper.get('#wms-picking-to').setValue('STAGE-01')
+    await wrapper.get('#wms-picking-qty').setValue('5')
+    const form = wrapper.get('#wms-picking-qty').element.closest('form')!
+    const submit = async () => {
+      form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+      await flushPromises()
+    }
+    await submit()
+    // #3943：未知结果离页会丢失内存中的提交身份，须阻止；明确拒绝则允许离开。
+    expect(routeGuardState.guard?.()).toBe(!unknown)
+    const original = wmsState.createPicking.mock.calls[0]
+    await submit()
+    expect(wmsState.createPicking.mock.calls[1]).toEqual(original)
+    await wrapper.get('#wms-picking-qty').setValue('5.0')
+    await submit()
+    expect(wmsState.createPicking.mock.calls[2]).toEqual(original)
+    await wrapper.get('#wms-picking-qty').setValue('6')
+    await submit()
+    const edited = wmsState.createPicking.mock.calls[3]!
+    if (unknown) {
+      expect(edited).toEqual(original)
+    } else {
+      expect(edited[1].quantity).toBe(6)
+      expect(edited[1].idempotencyKey).not.toBe(original![1].idempotencyKey)
+    }
+    wmsState.createPicking.mockResolvedValue(undefined)
+    await submit()
+    expect(wmsState.createPicking.mock.calls[4]).toEqual(edited)
+    expect(routeGuardState.guard?.()).toBe(true)
+    wrapper.unmount()
+  })
+
+  it.each([
+    [0, 'kg'],
+    [0.7, 'kg'],
+    [2, 'pcs'],
+  ] as const)('计划量与已执行 %s %s 分列展示，保留真实状态', (executedQuantity, uomCode) => {
+    wmsState.taskQuantities = { plannedQuantity: 1.4, executedQuantity, uomCode }
+    const wrapper = mount(PickingPage, { global: { stubs: uiStubs } })
+
+    expect(wrapper.get('[data-cell="plannedQuantity"]').text()).toBe('1.4')
+    expect(wrapper.get('[data-cell="executedQuantity"]').text()).toBe(String(executedQuantity))
+    expect(wrapper.get('[data-cell="uomCode"]').text()).toBe(uomCode)
+    expect(
+      wrapper
+        .findAll('th')
+        .slice(6, 9)
+        .map((header) => header.text()),
+    ).toEqual(['计划数量', '已执行数量', '单位'])
+    expect(wrapper.get('[data-cell="status"]').text()).toBe('inProgress')
+  })
+
+  it('initializes picking filters from inventory lot context', () => {
+    routeState.query = {
+      locationCode: 'A-01',
+      lotNo: 'LOT-001',
+      serialNo: 'SN-001',
+      skuCode: 'SKU-001',
+    }
+
+    mount(PickingPage, { global: { stubs: uiStubs } })
+
+    expect(wmsState.filters).toEqual(
+      expect.objectContaining({
+        keyword: 'SKU-001',
+        locationCode: 'A-01',
+      }),
+    )
+  })
+
+  it('renders picking row inventory links without unsupported scan workflow links', () => {
+    const wrapper = mount(PickingPage, { global: { stubs: uiStubs } })
+
+    expect(wrapper.text()).toContain('库存明细')
+    expect(wrapper.text()).toContain('SKU-001')
+    expect(wrapper.text()).toContain('A-01')
+    expect(wrapper.text()).toContain('OB-001')
+    expect(wrapper.text()).toContain('请到库存可用量或批次与预留页查看')
+    expect(wrapper.text()).not.toContain('后端缺口')
+
+    const links = wrapper
+      .findAll('[data-router-link]')
+      .map((link) => link.attributes('data-to') ?? '')
+    expect(
+      links.some(
+        (to) =>
+          to.includes('/inventory/availability') && to.includes('SKU-001') && to.includes('A-01'),
+      ),
+    ).toBe(true)
+    expect(
+      links.some(
+        (to) => to.includes('/inventory/lots') && to.includes('SKU-001') && to.includes('A-01'),
+      ),
+    ).toBe(true)
+    expect(links.some((to) => to.includes('/barcode/scans'))).toBe(false)
+  })
+
+  it('刷新任务时同步刷新当前范围候选', async () => {
+    const wrapper = mount(PickingPage, { global: { stubs: uiStubs } })
+    const refreshButton = wrapper
+      .findAll('button')
+      .find((button) => button.text().trim() === '刷新')
+
+    await refreshButton!.trigger('click')
+
+    expect(wmsState.refreshPickingTasks).toHaveBeenCalledOnce()
+    expect(candidateState.refresh).toHaveBeenCalledOnce()
+  })
+
+  it('选了出库单后行号从它的明细行里带出，提交体的行号不变', async () => {
+    const wrapper = mount(PickingPage, {
+      global: {
+        stubs: {
+          ...uiStubs,
+          // 选择器桩成带同名 id 的输入位；data-options 暴露候选，便于断言行号来自所选出库单。
+          NvEntityPicker: {
+            props: ['modelValue', 'options', 'id'],
+            emits: ['update:modelValue'],
+            template:
+              '<input :id="id" :value="modelValue" :data-options="options.map((o) => o.value).join(\',\')" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+          },
+        },
+      },
+    })
+    await wrapper
+      .findAll('button')
+      .find((button) => button.text().trim() === '新建拣货任务')!
+      .trigger('click')
+
+    expect(wrapper.get('#wms-picking-line').attributes('data-options')).toBe('')
+    await wrapper.get('#wms-picking-outbound').setValue('OB-001')
+    expect(wrapper.get('#wms-picking-line').attributes('data-options')).toBe('1')
+    // 库位选择器的工厂取所选出库单的工厂（#3832）。
+    for (const field of ['#wms-picking-from', '#wms-picking-to']) {
+      expect(wrapper.get(field).attributes('data-form-site')).toBe('S1')
+      // 拣货表单没有工厂字段，工厂从出库单推出：缺工厂时要提示先选出库单。
+      expect(wrapper.get(field).attributes('data-site-missing')).toBe('请先选择出库单')
+    }
+    expect((wrapper.get('#wms-picking-line').element as HTMLInputElement).value).toBe('1')
+
+    await wrapper.get('#wms-picking-from').setValue('A-01')
+    await wrapper.get('#wms-picking-to').setValue('STAGE-01')
+    await wrapper
+      .get('#wms-picking-from')
+      .element.closest('form')!
+      .dispatchEvent(new Event('submit'))
+    await flushPromises()
+
+    expect(wmsState.createPicking).toHaveBeenCalledWith('ob-1', {
+      lineNo: '1',
+      fromLocationCode: 'A-01',
+      toLocationCode: 'STAGE-01',
+      quantity: undefined,
+      idempotencyKey: expect.any(String),
+    })
+  })
+
+  it('超拣不超过计划量 110% 时要求差异原因，填写后才提交', async () => {
+    const wrapper = mount(PickingPage, { global: { stubs: uiStubs } })
+    const completeButton = wrapper
+      .findAll('button')
+      .find((button) => button.text().trim() === '完成拣货')!
+    await completeButton.trigger('click')
+    await wrapper.get('#wms-picking-executed').setValue('5.5')
+
+    expect(wrapper.text()).toContain('差异原因')
+    await wrapper.findAll('form')[0]!.trigger('submit')
+    expect(wmsState.completePicking).not.toHaveBeenCalled()
+    expect(wrapper.text()).toContain('拣货任务 PICK-001 的实拣数量超过计划量')
+
+    await wrapper.get('#wms-picking-reason').setValue('整箱包装换算产生尾差')
+    await wrapper.findAll('form')[0]!.trigger('submit')
+
+    expect(wmsState.completePicking).toHaveBeenCalledWith(
+      expect.objectContaining({ taskNo: 'PICK-001' }),
+      { executedQuantity: 5.5, differenceReason: '整箱包装换算产生尾差' },
+    )
+  })
+
+  it('超拣超过计划量 110% 时直接拒绝并给出调整路径', async () => {
+    const wrapper = mount(PickingPage, { global: { stubs: uiStubs } })
+    const completeButton = wrapper
+      .findAll('button')
+      .find((button) => button.text().trim() === '完成拣货')!
+    await completeButton.trigger('click')
+    await wrapper.get('#wms-picking-executed').setValue('5.51')
+    await wrapper.get('#wms-picking-reason').setValue('已说明原因')
+    await wrapper.findAll('form')[0]!.trigger('submit')
+
+    expect(wmsState.completePicking).not.toHaveBeenCalled()
+    expect(wrapper.text()).toContain('拣货任务 PICK-001')
+    expect(wrapper.text()).toContain('最多可实拣 5.5')
+    expect(wrapper.text()).toContain('请调整实拣数量')
+  })
+})
+vi.mock('@/composables/useWmsOperationalCandidates', async () => {
+  const { shallowRef } = await import('vue')
+  return {
+    useWmsOperationalCandidates: () => ({
+      locationOptions: shallowRef([]),
+      lotOptions: shallowRef([]),
+      ready: shallowRef(true),
+      searchKeyword: shallowRef(''),
+      sourceLabel: shallowRef('当前范围仓储作业记录候选'),
+      asOfUtc: shallowRef(),
+      freshnessUtc: shallowRef(),
+      truncated: shallowRef(false),
+      pending: shallowRef(false),
+      error: shallowRef(),
+      refresh: candidateState.refresh,
+    }),
+  }
+})

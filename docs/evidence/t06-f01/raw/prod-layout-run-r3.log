@@ -1,0 +1,5 @@
+Error: narrow variant page overflow gallery
+    at assert (file:////[eval2]:1:176)
+    at file:////[eval2]:20:26
+
+ego's nodejs process exited with code 1.

@@ -1,0 +1,64 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/files/nativeTransport.test.ts (6 tests | 6 failed) 9ms
+   × rejects invalid HEAD offset null before any PATCH 6ms
+   × rejects invalid HEAD offset  before any PATCH 1ms
+   × rejects invalid HEAD offset NaN before any PATCH 1ms
+   × rejects invalid HEAD offset -1 before any PATCH 0ms
+   × rejects invalid HEAD offset 0.5 before any PATCH 0ms
+   × rejects invalid HEAD offset 9 before any PATCH 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/files/nativeTransport.test.ts > rejects invalid HEAD offset null before any PATCH
+ FAIL  src/files/nativeTransport.test.ts > rejects invalid HEAD offset  before any PATCH
+ FAIL  src/files/nativeTransport.test.ts > rejects invalid HEAD offset -1 before any PATCH
+ FAIL  src/files/nativeTransport.test.ts > rejects invalid HEAD offset 0.5 before any PATCH
+AssertionError: expected [Function] to throw error including 'Invalid tus HEAD Upload-Offset' but got 'Upload failed with HTTP 500.'
+
+Expected: "Invalid tus HEAD Upload-Offset"
+Received: "Upload failed with HTTP 500."
+
+ ❯ src/files/nativeTransport.test.ts:28:58
+     26|   vi.stubGlobal('fetch', fetcher)
+     27|   const ctx = context()
+     28|   await expect(uploadWithNativeFileStorageTransport(ctx)).rejects.toTh…
+       |                                                          ^
+     29|   expect(fetcher).toHaveBeenCalledTimes(1)
+     30|   expect(ctx.onProgress).not.toHaveBeenCalled()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/files/nativeTransport.test.ts > rejects invalid HEAD offset NaN before any PATCH
+ FAIL  src/files/nativeTransport.test.ts > rejects invalid HEAD offset 9 before any PATCH
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ src/files/nativeTransport.test.ts:28:58
+     26|   vi.stubGlobal('fetch', fetcher)
+     27|   const ctx = context()
+     28|   await expect(uploadWithNativeFileStorageTransport(ctx)).rejects.toTh…
+       |                                                          ^
+     29|   expect(fetcher).toHaveBeenCalledTimes(1)
+     30|   expect(ctx.onProgress).not.toHaveBeenCalled()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  12:09:48
+   Duration  6.87s (transform 4.45s, setup 587ms, import 5.44s, tests 9ms, environment 700ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f03-native-transport/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/files/nativeTransport.test.ts

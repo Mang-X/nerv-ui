@@ -1,0 +1,55 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileDemo.test.ts (1 test | 1 failed) 50ms
+   × keeps bottom navigation and content tabs controlled and returns with the public back event 49ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileDemo.test.ts > keeps bottom navigation and content tabs controlled and returns with the public back event
+Error: Unable to get [role="tablist"] button:nth-child(2) within: <div class="flex h-dvh flex-col bg-background text-foreground">
+  <header data-shell="header" class="pt-safe px-safe sticky top-0 z-20 shrink-0 border-b border-border/70 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
+    <div data-slot="nav-bar" class="relative flex h-12 items-center justify-center gap-2 px-2">
+      <div class="absolute left-1 flex items-center">
+        <!--v-if-->
+      </div>
+      <div class="truncate px-12 text-base font-semibold">随行手记</div>
+      <div class="absolute right-1 flex items-center gap-1"></div>
+    </div>
+  </header>
+  <main data-shell="content" class="px-safe min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+    <div class="space-y-4 p-4">
+      <h1 class="text-2xl font-semibold">周末随行</h1><a href="#desktop">桌面演示</a><a href="#touch">触屏演示</a>
+    </div>
+  </main>
+  <footer data-shell="footer" class="pb-safe px-safe sticky bottom-0 z-20 shrink-0 border-t border-border/70 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
+    <nav data-v-38429864="" data-slot="tab-bar" class="flex items-stretch"><button data-v-38429864="" type="button" aria-current="page" class="nv-m-tabbar-btn min-h-touch flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs text-brand">
+        <!-- Background tap highlight — shows the touch range, no size/layout shift. --><span data-v-38429864="" class="nv-m-tabbar-hit" aria-hidden="true"></span>
+        <!--v-if--><span data-v-38429864="" class="relative">发现</span>
+      </button><button data-v-38429864="" type="button" class="nv-m-tabbar-btn min-h-touch flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs text-muted-foreground">
+        <!-- Background tap highlight — shows the touch range, no size/layout shift. --><span data-v-38429864="" class="nv-m-tabbar-hit" aria-hidden="true"></span>
+        <!--v-if--><span data-v-38429864="" class="relative">收藏</span>
+      </button></nav>
+  </footer>
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/MobileDemo.test.ts:16:17
+     14|   const footer = wrapper.get('[data-shell="footer"]')
+     15|   expect(footer.get('[aria-current="page"]').text()).toBe('发现')
+     16|   await wrapper.get('[role="tablist"] button:nth-child(2)').trigger('c…
+       |                 ^
+     17|   expect(wrapper.get('[role="tab"][aria-selected="true"]').text()).toB…
+     18|   expect(wrapper.get('[role="tabpanel"]').text()).toContain('林间小径')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  18:06:36
+   Duration  6.79s (transform 4.23s, setup 497ms, import 5.48s, tests 50ms, environment 638ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileDemo.test.ts

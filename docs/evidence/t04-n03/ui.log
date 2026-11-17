@@ -1,0 +1,56 @@
+$ pnpm -C frontend --filter @nerv-iip/ui test
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui
+
+
+ Test Files  43 passed (43)
+      Tests  644 passed (644)
+   Start at  20:26:15
+   Duration  17.87s (transform 27.22s, setup 36.33s, import 61.80s, tests 11.21s, environment 36.20s)
+
+$ vp test run src --exclude src/design-docs.contract.test.ts --exclude src/nvui-doc-coverage.contract.test.ts --exclude src/docs-layout.contract.test.ts
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+exit=0

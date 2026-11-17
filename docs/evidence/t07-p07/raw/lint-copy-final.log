@@ -1,0 +1,2 @@
+packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts:14:8: warning eslint(no-unused-vars): Type 'ThemeBinding' is imported but never used. help: Consider removing this import.
+packages/scheduling/src/engine/dhtmlx/DhtmlxEngine.ts:293:10: warning eslint(no-unused-vars): Function 'blockLabelHtml' is declared but never used. help: Consider removing this declaration.

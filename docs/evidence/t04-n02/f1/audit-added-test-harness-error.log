@@ -1,0 +1,53 @@
+fatal: path 'frontend/packages/ui-mobile/src/components/slider/MobileSlider.test.ts' exists on disk, but not in 'a20825e0477f446737a6bfc07d84b8ec20a143b6'
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: git show a20825e0477f446737a6bfc07d84b8ec20a143b6:frontend/packages/ui-mobile/src/components/slider/MobileSlider.test.ts
+fatal: path 'frontend/packages/ui-mobile/src/components/slider/MobileSlider.test.ts' exists on disk, but not in 'a20825e0477f446737a6bfc07d84b8ec20a143b6'
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at git (file:///private/tmp/nerv-ui-t04-n02-f1/audit.mjs:6:26)
+    at file:///private/tmp/nerv-ui-t04-n02-f1/audit.mjs:10:130
+    at Array.map (<anonymous>)
+    at file:///private/tmp/nerv-ui-t04-n02-f1/audit.mjs:10:107
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26 {
+  status: 128,
+  signal: null,
+  output: [
+    null,
+    Buffer(0) [Uint8Array] [],
+    Buffer(155) [Uint8Array] [
+      102,  97, 116,  97, 108,  58,  32, 112,  97, 116, 104,  32,
+       39, 102, 114, 111, 110, 116, 101, 110, 100,  47, 112,  97,
+       99, 107,  97, 103, 101, 115,  47, 117, 105,  45, 109, 111,
+       98, 105, 108, 101,  47, 115, 114,  99,  47,  99, 111, 109,
+      112, 111, 110, 101, 110, 116, 115,  47, 115, 108, 105, 100,
+      101, 114,  47,  77, 111,  98, 105, 108, 101,  83, 108, 105,
+      100, 101, 114,  46, 116, 101, 115, 116,  46, 116, 115,  39,
+       32, 101, 120, 105, 115, 116, 115,  32, 111, 110,  32, 100,
+      105, 115, 107,  44,
+      ... 55 more items
+    ]
+  ],
+  pid: 8467,
+  stdout: Buffer(0) [Uint8Array] [],
+  stderr: Buffer(155) [Uint8Array] [
+    102,  97, 116,  97, 108,  58,  32, 112,  97, 116, 104,  32,
+     39, 102, 114, 111, 110, 116, 101, 110, 100,  47, 112,  97,
+     99, 107,  97, 103, 101, 115,  47, 117, 105,  45, 109, 111,
+     98, 105, 108, 101,  47, 115, 114,  99,  47,  99, 111, 109,
+    112, 111, 110, 101, 110, 116, 115,  47, 115, 108, 105, 100,
+    101, 114,  47,  77, 111,  98, 105, 108, 101,  83, 108, 105,
+    100, 101, 114,  46, 116, 101, 115, 116,  46, 116, 115,  39,
+     32, 101, 120, 105, 115, 116, 115,  32, 111, 110,  32, 100,
+    105, 115, 107,  44,
+    ... 55 more items
+  ]
+}
+
+Node.js v24.18.0

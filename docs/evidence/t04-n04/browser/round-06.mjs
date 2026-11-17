@@ -1,0 +1,14 @@
+const task=await taskSpace(9),page=task.page('p1');
+const {setup}=await import('/tmp/nerv-ui-t04-n04/browser/helpers.mjs');const a=await setup(page);
+const assert=(await import('node:assert/strict')).default;
+await a.align('.nv-m-pr-scroll');
+console.log('beforeTouch',await a.rect('.nv-m-pr-scroll'));
+await page.evaluate(()=>{window.n04TouchEvents=[];for(const type of ['pointerdown','pointermove','pointercancel','pointerup'])document.querySelector('.nv-m-pr-inner').addEventListener(type,e=>window.n04TouchEvents.push({type,buttons:e.buttons,pointerType:e.pointerType,cancelable:e.cancelable}),{once:false})});
+const r=await a.rect('.nv-m-pr-scroll'),x=r.x,y=r.top+25;
+await page.cdp('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:1}]});
+for(let i=1;i<=12;i++)await page.cdp('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y+i*14,id:1}]});
+await page.cdp('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+await a.settle();
+console.log('afterTouch',await a.text('刷新状态'),await page.evaluate(()=>window.n04TouchEvents));
+await a.shot('390-light-touch-probe');
+console.log(await page.snapshot());

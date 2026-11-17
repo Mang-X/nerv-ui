@@ -1,0 +1,572 @@
+docs/evidence/t04-n02/browser-01.log:152: new blank line at EOF.
+docs/evidence/t04-n02/browser-02.log:81: new blank line at EOF.
+docs/evidence/t04-n02/browser-06.log:2: new blank line at EOF.
+docs/evidence/t04-n02/browser-08.log:2: new blank line at EOF.
+docs/evidence/t04-n02/browser-11.log:9: new blank line at EOF.
+docs/evidence/t04-n02/browser-12.log:49: new blank line at EOF.
+docs/evidence/t04-n02/browser-13.log:2: new blank line at EOF.
+docs/evidence/t04-n02/build.log:28: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/build.log:30: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/build.log:38: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/build.log:40: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/build.log:43: new blank line at EOF.
+docs/evidence/t04-n02/diff-check-raw.log:9: trailing whitespace.
+++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/diff-check-raw.log:11: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/diff-check-raw.log:13: trailing whitespace.
+++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/diff-check-raw.log:15: trailing whitespace.
+++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/diff-check-raw.log:23: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:25: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:27: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:29: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:31: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:33: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:35: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:37: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:44: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:46: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:48: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:50: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:52: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:54: trailing whitespace.
+++-     
+docs/evidence/t04-n02/diff-check-raw.log:56: trailing whitespace.
+++-   
+docs/evidence/t04-n02/diff-check-raw.log:58: trailing whitespace.
+++-   
+docs/evidence/t04-n02/f1/browser-01.log:152: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-02.log:168: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-03-diagnostic.log:2: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-04-animation-diagnostic.log:2: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-05-recover.log:161: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-07-diagnostic.log:3: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-08.log:70: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-11.log:12: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-12-diagnostic.log:76: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-13.log:115: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-finish.log:2: new blank line at EOF.
+docs/evidence/t04-n02/f1/browser-resources.log:95: new blank line at EOF.
+docs/evidence/t04-n02/f1/build-final.log:27: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t04-n02/f1/build-final.log:29: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/build-final.log:37: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t04-n02/f1/build-final.log:39: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t04-n02/f1/external-final-green.log:10: new blank line at EOF.
+docs/evidence/t04-n02/f1/external-red.log:34: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:36: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:71: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:108: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:110: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/external-red.log:137: new blank line at EOF.
+docs/evidence/t04-n02/f1/formal-final-green.log:10: new blank line at EOF.
+docs/evidence/t04-n02/f1/formal-green.log:10: new blank line at EOF.
+docs/evidence/t04-n02/f1/formal-red.log:27: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:29: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:64: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:66: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:101: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/formal-red.log:103: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/host-final.log:15: new blank line at EOF.
+docs/evidence/t04-n02/f1/mobile-docs.log:11: new blank line at EOF.
+docs/evidence/t04-n02/f1/mobile.log:22: new blank line at EOF.
+docs/evidence/t04-n02/f1/naming.log:10: new blank line at EOF.
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:34: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:36: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:71: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:108: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:110: trailing whitespace.
++-   
+docs/evidence/t04-n02/f1/r1-original-capture-focus.log:137: new blank line at EOF.
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:27: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:28: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:36: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:37: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:43: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:44: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:49: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:50: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:52: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:53: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:61: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:62: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:67: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:68: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:76: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:77: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:83: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:84: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:89: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:90: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:92: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:93: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:101: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:102: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:107: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:108: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:116: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:117: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:123: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:124: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:129: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:130: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:132: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:133: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:141: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:142: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:147: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:148: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:156: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:157: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:163: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:164: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:169: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:170: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:172: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:173: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:181: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:182: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:187: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:188: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:196: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:197: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:203: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:204: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:209: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:210: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:212: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:213: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:221: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:222: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:227: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:228: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:236: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:237: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:243: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:244: trailing whitespace.
+++       
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:252: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:253: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:255: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:256: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:264: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:265: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:276: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:277: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:283: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:284: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:295: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:296: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:300: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:301: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:313: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:314: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:318: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:319: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:331: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:332: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:336: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:337: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:349: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:350: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:357: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:358: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:369: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:370: trailing whitespace.
+++     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:374: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:375: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:389: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:398: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:399: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:404: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:406: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:411: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:420: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:423: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:429: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:470: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:489: trailing whitespace.
+++               
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:503: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:509: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:510: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:512: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:515: trailing whitespace.
+++               
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:585: trailing whitespace.
+++                回车收下编码并清空输入。编辑其它输入框时暂停接收，离开后恢复；也可关闭持续接收。 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:641: trailing whitespace.
+++                保留开头的零，追加输入最多 6 个字符；正负号可独立切换。 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:650: trailing whitespace.
+++               
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:652: trailing whitespace.
+++               
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:676: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:678: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:687: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:689: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:699: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:702: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:703: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:706: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:707: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:712: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:713: trailing whitespace.
+++           
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:718: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:744: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:746: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:762: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:768: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:835: trailing whitespace.
+++                      取消 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:956: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1237: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1308: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1310: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1321: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1323: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1331: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1333: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1343: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1345: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1375: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1376: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1377: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1378: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1393: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1394: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1398: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1400: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1406: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1425: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1427: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1428: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1431: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1432: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1446: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1447: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1451: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1453: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1456: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1457: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1460: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1461: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1475: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1476: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1480: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1482: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1485: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1486: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1489: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1490: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1491: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1492: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1503: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1517: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1523: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1524: trailing whitespace.
+++                     
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1526: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1529: trailing whitespace.
+++                 
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1567: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1569: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1588: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1590: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1599: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1601: trailing whitespace.
+++                   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1605: trailing whitespace.
+++             
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1608: trailing whitespace.
+++         
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1613: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1632: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1633: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1634: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1635: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1638: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1639: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1640: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1641: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1642: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1643: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1646: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1647: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/teleport-boundary-red.log:1648: trailing whitespace.
+++   
+docs/evidence/t04-n02/f1/ui-docs.log:13: new blank line at EOF.
+docs/evidence/t04-n02/f1/ui.log:53: new blank line at EOF.
+docs/evidence/t04-n02/green-adjustments.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-entry.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-keyboard.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-overlay-focus.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-scan-focus-repaired.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-scan-focus.log:30: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:31: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:35: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:37: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:43: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:70: trailing whitespace.
++-     
+docs/evidence/t04-n02/green-scan-focus.log:72: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-scan-focus.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/green-selection.log:10: new blank line at EOF.
+docs/evidence/t04-n02/green-text-search.log:10: new blank line at EOF.
+docs/evidence/t04-n02/host-behavior-final.log:15: new blank line at EOF.
+docs/evidence/t04-n02/host-format-expression-failure.log:34: new blank line at EOF.
+docs/evidence/t04-n02/host-reordered-input-selector-failure.log:41: new blank line at EOF.
+docs/evidence/t04-n02/red-keyboard.log:31: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:32: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:36: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:38: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:44: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:71: trailing whitespace.
++-     
+docs/evidence/t04-n02/red-keyboard.log:73: trailing whitespace.
++-   
+docs/evidence/t04-n02/red-keyboard.log:74: trailing whitespace.
++-   
+docs/evidence/t04-n02/slider-public-green.log:10: new blank line at EOF.

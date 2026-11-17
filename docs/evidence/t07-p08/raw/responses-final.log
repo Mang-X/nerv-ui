@@ -1,0 +1,114 @@
+[
+  {
+    lane: 'root',
+    url: 'http://127.0.0.1:4308/',
+    status: 200,
+    mime: 'text/html; charset=utf-8',
+    bytes: 514,
+    sha256: '6770c14f9d4e525c84c7ebb6c393d2b5888f78b80ab170c9afb2bef8be89916d'
+  },
+  {
+    lane: 'root',
+    url: 'http://127.0.0.1:4308/assets/index-BO7H86MP.js',
+    status: 200,
+    mime: 'text/javascript; charset=utf-8',
+    bytes: 1005898,
+    sha256: '065387f02eff2c7e9ae1b73dbafbe47f3cb195474625e1247adb275299e1abe9'
+  },
+  {
+    lane: 'root',
+    url: 'http://127.0.0.1:4308/assets/index-BtGh0fLp.css',
+    status: 200,
+    mime: 'text/css; charset=utf-8',
+    bytes: 333123,
+    sha256: 'a8164b9b409df56e8ec7cc2a8fb2879c856d33beace7b9f6436fc3bb01246f09'
+  },
+  {
+    lane: 'root',
+    url: 'http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js',
+    status: 200,
+    mime: 'text/javascript; charset=utf-8',
+    bytes: 612,
+    sha256: 'f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623'
+  },
+  {
+    lane: 'root',
+    url: 'http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js',
+    status: 200,
+    mime: 'text/javascript; charset=utf-8',
+    bytes: 706201,
+    sha256: 'ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573'
+  },
+  {
+    lane: 'root',
+    url: 'http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css',
+    status: 200,
+    mime: 'text/css; charset=utf-8',
+    bytes: 139046,
+    sha256: '27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4'
+  },
+  {
+    lane: 'root',
+    url: 'http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2',
+    status: 200,
+    mime: 'font/woff2',
+    bytes: 48256,
+    sha256: '3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62'
+  },
+  {
+    lane: 'nested',
+    url: 'http://127.0.0.1:4309/p08/',
+    status: 200,
+    mime: 'text/html; charset=utf-8',
+    bytes: 526,
+    sha256: '9d082f988912839984eb565c46587923588340c57fc8061e56b6dccbb26dfb61'
+  },
+  {
+    lane: 'nested',
+    url: 'http://127.0.0.1:4309/p08/assets/index-C4tbY-dc.js',
+    status: 200,
+    mime: 'text/javascript; charset=utf-8',
+    bytes: 1005946,
+    sha256: '45a3a3641230b06ef0c52498407a5a042c9799330db875f72f71fe3e5c5e1abc'
+  },
+  {
+    lane: 'nested',
+    url: 'http://127.0.0.1:4309/p08/assets/index-O2T4rZEu.css',
+    status: 200,
+    mime: 'text/css; charset=utf-8',
+    bytes: 333151,
+    sha256: '6a4de8f6ef5fbb4c55dc4447b0d0b01dc861cea6a0ae20a0d0eb704b3aa0018f'
+  },
+  {
+    lane: 'nested',
+    url: 'http://127.0.0.1:4309/p08/assets/rolldown-runtime-EyZ2wyi3.js',
+    status: 200,
+    mime: 'text/javascript; charset=utf-8',
+    bytes: 612,
+    sha256: 'f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623'
+  },
+  {
+    lane: 'nested',
+    url: 'http://127.0.0.1:4309/p08/assets/dhtmlxgantt.es-DLTcQAl2.js',
+    status: 200,
+    mime: 'text/javascript; charset=utf-8',
+    bytes: 706201,
+    sha256: 'ca506545846798aa69a5a8f21ba2a6d26a677041d29bee8c69a53d4102ecb573'
+  },
+  {
+    lane: 'nested',
+    url: 'http://127.0.0.1:4309/p08/assets/dhtmlxgantt-DePP4erS.css',
+    status: 200,
+    mime: 'text/css; charset=utf-8',
+    bytes: 139046,
+    sha256: '27a7b8ea17921ecac270520af285af20d39bf8e38fe651d99795f23d561bc5f4'
+  },
+  {
+    lane: 'nested',
+    url: 'http://127.0.0.1:4309/p08/assets/inter-latin-wght-normal-Dx4kXJAl.woff2',
+    status: 200,
+    mime: 'font/woff2',
+    bytes: 48256,
+    sha256: '3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62'
+  }
+]

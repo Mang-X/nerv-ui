@@ -1,0 +1,80 @@
+[
+  {
+    "script": "scripts/browser-01.mjs",
+    "log": "raw/browser-01.log",
+    "observations": "raw/browser-01.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-02.mjs",
+    "log": "raw/browser-02.log",
+    "observations": "raw/browser-02.json",
+    "actualExitObserved": 1
+  },
+  {
+    "script": "scripts/browser-03.mjs",
+    "log": "raw/browser-03.log",
+    "observations": "raw/browser-03.json",
+    "actualExitObserved": 1
+  },
+  {
+    "script": "scripts/browser-04.mjs",
+    "log": "raw/browser-04.log",
+    "observations": "raw/browser-04.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-05.mjs",
+    "log": "raw/browser-05.log",
+    "observations": "raw/browser-05.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-06.mjs",
+    "log": "raw/browser-06.log",
+    "observations": "raw/browser-06.json",
+    "actualExitObserved": 1
+  },
+  {
+    "script": "scripts/browser-07.mjs",
+    "log": "raw/browser-07.log",
+    "observations": "raw/browser-07.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-08.mjs",
+    "log": "raw/browser-08.log",
+    "observations": "raw/browser-08.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-09.mjs",
+    "log": "raw/browser-09.log",
+    "observations": "raw/browser-09.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-10.mjs",
+    "log": "raw/browser-10.log",
+    "observations": "raw/browser-10.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-12.mjs",
+    "log": "raw/browser-12.log",
+    "observations": "raw/browser-12.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-13.mjs",
+    "log": "raw/browser-13.log",
+    "observations": "raw/browser-13.json",
+    "actualExitObserved": 0
+  },
+  {
+    "script": "scripts/browser-14.mjs",
+    "log": "raw/browser-14.log",
+    "observations": "raw/browser-14.json",
+    "actualExitObserved": 0
+  }
+]

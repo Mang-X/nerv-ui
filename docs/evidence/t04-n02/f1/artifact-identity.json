@@ -1,0 +1,179 @@
+{
+  "freshSource": [
+    {
+      "path": "frontend/apps/playground/src/App.vue",
+      "sha256": "612df3e576c587c6b471d38aeb76e0442e3e61c0288bb3c4ef68c91f1175ebc7"
+    },
+    {
+      "path": "frontend/apps/playground/src/MobileInputDemo.vue",
+      "sha256": "e78bf440c092ad0b9699f7b810317be9af9617fd26d0c2206a9045e02c11cb19"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-input/MobileInputFields.vue",
+      "sha256": "e06314e87104b2ce175d03e8f82f46b04dcabfe5430293a44c29ab217359cef1"
+    },
+    {
+      "path": "frontend/apps/playground/src/mobile-input/MobileCaptureInput.vue",
+      "sha256": "e2712c1b04e70f34f7608b3583d47e13e4a2ad1906a44ba421a4788bfb761950"
+    },
+    {
+      "path": "frontend/packages/ui-mobile/src/components/slider/MobileSlider.vue",
+      "sha256": "045e7b51a71d538bad5a40aafc7b3c66b66e64b1ddafec54d65046e103728040"
+    }
+  ],
+  "allResponsesMatchLocalBuild": true,
+  "assets": [
+    {
+      "url": "http://127.0.0.1:4174/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-type": "text/html",
+        "date": "Sat, 24 Oct 2026 11:56:07 GMT",
+        "etag": "W/\"1ab-ecy2XW8m77WQPLt6ssDEL8c0y6I\"",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "path": "index.html",
+      "bytes": 427,
+      "sha256": "67717b71aa984df5385e85c0b0a90b23f3b6cc9e9ddc9ee1705c3026a7a8cb91",
+      "localBytes": 427,
+      "localSha256": "67717b71aa984df5385e85c0b0a90b23f3b6cc9e9ddc9ee1705c3026a7a8cb91",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/index-BuDJPcks.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "text/javascript",
+        "date": "Sat, 24 Oct 2026 11:56:07 GMT",
+        "etag": "W/\"454022-1792842447246\"",
+        "keep-alive": "timeout=5",
+        "last-modified": "Sat, 24 Oct 2026 11:47:27 GMT",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "path": "assets/index-BuDJPcks.js",
+      "bytes": 454022,
+      "sha256": "5ff3a7fc69b9874b53a06bb715a171efd9b48d5358bdbbfaa634c26960253645",
+      "localBytes": 454022,
+      "localSha256": "5ff3a7fc69b9874b53a06bb715a171efd9b48d5358bdbbfaa634c26960253645",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/index-Bp6Bq-fD.css",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "text/css",
+        "date": "Sat, 24 Oct 2026 11:56:07 GMT",
+        "etag": "W/\"221531-1792842447246\"",
+        "keep-alive": "timeout=5",
+        "last-modified": "Sat, 24 Oct 2026 11:47:27 GMT",
+        "transfer-encoding": "chunked",
+        "vary": "Origin"
+      },
+      "path": "assets/index-Bp6Bq-fD.css",
+      "bytes": 221531,
+      "sha256": "6e3b9322f55869f0708cb40dcbc07e1f57498448e46c4a3f3b30704167910193",
+      "localBytes": 221531,
+      "localSha256": "6e3b9322f55869f0708cb40dcbc07e1f57498448e46c4a3f3b30704167910193",
+      "equal": true
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-length": "48256",
+        "content-type": "font/woff2",
+        "date": "Sat, 24 Oct 2026 11:56:07 GMT",
+        "etag": "W/\"48256-1792842447250\"",
+        "keep-alive": "timeout=5",
+        "last-modified": "Sat, 24 Oct 2026 11:47:27 GMT",
+        "vary": "Origin"
+      },
+      "path": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "localBytes": 48256,
+      "localSha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "equal": true
+    }
+  ],
+  "staticComparisons": [
+    {
+      "path": "assets/index-Bp6Bq-fD.css",
+      "currentSha256": "6e3b9322f55869f0708cb40dcbc07e1f57498448e46c4a3f3b30704167910193",
+      "reviewedSha256": "6e3b9322f55869f0708cb40dcbc07e1f57498448e46c4a3f3b30704167910193",
+      "equal": true
+    },
+    {
+      "path": "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "currentSha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "reviewedSha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "equal": true
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "final-dialog.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 43555,
+      "sha256": "d0bf905e9b7dea526a90e6ffe70762cb314978e40ed3b448bd798825e94996f1"
+    },
+    {
+      "path": "final-link-focus.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 47883,
+      "sha256": "1db47865b6d4385faf8e750828e18f137bd8783408290f1cdf9f6caa97cc5b67"
+    },
+    {
+      "path": "final-sheet-keypad.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 35002,
+      "sha256": "a4e2b31abe0fb3c6b828dc3852335dc4bd4b0e5ca162ebd6a54f17587d3ff6f5"
+    }
+  ],
+  "observed": {
+    "url": "http://127.0.0.1:4174/?f1=final2#mobile-input",
+    "resources": [
+      {
+        "url": "http://127.0.0.1:4174/assets/index-BuDJPcks.js",
+        "initiatorType": "script"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/index-Bp6Bq-fD.css",
+        "initiatorType": "link"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+        "initiatorType": "css"
+      }
+    ],
+    "scripts": [
+      "http://127.0.0.1:4174/assets/index-BuDJPcks.js"
+    ],
+    "styles": [
+      "http://127.0.0.1:4174/assets/index-Bp6Bq-fD.css"
+    ],
+    "number": "",
+    "scan": "2 次 · NEXT"
+  },
+  "eventCounts": {
+    "trusted": 249,
+    "synthetic": 2
+  },
+  "browserLane": "Ego Chromium desktop UA; native CDP inputs, immediate keyup; 390x844 CSS viewport; no physical device certification"
+}

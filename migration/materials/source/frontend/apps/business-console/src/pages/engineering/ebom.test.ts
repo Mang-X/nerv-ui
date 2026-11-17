@@ -1,0 +1,307 @@
+import { flushPromises, mount } from '@vue/test-utils'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { computed, reactive, shallowRef } from 'vue'
+
+import EbomPage from './ebom.vue'
+
+const stub = vi.hoisted(() => ({
+  releaseEbom: vi.fn().mockResolvedValue({ data: {} }),
+  fetchEbomDetail: vi.fn(),
+  toastSuccess: vi.fn(),
+  toastError: vi.fn(),
+}))
+
+// 就地新建的物料：物料列表刷新回来之前查不到，用例里手动「刷新」进来。
+const createdSkus = await vi.hoisted(async () => {
+  const { shallowRef } = await import('vue')
+  return shallowRef<{ code: string; displayName: string; baseUomCode: string }[]>([])
+})
+
+const ebomRow = {
+  bomCode: 'EBOM-1',
+  revision: 'A',
+  parentItemCode: 'SKU-1',
+  status: 'Published',
+  effectiveDate: '2026-01-01',
+}
+
+const filters = reactive({
+  organizationId: 'org-001',
+  environmentId: 'env-dev',
+  parentItemCode: undefined as string | undefined,
+  status: undefined as string | undefined,
+  skip: 0,
+  take: 10,
+})
+
+vi.mock('@/composables/useProductEngineering', () => ({
+  useEngineeringEboms: () => ({
+    eboms: computed(() => [ebomRow]),
+    ebomsError: shallowRef(undefined),
+    ebomsPending: shallowRef(false),
+    ebomsTotal: computed(() => 1),
+    filters,
+    refresh: vi.fn(),
+    releaseEbom: stub.releaseEbom,
+    releasePending: shallowRef(false),
+    releaseError: shallowRef(undefined),
+    fetchEbomDetail: stub.fetchEbomDetail,
+  }),
+  // 修订号输入框旁新增「已占用修订」建议（读面走 colada，需要 pinia），测试给空建议。
+  useBomRevisionSuggestions: () => ({
+    takenRevisions: computed(() => []),
+    takenRevisionsPending: shallowRef(false),
+    isTaken: () => false,
+  }),
+}))
+
+vi.mock('@/composables/useBusinessMasterData', () => ({
+  useBusinessSkus: () => ({
+    skus: computed(() => [
+      { code: 'SKU-1', displayName: '智能网关主机', baseUomCode: 'PCS' },
+      { code: 'SKU-2', displayName: '主控板', baseUomCode: 'PCS' },
+      ...createdSkus.value,
+    ]),
+  }),
+  useBusinessUoms: () => ({
+    uoms: computed(() => [
+      { code: 'PCS', displayName: '个' },
+      { code: 'SET', displayName: '套' },
+    ]),
+  }),
+}))
+
+vi.mock('@nerv-iip/ui', async (orig) => ({
+  ...(await orig<typeof import('@nerv-iip/ui')>()),
+  toast: { success: stub.toastSuccess, error: stub.toastError },
+}))
+
+const layoutStub = { BusinessLayout: { template: '<main><slot /></main>' } }
+const dialogStubs = {
+  NvDialog: { template: '<div><slot /></div>' },
+  NvDialogTrigger: { template: '<div><slot /></div>' },
+  NvDialogContent: { template: '<div><slot /></div>' },
+  NvDialogHeader: { template: '<div><slot /></div>' },
+  NvDialogFooter: { template: '<div><slot /></div>' },
+  NvDialogTitle: { template: '<h2><slot /></h2>' },
+  NvDialogDescription: { template: '<p><slot /></p>' },
+}
+const sheetStubs = {
+  // NvSheet 根与 NvDialog 同为 reka DialogRoot，但 barrel 已给两个别名各自的 name，
+  // 因而这里能分开打桩（过去只能共用一个 DialogRoot 键）。
+  NvSheet: { template: '<div><slot /></div>' },
+  NvSheetTrigger: { template: '<div><slot /></div>' },
+  NvSheetContent: { template: '<div data-testid="sheet"><slot /></div>' },
+  NvSheetHeader: { template: '<div><slot /></div>' },
+  NvSheetTitle: { template: '<h2><slot /></h2>' },
+  NvSheetDescription: { template: '<p><slot /></p>' },
+}
+const datePickerStub = {
+  NvDatePicker: {
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    template:
+      '<input type="date" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value || null)" />',
+  },
+}
+const formSelectStubs = {
+  NvSelect: {
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    template:
+      '<select :value="modelValue" @change="$emit(\'update:modelValue\', $event.target.value)"><slot /></select>',
+  },
+  NvSelectTrigger: { template: '<span><slot /></span>' },
+  NvSelectValue: { template: '<span />' },
+  NvSelectContent: { template: '<slot />' },
+  NvSelectItem: { props: ['value'], template: '<option :value="value"><slot /></option>' },
+  // 目录选择器（取数、就地新增由 DirectoryPicker 自己的用例覆盖）换成原生 <select>，下标顺序不变。
+  DirectoryPicker: {
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    template:
+      '<select :value="modelValue" @change="$emit(\'update:modelValue\', $event.target.value)"><option value=""></option><option value="SKU-1">SKU-1</option><option value="SKU-2">SKU-2</option><option value="SKU-NEW">SKU-NEW</option></select>',
+  },
+}
+
+const allStubs = {
+  ...layoutStub,
+  ...dialogStubs,
+  ...sheetStubs,
+  ...datePickerStub,
+  ...formSelectStubs,
+}
+
+function findButton(wrapper: ReturnType<typeof mount>, text: string) {
+  return wrapper.findAll('button').find((b) => b.text().trim() === text)
+}
+
+beforeEach(() => {
+  stub.releaseEbom.mockClear()
+  stub.fetchEbomDetail.mockReset()
+  stub.fetchEbomDetail.mockResolvedValue(undefined)
+  stub.toastSuccess.mockClear()
+  stub.toastError.mockClear()
+  filters.parentItemCode = undefined
+  filters.status = undefined
+  createdSkus.value = []
+})
+
+describe('engineering ebom page', () => {
+  it('渲染标题、EBOM 行（父项显名 + 修订 + 状态用 Published）', async () => {
+    const wrapper = mount(EbomPage, { global: { stubs: { ...layoutStub } } })
+    await flushPromises()
+
+    expect(wrapper.text()).toContain('EBOM 设计BOM')
+    expect(wrapper.text()).toContain('智能网关主机')
+    expect(wrapper.text()).toContain('EBOM-1')
+    expect(wrapper.text()).toContain('已发布')
+  })
+
+  it('发布向导：填版本头 + 一行组件后提交，release 收到正确 body', async () => {
+    const wrapper = mount(EbomPage, { global: { stubs: allStubs } })
+    await flushPromises()
+
+    await findButton(wrapper, '发布新版本')!.trigger('click')
+    await flushPromises()
+
+    const selects = wrapper.findAll('select')
+    // 顺序：父项、组件物料(行)、单位(行)…… 状态筛选在最后。
+    await selects[0]!.setValue('SKU-1') // 父项
+    await wrapper.find('#ebom-rev').setValue('B')
+    await wrapper.findAll('input[type="date"]')[0]!.setValue('2026-03-01')
+    // 组件行 select：父项之后的两个（组件、单位）
+    const formSelects = wrapper.findAll('select')
+    await formSelects[1]!.setValue('SKU-2') // 组件
+    await formSelects[2]!.setValue('PCS') // 单位
+    await wrapper.find('input[type="number"]').setValue('3')
+    await flushPromises()
+
+    await wrapper.find('form').trigger('submit')
+    await flushPromises()
+
+    expect(stub.releaseEbom).toHaveBeenCalledTimes(1)
+    const body = stub.releaseEbom.mock.calls[0]![0] as Record<string, unknown>
+    expect(body.parentItemCode).toBe('SKU-1')
+    expect(body.revision).toBe('B')
+    expect(body.effectiveDate).toBe('2026-03-01')
+    const lines = body.lines as Array<Record<string, unknown>>
+    expect(lines).toHaveLength(1)
+    expect(lines[0]!.componentCode).toBe('SKU-2')
+    expect(lines[0]!.quantity).toBe(3)
+    expect(lines[0]!.unitOfMeasureCode).toBe('PCS')
+    expect(stub.toastSuccess).toHaveBeenCalled()
+  })
+
+  it('校验拦截：版本头未填点发布出现汇总提示且不发请求', async () => {
+    const wrapper = mount(EbomPage, { global: { stubs: allStubs } })
+    await flushPromises()
+    await findButton(wrapper, '发布新版本')!.trigger('click')
+    await flushPromises()
+
+    await wrapper.find('form').trigger('submit')
+    await flushPromises()
+
+    expect(wrapper.text()).toContain('请完整填写带 * 的必填项')
+    expect(stub.releaseEbom).not.toHaveBeenCalled()
+  })
+
+  it('组件行可增删：增加一行后有两行组件 select 组', async () => {
+    const wrapper = mount(EbomPage, { global: { stubs: allStubs } })
+    await flushPromises()
+    await findButton(wrapper, '发布新版本')!.trigger('click')
+    await flushPromises()
+
+    const before = wrapper.findAll('select').length
+    await findButton(wrapper, '增加组件')!.trigger('click')
+    await flushPromises()
+    // 每行新增「组件 + 单位」两个 select。
+    expect(wrapper.findAll('select').length).toBe(before + 2)
+  })
+
+  it('选组件后单位自动带出其基本单位（SKU-2 → PCS）', async () => {
+    const wrapper = mount(EbomPage, { global: { stubs: allStubs } })
+    await flushPromises()
+    await findButton(wrapper, '发布新版本')!.trigger('click')
+    await flushPromises()
+
+    // 父项(0)、组件(1)、单位(2)
+    const formSelects = wrapper.findAll('select')
+    await formSelects[1]!.setValue('SKU-2') // 选组件
+    await flushPromises()
+
+    const uomSelect = wrapper.findAll('select')[2]!
+    expect((uomSelect.element as HTMLSelectElement).value).toBe('PCS')
+  })
+
+  it('就地新建的组件物料：物料列表刷新回来后再带出单位', async () => {
+    const wrapper = mount(EbomPage, { global: { stubs: allStubs } })
+    await flushPromises()
+    await findButton(wrapper, '发布新版本')!.trigger('click')
+    await flushPromises()
+
+    // 选择器建好后自动选中新物料，这时物料列表还没刷新回来，查不到基本单位。
+    await wrapper.findAll('select')[1]!.setValue('SKU-NEW')
+    await flushPromises()
+    const uomSelect = () => wrapper.findAll('select')[2]!.element as HTMLSelectElement
+    expect(uomSelect().value).toBe('')
+
+    createdSkus.value = [{ code: 'SKU-NEW', displayName: '新主控板', baseUomCode: 'SET' }]
+    await flushPromises()
+    expect(uomSelect().value).toBe('SET')
+  })
+
+  it('打开向导：生效日默认今天', async () => {
+    const wrapper = mount(EbomPage, { global: { stubs: allStubs } })
+    await flushPromises()
+    await findButton(wrapper, '发布新版本')!.trigger('click')
+    await flushPromises()
+
+    const d = new Date()
+    const ymd = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+    expect((wrapper.findAll('input[type="date"]')[0]!.element as HTMLInputElement).value).toBe(ymd)
+  })
+
+  it('自引用拦截：组件等于父项时点发布出现专属提示且不发请求', async () => {
+    const wrapper = mount(EbomPage, { global: { stubs: allStubs } })
+    await flushPromises()
+    await findButton(wrapper, '发布新版本')!.trigger('click')
+    await flushPromises()
+
+    const selects = wrapper.findAll('select')
+    await selects[0]!.setValue('SKU-1') // 父项
+    await wrapper.find('#ebom-rev').setValue('B')
+    const formSelects = wrapper.findAll('select')
+    await formSelects[1]!.setValue('SKU-1') // 组件 = 父项
+    await wrapper.find('input[type="number"]').setValue('1')
+    await flushPromises()
+
+    await wrapper.find('form').trigger('submit')
+    await flushPromises()
+
+    expect(wrapper.text()).toContain('组件不能与父项')
+    expect(stub.releaseEbom).not.toHaveBeenCalled()
+  })
+
+  it('查看：行「查看」拉 get-by-id 渲染真实组件行（组件名/数量/单位）', async () => {
+    stub.fetchEbomDetail.mockResolvedValue({
+      bomCode: 'EBOM-1',
+      revision: 'A',
+      parentItemCode: 'SKU-1',
+      status: 'Published',
+      lines: [{ childItemCode: 'SKU-2', quantity: 3, unitOfMeasureCode: 'PCS' }],
+    })
+    const wrapper = mount(EbomPage, { global: { stubs: allStubs } })
+    await flushPromises()
+
+    await findButton(wrapper, '查看')!.trigger('click')
+    await flushPromises()
+
+    expect(stub.fetchEbomDetail).toHaveBeenCalledWith('EBOM-1', 'A')
+    const sheet = wrapper.find('[data-testid="sheet"]')
+    expect(sheet.text()).toContain('主控板')
+    expect(sheet.text()).toContain('SKU-2')
+    expect(sheet.text()).toContain('个')
+    expect(sheet.text()).not.toContain('待后端')
+  })
+})

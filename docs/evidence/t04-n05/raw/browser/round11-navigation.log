@@ -1,0 +1,121 @@
+[p1 "NvUI · 项目清单" | space "nerv-ui N05 feedback 20261024"(15): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    text "片刻回响"
+    button "切换明暗" [ref=295, loc=css:button[aria-label="切换明暗"]]
+      text "浅色"
+  container [ref=296]
+    container
+      paragraph
+        text "日常的小事，也有温柔的回应"
+      heading
+        text "片刻回响"
+      container "演示入口"
+        anchor [ref=297, loc=href:/#mobile, url=http://127.0.0.1:4185/#mobile]
+          text "随行手记"
+        anchor [ref=298, loc=href:/#mobile-input, url=http://127.0.0.1:4185/#mobile-input]
+          text "随心记录"
+        anchor [ref=299, loc=href:/#mobile-overlays, url=http://127.0.0.1:4185/#mobile-overlays]
+          text "片刻安排"
+        anchor [ref=300, loc=href:/#mobile-lists, url=http://127.0.0.1:4185/#mobile-lists]
+          text "翻阅时光"
+        anchor [ref=301, loc=href:/#desktop, url=http://127.0.0.1:4185/#desktop]
+          text "桌面演示"
+        anchor [ref=302, loc=href:/#touch, url=http://127.0.0.1:4185/#touch]
+          text "触屏演示"
+    container "每次回响都有回应"
+      heading
+        text "每次回响都有回应"
+      container
+        svg_root
+        container
+          text "周末一起去看风景"
+          container
+            button [ref=303]
+              text "查看通知"
+            button [ref=304]
+              text "关闭通知"
+      paragraph "通知回显"
+        text "尚未查看通知"
+      container
+        container
+          text "✉"
+          paragraph
+            text "尚未收集回响"
+          button [ref=305]
+            text "收集回响"
+        paragraph "收集状态"
+          text "尚未收集 · 请求 0 次"
+      container
+        button [ref=306]
+          text "查看失败结果"
+        button [ref=307]
+          text "清空回响"
+    container "轻轻提醒一下"
+      heading
+        text "轻轻提醒一下"
+      text "回响信箱"
+      text "7"
+      text "◇"
+      text "周末"
+      button "移除标签" [ref=308, loc=css:button[aria-label="移除标签"]]
+        svg_root
+      text "已读"
+      paragraph "提醒数值"
+        text "未读 7 条"
+      paragraph "标签回显"
+        text "周末标签已保留"
+      button [ref=309]
+        text "超过上限"
+      button [ref=310]
+        text "仅显示圆点"
+      button [ref=311]
+        text "没有未读"
+      button [ref=312]
+        text "短暂提示"
+      button [ref=313]
+        text "持续等待"
+      button [ref=314]
+        text "更新为成功"
+      button [ref=315]
+        text "失败提示"
+      button [ref=316]
+        text "延长提示"
+      button [ref=317]
+        text "关闭提示"
+      paragraph "提示状态"
+        text "已关闭"
+    container "把风景收入手记"
+      heading
+        text "把风景收入手记"
+      image
+      text "AR"
+      text "旅"
+      paragraph
+        text "与林悦一起，收藏日常"
+      button [ref=318]
+        text "损坏的头像"
+      button [ref=319]
+        text "恢复头像"
+      image
+      button [ref=320]
+        text "损坏的风景"
+      button [ref=321]
+        text "换一张风景"
+      button [ref=322]
+        text "回到湖畔"
+      paragraph "进度状态"
+        text "进度未知，等待开始"
+      button [ref=323]
+        text "开始整理"
+      button [ref=324]
+        text "整理到一半"
+      button [ref=325]
+        text "整理失败"
+      button [ref=326]
+        text "完成整理"
+      button [ref=327]
+        text "未知进度"
+
+{ routes: [ { hash: '#desktop', heading: '让想法有序向前' }, { hash: '#touch', heading: '共享阅读角' }, { hash: '#mobile', heading: '周末随行' }, { hash: '#mobile-input', heading: '随心记录' }, { hash: '#mobile-overlays', heading: '片刻安排' }, { hash: '#mobile-lists', heading: '翻阅时光' } ], cleanup: [ { delay: 700, before: { pending: 1, fired: 0 }, pending: 0, fired: 0, toast: false, oldImageConnected: false, oldAvatarConnected: false, lateCallbacks: 0 }, { delay: 1200, before: { pending: 1, fired: 0 }, pending: 0, fired: 0, toast: false, oldImageConnected: false, oldAvatarConnected: false, lateCallbacks: 0 } ], PASS: true }
+

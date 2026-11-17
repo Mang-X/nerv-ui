@@ -1,0 +1,2 @@
+{ finished: true, controls: { width: 390, scrollWidth: 390, buttons: [ { text: '释放创建', x: 33, right: 123 }, { text: '创建失败', x: 131, right: 221 }, { text: '释放回执', x: 229, right: 319 }, { text: '回执失败', x: 33, right: 123 }, { text: '推进传输', x: 131, right: 221 }, { text: '本次传输失败', x: 229, right: 347 }, { text: '加入 48 份便笺', x: 33, right: 160.4609375 } ] }, final: { fixture: { counts: { create: 0, transport: 0, complete: 0, abort: 0, fail: 0 }, pending: 0, gates: [], events: [], attempts: [], receipts: [], failure: '' }, width: 2300, dpr: 2, scale: 1 } }
+

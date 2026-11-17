@@ -1,0 +1,16 @@
+{
+  "cwd": "/private/tmp/nerv-ui-t04-n04-f3/probe",
+  "command": [
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.bin/vitest",
+    "run",
+    "--config",
+    "/tmp/nerv-ui-t04-n04-f3/probe/vitest.config.mjs",
+    "swiper-public.test.ts",
+    "pull-refresh-public.test.ts",
+    "--outputFile=/tmp/nerv-ui-t04-n04-f3/raw/probe-original-head.json"
+  ],
+  "start": "2026-10-24T15:16:29.384Z",
+  "end": "2026-10-24T15:16:35.252Z",
+  "exit": 0,
+  "signal": null
+}

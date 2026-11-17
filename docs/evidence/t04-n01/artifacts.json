@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/assets/index-COjIw8zt.js",
+    "bytes": 409038,
+    "sha256": "4edb6187840b7f7014ddba2f4964aedc537ea7a3a11d26efe0a27a4f4ff35cab"
+  },
+  {
+    "path": "/assets/index-sZgCj8PD.css",
+    "bytes": 214842,
+    "sha256": "a3c6c33a1a6075265c4790dacb2cdb92a72f6f496d8bbe4274c2ca2dc39528cc"
+  },
+  {
+    "path": "/index.html",
+    "bytes": 427,
+    "sha256": "a4ed2b5da768255dbb675e8a8f1ab7110a8f77fb69682996a286340d976a1f8f"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "name": "@nerv-iip/business-pda",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev --host 127.0.0.1 --port 5126",
+    "build": "vue-tsc --noEmit -p tsconfig.json && vp build .",
+    "test": "vp test run src",
+    "e2e": "playwright test",
+    "e2e:live": "playwright test --config playwright.live.config.ts",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "cap:sync": "vp build . && cap sync android",
+    "cap:open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.4.2",
+    "@capacitor/app": "8.1.0",
+    "@capacitor/cli": "8.4.2",
+    "@capacitor/core": "8.4.2",
+    "@capacitor/keyboard": "8.0.5",
+    "@capacitor/status-bar": "8.0.2",
+    "@lucide/vue": "1.24.0",
+    "@nerv-iip/api-client": "workspace:*",
+    "@nerv-iip/auth": "workspace:*",
+    "@nerv-iip/business-core": "workspace:*",
+    "@nerv-iip/ui": "workspace:*",
+    "@nerv-iip/ui-mobile": "workspace:*",
+    "@pinia/colada": "1.4.2",
+    "@vueuse/core": "14.3.0",
+    "pinia": "4.0.2",
+    "vue": "3.5.39",
+    "vue-router": "5.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@vitejs/plugin-vue": "6.0.8",
+    "@vue/test-utils": "2.4.11",
+    "jsdom": "29.1.1",
+    "vitest": "4.1.10"
+  }
+}

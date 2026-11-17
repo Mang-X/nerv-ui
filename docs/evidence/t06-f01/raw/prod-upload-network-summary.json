@@ -1,0 +1,115 @@
+{
+  "requests": [
+    {
+      "url": "http://127.0.0.1:5197/",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-DftmXO1S.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/rolldown-runtime-EyZ2wyi3.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-CNz5veZP.css",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/files/quality-evidence.svg",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-DftmXO1S.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/rolldown-runtime-EyZ2wyi3.js",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-CNz5veZP.css",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:5197/files/quality-evidence.svg",
+      "method": "GET"
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:5197/",
+      "status": 200,
+      "mimeType": "text/html"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/rolldown-runtime-EyZ2wyi3.js",
+      "status": 200,
+      "mimeType": "text/javascript"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-CNz5veZP.css",
+      "status": 200,
+      "mimeType": "text/css"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-DftmXO1S.js",
+      "status": 200,
+      "mimeType": "text/javascript"
+    },
+    {
+      "url": "http://127.0.0.1:5197/files/quality-evidence.svg",
+      "status": 200,
+      "mimeType": "image/svg+xml"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "mimeType": "font/woff2"
+    },
+    {
+      "url": "http://127.0.0.1:5197/",
+      "status": 200,
+      "mimeType": "text/html"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-CNz5veZP.css",
+      "status": 200,
+      "mimeType": "text/css"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/rolldown-runtime-EyZ2wyi3.js",
+      "status": 200,
+      "mimeType": "text/javascript"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/index-DftmXO1S.js",
+      "status": 200,
+      "mimeType": "text/javascript"
+    },
+    {
+      "url": "http://127.0.0.1:5197/files/quality-evidence.svg",
+      "status": 200,
+      "mimeType": "image/svg+xml"
+    },
+    {
+      "url": "http://127.0.0.1:5197/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "mimeType": "font/woff2"
+    }
+  ],
+  "writes": []
+}

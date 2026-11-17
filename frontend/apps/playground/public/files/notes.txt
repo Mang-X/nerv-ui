@@ -1,0 +1,2 @@
+Local collection notes.
+These controlled bytes demonstrate an unsupported text source, not a rendered document.

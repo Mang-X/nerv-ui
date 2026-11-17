@@ -1,0 +1,28 @@
+{
+  "ui": {
+    "success": true,
+    "numTotalTests": 253,
+    "numPassedTests": 253,
+    "numFailedTests": 0,
+    "numRuntimeErrorTestSuites": "UNKNOWN - field absent",
+    "unhandledErrors": "UNKNOWN - field absent",
+    "testNames": [
+      "bounds flat DOM with real virtual rows and reaches both ends at the rendered stride",
+      "preserves identity selection zero unknown groups and closes preview for scroll replacement mode and disabled hover",
+      "invalidates same key new content and isolates two instances and unmount",
+      "keeps group namespaces separate and updates keyed content through reorder deletion and short flat replacement"
+    ]
+  },
+  "host": {
+    "success": true,
+    "numTotalTests": 107,
+    "numPassedTests": 107,
+    "numFailedTests": 0,
+    "numRuntimeErrorTestSuites": "UNKNOWN - field absent",
+    "unhandledErrors": "UNKNOWN - field absent",
+    "testNames": [
+      "shows two neutral sources and only commits the current delayed preview after replacement mode scroll and unmount",
+      "rejects stale success and failure even when the loader ignores cancellation"
+    ]
+  }
+}

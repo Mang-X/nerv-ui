@@ -1,0 +1,22 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition",
+  "command": [
+    "node",
+    "/Users/mang/.cache/node/corepack/v1/pnpm/11.22.0/bin/pnpm.cjs",
+    "-C",
+    "frontend",
+    "exec",
+    "vp",
+    "fmt",
+    "--write",
+    "packages/ui/src/components/pc/chart/NvLineChart.vue",
+    "packages/ui/src/components/pc/chart/index.ts",
+    "packages/ui/src/components/pc/chart/LineAnnotations.test.ts",
+    "apps/playground/src/LineAnnotationsDemo.vue",
+    "apps/playground/src/LineAnnotationsDemo.test.ts",
+    "apps/playground/src/App.vue",
+    "apps/design-system/docs/.vitepress/config.mts"
+  ],
+  "exitCode": 0,
+  "runtimeUnhandled": "UNKNOWN unless explicit runner report states count; inspect full log"
+}

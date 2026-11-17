@@ -1,0 +1,5 @@
+import fs from 'node:fs'
+import assert from 'node:assert/strict'
+const out='/tmp/nerv-ui-t05-a07/handoff/raw',result=[]
+for(const lane of ['ui','mobile','host','docs-ui','docs-mobile']){const j=JSON.parse(fs.readFileSync(out+'/'+lane+'.json')),e=JSON.parse(fs.readFileSync(out+'/'+lane+'.exit.json'));assert.equal(e.exit,0);assert.equal(j.success,true);for(const k of ['numFailedTests','numPendingTests','numTodoTests','numFailedTestSuites'])assert.equal(j[k],0);for(const s of j.testResults){assert.equal(s.status,'passed');for(const a of s.assertionResults)assert.equal(a.status,'passed')};const l=fs.readFileSync(out+'/'+lane+'.log','utf8');assert(!/Unhandled Errors|Unhandled Rejection|uncaughtException/i.test(l));result.push({lane,exit:e.exit,passed:j.numPassedTests,failed:j.numFailedTests,pending:j.numPendingTests,todo:j.numTodoTests,suites:j.numPassedTestSuites,unhandledField:Object.hasOwn(j,'numUnhandledErrors')?j.numUnhandledErrors:'absent',unhandledLogMarkers:false})}
+fs.writeFileSync(out+'/validation.json',JSON.stringify(result,null,2));console.log(result)

@@ -1,0 +1,794 @@
+[
+  {
+    "label": "empty before picker",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "chooser file selected, before upload",
+    "counts": "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "paused after 25 percent",
+    "counts": "create 1 · transport 1 · complete 0 · abort 1 · fail 0 · pending 0",
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "injected failure",
+    "counts": "create 1 · transport 2 · complete 0 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "failed",
+        "text": "notes.txt已暂停File - 112 B本地传输暂时中断，请重试。移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "retry completed",
+    "counts": "create 1 · transport 3 · complete 1 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "completed",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件notes.txt local-memory-1",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "same file reselection completed snapshot has two ids",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "completed",
+        "text": "notes.txt已完成File - 112 B移除 notes.txt"
+      },
+      {
+        "status": "completed",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件notes.txt local-memory-1notes.txt local-memory-2",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "removed completed receipt is replaced",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "completed",
+        "text": "notes.txt已完成File - 112 B移除 notes.txt"
+      },
+      {
+        "status": "completed",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件notes.txt local-memory-2",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "clear explicitly cleared receipts",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "synthetic DataTransfer real drop handler limits",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "rejected",
+        "text": "wrong.jpg已拒绝Image - 3 B文件类型不符合要求。移除 wrong.jpg"
+      },
+      {
+        "status": "rejected",
+        "text": "too-large.txt已拒绝File - 32.0 KB文件超过最大大小限制。移除 too-large.txt"
+      },
+      {
+        "status": "queued",
+        "text": "drop.txt待上传File - 2 B移除 drop.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [
+      "wrong.jpg：文件类型不符合要求。；too-large.txt：文件超过最大大小限制。"
+    ],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        }
+      ],
+      "revoked": [],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "maxFiles one accepts one and rejects adjacent",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "one.txt待上传File - 1 B移除 one.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [
+      "two.txt：已达到最大文件数量限制。"
+    ],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "variant default, actual thumbnail decode",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.png待上传Image - 10.6 KB移除 garden.png"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "variant queue, actual thumbnail decode",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.png待上传Image - 10.6 KB移除 garden.png"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+        "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "variant compact, actual thumbnail decode",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.pngImage · 10.6 KB待上传移除 garden.png"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+        "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+        "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "variant avatar, actual thumbnail decode",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+        "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+        "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+        "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "variant gallery, actual thumbnail decode",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.png移除 garden.pnggarden.png 待上传"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+        "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+        "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+        "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+        "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "variant table, actual thumbnail decode",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.pngImage10.6 KB移除 garden.png"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3a1b1a22-2f4c-4cbe-bee9-e798565efd83",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+        "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+        "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+        "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+        "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+        "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "variant image, actual thumbnail decode",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.png移除 garden.pnggarden.png 待上传"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3a1b1a22-2f4c-4cbe-bee9-e798565efd83",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/5bd0018b-b563-441e-a2a0-0b5fb70943e1",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+        "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+        "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+        "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+        "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+        "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d",
+        "blob:http://127.0.0.1:5197/3a1b1a22-2f4c-4cbe-bee9-e798565efd83"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "48 notes initial virtual window",
+    "scroll": 0,
+    "height": 384,
+    "total": 4800,
+    "rows": [
+      "moment-01.txt待上传File - 13 B移除 moment-01.txt",
+      "moment-02.txt待上传File - 13 B移除 moment-02.txt",
+      "moment-03.txt待上传File - 13 B移除 moment-03.txt",
+      "moment-04.txt待上传File - 13 B移除 moment-04.txt",
+      "moment-05.txt待上传File - 13 B移除 moment-05.txt",
+      "moment-06.txt待上传File - 13 B移除 moment-06.txt",
+      "moment-07.txt待上传File - 13 B移除 moment-07.txt",
+      "moment-08.txt待上传File - 13 B移除 moment-08.txt",
+      "moment-09.txt待上传File - 13 B移除 moment-09.txt",
+      "moment-10.txt待上传File - 14 B移除 moment-10.txt",
+      "moment-11.txt待上传File - 14 B移除 moment-11.txt",
+      "moment-12.txt待上传File - 14 B移除 moment-12.txt",
+      "moment-13.txt待上传File - 14 B移除 moment-13.txt"
+    ],
+    "pageWidth": 1366,
+    "width": 1366
+  },
+  {
+    "label": "virtual scrolled",
+    "data": {
+      "scroll": 3300,
+      "rows": [
+        "moment-27.txt待上传File - 14 B移除 moment-27.txt",
+        "moment-28.txt待上传File - 14 B移除 moment-28.txt",
+        "moment-29.txt待上传File - 14 B移除 moment-29.txt",
+        "moment-30.txt待上传File - 14 B移除 moment-30.txt",
+        "moment-31.txt待上传File - 14 B移除 moment-31.txt",
+        "moment-32.txt待上传File - 14 B移除 moment-32.txt",
+        "moment-33.txt待上传File - 14 B移除 moment-33.txt",
+        "moment-34.txt待上传File - 14 B移除 moment-34.txt",
+        "moment-35.txt待上传File - 14 B移除 moment-35.txt",
+        "moment-36.txt待上传File - 14 B移除 moment-36.txt",
+        "moment-37.txt待上传File - 14 B移除 moment-37.txt",
+        "moment-38.txt待上传File - 14 B移除 moment-38.txt",
+        "moment-39.txt待上传File - 14 B移除 moment-39.txt",
+        "moment-40.txt待上传File - 14 B移除 moment-40.txt",
+        "moment-41.txt待上传File - 14 B移除 moment-41.txt",
+        "moment-42.txt待上传File - 14 B移除 moment-42.txt",
+        "moment-43.txt待上传File - 14 B移除 moment-43.txt",
+        "moment-44.txt待上传File - 14 B移除 moment-44.txt",
+        "moment-45.txt待上传File - 14 B移除 moment-45.txt",
+        "moment-46.txt待上传File - 14 B移除 moment-46.txt"
+      ]
+    }
+  },
+  {
+    "label": "removed a real virtual row",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [
+      {
+        "status": "queued",
+        "text": "moment-31.txt待上传File - 14 B移除 moment-31.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-32.txt待上传File - 14 B移除 moment-32.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-33.txt待上传File - 14 B移除 moment-33.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-34.txt待上传File - 14 B移除 moment-34.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-35.txt待上传File - 14 B移除 moment-35.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-36.txt待上传File - 14 B移除 moment-36.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-37.txt待上传File - 14 B移除 moment-37.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-38.txt待上传File - 14 B移除 moment-38.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-39.txt待上传File - 14 B移除 moment-39.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-40.txt待上传File - 14 B移除 moment-40.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-41.txt待上传File - 14 B移除 moment-41.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-42.txt待上传File - 14 B移除 moment-42.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-43.txt待上传File - 14 B移除 moment-43.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-44.txt待上传File - 14 B移除 moment-44.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-45.txt待上传File - 14 B移除 moment-45.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-46.txt待上传File - 14 B移除 moment-46.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-47.txt待上传File - 14 B移除 moment-47.txt"
+      },
+      {
+        "status": "queued",
+        "text": "moment-48.txt待上传File - 14 B移除 moment-48.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3a1b1a22-2f4c-4cbe-bee9-e798565efd83",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/5bd0018b-b563-441e-a2a0-0b5fb70943e1",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+        "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+        "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+        "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+        "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+        "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d",
+        "blob:http://127.0.0.1:5197/3a1b1a22-2f4c-4cbe-bee9-e798565efd83",
+        "blob:http://127.0.0.1:5197/5bd0018b-b563-441e-a2a0-0b5fb70943e1"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  },
+  {
+    "label": "final clear",
+    "counts": "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0",
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "alerts": [],
+    "audit": {
+      "urls": [
+        {
+          "url": "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+          "type": "image/jpeg",
+          "size": 3
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/3a1b1a22-2f4c-4cbe-bee9-e798565efd83",
+          "type": "image/png",
+          "size": 10878
+        },
+        {
+          "url": "blob:http://127.0.0.1:5197/5bd0018b-b563-441e-a2a0-0b5fb70943e1",
+          "type": "image/png",
+          "size": 10878
+        }
+      ],
+      "revoked": [
+        "blob:http://127.0.0.1:5197/405d167a-1f13-45a3-ac59-7990629711f4",
+        "blob:http://127.0.0.1:5197/c2736b1f-1e65-4aac-910e-adb68225f324",
+        "blob:http://127.0.0.1:5197/dded8cc4-b322-455c-9683-687b6625fd58",
+        "blob:http://127.0.0.1:5197/ea2129b5-4286-45f7-b0f3-546423b244f8",
+        "blob:http://127.0.0.1:5197/dc45e2d0-a9df-4be1-ad8b-0c87f21d537f",
+        "blob:http://127.0.0.1:5197/2538d6a7-5412-4dcd-b956-ed39900f716d",
+        "blob:http://127.0.0.1:5197/3a1b1a22-2f4c-4cbe-bee9-e798565efd83",
+        "blob:http://127.0.0.1:5197/5bd0018b-b563-441e-a2a0-0b5fb70943e1"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  }
+]

@@ -1,0 +1,796 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleEngineeringChangeImpactNode,
+  BusinessConsoleEngineeringChangeImpactRisk,
+  BusinessConsoleEngineeringChangeItem,
+  BusinessConsoleReleaseEngineeringChangeRequest,
+} from '@nerv-iip/api-client'
+import type { NvDataTableColumn, NvMetricStripCell, StatusTone } from '@nerv-iip/ui'
+import BusinessDocumentApprovalPanel from '@/components/business/BusinessDocumentApprovalPanel.vue'
+import FormSectionTitle from '@/components/masterData/FormSectionTitle.vue'
+import {
+  useEngineeringChanges,
+  useEngineeringProductionVersions,
+} from '@/composables/useProductEngineering'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import {
+  ENGINEERING_CHANGE_ORDER_DOCUMENT_TYPE,
+  ENGINEERING_CHANGE_ORDER_TEMPLATE_CODE,
+} from '@/data/approvalReference'
+import {
+  NvButton,
+  NvDataTable,
+  NvDatePicker,
+  NvDialog,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogFooter,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvDialogTrigger,
+  NvEntityPicker,
+  NvField,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvInput,
+  NvMetricStrip,
+  NvPageHeader,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  NvSheet,
+  NvSheetContent,
+  NvSheetDescription,
+  NvSheetHeader,
+  NvSheetTitle,
+  NvSpinner,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { NetworkIcon, PlusIcon, RefreshCwIcon, Trash2Icon } from '@lucide/vue'
+import { computed, reactive, ref, shallowRef, watch } from 'vue'
+import { RouterLink } from 'vue-router'
+import { formatDate, today } from '@/utils/format'
+import {
+  inlineErrorMessage,
+  notifyError,
+  notifyOperationFailure,
+  notifySuccess,
+} from '@/utils/notify'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '工程变更',
+    requiredPermissions: ['business.engineering.changes.read'],
+  },
+})
+
+const {
+  changes,
+  changesError,
+  changesPending,
+  changesTotal,
+  filters,
+  refresh,
+  releaseChange,
+  releasePending,
+  previewImpact,
+  previewPending,
+  impactPreview,
+  clearImpactPreview,
+  fetchChangeDetail,
+} = useEngineeringChanges()
+
+// 受影响版本的对象种类（versionKind）。后端按字符串接收，这里给贴切的工程对象枚举。
+const VERSION_KIND_OPTIONS = [
+  { label: '设计 BOM（EBOM）', value: 'EngineeringBom' },
+  { label: '制造 BOM（MBOM）', value: 'ManufacturingBom' },
+  { label: '工艺路线', value: 'Routing' },
+  { label: '生产版本', value: 'ProductionVersion' },
+]
+function versionKindLabel(kind?: string | null) {
+  return VERSION_KIND_OPTIONS.find((o) => o.value === kind)?.label ?? (kind || '—')
+}
+
+// 受影响版本的 versionId 是版本主键。四类对象里只有「生产版本」的读面直接暴露该主键
+// （ProductionVersionItem.productionVersionId），可以做成选择器；EBOM / MBOM / 工艺路线的
+// 列表读面只给 bomCode + revision、拿不到版本主键，暂时保留手工录入（后端缺口已登记）。
+const {
+  productionVersions,
+  productionVersionsPending,
+  filters: productionVersionFilters,
+} = useEngineeringProductionVersions()
+productionVersionFilters.take = 500
+const productionVersionOptions = computed(() =>
+  productionVersions.value
+    .filter((row) => !!row.productionVersionId)
+    .map((row) => ({
+      value: row.productionVersionId as string,
+      label: row.validFrom
+        ? `${row.skuCode ?? '未知物料'} · 生效 ${row.validFrom.slice(0, 10)}`
+        : (row.skuCode ?? '未知物料'),
+      ...(row.isDefault ? { hint: '默认版本' } : {}),
+    })),
+)
+// 生产版本读不到名称（无权限、清单截断或仍在加载）时的中性说法，不回吐版本主键。
+const UNKNOWN_VERSION_LABEL = '暂无法显示版本名称'
+/**
+ * 查看抽屉里受影响版本的说法。生产版本存的是版本主键，换成「物料 · 生效日」再上屏；
+ * 其余三类是用户手工录入的版本标识，原样显示。
+ */
+function affectedVersionLabel(kind?: string | null, versionId?: string | null) {
+  if (!versionId) return '—'
+  if (kind !== 'ProductionVersion') return versionId
+  return (
+    productionVersionOptions.value.find((option) => option.value === versionId)?.label ??
+    UNKNOWN_VERSION_LABEL
+  )
+}
+function affectedVersionOptions(kind: string, current: string) {
+  if (kind !== 'ProductionVersion') return []
+  const options = productionVersionOptions.value
+  const trimmed = current.trim()
+  if (trimmed && !options.some((option) => option.value === trimmed)) {
+    return [{ value: trimmed, label: UNKNOWN_VERSION_LABEL }, ...options]
+  }
+  return options
+}
+
+// 后端是一步发布（Open→Approve→Release），变更落库即为已发布状态——不假造草稿/待审。
+const STATUS_FILTER_OPTIONS = [
+  { label: '全部状态', value: 'all' },
+  { label: '已发布', value: 'Released' },
+]
+const statusFilter = ref('all')
+watch(statusFilter, (value) => {
+  filters.status = value === 'all' ? undefined : value
+})
+
+const page = ref(1)
+const pageSize = ref('10')
+const pageSizeNumber = computed(() => Number(pageSize.value) || 10)
+watch(
+  [page, pageSize],
+  () => {
+    filters.skip = (page.value - 1) * pageSizeNumber.value
+    filters.take = pageSizeNumber.value
+  },
+  { immediate: true },
+)
+
+// 工程变更状态词表：后端主链是一步发布（Open→Approve→Release），但历史/导入数据里
+// 仍会出现 Draft / Scheduled 这类生命周期取值，缺词就会把英文码印到「状态」列上。
+const ECO_STATUS_DISPLAY: Record<string, { label: string; tone: StatusTone }> = {
+  draft: { label: '草稿', tone: 'warning' },
+  open: { label: '待处理', tone: 'warning' },
+  submitted: { label: '已提交', tone: 'warning' },
+  approved: { label: '已批准', tone: 'info' },
+  scheduled: { label: '待生效', tone: 'info' },
+  released: { label: '已发布', tone: 'success' },
+  published: { label: '已发布', tone: 'success' },
+  effective: { label: '已生效', tone: 'success' },
+  archived: { label: '已归档', tone: 'neutral' },
+  cancelled: { label: '已取消', tone: 'neutral' },
+  rejected: { label: '已驳回', tone: 'danger' },
+}
+
+function ecoStatus(status?: string | null): { label: string; tone: StatusTone } {
+  const raw = (status ?? '').trim()
+  if (!raw) return { label: '已发布', tone: 'success' }
+  const hit = ECO_STATUS_DISPLAY[raw.toLowerCase().replace(/[-_\s]/g, '')]
+  if (hit) return hit
+  if (import.meta.env.DEV) console.warn(`[工程变更] 词表缺失: ${raw}，请补 ECO_STATUS_DISPLAY`)
+  return { label: raw, tone: 'neutral' }
+}
+
+const releasedCount = computed(() => changes.value.length)
+const affectedTotal = computed(() =>
+  changes.value.reduce((sum, c) => sum + (c.affectedVersions?.length ?? 0), 0),
+)
+
+const ecoCells = computed<NvMetricStripCell[]>(() => [
+  {
+    key: 'released',
+    label: '已发布变更',
+    value: releasedCount.value,
+    unit: '个',
+    meta: '当前筛选范围内已生效',
+  },
+  {
+    key: 'affected',
+    label: '受影响版本',
+    value: affectedTotal.value,
+    unit: '个',
+    meta: '这些变更累计触及的 BOM / 路线版本',
+  },
+])
+
+const listErrorMessage = computed(() => inlineErrorMessage(changesError.value))
+
+const columns: NvDataTableColumn<BusinessConsoleEngineeringChangeItem>[] = [
+  { key: 'changeNumber', header: '变更号', cellClass: 'font-medium' },
+  { key: 'reason', header: '变更原因' },
+  { key: 'status', header: '状态', width: 'w-24' },
+  { key: 'effectiveDate', header: '生效日', width: 'w-28' },
+  { key: 'affected', header: '受影响版本', width: 'w-28', align: 'end' },
+  { key: 'actions', header: '操作', align: 'end', width: 'w-20' },
+]
+const impactColumns: NvDataTableColumn<BusinessConsoleEngineeringChangeImpactNode>[] = [
+  { key: 'nodeType', header: '对象', width: 'w-36' },
+  { key: 'displayName', header: '影响节点', cellClass: 'font-medium' },
+  { key: 'impactLevel', header: '级别', width: 'w-28' },
+  { key: 'skuCode', header: 'SKU', width: 'w-32' },
+  { key: 'route', header: '跳转', align: 'end', width: 'w-24' },
+]
+const riskColumns: NvDataTableColumn<BusinessConsoleEngineeringChangeImpactRisk>[] = [
+  { key: 'severity', header: '级别', width: 'w-24' },
+  { key: 'message', header: '风险提示', accessor: (row) => riskMessage(row) },
+]
+
+// ── 发布变更向导（一步发布，非多步审批）────────────────────────
+interface AffectedRow {
+  versionKind: string
+  versionId: string
+}
+interface EcoForm {
+  changeNumber: string
+  reason: string
+  approvalReferenceId: string
+  effectiveDate: string | null
+  affectedVersions: AffectedRow[]
+}
+function blankAffected(): AffectedRow {
+  return { versionKind: '', versionId: '' }
+}
+function blankForm(): EcoForm {
+  return {
+    changeNumber: '',
+    reason: '',
+    approvalReferenceId: '',
+    effectiveDate: today(),
+    affectedVersions: [blankAffected()],
+  }
+}
+
+const formOpen = shallowRef(false)
+const showErrors = ref(false)
+const form = reactive<EcoForm>(blankForm())
+
+// 对象种类是上游：换了种类，原来那条版本标识必然作废，清空重选。
+// 只在行数不变时比对，避免增删行导致的索引位移误清。
+watch(
+  () => form.affectedVersions.map((row) => row.versionKind),
+  (kinds, previousKinds) => {
+    if (!previousKinds || previousKinds.length !== kinds.length) return
+    kinds.forEach((kind, index) => {
+      if (previousKinds[index] !== kind) form.affectedVersions[index].versionId = ''
+    })
+  },
+)
+
+const reasonValid = computed(() => form.reason.trim().length > 0)
+const changeNumberValid = computed(() => form.changeNumber.trim().length > 0)
+const approvalValid = computed(() => form.approvalReferenceId.trim().length > 0)
+const effectiveValid = computed(() => !!form.effectiveDate)
+function affectedValid(row: AffectedRow) {
+  return row.versionKind.trim().length > 0 && row.versionId.trim().length > 0
+}
+const affectedListValid = computed(
+  () => form.affectedVersions.length > 0 && form.affectedVersions.every(affectedValid),
+)
+const canSubmit = computed(
+  () =>
+    changeNumberValid.value &&
+    reasonValid.value &&
+    approvalValid.value &&
+    effectiveValid.value &&
+    affectedListValid.value,
+)
+const canPreview = computed(() => effectiveValid.value && affectedListValid.value)
+const impactNodes = computed(() => impactPreview.value?.nodes ?? [])
+const impactRisks = computed(() => impactPreview.value?.risks ?? [])
+
+function openCreate() {
+  Object.assign(form, blankForm())
+  clearImpactPreview()
+  showErrors.value = false
+  formOpen.value = true
+}
+function addAffected() {
+  form.affectedVersions.push(blankAffected())
+}
+function removeAffected(index: number) {
+  if (form.affectedVersions.length <= 1) return
+  form.affectedVersions.splice(index, 1)
+}
+
+async function previewFormImpact() {
+  if (!canPreview.value) {
+    showErrors.value = true
+    return
+  }
+  try {
+    await previewImpact({
+      organizationId: filters.organizationId,
+      environmentId: filters.environmentId,
+      effectiveDate: form.effectiveDate ?? undefined,
+      affectedVersions: form.affectedVersions.map((row) => ({
+        versionKind: row.versionKind.trim(),
+        versionId: row.versionId.trim(),
+      })),
+    })
+  } catch (error) {
+    notifyOperationFailure('预览变更影响失败', error, '预览变更影响失败，请稍后重试。')
+  }
+}
+
+async function submitForm() {
+  if (!canSubmit.value) {
+    showErrors.value = true
+    return
+  }
+  const body: BusinessConsoleReleaseEngineeringChangeRequest = {
+    organizationId: filters.organizationId,
+    environmentId: filters.environmentId,
+    changeNumber: form.changeNumber.trim(),
+    reason: form.reason.trim(),
+    approvalReferenceId: form.approvalReferenceId.trim(),
+    effectiveDate: form.effectiveDate ?? undefined,
+    affectedVersions: form.affectedVersions.map((row) => ({
+      versionKind: row.versionKind.trim(),
+      versionId: row.versionId.trim(),
+    })),
+  }
+  try {
+    await releaseChange(body)
+    notifySuccess(`已发布工程变更，受影响版本 ${form.affectedVersions.length} 个。`)
+    showErrors.value = false
+    formOpen.value = false
+  } catch (error) {
+    notifyOperationFailure('发布工程变更失败', error, '发布工程变更失败，请稍后重试。')
+  }
+}
+
+// ── 查看变更明细（get-by-id 看受影响版本）──────────────────────
+const viewOpen = shallowRef(false)
+const viewTarget = shallowRef<BusinessConsoleEngineeringChangeItem | null>(null)
+const detailPending = ref(false)
+const viewAffected = computed(() => viewTarget.value?.affectedVersions ?? [])
+async function openView(row: BusinessConsoleEngineeringChangeItem) {
+  viewTarget.value = row
+  viewOpen.value = true
+  if (!row.changeNumber) return
+  detailPending.value = true
+  try {
+    const detail = await fetchChangeDetail(row.changeNumber)
+    if (detail) viewTarget.value = detail
+  } catch (error) {
+    // 结果一律 toast；不在抽屉里留常驻错误条。
+    notifyError(error, '加载受影响版本失败，请稍后重试。')
+  } finally {
+    detailPending.value = false
+  }
+}
+
+function impactNodeTypeLabel(type?: string | null) {
+  const labels: Record<string, string> = {
+    'engineering-bom': 'EBOM',
+    'manufacturing-bom': 'MBOM',
+    routing: '工艺路线',
+    'production-version': '生产版本',
+    'mrp-candidate': 'MRP 候选',
+    'mes-work-order-candidate': 'MES 工单',
+    'aps-plan-candidate': 'APS 排程',
+  }
+  return labels[(type ?? '').toLowerCase()] ?? (type || '影响节点')
+}
+
+function impactLevelTone(level?: string | null): StatusTone {
+  const normalized = (level ?? '').toLowerCase()
+  if (normalized === 'direct') return 'danger'
+  if (normalized === 'derived') return 'warning'
+  if (normalized === 'downstream' || normalized === 'candidate') return 'info'
+  return 'info'
+}
+
+function impactLevelLabel(level?: string | null) {
+  const labels: Record<string, string> = {
+    direct: '直接',
+    derived: '派生',
+    downstream: '下游',
+    candidate: '候选',
+  }
+  return labels[(level ?? '').toLowerCase()] ?? (level || '候选')
+}
+
+function riskSeverityLabel(severity?: string | null) {
+  const labels: Record<string, string> = { critical: '严重', error: '严重', warning: '警告' }
+  return labels[(severity ?? '').toLowerCase()] ?? '提示'
+}
+
+// 影响预览的风险说明有三条是英文原文，按风险码给中文说法；其余沿用服务端给的中文。
+const RISK_MESSAGES: Record<string, string> = {
+  'unsupported-affected-version': '该类受影响版本暂不支持影响预览。',
+  'invalid-production-version-id': '生产版本标识无效，请重新选择生产版本。',
+  'production-version-not-found': '找不到该生产版本，请确认版本是否存在。',
+}
+function riskMessage(risk: BusinessConsoleEngineeringChangeImpactRisk) {
+  return RISK_MESSAGES[risk.code ?? ''] ?? risk.message ?? '—'
+}
+
+function riskTone(severity?: string | null): StatusTone {
+  const normalized = (severity ?? '').toLowerCase()
+  if (normalized === 'error' || normalized === 'critical') return 'danger'
+  if (normalized === 'warning') return 'warning'
+  return 'info'
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="工程变更"
+      :breadcrumbs="[{ label: '产品工程' }]"
+      :count="`${changesTotal} 个变更`"
+    >
+      <template #actions>
+        <NvButton
+          size="sm"
+          variant="outline"
+          type="button"
+          :disabled="changesPending"
+          @click="refresh"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+        <NvDialog v-model:open="formOpen">
+          <NvDialogTrigger as-child>
+            <NvButton size="sm" type="button" @click="openCreate">
+              <PlusIcon aria-hidden="true" />
+              发布变更
+            </NvButton>
+          </NvDialogTrigger>
+          <NvDialogContent class="sm:max-w-2xl">
+            <NvDialogHeader>
+              <NvDialogTitle>发布工程变更</NvDialogTitle>
+              <!-- 说明不上界面：仅供读屏播报。 -->
+              <NvDialogDescription class="sr-only">
+                填写变更原因、审批链、生效日与受影响版本。
+              </NvDialogDescription>
+            </NvDialogHeader>
+            <form class="grid gap-5" @submit.prevent="submitForm">
+              <p v-if="showErrors && !canSubmit" class="text-sm text-destructive" role="alert">
+                请完整填写带 * 的必填项，并确保至少一条受影响版本填好对象种类与版本。
+              </p>
+              <p
+                v-if="showErrors && !changeNumberValid"
+                class="text-sm text-destructive"
+                role="alert"
+              >
+                请先填写变更号，审批链必须绑定到同一个 ECO 单据。
+              </p>
+
+              <FormSectionTitle>变更信息</FormSectionTitle>
+              <NvFieldGroup class="grid gap-3">
+                <NvField :data-invalid="showErrors && !changeNumberValid">
+                  <NvFieldLabel for="eco-change-number"
+                    >变更号 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput
+                    id="eco-change-number"
+                    v-model="form.changeNumber"
+                    placeholder="例如 ECO-20260801-000001"
+                  />
+                  <p class="text-xs text-muted-foreground">
+                    先确定本次 ECO 号，审批链会以此单号绑定；审批通过后再发布变更。
+                  </p>
+                </NvField>
+                <NvField :data-invalid="showErrors && !reasonValid">
+                  <NvFieldLabel for="eco-reason"
+                    >变更原因 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput
+                    id="eco-reason"
+                    v-model="form.reason"
+                    placeholder="说明本次变更的内容与原因"
+                  />
+                </NvField>
+                <BusinessDocumentApprovalPanel
+                  v-model="form.approvalReferenceId"
+                  title="变更审批链"
+                  source-service="product-engineering"
+                  :document-type="ENGINEERING_CHANGE_ORDER_DOCUMENT_TYPE"
+                  :document-id="form.changeNumber || undefined"
+                  :preferred-template-code="ENGINEERING_CHANGE_ORDER_TEMPLATE_CODE"
+                  :allow-start="true"
+                />
+                <p
+                  v-if="showErrors && !approvalValid"
+                  class="text-sm text-destructive"
+                  role="alert"
+                >
+                  请先关联一条真实审批链，再发布工程变更。
+                </p>
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <NvField :data-invalid="showErrors && !effectiveValid">
+                    <NvFieldLabel>生效日 <span class="text-destructive">*</span></NvFieldLabel>
+                    <NvDatePicker
+                      v-model="form.effectiveDate"
+                      placeholder="选择生效日"
+                      class="w-full"
+                    />
+                  </NvField>
+                </div>
+              </NvFieldGroup>
+
+              <div class="flex items-center justify-between">
+                <FormSectionTitle>受影响版本</FormSectionTitle>
+                <NvButton type="button" variant="outline" size="sm" @click="addAffected">
+                  <PlusIcon aria-hidden="true" />
+                  增加一条
+                </NvButton>
+              </div>
+              <div class="grid gap-2">
+                <div
+                  v-for="(row, index) in form.affectedVersions"
+                  :key="index"
+                  class="grid grid-cols-[12rem_1fr_auto] items-end gap-2 rounded-md border p-2"
+                >
+                  <NvField :data-invalid="showErrors && !row.versionKind.trim()">
+                    <NvFieldLabel :for="`eco-kind-${index}`"
+                      >对象种类 <span class="text-destructive">*</span></NvFieldLabel
+                    >
+                    <NvSelect v-model="row.versionKind">
+                      <NvSelectTrigger :id="`eco-kind-${index}`"
+                        ><NvSelectValue placeholder="选择对象"
+                      /></NvSelectTrigger>
+                      <NvSelectContent>
+                        <NvSelectItem
+                          v-for="o in VERSION_KIND_OPTIONS"
+                          :key="o.value"
+                          :value="o.value"
+                          >{{ o.label }}</NvSelectItem
+                        >
+                      </NvSelectContent>
+                    </NvSelect>
+                  </NvField>
+                  <NvField :data-invalid="showErrors && !row.versionId.trim()">
+                    <NvFieldLabel :for="`eco-vid-${index}`"
+                      >受影响版本 <span class="text-destructive">*</span></NvFieldLabel
+                    >
+                    <NvEntityPicker
+                      v-if="row.versionKind === 'ProductionVersion'"
+                      :id="`eco-vid-${index}`"
+                      v-model="row.versionId"
+                      :options="affectedVersionOptions(row.versionKind, row.versionId)"
+                      title="选择生产版本"
+                      placeholder="选择生产版本"
+                      empty-text="暂无生产版本，请先在工程数据维护"
+                      :loading="productionVersionsPending"
+                      aria-label="受影响版本"
+                      clearable
+                      :show-code="false"
+                    />
+                    <NvInput
+                      v-else
+                      :id="`eco-vid-${index}`"
+                      v-model="row.versionId"
+                      placeholder="受影响的版本标识"
+                    />
+                  </NvField>
+                  <NvButton
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    aria-label="删除该受影响版本"
+                    :disabled="form.affectedVersions.length <= 1"
+                    @click="removeAffected(index)"
+                  >
+                    <Trash2Icon aria-hidden="true" />
+                  </NvButton>
+                </div>
+              </div>
+
+              <div class="grid gap-3 rounded-md border bg-muted/20 p-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <FormSectionTitle>发布前影响预览</FormSectionTitle>
+                  <NvButton
+                    type="button"
+                    variant="outline"
+                    :disabled="previewPending"
+                    @click="previewFormImpact"
+                  >
+                    <NvSpinner v-if="previewPending" aria-hidden="true" />
+                    <NetworkIcon v-else aria-hidden="true" />
+                    预览影响
+                  </NvButton>
+                </div>
+
+                <NvDataTable
+                  :columns="impactColumns"
+                  :rows="impactNodes"
+                  :row-key="
+                    (row) => `${row.nodeType}:${row.versionId}:${row.relatedVersionId ?? ''}`
+                  "
+                  :loading="previewPending"
+                  :searchable="false"
+                  :column-settings="false"
+                  empty-message="填写受影响版本后可预览影响链。"
+                >
+                  <template #cell-nodeType="{ row }">{{
+                    impactNodeTypeLabel(row.nodeType)
+                  }}</template>
+                  <template #cell-impactLevel="{ row }">
+                    <NvStatusBadge
+                      :label="impactLevelLabel(row.impactLevel)"
+                      :tone="impactLevelTone(row.impactLevel)"
+                    />
+                  </template>
+                  <template #cell-skuCode="{ row }">{{ row.skuCode || '—' }}</template>
+                  <template #cell-route="{ row }">
+                    <RouterLink
+                      v-if="row.consoleRoute"
+                      class="text-primary underline-offset-4 hover:underline"
+                      :to="row.consoleRoute"
+                      >打开</RouterLink
+                    >
+                    <span v-else class="text-muted-foreground">暂无入口</span>
+                  </template>
+                </NvDataTable>
+
+                <NvDataTable
+                  v-if="impactRisks.length"
+                  :columns="riskColumns"
+                  :rows="impactRisks"
+                  :row-key="(row) => `${row.code}:${row.relatedVersionId ?? ''}`"
+                  :searchable="false"
+                  :column-settings="false"
+                  empty-message="没有风险提示。"
+                >
+                  <template #cell-severity="{ row }">
+                    <NvStatusBadge
+                      :label="riskSeverityLabel(row.severity)"
+                      :tone="riskTone(row.severity)"
+                    />
+                  </template>
+                </NvDataTable>
+              </div>
+
+              <NvDialogFooter>
+                <NvButton type="button" variant="outline" @click="formOpen = false">取消</NvButton>
+                <NvButton type="submit" :disabled="releasePending">
+                  <NvSpinner v-if="releasePending" aria-hidden="true" />
+                  发布变更
+                </NvButton>
+              </NvDialogFooter>
+            </form>
+          </NvDialogContent>
+        </NvDialog>
+      </template>
+    </NvPageHeader>
+
+    <NvMetricStrip :cells="ecoCells" />
+
+    <NvToolbar>
+      <template #filters>
+        <NvSelect v-model="statusFilter">
+          <NvSelectTrigger class="h-9 w-32" aria-label="状态筛选"
+            ><NvSelectValue
+          /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem v-for="o in STATUS_FILTER_OPTIONS" :key="o.value" :value="o.value">{{
+              o.label
+            }}</NvSelectItem>
+          </NvSelectContent>
+        </NvSelect>
+      </template>
+    </NvToolbar>
+
+    <p v-if="listErrorMessage" class="text-sm text-destructive" role="alert">
+      {{ listErrorMessage }}
+    </p>
+
+    <NvDataTable
+      manual
+      :page="page"
+      :page-size="pageSize"
+      :total-items="changesTotal"
+      @update:page="page = $event"
+      @update:page-size="(v) => (pageSize = String(v))"
+      :columns="columns"
+      :rows="changes"
+      :row-key="(r) => r.changeNumber ?? ''"
+      :loading="changesPending"
+      :searchable="false"
+      :column-settings="false"
+      empty-message="当前范围没有工程变更。可发布变更，登记变更原因、审批参考与受影响版本。"
+    >
+      <template #cell-reason="{ row }">
+        <span class="line-clamp-2 text-sm">{{ row.reason || '—' }}</span>
+      </template>
+      <template #cell-status="{ row }">
+        <NvStatusBadge :label="ecoStatus(row.status).label" :tone="ecoStatus(row.status).tone" />
+      </template>
+      <template #cell-effectiveDate="{ row }">{{
+        row.effectiveDate ? formatDate(row.effectiveDate) : '即时'
+      }}</template>
+      <template #cell-affected="{ row }">
+        <span class="tabular-nums">{{ row.affectedVersions?.length ?? 0 }}</span>
+      </template>
+      <template #cell-actions="{ row }">
+        <div class="flex justify-end">
+          <NvButton type="button" variant="ghost" size="sm" @click="openView(row)">查看</NvButton>
+        </div>
+      </template>
+    </NvDataTable>
+
+    <NvSheet v-model:open="viewOpen">
+      <NvSheetContent class="sm:max-w-lg">
+        <NvSheetHeader>
+          <NvSheetTitle>工程变更 · 受影响版本</NvSheetTitle>
+          <NvSheetDescription>
+            {{ viewTarget ? `${viewTarget.changeNumber} · ${viewTarget.reason ?? ''}` : '' }}
+          </NvSheetDescription>
+        </NvSheetHeader>
+        <div v-if="viewTarget" class="grid gap-3 px-4 py-2">
+          <div class="grid gap-2 text-sm">
+            <div class="flex justify-between gap-3">
+              <span class="text-muted-foreground">状态</span>
+              <NvStatusBadge
+                :label="ecoStatus(viewTarget.status).label"
+                :tone="ecoStatus(viewTarget.status).tone"
+              />
+            </div>
+            <BusinessDocumentApprovalPanel
+              :model-value="viewTarget.approvalReferenceId ?? ''"
+              title="变更审批链"
+              source-service="product-engineering"
+              :document-type="ENGINEERING_CHANGE_ORDER_DOCUMENT_TYPE"
+              :document-id="viewTarget.changeNumber ?? undefined"
+              :allow-start="false"
+            />
+            <div class="flex justify-between gap-3">
+              <span class="text-muted-foreground">生效日</span>
+              <span class="font-medium">{{
+                viewTarget.effectiveDate ? formatDate(viewTarget.effectiveDate) : '即时'
+              }}</span>
+            </div>
+          </div>
+
+          <div
+            v-if="detailPending"
+            class="flex items-center gap-2 py-4 text-sm text-muted-foreground"
+          >
+            <NvSpinner aria-hidden="true" />
+            加载受影响版本…
+          </div>
+          <div v-else-if="viewAffected.length" class="overflow-hidden rounded-md border">
+            <table class="w-full text-sm">
+              <thead class="bg-muted/40 text-muted-foreground">
+                <tr>
+                  <th class="px-3 py-2 text-left font-medium">对象种类</th>
+                  <th class="px-3 py-2 text-left font-medium">受影响版本</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(row, i) in viewAffected" :key="i" class="border-t">
+                  <td class="px-3 py-2">{{ versionKindLabel(row.versionKind) }}</td>
+                  <td class="px-3 py-2 break-all">
+                    {{ affectedVersionLabel(row.versionKind, row.versionId) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p v-else class="rounded-md border bg-muted/30 p-3 text-sm text-muted-foreground">
+            该变更没有受影响版本记录。
+          </p>
+        </div>
+      </NvSheetContent>
+    </NvSheet>
+  </BusinessLayout>
+</template>

@@ -1,0 +1,7 @@
+1. Initial preview_open({url:"about:blank"}) rejected an unsupported URL scheme (harness argument error, not product failure):
+Preview automation open failed: Invalid preview URL (parse: https:; input length 11).
+2. Corrected own blank tab open and navigation succeeded (tab_z_6faab953-90e1-4ff7-b4aa-20aa9696713e).
+3. resize setting 390x844 returned actual viewport 1280x800.
+4. First snapshot: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+5. Second snapshot on same step: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Fallback to ego-browser after these two same-step failures; neither snapshot timeout is a product failure.

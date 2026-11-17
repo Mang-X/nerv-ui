@@ -1,0 +1,30 @@
+.agents/skills/
+.claude/skills/
+.github/skills/
+.opencode/skill/
+/.agents/worktrees/
+/.claude/worktrees/
+/.codex/worktrees/
+/worktrees/
+/artifacts/
+.codex-review
+bin/
+obj/
+TestResults/
+node_modules/
+frontend/**/node_modules/
+frontend/**/dist/
+frontend/**/coverage/
+frontend/.vite/
+frontend/**/test-results/
+frontend/**/playwright-report/
+frontend/**/.playwright/
+/frontend/**/typed-router.d.ts
+frontend/apps/business-pda/android/
+
+# Runtime logs
+*.log
+!pnpm-lock.yaml
+
+# Impeccable 设计工具本机缓存（含绝对路径，不入库）
+.impeccable/

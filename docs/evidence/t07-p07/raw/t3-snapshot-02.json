@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Preview snapshot failed: Preview automation snapshot timed out after 15000ms."
+    }
+  ],
+  "structuredContent": {
+    "error": {
+      "_tag": "PreviewAutomationTimeoutError",
+      "operation": "snapshot",
+      "failureCount": 1,
+      "message": "Preview automation snapshot timed out after 15000ms."
+    }
+  },
+  "isError": true
+}

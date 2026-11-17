@@ -1,0 +1,29 @@
+{
+  "name": "@nerv-iip/screen",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev --host 127.0.0.1 --port 5128",
+    "build": "vue-tsc --noEmit -p tsconfig.json && vp build .",
+    "test": "vp test run src",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@lucide/vue": "1.24.0",
+    "@nerv-iip/api-client": "workspace:*",
+    "@nerv-iip/auth": "workspace:*",
+    "@nerv-iip/ui": "workspace:*",
+    "@pinia/colada": "1.4.2",
+    "@vueuse/core": "14.3.0",
+    "pinia": "4.0.2",
+    "vue": "3.5.39",
+    "vue-router": "5.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "6.0.8",
+    "@vue/test-utils": "2.4.11",
+    "jsdom": "29.1.1",
+    "vitest": "4.1.10"
+  }
+}

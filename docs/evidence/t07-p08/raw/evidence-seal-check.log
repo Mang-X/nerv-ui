@@ -1,0 +1,12 @@
+{
+  file: 'docs/evidence/t07-p08/README.md',
+  exit: 0,
+  unchanged: true,
+  check: true
+}
+{
+  file: 'docs/scheduling-panels.md',
+  exit: 0,
+  unchanged: true,
+  check: true
+}

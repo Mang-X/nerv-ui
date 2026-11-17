@@ -1,0 +1,77 @@
+{ before: { top: 512.5, header: 0, footer: 787, fab: 716 }, after: { top: 628.5, header: 0, footer: 787, fab: 716, windowY: 0, overflow: 390, viewport: 390, lastRow: 675 } }
+/tmp/nerv-ui-t04-n01/portrait-scroll.png
+/tmp/nerv-ui-t04-n01/portrait-dark.png
+[p1 "NvUI · 项目清单" | space "nerv-ui-t04-n01-20261024"(30): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      button "返回" [ref=1, loc=css:button[aria-label="返回"]]
+        svg_root
+      text "随行手记"
+      button "切换明暗" [ref=2, loc=css:button[aria-label="切换明暗"]]
+        text "浅色"
+    container [ref=3]
+      container
+        container "行程"
+          ordered_list
+            list_item
+              text "准备"
+            list_item
+              text "出发"
+            list_item
+              text "抵达"
+          paragraph "行程进度"
+            text "准备 · 1/3"
+          container
+            button "下一步" [ref=11, loc=css:button[aria-label="下一步"]]
+              text "下一步"
+            button "重新准备" [ref=12, loc=css:button[aria-label="重新准备"]]
+              text "重新准备"
+        splitter
+        container "去处"
+          tablist "去处分类"
+            tab [ref=13]
+              text "湖畔"
+            tab [ref=14]
+              text "小径"
+          tabpanel "小径"
+            button [ref=27]
+              container
+                text "林间小径"
+                text "步行 10 分钟 · 可随时停留"
+              svg_root
+            button [ref=28]
+              container
+                text "树影咖啡"
+                text "步行 15 分钟 · 可随时停留"
+              svg_root
+            button [ref=29]
+              container
+                text "山脚花铺"
+                text "步行 20 分钟 · 可随时停留"
+              svg_root
+            button [ref=30]
+              container
+                text "听风亭"
+                text "步行 25 分钟 · 可随时停留"
+              svg_root
+            button [ref=31]
+              container
+                text "石阶小院"
+                text "步行 30 分钟 · 可随时停留"
+              svg_root
+            button [ref=32]
+              container
+                text "日光草坪"
+                text "步行 35 分钟 · 可随时停留"
+              svg_root
+      button "记一笔" [ref=21, loc=css:button[aria-label="记一笔"]]
+        svg_root
+        text "记一笔"
+      button "更多随行操作" [ref=22, loc=css:button[aria-label="更多随行操作"]]
+        svg_root
+    container
+      button [ref=23]
+        text "发现"
+      button [ref=24]
+        text "收藏"

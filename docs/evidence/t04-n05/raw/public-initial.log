@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+ ❯ src/components/feedback.public.test.ts (9 tests | 1 failed) 113ms
+   × recovers image loading after src changes and keeps load and error states distinct 47ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/feedback.public.test.ts > recovers image loading after src changes and keeps load and error states distinct
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/components/feedback.public.test.ts:50:105
+     48|   await w.setProps({ src: '/missing.png' }); expect(w.get('img').class…
+     49|   await w.get('img').trigger('error'); expect(w.text()).toBe('加载失败'); …
+     50|   await w.setProps({ src: '/second.svg' }); expect(w.text()).toBe('');…
+       |                                                                                                         ^
+     51|   await w.get('img').trigger('load'); expect(w.get('img').classes()).t…
+     52|   w.unmount()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  23:54:38
+   Duration  6.11s (transform 3.74s, setup 0ms, import 5.29s, tests 113ms, environment 568ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/feedback.public.test.ts

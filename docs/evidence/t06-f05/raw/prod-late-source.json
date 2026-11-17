@@ -1,0 +1,128 @@
+[
+  {
+    "ext": "docx",
+    "stage": "response",
+    "change": "source",
+    "bytes": 2918,
+    "sha256": "6acfd447174abd87bfc0e7c152bb582be7fb87bc0dd0f665409dcdd2b2aeea20",
+    "signalAborted": true,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "docx",
+    "stage": "response",
+    "change": "leave",
+    "bytes": 2918,
+    "sha256": "6acfd447174abd87bfc0e7c152bb582be7fb87bc0dd0f665409dcdd2b2aeea20",
+    "signalAborted": true,
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "docx",
+    "stage": "body",
+    "change": "source",
+    "bytes": 2918,
+    "sha256": "6acfd447174abd87bfc0e7c152bb582be7fb87bc0dd0f665409dcdd2b2aeea20",
+    "signalAborted": true,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "docx",
+    "stage": "body",
+    "change": "leave",
+    "bytes": 2918,
+    "sha256": "6acfd447174abd87bfc0e7c152bb582be7fb87bc0dd0f665409dcdd2b2aeea20",
+    "signalAborted": true,
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "xlsx",
+    "stage": "response",
+    "change": "source",
+    "bytes": 6424,
+    "sha256": "a2b21b1dcedcf3ce031a2948d3c3476563342cbd172dee110df0a27599d4a100",
+    "signalAborted": true,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "xlsx",
+    "stage": "response",
+    "change": "leave",
+    "bytes": 6424,
+    "sha256": "a2b21b1dcedcf3ce031a2948d3c3476563342cbd172dee110df0a27599d4a100",
+    "signalAborted": true,
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "xlsx",
+    "stage": "body",
+    "change": "source",
+    "bytes": 6424,
+    "sha256": "a2b21b1dcedcf3ce031a2948d3c3476563342cbd172dee110df0a27599d4a100",
+    "signalAborted": true,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "xlsx",
+    "stage": "body",
+    "change": "leave",
+    "bytes": 6424,
+    "sha256": "a2b21b1dcedcf3ce031a2948d3c3476563342cbd172dee110df0a27599d4a100",
+    "signalAborted": true,
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "pptx",
+    "stage": "response",
+    "change": "source",
+    "bytes": 4353,
+    "sha256": "6025f8f08a490758e0b68ddfdc602fa742045fba6e82310cae1ecac67ca46fa7",
+    "signalAborted": true,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "pptx",
+    "stage": "response",
+    "change": "leave",
+    "bytes": 4353,
+    "sha256": "6025f8f08a490758e0b68ddfdc602fa742045fba6e82310cae1ecac67ca46fa7",
+    "signalAborted": true,
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "pptx",
+    "stage": "body",
+    "change": "source",
+    "bytes": 4353,
+    "sha256": "6025f8f08a490758e0b68ddfdc602fa742045fba6e82310cae1ecac67ca46fa7",
+    "signalAborted": true,
+    "event": "ready image · 已打开 0 次 · 本地预览 0",
+    "workers": [],
+    "errors": []
+  },
+  {
+    "ext": "pptx",
+    "stage": "body",
+    "change": "leave",
+    "bytes": 4353,
+    "sha256": "6025f8f08a490758e0b68ddfdc602fa742045fba6e82310cae1ecac67ca46fa7",
+    "signalAborted": true,
+    "workers": [],
+    "errors": []
+  }
+]

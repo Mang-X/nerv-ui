@@ -1,0 +1,6 @@
+Error: manual selection zero writes
+    at assert (file:///private/tmp/nerv-ui-t06-f02/browser-lane.mjs:5:56)
+    at runLane (file:///private/tmp/nerv-ui-t06-f02/browser-lane.mjs:44:5)
+    at async file:///private/tmp/nerv-ui-t06-f02/browser-dev.mjs:2:1
+
+ego's nodejs process exited with code 1.

@@ -1,0 +1,68 @@
+[
+  {
+    "name": "ui-final",
+    "total": 770,
+    "passed": 770,
+    "failed": 0,
+    "pending": 0,
+    "success": true,
+    "unhandledField": "NOT_PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "mobile-final",
+    "total": 144,
+    "passed": 144,
+    "failed": 0,
+    "pending": 0,
+    "success": true,
+    "unhandledField": "NOT_PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "host-final",
+    "total": 217,
+    "passed": 217,
+    "failed": 0,
+    "pending": 0,
+    "success": true,
+    "unhandledField": "NOT_PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "docs-ui",
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "pending": 0,
+    "success": true,
+    "unhandledField": "NOT_PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "docs-mobile",
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "pending": 0,
+    "success": true,
+    "unhandledField": "NOT_PROVIDED",
+    "unhandledLogLines": []
+  },
+  {
+    "name": "browser-dev",
+    "readbacks": 73,
+    "lateReleaseCases": 15,
+    "unmountReadbacks": 3,
+    "jsInstrumentedWrites": 0,
+    "jsErrors": 0
+  },
+  {
+    "name": "browser-prod",
+    "readbacks": 73,
+    "lateReleaseCases": 15,
+    "unmountReadbacks": 3,
+    "jsInstrumentedWrites": 0,
+    "jsErrors": 0
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "keyboard": [
+    {
+      "key": "End",
+      "focused": "休息",
+      "selected": "休息",
+      "tabStops": [
+        "休息"
+      ]
+    },
+    {
+      "key": "Home",
+      "focused": "阅读",
+      "selected": "阅读",
+      "tabStops": [
+        "阅读"
+      ]
+    },
+    {
+      "key": "ArrowRight",
+      "focused": "聆听",
+      "selected": "聆听",
+      "tabStops": [
+        "聆听"
+      ]
+    },
+    {
+      "key": "ArrowLeft",
+      "focused": "阅读",
+      "selected": "阅读",
+      "tabStops": [
+        "阅读"
+      ]
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4178/assets/index-CoupmcNx.js",
+      "status": 200,
+      "sha256": "b15d3928b055985f38a7dc9450109ee375f5246ae0e934a5e8af5168b7652e22",
+      "matchesBuiltFile": true
+    },
+    {
+      "url": "http://127.0.0.1:4178/assets/index-uOnjaWII.css",
+      "status": 200,
+      "sha256": "11f874e2706bc4455038928e8da03ca9a28ff9f6f7fc911051a0afafc23d3d07",
+      "matchesBuiltFile": true
+    },
+    {
+      "url": "http://127.0.0.1:4178/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "matchesBuiltFile": true
+    }
+  ]
+}

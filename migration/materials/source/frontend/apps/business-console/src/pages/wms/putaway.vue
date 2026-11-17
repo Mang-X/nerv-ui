@@ -1,0 +1,610 @@
+<script setup lang="ts">
+import type { BusinessConsoleWmsWarehouseTaskItem } from '@nerv-iip/api-client'
+import type { NvDataTableColumn } from '@nerv-iip/ui'
+import DirectoryPicker from '@/components/business/DirectoryPicker.vue'
+import CarriedContextSummary from '@/components/business/CarriedContextSummary.vue'
+import CodeWithNameCell from '@/components/business/CodeWithNameCell.vue'
+import WmsInventoryContextPanel from '@/components/wms/WmsInventoryContextPanel.vue'
+import WmsOperationalCandidateFilters from '@/components/wms/WmsOperationalCandidateFilters.vue'
+import { wmsStatusTone } from '@/data/businessLabels'
+import { hasBusinessContext } from '@/composables/businessContextBinding'
+import {
+  createWmsIdempotencyKey,
+  useWmsInboundOrders,
+  useWmsPutawayTasks,
+} from '@/composables/useBusinessWms'
+import { useMasterDataDisplayNames } from '@/composables/useMasterDataDisplayNames'
+import { usePagedList } from '@/composables/usePagedList'
+import { useWmsOperationalCandidates } from '@/composables/useWmsOperationalCandidates'
+import { useSkuNames } from '@/composables/useSkuNames'
+import { bindWmsWorkScopeFilters } from '@/composables/useWmsWorkScope'
+import {
+  wmsWarehouseTaskStatusFilterOptions,
+  wmsWarehouseTaskStatusLabel,
+  WMS_STATUS_ANY,
+} from '@/data/wmsReference'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import { BUSINESS_PERMISSION_CODES as P } from '@/permissions'
+import { useAuthStore } from '@/stores/auth'
+import { inlineErrorMessage, notifyOperationFailure, notifySuccess } from '@/utils/notify'
+import {
+  NvButton,
+  NvDataTable,
+  NvDialog,
+  NvDialogClose,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogFooter,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvField,
+  NvFieldError,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvEntityPicker,
+  NvInput,
+  NvPageHeader,
+  NvSearchSelect,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { PlusIcon, RefreshCwIcon } from '@lucide/vue'
+import { computed, reactive, shallowRef, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '上架任务',
+    requiredPermissions: ['business.wms.receipts.read'],
+  },
+})
+
+const route = useRoute()
+const auth = useAuthStore()
+const {
+  filters,
+  putawayTasks,
+  putawayTasksError,
+  putawayTasksPending,
+  putawayTasksTotal,
+  refreshPutawayTasks,
+  createPutaway,
+  createPutawayPending,
+  createPutawayError,
+} = useWmsPutawayTasks({ workScopeRequired: true })
+const {
+  scopeKey,
+  scopeOptions,
+  hasSelection: putawayScopeReady,
+  unreadyMessage: workScopeUnreadyMessage,
+  pending: workScopePending,
+  refresh: refreshWorkScopes,
+} = bindWmsWorkScopeFilters(filters, 'receipts')
+const operationalCandidates = useWmsOperationalCandidates('receipt', filters)
+const permissionCodes = computed(() => auth.principal?.permissionCodes ?? [])
+const canManageReceipts = computed(() => permissionCodes.value.includes(P.wmsReceiptsManage))
+const inboundOrderNo = computed(() => firstQuery(route.query.inboundOrderNo))
+const inboundOrderId = computed(() => firstQuery(route.query.inboundOrderId))
+watch(
+  inboundOrderNo,
+  (value) => {
+    filters.keyword = value || undefined
+  },
+  { immediate: true },
+)
+const { page, pageSize } = usePagedList(filters, {
+  resetOn: [
+    () => filters.status,
+    () => filters.locationCode,
+    () => filters.lotNo,
+    () => filters.keyword,
+    () => filters.scopeKind,
+    () => filters.scopeId,
+  ],
+})
+// 入库单是真实读面（只要组织/环境即可列出），上架任务必须挂在已存在的入库单下。
+const {
+  filters: inboundOrderFilters,
+  inboundOrders,
+  inboundOrdersPending,
+  receivingQualityGates,
+  receivingQualityGatesPending,
+} = useWmsInboundOrders({ take: 200, workScopeRequired: true })
+watch(
+  () => [filters.scopeKind, filters.scopeId] as const,
+  ([scopeKind, scopeId]) => {
+    inboundOrderFilters.scopeKind = scopeKind
+    inboundOrderFilters.scopeId = scopeId
+    inboundOrderFilters.skip = 0
+  },
+  { immediate: true, flush: 'sync' },
+)
+/**
+ * 选择器以**人读单号**为选中值，而不是入库单的内部 id——选择器会把 value 当编码显示出来，
+ * 直接绑 id 会把 GUID 露到界面上（UI 不暴露工程语言）。提交时再映射回 id，提交体不变。
+ */
+const inboundOrderOptions = computed(() =>
+  inboundOrders.value.flatMap((order) => {
+    const id = order.inboundOrderId?.trim()
+    const no = order.inboundOrderNo?.trim() || id
+    if (!id || !no) return []
+    return [{ value: no, label: no, hint: order.status }]
+  }),
+)
+const inboundOrderIdByNo = computed(() => {
+  const map = new Map<string, string>()
+  for (const order of inboundOrders.value) {
+    const id = order.inboundOrderId?.trim()
+    const no = order.inboundOrderNo?.trim() || id
+    if (id && no) map.set(no, id)
+  }
+  return map
+})
+const inboundOrderNoById = computed(() => {
+  const map = new Map<string, string>()
+  for (const [no, id] of inboundOrderIdByNo.value) map.set(id, no)
+  return map
+})
+// 表单工厂 = 所选入库单的工厂：库位候选按它收窄、就地新增预填它。
+// 从入库页带入时路由已带上入库单的工厂——这里的入库单列表只取最近 200 条，较早的单据不在列表里。
+const carriedSiteCode = computed(() => firstQuery(route.query.siteCode))
+const createSiteCode = computed(
+  () =>
+    (carriedFromInbound.value && carriedSiteCode.value) ||
+    inboundOrders.value.find((order) => order.inboundOrderId?.trim() === createForm.inboundOrderId)
+      ?.siteCode ||
+    '',
+)
+const inboundOrderSelection = computed({
+  // 目录还没到位时如实回落显示已有值，不让选择框看起来是空的。
+  get: () => inboundOrderNoById.value.get(createForm.inboundOrderId) ?? createForm.inboundOrderId,
+  set: (no: string) => {
+    createForm.inboundOrderId = inboundOrderIdByNo.value.get(no) ?? no
+  },
+})
+// 状态是后端枚举而不是目录，用哨兵值表达「全部」，避免空字符串和真实码值混淆。
+const statusFilter = computed({
+  get: () => filters.status || WMS_STATUS_ANY,
+  set: (value: string) => {
+    filters.status = value === WMS_STATUS_ANY ? undefined : value
+  },
+})
+
+// 上架任务挂在收货入库单下（完工入库 → 上架增量）。创建需绑定入库单与单行任务。
+const createOpen = shallowRef(false)
+const createError = shallowRef('')
+// 上架任务号由系统按编码规则生成；同一次填写的重试沿用同一个幂等键。
+const createIdempotencyKey = shallowRef('')
+const createForm = reactive({
+  inboundOrderId: '',
+  lineNo: '',
+  fromLocationCode: '',
+  toLocationCode: '',
+  quantity: '',
+})
+// 读面只回物料编码（SKU-…），名称在主数据里，按编码 join 出中文名。
+const { resolveSkuName } = useSkuNames()
+// 行号只能是所选入库单上真实收货的行：入库单列表不带行，收货行由收货质检读面逐行给出
+// （含免检行），按入库单挑出来。
+const inboundLineOptions = computed(() =>
+  receivingQualityGates.value.flatMap((line) => {
+    const lineNo = line.lineNo?.trim()
+    if (!lineNo || line.inboundOrderId?.trim() !== createForm.inboundOrderId) return []
+    // 物料名放进主文案（可截断），辅助信息只留数量：辅助信息不截断，放长了会把行号挤没。
+    const sku = line.skuCode ? (resolveSkuName(line.skuCode) ?? line.skuCode) : ''
+    const label = sku ? `第 ${lineNo} 行 · ${sku}` : `第 ${lineNo} 行`
+    const hint =
+      line.receivedQuantity == null
+        ? ''
+        : `收货 ${line.receivedQuantity} ${line.uomCode ?? ''}`.trim()
+    return [{ value: lineNo, label, ...(hint ? { hint } : {}) }]
+  }),
+)
+// 换了入库单，上一张单的行号就不再成立；新单只有一行时直接带上。
+watch(inboundLineOptions, (options) => {
+  if (options.some((option) => option.value === createForm.lineNo)) return
+  createForm.lineNo = options.length === 1 ? options[0]!.value : ''
+})
+
+function openCreate() {
+  if (!canManageReceipts.value) return
+
+  createForm.inboundOrderId = inboundOrderId.value
+  createIdempotencyKey.value = createWmsIdempotencyKey()
+  createForm.lineNo = ''
+  createForm.fromLocationCode = ''
+  createForm.toLocationCode = ''
+  createForm.quantity = ''
+  createError.value = ''
+  createOpen.value = true
+}
+watch(
+  () => [inboundOrderId.value, firstQuery(route.query.create)] as const,
+  ([id, create]) => {
+    if (canManageReceipts.value && id && create === '1') openCreate()
+  },
+  { immediate: true },
+)
+async function submitCreate() {
+  if (!canManageReceipts.value) {
+    createError.value = '缺少收货管理权限，无法创建上架任务。'
+    return
+  }
+
+  if (
+    !createForm.inboundOrderId.trim() ||
+    !createForm.lineNo.trim() ||
+    !createForm.fromLocationCode.trim() ||
+    !createForm.toLocationCode.trim()
+  ) {
+    createError.value = '请填写入库单、入库单行与起讫库位。'
+    return
+  }
+  if (!(Number(createForm.quantity) > 0)) {
+    createError.value = '上架数量需为正数。'
+    return
+  }
+  try {
+    await createPutaway(createForm.inboundOrderId.trim(), {
+      lineNo: createForm.lineNo.trim(),
+      fromLocationCode: createForm.fromLocationCode.trim(),
+      toLocationCode: createForm.toLocationCode.trim(),
+      quantity: Number(createForm.quantity),
+      idempotencyKey: createIdempotencyKey.value,
+    })
+    createOpen.value = false
+    notifySuccess('上架任务已创建，任务号由系统生成')
+  } catch (error) {
+    notifyOperationFailure('创建上架任务失败', error, '创建上架任务失败，请稍后重试。')
+  }
+}
+
+// 从收货入库行带出的上下文：有入库单就只读展示（人读单号优先），没有才让用户自己填。
+const carriedFromInbound = computed(() => Boolean(inboundOrderId.value))
+const carriedContextItems = computed(() => [
+  { label: '入库单', value: inboundOrderNo.value || inboundOrderId.value },
+  ...(createSiteCode.value ? [{ label: '工厂', value: createSiteCode.value }] : []),
+])
+
+/**
+ * 读错误只归列表区域。创建上架任务的失败一律走 toast，不并进这一条：
+ * 两者共用一个变量时，「创建失败」会伪装成「列表加载失败」。
+ */
+const listErrorMessage = computed(() =>
+  putawayTasksError.value
+    ? `取不到上架任务列表，当前上架进度无法判断：${inlineErrorMessage(putawayTasksError.value)}`
+    : '',
+)
+/**
+ * 页头计数一律用服务端总数；上下文未就绪 / 读取中 / 读失败时显文字而不是 0——
+ * 表格骨架还在转就断言「0 个上架任务」，等于把加载中说成没有任务。
+ */
+// 业务范围是否选定走全站唯一判定，不在页面里另写一份——判定分叉了，
+// 「还没查」和「真的 0 条」很快又会混回同一个渲染。
+const contextReady = computed(() => hasBusinessContext(filters) && putawayScopeReady.value)
+const headerCount = computed(() => {
+  if (!contextReady.value) return '未选择业务范围'
+  if (putawayTasksError.value) return '任务数取不到'
+  if (putawayTasksPending.value) return '加载中'
+  return `${putawayTasksTotal.value} 个上架任务`
+})
+
+// 任务读面只回库位编码，名称在主数据里，按编码 join 出中文名。
+const { resolveLocation } = useMasterDataDisplayNames({ locations: true })
+
+/** 库位展示串：优先中文名，名录查不到就只显编码。 */
+function locationLabel(code?: string | null) {
+  if (!code) return '—'
+  return resolveLocation(code) ?? code
+}
+interface TaskLocations {
+  fromLocationCode?: string | null
+  toLocationCode?: string | null
+}
+function hasLocationName(row: TaskLocations) {
+  return Boolean(resolveLocation(row.fromLocationCode) || resolveLocation(row.toLocationCode))
+}
+/** 「名称 编码」串，供排序与导出用；名录查不到就只有编码，不编名字。 */
+function skuText(code?: string | null, fallback = '—') {
+  const name = resolveSkuName(code)
+  return name ? `${name} ${code}` : (code ?? fallback)
+}
+function statusLabel(value?: string | null) {
+  return wmsWarehouseTaskStatusLabel(value)
+}
+
+type PutawayRow = BusinessConsoleWmsWarehouseTaskItem
+const columns: NvDataTableColumn<PutawayRow>[] = [
+  {
+    key: 'taskNo',
+    header: '任务号',
+    width: 'w-56',
+    cellClass: 'font-medium whitespace-normal break-all',
+    // warehouseTaskId 是系统 GUID，不上屏；没有人读任务号就如实留空。
+    accessor: (r) => r.taskNo ?? '无任务号',
+  },
+  { key: 'status', header: '状态', width: 'w-24' },
+  {
+    key: 'sourceOrderNo',
+    header: '来源单据',
+    width: 'w-56',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => r.sourceOrderNo ?? '—',
+  },
+  {
+    key: 'skuCode',
+    header: '物料',
+    width: 'w-56',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => skuText(r.skuCode),
+  },
+  {
+    key: 'inventoryContext',
+    header: '库存上下文',
+    width: 'w-72',
+    cellClass: 'whitespace-normal break-all',
+  },
+  {
+    key: 'location',
+    header: '起讫库位',
+    width: 'w-64',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => `${locationLabel(r.fromLocationCode)} → ${locationLabel(r.toLocationCode)}`,
+  },
+  {
+    key: 'quantity',
+    header: '数量',
+    width: 'w-24',
+    align: 'end',
+    accessor: (r) => formatQuantity(r.executedQuantity ?? r.plannedQuantity),
+  },
+  {
+    key: 'createdAtUtc',
+    header: '创建时间',
+    width: 'w-48',
+    cellClass: 'whitespace-normal break-all',
+    accessor: (r) => formatDateTime(r.createdAtUtc),
+  },
+]
+
+function rowKey(row: PutawayRow) {
+  return row.warehouseTaskId ?? row.taskNo ?? '上架任务'
+}
+function formatQuantity(value?: number | null) {
+  return new Intl.NumberFormat(undefined, { maximumFractionDigits: 3 }).format(value ?? 0)
+}
+function formatDateTime(value?: string | null) {
+  if (!value) return '—'
+  const date = new Date(value)
+  return Number.isNaN(date.getTime()) ? value : date.toLocaleString()
+}
+function refreshAll() {
+  void refreshWorkScopes()
+  void refreshPutawayTasks()
+  void operationalCandidates.refresh()
+}
+function firstQuery(value: unknown) {
+  return Array.isArray(value) ? String(value[0] ?? '') : typeof value === 'string' ? value : ''
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader title="上架任务" :breadcrumbs="[{ label: '仓储作业' }]" :count="headerCount">
+      <template #actions>
+        <NvButton
+          size="sm"
+          type="button"
+          variant="outline"
+          :disabled="putawayTasksPending"
+          @click="refreshAll"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+        <NvButton v-if="canManageReceipts" size="sm" type="button" @click="openCreate">
+          <PlusIcon aria-hidden="true" />
+          新建上架任务
+        </NvButton>
+      </template>
+    </NvPageHeader>
+
+    <NvToolbar :show-search="false">
+      <template #filters>
+        <NvSearchSelect
+          v-model="scopeKey"
+          class="w-56"
+          :options="scopeOptions"
+          :loading="workScopePending"
+          placeholder="选择作业范围"
+          aria-label="作业范围"
+        />
+        <NvInput
+          v-model="filters.keyword"
+          class="h-9 w-40"
+          placeholder="任务号/来源单/物料"
+          aria-label="关键字"
+        />
+        <WmsOperationalCandidateFilters
+          v-model:location-code="filters.locationCode"
+          v-model:lot-no="filters.lotNo"
+          :location-options="operationalCandidates.locationOptions.value"
+          :lot-options="operationalCandidates.lotOptions.value"
+          :pending="operationalCandidates.pending.value"
+          :ready="operationalCandidates.ready.value"
+          :error="operationalCandidates.error.value"
+          v-model:search-keyword="operationalCandidates.searchKeyword.value"
+          :source-label="operationalCandidates.sourceLabel.value"
+          :as-of-utc="operationalCandidates.asOfUtc.value"
+          :freshness-utc="operationalCandidates.freshnessUtc.value"
+          :truncated="operationalCandidates.truncated.value"
+          @retry="operationalCandidates.refresh"
+        />
+        <NvSearchSelect
+          v-model="statusFilter"
+          class="w-32"
+          :options="wmsWarehouseTaskStatusFilterOptions"
+          placeholder="全部状态"
+          aria-label="上架任务状态"
+        />
+      </template>
+    </NvToolbar>
+
+    <!-- 读失败 / 未选组织环境都由表格自己的三态呈现，绝不退化成「暂无上架任务」。 -->
+    <NvDataTable
+      manual
+      :page="page"
+      :page-size="pageSize"
+      :total-items="putawayTasksTotal"
+      @update:page="page = $event"
+      @update:page-size="(v) => (pageSize = String(v))"
+      :columns="columns"
+      :rows="putawayTasks"
+      :row-key="rowKey"
+      :loading="putawayTasksPending"
+      :error="putawayTasksError"
+      :error-message="listErrorMessage"
+      :awaiting-scope="!contextReady"
+      :awaiting-scope-message="
+        workScopeUnreadyMessage || '请先在顶部选择业务范围，再查看上架任务。'
+      "
+      :searchable="false"
+      :column-settings="false"
+      empty-message="暂无上架任务。完工入库后由系统派生，或在此手工登记。"
+      @retry="refreshPutawayTasks"
+    >
+      <template #cell-status="{ row }"
+        ><NvStatusBadge
+          :value="row.status"
+          :label="statusLabel(row.status)"
+          :tone="wmsStatusTone(row.status)"
+      /></template>
+      <template #cell-skuCode="{ row }">
+        <CodeWithNameCell :code="row.skuCode" :name="resolveSkuName(row.skuCode)" fallback="—" />
+      </template>
+      <template #cell-location="{ row }">
+        <span class="grid leading-tight">
+          <span>
+            {{ locationLabel(row.fromLocationCode) }} → {{ locationLabel(row.toLocationCode) }}
+          </span>
+          <!-- 名称解析出来了才补编码副行，否则两行都是编码，纯属噪音。 -->
+          <span v-if="hasLocationName(row)" class="text-xs text-muted-foreground"
+            >{{ row.fromLocationCode ?? '—' }} → {{ row.toLocationCode ?? '—' }}</span
+          >
+        </span>
+      </template>
+      <template #cell-inventoryContext="{ row }">
+        <WmsInventoryContextPanel
+          compact
+          :sku-code="row.skuCode"
+          :uom-code="row.uomCode"
+          :site-code="row.siteCode"
+          :location-code="row.fromLocationCode"
+          gap-message="本页暂不显示逐行可用量与批次、序列号、冻结预留明细，请到库存可用量或批次与预留页查看。"
+        />
+      </template>
+    </NvDataTable>
+
+    <NvDialog v-if="canManageReceipts" v-model:open="createOpen">
+      <NvDialogContent>
+        <NvDialogHeader>
+          <NvDialogTitle>新建上架任务</NvDialogTitle>
+          <!-- 上架来源已在下方只读区呈现；此处仅供读屏播报。 -->
+          <NvDialogDescription class="sr-only">
+            入库单 {{ inboundOrderNo || inboundOrderId || '未指定' }} 的上架任务。
+          </NvDialogDescription>
+        </NvDialogHeader>
+        <form class="grid gap-4" @submit.prevent="submitCreate">
+          <CarriedContextSummary
+            v-if="carriedFromInbound"
+            label="上架来源"
+            :items="carriedContextItems"
+          />
+          <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+            <NvField v-if="!carriedFromInbound" class="sm:col-span-2">
+              <NvFieldLabel for="wms-putaway-inbound">入库单</NvFieldLabel>
+              <NvEntityPicker
+                id="wms-putaway-inbound"
+                v-model="inboundOrderSelection"
+                :options="inboundOrderOptions"
+                title="选择入库单"
+                placeholder="选择入库单"
+                empty-text="暂无入库单，请先登记收货入库"
+                :loading="inboundOrdersPending"
+                clearable
+                aria-label="入库单"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="wms-putaway-line">入库单行</NvFieldLabel>
+              <NvEntityPicker
+                id="wms-putaway-line"
+                v-model="createForm.lineNo"
+                :options="inboundLineOptions"
+                :show-code="false"
+                :disabled="!createForm.inboundOrderId"
+                title="选择入库单行"
+                :placeholder="createForm.inboundOrderId ? '选择入库单行' : '先选入库单'"
+                empty-text="该入库单还没有收货行"
+                :loading="receivingQualityGatesPending"
+                aria-label="入库单行"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="wms-putaway-from">来源库位</NvFieldLabel>
+              <DirectoryPicker
+                id="wms-putaway-from"
+                v-model="createForm.fromLocationCode"
+                directory-type="location"
+                creatable
+                :form-site-code="createSiteCode"
+                site-missing-text="请先选择入库单"
+                title="选择暂存库位"
+                placeholder="暂存库位"
+                clearable
+                aria-label="来源库位"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="wms-putaway-to">目标库位</NvFieldLabel>
+              <DirectoryPicker
+                id="wms-putaway-to"
+                v-model="createForm.toLocationCode"
+                directory-type="location"
+                creatable
+                :form-site-code="createSiteCode"
+                site-missing-text="请先选择入库单"
+                title="选择货架库位"
+                placeholder="货架库位"
+                clearable
+                aria-label="目标库位"
+              />
+            </NvField>
+            <NvField>
+              <NvFieldLabel for="wms-putaway-qty">上架数量</NvFieldLabel>
+              <NvInput
+                id="wms-putaway-qty"
+                v-model="createForm.quantity"
+                type="number"
+                min="0.000001"
+                step="any"
+                autocomplete="off"
+                required
+              />
+            </NvField>
+          </NvFieldGroup>
+
+          <NvFieldError v-if="createError" :errors="[createError]" />
+
+          <NvDialogFooter>
+            <NvDialogClose as-child>
+              <NvButton type="button" variant="outline">取消</NvButton>
+            </NvDialogClose>
+            <NvButton type="submit" :disabled="createPutawayPending">创建上架任务</NvButton>
+          </NvDialogFooter>
+        </form>
+      </NvDialogContent>
+    </NvDialog>
+  </BusinessLayout>
+</template>

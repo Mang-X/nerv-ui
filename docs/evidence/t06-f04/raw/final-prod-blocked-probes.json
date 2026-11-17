@@ -1,0 +1,10 @@
+[
+  {
+    "src": "https://example.com/nerv-ui-block-probe.png",
+    "loaded": false
+  },
+  {
+    "src": "http://example.com/nerv-ui-block-probe.png",
+    "loaded": false
+  }
+]

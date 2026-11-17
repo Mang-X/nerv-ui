@@ -1,0 +1,4 @@
+AssertionError [ERR_ASSERTION]: upward touch retains native list scrolling
+    at file:////[eval2]:11:19
+
+ego's nodejs process exited with code 1.

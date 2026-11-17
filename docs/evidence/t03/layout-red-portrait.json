@@ -1,0 +1,24 @@
+{
+  "viewport": [
+    768,
+    1024
+  ],
+  "tabs": [
+    {
+      "name": "阅读",
+      "width": 72,
+      "height": 40
+    },
+    {
+      "name": "聆听",
+      "width": 72,
+      "height": 40
+    },
+    {
+      "name": "休息",
+      "width": 72,
+      "height": 40
+    }
+  ],
+  "horizontalOverflow": false
+}

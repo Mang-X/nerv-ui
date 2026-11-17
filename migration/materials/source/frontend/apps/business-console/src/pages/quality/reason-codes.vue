@@ -1,0 +1,452 @@
+<script setup lang="ts">
+import type {
+  CreateQualityReasonRequest,
+  QualityReasonItem,
+} from '@/composables/usePromotedCatalogs'
+import type { NvDataTableColumn } from '@nerv-iip/ui'
+import CarriedContextSummary from '@/components/business/CarriedContextSummary.vue'
+import FormSectionTitle from '@/components/masterData/FormSectionTitle.vue'
+import { useQualityReasonCodes } from '@/composables/usePromotedCatalogs'
+import {
+  QUALITY_DISPOSITION_OPTIONS,
+  qualityDispositionLabel,
+  useQualityReasonCatalog,
+} from '@/composables/useQualityPickerCatalog'
+import BusinessLayout from '@/layouts/BusinessLayout.vue'
+import {
+  NvAlertDialog,
+  NvAlertDialogCancel,
+  NvAlertDialogContent,
+  NvAlertDialogDescription,
+  NvAlertDialogFooter,
+  NvAlertDialogHeader,
+  NvAlertDialogTitle,
+  NvButton,
+  NvDataTable,
+  NvDialog,
+  NvDialogContent,
+  NvDialogDescription,
+  NvDialogFooter,
+  NvDialogHeader,
+  NvDialogTitle,
+  NvDialogTrigger,
+  NvCombobox,
+  NvField,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvInput,
+  NvPageHeader,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  NvSpinner,
+  NvStatusBadge,
+  NvToolbar,
+} from '@nerv-iip/ui'
+import { PlusIcon, RefreshCwIcon } from '@lucide/vue'
+import { computed, reactive, ref, shallowRef, watch } from 'vue'
+import { inlineErrorMessage, notifyOperationFailure, notifySuccess } from '@/utils/notify'
+
+definePage({
+  meta: {
+    requiresAuth: true,
+    title: '原因码目录',
+    requiredPermissions: ['business.quality.ncr.manage'],
+  },
+})
+
+const {
+  archiveReason,
+  archivePending,
+  createReason,
+  createPending,
+  filters,
+  refresh,
+  reasons,
+  reasonsError,
+  reasonsPending,
+  reasonsTotal,
+  updateReason,
+  updatePending,
+} = useQualityReasonCodes()
+
+// 原因组建议：这是目录自身的维护页，允许开新组，所以给已有组作建议而不是封闭选项。
+const { reasonGroupSuggestions } = useQualityReasonCatalog()
+
+// 严重度常量：value 存英文枚举，label 显示中文。
+const severityOptions = [
+  { label: '轻微', value: 'minor' },
+  { label: '一般', value: 'major' },
+  { label: '严重', value: 'critical' },
+]
+function severityLabel(value?: string | null) {
+  if (!value) return '—'
+  return severityOptions.find((o) => o.value === value)?.label ?? value
+}
+function severityTone(value?: string | null) {
+  if (value === 'critical') return 'danger'
+  if (value === 'major') return 'warning'
+  if (value === 'minor') return 'neutral'
+  return 'neutral'
+}
+
+// Toolbar 搜索绑定到 search 筛选（空串不污染查询）。
+const search = computed({
+  get: () => filters.search ?? '',
+  set: (value: string) => {
+    filters.search = value.trim() ? value : undefined
+  },
+})
+
+const page = ref(1)
+const pageSize = ref('10')
+const pageSizeNumber = computed(() => Number(pageSize.value) || 10)
+watch(
+  [page, pageSize],
+  () => {
+    filters.skip = (page.value - 1) * pageSizeNumber.value
+    filters.take = pageSizeNumber.value
+  },
+  { immediate: true },
+)
+
+const listErrorMessage = computed(() => inlineErrorMessage(reasonsError.value))
+
+const columns: NvDataTableColumn<QualityReasonItem>[] = [
+  { key: 'reasonCode', header: '编码', width: 'w-32' },
+  { key: 'reasonName', header: '原因', cellClass: 'font-medium' },
+  { key: 'groupName', header: '原因组' },
+  { key: 'severity', header: '严重度', width: 'w-28' },
+  { key: 'defaultDisposition', header: '默认处置' },
+  { key: 'status', header: '状态', width: 'w-24' },
+  { key: 'actions', header: '操作', align: 'end', width: 'w-24' },
+]
+
+// ── 新建 / 编辑表单 ─────────────────────────────────────────────
+interface QualityReasonForm {
+  reasonCode: string
+  reasonName: string
+  groupName: string
+  severity: string
+  defaultDisposition: string
+}
+
+function blankForm(): QualityReasonForm {
+  return {
+    reasonCode: '',
+    reasonName: '',
+    groupName: '',
+    severity: '',
+    defaultDisposition: '',
+  }
+}
+
+const formOpen = shallowRef(false)
+const showErrors = ref(false)
+// null = 新建，否则为正在编辑原因的 reasonCode（编码即身份，编辑态只读）。
+const editingCode = shallowRef<string | null>(null)
+const form = reactive<QualityReasonForm>(blankForm())
+
+const codeValid = computed(() => !!editingCode.value || form.reasonCode.trim().length > 0)
+const nameValid = computed(() => form.reasonName.trim().length > 0)
+const groupValid = computed(() => form.groupName.trim().length > 0)
+const severityValid = computed(() => form.severity.trim().length > 0)
+const canSubmit = computed(
+  () => codeValid.value && nameValid.value && groupValid.value && severityValid.value,
+)
+
+function openCreate() {
+  editingCode.value = null
+  Object.assign(form, blankForm())
+  showErrors.value = false
+  formOpen.value = true
+}
+function openEdit(row: QualityReasonItem) {
+  if (!row.reasonCode) return
+  editingCode.value = row.reasonCode
+  showErrors.value = false
+  Object.assign(form, {
+    reasonCode: row.reasonCode ?? '',
+    reasonName: row.reasonName ?? '',
+    groupName: row.groupName ?? '',
+    severity: row.severity ?? '',
+    defaultDisposition: row.defaultDisposition ?? '',
+  })
+  formOpen.value = true
+}
+
+async function submitForm() {
+  if (!canSubmit.value) {
+    showErrors.value = true
+    return
+  }
+  const shared = {
+    reasonName: form.reasonName.trim(),
+    groupName: form.groupName.trim(),
+    severity: form.severity,
+    defaultDisposition: form.defaultDisposition.trim() || null,
+  }
+  try {
+    if (editingCode.value) {
+      await updateReason(editingCode.value, shared)
+      notifySuccess(`原因「${shared.reasonName}」已更新。`)
+    } else {
+      const body: CreateQualityReasonRequest = {
+        organizationId: filters.organizationId,
+        environmentId: filters.environmentId,
+        reasonCode: form.reasonCode.trim(),
+        ...shared,
+      }
+      await createReason(body)
+      notifySuccess(`已创建质量原因「${shared.reasonName}」。`)
+    }
+    showErrors.value = false
+    formOpen.value = false
+    editingCode.value = null
+  } catch (error) {
+    notifyOperationFailure('保存质量原因失败', error, '保存质量原因失败，请稍后重试。')
+  }
+}
+
+// ── 停用 ────────────────────────────────────────────────────────
+const archiveOpen = shallowRef(false)
+const archiveTarget = shallowRef<QualityReasonItem | null>(null)
+function openArchive(row: QualityReasonItem) {
+  if (!row.reasonCode) return
+  archiveTarget.value = row
+  archiveOpen.value = true
+}
+async function confirmArchive() {
+  const target = archiveTarget.value
+  if (!target?.reasonCode) return
+  try {
+    await archiveReason(target.reasonCode)
+    notifySuccess(`原因「${target.reasonName}」已停用。`)
+    archiveOpen.value = false
+    archiveTarget.value = null
+  } catch (error) {
+    notifyOperationFailure('停用质量原因失败', error, '停用质量原因失败，请稍后重试。')
+  }
+}
+</script>
+
+<template>
+  <BusinessLayout>
+    <NvPageHeader
+      title="原因码目录"
+      :breadcrumbs="[{ label: '质量管理' }]"
+      :count="`${reasonsTotal} 个原因`"
+    >
+      <template #actions>
+        <NvButton
+          size="sm"
+          variant="outline"
+          type="button"
+          :disabled="reasonsPending"
+          @click="refresh"
+        >
+          <RefreshCwIcon aria-hidden="true" />
+          刷新
+        </NvButton>
+        <NvDialog v-model:open="formOpen">
+          <NvDialogTrigger as-child>
+            <NvButton size="sm" type="button" @click="openCreate">
+              <PlusIcon aria-hidden="true" />
+              新建原因
+            </NvButton>
+          </NvDialogTrigger>
+          <NvDialogContent class="sm:max-w-2xl">
+            <NvDialogHeader>
+              <NvDialogTitle>{{ editingCode ? '编辑质量原因' : '新建质量原因' }}</NvDialogTitle>
+              <NvDialogDescription>供检验与不合格品记录引用</NvDialogDescription>
+            </NvDialogHeader>
+            <form class="grid gap-5" @submit.prevent="submitForm">
+              <p v-if="showErrors && !canSubmit" class="text-sm text-destructive" role="alert">
+                请填写带 * 的必填项（已标红）。
+              </p>
+
+              <!-- 编辑态：原因编码是不可改的自然键，带出只读展示，不占输入位。 -->
+              <CarriedContextSummary
+                v-if="editingCode"
+                label="正在编辑的质量原因"
+                :items="[{ label: '原因编码', value: editingCode }]"
+              />
+
+              <FormSectionTitle>基本信息</FormSectionTitle>
+              <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+                <NvField v-if="!editingCode" :data-invalid="showErrors && !codeValid">
+                  <NvFieldLabel for="reason-code"
+                    >原因编码 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput
+                    id="reason-code"
+                    v-model="form.reasonCode"
+                    placeholder="例如：DEF-SCRATCH"
+                  />
+                </NvField>
+                <NvField :data-invalid="showErrors && !nameValid">
+                  <NvFieldLabel for="reason-name"
+                    >原因 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvInput
+                    id="reason-name"
+                    v-model="form.reasonName"
+                    placeholder="例如：尺寸超差"
+                  />
+                </NvField>
+                <NvField :data-invalid="showErrors && !groupValid">
+                  <NvFieldLabel for="reason-group"
+                    >原因组 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvCombobox
+                    id="reason-group"
+                    v-model="form.groupName"
+                    :suggestions="reasonGroupSuggestions"
+                    placeholder="选择已有原因组，或输入新组"
+                    empty-text="还没有原因组，直接输入即可新建"
+                  />
+                </NvField>
+                <NvField :data-invalid="showErrors && !severityValid">
+                  <NvFieldLabel for="reason-severity"
+                    >严重度 <span class="text-destructive">*</span></NvFieldLabel
+                  >
+                  <NvSelect v-model="form.severity">
+                    <NvSelectTrigger id="reason-severity"
+                      ><NvSelectValue placeholder="选择严重度"
+                    /></NvSelectTrigger>
+                    <NvSelectContent>
+                      <NvSelectItem v-for="o in severityOptions" :key="o.value" :value="o.value">{{
+                        o.label
+                      }}</NvSelectItem>
+                    </NvSelectContent>
+                  </NvSelect>
+                </NvField>
+              </NvFieldGroup>
+
+              <FormSectionTitle>处置</FormSectionTitle>
+              <NvFieldGroup class="grid gap-3">
+                <NvField>
+                  <NvFieldLabel for="reason-disposition">默认处置</NvFieldLabel>
+                  <div class="flex items-center gap-2">
+                    <!-- 处置是四选一的固定集合，与不合格品处置提交同一套码值。 -->
+                    <NvSelect v-model="form.defaultDisposition">
+                      <NvSelectTrigger id="reason-disposition" class="max-w-xs"
+                        ><NvSelectValue placeholder="选择默认处置"
+                      /></NvSelectTrigger>
+                      <NvSelectContent>
+                        <NvSelectItem
+                          v-for="option in QUALITY_DISPOSITION_OPTIONS"
+                          :key="option.value"
+                          :value="option.value"
+                          >{{ option.label }}</NvSelectItem
+                        >
+                      </NvSelectContent>
+                    </NvSelect>
+                    <NvButton
+                      v-if="form.defaultDisposition"
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      @click="form.defaultDisposition = ''"
+                      >不设置</NvButton
+                    >
+                  </div>
+                </NvField>
+              </NvFieldGroup>
+
+              <NvDialogFooter>
+                <NvButton type="button" variant="outline" @click="formOpen = false">取消</NvButton>
+                <NvButton type="submit" :disabled="createPending || updatePending">
+                  <NvSpinner v-if="createPending || updatePending" aria-hidden="true" />
+                  {{ editingCode ? '保存修改' : '创建原因' }}
+                </NvButton>
+              </NvDialogFooter>
+            </form>
+          </NvDialogContent>
+        </NvDialog>
+      </template>
+    </NvPageHeader>
+
+    <NvToolbar v-model:search="search" search-placeholder="按原因或编码筛选" />
+
+    <p v-if="listErrorMessage" class="text-sm text-destructive" role="alert">
+      {{ listErrorMessage }}
+    </p>
+
+    <NvDataTable
+      manual
+      :page="page"
+      :page-size="pageSize"
+      :total-items="reasonsTotal"
+      @update:page="page = $event"
+      @update:page-size="(v) => (pageSize = String(v))"
+      :columns="columns"
+      :rows="reasons"
+      row-key="reasonCode"
+      :loading="reasonsPending"
+      :searchable="false"
+      :column-settings="false"
+      empty-message="原因码目录为空。新建可复用质量原因（按原因组归类、预设严重度与默认处置），供检验 / 不合格品记录引用。"
+    >
+      <template #cell-groupName="{ row }">
+        <span v-if="row.groupName">{{ row.groupName }}</span>
+        <span v-else class="text-muted-foreground">—</span>
+      </template>
+      <template #cell-severity="{ row }">
+        <NvStatusBadge
+          v-if="row.severity"
+          :label="severityLabel(row.severity)"
+          :tone="severityTone(row.severity)"
+        />
+        <span v-else class="text-muted-foreground">—</span>
+      </template>
+      <template #cell-defaultDisposition="{ row }">
+        <span v-if="row.defaultDisposition">{{
+          qualityDispositionLabel(row.defaultDisposition)
+        }}</span>
+        <span v-else class="text-muted-foreground">—</span>
+      </template>
+      <template #cell-status="{ row }">
+        <NvStatusBadge
+          :label="row.enabled === false ? '停用' : '启用'"
+          :tone="row.enabled === false ? 'neutral' : 'success'"
+        />
+      </template>
+      <template #cell-actions="{ row }">
+        <div class="flex justify-end gap-1">
+          <NvButton type="button" variant="ghost" size="sm" @click="openEdit(row)">编辑</NvButton>
+          <NvButton
+            type="button"
+            variant="ghost"
+            size="sm"
+            :disabled="row.enabled === false"
+            @click="openArchive(row)"
+            >停用</NvButton
+          >
+        </div>
+      </template>
+    </NvDataTable>
+
+    <NvAlertDialog v-model:open="archiveOpen">
+      <NvAlertDialogContent>
+        <NvAlertDialogHeader>
+          <NvAlertDialogTitle>停用质量原因</NvAlertDialogTitle>
+          <NvAlertDialogDescription>
+            停用后「{{ archiveTarget?.reasonName }}」不可再被新的检验与不合格品记录引用。
+          </NvAlertDialogDescription>
+        </NvAlertDialogHeader>
+        <NvAlertDialogFooter>
+          <NvAlertDialogCancel>取消</NvAlertDialogCancel>
+          <!-- 普通 NvButton，不用 NvAlertDialogAction：后者点击即无条件关框（confirm-destroy 规则 3）。
+               variant 不写 = NvAlertDialogAction 的默认值 'default'，换件不改外观。 -->
+          <NvButton type="button" :disabled="archivePending" @click="confirmArchive">
+            <NvSpinner v-if="archivePending" aria-hidden="true" />
+            确认停用
+          </NvButton>
+        </NvAlertDialogFooter>
+      </NvAlertDialogContent>
+    </NvAlertDialog>
+  </BusinessLayout>
+</template>

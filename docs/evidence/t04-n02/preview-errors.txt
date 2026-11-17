@@ -1,0 +1,6 @@
+T3 own tab tab_w_6faab953-90e1-4ff7-b4aa-20aa9696713e opened http://127.0.0.1:4174/#mobile-input successfully.
+preview_resize freeform 390x844 returned setting 390x844 but viewport 1280x800.
+preview_snapshot save=true attempt 1: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+preview_snapshot save=true attempt 2: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Fallback to ego-browser per user instruction after two same-step failures. No T3 snapshot/geometry PASS claimed.
+Earlier about:blank open rejected: Preview automation open failed: Invalid preview URL (parse: https:; input length 11). Corrected to loopback URL.

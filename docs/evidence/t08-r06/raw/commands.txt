@@ -1,0 +1,15 @@
+cwd=/Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend
+node v24.18.0; pnpm 11.22.0
+pnpm --filter @nerv-iip/ui exec vp test run src/components/pc/notification-inbox/NvNotificationInbox.test.ts --reporter=json --outputFile=../../../docs/evidence/t08-r06/raw/green-2.json
+pnpm --filter @nerv-iip/ui exec vp test run src/components/pc/notification-inbox src/nvui-naming.contract.test.ts src/ui-primitives.contract.test.ts src/blocks.contract.test.ts src/design-system.contract.test.ts src/nvui-doc-coverage.contract.test.ts src/docs-layout.contract.test.ts --reporter=json --outputFile=../../../docs/evidence/t08-r06/raw/final-ui.json
+pnpm --filter @nerv-iip/playground exec vp test run src/NotificationInboxDemo.test.ts src/nvui-imports.contract.test.ts --reporter=json --outputFile=../../../docs/evidence/t08-r06/raw/host-final.json
+pnpm --filter @nerv-iip/playground exec vp test run src/NotificationInboxDemo.test.ts --reporter=json --outputFile=../../../docs/evidence/t08-r06/raw/host-restored.json
+pnpm --filter @nerv-iip/ui typecheck
+pnpm --filter @nerv-iip/playground typecheck
+pnpm --filter @nerv-iip/playground build
+pnpm exec vp lint packages/ui/src/components/pc/notification-inbox apps/playground/src/NotificationInboxDemo.vue apps/playground/src/NotificationInboxDemo.test.ts apps/playground/src/App.vue packages/ui/src/index.ts packages/ui/src/nvui-naming.contract.test.ts
+pnpm exec vp fmt --check packages/ui/src/components/pc/notification-inbox packages/ui/src/index.ts packages/ui/src/nvui-naming.contract.test.ts apps/playground/src/NotificationInboxDemo.vue apps/playground/src/NotificationInboxDemo.test.ts apps/playground/src/App.vue DESIGN/components/notification-inbox.md DESIGN/nvui-naming-map.md DESIGN/component-coverage.md apps/design-system/docs/components/desktop/notification-inbox.md apps/design-system/docs/.vitepress/config.mts
+Root Markdown: node_modules/.bin/oxfmt --stdin-filepath <path>, require exit 0 and nonempty stdout; write, run again, byte compare.
+Local Markdown links: uv run python pathlib/re, all relative markdown targets exist. PASS (4 files); include target exists. No HTTP/docs live.
+Git cwd=checkout: git diff --check; git diff --quiet -- migration/materials/source (both exit 0)
+git fetch origin integration/nerv-ui-extraction -> f757e9d748948a61592cac558a2e58c71a9018d8 (no delta)

@@ -1,0 +1,114 @@
+{ records: 21, finalCounts: 'create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0', urlsCreated: 8, urlsRevoked: 8 }
+[p1 "NvUI · 项目清单" | space "nerv-ui-t06-f01-20261025"(26): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container "整理文件"
+      container
+        heading
+          text "整理文件"
+        paragraph
+          text "只在本页暂存，离开即清空。上传进度由你推进。"
+      container
+        container
+          text "排列方式"
+          combobox "上传排列方式" [ref=531, loc=css:select[aria-label="上传排列方式"]]
+            text "queue"
+        container
+          text "文件类型"
+          combobox "可选文件类型" [ref=532, loc=css:select[aria-label="可选文件类型"]]
+            text "图片、文本、PDF"
+        container
+          text "最多文件"
+          combobox "最多文件" [ref=533, loc=css:select[aria-label="最多文件"]]
+            text "48"
+        container
+          checkbox [ref=534]
+          text "选中即开始"
+        container
+          checkbox [ref=535]
+          text "锁定选择"
+      button [ref=536]
+        svg_root
+        text "拖拽文件到这里，或点击浏览"
+        text "支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf · 单个文件不超过 32.0 KB · 最多 48 个文件"
+        text "还可上传 48 个文件"
+      container
+        button [ref=537]
+          text "开始上传"
+        button [ref=538]
+          text "暂停全部"
+        button [ref=539]
+          text "继续全部"
+        button [ref=540]
+          text "清空文件"
+      container
+        container
+          button [ref=541]
+            text "推进传输"
+          button [ref=542]
+            text "本次传输失败"
+          button [ref=543]
+            text "加入 48 份便笺"
+        paragraph
+          text "每次推进至 25%、65%、100%；失败后可在文件行重试。"
+        output "传输计数" [ref=544]
+          text "create 2 · transport 4 · complete 2 · abort 1 · fail 1 · pending 0"
+      container "成功回执"
+        heading
+          text "已暂存文件"
+        paragraph
+          text "尚无成功文件"
+      container [ref=545]
+        text "查看本次操作记录"
+    container "看见细节"
+      container
+        heading
+          text "看见细节"
+        paragraph
+          text "本地图片可缩放与旋转。其它文件保留原文件入口。"
+      container
+        text "预览内容"
+        combobox "预览内容" [ref=546, loc=css:select[aria-label="预览内容"]]
+          text "图形记录 SVG"
+      container
+        text "预览本地图片"
+        textbox "预览本地图片" [ref=547, loc=css:input[aria-label="预览本地图片"]]
+          button [ref=548]
+            text "选择文件"
+          text "未选择任何文件"
+      container
+        container
+          checkbox [ref=549]
+          text "等待来源"
+        container
+          checkbox [ref=550]
+          text "来源暂不可用"
+      container
+        container
+          container
+            svg_root
+            container
+              text "quality-evidence.svg"
+              text "Image"
+          button "打开 quality-evidence.svg" [ref=551, loc=css:button[aria-label="打开 quality-evidence.svg"]]
+            svg_root
+        container
+          container
+            button "缩小 quality-evidence.svg" [ref=552, loc=css:button[aria-label="缩小 quality-evidence.svg"]]
+              svg_root
+            text "100%"
+            button "放大 quality-evidence.svg" [ref=553, loc=css:button[aria-label="放大 quality-evidence.svg"]]
+              svg_root
+            button "向左旋转 quality-evidence.svg" [ref=554, loc=css:button[aria-label="向左旋转 quality-evidence.svg"]]
+              svg_root
+            button "向右旋转 quality-evidence.svg" [ref=555, loc=css:button[aria-label="向右旋转 quality-evidence.svg"]]
+              svg_root
+          image
+      container
+        button [ref=556]
+          text "打开本地原图"
+        text "先在预览中请求，再点击此处打开。"
+      output "预览事件" [ref=557]
+        text "ready image · 已打开 0 次 · 本地预览 0"
+
+

@@ -1,0 +1,1878 @@
+[
+  {
+    "name": "install",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "install",
+      "--frozen-lockfile"
+    ],
+    "started": "2026-10-25T22:42:33.867Z",
+    "finished": "2026-10-25T22:42:39.576Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-legend",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/red-legend.json"
+    ],
+    "started": "2026-10-25T22:42:58.810Z",
+    "finished": "2026-10-25T22:43:05.617Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "green-legend",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/green-legend.json"
+    ],
+    "started": "2026-10-25T22:43:17.156Z",
+    "finished": "2026-10-25T22:43:20.608Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-toolbar",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "-t",
+      "toolbar keeps",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/red-toolbar.json"
+    ],
+    "started": "2026-10-25T22:43:51.581Z",
+    "finished": "2026-10-25T22:43:54.677Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "green-toolbar",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/green-toolbar.json"
+    ],
+    "started": "2026-10-25T22:44:18.251Z",
+    "finished": "2026-10-25T22:44:21.891Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-detail",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "-t",
+      "detail uses",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/red-detail.json"
+    ],
+    "started": "2026-10-25T22:44:50.165Z",
+    "finished": "2026-10-25T22:44:53.576Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "green-detail",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/green-detail.json"
+    ],
+    "started": "2026-10-25T22:45:12.272Z",
+    "finished": "2026-10-25T22:45:15.398Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-lists",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "-t",
+      "change rows|list actions",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/red-lists.json"
+    ],
+    "started": "2026-10-25T22:45:37.663Z",
+    "finished": "2026-10-25T22:45:40.682Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "green-lists",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/green-lists.json"
+    ],
+    "started": "2026-10-25T22:46:06.843Z",
+    "finished": "2026-10-25T22:46:09.800Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-host",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/SchedulePanelsDemo.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/red-host.json"
+    ],
+    "started": "2026-10-25T22:47:05.760Z",
+    "finished": "2026-10-25T22:47:07.667Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "green-host",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/SchedulePanelsDemo.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/green-host.json"
+    ],
+    "started": "2026-10-25T22:48:27.251Z",
+    "finished": "2026-10-25T22:48:32.983Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "types-01",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "typecheck"
+    ],
+    "started": "2026-10-25T22:48:40.278Z",
+    "finished": "2026-10-25T22:48:58.037Z",
+    "exit": 2,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "focused-01",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "src/model/legend.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/focused-01.json"
+    ],
+    "started": "2026-10-25T22:49:33.957Z",
+    "finished": "2026-10-25T22:49:37.461Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "green-host-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/SchedulePanelsDemo.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/green-host-02.json"
+    ],
+    "started": "2026-10-25T22:49:39.278Z",
+    "finished": "2026-10-25T22:49:44.995Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "types-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "typecheck"
+    ],
+    "started": "2026-10-25T22:50:03.382Z",
+    "finished": "2026-10-25T22:50:21.124Z",
+    "exit": 2,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-01",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/playground",
+      "build"
+    ],
+    "started": "2026-10-25T22:50:21.593Z",
+    "finished": "2026-10-25T22:50:23.870Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "types-03",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "typecheck"
+    ],
+    "started": "2026-10-25T22:50:34.978Z",
+    "finished": "2026-10-25T22:51:00.822Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "scheduling-01",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/scheduling-01.json"
+    ],
+    "started": "2026-10-25T22:52:04.702Z",
+    "finished": "2026-10-25T22:52:17.444Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-phase",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "-t",
+      "real vendor odd hour",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/red-phase.json"
+    ],
+    "started": "2026-10-25T22:54:44.767Z",
+    "finished": "2026-10-25T22:54:48.358Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "green-phase",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "-t",
+      "real vendor odd hour",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/green-phase.json"
+    ],
+    "started": "2026-10-25T22:55:26.290Z",
+    "finished": "2026-10-25T22:55:29.889Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "focused-phase-01",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "src/model/legend.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/focused-phase-01.json"
+    ],
+    "started": "2026-10-25T22:55:35.039Z",
+    "finished": "2026-10-25T22:55:42.754Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "focused-phase-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "src/model/legend.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/focused-phase-02.json"
+    ],
+    "started": "2026-10-25T22:56:19.266Z",
+    "finished": "2026-10-25T22:56:23.584Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "focused-phase-03",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "src/model/legend.test.ts",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/focused-phase-03.json"
+    ],
+    "started": "2026-10-25T22:58:05.537Z",
+    "finished": "2026-10-25T22:58:08.985Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-write",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "packages/scheduling/src/components/panels",
+      "packages/scheduling/src/model/legend.ts",
+      "packages/scheduling/src/model/legend.test.ts",
+      "packages/scheduling/src/model/scale.ts",
+      "packages/scheduling/src/model/types.ts",
+      "packages/scheduling/src/index.ts",
+      "apps/playground/src/SchedulePanelsDemo.vue",
+      "apps/playground/src/SchedulePanelsDemo.test.ts",
+      "apps/playground/src/schedule-panels-fixtures.ts",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/RealGanttDemo.vue",
+      "apps/design-system/docs/components/desktop/gantt-chart.md",
+      "apps/design-system/docs/components/desktop/resource-scheduler.md"
+    ],
+    "started": "2026-10-25T23:00:03.707Z",
+    "finished": "2026-10-25T23:00:05.592Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "types-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "typecheck"
+    ],
+    "started": "2026-10-25T23:00:13.619Z",
+    "finished": "2026-10-25T23:00:32.831Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "scheduling-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/scheduling-final.json"
+    ],
+    "started": "2026-10-25T23:00:42.846Z",
+    "finished": "2026-10-25T23:00:54.782Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/host-final.json"
+    ],
+    "started": "2026-10-25T23:00:54.808Z",
+    "finished": "2026-10-25T23:01:07.295Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "docs-source-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui",
+      "test:docs",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/docs-source-final.json"
+    ],
+    "started": "2026-10-25T23:01:07.322Z",
+    "finished": "2026-10-25T23:01:10.540Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "invariants",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/invariants.mjs"
+    ],
+    "started": "2026-10-25T23:01:19.645Z",
+    "finished": "2026-10-25T23:01:21.098Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "public-types-prepare",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/public-types.mjs"
+    ],
+    "started": "2026-10-25T23:01:21.127Z",
+    "finished": "2026-10-25T23:01:21.155Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-parse-diagnostic",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/SchedulePanelsDemo.test.ts"
+    ],
+    "started": "2026-10-25T23:01:44.483Z",
+    "finished": "2026-10-25T23:01:45.713Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-host-corrected",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "apps/playground/src/SchedulePanelsDemo.vue"
+    ],
+    "started": "2026-10-25T23:02:01.407Z",
+    "finished": "2026-10-25T23:02:02.057Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-final-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/host-final-02.json"
+    ],
+    "started": "2026-10-25T23:02:02.082Z",
+    "finished": "2026-10-25T23:02:14.368Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "public-types",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vue-tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/nerv-ui-p08-public-consumer/tsconfig.json"
+    ],
+    "started": "2026-10-25T23:02:37.449Z",
+    "finished": "2026-10-25T23:02:41.394Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-host-native",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "apps/playground/src/SchedulePanelsDemo.vue"
+    ],
+    "started": "2026-10-25T23:03:06.441Z",
+    "finished": "2026-10-25T23:03:07.088Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "public-types-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vue-tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/nerv-ui-p08-public-consumer/tsconfig.json"
+    ],
+    "started": "2026-10-25T23:03:07.120Z",
+    "finished": "2026-10-25T23:03:11.181Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-final-03",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/host-final-03.json"
+    ],
+    "started": "2026-10-25T23:03:31.047Z",
+    "finished": "2026-10-25T23:03:54.621Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "build"
+    ],
+    "started": "2026-10-25T23:03:44.383Z",
+    "finished": "2026-10-25T23:04:12.896Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-nested-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/playground",
+      "exec",
+      "vp",
+      "build",
+      "--base=/p08/",
+      "--outDir=/tmp/nerv-ui-p08-nested-dist"
+    ],
+    "started": "2026-10-25T23:04:12.924Z",
+    "finished": "2026-10-25T23:04:15.026Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "format-docs",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/format-docs.mjs",
+      "README.md",
+      "docs/scheduling-panels.md"
+    ],
+    "started": "2026-10-25T23:04:38.237Z",
+    "finished": "2026-10-25T23:04:39.447Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-serial-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/host-serial-final.json"
+    ],
+    "started": "2026-10-25T23:05:01.408Z",
+    "finished": "2026-10-25T23:05:17.316Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-01",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-01.mjs')"
+    ],
+    "started": "2026-10-25T23:05:32.092Z",
+    "finished": "2026-10-25T23:05:34.783Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-02",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-02.mjs')"
+    ],
+    "started": "2026-10-25T23:06:08.519Z",
+    "finished": "2026-10-25T23:06:13.338Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-03-red-recursion",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-03-red-recursion.mjs')"
+    ],
+    "started": "2026-10-25T23:06:56.445Z",
+    "finished": "2026-10-25T23:06:56.637Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-04-red-recursion",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-04-red-recursion.mjs')"
+    ],
+    "started": "2026-10-25T23:07:23.159Z",
+    "finished": "2026-10-25T23:07:25.780Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-recursion",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "apps/playground/src/SchedulePanelsDemo.vue"
+    ],
+    "started": "2026-10-25T23:07:36.508Z",
+    "finished": "2026-10-25T23:07:37.245Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-recursion-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/host-recursion-final.json"
+    ],
+    "started": "2026-10-25T23:07:37.281Z",
+    "finished": "2026-10-25T23:07:50.288Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fetch-integration",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "git",
+    "args": [
+      "fetch",
+      "origin",
+      "integration/nerv-ui-extraction"
+    ],
+    "started": "2026-10-25T23:08:35.476Z",
+    "finished": "2026-10-25T23:08:36.603Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "merge-integration",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "git",
+    "args": [
+      "merge",
+      "origin/integration/nerv-ui-extraction",
+      "--no-edit"
+    ],
+    "started": "2026-10-25T23:08:36.632Z",
+    "finished": "2026-10-25T23:08:36.641Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "build"
+    ],
+    "started": "2026-10-25T23:08:22.442Z",
+    "finished": "2026-10-25T23:08:44.556Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-nested-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/playground",
+      "exec",
+      "vp",
+      "build",
+      "--base=/p08/",
+      "--outDir=/tmp/nerv-ui-p08-nested-dist"
+    ],
+    "started": "2026-10-25T23:08:44.584Z",
+    "finished": "2026-10-25T23:08:46.727Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-05",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-05.mjs')"
+    ],
+    "started": "2026-10-25T23:09:05.155Z",
+    "finished": "2026-10-25T23:09:09.896Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-06",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-06.mjs')"
+    ],
+    "started": "2026-10-25T23:09:16.573Z",
+    "finished": "2026-10-25T23:09:33.990Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-07",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-07.mjs')"
+    ],
+    "started": "2026-10-25T23:09:53.964Z",
+    "finished": "2026-10-25T23:10:12.621Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-zero-legend",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "-t",
+      "zero changeover badge",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/red-zero-legend.json"
+    ],
+    "started": "2026-10-25T23:10:32.859Z",
+    "finished": "2026-10-25T23:10:35.983Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-zero",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "packages/scheduling/src/model/legend.ts",
+      "packages/scheduling/src/components/panels/Panels.public.test.ts"
+    ],
+    "started": "2026-10-25T23:11:03.990Z",
+    "finished": "2026-10-25T23:11:04.627Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "scheduling-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/scheduling-final.json"
+    ],
+    "started": "2026-10-25T23:11:04.680Z",
+    "finished": "2026-10-25T23:11:15.508Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/host-final.json"
+    ],
+    "started": "2026-10-25T23:11:15.536Z",
+    "finished": "2026-10-25T23:11:29.179Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "docs-source-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui",
+      "test:docs",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/docs-source-final.json"
+    ],
+    "started": "2026-10-25T23:11:29.209Z",
+    "finished": "2026-10-25T23:11:32.357Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "build"
+    ],
+    "started": "2026-10-25T23:12:27.192Z",
+    "finished": "2026-10-25T23:12:47.882Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-nested-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/playground",
+      "exec",
+      "vp",
+      "build",
+      "--base=/p08/",
+      "--outDir=/tmp/nerv-ui-p08-nested-dist"
+    ],
+    "started": "2026-10-25T23:12:47.913Z",
+    "finished": "2026-10-25T23:12:50.023Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "format-panels-doc",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/format-docs.mjs",
+      "docs/scheduling-panels.md"
+    ],
+    "started": "2026-10-25T23:12:58.977Z",
+    "finished": "2026-10-25T23:12:59.647Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "invariants-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/invariants.mjs"
+    ],
+    "started": "2026-10-25T23:12:59.671Z",
+    "finished": "2026-10-25T23:13:00.308Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-09",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-09.mjs')"
+    ],
+    "started": "2026-10-25T23:13:10.843Z",
+    "finished": "2026-10-25T23:13:16.312Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-10",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-10.mjs')"
+    ],
+    "started": "2026-10-25T23:13:48.052Z",
+    "finished": "2026-10-25T23:14:02.096Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-11",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-11.mjs')"
+    ],
+    "started": "2026-10-25T23:14:14.164Z",
+    "finished": "2026-10-25T23:14:18.222Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-13",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-13.mjs')"
+    ],
+    "started": "2026-10-25T23:14:57.513Z",
+    "finished": "2026-10-25T23:15:04.279Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-12",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-12.mjs')"
+    ],
+    "started": "2026-10-25T23:15:40.047Z",
+    "finished": "2026-10-25T23:15:44.425Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-14-layout",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-14-layout.mjs')"
+    ],
+    "started": "2026-10-25T23:16:01.583Z",
+    "finished": "2026-10-25T23:16:02.154Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-layout",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "apps/playground/src/SchedulePanelsDemo.vue"
+    ],
+    "started": "2026-10-25T23:16:09.049Z",
+    "finished": "2026-10-25T23:16:09.948Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-layout-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/host-layout-final.json"
+    ],
+    "started": "2026-10-25T23:16:09.990Z",
+    "finished": "2026-10-25T23:16:25.591Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "source-fmt",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--check",
+      "apps/design-system/docs/components/desktop/gantt-chart.md",
+      "apps/design-system/docs/components/desktop/resource-scheduler.md",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/RealGanttDemo.vue",
+      "packages/scheduling/src/components/panels/ChangeSummaryPanel.vue",
+      "packages/scheduling/src/components/panels/ConflictPanel.vue",
+      "packages/scheduling/src/components/panels/InspectorSheet.vue",
+      "packages/scheduling/src/components/panels/SchedulingLegend.vue",
+      "packages/scheduling/src/components/panels/SchedulingToolbar.vue",
+      "packages/scheduling/src/components/panels/TaskDetailPanel.vue",
+      "packages/scheduling/src/components/panels/TaskFacts.vue",
+      "packages/scheduling/src/components/panels/UnscheduledPanel.vue",
+      "packages/scheduling/src/index.ts",
+      "packages/scheduling/src/model/legend.test.ts",
+      "packages/scheduling/src/model/legend.ts",
+      "packages/scheduling/src/model/scale.ts",
+      "packages/scheduling/src/model/types.ts",
+      "apps/playground/src/SchedulePanelsDemo.test.ts",
+      "apps/playground/src/SchedulePanelsDemo.vue",
+      "apps/playground/src/schedule-panels-fixtures.ts",
+      "packages/scheduling/src/components/panels/Panels.public.test.ts"
+    ],
+    "started": "2026-10-25T23:17:00.174Z",
+    "finished": "2026-10-25T23:17:01.141Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "source-lint",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "lint",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/RealGanttDemo.vue",
+      "packages/scheduling/src/components/panels/ChangeSummaryPanel.vue",
+      "packages/scheduling/src/components/panels/ConflictPanel.vue",
+      "packages/scheduling/src/components/panels/InspectorSheet.vue",
+      "packages/scheduling/src/components/panels/SchedulingLegend.vue",
+      "packages/scheduling/src/components/panels/SchedulingToolbar.vue",
+      "packages/scheduling/src/components/panels/TaskDetailPanel.vue",
+      "packages/scheduling/src/components/panels/TaskFacts.vue",
+      "packages/scheduling/src/components/panels/UnscheduledPanel.vue",
+      "packages/scheduling/src/index.ts",
+      "packages/scheduling/src/model/legend.test.ts",
+      "packages/scheduling/src/model/legend.ts",
+      "packages/scheduling/src/model/scale.ts",
+      "packages/scheduling/src/model/types.ts",
+      "apps/playground/src/SchedulePanelsDemo.test.ts",
+      "apps/playground/src/SchedulePanelsDemo.vue",
+      "apps/playground/src/schedule-panels-fixtures.ts",
+      "packages/scheduling/src/components/panels/Panels.public.test.ts"
+    ],
+    "started": "2026-10-25T23:17:01.171Z",
+    "finished": "2026-10-25T23:17:02.213Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "docs-maintenance",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/format-docs.mjs",
+      "--check",
+      "README.md",
+      "docs/scheduling-panels.md"
+    ],
+    "started": "2026-10-25T23:17:02.240Z",
+    "finished": "2026-10-25T23:17:03.437Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "build"
+    ],
+    "started": "2026-10-25T23:17:03.488Z",
+    "finished": "2026-10-25T23:17:24.167Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-nested-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/playground",
+      "exec",
+      "vp",
+      "build",
+      "--base=/p08/",
+      "--outDir=/tmp/nerv-ui-p08-nested-dist"
+    ],
+    "started": "2026-10-25T23:17:24.195Z",
+    "finished": "2026-10-25T23:17:26.274Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-09",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-09.mjs')"
+    ],
+    "started": "2026-10-25T23:17:52.984Z",
+    "finished": "2026-10-25T23:17:59.305Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-10",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-10.mjs')"
+    ],
+    "started": "2026-10-25T23:17:59.335Z",
+    "finished": "2026-10-25T23:18:09.590Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-13",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-13.mjs')"
+    ],
+    "started": "2026-10-25T23:18:09.624Z",
+    "finished": "2026-10-25T23:18:16.495Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-12",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-12.mjs')"
+    ],
+    "started": "2026-10-25T23:18:16.530Z",
+    "finished": "2026-10-25T23:18:21.104Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-15-layout-green",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-15-layout-green.mjs')"
+    ],
+    "started": "2026-10-25T23:18:21.140Z",
+    "finished": "2026-10-25T23:18:21.829Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "responses-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/responses.mjs"
+    ],
+    "started": "2026-10-25T23:19:05.561Z",
+    "finished": "2026-10-25T23:19:05.639Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "validation-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/validation.mjs"
+    ],
+    "started": "2026-10-25T23:19:05.666Z",
+    "finished": "2026-10-25T23:19:05.715Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "evidence-doc-format",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/format-docs.mjs",
+      "docs/evidence/t07-p08/README.md"
+    ],
+    "started": "2026-10-25T23:21:00.763Z",
+    "finished": "2026-10-25T23:21:01.459Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "browser-cleanup",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "ego-browser",
+    "args": [
+      "nodejs",
+      "-e",
+      "await import('file:///Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/docs/evidence/t07-p08/scripts/browser-cleanup.mjs')"
+    ],
+    "started": "2026-10-25T23:21:38.823Z",
+    "finished": "2026-10-25T23:21:38.987Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "service-cleanup",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/service-cleanup.mjs"
+    ],
+    "started": "2026-10-25T23:22:10.654Z",
+    "finished": "2026-10-25T23:22:11.091Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fetch-integration-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "git",
+    "args": [
+      "fetch",
+      "origin",
+      "integration/nerv-ui-extraction"
+    ],
+    "started": "2026-10-25T23:22:11.123Z",
+    "finished": "2026-10-25T23:22:12.237Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "merge-integration-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "git",
+    "args": [
+      "merge",
+      "origin/integration/nerv-ui-extraction",
+      "--no-edit"
+    ],
+    "started": "2026-10-25T23:22:12.263Z",
+    "finished": "2026-10-25T23:22:12.271Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "public-types-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vue-tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/nerv-ui-p08-public-consumer/tsconfig.json"
+    ],
+    "started": "2026-10-25T23:22:56.075Z",
+    "finished": "2026-10-25T23:22:59.768Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "evidence-doc-check",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/format-docs.mjs",
+      "--check",
+      "docs/evidence/t07-p08/README.md"
+    ],
+    "started": "2026-10-25T23:22:59.795Z",
+    "finished": "2026-10-25T23:23:00.432Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "invariants-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/invariants.mjs"
+    ],
+    "started": "2026-10-25T23:23:00.464Z",
+    "finished": "2026-10-25T23:23:01.147Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "red-summary-phase",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "test",
+      "run",
+      "src/components/panels/Panels.public.test.ts",
+      "-t",
+      "stale summary dates",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/red-summary-phase.json"
+    ],
+    "started": "2026-10-25T23:25:47.862Z",
+    "finished": "2026-10-25T23:25:51.273Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fmt-summary",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--write",
+      "packages/scheduling/src/model/scale.ts",
+      "packages/scheduling/src/components/panels/Panels.public.test.ts"
+    ],
+    "started": "2026-10-25T23:26:13.727Z",
+    "finished": "2026-10-25T23:26:14.222Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "scheduling-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/packages/scheduling",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/scheduling-seal.json"
+    ],
+    "started": "2026-10-25T23:26:14.268Z",
+    "finished": "2026-10-25T23:26:24.481Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "host-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground",
+    "command": "pnpm",
+    "args": [
+      "test",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/host-seal.json"
+    ],
+    "started": "2026-10-25T23:26:24.509Z",
+    "finished": "2026-10-25T23:26:35.454Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "docs-source-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/ui",
+      "test:docs",
+      "--reporter=json",
+      "--outputFile=../../../docs/evidence/t07-p08/raw/docs-source-seal.json"
+    ],
+    "started": "2026-10-25T23:26:35.481Z",
+    "finished": "2026-10-25T23:26:38.453Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "source-fmt",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "fmt",
+      "--check",
+      "apps/design-system/docs/components/desktop/gantt-chart.md",
+      "apps/design-system/docs/components/desktop/resource-scheduler.md",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/RealGanttDemo.vue",
+      "packages/scheduling/src/components/panels/ChangeSummaryPanel.vue",
+      "packages/scheduling/src/components/panels/ConflictPanel.vue",
+      "packages/scheduling/src/components/panels/InspectorSheet.vue",
+      "packages/scheduling/src/components/panels/SchedulingLegend.vue",
+      "packages/scheduling/src/components/panels/SchedulingToolbar.vue",
+      "packages/scheduling/src/components/panels/TaskDetailPanel.vue",
+      "packages/scheduling/src/components/panels/TaskFacts.vue",
+      "packages/scheduling/src/components/panels/UnscheduledPanel.vue",
+      "packages/scheduling/src/index.ts",
+      "packages/scheduling/src/model/legend.test.ts",
+      "packages/scheduling/src/model/legend.ts",
+      "packages/scheduling/src/model/scale.ts",
+      "packages/scheduling/src/model/types.ts",
+      "apps/playground/src/SchedulePanelsDemo.test.ts",
+      "apps/playground/src/SchedulePanelsDemo.vue",
+      "apps/playground/src/schedule-panels-fixtures.ts",
+      "packages/scheduling/src/components/panels/Panels.public.test.ts"
+    ],
+    "started": "2026-10-25T23:27:57.819Z",
+    "finished": "2026-10-25T23:27:58.653Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "source-lint",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vp",
+      "lint",
+      "apps/playground/src/App.vue",
+      "apps/playground/src/RealGanttDemo.vue",
+      "packages/scheduling/src/components/panels/ChangeSummaryPanel.vue",
+      "packages/scheduling/src/components/panels/ConflictPanel.vue",
+      "packages/scheduling/src/components/panels/InspectorSheet.vue",
+      "packages/scheduling/src/components/panels/SchedulingLegend.vue",
+      "packages/scheduling/src/components/panels/SchedulingToolbar.vue",
+      "packages/scheduling/src/components/panels/TaskDetailPanel.vue",
+      "packages/scheduling/src/components/panels/TaskFacts.vue",
+      "packages/scheduling/src/components/panels/UnscheduledPanel.vue",
+      "packages/scheduling/src/index.ts",
+      "packages/scheduling/src/model/legend.test.ts",
+      "packages/scheduling/src/model/legend.ts",
+      "packages/scheduling/src/model/scale.ts",
+      "packages/scheduling/src/model/types.ts",
+      "apps/playground/src/SchedulePanelsDemo.test.ts",
+      "apps/playground/src/SchedulePanelsDemo.vue",
+      "apps/playground/src/schedule-panels-fixtures.ts",
+      "packages/scheduling/src/components/panels/Panels.public.test.ts"
+    ],
+    "started": "2026-10-25T23:27:58.679Z",
+    "finished": "2026-10-25T23:27:59.248Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "docs-maintenance",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/format-docs.mjs",
+      "--check",
+      "README.md",
+      "docs/scheduling-panels.md"
+    ],
+    "started": "2026-10-25T23:27:59.272Z",
+    "finished": "2026-10-25T23:28:00.405Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-root-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "build"
+    ],
+    "started": "2026-10-25T23:28:00.458Z",
+    "finished": "2026-10-25T23:28:20.341Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "build-nested-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "--filter",
+      "@nerv-iip/playground",
+      "exec",
+      "vp",
+      "build",
+      "--base=/p08/",
+      "--outDir=/tmp/nerv-ui-p08-nested-dist"
+    ],
+    "started": "2026-10-25T23:28:20.369Z",
+    "finished": "2026-10-25T23:28:22.322Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "copy-proof",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/copy-proof.mjs"
+    ],
+    "started": "2026-10-25T23:28:22.348Z",
+    "finished": "2026-10-25T23:28:22.389Z",
+    "exit": 1,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "copy-proof-corrected",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/copy-proof.mjs"
+    ],
+    "started": "2026-10-25T23:28:37.061Z",
+    "finished": "2026-10-25T23:28:37.123Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "validation-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/validation.mjs"
+    ],
+    "started": "2026-10-25T23:28:37.148Z",
+    "finished": "2026-10-25T23:28:37.199Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "responses-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/responses.mjs"
+    ],
+    "started": "2026-10-25T23:29:08.760Z",
+    "finished": "2026-10-25T23:29:08.837Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "public-types-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend",
+    "command": "pnpm",
+    "args": [
+      "exec",
+      "vue-tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/nerv-ui-p08-public-consumer/tsconfig.json"
+    ],
+    "started": "2026-10-25T23:29:08.863Z",
+    "finished": "2026-10-25T23:29:12.473Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "docs-seal-format",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/format-docs.mjs",
+      "docs/scheduling-panels.md",
+      "docs/evidence/t07-p08/README.md"
+    ],
+    "started": "2026-10-25T23:29:12.501Z",
+    "finished": "2026-10-25T23:29:13.631Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "service-cleanup-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/service-cleanup-seal.mjs"
+    ],
+    "started": "2026-10-25T23:29:42.911Z",
+    "finished": "2026-10-25T23:29:43.304Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "invariant-object-final",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/invariants.mjs"
+    ],
+    "started": "2026-10-25T23:29:43.329Z",
+    "finished": "2026-10-25T23:29:43.862Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "evidence-seal-check",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "node",
+    "args": [
+      "docs/evidence/t07-p08/scripts/format-docs.mjs",
+      "--check",
+      "docs/evidence/t07-p08/README.md",
+      "docs/scheduling-panels.md"
+    ],
+    "started": "2026-10-25T23:29:43.887Z",
+    "finished": "2026-10-25T23:29:45.009Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "fetch-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "git",
+    "args": [
+      "fetch",
+      "origin",
+      "integration/nerv-ui-extraction"
+    ],
+    "started": "2026-10-25T23:29:45.034Z",
+    "finished": "2026-10-25T23:29:46.400Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  },
+  {
+    "name": "merge-seal",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels",
+    "command": "git",
+    "args": [
+      "merge",
+      "origin/integration/nerv-ui-extraction",
+      "--no-edit"
+    ],
+    "started": "2026-10-25T23:29:46.429Z",
+    "finished": "2026-10-25T23:29:46.438Z",
+    "exit": 0,
+    "signal": null,
+    "error": null
+  }
+]

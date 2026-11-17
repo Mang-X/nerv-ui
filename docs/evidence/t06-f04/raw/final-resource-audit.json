@@ -1,0 +1,924 @@
+{
+  "responseBodyEqualsFinalDist": [
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/",
+      "type": "Document",
+      "mime": "text/html",
+      "contentType": "text/html",
+      "status": 200,
+      "bytes": 544,
+      "sha256": "01f32049fdd20276a6e358d928851c0dbac750621637a2461b19b6f3709158a7",
+      "body": "final-prod-resources-bodies/000.bin",
+      "dist": "frontend/apps/playground/dist/index.html",
+      "equal": true,
+      "initiator": {
+        "type": "other"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/index-Ciafae1Z.css",
+      "type": "Stylesheet",
+      "mime": "text/css",
+      "contentType": "text/css",
+      "status": 200,
+      "bytes": 298755,
+      "sha256": "0aad9f4b946502a787471a49ce89466af75d54adc68c29b94bb3ce3ae92b8e4f",
+      "body": "final-prod-resources-bodies/001.bin",
+      "dist": "frontend/apps/playground/dist/assets/index-Ciafae1Z.css",
+      "equal": true,
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5216/pdf-proof/",
+        "lineNumber": 8,
+        "columnNumber": 83
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/rolldown-runtime-EyZ2wyi3.js",
+      "type": "Script",
+      "mime": "text/javascript",
+      "contentType": "text/javascript",
+      "status": 200,
+      "bytes": 612,
+      "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+      "body": "final-prod-resources-bodies/002.bin",
+      "dist": "frontend/apps/playground/dist/assets/rolldown-runtime-EyZ2wyi3.js",
+      "equal": true,
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5216/pdf-proof/",
+        "lineNumber": 7,
+        "columnNumber": 96
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js",
+      "type": "Script",
+      "mime": "text/javascript",
+      "contentType": "text/javascript",
+      "status": 200,
+      "bytes": 838821,
+      "sha256": "ae9f3e8ceae97c2f964ed7acde21ca91104ac9281b48b47884d931b78ec420fa",
+      "body": "final-prod-resources-bodies/003.bin",
+      "dist": "frontend/apps/playground/dist/assets/index-Dm44BMTo.js",
+      "equal": true,
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5216/pdf-proof/",
+        "lineNumber": 6,
+        "columnNumber": 80
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "type": "Font",
+      "mime": "font/woff2",
+      "contentType": "font/woff2",
+      "status": 200,
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "body": "final-prod-resources-bodies/004.bin",
+      "dist": "frontend/apps/playground/dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "equal": true,
+      "initiator": {
+        "type": "parser",
+        "url": "http://127.0.0.1:5216/pdf-proof/assets/index-Ciafae1Z.css"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/quality-evidence.svg",
+      "type": "Image",
+      "mime": "image/svg+xml",
+      "contentType": "image/svg+xml",
+      "status": 200,
+      "bytes": 1079,
+      "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "body": "final-prod-resources-bodies/007.bin",
+      "dist": "frontend/apps/playground/dist/files/quality-evidence.svg",
+      "equal": true,
+      "initiator": {
+        "type": "other"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/PdfPreview-CGjL7E8h.js",
+      "type": "Script",
+      "mime": "text/javascript",
+      "contentType": "text/javascript",
+      "status": 200,
+      "bytes": 93576,
+      "sha256": "809eba365995d0dde93371ad16446cdaec9b33df5e77e228675e17299012acac",
+      "body": "final-prod-resources-bodies/008.bin",
+      "dist": "frontend/apps/playground/dist/assets/PdfPreview-CGjL7E8h.js",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "url": "about:client",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/dist-C7N40RNG.js",
+      "type": "Script",
+      "mime": "text/javascript",
+      "contentType": "text/javascript",
+      "status": 200,
+      "bytes": 22000,
+      "sha256": "bd5db45caf172ca03f0f94e36d0e78d317a0564338adabec91edfc4e7ba8b96e",
+      "body": "final-prod-resources-bodies/009.bin",
+      "dist": "frontend/apps/playground/dist/assets/dist-C7N40RNG.js",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "url": "about:client",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/direct-engine-DGGu_vGR.js",
+      "type": "Script",
+      "mime": "text/javascript",
+      "contentType": "text/javascript",
+      "status": 200,
+      "bytes": 322047,
+      "sha256": "e926431b88e0082adfaa6aa0899b108a3da5291f32955c00349e48fda8ee7766",
+      "body": "final-prod-resources-bodies/010.bin",
+      "dist": "frontend/apps/playground/dist/assets/direct-engine-DGGu_vGR.js",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "url": "about:client",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-resources-bodies/011.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/reading-journey.pdf",
+      "type": "Fetch",
+      "mime": "application/pdf",
+      "contentType": "application/pdf",
+      "status": 200,
+      "bytes": 3782,
+      "sha256": "ef7e0c8edc0b2a984a78d60dd3f2439708f48f5b379b42633a055c571c461137",
+      "body": "final-prod-resources-bodies/012.bin",
+      "dist": "frontend/apps/playground/dist/files/reading-journey.pdf",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-resources-bodies/020.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/quality-evidence-report.pdf",
+      "type": "Fetch",
+      "mime": "application/pdf",
+      "contentType": "application/pdf",
+      "status": 200,
+      "bytes": 1129,
+      "sha256": "09914b585f5395d52a76609dca4aa3c6771b2e03144ac43f02b503ad00a87a67",
+      "body": "final-prod-resources-bodies/021.bin",
+      "dist": "frontend/apps/playground/dist/files/quality-evidence-report.pdf",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-resources-bodies/023.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/reading-chinese.pdf",
+      "type": "Fetch",
+      "mime": "application/pdf",
+      "contentType": "application/pdf",
+      "status": 200,
+      "bytes": 6560,
+      "sha256": "04bfc41b569eb5e933088c1045cf133e21dd05c28dd8b6c0580418718fa99f8f",
+      "body": "final-prod-resources-bodies/024.bin",
+      "dist": "frontend/apps/playground/dist/files/reading-chinese.pdf",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-resources-bodies/026.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-failures-resources-bodies/000.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-failures-resources-bodies/002.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/reading-journey.pdf",
+      "type": "Fetch",
+      "mime": "application/pdf",
+      "contentType": "application/pdf",
+      "status": 200,
+      "bytes": 3782,
+      "sha256": "ef7e0c8edc0b2a984a78d60dd3f2439708f48f5b379b42633a055c571c461137",
+      "body": "final-prod-failures-resources-bodies/003.bin",
+      "dist": "frontend/apps/playground/dist/files/reading-journey.pdf",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-failures-resources-bodies/007.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/broken.pdf",
+      "type": "Fetch",
+      "mime": "application/pdf",
+      "contentType": "application/pdf",
+      "status": 200,
+      "bytes": 55,
+      "sha256": "6aad67eb76711088ca5dc3b450f87483313c280f980c5b6ef12874239f4c9ef9",
+      "body": "final-prod-failures-resources-bodies/008.bin",
+      "dist": "frontend/apps/playground/dist/files/broken.pdf",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-failures-resources-bodies/009.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/reading-journey.pdf",
+      "type": "Fetch",
+      "mime": "application/pdf",
+      "contentType": "application/pdf",
+      "status": 200,
+      "bytes": 3782,
+      "sha256": "ef7e0c8edc0b2a984a78d60dd3f2439708f48f5b379b42633a055c571c461137",
+      "body": "final-prod-failures-resources-bodies/010.bin",
+      "dist": "frontend/apps/playground/dist/files/reading-journey.pdf",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/quality-evidence.svg",
+      "type": "Image",
+      "mime": "image/svg+xml",
+      "contentType": "image/svg+xml",
+      "status": 200,
+      "bytes": 1079,
+      "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "body": "final-prod-failures-resources-bodies/014.bin",
+      "dist": "frontend/apps/playground/dist/files/quality-evidence.svg",
+      "equal": true,
+      "initiator": {
+        "type": "other"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-failures-resources-bodies/015.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/reading-journey.pdf",
+      "type": "Fetch",
+      "mime": "application/pdf",
+      "contentType": "application/pdf",
+      "status": 200,
+      "bytes": 3782,
+      "sha256": "ef7e0c8edc0b2a984a78d60dd3f2439708f48f5b379b42633a055c571c461137",
+      "body": "final-prod-failures-resources-bodies/016.bin",
+      "dist": "frontend/apps/playground/dist/files/reading-journey.pdf",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-failures-resources-bodies/020.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-failures-resources-bodies/021.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/reading-chinese.pdf",
+      "type": "Fetch",
+      "mime": "application/pdf",
+      "contentType": "application/pdf",
+      "status": 200,
+      "bytes": 6560,
+      "sha256": "04bfc41b569eb5e933088c1045cf133e21dd05c28dd8b6c0580418718fa99f8f",
+      "body": "final-prod-failures-resources-bodies/022.bin",
+      "dist": "frontend/apps/playground/dist/files/reading-chinese.pdf",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/files/quality-evidence.svg",
+      "type": "Image",
+      "mime": "image/svg+xml",
+      "contentType": "image/svg+xml",
+      "status": 200,
+      "bytes": 1079,
+      "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "body": "final-prod-failures-resources-bodies/025.bin",
+      "dist": "frontend/apps/playground/dist/files/quality-evidence.svg",
+      "equal": true,
+      "initiator": {
+        "type": "other"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5216/pdf-proof/assets/pdfium-RAgkpwfK.wasm",
+      "type": "Fetch",
+      "mime": "application/wasm",
+      "contentType": "application/wasm",
+      "status": 200,
+      "bytes": 4633788,
+      "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8",
+      "body": "final-prod-failures-resources-bodies/026.bin",
+      "dist": "frontend/apps/playground/dist/assets/pdfium-RAgkpwfK.wasm",
+      "equal": true,
+      "initiator": {
+        "type": "script",
+        "stack": {
+          "callFrames": [
+            {
+              "functionName": "window.fetch",
+              "scriptId": "6017",
+              "url": "",
+              "lineNumber": 10,
+              "columnNumber": 35
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "matchedResponseCount": 31,
+  "http404": [
+    {
+      "requestId": "56367.6180",
+      "loaderId": "FEAF3C7B8B9EA9E44F5588AB95A39F03",
+      "timestamp": 151314.887391,
+      "type": "Fetch",
+      "response": {
+        "url": "http://127.0.0.1:5216/pdf-proof/files/missing.pdf",
+        "status": 404,
+        "statusText": "Not Found",
+        "headers": {
+          "Transfer-Encoding": "chunked",
+          "Keep-Alive": "timeout=5",
+          "Date": "Sun, 25 Oct 2026 05:09:41 GMT",
+          "Vary": "Origin",
+          "Connection": "keep-alive"
+        },
+        "mimeType": "",
+        "charset": "",
+        "connectionReused": true,
+        "connectionId": 438368,
+        "remoteIPAddress": "127.0.0.1",
+        "remotePort": 5216,
+        "fromDiskCache": false,
+        "fromServiceWorker": false,
+        "fromPrefetchCache": false,
+        "encodedDataLength": 152,
+        "timing": {
+          "requestTime": 151314.878024,
+          "proxyStart": 1.198,
+          "proxyEnd": 1.199,
+          "dnsStart": -1,
+          "dnsEnd": -1,
+          "connectStart": -1,
+          "connectEnd": -1,
+          "sslStart": -1,
+          "sslEnd": -1,
+          "workerStart": -1,
+          "workerReady": -1,
+          "workerFetchStart": -1,
+          "workerRespondWithSettled": -1,
+          "sendStart": 1.287,
+          "sendEnd": 1.363,
+          "pushStart": 0,
+          "pushEnd": 0,
+          "receiveHeadersStart": 1.824,
+          "receiveHeadersEnd": 1.859
+        },
+        "responseTime": 1792904981096.011,
+        "protocol": "http/1.1",
+        "alternateProtocolUsage": "unspecifiedReason",
+        "securityState": "secure"
+      },
+      "hasExtraInfo": true,
+      "frameId": "18E55C876899C2055D8C81A89A17B91C"
+    },
+    {
+      "requestId": "56367.6205",
+      "loaderId": "FEAF3C7B8B9EA9E44F5588AB95A39F03",
+      "timestamp": 151330.214223,
+      "type": "Fetch",
+      "response": {
+        "url": "http://127.0.0.1:5216/pdf-proof/files/missing.pdf",
+        "status": 404,
+        "statusText": "Not Found",
+        "headers": {
+          "Transfer-Encoding": "chunked",
+          "Keep-Alive": "timeout=5",
+          "Date": "Sun, 25 Oct 2026 05:09:56 GMT",
+          "Vary": "Origin",
+          "Connection": "keep-alive"
+        },
+        "mimeType": "",
+        "charset": "",
+        "connectionReused": true,
+        "connectionId": 438368,
+        "remoteIPAddress": "127.0.0.1",
+        "remotePort": 5216,
+        "fromDiskCache": false,
+        "fromServiceWorker": false,
+        "fromPrefetchCache": false,
+        "encodedDataLength": 152,
+        "timing": {
+          "requestTime": 151330.212506,
+          "proxyStart": 0.478,
+          "proxyEnd": 0.481,
+          "dnsStart": -1,
+          "dnsEnd": -1,
+          "connectStart": -1,
+          "connectEnd": -1,
+          "sslStart": -1,
+          "sslEnd": -1,
+          "workerStart": -1,
+          "workerReady": -1,
+          "workerFetchStart": -1,
+          "workerRespondWithSettled": -1,
+          "sendStart": 0.559,
+          "sendEnd": 0.627,
+          "pushStart": 0,
+          "pushEnd": 0,
+          "receiveHeadersStart": 1.156,
+          "receiveHeadersEnd": 1.188
+        },
+        "responseTime": 1792904996429.751,
+        "protocol": "http/1.1",
+        "alternateProtocolUsage": "unspecifiedReason",
+        "securityState": "secure"
+      },
+      "hasExtraInfo": true,
+      "frameId": "18E55C876899C2055D8C81A89A17B91C"
+    }
+  ],
+  "blockedNonLoopback": [
+    {
+      "url": "https://example.com/nerv-ui-block-probe.png",
+      "method": "GET",
+      "failures": [
+        {
+          "requestId": "56367.6209",
+          "timestamp": 151332.21704,
+          "type": "Image",
+          "errorText": "",
+          "canceled": false,
+          "blockedReason": "inspector"
+        }
+      ]
+    },
+    {
+      "url": "http://example.com/nerv-ui-block-probe.png",
+      "method": "GET",
+      "failures": [
+        {
+          "requestId": "56367.6210",
+          "timestamp": 151332.217379,
+          "type": "Image",
+          "errorText": "",
+          "canceled": false,
+          "blockedReason": "inspector"
+        }
+      ]
+    }
+  ],
+  "writeRequests": [],
+  "workerMode": "direct; zero Worker constructors; independent worker response not applicable",
+  "instances": [
+    {
+      "started": 494.30000001192093,
+      "input": 4633788,
+      "completed": 503.5,
+      "exports": 630
+    },
+    {
+      "started": 12126.40000000596,
+      "input": 4633788,
+      "completed": 12134,
+      "exports": 630
+    },
+    {
+      "started": 13465.90000000596,
+      "input": 4633788,
+      "completed": 13480.699999988079,
+      "exports": 630
+    },
+    {
+      "started": 61672.69999998808,
+      "input": 4633788,
+      "completed": 61687.30000001192,
+      "exports": 630
+    },
+    {
+      "started": 62003,
+      "input": 4633788,
+      "completed": 62012.5,
+      "exports": 630
+    },
+    {
+      "started": 63417.69999998808,
+      "input": 4633788,
+      "completed": 63437.59999999404,
+      "exports": 630
+    },
+    {
+      "started": 67365.30000001192,
+      "input": 4633788,
+      "completed": 67374.09999999404,
+      "exports": 630
+    },
+    {
+      "started": 72811.69999998808,
+      "input": 4633788,
+      "completed": 72820.30000001192,
+      "exports": 630
+    },
+    {
+      "started": 75888.69999998808,
+      "input": 4633788,
+      "completed": 75898,
+      "exports": 630
+    },
+    {
+      "started": 76008,
+      "input": 4633788,
+      "completed": 76017.69999998808,
+      "exports": 630
+    },
+    {
+      "started": 78118.80000001192,
+      "input": 4633788,
+      "completed": 78130.90000000596,
+      "exports": 630
+    }
+  ],
+  "allBlobUrlsRevoked": true,
+  "allObserversTimersInactive": true,
+  "errors": []
+}

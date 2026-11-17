@@ -1,0 +1,1 @@
+const task=await taskSpace(13),page=task.page('p1');console.log(await page.evaluate(()=>({state:document.querySelector('[aria-label="刷新状态"]').textContent,text:document.querySelector('[data-slot="pull-refresh"]').textContent,transform:document.querySelector('.nv-m-pr-inner').style.transform,events:window.__f3events})));console.log(await page.snapshot());

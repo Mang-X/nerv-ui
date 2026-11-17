@@ -1,0 +1,95 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+ ❯ src/components/infinite-list/InfiniteList.test.ts (5 tests | 1 failed) 111ms
+   × loads at the configured scroll boundary once and respects loading, pause and finished states 45ms
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts (3 tests | 1 failed) 109ms
+   × refreshes only beyond the threshold and holds until the controlled loading value clears 37ms
+stderr | src/components/swiper/Swiper.test.ts > keeps empty and singleton slides still without autoplay timers: "only"
+[Vue warn]: Invalid prop: type check failed for prop "items". Expected Array, got String with value "only". 
+  at <Swiper items="only" autoplay=1000 ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+ ❯ src/components/swiper/Swiper.test.ts (5 tests | 2 failed) 152ms
+   × keeps empty and singleton slides still without autoplay timers: undefined 8ms
+   × keeps empty and singleton slides still without autoplay timers: "only" 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/infinite-list/InfiniteList.test.ts > loads at the configured scroll boundary once and respects loading, pause and finished states
+AssertionError: expected '来信 加载中…' to contain '已读完'
+
+Expected: "已读完"
+Received: "来信 加载中…"
+
+ ❯ src/components/infinite-list/InfiniteList.test.ts:106:26
+    104|   await wrapper.setProps({ paused: false, finished: true })
+    105|   await wrapper.trigger('scroll')
+    106|   expect(wrapper.text()).toContain('已读完')
+       |                          ^
+    107|   expect(wrapper.emitted('load')).toHaveLength(1)
+    108|   wrapper.unmount()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/components/pull-refresh/PullRefresh.gestures.test.ts > refreshes only beyond the threshold and holds until the controlled loading value clears
+AssertionError: expected 'transform: translateY(56px);' to contain 'translateY(0px)'
+
+Expected: "translateY(0px)"
+Received: "transform: translateY(56px);"
+
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts:54:36
+     52|   expect(wrapper.emitted('refresh')).toHaveLength(1)
+     53|   await wrapper.setProps({ modelValue: false })
+     54|   expect(area.attributes('style')).toContain('translateY(0px)')
+       |                                    ^
+     55|   expect(wrapper.text()).toContain('下拉刷新')
+     56|   wrapper.unmount()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/components/swiper/Swiper.test.ts > keeps empty and singleton slides still without autoplay timers: undefined
+TypeError: Cannot read properties of undefined (reading 'length')
+ ❯ src/components/swiper/Swiper.test.ts:66:67
+     64|   vi.useFakeTimers()
+     65|   const wrapper = mount(Swiper, { props: { items, autoplay: 1000 } })
+     66|   expect(wrapper.findAll('.nv-m-swiper-item')).toHaveLength(items.leng…
+       |                                                                   ^
+     67|   expect(wrapper.findAll('.nv-m-swiper-dot')).toHaveLength(0)
+     68|   expect(vi.getTimerCount()).toBe(0)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/components/swiper/Swiper.test.ts > keeps empty and singleton slides still without autoplay timers: "only"
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ src/components/swiper/Swiper.test.ts:68:30
+     66|   expect(wrapper.findAll('.nv-m-swiper-item')).toHaveLength(items.leng…
+     67|   expect(wrapper.findAll('.nv-m-swiper-dot')).toHaveLength(0)
+     68|   expect(vi.getTimerCount()).toBe(0)
+       |                              ^
+     69|   wrapper.unmount()
+     70|   vi.useRealTimers()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  3 failed | 2 passed (5)
+      Tests  4 failed | 12 passed (16)
+   Start at  21:28:57
+   Duration  7.81s (transform 18.71s, setup 0ms, import 33.49s, tests 528ms, environment 3.81s)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/swiper/Swiper.test.ts src/components/swipe-cell/SwipeCell.test.ts src/components/pull-refresh/PullRefresh.gestures.test.ts src/components/virtual-list/VirtualList.test.ts src/components/infinite-list/InfiniteList.test.ts

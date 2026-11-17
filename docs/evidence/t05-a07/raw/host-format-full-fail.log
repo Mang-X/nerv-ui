@@ -1,0 +1,22 @@
+JSON report written to /tmp/nerv-ui-t05-a07/handoff/raw/host.json
+/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 test: `vp test run src --reporter=json --outputFile=/tmp/nerv-ui-t05-a07/handoff/raw/host.json`
+Exit status 1
+$ vp test run src --reporter=json --outputFile=/tmp/nerv-ui-t05-a07/handoff/raw/host.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

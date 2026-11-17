@@ -1,0 +1,135 @@
+<script setup lang="ts">
+import { useMediaQuery } from '@vueuse/core'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
+
+/**
+ * Screen — digital flip-counter. Each digit sits in its own dark cell with a top
+ * highlight and a cyan glowing glyph; thousands are grouped with thin comma cells.
+ * A numeric value rolls (tweens) to its new figure on change — the "flip" — over
+ * 0.6s on the emphasized curve; a pre-formatted string shows verbatim. Under
+ * reduced-motion the value snaps. Built on the independent `--nv-scr-*` tokens.
+ */
+const props = withDefaults(
+  defineProps<{
+    /** A number (auto thousands-grouped, rolls on change) or a ready string like "1,284". */
+    value: number | string
+    /** Small unit after the counter, e.g. kWh. */
+    suffix?: string
+  }>(),
+  {},
+)
+
+const reduce = useMediaQuery('(prefers-reduced-motion: reduce)')
+
+// Tweened display figure for numeric values; strings pass straight through.
+const display = ref(typeof props.value === 'number' ? props.value : 0)
+let raf = 0
+
+watch([() => props.value, reduce], ([to]) => {
+  cancelAnimationFrame(raf)
+  raf = 0
+  if (typeof to !== 'number') return
+  if (reduce.value || display.value === to) {
+    display.value = to
+    return
+  }
+  const from = display.value
+  const dur = 600
+  let start = 0
+  const step = (ts: number) => {
+    if (!start) start = ts
+    const t = Math.min(1, (ts - start) / dur)
+    // ease-out-expo — matches --nv-scr-ease-emphasized
+    const e = t === 1 ? 1 : 1 - 2 ** (-10 * t)
+    // Weighted endpoints avoid overflow between opposite finite extremes.
+    display.value = t === 1 ? to : from * (1 - e) + to * e
+    if (t < 1) raf = requestAnimationFrame(step)
+  }
+  raf = requestAnimationFrame(step)
+})
+onBeforeUnmount(() => cancelAnimationFrame(raf))
+
+/** Group numbers (tweened), preserving the caller's decimal places; strings pass
+ *  through verbatim so callers can pre-format. */
+const text = computed(() => {
+  if (typeof props.value !== 'number') return String(props.value)
+  const [coefficient, exponent = '0'] = String(props.value).split('e')
+  const dp = Math.max(0, (coefficient.split('.')[1] ?? '').length - Number(exponent))
+  // Intl's portable fraction limit is 20; toFixed supports up to 100 places.
+  // Smaller finite readings retain their shortest scientific form, never zero.
+  if (dp > 100) return String(display.value)
+  if (dp > 20 && Math.abs(display.value) < 1e21) {
+    const [integer, fraction] = display.value.toFixed(dp).split('.')
+    return `${integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}.${fraction}`
+  }
+  return display.value.toLocaleString('en-US', {
+    minimumFractionDigits: Math.min(dp, 20),
+    maximumFractionDigits: Math.min(dp, 20),
+  })
+})
+
+/** One cell per character; commas/dots/spaces render as thin separators. */
+const cells = computed(() =>
+  [...text.value].map((ch) => {
+    const digit = ch >= '0' && ch <= '9'
+    return { ch, sep: !digit }
+  }),
+)
+</script>
+
+<template>
+  <div class="nv-scr-df" role="img" :aria-label="`${text}${suffix ? ` ${suffix}` : ''}`">
+    <span
+      v-for="(c, i) in cells"
+      :key="i"
+      class="nv-scr-df-cell"
+      :class="{ sep: c.sep }"
+      aria-hidden="true"
+      >{{ c.ch }}</span
+    >
+    <span v-if="suffix" class="nv-scr-df-suffix">{{ suffix }}</span>
+  </div>
+</template>
+
+<style scoped>
+@layer nv-components {
+  .nv-scr-df {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  /* modern flat figure — no skeuomorphic cell box, just a clean white glyph */
+  .nv-scr-df-cell {
+    position: relative;
+    min-width: 0;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: #fff;
+    text-shadow: var(--nv-scr-value-glow);
+  }
+  /* comma / dot / space — a thin transparent cell, no box */
+  .nv-scr-df-cell.sep {
+    min-width: 0;
+    padding-left: 1px;
+    padding-right: 1px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: var(--nv-scr-muted);
+    text-shadow: none;
+  }
+  .nv-scr-df-cell.sep::before {
+    display: none;
+  }
+  .nv-scr-df-suffix {
+    margin-left: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--nv-scr-muted);
+  }
+}
+</style>

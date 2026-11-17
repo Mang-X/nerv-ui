@@ -1,0 +1,12 @@
+{
+  file: 'docs/evidence/t07-p07/README.md',
+  exit: 0,
+  unchanged: true,
+  check: true
+}
+{
+  file: 'docs/scheduling-renderer.md',
+  exit: 0,
+  unchanged: true,
+  check: true
+}

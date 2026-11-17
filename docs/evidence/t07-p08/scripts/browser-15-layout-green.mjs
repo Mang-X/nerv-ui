@@ -1,0 +1,5 @@
+import { session,logger,click,assert,root } from './browser-common.mjs'
+const {page}=await session(),save=logger('browser-15-layout-green');
+await page.goto('http://127.0.0.1:4308/#schedule-panels/library');await page.reload();await page.waitForSelector('[data-engine="dhtmlx"]');await click(page,'显示或收起参考图');await page.waitForFunction(()=>document.querySelectorAll('[data-engine="dhtmlx"]').length===2);
+const data=await page.evaluate(()=>{const ref=document.querySelector('[data-seat="panels-reference"]'),legend=ref.querySelector('.border-t'),section=ref.closest('section');return {reference:ref.getBoundingClientRect().toJSON(),legend:legend.getBoundingClientRect().toJSON(),section:section.getBoundingClientRect().toJSON(),scrollHeight:ref.scrollHeight,clientHeight:ref.clientHeight}});
+await save('reference-legend-boundary',data);assert.ok(data.legend.bottom<=data.reference.bottom,'reference legend must fit the section rather than being clipped');console.log(await page.screenshot({path:root+'/screenshots/reference-layout.png'}));

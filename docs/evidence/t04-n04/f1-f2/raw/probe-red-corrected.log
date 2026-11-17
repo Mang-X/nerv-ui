@@ -1,0 +1,115 @@
+
+ RUN  v4.1.10 /private/tmp/nerv-ui-t04-n04-fix/probe
+
+ ✓ swiper-baseline-public.test.ts (2 tests) 65ms
+ ❯ pull-refresh-public.test.ts (2 tests | 1 failed) 66ms
+   × does not emit another refresh when the host starts loading during an eligible pull 57ms
+   ✓ ignores a pull started while loading and permits one after completion 9ms
+ ❯ baseline-public.test.ts (2 tests | 1 failed) 69ms
+   × does not emit another refresh when the host starts loading during an eligible pull 59ms
+   ✓ ignores a pull started while loading and permits one after completion 9ms
+ ❯ swiper-public.test.ts (2 tests | 2 failed) 104ms
+   × keeps the externally chosen page after a short drag - 'external-forward' 68ms
+   × keeps the externally chosen page after a short drag - 'external-backward' 31ms
+
+ Test Files  3 failed | 1 passed (4)
+      Tests  4 failed | 4 passed (8)
+   Start at  22:21:37
+   Duration  5.32s (transform 11.17s, setup 0ms, import 18.67s, tests 304ms, environment 1.67s)
+
+JSON report written to /tmp/nerv-ui-t04-n04-fix/raw/probe-red-corrected.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  baseline-public.test.ts > does not emit another refresh when the host starts loading during an eligible pull
+AssertionError: expected [ [] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [],
+]
+
+ ❯ baseline-public.test.ts:23:40
+     21|     pointer(area, 'pointerup', 260)
+     22|     await nextTick()
+     23|     expect(wrapper.emitted('refresh')).toBeUndefined()
+       |                                        ^
+     24|   } finally { wrapper.unmount() }
+     25| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  pull-refresh-public.test.ts > does not emit another refresh when the host starts loading during an eligible pull
+AssertionError: expected [ [] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [],
+]
+
+ ❯ pull-refresh-public.test.ts:23:40
+     21|     pointer(area, 'pointerup', 260)
+     22|     await nextTick()
+     23|     expect(wrapper.emitted('refresh')).toBeUndefined()
+       |                                        ^
+     24|   } finally { wrapper.unmount() }
+     25| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  swiper-public.test.ts > keeps the externally chosen page after a short drag - 'external-forward'
+AssertionError: expected [ [ 2 ] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [
+    2,
+  ],
+]
+
+ ❯ swiper-public.test.ts:21:45
+     19|     track.element.dispatchEvent(new MouseEvent('pointerup', { clientX:…
+     20|     await nextTick()
+     21|     expect(wrapper.emitted('update:index')).toBeUndefined()
+       |                                             ^
+     22|     expect(wrapper.emitted('change')).toEqual([[target]])
+     23|     expect(track.attributes('style')).toContain('translate3d(-300px, 0…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  swiper-public.test.ts > keeps the externally chosen page after a short drag - 'external-backward'
+AssertionError: expected [ [ +0 ] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [
+    0,
+  ],
+]
+
+ ❯ swiper-public.test.ts:21:45
+     19|     track.element.dispatchEvent(new MouseEvent('pointerup', { clientX:…
+     20|     await nextTick()
+     21|     expect(wrapper.emitted('update:index')).toBeUndefined()
+       |                                             ^
+     22|     expect(wrapper.emitted('change')).toEqual([[target]])
+     23|     expect(track.attributes('style')).toContain('translate3d(-300px, 0…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+

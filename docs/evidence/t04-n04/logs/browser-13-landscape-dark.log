@@ -1,0 +1,7 @@
+Error: cannot bring button[aria-label="切换明暗"] {"x":818,"y":36,"width":44,"height":44,"top":14,"right":840,"bottom":58,"left":796,"hit":true,"scrollTop":0,"scrollHeight":44,"clientHeight":44,"overflow":"visible","touchAction":"auto"}
+    at bring (file:///private/tmp/nerv-ui-t04-n04/browser/helpers.mjs:10:181)
+    at async Object.click (file:///private/tmp/nerv-ui-t04-n04/browser/helpers.mjs:11:40)
+    at async scenario (file:///private/tmp/nerv-ui-t04-n04/browser/scenario.mjs:9:89)
+    at async file:////[eval2]:2:1
+
+ego's nodejs process exited with code 1.

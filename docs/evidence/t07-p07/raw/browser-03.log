@@ -1,0 +1,8 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'none' !== 'flex'
+
+    at file:////[eval2]:15:9
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+
+ego's nodejs process exited with code 1.

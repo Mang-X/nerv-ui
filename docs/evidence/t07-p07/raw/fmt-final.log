@@ -1,0 +1,6 @@
+Checking formatting...
+
+apps/playground/src/ResourceEditingDemo.vue (159ms)
+
+Format issues found in above 1 files. Run without `--check` to fix.
+Finished in 264ms on 10 files using 10 threads.

@@ -1,0 +1,9 @@
+Error: JavaScript evaluation failed at line 0, column 0: Error: four RAF did not complete within 2000ms
+    at <anonymous>:4:49; expression: ()=>Promise.race([\n  (async()=>{for(let n=0;n<4;n++)await new Promise(r=>requestAnimationFrame(r));return true})(),\n  new Promise((_,reject)=>setTimeout(()...
+    at runtimeValue (file:////[eval1]:9189:15)
+    at evaluateInSession (file:////[eval1]:19460:12)
+    at async file:////[eval1]:19083:24
+    at async file:////[eval1]:16940:28
+{"name":"final scanner active","size":[390,844],"active":"<input type=\"text\" inputmode=\"none\" autocomplete=\"off\" autocapitalize=\"off\" spellcheck=\"false\" placeholder=\"键入编码后按回车\" class=\"w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground\">","activeId":"","activeLabel":null,"status":"扫码接收中","draft":"","number":"","confirm":"尚未确认","sheet":false,"keyboard":false,"dialog":false}
+
+ego's nodejs process exited with code 1.

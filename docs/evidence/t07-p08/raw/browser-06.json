@@ -1,0 +1,452 @@
+[
+  {
+    "stage": "two-instances",
+    "url": "http://127.0.0.1:4308/#schedule-panels/library",
+    "title": "周一读书会",
+    "selected": "选中：尚未选择活动",
+    "detail": "尚未选择活动",
+    "records": "活动记录\n\n尚无活动记录",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx",
+      "dhtmlx"
+    ],
+    "bars": 5,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": "显示或收起参考图"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4308/assets/index-BtGh0fLp.css",
+      "http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4308/assets/index-CYoTJ29w.js",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "real-scale-小时",
+    "order": {
+      "cells": [
+        "Asia/Shanghai · 07:00",
+        "Asia/Shanghai · 09:00",
+        "Asia/Shanghai · 11:00",
+        "Asia/Shanghai · 13:00",
+        "Asia/Shanghai · 15:00",
+        "Asia/Shanghai · 17:00",
+        "Asia/Shanghai · 19:00"
+      ],
+      "shift": 0,
+      "block": 0,
+      "offwork": 4,
+      "legend": "活动分色 活动甘特语义 计划基线 依赖箭头日历 非工作时段",
+      "engine": "dhtmlx"
+    },
+    "resource": {
+      "cells": [
+        "Asia/Shanghai · 06:00",
+        "Asia/Shanghai · 08:00",
+        "Asia/Shanghai · 10:00",
+        "Asia/Shanghai · 12:00",
+        "Asia/Shanghai · 14:00",
+        "Asia/Shanghai · 16:00",
+        "Asia/Shanghai · 18:00",
+        "Asia/Shanghai · 20:00",
+        "Asia/Shanghai · 22:00",
+        "Asia/Shanghai · 00:00",
+        "Asia/Shanghai · 02:00",
+        "Asia/Shanghai · 04:00",
+        "Asia/Shanghai · 06:00"
+      ],
+      "shift": 2,
+      "block": 2,
+      "offwork": 18,
+      "legend": "卡片换型 换型耗时阻塞 空间整理日历 非工作时段 班次边界",
+      "engine": "dhtmlx"
+    }
+  },
+  {
+    "stage": "real-scale-日",
+    "order": {
+      "cells": [
+        "Asia/Shanghai · 11/1周日",
+        "Asia/Shanghai · 11/2周一",
+        "Asia/Shanghai · 11/3周二"
+      ],
+      "shift": 0,
+      "block": 0,
+      "offwork": 6,
+      "legend": "活动分色 活动甘特语义 计划基线 依赖箭头日历 非工作时段",
+      "engine": "dhtmlx"
+    },
+    "resource": {
+      "cells": [
+        "Asia/Shanghai · 11/2周一",
+        "Asia/Shanghai · 11/3周二"
+      ],
+      "shift": 1,
+      "block": 1,
+      "offwork": 5,
+      "legend": "卡片换型 换型耗时阻塞 空间整理日历 非工作时段 班次边界",
+      "engine": "dhtmlx"
+    }
+  },
+  {
+    "stage": "real-scale-周",
+    "order": {
+      "cells": [
+        "Asia/Shanghai · 10/26周一",
+        "Asia/Shanghai · 11/2周一",
+        "Asia/Shanghai · 11/9周一"
+      ],
+      "shift": 0,
+      "block": 0,
+      "offwork": 6,
+      "legend": "活动分色 活动甘特语义 计划基线 依赖箭头日历 非工作时段",
+      "engine": "dhtmlx"
+    },
+    "resource": {
+      "cells": [
+        "Asia/Shanghai · 11/2周一"
+      ],
+      "shift": 1,
+      "block": 1,
+      "offwork": 3,
+      "legend": "卡片换型 换型耗时阻塞 空间整理日历 非工作时段 班次边界",
+      "engine": "dhtmlx"
+    }
+  },
+  {
+    "stage": "real-scale-月",
+    "order": {
+      "cells": [
+        "Asia/Shanghai · 2026/10",
+        "Asia/Shanghai · 2026/11",
+        "Asia/Shanghai · 2026/12"
+      ],
+      "shift": 0,
+      "block": 0,
+      "offwork": 6,
+      "legend": "活动分色 活动甘特语义 计划基线 依赖箭头日历 非工作时段",
+      "engine": "dhtmlx"
+    },
+    "resource": {
+      "cells": [
+        "Asia/Shanghai · 2026/11"
+      ],
+      "shift": 1,
+      "block": 1,
+      "offwork": 3,
+      "legend": "卡片换型 换型耗时阻塞 空间整理日历 非工作时段 班次边界",
+      "engine": "dhtmlx"
+    }
+  },
+  {
+    "stage": "group-and-order-controlled",
+    "url": "http://127.0.0.1:4308/#schedule-panels/library",
+    "title": "周一读书会",
+    "selected": "选中：尚未选择活动",
+    "detail": "尚未选择活动",
+    "records": "活动记录\n\n尚无活动记录",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx",
+      "dhtmlx"
+    ],
+    "bars": 5,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": "显示或收起参考图"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "小时"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "日"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "周"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "月"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "自适应"
+      },
+      {
+        "trusted": true,
+        "target": "分组维度"
+      },
+      {
+        "trusted": true,
+        "target": "小组"
+      },
+      {
+        "trusted": true,
+        "target": "泳道排序"
+      },
+      {
+        "trusted": true,
+        "target": "利用率降序"
+      },
+      {
+        "trusted": true,
+        "target": "泳道排序"
+      },
+      {
+        "trusted": true,
+        "target": "仅有排程"
+      },
+      {
+        "trusted": true,
+        "target": "泳道排序"
+      },
+      {
+        "trusted": true,
+        "target": "名称升序"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4308/assets/index-BtGh0fLp.css",
+      "http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4308/assets/index-CYoTJ29w.js",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "remount-reference-survives",
+    "url": "http://127.0.0.1:4308/#schedule-panels/library",
+    "title": "周一读书会",
+    "selected": "选中：尚未选择活动",
+    "detail": "尚未选择活动",
+    "records": "活动记录\n\n尚无活动记录",
+    "visible": "2 项活动",
+    "engines": [
+      "dhtmlx",
+      "dhtmlx"
+    ],
+    "bars": 5,
+    "ghost": 0,
+    "tooltips": 0,
+    "errors": [],
+    "rejections": [],
+    "trusted": [
+      {
+        "trusted": true,
+        "target": "显示或收起参考图"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "小时"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "日"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "周"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "月"
+      },
+      {
+        "trusted": true,
+        "target": "时间刻度"
+      },
+      {
+        "trusted": true,
+        "target": "自适应"
+      },
+      {
+        "trusted": true,
+        "target": "分组维度"
+      },
+      {
+        "trusted": true,
+        "target": "小组"
+      },
+      {
+        "trusted": true,
+        "target": "泳道排序"
+      },
+      {
+        "trusted": true,
+        "target": "利用率降序"
+      },
+      {
+        "trusted": true,
+        "target": "泳道排序"
+      },
+      {
+        "trusted": true,
+        "target": "仅有排程"
+      },
+      {
+        "trusted": true,
+        "target": "泳道排序"
+      },
+      {
+        "trusted": true,
+        "target": "名称升序"
+      },
+      {
+        "trusted": true,
+        "target": "显示或收起活动图"
+      },
+      {
+        "trusted": true,
+        "target": "反馈 未知"
+      },
+      {
+        "trusted": true,
+        "target": "显示或收起活动图"
+      }
+    ],
+    "resources": [
+      "http://127.0.0.1:4308/assets/index-BtGh0fLp.css",
+      "http://127.0.0.1:4308/assets/rolldown-runtime-EyZ2wyi3.js",
+      "http://127.0.0.1:4308/assets/index-CYoTJ29w.js",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt-DePP4erS.css",
+      "http://127.0.0.1:4308/assets/dhtmlxgantt.es-DLTcQAl2.js",
+      "http://127.0.0.1:4308/assets/inter-latin-wght-normal-Dx4kXJAl.woff2"
+    ],
+    "timezone": "Asia/Shanghai",
+    "scale": 1,
+    "theme": "dark"
+  },
+  {
+    "stage": "theme-changed",
+    "dark": false,
+    "color": "oklch(1 0 0)"
+  },
+  {
+    "stage": "narrow-layout",
+    "width": 1000,
+    "scrollWidth": 1000,
+    "toolbar": {
+      "x": 25,
+      "y": 213,
+      "width": 878,
+      "height": 97,
+      "top": 213,
+      "right": 903,
+      "bottom": 310,
+      "left": 25
+    },
+    "bars": [
+      {
+        "x": 690,
+        "y": 434,
+        "width": 226,
+        "height": 22,
+        "top": 434,
+        "right": 916,
+        "bottom": 456,
+        "left": 690
+      },
+      {
+        "x": 1067,
+        "y": 482,
+        "width": 151,
+        "height": 22,
+        "top": 482,
+        "right": 1218,
+        "bottom": 504,
+        "left": 1067
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      {
+        "x": 378,
+        "y": 964.953125,
+        "width": 210,
+        "height": 264,
+        "top": 964.953125,
+        "right": 588,
+        "bottom": 1228.953125,
+        "left": 378
+      },
+      {
+        "x": 728,
+        "y": 964.953125,
+        "width": 140,
+        "height": 264,
+        "top": 964.953125,
+        "right": 868,
+        "bottom": 1228.953125,
+        "left": 728
+      }
+    ]
+  }
+]

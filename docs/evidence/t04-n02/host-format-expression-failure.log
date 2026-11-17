@@ -1,0 +1,34 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground
+
+ ❯ src/MobileInputDemo.test.ts (0 test)
+ ❯ src/App.test.ts (0 test)
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  22 passed (22)
+   Start at  18:52:13
+   Duration  5.52s (transform 11.05s, setup 3.69s, import 7.69s, tests 312ms, environment 2.66s)
+
+/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 test: `vp test run src`
+Exit status 1
+$ vp test run src
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.test.ts [ src/App.test.ts ]
+ FAIL  src/MobileInputDemo.test.ts [ src/MobileInputDemo.test.ts ]
+SyntaxError: Error parsing JavaScript expression: Unexpected token, expected "," (3:10)
+140 |          variant="text"
+141 |          @click="
+142 |            rating = 0
+    |  ^
+143 |            progress = 20
+144 |          "
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+

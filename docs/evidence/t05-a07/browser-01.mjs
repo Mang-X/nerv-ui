@@ -1,0 +1,1 @@
+const t=await taskSpace('nerv-ui A07 screen summary 20261025');const p=t.page('p1');await p.goto('http://127.0.0.1:5197/#screen/summary');await p.waitForSelector('.screen-summary');console.log({space:t.spaceId});console.log(await p.snapshot());

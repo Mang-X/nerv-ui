@@ -1,0 +1,10 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground
+
+Could not parse CSS stylesheet
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 3 skipped (5)
+   Start at  18:47:59
+   Duration  8.17s (transform 5.35s, setup 483ms, import 6.59s, tests 406ms, environment 552ms)
+

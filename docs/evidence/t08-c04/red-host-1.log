@@ -1,0 +1,22 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend
+
+ ❯ apps/playground/src/screen/ScreenDashboardDemo.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/playground/src/screen/ScreenDashboardDemo.test.ts [ apps/playground/src/screen/ScreenDashboardDemo.test.ts ]
+Error: Cannot find module '/Users/mang/Project/nerv-ui-worktrees/t08-r08-status-hero/frontend/src/test/setup.ts'
+ ❯ reviveInvokeError node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:546:14
+ ❯ Object.invoke node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:562:33
+ ❯ VitestModuleRunner.getModuleInformation node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1199:7
+ ❯ VitestModuleRunner.import node_modules/.pnpm/@voidzero-dev+vite-plus-core@0.2.4_@types+node@26.1.1_esbuild@0.28.1_jiti@2.7.0_stylus@_a7caa87d4a35154252b2211aa6b07761/node_modules/@voidzero-dev/vite-plus-core/dist/vite/node/module-runner.js:1119:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  12:55:21
+   Duration  425ms (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 351ms)
+

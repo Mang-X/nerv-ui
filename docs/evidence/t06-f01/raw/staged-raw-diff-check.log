@@ -1,0 +1,122 @@
+docs/evidence/t06-f01/raw/build-compact-final.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build-compact-final.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-compact-final.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build-compact-final.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build-compact-final.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build-final.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build-final.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build-final.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final2.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build-final2.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final2.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build-final2.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build-final2.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final3.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build-final3.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build-final3.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build-final3.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build-final3.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build.log:50: trailing whitespace.
++ [38;5;240m     │[0m ───────┬───────  
+docs/evidence/t06-f01/raw/build.log:52: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/build.log:56: trailing whitespace.
++[plugin builtin:vite-reporter] 
+docs/evidence/t06-f01/raw/build.log:65: trailing whitespace.
++ [38;5;240m     │[0m                       ───────┬───────  
+docs/evidence/t06-f01/raw/build.log:67: trailing whitespace.
++ [38;5;240m     │[0m 
+docs/evidence/t06-f01/raw/compact-green-run.log:83: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-preview-final.log:157: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-preview-run-r3.log:157: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-server.log:3: trailing whitespace.
++  VITE+ v0.2.4  
+docs/evidence/t06-f01/raw/dev-upload-final.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-upload-final2.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/dev-upload-run-r3.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/docs-mobile.log:10: new blank line at EOF.
+docs/evidence/t06-f01/raw/docs-ui-final.log:13: new blank line at EOF.
+docs/evidence/t06-f01/raw/docs-ui.log:13: new blank line at EOF.
+docs/evidence/t06-f01/raw/full-tests.log:133: new blank line at EOF.
+docs/evidence/t06-f01/raw/green-files-route.log:6: trailing whitespace.
++[Vue warn]: Unhandled error during execution of mounted hook 
+docs/evidence/t06-f01/raw/green-files-route.log:24: trailing whitespace.
++]  ... > 
+docs/evidence/t06-f01/raw/green-files-route.log:25: trailing whitespace.
++  at <ScreenPanel title="分段到访（人次）" class="charts-bar-panel" > 
+docs/evidence/t06-f01/raw/green-files-route.log:26: trailing whitespace.
++  at <ScreenChartsDemo key=2 > 
+docs/evidence/t06-f01/raw/green-files-route.log:27: trailing whitespace.
++  at <ScreenScaler class="screen-demo-scaler" design-width=1920 design-height=1080  ... > 
+docs/evidence/t06-f01/raw/green-files-route.log:28: trailing whitespace.
++  at <ScreenDemo key=1 section="#screen/charts" > 
+docs/evidence/t06-f01/raw/green-files-route.log:29: trailing whitespace.
++  at <App ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/green-host-all-initial.log:12: new blank line at EOF.
+docs/evidence/t06-f01/raw/green-host-upload.log:11: new blank line at EOF.
+docs/evidence/t06-f01/raw/green-large-host.log:10: new blank line at EOF.
+docs/evidence/t06-f01/raw/green-memory-adapter.log:10: new blank line at EOF.
+docs/evidence/t06-f01/raw/narrow-dev-run.log:46: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-auto-disabled-run.log:146: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-layout-final.log:146: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-preview-final.log:157: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-preview-run.log:157: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-resources-run.log:154: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-upload-final2.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/prod-upload-run.log:113: new blank line at EOF.
+docs/evidence/t06-f01/raw/public-files-green.log:10: new blank line at EOF.
+docs/evidence/t06-f01/raw/ui-final.log:10: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t06-f01/raw/ui-final.log:11: trailing whitespace.
++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final.log:54: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/ui-final.log:55: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/ui-final.log:64: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final.log:68: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/ui-final.log:69: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/ui-final.log:77: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final2.log:10: trailing whitespace.
++[Vue warn]: Invalid prop: type check failed for prop "ariaInvalid". Expected Boolean, got String with value "nv-prop-probe". 
+docs/evidence/t06-f01/raw/ui-final2.log:11: trailing whitespace.
++  at <NvDatePicker ariaInvalid="nv-prop-probe" ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final2.log:51: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/ui-final2.log:52: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/ui-final2.log:61: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/ui-final2.log:65: trailing whitespace.
++[Vue warn]: Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`. 
+docs/evidence/t06-f01/raw/ui-final2.log:66: trailing whitespace.
++Component that was made reactive:  { props: [ 'size' ], setup: [Function: setup] } 
+docs/evidence/t06-f01/raw/ui-final2.log:74: trailing whitespace.
++] ref="VTU_COMPONENT" > 
+docs/evidence/t06-f01/raw/upload-compact.log:10: new blank line at EOF.

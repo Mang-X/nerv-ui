@@ -1,0 +1,1 @@
+apps/playground/src/files/nativeTransport.test.ts:144:13: warning unicorn(no-useless-spread): Using a spread operator here creates a new array unnecessarily. help: `new Uint8Array(bytes).slice` returns a new array. Spreading it into an array expression to create a new array is redundant.

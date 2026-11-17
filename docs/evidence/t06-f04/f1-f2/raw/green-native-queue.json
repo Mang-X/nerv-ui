@@ -1,0 +1,110 @@
+[
+  {
+    "name": "F1-actual-native-queued-open-unmount",
+    "before": {
+      "destroyed": false,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      },
+      "queue": [
+        {
+          "docId": "file-preview-pdf:1:/files/quality-evidence-report.pdf",
+          "operation": "openDocumentBuffer"
+        }
+      ]
+    },
+    "after": {
+      "state": {
+        "reading": true,
+        "opened": [
+          {
+            "id": "file-preview-pdf:1:/files/quality-evidence-report.pdf",
+            "bytes": 1129,
+            "cache": {
+              "documents": 1,
+              "totalPages": 0,
+              "pagesByDocument": {
+                "file-preview-pdf:1:/files/quality-evidence-report.pdf": 0
+              }
+            },
+            "afterDestroy": false
+          }
+        ],
+        "closed": [
+          {
+            "id": "file-preview-pdf:1:/files/quality-evidence-report.pdf",
+            "cache": {
+              "documents": 0,
+              "totalPages": 0,
+              "pagesByDocument": {}
+            }
+          }
+        ],
+        "destroyed": true,
+        "releaseRead": {}
+      },
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      },
+      "errors": []
+    }
+  },
+  {
+    "name": "F1-actual-native-queued-open-source",
+    "before": {
+      "destroyed": false,
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      },
+      "queue": [
+        {
+          "docId": "file-preview-pdf:1:/files/quality-evidence-report.pdf",
+          "operation": "openDocumentBuffer"
+        }
+      ]
+    },
+    "after": {
+      "state": {
+        "reading": true,
+        "opened": [
+          {
+            "id": "file-preview-pdf:1:/files/quality-evidence-report.pdf",
+            "bytes": 1129,
+            "cache": {
+              "documents": 1,
+              "totalPages": 0,
+              "pagesByDocument": {
+                "file-preview-pdf:1:/files/quality-evidence-report.pdf": 0
+              }
+            },
+            "afterDestroy": false
+          }
+        ],
+        "closed": [
+          {
+            "id": "file-preview-pdf:1:/files/quality-evidence-report.pdf",
+            "cache": {
+              "documents": 0,
+              "totalPages": 0,
+              "pagesByDocument": {}
+            }
+          }
+        ],
+        "destroyed": true,
+        "releaseRead": {}
+      },
+      "cache": {
+        "documents": 0,
+        "totalPages": 0,
+        "pagesByDocument": {}
+      },
+      "errors": []
+    }
+  }
+]

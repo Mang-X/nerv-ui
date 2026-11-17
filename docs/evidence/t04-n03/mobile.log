@@ -1,0 +1,29 @@
+$ pnpm -C frontend --filter @nerv-iip/ui-mobile exec vp test run src/components
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile
+
+
+ Test Files  17 passed (17)
+      Tests  92 passed (92)
+   Start at  20:26:33
+   Duration  13.63s (transform 32.06s, setup 0ms, import 84.83s, tests 6.11s, environment 17.40s)
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+exit=0

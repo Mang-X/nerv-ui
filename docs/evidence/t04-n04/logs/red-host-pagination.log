@@ -1,0 +1,92 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileListDemo.test.ts (3 tests | 1 failed) 102ms
+   × loads one page at a time, pauses after failure, retries and stops at the end 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileListDemo.test.ts > loads one page at a time, pauses after failure, retries and stops at the end
+Error: Unable to get [data-slot="infinite-list"] within: <div class="flex h-dvh flex-col bg-background text-foreground relative">
+  <header data-shell="header" class="pt-safe px-safe sticky top-0 z-20 shrink-0 border-b border-border/70 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
+    <div data-slot="nav-bar" class="relative flex h-12 items-center justify-center gap-2 px-2">
+      <div class="absolute left-1 flex items-center">
+        <!--v-if-->
+      </div>
+      <div class="truncate px-12 text-base font-semibold">翻阅时光</div>
+      <div class="absolute right-1 flex items-center gap-1"><button type="button" aria-label="切换明暗" aria-pressed="false" class="size-11">深色</button></div>
+    </div>
+  </header>
+  <main data-shell="content" class="px-safe min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+    <div class="mx-auto max-w-2xl space-y-8 px-5 pt-5 pb-12">
+      <header class="space-y-2">
+        <p class="text-sm text-muted-foreground">来信、书签与沿途的风景</p>
+        <h1 class="text-2xl font-semibold">翻阅时光</h1>
+        <nav aria-label="演示入口" class="flex flex-wrap gap-4 text-sm underline"><a href="#mobile" class="inline-flex min-h-touch items-center">随行手记</a><a href="#mobile-input" class="inline-flex min-h-touch items-center">随心记录</a><a href="#mobile-overlays" class="inline-flex min-h-touch items-center">片刻安排</a><a href="#desktop" class="inline-flex min-h-touch items-center">桌面演示</a><a href="#touch" class="inline-flex min-h-touch items-center">触屏演示</a></nav>
+      </header>
+      <section aria-labelledby="swipe-title" class="space-y-3">
+        <h2 id="swipe-title" class="text-lg font-semibold">一封来信</h2>
+        <p class="text-sm text-muted-foreground">向左滑动来信，选择动作；向右滑动收起。</p>
+        <div data-v-7d26ed46="" data-slot="swipe-cell" class="nv-m-swipe relative overflow-hidden bg-card rounded-xl border border-border">
+          <!-- right actions (revealed) — opacity tracks the open fraction so the colour
+         is fully gone at rest-closed (nothing sits behind the content's
+         anti-aliased rounded edge → no 1px corner fringe) and fades in lock-step
+         with the slide on open/close, never a visible frame of red after shut. -->
+          <div data-v-7d26ed46="" class="nv-m-swipe-actions absolute inset-y-0 right-0 flex nv-m-swipe-actions-snap" style="opacity: 0;"><button data-v-7d26ed46="" type="button" class="flex h-full min-w-[76px] items-center justify-center px-4 text-[15px] font-medium text-white active:opacity-80 bg-brand">收进书签</button><button data-v-7d26ed46="" type="button" class="flex h-full min-w-[76px] items-center justify-center px-4 text-[15px] font-medium text-white active:opacity-80 bg-destructive">暂时收起</button></div><!-- swipeable content -->
+          <div data-v-7d26ed46="" class="nv-m-swipe-content relative z-10 bg-card nv-m-swipe-snap" style="transform: translateX(0px);">
+            <div class="flex h-20 items-center px-4">湖畔来信</div>
+          </div>
+        </div><output aria-label="滑动动作回显" class="block text-sm">尚未选择动作</output>
+      </section>
+      <section aria-labelledby="refresh-title" class="space-y-3">
+        <h2 id="refresh-title" class="text-lg font-semibold">刷新来信</h2>
+        <p class="text-sm text-muted-foreground">在信箱内滚动，回到顶端后向下拉动刷新。</p><label class="flex min-h-touch items-center gap-2 text-sm"><input type="checkbox" aria-label="下次刷新失败">下次刷新失败 </label><output aria-label="刷新状态" class="block text-sm" aria-live="polite">尚未刷新 · 请求 0 次</output>
+        <p class="text-sm text-muted-foreground">信箱滚动 0px</p>
+        <div data-v-699728e7="" data-slot="pull-refresh" class="relative overflow-hidden h-64 rounded-xl border border-border">
+          <div data-v-699728e7="" class="nv-m-pr-inner h-full nv-m-pr-snap" style="transform: translateY(0px);">
+            <div data-v-699728e7="" class="pointer-events-none absolute inset-x-0 flex items-center justify-center gap-2 text-sm text-muted-foreground" style="top: -56px; height: 56px;"><svg data-v-699728e7="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-icon lucide-arrow-down nv-m-pr-arrow size-4 transition-transform" aria-hidden="true">
+                <path d="M12 5v14"></path>
+                <path d="m19 12-7 7-7-7"></path>
+              </svg> 下拉刷新</div>
+            <div data-v-699728e7="" class="nv-m-pr-scroll h-full overflow-y-auto">
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 1</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 2</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 3</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 4</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 5</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 6</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 7</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 8</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 9</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 10</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 11</div>
+              <div data-refresh-row="" class="flex h-14 items-center border-b border-border px-4 text-sm">初次来信 12</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <!--v-if-->
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/MobileListDemo.test.ts:55:24
+     53|   vi.useFakeTimers()
+     54|   wrapper = mount(MobileListDemo)
+     55|   const list = wrapper.get('[data-slot="infinite-list"]')
+       |                        ^
+     56|   Object.defineProperties(list.element, { scrollHeight: { configurable…
+     57|   ;(list.element as HTMLElement).scrollTop = 344
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  21:23:33
+   Duration  6.45s (transform 4.18s, setup 443ms, import 5.38s, tests 102ms, environment 394ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileListDemo.test.ts

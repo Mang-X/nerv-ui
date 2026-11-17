@@ -1,0 +1,7 @@
+T3 tab: tab_y_6faab953-90e1-4ff7-b4aa-20aa9696713e
+preview_status available=false -> preview_open available=true -> navigate http://127.0.0.1:4174/#mobile-input
+snapshot attempt 1:
+Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+snapshot attempt 2 (same step, same tab):
+Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+No successful T3 interaction/viewport receipt is claimed. Closed the task-owned tab and switched to ego per brief. This preparation used the prior dist before the final build, not final-head browser evidence.

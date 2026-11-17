@@ -1,0 +1,541 @@
+<script setup lang="ts">
+import type {
+  BusinessConsoleOrderUrgency,
+  BusinessConsoleOrderUrgencyBusinessPriority,
+} from '@nerv-iip/api-client'
+import type { UrgencyDisplayMode } from '@/composables/useUrgencyDisplayMode'
+import { formatUrgencyDisplay, urgencyLevelPresentation } from '@/composables/useUrgencyDisplayMode'
+import {
+  useOrderUrgencyDetail,
+  useSetOrderUrgencyBusinessPriority,
+} from '@/composables/useOrderUrgencyDetail'
+import { useAuthStore } from '@/stores/auth'
+import { BUSINESS_PERMISSION_CODES as P } from '@/permissions'
+import {
+  NvButton,
+  NvField,
+  NvFieldError,
+  NvFieldGroup,
+  NvFieldLabel,
+  NvInput,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  NvSheet,
+  NvSheetContent,
+  NvSheetDescription,
+  NvSheetHeader,
+  NvSheetTitle,
+  NvStatusBadge,
+  NvTooltip,
+  NvTooltipContent,
+  NvTooltipProvider,
+  NvTooltipTrigger,
+} from '@nerv-iip/ui'
+import { computed, reactive, shallowRef } from 'vue'
+import { RouterLink } from 'vue-router'
+import { inlineErrorMessage } from '@/utils/notify'
+
+const props = withDefaults(
+  defineProps<{
+    orderReference: string
+    urgency?: BusinessConsoleOrderUrgency
+    mode?: UrgencyDisplayMode
+    /**
+     * 紧急度读面本身取数失败（非「排程侧没算」）。没有它，读面 400/500 会把整列
+     * 渲染成「未计算」——把「取不到」伪装成「事实不存在」（#1418 B4）。
+     */
+    sourceUnavailable?: boolean
+  }>(),
+  { mode: 'level', sourceUnavailable: false },
+)
+
+const emit = defineEmits<{ refresh: [] }>()
+
+const open = shallowRef(false)
+const auth = useAuthStore()
+const canManagePriority = computed(() =>
+  (auth.principal?.permissionCodes ?? []).includes(P.schedulingPlansManage),
+)
+
+const orderReferenceForDetail = computed(
+  () => props.urgency?.orderId?.trim() || props.orderReference.trim(),
+)
+const {
+  detail,
+  pending: detailPending,
+  refresh: refreshDetail,
+} = useOrderUrgencyDetail(orderReferenceForDetail, {
+  enabled: open,
+})
+const {
+  error: mutationError,
+  pending: mutationPending,
+  setBusinessPriority,
+} = useSetOrderUrgencyBusinessPriority()
+
+// Explanation reads the list-level urgency by default; once the detail loads (or a
+// priority is written) the authoritative current revision takes over so the new
+// revision shows immediately without waiting for the parent list to refetch.
+const currentUrgency = computed<BusinessConsoleOrderUrgency | undefined>(
+  () => detail.value?.current ?? props.urgency,
+)
+const currentPriority = computed<BusinessConsoleOrderUrgencyBusinessPriority | undefined>(
+  () => currentUrgency.value?.businessPriority,
+)
+const priorityChanges = computed(() =>
+  [...(detail.value?.businessPriorityChanges ?? [])].sort(
+    (a, b) => (b.revision ?? 0) - (a.revision ?? 0),
+  ),
+)
+const currentSetter = computed(() => priorityChanges.value[0]?.changedBy)
+
+const presentation = computed(() => urgencyLevelPresentation(props.urgency?.level))
+const badge = computed(() => {
+  // 读面失败 ≠ 未计算：失败时明说「读取失败」，绝不冒充「排程侧没算过」。
+  if (!props.urgency && props.sourceUnavailable) {
+    return { label: '读取失败', tone: 'warning' as const }
+  }
+  return formatUrgencyDisplay(props.urgency, props.mode)
+})
+
+const priorityLevelOptions = [
+  { value: 'p0', label: 'P0 · 最高' },
+  { value: 'p1', label: 'P1 · 高' },
+  { value: 'p2', label: 'P2 · 标准' },
+  { value: 'p3', label: 'P3 · 低' },
+]
+const form = reactive({ level: 'p1', reason: '', expiresAt: '' })
+const formError = shallowRef('')
+
+const schedulingRoute = computed(() => ({
+  path: '/scheduling',
+  query: { orderReference: orderReferenceForDetail.value },
+}))
+
+async function submitPriority() {
+  formError.value = ''
+  if (!form.reason.trim()) {
+    formError.value = '请填写调整原因。'
+    return
+  }
+  const expiry = toIsoOrError(form.expiresAt)
+  if (expiry === INVALID_EXPIRY) {
+    formError.value = '有效期格式无效，请重新选择或留空表示长期有效。'
+    return
+  }
+  try {
+    await setBusinessPriority({
+      orderReference: orderReferenceForDetail.value,
+      level: form.level,
+      reason: form.reason.trim(),
+      expiresAtUtc: expiry,
+    })
+    form.reason = ''
+    form.expiresAt = ''
+    // Refresh this Sheet's detail/audit history first so the just-saved revision
+    // is visible immediately (stale detail must not shadow the new write), then
+    // notify the parent to refresh the shared list.
+    await refreshDetail()
+    emit('refresh')
+  } catch {
+    formError.value = inlineErrorMessage(mutationError.value) || '优先级调整失败，请稍后重试。'
+  }
+}
+
+const INVALID_EXPIRY = Symbol('invalid-expiry')
+
+// Returns the ISO string, null for an empty (long-lived) window, or a sentinel
+// when a non-empty value cannot be parsed — never silently drops a bad expiry.
+function toIsoOrError(value: string): string | null | typeof INVALID_EXPIRY {
+  const trimmed = value.trim()
+  if (!trimmed) return null
+  const date = new Date(trimmed)
+  return Number.isNaN(date.getTime()) ? INVALID_EXPIRY : date.toISOString()
+}
+
+function reasonLabel(code: string) {
+  const labels: Record<string, string> = {
+    'business.priority.p0': '业务优先级 P0',
+    'business.priority.p1': '业务优先级 P1',
+    'business.priority.p2': '业务优先级 P2',
+    'business.priority.p3': '业务优先级 P3',
+    'business.priority.expired': '人工优先级已过期',
+    'time.due.overdue': '承诺时间已逾期',
+    'time.due.missing': '缺少承诺时间',
+    'time.slack.negative': '松弛时间为负',
+    'time.slack.withinShift': '松弛时间不足一个班次',
+    'time.cr.belowOne': '关键比率 CR 小于 1',
+    'time.cr.attention': '关键比率 CR 接近 1',
+    'material.shortage': '物料短缺',
+    'equipment.unavailable': '设备不可用',
+    'quality.hold': '质量阻断',
+    'tooling.unavailable': '工装不可用',
+    'capacity.insufficient': '产能不足',
+    'urgency.source.missing': '权威事实缺失',
+    'urgency.source.stale': '权威事实已过期',
+    'execution.risk.none': '未发现执行风险',
+  }
+  return labels[code] ?? code
+}
+
+function priorityLabel(level?: string | null) {
+  return level ? level.toUpperCase() : '—'
+}
+
+// —— 业务优先级读面的中文口径（#1418：抽屉里曾三处英文直出 + 一处 Unix 纪元）——
+
+/** 服务端在「没有人工优先级」时回的英文哨兵，原样透出就是英文直出。 */
+const NO_MANUAL_PRIORITY_SENTINEL = 'no manual business-priority override'
+
+function priorityReasonLabel(reason?: string | null) {
+  const trimmed = reason?.trim()
+  if (!trimmed) return '默认优先级（未人工设置）'
+  // 去掉句末标点再比，服务端带不带句号都认。
+  if (trimmed.toLowerCase().replace(/[.。]\s*$/, '') === NO_MANUAL_PRIORITY_SENTINEL) {
+    return '默认优先级（未人工设置）'
+  }
+  return trimmed
+}
+
+const PRIORITY_SOURCE_LABELS: Record<string, string> = {
+  'authoritative-default': '系统默认',
+  default: '系统默认',
+  manual: '人工设置',
+  'manual-override': '人工设置',
+  expired: '人工设置已过期',
+}
+
+/**
+ * 「来源 / 修订」整行的人话口径。修订号为 0 表示从未被人工改过，此时说「第 0 版」
+ * 只会让人以为数据漏了——干脆不提修订。
+ */
+function prioritySourceText(source?: string | null, revision?: number | null) {
+  const key = source?.trim() ?? ''
+  const label = key ? (PRIORITY_SOURCE_LABELS[key] ?? key) : '系统默认'
+  const rev = revision ?? 0
+  return rev > 0 ? `${label} · 第 ${rev} 版` : label
+}
+
+function formatNumber(value?: number | null) {
+  return value == null ? '—' : String(value)
+}
+
+/**
+ * 判定结论。**当前值缺失时不许说「未触发」**——那是把「没算出来」讲成「没问题」。
+ *
+ * 原来两行都是「没命中原因码 → 未触发」，于是 CR 为空（权威事实过期、算不出比值）时
+ * 判定列照样写「未触发」，读的人会当成「这项检查过了」。owner 第五轮亲验点名。
+ */
+function verdictOf(value: number | null | undefined, ...matches: [string, string][]) {
+  if (value == null) return '未计算'
+  for (const [reasonCode, label] of matches) {
+    if (hasTimeReason(reasonCode)) return label
+  }
+  return '未触发'
+}
+
+function formatDateTime(value?: string | null) {
+  if (!value) return '—'
+  const date = new Date(value)
+  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString('zh-CN', { hour12: false })
+}
+
+/**
+ * 生效窗口整行。服务端在「无人工优先级」时把 `setAtUtc` 回成纪元零值，格式化出来就是
+ * 触目惊心的 `1970/1/1 08:00:00`（#1418）。起点无效时这一行只需要说清「一直有效」。
+ */
+const priorityWindowText = computed(() => {
+  const setAt = currentPriority.value?.setAtUtc
+  const expiresAt = currentPriority.value?.expiresAtUtc
+  const start = setAt ? new Date(setAt) : null
+  // 纪元零值与 .NET DateTime.MinValue 都落在 <= 0，一并当「没有起点」。
+  const hasStart = start != null && !Number.isNaN(start.getTime()) && start.getTime() > 0
+  if (!hasStart) return expiresAt ? `即刻起 → ${formatDateTime(expiresAt)}` : '长期有效'
+  return `${formatDateTime(setAt)} → ${expiresAt ? formatDateTime(expiresAt) : '长期有效'}`
+})
+
+function hasTimeReason(code: string) {
+  return props.urgency?.timeCriticality?.reasonCodes?.includes(code) ?? false
+}
+</script>
+
+<template>
+  <NvTooltipProvider>
+    <NvTooltip>
+      <NvTooltipTrigger as-child>
+        <NvButton
+          type="button"
+          size="sm"
+          variant="ghost"
+          class="h-auto px-1"
+          :disabled="!urgency"
+          :aria-label="`查看 ${orderReference} 紧急度解释`"
+          @click="open = true"
+        >
+          <NvStatusBadge :label="badge.label" :tone="badge.tone" />
+        </NvButton>
+      </NvTooltipTrigger>
+      <NvTooltipContent v-if="urgency" class="grid max-w-sm gap-1 text-xs">
+        <p class="font-medium">综合分级：{{ presentation.label }}</p>
+        <p>业务优先级：{{ priorityLabel(urgency.businessPriority?.level) }}</p>
+        <p>
+          CR：{{ formatNumber(urgency.timeCriticality?.criticalRatio) }} · 松弛时间：{{
+            formatNumber(urgency.timeCriticality?.slackHours)
+          }}
+          h
+        </p>
+        <p>更新时间：{{ formatDateTime(urgency.calculatedAtUtc) }}</p>
+        <p class="text-muted-foreground">点击查看完整判定依据</p>
+      </NvTooltipContent>
+    </NvTooltip>
+  </NvTooltipProvider>
+
+  <NvSheet v-model:open="open">
+    <NvSheetContent side="right" class="w-full overflow-y-auto sm:max-w-xl">
+      <NvSheetHeader>
+        <NvSheetTitle>{{ orderReference }} · 紧急度解释</NvSheetTitle>
+        <NvSheetDescription class="sr-only">
+          单据 {{ orderReference }} 的紧急度构成与结论。
+        </NvSheetDescription>
+      </NvSheetHeader>
+
+      <div v-if="urgency" class="mt-6 grid gap-4">
+        <section class="rounded-lg border bg-background p-4">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="font-semibold text-foreground">统一结论</h3>
+            <NvStatusBadge :label="presentation.label" :tone="presentation.tone" />
+          </div>
+          <dl class="mt-3 grid gap-2 text-sm text-muted-foreground">
+            <div class="flex justify-between gap-4">
+              <dt>计算时间</dt>
+              <dd class="text-foreground">{{ formatDateTime(urgency.calculatedAtUtc) }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="rounded-lg border bg-background p-4">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="font-semibold text-foreground">业务优先级</h3>
+            <NvStatusBadge :label="priorityLabel(currentPriority?.level)" tone="info" />
+          </div>
+          <dl class="mt-3 grid gap-2 text-sm text-muted-foreground">
+            <div class="flex justify-between gap-4">
+              <dt>当前设置</dt>
+              <dd class="text-foreground">{{ priorityReasonLabel(currentPriority?.reason) }}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt>来源 / 修订</dt>
+              <dd class="text-foreground">
+                {{ prioritySourceText(currentPriority?.source, currentPriority?.revision) }}
+              </dd>
+            </div>
+            <div v-if="currentSetter" class="flex justify-between gap-4">
+              <dt>设置人</dt>
+              <dd class="text-foreground">{{ currentSetter }}</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt>生效窗口</dt>
+              <dd class="text-foreground">{{ priorityWindowText }}</dd>
+            </div>
+          </dl>
+
+          <form
+            v-if="canManagePriority"
+            class="mt-4 grid gap-3 border-t pt-4"
+            data-testid="priority-editor"
+            @submit.prevent="submitPriority"
+          >
+            <p class="text-sm font-medium text-foreground">设置人工优先级</p>
+            <NvFieldGroup class="grid gap-3 sm:grid-cols-2">
+              <NvField>
+                <NvFieldLabel for="urgency-priority-level">优先级</NvFieldLabel>
+                <NvSelect v-model="form.level">
+                  <NvSelectTrigger id="urgency-priority-level" aria-label="人工优先级等级">
+                    <NvSelectValue />
+                  </NvSelectTrigger>
+                  <NvSelectContent>
+                    <NvSelectItem
+                      v-for="option in priorityLevelOptions"
+                      :key="option.value"
+                      :value="option.value"
+                    >
+                      {{ option.label }}
+                    </NvSelectItem>
+                  </NvSelectContent>
+                </NvSelect>
+              </NvField>
+              <NvField>
+                <NvFieldLabel for="urgency-priority-expiry">有效期（可选）</NvFieldLabel>
+                <NvInput
+                  id="urgency-priority-expiry"
+                  v-model="form.expiresAt"
+                  type="datetime-local"
+                />
+              </NvField>
+            </NvFieldGroup>
+            <NvField>
+              <NvFieldLabel for="urgency-priority-reason">
+                调整原因 <span class="text-destructive">*</span>
+              </NvFieldLabel>
+              <NvInput
+                id="urgency-priority-reason"
+                v-model="form.reason"
+                autocomplete="off"
+                placeholder="例如：重点客户插单，需优先保障"
+              />
+            </NvField>
+            <NvFieldError v-if="formError" :errors="[formError]" />
+            <div class="flex justify-end">
+              <NvButton type="submit" size="sm" :disabled="mutationPending">保存优先级</NvButton>
+            </div>
+          </form>
+          <p v-else class="mt-4 border-t pt-4 text-xs text-muted-foreground">
+            仅排产管理权限可调整人工优先级；当前账号为只读。
+          </p>
+
+          <div class="mt-4 border-t pt-4">
+            <h4 class="text-sm font-medium text-foreground">优先级审计历史</h4>
+            <p v-if="detailPending" class="mt-2 text-xs text-muted-foreground">正在读取审计历史…</p>
+            <div v-else-if="priorityChanges.length" class="mt-3 overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="text-muted-foreground">
+                  <tr>
+                    <th class="pb-2 pr-3 font-medium">时间</th>
+                    <th class="pb-2 pr-3 font-medium">操作人</th>
+                    <th class="pb-2 pr-3 font-medium">变更</th>
+                    <th class="pb-2 pr-3 font-medium">原因</th>
+                    <th class="pb-2 font-medium">有效期</th>
+                  </tr>
+                </thead>
+                <tbody class="text-foreground">
+                  <tr
+                    v-for="change in priorityChanges"
+                    :key="change.revision ?? change.changedAtUtc"
+                    class="border-t"
+                    data-testid="priority-audit-row"
+                  >
+                    <td class="py-2 pr-3">{{ formatDateTime(change.changedAtUtc) }}</td>
+                    <td class="py-2 pr-3">{{ change.changedBy ?? '—' }}</td>
+                    <td class="py-2 pr-3">
+                      {{ priorityLabel(change.previousLevel) }} →
+                      {{ priorityLabel(change.newLevel) }}
+                    </td>
+                    <td class="py-2 pr-3">{{ change.reason ?? '—' }}</td>
+                    <td class="py-2">
+                      {{ change.expiresAtUtc ? formatDateTime(change.expiresAtUtc) : '长期有效' }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p v-else class="mt-2 text-xs text-muted-foreground">暂无人工优先级调整记录。</p>
+          </div>
+
+          <ul class="mt-3 grid gap-1 text-sm text-muted-foreground">
+            <li v-for="code in urgency.businessPriority?.reasonCodes ?? []" :key="code">
+              <span :title="code">{{ reasonLabel(code) }}</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="rounded-lg border bg-background p-4">
+          <h3 class="font-semibold text-foreground">时间紧迫度（CR / 松弛时间）</h3>
+          <dl class="mt-3 grid grid-cols-3 gap-3 text-sm">
+            <div>
+              <dt class="text-muted-foreground">CR</dt>
+              <dd class="font-medium text-foreground">
+                {{ formatNumber(urgency.timeCriticality?.criticalRatio) }}
+              </dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">松弛时间</dt>
+              <dd class="font-medium text-foreground">
+                {{ formatNumber(urgency.timeCriticality?.slackHours) }} h
+              </dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">预计延误</dt>
+              <dd class="font-medium text-foreground">
+                {{ formatNumber(urgency.timeCriticality?.expectedDelayHours) }} h
+              </dd>
+            </div>
+          </dl>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="text-muted-foreground">
+                <tr>
+                  <th class="pb-2 pr-3 font-medium">判定项</th>
+                  <th class="pb-2 pr-3 font-medium">当前值</th>
+                  <th class="pb-2 pr-3 font-medium">阈值</th>
+                  <th class="pb-2 font-medium">结果</th>
+                </tr>
+              </thead>
+              <tbody class="text-foreground">
+                <tr class="border-t">
+                  <td class="py-2 pr-3">CR</td>
+                  <td class="py-2 pr-3">
+                    {{ formatNumber(urgency.timeCriticality?.criticalRatio) }}
+                  </td>
+                  <td class="py-2 pr-3">&lt; 1 紧急；≤ 1.2 关注</td>
+                  <td class="py-2">
+                    {{
+                      verdictOf(
+                        urgency.timeCriticality?.criticalRatio,
+                        ['time.cr.belowOne', '紧急'],
+                        ['time.cr.attention', '关注'],
+                      )
+                    }}
+                  </td>
+                </tr>
+                <tr class="border-t">
+                  <td class="py-2 pr-3">松弛时间</td>
+                  <td class="py-2 pr-3">
+                    {{ formatNumber(urgency.timeCriticality?.slackHours) }} h
+                  </td>
+                  <td class="py-2 pr-3">&lt; 0 紧急；&lt; 8 h 高风险</td>
+                  <td class="py-2">
+                    {{
+                      verdictOf(
+                        urgency.timeCriticality?.slackHours,
+                        ['time.slack.negative', '紧急'],
+                        ['time.slack.withinShift', '高风险'],
+                      )
+                    }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="mt-3 grid gap-1 text-sm text-muted-foreground">
+            <li v-for="code in urgency.timeCriticality?.reasonCodes ?? []" :key="code">
+              <span :title="code">{{ reasonLabel(code) }}</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="rounded-lg border bg-background p-4">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="font-semibold text-foreground">执行风险</h3>
+            <NvStatusBadge
+              v-if="urgency.executionRisk?.isSourceStale"
+              label="事实过期"
+              tone="warning"
+            />
+          </div>
+          <ul class="mt-3 grid gap-1 text-sm text-muted-foreground">
+            <li v-for="code in urgency.executionRisk?.reasonCodes ?? []" :key="code">
+              <span :title="code">{{ reasonLabel(code) }}</span>
+            </li>
+          </ul>
+        </section>
+
+        <NvButton as-child class="w-full">
+          <RouterLink :to="schedulingRoute">进入排产调整</RouterLink>
+        </NvButton>
+      </div>
+    </NvSheetContent>
+  </NvSheet>
+</template>

@@ -1,0 +1,38 @@
+{
+  "errors": [],
+  "workers": [
+    {
+      "url": "blob:http://127.0.0.1:5250/26810ea3-cecf-4cf8-9693-826120a05f81",
+      "terminated": true,
+      "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new an (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:19152)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:194050)\n    at async yu.load (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:202793)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:5215)"
+    },
+    {
+      "url": "blob:http://127.0.0.1:5250/2359a366-9606-4cca-aa09-54ac1b5bc1a5",
+      "terminated": true,
+      "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new an (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:19152)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:194050)\n    at async yu.load (http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js:1:202793)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:5215)"
+    },
+    {
+      "url": "blob:http://127.0.0.1:5250/c7569497-820c-4be4-868b-062fbb9cf2e4",
+      "terminated": true,
+      "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new Ne (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:1:12240)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:14:11761)\n    at async ia.load (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:14:28452)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:6099)"
+    },
+    {
+      "url": "blob:http://127.0.0.1:5250/fa7c75b4-a27b-4f49-a5b7-202608ba6a6e",
+      "terminated": true,
+      "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new Ne (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:1:12240)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:14:11761)\n    at async ia.load (http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js:14:28452)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:6099)"
+    },
+    {
+      "url": "blob:http://127.0.0.1:5250/3cf7d528-ab9b-43a6-b17c-2077314e4e63",
+      "terminated": true,
+      "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new Bi (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:113387)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:114700)\n    at async Wi.load (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:121560)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:5635)"
+    },
+    {
+      "url": "blob:http://127.0.0.1:5250/61f05ae8-dd87-4a12-aa1d-ffea75e676db",
+      "terminated": true,
+      "stack": "Error\n    at new window.Worker (<anonymous>:5:136)\n    at new Bi (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:113387)\n    at t.load (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:114700)\n    at async Wi.load (http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js:1:121560)\n    at async qe (http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js:2:5635)"
+    }
+  ],
+  "activeObservers": [],
+  "officeTimers": [],
+  "officeRafs": []
+}

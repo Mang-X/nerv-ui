@@ -1,0 +1,29 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground
+
+ ✓ src/nvui-imports.contract.test.ts (28 tests) 14ms
+ ✓ src/TouchDemo.test.ts (5 tests) 437ms
+ ✓ src/MobileDemo.test.ts (3 tests) 290ms
+ ✓ src/MobileFeedbackDemo.test.ts (8 tests) 533ms
+ ✓ src/MobileListDemo.test.ts (8 tests) 507ms
+ ✓ src/MobileOverlayDemo.test.ts (7 tests) 1511ms
+   ✓ commits the picked identity only on confirmation and leaves empty choices unsubmitted  687ms
+ ✓ src/App.test.ts (7 tests) 1442ms
+   ✓ adds a named project from the form to the searchable table  390ms
+ ✓ src/MobileInputDemo.test.ts (14 tests) 1907ms
+   ✓ submits manual and captured scans, yields to ordinary fields and resumes without losing manual drafts  395ms
+
+ Test Files  8 passed (8)
+      Tests  80 passed (80)
+   Start at  00:01:02
+   Duration  12.02s (transform 34.16s, setup 11.60s, import 48.73s, tests 6.64s, environment 11.03s)
+
+JSON report written to /tmp/nerv-ui-t04-n05/host.json
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet

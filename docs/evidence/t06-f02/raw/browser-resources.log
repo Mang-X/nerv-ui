@@ -1,0 +1,175 @@
+{ resources: 8, narrow: { width: 390, scrollWidth: 390, scale: 1 }, native: { width: 2300, scrollWidth: 2300, scale: 1, dpr: 2 } }
+[p1 "NvUI · 项目清单" | space "nerv-ui F02 lifecycle 20261025"(31): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container "显示表面"
+      anchor [ref=209, loc=href:/#desktop, url=http://127.0.0.1:5200/#desktop]
+        text "桌面演示"
+      anchor [ref=210, loc=href:/#touch, url=http://127.0.0.1:5200/#touch]
+        text "触屏演示"
+      anchor [ref=211, loc=href:/#mobile, url=http://127.0.0.1:5200/#mobile]
+        text "随行手记"
+      anchor [ref=212, loc=href:/#mobile-input, url=http://127.0.0.1:5200/#mobile-input]
+        text "随心记录"
+      anchor [ref=213, loc=href:/#mobile-overlays, url=http://127.0.0.1:5200/#mobile-overlays]
+        text "片刻安排"
+      anchor [ref=214, loc=href:/#mobile-lists, url=http://127.0.0.1:5200/#mobile-lists]
+        text "翻阅时光"
+      anchor [ref=215, loc=href:/#mobile-feedback, url=http://127.0.0.1:5200/#mobile-feedback]
+        text "片刻回响"
+      anchor [ref=216, loc=href:/#screen/stage, url=http://127.0.0.1:5200/#screen/stage]
+        text "空间舞台"
+      anchor [ref=217, loc=href:/#screen/controls, url=http://127.0.0.1:5200/#screen/controls]
+        text "随心安排"
+      anchor [ref=218, loc=href:/#screen/indicators, url=http://127.0.0.1:5200/#screen/indicators]
+        text "阅读与到访"
+      anchor [ref=219, loc=href:/#screen/data, url=http://127.0.0.1:5200/#screen/data]
+        text "流动消息"
+      anchor [ref=220, loc=href:/#screen/charts, url=http://127.0.0.1:5200/#screen/charts]
+        text "内容与到访"
+      anchor [ref=221, loc=href:/#screen/tables, url=http://127.0.0.1:5200/#screen/tables]
+        text "清单与事件"
+      anchor [ref=222, loc=href:/#screen/summary, url=http://127.0.0.1:5200/#screen/summary]
+        text "空间使用概况"
+    container
+      container
+        heading
+          text "留住片刻"
+        paragraph
+          text "整理旅途中的图片与便笺，放大看看值得记住的细节。文件只留在本页。"
+      container
+        button [ref=223]
+          text "切换亮色"
+        button [ref=224]
+          text "蓝色强调色"
+    container
+      container "整理文件"
+        container
+          heading
+            text "整理文件"
+          paragraph
+            text "只在本页暂存，离开即清空。上传进度由你推进。"
+        container
+          container
+            text "排列方式"
+            combobox "上传排列方式" [ref=225, loc=css:select[aria-label="上传排列方式"]]
+              text "queue"
+          container
+            text "文件类型"
+            combobox "可选文件类型" [ref=226, loc=css:select[aria-label="可选文件类型"]]
+              text "图片、文本、PDF"
+          container
+            text "最多文件"
+            combobox "最多文件" [ref=227, loc=css:select[aria-label="最多文件"]]
+              text "5"
+          container
+            checkbox [ref=228]
+            text "选中即开始"
+          container
+            checkbox [ref=229]
+            text "锁定选择"
+        button [ref=230]
+          svg_root
+          text "拖拽文件到这里，或点击浏览"
+          text "支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf · 单个文件不超过 32.0 KB · 最多 5 个文件"
+          text "还可上传 5 个文件"
+        container
+          button [ref=231]
+            text "开始上传"
+          button [ref=232]
+            text "暂停全部"
+          button [ref=233]
+            text "继续全部"
+          button [ref=234]
+            text "清空文件"
+        container
+          container
+            container
+              checkbox [ref=235]
+              text "等待创建会话"
+            container
+              checkbox [ref=236]
+              text "等待完成回执"
+            container
+              checkbox [ref=237]
+              text "模拟传输忽略取消"
+          container
+            button [ref=238]
+              text "释放创建"
+            button [ref=239]
+              text "创建失败"
+            button [ref=240]
+              text "释放回执"
+            button [ref=241]
+              text "回执失败"
+            button [ref=242]
+              text "推进传输"
+            button [ref=243]
+              text "本次传输失败"
+            button [ref=244]
+              text "加入 48 份便笺"
+          paragraph
+            text "每次推进至 25%、65%、100%；失败后可在文件行重试。"
+          output "等待闸门" [ref=245]
+            text "无等待闸门"
+          output "传输计数" [ref=246]
+            text "create 0 · transport 0 · complete 0 · abort 0 · fail 0 · pending 0"
+        container "成功回执"
+          heading
+            text "已暂存文件"
+          paragraph
+            text "尚无成功文件"
+        container [ref=247]
+          text "查看本次操作记录"
+      container "看见细节"
+        container
+          heading
+            text "看见细节"
+          paragraph
+            text "本地图片可缩放与旋转。其它文件保留原文件入口。"
+        container
+          text "预览内容"
+          combobox "预览内容" [ref=248, loc=css:select[aria-label="预览内容"]]
+            text "海岸 JPEG"
+        container
+          text "预览本地图片"
+          textbox "预览本地图片" [ref=249, loc=css:input[aria-label="预览本地图片"]]
+            button [ref=250]
+              text "选择文件"
+            text "未选择任何文件"
+        container
+          container
+            checkbox [ref=251]
+            text "等待来源"
+          container
+            checkbox [ref=252]
+            text "来源暂不可用"
+        container
+          container
+            container
+              svg_root
+              container
+                text "coast.jpg"
+                text "Image"
+            button "打开 coast.jpg" [ref=253, loc=css:button[aria-label="打开 coast.jpg"]]
+              svg_root
+          container
+            container
+              button "缩小 coast.jpg" [ref=254, loc=css:button[aria-label="缩小 coast.jpg"]]
+                svg_root
+              text "100%"
+              button "放大 coast.jpg" [ref=255, loc=css:button[aria-label="放大 coast.jpg"]]
+                svg_root
+              button "向左旋转 coast.jpg" [ref=256, loc=css:button[aria-label="向左旋转 coast.jpg"]]
+                svg_root
+              button "向右旋转 coast.jpg" [ref=257, loc=css:button[aria-label="向右旋转 coast.jpg"]]
+                svg_root
+            image
+        container
+          button [ref=258]
+            text "打开本地原图"
+          text "先在预览中请求，再点击此处打开。"
+        output "预览事件" [ref=259]
+          text "ready image · 已打开 0 次 · 本地预览 0"
+
+

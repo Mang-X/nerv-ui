@@ -1,0 +1,20 @@
+{
+  "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists",
+  "command": [
+    "corepack",
+    "pnpm@11.22.0",
+    "-C",
+    "frontend",
+    "exec",
+    "vp",
+    "fmt",
+    "--write",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/design-system/docs/components/mobile/pull-refresh.md",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/docs/mobile-standalone.md",
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/docs/evidence/t04-n04/README.md"
+  ],
+  "start": "2026-10-24T15:27:10.841Z",
+  "end": "2026-10-24T15:27:11.763Z",
+  "exit": 0,
+  "signal": null
+}

@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/FilesDemo.test.ts (3 tests | 1 failed | 2 skipped) 1107ms
+   × adds the full 48-note collection before presenting a bounded virtual window 1107ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/FilesDemo.test.ts > adds the full 48-note collection before presenting a bounded virtual window
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/FilesDemo.test.ts:107:75
+    105|   await flushPromises()
+    106|   expect(wrapper.get('[data-slot="file-upload-summary"]').text()).toCo…
+    107|   expect(wrapper.find('[data-slot="file-upload-virtual-list"]').exists…
+       |                                                                           ^
+    108|   expect(wrapper.findAll('[data-slot="file-upload-row"]').length).toBe…
+    109|   expect(wrapper.find('[role="alert"]').exists()).toBe(false)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 skipped (3)
+   Start at  10:36:14
+   Duration  8.36s (transform 4.80s, setup 511ms, import 5.92s, tests 1.11s, environment 662ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t06-f01-files-host/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/FilesDemo.test.ts -t 'full 48-note'

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "clean-install",
+    "command": "pnpm install --frozen-lockfile",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend",
+    "start": "2026-10-24T10:12:43.206Z",
+    "end": "2026-10-24T10:12:52.213Z",
+    "exit": 0
+  },
+  {
+    "name": "mobile-behavior",
+    "command": "pnpm --filter @nerv-iip/ui-mobile exec vp test run src/components",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend",
+    "start": "2026-10-24T10:12:52.219Z",
+    "end": "2026-10-24T10:13:08.284Z",
+    "exit": 0
+  },
+  {
+    "name": "mobile-naming",
+    "command": "pnpm --filter @nerv-iip/ui-mobile exec vp test run src/nvui-naming.contract.test.ts",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend",
+    "start": "2026-10-24T10:13:08.285Z",
+    "end": "2026-10-24T10:13:14.146Z",
+    "exit": 0
+  },
+  {
+    "name": "mobile-docs",
+    "command": "pnpm --filter @nerv-iip/ui-mobile test:docs",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend",
+    "start": "2026-10-24T10:13:14.146Z",
+    "end": "2026-10-24T10:13:20.487Z",
+    "exit": 0
+  },
+  {
+    "name": "ui-docs",
+    "command": "pnpm --filter @nerv-iip/ui test:docs",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend",
+    "start": "2026-10-24T10:13:20.487Z",
+    "end": "2026-10-24T10:13:38.293Z",
+    "exit": 0
+  },
+  {
+    "name": "host-tests",
+    "command": "pnpm --filter @nerv-iip/playground test",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend",
+    "start": "2026-10-24T10:13:38.294Z",
+    "end": "2026-10-24T10:13:52.818Z",
+    "exit": 0
+  },
+  {
+    "name": "build",
+    "command": "pnpm build",
+    "cwd": "/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend",
+    "start": "2026-10-24T10:13:52.819Z",
+    "end": "2026-10-24T10:14:19.700Z",
+    "exit": 0
+  }
+]

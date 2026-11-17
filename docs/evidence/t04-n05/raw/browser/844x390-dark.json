@@ -1,0 +1,705 @@
+{
+  "name": "844x390-dark",
+  "records": [
+    {
+      "label": "empty",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "overflow": false,
+      "main": [
+        {
+          "top": 0,
+          "client": 329,
+          "height": 2002,
+          "width": 844,
+          "clientWidth": 844,
+          "overflow": "auto"
+        }
+      ],
+      "outputs": [
+        [
+          "通知回显",
+          "尚未查看通知"
+        ],
+        [
+          "收集状态",
+          "尚未收集 · 请求 0 次"
+        ],
+        [
+          "提醒数值",
+          "未读 7 条"
+        ],
+        [
+          "标签回显",
+          "周末标签已保留"
+        ],
+        [
+          "提示状态",
+          "已关闭"
+        ],
+        [
+          "进度状态",
+          "进度未知，等待开始"
+        ]
+      ]
+    },
+    {
+      "label": "retry-error",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "overflow": false,
+      "main": [
+        {
+          "top": 210.5,
+          "client": 329,
+          "height": 1876,
+          "width": 844,
+          "clientWidth": 844,
+          "overflow": "auto"
+        }
+      ],
+      "outputs": [
+        [
+          "通知回显",
+          "下一次散步安排在周六下午。"
+        ],
+        [
+          "收集状态",
+          "收集失败 · 请求 1 次"
+        ],
+        [
+          "提醒数值",
+          "未读 7 条"
+        ],
+        [
+          "标签回显",
+          "周末标签已保留"
+        ],
+        [
+          "提示状态",
+          "已关闭"
+        ],
+        [
+          "进度状态",
+          "进度未知，等待开始"
+        ]
+      ]
+    },
+    {
+      "label": "result-success",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "overflow": false,
+      "main": [
+        {
+          "top": 210.5,
+          "client": 329,
+          "height": 2058,
+          "width": 844,
+          "clientWidth": 844,
+          "overflow": "auto"
+        }
+      ],
+      "outputs": [
+        [
+          "通知回显",
+          "下一次散步安排在周六下午。"
+        ],
+        [
+          "收集状态",
+          "收集成功 · 请求 2 次"
+        ],
+        [
+          "提醒数值",
+          "未读 7 条"
+        ],
+        [
+          "标签回显",
+          "周末标签已保留"
+        ],
+        [
+          "提示状态",
+          "已关闭"
+        ],
+        [
+          "进度状态",
+          "进度未知，等待开始"
+        ]
+      ]
+    },
+    {
+      "label": "toast-loading",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "overflow": false,
+      "main": [
+        {
+          "top": 809.5,
+          "client": 329,
+          "height": 2058,
+          "width": 844,
+          "clientWidth": 844,
+          "overflow": "auto"
+        }
+      ],
+      "outputs": [
+        [
+          "通知回显",
+          "下一次散步安排在周六下午。"
+        ],
+        [
+          "收集状态",
+          "结果失败 · 请求 2 次"
+        ],
+        [
+          "提醒数值",
+          "未读 0 条"
+        ],
+        [
+          "标签回显",
+          "周末标签已保留"
+        ],
+        [
+          "提示状态",
+          "显示中 · loading · 1200ms"
+        ],
+        [
+          "进度状态",
+          "进度未知，等待开始"
+        ]
+      ]
+    },
+    {
+      "label": "image-error",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "overflow": false,
+      "main": [
+        {
+          "top": 1597,
+          "client": 329,
+          "height": 2058,
+          "width": 844,
+          "clientWidth": 844,
+          "overflow": "auto"
+        }
+      ],
+      "outputs": [
+        [
+          "通知回显",
+          "下一次散步安排在周六下午。"
+        ],
+        [
+          "收集状态",
+          "结果失败 · 请求 2 次"
+        ],
+        [
+          "提醒数值",
+          "未读 0 条"
+        ],
+        [
+          "标签回显",
+          "周末标签已保留"
+        ],
+        [
+          "提示状态",
+          "已关闭"
+        ],
+        [
+          "进度状态",
+          "进度未知，等待开始"
+        ]
+      ]
+    },
+    {
+      "label": "image-recovered",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "overflow": false,
+      "main": [
+        {
+          "top": 1597,
+          "client": 329,
+          "height": 2058,
+          "width": 844,
+          "clientWidth": 844,
+          "overflow": "auto"
+        }
+      ],
+      "outputs": [
+        [
+          "通知回显",
+          "下一次散步安排在周六下午。"
+        ],
+        [
+          "收集状态",
+          "结果失败 · 请求 2 次"
+        ],
+        [
+          "提醒数值",
+          "未读 0 条"
+        ],
+        [
+          "标签回显",
+          "周末标签已保留"
+        ],
+        [
+          "提示状态",
+          "已关闭"
+        ],
+        [
+          "进度状态",
+          "进度未知，等待开始"
+        ]
+      ]
+    },
+    {
+      "label": "media-complete",
+      "viewport": [
+        844,
+        390
+      ],
+      "dark": true,
+      "overflow": false,
+      "main": [
+        {
+          "top": 1714,
+          "client": 329,
+          "height": 2043,
+          "width": 844,
+          "clientWidth": 844,
+          "overflow": "auto"
+        }
+      ],
+      "outputs": [
+        [
+          "通知回显",
+          "下一次散步安排在周六下午。"
+        ],
+        [
+          "收集状态",
+          "结果失败 · 请求 2 次"
+        ],
+        [
+          "提醒数值",
+          "未读 0 条"
+        ],
+        [
+          "标签回显",
+          "周末标签已保留"
+        ],
+        [
+          "提示状态",
+          "已关闭"
+        ],
+        [
+          "进度状态",
+          "已整理 100%"
+        ]
+      ]
+    }
+  ],
+  "geometry": {
+    "buttons": [
+      {
+        "text": "浅色",
+        "label": "切换明暗",
+        "rect": {
+          "x": 796,
+          "y": 14,
+          "width": 44,
+          "height": 44,
+          "top": 14,
+          "right": 840,
+          "bottom": 58,
+          "left": 796
+        }
+      },
+      {
+        "text": "查看通知",
+        "label": null,
+        "rect": {
+          "x": 266,
+          "y": -1431,
+          "width": 72,
+          "height": 44,
+          "top": -1431,
+          "right": 338,
+          "bottom": -1387,
+          "left": 266
+        }
+      },
+      {
+        "text": "关闭通知",
+        "label": null,
+        "rect": {
+          "x": 346,
+          "y": -1431,
+          "width": 72,
+          "height": 44,
+          "top": -1431,
+          "right": 418,
+          "bottom": -1387,
+          "left": 346
+        }
+      },
+      {
+        "text": "重新收集",
+        "label": null,
+        "rect": {
+          "x": 262,
+          "y": -1112,
+          "width": 320,
+          "height": 48,
+          "top": -1112,
+          "right": 582,
+          "bottom": -1064,
+          "left": 262
+        }
+      },
+      {
+        "text": "查看失败结果",
+        "label": null,
+        "rect": {
+          "x": 106,
+          "y": -959,
+          "width": 138,
+          "height": 48,
+          "top": -959,
+          "right": 244,
+          "bottom": -911,
+          "left": 106
+        }
+      },
+      {
+        "text": "清空回响",
+        "label": null,
+        "rect": {
+          "x": 252,
+          "y": -959,
+          "width": 104,
+          "height": 48,
+          "top": -959,
+          "right": 356,
+          "bottom": -911,
+          "left": 252
+        }
+      },
+      {
+        "text": "",
+        "label": "移除标签",
+        "rect": {
+          "x": 274,
+          "y": -835,
+          "width": 44,
+          "height": 44,
+          "top": -835,
+          "right": 318,
+          "bottom": -791,
+          "left": 274
+        }
+      },
+      {
+        "text": "超过上限",
+        "label": null,
+        "rect": {
+          "x": 106,
+          "y": -703,
+          "width": 106,
+          "height": 48,
+          "top": -703,
+          "right": 212,
+          "bottom": -655,
+          "left": 106
+        }
+      },
+      {
+        "text": "仅显示圆点",
+        "label": null,
+        "rect": {
+          "x": 220,
+          "y": -703,
+          "width": 122,
+          "height": 48,
+          "top": -703,
+          "right": 342,
+          "bottom": -655,
+          "left": 220
+        }
+      },
+      {
+        "text": "没有未读",
+        "label": null,
+        "rect": {
+          "x": 350,
+          "y": -703,
+          "width": 106,
+          "height": 48,
+          "top": -703,
+          "right": 456,
+          "bottom": -655,
+          "left": 350
+        }
+      },
+      {
+        "text": "短暂提示",
+        "label": null,
+        "rect": {
+          "x": 106,
+          "y": -639,
+          "width": 104,
+          "height": 48,
+          "top": -639,
+          "right": 210,
+          "bottom": -591,
+          "left": 106
+        }
+      },
+      {
+        "text": "持续等待",
+        "label": null,
+        "rect": {
+          "x": 218,
+          "y": -639,
+          "width": 106,
+          "height": 48,
+          "top": -639,
+          "right": 324,
+          "bottom": -591,
+          "left": 218
+        }
+      },
+      {
+        "text": "更新为成功",
+        "label": null,
+        "rect": {
+          "x": 332,
+          "y": -639,
+          "width": 122,
+          "height": 48,
+          "top": -639,
+          "right": 454,
+          "bottom": -591,
+          "left": 332
+        }
+      },
+      {
+        "text": "失败提示",
+        "label": null,
+        "rect": {
+          "x": 462,
+          "y": -639,
+          "width": 106,
+          "height": 48,
+          "top": -639,
+          "right": 568,
+          "bottom": -591,
+          "left": 462
+        }
+      },
+      {
+        "text": "延长提示",
+        "label": null,
+        "rect": {
+          "x": 576,
+          "y": -639,
+          "width": 106,
+          "height": 48,
+          "top": -639,
+          "right": 682,
+          "bottom": -591,
+          "left": 576
+        }
+      },
+      {
+        "text": "关闭提示",
+        "label": null,
+        "rect": {
+          "x": 106,
+          "y": -583,
+          "width": 104,
+          "height": 48,
+          "top": -583,
+          "right": 210,
+          "bottom": -535,
+          "left": 106
+        }
+      },
+      {
+        "text": "损坏的头像",
+        "label": null,
+        "rect": {
+          "x": 106,
+          "y": -351,
+          "width": 122,
+          "height": 48,
+          "top": -351,
+          "right": 228,
+          "bottom": -303,
+          "left": 106
+        }
+      },
+      {
+        "text": "恢复头像",
+        "label": null,
+        "rect": {
+          "x": 236,
+          "y": -351,
+          "width": 106,
+          "height": 48,
+          "top": -351,
+          "right": 342,
+          "bottom": -303,
+          "left": 236
+        }
+      },
+      {
+        "text": "损坏的风景",
+        "label": null,
+        "rect": {
+          "x": 106,
+          "y": 84.5,
+          "width": 122,
+          "height": 48,
+          "top": 84.5,
+          "right": 228,
+          "bottom": 132.5,
+          "left": 106
+        }
+      },
+      {
+        "text": "换一张风景",
+        "label": null,
+        "rect": {
+          "x": 236,
+          "y": 84.5,
+          "width": 122,
+          "height": 48,
+          "top": 84.5,
+          "right": 358,
+          "bottom": 132.5,
+          "left": 236
+        }
+      },
+      {
+        "text": "回到湖畔",
+        "label": null,
+        "rect": {
+          "x": 366,
+          "y": 84.5,
+          "width": 104,
+          "height": 48,
+          "top": 84.5,
+          "right": 470,
+          "bottom": 132.5,
+          "left": 366
+        }
+      },
+      {
+        "text": "开始整理",
+        "label": null,
+        "rect": {
+          "x": 106,
+          "y": 308.5,
+          "width": 104,
+          "height": 48,
+          "top": 308.5,
+          "right": 210,
+          "bottom": 356.5,
+          "left": 106
+        }
+      },
+      {
+        "text": "整理到一半",
+        "label": null,
+        "rect": {
+          "x": 218,
+          "y": 308.5,
+          "width": 122,
+          "height": 48,
+          "top": 308.5,
+          "right": 340,
+          "bottom": 356.5,
+          "left": 218
+        }
+      },
+      {
+        "text": "整理失败",
+        "label": null,
+        "rect": {
+          "x": 348,
+          "y": 308.5,
+          "width": 106,
+          "height": 48,
+          "top": 308.5,
+          "right": 454,
+          "bottom": 356.5,
+          "left": 348
+        }
+      },
+      {
+        "text": "完成整理",
+        "label": null,
+        "rect": {
+          "x": 462,
+          "y": 308.5,
+          "width": 106,
+          "height": 48,
+          "top": 308.5,
+          "right": 568,
+          "bottom": 356.5,
+          "left": 462
+        }
+      },
+      {
+        "text": "未知进度",
+        "label": null,
+        "rect": {
+          "x": 576,
+          "y": 308.5,
+          "width": 104,
+          "height": 48,
+          "top": 308.5,
+          "right": 680,
+          "bottom": 356.5,
+          "left": 576
+        }
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:4185/media/portrait.svg",
+        "complete": true,
+        "width": 112
+      },
+      {
+        "src": "http://127.0.0.1:4185/media/meadow.svg",
+        "complete": true,
+        "width": 640
+      }
+    ]
+  },
+  "tag": {
+    "width": 44,
+    "height": 44
+  },
+  "input": "Chromium mouse clicks with wheel auto-scroll; no synthetic load/error events, no physical device"
+}

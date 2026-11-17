@@ -1,0 +1,18 @@
+$ vp test run src
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n05-mobile-feedback/frontend/apps/playground
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+ Test Files  8 passed (8)
+      Tests  80 passed (80)
+   Start at  23:55:30
+   Duration  11.04s (transform 36.81s, setup 8.47s, import 50.65s, tests 5.02s, environment 6.76s)
+

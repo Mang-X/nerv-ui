@@ -1,0 +1,9 @@
+{
+  "pid": 11968,
+  "command": "own vp preview --host 127.0.0.1 --port 5197",
+  "signal": "SIGTERM",
+  "listenerAfter": false,
+  "lsofExit": 1,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,50 @@
+PASS final-390-dark
+[p1 "NvUI · 项目清单" | space "nerv-ui N04 lists 20261024"(9): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "翻阅时光"
+      button "切换明暗" [ref=76, loc=css:button[aria-label="切换明暗"]]
+        text "浅色"
+    container [ref=77]
+      container "千封信笺"
+        button [ref=78]
+        output "信笺回显" [ref=79]
+          text "已选 letter-101"
+        container [ref=80]
+          button [ref=81]
+            text "信笺 1000"
+          button [ref=82]
+            text "信笺 999"
+          button [ref=83]
+            text "信笺 998"
+          button [ref=84]
+            text "信笺 997"
+          button [ref=85]
+            text "信笺 996"
+      container "沿途风景"
+        heading
+          text "沿途风景"
+        paragraph
+          text "左右滑动翻页，或使用下方按钮。"
+        container
+          container
+            checkbox "循环翻页" [ref=86, loc=css:input[aria-label="循环翻页"]]
+            text "循环翻页"
+          container
+            checkbox "自动翻页" [ref=87, loc=css:input[aria-label="自动翻页"]]
+            text "自动翻页"
+        container
+          heading
+            text "庭院"
+          paragraph
+            text "读完这封信，再停留片刻。"
+        output "轮播状态" [ref=88]
+          text "第 3 / 3 页 · 切换 2 次"
+        container
+          button [ref=89]
+            text "上一页"
+          button [ref=90]
+            text "下一页"
+
+

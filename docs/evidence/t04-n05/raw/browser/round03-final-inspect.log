@@ -1,0 +1,141 @@
+[p1 "NvUI · 项目清单" | space "nerv-ui N05 feedback 20261024"(15): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "片刻回响"
+      button "切换明暗" [ref=34, loc=css:button[aria-label="切换明暗"]]
+        text "浅色"
+    container [ref=35]
+      container
+        paragraph
+          text "日常的小事，也有温柔的回应"
+        heading
+          text "片刻回响"
+        container "演示入口"
+          anchor [ref=36, loc=href:/#mobile, url=http://127.0.0.1:4185/#mobile]
+            text "随行手记"
+          anchor [ref=37, loc=href:/#mobile-input, url=http://127.0.0.1:4185/#mobile-input]
+            text "随心记录"
+          anchor [ref=38, loc=href:/#mobile-overlays, url=http://127.0.0.1:4185/#mobile-overlays]
+            text "片刻安排"
+          anchor [ref=39, loc=href:/#mobile-lists, url=http://127.0.0.1:4185/#mobile-lists]
+            text "翻阅时光"
+          anchor [ref=40, loc=href:/#desktop, url=http://127.0.0.1:4185/#desktop]
+            text "桌面演示"
+          anchor [ref=41, loc=href:/#touch, url=http://127.0.0.1:4185/#touch]
+            text "触屏演示"
+      container "每次回响都有回应"
+        heading
+          text "每次回响都有回应"
+        container
+          svg_root
+          container
+            text "周末一起去看风景"
+            container
+              button [ref=42]
+                text "查看通知"
+              button [ref=43]
+                text "关闭通知"
+        paragraph "通知回显"
+          text "尚未查看通知"
+        container
+          container
+            text "✉"
+            paragraph
+              text "尚未收集回响"
+            button [ref=44]
+              text "收集回响"
+          paragraph "收集状态"
+            text "尚未收集 · 请求 0 次"
+        container
+          button [ref=45]
+            text "查看失败结果"
+          button [ref=46]
+            text "清空回响"
+      container "轻轻提醒一下"
+        heading
+          text "轻轻提醒一下"
+        container
+          container
+            text "回响信箱"
+            text "7"
+          container
+            text "◇"
+            text "周末"
+            button "移除标签" [ref=47, loc=css:button[aria-label="移除标签"]]
+              svg_root
+          text "已读"
+        paragraph "提醒数值"
+          text "未读 7 条"
+        paragraph "标签回显"
+          text "周末标签已保留"
+        container
+          button [ref=48]
+            text "超过上限"
+          button [ref=49]
+            text "仅显示圆点"
+          button [ref=50]
+            text "没有未读"
+        container
+          button [ref=51]
+            text "短暂提示"
+          button [ref=52]
+            text "持续等待"
+          button [ref=53]
+            text "更新为成功"
+          button [ref=54]
+            text "失败提示"
+          button [ref=55]
+            text "延长提示"
+          button [ref=56]
+            text "关闭提示"
+        paragraph "提示状态"
+          text "已关闭"
+      container "把风景收入手记"
+        heading
+          text "把风景收入手记"
+        container
+          image
+          text "AR"
+          text "旅"
+          paragraph
+            text "与林悦一起，收藏日常"
+        container
+          button [ref=57]
+            text "损坏的头像"
+          button [ref=58]
+            text "恢复头像"
+        image
+        button [ref=59]
+          text "损坏的风景"
+        button [ref=60]
+          text "换一张风景"
+        button [ref=61]
+          text "回到湖畔"
+        paragraph "进度状态"
+          text "进度未知，等待开始"
+        button [ref=62]
+          text "开始整理"
+        button [ref=63]
+          text "整理到一半"
+        button [ref=64]
+          text "整理失败"
+        button [ref=65]
+          text "完成整理"
+        button [ref=66]
+          text "未知进度"
+  region "Notifications" [ref=67]
+  container
+    container
+      button "翻译" [ref=68]
+        svg_root
+      button "朗读" [ref=69]
+        svg_root
+      button "词典" [ref=70]
+      button "长难句分析" [ref=71]
+    button "更多操作" [ref=72]
+      svg_root
+  region "Notifications" [ref=73]
+
+{ output: '已移除「周末」', buttons: [ { text: '浅色', w: 44, h: 44 }, { text: '查看通知', w: 72, h: 44 }, { text: '关闭通知', w: 72, h: 44 }, { text: '收集回响', w: 92, h: 40 }, { text: '查看失败结果', w: 124, h: 40 }, { text: '清空回响', w: 92, h: 40 }, { text: '超过上限', w: 94, h: 40 }, { text: '仅显示圆点', w: 109, h: 40 }, { text: '没有未读', w: 94, h: 40 }, { text: '恢复标签', w: 92, h: 40 }, { text: '短暂提示', w: 92, h: 40 }, { text: '持续等待', w: 94, h: 40 }, { text: '更新为成功', w: 109, h: 40 }, { text: '失败提示', w: 94, h: 40 }, { text: '延长提示', w: 94, h: 40 }, { text: '关闭提示', w: 92, h: 40 }, { text: '损坏的头像', w: 109, h: 40 }, { text: '恢复头像', w: 94, h: 40 }, { text: '损坏的风景', w: 109, h: 40 }, { text: '换一张风景', w: 109, h: 40 }, { text: '回到湖畔', w: 92, h: 40 }, { text: '开始整理', w: 92, h: 40 }, { text: '整理到一半', w: 109, h: 40 }, { text: '整理失败', w: 94, h: 40 }, { text: '完成整理', w: 94, h: 40 }, { text: '未知进度', w: 92, h: 40 } ] }
+

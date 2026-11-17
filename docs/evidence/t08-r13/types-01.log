@@ -1,0 +1,19 @@
+$ vue-tsc --noEmit -p tsconfig.json
+src/components/pc/chart/LineAnnotations.test.ts(12,52): error TS2339: Property 'vm' does not exist on type 'Omit<DOMWrapper<Element>, "exists">'.
+src/components/pc/chart/LineAnnotations.test.ts(26,42): error TS2339: Property 'vm' does not exist on type 'Omit<DOMWrapper<Element>, "exists">'.
+src/components/pc/chart/LineAnnotations.test.ts(33,21): error TS2339: Property 'props' does not exist on type 'DOMWrapper<Node>'.
+src/components/pc/chart/LineAnnotations.test.ts(34,21): error TS2339: Property 'props' does not exist on type 'DOMWrapper<Node>'.
+src/components/pc/chart/LineAnnotations.test.ts(35,27): error TS2339: Property 'vm' does not exist on type 'DOMWrapper<Node>'.
+src/components/pc/chart/NvLineChart.vue(56,18): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/components/pc/chart/NvLineChart.vue(56,37): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/components/pc/chart/NvLineChart.vue(70,34): error TS2345: Argument of type 'number | Date' is not assignable to parameter of type 'number'.
+  Type 'Date' is not assignable to type 'number'.
+src/components/pc/chart/NvLineChart.vue(71,34): error TS2345: Argument of type 'number | Date' is not assignable to parameter of type 'number'.
+  Type 'Date' is not assignable to type 'number'.
+src/components/pc/chart/NvLineChart.vue(86,56): error TS18048: 'plot.value' is possibly 'undefined'.
+src/components/pc/chart/NvLineChart.vue(86,89): error TS18048: 'plot.value' is possibly 'undefined'.
+src/components/pc/chart/NvLineChart.vue(87,33): error TS18048: 'plot.value' is possibly 'undefined'.
+src/components/pc/chart/NvLineChart.vue(87,57): error TS18048: 'plot.value' is possibly 'undefined'.
+[ELIFECYCLE] Command failed with exit code 2.

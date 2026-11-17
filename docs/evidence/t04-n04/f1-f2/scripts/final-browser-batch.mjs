@@ -1,0 +1,5 @@
+import cp from 'node:child_process';import fs from 'node:fs';
+const root='/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists',dir='/tmp/nerv-ui-t04-n04-fix';
+const rounds=[['target-844','round-12-final-target-844.mjs'],['matrix-390-light','round-13-final-fresh-390-light.mjs'],['matrix-844-light','round-14-final-fresh-844-light.mjs'],['matrix-844-dark','round-15-final-fresh-844-dark.mjs'],['matrix-390-dark','round-16-final-fresh-390-dark.mjs'],['navigation','round-09-navigation.mjs'],['resources','round-08-resources.mjs']];
+const results=[];for(const [name,file] of rounds){fs.writeFileSync(dir+'/raw/browser-progress.json',JSON.stringify({running:name,results},null,2));const r=cp.spawnSync('node',[dir+'/run.mjs','browser-final-'+name,'zsh','-c',`ego-browser nodejs < ${dir}/browser/${file}`],{cwd:root,stdio:'inherit'});results.push({name,exit:r.status});if(r.status){fs.writeFileSync(dir+'/raw/browser-progress.json',JSON.stringify({failed:name,results},null,2));process.exit(r.status)}}
+fs.writeFileSync(dir+'/raw/browser-progress.json',JSON.stringify({completed:true,results},null,2));

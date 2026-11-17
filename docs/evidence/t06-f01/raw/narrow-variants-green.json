@@ -1,0 +1,37 @@
+[
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "variant": "default"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "variant": "queue"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "variant": "compact"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "variant": "avatar"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "variant": "gallery"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "variant": "table"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "variant": "image"
+  }
+]

@@ -1,0 +1,8 @@
+preview_status: available=false
+preview_open about:blank: Preview automation open failed: Invalid preview URL (parse: https:; input length 11).
+preview_open http://127.0.0.1:4184/#mobile-lists: chrome-error://chromewebdata/ (server startup race)
+curl after startup: HTTP/1.1 200 OK
+preview_navigate same URL: available=true, URL correct
+snapshot attempt 1: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+snapshot attempt 2: Preview snapshot failed: Preview automation snapshot timed out after 15000ms.
+Fallback: ego-browser per user instruction; fresh task space created only after these two same-step failures.

@@ -1,0 +1,40 @@
+{
+  "variant": "gallery",
+  "width": 390,
+  "scrollWidth": 393,
+  "over": [
+    {
+      "tag": "INPUT",
+      "class": "sr-only",
+      "client": 1,
+      "scroll": 180,
+      "whiteSpace": "nowrap",
+      "text": ""
+    },
+    {
+      "tag": "SPAN",
+      "slot": "file-upload-accept-hint",
+      "class": "text-muted-foreground max-w-full text-wrap text-xs leading-5",
+      "client": 308,
+      "scroll": 352,
+      "whiteSpace": "normal",
+      "text": "支持 .avif、.bmp、.gif、.jpeg、.jpg、.png、.svg、.webp、.txt、.pdf · 单个"
+    },
+    {
+      "tag": "SPAN",
+      "class": "sr-only",
+      "client": 1,
+      "scroll": 109,
+      "whiteSpace": "nowrap",
+      "text": "移除 garden.png"
+    },
+    {
+      "tag": "SPAN",
+      "class": "sr-only",
+      "client": 1,
+      "scroll": 139,
+      "whiteSpace": "nowrap",
+      "text": "garden.png 待上传"
+    }
+  ]
+}

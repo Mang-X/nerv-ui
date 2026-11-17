@@ -1,0 +1,2 @@
+command: pnpm -C frontend exec vp lint /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/compare-lock.mjs /Users/mang/Project/nerv-ui-worktrees/t02-desktop/docs/evidence/t02/f1/check-installed.mjs
+exitCode: 0

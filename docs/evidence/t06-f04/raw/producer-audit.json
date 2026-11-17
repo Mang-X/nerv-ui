@@ -1,0 +1,461 @@
+{
+  "producer": "installed exact package bytes",
+  "packages": [
+    {
+      "package": "@embedpdf/core",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1065,
+          "sha256": "2682b3fb76058f105989f63a47284878c8cdf8b80431cf0edfdab46dc6a11a97"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/engines",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1075,
+          "sha256": "f5031b66adba8ef5ef57666deff980a7f2ccff5c8a8c22a8117e854d2b8dfcd3"
+        },
+        {
+          "path": "dist/lib/pdfium/web/worker-engine.cjs",
+          "bytes": 705748,
+          "sha256": "af937ee6ff60f3cd92a809118068ed5019f5b1283fdee74bddb2b0786ecc3618"
+        },
+        {
+          "path": "dist/lib/pdfium/web/worker-engine.js",
+          "bytes": 712595,
+          "sha256": "270638a8a5b91dd442245196b372230b577eef4953b6e7088fe867355dc17114"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/fonts-arabic",
+      "version": "1.0.0",
+      "license": "OFL-1.1",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 4484,
+          "sha256": "cea028c0b5185b804ae79f1eab96ca5ee469d61d44925972a2379430890bbec1"
+        },
+        {
+          "path": "fonts/NotoNaskhArabic-Bold.ttf",
+          "bytes": 132336,
+          "sha256": "e73a55d7d7cb3a9cbcf8a153347879dc8b2bd7571c9c5dade65aa7422d58272c"
+        },
+        {
+          "path": "fonts/NotoNaskhArabic-Regular.ttf",
+          "bytes": 134028,
+          "sha256": "45664d3913368eb216be981969ed383e31143cef790ae803afd4f69b87d7923b"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/fonts-hebrew",
+      "version": "1.0.0",
+      "license": "OFL-1.1",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 4484,
+          "sha256": "cea028c0b5185b804ae79f1eab96ca5ee469d61d44925972a2379430890bbec1"
+        },
+        {
+          "path": "fonts/NotoSansHebrew-Bold.ttf",
+          "bytes": 26040,
+          "sha256": "be57277fb1c1f5c39b5ed10416c742d07100174f4d8fab0a981f07948c09aa07"
+        },
+        {
+          "path": "fonts/NotoSansHebrew-Regular.ttf",
+          "bytes": 25744,
+          "sha256": "898ed1f83dcebdd4d9abcfc9aa4582fb36f2eeb704a3dcbb588ce01132a40f13"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/fonts-jp",
+      "version": "1.0.0",
+      "license": "OFL-1.1",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 4484,
+          "sha256": "cea028c0b5185b804ae79f1eab96ca5ee469d61d44925972a2379430890bbec1"
+        },
+        {
+          "path": "fonts/NotoSansJP-Black.otf",
+          "bytes": 4808724,
+          "sha256": "dbc16d1b4116e6fa08672b148e6f5d0bdb836044fb1d0de3531241a5f6a96bd9"
+        },
+        {
+          "path": "fonts/NotoSansJP-Bold.otf",
+          "bytes": 4666284,
+          "sha256": "f9dccc1ed9cf1c6c431cf7b29d884ae745f1db6477bf00503a3714f627599f40"
+        },
+        {
+          "path": "fonts/NotoSansJP-DemiLight.otf",
+          "bytes": 4531488,
+          "sha256": "f204dc02510fa3be76c7630e0ec607d3dbc0e82ee94bc3d08e34b8152816b2f6"
+        },
+        {
+          "path": "fonts/NotoSansJP-Light.otf",
+          "bytes": 4497864,
+          "sha256": "2fe18ed5fe8b4a6cc368f78cf54b184c012f93bad115f3de09b2db7db2d6ab46"
+        },
+        {
+          "path": "fonts/NotoSansJP-Medium.otf",
+          "bytes": 4559248,
+          "sha256": "2ee91a06b006207c9f82abb97bb8d71557149e952d81ea7bdbc18e5812ff7e5c"
+        },
+        {
+          "path": "fonts/NotoSansJP-Regular.otf",
+          "bytes": 4538888,
+          "sha256": "dcc75e20d91d09c793fa5a97c9c7678e8b580d0fc255314cbc45c08b075f46f1"
+        },
+        {
+          "path": "fonts/NotoSansJP-Thin.otf",
+          "bytes": 4190420,
+          "sha256": "5f95be718879bafef35eeaad5c0955fda24345f0cf7a7e7c50666920abbac833"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/fonts-kr",
+      "version": "1.0.0",
+      "license": "OFL-1.1",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 4484,
+          "sha256": "cea028c0b5185b804ae79f1eab96ca5ee469d61d44925972a2379430890bbec1"
+        },
+        {
+          "path": "fonts/NotoSansKR-Black.otf",
+          "bytes": 4835828,
+          "sha256": "5f0fc047330d614ff2595ff694c31ff6fc250e3bec03ccbe73a967a30b22a404"
+        },
+        {
+          "path": "fonts/NotoSansKR-Bold.otf",
+          "bytes": 4731480,
+          "sha256": "4c42058a372749625eeda2dc8c2e54716abd197eeae8249c877cec6ca188c729"
+        },
+        {
+          "path": "fonts/NotoSansKR-DemiLight.otf",
+          "bytes": 4565592,
+          "sha256": "c969f7039abc030b55bf19fdddf10bc6c678b531cffe0a2ddb590ec6c2fdc746"
+        },
+        {
+          "path": "fonts/NotoSansKR-Light.otf",
+          "bytes": 4534608,
+          "sha256": "43ff24ad9f68a6c6e44d33ee2a97cfbe810150bfb111697e9fd075748fef1cf0"
+        },
+        {
+          "path": "fonts/NotoSansKR-Medium.otf",
+          "bytes": 4591008,
+          "sha256": "c4b332b131beb3941dfeb6ca76172ac84d0fb792a5fc6b5416a3e5b88abcb156"
+        },
+        {
+          "path": "fonts/NotoSansKR-Regular.otf",
+          "bytes": 4579008,
+          "sha256": "ff59f91fe8d6e6246f548bb67bf371810af3d5cc53b65e8680461fabd043b506"
+        },
+        {
+          "path": "fonts/NotoSansKR-Thin.otf",
+          "bytes": 4217324,
+          "sha256": "587d4a322e9c9d9e35c87a4e8f2613865258a3a1d707e29f1a13eab00742c745"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/fonts-latin",
+      "version": "1.0.0",
+      "license": "OFL-1.1",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 4484,
+          "sha256": "cea028c0b5185b804ae79f1eab96ca5ee469d61d44925972a2379430890bbec1"
+        },
+        {
+          "path": "fonts/NotoSans-Black.ttf",
+          "bytes": 629912,
+          "sha256": "18ee64cb5a5a842f036857f771e3a35ba9708a6d13b047d573ead088682083b9"
+        },
+        {
+          "path": "fonts/NotoSans-BlackItalic.ttf",
+          "bytes": 642820,
+          "sha256": "762c352a46db1bee0638978332d2256001171cfd3983e43b4cde7d5ce4112366"
+        },
+        {
+          "path": "fonts/NotoSans-Bold.ttf",
+          "bytes": 630964,
+          "sha256": "379bda1de5ceb6c81a6e0b7f8346d36e12b3202757fcba90a42dc5a7f8d5df38"
+        },
+        {
+          "path": "fonts/NotoSans-BoldItalic.ttf",
+          "bytes": 644340,
+          "sha256": "7c53c6334c7f7847201ba6ed93e4e00088b2ffae613aef69fb581153f347cac2"
+        },
+        {
+          "path": "fonts/NotoSans-ExtraBold.ttf",
+          "bytes": 631288,
+          "sha256": "d0ba2f6bcc66ff9cadf6c0c8022484ba591db8a170691437485fb95b25dc18b8"
+        },
+        {
+          "path": "fonts/NotoSans-ExtraBoldItalic.ttf",
+          "bytes": 644516,
+          "sha256": "e86f228fe098f0d2a6edbfb00a42e954c7d6c026353c1df0362145c55c130fb4"
+        },
+        {
+          "path": "fonts/NotoSans-ExtraLight.ttf",
+          "bytes": 629780,
+          "sha256": "3b4937b2d0fee94bfc3bec03012339e1a8492783b7c142e4f84bf4b67b7a567b"
+        },
+        {
+          "path": "fonts/NotoSans-ExtraLightItalic.ttf",
+          "bytes": 644416,
+          "sha256": "3333d506b937f2057f322971dda56581d3294ccb6a073e5c3018e3a27866b846"
+        },
+        {
+          "path": "fonts/NotoSans-Italic.ttf",
+          "bytes": 642344,
+          "sha256": "feb3e57888ce3acb604f270c278cfb304c674306518771619ddbdefca42a066b"
+        },
+        {
+          "path": "fonts/NotoSans-Light.ttf",
+          "bytes": 629564,
+          "sha256": "ad161dc21b079cabda74ba05032d63f729fb54ed899e995401bde1e49e19872e"
+        },
+        {
+          "path": "fonts/NotoSans-LightItalic.ttf",
+          "bytes": 644244,
+          "sha256": "43c9b71cd1d78267e6cb255c2efcf7e018bbdf14721691f0a8ae16ff14957357"
+        },
+        {
+          "path": "fonts/NotoSans-Medium.ttf",
+          "bytes": 631052,
+          "sha256": "8c1dc004996029f804283dd398ca2a05d4d33ebcba5c0d25ea13fd2026572279"
+        },
+        {
+          "path": "fonts/NotoSans-MediumItalic.ttf",
+          "bytes": 644256,
+          "sha256": "79c5da7292be70321fc0e4fec579d1e53b6bf6475e1989254a821baa228e5c04"
+        },
+        {
+          "path": "fonts/NotoSans-Regular.ttf",
+          "bytes": 629024,
+          "sha256": "fe8c022f48d8dd29f17b744d16f9346f4357e16f7d4f7be58b000ae7c291b614"
+        },
+        {
+          "path": "fonts/NotoSans-SemiBold.ttf",
+          "bytes": 631364,
+          "sha256": "e691fe27813ec6ed11d0a5be4c6c1f6739996ed682462eaa3244a6185217dd6c"
+        },
+        {
+          "path": "fonts/NotoSans-SemiBoldItalic.ttf",
+          "bytes": 644544,
+          "sha256": "2278c2c315883b452a3ae4387f57638490c9d7645e334c961129af4e744a4150"
+        },
+        {
+          "path": "fonts/NotoSans-Thin.ttf",
+          "bytes": 628672,
+          "sha256": "d425d516c28336928deee0f9c9c56c879c78a282150147fe2f6e872dbe8bfb28"
+        },
+        {
+          "path": "fonts/NotoSans-ThinItalic.ttf",
+          "bytes": 643648,
+          "sha256": "6abec7808199441b05e76170cf5b00c5ae0628611b494142836cca8b3b7fe2de"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/fonts-sc",
+      "version": "1.0.0",
+      "license": "OFL-1.1",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 4484,
+          "sha256": "cea028c0b5185b804ae79f1eab96ca5ee469d61d44925972a2379430890bbec1"
+        },
+        {
+          "path": "fonts/NotoSansHans-Bold.otf",
+          "bytes": 8607960,
+          "sha256": "9e7729ef993ca4c647882f798644f4bbf6da69bd822eac593fc68717dd6c8e2a"
+        },
+        {
+          "path": "fonts/NotoSansHans-DemiLight.otf",
+          "bytes": 8344000,
+          "sha256": "f3e035dbcb69d828d6b61f9ea42f87f361977252ec398b8afaed484b50723472"
+        },
+        {
+          "path": "fonts/NotoSansHans-Light.otf",
+          "bytes": 8297272,
+          "sha256": "8f64e48d480449ed82c125d79d673940c10afdd0d72c9d76082ee1913b9811bd"
+        },
+        {
+          "path": "fonts/NotoSansHans-Medium.otf",
+          "bytes": 8389940,
+          "sha256": "25033438cfa41f1873d4902b8555956557b765117756bcef96406e023e49578c"
+        },
+        {
+          "path": "fonts/NotoSansHans-Regular.otf",
+          "bytes": 8364644,
+          "sha256": "7db3c634bbd0301b3082a80ffcac2f422e8ef9ce0730f8b279c3e8f756598f68"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/fonts-tc",
+      "version": "1.0.0",
+      "license": "OFL-1.1",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 4484,
+          "sha256": "cea028c0b5185b804ae79f1eab96ca5ee469d61d44925972a2379430890bbec1"
+        },
+        {
+          "path": "fonts/NotoSansHant-Black.otf",
+          "bytes": 5963204,
+          "sha256": "fe9afe2f8521179343ad214e9ee9441d59a42ab9453a29d9d95a53f7627f31f1"
+        },
+        {
+          "path": "fonts/NotoSansHant-Bold.otf",
+          "bytes": 5833296,
+          "sha256": "31cad711fe815243664b16fe9f38d39585cffb6db0613c02f38e0bcf4917010b"
+        },
+        {
+          "path": "fonts/NotoSansHant-DemiLight.otf",
+          "bytes": 5645384,
+          "sha256": "0e63f3802524757c91390da53926159441c97c0be18409288cd41e2baf0443ab"
+        },
+        {
+          "path": "fonts/NotoSansHant-Light.otf",
+          "bytes": 5615852,
+          "sha256": "bb0e411c526b555e18896f397bfc0181e9311afba03a188220b246eed447159a"
+        },
+        {
+          "path": "fonts/NotoSansHant-Medium.otf",
+          "bytes": 5679704,
+          "sha256": "83fdce2e2508d9ef01e249994271ff48e0ab8a2db41b5fa8433200d5ca8cd702"
+        },
+        {
+          "path": "fonts/NotoSansHant-Regular.otf",
+          "bytes": 5663120,
+          "sha256": "81f39cffba8b45367a21249720782603b852bee71aad710f8f66fec3d3776af3"
+        },
+        {
+          "path": "fonts/NotoSansHant-Thin.otf",
+          "bytes": 5263620,
+          "sha256": "78134c5de91f6d5e5473fa6a90f4bfda93c26c45405cefe2771edad0747b1528"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/models",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1075,
+          "sha256": "f5031b66adba8ef5ef57666deff980a7f2ccff5c8a8c22a8117e854d2b8dfcd3"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/pdfium",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1075,
+          "sha256": "f5031b66adba8ef5ef57666deff980a7f2ccff5c8a8c22a8117e854d2b8dfcd3"
+        },
+        {
+          "path": "LICENSE.pdfium",
+          "bytes": 12880,
+          "sha256": "b033ffb8fc19c23ca81f7e98019ab658cc6f4cf14587c7c6a2a67fb0f6ac0f5a"
+        },
+        {
+          "path": "dist/pdfium.wasm",
+          "bytes": 4633788,
+          "sha256": "c0af5a6aca30d7e54a149c3a68e317116ca906d6edc28fd3318b12c7d9478ac8"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/plugin-document-manager",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1065,
+          "sha256": "2682b3fb76058f105989f63a47284878c8cdf8b80431cf0edfdab46dc6a11a97"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/plugin-render",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1065,
+          "sha256": "2682b3fb76058f105989f63a47284878c8cdf8b80431cf0edfdab46dc6a11a97"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/plugin-scroll",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1065,
+          "sha256": "2682b3fb76058f105989f63a47284878c8cdf8b80431cf0edfdab46dc6a11a97"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/plugin-viewport",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1065,
+          "sha256": "2682b3fb76058f105989f63a47284878c8cdf8b80431cf0edfdab46dc6a11a97"
+        }
+      ]
+    },
+    {
+      "package": "@embedpdf/plugin-zoom",
+      "version": "2.14.4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1065,
+          "sha256": "2682b3fb76058f105989f63a47284878c8cdf8b80431cf0edfdab46dc6a11a97"
+        }
+      ]
+    }
+  ],
+  "localWasmEqual": true,
+  "licensesEqual": true,
+  "mode": "direct; zero Worker constructors expected; no worker URL fabricated",
+  "fontFallback": null
+}

@@ -1,0 +1,32 @@
+{
+  "edges": {
+    "string-width": {
+      "expected": "4.1.0",
+      "actual": "4.1.0",
+      "path": "/private/tmp/nerv-ui-t02-f1-20261024/clean/frontend/node_modules/.pnpm/string-width@4.1.0/node_modules/string-width/package.json",
+      "equal": true
+    },
+    "strip-ansi": {
+      "expected": "6.0.0",
+      "actual": "6.0.0",
+      "path": "/private/tmp/nerv-ui-t02-f1-20261024/clean/frontend/node_modules/.pnpm/strip-ansi@6.0.0/node_modules/strip-ansi/package.json",
+      "equal": true
+    },
+    "string-width>strip-ansi": {
+      "expected": "5.2.0",
+      "actual": "5.2.0",
+      "path": "/private/tmp/nerv-ui-t02-f1-20261024/clean/frontend/node_modules/.pnpm/strip-ansi@5.2.0/node_modules/strip-ansi/package.json",
+      "equal": true
+    },
+    "strip-ansi@5.2.0>ansi-regex": {
+      "expected": "4.1.1",
+      "actual": "4.1.1",
+      "path": "/private/tmp/nerv-ui-t02-f1-20261024/clean/frontend/node_modules/.pnpm/ansi-regex@4.1.1/node_modules/ansi-regex/package.json",
+      "equal": true
+    }
+  },
+  "lockedGraphMatches": true,
+  "installedPackageCount": 973,
+  "installedSnapshotCount": 973,
+  "pass": true
+}

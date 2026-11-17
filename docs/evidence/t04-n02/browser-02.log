@@ -1,0 +1,82 @@
+{ viewport: { width: 2320, height: 1245 }, manualScan: '1 次 · NOTE-42', syntheticDocumentBurst: [ { key: 'W', trusted: false, consumed: true }, { key: 'E', trusted: false, consumed: true }, { key: 'D', trusted: false, consumed: true }, { key: 'G', trusted: false, consumed: true }, { key: 'E', trusted: false, consumed: true }, { key: 'Enter', trusted: false, consumed: true } ], scanAfterBurst: '2 次 · WEDGE', title: '海边来信 · 4 字', search: '湖畔 · 书屋 · 花园', events: [ { type: 'focusin', trusted: true, target: '键入编码后按回车' }, { type: 'click', trusted: true, target: '键入编码后按回车' }, { type: 'keydown', trusted: true, target: '键入编码后按回车', key: 'N' }, { type: 'input', trusted: true, target: '键入编码后按回车' }, { type: 'keydown', trusted: true, target: '键入编码后按回车', key: 'O' }, { type: 'input', trusted: true, target: '键入编码后按回车' }, { type: 'keydown', trusted: true, target: '键入编码后按回车', key: 'T' }, { type: 'input', trusted: true, target: '键入编码后按回车' }, { type: 'keydown', trusted: true, target: '键入编码后按回车', key: 'E' }, { type: 'input', trusted: true, target: '键入编码后按回车' }, { type: 'keydown', trusted: true, target: '键入编码后按回车', key: '-' }, { type: 'input', trusted: true, target: '键入编码后按回车' }, { type: 'keydown', trusted: true, target: '键入编码后按回车', key: '4' }, { type: 'input', trusted: true, target: '键入编码后按回车' }, { type: 'keydown', trusted: true, target: '键入编码后按回车', key: '2' }, { type: 'input', trusted: true, target: '键入编码后按回车' }, { type: 'keydown', trusted: true, target: '键入编码后按回车', key: 'Enter' }, { type: 'keydown', trusted: false, target: 'BODY', key: 'W' }, { type: 'keydown', trusted: false, target: 'BODY', key: 'E' }, { type: 'keydown', trusted: false, target: 'BODY', key: 'D' }, { type: 'keydown', trusted: false, target: 'BODY', key: 'G' }, { type: 'keydown', trusted: false, target: 'BODY', key: 'E' }, { type: 'keydown', trusted: false, target: 'BODY', key: 'Enter' }, { type: 'focusin', trusted: true, target: '键入编码后按回车' }, { type: 'focusin', trusted: true, target: 'note-title' }, { type: 'click', trusted: true, target: 'note-title' }, { type: 'input', trusted: true, target: 'note-title' }, { type: 'input', trusted: true, target: 'note-title' }, { type: 'input', trusted: true, target: 'note-title' }, { type: 'input', trusted: true, target: 'note-title' }, { type: 'focusin', trusted: true, target: '寻找湖畔、书屋或花园' }, { type: 'click', trusted: true, target: '寻找湖畔、书屋或花园' }, { type: 'input', trusted: true, target: '寻找湖畔、书屋或花园' }, { type: 'keydown', trusted: true, target: '寻找湖畔、书屋或花园', key: 'Enter' }, { type: 'focusin', trusted: true, target: '清除' }, { type: 'click', trusted: true, target: 'svg' }, { type: 'focusin', trusted: true, target: '键入编码后按回车' }, { type: 'focusin', trusted: true, target: '寻找湖畔、书屋或花园' }, { type: 'click', trusted: true, target: '寻找湖畔、书屋或花园' }, { type: 'input', trusted: true, target: '寻找湖畔、书屋或花园' }, { type: 'keydown', trusted: true, target: '寻找湖畔、书屋或花园', key: 'Enter' }, { type: 'focusin', trusted: true, target: 'BUTTON' }, { type: 'click', trusted: true, target: 'BUTTON' } ] }
+[p1 "NvUI · 项目清单" | space "nerv-ui-t04-n02-20261024"(31): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "随心记录"
+      button "切换明暗" [ref=1, loc=css:button[aria-label="切换明暗"]]
+        text "深色"
+    container [ref=2]
+      container
+        paragraph
+          text "留住生活里的小小灵感"
+        heading
+          text "随心记录"
+        container "演示入口"
+          anchor [ref=3, loc=href:/#mobile, url=http://127.0.0.1:4174/#mobile]
+            text "随行手记"
+          anchor [ref=4, loc=href:/#desktop, url=http://127.0.0.1:4174/#desktop]
+            text "桌面演示"
+          anchor [ref=5, loc=href:/#touch, url=http://127.0.0.1:4174/#touch]
+            text "触屏演示"
+      container "接住一串灵感"
+        heading
+          text "接住一串灵感"
+        container
+          text "持续接收扫码"
+          switch "持续接收扫码" [ref=6, loc=css:button[aria-label="持续接收扫码"]]
+        status "扫码状态"
+          text "扫码接收中"
+        container
+          text "便签编码"
+          container
+            svg_root
+            textbox [ref=7, loc=css:input[placeholder="键入编码后按回车"]]
+              text "键入编码后按回车"
+        output "扫码回显" [ref=8]
+          text "2 次 · WEDGE"
+        paragraph
+          text "回车收下编码并清空输入。编辑其它输入框时暂停接收，离开后恢复；也可关闭持续接收。"
+        text "数字键盘模式"
+        combobox "数字键盘模式" [ref=9, loc=css:select[aria-label="数字键盘模式"]]
+          text "小数与正负号"
+        text "记录数值"
+        textbox [ref=10, loc=css:input[placeholder="点此录入"]]
+          text "点此录入"
+        paragraph
+          text "保留开头的零，追加输入最多 6 个字符；正负号可独立切换。"
+        button "清空数值" [ref=11, loc=css:button[aria-label="清空数值"]]
+          text "清空数值"
+        output "键盘按键" [ref=12]
+          text "尚未按键"
+        output "键盘确认" [ref=13]
+          text "尚未确认"
+        container
+          button "打开数值抽屉" [ref=14, loc=css:button[aria-label="打开数值抽屉"]]
+            text "在抽屉里继续"
+          button "打开记录提示" [ref=15, loc=css:button[aria-label="打开记录提示"]]
+            text "留个提醒"
+        output "提示回显" [ref=16]
+          text "尚无备注"
+      container "写下灵感"
+        heading
+          text "写下灵感"
+        text "标题"
+        container
+          text "记"
+          textbox [ref=17, loc=css:input[name="title"]]
+            text "海边来信"
+          text "4/24 字"
+        output "标题回显" [ref=18]
+          text "海边来信 · 4 字"
+        container
+          container
+            svg_root
+            searchbox "寻找去处" [ref=19, loc=css:input[placeholder="寻找湖畔、书屋或花园"]]
+              text "寻找湖畔、书屋或花园"
+            button "清除" [ref=52, loc=css:button[aria-label="清除"]]
+              svg_root
+          button [ref=20]
+            text "取消"
+
+

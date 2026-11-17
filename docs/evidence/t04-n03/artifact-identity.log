@@ -1,0 +1,4 @@
+$ node /tmp/nerv-ui-t04-n03/artifacts.mjs
+{ artifacts: 10, responses: 4, allResponsesEqual: true }
+
+exit=0

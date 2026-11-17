@@ -1,0 +1,5 @@
+Could not parse CSS stylesheet
+JSON report written to /tmp/nerv-ui-t05-a07/handoff/raw/host-red.json
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t05-a07-screen-summary/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/screen/ScreenSummaryDemo.test.ts '--reporter=json' '--outputFile=/tmp/nerv-ui-t05-a07/handoff/raw/host-red.json'

@@ -1,0 +1,77 @@
+{ active: '<input type="text" inputmode="none" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="键入编码后按回车" class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground">', events: [ { type: 'focusout', key: null, trusted: true, target: 'note-number' }, { type: 'focusin', key: null, trusted: true, target: '清空数值' }, { type: 'keyup', key: 'Tab', trusted: true, target: '清空数值' }, { type: 'keydown', key: 'Tab', trusted: true, target: '清空数值' }, { type: 'focusout', key: null, trusted: true, target: '清空数值' }, { type: 'focusin', key: null, trusted: true, target: '打开数值抽屉' }, { type: 'keyup', key: 'Tab', trusted: true, target: '打开数值抽屉' }, { type: 'keydown', key: 'Tab', trusted: true, target: '打开数值抽屉' }, { type: 'focusout', key: null, trusted: true, target: '打开数值抽屉' }, { type: 'focusin', key: null, trusted: true, target: '打开记录提示' }, { type: 'keyup', key: 'Tab', trusted: true, target: '打开记录提示' }, { type: 'keydown', key: 'Enter', trusted: true, target: '打开记录提示' }, { type: 'keyup', key: 'Enter', trusted: true, target: '打开记录提示' }, { type: 'focusout', key: null, trusted: true, target: '打开记录提示' } ] }
+[p1 "NvUI · 项目清单" | space "nerv-ui-t04-n02-f1-20261024"(4): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "随心记录"
+      button "切换明暗" [ref=56, loc=css:button[aria-label="切换明暗"]]
+        text "深色"
+    container [ref=72]
+      container
+        paragraph
+          text "留住生活里的小小灵感"
+        heading
+          text "随心记录"
+        container "演示入口"
+          anchor [ref=73, loc=href:/?f1=final2#mobile, url=http://127.0.0.1:4174/?f1=final2#mobile]
+            text "随行手记"
+          anchor [ref=74, loc=href:/?f1=final2#desktop, url=http://127.0.0.1:4174/?f1=final2#desktop]
+            text "桌面演示"
+          anchor [ref=75, loc=href:/?f1=final2#touch, url=http://127.0.0.1:4174/?f1=final2#touch]
+            text "触屏演示"
+      container "接住一串灵感"
+        heading
+          text "接住一串灵感"
+        container
+          text "持续接收扫码"
+          switch "持续接收扫码" [ref=76, loc=css:button[aria-label="持续接收扫码"]]
+        status "扫码状态"
+          text "扫码接收中"
+        container
+          text "便签编码"
+          container
+            svg_root
+            textbox [ref=77, loc=css:input[placeholder="键入编码后按回车"]]
+              text "手工草稿F1"
+        output "扫码回显" [ref=78]
+          text "0 次 · 尚无记录"
+        paragraph
+          text "回车收下编码并清空输入。编辑其它输入框时暂停接收，离开后恢复；也可关闭持续接收。"
+        text "数字键盘模式"
+        combobox "数字键盘模式" [ref=57, loc=css:select[aria-label="数字键盘模式"]]
+          text "小数与正负号"
+        text "记录数值"
+        textbox [ref=58, loc=css:input[placeholder="点此录入"]]
+          text "01"
+        paragraph
+          text "保留开头的零，追加输入最多 6 个字符；正负号可独立切换。"
+        button "清空数值" [ref=59, loc=css:button[aria-label="清空数值"]]
+          text "清空数值"
+        output "键盘按键" [ref=60]
+          text "press：1"
+        output "键盘确认" [ref=61]
+          text "confirm：01"
+        container
+          button "打开数值抽屉" [ref=62, loc=css:button[aria-label="打开数值抽屉"]]
+            text "在抽屉里继续"
+          button "打开记录提示" [ref=63, loc=css:button[aria-label="打开记录提示"]]
+            text "留个提醒"
+        output "提示回显" [ref=64]
+          text "尚无备注"
+      container "写下灵感"
+        heading
+          text "写下灵感"
+        text "标题"
+        container
+          text "记"
+          textbox [ref=65, loc=css:input[name="title"]]
+            text "给今天起个名字"
+          text "0/24 字"
+        output "标题回显" [ref=66]
+          text "未命名 · 0 字"
+        container
+          svg_root
+          searchbox "寻找去处" [ref=67, loc=css:input[placeholder="寻找湖畔、书屋或花园"]]
+            text "寻找湖畔、书屋或花园"
+
+

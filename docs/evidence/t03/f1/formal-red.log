@@ -1,0 +1,44 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t03-touch/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/components/touch/TouchSegmented.test.ts (4 tests | 1 failed) 24ms
+   × aligns focus requests and controlled selection after options reorder 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/touch/TouchSegmented.test.ts > aligns focus requests and controlled selection after options reorder
+AssertionError: expected <button data-v-3f65822a …(5)></button> to be <button data-v-3f65822a …(5)></button> // Object.is equality
+
+- Expected
++ Received
+
+@@ -4,7 +4,7 @@
+    data-v-3f65822a=""
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+-   聆听
++   休息
+  </button>
+
+ ❯ src/components/touch/TouchSegmented.test.ts:24:36
+     22|     expect(wrapper.emitted('update:modelValue')).toEqual([['listen']])
+     23|     expect(wrapper.get('[aria-selected="true"]').text()).toBe('阅读')
+     24|     expect(document.activeElement).toBe(tabs[2]!.element)
+       |                                    ^
+     25|     await wrapper.setProps({ modelValue: 'listen' })
+     26|     expect(wrapper.get('[aria-selected="true"]').element).toBe(documen…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  17:37:02
+   Duration  3.09s (transform 1.89s, setup 258ms, import 2.46s, tests 24ms, environment 278ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t03-touch/frontend/packages/ui:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/touch/TouchSegmented.test.ts

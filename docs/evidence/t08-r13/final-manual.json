@@ -1,0 +1,57 @@
+{
+  "README.md": {
+    "exit": 0,
+    "nonempty": true,
+    "cmp": true
+  },
+  "docs/evidence/t08-r13/README.md": {
+    "exit": 0,
+    "nonempty": true,
+    "cmp": true
+  },
+  "sourceMatchesProvenance": [
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/components/equipment/TelemetryTrendPanel.vue",
+      "match": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/components/quality/QualityAnalysisCharts.test.ts",
+      "match": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/components/quality/QualitySpcCharts.vue",
+      "match": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/composables/useBusinessQualityAnalysis.ts",
+      "match": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/pages/equipment/telemetry/oee.vue",
+      "match": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/pages/equipment/telemetryPages.test.ts",
+      "match": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/pages/maintenance/reliability.vue",
+      "match": true
+    },
+    {
+      "path": "migration/materials/source/frontend/apps/business-console/src/pages/quality/analysis.vue",
+      "match": true
+    }
+  ],
+  "sourceDiff": "",
+  "frozenDiff": "",
+  "diffCheck": 0,
+  "manualLinks": [
+    "README -> component/evidence exists",
+    "evidence -> chart.md exists",
+    "chart.md include -> DESIGN/components/chart.md exists",
+    "existing nav /components/desktop/chart retained"
+  ],
+  "baseTree": "7dcc5dd72a51f6e96b55964f5ddd2ce14c6551d9",
+  "pnpm": "11.22.0"
+}

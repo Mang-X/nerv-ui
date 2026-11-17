@@ -1,0 +1,1 @@
+最终归档校验发现Vitest自动生成的4KB probe/node_modules/.vite/vitest/results.json缓存被复制并列入SHA256SUMS，但Git忽略该缓存，未提交任何node_modules包。清除本任务自有的两份probe缓存并重建清单，确保所有校验项实际受Git跟踪；frontend/node_modules不触碰。原始测试JSON、FAIL、日志和probe断言均不变。此修正只有证据元数据，不改变已验证的frontend tree。

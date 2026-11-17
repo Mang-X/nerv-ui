@@ -1,0 +1,29 @@
+{
+  "sequence": [
+    {
+      "label": null,
+      "text": "关闭",
+      "inside": true
+    },
+    {
+      "label": "关闭",
+      "text": "",
+      "inside": true
+    },
+    {
+      "label": null,
+      "text": "关闭",
+      "inside": true
+    }
+  ],
+  "escapeReturn": {
+    "label": "查看星河计划",
+    "text": "查看详情",
+    "inside": false
+  },
+  "multiRowReturn": {
+    "label": "查看星河计划",
+    "text": "查看详情",
+    "inside": false
+  }
+}

@@ -1,0 +1,5 @@
+Error: N05 mobile tag close target must be at least 44x44
+    at file:////[eval2]:3:49
+{ width: 14, height: 14 }
+
+ego's nodejs process exited with code 1.

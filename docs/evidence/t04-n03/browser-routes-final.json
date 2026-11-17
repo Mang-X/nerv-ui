@@ -1,0 +1,259 @@
+[
+  {
+    "hash": "desktop",
+    "state": {
+      "url": "http://127.0.0.1:4317/#desktop",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": true,
+      "docOverflow": false,
+      "active": "<body style=\"\">\n    <div id=\"app\" data-v-app=\"\"><div data-slot=\"app\" class=\"flex min-h-dvh flex-col bg-background text-foreground\"><header data-slot=\"app-header\" class=\"flex h-14 s",
+      "dialogs": [],
+      "outputs": [],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 56,
+            "width": 375,
+            "height": 1056.25,
+            "top": 56,
+            "right": 375,
+            "bottom": 1112.25,
+            "left": 0
+          },
+          "height": 1056,
+          "scrollHeight": 1056,
+          "scrollTop": 0,
+          "overflowY": "visible"
+        }
+      ]
+    }
+  },
+  {
+    "hash": "touch",
+    "state": {
+      "url": "http://127.0.0.1:4317/#touch",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": true,
+      "docOverflow": false,
+      "active": "<body style=\"\">\n    <div id=\"app\" data-v-app=\"\"><div data-slot=\"app\" class=\"flex min-h-dvh flex-col bg-background text-foreground\"><main class=\"mx-auto max-w-6xl space-y-8 p-6\"><na",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "阅读本数回显",
+          "text": "2 本"
+        },
+        {
+          "label": "阅读时长回显",
+          "text": "10 分钟"
+        },
+        {
+          "label": "操作回显",
+          "text": "尚未开始"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 375,
+            "height": 2996,
+            "top": 0,
+            "right": 375,
+            "bottom": 2996,
+            "left": 0
+          },
+          "height": 2996,
+          "scrollHeight": 2996,
+          "scrollTop": 0,
+          "overflowY": "visible"
+        }
+      ]
+    }
+  },
+  {
+    "hash": "mobile",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": true,
+      "docOverflow": false,
+      "active": "<body style=\"\">\n    <div id=\"app\" data-v-app=\"\"><div data-v-191c6ca4=\"\" class=\"flex h-dvh flex-col bg-background text-foreground relative\"><header data-shell=\"header\" class=\"pt-saf",
+      "dialogs": [],
+      "outputs": [],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 726,
+            "top": 61,
+            "right": 390,
+            "bottom": 787,
+            "left": 0
+          },
+          "height": 726,
+          "scrollHeight": 1355,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    }
+  },
+  {
+    "hash": "mobile-input",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-input",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": true,
+      "docOverflow": false,
+      "active": "<input type=\"text\" inputmode=\"none\" autocomplete=\"off\" autocapitalize=\"off\" spellcheck=\"false\" placeholder=\"键入编码后按回车\" class=\"w-full bg-transparent py-2 text-base outline-none place",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "扫码回显",
+          "text": "0 次 · 尚无记录"
+        },
+        {
+          "label": "键盘按键",
+          "text": "尚未按键"
+        },
+        {
+          "label": "键盘确认",
+          "text": "尚未确认"
+        },
+        {
+          "label": "提示回显",
+          "text": "尚无备注"
+        },
+        {
+          "label": "标题回显",
+          "text": "未命名 · 0 字"
+        },
+        {
+          "label": "搜索事件",
+          "text": "尚未搜索"
+        },
+        {
+          "label": "份数回显",
+          "text": "2 份"
+        },
+        {
+          "label": "评分回显",
+          "text": "0 星"
+        },
+        {
+          "label": "进度回显",
+          "text": "20%"
+        },
+        {
+          "label": "操作回显",
+          "text": "尚未保存"
+        },
+        {
+          "label": "偏好回显",
+          "text": "随身 · 提醒关 · 锁定关"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 2449,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    }
+  },
+  {
+    "hash": "mobile-overlays",
+    "state": {
+      "url": "http://127.0.0.1:4317/#mobile-overlays",
+      "viewport": [
+        390,
+        844
+      ],
+      "dark": true,
+      "docOverflow": false,
+      "active": "<body style=\"\">\n    <div id=\"app\" data-v-app=\"\"><div class=\"flex h-dvh flex-col bg-background text-foreground relative\"><header data-shell=\"header\" class=\"pt-safe px-safe sticky to",
+      "dialogs": [],
+      "outputs": [
+        {
+          "label": "去处回显",
+          "text": "湖畔 · lake"
+        },
+        {
+          "label": "日期回显",
+          "text": "2024-01-31"
+        },
+        {
+          "label": "安排回显",
+          "text": "尚未收下安排"
+        },
+        {
+          "label": "提醒回显",
+          "text": "尚无提醒 · 取消 0 次"
+        },
+        {
+          "label": "动作回显",
+          "text": "尚未选择动作"
+        },
+        {
+          "label": "筛选回显",
+          "text": "未选时段 · 未选节奏 · 尚无 change"
+        },
+        {
+          "label": "提示展开状态",
+          "text": "提示已收起"
+        }
+      ],
+      "layers": [],
+      "main": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 61,
+            "width": 390,
+            "height": 783,
+            "top": 61,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "height": 783,
+          "scrollHeight": 1309,
+          "scrollTop": 0,
+          "overflowY": "auto"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "uiSuccess": true,
+  "uiCount": 770,
+  "head": "4a0675711c69df5ce422313590dfbe7fa7c2be42",
+  "tree": "7ff47d4c17454988958b20771d6fa1ff71b00c93",
+  "hostSuccess": true,
+  "hostCount": 168,
+  "allHostAssertionsPassed": true,
+  "numUnhandledErrorsField": "NOT_PROVIDED_BY_RUNNER",
+  "logs": [
+    {
+      "log": "ui-final2.log",
+      "counts": [
+        "770"
+      ],
+      "unhandledLogMarker": false
+    },
+    {
+      "log": "full-tests.log",
+      "counts": [
+        "770",
+        "144",
+        "167"
+      ],
+      "unhandledLogMarker": false
+    },
+    {
+      "log": "host-final4.log",
+      "counts": [
+        "168"
+      ],
+      "unhandledLogMarker": false
+    },
+    {
+      "log": "docs-ui-final.log",
+      "counts": [
+        "6"
+      ],
+      "unhandledLogMarker": false
+    },
+    {
+      "log": "docs-mobile.log",
+      "counts": [
+        "2"
+      ],
+      "unhandledLogMarker": false
+    }
+  ]
+}

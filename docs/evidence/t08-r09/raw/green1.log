@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t07-p13-async-candidates/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ❯ src/components/screen/StatusWall.test.ts (3 tests | 1 failed) 111ms
+   × invalidates same key new content and isolates two instances and unmount 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/screen/StatusWall.test.ts > invalidates same key new content and isolates two instances and unmount
+Error: Unable to get button within: <div data-v-1be51bd4="" class="nv-scr-wall" data-slot="nv-screen-status-wall" role="region" aria-label="A">
+  <!--v-if-->
+  <div data-v-1be51bd4="" style="overflow-y: auto;" data-wall-viewport="" class="nv-scr-wall-viewport nv-scr-scroll">
+    <div data-v-1be51bd4="" style="width: 100%; height: 134px; margin-top: 0px;"></div>
+  </div>
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/components/screen/StatusWall.test.ts:55:11
+     53|   const a = mount(ui.NvScreenStatusWall, { props: { items: data, label…
+     54|   const b = mount(ui.NvScreenStatusWall, { props: { items: data, label…
+     55|   await a.get('button').trigger('mouseenter')
+       |           ^
+     56|   await a.setProps({ items: [{ ...data[0]!, identity: '新位置' }] })
+     57|   expect(a.emitted('preview')!.at(-1)).toEqual([null])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  17:14:12
+   Duration  2.71s (transform 1.63s, setup 200ms, import 2.11s, tests 111ms, environment 235ms)
+

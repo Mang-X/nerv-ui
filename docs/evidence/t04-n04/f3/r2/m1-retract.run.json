@@ -1,0 +1,13 @@
+{
+  "cwd": "/private/tmp/nerv-ui-t04-n04-merger-r2-20261024/probe",
+  "command": [
+    "/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/node_modules/.bin/vitest",
+    "run",
+    "--config",
+    "/tmp/nerv-ui-t04-n04-merger-r2-20261024/probe/m1.config.mjs"
+  ],
+  "start": "2026-10-24T15:08:10.680Z",
+  "end": "2026-10-24T15:08:16.421Z",
+  "exit": 1,
+  "signal": null
+}

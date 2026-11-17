@@ -1,0 +1,16 @@
+Scope: 4 of 5 workspace projects
+src/schedule-panels-fixtures.ts(22,3): error TS2322: Type 'Omit<{ tasks: ScheduleTask[]; links: { id: string; source: string; target: string; type: string; }[]; resources: ({ id: string; text: string; workCenterId: string; utilization: number; } | { ...; })[]; ... 9 more ...; meta: { ...; }; }, "tasks"> & { ...; }' is not assignable to type 'ScheduleModel'.
+  Types of property 'links' are incompatible.
+    Type '{ id: string; source: string; target: string; type: string; }[]' is not assignable to type 'ScheduleLink[]'.
+      Type '{ id: string; source: string; target: string; type: string; }' is not assignable to type 'ScheduleLink'.
+        Types of property 'type' are incompatible.
+          Type 'string' is not assignable to type '"finish_to_start"'.
+/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @nerv-iip/playground@0.1.0 typecheck: `vue-tsc --noEmit -p tsconfig.json`
+Exit status 2
+[ELIFECYCLE] Command failed with exit code 2.
+$ pnpm -r --workspace-concurrency=1 --if-present typecheck
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json

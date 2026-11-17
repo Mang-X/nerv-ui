@@ -1,0 +1,54 @@
+{
+  "probe": "actual public FilePreview + PDFium/WASM renders real 1129B fixture; controlled HTMLImage src assignment delays decode/load only, no mocked renderer",
+  "before": {
+    "blocked": [
+      {
+        "url": "blob:http://127.0.0.1:5221/12bf523e-e90c-4ba3-a8d2-6bd9efe21b4a",
+        "via": "src",
+        "time": 2991.5
+      }
+    ],
+    "blobs": [
+      {
+        "url": "blob:http://127.0.0.1:5221/12bf523e-e90c-4ba3-a8d2-6bd9efe21b4a",
+        "type": "image/png",
+        "bytes": 99755,
+        "revoked": false
+      }
+    ],
+    "images": [
+      {
+        "src": "",
+        "complete": true,
+        "naturalWidth": 0
+      }
+    ],
+    "wasmInstances": [
+      {
+        "started": 2021.5999999940395,
+        "input": 4633788,
+        "completed": 2034.199999988079,
+        "exports": 630
+      }
+    ]
+  },
+  "after": {
+    "blobs": [
+      {
+        "url": "blob:http://127.0.0.1:5221/12bf523e-e90c-4ba3-a8d2-6bd9efe21b4a",
+        "type": "image/png",
+        "bytes": 99755,
+        "revoked": false
+      }
+    ],
+    "outstanding": [
+      {
+        "url": "blob:http://127.0.0.1:5221/12bf523e-e90c-4ba3-a8d2-6bd9efe21b4a",
+        "type": "image/png",
+        "bytes": 99755,
+        "revoked": false
+      }
+    ],
+    "errors": []
+  }
+}

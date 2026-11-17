@@ -1,0 +1,3 @@
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+{ observations: 5, old: { bars: 6, baselines: 2, resourceBars: 0, ownResourceTips: 0, ghost: 0 } }
+

@@ -1,0 +1,199 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileInputDemo.test.ts (12 tests | 5 failed | 5 skipped) 884ms
+   × yields scan focus to 'clear number' and resumes with the manual draft 198ms
+   × yields scan focus to 'open number sheet' and resumes with the manual draft 69ms
+   × yields scan focus to 'open reminder dialog' and resumes with the manual draft 71ms
+   × yields scan focus to 'header theme control' and resumes with the manual draft 49ms
+   × yields scan focus to 'host navigation link' and resumes with the manual draft 65ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileInputDemo.test.ts > yields scan focus to 'clear number' and resumes with the manual draft
+AssertionError: expected <input type="text" …(6)></input> to be <button data-v-a3bc4b5b …(4)></button> // Object.is equality
+
+- Expected
++ Received
+
+- <button
+-   aria-label="清空数值"
+-   class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]"
+-   data-slot="mobile-button"
+-   data-v-a3bc4b5b=""
+-   type="button"
+- >
+-   
+-   清空数值
+-   
+- </button>
++ <input
++   autocapitalize="off"
++   autocomplete="off"
++   class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"
++   inputmode="none"
++   placeholder="键入编码后按回车"
++   spellcheck="false"
++   type="text"
++ />
+
+ ❯ src/MobileInputDemo.test.ts:112:34
+    110|   action.element.focus()
+    111|   await settle()
+    112|   expect(document.activeElement).toBe(action.element)
+       |                                  ^
+    113|   expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已让出焦点')
+    114|   expect(scanner.element.value).toBe('手工草稿')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/MobileInputDemo.test.ts > yields scan focus to 'open number sheet' and resumes with the manual draft
+AssertionError: expected <input type="text" …(6)></input> to be <button data-v-a3bc4b5b …(4)></button> // Object.is equality
+
+- Expected
++ Received
+
+- <button
+-   aria-label="打开数值抽屉"
+-   class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 bg-brand text-brand-foreground h-10 px-4 text-[15px]"
+-   data-slot="mobile-button"
+-   data-v-a3bc4b5b=""
+-   type="button"
+- >
+-   
+-   在抽屉里继续
+-   
+- </button>
++ <input
++   autocapitalize="off"
++   autocomplete="off"
++   class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"
++   inputmode="none"
++   placeholder="键入编码后按回车"
++   spellcheck="false"
++   type="text"
++ />
+
+ ❯ src/MobileInputDemo.test.ts:112:34
+    110|   action.element.focus()
+    111|   await settle()
+    112|   expect(document.activeElement).toBe(action.element)
+       |                                  ^
+    113|   expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已让出焦点')
+    114|   expect(scanner.element.value).toBe('手工草稿')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/MobileInputDemo.test.ts > yields scan focus to 'open reminder dialog' and resumes with the manual draft
+AssertionError: expected <input type="text" …(6)></input> to be <button data-v-a3bc4b5b …(4)></button> // Object.is equality
+
+- Expected
++ Received
+
+- <button
+-   aria-label="打开记录提示"
+-   class="nv-m-mbtn inline-flex shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0 border border-border bg-transparent text-foreground h-10 px-4 text-[15px]"
+-   data-slot="mobile-button"
+-   data-v-a3bc4b5b=""
+-   type="button"
+- >
+-   
+-   留个提醒
+-   
+- </button>
++ <input
++   autocapitalize="off"
++   autocomplete="off"
++   class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"
++   inputmode="none"
++   placeholder="键入编码后按回车"
++   spellcheck="false"
++   type="text"
++ />
+
+ ❯ src/MobileInputDemo.test.ts:112:34
+    110|   action.element.focus()
+    111|   await settle()
+    112|   expect(document.activeElement).toBe(action.element)
+       |                                  ^
+    113|   expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已让出焦点')
+    114|   expect(scanner.element.value).toBe('手工草稿')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/MobileInputDemo.test.ts > yields scan focus to 'header theme control' and resumes with the manual draft
+AssertionError: expected <input type="text" …(6)></input> to be <button type="button" …(3)></button> // Object.is equality
+
+- Expected
++ Received
+
+- <button
+-   aria-label="切换明暗"
+-   aria-pressed="false"
+-   class="size-11"
+-   type="button"
+- >
+-   深色
+- </button>
++ <input
++   autocapitalize="off"
++   autocomplete="off"
++   class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"
++   inputmode="none"
++   placeholder="键入编码后按回车"
++   spellcheck="false"
++   type="text"
++ />
+
+ ❯ src/MobileInputDemo.test.ts:112:34
+    110|   action.element.focus()
+    111|   await settle()
+    112|   expect(document.activeElement).toBe(action.element)
+       |                                  ^
+    113|   expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已让出焦点')
+    114|   expect(scanner.element.value).toBe('手工草稿')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/MobileInputDemo.test.ts > yields scan focus to 'host navigation link' and resumes with the manual draft
+AssertionError: expected <input type="text" …(6)></input> to be <a href="#mobile" …(1)></a> // Object.is equality
+
+- Expected
++ Received
+
+- <a
+-   class="inline-flex min-h-touch items-center"
+-   href="#mobile"
+- >
+-   随行手记
+- </a>
++ <input
++   autocapitalize="off"
++   autocomplete="off"
++   class="w-full bg-transparent py-2 text-base outline-none placeholder:text-muted-foreground"
++   inputmode="none"
++   placeholder="键入编码后按回车"
++   spellcheck="false"
++   type="text"
++ />
+
+ ❯ src/MobileInputDemo.test.ts:112:34
+    110|   action.element.focus()
+    111|   await settle()
+    112|   expect(document.activeElement).toBe(action.element)
+       |                                  ^
+    113|   expect(wrapper.get('[aria-label="扫码状态"]').text()).toBe('扫码已让出焦点')
+    114|   expect(scanner.element.value).toBe('手工草稿')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 2 passed | 5 skipped (12)
+   Start at  19:37:00
+   Duration  9.27s (transform 4.82s, setup 1.14s, import 6.23s, tests 884ms, environment 873ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n02-mobile-input/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileInputDemo.test.ts -t 'yields scan focus to'

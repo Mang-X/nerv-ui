@@ -1,0 +1,2823 @@
+[
+  {
+    "label": "create/pause selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/pause entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/pause cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/pause after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 success"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/remove selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/remove entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/remove cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/remove after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 success"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/clear selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/clear entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/clear cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/clear after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 success"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/unmount selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/unmount entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/unmount cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#desktop"
+  },
+  {
+    "label": "create/unmount after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 success"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#desktop"
+  },
+  {
+    "label": "create/replace selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/replace entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/replace cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "create",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create/replace after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 success"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/pause selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/pause entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/pause cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/pause after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/remove selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/remove entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/remove cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/remove after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/clear selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/clear entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/clear cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/clear after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/unmount selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/unmount entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/unmount cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#desktop"
+  },
+  {
+    "label": "transport/unmount after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#desktop"
+  },
+  {
+    "label": "transport/replace selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/replace entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/replace cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 1,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": false
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport/replace after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 0,
+        "abort": 1,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "abort memory-1 attempt 1 retained",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/pause selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/pause entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/pause cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/pause after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1",
+        "release complete 1 success"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "paused",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/remove selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/remove entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/remove cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/remove after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1",
+        "release complete 1 success"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/clear selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/clear entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/clear cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/clear after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1",
+        "release complete 1 success"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/unmount selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "notes.txt待上传File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/unmount entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/unmount cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#desktop"
+  },
+  {
+    "label": "complete/unmount after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1",
+        "release complete 1 success"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#desktop"
+  },
+  {
+    "label": "complete/replace selected before explicit upload",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/replace entered await",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/replace cancelled before late release",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "complete/replace after late success",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 1,
+        "complete": 1,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1",
+        "release complete 1 success"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "resume has two issued complete gates",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 2,
+        "complete": 2,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [
+        {
+          "id": 1,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        },
+        {
+          "id": 2,
+          "stage": "complete",
+          "sessionId": "memory-1"
+        }
+      ],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 2",
+        "progress memory-1 65 attempt 2",
+        "progress memory-1 100 attempt 2",
+        "complete memory-1 112",
+        "hold complete 2 memory-1"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        },
+        {
+          "id": 2,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "uploading",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "current receipt survives old complete failure",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 2,
+        "complete": 2,
+        "abort": 0,
+        "fail": 1
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 2",
+        "progress memory-1 65 attempt 2",
+        "progress memory-1 100 attempt 2",
+        "complete memory-1 112",
+        "hold complete 2 memory-1",
+        "release complete 2 success",
+        "receipt notes.txt:local-memory-1",
+        "release complete 1 failure"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        },
+        {
+          "id": 2,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [
+        {
+          "fileId": "local-memory-1",
+          "fileName": "notes.txt"
+        }
+      ],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "completed",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件notes.txt local-memory-1",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "remove completed emits current empty snapshot",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 2,
+        "complete": 2,
+        "abort": 0,
+        "fail": 1
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 1",
+        "progress memory-1 65 attempt 1",
+        "progress memory-1 100 attempt 1",
+        "complete memory-1 112",
+        "hold complete 1 memory-1",
+        "transport memory-1 notes.txt",
+        "progress memory-1 25 attempt 2",
+        "progress memory-1 65 attempt 2",
+        "progress memory-1 100 attempt 2",
+        "complete memory-1 112",
+        "hold complete 2 memory-1",
+        "release complete 2 success",
+        "receipt notes.txt:local-memory-1",
+        "release complete 1 failure",
+        "receipt "
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-1",
+          "aborted": true,
+          "settled": true
+        },
+        {
+          "id": 2,
+          "sessionId": "memory-1",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "create failure preserves reason",
+    "fixture": {
+      "counts": {
+        "create": 1,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 1
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 failure",
+        "failed notes.txt：本地 create 暂时中断，请重试。"
+      ],
+      "attempts": [],
+      "receipts": [],
+      "failure": "notes.txt：本地 create 暂时中断，请重试。"
+    },
+    "rows": [
+      {
+        "status": "failed",
+        "text": "notes.txt待上传File - 112 B本地 create 暂时中断，请重试。移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "transport failure preserves reason",
+    "fixture": {
+      "counts": {
+        "create": 2,
+        "transport": 1,
+        "complete": 0,
+        "abort": 0,
+        "fail": 2
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 failure",
+        "failed notes.txt：本地 create 暂时中断，请重试。",
+        "create memory-2 notes.txt",
+        "hold create 2 memory-2",
+        "release create 2 success",
+        "transport memory-2 notes.txt",
+        "fail memory-2",
+        "failed notes.txt：本地传输暂时中断，请重试。"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-2",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": "notes.txt：本地传输暂时中断，请重试。"
+    },
+    "rows": [
+      {
+        "status": "failed",
+        "text": "notes.txt上传中File - 112 B本地传输暂时中断，请重试。移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "retry succeeds after explicit failures",
+    "fixture": {
+      "counts": {
+        "create": 2,
+        "transport": 2,
+        "complete": 1,
+        "abort": 0,
+        "fail": 2
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 failure",
+        "failed notes.txt：本地 create 暂时中断，请重试。",
+        "create memory-2 notes.txt",
+        "hold create 2 memory-2",
+        "release create 2 success",
+        "transport memory-2 notes.txt",
+        "fail memory-2",
+        "failed notes.txt：本地传输暂时中断，请重试。",
+        "transport memory-2 notes.txt",
+        "progress memory-2 25 attempt 2",
+        "progress memory-2 65 attempt 2",
+        "progress memory-2 100 attempt 2",
+        "complete memory-2 112",
+        "receipt notes.txt:local-memory-2"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-2",
+          "aborted": false,
+          "settled": true
+        },
+        {
+          "id": 2,
+          "sessionId": "memory-2",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [
+        {
+          "fileId": "local-memory-2",
+          "fileName": "notes.txt"
+        }
+      ],
+      "failure": "notes.txt：本地传输暂时中断，请重试。"
+    },
+    "rows": [
+      {
+        "status": "completed",
+        "text": "notes.txt上传中File - 112 B移除 notes.txt"
+      }
+    ],
+    "receipts": "已暂存文件notes.txt local-memory-2",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "variant default real local thumbnail",
+    "fixture": {
+      "counts": {
+        "create": 2,
+        "transport": 2,
+        "complete": 1,
+        "abort": 0,
+        "fail": 2
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 failure",
+        "failed notes.txt：本地 create 暂时中断，请重试。",
+        "create memory-2 notes.txt",
+        "hold create 2 memory-2",
+        "release create 2 success",
+        "transport memory-2 notes.txt",
+        "fail memory-2",
+        "failed notes.txt：本地传输暂时中断，请重试。",
+        "transport memory-2 notes.txt",
+        "progress memory-2 25 attempt 2",
+        "progress memory-2 65 attempt 2",
+        "progress memory-2 100 attempt 2",
+        "complete memory-2 112",
+        "receipt notes.txt:local-memory-2"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-2",
+          "aborted": false,
+          "settled": true
+        },
+        {
+          "id": 2,
+          "sessionId": "memory-2",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.png待上传Image - 10.6 KB移除 garden.png"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "variant queue real local thumbnail",
+    "fixture": {
+      "counts": {
+        "create": 2,
+        "transport": 2,
+        "complete": 1,
+        "abort": 0,
+        "fail": 2
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [
+        "create memory-1 notes.txt",
+        "hold create 1 memory-1",
+        "release create 1 failure",
+        "failed notes.txt：本地 create 暂时中断，请重试。",
+        "create memory-2 notes.txt",
+        "hold create 2 memory-2",
+        "release create 2 success",
+        "transport memory-2 notes.txt",
+        "fail memory-2",
+        "failed notes.txt：本地传输暂时中断，请重试。",
+        "transport memory-2 notes.txt",
+        "progress memory-2 25 attempt 2",
+        "progress memory-2 65 attempt 2",
+        "progress memory-2 100 attempt 2",
+        "complete memory-2 112",
+        "receipt notes.txt:local-memory-2"
+      ],
+      "attempts": [
+        {
+          "id": 1,
+          "sessionId": "memory-2",
+          "aborted": false,
+          "settled": true
+        },
+        {
+          "id": 2,
+          "sessionId": "memory-2",
+          "aborted": false,
+          "settled": true
+        }
+      ],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.png待上传Image - 10.6 KB移除 garden.png"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "variant compact real local thumbnail",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.pngImage · 10.6 KB待上传移除 garden.png"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "variant avatar real local thumbnail",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "variant gallery real local thumbnail",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.png移除 garden.pnggarden.png 待上传"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "variant table real local thumbnail",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.pngImage10.6 KB移除 garden.png"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  },
+  {
+    "label": "variant image real local thumbnail",
+    "fixture": {
+      "counts": {
+        "create": 0,
+        "transport": 0,
+        "complete": 0,
+        "abort": 0,
+        "fail": 0
+      },
+      "pending": 0,
+      "gates": [],
+      "events": [],
+      "attempts": [],
+      "receipts": [],
+      "failure": ""
+    },
+    "rows": [
+      {
+        "status": "queued",
+        "text": "garden.png移除 garden.pnggarden.png 待上传"
+      }
+    ],
+    "receipts": "已暂存文件尚无成功文件",
+    "audit": {
+      "writes": [],
+      "errors": []
+    },
+    "hash": "#files"
+  }
+]

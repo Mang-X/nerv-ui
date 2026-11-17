@@ -1,0 +1,10 @@
+{
+  "string-width": {
+    "path": "/private/tmp/nerv-ui-t02-merger-20261024/clean/frontend/node_modules/.pnpm/string-width@4.2.3/node_modules/string-width",
+    "version": "4.2.3"
+  },
+  "strip-ansi": {
+    "path": "/private/tmp/nerv-ui-t02-merger-20261024/clean/frontend/node_modules/.pnpm/strip-ansi@6.0.1/node_modules/strip-ansi",
+    "version": "6.0.1"
+  }
+}

@@ -1,0 +1,60 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileDemo.test.ts (2 tests | 1 failed) 74ms
+   × selects cells and list rows, advances steps and receives grid item identity 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileDemo.test.ts > selects cells and list rows, advances steps and receives grid item identity
+Error: Unable to get [role="status"] within: <div class="flex h-dvh flex-col bg-background text-foreground">
+  <header data-shell="header" class="pt-safe px-safe sticky top-0 z-20 shrink-0 border-b border-border/70 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
+    <div data-slot="nav-bar" class="relative flex h-12 items-center justify-center gap-2 px-2">
+      <div class="absolute left-1 flex items-center"><button type="button" class="flex size-9 items-center justify-center rounded-full text-foreground active:bg-accent" aria-label="返回"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left size-6" aria-hidden="true">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg></button></div>
+      <div class="truncate px-12 text-base font-semibold">随行手记</div>
+      <div class="absolute right-1 flex items-center gap-1"></div>
+    </div>
+  </header>
+  <main data-shell="content" class="px-safe min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+    <div class="space-y-4 p-4">
+      <h1 class="text-2xl font-semibold">周末随行</h1><a href="#desktop">桌面演示</a><a href="#touch">触屏演示</a>
+      <h2 aria-label="当前页面">附近好去处</h2>
+      <div>
+        <div data-v-1d688a67="" data-slot="mobile-tabs" role="tablist" class="relative flex overflow-x-auto border-b border-border [&amp;::-webkit-scrollbar]:hidden [scrollbar-width:none]" aria-label="去处分类"><button data-v-1d688a67="" type="button" role="tab" aria-selected="true" class="nv-m-mtab relative h-11 shrink-0 px-4 text-[15px] whitespace-nowrap transition-colors font-medium text-foreground">湖畔</button><button data-v-1d688a67="" type="button" role="tab" aria-selected="false" class="nv-m-mtab relative h-11 shrink-0 px-4 text-[15px] whitespace-nowrap transition-colors text-muted-foreground">小径</button><span data-v-1d688a67="" class="nv-m-mtab-bar" style="left: 0px; width: 0px; display: none;" aria-hidden="true"></span></div>
+        <div role="tabpanel" aria-label="湖畔">湖畔书屋</div>
+      </div>
+    </div>
+  </main>
+  <footer data-shell="footer" class="pb-safe px-safe sticky bottom-0 z-20 shrink-0 border-t border-border/70 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
+    <nav data-v-38429864="" data-slot="tab-bar" class="flex items-stretch"><button data-v-38429864="" type="button" aria-current="page" class="nv-m-tabbar-btn min-h-touch flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs text-brand">
+        <!-- Background tap highlight — shows the touch range, no size/layout shift. --><span data-v-38429864="" class="nv-m-tabbar-hit" aria-hidden="true"></span>
+        <!--v-if--><span data-v-38429864="" class="relative">发现</span>
+      </button><button data-v-38429864="" type="button" class="nv-m-tabbar-btn min-h-touch flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs text-muted-foreground">
+        <!-- Background tap highlight — shows the touch range, no size/layout shift. --><span data-v-38429864="" class="nv-m-tabbar-hit" aria-hidden="true"></span>
+        <!--v-if--><span data-v-38429864="" class="relative">收藏</span>
+      </button></nav>
+  </footer>
+</div>
+ ❯ VueWrapper.get ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7182:15
+ ❯ src/MobileDemo.test.ts:29:18
+     27| it('selects cells and list rows, advances steps and receives grid item…
+     28|   wrapper = mount(MobileDemo)
+     29|   expect(wrapper.get('[role="status"]').text()).toBe('选一个去处，留一点空闲。')
+       |                  ^
+     30|   await wrapper.get('[data-slot="cell"][role="button"]').trigger('keyd…
+     31|   expect(wrapper.get('[role="status"]').text()).toBe('已选择：湖畔书屋')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  18:07:43
+   Duration  4.40s (transform 2.84s, setup 327ms, import 3.58s, tests 74ms, environment 315ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n01-mobile-shell/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileDemo.test.ts

@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-24",
+  "node": "24.18.0",
+  "pnpm": "11.22.0",
+  "install": "frozen clean worktree install PASS",
+  "uiTests": {
+    "files": 43,
+    "passed": 641,
+    "failed": 0,
+    "skipped": 0
+  },
+  "hostTests": {
+    "files": 3,
+    "passed": 17,
+    "failed": 0,
+    "skipped": 0
+  },
+  "docsSourceTests": {
+    "files": 3,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "types": "ui + playground PASS",
+  "productionBuild": "PASS",
+  "scopedLint": {
+    "exitCode": 0
+  },
+  "browser": {
+    "engine": "ego-browser Chromium (T3 snapshot fallback)",
+    "matrixPassed": 8,
+    "targetsPerCase": 28,
+    "minimumCssTarget": 44,
+    "interactionsPassed": [
+      "portrait",
+      "landscape"
+    ],
+    "physicalTouch": "UNRUN"
+  },
+  "lock": {
+    "baseAndCurrentGitBlob": "28c9958dee245741c0db1e6fab9dec33ca4894c1",
+    "committedAndInstalledSha256": "b4bc0d1992a19af9978dd14ccd7a6f5e92bda1d91cd8f9080f2bd9215d1fe85d",
+    "comparison": "whole file byte identity; all retained resolutions and dependency edges unchanged"
+  },
+  "integrationMerge": "fetched origin/integration/nerv-ui-extraction=a482af3826f611bab11f608139860b7f9a29891a; Already up to date",
+  "rawLogs": "/tmp/nerv-ui-t03",
+  "scopedFmt": {
+    "exitCode": 0,
+    "files": 17,
+    "scope": "affected frontend source and component docs; root evidence reviewed separately; vp rejects parent path patterns"
+  }
+}

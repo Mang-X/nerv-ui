@@ -1,0 +1,822 @@
+import { flushPromises } from '@vue/test-utils'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { effectScope, nextTick, ref, shallowRef } from 'vue'
+import { createPinia, setActivePinia } from 'pinia'
+
+import {
+  createOrUpdateBusinessConsoleTelemetryAlarmRuleMutationOptions,
+  getBusinessConsoleEquipmentDeviceHealthQueryOptions,
+  getBusinessConsoleTelemetryConnectorTagCoverageQueryOptions,
+  listBusinessConsoleTelemetryAlarmRulesQueryOptions,
+  listBusinessConsoleTelemetryConnectorCollectionHealthQueryOptions,
+  listBusinessConsoleTelemetryTagsQueryOptions,
+  queryBusinessConsoleTelemetryDeviceHistoryQueryOptions,
+  queryBusinessConsoleTelemetryOeeAggregatesQueryOptions,
+  queryBusinessConsoleTelemetryOeeQueryOptions,
+  queryBusinessConsoleTelemetryRuntimeAvailabilityQueryOptions,
+} from '@nerv-iip/api-client'
+import { useBusinessContextStore } from '@/stores/businessContext'
+import {
+  describeTelemetryOeeLimitations,
+  describeTelemetryOeeDegradation,
+  EQUIPMENT_HEALTH_POLL_INTERVAL_MS,
+  formatOeeQuantity,
+  formatOeeRate,
+  useBusinessTelemetryAlarmRules,
+  useBusinessTelemetryConnectors,
+  useBusinessTelemetryConnectorCoverage,
+  useBusinessEquipmentHealth,
+  useBusinessTelemetryHistory,
+  useBusinessTelemetryOeeAggregates,
+  useBusinessTelemetryOeeTrend,
+  useBusinessTelemetryOee,
+  useBusinessTelemetryTags,
+  useMaintenancePlanRuntimeRemaining,
+  type RuntimeRemainingPlan,
+} from './useBusinessTelemetry'
+
+const coladaState = vi.hoisted(() => ({
+  mutationCalls: [] as unknown[],
+  queryDataById: new Map<string, unknown>(),
+  queryOptionsById: new Map<
+    string,
+    {
+      enabled?: boolean
+      autoRefetch?: () => number
+      query?: (context: { signal?: AbortSignal }) => Promise<unknown>
+    }
+  >(),
+  refetchById: new Map<string, ReturnType<typeof vi.fn>>(),
+}))
+
+// Controllable runtime-hours read used by useMaintenancePlanRuntimeRemaining. Tests swap `impl` to
+// hand out deferred, abort-aware promises so overlapping rounds / out-of-order completion can be driven.
+type RuntimeHoursOptions = { query: Record<string, unknown>; signal?: AbortSignal }
+const rtState = vi.hoisted(() => ({
+  concurrent: 0,
+  maxConcurrent: 0,
+  impl: (_opts: RuntimeHoursOptions): Promise<unknown> =>
+    Promise.resolve({
+      data: { success: true, data: { totalRuntimeHours: 0, hasRuntimeSamples: false } },
+    }),
+}))
+
+type AggregateOptions = { query: Record<string, unknown>; signal?: AbortSignal }
+const aggregateState = vi.hoisted(() => ({
+  calls: [] as AggregateOptions[],
+  impl: (_opts: AggregateOptions): Promise<unknown> =>
+    Promise.resolve({ data: { success: true, data: { buckets: [], totalCount: 0 } } }),
+}))
+
+vi.mock('@nerv-iip/api-client', () => ({
+  queryBusinessConsoleTelemetryOeeAggregates: (opts: AggregateOptions) => {
+    aggregateState.calls.push(opts)
+    return aggregateState.impl(opts)
+  },
+  queryBusinessConsoleTelemetryRuntimeHours: (opts: RuntimeHoursOptions) => rtState.impl(opts),
+  queryBusinessConsoleTelemetryRuntimeHoursQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'queryBusinessConsoleTelemetryRuntimeHours' }],
+    query: vi.fn(),
+  })),
+  createOrUpdateBusinessConsoleTelemetryAlarmRuleMutationOptions: vi.fn(() => ({
+    key: [{ _id: 'createOrUpdateBusinessConsoleTelemetryAlarmRule' }],
+    mutation: vi.fn(),
+  })),
+  getBusinessConsoleEquipmentDeviceHealthQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'getBusinessConsoleEquipmentDeviceHealth' }],
+    query: vi.fn(),
+  })),
+  getBusinessConsoleTelemetryConnectorTagCoverageQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'getBusinessConsoleTelemetryConnectorTagCoverage' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsoleTelemetryAlarmRulesQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleTelemetryAlarmRules' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsoleTelemetryConnectorCollectionHealthQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleTelemetryConnectorCollectionHealth' }],
+    query: vi.fn(),
+  })),
+  listBusinessConsoleTelemetryTagsQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'listBusinessConsoleTelemetryTags' }],
+    query: vi.fn(),
+  })),
+  queryBusinessConsoleTelemetryDeviceHistoryQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'queryBusinessConsoleTelemetryDeviceHistory' }],
+    query: vi.fn(),
+  })),
+  queryBusinessConsoleTelemetryOeeQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'queryBusinessConsoleTelemetryOee' }],
+    query: vi.fn(),
+  })),
+  queryBusinessConsoleTelemetryOeeAggregatesQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'queryBusinessConsoleTelemetryOeeAggregates' }],
+    query: vi.fn(),
+  })),
+  queryBusinessConsoleTelemetryRuntimeAvailabilityQueryOptions: vi.fn(() => ({
+    key: [{ _id: 'queryBusinessConsoleTelemetryRuntimeAvailability' }],
+    query: vi.fn(),
+  })),
+}))
+
+vi.mock('@pinia/colada', () => ({
+  useMutation: vi.fn((options) => ({
+    error: shallowRef(),
+    isLoading: shallowRef(false),
+    mutateAsync: vi.fn(async (vars) => {
+      coladaState.mutationCalls.push(vars)
+      await options.onSuccess?.()
+      return { success: true, data: { alarmRuleId: 'rule-created' } }
+    }),
+  })),
+  useQuery: vi.fn((optionsFactory) => {
+    const options = optionsFactory()
+    const key = Array.isArray(options.key) ? options.key[0] : undefined
+    const id =
+      typeof key === 'string'
+        ? key
+        : key && typeof key === 'object' && '_id' in key
+          ? String(key._id)
+          : ''
+    const refetch = vi.fn()
+    coladaState.queryOptionsById.set(id, options)
+    coladaState.refetchById.set(id, refetch)
+
+    return {
+      data: shallowRef(coladaState.queryDataById.get(id)),
+      error: shallowRef(),
+      isLoading: shallowRef(false),
+      refetch,
+    }
+  }),
+}))
+
+describe('business telemetry composables', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+    useBusinessContextStore().patchContext({ organizationId: 'org-001', environmentId: 'env-dev' })
+    vi.clearAllMocks()
+    coladaState.mutationCalls = []
+    coladaState.queryDataById.clear()
+    coladaState.queryOptionsById.clear()
+    coladaState.refetchById.clear()
+    rtState.concurrent = 0
+    rtState.maxConcurrent = 0
+    rtState.impl = () =>
+      Promise.resolve({
+        data: { success: true, data: { totalRuntimeHours: 0, hasRuntimeSamples: false } },
+      })
+    aggregateState.calls = []
+    aggregateState.impl = () =>
+      Promise.resolve({ data: { success: true, data: { buckets: [], totalCount: 0 } } })
+  })
+
+  it('uses current business context and pagination for tag and alarm-rule lists', () => {
+    const businessContext = useBusinessContextStore()
+    businessContext.patchContext({
+      organizationId: 'org-telemetry',
+      environmentId: 'env-shopfloor',
+    })
+
+    useBusinessTelemetryTags({ deviceAssetId: ' DEV-SMT-01 ' })
+    useBusinessTelemetryAlarmRules({ deviceAssetId: ' DEV-SMT-01 ', isEnabled: 'enabled' })
+
+    expect(listBusinessConsoleTelemetryTagsQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-telemetry',
+        environmentId: 'env-shopfloor',
+        deviceAssetId: 'DEV-SMT-01',
+        skip: 0,
+        take: 100,
+      },
+    })
+    expect(listBusinessConsoleTelemetryAlarmRulesQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-telemetry',
+        environmentId: 'env-shopfloor',
+        deviceAssetId: 'DEV-SMT-01',
+        isEnabled: true,
+        skip: 0,
+        take: 100,
+      },
+    })
+  })
+
+  it('polls connector health every ten seconds and preserves explicit connection facts', () => {
+    coladaState.queryDataById.set('listBusinessConsoleTelemetryConnectorCollectionHealth', {
+      success: true,
+      data: {
+        items: [
+          {
+            connectorId: 'opcua-main',
+            status: 'stale',
+            staleReason: 'offline',
+            offlineReason: 'field-connection',
+            hostLivenessDeadlineUtc: '2026-07-13T01:00:06.000Z',
+            connection: {
+              status: 'lost',
+              observedAtUtc: '2026-07-13T01:00:00.000Z',
+              disconnectedSinceUtc: '2026-07-13T01:00:00.000Z',
+            },
+            lastSampleAtUtc: '2026-07-13T01:09:59.000Z',
+          },
+        ],
+        total: 1,
+      },
+    })
+
+    const result = useBusinessTelemetryConnectors()
+
+    expect(listBusinessConsoleTelemetryConnectorCollectionHealthQueryOptions).toHaveBeenCalledWith({
+      query: { organizationId: 'org-001', environmentId: 'env-dev' },
+    })
+    expect(
+      coladaState.queryOptionsById
+        .get('listBusinessConsoleTelemetryConnectorCollectionHealth')
+        ?.autoRefetch?.(),
+    ).toBe(10_000)
+    expect(result.connectors.value[0]).toMatchObject({
+      offlineReason: 'field-connection',
+      hostLivenessDeadlineUtc: '2026-07-13T01:00:06.000Z',
+      connection: {
+        status: 'lost',
+        disconnectedSinceUtc: '2026-07-13T01:00:00.000Z',
+      },
+      lastSampleAtUtc: '2026-07-13T01:09:59.000Z',
+    })
+  })
+
+  it('gates equipment health by business context and device, polls every five seconds, and unwraps the response', async () => {
+    coladaState.queryDataById.set('getBusinessConsoleEquipmentDeviceHealth', {
+      success: true,
+      data: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        deviceAssetId: 'DEV-CNC-01',
+        healthScore: 85,
+        level: 'watch',
+        calculatedAtUtc: '2026-07-24T01:02:03Z',
+        dataFreshness: { status: 'delayed', ageSeconds: 121 },
+        riskFactors: [],
+        ruleEvaluations: [],
+      },
+    })
+
+    const deviceAssetId = shallowRef('  DEV-CNC-01  ')
+    const result = useBusinessEquipmentHealth(deviceAssetId)
+
+    expect(getBusinessConsoleEquipmentDeviceHealthQueryOptions).toHaveBeenCalledWith({
+      path: { deviceAssetId: 'DEV-CNC-01' },
+      query: { organizationId: 'org-001', environmentId: 'env-dev' },
+    })
+    expect(
+      coladaState.queryOptionsById.get('getBusinessConsoleEquipmentDeviceHealth'),
+    ).toMatchObject({
+      enabled: true,
+    })
+    expect(
+      coladaState.queryOptionsById.get('getBusinessConsoleEquipmentDeviceHealth')?.autoRefetch?.(),
+    ).toBe(EQUIPMENT_HEALTH_POLL_INTERVAL_MS)
+    expect(EQUIPMENT_HEALTH_POLL_INTERVAL_MS).toBe(5_000)
+    expect(result.health.value?.healthScore).toBe(85)
+    expect(result.healthPending.value).toBe(false)
+    expect(result.healthError.value).toBeUndefined()
+
+    await result.refreshHealth()
+    expect(
+      coladaState.refetchById.get('getBusinessConsoleEquipmentDeviceHealth'),
+    ).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not enable or refetch equipment health without both context and device scope', async () => {
+    const emptyDevice = useBusinessEquipmentHealth(shallowRef('   '))
+
+    expect(
+      coladaState.queryOptionsById.get('getBusinessConsoleEquipmentDeviceHealth')?.enabled,
+    ).toBe(false)
+    await emptyDevice.refreshHealth()
+    expect(
+      coladaState.refetchById.get('getBusinessConsoleEquipmentDeviceHealth'),
+    ).not.toHaveBeenCalled()
+
+    useBusinessContextStore().patchContext({ organizationId: '', environmentId: '' })
+    useBusinessEquipmentHealth(shallowRef('DEV-CNC-01'))
+    expect(
+      coladaState.queryOptionsById.get('getBusinessConsoleEquipmentDeviceHealth')?.enabled,
+    ).toBe(false)
+  })
+
+  it('loads connector coverage by canonical connector identity and unwraps its envelope', async () => {
+    coladaState.queryDataById.set('getBusinessConsoleTelemetryConnectorTagCoverage', {
+      success: true,
+      data: {
+        collectionConnectorId: 'modbus-main',
+        manifestStatus: 'current',
+        configuredCount: 1,
+        items: [{ deviceAssetId: 'DEV-CNC-01', tagKey: 'temperature' }],
+      },
+    })
+    const connectorId = shallowRef(' modbus-main ')
+
+    const result = useBusinessTelemetryConnectorCoverage(connectorId)
+
+    expect(getBusinessConsoleTelemetryConnectorTagCoverageQueryOptions).toHaveBeenCalledWith({
+      path: { connectorId: 'modbus-main' },
+      query: { organizationId: 'org-001', environmentId: 'env-dev' },
+    })
+    expect(
+      coladaState.queryOptionsById.get('getBusinessConsoleTelemetryConnectorTagCoverage')?.enabled,
+    ).toBe(true)
+    expect(result.coverage.value).toMatchObject({
+      collectionConnectorId: 'modbus-main',
+      manifestStatus: 'current',
+      configuredCount: 1,
+    })
+
+    await result.refreshCoverage()
+    expect(
+      coladaState.refetchById.get('getBusinessConsoleTelemetryConnectorTagCoverage'),
+    ).toHaveBeenCalledTimes(1)
+  })
+
+  it('suppresses connector coverage when canonical identity is empty', async () => {
+    const result = useBusinessTelemetryConnectorCoverage(shallowRef('   '))
+
+    expect(
+      coladaState.queryOptionsById.get('getBusinessConsoleTelemetryConnectorTagCoverage')?.enabled,
+    ).toBe(false)
+    await result.refreshCoverage()
+    expect(
+      coladaState.refetchById.get('getBusinessConsoleTelemetryConnectorTagCoverage'),
+    ).not.toHaveBeenCalled()
+  })
+
+  it('unwraps paged telemetry lists and exposes totals from successful envelopes', () => {
+    coladaState.queryDataById.set('listBusinessConsoleTelemetryTags', {
+      success: true,
+      data: {
+        items: [{ telemetryTagId: 'tag-1', deviceAssetId: 'DEV-CNC-01', tagKey: 'temperature' }],
+        total: 12,
+      },
+    })
+    coladaState.queryDataById.set('listBusinessConsoleTelemetryAlarmRules', {
+      success: true,
+      data: {
+        items: [{ alarmRuleId: 'rule-1', ruleCode: 'TEMP_HIGH', isEnabled: true }],
+        total: 3,
+      },
+    })
+
+    const tags = useBusinessTelemetryTags()
+    const rules = useBusinessTelemetryAlarmRules()
+
+    expect(tags.tags.value).toHaveLength(1)
+    expect(tags.tagsTotal.value).toBe(12)
+    expect(rules.alarmRules.value).toHaveLength(1)
+    expect(rules.alarmRulesTotal.value).toBe(3)
+  })
+
+  it('creates or updates alarm rules with context and refetches the list', async () => {
+    const rules = useBusinessTelemetryAlarmRules()
+
+    await rules.saveAlarmRule({
+      deviceAssetId: 'DEV-CNC-01',
+      ruleCode: 'TEMP_HIGH',
+      alarmCode: 'ALM-TEMP-HIGH',
+      severity: 'critical',
+      tagKey: 'temperature',
+      comparisonOperator: '>',
+      thresholdValue: 85,
+      unitCode: 'CEL',
+      isEnabled: true,
+    })
+
+    expect(createOrUpdateBusinessConsoleTelemetryAlarmRuleMutationOptions).toHaveBeenCalled()
+    expect(coladaState.mutationCalls).toEqual([
+      {
+        body: {
+          organizationId: 'org-001',
+          environmentId: 'env-dev',
+          deviceAssetId: 'DEV-CNC-01',
+          ruleCode: 'TEMP_HIGH',
+          alarmCode: 'ALM-TEMP-HIGH',
+          severity: 'critical',
+          tagKey: 'temperature',
+          comparisonOperator: '>',
+          thresholdValue: 85,
+          unitCode: 'CEL',
+          isEnabled: true,
+        },
+      },
+    ])
+    expect(coladaState.refetchById.get('listBusinessConsoleTelemetryAlarmRules')).toHaveBeenCalled()
+  })
+
+  it('does not refetch alarm rules after mutation when business context is empty', async () => {
+    useBusinessContextStore().patchContext({ organizationId: '', environmentId: '' })
+    const rules = useBusinessTelemetryAlarmRules()
+
+    await rules.saveAlarmRule({
+      deviceAssetId: 'DEV-CNC-01',
+      ruleCode: 'TEMP_HIGH',
+      alarmCode: 'ALM-TEMP-HIGH',
+      severity: 'critical',
+      tagKey: 'temperature',
+      comparisonOperator: '>',
+      thresholdValue: 85,
+      unitCode: 'CEL',
+      isEnabled: true,
+    })
+
+    expect(
+      coladaState.refetchById.get('listBusinessConsoleTelemetryAlarmRules'),
+    ).not.toHaveBeenCalled()
+  })
+
+  it('keeps history and OEE queries disabled until a device scope is provided', () => {
+    const history = useBusinessTelemetryHistory()
+    const oee = useBusinessTelemetryOee()
+
+    expect(queryBusinessConsoleTelemetryDeviceHistoryQueryOptions).toHaveBeenCalledWith({
+      path: { deviceAssetId: '' },
+      query: expect.objectContaining({
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+      }),
+    })
+    expect(queryBusinessConsoleTelemetryOeeQueryOptions).toHaveBeenCalledWith({
+      query: expect.objectContaining({
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        deviceAssetId: '',
+      }),
+    })
+    expect(
+      coladaState.queryOptionsById.get('queryBusinessConsoleTelemetryDeviceHistory')?.enabled,
+    ).toBe(false)
+    expect(coladaState.queryOptionsById.get('queryBusinessConsoleTelemetryOee')?.enabled).toBe(
+      false,
+    )
+    expect(history.historyItems.value).toEqual([])
+    expect(oee.oee.value).toBeUndefined()
+  })
+
+  it('queries OEE and runtime availability with the same real device and time window', () => {
+    coladaState.queryDataById.set('queryBusinessConsoleTelemetryOee', {
+      success: true,
+      data: {
+        deviceAssetId: 'DEV-PACK-01',
+        stateSampleCount: 10,
+        availabilityRate: 0.82,
+        performanceRate: 0.8,
+        qualityRate: 0.9,
+        isDegraded: false,
+      },
+    })
+    coladaState.queryDataById.set('queryBusinessConsoleTelemetryRuntimeAvailability', {
+      success: true,
+      data: {
+        items: [{ deviceAssetId: 'DEV-PACK-01', reasonCode: 'equipment.activeAlarm' }],
+      },
+    })
+
+    const oee = useBusinessTelemetryOee({ deviceAssetId: 'DEV-PACK-01' })
+
+    expect(queryBusinessConsoleTelemetryOeeQueryOptions).toHaveBeenCalledWith({
+      query: expect.objectContaining({
+        deviceAssetId: 'DEV-PACK-01',
+        windowStartUtc: oee.filters.windowStartUtc,
+        windowEndUtc: oee.filters.windowEndUtc,
+      }),
+    })
+    expect(queryBusinessConsoleTelemetryRuntimeAvailabilityQueryOptions).toHaveBeenCalledWith({
+      query: expect.objectContaining({
+        deviceAssetIds: 'DEV-PACK-01',
+        windowStartUtc: oee.filters.windowStartUtc,
+        windowEndUtc: oee.filters.windowEndUtc,
+      }),
+    })
+    expect(oee.oee.value?.availabilityRate).toBe(0.82)
+    expect(oee.availabilityWindows.value).toHaveLength(1)
+  })
+
+  it('queries the stable OEE aggregate client with server-owned scope and exposes paged buckets', () => {
+    coladaState.queryDataById.set('queryBusinessConsoleTelemetryOeeAggregates', {
+      success: true,
+      data: {
+        dimension: 'workCenter',
+        buckets: [
+          {
+            dimension: 'workCenter',
+            dimensionValue: 'WC-MACHINING',
+            oeeRate: 0.74,
+            isDegraded: false,
+          },
+        ],
+        totalCount: 26,
+        skip: 20,
+        take: 20,
+      },
+    })
+
+    const aggregates = useBusinessTelemetryOeeAggregates({
+      dimension: 'workCenter',
+      windowStartUtc: '2026-08-01T00:00:00.000Z',
+      windowEndUtc: '2026-08-08T00:00:00.000Z',
+      workCenterId: ' WC-MACHINING ',
+      lineCode: ' LINE-A ',
+      workshopCode: ' WORKSHOP-MACHINING ',
+      shiftCode: ' SHIFT-DAY ',
+      businessDate: '2026-08-06',
+      skip: 20,
+      take: 20,
+    })
+
+    expect(queryBusinessConsoleTelemetryOeeAggregatesQueryOptions).toHaveBeenCalledWith({
+      query: {
+        organizationId: 'org-001',
+        environmentId: 'env-dev',
+        dimension: 'workCenter',
+        windowStartUtc: '2026-08-01T00:00:00.000Z',
+        windowEndUtc: '2026-08-08T00:00:00.000Z',
+        deviceAssetId: undefined,
+        workCenterId: 'WC-MACHINING',
+        shiftCode: 'SHIFT-DAY',
+        lineCode: 'LINE-A',
+        workshopCode: 'WORKSHOP-MACHINING',
+        businessDate: '2026-08-06',
+        skip: 20,
+        take: 20,
+      },
+    })
+    expect(aggregates.aggregateBuckets.value).toEqual([
+      expect.objectContaining({ dimensionValue: 'WC-MACHINING', oeeRate: 0.74 }),
+    ])
+    expect(aggregates.aggregateTotal.value).toBe(26)
+    expect(
+      coladaState.queryOptionsById.get('queryBusinessConsoleTelemetryOeeAggregates')?.enabled,
+    ).toBe(true)
+  })
+
+  it('keeps the OEE aggregate request disabled when the consuming feature lacks permission', () => {
+    useBusinessTelemetryOeeAggregates(
+      {
+        dimension: 'workCenter',
+        windowStartUtc: '2026-08-01T00:00:00.000Z',
+        windowEndUtc: '2026-08-08T00:00:00.000Z',
+      },
+      () => false,
+    )
+
+    expect(
+      coladaState.queryOptionsById.get('queryBusinessConsoleTelemetryOeeAggregates')?.enabled,
+    ).toBe(false)
+  })
+
+  it('reads every stable-client page for the complete day trend independently of table paging', async () => {
+    aggregateState.impl = async ({ query }) => {
+      const skip = Number(query.skip)
+      const length = skip === 0 ? 100 : 31
+      return {
+        data: {
+          success: true,
+          data: {
+            buckets: Array.from({ length }, (_, index) => ({
+              dimension: 'day',
+              businessDate: `day-${skip + index + 1}`,
+            })),
+            totalCount: 131,
+          },
+        },
+      }
+    }
+    const aggregates = useBusinessTelemetryOeeAggregates({
+      dimension: 'day',
+      windowStartUtc: '2026-08-01T00:00:00.000Z',
+      windowEndUtc: '2026-09-01T00:00:00.000Z',
+      deviceAssetId: ' DEV-CNC-01 ',
+      skip: 20,
+      take: 20,
+    })
+    useBusinessTelemetryOeeTrend(aggregates.filters)
+
+    const query = coladaState.queryOptionsById.get('business-telemetry-oee-complete-trend')?.query
+    const buckets = (await query?.({})) as unknown[]
+
+    expect(buckets).toHaveLength(131)
+    expect(aggregateState.calls.map((call) => call.query.skip)).toEqual([0, 100])
+    expect(aggregateState.calls).toEqual([
+      expect.objectContaining({
+        query: expect.objectContaining({
+          organizationId: 'org-001',
+          environmentId: 'env-dev',
+          dimension: 'day',
+          deviceAssetId: 'DEV-CNC-01',
+          skip: 0,
+          take: 100,
+        }),
+      }),
+      expect.objectContaining({ query: expect.objectContaining({ skip: 100, take: 100 }) }),
+    ])
+  })
+
+  it('formats OEE measures and explains degraded inputs in business language', () => {
+    expect(formatOeeRate(0.876)).toBe('87.6%')
+    expect(formatOeeRate(undefined)).toBe('无数据')
+    expect(formatOeeQuantity(12.5, 'PCS')).toBe('12.5 PCS')
+    expect(describeTelemetryOeeLimitations()).toContain('OEE = 可用率 × 性能率 × 质量率')
+    expect(describeTelemetryOeeDegradation('production-facts-missing')).toBe('缺少报工记录')
+    expect(describeTelemetryOeeDegradation('historicalTimezoneMissing')).toBe(
+      '报工记录缺少工厂时区',
+    )
+    // 对照表以外的原因码是系统枚举，不原样上屏。
+    expect(describeTelemetryOeeDegradation('someFutureReasonCode')).toBe('—')
+  })
+
+  // Hand out deferred runtime-hours reads so overlapping rounds and out-of-order completion can be driven.
+  function deferredRuntimeHours(options: { honorAbort: boolean }) {
+    const created: Array<{
+      resolveWith: (totalRuntimeHours: number, hasRuntimeSamples?: boolean) => void
+    }> = []
+    rtState.impl = (opts) =>
+      new Promise((resolve, reject) => {
+        let settled = false
+        const settle = () => {
+          if (settled) return false
+          settled = true
+          rtState.concurrent -= 1
+          return true
+        }
+        rtState.concurrent += 1
+        rtState.maxConcurrent = Math.max(rtState.maxConcurrent, rtState.concurrent)
+        if (options.honorAbort) {
+          opts.signal?.addEventListener('abort', () => {
+            if (settle()) reject(new DOMException('aborted', 'AbortError'))
+          })
+        }
+        created.push({
+          resolveWith: (totalRuntimeHours, hasRuntimeSamples = true) => {
+            if (settle()) {
+              resolve({ data: { success: true, data: { totalRuntimeHours, hasRuntimeSamples } } })
+            }
+          },
+        })
+      })
+    return created
+  }
+
+  const runtimePlan = (overrides: Partial<RuntimeRemainingPlan>): RuntimeRemainingPlan => ({
+    planId: 'p1',
+    deviceAssetId: 'D1',
+    startsOn: '2026-06-01',
+    runtimeHourInterval: 1000,
+    nextDueRuntimeHours: 1000,
+    ...overrides,
+  })
+
+  it('does not let a superseded round overwrite the latest remaining or clear its pending', async () => {
+    // Ignore abort here to isolate the generation guard: the stale round stays in flight and resolves late.
+    const created = deferredRuntimeHours({ honorAbort: false })
+    const plans = ref<RuntimeRemainingPlan[]>([runtimePlan({ nextDueRuntimeHours: 1000 })])
+    const { remainingByPlanId, remainingPending } = useMaintenancePlanRuntimeRemaining(plans)
+    await nextTick()
+    await flushPromises()
+    expect(created).toHaveLength(1)
+    expect(remainingPending.value).toBe(true)
+
+    // Advance the threshold -> a newer round supersedes the first.
+    plans.value = [runtimePlan({ nextDueRuntimeHours: 2000 })]
+    await nextTick()
+    await flushPromises()
+    expect(created).toHaveLength(2)
+
+    // The newer round completes first: remaining = 2000 - 500 = 1500.
+    created[1].resolveWith(500)
+    await flushPromises()
+    expect(remainingByPlanId.value.p1).toEqual({ status: 'ok', hours: 1500 })
+    expect(remainingPending.value).toBe(false)
+
+    // The stale round completes late with a different value: it must NOT overwrite nor re-toggle pending.
+    created[0].resolveWith(900)
+    await flushPromises()
+    expect(remainingByPlanId.value.p1).toEqual({ status: 'ok', hours: 1500 })
+    expect(remainingPending.value).toBe(false)
+  })
+
+  it('bounds telemetry concurrency to the cap even when a refresh starts mid-flight', async () => {
+    deferredRuntimeHours({ honorAbort: true })
+    const makePlans = (nextDue: number) =>
+      Array.from({ length: 10 }, (_, i) =>
+        runtimePlan({ planId: `p${i}`, deviceAssetId: `D${i}`, nextDueRuntimeHours: nextDue }),
+      )
+    const plans = ref<RuntimeRemainingPlan[]>(makePlans(1000))
+    useMaintenancePlanRuntimeRemaining(plans)
+    await nextTick()
+    await flushPromises()
+    // 10 plans, cap 6 -> never more than 6 concurrent reads.
+    expect(rtState.maxConcurrent).toBe(6)
+
+    // Start a refresh while round 1 is still in flight: aborting the stale round keeps the peak at the cap.
+    plans.value = makePlans(2000)
+    await nextTick()
+    await flushPromises()
+    expect(rtState.maxConcurrent).toBeLessThanOrEqual(6)
+  })
+
+  it('shows loading (not the prior settled value) while a threshold-advance refresh is in flight', async () => {
+    const created = deferredRuntimeHours({ honorAbort: false })
+    const plans = ref<RuntimeRemainingPlan[]>([runtimePlan({ nextDueRuntimeHours: 1000 })])
+    const { remainingByPlanId } = useMaintenancePlanRuntimeRemaining(plans)
+    await nextTick()
+    await flushPromises()
+    created[0].resolveWith(400) // remaining = 1000 - 400 = 600, settled
+    await flushPromises()
+    expect(remainingByPlanId.value.p1).toEqual({ status: 'ok', hours: 600 })
+
+    // Advance the threshold: while the fresh read is in flight the stale 600 must NOT still be shown.
+    plans.value = [runtimePlan({ nextDueRuntimeHours: 2000 })]
+    await nextTick()
+    await flushPromises()
+    expect(remainingByPlanId.value.p1).toEqual({ status: 'loading' })
+    expect(created).toHaveLength(2)
+
+    created[1].resolveWith(500) // remaining = 2000 - 500 = 1500
+    await flushPromises()
+    expect(remainingByPlanId.value.p1).toEqual({ status: 'ok', hours: 1500 })
+  })
+
+  it('clears pending when an empty-context round supersedes an in-flight read (no stuck loading)', async () => {
+    deferredRuntimeHours({ honorAbort: true })
+    const plans = ref<RuntimeRemainingPlan[]>([runtimePlan({})])
+    const { remainingByPlanId, remainingPending } = useMaintenancePlanRuntimeRemaining(plans)
+    await nextTick()
+    await flushPromises()
+    expect(remainingPending.value).toBe(true) // round 1 in flight
+
+    // Clearing the business context supersedes the in-flight round; pending must not stay stuck on loading.
+    useBusinessContextStore().patchContext({ organizationId: '', environmentId: '' })
+    await nextTick()
+    await flushPromises()
+    expect(remainingPending.value).toBe(false)
+    expect(remainingByPlanId.value).toEqual({})
+  })
+
+  it('aborts in-flight reads and stops committing once the owning scope is disposed', async () => {
+    const created = deferredRuntimeHours({ honorAbort: true })
+    const plans = ref<RuntimeRemainingPlan[]>([runtimePlan({})])
+    const scope = effectScope()
+    let api!: ReturnType<typeof useMaintenancePlanRuntimeRemaining>
+    scope.run(() => {
+      api = useMaintenancePlanRuntimeRemaining(plans)
+    })
+    await nextTick()
+    await flushPromises()
+    expect(created).toHaveLength(1)
+    expect(rtState.concurrent).toBe(1) // one in-flight read
+
+    // Dispose the scope (page unmount): the in-flight read is aborted and the round is superseded.
+    scope.stop()
+    await flushPromises()
+    expect(rtState.concurrent).toBe(0)
+
+    // A late resolve after disposal must never commit results to the dead scope.
+    created[0].resolveWith(500)
+    await flushPromises()
+    expect(api.remainingByPlanId.value.p1).toEqual({ status: 'loading' })
+  })
+
+  it('settles a runtime plan with a missing runtime cursor as invalid (never permanent loading)', async () => {
+    const created = deferredRuntimeHours({ honorAbort: false })
+    // One valid runtime plan (fetched) + one with runtimeHourInterval but no next_due_runtime_hours cursor.
+    const plans = ref<RuntimeRemainingPlan[]>([
+      runtimePlan({ planId: 'p-valid', nextDueRuntimeHours: 1000 }),
+      runtimePlan({ planId: 'p-invalid', nextDueRuntimeHours: null }),
+    ])
+    const { remainingByPlanId, remainingPending } = useMaintenancePlanRuntimeRemaining(plans)
+    await nextTick()
+    await flushPromises()
+    // Only the fetchable plan is read; the invalid one settles immediately (never fetched, never loading).
+    expect(created).toHaveLength(1)
+    expect(remainingByPlanId.value['p-invalid']).toEqual({ status: 'invalid' })
+
+    created[0].resolveWith(400) // 1000 - 400 = 600
+    await flushPromises()
+    expect(remainingByPlanId.value['p-valid']).toEqual({ status: 'ok', hours: 600 })
+    expect(remainingByPlanId.value['p-invalid']).toEqual({ status: 'invalid' }) // preserved
+    expect(remainingPending.value).toBe(false) // never stuck on loading
+  })
+
+  it('clears pending for an all-invalid runtime-plan set (no fetch, no stuck loading)', async () => {
+    const created = deferredRuntimeHours({ honorAbort: false })
+    const plans = ref<RuntimeRemainingPlan[]>([
+      runtimePlan({ planId: 'p-inv', nextDueRuntimeHours: null }),
+    ])
+    const { remainingByPlanId, remainingPending } = useMaintenancePlanRuntimeRemaining(plans)
+    await nextTick()
+    await flushPromises()
+    expect(created).toHaveLength(0) // nothing fetchable
+    expect(remainingByPlanId.value['p-inv']).toEqual({ status: 'invalid' })
+    expect(remainingPending.value).toBe(false)
+  })
+})

@@ -1,0 +1,7 @@
+{
+  "parser": "yaml@1.10.3",
+  "packages": 973,
+  "snapshots": 973,
+  "completeLockObjectEqual": true,
+  "note": "16 inputs also byte-identical; all dependency/peer/optional objects and edges retained. Earlier line count 540 excluded inline empty snapshot objects; not an actual lock delta."
+}

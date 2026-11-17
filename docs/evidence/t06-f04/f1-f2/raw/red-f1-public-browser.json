@@ -1,0 +1,37 @@
+{
+  "state": {
+    "started": true,
+    "release": {},
+    "destroyed": true,
+    "opened": [
+      {
+        "afterDestroy": true,
+        "id": "file-preview-pdf:/files/quality-evidence-report.pdf",
+        "bytes": 1129,
+        "pages": 1,
+        "afterLateSuccess": {
+          "documents": 1,
+          "totalPages": 0,
+          "pagesByDocument": {
+            "file-preview-pdf:/files/quality-evidence-report.pdf": 0
+          }
+        },
+        "completed": true
+      }
+    ],
+    "afterDestroy": {
+      "documents": 0,
+      "totalPages": 0,
+      "pagesByDocument": {}
+    }
+  },
+  "publicPreviewPresent": false,
+  "errors": [],
+  "cache": {
+    "documents": 1,
+    "totalPages": 0,
+    "pagesByDocument": {
+      "file-preview-pdf:/files/quality-evidence-report.pdf": 0
+    }
+  }
+}

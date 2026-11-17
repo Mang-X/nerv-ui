@@ -1,0 +1,30 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground
+
+Could not parse CSS stylesheet
+ ❯ src/MobileListDemo.test.ts (5 tests | 1 failed) 136ms
+   × controls the carousel page, keeps end buttons disabled and clears autoplay when the host unmounts 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/MobileListDemo.test.ts > controls the carousel page, keeps end buttons disabled and clears autoplay when the host unmounts
+TypeError: Cannot read properties of undefined (reading 'attributes')
+ ❯ src/MobileListDemo.test.ts:102:23
+    100|   wrapper = mount(MobileListDemo)
+    101|   const button = (text: string) => wrapper.findAll('button').find((b) …
+    102|   expect(button('上一页').attributes('disabled')).toBeDefined()
+       |                       ^
+    103|   await click('下一页')
+    104|   expect(wrapper.get('[aria-label="轮播状态"]').text()).toContain('第 2 / 3…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  21:25:58
+   Duration  4.48s (transform 2.76s, setup 339ms, import 3.48s, tests 136ms, environment 424ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/apps/playground:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/MobileListDemo.test.ts

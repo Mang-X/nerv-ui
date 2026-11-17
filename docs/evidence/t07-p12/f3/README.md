@@ -1,0 +1,16 @@
+# T07/P12 PR110 R3 两项 P2 返修
+
+本轮仅处理 R3 回执中的两项 material：公共预览默认提示与 playground recipe 的可见技术用语，以及候选缺失时摘要/选中说明误借基线历史 `message`。固定比较 base 为 `4e41611aa926ea6c185dd484f2d08278699f4959` / tree `92b9d014d3f123cd00d9771411e1711d93030901`；返修起点为 `ae7677ce85aa11dc6341e1ca6cdcc90e391bea9d` / tree `94b75c180263bc933d02f6b62fc906cacfa99948`。最终 SHA、原始日志与浏览器图在外部 `/Users/mang/nerv-delivery-evidence/nerv-ui/2026-10-27/t07-p12-message-copy-fix/handoff.md` 回读。
+
+## Requirement → RED → GREEN
+
+| R3 finding                          | 公开验证                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Standards S1 默认提示和 recipe 文案 | `public snapshot comparison reads candidate facts and source state without deriving a ready result` 检查默认 notice 保留“尚未保存或发布”且不出现“此读面”；`neutral library/studio comparison deep link shows semantic changes and returns to old surfaces` 检查两域页面用语；`neutral library/studio unsaved draft and preview cannot mutate saved baseline while replacement and readonly stay current` 通过“载入另一份候选安排”验证动作仍替换候选并隔离基线。 |
+| Spec F1 缺侧说明来源                | `public snapshot comparison uses only candidate reasons for missing changed added and blocked summaries and selection` 覆盖带基线说明的缺候选、候选明确 changed/added/blocked 说明、候选外部换为空后的选中说明、候选明确空字符串。只从候选取变化原因；缺候选显示原因未说明。                                                                                                                                                                                    |
+
+公开聚焦测试先 RED：scheduling 11 PASS / 2 FAIL，playground 两域 4 FAIL。实现后 scheduling 13/13、playground 两域 4/4 GREEN；首次 scheduling GREEN 尝试因测试点错在摘要行容器而 12/13，已保留日志并改为点击公开任务按钮。最终完整默认门禁：scheduling 320 discovery / 316 PASS / 4 vendor stub skip，playground 默认并行 329/329 PASS；两份 JSON `success:true`、exit 0，`unhandledErrors` 字段缺失。历史默认并行 `DraftEditingDemo` timeout FAIL 不由本轮单次 PASS 消除。
+
+两包 typecheck、受影响源码 lint/fmt、playground build 与本票 Markdown/link gate 的最终记录见外部 handoff。build 的 Rolldown PURE 与大 chunk 提示、CSS parser 警告单列。真实 Chromium 对 fresh dist 的 library 页核对新 notice/recipe；向公共组件的基线 props 注入“原场地已确认”，再用页面“清空候选”，摘要显示“候选未提供，原因未说明”且不出现旧消息；受影响截图目视可读。最终 dist 的 HTML、主 JS/CSS、runtime、Evaluation JS/CSS 与字体实际 HTTP GET 逐项对本地 dist 字节核对。R2 两域亮暗/宽窄视觉仅对未变范围有限继承；本轮不称全矩阵 fresh。
+
+R1 五项、R2 两项与 P08 旧省略签名未回退；左右模板重复仍是 optional，不在本次重构。锁、工程输入、vendor 和冻结 migration 未改；Evaluation 9.1.4 声明/水印保留，商业授权 UNKNOWN。CI、docs #10、packed #11、device、旧 consumer #13/#15、父 #8 组合、真实 APS、生产、原生 zoom 与默认并行稳定性归因 UNRUN/UNKNOWN。PR110 继续 draft，留给独立 R4；实施席不自审、ready、merge、close 或 watch。

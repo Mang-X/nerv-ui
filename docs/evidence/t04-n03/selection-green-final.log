@@ -1,0 +1,14 @@
+$ pnpm -C frontend --filter @nerv-iip/ui-mobile exec vp test run src/components/picker/Picker.test.ts src/components/date-picker/MobileDatePicker.test.ts
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n03-mobile-overlays/frontend/packages/ui-mobile
+
+
+ Test Files  2 passed (2)
+      Tests  7 passed (7)
+   Start at  20:20:36
+   Duration  4.04s (transform 4.65s, setup 0ms, import 6.72s, tests 498ms, environment 667ms)
+
+Could not parse CSS stylesheet
+Could not parse CSS stylesheet
+
+exit=0

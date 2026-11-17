@@ -1,0 +1,69 @@
+$ pnpm typecheck && pnpm --filter @nerv-iip/playground build
+$ pnpm -r --workspace-concurrency=1 --if-present typecheck
+Scope: 3 of 4 workspace projects
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vue-tsc --noEmit -p tsconfig.json
+$ vp build
+vite v8.1.3 building client environment for production...
+[2Ktransforming...[plugin rolldown:vite-resolve] Module "crypto" has been externalized for browser compatibility, imported by "/Users/mang/Project/nerv-ui-worktrees/t06-f04-pdf-preview/frontend/node_modules/.pnpm/@embedpdf+models@2.14.4/node_modules/@embedpdf/models/dist/index.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+✓ 5475 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                0.51 kB │ gzip:     0.34 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2       10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2        11.23 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2         18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2            18.99 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2     25.96 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2            48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2        85.06 kB
+dist/assets/xlsx_parser_bg-CQ5Lc7LS.wasm                     815.85 kB │ gzip:   366.52 kB
+dist/assets/pptx_parser_bg-N_v237u9.wasm                     860.69 kB │ gzip:   373.87 kB
+dist/assets/docx_parser_bg-Dwb1lJCk.wasm                     892.88 kB │ gzip:   396.36 kB
+dist/assets/pdfium-RAgkpwfK.wasm                           4,633.78 kB │ gzip: 2,158.62 kB
+dist/assets/OfficePreview-BRL0Yb6p.css                         0.18 kB │ gzip:     0.13 kB
+dist/assets/index-CT8_Uv0p.css                               298.68 kB │ gzip:    46.53 kB
+dist/assets/segments--0hIQLXB-B9ypjo-j.js                      0.17 kB │ gzip:     0.16 kB
+dist/assets/rolldown-runtime-EyZ2wyi3.js                       0.61 kB │ gzip:     0.39 kB
+dist/assets/visible-index-DSN5XPnm-DVzamU6h.js                 0.90 kB │ gzip:     0.52 kB
+dist/assets/OfficePreview-hpe9QJN3.js                          9.08 kB │ gzip:     3.60 kB
+dist/assets/dist-C7N40RNG.js                                  22.00 kB │ gzip:     7.38 kB
+dist/assets/highlight-rect-DTgfiJgA-DG6n8riI.js               29.70 kB │ gzip:     8.14 kB
+dist/assets/PdfPreview-Coq5-Mtv.js                            93.56 kB │ gzip:    24.54 kB
+dist/assets/pptx-rsSyrf1G.js                                 127.81 kB │ gzip:    39.87 kB
+dist/assets/xlsx-DNeaBS4x.js                                 154.24 kB │ gzip:    49.55 kB
+dist/assets/docx-BgA7QOPY.js                                 208.80 kB │ gzip:    72.31 kB
+dist/assets/direct-engine-byKrlATN.js                        322.03 kB │ gzip:    71.96 kB
+dist/assets/mathjax-Dk_JzbFj-6Ksh7OwF.js                     369.58 kB │ gzip:    95.71 kB
+dist/assets/render-worker-host-Cg60RAG_-Bhz0jz7C.js          438.18 kB │ gzip:   119.24 kB
+dist/assets/render-worker-host-BzhGwe0I-Be1o_AB0.js          482.30 kB │ gzip:   128.16 kB
+dist/assets/render-worker-host-B5esxBj--D9pA-ktz.js          568.20 kB │ gzip:   160.88 kB
+dist/assets/index-D8002Ybs.js                                838.79 kB │ gzip:   252.27 kB
+
+[31m[INVALID_ANNOTATION] [0mA comment "/* #__PURE__ */" in "../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js" contains an annotation that Rolldown cannot interpret due to the position of the comment.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m ../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js:3362:1 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m3362 │[0m /* #__PURE__ */
+ [38;5;240m     │[0m ───────┬───────  
+ [38;5;240m     │[0m        ╰───────── comment ignored due to position
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: For more information on how to use pure annotations correctly, check the documentation: https://rolldown.rs/in-depth/dead-code-elimination#pure
+[38;5;246m──────╯[0m
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[31m[INVALID_ANNOTATION] [0mA comment "/* #__PURE__ */" in "../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js" contains an annotation that Rolldown cannot interpret due to the position of the comment.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m ../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js:5780:23 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m5780 │[0m [38;5;249mc[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249md[0m[38;5;249me[0m[38;5;249mf[0m[38;5;249ma[0m[38;5;249mu[0m[38;5;249ml[0m[38;5;249mt[0m[38;5;249mS[0m[38;5;249mt[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0m[38;5;249m([0m/* #__PURE__ */[38;5;249m [0m[38;5;249m{[0m
+ [38;5;240m     │[0m                       ───────┬───────  
+ [38;5;240m     │[0m                              ╰───────── comment ignored due to position
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: For more information on how to use pure annotations correctly, check the documentation: https://rolldown.rs/in-depth/dead-code-elimination#pure
+[38;5;246m──────╯[0m
+
+✓ built in 2.67s

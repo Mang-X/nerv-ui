@@ -1,0 +1,45 @@
+{
+  "base": "e763c0fdc3e2800975578ab402b479d56f23c6fd",
+  "changed": [
+    "docs/evidence/t06-f02/README.md",
+    "docs/files-standalone.md",
+    "frontend/apps/design-system/docs/components/desktop/file-upload.md",
+    "frontend/apps/playground/src/files/UploadPanel.vue",
+    "frontend/apps/playground/src/files/memoryUpload.test.ts",
+    "frontend/apps/playground/src/files/memoryUpload.ts",
+    "frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+    "frontend/packages/ui/src/components/ui/file-upload/useFileUpload.ts"
+  ],
+  "unexpected": [],
+  "codeAndDocs": [
+    {
+      "path": "docs/files-standalone.md",
+      "sha256": "47c58ded5c20ade3be1f9ad8ce59839392e6c3c43a8d756fb0386cb4a0b441a2"
+    },
+    {
+      "path": "frontend/apps/design-system/docs/components/desktop/file-upload.md",
+      "sha256": "03df36043aa5743f703a3ee6c7b81051dac280030abefda464a5df2f2f9a5650"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/UploadPanel.vue",
+      "sha256": "ca0175548fad47c8c036021ed594a0e1ad951b960fa84777393627fb107d2b38"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/memoryUpload.test.ts",
+      "sha256": "eb4511c474708d1addc6a117a80c4e1ea2394c9aa29f0bffc28c9bc365ce1f9f"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/memoryUpload.ts",
+      "sha256": "5a161a3ea9a25200c1121e9c6cbc20fb47e43710fcaacfd211c45ad652bd431e"
+    },
+    {
+      "path": "frontend/apps/playground/src/files/uploadLifecycle.test.ts",
+      "sha256": "a4b743f1cccac2dedda0486276a9764f939e4dfd78f54025b335529aff5a5f5d"
+    },
+    {
+      "path": "frontend/packages/ui/src/components/ui/file-upload/useFileUpload.ts",
+      "sha256": "a11e2f6be6acf6572972e7ddd512af0b72c1299ad894cfd6fc39a52a144491c1"
+    }
+  ],
+  "frozenPaths": []
+}

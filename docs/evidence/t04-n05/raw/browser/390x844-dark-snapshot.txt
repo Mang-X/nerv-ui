@@ -1,0 +1,123 @@
+[p1 "NvUI · 项目清单" | space "nerv-ui N05 feedback 20261024"(15): 1 managed, 0 untracked — p1* "NvUI · 项目清单"]
+root
+  container
+    container
+      text "片刻回响"
+      button "切换明暗" [ref=258, loc=css:button[aria-label="切换明暗"]]
+        text "浅色"
+    container [ref=259]
+      container
+        paragraph
+          text "日常的小事，也有温柔的回应"
+        heading
+          text "片刻回响"
+        container "演示入口"
+          anchor [ref=260, loc=href:/#mobile, url=http://127.0.0.1:4185/#mobile]
+            text "随行手记"
+          anchor [ref=261, loc=href:/#mobile-input, url=http://127.0.0.1:4185/#mobile-input]
+            text "随心记录"
+          anchor [ref=262, loc=href:/#mobile-overlays, url=http://127.0.0.1:4185/#mobile-overlays]
+            text "片刻安排"
+          anchor [ref=263, loc=href:/#mobile-lists, url=http://127.0.0.1:4185/#mobile-lists]
+            text "翻阅时光"
+          anchor [ref=264, loc=href:/#desktop, url=http://127.0.0.1:4185/#desktop]
+            text "桌面演示"
+          anchor [ref=265, loc=href:/#touch, url=http://127.0.0.1:4185/#touch]
+            text "触屏演示"
+      container "每次回响都有回应"
+        heading
+          text "每次回响都有回应"
+        container
+          svg_root
+          container
+            text "周末一起去看风景"
+            container
+              button [ref=266]
+                text "查看通知"
+              button [ref=267]
+                text "关闭通知"
+        paragraph "通知回显"
+          text "尚未查看通知"
+        container
+          container
+            text "✉"
+            paragraph
+              text "尚未收集回响"
+            button [ref=268]
+              text "收集回响"
+          paragraph "收集状态"
+            text "尚未收集 · 请求 0 次"
+        container
+          button [ref=269]
+            text "查看失败结果"
+          button [ref=270]
+            text "清空回响"
+      container "轻轻提醒一下"
+        heading
+          text "轻轻提醒一下"
+        text "回响信箱"
+        text "7"
+        text "◇"
+        text "周末"
+        button "移除标签" [ref=271, loc=css:button[aria-label="移除标签"]]
+          svg_root
+        text "已读"
+        paragraph "提醒数值"
+          text "未读 7 条"
+        paragraph "标签回显"
+          text "周末标签已保留"
+        button [ref=272]
+          text "超过上限"
+        button [ref=273]
+          text "仅显示圆点"
+        button [ref=274]
+          text "没有未读"
+        button [ref=275]
+          text "短暂提示"
+        button [ref=276]
+          text "持续等待"
+        button [ref=277]
+          text "更新为成功"
+        button [ref=278]
+          text "失败提示"
+        button [ref=279]
+          text "延长提示"
+        button [ref=280]
+          text "关闭提示"
+        paragraph "提示状态"
+          text "已关闭"
+      container "把风景收入手记"
+        heading
+          text "把风景收入手记"
+        image
+        text "AR"
+        text "旅"
+        paragraph
+          text "与林悦一起，收藏日常"
+        button [ref=281]
+          text "损坏的头像"
+        button [ref=282]
+          text "恢复头像"
+        image
+        button [ref=283]
+          text "损坏的风景"
+        button [ref=284]
+          text "换一张风景"
+        button [ref=285]
+          text "回到湖畔"
+        paragraph "进度状态"
+          text "进度未知，等待开始"
+        button [ref=286]
+          text "开始整理"
+        button [ref=287]
+          text "整理到一半"
+        button [ref=288]
+          text "整理失败"
+        button [ref=289]
+          text "完成整理"
+        button [ref=290]
+          text "未知进度"
+  region "Notifications" [ref=291]
+  region "Notifications" [ref=292]
+  region "Notifications" [ref=293]
+  region "Notifications" [ref=294]

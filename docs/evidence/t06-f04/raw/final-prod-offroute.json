@@ -1,0 +1,29 @@
+{
+  "resources": [
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/assets/rolldown-runtime-EyZ2wyi3.js",
+      "initiator": "other"
+    },
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js",
+      "initiator": "script"
+    },
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/assets/index-Ciafae1Z.css",
+      "initiator": "link"
+    },
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "initiator": "css"
+    }
+  ],
+  "audit": {
+    "requests": [],
+    "errors": [],
+    "workers": [],
+    "observers": [],
+    "timers": [],
+    "blobUrls": [],
+    "wasmInstances": []
+  }
+}

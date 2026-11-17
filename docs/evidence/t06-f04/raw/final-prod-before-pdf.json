@@ -1,0 +1,45 @@
+{
+  "resources": [
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/assets/rolldown-runtime-EyZ2wyi3.js",
+      "initiator": "other"
+    },
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js",
+      "initiator": "script"
+    },
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/assets/index-Ciafae1Z.css",
+      "initiator": "link"
+    },
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "initiator": "css"
+    },
+    {
+      "name": "http://127.0.0.1:5216/pdf-proof/files/quality-evidence.svg",
+      "initiator": "img"
+    }
+  ],
+  "audit": {
+    "requests": [],
+    "errors": [],
+    "workers": [],
+    "observers": [
+      {
+        "active": false,
+        "stack": "Error\n    at new window.ResizeObserver (<anonymous>:18:104)\n    at Yf.N.immediate (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:4:109283)\n    at Hn (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:2:23472)\n    at Un (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:2:23540)\n    at Dr.u.call (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:2:27286)\n    at w (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:2:21388)\n    at Pn (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:2:21598)\n    at Dr (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:2:27485)\n    at N (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:2:27030)\n    at Yf (http://127.0.0.1:5216/pdf-proof/assets/index-Dm44BMTo.js:4:109187)"
+      }
+    ],
+    "timers": [
+      {
+        "ms": 100,
+        "active": false,
+        "stack": "Error\n    at window.setTimeout (<anonymous>:20:74)\n    at <anonymous>:317:21\n    at new Promise (<anonymous>)\n    at HTMLAnchorElement.<anonymous> (<anonymous>:309:11)",
+        "id": 6
+      }
+    ],
+    "blobUrls": [],
+    "wasmInstances": []
+  }
+}

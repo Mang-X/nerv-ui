@@ -1,0 +1,68 @@
+vite v8.1.3 building client environment for production...
+[2Ktransforming...✓ 5548 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/index.html                                                0.52 kB │ gzip:     0.34 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2       10.25 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2        11.23 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2         18.74 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2            18.99 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2     25.96 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2            48.25 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2        85.06 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/xlsx_parser_bg-CQ5Lc7LS.wasm                     815.85 kB │ gzip:   366.52 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/pptx_parser_bg-N_v237u9.wasm                     860.69 kB │ gzip:   373.87 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/docx_parser_bg-Dwb1lJCk.wasm                     892.88 kB │ gzip:   396.36 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/pdfium-RAgkpwfK.wasm                           4,633.78 kB │ gzip: 2,158.62 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/OfficePreview-DxCmjXCH.css                         0.18 kB │ gzip:     0.13 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/dhtmlxgantt-DePP4erS.css                         139.04 kB │ gzip:    50.39 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/index-O2T4rZEu.css                               333.15 kB │ gzip:    51.50 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/segments--0hIQLXB-B9ypjo-j.js                      0.17 kB │ gzip:     0.16 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/rolldown-runtime-EyZ2wyi3.js                       0.61 kB │ gzip:     0.39 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/visible-index-DSN5XPnm-DVzamU6h.js                 0.90 kB │ gzip:     0.52 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/OfficePreview-Dxztb7bt.js                         10.29 kB │ gzip:     4.13 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/dist-Cqag9PPW.js                                  21.97 kB │ gzip:     7.37 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/highlight-rect-DTgfiJgA-DG6n8riI.js               29.70 kB │ gzip:     8.14 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/PdfPreview-ua9uxOo2.js                            94.30 kB │ gzip:    24.84 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/pptx-CXOnTvMB.js                                 127.82 kB │ gzip:    39.87 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/xlsx-Dw0aZOl5.js                                 154.25 kB │ gzip:    49.56 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/docx-CcvFtQ8c.js                                 208.80 kB │ gzip:    72.32 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/direct-engine-B2BRrTUw.js                        322.04 kB │ gzip:    72.01 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/mathjax-Dk_JzbFj-6Ksh7OwF.js                     369.58 kB │ gzip:    95.71 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/render-worker-host-Cg60RAG_-Bhz0jz7C.js          438.18 kB │ gzip:   119.24 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/render-worker-host-BzhGwe0I-Be1o_AB0.js          482.30 kB │ gzip:   128.16 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/render-worker-host-B5esxBj--D9pA-ktz.js          568.20 kB │ gzip:   160.88 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/dhtmlxgantt.es-DLTcQAl2.js                       706.20 kB │ gzip:   190.51 kB
+../../../../../../../../tmp/nerv-ui-p08-nested-dist/assets/index-DqM7xT55.js                              1,005.96 kB │ gzip:   299.88 kB
+
+✓ built in 1.42s
+[plugin rolldown:vite-resolve] Module "crypto" has been externalized for browser compatibility, imported by "/Users/mang/Project/nerv-ui-worktrees/t07-p08-panels/frontend/node_modules/.pnpm/@embedpdf+models@2.14.4/node_modules/@embedpdf/models/dist/index.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+
+(!) outDir /tmp/nerv-ui-p08-nested-dist is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+[31m[INVALID_ANNOTATION] [0mA comment "/* #__PURE__ */" in "../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js" contains an annotation that Rolldown cannot interpret due to the position of the comment.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m ../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js:3362:1 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m3362 │[0m /* #__PURE__ */
+ [38;5;240m     │[0m ───────┬───────  
+ [38;5;240m     │[0m        ╰───────── comment ignored due to position
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: For more information on how to use pure annotations correctly, check the documentation: https://rolldown.rs/in-depth/dead-code-elimination#pure
+[38;5;246m──────╯[0m
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[31m[INVALID_ANNOTATION] [0mA comment "/* #__PURE__ */" in "../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js" contains an annotation that Rolldown cannot interpret due to the position of the comment.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m ../../node_modules/.pnpm/@vueuse+core@14.3.0_vue@3.5.39_typescript@6.0.3_/node_modules/@vueuse/core/dist/index.js:5780:23 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m5780 │[0m [38;5;249mc[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249md[0m[38;5;249me[0m[38;5;249mf[0m[38;5;249ma[0m[38;5;249mu[0m[38;5;249ml[0m[38;5;249mt[0m[38;5;249mS[0m[38;5;249mt[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0m[38;5;249m([0m/* #__PURE__ */[38;5;249m [0m[38;5;249m{[0m
+ [38;5;240m     │[0m                       ───────┬───────  
+ [38;5;240m     │[0m                              ╰───────── comment ignored due to position
+ [38;5;240m     │[0m 
+ [38;5;240m     │[0m [38;5;115mHelp[0m: For more information on how to use pure annotations correctly, check the documentation: https://rolldown.rs/in-depth/dead-code-elimination#pure
+[38;5;246m──────╯[0m
+

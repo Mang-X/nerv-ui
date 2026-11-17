@@ -1,0 +1,226 @@
+{
+  "httpResponses": [
+    {
+      "url": "http://127.0.0.1:5250/office-proof/",
+      "status": 200,
+      "mime": "text/html",
+      "bytes": 553,
+      "sha256": "b4c763615f9f6e973a27222ee95e77caab2c2416e3038868e2a53805e43e3b44",
+      "dist": "frontend/apps/playground/dist/index.html",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/rolldown-runtime-EyZ2wyi3.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 612,
+      "sha256": "f274af3d745c531243aedd39bc50813c6e0c009124334fee9a5f2e581c7cf623",
+      "dist": "frontend/apps/playground/dist/assets/rolldown-runtime-EyZ2wyi3.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/index-BvpCR2mh.css",
+      "status": 200,
+      "mime": "text/css",
+      "bytes": 298776,
+      "sha256": "ef690712b4fd75fc2639f5b97390224fcc3f4d648eb2e1dcdcb16ca295039e31",
+      "dist": "frontend/apps/playground/dist/assets/index-BvpCR2mh.css",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/index-C9eWsf89.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 839518,
+      "sha256": "8a71028c2df3607386629904c90bdd187704a677569c683f56d35e1310d7a8b5",
+      "dist": "frontend/apps/playground/dist/assets/index-C9eWsf89.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "status": 200,
+      "mime": "font/woff2",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "dist": "frontend/apps/playground/dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/files/quality-evidence.svg",
+      "status": 200,
+      "mime": "image/svg+xml",
+      "bytes": 1079,
+      "sha256": "8eef765829cb0a5acb073a629a99598f3c9622f38cf324255627c2bce57e9806",
+      "dist": "frontend/apps/playground/dist/files/quality-evidence.svg",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/OfficePreview-DxCmjXCH.css",
+      "status": 200,
+      "mime": "text/css",
+      "bytes": 184,
+      "sha256": "d06c5a0f829d78ff90a29b079f1e532948db46a44dddc7865a1308d91a4f95cd",
+      "dist": "frontend/apps/playground/dist/assets/OfficePreview-DxCmjXCH.css",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/OfficePreview-D5ZDmy2C.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 10325,
+      "sha256": "57d3f07c32e333ac31f34f8e703bb6f3ce42f72f0049da1b431ba1adef58d445",
+      "dist": "frontend/apps/playground/dist/assets/OfficePreview-D5ZDmy2C.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/files/reading-journey.docx",
+      "status": 200,
+      "mime": "",
+      "bytes": 2918,
+      "sha256": "6acfd447174abd87bfc0e7c152bb582be7fb87bc0dd0f665409dcdd2b2aeea20",
+      "dist": "frontend/apps/playground/dist/files/reading-journey.docx",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/segments--0hIQLXB-B9ypjo-j.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 170,
+      "sha256": "3de521efbf417d45060b1197d73c83eed44a91679ec1ce95f03b1f73623b1f9f",
+      "dist": "frontend/apps/playground/dist/assets/segments--0hIQLXB-B9ypjo-j.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/highlight-rect-DTgfiJgA-DG6n8riI.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 29700,
+      "sha256": "46dc08d5efcc27c47b289937f80be37ef865abdb387b9410c3d4b2c6beeccd34",
+      "dist": "frontend/apps/playground/dist/assets/highlight-rect-DTgfiJgA-DG6n8riI.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/docx-iiWKduh0.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 208813,
+      "sha256": "e274e03704e91d06954ff14d9c3d34672820d6668595d6cd1b00f982629f859c",
+      "dist": "frontend/apps/playground/dist/assets/docx-iiWKduh0.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/mathjax-Dk_JzbFj-6Ksh7OwF.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 369584,
+      "sha256": "e6c3723c516bd052ab57aef8b4eb878aa62998a21de483f5e0352d0dbeb11849",
+      "dist": "frontend/apps/playground/dist/assets/mathjax-Dk_JzbFj-6Ksh7OwF.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/files/inspection-metrics.xlsx",
+      "status": 200,
+      "mime": "",
+      "bytes": 6424,
+      "sha256": "a2b21b1dcedcf3ce031a2948d3c3476563342cbd172dee110df0a27599d4a100",
+      "dist": "frontend/apps/playground/dist/files/inspection-metrics.xlsx",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/visible-index-DSN5XPnm-DVzamU6h.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 904,
+      "sha256": "1c9db3a00a09f008e23008cd95a2a27abe484c60e96545c44dbe2a800f29cd4d",
+      "dist": "frontend/apps/playground/dist/assets/visible-index-DSN5XPnm-DVzamU6h.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/xlsx-CvJbFuKs.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 154260,
+      "sha256": "8c56b0f7ac1b5854d1c402503c126d5a0530e583155a99ecbaf0f5c8e72cbbf4",
+      "dist": "frontend/apps/playground/dist/assets/xlsx-CvJbFuKs.js",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/files/preview-review-deck.pptx",
+      "status": 200,
+      "mime": "",
+      "bytes": 4353,
+      "sha256": "6025f8f08a490758e0b68ddfdc602fa742045fba6e82310cae1ecac67ca46fa7",
+      "dist": "frontend/apps/playground/dist/files/preview-review-deck.pptx",
+      "equal": true,
+      "lane": "final-resources"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/pptx-CTHewm2Y.js",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 127831,
+      "sha256": "55a23d00809c66e471421138527155cbed4289d49622279ce04e8b020ffee74d",
+      "dist": "frontend/apps/playground/dist/assets/pptx-CTHewm2Y.js",
+      "equal": true,
+      "lane": "final-resources"
+    }
+  ],
+  "workerResponses": [
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/docx_parser_bg-Dwb1lJCk.wasm",
+      "method": "GET",
+      "initiator": "Error\n    at self.fetch (blob:http://127.0.0.1:5250/3ddc9476-accd-44c4-907d-f738ae1c95e3:1:540)\n    at Object.x [as _init] (blob:http://127.0.0.1:5250/3ddc9476-accd-44c4-907d-f738ae1c95e3:2:4308)\n    at Object.setWasmUrl (blob:http://127.0.0.1:5250/3ddc9476-accd-44c4-907d-f738ae1c95e3:2:5219)\n    at self.onmessage (blob:http://127.0.0.1:5250/3ddc9476-accd-44c4-907d-f738ae1c95e3:2:6288)",
+      "status": 200,
+      "mime": "application/wasm",
+      "bytes": 892883,
+      "sha256": "a7e38311587511ae1cd5e7c9812a4d0db4e24b31cc1bb765236dbb2dcbfeaf88",
+      "body": "worker-00.wasm",
+      "exactDistResponse": true,
+      "dist": "frontend/apps/playground/dist/assets/docx_parser_bg-Dwb1lJCk.wasm"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/xlsx_parser_bg-CQ5Lc7LS.wasm",
+      "method": "GET",
+      "initiator": "Error\n    at self.fetch (blob:http://127.0.0.1:5250/2c9921d6-0121-41ad-9c49-757ce84b4796:1:540)\n    at Object.S [as _init] (blob:http://127.0.0.1:5250/2c9921d6-0121-41ad-9c49-757ce84b4796:2:5540)\n    at Object.setWasmUrl (blob:http://127.0.0.1:5250/2c9921d6-0121-41ad-9c49-757ce84b4796:2:6451)\n    at self.onmessage (blob:http://127.0.0.1:5250/2c9921d6-0121-41ad-9c49-757ce84b4796:2:7520)",
+      "status": 200,
+      "mime": "application/wasm",
+      "bytes": 815854,
+      "sha256": "4e2340b8f6a0aba67bc5fa6d62fb3e505d4b0059901f384d963c5e7a5f1e8443",
+      "body": "worker-01.wasm",
+      "exactDistResponse": true,
+      "dist": "frontend/apps/playground/dist/assets/xlsx_parser_bg-CQ5Lc7LS.wasm"
+    },
+    {
+      "url": "http://127.0.0.1:5250/office-proof/assets/pptx_parser_bg-N_v237u9.wasm",
+      "method": "GET",
+      "initiator": "Error\n    at self.fetch (blob:http://127.0.0.1:5250/8bbcabfd-1e0c-40b6-a1a4-69debd28d6c4:1:540)\n    at r.T [as _init] (blob:http://127.0.0.1:5250/8bbcabfd-1e0c-40b6-a1a4-69debd28d6c4:2:6271)\n    at r.setWasmUrl (blob:http://127.0.0.1:5250/8bbcabfd-1e0c-40b6-a1a4-69debd28d6c4:2:820)\n    at self.onmessage (blob:http://127.0.0.1:5250/8bbcabfd-1e0c-40b6-a1a4-69debd28d6c4:2:6506)",
+      "status": 200,
+      "mime": "application/wasm",
+      "bytes": 860696,
+      "sha256": "4ff969b9e3d37740b9c06a524fa5a262443ab72fb097594ad6324c54f4da7382",
+      "body": "worker-02.wasm",
+      "exactDistResponse": true,
+      "dist": "frontend/apps/playground/dist/assets/pptx_parser_bg-N_v237u9.wasm"
+    }
+  ],
+  "workerInstrumentation": "Records actual Worker fetch response clone with URL/status/MIME/bytes/hash/initiator. Original inline parser script appended unchanged; test-only prefix is not the dist worker body. Parent HTTP bodies from CDP.",
+  "writeRequests": [],
+  "nonLoopbackRequests": [],
+  "auditErrors": []
+}

@@ -1,0 +1,12 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/frontend/packages/ui
+
+Could not parse CSS stylesheet
+ ✓ src/components/pc/chart/LineAnnotations.test.ts (7 tests) 448ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  15:38:34
+   Duration  2.93s (transform 1.53s, setup 210ms, import 1.97s, tests 448ms, environment 243ms)
+
+JSON report written to /Users/mang/Project/nerv-ui-worktrees/t08-r04-screen-composition/docs/evidence/t08-r13/geometry-12.json

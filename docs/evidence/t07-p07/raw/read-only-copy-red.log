@@ -1,0 +1,8 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /当前只读/. Input:
+
+'拖动活动调整位置与时间；拖动两端调整开始或结束时间。'
+
+    at file:////[eval2]:1:522
+[ego-browser:notice] Ego Lite update is available (current 0.6.1.9). Finish the current browser task, then ask the user before running `ego-browser upgrade`; re-read the ego-browser Skill afterward.
+
+ego's nodejs process exited with code 1.

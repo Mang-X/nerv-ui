@@ -1,0 +1,28 @@
+packages:
+  # Active standalone desktop/touch/mobile host and UI packages.
+  # design-system restored by T09/A.
+  - apps/design-system
+  - apps/playground
+  - packages/ui
+  - packages/ui-mobile
+allowBuilds:
+  # maplibre-gl ships only via @unovis/ts' map components, which we don't use
+  # (we use the XY area/line charts). Skip its native build to keep install lean.
+  maplibre-gl: false
+  vue-demi: true
+  # esbuild is needed only by the VitePress docs build.
+  esbuild: true
+minimumReleaseAgeExclude:
+  - '@silurus/ooxml@0.72.2'
+  - '@pinia/colada@1.4.2'
+  - pinia@4.0.2
+  - vue-router@5.2.0
+overrides:
+  vite: npm:@voidzero-dev/vite-plus-core@0.2.4
+  # VitePress 1.6.4 is the latest stable release and still embeds Vite 5. Keep
+  # that private dependency on its supported range instead of forcing Vite Plus'
+  # Vite 8/Rolldown core into VitePress config bundling.
+  'vitepress@1.6.4>vite': 5.4.21
+  vitest: 4.1.10
+patchedDependencies:
+  reka-ui@2.10.1: patches/reka-ui@2.10.1.patch

@@ -1,0 +1,33 @@
+{
+  "before": {
+    "url": "http://127.0.0.1:4288/p07/#schedule-resource-edit/studio",
+    "timezone": "Asia/Shanghai",
+    "visualViewportScale": 1,
+    "viewport": [
+      2300,
+      1225
+    ],
+    "dark": true,
+    "tips": 2,
+    "ghost": 2
+  },
+  "pages": [
+    "p1"
+  ],
+  "tabs": [
+    {
+      "label": "p1",
+      "openedBy": "agent"
+    }
+  ],
+  "result": {
+    "spaceId": 76,
+    "closedSpace": true,
+    "keptManagedLabels": [],
+    "closedManagedLabels": [
+      "p1"
+    ],
+    "preservedUnmanagedCount": 0
+  },
+  "timezoneZoomViewportOverridesSet": false
+}

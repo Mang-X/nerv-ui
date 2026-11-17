@@ -1,0 +1,1 @@
+{"command":"git diff --cached --check","exit":2,"classification":"raw evidence terminal whitespace; scoped maintained source check separate"}

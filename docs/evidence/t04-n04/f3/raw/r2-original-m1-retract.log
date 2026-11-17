@@ -1,0 +1,63 @@
+
+ RUN  v4.1.10 /private/tmp/nerv-ui-t04-n04-merger-r2-20261024/probe
+
+stdout | m1-retract.test.ts > does not refresh after pulling back below the threshold - head - 'above-start'
+{"name":"head","y":0,"before":"transform: translateY(112.51303712598072px);","after":"transform: translateY(56px);","refresh":[[]],"model":[[true]]}
+
+stdout | m1-retract.test.ts > does not refresh after pulling back below the threshold - head - 'at-start'
+{"name":"head","y":10,"before":"transform: translateY(112.51303712598072px);","after":"transform: translateY(56px);","refresh":[[]],"model":[[true]]}
+
+stdout | m1-retract.test.ts > does not refresh after pulling back below the threshold - head - 'below-start-control'
+{"name":"head","y":11,"before":"transform: translateY(0.7px);","after":"transform: translateY(0px);"}
+
+stdout | m1-retract.test.ts > does not refresh after pulling back below the threshold - base - 'above-start'
+{"name":"base","y":0,"before":"transform: translateY(112.51303712598072px);","after":"transform: translateY(56px);","refresh":[[]],"model":[[true]]}
+
+stdout | m1-retract.test.ts > does not refresh after pulling back below the threshold - base - 'at-start'
+{"name":"base","y":10,"before":"transform: translateY(112.51303712598072px);","after":"transform: translateY(56px);","refresh":[[]],"model":[[true]]}
+
+stdout | m1-retract.test.ts > does not refresh after pulling back below the threshold - base - 'below-start-control'
+{"name":"base","y":11,"before":"transform: translateY(0.7px);","after":"transform: translateY(0px);"}
+
+ ❯ m1-retract.test.ts (6 tests | 4 failed) 51ms
+   × does not refresh after pulling back below the threshold - head - 'above-start' 22ms
+   × does not refresh after pulling back below the threshold - head - 'at-start' 10ms
+   ✓ does not refresh after pulling back below the threshold - head - 'below-start-control' 3ms
+   × does not refresh after pulling back below the threshold - base - 'above-start' 2ms
+   × does not refresh after pulling back below the threshold - base - 'at-start' 8ms
+   ✓ does not refresh after pulling back below the threshold - base - 'below-start-control' 4ms
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 2 passed (6)
+   Start at  23:08:11
+   Duration  5.34s (transform 3.25s, setup 0ms, import 4.69s, tests 51ms, environment 504ms)
+
+JSON report written to /tmp/nerv-ui-t04-n04-merger-r2-20261024/raw/m1-retract.json
+Could not parse CSS stylesheet
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  m1-retract.test.ts > does not refresh after pulling back below the threshold - head - 'above-start'
+ FAIL  m1-retract.test.ts > does not refresh after pulling back below the threshold - head - 'at-start'
+ FAIL  m1-retract.test.ts > does not refresh after pulling back below the threshold - base - 'above-start'
+ FAIL  m1-retract.test.ts > does not refresh after pulling back below the threshold - base - 'at-start'
+AssertionError: expected [ [] ] to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[
+  [],
+]
+
+ ❯ m1-retract.test.ts:16:33
+     14|    pointer(area.element,'pointerup',y);await nextTick()
+     15|    console.log(JSON.stringify({name,y,before,after:area.attributes('st…
+     16|    expect(w.emitted('refresh')).toBeUndefined();expect(w.emitted('upda…
+       |                                 ^
+     17|   }finally{w.unmount()}
+     18|  })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+

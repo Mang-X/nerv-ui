@@ -1,0 +1,36 @@
+
+ RUN  v4.1.10 /Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile
+
+Could not parse CSS stylesheet
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts (1 test | 1 failed) 18ms
+   × cancels a pull beyond the threshold without requesting refresh 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/pull-refresh/PullRefresh.gestures.test.ts > cancels a pull beyond the threshold without requesting refresh
+TypeError: Cannot set property clientY of #<MouseEvent> which has only a getter
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1249:28
+ ❯ createDOMEvent ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1245:30
+ ❯ DOMWrapper.<anonymous> ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7216:31
+ ❯ ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:56:71
+ ❯ __awaiter ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:52:12
+ ❯ DOMWrapper.trigger ../../node_modules/.pnpm/@vue+test-utils@2.4.11_@vue+compiler-dom@3.5.39_@vue+server-renderer@3.5.39_vue@3.5.39__b27df518296c166aebb89417d2851af1/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7209:16
+ ❯ src/components/pull-refresh/PullRefresh.gestures.test.ts:8:14
+      6|   const wrapper = mount(PullRefresh)
+      7|   const area = wrapper.get('.nv-m-pr-inner')
+      8|   await area.trigger('pointerdown', { clientY: 10, buttons: 1 })
+       |              ^
+      9|   await area.trigger('pointermove', { clientY: 260, buttons: 1 })
+     10|   expect(wrapper.text()).toContain('释放立即刷新')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  21:20:46
+   Duration  6.06s (transform 3.56s, setup 0ms, import 5.10s, tests 18ms, environment 726ms)
+
+undefined
+/Users/mang/Project/nerv-ui-worktrees/t04-n04-mobile-lists/frontend/packages/ui-mobile:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vp test run src/components/pull-refresh/PullRefresh.gestures.test.ts

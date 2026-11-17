@@ -1,0 +1,1 @@
+Only temporary mutation: if (getCurrentScope()) -> if (false && getCurrentScope())

@@ -1,0 +1,146 @@
+{
+  "name": "original-final-844-dark",
+  "width": 844,
+  "height": 390,
+  "dark": true,
+  "records": [
+    {
+      "case": "F1 forward",
+      "before": {
+        "state": "第 2 / 3 页 · 切换 0 次",
+        "style": "translate3d(-632px, 0px, 0px)",
+        "width": 632
+      },
+      "continued": "translate3d(-682px, 0px, 0px)",
+      "after": "第 3 / 3 页 · 切换 2 次",
+      "geometry": {
+        "x": 422,
+        "y": 194,
+        "width": 632,
+        "height": 168,
+        "top": 110,
+        "right": 738,
+        "bottom": 278,
+        "left": 106,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 168,
+        "clientHeight": 168,
+        "overflow": "hidden",
+        "touchAction": "auto"
+      },
+      "input": "CDP mouse down/move/up plus public DOM button.click for external index; no private component state"
+    },
+    {
+      "case": "F1 backward",
+      "before": {
+        "state": "第 2 / 3 页 · 切换 0 次",
+        "style": "translate3d(-632px, 0px, 0px)",
+        "width": 632
+      },
+      "continued": "translate3d(-582px, 0px, 0px)",
+      "after": "第 1 / 3 页 · 切换 2 次",
+      "geometry": {
+        "x": 422,
+        "y": 194,
+        "width": 632,
+        "height": 168,
+        "top": 110,
+        "right": 738,
+        "bottom": 278,
+        "left": 106,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 168,
+        "clientHeight": 168,
+        "overflow": "hidden",
+        "touchAction": "auto"
+      },
+      "input": "CDP mouse down/move/up plus public DOM button.click for external index; no private component state"
+    },
+    {
+      "case": "F2 release-loading",
+      "during": {
+        "state": "刷新中 · 请求 1 次",
+        "text": " 刷新中…初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "style": "translateY(56px)",
+        "disabled": true
+      },
+      "released": "刷新中 · 请求 1 次",
+      "after": "已更新 · 请求 2 次",
+      "geometry": {
+        "x": 422,
+        "y": 237,
+        "width": 630,
+        "height": 254,
+        "top": 110,
+        "right": 737,
+        "bottom": 364,
+        "left": 107,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "input": "CDP mouse and public DOM button.click"
+    },
+    {
+      "case": "F2 touch-cancel-loading",
+      "during": {
+        "state": "刷新中 · 请求 1 次",
+        "text": " 刷新中…初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "style": "translateY(56px)",
+        "disabled": true
+      },
+      "released": "刷新中 · 请求 1 次",
+      "after": "已更新 · 请求 2 次",
+      "geometry": {
+        "x": 422,
+        "y": 237,
+        "width": 630,
+        "height": 254,
+        "top": 110,
+        "right": 737,
+        "bottom": 364,
+        "left": 107,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "input": "CDP synthetic touch and touchCancel plus public DOM button.click"
+    },
+    {
+      "case": "F2 complete-before-release",
+      "during": {
+        "state": "刷新中 · 请求 1 次",
+        "text": " 刷新中…初次来信 1初次来信 2初次来信 3初次来信 4初次来信 5初次来信 6初次来信 7初次来信 8初次来信 9初次来信 10初次来信 11初次来信 12",
+        "style": "translateY(56px)",
+        "disabled": true
+      },
+      "released": "已更新 · 请求 1 次",
+      "after": "已更新 · 请求 2 次",
+      "geometry": {
+        "x": 422,
+        "y": 237,
+        "width": 630,
+        "height": 254,
+        "top": 110,
+        "right": 737,
+        "bottom": 364,
+        "left": 107,
+        "hit": true,
+        "scrollTop": 0,
+        "scrollHeight": 672,
+        "clientHeight": 254,
+        "overflow": "auto",
+        "touchAction": "pan-x pan-down"
+      },
+      "input": "CDP mouse and public DOM button.click"
+    }
+  ]
+}
