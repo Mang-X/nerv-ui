@@ -30,7 +30,7 @@ function toggle() {
     :disabled="disabled"
     :class="
       cn(
-        'nv-m-mcheck nv-focusable flex min-h-11 w-full items-center gap-3 text-left text-[15px] select-none disabled:opacity-40',
+        'nv-m-mcheck flex min-h-11 w-full items-center gap-3 text-left text-[15px] outline-none select-none disabled:opacity-40',
         $props.class,
       )
     "
@@ -68,7 +68,15 @@ function toggle() {
     transition:
       background-color 0.18s ease,
       border-color 0.18s ease,
-      transform 0.2s var(--nv-ease-out-quart);
+      transform 0.2s var(--nv-ease-out-quart),
+      box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
+  }
+  /* Focus ring draws on the 22px checkbox square, not the whole 44px row — halo
+     hugs the actual control shape. */
+  .nv-m-mcheck:focus-visible .nv-m-mcheck-box,
+  .nv-m-mcheck:focus-within .nv-m-mcheck-box {
+    border-color: var(--nv-brand);
+    box-shadow: var(--nv-focus-ring);
   }
   .nv-m-mcheck:active:not(:disabled) .nv-m-mcheck-box {
     transform: scale(0.88);

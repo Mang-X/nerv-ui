@@ -58,7 +58,7 @@ function pick(index: number, ev: PointerEvent | MouseEvent) {
       :key="i"
       type="button"
       :disabled="readonly"
-      class="nv-m-rate-star nv-focusable grid size-11 place-items-center disabled:cursor-default"
+      class="nv-m-rate-star grid size-11 place-items-center rounded-full outline-none disabled:cursor-default"
       :aria-label="`${i} 星`"
       @click="pick(i, $event)"
     >
@@ -79,6 +79,14 @@ function pick(index: number, ev: PointerEvent | MouseEvent) {
   .nv-m-rate-star {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+  }
+  /* Focus ring is a circular halo around the 44px hit area — reads as a ring
+     around the star, not a square frame. */
+  .nv-m-rate-star:focus-visible,
+  .nv-m-rate-star:focus-within {
+    outline: none;
+    box-shadow: var(--nv-focus-ring);
+    transition: box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
   }
   .nv-m-rate-star:active:not(:disabled) .nv-m-rate-glyph {
     animation: nv-m-rate-pop 0.26s var(--nv-ease-out-quart);

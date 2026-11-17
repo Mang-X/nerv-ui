@@ -94,10 +94,11 @@ onBeforeUnmount(clearTimer)
     max-width: 16rem;
     padding: 0.875rem 1rem;
     border-radius: 14px;
-    background-color: oklch(0.21 0 0 / 0.92);
+    background-color: oklch(0.21 0 0 / 0.78);
     color: #fff;
     text-align: center;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     box-shadow: 0 12px 40px -12px rgb(0 0 0 / 0.6);
   }
   /* Text-only toasts are a compact single line. */

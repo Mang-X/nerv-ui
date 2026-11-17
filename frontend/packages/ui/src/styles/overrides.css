@@ -55,10 +55,12 @@
     -webkit-backdrop-filter: blur(16px) saturate(1.6);
     backdrop-filter: blur(16px) saturate(1.6);
   }
-  /* Mobile overlay surfaces (bottom sheet, centred dialog) — sit over a frosted
-     scrim, so a touch more blur/translucency reads as proper glass. */
+  /* Mobile overlay surfaces (bottom sheet, centred dialog, number keyboard,
+     mobile dropdown panel, mobile toast) — sit over a frosted scrim, so a touch
+     more blur/translucency reads as proper glass. */
   [data-slot='mobile-sheet-content'],
-  [data-slot='mobile-dialog-content'] {
+  [data-slot='mobile-dialog-content'],
+  [data-slot='number-keyboard'] {
     background-color: color-mix(in oklch, var(--card) 80%, transparent);
     -webkit-backdrop-filter: blur(20px) saturate(1.7);
     backdrop-filter: blur(20px) saturate(1.7);
