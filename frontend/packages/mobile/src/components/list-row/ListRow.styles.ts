@@ -1,0 +1,88 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, motion, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  row: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 12,
+    boxSizing: 'border-box',
+    width: '100%',
+    minHeight: 56,
+    paddingInline: 16,
+    paddingBlock: 10,
+    borderWidth: 0,
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
+    borderBottomColor: color.border,
+    backgroundColor: 'transparent',
+    color: color.fg,
+    fontFamily: typography.fontSans,
+    textAlign: 'left',
+    textDecorationLine: 'none',
+    WebkitTapHighlightColor: 'transparent',
+    transitionProperty: 'background-color',
+    transitionDuration: motion.durationFast,
+    transitionTimingFunction: motion.easeOut,
+  },
+  noDivider: {
+    borderBottomWidth: 0,
+  },
+  interactive: {
+    cursor: 'pointer',
+    ':active': { backgroundColor: color.muted },
+  },
+  disabled: {
+    cursor: 'not-allowed',
+    opacity: 0.5,
+  },
+  leading: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+    flex: 1,
+    minWidth: 0,
+  },
+  titleRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    minWidth: 0,
+  },
+  title: {
+    fontSize: 15,
+    fontWeight: 500,
+    lineHeight: '20px',
+    color: color.fg,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+  meta: {
+    flexShrink: 0,
+    fontSize: 12,
+    lineHeight: '18px',
+    color: color.mutedFg,
+  },
+  description: {
+    fontSize: 13,
+    lineHeight: '18px',
+    color: color.mutedFg,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+  trailing: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 8,
+    flexShrink: 0,
+    color: color.mutedFg,
+  },
+})

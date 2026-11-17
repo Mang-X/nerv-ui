@@ -1,0 +1,67 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, motion, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 8,
+    width: '100%',
+    fontFamily: typography.fontSans,
+    '[data-disabled]': { opacity: 0.5 },
+  },
+  control: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    width: '100%',
+    height: 20,
+    touchAction: 'none',
+    userSelect: 'none',
+  },
+  track: {
+    position: 'relative',
+    flex: 1,
+    height: 4,
+    borderRadius: 999,
+    backgroundColor: color.muted,
+    overflow: 'hidden',
+  },
+  indicator: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 'var(--slider-indicator-start, 0%)',
+    width: 'var(--slider-indicator-size, 0%)',
+    borderRadius: 999,
+    backgroundColor: color.brand,
+  },
+  thumb: {
+    position: 'absolute',
+    top: '50%',
+    width: 16,
+    height: 16,
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: color.brand,
+    borderRadius: 999,
+    backgroundColor: color.card,
+    cursor: 'grab',
+    outlineStyle: 'none',
+    transitionProperty: 'box-shadow, border-color',
+    transitionDuration: motion.durationFast,
+    transitionTimingFunction: motion.easeOut,
+    ':has(:focus-visible)': {
+      boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
+    },
+    '[data-dragging]': { cursor: 'grabbing' },
+    '[data-disabled]': { cursor: 'not-allowed' },
+  },
+  value: {
+    color: color.mutedFg,
+    fontSize: typography.sizeSm,
+    lineHeight: typography.lineSm,
+    fontVariantNumeric: 'tabular-nums',
+  },
+})

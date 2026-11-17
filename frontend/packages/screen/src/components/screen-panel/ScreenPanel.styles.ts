@@ -1,0 +1,75 @@
+import * as stylex from '@stylexjs/stylex'
+import { scr, scrShape } from '../../tokens.stylex'
+
+export const styles = stylex.create({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 0,
+    overflowX: 'hidden',
+    overflowY: 'hidden',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: scr.border,
+    borderRadius: scrShape.radiusXl,
+    backgroundColor: scr.panel,
+    color: scr.fg,
+  },
+  accent: { borderTopWidth: 3, borderTopColor: scr.accent },
+  warning: { borderTopWidth: 3, borderTopColor: scr.warning },
+  danger: { borderTopWidth: 3, borderTopColor: scr.danger },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 16,
+    minHeight: 72,
+    paddingInline: 24,
+    paddingBlock: 16,
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
+    borderBottomColor: scr.border,
+  },
+  heading: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+    minWidth: 0,
+  },
+  title: {
+    color: scr.fg,
+    fontSize: 24,
+    fontWeight: 700,
+    lineHeight: 1.2,
+    whiteSpace: 'nowrap',
+    overflowX: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  subtitle: {
+    color: scr.fgMuted,
+    fontSize: 15,
+    lineHeight: '20px',
+  },
+  actions: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    marginLeft: 'auto',
+    flexShrink: 0,
+  },
+  body: {
+    flex: 1,
+    minHeight: 0,
+    padding: 24,
+  },
+  bodyPaddedScroll: {
+    overflowY: 'auto',
+  },
+  bodyBare: { padding: 0 },
+  footer: {
+    paddingInline: 24,
+    paddingBlock: 16,
+    borderTopWidth: 1,
+    borderTopStyle: 'solid',
+    borderTopColor: scr.border,
+  },
+})

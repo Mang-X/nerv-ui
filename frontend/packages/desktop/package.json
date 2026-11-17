@@ -1,0 +1,38 @@
+{
+  "name": "@nerv-ui/desktop",
+  "version": "0.1.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "node ../../scripts/sync-theme.mjs && tsdown && node -e \"require('fs').cpSync('dist/assets/stylex.css','dist/style.css')\"",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@stylexjs/stylex": "0.19.2",
+    "@ui-sdk/vue": "0.1.0-beta.6",
+    "@ui-sdk/core": "0.1.0-beta.6",
+    "@lucide/vue": "1.24.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@stylexjs/unplugin": "0.19.2",
+    "@stylexjs/babel-plugin": "0.19.2",
+    "tsdown": "0.23.7",
+    "unplugin-vue": "^8.0.1",
+    "vue": "3.5.39",
+    "vue-tsc": "^3.3.7",
+    "typescript": "^6.0.3"
+  }
+}
