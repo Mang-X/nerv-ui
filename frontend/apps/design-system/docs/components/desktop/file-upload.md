@@ -144,7 +144,7 @@ async function addTableSamples() {
   tableUpload.value?.clear()
   await tableUpload.value?.addFiles([
     new File(['plan document'], 'plan-doc.pdf', { type: 'application/pdf' }),
-    demoImageFile('cover.svg', '封面', '#334155'),
+    demoImageFile('cover.svg', '封面', '#334151'),
     new File(['measurement data'], 'measurement.xlsx', { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }),
   ])
 }
@@ -173,7 +173,7 @@ onMounted(async () => {
 
 本页所有示例都优先使用 `@nerv-iip/ui` 稳定导出，例如 `Button`、`FileUpload` 和 `uploadWithNativeFileStorageTransport`；不要从原始上游包或组件深层路径导入。
 
-## 自动上传
+## 示例
 
 点击按钮选择文件后立即创建上传会话并执行传输。适合审核证据、检查照片、文档附件等单步上传场景。
 
@@ -226,8 +226,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
   />
 </template>
 ```
-
-## 队列上传
 
 `variant="queue"` 使用拖拽面板、文件统计和内置添加/清空操作；`autoUpload=false` 时组件只入队，不创建上传会话。父级可以通过 `ref` 暴露的 `addFiles()` 和 `uploadQueued()` 组合外部按钮、批量保存或表单提交。
 
@@ -295,8 +293,6 @@ const upload = ref<FileUploadExpose | null>(null)
 </template>
 ```
 
-## 头像上传
-
 `variant="avatar"` 适合用户头像、成员照片、资源主图等单文件场景。图片文件会自动生成缩略图，非图片文件仍回退到文件类型图标。
 
 <Demo title="头像上传" block>
@@ -318,10 +314,6 @@ const upload = ref<FileUploadExpose | null>(null)
 </Demo>
 
 ```vue
-<script setup lang="ts">
-import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
-</script>
-
 <template>
   <FileUpload
     variant="avatar"
@@ -339,8 +331,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
   />
 </template>
 ```
-
-## 紧凑上传
 
 `variant="compact"` 压缩 dropzone 与行高，适合表单侧栏、抽屉和空间受限的配置面板。本例选入文件后自动开始上传；需要集中提交时可参考上方的手动上传入口。
 
@@ -364,10 +354,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 </Demo>
 
 ```vue
-<script setup lang="ts">
-import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
-</script>
-
 <template>
   <FileUpload
     variant="compact"
@@ -386,8 +372,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
   />
 </template>
 ```
-
-## 画廊上传
 
 `variant="gallery"` 以网格卡片展示图片证据，适合多角度照片、检查照片和现场佐证图集。
 
@@ -410,10 +394,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 </Demo>
 
 ```vue
-<script setup lang="ts">
-import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
-</script>
-
 <template>
   <FileUpload
     variant="gallery"
@@ -431,8 +411,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
   />
 </template>
 ```
-
-## 表格上传
 
 `variant="table"` 用连续行承载混合文件，适合批量附件清单、工程文档、检验记录和导入文件复核。
 
@@ -463,10 +441,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 </Demo>
 
 ```vue
-<script setup lang="ts">
-import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
-</script>
-
 <template>
   <div
     class="max-w-full overflow-x-auto"
@@ -498,8 +472,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 </template>
 ```
 
-## 图片上传
-
 `variant="image"` 使用更宽的图片预览卡，适合铭牌、面板照片、封面照片等需要检查画面的场景。
 
 <Demo title="图片上传" block>
@@ -521,10 +493,6 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 </Demo>
 
 ```vue
-<script setup lang="ts">
-import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
-</script>
-
 <template>
   <FileUpload
     variant="image"
@@ -543,7 +511,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 </template>
 ```
 
-## 接口边界
+## API
 
 | 属性 / 事件                                       | 说明                                                                                                                                               |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -565,7 +533,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 | `rejected(files)`                                 | 入队前被拒绝的文件与原因                                                                                                                           |
 | `failed(row)`                                     | 上传失败的行；`default / queue / compact / table` 行内提供重试，`avatar / gallery / image` 可移除后重新选择，父级也可调用 `retryFailed()` 统一重试 |
 
-## 暴露方法
+### 暴露方法
 
 | 方法                       | 用途                                         |
 | -------------------------- | -------------------------------------------- |
@@ -576,14 +544,12 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 | `clear()`                  | 清空队列，不发出 synthetic completed 事件    |
 | `browse()`                 | 打开原生文件选择器                           |
 
-## 暴露状态
+### 暴露状态
 
 | 状态            | 用途                                             |
 | --------------- | ------------------------------------------------ |
 | `hasRows`       | 队列内是否存在任意文件行，可用于禁用清空按钮     |
 | `hasQueuedRows` | 队列内是否存在待上传文件，可用于禁用开始上传按钮 |
-
-## 动效
 
 组件使用 `motion-v` 的 `MotionConfig reduced-motion="user"`、`AnimatePresence` 和 `motion.*`。`fileUploadMotion` 与 `filePreviewMotion` 共享 UI 包的 JS motion token 层：dropzone 使用 `fastInvoke`，行进入、移除和位置迁移使用 `pointToPointShort`。该 JS 层由契约测试与 `theme.css` 的 `--ease-* / --duration-*` 配对，避免 Motion for Vue 曲线和 CSS token 漂移。
 
@@ -594,9 +560,9 @@ fileUploadMotion.fastInvoke
 fileUploadMotion.pointToPointShort
 ```
 
-## 独立宿主与所有权（T06/F01）
+## 设计说明
 
-独立 playground 的 `/#files` 从根入口消费 `FileUpload`、`FileUploadVariant` 和公开 ref 类型，使用纯内存 `createUploadSession / transport / completeUploadSession`。默认手动模式，选择与拖放后计数仍为零，明确开始后才创建会话。传输由按钮推进进度或失败，响应 AbortSignal；这是顺序路径演示，晚回 attempt 隔离由 #73 验收，原生 HTTP/tus 由 #74 验收。
+独立 playground 的 `/#files` 从根入口消费 `FileUpload`、`FileUploadVariant` 和公开 ref 类型，使用纯内存 `createUploadSession / transport / completeUploadSession`。默认手动模式，选择与拖放后计数仍为零，明确开始后才创建会话。传输由按钮推进进度或失败，响应 AbortSignal；这是顺序路径演示。
 
 `completed(files)` 是当前 completed 行的快照，移除成功行后再次发出，宿主应替换列表。`clear()` 不发 synthetic empty，宿主清空自己的回执选择。`disabled` 保护 picker、`browse()` 与 drop；公开 `addFiles` / composable 仍由宿主授权。前端 accept 不是服务端安全校验；failed/rejected 行不占 maxFiles 槽位，maxFiles 不是并发上限。
 
@@ -606,20 +572,16 @@ fileUploadMotion.pointToPointShort
 
 七种变体均可在同页切换；切换时显式清空本页队列。default 为按钮入口；其它变体提供 dropzone。超过 40 行时 default/queue/table 使用固定高度虚拟窗口，gallery/image/compact/avatar 保留各自布局。库创建与回收缩略图 URL，虚拟行卸载后也会回收；宿主自己创建的预览 URL 由宿主回收。音视频上传标签不代表存在音视频播放器。
 
-F01 的 390px 浏览器检查发现长类型提示在 compact 撑到 549px，在 gallery 撑到 393px；组件现在允许 compact 提示与共享 accept hint 在词内换行，保留完整限制信息和已有按钮、props、默认值。该自研目录属于治理 carve-out，未改 shadcn 原版；公开几何 RED→GREEN 见 F01 证据。
-
-## 原生 HTTP 传输与本机夹具（T06/F03）
-
 根入口 `uploadWithNativeFileStorageTransport` 保持现有签名。默认传输只接受 `uploadMode/provider` 同为 `tus/tus` 或 `server-proxy/server-proxy`；冲突、缺失或未知值在 fetch 前拒绝，不再用 OR 把未知 provider 分派到已知协议。已有两组一致值保持兼容；宿主自定义传输仍通过 `transport` 注入。
 
 tus 先 HEAD 恢复已确认 offset，再发送每片最多 1 MiB 的二进制 PATCH。HEAD/PATCH `Upload-Offset` 必须为十进制非负安全整数且不大于文件长度；PATCH 必须精确确认 `旧 offset + 本片长度`。缺失、非数字、小数、越界、不前进、倒退和部分确认会立即失败，不猜测字节已写入；重试重新 HEAD。409/412/413/460 的原因保留，网络异常原样向上传递。AbortSignal 传入真实 fetch，已取消时不发送后续分片或报告完成。
 
 原生 fetch PUT 没有上传字节进度事件，只在成功响应后回报 100。界面发起时的等待状态不代表已发送字节；仍须 `completeUploadSession` 确认后才产生成功回执。细粒度进度由宿主注入 adapter 提供。
 
-playground `/#files` 的“传输方式 → 本机原生 HTTP”使用同源 Vite `configureServer/configurePreviewServer` 内存处理器；dev/preview 均仅允许 `127.0.0.1` 绑定，不另建服务。先“加入已知二进制夹具”，再明确“开始原生上传”；初始页面、选择模式、加入夹具、仅预览、换页与 openSource 均不创建上传或完成会话。原生模式的 picker/drop 所在区域 inert，只能用内置文件；内存适配器七变体、图片与 F02 闸门仍在原模式。
+playground `/#files` 的「传输方式 → 本机原生 HTTP」使用同源 Vite `configureServer/configurePreviewServer` 内存处理器；dev/preview 均仅允许 `127.0.0.1` 绑定，不另建服务。先「加入已知二进制夹具」，再明确「开始原生上传」；初始页面、选择模式、加入夹具、仅预览、换页与 openSource 均不创建上传或完成会话。原生模式的 picker/drop 所在区域 inert，只能用内置文件；内存适配器七变体、图片与 F02 闸门仍在原模式。
 
-夹具为 `2 MiB + 17` 字节的 `byte[i] = i % 251`，SHA256 `b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e`，由本仓生成，无第三方文件。tus 会话初置已知前 17 字节；后续请求必须携带会话 header，端点逐片比对固定字节。“读取端点”只读 offset、byteCount、SHA256、pending 和请求摘要；complete 只在完整字节及 hash 相等后成功。最多 16 个会话、256 条摘要、每文件 2097169 字节；状态随 Vite 进程结束消失，无数据库、认证、任意代理或长期存储。
+夹具为 `2 MiB + 17` 字节的 `byte[i] = i % 251`，SHA256 `b057f26faa652e9916aa08eed7e50906151f83de0e878173e9d06e359c0dd75e`，由本仓生成，无第三方文件。tus 会话初置已知前 17 字节；后续请求必须携带会话 header，端点逐片比对固定字节。「读取端点」只读 offset、byteCount、SHA256、pending 和请求摘要；complete 只在完整字节及 hash 相等后成功。最多 16 个会话、256 条摘要、每文件 2097169 字节；状态随 Vite 进程结束消失，无数据库、认证、任意代理或长期存储。
 
-“等待第二片以取消”在第二个 PATCH 保持等待；点击取消使实际 fetch 中止，读回 pending=0 后再恢复，最终 hash 应相等。HTTP 数值错误场景首次触发后可恢复；network 场景持续断开（包含浏览器内部重试），须重置后换成功场景；非法 offset 场景用于明确失败。“重置端点”先取消本地队列，服务端在所有 pending 结束前以 409 拒绝 reset；读回 pending=0 后再显式重置。不要让 reset 与尚未结束的操作并发。端点 URL `/__native-fixture/readback` 为只读，`/session`、`/:id`、`/:id/complete`、`/reset` 只属于本机测试夹具。
+「等待第二片以取消」在第二个 PATCH 保持等待；点击取消使实际 fetch 中止，读回 pending=0 后再恢复，最终 hash 应相等。HTTP 数值错误场景首次触发后可恢复；network 场景持续断开（包含浏览器内部重试），须重置后换成功场景；非法 offset 场景用于明确失败。「重置端点」先取消本地队列，服务端在所有 pending 结束前以 409 拒绝 reset；读回 pending=0 后再显式重置。不要让 reset 与尚未结束的操作并发。端点 URL `/__native-fixture/readback` 为只读，`/session`、`/:id`、`/:id/complete`、`/reset` 只属于本机测试夹具。
 
-回执仅证明本机 fixture 成功，不代表生产 FileStorage、原后端或 FullChain 已接入。新库来源仍冻结于迁移基线，本轮不回传旧库；旧消费者接入另票处理。运行与失败记录见 [F03 证据](../../../../../../docs/evidence/t06-f03/README.md)。
+回执仅证明本机 fixture 成功，不代表生产 FileStorage、原后端或 FullChain 已接入。

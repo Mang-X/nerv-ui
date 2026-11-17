@@ -40,7 +40,7 @@ function fireNotification(kind) {
   <NvNotifierHost />
 </ClientOnly>
 
-## 轻提示 Message
+## 示例
 
 `nvMessage.{info|success|warning|error}(标题)`，适合无需详述的即时结果。
 
@@ -64,8 +64,6 @@ import { nvMessage } from '@nerv-iip/ui'
   <NvButton @click="nvMessage.error('网络连接中断')">错误</NvButton>
 </template>
 ```
-
-## 通知 Notification
 
 `nvNotification.{info|success|warning|error}(标题, { description })`，右上角卡片，适合带上下文的异步结果。
 
@@ -102,8 +100,6 @@ import { nvNotification } from '@nerv-iip/ui'
 | `nvMessage.info / success / warning / error`      | 顶部轻提示     | `(title: string, { duration }?)`              |
 | `nvNotification.info / success / warning / error` | 右上角通知卡片 | `(title: string, { description, duration }?)` |
 | `dismissNotify`                                   | 主动关闭指定项 | `(id: number)`                                |
-
-## 选项
 
 | 选项          | 适用         | 说明                               | 类型     | 默认                                 |
 | ------------- | ------------ | ---------------------------------- | -------- | ------------------------------------ |

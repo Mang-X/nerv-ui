@@ -11,7 +11,7 @@ import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
 
 页面内常驻的提示条，用于陈述上下文、风险或操作结果，区别于短暂的轻提示。`Alert` 由 `AlertTitle` 与 `AlertDescription` 组合而成。
 
-## 基础用法
+## 示例
 
 <Demo>
   <Alert class="max-w-md">
@@ -26,8 +26,6 @@ import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
   <AlertDescription>今日分组 A 计划已下发，所需资源已锁定，开始后不可再调整顺序。</AlertDescription>
 </Alert>
 ```
-
-## 带图标
 
 图标作为 `Alert` 的直接子节点，自动对齐到标题与描述左侧。
 
@@ -47,8 +45,6 @@ import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
 </Alert>
 ```
 
-## 危险变体
-
 <Demo>
   <Alert variant="destructive" class="max-w-md">
     <TriangleAlertIcon aria-hidden="true" />
@@ -65,7 +61,7 @@ import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
 </Alert>
 ```
 
-## 属性
+## API
 
 | 属性      | 说明     | 类型                     | 默认      |
 | --------- | -------- | ------------------------ | --------- |

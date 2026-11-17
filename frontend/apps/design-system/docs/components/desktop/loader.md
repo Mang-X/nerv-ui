@@ -17,7 +17,7 @@ const loaderVariants = [
 
 克制、品牌着色的加载指示。`NvLoader` 提供四种形态用于即时反馈，`Skeleton` 用于内容占位；减弱动效下均降级为静态。
 
-## 形态
+## 示例
 
 <Demo>
   <div class="flex flex-wrap gap-8">
@@ -35,8 +35,6 @@ const loaderVariants = [
 <NvLoader variant="pulse" size="lg" />
 ```
 
-## 尺寸
-
 <Demo>
   <div class="flex items-center gap-6">
     <NvLoader variant="ring" size="sm" />
@@ -51,9 +49,7 @@ const loaderVariants = [
 <NvLoader size="lg" />
 ```
 
-## 骨架屏 Skeleton
-
-内容加载前的占位，避免布局抖动。
+`Skeleton` 用于内容加载前的占位，避免布局抖动。
 
 <Demo>
   <div class="flex w-full max-w-sm items-center gap-3">
@@ -75,7 +71,7 @@ const loaderVariants = [
 </div>
 ```
 
-## 属性
+## API
 
 ### NvLoader
 

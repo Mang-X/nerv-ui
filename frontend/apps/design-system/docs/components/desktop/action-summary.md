@@ -32,6 +32,8 @@ const planItems = computed(() => noPreview.value ? [] : changed.value
 
 用于「数量 + 最近预览 + 出口」的固定高度桌面卡。状态、数量、文案、预览都由宿主提供；`retry` 与 `action` 事件交给宿主处理。
 
+## 示例
+
 <Demo>
   <div class="w-full space-y-4">
     <div class="flex flex-wrap items-center gap-4 text-sm">
@@ -59,8 +61,8 @@ const planItems = computed(() => noPreview.value ? [] : changed.value
           </NvSelectContent>
         </NvSelect>
       </label>
-      <label class="flex items-center gap-2"><NvCheckbox v-model:checked="zero" /> 今日数量为零</label>
-      <label class="flex items-center gap-2"><NvCheckbox v-model:checked="noPreview" /> 暂无最近预览</label>
+      <label class="flex items-center gap-2"><NvCheckbox v-model="zero" /> 今日数量为零</label>
+      <label class="flex items-center gap-2"><NvCheckbox v-model="noPreview" /> 暂无最近预览</label>
       <NvButton type="button" variant="link" size="sm" @click="changed = !changed">换一组安排</NvButton>
     </div>
     <div class="grid gap-4 md:grid-cols-2">
@@ -84,6 +86,8 @@ const planItems = computed(() => noPreview.value ? [] : changed.value
 
 `retry` 仅在 `error` 的重试按钮点击时发出；`action` 由底部出口发出，不携带路由或 DTO。省略 `actionLabel` 时不显示出口。宿主各自监听两张卡的事件，决定当前动作身份。
 
-当 `state='data'` 且没有最近预览时，卡片显示“暂无最近预览”；即使 `count` 为 `0` 或未知，也不会推断为 `empty`。长状态文案在固定卡片的内容区内滚动，底部出口保留可达。
+## 设计说明
+
+当 `state='data'` 且没有最近预览时，卡片显示「暂无最近预览」；即使 `count` 为 `0` 或未知，也不会推断为 `empty`。长状态文案在固定卡片的内容区内滚动，底部出口保留可达。
 
 <!-- @include: ../../../../../DESIGN/components/action-summary.md -->

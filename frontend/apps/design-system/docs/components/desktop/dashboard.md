@@ -16,9 +16,9 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 
 控制台页面的标准外壳区块：组合 `@nerv-iip/ui` 稳定导出的 `Sidebar` 系统（可折叠 / `NvSidebarRail` / 移动抽屉）、inset 内容区与顶部栏。搭建控制台页面应从它起步，而不是手工拼装分区组件。侧栏导航用 `SidebarGroup` / `SidebarMenu` / `SidebarMenuButton` 组织。
 
-本页“控制台”面包屑返回文档首页，当前“记录总览”保持不可点击；此处不连接真实业务控制台。
+本页「控制台」面包屑返回文档首页，当前「记录总览」保持不可点击；此处不连接真实业务控制台。
 
-## 完整外壳
+## 示例
 
 <Demo>
 <div class="nv-shell-demo w-full">
@@ -122,7 +122,13 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 </NvAppShellInset>
 ```
 
-## 插槽 / 属性
+## API
+
+| 名称              | 说明                                                       |
+| ----------------- | ---------------------------------------------------------- |
+| `collapsible`     | `offcanvas` \| `icon` \| `none`，侧栏折叠方式(默认 `icon`) |
+
+### 插槽
 
 | 名称              | 说明                                                       |
 | ----------------- | ---------------------------------------------------------- |
@@ -131,8 +137,7 @@ import { LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, Setting
 | `#sidebar-footer` | 侧栏底部（用户 / 操作）                                    |
 | `#header`         | 顶部栏内容（面包屑等），自带 `NvSidebarTrigger` 折叠按钮   |
 | `default`         | inset 主内容区                                             |
-| `collapsible`     | `offcanvas` \| `icon` \| `none`，侧栏折叠方式(默认 `icon`) |
 
-> 底层通过 `@nerv-iip/ui` 稳定导出完整 Sidebar 系统(`SidebarProvider` / `Sidebar` / `SidebarRail` / `SidebarInset` / `SidebarTrigger` / `SidebarMenu*`),需要更深定制时也从组件库导入。
+> 底层通过 `@nerv-iip/ui` 稳定导出完整 Sidebar 系统(`SidebarProvider` / `Sidebar` / `SidebarRail` / `SidebarInset` / `SidebarTrigger` / `SidebarMenu*`)，需要更深定制时也从组件库导入。
 
 列表页的页头、工具栏、行菜单与统计分区组合见[列表布局与行操作](./list-blocks.md)。

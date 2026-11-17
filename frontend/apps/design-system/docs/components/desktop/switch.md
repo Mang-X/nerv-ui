@@ -14,7 +14,7 @@ const autoDispatch = ref(false)
 
 切换单个布尔状态，即时生效。`NvSwitch` 选中态走品牌色，含平滑滑块过渡。
 
-## 基础用法
+## 示例
 
 <Demo>
   <div style="display:flex;align-items:center;justify-content:space-between;max-width:280px">
@@ -29,8 +29,6 @@ const autoDispatch = ref(false)
   <NvSwitch v-model="switchOn" />
 </div>
 ```
-
-## 多项与禁用
 
 <Demo>
   <div style="display:flex;flex-direction:column;gap:12px;max-width:280px;font-size:14px">
@@ -50,7 +48,7 @@ const autoDispatch = ref(false)
 <NvSwitch disabled />
 ```
 
-## 属性
+## API
 
 | 属性       | 说明     | 类型      | 默认    |
 | ---------- | -------- | --------- | ------- |

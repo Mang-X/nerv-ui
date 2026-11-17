@@ -29,9 +29,9 @@ import {
 
 横向控制台导航条：触发器展开下方的大型菜单面板，视口随面板内容动画改变大小与位置，指示器滑向当前激活项。简单入口用纯链接。`NvNavigationMenu` 家族在 reka 原语之上复制重建，仅采用我们的设计令牌，从不修改原版。
 
-## 控制台
+## 示例
 
-将“工作 / 资源 / 审核”做成可展开面板，“设置”作为直达链接。本页各入口跳转到已有的对应能力文档；“设置”进入色彩与动态色说明，不连接真实业务。
+将「工作 / 资源 / 审核」做成可展开面板，「设置」作为直达链接。本页各入口跳转到已有的对应能力文档；「设置」进入色彩与动态色说明，不连接真实业务。
 
 <Demo popout>
   <NvNavigationMenu class="w-full max-w-none">
@@ -161,22 +161,7 @@ import {
 </NvNavigationMenu>
 ```
 
-共享视口中的内容按内在宽度测量，并为屏幕两侧各保留 `1rem`。网格通过
-`max-w-full` 随内容区收窄，工作入口在窄屏单列、`sm` 起恢复桌面双列；
-资源与审核保留单列。自定义内容也应允许换行、收缩，避免固定子元素超出内容区。
-关闭内置视口（`viewport=false`）时仍沿用原有的内容布局方式。
-
-## 组成
-
-- `NvNavigationMenu` — 根容器，默认在导航条下方渲染内置动画视口（`viewport`，可关）。
-- `NvNavigationMenuList` / `NvNavigationMenuItem` — 横向列表与单项。
-- `NvNavigationMenuTrigger` — 展开面板的按钮，带随展开旋转 180° 的箭头（`chevron`，可关）。
-- `NvNavigationMenuContent` — 面板内容，被 reka 提升进视口；按移动方向左右滑入。
-- `NvNavigationMenuLink` — 链接；`bar` 时为顶部条目样式，否则为面板内富链接。
-- `NvNavigationMenuIndicator` — 滑向激活触发器、指向面板的小菱形指示器。
-- `NvNavigationMenuViewport` — 玻璃面板容器，随内容动画改变尺寸并脱离裁剪（一般无需手动放置）。
-
-## 属性
+## API
 
 | 组件                      | 属性             | 说明                        | 类型      | 默认    |
 | ------------------------- | ---------------- | --------------------------- | --------- | ------- |
@@ -188,3 +173,15 @@ import {
 | `NvNavigationMenuLink`    | `bar`            | 作为顶部条目样式渲染        | `boolean` | `false` |
 | `NvNavigationMenuLink`    | `href`           | 链接地址                    | `string`  | —       |
 | `NvNavigationMenuLink`    | `active`         | 是否为当前激活链接          | `boolean` | `false` |
+
+## 设计说明
+
+- `NvNavigationMenu` — 根容器，默认在导航条下方渲染内置动画视口（`viewport`，可关）。
+- `NvNavigationMenuList` / `NvNavigationMenuItem` — 横向列表与单项。
+- `NvNavigationMenuTrigger` — 展开面板的按钮，带随展开旋转 180° 的箭头（`chevron`，可关）。
+- `NvNavigationMenuContent` — 面板内容，被 reka 提升进视口；按移动方向左右滑入。
+- `NvNavigationMenuLink` — 链接；`bar` 时为顶部条目样式，否则为面板内富链接。
+- `NvNavigationMenuIndicator` — 滑向激活触发器、指向面板的小菱形指示器。
+- `NvNavigationMenuViewport` — 玻璃面板容器，随内容动画改变尺寸并脱离裁剪（一般无需手动放置）。
+
+共享视口中的内容按内在宽度测量，并为屏幕两侧各保留 `1rem`。网格通过 `max-w-full` 随内容区收窄，工作入口在窄屏单列、`sm` 起恢复桌面双列；资源与审核保留单列。自定义内容也应允许换行、收缩，避免固定子元素超出内容区。关闭内置视口（`viewport=false`）时仍沿用原有的内容布局方式。

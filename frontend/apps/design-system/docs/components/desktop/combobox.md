@@ -23,18 +23,22 @@ const technicianOptions = [
 
 # NvCombobox / NvSearchSelect 联想与搜索选择
 
-两个用于**减少手动输入**的输入控件，都基于 Popover（浮层挂载在外层，避免被 Sheet 或对话框的
-`overflow` 裁剪），自带过滤与键盘导航（↑ ↓ 移动、↵ 选择、Esc 关闭）。
+两个用于**减少手动输入**的输入控件，都基于 Popover（浮层挂载在外层，避免被 Sheet 或对话框的 `overflow` 裁剪），自带过滤与键盘导航（↑ ↓ 移动、↵ 选择、Esc 关闭）。
+
+## 何时使用
 
 | 控件                          | 语义                              | 是否允许自由录入 | 典型场景                                     |
 | ----------------------------- | --------------------------------- | ---------------- | -------------------------------------------- |
 | **NvCombobox** 输入联想框     | 文本输入即过滤建议，值 = 输入文本 | ✅ 允许          | 资源编号、标签（有历史候选、也可能新填）   |
 | **NvSearchSelect** 弹出选择框 | 按钮触发可搜索的弹出单选          | ❌ 仅选不填      | 成员目录、状态原因、处理结果（固定集合）   |
 
-## NvCombobox 输入联想框
+- 值可能不在集合内（会新登记资源、标签因分组而异）→ **NvCombobox**。
+- 值必须来自固定集合（人员目录、编码字典）→ **NvSearchSelect**。
+- 集合极小（≤5 且稳定）且无需搜索 → 用 [`NvSelect`](/components/desktop/select)。
 
-输入即过滤 `suggestions`；命中建议可一键填入，也可继续输入未在建议中的自定义值。
-仅在存在匹配建议时展开弹层，避免自由录入时反复弹出空态。本例将资源编号同时放入 `hint`，因此编号与名称都可用于检索。
+## 示例
+
+`NvCombobox` 输入即过滤 `suggestions`；命中建议可一键填入，也可继续输入未在建议中的自定义值。仅在存在匹配建议时展开弹层，避免自由录入时反复弹出空态。本例将资源编号同时放入 `hint`，因此编号与名称都可用于检索。
 
 <Demo>
   <div style="max-width: 320px">
@@ -59,11 +63,7 @@ const technicianOptions = [
 />
 ```
 
-## NvSearchSelect 弹出选择框
-
-从固定集合里选一个；触发按钮展示所选标签，弹层顶部带搜索框，比长下拉更好定位。
-`options` 支持 `hint`（如成员编号）辅助识别。
-字段校验失败时可传 `aria-invalid` 与 `aria-describedby`；组件会将它们转发到实际获得焦点的触发按钮。
+`NvSearchSelect` 从固定集合里选一个；触发按钮展示所选标签，弹层顶部带搜索框，比长下拉更好定位。`options` 支持 `hint`（如成员编号）辅助识别。字段校验失败时可传 `aria-invalid` 与 `aria-describedby`；组件会将它们转发到实际获得焦点的触发按钮。
 
 <Demo>
   <div style="max-width: 320px">
@@ -89,9 +89,3 @@ const technicianOptions = [
   search-placeholder="搜索成员姓名 / 编号…"
 />
 ```
-
-## 选型
-
-- 值可能不在集合内（会新登记资源、标签因分组而异）→ **NvCombobox**。
-- 值必须来自固定集合（人员目录、编码字典）→ **NvSearchSelect**。
-- 集合极小（≤5 且稳定）且无需搜索 → 用 [`NvSelect`](/components/desktop/select)。

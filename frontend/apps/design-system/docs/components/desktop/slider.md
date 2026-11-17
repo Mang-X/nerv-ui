@@ -15,7 +15,7 @@ const step = ref([60])
 
 数值滑动选择。`NvSlider` 基于 reka 原语重建，品牌色填充已选区间，拖动手柄带聚焦环与抓取放大反馈（无回弹，遵循动效哲学）。`modelValue` 传数组——多个值即多手柄（区间选择）。
 
-## 基础用法
+## 示例
 
 `v-model` 绑定一个单元素数组。
 
@@ -32,8 +32,6 @@ const step = ref([60])
 <NvSlider v-model="util" :max="100" :step="1" />
 ```
 
-## 区间选择
-
 `modelValue` 传两个值，渲染两个手柄。
 
 <Demo>
@@ -49,8 +47,6 @@ const step = ref([60])
 <NvSlider v-model="durationRange" :min="0" :max="120" :step="5" />
 ```
 
-## 步长与禁用
-
 <Demo>
   <div class="flex w-full max-w-md flex-col gap-6">
     <NvSlider v-model="step" :max="100" :step="10" />
@@ -58,7 +54,7 @@ const step = ref([60])
   </div>
 </Demo>
 
-## 属性
+## API
 
 | 属性          | 说明                            | 类型                     | 默认         |
 | ------------- | ------------------------------- | ------------------------ | ------------ |

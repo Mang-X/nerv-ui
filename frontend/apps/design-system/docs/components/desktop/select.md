@@ -21,7 +21,7 @@ const statusValue = ref()
 
 从预设选项中单选。`NvSelect` 由触发器、值占位与下拉内容组合而成，保持品牌聚焦与一致的浮层质感。
 
-## 基础用法
+## 示例
 
 <Demo>
   <div style="max-width: 280px">
@@ -47,8 +47,6 @@ const statusValue = ref()
 </NvSelect>
 ```
 
-## 占位与未选中
-
 <Demo>
   <div style="max-width: 280px">
     <NvSelect v-model="statusValue">
@@ -73,7 +71,15 @@ const statusValue = ref()
 </NvSelect>
 ```
 
-## 属性
+下方示例演示 `NvFormSection` 与品牌 `NvSelect`、基础 `Select` 在同一个表单里的分节组合。
+
+<Demo>
+  <LocalFormSectionExample />
+</Demo>
+
+<<< ../../.vitepress/examples/localFormSectionExample.vue
+
+## API
 
 | 组件              | 说明                                   |
 | ----------------- | -------------------------------------- |
@@ -90,11 +96,7 @@ const statusValue = ref()
 | `value`       | 选项值（`NvSelectItem`）          | `string`  | —       |
 | `invalid`     | 触发器错误态（`NvSelectTrigger`） | `boolean` | `false` |
 
-## 表单分节与分组选择
-
-<Demo>
-  <LocalFormSectionExample />
-</Demo>
+## 设计说明
 
 本页表单共用局部 host，区域与活动分别持有当前值，重置只作用于当前实例，不提交或保存。标签使用 `useId()` 关联真实触发器。
 
@@ -104,8 +106,4 @@ const statusValue = ref()
 
 活动独立使用基础 `Select/SelectTrigger/SelectValue/SelectContent/SelectGroup/SelectLabel/SelectSeparator/SelectItem`。基础 Content 默认 `position="item-aligned"`、`align="center"`，内部已组合 `SelectScrollUpButton/SelectScrollDownButton`；不要在 consumer 重复包裹。每组十项共二十项，为有限视口留下溢出条件；按钮是否显示取决于 Reka 的实际视口与滚动位置。
 
-两族根组件通过 `v-model` 消费公开 `modelValue/update:modelValue`，其余 Reka props/emits 由 producer 转发。Tab、方向键、Enter、Escape 和焦点管理交给 Reka；示例不另写 keydown。真实键盘、滚动按钮与 1440/390 亮暗布局由独立浏览器验收。
-
-学习源码与 live 共用一份：
-
-<<< ../../.vitepress/examples/localFormSectionExample.vue
+两族根组件通过 `v-model` 消费公开 `modelValue/update:modelValue`，其余 Reka props/emits 由 producer 转发。Tab、方向键、Enter、Escape 和焦点管理交给 Reka；示例不另写 keydown。

@@ -17,6 +17,8 @@ function refresh() {
 
 # NvNotificationInbox
 
+## 示例
+
 <Demo>
   <NvNotificationInbox title="阅读消息" :items="items" v-model:selected-key="selected" @mark-read="mark" @refresh="refresh" />
   <p role="status" class="w-full text-sm text-muted-foreground">
@@ -37,10 +39,12 @@ function refresh() {
 | loading                               | boolean，false                        | 等待时隐藏列表/详情，禁用刷新                           |
 | pendingKeys                           | readonly string[]                     | 对应记录禁用标记；不自动变成已读                        |
 | error                                 | string                                | 用户可读错误；允许保留列表，不显示空态                  |
-| emptyText / missingText / loadingText | string                                | 默认“暂无通知。”“尚未提供通知。”“正在加载通知…”         |
-| filterLabel                           | string                                | 默认“通知类型”                                          |
+| emptyText / missingText / loadingText | string                                | 默认「暂无通知。」「尚未提供通知。」「正在加载通知…」   |
+| filterLabel                           | string                                | 默认「通知类型」                                        |
 
 `NvNotificationItem`：`key/title` 必填，`summary/code/meta/read/statuses` 可选；statuses 为 `{label: string, tone: StatusTone}[]`。不从文字推断状态；read 未提供不显示读状态和标记动作。summary 保留换行；code 使用等宽小字。
+
+### 事件
 
 | 事件               | 参数               | 说明                               |
 | ------------------ | ------------------ | ---------------------------------- |
@@ -49,6 +53,8 @@ function refresh() {
 | markRead           | NvNotificationItem | 列表/详情标记请求，无本地成功状态  |
 | refresh            | 无                 | 刷新请求，无自动清错               |
 | update:filter      | string             | 请求新筛选，宿主拒绝时保留原值     |
+
+### 插槽
 
 | Slot   | 类型                                                            | 用途                         |
 | ------ | --------------------------------------------------------------- | ---------------------------- |

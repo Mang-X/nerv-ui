@@ -12,6 +12,8 @@ const nodes = ref([{ key: 'books', label: '晨光书房', children: [{ key: 'poe
 
 # NvTree
 
+## 示例
+
 <Demo>
   <NvTree :nodes="nodes" label="阅读空间" v-model:expanded="expanded" v-model:selected-key="selected">
     <template #actions="{ node }"><NvButton v-if="node.key === 'books'" variant="ghost" size="sm" @click="nodes[0].children.push({ key: 'shelf-' + nodes[0].children.length, label: '新书架' })">添加书架</NvButton></template>
@@ -26,7 +28,7 @@ const nodes = ref([{ key: 'books', label: '晨光书房', children: [{ key: 'poe
 | label                            | string                     | 树的可访问名称；每项以 label 命名                                |
 | expanded / update:expanded       | string[]                   | 受控展开 key；事件产生新数组                                     |
 | selectedKey / update:selectedKey | string 或 null / string    | 单选请求；拒绝后不改变高亮                                       |
-| emptyText                        | string                     | 默认“暂无内容”                                                   |
+| emptyText                        | string                     | 默认「暂无内容」                                                 |
 | actions                          | slot，{ node: NvTreeNode } | 应用决定动作类型与是否展示；点击和键盘不触发树选择               |
 
 status 是 `{ label: string, tone: StatusTone }`。停用展示与禁止交互相互独立，详细规则见下文。

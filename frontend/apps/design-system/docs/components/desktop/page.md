@@ -10,7 +10,7 @@ import { NvPage, NvPageAside } from '@nerv-iip/ui'
 
 带可选左右栏的页面网格（参考 Nuxt UI）。大屏下为 10 栏网格——左栏 2 / 中间 6–8 / 右栏 2；不传侧栏时为居中单列。侧栏内容用 `NvPageAside` 包裹可获得吸顶独立滚动。
 
-## 左导航 + 内容 + 右目录
+## 示例
 
 <Demo>
   <NvPage class="rounded-xl border border-border bg-card p-4">
@@ -55,7 +55,9 @@ import { NvPage, NvPageAside } from '@nerv-iip/ui'
 </NvPage>
 ```
 
-## 插槽
+## API
+
+### 插槽
 
 | 插槽      | 说明                                  |
 | --------- | ------------------------------------- |
@@ -63,4 +65,4 @@ import { NvPage, NvPageAside } from '@nerv-iip/ui'
 | `default` | 主内容区                              |
 | `right`   | 右侧栏（目录），大屏 2 栏、移动端隐藏 |
 
-> `NvPageAside` 提供 `lg:sticky` 吸顶 + 独立滚动；放在 `#left` / `#right` 内即可。
+`NvPageAside` 提供 `lg:sticky` 吸顶 + 独立滚动；放在 `#left` / `#right` 内即可。

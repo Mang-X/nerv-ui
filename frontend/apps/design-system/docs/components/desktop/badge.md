@@ -10,7 +10,7 @@ import { NvBadge } from '@nerv-iip/ui'
 
 用克制的语义色块标注状态、分类或数量。`NvBadge` 采用柔色填充 + 同色描边，高度与 `NvButton` 协调。
 
-## 变体
+## 示例
 
 <Demo>
   <NvBadge variant="brand">品牌</NvBadge>
@@ -28,7 +28,7 @@ import { NvBadge } from '@nerv-iip/ui'
 <NvBadge>中性</NvBadge>
 ```
 
-## 属性
+## API
 
 | 属性      | 说明     | 类型                                                        | 默认      |
 | --------- | -------- | ----------------------------------------------------------- | --------- |

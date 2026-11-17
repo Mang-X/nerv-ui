@@ -11,6 +11,8 @@ const space = ref<'library' | 'studio'>('library')
 
 # 空间登录与修改密码
 
+## 示例
+
 <Demo>
   <LoginDemo :space="space">
     <template #navigation>
@@ -23,7 +25,7 @@ const space = ref<'library' | 'studio'>('library')
 
 <!--@include: ../../../../../DESIGN/components/login-recipe.md-->
 
-## 宿主合同
+## API
 
 文档通过 `LoginDemo` 的 `navigation` 插槽提供本页空间切换与返回文档首页的链接，`space` 由本页受控传入。playground 不传插槽时仍使用原来的 hash 导航；空间变化继续使旧确认失效。
 

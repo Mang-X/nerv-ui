@@ -8,6 +8,8 @@ import NeutralShellDemo from '../../../../playground/src/NeutralShellDemo.vue'
 
 # 中性应用壳组合
 
+## 示例
+
 <section id="library-shell" class="vp-raw nv-doc-shell-frame" aria-label="晨光书房应用壳示例">
   <ClientOnly>
     <NeutralShellDemo space="library">
@@ -33,7 +35,7 @@ import NeutralShellDemo from '../../../../playground/src/NeutralShellDemo.vue'
 
 文档通过 `NeutralShellDemo` 的 `navigation` 插槽提供首页链接与两个实例的定位入口。空间链接在当前标签页重新载入文档并定位对应实例，示例状态随页面重新开始；playground 不传插槽时保留原 hash 导航。
 
-## 宿主适配 API
+## API
 
 `NeutralShell.vue` 是示例内的适配器；公共布局仍为 `NvAppShellInset`。
 
@@ -51,7 +53,7 @@ import NeutralShellDemo from '../../../../playground/src/NeutralShellDemo.vue'
 
 `topDomains` 为独立的 `{ key, label, disabled? }[]`；`currentDomainKey` 为当前域，`selectDomain(key)` 为受控请求。host 通过 `items` 更换域内页菜单；`currentKey` 只标记页，域与页的 key 不互相推断。`items.children` 表达父子折叠，父项本身不发页导航。
 
-以下可选文案 props 均有默认值：`searchLabel`（查找空间）、`moreLabel`（更多空间）、`signOutLabel`（退出当前用户）、`navLabel`（空间菜单）、`domainsLabel`（常用空间）、`starredLabel`（星标）、`recentLabel`（最近访问）。`userMenuLabel` 缺省为当前用户名加“的用户菜单”。`logo` 默认 N。
+以下可选文案 props 均有默认值：`searchLabel`（查找空间）、`moreLabel`（更多空间）、`signOutLabel`（退出当前用户）、`navLabel`（空间菜单）、`domainsLabel`（常用空间）、`starredLabel`（星标）、`recentLabel`（最近访问）。`userMenuLabel` 缺省为当前用户名加「的用户菜单」。`logo` 默认 N。
 
 顶部按实际宽度显示 0..N 域，菜单关闭后仍标记溢出当前域。未提供 `topDomains` 时兼容平面 `items` 导航；两个正式示例均显式分离域与页。
 

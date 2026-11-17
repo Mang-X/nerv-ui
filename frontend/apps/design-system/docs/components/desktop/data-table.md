@@ -77,7 +77,7 @@ const pageSize = ref(10)
 
 完整的高级数据表体验。`NvDataTable` 内置工具栏（搜索 · 字段筛选 · 列显隐 · 密度）、可排序表头、行选择与可点击页码分页；默认在客户端处理筛选/排序/分页。工具栏 `NvDataTableToolbar` 与分页 `NvPagination` 也可独立使用。
 
-## 完整表格
+## 示例
 
 本页操作消息共用一个 `NvNotifierHost`，只展示刷新、重试、导出、打印等操作回执，不执行真实业务或生成文件。接入应用时在根部挂载一次；已有 Host 时不要重复添加。
 
@@ -140,19 +140,13 @@ const pageSize = ref(10)
 </NvDataTable>
 ```
 
-## 空 / 失败 / 未查询三态
+表格必须能表达「请求失败」和「还没查」，不能把它们都塞进空态——一个 500 和「真的 0 条」如果渲染成同一句「暂无数据」，看板上就是在骗人。
 
-表格必须能表达「请求失败」和「还没查」，不能把它们都塞进空态——一个 500 和「真的
-0 条」如果渲染成同一句「暂无数据」，看板上就是在骗人。
-
-- **失败**：传 `:error`（`Error` / 响应对象 / 现成中文文案），红色警示章 + 具体原因 +
-  「重新加载」按钮（触发 `retry`）。失败态里不会出现任何「暂无 / 没有」的安慰话。
-- **未查询**：传 `awaiting-scope` + `awaiting-scope-message`，虚线待办章 + 一句话说清
-  还要选什么。
+- **失败**：传 `:error`（`Error` / 响应对象 / 现成中文文案），红色警示章 + 具体原因 + 「重新加载」按钮（触发 `retry`）。失败态里不会出现任何「暂无 / 没有」的安慰话。
+- **未查询**：传 `awaiting-scope` + `awaiting-scope-message`，虚线待办章 + 一句话说清还要选什么。
 - **空**：既没失败也已查过，才用 `empty-message`。
 
-优先级：`error` > `loading` > `awaitingScope` > 有数据 > 空。`error` 与 `loading`
-同时为真表示正在重试，仍停在失败态，只把按钮切成「重试中…」。
+优先级：`error` > `loading` > `awaitingScope` > 有数据 > 空。`error` 与 `loading` 同时为真表示正在重试，仍停在失败态，只把按钮切成「重试中…」。
 
 <Demo block>
   <NvDataTable
@@ -196,13 +190,9 @@ const pageSize = ref(10)
 />
 ```
 
-自定义呈现走 `#error` / `#awaiting` / `#empty` 插槽；`#error` 提供
-`{ message, error }` 作用域参数。
+自定义呈现走 `#error` / `#awaiting` / `#empty` 插槽；`#error` 提供 `{ message, error }` 作用域参数。错误面板是 `role="alert"` 活动区域，进入错误态时读屏会播报失败原因（`#error` 插槽内容同样被包住）；调用点不需要再自己加 `role="alert"`。
 
-错误面板是 `role="alert"` 活动区域，进入错误态时读屏会播报失败原因（`#error`
-插槽内容同样被包住）；调用点不需要再自己加 `role="alert"`。
-
-## 操作栏 NvToolbar
+`NvDataTableToolbar` 独立承担工具栏职责：
 
 <Demo block>
   <NvDataTableToolbar
@@ -252,7 +242,7 @@ const pageSize = ref(10)
 />
 ```
 
-## 分页 Pagination
+`NvPagination` 独立分页：
 
 <Demo block>
   <NvPagination
@@ -276,7 +266,19 @@ const pageSize = ref(10)
 />
 ```
 
-## 属性
+基础 `Table` 适合直接组织少量记录；下方展示物品、数量和单位三列，表题随当前记录数更新，页脚只合计当前记录。真实数量 0 仍显示为 0；清空后显示独立空行，合计为 0。恢复只影响本页内存，刷新后重新开始。
+
+<Demo block>
+  <BaseTableExample />
+</Demo>
+
+<<< ../../.vitepress/examples/BaseTableExample.vue
+
+`TableCaption`、`TableFooter` 和 `TableEmpty` 均来自主桶 `@nerv-iip/ui`。空行的 `colspan` 与三列表头使用同一列数组；这与上方 `NvDataTable` 的内建空态是两种组合。数量右对齐，最多三位小数；单位单列弱化显示，不参与数量格式化。
+
+窄屏可先用 Tab 聚焦物品清单的实际滚动容器，再用左右方向键横向查看末列；外层边框不额外加入 Tab 顺序。按钮支持 Tab 聚焦及 Enter/Space 激活。
+
+## API
 
 ### NvDataTable
 
@@ -297,10 +299,9 @@ const pageSize = ref(10)
 | `awaitingScopeMessage` | 未查询态引导语                                        | `string`                              | `请先在上方选择查询范围。` |
 | `emptyMessage`         | 空态文案（仅在已查询且确实 0 条时出现）               | `string`                              | `暂无数据`                 |
 
-事件：`refresh`（工具栏刷新，用户在已有结果上主动要最新数据）与 `retry`（失败后的
-恢复动作）语义分开，互不触发。
+事件：`refresh`（工具栏刷新，用户在已有结果上主动要最新数据）与 `retry`（失败后的恢复动作）语义分开，互不触发。
 
-### 列定义
+### NvDataTableColumn
 
 | 属性            | 说明                                           | 类型                           | 默认      |
 | --------------- | ---------------------------------------------- | ------------------------------ | --------- |
@@ -317,13 +318,9 @@ const pageSize = ref(10)
 | `defaultHidden` | 初始隐藏（`hideable` 为 false 时不再可切换）   | `boolean`                      | `false`   |
 | `accessor`      | 取值函数，默认取 `row[key]`                    | `(row: T) => unknown`          | —         |
 
-`headerTitle` 是桌面端的轻量补充提示，不应承载完成操作所必需的信息。组件会为该列
-渲染可聚焦帮助触发器；核心列名和状态仍必须脱离提示独立可读。
+`headerTitle` 是桌面端的轻量补充提示，不应承载完成操作所必需的信息。组件会为该列渲染可聚焦帮助触发器；核心列名和状态仍必须脱离提示独立可读。
 
-#### `width`（列宽声明）
-
-表格使用 `table-layout: fixed` 排布，**列宽声明即渲染宽度**：表格不会被列内容
-撑开，也不会把列挤窄到装不下内容。这条契约对两种写法一致成立：
+表格使用 `table-layout: fixed` 排布，**列宽声明即渲染宽度**：表格不会被列内容撑开，也不会把列挤窄到装不下内容。这条契约对两种写法一致成立：
 
 | 写法            | 例                  | 落地方式                 |
 | --------------- | ------------------- | ------------------------ |
@@ -332,11 +329,9 @@ const pageSize = ref(10)
 
 未声明 `width` 的列均分剩余空间。三条注意：
 
-- 声明宽在**有余量**时会被等比放大到填满容器（不会缩窄）。要「就这么多」请配合
-  同行的其它列宽一起看，而不是指望某一列不被放大。
+- 声明宽在**有余量**时会被等比放大到填满容器（不会缩窄）。要「就这么多」请配合同行的其它列宽一起看，而不是指望某一列不被放大。
 - 声明宽的列**不会**被内容撑大；内容放不下时在格内截断（如 `truncate` + tooltip）。
-- **`min-w-*` 不是列宽声明**。`fixed` 布局只按 `width` 定列宽，`min-width` 不参与
-  计算，「至少这么宽」请写等价的 `w-[22rem]`。
+- **`min-w-*` 不是列宽声明**。`fixed` 布局只按 `width` 定列宽，`min-width` 不参与计算，「至少这么宽」请写等价的 `w-[22rem]`。
 
 ### NvPagination
 
@@ -348,21 +343,3 @@ const pageSize = ref(10)
 | `showJump`   | 显示跳页输入                    | `boolean` | `false` |
 
 列表页的页头、工具栏、行菜单与统计分区组合见[列表布局与行操作](./list-blocks.md)。
-
-## 基础 Table 组合
-
-基础 `Table` 适合直接组织少量记录；下方展示物品、数量和单位三列，表题随当前记录数更新，页脚只合计当前记录。真实数量 0 仍显示为 0；清空后显示独立空行，合计为 0。恢复只影响本页内存，刷新后重新开始。
-
-<Demo block>
-  <BaseTableExample />
-</Demo>
-
-`TableCaption`、`TableFooter` 和 `TableEmpty` 均来自主桶 `@nerv-iip/ui`。空行的 `colspan` 与三列表头使用同一列数组；这与上方 `NvDataTable` 的内建空态是两种组合。数量右对齐，最多三位小数；单位单列弱化显示，不参与数量格式化。
-
-窄屏可先用 Tab 聚焦物品清单的实际滚动容器，再用左右方向键横向查看末列；外层边框不额外加入 Tab 顺序。按钮支持 Tab 聚焦及 Enter/Space 激活。
-
-### 组合源码
-
-live 与学习代码共用以下文件：
-
-<<< @/.vitepress/examples/BaseTableExample.vue
