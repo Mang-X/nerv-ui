@@ -97,7 +97,9 @@ watch(() => [scrollers.value.y, scrollers.value.m, scrollers.value.d], positionW
 <template>
   <BottomSheet :open="open" @update:open="open = $event">
     <div class="nv-m-mdp">
-      <div class="flex items-center justify-between pb-1">
+      <!-- mx lets the corner buttons' focus halo breathe instead of clipping at
+           the sheet's rounded edge (the 4px focus ring extends past the button). -->
+      <div class="mx-1 flex items-center justify-between pb-1">
         <MobileButton variant="text" size="md" class="text-muted-foreground" @click="open = false"
           >取消</MobileButton
         >
