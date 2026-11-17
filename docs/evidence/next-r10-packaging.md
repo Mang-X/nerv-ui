@@ -32,3 +32,18 @@
 ## 已知边界
 - StyleX 变量组哈希按编译单元生成，因此每个包内置 `src/theme` 副本（由 `scripts/sync-theme.mjs` 从 `packages/theme/src` 同步），不跨包 import 变量组。
 - 宿主需自行引入 `@nerv-ui/<pkg>/styles.css`（原子 CSS 不自动注入）。
+
+## 最终状态（2026-11-18 收口）
+
+| 包 | 组件数 | tgz |
+| --- | --- | --- |
+| @nerv-ui/desktop | 83 | 122 KB |
+| @nerv-ui/mobile | 36 | 83 KB |
+| @nerv-ui/pad | 16 | 45 KB |
+| @nerv-ui/screen | 27 | 99 KB |
+| **合计** | **162** | — |
+
+- 四个包 `typecheck` 全 OK、`build` 全通过（StyleX 原子 CSS 随产物）
+- `apps/docs-next` 115 页全部 200，零控制台错误（除既有 favicon 404）
+- 独立宿主（先前验收）只装 tgz 可用：渲染 / v-model / 切换 / 聚焦环 / SVG 图表全绿
+- 旧库 `@nerv-iip/*` 与 `apps/docs` 全程零改动
