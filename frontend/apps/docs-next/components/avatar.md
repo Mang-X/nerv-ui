@@ -3,12 +3,16 @@ title: NvAvatar 头像
 ---
 
 <script setup>
+import { onMounted, ref } from 'vue'
 import { NvAvatar } from '@nerv-ui/desktop'
 import '@nerv-ui/desktop/styles.css'
 
-const logoSrc = `data:image/svg+xml;utf8,${encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><rect width="160" height="160" fill="#2563eb"/><circle cx="80" cy="80" r="42" fill="#ffffff" fill-opacity="0.9"/><text x="80" y="94" font-family="sans-serif" font-size="40" text-anchor="middle" fill="#1e293b">N</text></svg>',
-)}`
+const logoSrc = ref(null)
+onMounted(() => {
+  logoSrc.value = `data:image/svg+xml;utf8,${encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><rect width="160" height="160" fill="#2563eb"/><circle cx="80" cy="80" r="42" fill="#ffffff" fill-opacity="0.9"/><text x="80" y="94" font-family="sans-serif" font-size="40" text-anchor="middle" fill="#1e293b">N</text></svg>',
+  )}`
+})
 </script>
 
 # NvAvatar 头像
@@ -38,7 +42,7 @@ const logoSrc = `data:image/svg+xml;utf8,${encodeURIComponent(
 
 <Demo>
   <NvAvatar :src="logoSrc" name="NvUI 团队" alt="NvUI 团队" size="lg" />
-  <NvAvatar name="不存在的图片" :src="'/missing-avatar.png'" fallback-delay="200" />
+  <NvAvatar name="无图片时显示首字" />
 </Demo>
 
 ## API

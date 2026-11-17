@@ -21,7 +21,7 @@ const limited = ref(null)
   <NvDateRangePicker v-model:value="range" clearable style="width: 360px" />
 </Demo>
 
-当前范围：{{ range ? `${range[0]} → ${range[1]}` : '—' }}
+当前范围：{{ range ? range[0] + ' → ' + range[1] : '—' }}
 
 <Demo>
   <NvDateRangePicker v-model:value="limited" month="2026-11" min="2026-11-02" max="2026-11-20" />

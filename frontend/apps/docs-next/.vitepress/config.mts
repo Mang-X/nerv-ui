@@ -27,6 +27,50 @@ export default defineConfig({
           { text: 'NvPopover 气泡卡片', link: '/components/popover' },
           { text: 'NvTooltip 文字提示', link: '/components/tooltip' },
           { text: 'NvTabs 标签页', link: '/components/tabs' },
+          {
+            text: '基础',
+            items: [
+              { text: 'NvBadge 徽标', link: '/components/badge' },
+              { text: 'NvAvatar 头像', link: '/components/avatar' },
+              { text: 'NvCard 卡片', link: '/components/card' },
+              { text: 'NvEmpty 空状态', link: '/components/empty' },
+              { text: 'NvSpinner 加载指示器', link: '/components/spinner' },
+              { text: 'NvSkeleton 骨架屏', link: '/components/skeleton' },
+              { text: 'NvProgress 进度条', link: '/components/progress' },
+              { text: 'NvSeparator 分割线', link: '/components/separator' },
+            ],
+          },
+          {
+            text: '导航',
+            items: [
+              { text: 'NvAccordion 折叠面板', link: '/components/accordion' },
+              { text: 'NvBreadcrumb 面包屑', link: '/components/breadcrumb' },
+              { text: 'NvPagination 分页', link: '/components/pagination' },
+              { text: 'NvSidebar 侧边栏', link: '/components/sidebar' },
+              { text: 'NvNavigationMenu 导航菜单', link: '/components/navigation-menu' },
+            ],
+          },
+          {
+            text: '数据',
+            items: [
+              { text: 'NvDataTable 数据表格', link: '/components/data-table' },
+              { text: '图表（折线 / 柱 / 环）', link: '/components/chart' },
+            ],
+          },
+          {
+            text: '日期与选择',
+            items: [
+              { text: 'NvDatePicker 日期选择器', link: '/components/date-picker' },
+              { text: 'NvDateRangePicker 日期范围选择器', link: '/components/date-range-picker' },
+              { text: 'NvTimePicker 时间选择器', link: '/components/time-picker' },
+              { text: 'NvCombobox 组合框', link: '/components/combobox' },
+              { text: 'NvCommand 命令面板', link: '/components/command' },
+              { text: 'NvAutocomplete 联想输入', link: '/components/autocomplete' },
+              { text: 'NvRating 评分', link: '/components/rating' },
+              { text: 'NvFileInput 文件上传', link: '/components/file-input' },
+              { text: 'NvFilePreview 文件预览', link: '/components/file-preview' },
+            ],
+          },
         ],
       },
       {
