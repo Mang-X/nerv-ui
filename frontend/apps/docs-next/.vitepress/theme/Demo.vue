@@ -1,8 +1,12 @@
 <template>
   <div class="nv-demo">
-    <div class="nv-demo-stage"><slot /></div>
+    <div class="nv-demo-stage" :class="{ 'nv-demo-stage--block': block }"><slot /></div>
   </div>
 </template>
+
+<script setup lang="ts">
+withDefaults(defineProps<{ block?: boolean }>(), { block: false })
+</script>
 
 <style scoped>
 .nv-demo {
@@ -17,5 +21,11 @@
   align-items: center;
   gap: 12px;
   padding: 20px;
+}
+.nv-demo-stage--block {
+  display: block;
+}
+.nv-demo-stage--block > * {
+  width: 100%;
 }
 </style>
