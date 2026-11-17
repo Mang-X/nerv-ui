@@ -40,9 +40,9 @@ const lockMaterial = ref(true)
 
 # NvCell 单元格
 
-信息 / 表单行（tdesign-mobile 风格）：标题 + 可选备注 + 尾部值，可选箭头。`NvCellGroup` 把多个单元格组合成带细分割线的圆角卡片。右侧手机模拟器为实时组件，随页面滚动吸顶。
+信息 / 表单行：标题 + 可选备注 + 尾部值，可选箭头。`NvCellGroup` 把多个单元格组合成带细分割线的圆角卡片。
 
-## 基础用法
+## 示例
 
 单元格可承载文本值、备注、箭头，或通过 `#value` 插槽嵌入开关等控件。
 
@@ -57,8 +57,6 @@ const lockMaterial = ref(true)
 </NvCellGroup>
 ```
 
-## 分组标题
-
 `NvCellGroup` 的 `title` 在卡片上方显示分组标题。
 
 ```vue
@@ -68,9 +66,9 @@ const lockMaterial = ref(true)
 </NvCellGroup>
 ```
 
-## 属性
+## API
 
-### NvCell
+### NvCell 属性
 
 | 属性    | 说明                           | 类型               | 默认    |
 | ------- | ------------------------------ | ------------------ | ------- |
@@ -81,7 +79,7 @@ const lockMaterial = ref(true)
 
 事件：`@click`（仅在 `arrow` 为真时触发）。插槽：`#icon` 前置图标、`#value` 自定义尾部内容。
 
-### NvCellGroup
+### NvCellGroup 属性
 
 | 属性    | 说明     | 类型     | 默认 |
 | ------- | -------- | -------- | ---- |

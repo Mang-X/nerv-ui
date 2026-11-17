@@ -52,7 +52,7 @@ function onSwipe(value) {
 
 向左滑动行以露出右侧操作按钮。指针驱动（触摸与鼠标皆可），自动吸附开合，仅在水平拖拽时生效以保留纵向滚动。
 
-## 基础用法
+## 示例
 
 `actions` 提供右侧按钮，`tone` 控制色调；`select` 回传所选 `value`。默认插槽承载行内容。
 
@@ -82,7 +82,9 @@ function onSwipe(value) {
 </template>
 ```
 
-## 属性
+## API
+
+### NvSwipeCell 属性
 
 | 属性      | 说明         | 类型            | 默认 |
 | --------- | ------------ | --------------- | ---- |
@@ -90,7 +92,7 @@ function onSwipe(value) {
 
 `SwipeAction`：`{ label: string; value: string; tone?: 'default' \| 'brand' \| 'danger' }`
 
-## 事件
+### 事件
 
 | 事件     | 说明         | 回调参数          |
 | -------- | ------------ | ----------------- |

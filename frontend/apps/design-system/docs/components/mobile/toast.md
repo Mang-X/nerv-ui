@@ -52,9 +52,9 @@ function runLoadingToast() {
 
 居中浮层式 HUD 提示，深色圆角卡片配可选状态图标（加载/成功/失败），到时自动消失。
 
-## 文字与状态
+## 示例
 
-通过 `v-model:show` 控制显隐，`type` 切换状态图标，`message` 设置文案。
+通过 `v-model:show` 控制显隐，`type` 切换状态图标（文字 / 成功 / 失败），`message` 设置文案。
 
 ```vue
 <script setup>
@@ -77,8 +77,6 @@ function fireToast(type, msg) {
 </template>
 ```
 
-## 加载（带遮罩）
-
 `type="loading"` 持续显示直到手动关闭；`overlay` 阻断背后交互，适合提交等待。
 
 ```vue
@@ -98,7 +96,9 @@ function runLoadingToast() {
 </template>
 ```
 
-## 属性
+## API
+
+### NvMobileToast 属性
 
 | 属性       | 说明                                              | 类型                                  | 默认    |
 | ---------- | ------------------------------------------------- | ------------------------------------- | ------- |

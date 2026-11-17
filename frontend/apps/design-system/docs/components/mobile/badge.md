@@ -35,9 +35,9 @@ import { BellIcon, ClipboardListIcon, UserIcon } from '@lucide/vue'
 
 # NvMobileBadge 角标
 
-包裹图标或头像，在右上角钉一个红色计数或圆点（Vant / tdesign-mobile 风格）。右侧手机模拟器为实时组件，随页面滚动吸顶。
+包裹图标或头像，在右上角钉一个红色计数或圆点。
 
-## 计数
+## 示例
 
 计数值为 0 时不显示；超过 `max` 显示为 `max+`。
 
@@ -50,9 +50,7 @@ import { BellIcon, ClipboardListIcon, UserIcon } from '@lucide/vue'
 </NvMobileBadge>
 ```
 
-## 圆点
-
-仅显示红色圆点，忽略计数。
+`dot` 仅显示红色圆点，忽略计数。
 
 ```vue
 <NvMobileBadge dot>
@@ -60,7 +58,9 @@ import { BellIcon, ClipboardListIcon, UserIcon } from '@lucide/vue'
 </NvMobileBadge>
 ```
 
-## 属性
+## API
+
+### NvMobileBadge 属性
 
 | 属性    | 说明                      | 类型      | 默认    |
 | ------- | ------------------------- | --------- | ------- |

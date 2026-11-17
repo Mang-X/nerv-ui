@@ -43,7 +43,7 @@ function onGrid(item) {
 
 首页/工作台的功能入口宫格，图标加文字单元按 N 列排布，支持角标（数字或圆点），点击回传所选项。
 
-## 基础用法
+## 示例
 
 `items` 提供入口，`columns` 控制列数；`badge` 为数字显示计数，为 `true` 显示圆点。
 
@@ -68,7 +68,9 @@ function onGrid(item) {
 </template>
 ```
 
-## 属性
+## API
+
+### NvMobileGrid 属性
 
 | 属性       | 说明             | 类型         | 默认    |
 | ---------- | ---------------- | ------------ | ------- |
@@ -79,7 +81,7 @@ function onGrid(item) {
 
 `GridItem`：`{ key?: string; icon?: Component; text?: string; badge?: string \| number \| boolean }`
 
-## 事件
+### 事件
 
 | 事件     | 说明         | 回调参数                          |
 | -------- | ------------ | --------------------------------- |

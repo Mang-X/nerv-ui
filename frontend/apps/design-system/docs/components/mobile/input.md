@@ -30,17 +30,15 @@ const code = ref('REC-2406-0413')
 
 # NvMobileInput 输入框
 
-移动端单行文本输入。44px 触摸高度、15px 字号（避免 iOS 聚焦缩放），支持前后缀插槽与品牌聚焦环。右侧手机模拟器为实时组件，随页面滚动吸顶。
+移动端单行文本输入。44px 触摸高度、15px 字号（避免 iOS 聚焦缩放），支持前后缀插槽与品牌聚焦环。
 
-## 基础用法
+## 示例
 
 `v-model` 双向绑定文本值。
 
 ```vue
 <NvMobileInput v-model="value" placeholder="请输入记录号" />
 ```
-
-## 前缀插槽
 
 `#leading` 插槽嵌入前缀图标，`#trailing` 嵌入后缀图标。
 
@@ -50,13 +48,17 @@ const code = ref('REC-2406-0413')
 </NvMobileInput>
 ```
 
-## 属性
+## API
+
+### NvMobileInput 属性
 
 | 属性           | 说明                     | 类型               | 默认 |
 | -------------- | ------------------------ | ------------------ | ---- |
 | `v-model`      | 绑定值                   | `string \| number` | —    |
 | `defaultValue` | 非受控默认值             | `string \| number` | —    |
 | `placeholder`  | 占位文本（原生属性透传） | `string`           | —    |
+
+### 插槽
 
 | 插槽       | 说明                 |
 | ---------- | -------------------- |

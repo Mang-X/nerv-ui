@@ -46,7 +46,7 @@ const dangerOpen = ref(false)
 
 iOS 风格的居中确认弹窗，紧凑卡片承载标题与说明，发线分隔的按钮行收敛确认/取消操作。
 
-## 居中确认
+## 示例
 
 由触发按钮控制 `open`，`confirm` 事件回调确认动作。默认模态：点击遮罩不关闭。
 
@@ -72,8 +72,6 @@ const confirmOpen = ref(false)
 </template>
 ```
 
-## 危险确认
-
 `confirm-tone="danger"` 将确认按钮渲染为危险色，用于不可逆操作。
 
 ```vue
@@ -86,7 +84,9 @@ const confirmOpen = ref(false)
 />
 ```
 
-## 属性
+## API
+
+### NvMobileDialog 属性
 
 | 属性             | 说明                       | 类型              | 默认    |
 | ---------------- | -------------------------- | ----------------- | ------- |
@@ -99,7 +99,7 @@ const confirmOpen = ref(false)
 | `confirmTone`    | 确认按钮色调               | `brand \| danger` | `brand` |
 | `closeOnOverlay` | 点击遮罩是否关闭           | `boolean`         | `false` |
 
-## 事件
+### 事件
 
 | 事件          | 说明         | 回调参数           |
 | ------------- | ------------ | ------------------ |

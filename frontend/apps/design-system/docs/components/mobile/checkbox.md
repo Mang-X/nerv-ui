@@ -29,9 +29,9 @@ const checkC = ref(false)
 
 # NvMobileCheckbox 复选框
 
-可点击的整行复选项（盒子 + 标签），≥44px 触摸行高。选中时品牌色填充并显示勾选，`v-model` 为布尔值。右侧手机模拟器为实时组件，随页面滚动吸顶。
+可点击的整行复选项（盒子 + 标签），≥44px 触摸行高。选中时品牌色填充并显示勾选，`v-model` 为布尔值。
 
-## 基础用法
+## 示例
 
 整行可点击，`v-model` 绑定布尔值。
 
@@ -40,20 +40,22 @@ const checkC = ref(false)
 <NvMobileCheckbox v-model="checkB">完成后自动生成归档单</NvMobileCheckbox>
 ```
 
-## 禁用
-
 传 `disabled` 禁止选择。
 
 ```vue
 <NvMobileCheckbox v-model="value" disabled>需主管授权（暂不可选）</NvMobileCheckbox>
 ```
 
-## 属性
+## API
+
+### NvMobileCheckbox 属性
 
 | 属性       | 说明     | 类型      | 默认    |
 | ---------- | -------- | --------- | ------- |
 | `v-model`  | 是否选中 | `boolean` | `false` |
 | `disabled` | 是否禁用 | `boolean` | `false` |
+
+### 插槽
 
 | 插槽      | 说明         |
 | --------- | ------------ |

@@ -41,7 +41,7 @@ import { NvMobileButton, NvMobileResult } from '@nerv-iip/ui-mobile'
 
 操作完成后的反馈页，居中呈现成功/失败图标、标题与说明，可在 `actions` 插槽放置后续操作。
 
-## 成功
+## 示例
 
 `status` 决定图标与色调，`title` / `description` 承载结果说明。
 
@@ -59,8 +59,6 @@ import { NvMobileResult } from '@nerv-iip/ui-mobile'
 </template>
 ```
 
-## 失败（带操作）
-
 `status="error"` 呈现失败态；`#actions` 插槽放置重试等后续操作。
 
 ```vue
@@ -77,7 +75,9 @@ import { NvMobileResult } from '@nerv-iip/ui-mobile'
 </template>
 ```
 
-## 属性
+## API
+
+### NvMobileResult 属性
 
 | 属性          | 说明     | 类型               | 默认 |
 | ------------- | -------- | ------------------ | ---- |
@@ -85,7 +85,7 @@ import { NvMobileResult } from '@nerv-iip/ui-mobile'
 | `title`       | 标题     | `string`           | —    |
 | `description` | 说明文字 | `string`           | —    |
 
-## 插槽
+### 插槽
 
 | 插槽      | 说明             |
 | --------- | ---------------- |

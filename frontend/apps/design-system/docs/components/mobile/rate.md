@@ -47,9 +47,9 @@ const quality = ref(0)
 
 # NvMobileRate 评分
 
-星级评分。每颗星 ≥44px 可点，激活态为琥珀色填充，点选时被点中的星有轻微弹动（已适配 `prefers-reduced-motion`）。用于满意度、质量评级等录入。右侧手机模拟器为实时组件。
+星级评分。每颗星 ≥44px 可点，激活态为琥珀色填充，点选时被点中的星有轻微弹动（已适配 `prefers-reduced-motion`）。用于满意度、质量评级等录入。
 
-## 基础
+## 示例
 
 `v-model` 绑定数字。再次点击当前最高星可清零。
 
@@ -57,15 +57,11 @@ const quality = ref(0)
 <NvMobileRate v-model="score" />
 ```
 
-## 半星
-
 加 `allow-half`：点击星的左半为半星，右半为整星。
 
 ```vue
 <NvMobileRate v-model="halfScore" allow-half />
 ```
-
-## 只读
 
 `readonly` 用于展示既有评级，禁用交互。
 
@@ -73,7 +69,9 @@ const quality = ref(0)
 <NvMobileRate :model-value="4" readonly />
 ```
 
-## 属性
+## API
+
+### NvMobileRate 属性
 
 | 属性        | 说明     | 类型      | 默认    |
 | ----------- | -------- | --------- | ------- |

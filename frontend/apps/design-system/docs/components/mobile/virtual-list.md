@@ -56,7 +56,13 @@ const equipment = Array.from({ length: 6000 }, (_, i) => {
 
 定高虚拟滚动。无论数据有多少行，都只渲染**可视窗口 + 缓冲区**的少量节点，滚动时回收复用，因此一万行以上也能保持顺滑——适合移动端资源台账、批次流水、条目明细这类超长列表。自包含实现，不依赖外部虚拟滚动库。
 
-## 基础用法
+## 何时使用
+
+- **用 NvVirtualList**：行高一致、数据量大（数百行以上）、需要流畅滚动。
+- **用 [NvInfiniteList](/components/mobile/infinite-list)**：数据分页从后端逐批拉取、行高不固定、总量未知。
+- 两者可叠加：用 NvInfiniteList 拉数据、把已加载部分交给 NvVirtualList 渲染。
+
+## 示例
 
 给容器一个**确定的高度**（通过 `class`），并传入固定的 `itemHeight`（像素）。默认作用域插槽按 `{ item, index }` 渲染每一行；每行的实际高度必须等于 `itemHeight`，否则定位会错位。
 
@@ -71,13 +77,9 @@ const equipment = Array.from({ length: 6000 }, (_, i) => {
 </NvVirtualList>
 ```
 
-## 何时使用
+## API
 
-- **用 NvVirtualList**：行高一致、数据量大（数百行以上）、需要流畅滚动。
-- **用 [NvInfiniteList](/components/mobile/infinite-list)**：数据分页从后端逐批拉取、行高不固定、总量未知。
-- 两者可叠加：用 NvInfiniteList 拉数据、把已加载部分交给 NvVirtualList 渲染。
-
-## 属性
+### NvVirtualList 属性
 
 | 属性         | 说明                                       | 类型     | 默认 |
 | ------------ | ------------------------------------------ | -------- | ---- |
@@ -86,7 +88,7 @@ const equipment = Array.from({ length: 6000 }, (_, i) => {
 | `buffer`     | 可视区上下额外渲染的行数（缓冲）           | `number` | `6`  |
 | `class`      | 根容器类（**须指定高度**，如 `h-[460px]`） | `string` | —    |
 
-## 作用域插槽
+### 插槽
 
 | 插槽      | 说明     | 参数                         |
 | --------- | -------- | ---------------------------- |
@@ -96,7 +98,7 @@ const equipment = Array.from({ length: 6000 }, (_, i) => {
 `itemHeight` 必须与每行真实渲染高度一致。若行高会随内容变化，请改用 [NvInfiniteList](/components/mobile/infinite-list) 或固定行内排版（截断、单行省略）。
 :::
 
-## 独立宿主行为
+## 设计说明
 
 容器实际尺寸变化时，组件通过 ResizeObserver 重新测量可视高度，卸载时断开观察。行外层按 index 复用；slot 内包含局部状态时，可按稳定 item 身份设置 key。组件没有 itemKey 属性。
 

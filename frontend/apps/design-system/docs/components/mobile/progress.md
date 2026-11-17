@@ -45,25 +45,16 @@ import { NvMobileProgress } from '@nerv-iip/ui-mobile'
 
 # NvMobileProgress 进度条
 
-线性进度条。圆角轨道承载语义色填充，数值变化时填充宽度平滑过渡（已适配 `prefers-reduced-motion`）。用于完成进度、上传进度等移动场景。右侧手机模拟器为实时组件。
+线性进度条。圆角轨道承载语义色填充，数值变化时填充宽度平滑过渡（已适配 `prefers-reduced-motion`）。用于完成进度、上传进度等移动场景。
 
-## 基础
+## 示例
 
-`value` 取值 0–100，超出范围自动夹紧。
+`value` 取值 0–100，超出范围自动夹紧；加 `show-label` 在右侧显示整数百分比。
 
 ```vue
 <NvMobileProgress :value="42" />
-```
-
-## 百分比标签
-
-加 `show-label` 在右侧显示整数百分比。
-
-```vue
 <NvMobileProgress :value="72" show-label />
 ```
-
-## 语义色
 
 `tone` 支持 `brand / success / warning / danger`，对应品牌、完成、预警、异常。
 
@@ -72,7 +63,9 @@ import { NvMobileProgress } from '@nerv-iip/ui-mobile'
 <NvMobileProgress :value="18" tone="danger" show-label />
 ```
 
-## 属性
+## API
+
+### NvMobileProgress 属性
 
 | 属性        | 说明                      | 类型                                    | 默认    |
 | ----------- | ------------------------- | --------------------------------------- | ------- |

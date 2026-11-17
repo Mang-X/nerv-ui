@@ -65,7 +65,7 @@ const rows = [
 
 横向筛选栏（Arco NvMobileDropdownMenu 形态）。多个触发标签带下拉箭头，点击其一在栏下方展开选项面板；选中后回填触发标签文案并触发事件。同一时刻只允许一个面板展开，点击遮罩或再次点击触发器关闭。面板向下滑入，遵循 `prefers-reduced-motion`。
 
-## 基础用法
+## 示例
 
 `NvMobileDropdownMenu` 作为容器协调「同时只开一个」，每个 `NvMobileDropdownMenuItem` 用 `v-model` 绑定当前选中值，`title` 为未选时的回退标签。
 
@@ -89,7 +89,9 @@ const statusOptions = [
 </template>
 ```
 
-## NvMobileDropdownMenuItem 属性
+## API
+
+### NvMobileDropdownMenuItem 属性
 
 | 属性      | 说明               | 类型               | 默认 |
 | --------- | ------------------ | ------------------ | ---- |
@@ -99,7 +101,7 @@ const statusOptions = [
 
 `DropdownOption`：`{ label: string; value: string \| number }`
 
-## 事件
+### 事件
 
 | 事件     | 说明           | 回调参数                    |
 | -------- | -------------- | --------------------------- |
