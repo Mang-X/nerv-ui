@@ -10,7 +10,7 @@ const metrics = [
   { label: '今日产量', value: '12,480', unit: '件', trend: 'up', hint: '较昨日 +4.2%' },
   { label: '计划达成率', value: '96.4', unit: '%', tone: 'success' },
   { label: '在制订单', value: '38', unit: '单' },
-  { label: '设备停机', value: '12', unit: '分钟', tone: 'warning', trend: 'down' },
+  { label: '资源停机', value: '12', unit: '分钟', tone: 'warning', trend: 'down' },
   { label: '质量异常', value: '3', unit: '项', tone: 'danger', hint: '需关注' },
 ]
 </script>

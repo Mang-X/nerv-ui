@@ -29,15 +29,15 @@ const openPanel = ref(null)
       <NvNavigationMenuItem value="orders">
         <NvNavigationMenuTrigger>生产管理</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
-          <NvNavigationMenuLink href="#/orders">生产工单</NvNavigationMenuLink>
-          <NvNavigationMenuLink href="#/schedule">排产计划</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/orders">生产记录</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/schedule">计划计划</NvNavigationMenuLink>
           <NvNavigationMenuLink href="#/reports">生产报表</NvNavigationMenuLink>
         </NvNavigationMenuContent>
       </NvNavigationMenuItem>
       <NvNavigationMenuItem value="devices">
-        <NvNavigationMenuTrigger>设备</NvNavigationMenuTrigger>
+        <NvNavigationMenuTrigger>资源</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
-          <NvNavigationMenuLink href="#/devices">设备台账</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/devices">资源台账</NvNavigationMenuLink>
           <NvNavigationMenuLink href="#/monitor">实时监控</NvNavigationMenuLink>
           <NvNavigationMenuLink href="#/maintenance">保养计划</NvNavigationMenuLink>
         </NvNavigationMenuContent>

@@ -42,7 +42,7 @@ const urgentOpen = ref(false)
   <NvAlertDialog v-model:open="urgentOpen" :dismissible="false">
     <NvAlertDialogTrigger>必须处理</NvAlertDialogTrigger>
     <NvAlertDialogContent>
-      <NvAlertDialogTitle>设备离线</NvAlertDialogTitle>
+      <NvAlertDialogTitle>资源离线</NvAlertDialogTitle>
       <NvAlertDialogDescription>Esc 与返回键也不会关闭，请先确认现场状态。</NvAlertDialogDescription>
       <div style="display: flex; gap: 8px; justify-content: flex-end">
         <NvAlertDialogClose>已确认</NvAlertDialogClose>

@@ -26,7 +26,7 @@ const verticalTab = ref('general')
         <NvTabsTrigger value="quality">质量</NvTabsTrigger>
         <NvTabsTrigger value="logs" disabled>日志</NvTabsTrigger>
       </NvTabsList>
-      <NvTabsPanel value="overview">工单总数 1,284，今日新增 37。</NvTabsPanel>
+      <NvTabsPanel value="overview">记录总数 1,284，今日新增 37。</NvTabsPanel>
       <NvTabsPanel value="quality">一次通过率 98.2%，超差批次 3 个。</NvTabsPanel>
       <NvTabsPanel value="logs">该面板被禁用，无法切换过来。</NvTabsPanel>
     </NvTabs>

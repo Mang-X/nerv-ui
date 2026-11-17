@@ -21,7 +21,7 @@ import '@nerv-ui/mobile/styles.css'
 </Demo>
 
 <Demo>
-  <NvMobileAvatar name="车间 A" shape="square" size="lg" />
+  <NvMobileAvatar name="区域 A" shape="square" size="lg" />
   <NvMobileAvatar fallback="IQC" shape="square" size="lg" />
 </Demo>
 

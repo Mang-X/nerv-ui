@@ -17,7 +17,7 @@ import '@nerv-ui/mobile/styles.css'
   <div style="display: flex; align-items: center; gap: 12px">
     <NvMobileSkeleton shape="circle" :width="48" :height="48" />
     <div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
-      <NvMobileSkeleton shape="text" :lines="2" label="正在加载工单摘要" />
+      <NvMobileSkeleton shape="text" :lines="2" label="正在加载记录摘要" />
     </div>
   </div>
   <NvMobileSkeleton shape="rect" :height="120" />

@@ -15,8 +15,8 @@ import '@nerv-ui/mobile/styles.css'
 
 <Demo block>
   <NvMobileEmpty
-    title="暂无工单"
-    description="今天还没有新的生产工单，创建后会显示在这里。"
+    title="暂无记录"
+    description="今天还没有新的生产记录，创建后会显示在这里。"
   />
 </Demo>
 

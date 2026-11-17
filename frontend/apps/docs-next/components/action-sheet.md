@@ -12,9 +12,9 @@ const orderOpen = ref(false)
 const picked = ref('尚未选择')
 
 const actions = [
-  { value: 'edit', label: '编辑工单', description: '修改数量与交期' },
+  { value: 'edit', label: '编辑记录', description: '修改数量与交期' },
   { value: 'split', label: '拆分批次' },
-  { value: 'delete', label: '删除工单', description: '不可恢复', danger: true },
+  { value: 'delete', label: '删除记录', description: '不可恢复', danger: true },
   { value: 'archive', label: '归档', disabled: true },
 ]
 
@@ -33,8 +33,8 @@ function onSelect(value) {
   <NvMobileButton variant="secondary" @click="open = true">打开操作菜单</NvMobileButton>
   <NvActionSheet
     v-model:open="open"
-    title="工单操作"
-    description="选择要对当前工单执行的动作"
+    title="记录操作"
+    description="选择要对当前记录执行的动作"
     :actions="actions"
     @select="onSelect"
   />

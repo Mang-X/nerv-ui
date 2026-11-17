@@ -20,17 +20,17 @@ const selected = ref('')
   <div style="width: 100%">
     <NvListRow
       title="入库任务 2026-11-18-01"
-      description="物料 A-1001 · 数量 240"
+      description="物料项 A-1001 · 数量 240"
       meta="10:12"
       clickable
       @click="selected = '入库任务'"
     />
     <NvListRow
-      title="质检异常待处理"
-      description="工位 ST-04 上报外观缺陷"
+      title="审核异常待处理"
+      description="站点 ST-04 上报外观缺陷"
       meta="3 条"
       clickable
-      @click="selected = '质检异常'"
+      @click="selected = '审核异常'"
     />
     <NvListRow
       title="已归档批次"

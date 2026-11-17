@@ -14,9 +14,9 @@ import '@nerv-ui/desktop/styles.css'
 ## 示例
 
 <Demo block>
-  <div>工单概览</div>
+  <div>记录概览</div>
   <NvSeparator />
-  <div>工序明细</div>
+  <div>步骤明细</div>
   <NvSeparator decorative />
   <div>质量记录</div>
 </Demo>

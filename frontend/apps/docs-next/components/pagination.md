@@ -44,7 +44,7 @@ const getHref = (n) => `#/orders?page=${n}`
     v-model:page="hrefPage"
     :page-count="8"
     :get-href="getHref"
-    label="工单分页" />
+    label="记录分页" />
   <span style="font-size: 13px; color: var(--vp-c-text-2)">点击页码会跳转到 {{ getHref(hrefPage) }}</span>
 </Demo>
 

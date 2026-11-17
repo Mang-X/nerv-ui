@@ -38,23 +38,23 @@ const railCollapsed = ref(true)
           </template>
           生产看板
         </NvSidebarItem>
-        <NvSidebarItem label="生产工单">
+        <NvSidebarItem label="生产记录">
           <template #icon>
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6 3h9l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8" />
               <path d="M9 11h7M9 15h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
             </svg>
           </template>
-          生产工单
+          生产记录
         </NvSidebarItem>
-        <NvSidebarItem label="设备监控">
+        <NvSidebarItem label="资源监控">
           <template #icon>
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8" />
               <path d="M12 8v4l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
             </svg>
           </template>
-          设备监控
+          资源监控
         </NvSidebarItem>
       </NvSidebarGroup>
       <NvSidebarGroup label="系统">
@@ -74,7 +74,7 @@ const railCollapsed = ref(true)
       <NvSidebarHeader>控制台</NvSidebarHeader>
       <NvSidebarItem label="总览" active>总览</NvSidebarItem>
       <NvSidebarItem label="报警" href="#/alerts">报警</NvSidebarItem>
-      <NvSidebarItem label="排产" href="#/scheduling">排产</NvSidebarItem>
+      <NvSidebarItem label="计划" href="#/scheduling">计划</NvSidebarItem>
     </NvSidebar>
     <div style="flex: 1; padding: 16px; font-size: 13px; color: var(--vp-c-text-2)">
       点击头部按钮切换窄轨；收起时条目仍保留 title 与 aria-label。

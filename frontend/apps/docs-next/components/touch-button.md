@@ -9,7 +9,7 @@ import '@nerv-ui/pad/styles.css'
 
 # NvTouchButton 触屏按钮
 
-面向工位平板的大触控目标按钮，最小高度从 56px 起。
+面向站点平板的大触控目标按钮，最小高度从 56px 起。
 
 ## 示例
 

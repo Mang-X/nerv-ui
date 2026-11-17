@@ -33,7 +33,7 @@ function onAction(value) {
 <Demo block>
   <NvSwipeCell :actions="actions" actions-label="行操作" @action="onAction">
     <div style="padding: 14px 16px; background: #fff; border-bottom: 1px solid #e5e7eb">
-      <div style="font-weight: 600">WO-2026-1138 · 总装 A 线</div>
+      <div style="font-weight: 600">REC-2026-1138 · 总装 A 线</div>
       <div style="font-size: 13px; opacity: 0.7">用鼠标向左拖动可露出操作按钮</div>
     </div>
   </NvSwipeCell>

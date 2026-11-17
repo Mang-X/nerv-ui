@@ -25,29 +25,29 @@ import '@nerv-ui/desktop/styles.css'
     </NvBreadcrumbItem>
     <NvBreadcrumbSeparator />
     <NvBreadcrumbItem>
-      <NvBreadcrumbLink href="#/orders">生产工单</NvBreadcrumbLink>
+      <NvBreadcrumbLink href="#/orders">生产记录</NvBreadcrumbLink>
     </NvBreadcrumbItem>
     <NvBreadcrumbSeparator />
     <NvBreadcrumbItem>
-      <NvBreadcrumbLink current>WO-1024 详情</NvBreadcrumbLink>
+      <NvBreadcrumbLink current>REC-1024 详情</NvBreadcrumbLink>
     </NvBreadcrumbItem>
   </NvBreadcrumb>
 </Demo>
 
 <Demo block>
-  <NvBreadcrumb label="设备位置">
+  <NvBreadcrumb label="资源位置">
     <NvBreadcrumbItem>
       <NvBreadcrumbLink href="#/">华东一厂</NvBreadcrumbLink>
     </NvBreadcrumbItem>
     <NvBreadcrumbSeparator />
     <NvBreadcrumbItem>
-      <NvBreadcrumbLink href="#/workshop">装配车间</NvBreadcrumbLink>
+      <NvBreadcrumbLink href="#/workshop">装配区域</NvBreadcrumbLink>
     </NvBreadcrumbItem>
     <NvBreadcrumbSeparator>
       <span aria-hidden="true">/</span>
     </NvBreadcrumbSeparator>
     <NvBreadcrumbItem>
-      <NvBreadcrumbLink>3 号产线</NvBreadcrumbLink>
+      <NvBreadcrumbLink>3 号分组</NvBreadcrumbLink>
     </NvBreadcrumbItem>
   </NvBreadcrumb>
 </Demo>

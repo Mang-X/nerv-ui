@@ -20,7 +20,7 @@ import '@nerv-ui/screen/styles.css'
         图表区域
       </div>
     </NvScreenPanel>
-    <NvScreenPanel title="设备状态" tone="accent">
+    <NvScreenPanel title="资源状态" tone="accent">
       <span style="opacity: 0.8">强调态面板</span>
     </NvScreenPanel>
   </div>

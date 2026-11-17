@@ -18,7 +18,7 @@ const blank = ref(null)
 ## 示例
 
 <Demo block>
-  <NvMobileNumbers v-model="qty" label="报工数量" :min="0" :max="200" />
+  <NvMobileNumbers v-model="qty" label="提交数量" :min="0" :max="200" />
   <span style="font-size: 13px">当前数量：<span v-text="qty ?? '空'"></span></span>
 </Demo>
 

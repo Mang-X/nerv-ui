@@ -19,7 +19,7 @@ const visible = ref(true)
 <Demo>
   <div style="display: flex; flex-direction: column; gap: 12px; width: 100%">
     <NvNoticeBar text="今日盘点任务将在 18:00 截止。" />
-    <NvNoticeBar variant="danger" text="工位 ST-04 上报设备报警，请及时处理。" />
+    <NvNoticeBar variant="danger" text="站点 ST-04 上报资源报警，请及时处理。" />
     <NvNoticeBar variant="neutral" text="系统将于今晚 22:00 进行例行维护。" />
   </div>
 </Demo>

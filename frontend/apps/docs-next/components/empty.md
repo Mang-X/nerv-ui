@@ -14,7 +14,7 @@ import '@nerv-ui/desktop/styles.css'
 ## 示例
 
 <Demo block>
-  <NvEmpty title="暂无工单" description="今天还没有新的生产工单，创建后会显示在这里。" />
+  <NvEmpty title="暂无记录" description="今天还没有新的生产记录，创建后会显示在这里。" />
 </Demo>
 
 <Demo block>
@@ -33,8 +33,8 @@ import '@nerv-ui/desktop/styles.css'
         <path d="M16.5 16.5l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
       </svg>
     </template>
-    <template #title>没有搜索到工单</template>
-    <template #description>关键词 "WO-9999" 暂无对应记录。</template>
+    <template #title>没有搜索到记录</template>
+    <template #description>关键词 "REC-9999" 暂无对应记录。</template>
     <NvButton size="sm" variant="outline">清除筛选</NvButton>
   </NvEmpty>
 </Demo>

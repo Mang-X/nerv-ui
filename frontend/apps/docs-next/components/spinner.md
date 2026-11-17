@@ -20,7 +20,7 @@ import '@nerv-ui/desktop/styles.css'
 </Demo>
 
 <Demo>
-  <NvSpinner label="正在同步工单" />
+  <NvSpinner label="正在同步记录" />
   <NvSpinner label="正在上传文件" decorative />
 </Demo>
 

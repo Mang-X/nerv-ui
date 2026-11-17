@@ -7,7 +7,7 @@ import { NvFilePreview } from '@nerv-ui/desktop'
 import '@nerv-ui/desktop/styles.css'
 
 const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300"><rect width="480" height="300" fill="#e2e8f0"/><rect x="40" y="40" width="400" height="220" fill="#cbd5e1" stroke="#94a3b8"/><text x="240" y="160" font-family="sans-serif" font-size="22" text-anchor="middle" fill="#334155">工单图纸 NX-220</text></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300"><rect width="480" height="300" fill="#e2e8f0"/><rect x="40" y="40" width="400" height="220" fill="#cbd5e1" stroke="#94a3b8"/><text x="240" y="160" font-family="sans-serif" font-size="22" text-anchor="middle" fill="#334155">记录图纸 NX-220</text></svg>',
 )}`
 </script>
 
@@ -20,7 +20,7 @@ const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
 <Demo block>
   <NvFilePreview
     :src="sampleSvg"
-    file-name="工单图纸-NX-220.svg"
+    file-name="记录图纸-NX-220.svg"
     content-type="image/svg+xml"
     :height="260"
   />
@@ -31,7 +31,7 @@ const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
 </Demo>
 
 <Demo block>
-  <NvFilePreview file-name="工单明细.xlsx" content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+  <NvFilePreview file-name="记录明细.xlsx" content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
 </Demo>
 
 <Demo block>

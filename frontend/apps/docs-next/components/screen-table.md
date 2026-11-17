@@ -30,7 +30,7 @@ const rows = [
 
 <Demo>
   <div class="nv-screen-stage" style="display: flex; flex-direction: column; gap: 16px">
-    <NvScreenTable :columns="columns" :rows="rows" aria-label="产线达成情况" />
+    <NvScreenTable :columns="columns" :rows="rows" aria-label="分组达成情况" />
     <NvScreenTable :columns="columns" :rows="rows" density="sm" :zebra="false" aria-label="紧凑无斑马纹" />
   </div>
 </Demo>
@@ -56,7 +56,7 @@ const rows = [
 
 <Demo>
   <div class="nv-screen-stage">
-    <NvScreenTable :columns="columns" :rows="[]" empty-label="暂无产线数据" />
+    <NvScreenTable :columns="columns" :rows="[]" empty-label="暂无分组数据" />
   </div>
 </Demo>
 
@@ -72,7 +72,7 @@ const rows = [
 | `density` | 行高预设，`sm` 收紧纵向内边距 | `md \| sm` | `md` |
 | `zebra` | 斑马纹 | `boolean` | `true` |
 | `emptyLabel` | 空数据文案 | `string` | `暂无数据` |
-| `ariaLabel` | 表格区域的无障碍名称 | `string` | `数据表` |
+| `aria-label` | 表格区域的无障碍名称 | `string` | `数据表` |
 
 ### ScreenTableColumn
 

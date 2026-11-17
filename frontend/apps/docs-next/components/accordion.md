@@ -20,13 +20,13 @@ const multi = ref(['line', 'quality'])
 <Demo block>
   <NvAccordion v-model:value="single" collapsible>
     <NvAccordionItem value="basic" title="基本信息">
-      工单 WO-1024，产品型号 NX-220，批量 500 件。
+      记录 REC-1024，产品型号 NX-220，批量 500 件。
     </NvAccordionItem>
     <NvAccordionItem value="quality" title="质量记录">
       首次检验合格 492 件，返修 8 件；一次通过率 98.4%。
     </NvAccordionItem>
     <NvAccordionItem value="logs" title="变更日志">
-      2026-11-18 09:20 调整了第二道工序的节拍时间。
+      2026-11-18 09:20 调整了第二道步骤的节奏时间。
     </NvAccordionItem>
   </NvAccordion>
 </Demo>
@@ -35,8 +35,8 @@ const multi = ref(['line', 'quality'])
 
 <Demo block>
   <NvAccordion v-model:value="multi" multiple>
-    <NvAccordionItem value="line" title="产线状态">
-      3 号产线运行中，OEE 82%。
+    <NvAccordionItem value="line" title="分组状态">
+      3 号分组运行中，利用率 82%。
     </NvAccordionItem>
     <NvAccordionItem value="quality" title="质量记录">
       当前批次暂无超差记录。

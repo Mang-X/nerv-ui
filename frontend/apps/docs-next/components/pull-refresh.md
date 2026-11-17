@@ -28,7 +28,7 @@ function onRefresh() {
 <Demo block>
   <NvPullRefresh :refreshing="refreshing" @refresh="onRefresh">
     <div style="padding: 8px 0; font-size: 13px">
-      <p style="margin: 0 0 8px">在触屏设备上向下拖动即可触发刷新。</p>
+      <p style="margin: 0 0 8px">在触屏资源上向下拖动即可触发刷新。</p>
       <p style="margin: 0">最近刷新：<span v-text="lastRefresh"></span></p>
     </div>
   </NvPullRefresh>

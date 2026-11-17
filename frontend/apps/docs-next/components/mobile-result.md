@@ -20,8 +20,8 @@ const acted = ref(0)
   <NvMobileResult
     status="success"
     title="提交成功"
-    description="工单 WO-2026-1138 已进入待审核队列。"
-    action-text="查看工单"
+    description="记录 REC-2026-1138 已进入待审核队列。"
+    action-text="查看记录"
     @action="acted++"
   />
 </Demo>
@@ -35,7 +35,7 @@ const acted = ref(0)
 </Demo>
 
 <Demo block>
-  <NvMobileResult status="info" title="已进入只读模式" description="当前账号仅可查看，无法编辑工单。" />
+  <NvMobileResult status="info" title="已进入只读模式" description="当前账号仅可查看，无法编辑记录。" />
 </Demo>
 
 <Demo block>

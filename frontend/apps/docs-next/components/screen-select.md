@@ -11,8 +11,8 @@ const line = ref(null)
 const lines = [
   { value: 'a', label: '总装一线' },
   { value: 'b', label: '总装二线' },
-  { value: 'c', label: '涂装车间' },
-  { value: 'd', label: '不可选产线', disabled: true },
+  { value: 'c', label: '涂装区域' },
+  { value: 'd', label: '不可选分组', disabled: true },
 ]
 </script>
 
@@ -24,7 +24,7 @@ const lines = [
 
 <Demo>
   <div class="nv-screen-stage" style="flex-direction: column">
-    <NvScreenSelect v-model="line" :options="lines" placeholder="选择产线" />
+    <NvScreenSelect v-model="line" :options="lines" placeholder="选择分组" />
   </div>
 </Demo>
 

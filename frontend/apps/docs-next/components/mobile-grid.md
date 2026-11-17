@@ -11,12 +11,12 @@ const selected = ref('report')
 const picked = ref('report')
 
 const items = [
-  { value: 'report', label: '报工', badge: 3 },
-  { value: 'order', label: '工单', badge: '新' },
-  { value: 'quality', label: '质检' },
+  { value: 'report', label: '提交', badge: 3 },
+  { value: 'order', label: '记录', badge: '新' },
+  { value: 'quality', label: '审核' },
   { value: 'stock', label: '库存' },
-  { value: 'device', label: '设备' },
-  { value: 'plan', label: '排产' },
+  { value: 'device', label: '资源' },
+  { value: 'plan', label: '计划' },
   { value: 'notice', label: '通知', disabled: true },
   { value: 'more', label: '更多' },
 ]

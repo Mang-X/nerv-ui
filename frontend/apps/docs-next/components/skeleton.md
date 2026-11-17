@@ -25,7 +25,7 @@ import '@nerv-ui/desktop/styles.css'
 </Demo>
 
 <Demo block>
-  <NvSkeleton shape="text" :lines="4" label="正在加载工单详情" />
+  <NvSkeleton shape="text" :lines="4" label="正在加载记录详情" />
 </Demo>
 
 <Demo>

@@ -18,7 +18,7 @@ const keyword = ref('')
 
 <Demo>
   <div class="nv-screen-stage" style="flex-direction: column">
-    <NvScreenInput v-model="keyword" placeholder="搜索工单或物料" />
+    <NvScreenInput v-model="keyword" placeholder="搜索记录或物料项" />
     <NvScreenInput v-model="keyword" size="lg" placeholder="大号输入框" />
   </div>
 </Demo>

@@ -8,20 +8,20 @@ import { NvDataTable, NvBadge, NvProgress } from '@nerv-ui/desktop'
 import '@nerv-ui/desktop/styles.css'
 
 const columns = [
-  { key: 'code', title: '工单号', width: 120 },
+  { key: 'code', title: '记录号', width: 120 },
   { key: 'product', title: '产品', width: 150 },
-  { key: 'line', title: '产线' },
+  { key: 'line', title: '分组' },
   { key: 'qty', title: '计划数量', align: 'right', sortable: true },
   { key: 'progress', title: '完成度', align: 'right', sortable: true },
   { key: 'status', title: '状态' },
 ]
 
 const rows = [
-  { code: 'WO-1024', product: '铝合金支架', line: '3 号产线', qty: 500, progress: 68, status: '进行中' },
-  { code: 'WO-1025', product: '不锈钢法兰', line: '1 号产线', qty: 320, progress: 92, status: '进行中' },
-  { code: 'WO-1026', product: '铜制接头', line: '2 号产线', qty: 800, progress: 100, status: '已完工' },
-  { code: 'WO-1027', product: '尼龙衬套', line: '4 号产线', qty: 1200, progress: 35, status: '暂停' },
-  { code: 'WO-1028', product: '铸铁底座', line: '5 号产线', qty: 96, progress: 12, status: '待开工' },
+  { code: 'REC-1024', product: '铝合金支架', line: '3 号分组', qty: 500, progress: 68, status: '进行中' },
+  { code: 'REC-1025', product: '不锈钢法兰', line: '1 号分组', qty: 320, progress: 92, status: '进行中' },
+  { code: 'REC-1026', product: '铜制接头', line: '2 号分组', qty: 800, progress: 100, status: '已完工' },
+  { code: 'REC-1027', product: '尼龙衬套', line: '4 号分组', qty: 1200, progress: 35, status: '暂停' },
+  { code: 'REC-1028', product: '铸铁底座', line: '5 号分组', qty: 96, progress: 12, status: '待开工' },
 ]
 
 const sort = ref(null)
@@ -44,7 +44,7 @@ const basicSort = ref({ key: 'progress', direction: 'desc' })
     row-key="code"
     sortable
     selectable
-    caption="生产工单列表"
+    caption="生产记录列表"
   />
   <div style="display: flex; gap: 16px; margin-top: 10px; font-size: 13px; color: var(--vp-c-text-2)">
     <span>当前排序：{{ sort ? `${sort.key} ${sort.direction}` : '未排序' }}</span>
@@ -77,7 +77,7 @@ const basicSort = ref({ key: 'progress', direction: 'desc' })
 </Demo>
 
 <Demo block>
-  <NvDataTable :rows="[]" :columns="columns.slice(0, 3)" empty-text="今天还没有生产工单" />
+  <NvDataTable :rows="[]" :columns="columns.slice(0, 3)" empty-text="今天还没有生产记录" />
 </Demo>
 
 ## API

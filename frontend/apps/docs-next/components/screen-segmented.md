@@ -62,7 +62,7 @@ const alignOptions = [
 | `orientation` | 排布方向 | `horizontal \| vertical` | `horizontal` |
 | `size` | 项高度 44 / 52 / 60px | `md \| lg \| xl` | `md` |
 | `block` | 整宽铺满父容器 | `boolean` | `false` |
-| `ariaLabel` | 分组的无障碍名称 | `string` | `选项` |
+| `aria-label` | 分组的无障碍名称 | `string` | `选项` |
 
 ### ScreenSegmentedOption
 

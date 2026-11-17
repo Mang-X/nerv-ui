@@ -17,7 +17,7 @@ const clicks = ref(0)
 ## 示例
 
 <Demo>
-  <NvFab position="static" aria-label="新建工单" @click="clicks++">
+  <NvFab position="static" aria-label="新建记录" @click="clicks++">
     <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
     </svg>
@@ -26,7 +26,7 @@ const clicks = ref(0)
 </Demo>
 
 <Demo>
-  <NvFab position="static" size="md" label="批量报工" aria-label="批量报工" @click="clicks++" />
+  <NvFab position="static" size="md" label="批量提交" aria-label="批量提交" @click="clicks++" />
   <NvFab position="static" disabled label="不可用" aria-label="不可用" />
 </Demo>
 

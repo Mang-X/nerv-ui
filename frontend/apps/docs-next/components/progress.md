@@ -36,7 +36,7 @@ const uploading = ref(68)
 </Demo>
 
 <Demo block>
-  <NvProgress :value="null" label="正在连接设备" />
+  <NvProgress :value="null" label="正在连接资源" />
   <NvProgress :value="null" size="sm" />
 </Demo>
 

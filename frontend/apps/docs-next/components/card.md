@@ -17,7 +17,7 @@ import '@nerv-ui/desktop/styles.css'
   <div style="display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); width: 100%">
     <NvCard>
       <NvCardHeader>描边卡片</NvCardHeader>
-      <NvCardContent>工单 WO-1024 已进入精加工工序，预计今日 16:00 完成。</NvCardContent>
+      <NvCardContent>记录 REC-1024 已进入精加工步骤，预计今日 16:00 完成。</NvCardContent>
       <NvCardFooter>
         <NvButton size="sm">查看详情</NvButton>
       </NvCardFooter>

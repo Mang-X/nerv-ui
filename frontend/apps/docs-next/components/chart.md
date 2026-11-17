@@ -24,7 +24,7 @@ const lineData = [
 const areaData = [
   {
     key: 'orders',
-    label: '累计工单',
+    label: '累计记录',
     data: weeks.map((x, i) => ({ x, y: [120, 268, 402, 590, 812, 1006, 1230, 1488][i] })),
   },
 ]
@@ -34,22 +34,22 @@ const barData = [
     key: 'plan',
     label: '计划产出',
     data: [
-      { x: '1 号产线', y: 4800 },
-      { x: '2 号产线', y: 3600 },
-      { x: '3 号产线', y: 5200 },
-      { x: '4 号产线', y: 2800 },
-      { x: '5 号产线', y: 4200 },
+      { x: '1 号分组', y: 4800 },
+      { x: '2 号分组', y: 3600 },
+      { x: '3 号分组', y: 5200 },
+      { x: '4 号分组', y: 2800 },
+      { x: '5 号分组', y: 4200 },
     ],
   },
   {
     key: 'actual',
     label: '实际产出',
     data: [
-      { x: '1 号产线', y: 4520 },
-      { x: '2 号产线', y: 3780 },
-      { x: '3 号产线', y: 4980 },
-      { x: '4 号产线', y: 2610 },
-      { x: '5 号产线', y: 4460 },
+      { x: '1 号分组', y: 4520 },
+      { x: '2 号分组', y: 3780 },
+      { x: '3 号分组', y: 4980 },
+      { x: '4 号分组', y: 2610 },
+      { x: '5 号分组', y: 4460 },
     ],
   },
 ]
@@ -73,15 +73,15 @@ const donutData = [
 </Demo>
 
 <Demo block>
-  <NvLineChart :data="areaData" :height="220" area aria-label="累计工单趋势" value-suffix=" 单" />
+  <NvLineChart :data="areaData" :height="220" area aria-label="累计记录趋势" value-suffix=" 单" />
 </Demo>
 
 <Demo block>
-  <NvBarChart :data="barData" :height="240" aria-label="各产线计划与实际产出" value-suffix=" 件" />
+  <NvBarChart :data="barData" :height="240" aria-label="各分组计划与实际产出" value-suffix=" 件" />
 </Demo>
 
 <Demo block>
-  <NvDonutChart :data="donutData" :height="220" aria-label="工单状态分布" central-label="1,284" central-sub-label="工单总数" />
+  <NvDonutChart :data="donutData" :height="220" aria-label="记录状态分布" central-label="1,284" central-sub-label="记录总数" />
 </Demo>
 
 <Demo>
