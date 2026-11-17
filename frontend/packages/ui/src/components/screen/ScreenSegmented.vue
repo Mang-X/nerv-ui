@@ -100,7 +100,7 @@ function move(dir: 1 | -1) {
       v-for="(o, i) in options"
       :key="`${typeof o.value}:${o.value}`"
       type="button"
-      class="nv-scr-sg-opt nv-focusable"
+      class="nv-scr-sg-opt outline-none focus-visible:ring-1 focus-visible:ring-brand"
       role="radio"
       :class="{ on: o.value === model }"
       :aria-checked="o.value === model"

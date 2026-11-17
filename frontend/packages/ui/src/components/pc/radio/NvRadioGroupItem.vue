@@ -24,7 +24,7 @@ const id = props.id ?? generatedId
       v-bind="forwarded"
       :class="
         cn(
-          'nv-radio nv-focusable flex size-[18px] shrink-0 items-center justify-center rounded-full border border-input bg-card outline-none data-[state=checked]:border-brand disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30',
+          'nv-radio flex size-[18px] shrink-0 items-center justify-center rounded-full border border-input bg-card outline-none focus-visible:ring-1 focus-visible:ring-brand data-[state=checked]:border-brand disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30',
           props.class,
         )
       "

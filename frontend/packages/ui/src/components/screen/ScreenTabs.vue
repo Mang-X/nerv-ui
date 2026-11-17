@@ -64,7 +64,7 @@ watch(
       v-for="(t, i) in items"
       :key="`${typeof t.value}:${t.value}`"
       type="button"
-      class="nv-scr-tb-item nv-focusable"
+      class="nv-scr-tb-item outline-none focus-visible:ring-1 focus-visible:ring-brand"
       role="tab"
       :class="{ on: t.value === model }"
       :aria-selected="t.value === model"

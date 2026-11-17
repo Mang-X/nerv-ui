@@ -191,7 +191,7 @@ onMounted(() => nextTick(measureSeg))
           type="button"
           role="tab"
           :aria-selected="t.value === tab"
-          class="nv-tb-seg-btn nv-focusable"
+          class="nv-tb-seg-btn focus-visible:ring-1 focus-visible:ring-brand"
           :data-active="t.value === tab || undefined"
           @click="tab = t.value"
         >

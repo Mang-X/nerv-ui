@@ -131,7 +131,7 @@ function commitJump() {
       <button
         v-if="showEdges"
         type="button"
-        class="nv-pg-btn nv-focusable rounded-[7px] enabled:hover:bg-muted enabled:hover:text-foreground"
+        class="nv-pg-btn rounded-[7px] enabled:hover:bg-muted enabled:hover:text-foreground focus-visible:ring-1 focus-visible:ring-brand"
         :disabled="currentPage <= 1"
         aria-label="第一页"
         @click="go(1)"
@@ -140,7 +140,7 @@ function commitJump() {
       </button>
       <button
         type="button"
-        class="nv-pg-btn nv-focusable rounded-[7px] enabled:hover:bg-muted enabled:hover:text-foreground"
+        class="nv-pg-btn rounded-[7px] enabled:hover:bg-muted enabled:hover:text-foreground focus-visible:ring-1 focus-visible:ring-brand"
         :disabled="currentPage <= 1"
         aria-label="上一页"
         @click="go(currentPage - 1)"
@@ -154,7 +154,7 @@ function commitJump() {
         <button
           v-if="typeof slot === 'string'"
           type="button"
-          class="nv-pg-gap nv-focusable rounded-[7px] hover:bg-muted hover:text-foreground"
+          class="nv-pg-gap rounded-[7px] hover:bg-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-brand"
           :aria-label="slot === 'ellipsis-l' ? '向前 5 页' : '向后 5 页'"
           @click="go(currentPage + (slot === 'ellipsis-l' ? -5 : 5))"
         >
@@ -169,7 +169,7 @@ function commitJump() {
         <button
           v-else
           type="button"
-          class="nv-pg-num nv-focusable rounded-[7px] not-data-[active]:hover:bg-muted data-[active]:bg-[var(--nv-brand)] data-[active]:text-[var(--nv-brand-foreground)] data-[active]:font-semibold"
+          class="nv-pg-num rounded-[7px] not-data-[active]:hover:bg-muted data-[active]:bg-[var(--nv-brand)] data-[active]:text-[var(--nv-brand-foreground)] data-[active]:font-semibold focus-visible:ring-1 focus-visible:ring-brand"
           :data-active="slot === currentPage || undefined"
           :aria-current="slot === currentPage ? 'page' : undefined"
           :aria-label="`第 ${slot} 页`"
@@ -181,7 +181,7 @@ function commitJump() {
 
       <button
         type="button"
-        class="nv-pg-btn nv-focusable rounded-[7px] enabled:hover:bg-muted enabled:hover:text-foreground"
+        class="nv-pg-btn rounded-[7px] enabled:hover:bg-muted enabled:hover:text-foreground focus-visible:ring-1 focus-visible:ring-brand"
         :disabled="currentPage >= totalPages"
         aria-label="下一页"
         @click="go(currentPage + 1)"
@@ -191,7 +191,7 @@ function commitJump() {
       <button
         v-if="showEdges"
         type="button"
-        class="nv-pg-btn nv-focusable rounded-[7px] enabled:hover:bg-muted enabled:hover:text-foreground"
+        class="nv-pg-btn rounded-[7px] enabled:hover:bg-muted enabled:hover:text-foreground focus-visible:ring-1 focus-visible:ring-brand"
         :disabled="currentPage >= totalPages"
         aria-label="最后一页"
         @click="go(totalPages)"
