@@ -30,7 +30,7 @@ function toggle() {
     :disabled="disabled"
     :class="
       cn(
-        'nv-m-mcheck flex min-h-11 w-full items-center gap-3 text-left text-[15px] select-none disabled:opacity-40',
+        'nv-m-mcheck nv-focusable flex min-h-11 w-full items-center gap-3 text-left text-[15px] select-none disabled:opacity-40',
         $props.class,
       )
     "

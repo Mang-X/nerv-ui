@@ -30,7 +30,7 @@ const slots = useSlots()
     :class="
       cn(
         'nv-m-cell relative flex min-h-touch items-center gap-3 bg-card px-4 py-2.5 text-left',
-        arrow && 'active:bg-accent',
+        arrow && 'nv-focusable active:bg-accent',
         $props.class,
       )
     "

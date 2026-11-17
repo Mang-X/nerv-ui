@@ -52,7 +52,7 @@ const sizeClass: Record<Size, string> = {
     <button
       v-if="closable"
       type="button"
-      class="nv-m-tag-close inline-flex size-11 shrink-0 items-center justify-center rounded-full outline-none"
+      class="nv-m-tag-close nv-focusable inline-flex size-11 shrink-0 items-center justify-center rounded-full outline-none"
       aria-label="移除标签"
       @click.stop="emit('close')"
     >

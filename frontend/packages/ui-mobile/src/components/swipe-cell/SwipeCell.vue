@@ -107,7 +107,7 @@ onMounted(() => {
         type="button"
         :class="
           cn(
-            'flex h-full min-w-[76px] items-center justify-center px-4 text-[15px] font-medium text-white active:opacity-80',
+            'nv-focusable flex h-full min-w-[76px] items-center justify-center px-4 text-[15px] font-medium text-white active:opacity-80',
             action.tone === 'danger'
               ? 'bg-destructive'
               : action.tone === 'brand'

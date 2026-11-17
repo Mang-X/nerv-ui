@@ -57,7 +57,7 @@ function onSelect(action: FabAction, index: number) {
           v-for="(action, i) in open && actions ? actions : []"
           :key="action.key ?? i"
           type="button"
-          class="nv-m-fab-act"
+          class="nv-m-fab-act nv-focusable"
           :style="{ '--i': (actions?.length ?? 0) - 1 - i }"
           @click="onSelect(action, i)"
         >
@@ -68,7 +68,7 @@ function onSelect(action: FabAction, index: number) {
 
       <button
         type="button"
-        class="nv-m-fab-main"
+        class="nv-m-fab-main nv-focusable"
         :class="text && !actions?.length ? 'nv-m-fab-extended' : ''"
         :data-tone="tone"
         :aria-label="text"

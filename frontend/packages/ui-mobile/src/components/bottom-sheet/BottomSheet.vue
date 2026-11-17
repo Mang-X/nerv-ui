@@ -40,7 +40,7 @@ const dismissing = ref(false)
 
 /**
  * While dragging we force `transition: none` so the sheet tracks the finger 1:1
- * — without it the `duration-300` utility (there for reka's enter/exit) leaves
+ * — without it the `duration-[var(--nv-duration-slow)]` utility (there for reka's enter/exit) leaves
  * `transition-property: all` active and the transform would lag ~300ms. On
  * release the inline transition is dropped and `.nv-m-sheet-snap` takes over.
  */
@@ -137,7 +137,7 @@ watch(
       <DialogOverlay
         data-mobile-overlay-layer="backdrop"
         :style="{ zIndex: MOBILE_OVERLAY_LAYER.backdrop }"
-        class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 bg-black/50 backdrop-blur-[6px] duration-300"
+        class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 bg-black/50 backdrop-blur-[6px] duration-[var(--nv-duration-slow)]"
       />
       <DialogContent
         data-slot="mobile-sheet-content"
@@ -145,7 +145,7 @@ watch(
         :style="sheetStyle"
         :class="
           cn(
-            'data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom data-[state=open]:[animation-timing-function:var(--nv-ease-out-expo)] fixed inset-x-0 bottom-0 flex max-h-[85dvh] flex-col rounded-t-3xl border-t border-border bg-card pb-safe shadow-[0_-8px_40px_-12px_rgb(0_0_0/0.45)] duration-300 outline-none',
+            'data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom data-[state=open]:[animation-timing-function:var(--nv-ease-out-expo)] fixed inset-x-0 bottom-0 flex max-h-[85dvh] flex-col rounded-t-3xl border-t border-border bg-card pb-safe shadow-[0_-8px_40px_-12px_rgb(0_0_0/0.45)] duration-[var(--nv-duration-slow)] outline-none',
             // reka exit slide for normal closes only; drag-dismiss slides manually
             !dismissing &&
               'data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom',

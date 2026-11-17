@@ -6,7 +6,8 @@ import { cn } from '../../lib/utils'
 
 /**
  * Mobile input — 44px touch height, 15px text (no iOS zoom-on-focus), leading /
- * trailing slots, subtle brand focus ring. Native form-field feel.
+ * trailing slots. Focus ring comes from the shared `.nv-focusable` contract
+ * (theme.css): brand halo, destructive variant via data-invalid / aria-invalid.
  */
 const props = defineProps<{
   defaultValue?: string | number
@@ -28,7 +29,7 @@ const model = useVModel(props, 'modelValue', emits, {
     data-slot="mobile-input"
     :class="
       cn(
-        'nv-m-minput flex h-11 items-center gap-2.5 rounded-xl border border-border bg-card px-3.5',
+        'nv-m-minput nv-focusable flex h-11 items-center gap-2.5 rounded-xl border border-border bg-card px-3.5',
         props.class,
       )
     "
@@ -55,15 +56,5 @@ const model = useVModel(props, 'modelValue', emits, {
 </template>
 
 <style scoped>
-@layer nv-components {
-  .nv-m-minput {
-    transition:
-      border-color 0.15s var(--nv-ease-out-quart, ease-out),
-      box-shadow 0.15s var(--nv-ease-out-quart, ease-out);
-  }
-  .nv-m-minput:focus-within {
-    border-color: var(--nv-brand);
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--nv-brand) 20%, transparent);
-  }
-}
+/* Focus ring + its transition live in the shared .nv-focusable rule. */
 </style>
