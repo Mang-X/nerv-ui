@@ -7,7 +7,7 @@ import * as UI from '@nerv-iip/ui'
 import { expect, it } from 'vitest'
 function example(page: string) {
   const markdown = readFileSync(
-    resolve(process.cwd(), `../../apps/design-system/docs/components/screen/${page}.md`),
+    resolve(process.cwd(), `../../apps/docs/docs/components/screen/${page}.md`),
     'utf8',
   )
   const script = markdown.match(/<script setup>[\s\S]*?<\/script>/)?.[0]

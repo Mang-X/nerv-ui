@@ -13,7 +13,7 @@ import * as ui from './index'
  * least one of:
  *   - `frontend/DESIGN/component-coverage.md` (four-surface matrix),
  *   - a decision doc under `frontend/DESIGN/components/`,
- *   - a docs-site page under `frontend/apps/design-system/docs/components/`.
+ *   - a docs-site page under `frontend/apps/docs/docs/components/`.
  *
  * "Root" component: an exported Nv name that is not a part of another exported
  * Nv name (`NvCardHeader` is a part of `NvCard` and rides on its family doc).
@@ -57,7 +57,7 @@ function collectMd(dir: string): string[] {
 const corpusFiles = [
   resolve(frontendRoot, 'DESIGN/component-coverage.md'),
   ...collectMd(resolve(frontendRoot, 'DESIGN/components')),
-  ...collectMd(resolve(frontendRoot, 'apps/design-system/docs/components')),
+  ...collectMd(resolve(frontendRoot, 'apps/docs/docs/components')),
 ]
 const corpus = corpusFiles.map((f) => readFileSync(f, 'utf8')).join('\n')
 

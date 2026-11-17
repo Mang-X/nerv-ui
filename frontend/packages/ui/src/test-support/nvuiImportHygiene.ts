@@ -133,7 +133,7 @@ export function deriveDeprecated(files: string[]): Set<string> {
  * 枚举「该挂这条门禁」的 app：`frontend/apps/*` 里既消费组件库、又有 vitest `test` 脚本的。
  *
  * 判据从各 app 的 `package.json` 推导而不是写死名单，这样新增 app 忘了挂壳会在这里红。
- * `apps/design-system` 消费组件库但没有测试运行器（VitePress 文档站），因此不在集合里；
+ * `apps/docs` 消费组件库但没有测试运行器（VitePress 文档站），因此不在集合里；
  * `apps/docs` 有测试但不消费组件库，同理不在。`packages/*` 里的库间消费不由这条 app 门禁
  * 覆盖，维持既有范围（#2022 只改组织方式，不扩面）。
  */

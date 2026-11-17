@@ -9,7 +9,7 @@ const stripComments = (css: string) => css.replace(/\/\*[\s\S]*?\*\//g, '')
 
 // ─── ADR 0020 §4.2 — VitePress doc-site style isolation ────────────────────
 describe('ADR 0020 §4.2 — VitePress isolation', () => {
-  const ds = (rel: string) => read(`../../../apps/design-system/${rel}`)
+  const ds = (rel: string) => read(`../../../apps/docs/${rel}`)
 
   it('enables postcssIsolateStyles for base.css AND vp-doc.css', () => {
     const config = ds('docs/.vitepress/config.mts')
@@ -37,7 +37,7 @@ describe('screen decorative backgrounds public documentation', () => {
     const coverage = read('../../../DESIGN/component-coverage.md')
     const decision = read('../../../DESIGN/components/screen-decorative-backgrounds.md')
     const page = read(
-      '../../../apps/design-system/docs/components/screen/decorative-backgrounds.md',
+      '../../../apps/docs/docs/components/screen/decorative-backgrounds.md',
     )
     for (const name of ['NvScreenFlowLinesBg', 'NvScreenIsometricBlocksBg']) {
       expect(coverage).toContain(name)
