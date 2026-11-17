@@ -81,7 +81,7 @@ export default defineConfig({
         ],
       },
       { text: '模式', link: '/patterns/interaction-patterns', activeMatch: '/patterns/' },
-      { text: '桌面 PC', link: '/components/desktop/', activeMatch: '/components/desktop' },
+      { text: '桌面', link: '/components/desktop/', activeMatch: '/components/desktop' },
       { text: '移动', link: '/components/mobile/', activeMatch: '/components/mobile' },
       { text: '触屏', link: '/components/touch/', activeMatch: '/components/(touch|board)' },
       { text: '大屏', link: '/components/screen/', activeMatch: '/components/screen' },
@@ -118,7 +118,7 @@ export default defineConfig({
       // 桌面 PC —— 组件库式：每个组件一页，按分类分组
       '/components/desktop': [
         {
-          text: '桌面 PC',
+          text: '桌面',
           items: [
             { text: '概览', link: '/components/desktop/' },
             { text: '完整示例', link: '/components/desktop/gallery' },
