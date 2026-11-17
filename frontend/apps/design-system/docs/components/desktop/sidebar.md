@@ -35,7 +35,7 @@ const todo = ref('待分配任务')
 
 可折叠的控制台侧栏**原子件**：`SidebarProvider` 提供上下文，`Sidebar` 承载分组导航，配合 `NvSidebarRail` / `NvSidebarTrigger` 折叠。需要开箱即用的整页外壳时用 [NvAppShellInset](/components/desktop/dashboard)，需要自定义结构时用这些原子件自行拼装。
 
-## 完整控制台侧栏
+## 示例
 
 工作区品牌头 + 分组导航（计数徽标、在线状态点、品牌强调）+ 用户区。点击任意项即切换激活态；`collapsible="icon"` 折叠为图标条，标题文本隐藏（非压缩），悬停图标时显示文字提示。
 
@@ -147,8 +147,6 @@ const todo = ref('待分配任务')
 </NvSidebar>
 ```
 
-## 子菜单 · 徽标 · 操作
-
 `SidebarMenuSub` 承载二级菜单（展开状态用你自己的 `ref` 驱动，并配合高度过渡动画）；二级项缩进并带导引线；`SidebarMenuBadge` 显示计数；`SidebarMenuAction` 是仅在悬停时浮现的行内操作；`SidebarGroupAction` 是分组级操作。
 
 <Demo>
@@ -231,8 +229,6 @@ const todo = ref('待分配任务')
 </SidebarMenuItem>
 ```
 
-## 搜索头
-
 `SidebarInput` 是侧栏内的输入框样式，常置于 `SidebarHeader` 做快速过滤。
 
 <Demo>
@@ -263,9 +259,63 @@ const todo = ref('待分配任务')
 </div>
 </Demo>
 
-<!-- @include: ../../../../../DESIGN/components/sidebar.md -->
+局部组合消费 `SidebarGroupContent` 与 `SidebarMenuSkeleton`，无需整页侧栏或新增 provider。分组内容承载等待占位和本页菜单，等待期间不提供可点击导航；上方状态文字说明等待含义。
 
-## 组成
+<Demo>
+  <ClientOnly>
+    <SidebarPartsExample />
+  </ClientOnly>
+</Demo>
+
+<<< ../../.vitepress/examples/SidebarPartsExample.vue
+
+「显示图标」可切换 `showIcon` 两态；「显示本页菜单」结束等待。选择收藏或阅读记录后，上方反馈当前菜单；再次等待再恢复时保留选择。所有操作仅改变本页内存状态，刷新重置，无网络请求。标准按钮支持 Tab 聚焦及 Enter/Space 激活。
+
+`SidebarMenuSkeleton` 的宽度由 producer 的 `Math.random` 产生；本例通过文档消费侧 `ClientOnly` 避免服务端与客户端随机宽度不一致，不改基础组件。
+
+原版 `Sidebar` 与上面的 `NvSidebar` 分开演示。选择「固定侧栏」走 `collapsible="none"`，在移动宽度也保持固定；选择「可折叠侧栏」在桌面走 `icon` 分支，点击切换按钮折叠/展开，在 390px 走移动 Sheet。两种模式共用当前菜单记录，不穷举全部变体。
+
+<Demo><BaseSidebarExample /></Demo>
+
+<<< @/.vitepress/examples/BaseSidebarExample.vue
+
+`SidebarProvider` 的真实判断是 `useMediaQuery('(max-width: 768px)')`；`open` 控制桌面状态，`openMobile` 属于 context，不是 Provider 的根 v-model prop。主桶公开 `useSidebar`，也可由 Provider 内的宿主子组件使用；本例直接在 slot 使用公开 `SidebarTrigger` 切换移动状态，`aria-label` 经真实 fallthrough 覆盖按钮的可访问名称。
+
+原版移动内容隐藏了内置关闭按钮，本例额外提供「关闭阅读导航」按钮和可见说明；`NvSidebar` 的中文内置关闭和 header 留白属于品牌增强，不能归给原版。原版默认 `Toggle Sidebar`、`Sidebar`、`Displays the mobile sidebar.` 历史合同不改。Esc 关闭由当前 Sheet producer 处理；本例 opener 是 context Trigger 而非 SheetTrigger，真实键盘回焦与 resize 必须独立验证，不能从 DOM 模拟推定。
+
+## API
+
+### NvSidebar
+
+| 属性          | 说明     | 类型                                 | 默认          |
+| ------------- | -------- | ------------------------------------ | ------------- |
+| `side`        | 停靠侧   | `'left' \| 'right'`                  | `'left'`      |
+| `variant`     | 形态     | `'sidebar' \| 'floating' \| 'inset'` | `'sidebar'`   |
+| `collapsible` | 折叠方式 | `'offcanvas' \| 'icon' \| 'none'`    | `'offcanvas'` |
+
+### SidebarMenuButton
+
+| 属性        | 说明           | 类型                        | 默认        |
+| ----------- | -------------- | --------------------------- | ----------- |
+| `isActive`  | 激活态         | `boolean`                   | `false`     |
+| `tooltip`   | 折叠时悬浮标签 | `string \| Component`       | —           |
+| `size`      | 尺寸           | `'default' \| 'sm' \| 'lg'` | `'default'` |
+
+### SidebarMenuAction
+
+| 属性          | 说明         | 类型      | 默认    |
+| ------------- | ------------ | --------- | ------- |
+| `showOnHover` | 仅悬停浮现   | `boolean` | `false` |
+
+### SidebarProvider
+
+| 属性          | 说明     | 类型      | 默认   |
+| ------------- | -------- | --------- | ------ |
+| `defaultOpen` | 初始展开 | `boolean` | `true` |
+
+> 折叠为图标条时，`SidebarMenuButton` 会自动只留图标；放在 Header / Footer 的**自定义内容**需自行加 `group-data-[collapsible=icon]:hidden` 隐藏文字，避免被压缩。
+
+## 设计说明
 
 - `SidebarProvider` — 提供开合状态（`useSidebar()`）、快捷键与 Cookie 持久化；外层容器。
 - `NvSidebar` — 产品侧栏本体，移动抽屉以中文说明导航用途并提供「关闭」按钮；`side` 左/右、`variant` `sidebar`/`floating`/`inset`、`collapsible` `offcanvas`/`icon`/`none`。
@@ -278,7 +328,7 @@ const todo = ref('待分配任务')
 - `SidebarSeparator` / `SidebarInput` — 分隔线与侧栏输入框。
 - `SidebarRail` / `SidebarTrigger` — 原版折叠条与折叠按钮，读屏名称是英文 `Toggle Sidebar`；产品界面改用下方的 `NvSidebarRail` / `NvSidebarTrigger`。
 
-### Pro 件（高级化封装，配合上面的原子件）
+品牌 Pro 件（高级化封装，配合上面的原子件）：
 
 - `NvSidebarBrand` — 工作区品牌锁头（渐变 logo + 名称 + 副标题），放 `SidebarHeader`；折叠为图标条时文字/箭头自动隐藏。属性：`name`、`sub?`、`logo?`、`caret?`。
 - `NvSidebarDot` — 行尾状态点（`tone` `ok` / `warn` / `danger`），作 `SidebarMenuButton` 末位子节点。
@@ -287,20 +337,7 @@ const todo = ref('待分配任务')
 - `NvSidebarSub` — 二级菜单高度动画外壳（`grid-rows 0fr→1fr` + 缩进导引线），`open` 用你自己的 `ref` 驱动，内裹 `SidebarMenuSub`。
 - 统一**选中态**（中性高起填充 + 品牌色图标）已是系统默认（`theme.css` 全局），无需额外样式即对所有侧栏生效。
 
-## 属性
-
-| 组件                | 属性          | 说明           | 类型                                 | 默认          |
-| ------------------- | ------------- | -------------- | ------------------------------------ | ------------- |
-| `NvSidebar`         | `side`        | 停靠侧         | `'left' \| 'right'`                  | `'left'`      |
-| `NvSidebar`         | `variant`     | 形态           | `'sidebar' \| 'floating' \| 'inset'` | `'sidebar'`   |
-| `NvSidebar`         | `collapsible` | 折叠方式       | `'offcanvas' \| 'icon' \| 'none'`    | `'offcanvas'` |
-| `SidebarMenuButton` | `isActive`    | 激活态         | `boolean`                            | `false`       |
-| `SidebarMenuButton` | `tooltip`     | 折叠时悬浮标签 | `string \| Component`                | —             |
-| `SidebarMenuButton` | `size`        | 尺寸           | `'default' \| 'sm' \| 'lg'`          | `'default'`   |
-| `SidebarMenuAction` | `showOnHover` | 仅悬停浮现     | `boolean`                            | `false`       |
-| `SidebarProvider`   | `defaultOpen` | 初始展开       | `boolean`                            | `true`        |
-
-> 折叠为图标条时，`SidebarMenuButton` 会自动只留图标；放在 Header / Footer 的**自定义内容**需自行加 `group-data-[collapsible=icon]:hidden` 隐藏文字，避免被压缩。
+<!-- @include: ../../../../../DESIGN/components/sidebar.md -->
 
 <style>
 /* 有界预览框收纳整页外壳。 */
@@ -388,35 +425,3 @@ const todo = ref('待分配任务')
   .nv-nv-scr-chevron, .nv-nv-scr-sub { transition: none; }
 }
 </style>
-
-## 分组内容与菜单等待态
-
-此局部组合从主桶消费 `SidebarGroupContent` 与 `SidebarMenuSkeleton`，无需整页侧栏或新增 provider。分组内容承载等待占位和本页菜单，等待期间不提供可点击导航；上方状态文字说明等待含义。
-
-<Demo>
-  <ClientOnly>
-    <SidebarPartsExample />
-  </ClientOnly>
-</Demo>
-
-“显示图标”可切换 `showIcon` 两态；“显示本页菜单”结束等待。选择收藏或阅读记录后，上方反馈当前菜单；再次等待再恢复时保留选择。所有操作仅改变本页内存状态，刷新重置，无网络请求。标准按钮支持 Tab 聚焦及 Enter/Space 激活，真实浏览器验证由独立席执行。
-
-`SidebarMenuSkeleton` 的宽度由 producer 的 `Math.random` 产生；本例通过文档消费侧 `ClientOnly` 避免服务端与客户端随机宽度不一致，不改基础组件。Sidebar 本体合同仍为 UNRESOLVED，不由此局部示例签署。
-
-### 同源学习代码
-
-<<< ../../.vitepress/examples/SidebarPartsExample.vue
-
-## 原版 Sidebar：固定、桌面折叠与移动抽屉
-
-这里直接使用主桶 `Sidebar`，与上面的 `NvSidebar` 分开演示。选择「固定侧栏」走 `collapsible="none"`，在移动宽度也保持固定；选择「可折叠侧栏」在桌面走 `icon` 分支，点击切换按钮折叠/展开，在 390px 走移动 Sheet。两种模式共用当前菜单记录，不穷举全部变体。
-
-`SidebarProvider` 的真实判断是 `useMediaQuery('(max-width: 768px)')`；`open` 控制桌面状态，`openMobile` 属于 context，不是 Provider 的根 v-model prop。主桶公开 `useSidebar`，也可由 Provider 内的宿主子组件使用；本例直接在 slot 使用公开 `SidebarTrigger` 切换移动状态，`aria-label` 经真实 fallthrough 覆盖按钮的可访问名称。
-
-原版移动内容隐藏了内置关闭按钮，本例额外提供「关闭阅读导航」按钮和可见说明；`NvSidebar` 的中文内置关闭和 header 留白属于品牌增强，不能归给原版。原版默认 `Toggle Sidebar`、`Sidebar`、`Displays the mobile sidebar.` 历史合同不改。Esc 关闭由当前 Sheet producer 处理；本例 opener 是 context Trigger 而非 SheetTrigger，真实键盘回焦与 resize 必须独立验证，不能从 DOM 模拟推定。
-
-桌面容器沿用本页 transform containing-block 隔离方式，约束固定侧栏高度，避免覆盖全站导航；移动 Sheet 仍通过原生 portal 呈现。以下 live 与学习源码来自同一文件，原 Nv 例和分组/骨架例保留。
-
-<Demo><BaseSidebarExample /></Demo>
-
-<<< @/.vitepress/examples/BaseSidebarExample.vue

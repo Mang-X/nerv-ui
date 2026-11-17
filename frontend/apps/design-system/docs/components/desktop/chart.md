@@ -67,9 +67,9 @@ const statusMix = [
 
 基于 unovis 的一组数据可视化图表：面积、折线、柱状、环形。颜色取自设计令牌，随运行时品牌色重新着色。
 
-## 面积图 NvAreaChart
+## 示例
 
-单系列累计趋势，适合当日完成数等时间序列。
+`NvAreaChart` 单系列累计趋势，适合当日完成数等时间序列。
 
 <Demo>
   <div class="w-full">
@@ -92,9 +92,7 @@ const outputSeries = [
 </template>
 ```
 
-## 折线图 NvLineChart
-
-多系列对比，例如计划与实际完成数。
+`NvLineChart` 多系列对比，例如计划与实际完成数。
 
 <Demo>
   <div class="w-full">
@@ -125,9 +123,7 @@ const planActualSeries = [
 </template>
 ```
 
-## 柱状图 NvBarChart
-
-分类（可分组）对比，例如各资源的合格 / 不合格。
+`NvBarChart` 分类（可分组）对比，例如各资源的合格 / 不合格。
 
 <Demo>
   <div class="w-full">
@@ -152,9 +148,7 @@ const outputByCenterSeries = [
 </template>
 ```
 
-## 环形图 NvDonutChart
-
-占比构成，例如条目状态分布，支持中心标签。
+`NvDonutChart` 占比构成，例如条目状态分布，支持中心标签。
 
 <Demo>
   <div class="w-full max-w-sm">
@@ -176,38 +170,6 @@ const statusMix = [
   <NvDonutChart :data="statusMix" :height="180" central-label="118" central-sub-label="条目" />
 </template>
 ```
-
-## 属性
-
-### NvAreaChart
-
-| 属性          | 说明                           | 类型                                 | 默认    |
-| ------------- | ------------------------------ | ------------------------------------ | ------- |
-| `data`        | 数据点数组                     | `{ label: string; value: number }[]` | —       |
-| `height`      | 高度（px）                     | `number`                             | `240`   |
-| `valueSuffix` | 数值后缀                       | `string`                             | `''`    |
-| `minimal`     | 迷你模式（无轴，适合卡内趋势） | `boolean`                            | `false` |
-
-### NvLineChart / NvBarChart
-
-| 属性          | 说明       | 类型                                       | 默认  |
-| ------------- | ---------- | ------------------------------------------ | ----- |
-| `data`        | 行数据数组 | `Record<string, number \| string>[]`       | —     |
-| `xKey`        | X 轴字段名 | `string`                                   | —     |
-| `series`      | 系列定义   | `{ key: string; label: string; color? }[]` | —     |
-| `height`      | 高度（px） | `number`                                   | `260` |
-| `valueSuffix` | 数值后缀   | `string`                                   | `''`  |
-
-### NvDonutChart
-
-| 属性              | 说明       | 类型                                         | 默认  |
-| ----------------- | ---------- | -------------------------------------------- | ----- |
-| `data`            | 分片数组   | `{ label: string; value: number; color? }[]` | —     |
-| `height`          | 高度（px） | `number`                                     | `200` |
-| `centralLabel`    | 中心主标签 | `string`                                     | —     |
-| `centralSubLabel` | 中心副标签 | `string`                                     | —     |
-
-## 折线图范围与定位
 
 宿主在点击或键盘激活当前定位点后，从同一份当前数据读取系列与行，并在图下显示明细；初始尚未选择。不连接业务服务，也不自动跳转页面。
 
@@ -268,11 +230,53 @@ function selectMarker(marker) {
 </template>
 ```
 
+`ChartContainer`、`ChartLegendContent`、`ChartTooltipContent` 三件均通过公开主桶消费。`ChartContainer` 接收 `config` 和 class，只布局并渲染 slot；不注入 config、不计算图形。`ChartLegendContent` 由宿主传入 `items`，`ChartTooltipContent` 只展示 slot。已有 NvBarChart 没有当前项选择事件；本例采用最小宿主布局，以原生 meter 表示相对数量、按钮选择当前项，不声称自动绑定图表 hover。点击或 Tab 聚焦条目即可查看下方常驻提示，Enter/Space 同样可选；提示不浮出容器。长名称完整换行，数字最多三位小数，零值保留。
+
+<Demo>
+  <BaseChartExample />
+</Demo>
+
+<<< ../../.vitepress/examples/BaseChartExample.vue
+
+## API
+
+### NvAreaChart
+
+| 属性          | 说明                           | 类型                                 | 默认    |
+| ------------- | ------------------------------ | ------------------------------------ | ------- |
+| `data`        | 数据点数组                     | `{ label: string; value: number }[]` | —       |
+| `height`      | 高度（px）                     | `number`                             | `240`   |
+| `valueSuffix` | 数值后缀                       | `string`                             | `''`    |
+| `minimal`     | 迷你模式（无轴，适合卡内趋势） | `boolean`                            | `false` |
+
+### NvLineChart / NvBarChart
+
+| 属性          | 说明       | 类型                                       | 默认  |
+| ------------- | ---------- | ------------------------------------------ | ----- |
+| `data`        | 行数据数组 | `Record<string, number \| string>[]`       | —     |
+| `xKey`        | X 轴字段名 | `string`                                   | —     |
+| `series`      | 系列定义   | `{ key: string; label: string; color? }[]` | —     |
+| `height`      | 高度（px） | `number`                                   | `260` |
+| `valueSuffix` | 数值后缀   | `string`                                   | `''`  |
+
+### NvDonutChart
+
+| 属性              | 说明       | 类型                                         | 默认  |
+| ----------------- | ---------- | -------------------------------------------- | ----- |
+| `data`            | 分片数组   | `{ label: string; value: number; color? }[]` | —     |
+| `height`          | 高度（px） | `number`                                     | `200` |
+| `centralLabel`    | 中心主标签 | `string`                                     | —     |
+| `centralSubLabel` | 中心副标签 | `string`                                     | —     |
+
+### NvLineChart 标注输入
+
 | 输入          | 合同                                                                                                                       | 默认     |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------- | -------- |
 | `bands`       | `NvLineBand[]`：`id`、`axis: 'x' \| 'y'`、`from`、`to`、`label`、可选 `tone: 'info' \| 'warning' \| 'danger' \| 'neutral'` | 不画范围 |
 | `markers`     | `NvLineMarker[]`：`id`、`index`、`seriesKey`、`label`、可选 `href`                                                         | 不画点   |
 | `markerClick` | 当前 marker 和原始 MouseEvent/KeyboardEvent；宿主可 preventDefault 并定位明细                                              | 无副作用 |
+
+## 设计说明
 
 X 是行索引，不是时间戳。`xKey` 仅作标签，相同标签仍是两个位置。宿主重排行时同步 marker.index；id 在每个输入集合内必须唯一、稳定。范围反转自动排序，先裁剪到当前共享域；完全轴外或非有限范围省略，等值范围宽/高为零。
 
@@ -284,22 +288,6 @@ marker 绑定当前可见 series 的当前行数值；缺行、缺 series、空�
 
 `href` 只接受无空白的本页 `#fragment`，其它值退为按钮；宿主保证目标存在与路由安全。Tab、Enter、Space 可激活，长 label 使用完整可访问名称与 title。宿主示例还提供完整可读明细。tone 仅表达宿主意图，颜色不是唯一标识。
 
-可操作双宿主：`/#line-annotations/library` 与 `/#line-annotations/garden`。浏览器尺寸、轴文字实际测量和视觉对齐仍须独立验收。
+可操作双宿主：`/#line-annotations/library` 与 `/#line-annotations/garden`。
 
 <!--@include: ../../../../../DESIGN/components/chart.md-->
-
-## 基础 Chart 容器、图例与提示
-
-<Demo>
-  <BaseChartExample />
-</Demo>
-
-三件均通过公开主桶消费。`ChartContainer` 接收 `config` 和 class，只布局并渲染 slot；不注入 config、不计算图形。`ChartLegendContent` 由宿主传入 `items`，`ChartTooltipContent` 只展示 slot。
-
-已有 NvBarChart 没有当前项选择事件；本例采用最小宿主布局，以原生 meter 表示相对数量、按钮选择当前项，不声称自动绑定图表 hover。点击或 Tab 聚焦条目即可查看下方常驻提示，Enter/Space 同样可选；提示不浮出容器。长名称完整换行，数字最多三位小数，零值保留。
-
-同一份本页数据派生图面、图例和提示；替换保留 key 对应身份并读取新值，失去当前 key 时明确显示未选择。隐藏不丢失数据，清空与恢复均同步派生内容。图例仅是说明，不承担选项操作。所有状态仅在本页内存中，刷新重置。
-
-### 同源学习代码
-
-<<< ../../.vitepress/examples/BaseChartExample.vue

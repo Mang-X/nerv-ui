@@ -14,7 +14,7 @@ const priority = ref('normal')
 
 在一组互斥选项中单选。`NvRadioGroup` 承载选中值，`NvRadioGroupItem` 为每个选项。
 
-## 基础用法
+## 示例
 
 <Demo>
   <NvRadioGroup v-model="radioValue">
@@ -31,8 +31,6 @@ const priority = ref('normal')
   <NvRadioGroupItem value="exempt">免检放行</NvRadioGroupItem>
 </NvRadioGroup>
 ```
-
-## 含禁用项
 
 <Demo>
   <NvRadioGroup v-model="priority">
@@ -51,7 +49,7 @@ const priority = ref('normal')
 </NvRadioGroup>
 ```
 
-## 属性
+## API
 
 | 属性       | 说明                               | 类型      | 默认    |
 | ---------- | ---------------------------------- | --------- | ------- |

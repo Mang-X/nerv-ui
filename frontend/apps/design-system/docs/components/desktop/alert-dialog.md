@@ -32,40 +32,29 @@ function confirmDelete() {
 拦截不可逆的破坏性操作，强制用户在继续前作出明确选择。`NvAlertDialog` 没有右上角关闭按钮，只能通过取消或确认操作退出，确保确认动作不会被误触跳过。`NvAlertDialogAction` 内部使用 `NvButton`，可通过 `variant="destructive"` 渲染为危险色。
 
 ::: warning 异步确认不要用 NvAlertDialogAction
-`NvAlertDialogAction` 包的是 reka `AlertDialogAction`，直接渲染成 `DialogClose`——`@click` 里
-`onOpenChange(false)` **无条件执行、不看 `event.defaultPrevented`**。所以**点击瞬间框就关**，
-异步请求之后才落地：
+`NvAlertDialogAction` 包的是 reka `AlertDialogAction`，直接渲染成 `DialogClose`——`@click` 里 `onOpenChange(false)` **无条件执行、不看 `event.defaultPrevented`**。所以**点击瞬间框就关**，异步请求之后才落地：
 
 - 「提交失败后保留输入、原地重试」做不到（框早没了）；
 - 「`pending` 期间禁点确认」也做不到（用户根本看不到 disabled 那一瞬）。
 
-**确认动作要等接口结果时，请用普通 `NvButton`**，由 handler 成功才把 `open` 置 false；
-「取消」继续用 `NvAlertDialogCancel`（本就该无条件关）。本页下方示例都是**同步**关闭的场景，
-故仍用 `NvAlertDialogAction`。
+**确认动作要等接口结果时，请用普通 `NvButton`**，由 handler 成功才把 `open` 置 false；「取消」继续用 `NvAlertDialogCancel`（本就该无条件关）。本页下方示例都是**同步**关闭的场景，故仍用 `NvAlertDialogAction`。
 
 判定与实现见 `frontend/DESIGN/patterns/flows/confirm-destroy.md` 规则 3（#1607）。
 
-这条规则已上门禁：`apps/business-console/src/confirmDestroy.contract.test.ts` 用模板 AST
-扫描整个前端工作区，`.vue` 里出现 `<NvAlertDialogAction>` 一律判红（白名单当前为空）。
-门禁只挡**写法**，「失败后框还在不在」这类行为要靠**挂真弹层**的用例（不 stub `NvAlertDialog*`）。
+这条规则已上门禁：`apps/business-console/src/confirmDestroy.contract.test.ts` 用模板 AST 扫描整个前端工作区，`.vue` 里出现 `<NvAlertDialogAction>` 一律判红（白名单当前为空）。门禁只挡**写法**，「失败后框还在不在」这类行为要靠**挂真弹层**的用例（不 stub `NvAlertDialog*`）。
 :::
 
 ::: tip 裁决：组件本体保持现状，不改 `defaultPrevented` 语义（#1613 子项 g）
-曾评估过让 `NvAlertDialogAction` 尊重 `event.defaultPrevented`（即 `preventDefault()` 后不关框），
-**结论是不改**：
+曾评估过让 `NvAlertDialogAction` 尊重 `event.defaultPrevented`（即 `preventDefault()` 后不关框），**结论是不改**：
 
-- 它包的 reka `AlertDialogAction` 就是 `DialogClose` 语义，「点击即关」是这个组件的**定义**而非缺陷；
-  改语义要么绕开 reka 自己实现关闭逻辑，要么给原版件打补丁，两条都动到冻结层的边界。
-- 全部**同步**用法都依赖点击即关（本页示例即是）。改语义会让它们**静默**变成「点了不关」——
-  确认框留在屏上、用户以为没生效，是比现状更难发现的回归。
-- 收益也不成立：需要「失败保留」的场景本就该用普通 `NvButton` 自己掌控 `open`，
-  拿到的控制力比 `defaultPrevented` 约定更直接、更好读。
+- 它包的 reka `AlertDialogAction` 就是 `DialogClose` 语义，「点击即关」是这个组件的**定义**而非缺陷；改语义要么绕开 reka 自己实现关闭逻辑，要么给原版件打补丁，两条都动到冻结层的边界。
+- 全部**同步**用法都依赖点击即关（本页示例即是）。改语义会让它们**静默**变成「点了不关」——确认框留在屏上、用户以为没生效，是比现状更难发现的回归。
+- 收益也不成立：需要「失败保留」的场景本就该用普通 `NvButton` 自己掌控 `open`，拿到的控制力比 `defaultPrevented` 约定更直接、更好读。
 
-所以取舍是：**组件不动，把误用挡在门禁里**。异步确认用 `NvButton`，同步关闭才用
-`NvAlertDialogAction`。
+所以取舍是：**组件不动，把误用挡在门禁里**。异步确认用 `NvButton`，同步关闭才用 `NvAlertDialogAction`。
 :::
 
-## 基础用法
+## 示例
 
 通过 `NvAlertDialogTrigger` 触发，`v-model:open` 双向绑定开关状态。本例点击「删除」只记录本页选择回执，Action 同步关闭；取消不更新已有回执。
 
@@ -140,7 +129,15 @@ function confirmDelete() {
 </template>
 ```
 
-## 组成
+下面两个中性对话框只提供同步本页确认回执，没有真实删除、SDK 请求或异步保存。取消不改变回执；确认按钮点击立即关闭。Escape、取消初始焦点和关闭后焦点归还由当前 Reka 负责，不另写键盘处理。品牌组合实际使用 `NvAlertDialogMedia`，不是基础 Media 的别名；品牌 Action/Cancel 组合 `NvButton`，基础 Action/Cancel 使用基础 buttonVariants。
+
+<Demo>
+  <AlertDialogMediaExample />
+</Demo>
+
+<<< ../../.vitepress/examples/AlertDialogMediaExample.vue
+
+## API
 
 | 组件                                                                      | 说明                                                                                                                                               |
 | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -152,27 +149,9 @@ function confirmDelete() {
 | `NvAlertDialogCancel`                                                     | 取消并关闭，内部为 `NvButton`（默认 `outline`）                                                                                                    |
 | `NvAlertDialogAction`                                                     | 确认操作，内部为 `NvButton`（默认 `default`，可设 `destructive`）。**点击即无条件关框**，只用于同步关闭；异步确认改用普通 `NvButton`（见页首警示） |
 
-## 属性
-
 | 属性       | 所属                                          | 说明                                 | 类型                  | 默认                  |
 | ---------- | --------------------------------------------- | ------------------------------------ | --------------------- | --------------------- |
 | `open`     | `NvAlertDialog`                               | 受控开关状态（`v-model:open`）       | `boolean`             | `false`               |
 | `as-child` | `NvAlertDialogTrigger`                        | 将渲染合并到子元素                   | `boolean`             | `false`               |
 | `variant`  | `NvAlertDialogAction` / `NvAlertDialogCancel` | 按钮样式，破坏性操作用 `destructive` | `NvButton['variant']` | `default` / `outline` |
 | `size`     | `NvAlertDialogAction` / `NvAlertDialogCancel` | 按钮尺寸                             | `NvButton['size']`    | `default`             |
-
-## 媒体与基础结构
-
-下面两个中性对话框只提供同步本页确认回执，没有真实删除、SDK 请求或异步保存。取消不改变回执；确认按钮点击立即关闭。Escape、取消初始焦点和关闭后焦点归还由当前 Reka 负责，不另写键盘处理。
-
-品牌组合实际使用 `NvAlertDialogMedia`，不是基础 Media 的别名。品牌 Action/Cancel 组合 `NvButton`；基础 Action/Cancel 使用基础 buttonVariants。两套 Content 的遮罩、布局与 size 合同不同，Header/Media/Title 的响应式选择器也不同。Description 共享 Reka 语义但样式 producer 独立，Footer 布局独立。因此基础八件在同一个结构组合中共同消费，无需逐个建立页面。
-
-装饰媒体隐藏读屏；Title/Description 交由 Reka 生成关联 ID。消费方通过公开 class 让长按钮换行、内容区滚动；实际窄屏、亮暗与键盘表现由独立浏览器验收。
-
-<Demo>
-  <AlertDialogMediaExample />
-</Demo>
-
-### 完整学习源码
-
-<<< ../../.vitepress/examples/AlertDialogMediaExample.vue

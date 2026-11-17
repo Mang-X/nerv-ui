@@ -8,6 +8,8 @@ import DirectoryDemo from '../../../../playground/src/directory-detail/Directory
 
 # 目录筛选与只读详情
 
+## 示例
+
 <Demo>
   <DirectoryDemo>
     <template #back><a href="/">返回文档首页</a></template>
@@ -16,7 +18,7 @@ import DirectoryDemo from '../../../../playground/src/directory-detail/Directory
 
 <!--@include: ../../../../../DESIGN/components/directory-detail.md-->
 
-## 宿主合同
+## API
 
 文档通过 `DirectoryDemo` 的 `back` 插槽提供返回文档首页的入口；playground 未传插槽时保留返回工作空间的默认链接。
 
@@ -24,4 +26,4 @@ import DirectoryDemo from '../../../../playground/src/directory-detail/Directory
 
 `filter` / `update:filter` 是唯一筛选通道；页码属于组合本地状态。宿主必须提供稳定且唯一的 row.key；同 key 替换刷新详情内容，重排不改变身份。候选更新不重置详情；删除后禁用旧动作。readonly 同步使创建和详情来源失效。
 
-本页内存确认只表示本页保存，不代表后端持久化。浏览器视觉、HTTP、CI 与打包安装均未运行。
+本页内存确认只表示本页保存，不代表后端持久化。

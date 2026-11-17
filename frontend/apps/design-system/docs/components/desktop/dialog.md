@@ -43,7 +43,7 @@ function openScrollExample(mode) {
 
 承载需要用户聚焦确认的关键操作。`NvDialog` 提供模糊遮罩与缩放入场，由头部、标题、说明与底部操作区组合内容。
 
-## 基础用法
+## 示例
 
 通过 `NvDialogTrigger` 触发，`v-model:open` 双向绑定开关状态。本例确认后在本页显示选择回执；取消、Esc 或关闭不会更新回执，已有回执保留。
 
@@ -130,16 +130,9 @@ function confirmDispatch() {
 </template>
 ```
 
-## 滚动与操作区
+默认由遮罩滚动，短窗居中，长窗从顶部开始向下滚动。`NvDialogContent` 保留内容内边距；`NvDialogFooter` 在正常文档流中占位，并相对最近的滚动容器吸底。Footer 不向父容器外扩展，也不抵消父容器底部内边距，因此可以直接放在 Content 下，也可以放在无内边距或带少量内边距的 form 内。头部、字段、校验信息与操作区使用父容器的 gap 分隔。
 
-默认由遮罩滚动，短窗居中，长窗从顶部开始向下滚动。`NvDialogContent` 保留内容内边距；
-`NvDialogFooter` 在正常文档流中占位，并相对最近的滚动容器吸底。
-Footer 不向父容器外扩展，也不抵消父容器底部内边距，因此可以直接放在 Content 下，
-也可以放在无内边距或带少量内边距的 form 内。头部、字段、校验信息与操作区使用父容器的 gap 分隔。
-
-需要局部滚动时，只指定一个滚动容器：Content 限高滚动，或 form 限高滚动。
-嵌套 form 应保持 `min-height: 0`，不要再用负外边距抵消 Footer 的占位。
-下面三种示例使用真实组件；“增加一行”和“显示错误”可检查内容增高后首尾字段与操作区的可达性。
+需要局部滚动时，只指定一个滚动容器：Content 限高滚动，或 form 限高滚动。嵌套 form 应保持 `min-height: 0`，不要再用负外边距抵消 Footer 的占位。下面三种示例使用真实组件；「增加一行」和「显示错误」可检查内容增高后首尾字段与操作区的可达性。
 
 <Demo>
   <div class="flex flex-wrap gap-2">
@@ -198,27 +191,7 @@ Footer 不向父容器外扩展，也不抵消父容器底部内边距，因此�
 </NvDialogContent>
 ```
 
-## 组成
-
-| 组件                                                       | 说明                                   |
-| ---------------------------------------------------------- | -------------------------------------- |
-| `NvDialog`                                                 | 根容器，支持 `v-model:open`            |
-| `NvDialogTrigger`                                          | 触发器，配合 `as-child` 包裹自定义按钮 |
-| `NvDialogContent`                                          | 内容卡片（模糊遮罩 + 缩放入场）        |
-| `NvDialogHeader` / `NvDialogTitle` / `NvDialogDescription` | 头部、标题与描述                       |
-| `NvDialogFooter`                                           | 底部操作区                             |
-| `NvDialogClose`                                            | 关闭触发器                             |
-
-## 属性
-
-| 属性       | 所属                                | 说明                           | 类型      | 默认    |
-| ---------- | ----------------------------------- | ------------------------------ | --------- | ------- |
-| `open`     | `NvDialog`                          | 受控开关状态（`v-model:open`） | `boolean` | `false` |
-| `as-child` | `NvDialogTrigger` / `NvDialogClose` | 将渲染合并到子元素             | `boolean` | `false` |
-
-## 基础 Dialog：固定与滚动内容
-
-以下为基础主桶原版合同示例，与上方 Nv 组合分别展示；仅有本页开关，不保存业务数据。
+基础主桶原版合同示例与上方 Nv 组合分别展示；仅有本页开关，不保存业务数据。
 
 <Demo>
   <BaseDialogExample />
@@ -232,4 +205,20 @@ Footer 不向父容器外扩展，也不抵消父容器底部内边距，因此�
 
 两种 Content 的 `id` / `data-reading` attrs 均透传到内层对话框节点。固定标题使用 `as="h3"`、描述使用 `as-child` 合并到 `div`；长文标题使用 `as-child` 合并到 `h2`、描述使用 `as="p"`，说明链接保留为真实 `a` 节点，标题/描述 ID 与对话框无障碍关系由 Reka 关联。
 
-`DialogScrollContent` 由外层遮罩滚动，正文末端后接关闭页脚，右上也保留原版 Close。窄屏只在消费端限制宽度留边。可用关闭按钮或 Esc 退出，再开可重新阅读；标准焦点恢复到各自触发器。当前 producer 的 pointer-down-outside guard 会阻止滚动条区域指针导致误关闭，但合成 DOM 事件不代表 OS 原生滚动条实测。1440/390 亮暗阅读、真实 Tab/Enter/Esc、鼠标滚动到末端、遮罩及原生滚动条保护均须由独立浏览器席验收；本页不将这些未运行结果写为通过。
+`DialogScrollContent` 由外层遮罩滚动，正文末端后接关闭页脚，右上也保留原版 Close。窄屏只在消费端限制宽度留边。可用关闭按钮或 Esc 退出，再开可重新阅读；标准焦点恢复到各自触发器。当前 producer 的 pointer-down-outside guard 会阻止滚动条区域指针导致误关闭。
+
+## API
+
+| 组件                                                       | 说明                                   |
+| ---------------------------------------------------------- | -------------------------------------- |
+| `NvDialog`                                                 | 根容器，支持 `v-model:open`            |
+| `NvDialogTrigger`                                          | 触发器，配合 `as-child` 包裹自定义按钮 |
+| `NvDialogContent`                                          | 内容卡片（模糊遮罩 + 缩放入场）        |
+| `NvDialogHeader` / `NvDialogTitle` / `NvDialogDescription` | 头部、标题与描述                       |
+| `NvDialogFooter`                                           | 底部操作区                             |
+| `NvDialogClose`                                            | 关闭触发器                             |
+
+| 属性       | 所属                                | 说明                           | 类型      | 默认    |
+| ---------- | ----------------------------------- | ------------------------------ | --------- | ------- |
+| `open`     | `NvDialog`                          | 受控开关状态（`v-model:open`） | `boolean` | `false` |
+| `as-child` | `NvDialogTrigger` / `NvDialogClose` | 将渲染合并到子元素             | `boolean` | `false` |

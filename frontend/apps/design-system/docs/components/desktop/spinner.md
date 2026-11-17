@@ -6,10 +6,12 @@ title: Spinner 加载
 import { NvButton, NvSpinner } from '@nerv-iip/ui'
 </script>
 
+# Spinner 加载
+
 <!-- 决策正文嵌入 DESIGN 唯一事实源，修改使用规则请改源文件。 -->
 <!--@include: ../../../../../DESIGN/components/skeleton-spinner.md-->
 
-## 实时演示
+## 示例
 
 <Demo>
   <NvSpinner />
@@ -17,7 +19,7 @@ import { NvButton, NvSpinner } from '@nerv-iip/ui'
   <NvButton loading disabled>保存中</NvButton>
 </Demo>
 
-## Props 与属性
+## API
 
 | 名称    | 类型                      | 默认值 | 说明                                      |
 | ------- | ------------------------- | ------ | ----------------------------------------- |

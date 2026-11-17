@@ -16,7 +16,7 @@ import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
   <NvNotifierHost />
 </ClientOnly>
 
-## 危险操作
+## 示例
 
 默认 `danger` 基调，确认按钮为红色。
 
@@ -42,8 +42,6 @@ import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
 </NvPopconfirm>
 ```
 
-## 主操作确认
-
 设置 `confirm-tone="brand"`，确认按钮使用品牌色。
 
 <Demo>
@@ -68,7 +66,7 @@ import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
 </NvPopconfirm>
 ```
 
-## 属性
+## API
 
 | 属性          | 说明                       | 类型              | 默认               |
 | ------------- | -------------------------- | ----------------- | ------------------ |
@@ -80,7 +78,7 @@ import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
 | `loading`     | 确认按钮加载态（受控时）   | `boolean`         | `false`            |
 | `open`        | 受控开关（`v-model:open`） | `boolean`         | —                  |
 
-## 事件
+### 事件
 
 | 事件      | 说明           |
 | --------- | -------------- |

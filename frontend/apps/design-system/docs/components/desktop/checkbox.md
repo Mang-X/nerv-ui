@@ -15,7 +15,7 @@ const genOrder = ref(true)
 
 在一组选项中多选，或表示单个开关式确认。`NvCheckbox` 复用品牌选中色与聚焦环。
 
-## 基础用法
+## 示例
 
 <Demo>
   <label style="display:flex;align-items:center;gap:10px;font-size:14px">
@@ -30,8 +30,6 @@ const genOrder = ref(true)
   提交后立即锁定条目并生成清单
 </label>
 ```
-
-## 多选组
 
 <Demo>
   <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
@@ -53,7 +51,7 @@ const genOrder = ref(true)
 <label><NvCheckbox disabled /> 自动提交（暂不可用）</label>
 ```
 
-## 属性
+## API
 
 | 属性       | 说明     | 类型      | 默认    |
 | ---------- | -------- | --------- | ------- |

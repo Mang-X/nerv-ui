@@ -19,7 +19,7 @@ import { ActivityIcon } from '@lucide/vue'
 
 > 使用前需用 `NvTooltipProvider` 包裹（通常放在应用根部），可统一配置 `delay-duration`。
 
-## 基础用法
+## 示例
 
 <Demo>
   <NvTooltipProvider :delay-duration="200">
@@ -46,8 +46,6 @@ import { ActivityIcon } from '@lucide/vue'
 </NvTooltipProvider>
 ```
 
-## 方位
-
 通过 `NvTooltipContent` 的 `side` 控制弹出方向。
 
 <Demo>
@@ -73,7 +71,7 @@ import { ActivityIcon } from '@lucide/vue'
 <NvTooltipContent side="right">负责人：张伟</NvTooltipContent>
 ```
 
-## 属性
+## API
 
 | 属性             | 所属                | 说明                   | 类型                             | 默认    |
 | ---------------- | ------------------- | ---------------------- | -------------------------------- | ------- |

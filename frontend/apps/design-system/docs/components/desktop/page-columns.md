@@ -10,7 +10,7 @@ import { NvPageColumns } from '@nerv-iip/ui'
 
 基于 CSS columns 的瀑布流多列布局（参考 Nuxt UI），适合高度不一的卡片；子项不会跨列断开。
 
-## 瀑布流
+## 示例
 
 <Demo>
   <NvPageColumns class="w-full">
@@ -39,4 +39,6 @@ import { NvPageColumns } from '@nerv-iip/ui'
 </NvPageColumns>
 ```
 
-> 默认 `sm` 2 列、`lg` 3 列。需要其他列数时用 `class` 覆盖 `columns-*`。
+## 设计说明
+
+默认 `sm` 2 列、`lg` 3 列。需要其他列数时用 `class` 覆盖 `columns-*`。

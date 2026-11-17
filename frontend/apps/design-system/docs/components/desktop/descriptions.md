@@ -31,7 +31,7 @@ const clampItems = [
 
 记录 / 资源等实体详情页的键值列表。`NvDescriptions` 支持多列网格、单元格跨列、`#<key>` 自定义值插槽，以及带边框的正式记录样式。
 
-## 网格
+## 示例
 
 <Demo block>
   <NvDescriptions :items="items" :columns="3">
@@ -55,8 +55,6 @@ const clampItems = [
 </NvDescriptions>
 ```
 
-## 带边框
-
 <Demo block>
   <NvDescriptions :items="items" :columns="3" bordered>
     <template #code="{ item }">
@@ -72,8 +70,6 @@ const clampItems = [
 <NvDescriptions :items="items" :columns="3" bordered />
 ```
 
-## 标题超长省略
-
 `ellipsis` + `label-width`：标题单行截断，悬停时显示完整文本。
 
 <Demo block>
@@ -84,7 +80,7 @@ const clampItems = [
 <NvDescriptions :items="items" :columns="2" bordered ellipsis label-width="6rem" />
 ```
 
-## 属性
+## API
 
 | 属性         | 说明                                           | 类型                     | 默认         |
 | ------------ | ---------------------------------------------- | ------------------------ | ------------ |

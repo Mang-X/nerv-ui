@@ -18,7 +18,7 @@ const facetFeedback = ref('请选择一个维度。')
 
 > 平铺的「计划与实际 / 目标与当前」对比卡用 `NvMetricComparison`（自动算差值与达成率）。
 
-## variant 一览
+## 何时使用
 
 | variant     | 下半区                                    | 典型场景                       |
 | ----------- | ----------------------------------------- | ------------------------------ |
@@ -31,11 +31,9 @@ const facetFeedback = ref('请选择一个维度。')
 | `alert`     | tone 浸染卡面 + 处理入口                  | 超期任务、临期批次             |
 | `facets`    | 维度 chip 组（可点击成筛选）              | 待审核批次 = 类别 A / 类别 B…  |
 
-## icon 图标紧凑型
+## 示例
 
-`tone` 决定左侧图标位配色，`trend` 出右上环比 chip。给了 `series` 还会在 chip 左侧插一段 64px 内联迷你图——`icon` 卡是一行式摘要，走势跟数字并排而不是另起一行。
-
-窄格降级顺序（容器查询，宽度需求大的先让）：内联迷你图 264px → 环比 chip 208px → 图标位 152px；标题与数值永不让位。
+`icon`：`tone` 决定左侧图标位配色，`trend` 出右上环比 chip。给了 `series` 还会在 chip 左侧插一段 64px 内联迷你图——`icon` 卡是一行式摘要，走势跟数字并排而不是另起一行。窄格降级顺序（容器查询，宽度需求大的先让）：内联迷你图 264px → 环比 chip 208px → 图标位 152px；标题与数值永不让位。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2">
@@ -59,9 +57,7 @@ const facetFeedback = ref('请选择一个维度。')
 
 > 「涨了但是坏事」（超期 +2）：`direction: 'up'` 保留向上箭头，`tone: 'danger'` 把 chip 染红。
 
-## sparkline 趋势曲线型
-
-曲线常驻，脚注固定为「区间 + 区间统计」两个数据槽位——没有自由文本入口。悬浮曲线出定位点 + tooltip。
+`sparkline`：曲线常驻，脚注固定为「区间 + 区间统计」两个数据槽位——没有自由文本入口。悬浮曲线出定位点 + tooltip。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -107,9 +103,7 @@ const facetFeedback = ref('请选择一个维度。')
 />
 ```
 
-## target 目标进度型
-
-`progress`（0–100，调用方算好保持可预期）驱动进度条；`target-marker` 是目标刻度位置（默认条末）；`progress-tone` 缺省在 ≥100% 时转 success。悬浮进度条出「实际 / 目标 / 达成」结构化 tooltip。
+`target`：`progress`（0–100，调用方算好保持可预期）驱动进度条；`target-marker` 是目标刻度位置（默认条末）；`progress-tone` 缺省在 ≥100% 时转 success。悬浮进度条出「实际 / 目标 / 达成」结构化 tooltip。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -132,9 +126,7 @@ const facetFeedback = ref('请选择一个维度。')
 />
 ```
 
-## breakdown 状态分布型
-
-总数 + 分段条 + 图例计数，一张卡回答「38 条记录都处在什么状态」。分段色沿用五 tone，和表格里的状态徽章同源；悬浮分段或图例项联动高亮。
+`breakdown`：总数 + 分段条 + 图例计数，一张卡回答「38 条记录都处在什么状态」。分段色沿用五 tone，和表格里的状态徽章同源；悬浮分段或图例项联动高亮。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -175,9 +167,7 @@ const facetFeedback = ref('请选择一个维度。')
 />
 ```
 
-## bars 迷你柱状型
-
-离散周期量（日完成量、日报警数）用柱状比曲线更贴切。`current-index` 标出今日柱做强调，`bar-tones` 可给异常日单独染色。悬浮任一柱其余淡出。
+`bars`：离散周期量（日完成量、日报警数）用柱状比曲线更贴切。`current-index` 标出今日柱做强调，`bar-tones` 可给异常日单独染色。悬浮任一柱其余淡出。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -211,9 +201,7 @@ const facetFeedback = ref('请选择一个维度。')
   </div>
 </Demo>
 
-## alert 异常行动型
-
-整卡按 `tone` 极淡浸染 + tone 化数值 + 底部处理入口。`action` 有 `href` 时渲染链接，否则触发 `action` 事件（路由交给调用方）。正常态收敛为中性卡面。
+`alert`：整卡按 `tone` 极淡浸染 + tone 化数值 + 底部处理入口。`action` 有 `href` 时渲染链接，否则触发 `action` 事件（路由交给调用方）。正常态收敛为中性卡面。
 
 本页在卡片下方显示所选入口，不执行真实业务操作；接入应用时由宿主完成导航或处理。
 
@@ -250,9 +238,7 @@ const actionFeedback = ref('请选择处理入口。')
 </template>
 ```
 
-## facets 维度拆解型
-
-主数值 + 维度 chip 组，替代描述文本：下半区放「这 12 批都是什么」。异常维度自动 tone 化，chip 可点击抛出 `facet` 事件作筛选入口。
+`facets`：主数值 + 维度 chip 组，替代描述文本：下半区放「这 12 批都是什么」。异常维度自动 tone 化，chip 可点击抛出 `facet` 事件作筛选入口。
 
 <Demo>
   <div class="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -286,9 +272,7 @@ const actionFeedback = ref('请选择处理入口。')
   <p role="status" class="w-full text-sm text-muted-foreground">{{ facetFeedback }}</p>
 </Demo>
 
-## NvMetricRing 环形构成型
-
-`breakdown` 的环形表达：每段一种语义色，各自对应一条图例，中心放**最该被看到的数**（通常是总数）。悬浮任一段弧或图例行——该段加粗点亮、其余淡出，中心随即切成该段的读数与占比，所以不需要一个 tooltip 盖住卡片自己。段的身份由亮起的弧和未淡出的图例行表达，中心只留数值与占比（环内放不下标签）。
+`NvMetricRing`：`breakdown` 的环形表达：每段一种语义色，各自对应一条图例，中心放**最该被看到的数**（通常是总数）。悬浮任一段弧或图例行——该段加粗点亮、其余淡出，中心随即切成该段的读数与占比，所以不需要一个 tooltip 盖住卡片自己。段的身份由亮起的弧和未淡出的图例行表达，中心只留数值与占比（环内放不下标签）。
 
 > 只适用于**部分与整体**（任务状态 / 资源就绪 / 存储位置）。**相乘型比率不能画成环**：利用率综合 = A × P × Q，A/P/Q 并不是环的三段；那类指标用 `variant="facets"` 或独立成行呈现。
 
@@ -345,9 +329,7 @@ const actionFeedback = ref('请选择处理入口。')
 />
 ```
 
-## NvMetricStrip 组合指标条
-
-一张卡装一组同域指标，分隔线代替卡缝，密度最高。适合列表页顶部：不和下方表格抢注意力，又把关键口径钉在一行。窄屏自动竖排。
+`NvMetricStrip`：一张卡装一组同域指标，分隔线代替卡缝，密度最高。适合列表页顶部：不和下方表格抢注意力，又把关键口径钉在一行。窄屏自动竖排。
 
 <Demo>
   <NvMetricStrip
@@ -381,7 +363,17 @@ const actionFeedback = ref('请选择处理入口。')
 />
 ```
 
-## NvMetricCard 属性
+`NvMetricComparison` 的 `baseline`、`actual` 均为 `{ label: string, value: number }`。下例通过公开主桶消费，切换到访/耗用会替换两侧标签与数值；方向可独立切换，当前输入在卡片下方反馈。`betterWhen` 为 `higher`（默认）或 `lower`，控制差值的优劣颜色；差值始终为实际减基线，达成率始终为实际除以基线。0/0 显示 **100%**，基线 0、实际非零显示 **—**，不能解读为 0% 或缺测输入。当前 API 不接受 null。本例以标题表达量纲，不传可选 `unit`；短标签避免既有截断槽丢失全文，完整场景说明在卡片外换行。组件数值最多两位小数、达成率取整；此例使用整数，不代表所有 unit 路径的排版验收。
+
+<Demo>
+  <LocalMetricComparisonExample />
+</Demo>
+
+<<< @/.vitepress/examples/localMetricComparisonExample.vue
+
+## API
+
+### NvMetricCard
 
 | 属性                  | 说明                                                                                                | 类型                                                                                             | 默认      |
 | --------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------- |
@@ -410,7 +402,7 @@ const actionFeedback = ref('请选择处理入口。')
 
 事件：`@action`（alert 动作按钮，无 `href` 时）、`@facet`（点击维度 chip，回传该 facet）。
 
-## NvMetricRing 属性
+### NvMetricRing
 
 | 属性            | 说明                                                     | 类型                | 默认 |
 | --------------- | -------------------------------------------------------- | ------------------- | ---- |
@@ -421,7 +413,7 @@ const actionFeedback = ref('请选择处理入口。')
 
 悬浮分段或图例行时，中心自动切换为该段的数值与占比，无需额外配置。
 
-## NvMetricStrip 属性
+### NvMetricStrip
 
 | 属性    | 说明     | 类型                  | 默认 |
 | ------- | -------- | --------------------- | ---- |
@@ -434,23 +426,9 @@ const actionFeedback = ref('请选择处理入口。')
 | 字段                | 说明                                                                                                                                                                                                                                             | 类型                                             |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
 | `meta` / `metaTone` | 副行文本与其趋势图标；`metaTone` 取 `'up' \| 'down' \| 'flat' \| 'neutral'`，向上/下附趋势图标与语义色                                                                                                                                           | `string` / `NvMetricDeltaDirection \| 'neutral'` |
-| `delta`             | 副行变化 chip。**真正的变化幅度优先用它，而不是 `meta`**：它带 `tone` 覆盖，能表达"涨了是坏事"（超期任务 +3 保持上箭头但读 danger），这是 `metaTone` 做不到的（它把 up 硬映射成 success）。两者同时给出时 chip 在前、`meta` 作为灰字注脚跟在后面 | `NvMetricDelta`                                  |
-| `series`            | 该格的迷你走势（≥2 点）。**末点必须就是 `value` 那个数**——指标条读作"数字 + 产生它的形状"，线落在别处即自相矛盾                                                                                                                                  | `number[]`                                       |
+| `delta`             | 副行变化 chip。**真正的变化幅度优先用它，而不是 `meta`**：它带 `tone` 覆盖，能表达「涨了是坏事」（超期任务 +3 保持上箭头但读 danger），这是 `metaTone` 做不到的（它把 up 硬映射成 success）。两者同时给出时 chip 在前、`meta` 作为灰字注脚跟在后面 | `NvMetricDelta`                                  |
+| `series`            | 该格的迷你走势（≥2 点）。**末点必须就是 `value` 那个数**——指标条读作「数字 + 产生它的形状」，线落在别处即自相矛盾                                                                                                                                | `number[]`                                       |
 | `seriesLabels`      | 逐点标签（十字准线 tooltip）                                                                                                                                                                                                                     | `string[]`                                       |
 | `seriesUnit`        | tooltip 数值单位                                                                                                                                                                                                                                 | `string`                                         |
 
-任一格给了 `series`，整行会为迷你图预留等高位置，避免"有图的格比没图的高一截"把卡片下沿拉参差。
-
-## 基线与实际对照
-
-`NvMetricComparison` 的 `baseline`、`actual` 均为 `{ label: string, value: number }`。下例通过公开主桶消费，切换到访/耗用会替换两侧标签与数值；方向可独立切换，当前输入在卡片下方反馈。
-
-`betterWhen` 为 `higher`（默认）或 `lower`，控制差值的优劣颜色；差值始终为实际减基线，达成率始终为实际除以基线。0/0 显示 **100%**，基线 0、实际非零显示 **—**，不能解读为 0% 或缺测输入。当前 API 不接受 null。
-
-本例以标题表达量纲，不传可选 `unit`；短标签避免既有截断槽丢失全文，完整场景说明在卡片外换行。组件数值最多两位小数、达成率取整；此例使用整数，不代表所有 unit 路径的排版验收。
-
-<Demo>
-  <LocalMetricComparisonExample />
-</Demo>
-
-<<< @/.vitepress/examples/localMetricComparisonExample.vue
+任一格给了 `series`，整行会为迷你图预留等高位置，避免「有图的格比没图的高一截」把卡片下沿拉参差。

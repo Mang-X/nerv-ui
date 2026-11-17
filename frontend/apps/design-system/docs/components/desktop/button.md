@@ -11,7 +11,7 @@ import { PlusIcon } from '@lucide/vue'
 
 触发操作或导航。`NvButton` 在原版基础上叠加品牌色、图标插槽与一致的交互态。
 
-## 变体
+## 示例
 
 <Demo>
   <NvButton variant="brand">主操作</NvButton>
@@ -28,8 +28,6 @@ import { PlusIcon } from '@lucide/vue'
 <NvButton variant="outline">描边</NvButton>
 ```
 
-## 尺寸
-
 <Demo>
   <NvButton size="sm">小号</NvButton>
   <NvButton>默认</NvButton>
@@ -38,7 +36,7 @@ import { PlusIcon } from '@lucide/vue'
   <NvButton disabled>禁用</NvButton>
 </Demo>
 
-## 属性
+## API
 
 | 属性       | 说明     | 类型                                                                       | 默认      |
 | ---------- | -------- | -------------------------------------------------------------------------- | --------- |

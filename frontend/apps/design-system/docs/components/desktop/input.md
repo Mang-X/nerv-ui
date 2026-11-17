@@ -15,7 +15,7 @@ const codeValue = ref('REC-2406-0413')
 
 接收单行文本输入。`NvInput` 在原版基础上叠加前后缀插槽、品牌聚焦环与一致的禁用 / 错误态。
 
-## 基础用法
+## 示例
 
 <Demo>
   <div style="max-width: 320px">
@@ -26,8 +26,6 @@ const codeValue = ref('REC-2406-0413')
 ```vue
 <NvInput v-model="value" placeholder="请输入编号" />
 ```
-
-## 前后缀插槽
 
 <Demo>
   <div style="max-width: 320px">
@@ -47,8 +45,6 @@ const codeValue = ref('REC-2406-0413')
 </NvInput>
 ```
 
-## 错误态与禁用
-
 `invalid` 会在组件根节点应用错误色边框；聚焦时继续使用错误色聚焦环，避免错误态被默认边框覆盖。
 
 <Demo>
@@ -63,7 +59,7 @@ const codeValue = ref('REC-2406-0413')
 <NvInput v-model="value" disabled />
 ```
 
-## 属性
+## API
 
 | 属性          | 说明                     | 类型               | 默认    |
 | ------------- | ------------------------ | ------------------ | ------- |
@@ -71,6 +67,8 @@ const codeValue = ref('REC-2406-0413')
 | `invalid`     | 是否为错误态             | `boolean`          | `false` |
 | `disabled`    | 是否禁用（原生属性透传） | `boolean`          | `false` |
 | `placeholder` | 占位文本（原生属性透传） | `string`           | —       |
+
+### 插槽
 
 | 插槽       | 说明                             |
 | ---------- | -------------------------------- |
