@@ -86,7 +86,7 @@ watch(open, (isOpen) => {
         {{ modelValue || placeholder }}
       </NvButton>
     </PopoverTrigger>
-    <PopoverContent class="w-auto p-0" align="start">
+    <PopoverContent class="w-auto p-0" align="start" data-slot="nv-date-picker-content">
       <div class="flex divide-x divide-border">
         <div ref="hourCol" class="nv-tp-col">
           <button

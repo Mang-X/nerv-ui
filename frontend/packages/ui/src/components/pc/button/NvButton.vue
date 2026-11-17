@@ -14,7 +14,7 @@ import NvLoader from '../loader/NvLoader.vue'
  * hover/active feedback, a first-class dynamic-brand CTA, and built-in loading.
  */
 const nvButtonVariants = cva(
-  'nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-[background,box-shadow,transform,color] duration-150 focus-visible:ring-[3px] focus-visible:ring-ring/45 disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none [&_svg]:pointer-events-none [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
+  'nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-[background,box-shadow,transform,color] duration-(--nv-duration-fast) focus-visible:ring-[3px] focus-visible:ring-ring/45 disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none [&_svg]:pointer-events-none [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {

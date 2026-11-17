@@ -141,7 +141,7 @@ const label = computed(() =>
         </NvButton>
       </PopoverTrigger>
     </div>
-    <PopoverContent class="w-auto p-3" align="start">
+    <PopoverContent class="w-auto p-3" align="start" data-slot="nv-date-picker-content">
       <div class="mb-2 flex items-center justify-between">
         <button
           type="button"

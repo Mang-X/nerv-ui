@@ -208,7 +208,7 @@ function clear() {
         </span>
         <button
           type="button"
-          class="ml-1 flex size-11 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none enabled:hover:bg-accent enabled:hover:text-foreground enabled:focus-visible:ring-2 enabled:focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          class="nv-focusable ml-1 flex size-11 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none enabled:hover:bg-accent enabled:hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
           :aria-label="`移除 ${entry.label}${entry.identity ? ` ${entry.identity}` : ''}`"
           :disabled="disabled"
           @click="remove(entry.value)"
@@ -219,7 +219,7 @@ function clear() {
       <button
         type="button"
         aria-label="清空已选"
-        class="min-h-11 rounded-md px-2 text-xs text-muted-foreground outline-none enabled:hover:bg-accent enabled:hover:text-foreground enabled:focus-visible:ring-2 enabled:focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        class="nv-focusable min-h-11 rounded-md px-2 text-xs text-muted-foreground outline-none enabled:hover:bg-accent enabled:hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
         :disabled="disabled"
         @click="clear"
       >
