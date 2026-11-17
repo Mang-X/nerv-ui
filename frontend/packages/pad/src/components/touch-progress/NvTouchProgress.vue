@@ -7,7 +7,8 @@ import {
   ProgressValue,
 } from '@ui-sdk/vue/progress'
 import * as stylex from '@stylexjs/stylex'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
+import { omitClassStyle } from '../../internal/attrs'
 import { styles } from './TouchProgress.styles'
 import type { TouchProgressProps } from './types'
 
@@ -22,6 +23,9 @@ const props = withDefaults(defineProps<TouchProgressProps>(), {
   size: 'lg',
   tone: 'brand',
 })
+
+const attrs = useAttrs()
+const forwardedAttrs = computed(() => omitClassStyle(attrs))
 
 const rootSx = computed(() => stylex.props(styles.root))
 const headSx = computed(() => stylex.props(styles.head))
@@ -39,7 +43,7 @@ const indicatorSx = computed(() =>
 
 <template>
   <Progress
-    v-bind="$attrs"
+    v-bind="forwardedAttrs"
     :value="value"
     :min="min"
     :max="max"

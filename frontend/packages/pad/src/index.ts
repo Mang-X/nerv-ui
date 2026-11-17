@@ -29,10 +29,7 @@ export type {
 } from './components/touch-select/types'
 
 export { default as NvTouchSwitch } from './components/touch-switch/NvTouchSwitch.vue'
-export type {
-  TouchSwitchLabelPosition,
-  TouchSwitchProps,
-} from './components/touch-switch/types'
+export type { TouchSwitchLabelPosition, TouchSwitchProps } from './components/touch-switch/types'
 
 export { default as NvTouchDialog } from './components/touch-dialog/NvTouchDialog.vue'
 export type { TouchDialogProps, TouchDialogSize } from './components/touch-dialog/types'
@@ -45,19 +42,13 @@ export type {
 } from './components/touch-card/types'
 
 export { default as NvTouchKeypad } from './components/touch-keypad/NvTouchKeypad.vue'
-export type {
-  TouchKeypadProps,
-  TouchKeypadSlots,
-} from './components/touch-keypad/types'
+export type { TouchKeypadProps, TouchKeypadSlots } from './components/touch-keypad/types'
 
 export { default as NvTouchList } from './components/touch-list/NvTouchList.vue'
 export type { TouchListItem, TouchListProps } from './components/touch-list/types'
 
 export { default as NvTouchToolbar } from './components/touch-toolbar/NvTouchToolbar.vue'
-export type {
-  TouchToolbarItem,
-  TouchToolbarProps,
-} from './components/touch-toolbar/types'
+export type { TouchToolbarItem, TouchToolbarProps } from './components/touch-toolbar/types'
 
 export { default as NvTouchProgress } from './components/touch-progress/NvTouchProgress.vue'
 export type {

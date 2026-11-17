@@ -72,7 +72,11 @@ const rootSx = computed(() =>
     @keydown="onKeydown"
     @click="onClick"
   >
-    <header v-if="title || subtitle || $slots.title" :class="headerSx.className" :style="headerSx.style">
+    <header
+      v-if="title || subtitle || $slots.title"
+      :class="headerSx.className"
+      :style="headerSx.style"
+    >
       <div :class="titleRowSx.className" :style="titleRowSx.style">
         <h3 v-if="title || $slots.title" :class="titleSx.className" :style="titleSx.style">
           <slot name="title">{{ title }}</slot>

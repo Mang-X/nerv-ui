@@ -59,7 +59,7 @@ const groupSx = computed(() =>
 )
 const inputSx = computed(() => stylex.props(styles.input))
 const affixSx = computed(() => stylex.props(styles.affix))
-const clearSx = computed(() => stylex.props(styles.clear, focus.subtle))
+const clearSx = computed(() => stylex.props(styles.clear, focus.ring))
 const hintSx = computed(() => stylex.props(styles.hint, props.invalid && styles.hintInvalid))
 </script>
 

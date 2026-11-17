@@ -8,7 +8,7 @@ export const styles = stylex.create({
     gap: 8,
     boxSizing: 'border-box',
     width: '100%',
-    paddingBlock: 8,
+    paddingTop: 8,
     // Home-indicator clearance on iPadOS.
     paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
     paddingInline: 12,
@@ -72,11 +72,5 @@ export const styles = stylex.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: 26,
-  },
-  separator: {
-    width: 1,
-    alignSelf: 'stretch',
-    marginBlock: 6,
-    backgroundColor: color.border,
   },
 })

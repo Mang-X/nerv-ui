@@ -94,7 +94,11 @@ const footerSx = computed(() => stylex.props(styles.footer))
         :style="headerSx.style"
       >
         <div :class="headingSx.className" :style="headingSx.style">
-          <DialogTitle v-if="title || $slots.title" :class="titleSx.className" :style="titleSx.style">
+          <DialogTitle
+            v-if="title || $slots.title"
+            :class="titleSx.className"
+            :style="titleSx.style"
+          >
             <slot name="title">{{ title }}</slot>
           </DialogTitle>
           <DialogDescription
@@ -105,7 +109,12 @@ const footerSx = computed(() => stylex.props(styles.footer))
             <slot name="description">{{ description }}</slot>
           </DialogDescription>
         </div>
-        <DialogClose v-if="closable" :aria-label="closeLabel" :class="closeSx.className" :style="closeSx.style">
+        <DialogClose
+          v-if="closable"
+          :aria-label="closeLabel"
+          :class="closeSx.className"
+          :style="closeSx.style"
+        >
           <XIcon :size="26" aria-hidden="true" />
         </DialogClose>
       </header>
