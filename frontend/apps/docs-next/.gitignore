@@ -1,0 +1,3 @@
+
+# build output of scratch previews
+.vitepress/dist-*/
