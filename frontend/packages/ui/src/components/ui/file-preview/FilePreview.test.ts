@@ -1090,7 +1090,7 @@ describe('FilePreview', () => {
 
   it('documents every file preview demo with code examples and localized state labels', () => {
     const docs = readFileSync(
-      resolve(process.cwd(), '../../apps/design-system/docs/components/desktop/file-preview.md'),
+      resolve(process.cwd(), '../../apps/docs/docs/components/desktop/file-preview.md'),
       'utf8',
     )
 

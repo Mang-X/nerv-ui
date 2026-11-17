@@ -8,7 +8,7 @@ import { expect, it } from 'vitest'
 
 it('ring documentation input clears to unknown and recovers finite zero decimal negative and overflow readings', async () => {
   const markdown = readFileSync(
-    resolve(process.cwd(), '../../apps/design-system/docs/components/screen/ring-gauge.md'),
+    resolve(process.cwd(), '../../apps/docs/docs/components/screen/ring-gauge.md'),
     'utf8',
   )
   // Compile the actual public example, including its script and input binding.

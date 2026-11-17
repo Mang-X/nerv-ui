@@ -1,7 +1,7 @@
 packages:
   # Active standalone desktop/touch/mobile host and UI packages.
   # design-system restored by T09/A.
-  - apps/design-system
+  - apps/docs
   - apps/playground
   - packages/ui
   - packages/ui-mobile

@@ -11,9 +11,9 @@
     "fmt": "vp fmt --check .",
     "fmt:fix": "vp fmt --write .",
     "lint": "vp lint .",
-    "docs:dev": "pnpm --filter @nerv-iip/design-system dev",
-    "docs:build": "pnpm --filter @nerv-iip/design-system build",
-    "docs:typecheck": "pnpm --filter @nerv-iip/design-system typecheck"
+    "docs:dev": "pnpm --filter @nerv-iip/docs dev",
+    "docs:build": "pnpm --filter @nerv-iip/docs build",
+    "docs:typecheck": "pnpm --filter @nerv-iip/docs typecheck"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.2",

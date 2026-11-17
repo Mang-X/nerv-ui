@@ -40,7 +40,7 @@ function collectMd(dir: string): string[] {
 const corpus = [
   resolve(frontendRoot, 'DESIGN/component-coverage.md'),
   ...collectMd(resolve(frontendRoot, 'DESIGN/components')),
-  ...collectMd(resolve(frontendRoot, 'apps/design-system/docs/components')),
+  ...collectMd(resolve(frontendRoot, 'apps/docs/docs/components')),
 ]
   .map((f) => readFileSync(f, 'utf8'))
   .join('\n')
