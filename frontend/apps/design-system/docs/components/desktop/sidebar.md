@@ -23,12 +23,12 @@ import {
 
 // 一级导航选择（点击即切换激活项）
 const nav = ref('总览')
-// 二级菜单展开 + 选中产线/工位
+// 二级菜单展开 + 选中分组/节点
 const press = ref(true)
 const weld = ref(false)
 const line = ref('L01')
 // 待办选中
-const todo = ref('待派工单')
+const todo = ref('待分配任务')
 </script>
 
 # Sidebar 侧栏
@@ -45,19 +45,19 @@ const todo = ref('待派工单')
   <SidebarProvider>
     <NvSidebar collapsible="icon">
       <SidebarHeader>
-        <NvSidebarBrand name="Nerv-IIP" sub="总装一厂 · 早班" logo="N" />
+        <NvSidebarBrand name="Nerv-IIP" sub="Alpha 团队 · 在线" logo="N" />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>生产</SidebarGroupLabel>
+          <SidebarGroupLabel>工作</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem><SidebarMenuButton :is-active="nav === '总览'" tooltip="总览" @click="nav = '总览'"><LayoutDashboardIcon /><span>总览</span></SidebarMenuButton></SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton :is-active="nav === '工单'" tooltip="工单" @click="nav = '工单'"><BoxesIcon /><span>工单</span></SidebarMenuButton>
+              <SidebarMenuButton :is-active="nav === '任务'" tooltip="任务" @click="nav = '任务'"><BoxesIcon /><span>任务</span></SidebarMenuButton>
               <SidebarMenuBadge>24</SidebarMenuBadge>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton :is-active="nav === '质检'" tooltip="质检" @click="nav = '质检'"><ClipboardCheckIcon /><span>质检</span></SidebarMenuButton>
+              <SidebarMenuButton :is-active="nav === '审核'" tooltip="审核" @click="nav = '审核'"><ClipboardCheckIcon /><span>审核</span></SidebarMenuButton>
               <SidebarMenuBadge>3</SidebarMenuBadge>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -66,8 +66,8 @@ const todo = ref('待派工单')
           <SidebarGroupLabel>资源</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton :is-active="nav === '设备'" tooltip="设备 · 在线" @click="nav = '设备'">
-                <WrenchIcon /><span>设备</span>
+              <SidebarMenuButton :is-active="nav === '资源'" tooltip="资源 · 在线" @click="nav = '资源'">
+                <WrenchIcon /><span>资源</span>
                 <NvSidebarDot tone="ok" />
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -84,8 +84,8 @@ const todo = ref('待派工单')
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" tooltip="张伟 · 班长">
-              <NvSidebarUser name="张伟" role="班长 · 早班" initials="张" />
+            <SidebarMenuButton size="lg" tooltip="张伟 · 团队主管">
+              <NvSidebarUser name="张伟" role="团队主管 · 值班" initials="张" />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -102,9 +102,9 @@ const todo = ref('待派工单')
       </header>
       <div class="nv-nv-scr-body">
         <div class="nv-nv-scr-tiles">
-          <div class="nv-nv-scr-tile"><span class="nv-nv-scr-tile-label">今日产出</span><span class="nv-nv-scr-tile-value">412 <small>件</small></span></div>
-          <div class="nv-nv-scr-tile"><span class="nv-nv-scr-tile-label">在制工单</span><span class="nv-nv-scr-tile-value">18</span></div>
-          <div class="nv-nv-scr-tile"><span class="nv-nv-scr-tile-label">设备 OEE</span><span class="nv-nv-scr-tile-value nv-nv-scr-tile-ok">78.6 <small>%</small></span></div>
+          <div class="nv-nv-scr-tile"><span class="nv-nv-scr-tile-label">今日完成</span><span class="nv-nv-scr-tile-value">412 <small>项</small></span></div>
+          <div class="nv-nv-scr-tile"><span class="nv-nv-scr-tile-label">进行中任务</span><span class="nv-nv-scr-tile-value">18</span></div>
+          <div class="nv-nv-scr-tile"><span class="nv-nv-scr-tile-label">利用率</span><span class="nv-nv-scr-tile-value nv-nv-scr-tile-ok">78.6 <small>%</small></span></div>
         </div>
       </div>
     </SidebarInset>
@@ -116,11 +116,11 @@ const todo = ref('待派工单')
 ```vue
 <NvSidebar collapsible="icon">
   <SidebarHeader>
-    <NvSidebarBrand name="Nerv-IIP" sub="总装一厂 · 早班" logo="N" />
+    <NvSidebarBrand name="Nerv-IIP" sub="Alpha 团队 · 在线" logo="N" />
   </SidebarHeader>
   <SidebarContent>
     <SidebarGroup>
-      <SidebarGroupLabel>生产</SidebarGroupLabel>
+      <SidebarGroupLabel>工作</SidebarGroupLabel>
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton :is-active="nav === '总览'" tooltip="总览" @click="nav = '总览'">
@@ -128,8 +128,8 @@ const todo = ref('待派工单')
           </SidebarMenuButton>
         </SidebarMenuItem>
         <SidebarMenuItem>
-          <SidebarMenuButton tooltip="设备">
-            <WrenchIcon /><span>设备</span><NvSidebarDot tone="ok" />
+          <SidebarMenuButton tooltip="资源">
+            <WrenchIcon /><span>资源</span><NvSidebarDot tone="ok" />
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
@@ -139,7 +139,7 @@ const todo = ref('待派工单')
     <SidebarMenu>
       <SidebarMenuItem>
         <SidebarMenuButton size="lg">
-          <NvSidebarUser name="张伟" role="班长 · 早班" initials="张" />
+          <NvSidebarUser name="张伟" role="团队主管 · 值班" initials="张" />
         </SidebarMenuButton>
       </SidebarMenuItem>
     </SidebarMenu>
@@ -157,31 +157,31 @@ const todo = ref('待派工单')
     <NvSidebar collapsible="none">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>车间</SidebarGroupLabel>
-          <SidebarGroupAction title="新增车间"><PlusIcon /></SidebarGroupAction>
+          <SidebarGroupLabel>区域</SidebarGroupLabel>
+          <SidebarGroupAction title="新增区域"><PlusIcon /></SidebarGroupAction>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton @click="press = !press">
-                <FactoryIcon /><span>冲压车间</span>
+                <FactoryIcon /><span>Alpha 区域</span>
                 <ChevronRightIcon class="nv-nv-scr-chevron ml-auto" :class="press && 'rotate-90'" />
               </SidebarMenuButton>
               <NvSidebarSub :open="press">
                 <SidebarMenuSub>
-                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'L01'" @click="line = 'L01'">L01 产线</SidebarMenuSubButton></SidebarMenuSubItem>
-                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'L02'" @click="line = 'L02'">L02 产线</SidebarMenuSubButton></SidebarMenuSubItem>
-                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'L03'" @click="line = 'L03'">L03 产线</SidebarMenuSubButton></SidebarMenuSubItem>
+                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'L01'" @click="line = 'L01'">L01 分组</SidebarMenuSubButton></SidebarMenuSubItem>
+                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'L02'" @click="line = 'L02'">L02 分组</SidebarMenuSubButton></SidebarMenuSubItem>
+                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'L03'" @click="line = 'L03'">L03 分组</SidebarMenuSubButton></SidebarMenuSubItem>
                 </SidebarMenuSub>
               </NvSidebarSub>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton @click="weld = !weld">
-                <FactoryIcon /><span>焊接车间</span>
+                <FactoryIcon /><span>Beta 区域</span>
                 <ChevronRightIcon class="nv-nv-scr-chevron ml-auto" :class="weld && 'rotate-90'" />
               </SidebarMenuButton>
               <NvSidebarSub :open="weld">
                 <SidebarMenuSub>
-                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'W01'" @click="line = 'W01'">W01 工位</SidebarMenuSubButton></SidebarMenuSubItem>
-                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'W02'" @click="line = 'W02'">W02 工位</SidebarMenuSubButton></SidebarMenuSubItem>
+                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'W01'" @click="line = 'W01'">W01 节点</SidebarMenuSubButton></SidebarMenuSubItem>
+                  <SidebarMenuSubItem><SidebarMenuSubButton :is-active="line === 'W02'" @click="line = 'W02'">W02 节点</SidebarMenuSubButton></SidebarMenuSubItem>
                 </SidebarMenuSub>
               </NvSidebarSub>
             </SidebarMenuItem>
@@ -192,15 +192,15 @@ const todo = ref('待派工单')
           <SidebarGroupLabel>待办</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton :is-active="todo === '待派工单'" @click="todo = '待派工单'"><BoxesIcon /><span>待派工单</span></SidebarMenuButton>
+              <SidebarMenuButton :is-active="todo === '待分配任务'" @click="todo = '待分配任务'"><BoxesIcon /><span>待分配任务</span></SidebarMenuButton>
               <SidebarMenuBadge>12</SidebarMenuBadge>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton :is-active="todo === 'OEE 异常'" @click="todo = 'OEE 异常'"><GaugeIcon /><span>OEE 异常</span></SidebarMenuButton>
+              <SidebarMenuButton :is-active="todo === '指标异常'" @click="todo = '指标异常'"><GaugeIcon /><span>指标异常</span></SidebarMenuButton>
               <SidebarMenuBadge>3</SidebarMenuBadge>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton :is-active="todo === '设备告警'" @click="todo = '设备告警'"><BellIcon /><span>设备告警</span></SidebarMenuButton>
+              <SidebarMenuButton :is-active="todo === '告警'" @click="todo = '告警'"><BellIcon /><span>告警</span></SidebarMenuButton>
               <SidebarMenuAction title="全部标记已读" show-on-hover><PlusIcon /></SidebarMenuAction>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -208,7 +208,7 @@ const todo = ref('待派工单')
       </SidebarContent>
     </NvSidebar>
     <main class="nv-nv-scr-main">
-      <span class="nv-nv-scr-hint"><ActivityIcon class="size-4" />点击车间展开 / 收起，二级带高度动画</span>
+      <span class="nv-nv-scr-hint"><ActivityIcon class="size-4" />点击区域展开 / 收起，二级带高度动画</span>
     </main>
   </SidebarProvider>
 </div>
@@ -217,14 +217,14 @@ const todo = ref('待派工单')
 ```vue
 <SidebarMenuItem>
   <SidebarMenuButton :is-active="open" @click="open = !open">
-    <FactoryIcon /><span>冲压车间</span>
+    <FactoryIcon /><span>Alpha 区域</span>
     <ChevronRightIcon class="ml-auto transition-transform" :class="open && 'rotate-90'" />
   </SidebarMenuButton>
   <!-- NvSidebarSub 内置 grid-rows 0fr→1fr 高度动画 + 缩进导引线，无需手写 CSS -->
   <NvSidebarSub :open="open">
     <SidebarMenuSub>
       <SidebarMenuSubItem>
-        <SidebarMenuSubButton :is-active="line === 'L01'" @click="line = 'L01'">L01 产线</SidebarMenuSubButton>
+        <SidebarMenuSubButton :is-active="line === 'L01'" @click="line = 'L01'">L01 分组</SidebarMenuSubButton>
       </SidebarMenuSubItem>
     </SidebarMenuSub>
   </NvSidebarSub>
@@ -242,22 +242,22 @@ const todo = ref('待派工单')
       <SidebarHeader>
         <div class="relative">
           <SearchIcon class="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <SidebarInput placeholder="搜索工单 / 工位…" class="pl-8" />
+          <SidebarInput placeholder="搜索记录 / 节点…" class="pl-8" />
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>最近</SidebarGroupLabel>
           <SidebarMenu>
-            <SidebarMenuItem><SidebarMenuButton :is-active="todo === 'a'" @click="todo = 'a'"><BoxesIcon /><span>WO-2406-0413</span></SidebarMenuButton></SidebarMenuItem>
-            <SidebarMenuItem><SidebarMenuButton :is-active="todo === 'b'" @click="todo = 'b'"><BoxesIcon /><span>WO-2406-0421</span></SidebarMenuButton></SidebarMenuItem>
-            <SidebarMenuItem><SidebarMenuButton :is-active="todo === 'c'" @click="todo = 'c'"><WrenchIcon /><span>工位 CNC-07</span></SidebarMenuButton></SidebarMenuItem>
+            <SidebarMenuItem><SidebarMenuButton :is-active="todo === 'a'" @click="todo = 'a'"><BoxesIcon /><span>REC-2406-0413</span></SidebarMenuButton></SidebarMenuItem>
+            <SidebarMenuItem><SidebarMenuButton :is-active="todo === 'b'" @click="todo = 'b'"><BoxesIcon /><span>REC-2406-0421</span></SidebarMenuButton></SidebarMenuItem>
+            <SidebarMenuItem><SidebarMenuButton :is-active="todo === 'c'" @click="todo = 'c'"><WrenchIcon /><span>节点 RES-07</span></SidebarMenuButton></SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
     </NvSidebar>
     <main class="nv-nv-scr-main">
-      <span class="nv-nv-scr-hint"><SearchIcon class="size-4" />输入即过滤工单 / 工位</span>
+      <span class="nv-nv-scr-hint"><SearchIcon class="size-4" />输入即过滤记录 / 节点</span>
     </main>
   </SidebarProvider>
 </div>

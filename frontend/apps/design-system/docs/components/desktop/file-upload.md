@@ -98,16 +98,16 @@ function demoImageFile(fileName: string, label: string, fill: string) {
 
 async function addManualSamples() {
   await manualUpload.value?.addFiles([
-    new File(['inspection evidence'], 'IPQC-2406-17-evidence.pdf', { type: 'application/pdf' }),
-    new File(['temporary failure'], 'IPQC-2406-17-fail.pdf', { type: 'application/pdf' }),
+    new File(['review evidence'], 'AUDIT-2406-17-evidence.pdf', { type: 'application/pdf' }),
+    new File(['temporary failure'], 'AUDIT-2406-17-fail.pdf', { type: 'application/pdf' }),
   ])
 }
 
 async function replayAutoSamples() {
   clearAutoSamples()
   await autoUpload.value?.addFiles([
-    demoImageFile('first-article-photo.svg', '首件照片', '#334155'),
-    new File(['incoming inspection report'], 'incoming-inspection.pdf', { type: 'application/pdf' }),
+    demoImageFile('cover-photo.svg', '封面照片', '#334155'),
+    new File(['incoming review report'], 'incoming-review.pdf', { type: 'application/pdf' }),
   ])
 }
 
@@ -119,41 +119,41 @@ function clearAutoSamples() {
 async function addAvatarSample() {
   avatarUpload.value?.clear()
   await avatarUpload.value?.addFiles([
-    demoImageFile('operator-avatar.svg', 'OP', '#475569'),
+    demoImageFile('member-avatar.svg', 'M', '#475569'),
   ])
 }
 
 async function addCompactSamples() {
   compactUpload.value?.clear()
   await compactUpload.value?.addFiles([
-    new File(['fixture checklist'], 'fixture-checklist.pdf', { type: 'application/pdf' }),
-    new File(['shift note'], 'shift-note.txt', { type: 'text/plain' }),
+    new File(['checklist'], 'checklist.pdf', { type: 'application/pdf' }),
+    new File(['note'], 'note.txt', { type: 'text/plain' }),
   ])
 }
 
 async function addGallerySamples() {
   galleryUpload.value?.clear()
   await galleryUpload.value?.addFiles([
-    demoImageFile('defect-front.svg', '正面', '#1f2937'),
-    demoImageFile('defect-side.svg', '侧面', '#374151'),
-    demoImageFile('defect-detail.svg', '细节', '#4b5563'),
+    demoImageFile('view-front.svg', '正面', '#1f2937'),
+    demoImageFile('view-side.svg', '侧面', '#374151'),
+    demoImageFile('view-detail.svg', '细节', '#4b5563'),
   ])
 }
 
 async function addTableSamples() {
   tableUpload.value?.clear()
   await tableUpload.value?.addFiles([
-    new File(['control plan'], 'control-plan.pdf', { type: 'application/pdf' }),
-    demoImageFile('first-piece.svg', '首件', '#334155'),
-    new File(['inspection data'], 'measurement.xlsx', { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }),
+    new File(['plan document'], 'plan-doc.pdf', { type: 'application/pdf' }),
+    demoImageFile('cover.svg', '封面', '#334155'),
+    new File(['measurement data'], 'measurement.xlsx', { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }),
   ])
 }
 
 async function addImageSamples() {
   imageUpload.value?.clear()
   await imageUpload.value?.addFiles([
-    demoImageFile('machine-panel.svg', '设备面板', '#1e293b'),
-    demoImageFile('equipment-nameplate.svg', '铭牌', '#0f172a'),
+    demoImageFile('panel.svg', '面板', '#1e293b'),
+    demoImageFile('nameplate.svg', '铭牌', '#0f172a'),
   ])
 }
 
@@ -175,7 +175,7 @@ onMounted(async () => {
 
 ## 自动上传
 
-点击按钮选择文件后立即创建上传会话并执行传输。适合质检证据、设备点检照片、工艺附件等单步上传场景。
+点击按钮选择文件后立即创建上传会话并执行传输。适合审核证据、检查照片、文档附件等单步上传场景。
 
 <Demo title="自动上传" block>
   <div class="mb-3 flex flex-wrap gap-2">
@@ -188,10 +188,10 @@ onMounted(async () => {
   </div>
   <FileUpload
     ref="autoUpload"
-    purpose="quality-evidence"
-    owner-service="Quality"
-    owner-type="InspectionRecord"
-    owner-id="inspection-2406-17"
+    purpose="review-evidence"
+    owner-service="Review"
+    owner-type="ReviewRecord"
+    owner-id="review-2406-17"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['application/pdf', 'image/png', 'image/jpeg', 'image/svg+xml']"
@@ -211,10 +211,10 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 
 <template>
   <FileUpload
-    purpose="quality-evidence"
-    owner-service="Quality"
-    owner-type="InspectionRecord"
-    owner-id="inspection-2406-17"
+    purpose="review-evidence"
+    owner-service="Review"
+    owner-type="ReviewRecord"
+    owner-id="review-2406-17"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['application/pdf', 'image/png', 'image/jpeg', 'image/svg+xml']"
@@ -234,7 +234,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 <Demo title="队列上传" block>
   <div class="mb-3 flex flex-wrap gap-2">
     <Button type="button" variant="secondary" @click="addManualSamples">
-      添加质检附件
+      添加审核附件
     </Button>
     <Button type="button" :disabled="!manualHasQueuedRows" @click="manualUpload?.uploadQueued()">
       开始上传
@@ -246,10 +246,10 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
   <FileUpload
     ref="manualUpload"
     variant="queue"
-    purpose="quality-evidence"
-    owner-service="Quality"
-    owner-type="InspectionRecord"
-    owner-id="inspection-2406-17"
+    purpose="review-evidence"
+    owner-service="Review"
+    owner-type="ReviewRecord"
+    owner-id="review-2406-17"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['application/pdf']"
@@ -281,10 +281,10 @@ const upload = ref<FileUploadExpose | null>(null)
   <FileUpload
     ref="upload"
     variant="queue"
-    purpose="quality-evidence"
-    owner-service="Quality"
-    owner-type="InspectionRecord"
-    owner-id="inspection-2406-17"
+    purpose="review-evidence"
+    owner-service="Review"
+    owner-type="ReviewRecord"
+    owner-id="review-2406-17"
     organization-id="org-demo"
     environment-id="env-prod"
     :auto-upload="false"
@@ -297,16 +297,16 @@ const upload = ref<FileUploadExpose | null>(null)
 
 ## 头像上传
 
-`variant="avatar"` 适合用户头像、操作员照片、设备主图等单文件场景。图片文件会自动生成缩略图，非图片文件仍回退到文件类型图标。
+`variant="avatar"` 适合用户头像、成员照片、资源主图等单文件场景。图片文件会自动生成缩略图，非图片文件仍回退到文件类型图标。
 
 <Demo title="头像上传" block>
   <FileUpload
     ref="avatarUpload"
     variant="avatar"
     purpose="avatar"
-    owner-service="Iam"
+    owner-service="Identity"
     owner-type="UserProfile"
-    owner-id="operator-2406"
+    owner-id="member-2406"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
@@ -326,9 +326,9 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
   <FileUpload
     variant="avatar"
     purpose="avatar"
-    owner-service="Iam"
+    owner-service="Identity"
     owner-type="UserProfile"
-    owner-id="operator-2406"
+    owner-id="member-2406"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
@@ -348,10 +348,10 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
   <FileUpload
     ref="compactUpload"
     variant="compact"
-    purpose="engineering-document"
-    owner-service="ProductEngineering"
-    owner-type="StandardOperation"
-    owner-id="op-assembly-10"
+    purpose="attachment"
+    owner-service="Document"
+    owner-type="ProcedureDoc"
+    owner-id="proc-doc-10"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['application/pdf', 'text/plain']"
@@ -371,10 +371,10 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 <template>
   <FileUpload
     variant="compact"
-    purpose="engineering-document"
-    owner-service="ProductEngineering"
-    owner-type="StandardOperation"
-    owner-id="op-assembly-10"
+    purpose="attachment"
+    owner-service="Document"
+    owner-type="ProcedureDoc"
+    owner-id="proc-doc-10"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['application/pdf', 'text/plain']"
@@ -389,16 +389,16 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 
 ## 画廊上传
 
-`variant="gallery"` 以网格卡片展示图片证据，适合质检缺陷照片、设备巡检照片和现场佐证图集。
+`variant="gallery"` 以网格卡片展示图片证据，适合多角度照片、检查照片和现场佐证图集。
 
 <Demo title="画廊上传" block>
   <FileUpload
     ref="galleryUpload"
     variant="gallery"
-    purpose="quality-evidence"
-    owner-service="Quality"
-    owner-type="NonconformanceReport"
-    owner-id="ncr-2406-21"
+    purpose="review-evidence"
+    owner-service="Review"
+    owner-type="IssueReport"
+    owner-id="issue-2406-21"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
@@ -417,10 +417,10 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 <template>
   <FileUpload
     variant="gallery"
-    purpose="quality-evidence"
-    owner-service="Quality"
-    owner-type="NonconformanceReport"
-    owner-id="ncr-2406-21"
+    purpose="review-evidence"
+    owner-service="Review"
+    owner-type="IssueReport"
+    owner-id="issue-2406-21"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
@@ -442,9 +442,9 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     class="min-w-[640px]"
     ref="tableUpload"
     variant="table"
-    purpose="engineering-document"
-    owner-service="ProductEngineering"
-    owner-type="EngineeringDocument"
+    purpose="attachment"
+    owner-service="Document"
+    owner-type="DocumentPack"
     owner-id="doc-pack-2406"
     organization-id="org-demo"
     environment-id="env-prod"
@@ -477,9 +477,9 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
     <FileUpload
       class="min-w-[640px]"
       variant="table"
-      purpose="engineering-document"
-      owner-service="ProductEngineering"
-      owner-type="EngineeringDocument"
+      purpose="attachment"
+      owner-service="Document"
+      owner-type="DocumentPack"
       owner-id="doc-pack-2406"
       organization-id="org-demo"
       environment-id="env-prod"
@@ -500,16 +500,16 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 
 ## 图片上传
 
-`variant="image"` 使用更宽的图片预览卡，适合设备铭牌、工位照片、首件照片等需要检查画面的场景。
+`variant="image"` 使用更宽的图片预览卡，适合铭牌、面板照片、封面照片等需要检查画面的场景。
 
 <Demo title="图片上传" block>
   <FileUpload
     ref="imageUpload"
     variant="image"
-    purpose="maintenance-photo"
-    owner-service="Maintenance"
-    owner-type="EquipmentAsset"
-    owner-id="eqp-press-07"
+    purpose="record-photo"
+    owner-service="Asset"
+    owner-type="ResourceAsset"
+    owner-id="res-07"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
@@ -528,10 +528,10 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 <template>
   <FileUpload
     variant="image"
-    purpose="maintenance-photo"
-    owner-service="Maintenance"
-    owner-type="EquipmentAsset"
-    owner-id="eqp-press-07"
+    purpose="record-photo"
+    owner-service="Asset"
+    owner-type="ResourceAsset"
+    owner-id="res-07"
     organization-id="org-demo"
     environment-id="env-prod"
     :accepted-content-types="['image/png', 'image/jpeg', 'image/svg+xml']"
@@ -547,7 +547,7 @@ import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
 
 | 属性 / 事件                                       | 说明                                                                                                                                               |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `purpose`                                         | FileStorage `filePurpose`，例如 `quality-evidence`                                                                                                 |
+| `purpose`                                         | FileStorage `filePurpose`，例如 `review-evidence`                                                                                                  |
 | `ownerService / ownerType / ownerId`              | 业务归属，只作为上传会话请求载荷，不由组件解释业务语义                                                                                             |
 | `organizationId / environmentId`                  | 租户和环境范围，会传入创建与完成上传会话请求                                                                                                       |
 | `acceptedContentTypes`                            | 前端选择和入队校验，组件会在上传入口显示推导后的可接受扩展名；传空数组表示不限制                                                                   |

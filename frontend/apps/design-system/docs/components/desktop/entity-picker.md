@@ -11,30 +11,30 @@ import EntitySearchExample from '../../.vitepress/examples/EntitySearchExample.v
 
 const material = ref('')
 const materialOptions = [
-  { value: 'SKU-FG-100', label: '前减振器总成', hint: '成品' },
-  { value: 'SKU-FG-200', label: '后减振器总成', hint: '成品' },
-  { value: 'RM-200', label: '活塞杆毛坯', hint: '原材料' },
-  { value: 'RM-300', label: '弹簧钢丝', hint: '原材料' },
+  { value: 'SKU-FG-100', label: '示例项 A', hint: '类别 A' },
+  { value: 'SKU-FG-200', label: '示例项 B', hint: '类别 A' },
+  { value: 'RM-200', label: '示例项 C', hint: '类别 B' },
+  { value: 'RM-300', label: '示例项 D', hint: '类别 B' },
 ]
 
 const scope = ref({ workshop: '', line: '', device: '' })
 const lineCatalog = [
-  { value: 'LINE-01', label: '冲压一线', workshop: 'WS-01' },
-  { value: 'LINE-02', label: '焊装一线', workshop: 'WS-02' },
+  { value: 'LINE-01', label: '分组一', workshop: 'WS-01' },
+  { value: 'LINE-02', label: '分组二', workshop: 'WS-02' },
 ]
 const deviceCatalog = [
-  { value: 'DEV-PRESS-01', label: '冲压机 01', line: 'LINE-01' },
-  { value: 'DEV-WELD-01', label: '焊接机器人 01', line: 'LINE-02' },
+  { value: 'DEV-01', label: '节点 01', line: 'LINE-01' },
+  { value: 'DEV-02', label: '节点 02', line: 'LINE-02' },
 ]
 const scopeLevels = computed(() => [
-  { key: 'workshop', label: '车间', options: [
-    { value: 'WS-01', label: '冲压车间' },
-    { value: 'WS-02', label: '焊装车间' },
+  { key: 'workshop', label: '区域', options: [
+    { value: 'WS-01', label: 'Alpha 区域' },
+    { value: 'WS-02', label: 'Beta 区域' },
   ] },
-  { key: 'line', label: '产线', options: lineCatalog
+  { key: 'line', label: '分组', options: lineCatalog
     .filter((l) => !scope.value.workshop || l.workshop === scope.value.workshop)
     .map(({ value, label }) => ({ value, label })) },
-  { key: 'device', label: '设备', options: deviceCatalog
+  { key: 'device', label: '节点', options: deviceCatalog
     .filter((d) => (!scope.value.line || d.line === scope.value.line)
       && lineCatalog.some((l) => l.value === d.line
         && (!scope.value.workshop || l.workshop === scope.value.workshop)))
@@ -48,8 +48,8 @@ const scopeLevels = computed(() => [
 
 | 组件                           | 语义                                 | 典型场景                          |
 | ------------------------------ | ------------------------------------ | --------------------------------- |
-| **NvEntityPicker** 实体选择器  | 默认可搜索的下拉，也可显式使用对话框 | 物料 / SKU / 质量特性等主数据目录 |
-| **NvCascadePicker** 级联选择器 | 一行多级依赖选择，上级变化清空下游   | 车间 → 产线 → 设备 的范围下钻     |
+| **NvEntityPicker** 实体选择器  | 默认可搜索的下拉，也可显式使用对话框 | 条目 / 类别 / 属性等主数据目录    |
+| **NvCascadePicker** 级联选择器 | 一行多级依赖选择，上级变化清空下游   | 区域 → 分组 → 节点 的范围下钻     |
 
 ## NvEntityPicker 实体选择器
 
@@ -68,14 +68,14 @@ const scopeLevels = computed(() => [
 <Demo>
   <div style="max-width: 360px">
     <NvField>
-      <NvFieldLabel for="ep-material">物料</NvFieldLabel>
+      <NvFieldLabel for="ep-material">条目</NvFieldLabel>
       <NvEntityPicker
         id="ep-material"
         v-model="material"
         :options="materialOptions"
-        title="选择物料"
-        placeholder="请选择物料"
-        aria-label="物料"
+        title="选择条目"
+        placeholder="请选择条目"
+        aria-label="条目"
         clearable
       />
     </NvField>
@@ -86,9 +86,9 @@ const scopeLevels = computed(() => [
 ```vue
 <NvEntityPicker
   v-model="material"
-  :options="[{ value: 'SKU-FG-100', label: '前减振器总成', hint: '成品' }]"
-  title="选择物料"
-  placeholder="请选择物料"
+  :options="[{ value: 'SKU-FG-100', label: '示例项 A', hint: '类别 A' }]"
+  title="选择条目"
+  placeholder="请选择条目"
   :invalid="submitted && !material"
   clearable
 />
@@ -115,7 +115,7 @@ const scopeLevels = computed(() => [
 
 ### 就地新增
 
-表单里要选的实体可能还没建（比如登记设备时车间还不存在），传 `create-text` 后候选列表下方
+表单里要选的实体可能还没建（比如登记节点时区域还不存在），传 `create-text` 后候选列表下方
 出现一个新增入口。点击后选择器收起并发出 `create`，由调用方打开新增表单；建好后调用方把
 新建项写回 `v-model`，并确保 `options` 里有这一项，触发器才显示名称而不是编码。
 
@@ -126,8 +126,8 @@ const scopeLevels = computed(() => [
 <NvEntityPicker
   v-model="workshop"
   :options="workshopOptions"
-  title="选择车间"
-  :create-text="canCreateWorkshop ? '新增车间' : undefined"
+  title="选择区域"
+  :create-text="canCreateWorkshop ? '新增区域' : undefined"
   @create="workshopDialogOpen = true"
 />
 ```
@@ -158,8 +158,8 @@ const scopeLevels = computed(() => [
 ## NvCascadePicker 级联选择器
 
 每级第一项固定为「全部」（值 = 空串），代表不在该层收窄；选中上级会自动把下游层级
-清回「全部」。**层级间的选项过滤由调用方组装**（组件不感知业务字段），如按已选车间
-过滤产线目录。设备候选需同时满足已选车间与产线：产线为“全部”时仍只包含当前车间的设备；车间也为“全部”时才显示各车间设备。
+清回「全部」。**层级间的选项过滤由调用方组装**（组件不感知业务字段），如按已选区域
+过滤分组目录。节点候选需同时满足已选区域与分组：分组为“全部”时仍只包含当前区域的节点；区域也为“全部”时才显示各区域节点。
 
 <Demo>
   <div style="max-width: 640px">
@@ -172,9 +172,9 @@ const scopeLevels = computed(() => [
 <NvCascadePicker
   v-model="scope"
   :levels="[
-    { key: 'workshop', label: '车间', options: workshopOptions },
-    { key: 'line', label: '产线', options: lineOptionsFilteredByWorkshop },
-    { key: 'device', label: '设备', options: deviceOptionsFilteredByWorkshopAndLine },
+    { key: 'workshop', label: '区域', options: workshopOptions },
+    { key: 'line', label: '分组', options: lineOptionsFilteredByWorkshop },
+    { key: 'device', label: '节点', options: deviceOptionsFilteredByWorkshopAndLine },
   ]"
 />
 ```
@@ -182,6 +182,6 @@ const scopeLevels = computed(() => [
 ## 选型
 
 - 单实体、目录大（≥ 50 条）或需要展示名称 + 编码 + 辅助信息 → **NvEntityPicker**。
-- 多级父子范围（车间▸产线▸设备）→ **NvCascadePicker**。
+- 多级父子范围（区域▸分组▸节点）→ **NvCascadePicker**。
 - 单实体、集合中等且一行放得下 → [`NvSearchSelect`](/components/desktop/combobox)。
 - 值可能不在集合内（允许自由录入）→ [`NvCombobox`](/components/desktop/combobox)。

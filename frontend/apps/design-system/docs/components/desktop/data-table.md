@@ -18,9 +18,9 @@ import { PlusIcon, ListFilterIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const columns = [
-  { key: 'code', header: '工单号', width: '160px', sortable: true, filter: 'text', cellClass: 'font-mono text-xs', hideable: false },
-  { key: 'product', header: '产品', sortable: true, filter: 'text', cellClass: 'font-medium' },
-  { key: 'center', header: '工作中心', width: '140px', filter: 'enum', cellClass: 'font-mono text-xs text-muted-foreground' },
+  { key: 'code', header: '记录号', width: '160px', sortable: true, filter: 'text', cellClass: 'font-mono text-xs', hideable: false },
+  { key: 'product', header: '名称', sortable: true, filter: 'text', cellClass: 'font-medium' },
+  { key: 'center', header: '资源节点', width: '140px', filter: 'enum', cellClass: 'font-mono text-xs text-muted-foreground' },
   { key: 'owner', header: '负责人', width: '110px', filter: 'enum' },
   { key: 'qty', header: '数量', width: '110px', align: 'end', sortable: true, cellClass: 'tabular-nums' },
   {
@@ -30,20 +30,20 @@ const columns = [
     filterOptions: [
       { label: '执行中', value: 'running' },
       { label: '已完成', value: 'completed' },
-      { label: '可开工', value: 'ready' },
+      { label: '可启动', value: 'ready' },
       { label: '阻塞', value: 'blocked' },
       { label: '待处理', value: 'pending' },
     ],
   },
 ]
 
-const PRODUCTS = ['前桥壳体 A2', '转向节 L', '齿轮箱端盖', '液压阀体 V3', '电机定子叠片', '制动卡钳']
-const CENTERS = ['WC-CNC-07', 'WC-FORGE-02', 'WC-CNC-11', 'WC-ASM-04', 'WC-STAMP-01']
+const PRODUCTS = ['示例项 A2', '示例项 L', '示例项 C', '示例项 V3', '示例项 M', '示例项 B']
+const CENTERS = ['RES-07', 'RES-02', 'RES-11', 'RES-04', 'RES-01']
 const OWNERS = ['张伟', '李娜', '王强', '刘洋', '陈静']
 const STATUS = ['running', 'completed', 'ready', 'blocked', 'pending']
 const QTYS = [480, 1200, 320, 640, 5000, 260, 180, 900]
 const rows = Array.from({ length: 24 }, (_, i) => ({
-  code: `WO-2406-${String(401 + i * 3).padStart(4, '0')}`,
+  code: `REC-2406-${String(401 + i * 3).padStart(4, '0')}`,
   product: PRODUCTS[i % PRODUCTS.length],
   center: CENTERS[i % CENTERS.length],
   owner: OWNERS[i % OWNERS.length],
@@ -57,7 +57,7 @@ const tabs = [
   { label: '待处理', value: 'pending' },
   { label: '已完成', value: 'completed' },
 ]
-const selected = ref(['WO-2406-0401'])
+const selected = ref(['REC-2406-0401'])
 
 const tbSearch = ref('')
 const tbTab = ref('running')
@@ -90,28 +90,28 @@ const pageSize = ref(10)
     :columns="columns"
     :rows="rows"
     row-key="code"
-    title="工单列表"
-    description="近 30 天投放产线的全部工单"
+    title="记录列表"
+    description="近 30 天已分配的全部记录"
     :tabs="tabs"
     tab-key="status"
     selectable
     refreshable
-    search-placeholder="搜索工单号 / 产品 / 工作中心…"
+    search-placeholder="搜索记录号 / 名称 / 资源节点…"
     :page-size="8"
     v-model:selected="selected"
-    @refresh="nvMessage.success('已刷新工单列表')"
+    @refresh="nvMessage.success('已刷新记录列表')"
   >
     <template #cell-status="{ value }">
       <NvStatusBadge :value="String(value)" :pulse="value === 'running'" />
     </template>
     <template #bulk-actions>
-      <NvButton variant="outline" size="sm" @click="nvMessage.info(`导出范围：${selected.length} 张已选工单`)">导出所选</NvButton>
-      <NvButton variant="brand" size="sm" @click="nvMessage.info(`下发范围：${selected.length} 张已选工单`)">下发排产</NvButton>
+      <NvButton variant="outline" size="sm" @click="nvMessage.info(`导出范围：${selected.length} 条已选记录`)">导出所选</NvButton>
+      <NvButton variant="brand" size="sm" @click="nvMessage.info(`分配范围：${selected.length} 条已选记录`)">批量分配</NvButton>
     </template>
     <template #actions>
-      <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择表格页新建工单')">
+      <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择表格页新建记录')">
         <template #leading><PlusIcon /></template>
-        新建工单
+        新建记录
       </NvButton>
     </template>
   </NvDataTable>
@@ -122,7 +122,7 @@ const pageSize = ref(10)
   :columns="columns"
   :rows="rows"
   row-key="code"
-  title="工单列表"
+  title="记录列表"
   :tabs="tabs"
   tab-key="status"
   selectable
@@ -135,7 +135,7 @@ const pageSize = ref(10)
     <NvStatusBadge :value="String(value)" :pulse="value === 'running'" />
   </template>
   <template #actions>
-    <NvButton variant="brand" size="sm">新建工单</NvButton>
+    <NvButton variant="brand" size="sm">新建记录</NvButton>
   </template>
 </NvDataTable>
 ```
@@ -159,11 +159,11 @@ const pageSize = ref(10)
     :columns="columns"
     :rows="[]"
     row-key="code"
-    title="工单列表"
+    title="记录列表"
     :searchable="false"
     :column-settings="false"
-    :error="'网关返回 502，未能读取工单列表。'"
-    empty-message="暂无工单"
+    :error="'网关返回 502，未能读取记录列表。'"
+    empty-message="暂无记录"
     @retry="nvMessage.info('正在重试…')"
   />
 </Demo>
@@ -173,12 +173,12 @@ const pageSize = ref(10)
     :columns="columns"
     :rows="[]"
     row-key="code"
-    title="工单列表"
+    title="记录列表"
     :searchable="false"
     :column-settings="false"
     awaiting-scope
-    awaiting-scope-message="请先选择工厂与工作中心。"
-    empty-message="暂无工单"
+    awaiting-scope-message="请先选择项目与资源节点。"
+    empty-message="暂无记录"
   />
 </Demo>
 
@@ -190,8 +190,8 @@ const pageSize = ref(10)
   :loading="pending"
   :error="error"
   :awaiting-scope="!hasSkuSelection"
-  awaiting-scope-message="请先选择物料后查询批次。"
-  empty-message="这个物料在当前工厂没有批次记录。"
+  awaiting-scope-message="请先选择条目后查询批次。"
+  empty-message="该条目在当前项目没有批次记录。"
   @retry="refetch"
 />
 ```
@@ -209,28 +209,28 @@ const pageSize = ref(10)
     v-model:search="tbSearch"
     v-model:tab="tbTab"
     v-model:density="tbDensity"
-    title="工单列表"
+    title="记录列表"
     :count="48"
     :tabs="tbTabs"
     searchable
-    search-placeholder="搜索工单…"
+    search-placeholder="搜索记录…"
     show-density
     refreshable
     show-more
     @refresh="nvMessage.info('正在刷新…')"
     @export="nvMessage.success('已导出 CSV')"
-    @print="nvMessage.info('已选择打印当前工单列表')"
+    @print="nvMessage.info('已选择打印当前记录列表')"
   >
     <template #filters>
-      <NvButton variant="outline" size="sm" @click="nvMessage.info('已选择工具栏筛选工单')">
+      <NvButton variant="outline" size="sm" @click="nvMessage.info('已选择工具栏筛选记录')">
         <template #leading><ListFilterIcon /></template>
         筛选
       </NvButton>
     </template>
     <template #actions>
-      <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择工具栏新建工单')">
+      <NvButton variant="brand" size="sm" @click="nvMessage.info('已选择工具栏新建记录')">
         <template #leading><PlusIcon /></template>
-        新建工单
+        新建记录
       </NvButton>
     </template>
   </NvDataTableToolbar>
@@ -241,14 +241,14 @@ const pageSize = ref(10)
   v-model:search="search"
   v-model:tab="tab"
   v-model:density="density"
-  title="工单列表"
+  title="记录列表"
   :count="48"
   :tabs="tabs"
   searchable
   show-density
   refreshable
   show-more
-  @print="nvMessage.info('已选择打印当前工单列表')"
+  @print="nvMessage.info('已选择打印当前记录列表')"
 />
 ```
 

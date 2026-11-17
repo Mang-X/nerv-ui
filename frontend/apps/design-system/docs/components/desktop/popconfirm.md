@@ -22,23 +22,23 @@ import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
 
 <Demo>
   <NvPopconfirm
-    title="确认删除该工单？"
+    title="确认删除该记录？"
     description="删除后不可恢复。"
     confirm-text="删除"
-    @confirm="nvMessage.error('工单已删除')"
+    @confirm="nvMessage.error('记录已删除')"
   >
-    <NvButton variant="outline" size="sm">删除工单</NvButton>
+    <NvButton variant="outline" size="sm">删除记录</NvButton>
   </NvPopconfirm>
 </Demo>
 
 ```vue
 <NvPopconfirm
-  title="确认删除该工单？"
+  title="确认删除该记录？"
   description="删除后不可恢复。"
   confirm-text="删除"
-  @confirm="nvMessage.error('工单已删除')"
+  @confirm="nvMessage.error('记录已删除')"
 >
-  <NvButton variant="outline" size="sm">删除工单</NvButton>
+  <NvButton variant="outline" size="sm">删除记录</NvButton>
 </NvPopconfirm>
 ```
 
@@ -48,23 +48,23 @@ import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
 
 <Demo>
   <NvPopconfirm
-    title="确认下发到产线？"
-    confirm-text="下发"
+    title="确认分配到该分组？"
+    confirm-text="分配"
     confirm-tone="brand"
-    @confirm="nvMessage.success('已下发排产')"
+    @confirm="nvMessage.success('已分配')"
   >
-    <NvButton variant="brand" size="sm">下发排产</NvButton>
+    <NvButton variant="brand" size="sm">分配任务</NvButton>
   </NvPopconfirm>
 </Demo>
 
 ```vue
 <NvPopconfirm
-  title="确认下发到产线？"
-  confirm-text="下发"
+  title="确认分配到该分组？"
+  confirm-text="分配"
   confirm-tone="brand"
-  @confirm="nvMessage.success('已下发排产')"
+  @confirm="nvMessage.success('已分配')"
 >
-  <NvButton variant="brand" size="sm">下发排产</NvButton>
+  <NvButton variant="brand" size="sm">分配任务</NvButton>
 </NvPopconfirm>
 ```
 

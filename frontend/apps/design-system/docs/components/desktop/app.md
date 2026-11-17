@@ -52,19 +52,19 @@ import { NvApp } from '@nerv-iip/ui'
     </template>
     <nav class="ms-2 hidden items-center gap-1 text-sm sm:flex">
       <a class="rounded-md px-2 py-1 font-medium text-brand-strong">控制台</a>
-      <a class="rounded-md px-2 py-1 text-muted-foreground">工单</a>
-      <a class="rounded-md px-2 py-1 text-muted-foreground">设备</a>
+      <a class="rounded-md px-2 py-1 text-muted-foreground">条目</a>
+      <a class="rounded-md px-2 py-1 text-muted-foreground">资源</a>
     </nav>
     <template #trailing>
       <NvButton variant="ghost" size="icon" aria-label="搜索" @click="onHeaderAction('搜索')"><SearchIcon class="size-4" /></NvButton>
       <NvButton variant="ghost" size="icon" aria-label="通知" @click="onHeaderAction('通知')"><BellIcon class="size-4" /></NvButton>
-      <NvButton variant="brand" size="sm" @click="onHeaderAction('新建工单')">新建工单</NvButton>
+      <NvButton variant="brand" size="sm" @click="onHeaderAction('新建条目')">新建条目</NvButton>
     </template>
   </NvAppHeader>
   <p v-if="headerReceipt" role="status">{{ headerReceipt }}</p>
 </Demo>
 
-点击顶部操作后，本例显示当前选择及次数；不会创建工单或调用搜索、通知服务。
+点击顶部操作后，本例显示当前选择及次数；不会创建条目或调用搜索、通知服务。
 
 ```vue
 <script setup>
@@ -84,7 +84,7 @@ function onHeaderAction(action) {
     <template #trailing>
       <NvButton @click="onHeaderAction('搜索')">搜索</NvButton>
       <NvButton @click="onHeaderAction('通知')">通知</NvButton>
-      <NvButton @click="onHeaderAction('新建工单')">新建工单</NvButton>
+      <NvButton @click="onHeaderAction('新建条目')">新建条目</NvButton>
     </template>
   </NvAppHeader>
   <p v-if="headerReceipt" role="status">{{ headerReceipt }}</p>

@@ -15,7 +15,7 @@ import FieldContentExample from '../../.vitepress/examples/FieldContentExample.v
 import FieldGroupExample from '../../.vitepress/examples/FieldGroupExample.vue'
 import { ref } from 'vue'
 
-const orderNo = ref('WO-2406-0431')
+const orderNo = ref('REC-2406-0431')
 const planQty = ref('')
 </script>
 
@@ -31,9 +31,9 @@ const planQty = ref('')
   <div style="width: 360px; max-width: 100%">
     <NvFieldGroup>
       <NvField>
-        <NvFieldLabel for="field-order-no">工单号</NvFieldLabel>
-        <NvInput id="field-order-no" v-model="orderNo" placeholder="请输入工单号" />
-        <NvFieldDescription>派工后将以此编号锁定物料并生成领料单。</NvFieldDescription>
+        <NvFieldLabel for="field-order-no">记录编号</NvFieldLabel>
+        <NvInput id="field-order-no" v-model="orderNo" placeholder="请输入编号" />
+        <NvFieldDescription>指派后将以此编号锁定关联条目并生成回执。</NvFieldDescription>
       </NvField>
       <NvField data-invalid="true">
         <NvFieldLabel for="field-plan-qty">计划数量</NvFieldLabel>
@@ -55,16 +55,16 @@ import {
   NvInput,
 } from '@nerv-iip/ui'
 import { ref } from 'vue'
-const orderNo = ref('WO-2406-0431')
+const orderNo = ref('REC-2406-0431')
 const planQty = ref('')
 </script>
 
 <template>
   <NvFieldGroup>
     <NvField>
-      <NvFieldLabel for="field-order-no">工单号</NvFieldLabel>
-      <NvInput id="field-order-no" v-model="orderNo" placeholder="请输入工单号" />
-      <NvFieldDescription>派工后将以此编号锁定物料并生成领料单。</NvFieldDescription>
+      <NvFieldLabel for="field-order-no">记录编号</NvFieldLabel>
+      <NvInput id="field-order-no" v-model="orderNo" placeholder="请输入编号" />
+      <NvFieldDescription>指派后将以此编号锁定关联条目并生成回执。</NvFieldDescription>
     </NvField>
     <NvField data-invalid="true">
       <NvFieldLabel for="field-plan-qty">计划数量</NvFieldLabel>

@@ -18,14 +18,14 @@ const autoDispatch = ref(false)
 
 <Demo>
   <div style="display:flex;align-items:center;justify-content:space-between;max-width:280px">
-    <span style="font-size:14px">加急插单</span>
+    <span style="font-size:14px">加急处理</span>
     <NvSwitch v-model="switchOn" />
   </div>
 </Demo>
 
 ```vue
 <div style="display:flex;align-items:center;justify-content:space-between">
-  <span>加急插单</span>
+  <span>加急处理</span>
   <NvSwitch v-model="switchOn" />
 </div>
 ```
@@ -35,11 +35,11 @@ const autoDispatch = ref(false)
 <Demo>
   <div style="display:flex;flex-direction:column;gap:12px;max-width:280px;font-size:14px">
     <div style="display:flex;align-items:center;justify-content:space-between">
-      <span>自动派工</span>
+      <span>自动指派</span>
       <NvSwitch v-model="autoDispatch" />
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;opacity:.6">
-      <span>夜班自动报工（暂不可用）</span>
+      <span>值班时段自动提交（暂不可用）</span>
       <NvSwitch :disabled="true" />
     </div>
   </div>

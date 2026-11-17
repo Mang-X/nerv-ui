@@ -20,10 +20,10 @@ import { Trash2Icon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const alertOpen = ref(false)
-const deleteReceipt = ref('尚未选择删除工单')
+const deleteReceipt = ref('尚未选择删除记录')
 
 function confirmDelete() {
-  deleteReceipt.value = '已在本页选择删除 WO-2406-0431；未执行实际删除'
+  deleteReceipt.value = '已在本页选择删除 REC-2406-0431；未执行实际删除'
 }
 </script>
 
@@ -74,14 +74,14 @@ function confirmDelete() {
     <NvAlertDialogTrigger as-child>
       <NvButton variant="outline">
         <template #leading><Trash2Icon aria-hidden="true" /></template>
-        删除工单
+        删除记录
       </NvButton>
     </NvAlertDialogTrigger>
     <NvAlertDialogContent>
       <NvAlertDialogHeader>
-        <NvAlertDialogTitle>确认删除工单</NvAlertDialogTitle>
+        <NvAlertDialogTitle>确认删除记录</NvAlertDialogTitle>
         <NvAlertDialogDescription>
-          本地演示：确认只记录删除 WO-2406-0431 的选择，不删除工单，也不使领料单或排程记录失效。
+          本地演示：确认只记录删除 REC-2406-0431 的选择，不删除记录，也不使关联条目或计划失效。
         </NvAlertDialogDescription>
       </NvAlertDialogHeader>
       <NvAlertDialogFooter>
@@ -110,24 +110,24 @@ import {
 } from '@nerv-iip/ui'
 import { ref } from 'vue'
 const alertOpen = ref(false)
-const deleteReceipt = ref('尚未选择删除工单')
+const deleteReceipt = ref('尚未选择删除记录')
 
 function confirmDelete() {
-  deleteReceipt.value = '已在本页选择删除 WO-2406-0431；未执行实际删除'
+  deleteReceipt.value = '已在本页选择删除 REC-2406-0431；未执行实际删除'
 }
 </script>
 
 <template>
   <NvAlertDialog v-model:open="alertOpen">
     <NvAlertDialogTrigger as-child>
-      <NvButton variant="outline">删除工单</NvButton>
+      <NvButton variant="outline">删除记录</NvButton>
     </NvAlertDialogTrigger>
     <NvAlertDialogContent>
       <NvAlertDialogHeader>
-        <NvAlertDialogTitle>确认删除工单</NvAlertDialogTitle>
+        <NvAlertDialogTitle>确认删除记录</NvAlertDialogTitle>
         <NvAlertDialogDescription
-          >本地演示：确认只记录删除 WO-2406-0431
-          的选择，不删除工单，也不使领料单或排程记录失效。</NvAlertDialogDescription
+          >本地演示：确认只记录删除 REC-2406-0431
+          的选择，不删除记录，也不使关联条目或计划失效。</NvAlertDialogDescription
         >
       </NvAlertDialogHeader>
       <NvAlertDialogFooter>

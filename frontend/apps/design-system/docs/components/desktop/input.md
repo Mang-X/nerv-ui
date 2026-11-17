@@ -8,7 +8,7 @@ import { SearchIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
 const searchValue = ref('')
-const codeValue = ref('WO-2406-0413')
+const codeValue = ref('REC-2406-0413')
 </script>
 
 # NvInput 输入框
@@ -19,19 +19,19 @@ const codeValue = ref('WO-2406-0413')
 
 <Demo>
   <div style="max-width: 320px">
-    <NvInput v-model="codeValue" placeholder="请输入工单号" />
+    <NvInput v-model="codeValue" placeholder="请输入编号" />
   </div>
 </Demo>
 
 ```vue
-<NvInput v-model="value" placeholder="请输入工单号" />
+<NvInput v-model="value" placeholder="请输入编号" />
 ```
 
 ## 前后缀插槽
 
 <Demo>
   <div style="max-width: 320px">
-    <NvInput v-model="searchValue" placeholder="搜索工单号 / 产品">
+    <NvInput v-model="searchValue" placeholder="搜索编号 / 名称">
       <template #leading><SearchIcon aria-hidden="true" /></template>
       <template #trailing>
         <kbd style="border:1px solid var(--vp-c-divider);border-radius:4px;padding:1px 6px;font-family:monospace;font-size:10px">⌘K</kbd>
@@ -41,7 +41,7 @@ const codeValue = ref('WO-2406-0413')
 </Demo>
 
 ```vue
-<NvInput v-model="searchValue" placeholder="搜索工单号 / 产品">
+<NvInput v-model="searchValue" placeholder="搜索编号 / 名称">
   <template #leading><SearchIcon aria-hidden="true" /></template>
   <template #trailing><kbd>⌘K</kbd></template>
 </NvInput>
@@ -54,7 +54,7 @@ const codeValue = ref('WO-2406-0413')
 <Demo>
   <div style="display:flex;flex-direction:column;gap:12px;max-width:320px">
     <NvInput :model-value="'数量不能为空'" invalid />
-    <NvInput :model-value="'WC-CNC-07'" disabled />
+    <NvInput :model-value="'RES-07'" disabled />
   </div>
 </Demo>
 
