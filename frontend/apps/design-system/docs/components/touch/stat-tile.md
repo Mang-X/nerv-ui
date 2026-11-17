@@ -8,7 +8,7 @@ import { NvStatTile } from '@nerv-iip/ui'
 
 # NvStatTile 指标块
 
-工位看板的**超大可读** KPI 块：大号等宽数字，隔着车间也一眼看清；可选 `tone` 给面板与数字染色，用于"健康度一瞥"。与大屏 NvKpiBar 定位相近，尺寸与留白按一体机近距离触控放大。
+Pad 看板的**超大可读** KPI 块：大号等宽数字，隔一段距离也一眼看清；可选 `tone` 给面板与数字染色，用于"健康度一瞥"。与大屏 NvKpiBar 定位相近，尺寸与留白按 Pad 近距离触控放大。
 
 ## 语气（tone）
 
@@ -16,16 +16,16 @@ import { NvStatTile } from '@nerv-iip/ui'
 
 <Demo block>
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-    <NvStatTile label="今日已完成" :value="412" unit="件" tone="brand" />
-    <NvStatTile label="当前节拍" value="45" unit="s/件" tone="neutral" />
-    <NvStatTile label="在线良率" value="99.2" unit="%" tone="success" />
-    <NvStatTile label="设备 OEE" value="78.6" unit="%" tone="warning" />
+    <NvStatTile label="今日已完成" :value="412" unit="条" tone="brand" />
+    <NvStatTile label="当前节奏" value="45" unit="s/条" tone="neutral" />
+    <NvStatTile label="合格率" value="99.2" unit="%" tone="success" />
+    <NvStatTile label="利用率" value="78.6" unit="%" tone="warning" />
   </div>
 </Demo>
 
 ```vue
-<NvStatTile label="今日已完成" :value="412" unit="件" tone="brand" />
-<NvStatTile label="在线良率" value="99.2" unit="%" tone="success" />
+<NvStatTile label="今日已完成" :value="412" unit="条" tone="brand" />
+<NvStatTile label="合格率" value="99.2" unit="%" tone="success" />
 ```
 
 ## 属性

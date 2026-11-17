@@ -77,8 +77,8 @@ const lines = [
 | 属性          | 说明             | 类型                                           | 默认           |
 | ------------- | ---------------- | ---------------------------------------------- | -------------- |
 | `v-model`     | 选中项的 `value` | `string \| number`                             | —              |
-| `options`     | 选项列表         | `{ label: string; value: string \| number }[]` | 内置示例产线   |
-| `placeholder` | 未选中时的占位   | `string`                                       | `'请选择产线'` |
+| `options`     | 选项列表         | `{ label: string; value: string \| number }[]` | 内置示例分组   |
+| `placeholder` | 未选中时的占位   | `string`                                       | `'请选择分组'` |
 | `disabled`    | 禁用             | `boolean`                                      | `false`        |
 
 ## 浮层、键盘与动态选项
@@ -91,4 +91,4 @@ Enter / Space / ↓ / ↑ 打开；打开后 ↑ / ↓ 移动活动项，Enter /
 
 选项值严格区分数字 `0` 与字符串 `'0'`，每个值应唯一。动态重排按值保留活动项；删除已选项时显示 placeholder 并保留父模型原值，空数组可安全打开/关闭；恢复选项后可继续选择。组件不取数、不推断缺失值含义。关闭或卸载后移除监听与 observer。
 
-零 props 的产线选项和 placeholder 是保留兼容的历史默认值；通用场景显式提供 options 和 placeholder。独立中性入口为 `/#screen/controls`。
+零 props 的分组选项和 placeholder 是保留兼容的历史默认值；通用场景显式提供 options 和 placeholder。独立中性入口为 `/#screen/controls`。

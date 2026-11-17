@@ -11,7 +11,7 @@ const known = computed(() => reading.value.trim() !== '')
 
 # NvOeeHero 核心指标
 
-主数字、单位、变化文本及归一化 spark 面积。名称保留兼容；组件没有 OEE、同比或费用计算。主数字始终保持原色，只有 delta 文本有变化色。
+主数字、单位、变化文本及归一化 spark 面积。名称保留兼容；组件没有指标、同比或费用计算。主数字始终保持原色，只有 delta 文本有变化色。
 
 ## 费用下降但改善
 
@@ -39,7 +39,7 @@ const known = computed(() => reading.value.trim() !== '')
 
 <ScreenDemo>
   <NvScreenPanel style="width: 600px">
-    <NvOeeHero label="设备综合效率 OEE" :value="92.4" unit="%" delta="-2.7%" />
+    <NvOeeHero label="综合利用率" :value="92.4" unit="%" delta="-2.7%" />
   </NvScreenPanel>
 </ScreenDemo>
 

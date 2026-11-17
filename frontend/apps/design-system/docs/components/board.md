@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 工位看板 · 完整示例
+title: Pad 看板 · 完整示例
 ---
 
 <script setup>

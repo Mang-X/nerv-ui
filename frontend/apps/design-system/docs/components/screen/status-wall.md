@@ -54,6 +54,6 @@ type ScreenStatusWallMode = 'flat' | 'group-grid' | 'group-chip'
 
 ## 来源与适配
 
-来源固定 `79b1578f2b75f55709765b5e7882aaf33146c603` 的 DeviceStatusWall：保留平铺行虚拟、两种分组密度、hover/select/visible 与滚动关闭。去掉设备/工厂/车间 DTO、五态统计、paramColors、fetchDeviceDetail、250ms 防抖和 30 秒缓存；延迟只在示例宿主。完整设备详情及迷你趋势不迁入本墙。旧应用接入和旧库退出已取消，NOT_PLANNED。
+来源固定 `79b1578f2b75f55709765b5e7882aaf33146c603` 的 StatusWall：保留平铺行虚拟、两种分组密度、hover/select/visible 与滚动关闭。去掉领域 DTO、五态统计、paramColors、详情请求、250ms 防抖和 30 秒缓存；延迟只在示例宿主。完整详情及迷你趋势不迁入本墙。旧应用接入和旧库退出已取消，NOT_PLANNED。
 
 <!-- @include: ../../../../../DESIGN/components/status-wall.md -->

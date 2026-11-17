@@ -8,7 +8,7 @@ import { ref } from 'vue'
 
 const view = ref('queue')
 const viewOptions = [
-  { value: 'queue', label: '待加工' },
+  { value: 'queue', label: '待处理' },
   { value: 'done', label: '已完成' },
 ]
 const shift = ref('day')
@@ -21,7 +21,7 @@ const shiftOptions = [
 
 # NvTouchSegmented 分段切换
 
-工位大触控的分段控制器：**48px** 高，一点即切，适合 2–4 个互斥视图。比一体机上的下拉选择少一次展开-选择的路径。与大屏的 NvScreenSegmented 同源，尺寸按大触控放大。
+Pad 大触控的分段控制器：**48px** 高，一点即切，适合 2–4 个互斥视图。比 Pad 上的下拉选择少一次展开-选择的路径。与大屏的 NvScreenSegmented 同源，尺寸按大触控放大。
 
 ## 基础
 
@@ -39,7 +39,7 @@ const shiftOptions = [
 <script setup>
 const view = ref('queue')
 const viewOptions = [
-  { value: 'queue', label: '待加工' },
+  { value: 'queue', label: '待处理' },
   { value: 'done', label: '已完成' },
 ]
 </script>

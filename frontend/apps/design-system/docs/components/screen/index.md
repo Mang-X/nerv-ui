@@ -1,22 +1,22 @@
 ---
-title: 大屏 / 控制室
+title: 大屏 / Screen
 ---
 
 <script setup>
 import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatusLight } from '@nerv-iip/ui'
 </script>
 
-# 大屏 / 控制室组件
+# 大屏 / Screen 组件
 
-面向公共空间、展馆、运营中心与控制室等远距显示表面的组件层。与桌面 PC、PDA 移动两层**完全解耦**:独立的 `--nv-scr-*` 深色工业蓝令牌(无亮色模式),只遵循统一的设计哲学 —— 克制、去装饰、动效减速无回弹。
+面向公共空间、展馆、运营中心与远距监控等远距显示表面的组件层。与桌面 PC、mobile 两层**完全解耦**:独立的 `--nv-scr-*` 深色工业蓝令牌(无亮色模式),只遵循统一的设计哲学 —— 克制、去装饰、动效减速无回弹。
 
 独立 playground 从 `/#screen` 或 `/#screen/stage` 进入 A01 的 7 件基础外壳舞台；[独立大屏接入](../../../../../../docs/screen-standalone.md)说明范围。当前 39 件具名组件导出以包内 `screen/index.ts` 为准；各组 fresh 验收以对应证据为准，下方历史总览不代表全组 fresh 验收。
 
 <ScreenDemo>
   <NvScreenPanel style="width: 360px">
-    <NvOeeHero label="设备综合效率 OEE" :value="92.4" unit="%" delta="较昨日 +2.7%" />
+    <NvOeeHero label="综合利用率" :value="92.4" unit="%" delta="较昨日 +2.7%" />
   </NvScreenPanel>
-  <NvRingGauge :value="78" label="稼动率" />
+  <NvRingGauge :value="78" label="利用率" />
   <div style="display:flex;flex-direction:column;gap:12px">
     <NvScreenStatusTag tone="run">运行中</NvScreenStatusTag>
     <NvScreenStatusTag tone="idle">待机</NvScreenStatusTag>
@@ -32,7 +32,7 @@ import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatu
 
 ## 为什么独立一层
 
-大屏的观看距离(数米外)、环境(公共展示空间或控制室)、硬件(高亮 LED)都和近场的 PC / PDA 不同。强行复用浅色令牌会过曝、对比不足。因此这一层:
+大屏的观看距离(数米外)、环境(公共展示空间或远距监控)、硬件(高亮 LED)都和近场的 PC / mobile 不同。强行复用浅色令牌会过曝、对比不足。因此这一层:
 
 - **固定深色**:深藏青底 + 青色主辉光,不跟随亮/暗切换;
 - **更大的字号与发光**:远距离可读,关键数字带 `text-shadow` 辉光;

@@ -12,7 +12,7 @@ const batch = ref(50)
 
 # NvQtyStepper 数量步进
 
-工位报工的大数量步进器：**56px** 高、超大 ± 触控键、等宽数字读数，clamp 到 `[min, max]`、步长可调。区别于移动端紧凑的 NvStepper——它为"戴手套快速加减报工数"而放大。
+Pad 大数量步进器：**56px** 高、超大 ± 触控键、等宽数字读数，clamp 到 `[min, max]`、步长可调。区别于移动端紧凑的 NvStepper——它为"戴手套快速加减数量"而放大。
 
 ## 基础
 
@@ -32,7 +32,7 @@ const qty = ref(12)
 
 ## 自定义步长
 
-批量报工可用较大步长，例如按整托 50 件递增。
+批量录入可用较大步长，例如按整包 50 条递增。
 
 <Demo>
   <NvQtyStepper v-model="batch" :min="0" :max="500" :step="50" />
