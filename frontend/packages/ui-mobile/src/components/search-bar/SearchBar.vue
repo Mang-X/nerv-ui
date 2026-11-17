@@ -56,7 +56,9 @@ function cancel() {
 
 <template>
   <div data-slot="search-bar" :class="cn('flex items-center px-3 py-2', $props.class)">
-    <div class="min-h-touch flex flex-1 items-center gap-2 rounded-full bg-muted px-3.5">
+    <div
+      class="min-h-touch nv-focusable flex flex-1 items-center gap-2 rounded-full bg-muted px-3.5"
+    >
       <Search class="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
       <input
         v-model="keyword"
@@ -71,7 +73,7 @@ function cancel() {
         <button
           v-if="model"
           type="button"
-          class="min-h-touch min-w-12 -my-1 -mr-3 grid shrink-0 place-items-center rounded-full text-card active:opacity-70"
+          class="min-h-touch nv-focusable min-w-12 -my-1 -mr-3 grid shrink-0 place-items-center rounded-full text-card active:opacity-70"
           aria-label="清除"
           @click="clear"
         >
@@ -84,7 +86,7 @@ function cancel() {
     <div v-if="cancelable" class="nv-m-sb-cancel" :class="expanded && 'is-open'">
       <button
         type="button"
-        class="min-h-touch min-w-12 text-[15px] whitespace-nowrap text-brand active:opacity-60"
+        class="min-h-touch nv-focusable min-w-12 text-[15px] whitespace-nowrap text-brand active:opacity-60"
         @click="cancel"
       >
         取消

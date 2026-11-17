@@ -28,7 +28,7 @@ const pressed = ref(false)
     @pointercancel="pressed = false"
     :class="
       cn(
-        'nv-m-mswitch inline-flex h-11 w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35 outline-none focus-visible:ring-[3px] focus-visible:ring-brand/30 disabled:cursor-not-allowed disabled:opacity-50',
+        'nv-m-mswitch nv-focusable inline-flex h-11 w-[51px] shrink-0 cursor-pointer items-center rounded-full px-0.5 data-[state=checked]:bg-brand data-[state=unchecked]:bg-muted-foreground/35 outline-none disabled:cursor-not-allowed disabled:opacity-50',
         props.class,
       )
     "

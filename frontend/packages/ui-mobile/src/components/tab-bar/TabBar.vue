@@ -27,7 +27,7 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
       :key="item.value"
       type="button"
       :aria-current="modelValue === item.value ? 'page' : undefined"
-      class="nv-m-tabbar-btn min-h-touch flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs"
+      class="nv-m-tabbar-btn nv-focusable min-h-touch flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs"
       :class="modelValue === item.value ? 'text-brand' : 'text-muted-foreground'"
       @click="emit('update:modelValue', item.value)"
     >
@@ -59,10 +59,6 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
   .nv-m-tabbar-btn:active .nv-m-tabbar-hit {
     opacity: 1;
     transition-duration: 0s;
-  }
-  .nv-m-tabbar-btn:focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: -2px;
   }
   @media (prefers-reduced-motion: reduce) {
     .nv-m-tabbar-hit {

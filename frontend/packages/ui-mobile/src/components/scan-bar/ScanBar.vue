@@ -221,7 +221,7 @@ onBeforeUnmount(() => {
   <div
     :class="
       cn(
-        'flex items-center gap-2 rounded-lg border border-border bg-card px-3 min-h-touch',
+        'nv-focusable flex items-center gap-2 rounded-lg border border-border bg-card px-3 min-h-touch',
         $props.class,
       )
     "

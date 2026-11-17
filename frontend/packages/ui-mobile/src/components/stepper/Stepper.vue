@@ -45,14 +45,14 @@ function onBlur(e: Event) {
     data-slot="stepper"
     :class="
       cn(
-        'nv-m-stepper inline-flex h-11 shrink-0 items-center rounded-lg border border-border bg-card',
+        'nv-m-stepper nv-focusable inline-flex h-11 shrink-0 items-center rounded-lg border border-border bg-card',
         props.class,
       )
     "
   >
     <button
       type="button"
-      class="nv-m-stepper-btn grid size-11 shrink-0 place-items-center rounded-lg text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring disabled:opacity-30"
+      class="nv-m-stepper-btn grid size-11 shrink-0 place-items-center rounded-lg text-foreground outline-none disabled:opacity-30"
       :disabled="!canDec"
       aria-label="减少"
       @click="set(modelValue - step)"
@@ -69,7 +69,7 @@ function onBlur(e: Event) {
     />
     <button
       type="button"
-      class="nv-m-stepper-btn grid size-11 shrink-0 place-items-center rounded-lg text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring disabled:opacity-30"
+      class="nv-m-stepper-btn grid size-11 shrink-0 place-items-center rounded-lg text-foreground outline-none disabled:opacity-30"
       :disabled="!canInc"
       aria-label="增加"
       @click="set(modelValue + step)"

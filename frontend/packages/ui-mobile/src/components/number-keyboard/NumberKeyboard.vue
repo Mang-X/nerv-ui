@@ -98,14 +98,14 @@ function confirm() {
             v-for="k in keys"
             :key="k"
             type="button"
-            class="nv-m-nk-key col-span-1 grid h-14 place-items-center rounded-xl bg-muted text-2xl font-medium text-foreground tabular-nums"
+            class="nv-m-nk-key nv-focusable col-span-1 grid h-14 place-items-center rounded-xl bg-muted text-2xl font-medium text-foreground tabular-nums"
             v-text="k"
             @click="input(k)"
           />
           <!-- backspace, spanning the right column across the top two rows -->
           <button
             type="button"
-            class="nv-m-nk-key col-start-4 row-start-1 row-span-2 grid h-auto place-items-center rounded-xl bg-muted text-foreground"
+            class="nv-m-nk-key nv-focusable col-start-4 row-start-1 row-span-2 grid h-auto place-items-center rounded-xl bg-muted text-foreground"
             aria-label="删除"
             @click="backspace"
           >
@@ -114,7 +114,7 @@ function confirm() {
           <!-- confirm, spanning the right column across the bottom two rows -->
           <button
             type="button"
-            class="nv-m-nk-key col-start-4 row-start-3 row-span-2 grid h-auto place-items-center rounded-xl bg-brand text-base font-medium text-brand-foreground"
+            class="nv-m-nk-key nv-focusable col-start-4 row-start-3 row-span-2 grid h-auto place-items-center rounded-xl bg-brand text-base font-medium text-brand-foreground"
             v-text="confirmText"
             @click="confirm"
           />
@@ -122,7 +122,7 @@ function confirm() {
           <button
             v-if="extraKey"
             type="button"
-            class="nv-m-nk-key col-span-1 grid h-14 place-items-center rounded-xl bg-muted text-2xl font-medium text-foreground"
+            class="nv-m-nk-key nv-focusable col-span-1 grid h-14 place-items-center rounded-xl bg-muted text-2xl font-medium text-foreground"
             v-text="extraKey"
             @click="input(extraKey)"
           />
@@ -130,7 +130,7 @@ function confirm() {
                signToggle 恒为 ± 预留一列（含 extraKey='' 组合），避免 ± 溢出到第 5 行破版。 -->
           <button
             type="button"
-            class="nv-m-nk-key grid h-14 place-items-center rounded-xl bg-muted text-2xl font-medium text-foreground tabular-nums"
+            class="nv-m-nk-key nv-focusable grid h-14 place-items-center rounded-xl bg-muted text-2xl font-medium text-foreground tabular-nums"
             :class="
               signToggle
                 ? extraKey
@@ -147,7 +147,7 @@ function confirm() {
           <button
             v-if="signToggle"
             type="button"
-            class="nv-m-nk-key col-span-1 grid h-14 place-items-center rounded-xl bg-muted text-2xl font-medium text-foreground"
+            class="nv-m-nk-key nv-focusable col-span-1 grid h-14 place-items-center rounded-xl bg-muted text-2xl font-medium text-foreground"
             aria-label="正负号"
             v-text="'±'"
             @click="toggleSign"

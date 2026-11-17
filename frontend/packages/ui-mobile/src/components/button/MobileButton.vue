@@ -39,7 +39,7 @@ const sizeClass: Record<Size, string> = {
 
 const classes = computed(() =>
   cn(
-    'nv-m-mbtn inline-flex min-h-11 min-w-11 shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none focus-visible:ring-[3px] focus-visible:ring-brand/30 transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0',
+    'nv-m-mbtn nv-focusable inline-flex min-h-11 min-w-11 shrink-0 select-none items-center justify-center gap-1.5 rounded-[10px] font-medium whitespace-nowrap outline-none transition-[opacity,background-color] disabled:pointer-events-none disabled:opacity-40 [&_svg:not([class*=size-])]:size-[1.05em] [&_svg]:shrink-0',
     variantClass[props.variant],
     sizeClass[props.size],
     props.block && 'w-full',

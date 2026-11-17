@@ -61,13 +61,13 @@ function guardOutside(e: Event) {
   <DialogRoot :open="open" @update:open="emit('update:open', $event)">
     <DialogPortal :to="overlayTarget">
       <DialogOverlay
-        class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-40 bg-black/45 backdrop-blur-[6px] duration-200"
+        class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-40 bg-black/45 backdrop-blur-[6px] duration-[var(--nv-duration-base)]"
       />
       <DialogContent
         data-slot="mobile-dialog-content"
         :class="
           cn(
-            'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=open]:[animation-timing-function:var(--nv-ease-out-expo)] fixed top-1/2 left-1/2 z-50 flex w-[17.5rem] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_12px_48px_-12px_rgb(0_0_0/0.5)] duration-200 outline-none',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=open]:[animation-timing-function:var(--nv-ease-out-expo)] fixed top-1/2 left-1/2 z-50 flex w-[17.5rem] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_12px_48px_-12px_rgb(0_0_0/0.5)] duration-[var(--nv-duration-base)] outline-none',
             $props.class,
           )
         "
@@ -89,12 +89,17 @@ function guardOutside(e: Event) {
         </div>
 
         <div class="nv-m-md-actions">
-          <button v-if="showCancel" type="button" class="nv-m-md-btn" @click="onCancel">
+          <button
+            v-if="showCancel"
+            type="button"
+            class="nv-m-md-btn nv-focusable"
+            @click="onCancel"
+          >
             {{ cancelText }}
           </button>
           <button
             type="button"
-            class="nv-m-md-btn nv-m-md-confirm"
+            class="nv-m-md-btn nv-m-md-confirm nv-focusable"
             :data-tone="confirmTone"
             @click="onConfirm"
           >
@@ -143,10 +148,6 @@ function guardOutside(e: Event) {
   .nv-m-md-confirm[data-tone='danger'] {
     color: var(--nv-destructive-strong);
   }
-  .nv-m-md-btn:focus-visible {
-    box-shadow: inset 0 0 0 2px color-mix(in oklch, var(--ring) 50%, transparent);
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .nv-m-md-btn {
       transition: none;

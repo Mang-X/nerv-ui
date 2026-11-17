@@ -54,7 +54,7 @@ function pick(value: string | number) {
   <div data-slot="dropdown-menu-item" class="relative flex min-w-0 flex-1 items-stretch">
     <button
       type="button"
-      class="nv-m-ddm-trigger flex h-full w-full min-w-0 items-center justify-center gap-1 px-3 text-[15px] transition-colors"
+      class="nv-m-ddm-trigger nv-focusable flex h-full w-full min-w-0 items-center justify-center gap-1 px-3 text-[15px] transition-colors"
       :class="
         cn(open || isActive ? 'text-brand' : 'text-foreground', 'active:bg-accent', $props.class)
       "
@@ -73,6 +73,7 @@ function pick(value: string | number) {
     <Transition name="nv-m-ddm-panel">
       <div
         v-if="open"
+        data-slot="dropdown-menu-content"
         class="nv-m-ddm-panel absolute inset-x-0 top-full z-40 origin-top overflow-hidden border-b border-border bg-card shadow-[0_12px_28px_-12px_rgb(0_0_0/0.35)]"
       >
         <button

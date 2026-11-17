@@ -29,7 +29,7 @@ const slots = useSlots()
       <button
         v-if="back"
         type="button"
-        class="group flex size-11 shrink-0 items-center justify-center rounded-full text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+        class="nv-focusable group flex size-11 shrink-0 items-center justify-center rounded-full text-foreground"
         aria-label="返回"
         @click="emit('back')"
       >

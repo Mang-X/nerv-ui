@@ -97,7 +97,7 @@ function nudge(delta: number) {
       />
       <!-- thumb (44px hit area centered on the value position) -->
       <div
-        class="nv-m-slider-thumb absolute top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center"
+        class="nv-m-slider-thumb nv-focusable absolute top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center"
         :style="{ left: `${ratio * 100}%` }"
         role="slider"
         tabindex="0"

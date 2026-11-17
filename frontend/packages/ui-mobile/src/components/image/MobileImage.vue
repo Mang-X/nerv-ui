@@ -75,7 +75,7 @@ const boxStyle = computed(() =>
       :alt="alt"
       loading="lazy"
       decoding="async"
-      class="block h-full w-full transition-opacity duration-300"
+      class="block h-full w-full transition-opacity duration-[var(--nv-duration-slow)]"
       :class="[
         fit === 'contain' ? 'object-contain' : 'object-cover',
         status === 'loaded' ? 'opacity-100' : 'opacity-0',

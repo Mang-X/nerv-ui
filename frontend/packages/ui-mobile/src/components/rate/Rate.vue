@@ -58,7 +58,7 @@ function pick(index: number, ev: PointerEvent | MouseEvent) {
       :key="i"
       type="button"
       :disabled="readonly"
-      class="nv-m-rate-star grid size-11 place-items-center disabled:cursor-default"
+      class="nv-m-rate-star nv-focusable grid size-11 place-items-center disabled:cursor-default"
       :aria-label="`${i} 星`"
       @click="pick(i, $event)"
     >
