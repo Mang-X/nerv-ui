@@ -38,6 +38,9 @@ export default defineConfig({
               { text: 'NvSkeleton 骨架屏', link: '/components/skeleton' },
               { text: 'NvProgress 进度条', link: '/components/progress' },
               { text: 'NvSeparator 分割线', link: '/components/separator' },
+              { text: 'NvToggle 切换按钮', link: '/components/toggle' },
+              { text: 'NvResizable 可调分栏', link: '/components/resizable' },
+              { text: 'NvScrollArea 滚动区域', link: '/components/scroll-area' },
             ],
           },
           {
@@ -48,6 +51,8 @@ export default defineConfig({
               { text: 'NvPagination 分页', link: '/components/pagination' },
               { text: 'NvSidebar 侧边栏', link: '/components/sidebar' },
               { text: 'NvNavigationMenu 导航菜单', link: '/components/navigation-menu' },
+              { text: 'NvTree 层级树', link: '/components/tree' },
+              { text: 'NvToolbar 工具栏', link: '/components/toolbar' },
             ],
           },
           {
@@ -55,6 +60,9 @@ export default defineConfig({
             items: [
               { text: 'NvDataTable 数据表格', link: '/components/data-table' },
               { text: '图表（折线 / 柱 / 环）', link: '/components/chart' },
+              { text: 'NvDescriptions 描述列表', link: '/components/descriptions' },
+              { text: 'NvCarousel 轮播', link: '/components/carousel' },
+              { text: 'NvTimeline 时间线', link: '/components/timeline' },
             ],
           },
           {

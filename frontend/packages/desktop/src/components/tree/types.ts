@@ -13,6 +13,8 @@ export interface NvTreeItem {
 }
 
 export interface NvTreeProps {
+  /** Accessible name for the tree widget (rendered as aria-label). */
+  ariaLabel?: string
   /** The full hierarchy, including collapsed branches. */
   items: NvTreeItem[]
   /** How many items can be selected at once. */

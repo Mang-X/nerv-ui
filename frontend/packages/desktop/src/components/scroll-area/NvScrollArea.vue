@@ -60,13 +60,13 @@ function cssSize(value: number | string): string {
     :scroll-hide-delay="scrollHideDelay"
     :stick-to-end="stickToEnd"
     :class="[rootSx.className, $attrs.class]"
-    :style="[rootSx.style, sizeStyle, $attrs.style]"
+    :style="[rootSx.style, $attrs.style]"
   >
     <ScrollAreaViewport
       :role="label ? 'region' : undefined"
       :aria-label="label"
       :class="viewportSx.className"
-      :style="viewportSx.style"
+      :style="[viewportSx.style, sizeStyle]"
     >
       <ScrollAreaContent :class="contentSx.className" :style="contentSx.style">
         <slot />

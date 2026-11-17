@@ -23,6 +23,7 @@ const props = withDefaults(defineProps<NvTreeProps>(), {
   keepMounted: undefined,
   hiddenUntilFound: undefined,
   controller: undefined,
+  ariaLabel: undefined,
 })
 
 const sx = computed(() => stylex.props(styles.root))
@@ -45,6 +46,8 @@ const sx = computed(() => stylex.props(styles.root))
     :keep-mounted="keepMounted"
     :hidden-until-found="hiddenUntilFound"
     :controller="controller"
+    role="tree"
+    :aria-label="ariaLabel"
     :class="[sx.className, $attrs.class]"
     :style="[sx.style, $attrs.style]"
   >
