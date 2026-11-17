@@ -71,7 +71,7 @@ function navigate(event: KeyboardEvent, index: number) {
       @keydown="navigate($event, index)"
       :class="
         cn(
-          'nv-seg h-full rounded-lg px-5 text-base font-medium whitespace-nowrap transition-colors',
+          'nv-seg nv-focusable h-full rounded-lg px-5 text-base font-medium whitespace-nowrap transition-colors',
           modelValue === opt.value
             ? 'bg-card text-foreground shadow-sm'
             : 'text-muted-foreground hover:text-foreground',

@@ -207,7 +207,7 @@ const card = computed(() => {
     transition:
       height 0.5s var(--nv-scr-ease-emphasized),
       y 0.5s var(--nv-scr-ease-emphasized),
-      opacity 0.18s var(--nv-scr-ease);
+      opacity var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease);
   }
   .nv-scr-bc-bar.dim {
     opacity: 0.38;

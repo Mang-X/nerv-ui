@@ -26,7 +26,7 @@ withDefaults(
 
 <template>
   <button
-    class="nv-scr-btn"
+    class="nv-scr-btn nv-focusable"
     :class="[variant, size]"
     :type="type"
     :disabled="disabled"
@@ -58,10 +58,10 @@ withDefaults(
     white-space: nowrap;
     overflow: hidden;
     transition:
-      transform 0.12s var(--nv-scr-ease),
-      box-shadow 0.18s var(--nv-scr-ease),
-      border-color 0.18s var(--nv-scr-ease),
-      background 0.18s var(--nv-scr-ease);
+      transform var(--nv-duration-fast, 150ms) var(--nv-scr-ease),
+      box-shadow var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease),
+      border-color var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease),
+      background var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease);
   }
   .nv-scr-btn.sm {
     height: 30px;
@@ -79,12 +79,6 @@ withDefaults(
   /* press — pure scale, no vertical nudge */
   .nv-scr-btn:active:not(:disabled) {
     transform: scale(0.985);
-  }
-  .nv-scr-btn:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 2px var(--nv-scr-bg),
-      0 0 0 4px var(--nv-scr-cyan-dim);
   }
   .nv-scr-btn:disabled {
     opacity: 0.45;
@@ -123,7 +117,7 @@ withDefaults(
     background-size: 220% 100%;
     background-position: 120% 0;
     transition:
-      opacity 0.2s ease,
+      opacity var(--nv-duration-base, 220ms) var(--nv-scr-ease),
       background-position 0.6s var(--nv-scr-ease-emphasized);
   }
   .nv-scr-btn.primary:hover:not(:disabled) .nv-scr-btn-sheen {

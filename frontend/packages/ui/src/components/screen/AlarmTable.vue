@@ -190,7 +190,7 @@ withDefaults(
     background: rgba(255, 255, 255, 0.018);
   }
   .nv-scr-at-tbl tbody tr {
-    transition: background 0.15s var(--nv-scr-ease);
+    transition: background var(--nv-duration-fast, 150ms) var(--nv-scr-ease);
   }
   .nv-scr-at-tbl tbody tr:hover td {
     background: rgba(67, 180, 228, 0.08);

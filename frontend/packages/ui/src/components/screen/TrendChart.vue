@@ -200,7 +200,7 @@ const uid = Math.random().toString(36).slice(2, 8)
           v-for="r in ranges"
           :key="String(r.value)"
           type="button"
-          class="nv-scr-tc-tab"
+          class="nv-scr-tc-tab nv-focusable"
           :class="{ on: r.value === range }"
           :aria-pressed="r.value === range"
           @click="range = r.value"
@@ -386,14 +386,10 @@ const uid = Math.random().toString(36).slice(2, 8)
     background: transparent;
     font: inherit;
     cursor: pointer;
-    transition: color 0.18s var(--nv-scr-ease);
+    transition: color var(--nv-duration-fast-invoke, 187ms) var(--nv-scr-ease);
   }
   .nv-scr-tc-tab:hover:not(.on) {
     color: var(--nv-scr-text-2);
-  }
-  .nv-scr-tc-tab:focus-visible {
-    outline: none;
-    box-shadow: inset 0 0 0 2px var(--nv-scr-cyan-dim);
   }
   .nv-scr-tc-tabs span.on,
   .nv-scr-tc-tab.on {

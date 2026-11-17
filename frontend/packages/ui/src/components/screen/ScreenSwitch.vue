@@ -19,7 +19,7 @@ function toggle() {
 <template>
   <button
     type="button"
-    class="nv-scr-sw"
+    class="nv-scr-sw nv-focusable"
     role="switch"
     :class="{ on: model }"
     :aria-checked="model"
@@ -57,8 +57,8 @@ function toggle() {
       inset 0 1px 2px rgba(0, 0, 0, 0.5),
       inset 0 0 0 1px var(--nv-scr-line-2);
     transition:
-      background 0.22s var(--nv-scr-ease),
-      box-shadow 0.22s var(--nv-scr-ease);
+      background var(--nv-duration-base, 220ms) var(--nv-scr-ease),
+      box-shadow var(--nv-duration-base, 220ms) var(--nv-scr-ease);
   }
   .nv-scr-sw-handle {
     position: absolute;
@@ -71,7 +71,7 @@ function toggle() {
     box-shadow:
       0 1px 3px rgba(0, 0, 0, 0.55),
       inset 0 1px 0 rgba(255, 255, 255, 0.7);
-    transition: transform 0.22s var(--nv-scr-ease);
+    transition: transform var(--nv-duration-base, 220ms) var(--nv-scr-ease);
   }
   .nv-scr-sw.on .nv-scr-sw-track {
     background: var(--nv-scr-accent-fill);
@@ -89,21 +89,6 @@ function toggle() {
   }
   .nv-scr-sw.on:active:not(:disabled) .nv-scr-sw-handle {
     transform: translateX(22px) scale(0.86);
-  }
-  .nv-scr-sw:focus-visible {
-    outline: none;
-  }
-  .nv-scr-sw:focus-visible .nv-scr-sw-track {
-    box-shadow:
-      inset 0 0 0 1px var(--nv-scr-line-2),
-      0 0 0 2px var(--nv-scr-bg),
-      0 0 0 4px var(--nv-scr-cyan-dim);
-  }
-  .nv-scr-sw.on:focus-visible .nv-scr-sw-track {
-    box-shadow:
-      inset 0 0 0 1px rgba(0, 229, 255, 0.55),
-      0 0 0 2px var(--nv-scr-bg),
-      0 0 0 4px var(--nv-scr-cyan-dim);
   }
 
   @media (prefers-reduced-motion: reduce) {

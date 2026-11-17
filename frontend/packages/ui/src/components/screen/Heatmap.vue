@@ -111,7 +111,7 @@ watch(
       <li
         v-for="cell in cells"
         :key="cell.key"
-        class="nv-scr-heatmap-cell"
+        class="nv-scr-heatmap-cell nv-focusable"
         :class="`nv-scr-heatmap-${band(cell.value)?.tone ?? 'unknown'}`"
         data-heatmap-cell
         tabindex="0"
@@ -208,8 +208,7 @@ watch(
     border-color: var(--nv-scr-red);
     background: color-mix(in srgb, var(--nv-scr-red) 15%, var(--nv-scr-bg));
   }
-  .nv-scr-heatmap-cell:hover,
-  .nv-scr-heatmap-cell:focus-visible {
+  .nv-scr-heatmap-cell:hover {
     outline: 2px solid var(--nv-scr-text);
     outline-offset: 2px;
   }

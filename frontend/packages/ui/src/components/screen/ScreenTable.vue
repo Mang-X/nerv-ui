@@ -132,7 +132,7 @@ withDefaults(
     border-bottom: 0;
   }
   .nv-scr-tbl tbody tr {
-    transition: background 0.15s var(--nv-scr-ease);
+    transition: background var(--nv-duration-fast, 150ms) var(--nv-scr-ease);
   }
   .nv-scr-tbl tbody tr:hover td {
     background: rgba(67, 180, 228, 0.08);
