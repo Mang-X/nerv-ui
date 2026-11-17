@@ -45,7 +45,7 @@ defineProps<{
                 <BreadcrumbLink
                   v-if="crumb.href"
                   :href="crumb.href"
-                  class="nv-focusable rounded-sm"
+                  class="rounded-sm outline-none focus-visible:ring-1 focus-visible:ring-brand"
                   >{{ crumb.label }}</BreadcrumbLink
                 >
                 <span v-else class="text-muted-foreground">{{ crumb.label }}</span>

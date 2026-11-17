@@ -17,12 +17,14 @@ const { toggleSidebar } = useSidebar()
 </script>
 
 <template>
+  <!-- The wrapped ui Button carries `focus-visible:ring-3 ring-ring/50`; utility
+       sort order puts those after `ring-1`/`ring-brand`, so `!` is required. -->
   <Button
     data-sidebar="trigger"
     data-slot="nv-sidebar-trigger"
     variant="ghost"
     size="icon-sm"
-    :class="cn('nv-focusable', props.class)"
+    :class="cn('focus-visible:ring-1! focus-visible:ring-brand!', props.class)"
     @click="toggleSidebar"
   >
     <PanelLeftIcon class="cn-rtl-flip" />

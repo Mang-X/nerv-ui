@@ -127,7 +127,7 @@ function changeFilter(event: Event) {
             <button
               data-open
               type="button"
-              class="nv-focusable break-anywhere rounded-sm text-left text-sm font-semibold underline-offset-4 hover:underline"
+              class="break-anywhere rounded-sm text-left text-sm font-semibold underline-offset-4 outline-none hover:underline focus-visible:ring-1 focus-visible:ring-brand"
               :aria-current="selectedKey === item.key ? 'true' : undefined"
               @click="open(item)"
             >
