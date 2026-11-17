@@ -161,13 +161,14 @@
        focus-within (wrapper) so the halo reads identically on bare inputs and
        decorated frames. Components must not hand-roll their own ring. */
     --nv-focus-ring:
-      0 0 0 3px color-mix(in oklch, var(--nv-brand) 32%, transparent),
-      0 1px 2px 0 color-mix(in oklch, black 8%, transparent);
+      0 0 0 3px color-mix(in oklch, var(--nv-brand) 22%, transparent),
+      0 1px 2px 0 color-mix(in oklch, black 6%, transparent);
     --nv-focus-ring-strong:
-      0 0 0 3px color-mix(in oklch, var(--nv-brand) 40%, transparent),
-      0 1px 2px 0 color-mix(in oklch, black 8%, transparent);
+      0 0 0 3px color-mix(in oklch, var(--nv-brand) 30%, transparent),
+      0 1px 2px 0 color-mix(in oklch, black 6%, transparent);
     --nv-focus-ring-destructive:
-      0 0 0 3px color-mix(in oklch, var(--destructive) 22%, transparent);
+      0 0 0 3px color-mix(in oklch, var(--destructive) 22%, transparent),
+      0 1px 2px 0 color-mix(in oklch, black 6%, transparent);
 
     /* ── One-cycle aliases (ADR 0020 §5 S1) — old name → --nv-* new name.
        Removed next cycle. Downstream direct `var(--brand)`/… refs ride these,
@@ -384,14 +385,12 @@
   .nv-focusable:focus-visible,
   .nv-focusable:focus-within {
     outline: none;
-    border-color: var(--nv-brand);
     box-shadow: var(--nv-focus-ring);
   }
   .nv-focusable[data-invalid]:focus-visible,
   .nv-focusable[data-invalid]:focus-within,
   .nv-focusable[aria-invalid='true']:focus-visible,
   .nv-focusable[aria-invalid='true']:focus-within {
-    border-color: var(--destructive);
     box-shadow: var(--nv-focus-ring-destructive);
   }
 
