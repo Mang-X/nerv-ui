@@ -4,7 +4,7 @@ import type { NvPopoverProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvPopoverProps>(), {
+withDefaults(defineProps<NvPopoverProps>(), { open: undefined, 
   defaultOpen: false,
   modal: false,
   openOnHover: false,

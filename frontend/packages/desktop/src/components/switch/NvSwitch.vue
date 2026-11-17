@@ -9,7 +9,7 @@ import type { NvSwitchProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvSwitchProps>(), { disabled: false, required: false })
+withDefaults(defineProps<NvSwitchProps>(), { checked: undefined,  disabled: false, required: false })
 
 
 const sx = computed(() => stylex.props(styles.root, focus.ring))

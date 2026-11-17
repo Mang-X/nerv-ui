@@ -4,7 +4,7 @@ import type { NvTooltipProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvTooltipProps>(), {
+withDefaults(defineProps<NvTooltipProps>(), { open: undefined, 
   defaultOpen: false,
   disabled: false,
   type: 'description',

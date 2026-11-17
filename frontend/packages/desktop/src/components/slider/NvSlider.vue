@@ -15,7 +15,7 @@ import type { NvSliderProps, NvSliderValue } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-const props = withDefaults(defineProps<NvSliderProps>(), {
+const props = withDefaults(defineProps<NvSliderProps>(), { value: undefined, 
   disabled: false,
   readOnly: false,
   orientation: 'horizontal',

@@ -75,7 +75,6 @@ const rootStyle = computed(() => ({ height: `${Math.max(120, props.height)}px` }
       :src="src"
       :title="displayName"
       :class="frameSx.className"
-      type="application/pdf"
     />
 
     <div v-else :class="placeholderSx.className">

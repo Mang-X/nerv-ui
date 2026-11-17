@@ -228,15 +228,16 @@ const pointSx = stylex.props(styles.point)
           {{ formatTick(tick) }}
         </text>
 
-        <path
-          v-for="item in geometry"
-          v-show="area"
-          :key="`area-${item.key}`"
-          :d="item.area"
-          :fill="item.color"
-          fill-opacity="0.16"
-          :class="areaSx.className"
-        />
+        <g v-if="area">
+          <path
+            v-for="item in geometry"
+            :key="`area-${item.key}`"
+            :d="item.area"
+            :fill="item.color"
+            fill-opacity="0.16"
+            :class="areaSx.className"
+          />
+        </g>
 
         <path
           v-for="item in geometry"

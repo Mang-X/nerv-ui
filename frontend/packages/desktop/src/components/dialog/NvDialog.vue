@@ -4,7 +4,7 @@ import type { NvDialogProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvDialogProps>(), {
+withDefaults(defineProps<NvDialogProps>(), { open: undefined, 
   defaultOpen: false,
   modal: true,
   dismissible: true,

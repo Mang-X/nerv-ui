@@ -10,7 +10,7 @@ import type { NvCheckedState, NvCheckboxProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-const props = withDefaults(defineProps<NvCheckboxProps>(), { disabled: false, required: false })
+const props = withDefaults(defineProps<NvCheckboxProps>(), { checked: undefined,  disabled: false, required: false })
 
 
 const generatedId = useId()

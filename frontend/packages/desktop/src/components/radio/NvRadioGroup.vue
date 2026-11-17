@@ -7,7 +7,7 @@ import type { NvRadioGroupProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvRadioGroupProps>(), {
+withDefaults(defineProps<NvRadioGroupProps>(), { value: undefined, 
   disabled: false,
   readOnly: false,
   required: false,

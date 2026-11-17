@@ -7,7 +7,7 @@ import type { NvTabsProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvTabsProps>(), {
+withDefaults(defineProps<NvTabsProps>(), { value: undefined, 
   orientation: 'horizontal',
   activation: 'automatic',
   loop: true,

@@ -4,7 +4,7 @@ import type { NvAlertDialogProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvAlertDialogProps>(), { defaultOpen: false, dismissible: true })
+withDefaults(defineProps<NvAlertDialogProps>(), { open: undefined,  defaultOpen: false, dismissible: true })
 
 </script>
 

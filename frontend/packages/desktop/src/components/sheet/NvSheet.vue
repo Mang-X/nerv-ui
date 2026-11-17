@@ -4,7 +4,7 @@ import type { NvSheetProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvSheetProps>(), {
+withDefaults(defineProps<NvSheetProps>(), { open: undefined, 
   defaultOpen: false,
   side: 'right',
   modal: true,
