@@ -14,14 +14,13 @@ import NvLoader from '../loader/NvLoader.vue'
  * hover/active feedback, a first-class dynamic-brand CTA, and built-in loading.
  */
 const nvButtonVariants = cva(
-  'nv-btn group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-[background,box-shadow,transform,color] duration-(--nv-duration-fast) focus-visible:ring-[3px] focus-visible:ring-ring/45 disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none [&_svg]:pointer-events-none [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
+  'nv-btn nv-focusable group/btn relative inline-flex shrink-0 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-[background,box-shadow,transform,color] duration-(--nv-duration-fast) disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none [&_svg]:pointer-events-none [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         default: 'nv-btn-solid bg-primary text-primary-foreground hover:bg-primary/90',
         brand: 'nv-btn-solid bg-brand text-brand-foreground hover:brightness-110',
-        destructive:
-          'nv-btn-solid bg-destructive text-white hover:brightness-110 focus-visible:ring-destructive/35',
+        destructive: 'nv-btn-solid bg-destructive text-white hover:brightness-110',
         outline:
           'border border-border bg-card text-foreground shadow-xs hover:bg-muted hover:border-foreground/15 dark:bg-input/30 dark:hover:bg-input/50',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/70',

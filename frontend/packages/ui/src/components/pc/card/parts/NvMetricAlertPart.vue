@@ -24,14 +24,14 @@ const emit = defineEmits<{ (e: 'action'): void }>()
     <a
       v-if="action?.href"
       :href="action.href"
-      class="nv-metric-action inline-flex shrink-0 items-center gap-0.5 font-semibold text-brand-strong"
+      class="nv-metric-action nv-focusable inline-flex shrink-0 items-center gap-0.5 rounded-sm font-semibold text-brand-strong"
     >
       {{ action.label }}<ChevronRightIcon class="size-3.5" aria-hidden="true" />
     </a>
     <button
       v-else-if="action"
       type="button"
-      class="nv-metric-action inline-flex shrink-0 items-center gap-0.5 font-semibold text-brand-strong"
+      class="nv-metric-action nv-focusable inline-flex shrink-0 items-center gap-0.5 rounded-sm font-semibold text-brand-strong"
       @click="emit('action')"
     >
       {{ action.label }}<ChevronRightIcon class="size-3.5" aria-hidden="true" />
@@ -44,11 +44,6 @@ const emit = defineEmits<{ (e: 'action'): void }>()
   .nv-metric-action:hover {
     text-decoration: underline;
     text-underline-offset: 3px;
-  }
-  .nv-metric-action:focus-visible {
-    outline: 2px solid var(--nv-brand);
-    outline-offset: 2px;
-    border-radius: 4px;
   }
 }
 </style>

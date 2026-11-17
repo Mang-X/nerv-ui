@@ -246,7 +246,7 @@ const tooltipTemplate = (d: Row) => {
         :type="safeHref(marker.href) ? undefined : 'button'"
         data-slot="nv-line-marker"
         :data-marker-id="marker.id"
-        class="nv-line-marker text-xs"
+        class="nv-line-marker nv-focusable text-xs"
         :aria-label="marker.label"
         :title="marker.label"
         :style="{ left: `${marker.x}px`, top: `${marker.y}px` }"
@@ -287,10 +287,6 @@ const tooltipTemplate = (d: Row) => {
     border-radius: var(--radius);
     padding: 2px 4px;
     cursor: pointer;
-  }
-  .nv-line-marker:focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
   }
   .nv-chart {
     min-width: 0;

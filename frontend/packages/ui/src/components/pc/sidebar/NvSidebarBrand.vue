@@ -34,7 +34,7 @@ const glyph = computed(() => props.logo ?? props.name.slice(0, 1).toUpperCase())
     :as-child="asChild"
     :type="as === 'button' ? 'button' : undefined"
     data-slot="nv-sidebar-brand"
-    class="nv-sidebar-brand group-data-[collapsible=icon]:justify-center"
+    class="nv-sidebar-brand nv-focusable group-data-[collapsible=icon]:justify-center"
   >
     <span class="nv-sidebar-logo">{{ glyph }}</span>
     <span class="nv-sidebar-brand-text group-data-[collapsible=icon]:hidden">

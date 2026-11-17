@@ -215,7 +215,7 @@ defineExpose({ focus: () => inputEl.value?.focus() })
           :aria-selected="option.value === modelValue"
           :data-active="index === activeIndex || undefined"
           :style="{ height: `${rowHeight}px` }"
-          class="flex w-full items-center gap-2.5 rounded-md px-2.5 text-left outline-none hover:bg-accent data-active:bg-accent"
+          class="nv-focusable flex w-full items-center gap-2.5 rounded-md px-2.5 text-left outline-none hover:bg-accent data-active:bg-accent"
           @click="pick(option)"
           @mousemove="activeIndex = index"
         >

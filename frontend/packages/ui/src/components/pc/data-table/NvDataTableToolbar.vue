@@ -191,7 +191,7 @@ onMounted(() => nextTick(measureSeg))
           type="button"
           role="tab"
           :aria-selected="t.value === tab"
-          class="nv-tb-seg-btn"
+          class="nv-tb-seg-btn nv-focusable"
           :data-active="t.value === tab || undefined"
           @click="tab = t.value"
         >
@@ -283,9 +283,6 @@ onMounted(() => nextTick(measureSeg))
   }
   .nv-tb-seg-btn:hover:not([data-active]) {
     color: var(--foreground);
-  }
-  .nv-tb-seg-btn:focus-visible {
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 45%, transparent);
   }
   .nv-tb-seg-btn[data-active] {
     color: var(--foreground);

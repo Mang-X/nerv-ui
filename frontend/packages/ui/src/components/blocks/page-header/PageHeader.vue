@@ -42,9 +42,12 @@ defineProps<{
           <slot name="breadcrumbs">
             <template v-for="crumb in breadcrumbs" :key="crumb.label">
               <BreadcrumbItem>
-                <BreadcrumbLink v-if="crumb.href" :href="crumb.href">{{
-                  crumb.label
-                }}</BreadcrumbLink>
+                <BreadcrumbLink
+                  v-if="crumb.href"
+                  :href="crumb.href"
+                  class="nv-focusable rounded-sm"
+                  >{{ crumb.label }}</BreadcrumbLink
+                >
                 <span v-else class="text-muted-foreground">{{ crumb.label }}</span>
               </BreadcrumbItem>
               <BreadcrumbSeparator />

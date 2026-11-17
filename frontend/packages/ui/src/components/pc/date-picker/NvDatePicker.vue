@@ -153,7 +153,7 @@ function clear() {
       <div class="mb-2 flex items-center justify-between">
         <button
           type="button"
-          class="grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          class="nv-focusable grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           aria-label="上个月"
           @click="shift(-1)"
         >
@@ -162,7 +162,7 @@ function clear() {
         <span class="text-sm font-medium tabular-nums">{{ monthLabel }}</span>
         <button
           type="button"
-          class="grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          class="nv-focusable grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           aria-label="下个月"
           @click="shift(1)"
         >
@@ -182,7 +182,7 @@ function clear() {
           type="button"
           :class="
             cn(
-              'nv-dp-cell grid size-8 place-items-center rounded-md text-sm tabular-nums transition-colors',
+              'nv-dp-cell nv-focusable grid size-8 place-items-center rounded-md text-sm tabular-nums transition-colors',
               cell.outside ? 'text-muted-foreground/40' : 'text-foreground hover:bg-accent',
               cell.today && !cell.selected && 'ring-1 ring-brand/40',
               cell.selected && 'bg-brand text-brand-foreground hover:bg-brand',

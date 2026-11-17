@@ -145,7 +145,7 @@ const label = computed(() =>
       <div class="mb-2 flex items-center justify-between">
         <button
           type="button"
-          class="grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          class="nv-focusable grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           aria-label="上个月"
           @click="shift(-1)"
         >
@@ -154,7 +154,7 @@ const label = computed(() =>
         <span class="text-sm font-medium tabular-nums">{{ monthLabel }}</span>
         <button
           type="button"
-          class="grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          class="nv-focusable grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           aria-label="下个月"
           @click="shift(1)"
         >
@@ -174,7 +174,7 @@ const label = computed(() =>
           type="button"
           :class="
             cn(
-              'nv-dp-cell grid size-8 place-items-center text-sm tabular-nums transition-colors',
+              'nv-dp-cell nv-focusable grid size-8 place-items-center text-sm tabular-nums transition-colors',
               cell.inRange ? 'bg-accent' : 'rounded-md',
               cell.isStart && 'rounded-l-md bg-accent',
               cell.isEnd && 'rounded-r-md bg-accent',

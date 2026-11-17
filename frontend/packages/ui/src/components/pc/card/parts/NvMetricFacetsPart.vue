@@ -20,7 +20,7 @@ const emit = defineEmits<{ (e: 'facet', facet: NvMetricFacet): void }>()
       type="button"
       :class="
         cn(
-          'nv-metric-facet inline-flex items-baseline gap-1.5 rounded-md px-2 py-1 text-xs',
+          'nv-metric-facet nv-focusable inline-flex items-baseline gap-1.5 rounded-md px-2 py-1 text-xs',
           f.tone && f.tone !== 'neutral'
             ? metricToneTint[f.tone]
             : 'bg-muted text-muted-foreground',
@@ -56,10 +56,6 @@ const emit = defineEmits<{ (e: 'facet', facet: NvMetricFacet): void }>()
   }
   .nv-metric-facet:active {
     box-shadow: inset 0 0 0 100px color-mix(in oklch, currentColor 18%, transparent);
-  }
-  .nv-metric-facet:focus-visible {
-    outline: 2px solid var(--nv-brand);
-    outline-offset: 2px;
   }
   @media (prefers-reduced-motion: reduce) {
     .nv-metric-facet {

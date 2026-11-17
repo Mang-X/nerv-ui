@@ -94,7 +94,7 @@ watch(open, (isOpen) => {
             :key="h"
             type="button"
             :data-active="parts.h === h"
-            :class="cn('nv-tp-cell', parts.h === h && 'nv-tp-cell-active')"
+            :class="cn('nv-tp-cell nv-focusable', parts.h === h && 'nv-tp-cell-active')"
             @click="selectHour(h)"
           >
             {{ pad(h) }}
@@ -106,7 +106,7 @@ watch(open, (isOpen) => {
             :key="m"
             type="button"
             :data-active="parts.m === m"
-            :class="cn('nv-tp-cell', parts.m === m && 'nv-tp-cell-active')"
+            :class="cn('nv-tp-cell nv-focusable', parts.m === m && 'nv-tp-cell-active')"
             @click="selectMinute(m)"
           >
             {{ pad(m) }}

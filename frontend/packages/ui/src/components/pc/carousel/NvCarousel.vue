@@ -212,7 +212,7 @@ watch(() => props.autoplay, startAutoplay)
       <template v-if="arrows && count > 1">
         <button
           type="button"
-          class="nv-carousel-arrow nv-carousel-arrow-prev"
+          class="nv-carousel-arrow nv-focusable nv-carousel-arrow-prev"
           :disabled="!canPrev"
           aria-label="上一张"
           @click="goTo(active - 1)"
@@ -221,7 +221,7 @@ watch(() => props.autoplay, startAutoplay)
         </button>
         <button
           type="button"
-          class="nv-carousel-arrow nv-carousel-arrow-next"
+          class="nv-carousel-arrow nv-focusable nv-carousel-arrow-next"
           :disabled="!canNext"
           aria-label="下一张"
           @click="goTo(active + 1)"
@@ -289,14 +289,8 @@ watch(() => props.autoplay, startAutoplay)
   .nv-carousel-arrow:focus-visible {
     opacity: 1;
   }
-  /* Explicit high-contrast focus ring — the arrows clear the UA outline, so
-   keyboard users need a visible treatment to tell which arrow holds focus over a
-   busy slide. */
-  .nv-carousel-arrow:focus-visible {
-    box-shadow:
-      0 1px 4px color-mix(in oklch, black 30%, transparent),
-      0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
-  }
+  /* Focus ring comes from the `.nv-focusable` contract — the arrows keep their
+   own drop shadow in addition via the unlayered rule below. */
   .nv-carousel-arrow:hover:not(:disabled) {
     background: var(--background);
   }

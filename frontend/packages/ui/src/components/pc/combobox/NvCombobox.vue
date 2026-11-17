@@ -156,7 +156,7 @@ function onPointerDownOutside(e: Event) {
           role="option"
           :aria-selected="index === activeIndex"
           :data-active="index === activeIndex || undefined"
-          class="flex w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm outline-none hover:bg-accent data-active:bg-accent"
+          class="nv-focusable flex w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm outline-none hover:bg-accent data-active:bg-accent"
           @click="pick(suggestion)"
           @mousemove="activeIndex = index"
         >
