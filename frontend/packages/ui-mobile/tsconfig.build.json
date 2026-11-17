@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // No vitest/globals here: emitted .d.ts must typecheck in hosts without
+    // vitest installed (t10-packaging-survey §5 R10).
+    "types": ["node", "vite/client"]
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.contract.test.ts"]
+}
