@@ -52,7 +52,7 @@ import {
       <BreadcrumbSeparator />
       <BreadcrumbItem><BreadcrumbEllipsis /></BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem><BreadcrumbLink href="/components/desktop/resource-scheduler">WC-CNC-07</BreadcrumbLink></BreadcrumbItem>
+      <BreadcrumbItem><BreadcrumbLink href="/components/desktop/directory-detail">WC-CNC-07</BreadcrumbLink></BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem><BreadcrumbPage>工序 OP-03</BreadcrumbPage></BreadcrumbItem>
     </BreadcrumbList>
