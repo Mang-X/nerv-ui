@@ -464,23 +464,34 @@
    ring (bare input, or a decorated wrapper); focus-visible (keyboard) and
    focus-within (wrapper) read the same glow. Direction C (评审裁定):
    1px brand ring + 4px brand halo — sharp brand line plus restrained glow. */
-@utility nv-focusable {
+/* ── Unified focus affordance ─────────────────────────────────────────
+   One focus halo for every interactive input/trigger, drawn from
+   --nv-focus-ring(-*). Apply `.nv-focusable` to the element that carries the
+   ring (bare input, or a decorated wrapper); focus-visible (keyboard) and
+   focus-within (wrapper) read the same glow. Direction C (评审裁定):
+   1px brand ring + 4px brand halo — sharp brand line plus restrained glow.
+   Written as top-level rules (not inside @layer/@utility): Tailwind v4 treats
+   layered/custom classes as utility candidates and drops their pseudo-class
+   variants, so the focus states must live as plain selectors. */
+.nv-focusable {
   transition:
     box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out),
     border-color var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
-
-  &:focus-visible,
-  &:focus-within {
-    outline: none;
-    border-color: var(--nv-brand);
-    box-shadow: var(--nv-focus-ring);
-  }
-
-  &[data-invalid]:focus-visible,
-  &[data-invalid]:focus-within,
-  &[aria-invalid='true']:focus-visible,
-  &[aria-invalid='true']:focus-within {
-    border-color: var(--destructive);
-    box-shadow: var(--nv-focus-ring-destructive);
-  }
+}
+.nv-focusable:focus-visible {
+  outline: none;
+  border-color: var(--nv-brand);
+  box-shadow: var(--nv-focus-ring);
+}
+.nv-focusable:focus-within {
+  outline: none;
+  border-color: var(--nv-brand);
+  box-shadow: var(--nv-focus-ring);
+}
+.nv-focusable[data-invalid]:focus-visible,
+.nv-focusable[data-invalid]:focus-within,
+.nv-focusable[aria-invalid='true']:focus-visible,
+.nv-focusable[aria-invalid='true']:focus-within {
+  border-color: var(--destructive);
+  box-shadow: var(--nv-focus-ring-destructive);
 }
