@@ -14,13 +14,13 @@ function registerCssLayers(html: string) {
   )
 }
 
-// 一体机 / 工位触控侧栏 —— 复用给 /components/touch 与 /components/board（工位看板完整示例）。
+// 触屏 pad触控侧栏 —— 复用给 /components/touch 与 /components/board（触屏完整示例）。
 const touchSidebar = [
   {
-    text: '一体机 / 工位',
+    text: '触屏 pad',
     items: [
       { text: '概览', link: '/components/touch/' },
-      { text: '工位看板完整示例', link: '/components/board' },
+      { text: '触屏完整示例', link: '/components/board' },
     ],
   },
   {
@@ -35,17 +35,17 @@ const touchSidebar = [
     text: '信息',
     items: [
       { text: 'StatTile 指标块', link: '/components/touch/stat-tile' },
-      { text: 'StationBar 工位栏', link: '/components/touch/station-bar' },
+      { text: 'StationBar 站点栏', link: '/components/touch/station-bar' },
     ],
   },
 ]
 
-// Nerv-IIP 设计系统文档 (VitePress).
+// NvUI 组件库文档 (VitePress).
 // VitePress 1.x keeps its own supported Vite 5 dependency; workspace applications
 // use the Vite Plus core override independently.
 export default defineConfig({
-  title: 'Nerv-IIP 设计系统',
-  description: '数字工厂控制平面 · 统一设计系统：设计哲学、设计令牌与组件展示',
+  title: 'NvUI 组件库',
+  description: '多形态 Vue 组件库 · 设计哲学、设计令牌与组件文档',
   lang: 'zh-CN',
   transformHtml: registerCssLayers,
   markdown: {
@@ -67,7 +67,7 @@ export default defineConfig({
 
   themeConfig: {
     logo: undefined,
-    // 表面（桌面 / PDA / 看板）作为顶栏一级入口；各表面内部按分类在侧栏列出组件。
+    // 表面（desktop / mobile / pad / screen）作为顶栏一级入口；各表面内部按分类在侧栏列出组件。
     nav: [
       { text: '指南', link: '/guide/introduction', activeMatch: '/guide/' },
       {
@@ -82,8 +82,8 @@ export default defineConfig({
       },
       { text: '模式', link: '/patterns/interaction-patterns', activeMatch: '/patterns/' },
       { text: '桌面 PC', link: '/components/desktop/', activeMatch: '/components/desktop' },
-      { text: 'PDA 移动', link: '/components/mobile/', activeMatch: '/components/mobile' },
-      { text: '一体机', link: '/components/touch/', activeMatch: '/components/(touch|board)' },
+      { text: '移动', link: '/components/mobile/', activeMatch: '/components/mobile' },
+      { text: '触屏', link: '/components/touch/', activeMatch: '/components/(touch|board)' },
       { text: '大屏', link: '/components/screen/', activeMatch: '/components/screen' },
     ],
     sidebar: {
@@ -229,10 +229,10 @@ export default defineConfig({
           items: [{ text: 'Chart 图表与标注', link: '/components/desktop/chart' }],
         },
       ],
-      // PDA 移动 —— 组件库式：每个组件一页，按分类分组
+      // 移动 —— 组件库式：每个组件一页，按分类分组
       '/components/mobile': [
         {
-          text: 'PDA 移动',
+          text: '移动',
           items: [
             { text: '概览', link: '/components/mobile/' },
             { text: '完整示例', link: '/components/mobile/gallery' },
@@ -326,13 +326,13 @@ export default defineConfig({
           ],
         },
       ],
-      // 一体机 / 工位触控 —— 大触控 touch 层，每组件一页 + 工位看板完整示例
+      // 触屏 pad触控 —— 大触控 touch 层，每组件一页 + 触屏完整示例
       '/components/touch': touchSidebar,
       '/components/board': touchSidebar,
-      // 大屏 / 控制室 —— 独立 --nv-scr-* 工业蓝令牌层，每组件一页，按分类分组
+      // 大屏 —— 独立 --nv-scr-* 深色令牌层，每组件一页，按分类分组
       '/components/screen': [
         {
-          text: '大屏 / 控制室',
+          text: '大屏',
           items: [{ text: '概览', link: '/components/screen/' }],
         },
         {
@@ -340,7 +340,7 @@ export default defineConfig({
           items: [
             { text: 'ScreenScaler 舞台缩放', link: '/components/screen/screen-scaler' },
             { text: 'ScrollBoard 无缝滚动板', link: '/components/screen/scroll-board' },
-            { text: 'useScreenData 大屏取数', link: '/components/screen/use-screen-data' },
+            { text: 'useScreenData 取数', link: '/components/screen/use-screen-data' },
           ],
         },
         {
@@ -377,7 +377,7 @@ export default defineConfig({
           text: '数据 / 状态',
           items: [
             { text: 'SummaryCard 入口与摘要', link: '/components/screen/summary-card' },
-            { text: 'StatusCard 产线状态卡', link: '/components/screen/status-card' },
+            { text: 'StatusCard 状态卡', link: '/components/screen/status-card' },
             { text: 'KpiBar 指标条', link: '/components/screen/kpi-bar' },
             { text: 'AlarmTable 告警表', link: '/components/screen/alarm-table' },
             { text: 'StatusLight 状态灯', link: '/components/screen/status-light' },
@@ -390,7 +390,7 @@ export default defineConfig({
           ],
         },
         {
-          text: '控件（大屏化）',
+          text: '控件',
           items: [
             { text: 'ScreenButton 按钮', link: '/components/screen/screen-button' },
             { text: 'ScreenInput 输入框', link: '/components/screen/screen-input' },
