@@ -97,16 +97,22 @@ watch(() => [scrollers.value.y, scrollers.value.m, scrollers.value.d], positionW
 <template>
   <BottomSheet :open="open" @update:open="open = $event">
     <div class="nv-m-mdp">
-      <!-- mx lets the corner buttons' focus halo breathe instead of clipping at
-           the sheet's rounded edge (the 4px focus ring extends past the button). -->
+      <!-- 角落按钮是动作件不是输入/触发件：`.nv-focus-subtle` 把 nv-focusable
+           的 4px 光晕降为 1px 细环（#340），mx-1 仍保留呼吸位。 -->
       <div class="mx-1 flex items-center justify-between pb-1">
-        <MobileButton variant="text" size="md" class="text-muted-foreground" @click="open = false"
+        <MobileButton
+          variant="text"
+          size="md"
+          class="nv-focus-subtle text-muted-foreground"
+          @click="open = false"
           >取消</MobileButton
         >
         <!-- reka 要求 DialogContent 内必须有 DialogTitle；此处标题本来就可见，
              直接由它承担对话框可访问名，无需 VisuallyHidden。 -->
         <DialogTitle class="text-[15px] font-medium">{{ title }}</DialogTitle>
-        <MobileButton variant="text" size="md" @click="confirm">确定</MobileButton>
+        <MobileButton variant="text" size="md" class="nv-focus-subtle" @click="confirm"
+          >确定</MobileButton
+        >
       </div>
       <div class="nv-m-mdp-wheel">
         <div class="nv-m-mdp-band" aria-hidden="true" />

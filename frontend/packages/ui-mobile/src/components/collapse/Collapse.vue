@@ -17,7 +17,7 @@ const open = defineModel<boolean>('open', { default: false })
     <button
       type="button"
       :aria-expanded="open"
-      class="nv-m-collapse-head nv-focusable flex min-h-touch w-full items-center gap-3 px-4 py-3 text-left text-[15px] active:bg-accent"
+      class="nv-m-collapse-head flex min-h-touch w-full items-center gap-3 px-4 py-3 text-left text-[15px] outline-none active:bg-accent focus-visible:ring-1 focus-visible:ring-brand"
       @click="open = !open"
     >
       <span class="min-w-0 flex-1"

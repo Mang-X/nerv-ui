@@ -54,7 +54,7 @@ function pick(value: string | number) {
   <div data-slot="dropdown-menu-item" class="relative flex min-w-0 flex-1 items-stretch">
     <button
       type="button"
-      class="nv-m-ddm-trigger nv-focusable flex h-full w-full min-w-0 items-center justify-center gap-1 px-3 text-[15px] transition-colors"
+      class="nv-m-ddm-trigger flex h-full w-full min-w-0 items-center justify-center gap-1 px-3 text-[15px] transition-colors focus-visible:ring-1 focus-visible:ring-brand"
       :class="
         cn(open || isActive ? 'text-brand' : 'text-foreground', 'active:bg-accent', $props.class)
       "
@@ -80,7 +80,7 @@ function pick(value: string | number) {
           v-for="opt in options"
           :key="opt.value"
           type="button"
-          class="flex min-h-touch w-full items-center justify-between gap-3 px-4 py-3 text-left text-[15px] transition-colors active:bg-accent"
+          class="flex min-h-touch w-full items-center justify-between gap-3 px-4 py-3 text-left text-[15px] transition-colors outline-none active:bg-accent focus-visible:ring-1 focus-visible:ring-brand"
           :class="opt.value === model ? 'text-brand' : 'text-foreground'"
           @click="pick(opt.value)"
         >

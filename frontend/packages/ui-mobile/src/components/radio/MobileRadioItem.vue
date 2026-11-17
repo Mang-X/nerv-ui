@@ -20,7 +20,7 @@ const forwarded = useForwardProps(reactiveOmit(props, 'class'))
     v-bind="forwarded"
     :class="
       cn(
-        'nv-m-mradio nv-focusable relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40',
+        'nv-m-mradio relative flex min-h-touch w-full items-center justify-between gap-3 px-4 text-left text-[15px] outline-none select-none active:bg-accent focus-visible:ring-1 focus-visible:ring-brand data-[state=checked]:font-medium data-[disabled]:pointer-events-none data-[disabled]:opacity-40',
         props.class,
       )
     "
