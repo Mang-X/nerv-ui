@@ -24,7 +24,7 @@ const forwarded = useForwardPropsEmits(reactiveOmit(props, 'class', 'bar'), emit
     v-bind="forwarded"
     :class="
       cn(
-        'nv-nav-link block outline-none select-none focus-visible:ring-2 focus-visible:ring-ring/50',
+        'nv-nav-link nv-focusable block outline-none select-none',
         bar
           ? 'inline-flex h-9 w-max items-center rounded-lg px-3 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground data-[active]:text-foreground'
           : 'rounded-md p-2.5 hover:bg-accent data-[active]:bg-accent/70',

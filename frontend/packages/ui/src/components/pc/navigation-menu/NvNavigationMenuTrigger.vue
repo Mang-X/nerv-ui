@@ -26,7 +26,7 @@ const forwarded = useForwardProps(reactiveOmit(props, 'class', 'chevron'))
     v-bind="forwarded"
     :class="
       cn(
-        'nv-nav-trigger group/trigger inline-flex h-9 w-max items-center justify-center gap-1 rounded-lg px-3 text-sm font-medium whitespace-nowrap text-muted-foreground outline-none select-none hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-accent data-[state=open]:text-foreground [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
+        'nv-nav-trigger nv-focusable group/trigger inline-flex h-9 w-max items-center justify-center gap-1 rounded-lg px-3 text-sm font-medium whitespace-nowrap text-muted-foreground outline-none select-none hover:bg-accent hover:text-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-accent data-[state=open]:text-foreground [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
         props.class,
       )
     "

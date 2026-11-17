@@ -21,7 +21,7 @@ const forwarded = useForwardPropsEmits(reactiveOmit(props, 'class'), emits)
     v-bind="forwarded"
     :class="
       cn(
-        'nv-check peer relative flex size-[18px] shrink-0 items-center justify-center rounded-[5px] border border-input bg-card outline-none focus-visible:ring-[3px] focus-visible:ring-brand/30 focus-visible:border-brand data-[state=checked]:border-brand data-[state=checked]:bg-brand data-[state=checked]:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30',
+        'nv-check nv-focusable peer relative flex size-[18px] shrink-0 items-center justify-center rounded-[5px] border border-input bg-card outline-none data-[state=checked]:border-brand data-[state=checked]:bg-brand data-[state=checked]:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30',
         props.class,
       )
     "

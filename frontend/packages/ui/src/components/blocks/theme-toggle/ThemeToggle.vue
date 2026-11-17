@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { MoonIcon, SunIcon } from '@lucide/vue'
 import { Button } from '../../ui/button'
 import { useColorMode } from '../../../composables/useTheme'
+import { cn } from '../../../lib/utils'
 
 const props = defineProps<{ class?: HTMLAttributes['class'] }>()
 
@@ -18,7 +19,7 @@ const label = computed(() => (isDark.value ? '切换到亮色主题' : '切换�
     size="icon"
     :aria-label="label"
     :title="label"
-    :class="props.class"
+    :class="cn('nv-focusable', props.class)"
     @click="toggle"
   >
     <SunIcon v-if="isDark" class="size-4" aria-hidden="true" />

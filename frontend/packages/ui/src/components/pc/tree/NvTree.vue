@@ -125,7 +125,7 @@ function keydown(event: KeyboardEvent, index: number) {
       :aria-selected="selectedKey === row.node.key"
       :aria-disabled="row.node.disabled || undefined"
       :tabindex="(focusKey ?? rows[0]?.node.key) === row.node.key ? 0 : -1"
-      class="flex min-w-0 items-center gap-2 rounded-md py-1.5 pr-2 outline-none hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-ring"
+      class="nv-focusable flex min-w-0 items-center gap-2 rounded-md py-1.5 pr-2 outline-none hover:bg-accent/50"
       :class="selectedKey === row.node.key ? 'bg-accent text-accent-foreground' : ''"
       :style="{ paddingLeft: `${(row.level - 1) * 1 + 0.25}rem` }"
       @focus="focusKey = row.node.key"

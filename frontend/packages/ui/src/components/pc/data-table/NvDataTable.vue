@@ -550,7 +550,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
               <button
                 v-if="activeFilterCount"
                 type="button"
-                class="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                class="nv-focusable rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground"
                 @click="clearAllFilters"
               >
                 重置
@@ -574,7 +574,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
                     type="button"
                     role="checkbox"
                     :aria-checked="enumSelected(col.key).includes(opt.value)"
-                    class="nv-dt-opt flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm"
+                    class="nv-dt-opt nv-focusable flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm"
                     @click="
                       toggleEnum(col.key, opt.value, !enumSelected(col.key).includes(opt.value))
                     "
@@ -607,7 +607,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
               <span class="text-sm font-medium">列设置</span>
               <button
                 type="button"
-                class="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+                class="nv-focusable inline-flex items-center gap-1 rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground"
                 @click="resetColumns"
               >
                 <RotateCcwIcon class="size-3" />
@@ -622,7 +622,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
                 type="button"
                 role="checkbox"
                 :aria-checked="!hiddenKeys.has(col.key)"
-                class="nv-dt-opt flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-left text-sm"
+                class="nv-dt-opt nv-focusable flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-left text-sm"
                 @click="toggleColumn(col.key, hiddenKeys.has(col.key))"
               >
                 <Checkbox
@@ -648,7 +648,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
             v-for="chip in filterChips"
             :key="chip.key"
             type="button"
-            class="nv-dt-chip"
+            class="nv-dt-chip nv-focusable"
             @click="clearFilter(chip.key)"
           >
             <span class="text-muted-foreground">{{ chip.header }}</span>
@@ -657,7 +657,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
           </button>
           <button
             type="button"
-            class="text-xs text-muted-foreground underline-offset-2 transition-colors hover:text-foreground hover:underline"
+            class="nv-focusable rounded-sm text-xs text-muted-foreground underline-offset-2 transition-colors hover:text-foreground hover:underline"
             @click="clearAllFilters"
           >
             清除全部
@@ -731,7 +731,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
                     <button
                       v-if="col.sortable"
                       type="button"
-                      class="nv-dt-sort group/sort"
+                      class="nv-dt-sort nv-focusable group/sort"
                       :class="col.align === 'end' ? 'flex-row-reverse' : ''"
                       :data-active="sortStateOf(col.key) || undefined"
                       :aria-label="`${col.header}：${col.headerTitle}`"
@@ -754,7 +754,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
                     <button
                       v-else
                       type="button"
-                      class="inline-flex items-center gap-1 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      class="nv-focusable inline-flex items-center gap-1 rounded-sm outline-none"
                       :aria-label="`${col.header}：${col.headerTitle}`"
                       @pointerup="openHeaderHelpForTouch($event, col.key)"
                     >
@@ -768,7 +768,7 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
               <button
                 v-else-if="col.sortable"
                 type="button"
-                class="nv-dt-sort group/sort"
+                class="nv-dt-sort nv-focusable group/sort"
                 :class="col.align === 'end' ? 'flex-row-reverse' : ''"
                 :data-active="sortStateOf(col.key) || undefined"
                 @click="cycleSort(col)"
@@ -1016,9 +1016,6 @@ const roundTop = computed(() => !hasToolbar.value && !showBulk.value)
   .nv-dt-sort:hover,
   .nv-dt-sort[data-active] {
     color: var(--foreground);
-  }
-  .nv-dt-sort:focus-visible {
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 45%, transparent);
   }
 
   /* Rows: hairline divider + calm hover; selection tinted with the brand. */

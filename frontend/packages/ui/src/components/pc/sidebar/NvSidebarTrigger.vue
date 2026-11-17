@@ -22,7 +22,7 @@ const { toggleSidebar } = useSidebar()
     data-slot="nv-sidebar-trigger"
     variant="ghost"
     size="icon-sm"
-    :class="cn('', props.class)"
+    :class="cn('nv-focusable', props.class)"
     @click="toggleSidebar"
   >
     <PanelLeftIcon class="cn-rtl-flip" />

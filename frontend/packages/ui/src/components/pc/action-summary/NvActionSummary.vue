@@ -186,7 +186,7 @@ const readout = computed(() =>
       v-if="actionLabel"
       type="button"
       :aria-label="actionLabel"
-      class="group flex w-full shrink-0 items-center justify-between gap-2 border-t px-5 py-3 text-left text-sm font-medium text-brand-strong transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+      class="nv-focusable group flex w-full shrink-0 items-center justify-between gap-2 border-t px-5 py-3 text-left text-sm font-medium text-brand-strong transition-colors hover:bg-accent focus-visible:outline-none"
       @click="emit('action')"
     >
       <span class="truncate">{{ actionLabel }}</span>

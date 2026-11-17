@@ -72,7 +72,7 @@ const toneClass: Record<NotifyKind, string> = {
           </div>
           <button
             type="button"
-            class="-mt-1 -mr-1 flex size-6 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            class="nv-focusable -mt-1 -mr-1 flex size-6 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             aria-label="关闭通知"
             @click="dismissNotify(item.id)"
           >

@@ -44,7 +44,7 @@ const thumbCount = computed(() => {
     <SliderThumb
       v-for="i in thumbCount"
       :key="i"
-      class="nv-slider-thumb block size-4 shrink-0 rounded-full border-2 border-brand bg-background shadow-sm outline-none focus-visible:ring-[3px] focus-visible:ring-brand/30"
+      class="nv-slider-thumb nv-focusable block size-4 shrink-0 rounded-full border-2 border-brand bg-background shadow-sm outline-none"
     />
   </SliderRoot>
 </template>

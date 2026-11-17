@@ -194,7 +194,7 @@ function reset() {
         <span class="tabular-nums">{{ chip.text }}</span>
         <button
           type="button"
-          class="grid size-3.5 place-items-center rounded-full text-brand-strong/70 transition-colors hover:bg-brand/20 hover:text-brand-strong"
+          class="nv-focusable grid size-3.5 place-items-center rounded-full text-brand-strong/70 transition-colors hover:bg-brand/20 hover:text-brand-strong"
           :aria-label="`移除筛选 ${chip.label}`"
           @click="clearField(chip.key)"
         >

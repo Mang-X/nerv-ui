@@ -52,7 +52,7 @@ const contentId = useId()
         type="button"
         :aria-expanded="open"
         :aria-controls="contentId"
-        class="flex min-w-0 flex-1 items-center gap-2.5 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+        class="nv-focusable flex min-w-0 flex-1 items-center gap-2.5 rounded-md text-left outline-none"
         @click="open = !open"
       >
         <ChevronRightIcon

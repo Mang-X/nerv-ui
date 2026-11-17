@@ -65,7 +65,7 @@ function guardScrollbarDismiss(event: CustomEvent<{ originalEvent: PointerEvent 
       >
         <slot />
         <DialogClose
-          class="absolute top-4 right-4 flex size-7 items-center justify-center rounded-md text-muted-foreground opacity-70 transition-[color,opacity,background] hover:bg-muted hover:text-foreground hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
+          class="nv-focusable absolute top-4 right-4 flex size-7 items-center justify-center rounded-md text-muted-foreground opacity-70 transition-[color,opacity,background] hover:bg-muted hover:text-foreground hover:opacity-100"
           aria-label="关闭"
         >
           <XIcon class="size-4" aria-hidden="true" />
