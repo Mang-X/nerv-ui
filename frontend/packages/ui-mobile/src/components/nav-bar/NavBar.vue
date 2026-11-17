@@ -33,7 +33,9 @@ const slots = useSlots()
         aria-label="返回"
         @click="emit('back')"
       >
-        <span class="nv-m-navbar-back flex size-9 items-center justify-center rounded-full group-active:bg-accent">
+        <span
+          class="nv-m-navbar-back flex size-9 items-center justify-center rounded-full group-active:bg-accent"
+        >
           <ChevronLeft class="size-6" aria-hidden="true" />
         </span>
       </button>
@@ -52,12 +54,11 @@ const slots = useSlots()
 
 <style scoped>
 @layer nv-components {
-  /* Focus ring draws on the 36px visible circle, not the 44×44 transparent hit
-     area — halo hugs the actual button shape. */
-  button:focus-visible .nv-m-navbar-back,
-  button:focus-within .nv-m-navbar-back {
+  /* Thin focus ring on the 36px visible circle (back button is navigation, not
+     an input — issue #340 keeps the 4px brand halo for input/trigger parts). */
+  button:focus-visible .nv-m-navbar-back {
     outline: none;
-    box-shadow: var(--nv-focus-ring);
+    box-shadow: 0 0 0 1px var(--nv-brand);
     transition: box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
   }
 }

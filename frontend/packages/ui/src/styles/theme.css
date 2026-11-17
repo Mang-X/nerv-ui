@@ -495,3 +495,12 @@
   border-color: var(--destructive);
   box-shadow: var(--nv-focus-ring-destructive);
 }
+/* `.nv-focus-subtle` downgrades a `.nv-focusable` element to a 1px brand ring —
+   for action buttons that are not input/trigger parts but must stay
+   keyboard-discoverable (e.g. sheet-corner 取消/确定). Declared after
+   `.nv-focusable` at equal specificity so it wins when both are present. */
+.nv-focus-subtle:focus-visible,
+.nv-focus-subtle:focus-within {
+  border-color: var(--nv-brand);
+  box-shadow: 0 0 0 1px var(--nv-brand);
+}

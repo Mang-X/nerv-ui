@@ -25,7 +25,8 @@ const emit = defineEmits<{ select: [] }>()
     :class="
       cn(
         'min-h-row flex w-full items-center gap-3 border-b border-border bg-card px-4 py-3 text-left',
-        interactive && 'nv-focusable active:bg-accent',
+        interactive &&
+          'outline-none active:bg-accent focus-visible:ring-1 focus-visible:ring-brand',
         $props.class,
       )
     "

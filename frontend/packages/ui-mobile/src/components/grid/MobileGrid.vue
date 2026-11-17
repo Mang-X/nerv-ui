@@ -38,7 +38,7 @@ const emit = defineEmits<{ select: [item: GridItem, index: number] }>()
       v-for="(item, i) in items"
       :key="item.key ?? i"
       type="button"
-      class="nv-m-grid-item nv-focusable"
+      class="nv-m-grid-item focus-visible:ring-1 focus-visible:ring-brand"
       :class="square && 'nv-m-grid-square'"
       @click="emit('select', item, i)"
     >

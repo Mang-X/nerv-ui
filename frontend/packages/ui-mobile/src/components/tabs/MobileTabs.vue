@@ -55,7 +55,7 @@ onMounted(() => nextTick(measure))
       :aria-selected="model === item.value"
       :class="
         cn(
-          'nv-m-mtab nv-focusable relative h-11 shrink-0 px-4 text-[15px] whitespace-nowrap transition-colors',
+          'nv-m-mtab relative h-11 shrink-0 px-4 text-[15px] whitespace-nowrap transition-colors focus-visible:ring-1 focus-visible:ring-brand',
           model === item.value ? 'font-medium text-foreground' : 'text-muted-foreground',
         )
       "

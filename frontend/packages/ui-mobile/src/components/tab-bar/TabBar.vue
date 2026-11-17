@@ -62,13 +62,12 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
     opacity: 1;
     transition-duration: 0s;
   }
-  /* Focus ring draws on the inner 10px-radius hit pill (the visible tap shape),
-     not the rectangular 48px column — halo hugs the interactive shape. */
-  .nv-m-tabbar-btn:focus-visible .nv-m-tabbar-hit,
-  .nv-m-tabbar-btn:focus-within .nv-m-tabbar-hit {
+  /* Thin focus ring on the inner 10px-radius hit pill (the visible tap shape).
+     Tabs are navigation — the 4px brand halo stays on inputs (issue #340). */
+  .nv-m-tabbar-btn:focus-visible .nv-m-tabbar-hit {
     opacity: 1;
     background-color: transparent;
-    box-shadow: var(--nv-focus-ring);
+    box-shadow: 0 0 0 1px var(--nv-brand);
   }
   @media (prefers-reduced-motion: reduce) {
     .nv-m-tabbar-hit {
