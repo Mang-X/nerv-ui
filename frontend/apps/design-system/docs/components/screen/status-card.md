@@ -4,7 +4,7 @@ title: NvScreenStatusCard 比较摘要
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenStatusCard } from '@nerv-iip/ui'
+import { NvScreenInput, NvScreenStatusCard } from '@nerv-iip/ui'
 const current = ref('12,840')
 const unit = ref('人次')
 const labels = { state: '空间状态', plan: '目标', actual: '当前', rate: '进度', downtime: '持续时间' }
@@ -19,9 +19,9 @@ const labels = { state: '空间状态', plan: '目标', actual: '当前', rate: 
 宿主将目标→`plan`、当前→`actual`、进度→`rate`、持续时间→`downtime`；这些字段仍然是字符串，不推算比率或补零。`labels` 覆盖所有固定领域文案，`unit` 只影响 plan / actual 共用后缀；rate / downtime 的格式及单位由宿主完整提供。
 
 <ScreenDemo>
-  <div style="width: 600px">
-    <label>当前读数 <input v-model="current" aria-label="当前读数" /></label>
-    <label>数量单位 <input v-model="unit" aria-label="数量单位" /></label>
+  <div class="status-card-doc" style="width: 600px">
+    <label class="status-card-field">当前读数 <NvScreenInput v-model="current" ariaLabel="当前读数" /></label>
+    <label class="status-card-field">数量单位 <NvScreenInput v-model="unit" ariaLabel="数量单位" /></label>
     <NvScreenStatusCard name="街角书房" state="开放" label="欢迎停留" tone="run"
       plan="15,000" :actual="current.trim() || '—'" rate="85.6%" downtime="8 小时"
       :labels="labels" :unit="unit" />
@@ -69,3 +69,9 @@ const labels = { state: '空间状态', plan: '目标', actual: '当前', rate: 
 | `unit`     | plan / actual 共用后缀；空字符串不添加         | `string`                                                                         | `件`                                               |
 
 本页为既有卡片的兼容接缝。#25 的 Launcher / WorkshopHealth / WorkshopLine 三种新卡由同一 owner 后续复用/扩展，不在本票新增。
+
+<style>
+.status-card-doc { display: flex; flex-direction: column; gap: 12px; color: var(--nv-scr-text); }
+.status-card-field { display: flex; align-items: center; gap: 8px; }
+.status-card-field .nv-scr-in { flex: 1; }
+</style>

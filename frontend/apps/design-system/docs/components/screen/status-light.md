@@ -4,10 +4,11 @@ title: NvScreenStatusLight 状态灯
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenStatusLight } from '@nerv-iip/ui'
+import { NvScreenInput, NvScreenSelect, NvScreenStatusLight } from '@nerv-iip/ui'
 const tone = ref('run')
 const label = ref('欢迎来坐坐')
 const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']
+const toneOptions = tones.map((item) => ({ label: item, value: item }))
 </script>
 
 # NvScreenStatusLight 状态灯
@@ -17,9 +18,9 @@ const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']
 ## 颜色与文字独立更新
 
 <ScreenDemo>
-  <div>
-    <select v-model="tone" aria-label="灯颜色"><option v-for="item in tones" :key="item">{{ item }}</option></select>
-    <input v-model="label" aria-label="灯文字" />
+  <div class="status-light-doc">
+    <NvScreenSelect v-model="tone" :options="toneOptions" placeholder="灯颜色" />
+    <NvScreenInput v-model="label" ariaLabel="灯文字" />
     <NvScreenStatusLight :tone="tone" :label="label" />
   </div>
 </ScreenDemo>
@@ -38,3 +39,9 @@ const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']
 | `label` | 光点旁文字     | `string`                                                              | 无      |
 
 减少动态效果时停止呼吸，光点与文字保留。这是基础小灯；大主灯、状态墙、取数和异常规则由各自 owner 提供，不由此组件推断。
+
+<style>
+.status-light-doc { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; color: var(--nv-scr-text); }
+.status-light-doc .nv-scr-sel { width: 160px; }
+.status-light-doc .nv-scr-in { flex: 1; min-width: 200px; }
+</style>

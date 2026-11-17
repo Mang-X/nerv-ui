@@ -3,6 +3,11 @@ import { computed, ref } from 'vue'
 import {
   NvButton,
   NvPageHeader,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
   NvToolbar,
   NvRowActions,
   NvSectionCard,
@@ -59,9 +64,12 @@ function replace() {
     </div>
     <label class="flex flex-wrap items-center gap-2 text-sm">
       统计最大列数
-      <select v-model="columns" class="rounded-md border border-border bg-background p-2">
-        <option v-for="n in choices" :key="n" :value="n">{{ n }} 列</option>
-      </select>
+      <NvSelect v-model="columns">
+        <NvSelectTrigger class="w-24"><NvSelectValue placeholder="选择列数" /></NvSelectTrigger>
+        <NvSelectContent>
+          <NvSelectItem v-for="n in choices" :key="n" :value="n">{{ n }} 列</NvSelectItem>
+        </NvSelectContent>
+      </NvSelect>
     </label>
     <NvSectionCards :columns="columns">
       <NvSectionCard

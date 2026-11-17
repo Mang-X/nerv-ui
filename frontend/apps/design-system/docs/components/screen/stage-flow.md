@@ -4,7 +4,7 @@ title: NvScreenStageFlow 阶段数量流
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenStageFlow } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenStageFlow } from '@nerv-iip/ui'
 const stages = ref([
   { key: 'register', label: '报名', value: 24 },
   { key: 'prepare', label: '资料准备', value: 0, status: { label: '等待确认', tone: 'amber' } },
@@ -18,7 +18,7 @@ const stages = ref([
 
 <ScreenDemo>
   <div style="width:100%;min-width:0">
-    <button type="button" @click="stages = [...stages].reverse()">反转顺序</button>
+    <NvScreenButton type="button" variant="secondary" @click="stages = [...stages].reverse()">反转顺序</NvScreenButton>
     <NvScreenStageFlow :stages="stages" aria-label="阅读活动各阶段数量" />
   </div>
 </ScreenDemo>

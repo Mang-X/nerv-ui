@@ -4,7 +4,7 @@ title: NvCapsuleBar 胶囊进度
 
 <script setup>
 import { ref } from 'vue'
-import { NvCapsuleBar, NvScreenPanel } from '@nerv-iip/ui'
+import { NvCapsuleBar, NvScreenButton, NvScreenPanel } from '@nerv-iip/ui'
 const items = ref([
   { label: '阅读座席', value: 72.5, tone: 'cyan' },
   { label: '展览空间', value: 125.25, tone: 'indigo' },
@@ -22,8 +22,10 @@ const items = ref([
 <ScreenDemo>
   <NvScreenPanel title="预订分布" style="width: 520px">
     <NvCapsuleBar :items="items" />
-    <button @click="items = []">清空</button>
-    <button @click="items = [{ label: '新增阅读', value: 3.14159, tone: 'red' }]">替换</button>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+      <NvScreenButton variant="secondary" @click="items = []">清空</NvScreenButton>
+      <NvScreenButton variant="secondary" @click="items = [{ label: '新增阅读', value: 3.14159, tone: 'red' }]">替换</NvScreenButton>
+    </div>
   </NvScreenPanel>
 </ScreenDemo>
 

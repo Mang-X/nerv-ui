@@ -43,7 +43,7 @@ const visibleRows = computed(() => rows.value.slice((page.value - 1) * 5, page.v
 <template>
   <NvScreenTable :columns="columns" :rows="visibleRows" row-key="id">
     <template #cell-action="{ row, value }">
-      <button @click="select(row.id)">{{ value }}</button>
+      <NvScreenButton size="sm" @click="select(row.id)">{{ value }}</NvScreenButton>
     </template>
   </NvScreenTable>
   <NvScreenPagination v-model:page="page" :total="rows.length" :page-size="5" />

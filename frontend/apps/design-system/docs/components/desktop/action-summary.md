@@ -5,7 +5,17 @@ title: NvActionSummary 行动摘要卡
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { CalendarDaysIcon, BookOpenIcon } from '@lucide/vue'
-import { NvActionSummary, type NvActionSummaryState } from '@nerv-iip/ui'
+import {
+  NvActionSummary,
+  NvButton,
+  NvCheckbox,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
+  type NvActionSummaryState,
+} from '@nerv-iip/ui'
 
 const planState = ref<NvActionSummaryState>('data')
 const readingState = ref<NvActionSummaryState>('empty')
@@ -24,12 +34,34 @@ const planItems = computed(() => noPreview.value ? [] : changed.value
 
 <Demo>
   <div class="w-full space-y-4">
-    <div class="flex flex-wrap gap-4 text-sm">
-      <label>今日安排状态 <select v-model="planState" aria-label="今日安排状态" class="rounded-md border border-border bg-card px-2 py-1"><option value="pending">等待中</option><option value="error">读取失败</option><option value="unavailable">暂不可用</option><option value="data">有安排</option><option value="empty">已清空</option></select></label>
-      <label>阅读清单状态 <select v-model="readingState" aria-label="阅读清单状态" class="rounded-md border border-border bg-card px-2 py-1"><option value="pending">等待中</option><option value="error">读取失败</option><option value="unavailable">暂不可用</option><option value="data">有内容</option><option value="empty">已清空</option></select></label>
-      <label><input v-model="zero" type="checkbox" /> 今日数量为零</label>
-      <label><input v-model="noPreview" type="checkbox" /> 暂无最近预览</label>
-      <button type="button" class="text-brand-strong underline" @click="changed = !changed">换一组安排</button>
+    <div class="flex flex-wrap items-center gap-4 text-sm">
+      <label class="flex items-center gap-2">今日安排状态
+        <NvSelect v-model="planState">
+          <NvSelectTrigger aria-label="今日安排状态" class="w-32"><NvSelectValue placeholder="选择状态" /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem value="pending">等待中</NvSelectItem>
+            <NvSelectItem value="error">读取失败</NvSelectItem>
+            <NvSelectItem value="unavailable">暂不可用</NvSelectItem>
+            <NvSelectItem value="data">有安排</NvSelectItem>
+            <NvSelectItem value="empty">已清空</NvSelectItem>
+          </NvSelectContent>
+        </NvSelect>
+      </label>
+      <label class="flex items-center gap-2">阅读清单状态
+        <NvSelect v-model="readingState">
+          <NvSelectTrigger aria-label="阅读清单状态" class="w-32"><NvSelectValue placeholder="选择状态" /></NvSelectTrigger>
+          <NvSelectContent>
+            <NvSelectItem value="pending">等待中</NvSelectItem>
+            <NvSelectItem value="error">读取失败</NvSelectItem>
+            <NvSelectItem value="unavailable">暂不可用</NvSelectItem>
+            <NvSelectItem value="data">有内容</NvSelectItem>
+            <NvSelectItem value="empty">已清空</NvSelectItem>
+          </NvSelectContent>
+        </NvSelect>
+      </label>
+      <label class="flex items-center gap-2"><NvCheckbox v-model:checked="zero" /> 今日数量为零</label>
+      <label class="flex items-center gap-2"><NvCheckbox v-model:checked="noPreview" /> 暂无最近预览</label>
+      <NvButton type="button" variant="link" size="sm" @click="changed = !changed">换一组安排</NvButton>
     </div>
     <div class="grid gap-4 md:grid-cols-2">
       <NvActionSummary title="今日安排" description="挑一件想做的小事，从现在开始。" :icon="CalendarDaysIcon" tone="warning" :state="planState" :count="planState === 'empty' || zero ? 0 : 2" unit="项" :items="planItems" empty-title="今天已清空" empty-hint="新安排到来时会出现在这里。" error-title="暂时无法读取今天的安排" error-hint="目前无法取得今日安排的最新内容，也不能判断是否还有需要处理的项目。" unavailable-title="安排暂不可用" unavailable-hint="请稍后查看这一路。" action-label="查看全部安排" @retry="notice = '今日安排已请求重新读取。'" @action="notice = '已打开今日安排。'" />

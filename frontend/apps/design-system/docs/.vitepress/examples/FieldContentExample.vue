@@ -9,6 +9,11 @@ import {
   NvFieldDescription,
   NvFieldSeparator,
   NvInput,
+  NvSelect,
+  NvSelectContent,
+  NvSelectItem,
+  NvSelectTrigger,
+  NvSelectValue,
 } from '@nerv-iip/ui'
 const id = useId()
 const topic = ref('随手阅读')
@@ -42,15 +47,19 @@ const display = ref('简洁')
       <NvField orientation="responsive" class="min-w-0">
         <NvFieldLabel :for="`${id}-display`">内容密度</NvFieldLabel>
         <NvFieldContent class="min-w-0">
-          <select
-            :id="`${id}-display`"
-            v-model="display"
-            :aria-describedby="`${id}-display-description`"
-            class="w-full min-w-0 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-2 focus-visible:outline-ring"
-          >
-            <option>简洁</option>
-            <option>详细</option>
-          </select>
+          <NvSelect v-model="display">
+            <NvSelectTrigger
+              :id="`${id}-display`"
+              :aria-describedby="`${id}-display-description`"
+              class="w-full min-w-0"
+            >
+              <NvSelectValue placeholder="选择密度" />
+            </NvSelectTrigger>
+            <NvSelectContent>
+              <NvSelectItem value="简洁">简洁</NvSelectItem>
+              <NvSelectItem value="详细">详细</NvSelectItem>
+            </NvSelectContent>
+          </NvSelect>
           <NvFieldDescription :id="`${id}-display-description`"
             >窄幅上下排列，内容区足够宽时标签与控件并排。</NvFieldDescription
           >

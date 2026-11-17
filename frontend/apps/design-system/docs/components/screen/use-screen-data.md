@@ -3,7 +3,7 @@ title: useScreenData 大屏取数
 ---
 
 <script setup>
-import { useScreenData } from '@nerv-iip/ui'
+import { NvScreenButton, useScreenData } from '@nerv-iip/ui'
 let sequence = 0
 const { data, error, loading, lastUpdated, isStale, refresh } = useScreenData(async () => {
   sequence += 1
@@ -21,7 +21,7 @@ const { data, error, loading, lastUpdated, isStale, refresh } = useScreenData(as
     <span>{{ data ?? '等待首次数据' }}</span>
     <span>取数中：{{ loading }} · 数据滞留：{{ isStale }} · 本次失败：{{ !!error }}</span>
     <span>最近成功：{{ lastUpdated === undefined ? '—' : new Date(lastUpdated).toLocaleTimeString() }}</span>
-    <button type="button" @click="refresh">刷新</button>
+    <NvScreenButton type="button" variant="secondary" @click="refresh">刷新</NvScreenButton>
   </div>
 </ScreenDemo>
 

@@ -4,7 +4,7 @@ title: NvKpiBar 指标横条
 
 <script setup>
 import { ref } from 'vue'
-import { NvKpiBar } from '@nerv-iip/ui'
+import { NvKpiBar, NvScreenButton } from '@nerv-iip/ui'
 import { BookOpen, Users } from '@lucide/vue'
 const items = ref([
   { icon: BookOpen, value: '1,284', label: '累计阅读', tone: 'cyan' },
@@ -21,8 +21,10 @@ const items = ref([
 
 <ScreenDemo wide>
   <NvKpiBar :items="items" tabindex="0" role="region" aria-label="空间指标，可左右滚动" />
-  <button @click="items = [{ value: '0% · 尚无预订', label: '空间预订', ring: 0 }]">有效零值</button>
-  <button @click="items = [{ icon: BookOpen, value: '尚未统计', label: '阅读次数' }]">未知文字</button>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+    <NvScreenButton variant="secondary" @click="items = [{ value: '0% · 尚无预订', label: '空间预订', ring: 0 }]">有效零值</NvScreenButton>
+    <NvScreenButton variant="secondary" @click="items = [{ icon: BookOpen, value: '尚未统计', label: '阅读次数' }]">未知文字</NvScreenButton>
+  </div>
 </ScreenDemo>
 
 ```vue
