@@ -29,11 +29,11 @@ const slots = useSlots()
       <button
         v-if="back"
         type="button"
-        class="nv-focusable group flex size-11 shrink-0 items-center justify-center rounded-full text-foreground"
+        class="group flex size-11 shrink-0 items-center justify-center rounded-full text-foreground outline-none"
         aria-label="返回"
         @click="emit('back')"
       >
-        <span class="flex size-9 items-center justify-center rounded-full group-active:bg-accent">
+        <span class="nv-m-navbar-back flex size-9 items-center justify-center rounded-full group-active:bg-accent">
           <ChevronLeft class="size-6" aria-hidden="true" />
         </span>
       </button>
@@ -49,3 +49,16 @@ const slots = useSlots()
     </div>
   </div>
 </template>
+
+<style scoped>
+@layer nv-components {
+  /* Focus ring draws on the 36px visible circle, not the 44×44 transparent hit
+     area — halo hugs the actual button shape. */
+  button:focus-visible .nv-m-navbar-back,
+  button:focus-within .nv-m-navbar-back {
+    outline: none;
+    box-shadow: var(--nv-focus-ring);
+    transition: box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
+  }
+}
+</style>

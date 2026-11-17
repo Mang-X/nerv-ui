@@ -57,7 +57,7 @@ function onSelect(action: FabAction, index: number) {
           v-for="(action, i) in open && actions ? actions : []"
           :key="action.key ?? i"
           type="button"
-          class="nv-m-fab-act nv-focusable"
+          class="nv-m-fab-act"
           :style="{ '--i': (actions?.length ?? 0) - 1 - i }"
           @click="onSelect(action, i)"
         >
@@ -68,7 +68,7 @@ function onSelect(action: FabAction, index: number) {
 
       <button
         type="button"
-        class="nv-m-fab-main nv-focusable"
+        class="nv-m-fab-main"
         :class="text && !actions?.length ? 'nv-m-fab-extended' : ''"
         :data-tone="tone"
         :aria-label="text"
@@ -99,7 +99,8 @@ function onSelect(action: FabAction, index: number) {
     position: absolute;
     inset: 0;
     background-color: color-mix(in oklch, black 32%, transparent);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     pointer-events: auto;
   }
 
@@ -167,6 +168,16 @@ function onSelect(action: FabAction, index: number) {
   .nv-m-fab-act:active .nv-m-fab-act-btn {
     background-color: var(--muted);
   }
+  /* Focus ring draws on the circular mini-FAB button, not the flex row that
+     also contains the text label — halo hugs the actual control shape. */
+  .nv-m-fab-act:focus-visible .nv-m-fab-act-btn,
+  .nv-m-fab-act:focus-within .nv-m-fab-act-btn {
+    border-color: var(--nv-brand);
+    box-shadow:
+      0 2px 10px -2px color-mix(in oklch, black 35%, transparent),
+      var(--nv-focus-ring);
+    transition: box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
+  }
 
   .nv-m-fab-main {
     display: inline-flex;
@@ -199,6 +210,16 @@ function onSelect(action: FabAction, index: number) {
   }
   .nv-m-fab-main:hover {
     filter: brightness(1.05);
+  }
+  /* Focus ring keeps the floating drop shadow AND adds the brand halo — they
+     compose as stacked shadows so the FAB keeps its depth cue while focused. */
+  .nv-m-fab-main:focus-visible,
+  .nv-m-fab-main:focus-within {
+    outline: none;
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in oklch, white 18%, transparent),
+      0 8px 24px -6px color-mix(in oklch, var(--nv-brand) 70%, black 20%),
+      var(--nv-focus-ring);
   }
   .nv-m-fab-extended {
     width: auto;

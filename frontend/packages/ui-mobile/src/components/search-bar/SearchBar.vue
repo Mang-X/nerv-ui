@@ -73,11 +73,11 @@ function cancel() {
         <button
           v-if="model"
           type="button"
-          class="min-h-touch nv-focusable min-w-12 -my-1 -mr-3 grid shrink-0 place-items-center rounded-full text-card active:opacity-70"
+          class="nv-m-sb-clear-btn min-h-touch min-w-12 -my-1 -mr-3 grid shrink-0 place-items-center rounded-full text-card outline-none active:opacity-70"
           aria-label="清除"
           @click="clear"
         >
-          <span class="grid size-5 place-items-center rounded-full bg-muted-foreground/30">
+          <span class="nv-m-sb-clear-dot grid size-5 place-items-center rounded-full bg-muted-foreground/30">
             <X class="size-3.5" aria-hidden="true" />
           </span>
         </button>
@@ -112,6 +112,14 @@ function cancel() {
   }
   .nv-m-sb-cancel > button {
     padding-left: 0.5rem;
+  }
+
+  /* Focus ring draws on the 20px clear-circle icon, not the 48px hit area — the
+     halo hugs the actual control shape. */
+  .nv-m-sb-clear-btn:focus-visible .nv-m-sb-clear-dot,
+  .nv-m-sb-clear-btn:focus-within .nv-m-sb-clear-dot {
+    box-shadow: var(--nv-focus-ring);
+    transition: box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
   }
 
   .nv-m-sb-clear-enter-active,

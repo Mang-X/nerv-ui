@@ -29,7 +29,7 @@ const pressed = ref(false)
     @pointercancel="pressed = false"
     :class="
       cn(
-        'nv-m-mswitch nv-focusable inline-flex h-11 w-[51px] shrink-0 cursor-pointer items-center justify-center rounded-full outline-none disabled:cursor-not-allowed disabled:opacity-50',
+        'nv-m-mswitch inline-flex h-11 w-[51px] shrink-0 cursor-pointer items-center justify-center rounded-full outline-none disabled:cursor-not-allowed disabled:opacity-50',
         props.class,
       )
     "
@@ -64,11 +64,21 @@ const pressed = ref(false)
   }
   /* Focus ring draws on the pill (51×31), not the 51×44 hit area — so the halo
      hugs the actual switch shape, not the taller tap target. `:focus-within`
-     also catches focus landing on the inner SwitchThumb button. */
+     also catches focus landing on the inner SwitchThumb button. Both
+     focus-visible (keyboard on root) and focus-within (descendant focus)
+     forward to the pill. */
+  .nv-m-mswitch:focus-visible .nv-m-mswitch-pill,
   .nv-m-mswitch:focus-within .nv-m-mswitch-pill {
     outline: none;
     border-color: var(--nv-brand);
     box-shadow: var(--nv-focus-ring);
+  }
+  .nv-m-mswitch[data-invalid]:focus-visible .nv-m-mswitch-pill,
+  .nv-m-mswitch[data-invalid]:focus-within .nv-m-mswitch-pill,
+  .nv-m-mswitch[aria-invalid='true']:focus-visible .nv-m-mswitch-pill,
+  .nv-m-mswitch[aria-invalid='true']:focus-within .nv-m-mswitch-pill {
+    border-color: var(--destructive);
+    box-shadow: var(--nv-focus-ring-destructive);
   }
   .nv-m-mswitch-thumb {
     /* Tailwind v4 glides the thumb via the `translate` property — name it in the

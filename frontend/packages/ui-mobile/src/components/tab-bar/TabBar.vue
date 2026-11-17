@@ -27,7 +27,7 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
       :key="item.value"
       type="button"
       :aria-current="modelValue === item.value ? 'page' : undefined"
-      class="nv-m-tabbar-btn nv-focusable min-h-touch flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs"
+      class="nv-m-tabbar-btn min-h-touch flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs"
       :class="modelValue === item.value ? 'text-brand' : 'text-muted-foreground'"
       @click="emit('update:modelValue', item.value)"
     >
@@ -54,11 +54,21 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
     border-radius: 10px;
     background-color: var(--muted);
     opacity: 0;
-    transition: opacity 0.2s var(--nv-ease-out-quart, ease-out);
+    transition:
+      opacity 0.2s var(--nv-ease-out-quart, ease-out),
+      box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
   }
   .nv-m-tabbar-btn:active .nv-m-tabbar-hit {
     opacity: 1;
     transition-duration: 0s;
+  }
+  /* Focus ring draws on the inner 10px-radius hit pill (the visible tap shape),
+     not the rectangular 48px column — halo hugs the interactive shape. */
+  .nv-m-tabbar-btn:focus-visible .nv-m-tabbar-hit,
+  .nv-m-tabbar-btn:focus-within .nv-m-tabbar-hit {
+    opacity: 1;
+    background-color: transparent;
+    box-shadow: var(--nv-focus-ring);
   }
   @media (prefers-reduced-motion: reduce) {
     .nv-m-tabbar-hit {

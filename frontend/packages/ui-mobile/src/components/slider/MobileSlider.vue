@@ -97,7 +97,7 @@ function nudge(delta: number) {
       />
       <!-- thumb (44px hit area centered on the value position) -->
       <div
-        class="nv-m-slider-thumb nv-focusable absolute top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center"
+        class="nv-m-slider-thumb absolute top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center"
         :style="{ left: `${ratio * 100}%` }"
         role="slider"
         tabindex="0"
@@ -140,12 +140,10 @@ function nudge(delta: number) {
   .nv-m-slider-thumb {
     touch-action: none;
   }
-  /* The outer ring is fixed; the focus outline lives here so it frames the whole
-   thumb. */
-  .nv-m-slider-thumb:focus-visible .nv-m-slider-ring {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
-  }
+  /* WinUI3-style inner dot: visible at rest, grows a touch on hover, then shrinks
+   below rest the instant the pointer goes down. The pressed rule is qualified
+   with `.nv-m-slider-thumb` so it OUT-SPECIFIES the hover rule (0,4,0 / 0,3,0) —
+   otherwise hover (still active while pressing) would keep it big. */
   /* WinUI3-style inner dot: visible at rest, grows a touch on hover, then shrinks
    below rest the instant the pointer goes down. The pressed rule is qualified
    with `.nv-m-slider-thumb` so it OUT-SPECIFIES the hover rule (0,4,0 / 0,3,0) —
@@ -168,5 +166,21 @@ function nudge(delta: number) {
       transition: none;
     }
   }
+}
+
+/* Focus ring draws on the visible 20px thumb circle, not the 44×44 square hit
+   area — halo hugs the actual control shape. Uses the shared --nv-focus-ring
+   contract (1px brand + 4px brand halo). Written OUTSIDE @layer so it beats the
+   `shadow-[…]` Tailwind utility on the same element (Tailwind utilities sit in
+   the `utilities` layer which comes after `nv-components` in the layer order). */
+.nv-m-slider-thumb:focus-visible .nv-m-slider-ring,
+.nv-m-slider-thumb:focus-within .nv-m-slider-ring {
+  outline: none;
+  border-color: var(--nv-brand);
+  /* Compose: keep the resting drop shadow AND add the brand halo. */
+  box-shadow:
+    0 1px 5px rgb(0 0 0 / 0.35),
+    var(--nv-focus-ring);
+  transition: box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
 }
 </style>
