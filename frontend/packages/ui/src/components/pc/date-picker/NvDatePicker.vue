@@ -140,7 +140,7 @@ function clear() {
       <button
         v-if="clearable && modelValue && !disabled"
         type="button"
-        class="absolute right-8 flex size-5 items-center justify-center rounded-sm text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
+        class="nv-focusable absolute right-8 flex size-5 items-center justify-center rounded-sm text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none"
         aria-label="清除所选日期"
         @pointerdown.stop.prevent
         @mousedown.stop.prevent
@@ -149,7 +149,7 @@ function clear() {
         <XIcon class="size-3.5" aria-hidden="true" />
       </button>
     </div>
-    <PopoverContent class="w-auto p-3" align="start">
+    <PopoverContent class="w-auto p-3" align="start" data-slot="nv-date-picker-content">
       <div class="mb-2 flex items-center justify-between">
         <button
           type="button"

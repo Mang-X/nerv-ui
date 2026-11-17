@@ -26,7 +26,7 @@ const forwarded = useForwardProps(reactiveOmit(props, 'class'))
       v-bind="forwarded"
       :class="
         cn(
-          'nv-nav-viewport data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 relative mt-2 shrink-0 origin-top overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground shadow-lg duration-200',
+          'nv-nav-viewport data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 relative mt-2 shrink-0 origin-top overflow-hidden rounded-lg border border-border text-popover-foreground shadow-lg duration-(--nv-duration-base)',
           props.class,
         )
       "

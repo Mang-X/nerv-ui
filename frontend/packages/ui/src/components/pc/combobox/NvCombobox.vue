@@ -127,7 +127,7 @@ function onPointerDownOutside(e: Event) {
             // h-9 / rounded-md / px-3 是包内表单控件的统一基线（NvInput、NvSelectTrigger、
             // NvSearchSelect、NvButton 默认档都是它）。此前这里是 h-8 + rounded-lg + px-2.5，
             // 跟同排的输入框、下拉框并排时会矮一截、圆角也对不上。
-            'border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base outline-none transition-colors focus-visible:ring-3 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
+            'nv-focusable h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base outline-none transition-colors placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30',
             props.class,
           )
         "
@@ -142,7 +142,8 @@ function onPointerDownOutside(e: Event) {
         role="listbox"
         align="start"
         :side-offset="4"
-        class="z-50 max-h-60 w-(--reka-popover-trigger-width) min-w-52 overflow-y-auto rounded-lg border border-border bg-popover p-1 text-popover-foreground shadow-md outline-none data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0"
+        data-slot="nv-combobox-content"
+        class="z-50 max-h-60 w-(--reka-popover-trigger-width) min-w-52 overflow-y-auto rounded-lg border border-border p-1 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-(--nv-duration-fast)"
         @open-auto-focus.prevent
         @close-auto-focus.prevent
         @pointer-down-outside="onPointerDownOutside"

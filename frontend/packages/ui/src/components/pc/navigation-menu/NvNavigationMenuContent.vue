@@ -27,7 +27,7 @@ const forwarded = useForwardPropsEmits(reactiveOmit(props, 'class'), emits)
         // drops from its trigger; the viewport handles the position/size glide)
         'data-[motion=from-start]:animate-in data-[motion=from-end]:animate-in data-[motion=to-start]:animate-out data-[motion=to-end]:animate-out',
         'data-[motion=from-start]:fade-in data-[motion=from-end]:fade-in data-[motion=to-start]:fade-out data-[motion=to-end]:fade-out',
-        'duration-200',
+        'duration-(--nv-duration-base)',
         props.class,
       )
     "

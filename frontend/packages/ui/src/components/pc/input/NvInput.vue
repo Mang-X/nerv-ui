@@ -33,7 +33,7 @@ const model = useVModel(props, 'modelValue', emits, {
     :data-invalid="invalid || undefined"
     :class="
       cn(
-        'nv-input group/input flex h-9 items-center gap-2 rounded-md border border-input bg-card px-3 hover:border-foreground/20 focus-within:border-brand data-[invalid=true]:border-destructive data-[invalid=true]:hover:border-destructive data-[invalid=true]:focus-within:border-destructive dark:bg-input/30',
+        'nv-input nv-focusable group/input flex h-9 items-center gap-2 rounded-md border border-input bg-card px-3 hover:border-foreground/20 data-[invalid=true]:border-destructive data-[invalid=true]:hover:border-destructive dark:bg-input/30',
         props.class,
       )
     "
@@ -59,20 +59,5 @@ const model = useVModel(props, 'modelValue', emits, {
   </div>
 </template>
 
-<style scoped>
-@layer nv-components {
-  .nv-input {
-    transition:
-      border-color 0.15s var(--nv-ease-out-quart, ease-out),
-      box-shadow 0.15s var(--nv-ease-out-quart, ease-out);
-  }
-  .nv-input:focus-within {
-    box-shadow:
-      0 0 0 3px color-mix(in oklch, var(--nv-brand) 22%, transparent),
-      0 1px 2px 0 color-mix(in oklch, black 6%, transparent);
-  }
-  .nv-input[data-invalid]:focus-within {
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--destructive) 22%, transparent);
-  }
-}
-</style>
+<!-- 聚焦环与 invalid 态由 .nv-focusable 契约（theme.css nv-components）统一下发，
+     scoped 不再自写 :focus-within / box-shadow / border-destructive 特例。 -->

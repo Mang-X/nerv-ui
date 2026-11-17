@@ -39,7 +39,7 @@ const forwarded = useForwardPropsEmits(reactiveOmit(props, 'class'), emits)
         v-bind="{ ...$attrs, ...forwarded }"
         :class="
           cn(
-            'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 relative z-50 my-8 grid w-[calc(100%-2rem)] max-w-md grid-cols-1 gap-4 [&>*]:min-w-0 rounded-xl border border-border bg-card p-6 text-card-foreground shadow-lg duration-200 outline-none',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 relative z-50 my-8 grid w-[calc(100%-2rem)] max-w-md grid-cols-1 gap-4 [&>*]:min-w-0 rounded-xl border border-border p-6 text-card-foreground shadow-lg duration-(--nv-duration-base) outline-none',
             props.class,
           )
         "

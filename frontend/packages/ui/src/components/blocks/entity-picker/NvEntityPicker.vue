@@ -191,9 +191,8 @@ function clear() {
           :disabled="disabled"
           :class="
             cn(
-              'flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-card px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30',
-              invalid &&
-                'border-destructive focus-visible:border-destructive focus-visible:ring-destructive/20',
+              'nv-focusable flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-card px-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30',
+              invalid && 'border-destructive',
               // 有清除叉时给右侧让位，否则长文案会钻到叉底下。
               // 叉在 right-8（2rem）起、size-5（1.25rem）宽，收边到 3.25rem，再留一点余量。
               clearable && selected && !disabled && 'pr-14',
@@ -220,7 +219,7 @@ function clear() {
       <button
         v-if="clearable && selected && !disabled"
         type="button"
-        class="absolute right-8 flex size-5 items-center justify-center rounded-sm text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
+        class="nv-focusable absolute right-8 flex size-5 items-center justify-center rounded-sm text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none"
         :aria-label="`清除${ariaLabel ?? '所选实体'}`"
         @pointerdown.stop.prevent
         @mousedown.stop.prevent
@@ -235,7 +234,8 @@ function clear() {
       <PopoverContent
         align="start"
         :side-offset="4"
-        class="z-50 w-(--reka-popover-trigger-width) min-w-72 overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground shadow-md outline-none data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0"
+        data-slot="nv-entity-picker-content"
+        class="z-50 w-(--reka-popover-trigger-width) min-w-72 overflow-hidden rounded-lg border border-border text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-(--nv-duration-fast)"
         @open-auto-focus.prevent
       >
         <EntityPickerPanel

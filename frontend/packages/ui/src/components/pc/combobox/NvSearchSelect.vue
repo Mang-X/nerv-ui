@@ -115,7 +115,7 @@ function onKeydown(e: KeyboardEvent) {
         :disabled="disabled"
         :class="
           cn(
-            'flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-card px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30',
+            'nv-focusable flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-card px-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30',
             props.class,
           )
         "
@@ -130,7 +130,8 @@ function onKeydown(e: KeyboardEvent) {
       <PopoverContent
         align="start"
         :side-offset="4"
-        class="z-50 w-(--reka-popover-trigger-width) min-w-52 overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground shadow-md outline-none data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0"
+        data-slot="nv-combobox-content"
+        class="z-50 w-(--reka-popover-trigger-width) min-w-52 overflow-hidden rounded-lg border border-border text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-(--nv-duration-fast)"
         @open-auto-focus.prevent
       >
         <div class="flex items-center gap-2 border-b border-border px-2.5">

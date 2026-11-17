@@ -244,7 +244,7 @@ defineExpose({ focus: () => inputEl.value?.focus() })
     <div v-if="createText" :class="cn('border-t border-border', dense ? 'p-1.5' : 'px-4 py-2')">
       <button
         type="button"
-        class="flex w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-sm text-primary outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring/50"
+        class="nv-focusable flex w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-sm text-primary outline-none hover:bg-accent"
         @click="emit('create')"
       >
         <PlusIcon class="size-4 shrink-0" aria-hidden="true" />
