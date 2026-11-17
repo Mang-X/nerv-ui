@@ -89,3 +89,51 @@ const technicianOptions = [
   search-placeholder="搜索成员姓名 / 编号…"
 />
 ```
+
+## API
+
+### NvCombobox 属性
+
+| 属性            | 说明                                           | 类型                      | 默认         |
+| --------------- | ---------------------------------------------- | ------------------------- | ------------ |
+| `modelValue`    | 受控值（`v-model`）；自由录入时 = 输入文本     | `string`                  | —            |
+| `suggestions`   | 建议候选（必填）                               | `ComboboxSuggestion[]`    | —            |
+| `placeholder`   | 输入占位                                       | `string`                  | `''`         |
+| `emptyText`     | 无匹配建议时的弹层空态                         | `string`                  | `无匹配建议` |
+| `disabled`      | 是否禁用                                       | `boolean`                 | `false`      |
+| `id`            | 透传到 `<input>`                               | `string`                  | —            |
+| `class`         | 追加到 `<input>` 的 Tailwind 类                | `HTMLAttributes['class']` | —            |
+
+`ComboboxSuggestion`：`{ value: string; label?: string; hint?: string }`。
+
+### NvCombobox 事件
+
+| 事件                | 说明                       | 载荷     |
+| ------------------- | -------------------------- | -------- |
+| `update:modelValue` | 输入或选建议时回写当前文本 | `string` |
+
+### NvSearchSelect 属性
+
+| 属性                | 说明                                                  | 类型                      | 默认       |
+| ------------------- | ----------------------------------------------------- | ------------------------- | ---------- |
+| `modelValue`        | 受控值（`v-model`）；从 `options` 中选一个            | `string`                  | —          |
+| `options`           | 候选集合（必填）                                      | `SearchSelectOption[]`    | —          |
+| `placeholder`       | 未选时触发按钮的占位文案                              | `string`                  | `请选择`   |
+| `searchPlaceholder` | 弹层内搜索框占位                                      | `string`                  | `搜索…`   |
+| `emptyText`         | 过滤后无匹配的空态                                    | `string`                  | `无匹配项` |
+| `disabled`          | 是否禁用                                              | `boolean`                 | `false`    |
+| `loading`           | 加载中（触发按钮显示「加载中…」）                     | `boolean`                 | `false`    |
+| `id`                | 透传到触发 `<button>`                                 | `string`                  | —          |
+| `ariaLabel`         | 触发按钮的可访问名称                                  | `string`                  | —          |
+| `ariaInvalid`       | 校验失败态（`aria-invalid`）                          | `boolean`                 | —          |
+| `ariaDescribedby`   | 字段错误提示的 id，转发到触发按钮                     | `string`                  | —          |
+| `searchAriaLabel`   | 弹层内搜索框的可访问名称（缺省从 `ariaLabel` 派生）   | `string`                  | —          |
+| `class`             | 追加到触发按钮的 Tailwind 类                          | `HTMLAttributes['class']` | —          |
+
+`SearchSelectOption`：`{ value: string; label: string; hint?: string }`。
+
+### NvSearchSelect 事件
+
+| 事件                | 说明             | 载荷     |
+| ------------------- | ---------------- | -------- |
+| `update:modelValue` | 选中某项时回写   | `string` |

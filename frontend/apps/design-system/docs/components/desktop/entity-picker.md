@@ -153,3 +153,57 @@ const scopeLevels = computed(() => [
   ]"
 />
 ```
+
+## API
+
+### NvEntityPicker 属性
+
+| 属性                | 说明                                                                                  | 类型                      | 默认                  |
+| ------------------- | ------------------------------------------------------------------------------------- | ------------------------- | --------------------- |
+| `modelValue`        | 受控值（`v-model`）；选中的 `option.value`                                            | `string`                  | —                     |
+| `options`           | 候选集合（必填）；当前页（服务端搜索时为当前已加载窗口）                              | `EntityPickerOption[]`    | —                     |
+| `title`             | 选择器标题；`dialog` 形态显示在对话框顶部，否则用于派生可访问名称                    | `string`                  | —                     |
+| `variant`           | 形态：`dropdown`（默认，原地弹出）或 `dialog`（居中对话框）                           | `'dropdown' \| 'dialog'`  | `'dropdown'`          |
+| `placeholder`       | 未选占位                                                                              | `string`                  | `请选择`              |
+| `searchPlaceholder` | 弹层内搜索框占位                                                                      | `string`                  | `搜索名称 / 编码…`   |
+| `emptyText`         | 无匹配空态                                                                            | `string`                  | `无匹配实体`          |
+| `loading`           | 加载中                                                                                | `boolean`                 | `false`               |
+| `disabled`          | 是否禁用                                                                              | `boolean`                 | `false`               |
+| `invalid`           | 校验失败态；标记根 `data-invalid` 并把 `aria-invalid` 传给触发按钮                    | `boolean`                 | `false`               |
+| `clearable`         | 已选时显示清除叉                                                                      | `boolean`                 | `false`               |
+| `showCode`          | 显示编码行（选项行第二行 + 触发器括号编码）；值为内部 id 时应关掉                     | `boolean`                 | `true`                |
+| `search`            | 受控搜索词（`v-model:search`）；`serverSearch` 时由宿主持有                           | `string`                  | —                     |
+| `serverSearch`      | 候选由服务端按搜索词过滤；打开后组件不再本地过滤                                      | `boolean`                 | `false`               |
+| `totalCount`        | 服务端搜索的匹配总数；多于当前结果时底部提示「输入关键字继续筛选」                    | `number`                  | —                     |
+| `createText`        | 新增入口文案；传了才在候选下方出现「新增 …」                                         | `string`                  | —                     |
+| `id`                | 透传到触发 `<button>`                                                                 | `string`                  | —                     |
+| `ariaLabel`         | 触发按钮的可访问名称                                                                  | `string`                  | —                     |
+| `ariaDescribedby`   | 字段错误提示的 id，转发到触发按钮                                                     | `string`                  | —                     |
+| `class`             | 追加 Tailwind 类                                                                      | `HTMLAttributes['class']` | —                     |
+
+`EntityPickerOption`：`{ value: string; label: string; code?: string; hint?: string }`。
+
+### NvEntityPicker 事件
+
+| 事件                | 说明                                                          | 载荷     |
+| ------------------- | ------------------------------------------------------------- | -------- |
+| `update:modelValue` | 选中或清除时回写                                              | `string` |
+| `update:search`     | `serverSearch` 时搜索词变化                                   | `string` |
+| `create`            | 「新增」入口被点击；选择器已收起，由宿主打开新增表单          | —        |
+| `load-more`         | 列表滚到底部且 `totalCount` 还有未加载项；宿主加载下一页追加  | —        |
+
+### NvCascadePicker 属性
+
+| 属性         | 说明                                                                       | 类型                       | 默认 |
+| ------------ | -------------------------------------------------------------------------- | -------------------------- | ---- |
+| `modelValue` | 受控各层选中值（`v-model`）；空串 = 该层「全部」                           | `Record<string, string>`   | —    |
+| `levels`     | 层级定义（必填）；选中上级会自动把下游层级清回「全部」                     | `CascadePickerLevel[]`     | —    |
+| `class`      | 追加 Tailwind 类                                                           | `HTMLAttributes['class']`  | —    |
+
+`CascadePickerLevel`：`{ key: string; label: string; options: SearchSelectOption[]; placeholder?: string; allLabel?: string; loading?: boolean; disabled?: boolean }`。每层第一个选项固定为「全部」（`value: ''`），文案由 `allLabel` 覆盖。
+
+### NvCascadePicker 事件
+
+| 事件                | 说明                                                          | 载荷                     |
+| ------------------- | ------------------------------------------------------------- | ------------------------ |
+| `update:modelValue` | 某层选择变化；同层赋值，下游各层清为 `''`，整对象作为新值发出 | `Record<string, string>` |

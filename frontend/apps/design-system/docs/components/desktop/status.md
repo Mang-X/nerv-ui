@@ -1,12 +1,12 @@
 ---
-title: Status 状态
+title: NvStatusDot / NvStatusBadge 状态
 ---
 
 <script setup>
 import { NvStatusDot, NvStatusBadge } from '@nerv-iip/ui'
 </script>
 
-# Status 状态
+# NvStatusDot / NvStatusBadge 状态
 
 表达实体的实时状态。`NvStatusDot` 是一个带可选脉冲环的状态点；`NvStatusBadge` 在其前置色点基础上叠加色调胶囊与本地化文案，并复用共享状态映射，原始值（如 `running`）会自动解析为标签与色调。
 

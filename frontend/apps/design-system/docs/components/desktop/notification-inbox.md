@@ -15,7 +15,7 @@ function refresh() {
 }
 </script>
 
-# NvNotificationInbox
+# NvNotificationInbox 通知收件箱
 
 ## 示例
 

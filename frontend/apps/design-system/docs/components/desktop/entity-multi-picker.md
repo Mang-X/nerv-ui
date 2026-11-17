@@ -15,7 +15,7 @@ const options = [
 ]
 </script>
 
-# NvEntityMultiPicker
+# NvEntityMultiPicker 可搜索多选
 
 在 [`NvEntityPicker`](./entity-picker.md) 的搜索列表上增加受控数组选择。选中后出现可移除标签；已选项不再列在候选中。组件只负责交互，目录请求、搜索词、分页时序、权限和最终值均由宿主决定。
 

@@ -1,5 +1,5 @@
 ---
-title: Sidebar 侧栏
+title: NvSidebar 侧栏
 ---
 
 <script setup>
@@ -31,7 +31,7 @@ const line = ref('L01')
 const todo = ref('待分配任务')
 </script>
 
-# Sidebar 侧栏
+# NvSidebar 侧栏
 
 可折叠的控制台侧栏**原子件**：`SidebarProvider` 提供上下文，`Sidebar` 承载分组导航，配合 `NvSidebarRail` / `NvSidebarTrigger` 折叠。需要开箱即用的整页外壳时用 [NvAppShellInset](/components/desktop/dashboard)，需要自定义结构时用这些原子件自行拼装。
 
