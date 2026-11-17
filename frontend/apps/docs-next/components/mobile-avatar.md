@@ -3,8 +3,14 @@ title: NvMobileAvatar 头像
 ---
 
 <script setup>
+import { onMounted, ref } from 'vue'
 import { NvMobileAvatar } from '@nerv-ui/mobile'
 import '@nerv-ui/mobile/styles.css'
+const photoSrc = ref<string | null>(null)
+onMounted(() => {
+  photoSrc.value =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' fill='%235a7bd5'/%3E%3Ccircle cx='32' cy='24' r='11' fill='white'/%3E%3Cpath d='M12 58c0-12 9-20 20-20s20 8 20 20' fill='white'/%3E%3C/svg%3E"
+})
 </script>
 
 # NvMobileAvatar 头像
@@ -29,12 +35,7 @@ import '@nerv-ui/mobile/styles.css'
   <NvMobileAvatar name="张伟" size="lg">
     <template #fallback>伟</template>
   </NvMobileAvatar>
-  <NvMobileAvatar
-    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' fill='%235a7bd5'/%3E%3Ccircle cx='32' cy='24' r='11' fill='white'/%3E%3Cpath d='M12 58c0-12 9-20 20-20s20 8 20 20' fill='white'/%3E%3C/svg%3E"
-    alt="示例头像"
-    name="示例头像"
-    size="lg"
-  />
+  <NvMobileAvatar v-if="photoSrc" :src="photoSrc" alt="示例头像" name="示例头像" size="lg" />
 </Demo>
 
 ## API
