@@ -28,7 +28,7 @@ const labelSx = computed(() => stylex.props(styles.label))
       v-bind="omitClassStyle($attrs)"
       :id="fieldId"
       :checked="checked"
-      :default-checked="defaultChecked"
+      :default-checked="checked === undefined ? defaultChecked : undefined"
       :disabled="disabled"
       :required="required"
       :name="name"

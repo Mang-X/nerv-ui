@@ -10,6 +10,7 @@ import '@nerv-ui/desktop/styles.css'
 const agreed = ref(false)
 const partial = ref('indeterminate')
 const selectedAll = ref(true)
+const subscribed = ref(true)
 </script>
 
 # NvCheckbox 复选框
@@ -32,7 +33,7 @@ const selectedAll = ref(true)
   <NvCheckbox :checked="true" disabled>禁用·选中</NvCheckbox>
   <NvCheckbox :checked="false" disabled>禁用·未选</NvCheckbox>
   <NvCheckbox label="使用 label 属性" />
-  <NvCheckbox default-checked>非受控默认选中</NvCheckbox>
+  <NvCheckbox v-model:checked="subscribed">默认选中，可直接切换</NvCheckbox>
 </Demo>
 
 ## API

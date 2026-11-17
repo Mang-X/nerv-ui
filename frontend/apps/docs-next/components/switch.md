@@ -9,6 +9,7 @@ import '@nerv-ui/desktop/styles.css'
 
 const on = ref(true)
 const off = ref(false)
+const defaultOn = ref(true)
 </script>
 
 # NvSwitch 开关
@@ -38,8 +39,8 @@ const off = ref(false)
 
 <Demo>
   <div style="display: flex; align-items: center; gap: 10px">
-    <NvSwitch default-checked />
-    <span>非受控·默认开启</span>
+    <NvSwitch v-model:checked="defaultOn" />
+    <span>默认开启，可直接切换</span>
   </div>
 </Demo>
 

@@ -11,7 +11,6 @@ const infoOpen = ref(false)
 const hoverOpen = ref(false)
 const sideOpen = ref(false)
 </script>
-
 # NvPopover 气泡卡片
 
 点击或悬停触发器弹出的浮层，可承载文字、表单或操作按钮。

@@ -55,14 +55,14 @@ const verticalTab = ref('general')
 </Demo>
 
 <Demo>
-  <div style="display: flex; gap: 24px; align-items: flex-start">
-    <NvTabs v-model:value="verticalTab" orientation="vertical">
+  <div style="display: flex; gap: 24px; align-items: flex-start; width: 100%">
+    <NvTabs v-model:value="verticalTab" orientation="vertical" style="display: flex; gap: 16px; align-items: flex-start; width: auto">
       <NvTabsList>
         <NvTabsTrigger value="general">基本信息</NvTabsTrigger>
         <NvTabsTrigger value="params">参数</NvTabsTrigger>
       </NvTabsList>
-      <NvTabsPanel value="general">纵向排布，列表在左，面板在右。</NvTabsPanel>
-      <NvTabsPanel value="params">工艺参数共 12 项。</NvTabsPanel>
+      <NvTabsPanel value="general" style="margin-top: 0">纵向排布，列表在左，面板在右。</NvTabsPanel>
+      <NvTabsPanel value="params" style="margin-top: 0">工艺参数共 12 项。</NvTabsPanel>
     </NvTabs>
   </div>
 </Demo>

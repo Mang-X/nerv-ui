@@ -1,0 +1,65 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, shape, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    boxSizing: 'border-box',
+    width: '100%',
+    minWidth: 0,
+    paddingBlock: 40,
+    paddingInline: 24,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: color.border,
+    borderRadius: shape.radiusLg,
+    backgroundColor: color.card,
+    color: color.fg,
+    fontFamily: typography.fontSans,
+    textAlign: 'center',
+  },
+  sm: {
+    gap: 8,
+    paddingBlock: 24,
+    paddingInline: 16,
+  },
+  icon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: color.mutedFg,
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 6,
+    maxWidth: 380,
+    minWidth: 0,
+  },
+  title: {
+    margin: 0,
+    color: color.fg,
+    fontSize: 15,
+    fontWeight: 600,
+    lineHeight: '22px',
+  },
+  description: {
+    margin: 0,
+    color: color.mutedFg,
+    fontSize: typography.sizeMd,
+    lineHeight: typography.lineMd,
+  },
+  actions: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginTop: 4,
+  },
+})

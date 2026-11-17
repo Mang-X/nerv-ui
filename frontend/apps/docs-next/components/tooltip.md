@@ -7,7 +7,11 @@ import { ref } from 'vue'
 import { NvTooltip, NvTooltipTrigger, NvTooltipContent } from '@nerv-ui/desktop'
 import '@nerv-ui/desktop/styles.css'
 
+const inlineOpen = ref(false)
+const sideOpen = ref(false)
 const controlledOpen = ref(false)
+const labelOpen = ref(false)
+const disabledOpen = ref(false)
 </script>
 
 # NvTooltip 文字提示
@@ -17,26 +21,26 @@ const controlledOpen = ref(false)
 ## 示例
 
 <Demo>
-  <NvTooltip>
+  <NvTooltip v-model:open="inlineOpen">
     <NvTooltipTrigger>悬停查看提示</NvTooltipTrigger>
     <NvTooltipContent>这是补充说明，默认出现在上方。</NvTooltipContent>
   </NvTooltip>
-  <NvTooltip>
+  <NvTooltip v-model:open="sideOpen">
     <NvTooltipTrigger>下方提示</NvTooltipTrigger>
     <NvTooltipContent side="bottom" align="start">通过 `side` 控制出现方向。</NvTooltipContent>
   </NvTooltip>
   <NvTooltip v-model:open="controlledOpen" :delay="0" :close-delay="0">
     <NvTooltipTrigger>无延迟提示</NvTooltipTrigger>
-    <NvTooltipContent>受控模式下由 `v-model:open` 同步展开状态。</NvTooltipContent>
+    <NvTooltipContent>无延迟模式下悬停即出现，移出即收起。</NvTooltipContent>
   </NvTooltip>
 </Demo>
 
 <Demo>
-  <NvTooltip type="label">
+  <NvTooltip v-model:open="labelOpen" type="label">
     <NvTooltipTrigger>保存</NvTooltipTrigger>
     <NvTooltipContent>保存当前修改</NvTooltipContent>
   </NvTooltip>
-  <NvTooltip disabled>
+  <NvTooltip v-model:open="disabledOpen" disabled>
     <NvTooltipTrigger>禁用提示</NvTooltipTrigger>
     <NvTooltipContent>禁用后悬停不会出现。</NvTooltipContent>
   </NvTooltip>

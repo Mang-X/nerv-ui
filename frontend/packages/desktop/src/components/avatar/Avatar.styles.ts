@@ -1,0 +1,46 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, shape, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  root: {
+    position: 'relative',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    boxSizing: 'border-box',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: color.border,
+    backgroundColor: color.muted,
+    verticalAlign: 'middle',
+  },
+  circle: { borderRadius: 999 },
+  square: { borderRadius: shape.radiusSm },
+  sm: { width: 24, height: 24 },
+  md: { width: 32, height: 32 },
+  lg: { width: 40, height: 40 },
+  xl: { width: 48, height: 48 },
+  image: {
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  },
+  fallback: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    color: color.mutedFg,
+    fontFamily: typography.fontSans,
+    fontSize: typography.sizeSm,
+    fontWeight: 600,
+    lineHeight: typography.lineSm,
+    letterSpacing: '0.02em',
+    textTransform: 'uppercase',
+    userSelect: 'none',
+  },
+})
