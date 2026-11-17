@@ -27,12 +27,14 @@ interface Device {
   spec: string
   /** logical screen aspect ratio (px height / px width) */
   ratio: number
+  /** device shell width in px (smaller phones render a narrower frame) */
+  shellW: number
 }
 const DEVICES: Device[] = [
-  { id: 'iphone15pro', name: 'iPhone 15 Pro', skin: 'iphone15pro', spec: '6.1″ · 灵动岛 · 2556×1179', ratio: 2556 / 1179 },
-  { id: 'iphonese', name: 'iPhone SE', skin: 'iphonese', spec: '4.7″ · Home 键 · 1334×750', ratio: 1334 / 750 },
-  { id: 'pixel8', name: 'Pixel 8', skin: 'pixel8', spec: '6.2″ · 打孔 · 2400×1080', ratio: 2400 / 1080 },
-  { id: 'galaxy-s24', name: 'Galaxy S24', skin: 'galaxy-s24', spec: '6.2″ · 打孔 · 2340×1080', ratio: 2340 / 1080 },
+  { id: 'iphone15pro', name: 'iPhone 15 Pro', skin: 'iphone15pro', spec: '6.1″ · 灵动岛 · 2556×1179', ratio: 2556 / 1179, shellW: 360 },
+  { id: 'iphonese', name: 'iPhone SE', skin: 'iphonese', spec: '4.7″ · Home 键 · 1334×750', ratio: 1334 / 750, shellW: 300 },
+  { id: 'pixel8', name: 'Pixel 8', skin: 'pixel8', spec: '6.2″ · 打孔 · 2400×1080', ratio: 2400 / 1080, shellW: 368 },
+  { id: 'galaxy-s24', name: 'Galaxy S24', skin: 'galaxy-s24', spec: '6.2″ · 打孔 · 2340×1080', ratio: 2340 / 1080, shellW: 364 },
 ]
 const device = ref<Device>(DEVICES[0])
 const skinClass = computed(() => `nv-mdoc-skin-${device.value.skin}`)
@@ -70,7 +72,10 @@ function pick(d: Device) {
           <div
             class="nv-mdoc-phone vp-raw"
             :class="skinClass"
-            :style="{ '--nv-mdoc-ratio': String(device.ratio) }"
+            :style="{
+              '--nv-mdoc-ratio': String(device.ratio),
+              '--nv-mdoc-shell-w': `${device.shellW}px`,
+            }"
           >
             <div class="nv-mdoc-statusbar">
               <span class="nv-mdoc-time font-semibold tabular-nums">9:41</span>
@@ -156,8 +161,8 @@ function pick(d: Device) {
 
 /* ── shared phone shell ──────────────────────────────────────────────── */
 .nv-mdoc-phone {
-  width: 100%;
-  max-width: 360px;
+  width: var(--nv-mdoc-shell-w, 360px);
+  max-width: 100%;
   margin-inline: auto;
   border: 1px solid var(--border);
   border-radius: 28px;
@@ -196,7 +201,7 @@ function pick(d: Device) {
   /* screen height follows the device's real aspect ratio: height = shell width
      × (device px height / device px width), passed via --nv-mdoc-ratio, but
      never taller than the viewport minus the chrome around it. */
-  height: min(calc(360px * var(--nv-mdoc-ratio, 2.17)), calc(100vh - 11rem));
+  height: min(calc(var(--nv-mdoc-shell-w, 360px) * var(--nv-mdoc-ratio, 2.17)), calc(100vh - 11rem));
   overflow-y: auto;
   background: var(--background);
   scrollbar-width: thin;
@@ -288,19 +293,24 @@ function pick(d: Device) {
   right: 1.25rem;
 }
 .nv-mdoc-skin-iphonese .nv-mdoc-homebar {
-  height: 2.5rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .nv-mdoc-skin-iphonese .nv-mdoc-homebar::after {
-  /* Home button */
+  /* circular Home button with a subtle ring */
   content: '';
-  width: 2rem;
-  height: 2rem;
+  position: absolute;
   left: 50%;
-  bottom: 0.3rem;
+  bottom: 0.45rem;
   transform: translateX(-50%);
+  width: 1.9rem;
+  height: 1.9rem;
   border-radius: 9999px;
-  border: 2px solid color-mix(in oklch, var(--foreground) 30%, transparent);
-  background: transparent;
+  border: 2px solid color-mix(in oklch, var(--foreground) 32%, transparent);
+  background: color-mix(in oklch, var(--foreground) 6%, transparent);
+  box-shadow: inset 0 1px 1px color-mix(in oklch, black 8%, transparent);
 }
 .nv-mdoc-skin-iphonese .nv-mdoc-screen {
   height: 500px;
