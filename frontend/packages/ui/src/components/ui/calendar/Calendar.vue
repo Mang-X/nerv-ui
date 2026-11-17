@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CalendarRootEmits, CalendarRootProps } from 'reka-ui'
+import type { WeekDayFormat } from 'reka-ui/date'
 import type { HTMLAttributes } from 'vue'
 import { reactiveOmit } from '@vueuse/core'
 import { CalendarRoot, useForwardPropsEmits } from 'reka-ui'
