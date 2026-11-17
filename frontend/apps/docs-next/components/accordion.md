@@ -50,7 +50,7 @@ const multi = ref(['line', 'quality'])
 已展开 {{ multi.length }} 项：{{ multi.join('、') || '无' }}
 
 <Demo block>
-  <NvAccordion default-value="welcome" :collapsible="false">
+  <NvAccordion :default-value="['welcome']" :collapsible="false">
     <NvAccordionItem value="welcome" title="自定义标题插槽">
       <template #trigger>使用触发插槽自定义标题</template>
       展开这一项后当前项不能再次收起，因为 `collapsible` 关闭。
@@ -80,7 +80,7 @@ const multi = ref(['line', 'quality'])
 | `collapsible` | 唯一展开项是否可收起 | `boolean` | `true` |
 | `disabled` | 禁用整组 | `boolean` | `false` |
 | `keepMounted` | 收起时仍保留面板内容 | `boolean` | `false` |
-| `hiddenUntilFound` | 收起时对浏览器查找隐藏 | `boolean` | `false` |
+| `hiddenUntilFound` | 使用原生 `hidden="until-found"`，浏览器页内查找可展开命中内容 | `boolean` | `false` |
 
 ### NvAccordion 事件
 
