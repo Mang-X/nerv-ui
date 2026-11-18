@@ -101,11 +101,26 @@ rg -n "<button|<input|<select|<textarea" packages/{desktop,mobile,pad,screen}/sr
 - **弹层**：一律 `glass.surface`。进出场用 ui-sdk 的 `data-starting-style` /
   `data-ending-style` 配 CSS 过渡，时长取 `motion.duration*`。
 - **动效**：只用 CSS 过渡/动画和 ui-sdk 的 presence/gesture。不引 motion-v。
-  每个动画要有 `prefers-reduced-motion` 降级。
+  `prefers-reduced-motion` 的降级由 `theme/motion-reset.css` 统一收口（构建时追加到
+  `dist/style.css` 末尾），组件里不用逐个写。
 - **令牌**：只用 `@nerv-ui/theme/tokens.stylex` 的变量。不写裸色值，不引旧 `--nv-*`。
 - **图标**：只用 `NvIcon`。
 
-## 五、不做的
+## 五、现代基线
+
+本库只面向常青浏览器，不产出旧引擎的降级。
+
+- 构建目标由根目录 `.browserslistrc` 决定：各浏览器最新两个大版本。
+  lightningcss 因此不再生成 `lab()`/`color-mix` 的重复声明对。
+- 直接用最新特性，不为它们写兜底：`oklch()`、`color-mix()`、`:has()`、`@starting-style`、
+  `transition-behavior: allow-discrete`、`container queries`、`anchor positioning`、
+  `view transitions`、`popover`。
+- 不写厂商前缀。`backdrop-filter`、`mask-image`、`user-select` 在现代目标下都已无前缀；
+  只有浏览器专有的伪元素选择器（`::-webkit-scrollbar`、`::-webkit-search-cancel-button`）
+  和 Safari 专有属性（`-webkit-tap-highlight-color`）保留原样，因为它们没有标准替代。
+- 降级只在语义层面做（例如 `prefers-reduced-motion` 关掉位移），不为老浏览器做语法降级。
+
+## 六、不做的
 
 - Tailwind 类、`<style scoped>`、`@layer`、reka-ui、`clsx` / `tailwind-merge`、`@lucide/vue`。
 - 自己写状态机替代 ui-sdk 原语（见原则 B 的四步）。
@@ -113,7 +128,7 @@ rg -n "<button|<input|<select|<textarea" packages/{desktop,mobile,pad,screen}/sr
 - 从旧包 `@nerv-iip/*` 导入任何东西。
 - 拿「演示里用不到」当理由，把组件写成不可交互。
 
-## 六、待补原语
+## 七、待补原语
 
 前两步拼不出来、暂时用别的办法顶着的，登记在这里。
 
@@ -121,7 +136,7 @@ rg -n "<button|<input|<select|<textarea" packages/{desktop,mobile,pad,screen}/sr
 | --- | --- | --- | --- |
 | （暂无） | | | |
 
-## 七、验收
+## 八、验收
 
 - 四包各自 `pnpm --filter @nerv-ui/<pkg> typecheck` 和 `build` 通过，产出 `dist/style.css`。
 - docs-next 对应页面能用。

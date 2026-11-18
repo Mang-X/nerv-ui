@@ -37,7 +37,6 @@ export const glass = stylex.create({
   surface: {
     backgroundColor: `color-mix(in oklch, ${color.card} 82%, transparent)`,
     backdropFilter: 'blur(16px) saturate(1.6)',
-    WebkitBackdropFilter: 'blur(16px) saturate(1.6)',
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: color.border,

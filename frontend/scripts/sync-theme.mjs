@@ -11,7 +11,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const files = ['tokens.stylex.ts', 'shared.stylex.ts', 'icons.ts']
+const files = ['tokens.stylex.ts', 'shared.stylex.ts', 'icons.ts', 'motion-reset.css']
 // NvIcon.vue 只进四个组件包；docs 的 gen 目录只需要图标表，不编译 Vue 组件。
 const vueFiles = ['NvIcon.vue']
 const packageTargets = [

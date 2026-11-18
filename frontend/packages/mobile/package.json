@@ -15,7 +15,7 @@
     "./styles.css": "./dist/style.css"
   },
   "scripts": {
-    "build": "node ../../scripts/sync-theme.mjs && tsdown && node -e \"require('fs').cpSync('dist/assets/stylex.css','dist/style.css')\"",
+    "build": "node ../../scripts/sync-theme.mjs && tsdown && node -e \"const fs=require('fs');fs.cpSync('dist/assets/stylex.css','dist/style.css');fs.appendFileSync('dist/style.css', fs.readFileSync('src/theme/motion-reset.css','utf8'))\"",
     "typecheck": "vue-tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {},
