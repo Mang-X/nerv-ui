@@ -53,6 +53,30 @@ const getHref = (n) => `#/orders?page=${n}`
   <NvPagination :default-page="3" :page-count="10" size="md" />
 </Demo>
 
+## 附加控件
+
+<Demo block>
+  <NvPagination
+    v-model:page="totalPage"
+    :total="248"
+    :page-size="20"
+    show-total
+    :size-can-change="[10, 20, 50]"
+    show-jumper
+  />
+  <p style="margin: 10px 0 0">共 248 条 / 每页 20 条，当前第 {{ totalPage }} 页</p>
+</Demo>
+
+<Demo block>
+  <NvPagination v-model:page="page" :page-count="12" simple />
+  <p style="margin: 10px 0 0">精简模式：点中间的「页码 / 总页数」可直接输入跳转</p>
+</Demo>
+
+<Demo block>
+  <NvPagination :page-count="1" hide-on-single-page />
+  <p style="margin: 10px 0 0">只有一页且开启 hideOnSinglePage 时整块隐藏（这里没有分页器）</p>
+</Demo>
+
 ## API
 
 ### NvPagination 属性
@@ -73,13 +97,23 @@ const getHref = (n) => `#/orders?page=${n}`
 | `nextLabel` | 下一页按钮的无障碍名称 | `string` | `下一页` |
 | `firstLabel` | 首页按钮的无障碍名称 | `string` | `第一页` |
 | `lastLabel` | 末页按钮的无障碍名称 | `string` | `最后一页` |
-| `size` | 尺寸 | `sm \| md` | `md` |
+| `size` | 尺寸 | `sm \| md \| lg` | `md` |
+| `disabled` | 禁用整个分页器 | `boolean` | `false` |
+| `hideOnSinglePage` | 只有一页时隐藏 | `boolean` | `false` |
+| `showTotal` | 显示「共 N 条」；传函数可自定义文案 | `boolean \| (args) => string` | `false` |
+| `sizeCanChange` | 显示每页条数选择器；传数组直接指定选项 | `boolean \| number[]` | `false` |
+| `sizeOptions` | `sizeCanChange` 为 `true` 时的可选条数 | `number[]` | `[10, 20, 50, 100]` |
+| `pageSizeChangeResetPage` | 每页条数变化时重置到第 1 页 | `boolean` | `true` |
+| `showJumper` | 显示「跳至」输入框 | `boolean` | `false` |
+| `simple` | 精简模式 `‹ 2 / 12 ›` | `boolean` | `false` |
+| `simpleJumper` | 精简模式下允许点页码输入跳转 | `boolean` | `true` |
 
 ### NvPagination 事件
 
 | 事件 | 说明 |
 | --- | --- |
 | `update:page` | 当前页变化，参数为 `number` |
+| `pageSizeChange` | 每页条数变化，参数为 `(size, page)`；`page` 已按 `pageSizeChangeResetPage` 处理 |
 
 ### NvPagination 插槽
 
