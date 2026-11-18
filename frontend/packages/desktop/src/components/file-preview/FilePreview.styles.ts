@@ -5,6 +5,8 @@ export const styles = stylex.create({
   root: {
     position: 'relative',
     display: 'flex',
+    // 头部在上、预览区在下：根容器必须是纵向的，否则头部会被挤成左侧一栏。
+    flexDirection: 'column',
     width: '100%',
     minWidth: 0,
     overflow: 'hidden',
@@ -14,6 +16,13 @@ export const styles = stylex.create({
     borderRadius: shape.radius,
     backgroundColor: color.muted,
     fontFamily: typography.fontSans,
+  },
+  body: {
+    display: 'flex',
+    flex: 1,
+    minHeight: 0,
+    minWidth: 0,
+    overflow: 'hidden',
   },
   image: {
     display: 'block',

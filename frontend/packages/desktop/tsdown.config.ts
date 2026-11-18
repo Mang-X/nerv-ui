@@ -66,6 +66,7 @@ export default defineConfig({
     '@embedpdf/plugin-scroll',
     '@embedpdf/plugin-viewport',
     '@embedpdf/plugin-zoom',
+    '@embedpdf/models',
     '@silurus/ooxml',
   ],
 })

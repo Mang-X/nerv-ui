@@ -16,7 +16,11 @@ import wasmUrl from './assets/pdfium.wasm?url'
 import PdfPreviewDocument from './PdfPreviewDocument.vue'
 import { styles } from './viewer.styles'
 
-const props = defineProps<{ src: string }>()
+const props = defineProps<{
+  src: string
+  showToolbar?: boolean
+  showThumbnails?: boolean
+}>()
 
 const emit = defineEmits<{
   ready: []
@@ -206,6 +210,9 @@ watch(
     >
       <PdfPreviewDocument
         :document-id="provider.documentId"
+        :src="src"
+        :show-toolbar="showToolbar"
+        :show-thumbnails="showThumbnails"
         @ready="provider.ready"
         @error="provider.error"
       />

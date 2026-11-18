@@ -27,7 +27,8 @@
     "@embedpdf/plugin-scroll": "2.14.4",
     "@embedpdf/plugin-viewport": "2.14.4",
     "@embedpdf/plugin-zoom": "2.14.4",
-    "@silurus/ooxml": "0.72.2"
+    "@silurus/ooxml": "0.72.2",
+    "@embedpdf/models": "2.14.4"
   },
   "peerDependencies": {
     "vue": "^3.5.0",

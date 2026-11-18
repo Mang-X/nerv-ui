@@ -4,15 +4,22 @@ import { ZoomMode, useZoom } from '@embedpdf/plugin-zoom/vue'
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
+  DownloadIcon,
+  ExternalLinkIcon,
   Maximize2Icon,
+  MaximizeIcon,
+  RotateCwIcon,
   ZoomInIcon,
   ZoomOutIcon,
 } from '@lucide/vue'
 import * as stylex from '@stylexjs/stylex'
+import { useRegistry } from '@embedpdf/core/vue'
+import { setRotation } from '@embedpdf/core'
+import { Rotation } from '@embedpdf/models'
 import { computed, onBeforeUnmount, shallowRef } from 'vue'
 import { styles } from './viewer.styles'
 
-const props = defineProps<{ documentId: string }>()
+const props = defineProps<{ documentId: string; src?: string; title?: string }>()
 
 const { provides: scroll, state: scrollState } = useScroll(() => props.documentId)
 const { provides: zoom, state: zoomState } = useZoom(() => props.documentId)
@@ -22,6 +29,7 @@ const iconButtonSx = stylex.props(styles.iconButton)
 const labelSx = stylex.props(styles.label)
 const selectSx = stylex.props(styles.select)
 const spacerSx = stylex.props(styles.toolbarSpacer)
+const dividerSx = stylex.props(styles.divider)
 
 const currentPage = computed(() => scrollState.value.currentPage || 1)
 const totalPages = computed(() => scrollState.value.totalPages || 0)
@@ -68,6 +76,29 @@ function zoomOut() {
 
 function fitWidth() {
   zoom.value?.requestZoom(ZoomMode.FitWidth)
+}
+
+function fitPage() {
+  zoom.value?.requestZoom(ZoomMode.FitPage)
+}
+
+/** 页面旋转走核心 store 的 setRotation（90° 一档）。 */
+const { registry } = useRegistry()
+const rotation = computed<Rotation>(() => {
+  const state = registry.value?.getStore().getState()
+  return ((state as { rotation?: Rotation } | undefined)?.rotation ?? Rotation.Degree0)
+})
+
+/** 顺时针 90° 一档：0 → 90 → 180 → 270 → 0。 */
+function rotatePage() {
+  const store = registry.value?.getStore()
+  if (!store) return
+  const next = (rotation.value + 1) % 4
+  store.dispatch(setRotation(next as Rotation, props.documentId))
+}
+
+function openInNewWindow() {
+  if (props.src) window.open(props.src, '_blank', 'noopener,noreferrer')
 }
 
 onBeforeUnmount(() => {
@@ -138,5 +169,46 @@ onBeforeUnmount(() => {
     >
       <Maximize2Icon :size="16" aria-hidden="true" />
     </button>
+    <button
+      type="button"
+      aria-label="适配整页"
+      :class="iconButtonSx.className"
+      :style="iconButtonSx.style"
+      @click="fitPage"
+    >
+      <MaximizeIcon :size="16" aria-hidden="true" />
+    </button>
+    <button
+      type="button"
+      aria-label="旋转页面"
+      :class="iconButtonSx.className"
+      :style="iconButtonSx.style"
+      @click="rotatePage"
+    >
+      <RotateCwIcon :size="16" aria-hidden="true" />
+    </button>
+
+    <span :class="dividerSx.className" :style="dividerSx.style" aria-hidden="true" />
+
+    <button
+      type="button"
+      aria-label="在新窗口打开"
+      :class="iconButtonSx.className"
+      :style="iconButtonSx.style"
+      :data-disabled="src ? undefined : ''"
+      @click="openInNewWindow"
+    >
+      <ExternalLinkIcon :size="16" aria-hidden="true" />
+    </button>
+    <a
+      v-if="src"
+      :href="src"
+      download
+      aria-label="下载文件"
+      :class="iconButtonSx.className"
+      :style="iconButtonSx.style"
+    >
+      <DownloadIcon :size="16" aria-hidden="true" />
+    </a>
   </div>
 </template>

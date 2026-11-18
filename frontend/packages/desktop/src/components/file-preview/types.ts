@@ -9,6 +9,18 @@ export interface NvFilePreviewProps {
   contentType?: string
   /** Preview height in px. */
   height?: number
+  /** File size in bytes, shown as `类型 · 大小` in the header. */
+  sizeBytes?: number
+  /** Shows the header with the file name, type/size and open-source action. */
+  showHeader?: boolean
+  /** Shows the engine toolbar (page navigation, zoom, rotate). */
+  showToolbar?: boolean
+  /** Shows the PDF thumbnail rail. */
+  showThumbnails?: boolean
+  /** Replaces the preview body with a loading state. */
+  loading?: boolean
+  /** Message shown instead of the preview when loading fails. */
+  error?: string | null
   /** Called when an engine fails to load the document. */
   onError?: (message: string) => void
   /** Called when the preview is ready. */

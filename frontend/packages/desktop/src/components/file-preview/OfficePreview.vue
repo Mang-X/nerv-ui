@@ -8,7 +8,11 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch 
 import type { NvFilePreviewKind } from './types'
 import { styles } from './viewer.styles'
 
-const props = defineProps<{ src: string; kind: NvFilePreviewKind }>()
+const props = defineProps<{
+  src: string
+  kind: NvFilePreviewKind
+  showToolbar?: boolean
+}>()
 
 const emit = defineEmits<{
   ready: []
@@ -245,7 +249,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div data-slot="nv-file-preview-office" :class="rootSx.className" :style="rootSx.style">
-    <div :class="toolbarSx.className" :style="toolbarSx.style">
+    <div v-if="showToolbar !== false" :class="toolbarSx.className" :style="toolbarSx.style">
       <button
         type="button"
         aria-label="上一项"

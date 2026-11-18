@@ -2,6 +2,8 @@
 import { useDocumentState } from '@embedpdf/core/vue'
 import { DocumentContent } from '@embedpdf/plugin-document-manager/vue'
 import { Scroller, useScroll } from '@embedpdf/plugin-scroll/vue'
+import { useRenderCapability } from '@embedpdf/plugin-render/vue'
+import { shallowRef } from 'vue'
 import {
   useIsViewportGated,
   useViewportCapability,
@@ -13,7 +15,12 @@ import PdfPreviewRenderLayer from './PdfPreviewRenderLayer.vue'
 import PdfPreviewToolbar from './PdfPreviewToolbar.vue'
 import { styles } from './viewer.styles'
 
-const props = defineProps<{ documentId: string }>()
+const props = defineProps<{
+  documentId: string
+  src?: string
+  showToolbar?: boolean
+  showThumbnails?: boolean
+}>()
 
 const emit = defineEmits<{
   ready: []
@@ -31,7 +38,7 @@ const { plugin: viewportPlugin } = useViewportPlugin()
 const { provides: viewportCapability } = useViewportCapability()
 const viewportGap = computed(() => viewportCapability.value?.getViewportGap() ?? 10)
 const isGated = useIsViewportGated(() => props.documentId)
-const { provides: scrollCapability } = useScroll(() => props.documentId)
+const { provides: scrollCapability, state: scrollState } = useScroll(() => props.documentId)
 
 watch(
   [viewportPlugin, viewportElement, () => props.documentId],
@@ -96,6 +103,47 @@ watch(
 
 const documentState = useDocumentState(() => props.documentId)
 
+// —— 缩略图栏：只在 showThumbnails 打开时逐页渲染小图 ——
+const { provides: renderCapability } = useRenderCapability()
+const thumbUrls = shallowRef<Record<number, string>>({})
+let thumbOwner = 0
+
+async function renderThumbnails() {
+  const capability = renderCapability.value
+  const total = documentState.value?.document?.pages?.length ?? 0
+  if (!capability || !total || props.showThumbnails === false) return
+  const owner = ++thumbOwner
+  const next: Record<number, string> = {}
+  for (let pageIndex = 0; pageIndex < total; pageIndex++) {
+    const blob = await capability
+      .forDocument(props.documentId)
+      .renderPage({ pageIndex, options: { scaleFactor: 0.18, dpr: 1 } })
+      .toPromise()
+      .catch(() => null)
+    if (owner !== thumbOwner) {
+      if (blob) URL.revokeObjectURL(URL.createObjectURL(blob))
+      Object.values(next).forEach((url) => URL.revokeObjectURL(url))
+      return
+    }
+    if (!blob) continue
+    next[pageIndex] = URL.createObjectURL(blob)
+    thumbUrls.value = { ...next }
+  }
+}
+
+watch(
+  () => [props.documentId, props.showThumbnails, documentState.value?.status] as const,
+  ([, thumbs, status]) => {
+    if (thumbs === false || status !== 'loaded') return
+    void renderThumbnails()
+  },
+  { immediate: true },
+)
+
+function jumpToPage(pageNumber: number) {
+  scrollCapability.value?.scrollToPage({ pageNumber, behavior: 'smooth' })
+}
+
 watch(
   () => documentState.value?.status,
   (status) => {
@@ -117,8 +165,45 @@ watch(
     v-slot="{ isLoading, isError, isLoaded, documentState: slotState }"
   >
     <div v-if="isLoaded" :class="viewerSx.className" :style="viewerSx.style">
-      <PdfPreviewToolbar :document-id="documentId" />
-      <div :class="canvasSx.className" :style="canvasSx.style">
+      <PdfPreviewToolbar
+        v-if="showToolbar !== false"
+        :document-id="documentId"
+        :src="src"
+      />
+      <div style="display: flex; flex: 1; min-height: 0">
+      <aside
+        v-if="showThumbnails"
+        data-slot="nv-file-preview-pdf-thumbs"
+        :style="{
+          flexShrink: 0,
+          width: 96,
+          overflowY: 'auto',
+          padding: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 6,
+          borderRight: `1px solid var(--nx-border, rgba(255,255,255,.1))`,
+        }"
+      >
+        <button
+          v-for="(url, index) in thumbUrls"
+          :key="index"
+          type="button"
+          :aria-label="`跳到第 ${Number(index) + 1} 页`"
+          :style="{
+            padding: 2,
+            border: '1px solid transparent',
+            borderRadius: 4,
+            background: 'none',
+            cursor: 'pointer',
+            opacity: scrollState.currentPage === Number(index) + 1 ? 1 : 0.6,
+          }"
+          @click="jumpToPage(Number(index) + 1)"
+        >
+          <img :src="url" :alt="`第 ${Number(index) + 1} 页`" style="display: block; width: 100%; border-radius: 2px" />
+        </button>
+      </aside>
+      <div :class="canvasSx.className" :style="[canvasSx.style, { flex: 1 }]">
         <div
           ref="viewportElement"
           data-slot="nv-file-preview-pdf-viewport"
@@ -143,6 +228,7 @@ watch(
             </template>
           </Scroller>
         </div>
+      </div>
       </div>
     </div>
     <div v-else-if="isError" :class="statusErrorSx.className" :style="statusErrorSx.style">

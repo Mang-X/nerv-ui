@@ -147,6 +147,9 @@ importers:
       '@embedpdf/engines':
         specifier: 2.14.4
         version: 2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3))
+      '@embedpdf/models':
+        specifier: 2.14.4
+        version: 2.14.4
       '@embedpdf/plugin-document-manager':
         specifier: 2.14.4
         version: 2.14.4(@embedpdf/core@2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3)))(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3))

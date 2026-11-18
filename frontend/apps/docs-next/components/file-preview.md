@@ -32,7 +32,9 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
     src="/sample-report.pdf"
     file-name="检验报告.pdf"
     content-type="application/pdf"
-    :height="420"
+    :size-bytes="482000"
+    show-thumbnails
+    :height="480"
   />
 </Demo>
 
@@ -55,6 +57,15 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
 </Demo>
 
 <Demo block>
+  <NvFilePreview
+    :src="sampleSvg"
+    file-name="现场照片.jpg"
+    :show-header="false"
+    :height="260"
+  />
+</Demo>
+
+<Demo block>
   <NvFilePreview file-name="现场照片.jpg" :height="160" />
 </Demo>
 
@@ -67,7 +78,13 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
 | `src` | 文件地址，可用 blob / object URL；图片、PDF 与 OOXML 文档会内联渲染 | `string` | — |
 | `fileName` | 显示名称；缺少 `contentType` 时也用于推断类型 | `string` | — |
 | `contentType` | MIME 类型，如 `image/png`、`application/pdf` | `string` | — |
-| `height` | 预览区高度（px），最小 120 | `number` | `400` |
+| `height` | 预览区高度（px），最小 120 | `number` | `420` |
+| `sizeBytes` | 文件大小（字节），头部显示为 `类型 · 大小` | `number` | — |
+| `showHeader` | 显示头部（文件名、类型/大小、新窗口打开） | `boolean` | `true` |
+| `showToolbar` | 显示引擎工具条（页码、缩放、旋转、下载） | `boolean` | `true` |
+| `showThumbnails` | 显示 PDF 缩略图栏 | `boolean` | `false` |
+| `loading` | 用加载态替代预览体 | `boolean` | `false` |
+| `error` | 用错误态替代预览体 | `string \| null` | `null` |
 
 ### NvFilePreview 事件
 
@@ -75,6 +92,7 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
 | --- | --- |
 | `ready` | 引擎渲染就绪，参数为识别出的文件种类 |
 | `error` | 引擎加载或解析失败，参数为错误信息 |
+| `openSource` | 请求在新窗口打开源文件，参数为 `src` |
 
 ### NvFilePreview 插槽
 
