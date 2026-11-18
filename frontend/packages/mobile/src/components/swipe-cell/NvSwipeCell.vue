@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { bindDrag } from '@ui-sdk/core'
+import { rubberBand } from '@ui-sdk/core/gesture'
 import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 import { focus } from '../../theme/shared.stylex'
 import { styles } from './SwipeCell.styles'
 import type { MobileSwipeAction, MobileSwipeCellProps } from './types'
@@ -23,9 +25,9 @@ const emit = defineEmits<{
 
 const offset = ref(0)
 const dragging = ref(false)
-let startX = 0
+let stopDrag: (() => void) | undefined
 let startOffset = 0
-let pointerId: number | null = null
+onBeforeUnmount(() => stopDrag?.())
 
 const panelWidth = computed(() => props.actions.length * props.actionWidth)
 const sign = computed(() => (props.side === 'end' ? -1 : 1))
@@ -51,34 +53,47 @@ function actionSx(action: MobileSwipeAction) {
   )
 }
 
-function clamp(value: number) {
-  if (props.side === 'end') return Math.min(0, Math.max(-panelWidth.value, value))
-  return Math.max(0, Math.min(panelWidth.value, value))
-}
-
+/**
+ * 手势交给 ui-sdk 的 bindDrag：阈值判断、每帧采样、指针丢失与 Escape 取消
+ * 都由它负责。越界阻力用同一 foundation 的 rubberBand。
+ */
 function onPointerDown(event: PointerEvent) {
-  if (props.disabled) return
-  pointerId = event.pointerId
-  startX = event.clientX
+  if (props.disabled || event.button !== 0) return
+  const el = event.currentTarget as HTMLElement | null
+  if (!el) return
   startOffset = offset.value
-  dragging.value = false
-  ;(event.currentTarget as HTMLElement | null)?.setPointerCapture?.(event.pointerId)
+  stopDrag?.()
+  stopDrag = bindDrag(el, event, {
+    threshold: 6,
+    onStart: () => {
+      dragging.value = true
+      return true
+    },
+    onMove: (sample) => {
+      // 有效行程是 [0, -panelWidth]；超出的那一段用橡皮筋衰减，而不是硬夹住。
+      const raw = startOffset + sample.x
+      const limit = panelWidth.value
+      const overshoot = raw > 0 ? raw : raw < -limit ? -raw - limit : 0
+      if (!overshoot) {
+        offset.value = raw
+        return
+      }
+      const shown = rubberBand(overshoot, limit)
+      offset.value = raw > 0 ? shown : -limit - shown
+    },
+    onEnd: () => {
+      dragging.value = false
+      stopDrag = undefined
+      settle()
+    },
+  })
 }
 
-function onPointerMove(event: PointerEvent) {
-  if (props.disabled || pointerId !== event.pointerId) return
-  const delta = event.clientX - startX
-  if (!dragging.value && Math.abs(delta) < 8) return
-  dragging.value = true
-  offset.value = clamp(startOffset + delta)
-}
-
-function onPointerUp(event: PointerEvent) {
-  if (pointerId !== event.pointerId) return
-  pointerId = null
+/** 松手后吸附到「完全打开」或「关闭」。 */
+function settle() {
   const wasOpen = isOpen.value
-  dragging.value = false
-  const resting = Math.abs(offset.value) > panelWidth.value / 2 ? sign.value * panelWidth.value : 0
+  const resting =
+    Math.abs(offset.value) > panelWidth.value / 2 ? sign.value * panelWidth.value : 0
   offset.value = resting
   if (wasOpen !== (resting !== 0)) emit('open-change', resting !== 0)
 }
@@ -122,9 +137,7 @@ defineExpose({ close })
       :class="contentSx.className"
       :style="[contentSx.style, contentStyle]"
       @pointerdown="onPointerDown"
-      @pointermove="onPointerMove"
-      @pointerup="onPointerUp"
-      @pointercancel="onPointerUp"
+      style="touch-action: pan-y"
     >
       <slot />
     </div>

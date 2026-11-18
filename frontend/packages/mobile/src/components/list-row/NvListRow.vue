@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
 import { computed, useAttrs } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -50,13 +51,12 @@ function onClick(event: MouseEvent) {
 </script>
 
 <template>
-  <component
-    :is="tag"
+  <!-- 链接分支：<a> 语义完整，ui-sdk 无 link 原语 -->
+  <a
+    v-if="tag === 'a'"
     :href="to"
-    :type="tag === 'button' ? 'button' : undefined"
-    :disabled="tag === 'button' ? disabled : undefined"
     :aria-disabled="disabled || undefined"
-    :tabindex="disabled && tag === 'a' ? -1 : undefined"
+    :tabindex="disabled ? -1 : undefined"
     :class="sx.className"
     :style="sx.style"
     @click="onClick"
@@ -81,5 +81,59 @@ function onClick(event: MouseEvent) {
     <span v-if="$slots.trailing" :class="stylex.props(styles.trailing).className">
       <slot name="trailing" />
     </span>
-  </component>
+  </a>
+
+  <!-- 可点分支：ui-sdk Button 承担 disabled / 键盘 / 点击语义 -->
+  <Button
+    v-else-if="tag === 'button'"
+    type="button"
+    :disabled="disabled"
+    :class="sx.className"
+    :style="sx.style"
+    @click="onClick"
+  >
+    <span v-if="$slots.leading" :class="stylex.props(styles.leading).className">
+      <slot name="leading" />
+    </span>
+    <span :class="stylex.props(styles.body).className">
+      <span v-if="title || meta || $slots.title || $slots.meta" :class="stylex.props(styles.titleRow).className">
+        <span v-if="title || $slots.title" :class="stylex.props(styles.title).className">
+          <slot name="title">{{ title }}</slot>
+        </span>
+        <span v-if="meta || $slots.meta" :class="stylex.props(styles.meta).className">
+          <slot name="meta">{{ meta }}</slot>
+        </span>
+      </span>
+      <span v-if="description || $slots.description" :class="stylex.props(styles.description).className">
+        <slot name="description">{{ description }}</slot>
+      </span>
+      <slot />
+    </span>
+    <span v-if="$slots.trailing" :class="stylex.props(styles.trailing).className">
+      <slot name="trailing" />
+    </span>
+  </Button>
+
+  <div v-else :class="sx.className" :style="sx.style">
+    <span v-if="$slots.leading" :class="stylex.props(styles.leading).className">
+      <slot name="leading" />
+    </span>
+    <span :class="stylex.props(styles.body).className">
+      <span v-if="title || meta || $slots.title || $slots.meta" :class="stylex.props(styles.titleRow).className">
+        <span v-if="title || $slots.title" :class="stylex.props(styles.title).className">
+          <slot name="title">{{ title }}</slot>
+        </span>
+        <span v-if="meta || $slots.meta" :class="stylex.props(styles.meta).className">
+          <slot name="meta">{{ meta }}</slot>
+        </span>
+      </span>
+      <span v-if="description || $slots.description" :class="stylex.props(styles.description).className">
+        <slot name="description">{{ description }}</slot>
+      </span>
+      <slot />
+    </span>
+    <span v-if="$slots.trailing" :class="stylex.props(styles.trailing).className">
+      <slot name="trailing" />
+    </span>
+  </div>
 </template>

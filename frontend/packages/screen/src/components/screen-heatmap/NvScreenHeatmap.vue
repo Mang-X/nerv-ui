@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ui-sdk/vue/tooltip'
 import * as stylex from '@stylexjs/stylex'
 import { computed, shallowRef, watch } from 'vue'
 import { darkTheme } from '../../theme/tokens.stylex'
@@ -53,12 +54,11 @@ const legendStyles: Record<HeatmapTone, stylex.StyleXStyles> = {
   danger: styles.legendDanger,
 }
 
-const focusedKey = shallowRef<string | number | null>(null)
-const hoveredKey = shallowRef<string | number | null>(null)
+/** ui-sdk Tooltip 负责 hover/focus/Escape；这里只记当前打开的那格。 */
+const activeKey = shallowRef<string | number | null>(null)
 
 const rootSx = computed(() => stylex.props(darkTheme, styles.root))
 
-const activeKey = computed(() => hoveredKey.value ?? focusedKey.value)
 const active = computed(() => props.cells.find((cell) => cell.key === activeKey.value) ?? null)
 
 // A malformed scale is unknown as a whole: duplicate or non-finite bounds never
@@ -108,24 +108,18 @@ function valueSx(band: ScreenHeatmapBand | null) {
   return stylex.props(styles.value, band && valueStyles[band.tone])
 }
 
-function clearFocus(key: string | number) {
-  if (focusedKey.value === key) focusedKey.value = null
-}
 
-function clearHover(key: string | number) {
-  if (hoveredKey.value === key) hoveredKey.value = null
-}
+
+
 
 function dismiss() {
-  focusedKey.value = null
-  hoveredKey.value = null
+  activeKey.value = null
 }
 
 watch(
   () => props.cells.map((cell) => cell.key),
   (keys) => {
-    if (focusedKey.value !== null && !keys.includes(focusedKey.value)) focusedKey.value = null
-    if (hoveredKey.value !== null && !keys.includes(hoveredKey.value)) hoveredKey.value = null
+    if (activeKey.value !== null && !keys.includes(activeKey.value)) activeKey.value = null
   },
   { flush: 'sync' },
 )
@@ -169,22 +163,21 @@ const tipText = computed(() => {
       :style="[gridSx.style, { gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }]"
       :aria-label="ariaLabel"
     >
-      <li
-        v-for="cell in renderCells"
-        :key="cell.key"
-        :class="cellSx(cell.band).className"
-        :style="cellSx(cell.band).style"
-        :data-heatmap-cell="cell.key"
-        tabindex="0"
-        :aria-label="`${cell.label} · ${cell.value} · ${cell.bandLabel}`"
-        @mouseenter="hoveredKey = cell.key"
-        @mouseleave="clearHover(cell.key)"
-        @focus="focusedKey = cell.key"
-        @blur="clearFocus(cell.key)"
-        @keydown.esc="dismiss"
-      >
-        <span :class="valueSx(cell.band).className" :style="valueSx(cell.band).style">{{ cell.value }}</span>
-        <span :class="stylex.props(styles.cellLabel).className">{{ cell.label }}</span>
+      <li v-for="cell in renderCells" :key="cell.key" :data-heatmap-cell="cell.key">
+        <!-- hover / focus / Escape 都由 ui-sdk Tooltip 处理，不再自维护悬停状态 -->
+        <Tooltip @update:open="(next: boolean) => (activeKey = next ? cell.key : null)">
+          <TooltipTrigger as-child>
+            <span
+              :class="cellSx(cell.band).className"
+              :style="cellSx(cell.band).style"
+              :aria-label="`${cell.label} · ${cell.value} · ${cell.bandLabel}`"
+            >
+              <span :class="valueSx(cell.band).className" :style="valueSx(cell.band).style">{{ cell.value }}</span>
+              <span :class="stylex.props(styles.cellLabel).className">{{ cell.label }}</span>
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>{{ cell.label }} · {{ cell.value }} · {{ cell.bandLabel }}</TooltipContent>
+        </Tooltip>
       </li>
     </ul>
     <p v-if="!renderCells.length" :class="stylex.props(styles.empty).className" role="status">
@@ -194,6 +187,5 @@ const tipText = computed(() => {
       <span>{{ axisStart }}</span>
       <span>{{ axisEnd }}</span>
     </div>
-    <p v-if="active" :class="stylex.props(styles.tip).className" role="tooltip">{{ tipText }}</p>
   </div>
 </template>

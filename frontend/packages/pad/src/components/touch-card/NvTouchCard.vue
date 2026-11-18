@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
-import { computed, ref, useAttrs } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { focus } from '../../theme/shared.stylex'
 import { omitClassStyle } from '../../internal/attrs'
 import { styles } from './TouchCard.styles'
@@ -18,23 +19,8 @@ const props = withDefaults(defineProps<TouchCardProps>(), {
 })
 
 const attrs = useAttrs()
-const root = ref<HTMLElement | null>(null)
 const pressable = computed(() => props.interactive && !props.disabled)
 const forwardedAttrs = computed(() => omitClassStyle(attrs))
-
-function onKeydown(event: KeyboardEvent) {
-  if (!pressable.value) return
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault()
-    root.value?.click()
-  }
-}
-
-function onClick(event: MouseEvent) {
-  if (!props.disabled) return
-  event.preventDefault()
-  event.stopImmediatePropagation()
-}
 
 const headerSx = computed(() =>
   stylex.props(styles.header, props.padding === 'lg' && styles.headerLg),
@@ -61,16 +47,43 @@ const rootSx = computed(() =>
 </script>
 
 <template>
-  <div
-    ref="root"
+  <!-- 可点卡片：ui-sdk Button 提供 Enter/Space、disabled 与点击语义 -->
+  <Button
+    v-if="pressable"
     v-bind="forwardedAttrs"
-    :role="pressable ? 'button' : undefined"
-    :tabindex="pressable ? 0 : undefined"
+    type="button"
+    :class="[rootSx.className, $attrs.class]"
+    :style="[rootSx.style, $attrs.style]"
+  >
+    <header
+      v-if="title || subtitle || $slots.title"
+      :class="headerSx.className"
+      :style="headerSx.style"
+    >
+      <div :class="titleRowSx.className" :style="titleRowSx.style">
+        <h3 v-if="title || $slots.title" :class="titleSx.className" :style="titleSx.style">
+          <slot name="title">{{ title }}</slot>
+        </h3>
+        <slot name="header-actions" />
+      </div>
+      <p v-if="subtitle || $slots.subtitle" :class="subtitleSx.className" :style="subtitleSx.style">
+        <slot name="subtitle">{{ subtitle }}</slot>
+      </p>
+    </header>
+    <div v-if="$slots.default" :class="contentSx.className" :style="contentSx.style">
+      <slot />
+    </div>
+    <footer v-if="$slots.footer" :class="footerSx.className" :style="footerSx.style">
+      <slot name="footer" />
+    </footer>
+  </Button>
+
+  <div
+    v-else
+    v-bind="forwardedAttrs"
     :aria-disabled="disabled || undefined"
     :class="[rootSx.className, $attrs.class]"
     :style="[rootSx.style, $attrs.style]"
-    @keydown="onKeydown"
-    @click="onClick"
   >
     <header
       v-if="title || subtitle || $slots.title"
