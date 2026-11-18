@@ -30,7 +30,7 @@ export const styles = stylex.create({
   },
   interactive: {
     cursor: 'pointer',
-    ':active': { backgroundColor: color.muted },
+    ':active': { backgroundColor: color.mutedStrong },
   },
   disabled: {
     cursor: 'not-allowed',

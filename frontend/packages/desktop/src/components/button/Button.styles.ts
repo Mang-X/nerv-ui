@@ -20,7 +20,9 @@ export const styles = stylex.create({
     userSelect: 'none',
     outlineStyle: 'none',
     transitionProperty: 'background-color, border-color, box-shadow, transform, color',
-    ':hover:not(:disabled)': { backgroundColor: color.muted },
+    // 悬停统一用 mutedStrong（比 muted 深一档）。用 muted 的话，次级按钮
+    // 静止态本身就是 muted，hover 完全没有反馈。
+    ':hover:not(:disabled)': { backgroundColor: color.mutedStrong },
     ':focus-visible': {
       borderColor: color.brand,
       boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
@@ -33,11 +35,13 @@ export const styles = stylex.create({
   primary: {
     backgroundColor: color.brand,
     color: color.brandFg,
+    ':hover:not(:disabled)': { backgroundColor: color.brandHover },
   },
+  // 次级：无描边，靠 muted 填充和 card 表面区分（对比 ≈1.20）。加描边是
+  // 用线补色阶的洞——表面层级拉开后不需要它。
   secondary: {
     backgroundColor: color.muted,
     color: color.fg,
-    borderColor: color.border,
   },
 
   outline: {
@@ -48,12 +52,11 @@ export const styles = stylex.create({
   ghost: {
     backgroundColor: 'transparent',
     color: color.fg,
-    // 亮色下纯透明按钮几乎不可见；hover 给浅底 + 细边，让可点区域明确。
-    ':hover:not(:disabled)': { backgroundColor: color.muted, borderColor: color.border },
   },
   danger: {
     backgroundColor: color.danger,
     color: color.dangerFg,
+    ':hover:not(:disabled)': { backgroundColor: color.dangerHover },
   },
   link: {
     backgroundColor: 'transparent',
@@ -67,4 +70,3 @@ export const styles = stylex.create({
   lg: { height: 42, paddingInline: 18, fontSize: 15 },
   block: { width: '100%' },
 })
-

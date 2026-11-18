@@ -61,7 +61,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, border-color, box-shadow, color',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     '[data-disabled]': { opacity: 0.4, cursor: 'default' },
   },
   previous: {

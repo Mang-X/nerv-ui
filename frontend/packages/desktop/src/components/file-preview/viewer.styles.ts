@@ -96,7 +96,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'background-color, color, box-shadow',
     transitionDuration: motion.durationFast,
-    ':hover': { backgroundColor: color.muted, color: color.fg },
+    ':hover': { backgroundColor: color.mutedStrong, color: color.fg },
     '[data-disabled]': { opacity: 0.4, cursor: 'default' },
   },
   label: {

@@ -59,7 +59,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, color, border-color',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover:not(:disabled)': { backgroundColor: color.muted },
+    ':hover:not(:disabled)': { backgroundColor: color.mutedStrong },
     ':active:not(:disabled)': { transform: 'scale(0.98)' },
     ':disabled': { cursor: 'not-allowed', opacity: 0.45 },
   },

@@ -94,7 +94,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, color',
     transitionDuration: motion.durationFast,
     ':last-child': { borderBottomWidth: 0 },
-    ':active:not(:disabled)': { backgroundColor: color.muted },
+    ':active:not(:disabled)': { backgroundColor: color.mutedStrong },
     ':disabled': { cursor: 'not-allowed', opacity: 0.45 },
   },
   itemDanger: {
@@ -147,6 +147,6 @@ export const styles = stylex.create({
     fontWeight: 600,
     cursor: 'pointer',
     WebkitTapHighlightColor: 'transparent',
-    ':active': { backgroundColor: color.muted },
+    ':active': { backgroundColor: color.mutedStrong },
   },
 })

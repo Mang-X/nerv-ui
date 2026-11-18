@@ -71,7 +71,7 @@ export const styles = stylex.create({
     transitionProperty: 'color, background-color',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { color: color.fg, backgroundColor: color.muted },
+    ':hover': { color: color.fg, backgroundColor: color.mutedStrong },
     '[data-open]': { color: color.brand, backgroundColor: color.brandSoft },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
   },
@@ -90,7 +90,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'color, background-color',
     transitionDuration: motion.durationFast,
-    ':hover': { color: color.fg, backgroundColor: color.muted },
+    ':hover': { color: color.fg, backgroundColor: color.mutedStrong },
     '[data-empty]': { display: 'none' },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
   },
@@ -115,7 +115,7 @@ export const styles = stylex.create({
     gap: 4,
   },
   // 年份 / 月份是两个原生 select：日历头部改成可直接跳月的控件，
-    // 而不是只能逐月翻页。样式压低到和导航按钮同级。
+  // 而不是只能逐月翻页。样式压低到和导航按钮同级。
   select: {
     flex: 1,
     // 双月视图下头部很长，月份下拉不该被拉成一条；单月视图仍能撑满剩余宽度。
@@ -155,8 +155,8 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'background-color, color',
     transitionDuration: motion.durationFast,
-    ':hover': { backgroundColor: color.muted },
-    ':focus-visible': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
+    ':focus-visible': { backgroundColor: color.mutedStrong },
   },
   headingRow: {
     display: 'flex',
@@ -189,8 +189,8 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'background-color, color',
     transitionDuration: motion.durationFast,
-    ':hover': { backgroundColor: color.muted },
-    ':focus-visible': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
+    ':focus-visible': { backgroundColor: color.mutedStrong },
   },
   panelCellActive: {
     backgroundColor: color.brand,
@@ -225,7 +225,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'color, background-color',
     transitionDuration: motion.durationFast,
-    ':hover': { color: color.fg, backgroundColor: color.muted },
+    ':hover': { color: color.fg, backgroundColor: color.mutedStrong },
     '[data-disabled]': { opacity: 0.4, cursor: 'not-allowed' },
   },
   grids: {
@@ -270,7 +270,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, color, box-shadow',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     // Attribute rules come after :hover so the highlighted state wins on hover.
     '[data-outside]': { color: color.mutedFg, opacity: 0.4 },
     '[data-unavailable]': { color: color.mutedFg, textDecorationLine: 'line-through' },

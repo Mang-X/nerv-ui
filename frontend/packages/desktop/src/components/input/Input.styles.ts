@@ -69,7 +69,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'color, background-color',
     transitionDuration: motion.durationFast,
-    ':hover': { color: color.fg, backgroundColor: color.muted },
+    ':hover': { color: color.fg, backgroundColor: color.mutedStrong },
     ':disabled': { cursor: 'not-allowed', opacity: 0.5 },
   },
 })

@@ -79,7 +79,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'background-color, border-color, box-shadow',
     transitionDuration: motion.durationFast,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
   },
   list: {
@@ -106,7 +106,7 @@ export const styles = stylex.create({
     animationTimingFunction: motion.easeOut,
     animationFillMode: 'backwards',
     '@media (prefers-reduced-motion: reduce)': { animationDuration: '0ms' },
-    ':hover': { backgroundColor: color.mutedFg, boxShadow: `inset 0 0 0 1px ${color.border}` },
+    ':hover': { backgroundColor: color.mutedStrong },
     '[data-disabled]': { opacity: 0.5 },
   },
   listEmpty: {

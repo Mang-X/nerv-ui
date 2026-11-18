@@ -100,7 +100,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'background-color, color',
     transitionDuration: motion.durationFast,
-    '[data-highlighted]': { backgroundColor: color.muted },
+    '[data-highlighted]': { backgroundColor: color.mutedStrong },
     '[data-selected]': { color: color.brand },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
   },

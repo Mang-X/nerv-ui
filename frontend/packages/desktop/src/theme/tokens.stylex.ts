@@ -5,17 +5,24 @@ import * as stylex from '@stylexjs/stylex'
  * typed CSS custom properties shared across the four form-factor packages.
  */
 export const color = stylex.defineVars({
-  bg: 'oklch(0.985 0 0)',
-  fg: 'oklch(0.145 0 0)',
+  // 表面三层：canvas（bg）< 控件填充（muted）< chrome/卡片（card）。
+  // 层级靠亮度差表达，不靠描边；控件在 card 上的对比 ≈1.20，肉眼可辨。
+  bg: 'oklch(0.972 0.004 258)',
+  fg: 'oklch(0.205 0.016 262)',
   card: 'oklch(1 0 0)',
-  muted: 'oklch(0.97 0 0)',
-  mutedFg: 'oklch(0.556 0 0)',
-  border: 'oklch(0.922 0 0)',
-  brand: 'oklch(0.54 0.16 256)',
-  brandFg: 'oklch(0.985 0 0)',
-  brandSoft: 'oklch(0.54 0.16 256 / 0.14)',
-  danger: 'oklch(0.577 0.245 27.3)',
-  dangerFg: 'oklch(0.985 0 0)',
+  muted: 'oklch(0.944 0.007 258)',
+  // 悬停/按下的填充。和 muted 是同一族，只降亮度——次级按钮的 hover 必须能
+  // 和它的静止态分开，共用 muted 会让 hover 完全没有反馈。
+  mutedStrong: 'oklch(0.905 0.01 258)',
+  mutedFg: 'oklch(0.50 0.018 260)',
+  border: 'oklch(0.90 0.008 258)',
+  brand: 'oklch(0.548 0.212 262)',
+  brandHover: 'oklch(0.492 0.205 262)',
+  brandFg: 'oklch(1 0 0)',
+  brandSoft: 'oklch(0.548 0.212 262 / 0.12)',
+  danger: 'oklch(0.575 0.205 26)',
+  dangerHover: 'oklch(0.52 0.2 26)',
+  dangerFg: 'oklch(1 0 0)',
 })
 
 export const shape = stylex.defineVars({
@@ -34,17 +41,20 @@ export const motion = stylex.defineVars({
 
 /** Dark theme: swap only the surface/text/border family; brand stays tinted. */
 export const darkTheme = stylex.createTheme(color, {
-  bg: 'oklch(0.145 0 0)',
-  fg: 'oklch(0.985 0 0)',
-  card: 'oklch(0.205 0 0)',
-  muted: 'oklch(0.269 0 0)',
-  mutedFg: 'oklch(0.708 0 0)',
-  border: 'oklch(1 0 0 / 0.1)',
-  brand: 'oklch(0.64 0.15 256)',
-  brandFg: 'oklch(0.145 0 0)',
-  brandSoft: 'oklch(0.64 0.15 256 / 0.18)',
-  danger: 'oklch(0.704 0.191 22.2)',
-  dangerFg: 'oklch(0.145 0 0)',
+  bg: 'oklch(0.150 0.006 262)',
+  fg: 'oklch(0.975 0.002 260)',
+  card: 'oklch(0.205 0.007 262)',
+  muted: 'oklch(0.278 0.009 262)',
+  mutedStrong: 'oklch(0.330 0.011 262)',
+  mutedFg: 'oklch(0.720 0.012 260)',
+  border: 'oklch(0.310 0.010 262)',
+  brand: 'oklch(0.655 0.175 260)',
+  brandHover: 'oklch(0.715 0.16 260)',
+  brandFg: 'oklch(0.150 0.006 262)',
+  brandSoft: 'oklch(0.655 0.175 260 / 0.18)',
+  danger: 'oklch(0.700 0.180 24)',
+  dangerHover: 'oklch(0.755 0.165 24)',
+  dangerFg: 'oklch(0.150 0.006 262)',
 })
 
 export const elevation = stylex.defineVars({

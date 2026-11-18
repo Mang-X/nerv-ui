@@ -36,7 +36,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, color',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     '[data-selected]': {
       backgroundColor: color.brandSoft,
       color: color.fg,

@@ -27,7 +27,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, border-color, box-shadow, color, transform',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     // 按下瞬间的物理反馈：轻微内缩，松手回落由过渡完成。
     ':active': { transform: 'scale(0.96)' },
     '[data-pressed]': {

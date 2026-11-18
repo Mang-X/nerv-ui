@@ -25,8 +25,7 @@ export const styles = stylex.create({
     flex: 1,
     height: 4,
     borderRadius: 999,
-    backgroundColor: color.muted,
-    boxShadow: `inset 0 0 0 1px ${color.border}`,
+    backgroundColor: color.mutedStrong,
     overflow: 'hidden',
   },
   indicator: {

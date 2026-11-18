@@ -64,7 +64,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, color, box-shadow',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted, color: color.fg },
+    ':hover': { backgroundColor: color.mutedStrong, color: color.fg },
   },
   toggleIcon: {
     transitionProperty: 'transform',
@@ -117,7 +117,7 @@ export const styles = stylex.create({
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
     ':hover:not([data-disabled]):not([data-active])': {
-      backgroundColor: color.muted,
+      backgroundColor: color.mutedStrong,
       color: color.fg,
     },
     '[data-active]': {

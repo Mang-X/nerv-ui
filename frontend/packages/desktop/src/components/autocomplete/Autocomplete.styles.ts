@@ -59,7 +59,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'color, background-color',
     transitionDuration: motion.durationFast,
-    ':hover': { color: color.fg, backgroundColor: color.muted },
+    ':hover': { color: color.fg, backgroundColor: color.mutedStrong },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
   },
   content: {
@@ -111,7 +111,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     transitionProperty: 'background-color, color',
     transitionDuration: motion.durationFast,
-    '[data-highlighted]': { backgroundColor: color.muted },
+    '[data-highlighted]': { backgroundColor: color.mutedStrong },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
   },
   itemText: {

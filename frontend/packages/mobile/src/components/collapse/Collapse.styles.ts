@@ -32,7 +32,7 @@ export const styles = stylex.create({
     WebkitTapHighlightColor: 'transparent',
     transitionProperty: 'background-color',
     transitionDuration: motion.durationFast,
-    ':active:not(:disabled)': { backgroundColor: color.muted },
+    ':active:not(:disabled)': { backgroundColor: color.mutedStrong },
     ':disabled': { cursor: 'not-allowed', opacity: 0.5 },
   },
   body: {

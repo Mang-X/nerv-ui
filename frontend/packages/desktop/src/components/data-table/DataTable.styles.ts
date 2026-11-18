@@ -70,7 +70,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     ':last-child': { borderBottomWidth: 0 },
     '[data-selected]': { backgroundColor: color.brandSoft },
   },

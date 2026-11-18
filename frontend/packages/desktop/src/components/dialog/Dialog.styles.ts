@@ -25,7 +25,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, border-color, box-shadow',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     ':disabled': { opacity: 0.5, cursor: 'not-allowed' },
   },
   backdrop: {
@@ -91,7 +91,7 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, border-color, box-shadow',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     ':disabled': { opacity: 0.5, cursor: 'not-allowed' },
   },
 })

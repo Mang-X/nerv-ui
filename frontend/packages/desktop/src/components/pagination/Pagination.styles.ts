@@ -45,7 +45,7 @@ export const styles = stylex.create({
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
     ':hover:not([data-current]):not([data-disabled])': {
-      backgroundColor: color.muted,
+      backgroundColor: color.mutedStrong,
       color: color.fg,
     },
     '[data-current]': {
@@ -74,7 +74,7 @@ export const styles = stylex.create({
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
     ':hover:not([data-disabled])': {
-      backgroundColor: color.muted,
+      backgroundColor: color.mutedStrong,
       color: color.fg,
     },
     '[data-disabled]': {
@@ -139,7 +139,7 @@ export const styles = stylex.create({
     transitionProperty: 'border-color, background-color, box-shadow',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     ':focus-visible': {
       borderColor: color.brand,
       boxShadow: `0 0 0 1px ${color.brand}`,
@@ -202,7 +202,7 @@ export const styles = stylex.create({
     textAlign: 'center',
     cursor: 'pointer',
     outlineStyle: 'none',
-    ':hover': { backgroundColor: color.muted },
+    ':hover': { backgroundColor: color.mutedStrong },
     ':focus-visible': { boxShadow: `0 0 0 1px ${color.brand}` },
   },
 })
