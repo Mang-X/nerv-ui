@@ -238,7 +238,9 @@ export const styles = stylex.create({
     width: 224,
     tableLayout: 'fixed',
     borderCollapse: 'separate',
-    borderSpacing: 2,
+    // 横向间距必须为 0：区间选择时相邻两格要连成一条带子，留 2px 缝就会
+    // 变成一堆独立方块（只有首尾圆角，中段看着像断了）。纵向留 2px 保持行距。
+    borderSpacing: '0 2px',
   },
   weekday: {
     height: 26,
@@ -274,20 +276,29 @@ export const styles = stylex.create({
     '[data-unavailable]': { color: color.mutedFg, textDecorationLine: 'line-through' },
     '[data-today]': { boxShadow: `inset 0 0 0 1px ${color.brand}` },
     '[data-selected]': { backgroundColor: color.brand, color: color.brandFg },
-  // 区间中段铺满整格，但首尾两格保持圆角，整条区间才像一条连续的带子。
+    // 单选（非区间）必须保留完整圆角；区间规则在后面会覆盖对应角落。
+    '[data-selected]:not([data-range-middle]):not([data-range-start]):not([data-range-end])': {
+      borderRadius: shape.radiusSm,
+    },
+    // 区间中段左右都贴住邻居，四角全平，才能和首尾连成一条带子。
     '[data-range-middle]': {
       borderRadius: 0,
       backgroundColor: color.brandSoft,
       color: color.fg,
     },
-    // 起止格与相邻中段之间的外缘仍要圆：左端圆左、右端圆右。
+    // 起点只圆左侧两角，右侧贴住中段；否则带子中间会出现一道圆角缺口。
     '[data-range-start]': {
       borderStartStartRadius: shape.radiusSm,
       borderEndStartRadius: shape.radiusSm,
+      borderStartEndRadius: 0,
+      borderEndEndRadius: 0,
       backgroundColor: color.brand,
       color: color.brandFg,
     },
+    // 终点相反：只圆右侧两角。
     '[data-range-end]': {
+      borderStartStartRadius: 0,
+      borderEndStartRadius: 0,
       borderStartEndRadius: shape.radiusSm,
       borderEndEndRadius: shape.radiusSm,
       backgroundColor: color.brand,
