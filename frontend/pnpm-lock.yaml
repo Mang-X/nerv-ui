@@ -141,9 +141,33 @@ importers:
 
   packages/desktop:
     dependencies:
+      '@embedpdf/core':
+        specifier: 2.14.4
+        version: 2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3))
+      '@embedpdf/engines':
+        specifier: 2.14.4
+        version: 2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3))
+      '@embedpdf/plugin-document-manager':
+        specifier: 2.14.4
+        version: 2.14.4(@embedpdf/core@2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3)))(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3))
+      '@embedpdf/plugin-render':
+        specifier: 2.14.4
+        version: 2.14.4(@embedpdf/core@2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3)))(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3))
+      '@embedpdf/plugin-scroll':
+        specifier: 2.14.4
+        version: 2.14.4(@embedpdf/core@2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3)))(@embedpdf/plugin-viewport@2.14.4(@embedpdf/core@2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3)))(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3)))(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3))
+      '@embedpdf/plugin-viewport':
+        specifier: 2.14.4
+        version: 2.14.4(@embedpdf/core@2.14.4(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3)))(preact@10.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(svelte@5.56.4)(vue@3.5.39(typescript@6.0.3))
+      '@embedpdf/plugin-zoom':
+        specifier: 2.14.4
+        version: 2.14.4(1e153b0311895763d190bb419948cc39)
       '@lucide/vue':
         specifier: 1.24.0
         version: 1.24.0(vue@3.5.39(typescript@6.0.3))
+      '@silurus/ooxml':
+        specifier: 0.72.2
+        version: 0.72.2
     devDependencies:
       '@stylexjs/babel-plugin':
         specifier: 0.19.2

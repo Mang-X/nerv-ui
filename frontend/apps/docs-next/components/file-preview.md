@@ -13,7 +13,8 @@ const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
 
 # NvFilePreview 文件预览
 
-按内容类型渲染预览：图片内联显示、PDF 用浏览器阅读器、其它类型给出占位说明。
+按内容类型选择渲染引擎：图片内联显示，PDF 走 pdfium（embedpdf），
+docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步加载。
 
 ## 示例
 
@@ -26,14 +27,31 @@ const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
   />
 </Demo>
 
-<!-- PDF 分支走浏览器内置阅读器，需要一个真实地址；仓库里没有示例 PDF，
-     所以这里演示的是「未提供地址」的降级说明。 -->
 <Demo block>
-  <NvFilePreview file-name="检验报告.pdf" content-type="application/pdf" :height="200" />
+  <NvFilePreview
+    src="/sample-report.pdf"
+    file-name="检验报告.pdf"
+    content-type="application/pdf"
+    :height="420"
+  />
 </Demo>
 
 <Demo block>
-  <NvFilePreview file-name="记录明细.xlsx" content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+  <NvFilePreview
+    src="/work-instruction.docx"
+    file-name="作业指导书.docx"
+    content-type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    :height="420"
+  />
+</Demo>
+
+<Demo block>
+  <NvFilePreview
+    src="/output-report.xlsx"
+    file-name="产量统计.xlsx"
+    content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    :height="360"
+  />
 </Demo>
 
 <Demo block>
@@ -46,10 +64,17 @@ const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
 
 | 属性 | 说明 | 类型 | 默认 |
 | --- | --- | --- | --- |
-| `src` | 文件地址，可用 blob / object URL；图片与 PDF 会内联渲染 | `string` | — |
+| `src` | 文件地址，可用 blob / object URL；图片、PDF 与 OOXML 文档会内联渲染 | `string` | — |
 | `fileName` | 显示名称；缺少 `contentType` 时也用于推断类型 | `string` | — |
 | `contentType` | MIME 类型，如 `image/png`、`application/pdf` | `string` | — |
-| `height` | 预览区高度（px），最小 120 | `number` | `360` |
+| `height` | 预览区高度（px），最小 120 | `number` | `400` |
+
+### NvFilePreview 事件
+
+| 事件 | 说明 |
+| --- | --- |
+| `ready` | 引擎渲染就绪，参数为识别出的文件种类 |
+| `error` | 引擎加载或解析失败，参数为错误信息 |
 
 ### NvFilePreview 插槽
 
@@ -58,5 +83,7 @@ const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
 ### 类型推断
 
 - `contentType` 以 `image/` 开头视为图片；`application/pdf` 或 `.pdf` 视为 PDF。
+- OOXML 三个子类型按 MIME 或扩展名识别：`docx` / `xlsx` / `pptx`。
 - 没有 `contentType` 时按扩展名推断图片。
-- 其余情况显示占位卡片，有 `src` 时提供"打开文件"链接。
+- 其余情况（含旧版 `doc` / `xls` / `ppt` 二进制格式）显示占位卡片，
+  有 `src` 时提供「打开文件」链接。
