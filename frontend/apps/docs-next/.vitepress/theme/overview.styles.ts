@@ -53,30 +53,21 @@ export const styles = stylex.create({
     fontVariantNumeric: 'tabular-nums',
   },
 
-  // 单分组分区（移动 / 触屏 / 大屏）不重复画一遍与页面标题同名的分组标题，
-  // 只留一行数量。
-  totalLine: {
-    margin: 0,
-    color: color.mutedFg,
-    fontSize: typography.sizeSm,
-    lineHeight: typography.lineSm,
-    fontVariantNumeric: 'tabular-nums',
-  },
-
   grid: {
     display: 'grid',
     gap: 12,
-    gridTemplateColumns: 'repeat(auto-fill, minmax(212px, 1fr))',
+    // 卡片带示意图后需要更宽的落脚：212px 只能放三列且挤压名字，236px 在
+    // 1080px 容器里正好四列。
+    gridTemplateColumns: 'repeat(auto-fill, minmax(236px, 1fr))',
     '@media (max-width: 639px)': { gridTemplateColumns: '1fr' },
   },
 
   card: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 4,
     boxSizing: 'border-box',
-    paddingBlock: 14,
-    paddingInline: 16,
+    overflow: 'hidden',
+    padding: 0,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: 'transparent',
@@ -101,33 +92,19 @@ export const styles = stylex.create({
       boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
     },
   },
-  cardTitle: {
-    display: 'flex',
-    alignItems: 'baseline',
-    gap: 6,
-    minWidth: 0,
+  // 名字在上、示意图在下：先认出是哪个组件，再用图形确认形态（与 antd 总览一致）。
+  cardHead: {
+    paddingBlock: '12px 10px',
+    paddingInline: 14,
     color: color.fg,
     fontSize: typography.sizeMd,
     fontWeight: 600,
     lineHeight: typography.lineMd,
-  },
-  // 「NvButton」比中文名更常用，抽出来单独控制字重；整串仍然是一个链接文本。
-  cardName: {
-    minWidth: 0,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-  cardDesc: {
-    color: color.mutedFg,
-    fontSize: typography.sizeSm,
-    // 13px 配 20px 行高（1.54）：18px 只有 1.38，两行说明会显得挤。
-    lineHeight: typography.lineMd,
-    // 两行截断：说明长短不一，不截会把网格撑成参差的锯齿。
     display: '-webkit-box',
     WebkitBoxOrient: 'vertical',
     WebkitLineClamp: 2,
     overflow: 'hidden',
+    overflowWrap: 'anywhere',
   },
 
   empty: {
