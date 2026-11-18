@@ -1,16 +1,85 @@
-/* VitePress chrome → NvUI brand (StyleX-bound tokens stay per-component). */
+/* VitePress 默认主题的外壳样式（VPNav / VPSidebar / VPDoc 的间距与变量）随
+   自定义 Layout 一起退场；这里只保留正文排版所需的 vp-doc 规则与品牌色变量，
+   并把 VitePress 默认给 body 的背景/字体让位给 StyleX 外壳。 */
 :root {
   --vp-c-brand-1: oklch(0.54 0.16 256);
   --vp-c-brand-2: oklch(0.54 0.16 256);
   --vp-c-brand-3: oklch(0.54 0.16 256);
   --vp-c-brand-soft: oklch(0.54 0.16 256 / 0.14);
+  --vp-nav-height: 0px;
+  --vp-layout-top-height: 0px;
 }
 .dark {
   --vp-c-brand-1: oklch(0.64 0.15 256);
   --vp-c-brand-2: oklch(0.64 0.15 256);
   --vp-c-brand-3: oklch(0.64 0.15 256);
 }
-/* Screen-layer demo stage: the big-screen components assume a dark canvas. */
+
+/* 正文排版：VitePress 的 vp-doc 规则绑定在 VPDoc 组件内部，自定义布局下
+   <Content/> 直接挂在 article 上，需要自己把基线排版补回来。 */
+.vp-doc {
+  font-size: 15px;
+  line-height: 1.75;
+}
+.vp-doc h1 {
+  margin: 0 0 12px;
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.vp-doc h2 {
+  margin: 40px 0 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--vp-c-divider, #e5e5e5);
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.vp-doc h3 {
+  margin: 24px 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.vp-doc p {
+  margin: 10px 0;
+}
+.vp-doc ul,
+.vp-doc ol {
+  margin: 10px 0;
+  padding-inline-start: 20px;
+}
+.vp-doc blockquote {
+  margin: 12px 0;
+  padding: 8px 12px;
+  border-inline-start: 3px solid var(--vp-c-brand-1);
+  color: var(--vp-c-text-2, #737373);
+}
+.vp-doc table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 14px 0;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.vp-doc th,
+.vp-doc td {
+  padding: 8px 10px;
+  border: 1px solid var(--vp-c-divider, #e5e5e5);
+  text-align: start;
+  white-space: nowrap;
+}
+.vp-doc th {
+  font-weight: 600;
+  background-color: var(--vp-c-bg-soft, #f5f5f5);
+}
+.vp-doc code {
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+}
+
+/* 大屏组件演示需要暗色画布 */
 .nv-screen-stage {
   background: oklch(0.12 0.02 255);
   border-radius: 12px;

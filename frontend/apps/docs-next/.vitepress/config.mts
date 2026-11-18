@@ -4,6 +4,8 @@ import stylex from '@stylexjs/unplugin/vite'
 export default defineConfig({
   title: 'NvUI',
   description: 'NvUI 组件库文档',
+  // 自定义布局的「本页目录」需要每页 headers；默认只对 h2 及更深层级收集。
+  markdown: { headers: { level: [2, 3] } },
   vite: {
     plugins: [stylex({ classNamePrefix: 'nx' })],
   },
