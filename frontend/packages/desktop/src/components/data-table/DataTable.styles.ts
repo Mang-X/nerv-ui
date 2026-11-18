@@ -105,8 +105,13 @@ export const styles = stylex.create({
     textAlign: 'center',
   },
   checkboxCell: {
-    display: 'inline-flex',
+    // 必须是块级盒子：inline-flex 的复选框按基线对齐，勾选后内部内容变化会把
+    // 行盒从 22px 变成 19px，表现为「勾选一行整行变矮」。
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 18,
+    height: 18,
+    lineHeight: 0,
   },
 })

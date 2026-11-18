@@ -7,7 +7,7 @@ import { NvFilePreview } from '@nerv-ui/desktop'
 import '@nerv-ui/desktop/styles.css'
 
 const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300"><rect width="480" height="300" fill="#e2e8f0"/><rect x="40" y="40" width="400" height="220" fill="#cbd5e1" stroke="#94a3b8"/><text x="240" y="160" font-family="sans-serif" font-size="22" text-anchor="middle" fill="#334155">记录图纸 NX-220</text></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300"><rect width="480" height="300" fill="#e2e8f0"/><rect x="40" y="40" width="400" height="220" fill="#cbd5e1" stroke="#94a3b8"/><text x="240" y="160" font-family="sans-serif" font-size="22" text-anchor="middle" fill="#334155">示例预览 NX-220</text></svg>',
 )}`
 </script>
 
@@ -21,7 +21,7 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
 <Demo block>
   <NvFilePreview
     :src="sampleSvg"
-    file-name="记录图纸-NX-220.svg"
+    file-name="示例预览-NX-220.svg"
     content-type="image/svg+xml"
     :height="260"
   />
@@ -30,7 +30,7 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
 <Demo block>
   <NvFilePreview
     src="/sample-report.pdf"
-    file-name="检验报告.pdf"
+    file-name="校验报告.pdf"
     content-type="application/pdf"
     :size-bytes="482000"
     show-thumbnails
@@ -41,7 +41,7 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
 <Demo block>
   <NvFilePreview
     src="/work-instruction.docx"
-    file-name="作业指导书.docx"
+    file-name="使用说明.docx"
     content-type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     :height="420"
   />
@@ -50,7 +50,7 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
 <Demo block>
   <NvFilePreview
     src="/output-report.xlsx"
-    file-name="产量统计.xlsx"
+    file-name="数量统计.xlsx"
     content-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     :height="360"
   />
@@ -59,14 +59,14 @@ docx / xlsx / pptx 走 `@silurus/ooxml` 的 wasm 解析器；引擎按需异步�
 <Demo block>
   <NvFilePreview
     :src="sampleSvg"
-    file-name="现场照片.jpg"
+    file-name="示例照片.jpg"
     :show-header="false"
     :height="260"
   />
 </Demo>
 
 <Demo block>
-  <NvFilePreview file-name="现场照片.jpg" :height="160" />
+  <NvFilePreview file-name="示例照片.jpg" :height="160" />
 </Demo>
 
 ## API

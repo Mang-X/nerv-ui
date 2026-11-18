@@ -105,11 +105,17 @@ export const styles = stylex.create({
     lineHeight: '16px',
   },
   empty: {
-    paddingBlock: 12,
-    paddingInline: 8,
+    // ui-sdk 始终挂载这个 role=status 的节点；无文案时它是空 div，但内边距
+    // 仍占 24px，表现为弹层顶部多出一条空白带。只有真有文案时才显示。
+    display: 'none',
     color: color.mutedFg,
     fontSize: typography.sizeSm,
     textAlign: 'center',
+    ':not(:empty)': {
+      display: 'block',
+      paddingBlock: 12,
+      paddingInline: 8,
+    },
   },
   list: {
     display: 'flex',

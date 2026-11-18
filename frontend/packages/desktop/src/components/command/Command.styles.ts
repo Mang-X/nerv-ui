@@ -59,11 +59,18 @@ export const styles = stylex.create({
     overflowY: 'auto',
   },
   empty: {
-    paddingBlock: 16,
-    paddingInline: 12,
+    // ui-sdk 始终保留这个 role=status 的节点；没有文案时它是个空 div，
+    // 但我们的内边距仍会占出 32px，表现为「输入框和第一组之间有段空白」。
+    display: 'none',
     color: color.mutedFg,
     fontSize: typography.sizeSm,
     textAlign: 'center',
+    // 只有真的有文案（无匹配结果）时才显示并撑开。
+    ':not(:empty)': {
+      display: 'block',
+      paddingBlock: 16,
+      paddingInline: 12,
+    },
   },
   groupLabel: {
     // 与条目共用同一条左基线，且和下方首条留 2px 呼吸位。
