@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
 import { computed, useAttrs } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -45,7 +46,7 @@ const labelSx = computed(() => stylex.props(styles.label))
     :class="[rootSx.className, $attrs.class]"
     :style="[rootSx.style, $attrs.style]"
   >
-    <button
+    <Button
       v-for="item in items"
       :key="item.value"
       type="button"
@@ -59,7 +60,7 @@ const labelSx = computed(() => stylex.props(styles.label))
         <slot name="icon" :item="item" />
       </span>
       <span :class="labelSx.className" :style="labelSx.style">{{ item.label }}</span>
-    </button>
+    </Button>
     <slot />
   </nav>
 </template>

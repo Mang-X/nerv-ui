@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, type Component } from 'vue'
@@ -54,7 +55,7 @@ const defaultIcon = computed(() => (props.variant === 'danger' ? 'alert' : 'info
       <slot>{{ text }}</slot>
     </span>
     <slot name="action" />
-    <button
+    <Button
       v-if="closable"
       type="button"
       :aria-label="closeLabel"
@@ -62,6 +63,6 @@ const defaultIcon = computed(() => (props.variant === 'danger' ? 'alert' : 'info
       @click="emit('close')"
     >
       <NvIcon name="close" :size="16" />
-    </button>
+    </Button>
   </div>
 </template>

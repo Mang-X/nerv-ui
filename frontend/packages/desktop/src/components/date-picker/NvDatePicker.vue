@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import {
   CalendarDay,
   CalendarGrid,
@@ -209,7 +210,7 @@ function dayNumber(iso: string) {
       :style="contentSx.style"
     >
       <div :class="headerSx.className" :style="headerSx.style">
-        <button
+        <Button
           type="button"
           :aria-label="prevLabel"
           :class="navSx.className"
@@ -217,9 +218,9 @@ function dayNumber(iso: string) {
           @click="shift(-1)"
         >
           <NvIcon name="chevron-left" :size="16" />
-        </button>
+        </Button>
         <div :class="headingRowSx.className" :style="headingRowSx.style">
-          <button
+          <Button
             type="button"
             :aria-label="`选择年份，当前 ${activeYear} 年`"
             :class="headingButtonSx.className"
@@ -227,8 +228,8 @@ function dayNumber(iso: string) {
             @click="view = view === 'year' ? 'day' : 'year'"
           >
             {{ activeYear }} 年
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             :aria-label="`选择月份，当前 ${activeMonth} 月`"
             :class="headingButtonSx.className"
@@ -236,9 +237,9 @@ function dayNumber(iso: string) {
             @click="view = view === 'month' ? 'day' : 'month'"
           >
             {{ activeMonth }} 月
-          </button>
+          </Button>
         </div>
-        <button
+        <Button
           type="button"
           :aria-label="nextLabel"
           :class="[navSx.className, nextSx.className]"
@@ -246,12 +247,12 @@ function dayNumber(iso: string) {
           @click="shift(1)"
         >
           <NvIcon name="chevron-right" :size="16" />
-        </button>
+        </Button>
       </div>
 
       <!-- 月视图：选中即回到日视图 -->
       <div v-if="view === 'month'" :class="panelGridSx.className" :style="panelGridSx.style">
-        <button
+        <Button
           v-for="item in monthNames"
           :key="item.month"
           type="button"
@@ -264,12 +265,12 @@ function dayNumber(iso: string) {
           @click="chooseMonth(item.month)"
         >
           {{ item.label }}
-        </button>
+        </Button>
       </div>
 
       <!-- 年视图：一屏 12 年，选中后进入该年的月视图 -->
       <div v-else-if="view === 'year'" :class="panelGridSx.className" :style="panelGridSx.style">
-        <button
+        <Button
           v-for="year in yearCells"
           :key="year"
           type="button"
@@ -278,7 +279,7 @@ function dayNumber(iso: string) {
           @click="chooseYear(year)"
         >
           {{ year }}
-        </button>
+        </Button>
       </div>
       <div v-else :class="gridsSx.className" :style="gridsSx.style">
         <CalendarGrid

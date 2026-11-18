@@ -116,6 +116,21 @@ export const styles = stylex.create({
     fontSize: 12,
     outlineStyle: 'none',
   },
+  // 原生 select 换成 ui-sdk SelectTrigger 后，26px 的紧凑尺寸与内边距继续复用
+  // `select`，这里只补按钮化之后必须显式声明的一行布局。
+  selectTrigger: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 4,
+    boxSizing: 'border-box',
+    textAlign: 'left',
+    cursor: 'pointer',
+  },
+  selectChevron: {
+    display: 'inline-flex',
+    flexShrink: 0,
+    color: color.mutedFg,
+  },
   canvasArea: {
     flex: 1,
     minHeight: 0,

@@ -3,6 +3,7 @@ import { useDocumentState } from '@embedpdf/core/vue'
 import { DocumentContent } from '@embedpdf/plugin-document-manager/vue'
 import { Scroller, useScroll } from '@embedpdf/plugin-scroll/vue'
 import { useRenderCapability } from '@embedpdf/plugin-render/vue'
+import { Button } from '@ui-sdk/vue/button'
 import { shallowRef } from 'vue'
 import {
   useIsViewportGated,
@@ -185,7 +186,7 @@ watch(
           borderRight: `1px solid var(--nx-border, rgba(255,255,255,.1))`,
         }"
       >
-        <button
+        <Button
           v-for="(url, index) in thumbUrls"
           :key="index"
           type="button"
@@ -201,7 +202,7 @@ watch(
           @click="jumpToPage(Number(index) + 1)"
         >
           <img :src="url" :alt="`第 ${Number(index) + 1} 页`" style="display: block; width: 100%; border-radius: 2px" />
-        </button>
+        </Button>
       </aside>
       <div :class="canvasSx.className" :style="[canvasSx.style, { flex: 1 }]">
         <div

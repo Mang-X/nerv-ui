@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import {
   CalendarDay,
   CalendarGrid,
@@ -211,7 +212,7 @@ const panelCellActiveSx = computed(() => stylex.props(styles.panelCell, styles.p
       :style="contentSx.style"
     >
       <div :class="headerSx.className" :style="headerSx.style">
-        <button
+        <Button
           type="button"
           :aria-label="prevLabel"
           :class="navSx.className"
@@ -219,9 +220,9 @@ const panelCellActiveSx = computed(() => stylex.props(styles.panelCell, styles.p
           @click="shift(-1)"
         >
           <NvIcon name="chevron-left" :size="16" />
-        </button>
+        </Button>
         <div :class="headingRowSx.className" :style="headingRowSx.style">
-          <button
+          <Button
             type="button"
             :aria-label="`选择年份，当前 ${activeYear} 年`"
             :class="headingButtonSx.className"
@@ -229,8 +230,8 @@ const panelCellActiveSx = computed(() => stylex.props(styles.panelCell, styles.p
             @click="view = view === 'year' ? 'day' : 'year'"
           >
             {{ activeYear }} 年
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             :aria-label="`选择月份，当前 ${activeMonth} 月`"
             :class="headingButtonSx.className"
@@ -238,9 +239,9 @@ const panelCellActiveSx = computed(() => stylex.props(styles.panelCell, styles.p
             @click="view = view === 'month' ? 'day' : 'month'"
           >
             {{ activeMonth }} 月
-          </button>
+          </Button>
         </div>
-        <button
+        <Button
           type="button"
           :aria-label="nextLabel"
           :class="[navSx.className, nextSx.className]"
@@ -248,11 +249,11 @@ const panelCellActiveSx = computed(() => stylex.props(styles.panelCell, styles.p
           @click="shift(1)"
         >
           <NvIcon name="chevron-right" :size="16" />
-        </button>
+        </Button>
       </div>
 
       <div v-if="view === 'month'" :class="panelGridSx.className" :style="panelGridSx.style">
-        <button
+        <Button
           v-for="item in monthNames"
           :key="item.month"
           type="button"
@@ -261,11 +262,11 @@ const panelCellActiveSx = computed(() => stylex.props(styles.panelCell, styles.p
           @click="chooseMonth(item.month)"
         >
           {{ item.label }}
-        </button>
+        </Button>
       </div>
 
       <div v-else-if="view === 'year'" :class="panelGridSx.className" :style="panelGridSx.style">
-        <button
+        <Button
           v-for="year in yearCells"
           :key="year"
           type="button"
@@ -274,7 +275,7 @@ const panelCellActiveSx = computed(() => stylex.props(styles.panelCell, styles.p
           @click="chooseYear(year)"
         >
           {{ year }}
-        </button>
+        </Button>
       </div>
 
       <div v-else :class="gridsSx.className" :style="gridsSx.style">

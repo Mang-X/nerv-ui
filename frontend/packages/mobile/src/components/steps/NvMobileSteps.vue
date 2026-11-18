@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
@@ -90,7 +91,7 @@ function goTo(index: number) {
       <!-- Vertical: marker and its line share a rail. Horizontal: each step
            carries half the connector before and after its marker. -->
       <div v-if="direction === 'vertical'" :class="stylex.props(styles.rail).className">
-        <button
+        <Button
           type="button"
           :disabled="!clickable"
           :aria-current="index === currentIndex ? 'step' : undefined"
@@ -104,7 +105,7 @@ function goTo(index: number) {
             <NvIcon name="check" v-else-if="isDone(statusOf(item, index))" :size="16" />
             <span v-else>{{ index + 1 }}</span>
           </span>
-        </button>
+        </Button>
         <div
           v-if="index < items.length - 1"
           :class="
@@ -128,7 +129,7 @@ function goTo(index: number) {
             ).className
           "
         />
-        <button
+        <Button
           type="button"
           :disabled="!clickable"
           :aria-current="index === currentIndex ? 'step' : undefined"
@@ -142,7 +143,7 @@ function goTo(index: number) {
             <NvIcon name="check" v-else-if="isDone(statusOf(item, index))" :size="16" />
             <span v-else>{{ index + 1 }}</span>
           </span>
-        </button>
+        </Button>
         <div
           v-if="index < items.length - 1"
           :class="

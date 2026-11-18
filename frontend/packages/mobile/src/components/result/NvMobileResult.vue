@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
@@ -59,14 +60,14 @@ const iconSx = computed(() =>
     </div>
     <div v-if="actionText || $slots.default" :class="stylex.props(styles.actions).className">
       <slot>
-        <button
+        <Button
           v-if="actionText"
           type="button"
           :class="stylex.props(styles.action, focus.ring).className"
           @click="emit('action')"
         >
           {{ actionText }}
-        </button>
+        </Button>
       </slot>
     </div>
   </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -51,7 +52,7 @@ function pick(item: MobileGridItem) {
     <slot name="empty">
       <div v-if="!items.length" :class="stylex.props(styles.empty).className">暂无内容</div>
     </slot>
-    <button
+    <Button
       v-for="item in items"
       :key="item.value"
       type="button"
@@ -80,6 +81,6 @@ function pick(item: MobileGridItem) {
       <span v-if="item.description" :class="stylex.props(styles.description).className">
         {{ item.description }}
       </span>
-    </button>
+    </Button>
   </div>
 </template>

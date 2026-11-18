@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
@@ -40,7 +41,7 @@ const sx = computed(() =>
 <template>
   <span :class="sx.className" :style="sx.style">
     <slot />
-    <button
+    <Button
       v-if="closable"
       type="button"
       :aria-label="closeLabel"
@@ -50,6 +51,6 @@ const sx = computed(() =>
       <slot name="close-icon">
         <NvIcon name="close" :size="14" />
       </slot>
-    </button>
+    </Button>
   </span>
 </template>

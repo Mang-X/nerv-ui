@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -38,7 +39,7 @@ const positionStyle = computed(() =>
 </script>
 
 <template>
-  <button
+  <Button
     v-bind="$attrs"
     type="button"
     :aria-label="ariaLabel ?? label"
@@ -51,5 +52,5 @@ const positionStyle = computed(() =>
       <component :is="icon" v-if="icon" aria-hidden="true" :size="label ? 20 : 24" />
       <span v-if="label">{{ label }}</span>
     </slot>
-  </button>
+  </Button>
 </template>

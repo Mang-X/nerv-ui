@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { useScroll } from '@embedpdf/plugin-scroll/vue'
 import { ZoomMode, useZoom } from '@embedpdf/plugin-zoom/vue'
+import { Button } from '@ui-sdk/vue/button'
+import { Select, SelectTrigger } from '@ui-sdk/vue/select'
+import NvSelectContent from '../select/NvSelectContent.vue'
+import NvSelectItem from '../select/NvSelectItem.vue'
+import NvSelectValue from '../select/NvSelectValue.vue'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { useRegistry } from '@embedpdf/core/vue'
 import { setRotation } from '@embedpdf/core'
 import { Rotation } from '@embedpdf/models'
 import { computed, onBeforeUnmount, shallowRef } from 'vue'
+import { focus } from '../../theme/shared.stylex'
 import { styles } from './viewer.styles'
 
 const props = defineProps<{ documentId: string; src?: string; title?: string }>()
@@ -17,7 +23,8 @@ const { provides: zoom, state: zoomState } = useZoom(() => props.documentId)
 const toolbarSx = stylex.props(styles.toolbar)
 const iconButtonSx = stylex.props(styles.iconButton)
 const labelSx = stylex.props(styles.label)
-const selectSx = stylex.props(styles.select)
+const selectSx = stylex.props(styles.select, styles.selectTrigger, focus.ring)
+const chevronSx = stylex.props(styles.selectChevron)
 const spacerSx = stylex.props(styles.toolbarSpacer)
 const dividerSx = stylex.props(styles.divider)
 
@@ -34,8 +41,8 @@ const pageOptions = computed(() =>
 )
 let jumpReleaseTimer = 0
 
-function jumpToPage(event: Event) {
-  const target = Number((event.target as HTMLSelectElement).value)
+function jumpToPage(value: string | null) {
+  const target = Number(value)
   if (jumping.value || !Number.isInteger(target) || target < 1 || target > totalPages.value) {
     return
   }
@@ -98,7 +105,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div data-slot="nv-file-preview-pdf-toolbar" :class="toolbarSx.className" :style="toolbarSx.style">
-    <button
+    <Button
       type="button"
       aria-label="上一页"
       :class="iconButtonSx.className"
@@ -107,18 +114,34 @@ onBeforeUnmount(() => {
       @click="goPrevious"
     >
       <NvIcon name="chevron-left" :size="16" />
-    </button>
-    <select
-      :value="String(currentPage)"
-      :aria-label="`跳到第 ${currentPage} 页，共 ${totalPages} 页`"
-      :class="selectSx.className"
-      :style="selectSx.style"
-      @change="jumpToPage"
-    >
-      <option v-for="page in pageOptions" :key="page" :value="String(page)">第 {{ page }} 页</option>
-    </select>
+    </Button>
+    <Select :value="String(currentPage)" @update:value="jumpToPage">
+      <SelectTrigger
+        :aria-label="`跳到第 ${currentPage} 页，共 ${totalPages} 页`"
+        :class="selectSx.className"
+        :style="selectSx.style"
+      >
+        <NvSelectValue />
+        <NvIcon
+          name="chevron-down"
+          :size="12"
+          :class="chevronSx.className"
+          :style="chevronSx.style"
+        />
+      </SelectTrigger>
+      <NvSelectContent side="bottom" align="start">
+        <NvSelectItem
+          v-for="page in pageOptions"
+          :key="page"
+          :value="String(page)"
+          :label="`第 ${page} 页`"
+        >
+          第 {{ page }} 页
+        </NvSelectItem>
+      </NvSelectContent>
+    </Select>
     <span :class="labelSx.className" :style="labelSx.style">/ {{ totalPages }}</span>
-    <button
+    <Button
       type="button"
       aria-label="下一页"
       :class="iconButtonSx.className"
@@ -127,11 +150,11 @@ onBeforeUnmount(() => {
       @click="goNext"
     >
       <NvIcon name="chevron-right" :size="16" />
-    </button>
+    </Button>
 
     <span :class="spacerSx.className" :style="spacerSx.style" />
 
-    <button
+    <Button
       type="button"
       aria-label="缩小"
       :class="iconButtonSx.className"
@@ -139,9 +162,9 @@ onBeforeUnmount(() => {
       @click="zoomOut"
     >
       <NvIcon name="zoom-out" :size="16" />
-    </button>
+    </Button>
     <span :class="labelSx.className" :style="labelSx.style">{{ zoomLabel }}</span>
-    <button
+    <Button
       type="button"
       aria-label="放大"
       :class="iconButtonSx.className"
@@ -149,8 +172,8 @@ onBeforeUnmount(() => {
       @click="zoomIn"
     >
       <NvIcon name="zoom-in" :size="16" />
-    </button>
-    <button
+    </Button>
+    <Button
       type="button"
       aria-label="适配宽度"
       :class="iconButtonSx.className"
@@ -158,8 +181,8 @@ onBeforeUnmount(() => {
       @click="fitWidth"
     >
       <NvIcon name="expand" :size="16" />
-    </button>
-    <button
+    </Button>
+    <Button
       type="button"
       aria-label="适配整页"
       :class="iconButtonSx.className"
@@ -167,8 +190,8 @@ onBeforeUnmount(() => {
       @click="fitPage"
     >
       <NvIcon name="maximize" :size="16" />
-    </button>
-    <button
+    </Button>
+    <Button
       type="button"
       aria-label="旋转页面"
       :class="iconButtonSx.className"
@@ -176,11 +199,11 @@ onBeforeUnmount(() => {
       @click="rotatePage"
     >
       <NvIcon name="rotate-cw" :size="16" />
-    </button>
+    </Button>
 
     <span :class="dividerSx.className" :style="dividerSx.style" aria-hidden="true" />
 
-    <button
+    <Button
       type="button"
       aria-label="在新窗口打开"
       :class="iconButtonSx.className"
@@ -189,7 +212,7 @@ onBeforeUnmount(() => {
       @click="openInNewWindow"
     >
       <NvIcon name="external-link" :size="16" />
-    </button>
+    </Button>
     <a
       v-if="src"
       :href="src"

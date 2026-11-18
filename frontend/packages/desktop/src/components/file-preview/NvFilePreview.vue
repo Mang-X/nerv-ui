@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
 import NvIcon from '../../theme/NvIcon.vue'
 import { computed, defineAsyncComponent, ref } from 'vue'
@@ -128,7 +129,7 @@ function handleError(message: string) {
         <span :class="headerTitleSx.className" :style="headerTitleSx.style">{{ displayName }}</span>
         <span :class="headerMetaSx.className" :style="headerMetaSx.style">{{ subtitle }}</span>
       </span>
-      <button
+      <Button
         v-if="canOpen"
         type="button"
         :aria-label="`在新窗口打开 ${displayName}`"
@@ -137,7 +138,7 @@ function handleError(message: string) {
         @click="openSource"
       >
         <NvIcon name="external-link" :size="15" />
-      </button>
+      </Button>
     </header>
 
     <div :class="bodySx.className" :style="bodySx.style">

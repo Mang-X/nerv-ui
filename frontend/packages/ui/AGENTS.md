@@ -1,4 +1,8 @@
-# AGENTS.md — @nerv-iip/ui（NvUI 组件库 · 库内规则）
+# AGENTS.md — @nerv-iip/ui（旧库 · 冻结待删）
+
+> **状态：冻结。** 新功能一律做进新库 `@nerv-ui/*`（`frontend/packages/{desktop,mobile,pad,screen}`），
+> 写法见 `frontend/packages/CONVENTIONS.md`。本包只接受阻断性修复，并在 R11 整体删除。
+> 下文规则仅用于维护存量。
 
 > `frontend/AGENTS.md` 路由 NvUI **消费者侧**规则（app 怎么用）；本文件只补充
 > **库内侧**规则（改库本身）。权威 ADR：

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { darkTheme } from '../../theme/tokens.stylex'
@@ -74,7 +75,7 @@ function select(item: StatusWallItem) {
           <span :class="stylex.props(styles.groupCount).className">{{ group.items.length }} 项</span>
         </div>
         <div :class="cellsSx.className" :style="[cellsSx.style, gridStyle]">
-          <button
+          <Button
             v-for="item in group.items"
             :key="`${group.key}-${item.key}`"
             type="button"
@@ -90,7 +91,7 @@ function select(item: StatusWallItem) {
             </span>
             <span v-if="item.identity" :class="stylex.props(styles.meta).className">{{ item.identity }}</span>
             <span v-if="item.summary" :class="stylex.props(styles.meta).className">{{ item.summary }}</span>
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
@@ -99,7 +100,7 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
     </div>
 
     <div :class="gridSx.className" :style="gridSx.style">
-      <button
+      <Button
         v-for="digit in digits"
         :key="digit"
         type="button"
@@ -109,8 +110,8 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
         @click="append(digit)"
       >
         {{ digit }}
-      </button>
-      <button
+      </Button>
+      <Button
         type="button"
         :disabled="disabled"
         :class="keySx.className"
@@ -118,8 +119,8 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
         @click="append('0')"
       >
         0
-      </button>
-      <button
+      </Button>
+      <Button
         v-if="allowDecimal"
         type="button"
         :disabled="disabled"
@@ -128,8 +129,8 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
         @click="append('.')"
       >
         .
-      </button>
-      <button
+      </Button>
+      <Button
         v-else
         type="button"
         :disabled="disabled"
@@ -138,8 +139,8 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
         @click="append('00')"
       >
         00
-      </button>
-      <button
+      </Button>
+      <Button
         type="button"
         :aria-label="deleteLabel"
         :disabled="disabled"
@@ -148,7 +149,7 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
         @click="backspace"
       >
         <NvIcon name="trash" :size="26" />
-      </button>
+      </Button>
     </div>
 
     <div
@@ -157,7 +158,7 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
       :style="actionsSx.style"
     >
       <slot name="actions">
-        <button
+        <Button
           v-if="allowNegative"
           type="button"
           :aria-label="signLabel"
@@ -167,8 +168,8 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
           @click="toggleSign"
         >
           +/−
-        </button>
-        <button
+        </Button>
+        <Button
           v-if="showClear"
           type="button"
           :disabled="disabled"
@@ -177,8 +178,8 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
           @click="clear"
         >
           {{ clearLabel }}
-        </button>
-        <button
+        </Button>
+        <Button
           v-if="showConfirm"
           type="button"
           :disabled="disabled"
@@ -187,7 +188,7 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
           @click="confirm"
         >
           {{ confirmLabel }}
-        </button>
+        </Button>
       </slot>
     </div>
   </div>

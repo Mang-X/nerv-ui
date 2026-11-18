@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
@@ -58,7 +59,7 @@ const emptySx = computed(() => stylex.props(styles.empty))
     <div v-if="label || $slots.header" :class="headerSx.className" :style="headerSx.style">
       <slot name="header">{{ label }}</slot>
     </div>
-    <button
+    <Button
       v-for="item in items"
       :key="item.value"
       type="button"
@@ -89,7 +90,7 @@ const emptySx = computed(() => stylex.props(styles.empty))
         </slot>
         <NvIcon name="check" v-if="isSelected(item)" :size="22" />
       </span>
-    </button>
+    </Button>
     <div v-if="!items.length" :class="emptySx.className" :style="emptySx.style">
       <slot name="empty">{{ emptyLabel }}</slot>
     </div>

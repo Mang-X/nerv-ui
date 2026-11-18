@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
@@ -47,7 +48,7 @@ function onError() {
 <template>
   <div data-slot="nv-file-preview-image" :class="rootSx.className" :style="rootSx.style">
     <div :class="toolbarSx.className" :style="toolbarSx.style">
-      <button
+      <Button
         type="button"
         aria-label="缩小图片"
         :class="iconButtonSx.className"
@@ -55,9 +56,9 @@ function onError() {
         @click="zoomOut"
       >
         <NvIcon name="zoom-out" :size="16" />
-      </button>
+      </Button>
       <span :class="labelSx.className" :style="labelSx.style">{{ Math.round(scale * 100) }}%</span>
-      <button
+      <Button
         type="button"
         aria-label="放大图片"
         :class="iconButtonSx.className"
@@ -65,8 +66,8 @@ function onError() {
         @click="zoomIn"
       >
         <NvIcon name="zoom-in" :size="16" />
-      </button>
-      <button
+      </Button>
+      <Button
         type="button"
         aria-label="向左旋转"
         :class="iconButtonSx.className"
@@ -74,8 +75,8 @@ function onError() {
         @click="rotateLeft"
       >
         <NvIcon name="rotate-ccw" :size="16" />
-      </button>
-      <button
+      </Button>
+      <Button
         type="button"
         aria-label="向右旋转"
         :class="iconButtonSx.className"
@@ -83,11 +84,11 @@ function onError() {
         @click="rotateRight"
       >
         <NvIcon name="rotate-cw" :size="16" />
-      </button>
+      </Button>
 
       <span :class="spacerSx.className" :style="spacerSx.style" />
 
-      <button
+      <Button
         type="button"
         aria-label="复位图片"
         :class="iconButtonSx.className"
@@ -95,7 +96,7 @@ function onError() {
         @click="reset"
       >
         <NvIcon name="maximize" :size="16" />
-      </button>
+      </Button>
     </div>
 
     <div :class="canvasSx.className" :style="canvasSx.style">

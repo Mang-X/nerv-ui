@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -104,7 +105,7 @@ defineExpose({ close })
     :style="[stylex.props(styles.root).style, $attrs.style]"
   >
     <div :class="actionsSx.className" :style="actionsSx.style" role="group" :aria-label="actionsLabel">
-      <button
+      <Button
         v-for="action in actions"
         :key="action.value"
         type="button"
@@ -115,7 +116,7 @@ defineExpose({ close })
         @click="run(action)"
       >
         {{ action.label }}
-      </button>
+      </Button>
     </div>
     <div
       :class="contentSx.className"

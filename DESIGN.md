@@ -1,8 +1,19 @@
 # 设计
 
-本文定义 Nerv-IIP 设计系统的视觉体系。令牌的事实源是 `frontend/packages/ui/src/styles/theme.css`；不得硬编码数值，必须引用语义令牌。实时文档位于 `frontend/apps/design-system/docs` 下的 VitePress 站点。
+本文定义 Nerv-IIP 设计系统的视觉体系。仓库里并存两套**互不引用**的组件体系，各有自己的令牌事实源：
+
+| 体系 | 令牌事实源 | 组件包 | 写法规范 |
+| --- | --- | --- | --- |
+| 新库 `@nerv-ui/*` | `frontend/packages/theme/src/tokens.stylex.ts`（StyleX 变量） | `packages/{desktop,mobile,pad,screen}` | `frontend/packages/CONVENTIONS.md` |
+| 旧库 `@nerv-iip/*` | `frontend/packages/ui/src/styles/theme.css`（CSS 变量） | `packages/ui`、`packages/ui-mobile` | 各包 `AGENTS.md` |
+
+不得硬编码数值，必须引用所属体系的语义令牌；不得跨体系引用令牌或组件。
+新功能一律做进新库。
 
 ## 主题
+
+两套体系共用同一套视觉语言（下文颜色/字体/动效/布局各节），差异只在实现载体：
+新库把同一组值定义成 StyleX 变量，旧库定义成 CSS 变量。
 
 工业控制台以深色为先（近黑基底），并通过 `<html>` 上的 `.dark` 类完整支持亮色模式。整体采用克制的 Vercel/Linear 工艺感：低色度表面、发丝级描边和单一动态强调色。配色策略为**克制**：带色倾向的中性色加一个品牌强调色。
 
@@ -26,7 +37,11 @@ theme.css 中的缓动令牌为：`--ease-out-quart`（通用）、`--ease-out-e
 
 ## 组件
 
-组件分为三层，全部由令牌驱动，且**绝不修改原版** shadcn/reka：
+**新库 `@nerv-ui/*`（新功能的唯一去处）**：四形态分包，行为全部来自 `@ui-sdk/vue` 原语，
+样式全部来自 StyleX。写法与判定口径见 `frontend/packages/CONVENTIONS.md`，其中两条为硬约束：
+行为必须来自 ui-sdk 原语；「展示件」不是自写交互的豁免理由。
+
+**旧库（`@nerv-iip/*`，冻结待删）**：三层结构，全部由令牌驱动，且**绝不修改原版** shadcn/reka：
 
 - `@nerv-iip/ui`：桌面端/PC。由 shadcn/reka 基础层、复制重建的高品质 **Pro** 组件（Button/Input/Select/DataTable/Descriptions/Timeline/Tabs/Dialog/Popconfirm/Tooltip/charts……）、**区块**（app-shell、page-header、section-card、toolbar、data-table）、**布局**（Container/Page/PageGrid/PageColumns/PageSection）和供一体机使用的**触控组件**（StationBar/StatTile/QtyStepper）组成。
 - `@nerv-iip/ui-mobile`：PDA。提供具有原生手感和手势支持的控件（swipe-cell、pull-refresh、bottom-sheet 拖拽关闭）、安全区适配、≥44px 触控目标与玻璃质感覆盖层。

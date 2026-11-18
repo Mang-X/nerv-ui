@@ -2,9 +2,15 @@
 import docxWasmUrl from './assets/docx_parser_bg.wasm?url'
 import pptxWasmUrl from './assets/pptx_parser_bg.wasm?url'
 import xlsxWasmUrl from './assets/xlsx_parser_bg.wasm?url'
+import { Button } from '@ui-sdk/vue/button'
+import { Select, SelectTrigger } from '@ui-sdk/vue/select'
+import NvSelectContent from '../select/NvSelectContent.vue'
+import NvSelectItem from '../select/NvSelectItem.vue'
+import NvSelectValue from '../select/NvSelectValue.vue'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { focus } from '../../theme/shared.stylex'
 import type { NvFilePreviewKind } from './types'
 import { styles } from './viewer.styles'
 
@@ -43,7 +49,8 @@ const rootSx = stylex.props(styles.viewer)
 const toolbarSx = stylex.props(styles.toolbar)
 const iconButtonSx = stylex.props(styles.iconButton)
 const labelSx = stylex.props(styles.label)
-const selectSx = stylex.props(styles.select)
+const selectSx = stylex.props(styles.select, styles.selectTrigger, focus.ring)
+const chevronSx = stylex.props(styles.selectChevron)
 const spacerSx = stylex.props(styles.toolbarSpacer)
 const canvasAreaSx = stylex.props(styles.canvasArea)
 const statusSx = stylex.props(styles.status)
@@ -221,13 +228,18 @@ function goNext() {
   else void active.goToSheet?.(currentIndex.value + 1)
 }
 
-function jumpTo(event: Event) {
-  const target = Number((event.target as HTMLSelectElement).value)
+function jumpTo(value: string | null) {
+  const target = Number(value)
   const active = viewer.value
   if (!Number.isInteger(target) || target < 0 || target >= total.value || !active) return
   if (isDocx.value) void active.goToPage?.(target)
   else if (isPptx.value) void active.goToSlide?.(target)
   else void active.goToSheet?.(target)
+}
+
+/** 下拉项文字：工作簿显示表名，文档/演示稿显示页码。 */
+function indexLabelOf(index: number) {
+  return isXlsx.value ? sheetNames.value[index] ?? `工作表 ${index + 1}` : `第 ${index + 1} 页`
 }
 
 watch(
@@ -250,7 +262,7 @@ onBeforeUnmount(() => {
 <template>
   <div data-slot="nv-file-preview-office" :class="rootSx.className" :style="rootSx.style">
     <div v-if="showToolbar !== false" :class="toolbarSx.className" :style="toolbarSx.style">
-      <button
+      <Button
         type="button"
         aria-label="上一项"
         :class="iconButtonSx.className"
@@ -259,20 +271,34 @@ onBeforeUnmount(() => {
         @click="goPrevious"
       >
         <NvIcon name="chevron-left" :size="16" />
-      </button>
-      <select
-        :value="String(currentIndex)"
-        :aria-label="indexLabel"
-        :class="selectSx.className"
-        :style="selectSx.style"
-        @change="jumpTo"
-      >
-        <option v-for="index in indexOptions" :key="index" :value="String(index)">
-          {{ isXlsx ? sheetNames[index] ?? `工作表 ${index + 1}` : `第 ${index + 1} 页` }}
-        </option>
-      </select>
+      </Button>
+      <Select :value="String(currentIndex)" @update:value="jumpTo">
+        <SelectTrigger
+          :aria-label="indexLabel"
+          :class="selectSx.className"
+          :style="selectSx.style"
+        >
+          <NvSelectValue />
+          <NvIcon
+            name="chevron-down"
+            :size="12"
+            :class="chevronSx.className"
+            :style="chevronSx.style"
+          />
+        </SelectTrigger>
+        <NvSelectContent side="bottom" align="start">
+          <NvSelectItem
+            v-for="index in indexOptions"
+            :key="index"
+            :value="String(index)"
+            :label="indexLabelOf(index)"
+          >
+            {{ indexLabelOf(index) }}
+          </NvSelectItem>
+        </NvSelectContent>
+      </Select>
       <span :class="labelSx.className" :style="labelSx.style">/ {{ total || '—' }}</span>
-      <button
+      <Button
         type="button"
         aria-label="下一项"
         :class="iconButtonSx.className"
@@ -281,11 +307,11 @@ onBeforeUnmount(() => {
         @click="goNext"
       >
         <NvIcon name="chevron-right" :size="16" />
-      </button>
+      </Button>
 
       <span :class="spacerSx.className" :style="spacerSx.style" />
 
-      <button
+      <Button
         type="button"
         aria-label="重新加载"
         :class="iconButtonSx.className"
@@ -293,7 +319,7 @@ onBeforeUnmount(() => {
         @click="loadDocument"
       >
         <NvIcon name="rotate-ccw" :size="16" />
-      </button>
+      </Button>
     </div>
 
     <div v-if="errorMessage" :class="statusErrorSx.className" :style="statusErrorSx.style">

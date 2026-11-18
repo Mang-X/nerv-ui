@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
@@ -42,7 +43,7 @@ const rootSx = computed(() => stylex.props(styles.root, props.size === 'sm' && s
       </slot>
     </div>
     <slot>
-      <button
+      <Button
         type="button"
         :disabled="loading"
         :aria-busy="loading || undefined"
@@ -56,7 +57,7 @@ const rootSx = computed(() => stylex.props(styles.root, props.size === 'sm' && s
         />
         <NvIcon name="refresh" v-else :size="18" />
         <span>{{ retryText }}</span>
-      </button>
+      </Button>
     </slot>
   </div>
 </template>

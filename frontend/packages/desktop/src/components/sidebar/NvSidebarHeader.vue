@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
@@ -32,7 +33,7 @@ function toggleIconSx(isCollapsed: boolean) {
     <div v-if="!collapsed" :class="contentSx.className" :style="contentSx.style">
       <slot />
     </div>
-    <button
+    <Button
       v-if="collapsible"
       type="button"
       :aria-label="collapsed ? '展开侧栏' : '收起侧栏'"
@@ -47,6 +48,6 @@ function toggleIconSx(isCollapsed: boolean) {
           :style="toggleIconSx(collapsed).style"
         />
       </slot>
-    </button>
+    </Button>
   </div>
 </template>

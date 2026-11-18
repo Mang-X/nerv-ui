@@ -1,4 +1,5 @@
 <script setup lang="ts" generic="T extends object">
+import { Button } from '@ui-sdk/vue/button'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
@@ -229,7 +230,7 @@ function displayValue(value: unknown): string {
             :style="[thSx.style, widthStyle(column), alignSx(column).style]"
           >
             <slot :name="`header-${column.key}`" :column="column">
-              <button
+              <Button
                 v-if="isSortable(column)"
                 type="button"
                 :class="sortButtonSx.className"
@@ -255,7 +256,7 @@ function displayValue(value: unknown): string {
                   :class="sortIconSx.className"
                   :style="sortIconSx.style"
                 />
-              </button>
+              </Button>
               <span v-else>{{ column.title }}</span>
             </slot>
           </th>

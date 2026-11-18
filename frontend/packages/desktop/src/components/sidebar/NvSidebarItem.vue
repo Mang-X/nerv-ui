@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -49,7 +50,7 @@ const accessibleLabel = computed(() => (props.label && collapsed.value ? props.l
       <slot>{{ label }}</slot>
     </span>
   </a>
-  <button
+  <Button
     v-else
     v-bind="omitClassStyle($attrs)"
     type="button"
@@ -68,5 +69,5 @@ const accessibleLabel = computed(() => (props.label && collapsed.value ? props.l
     <span v-if="showText" :class="labelSx.className" :style="labelSx.style">
       <slot>{{ label }}</slot>
     </span>
-  </button>
+  </Button>
 </template>

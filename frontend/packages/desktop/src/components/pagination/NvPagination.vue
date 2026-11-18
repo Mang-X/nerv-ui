@@ -11,6 +11,13 @@ import {
   PaginationPrevious,
 } from '@ui-sdk/vue/pagination'
 import NvIcon from '../../theme/NvIcon.vue'
+import NvButton from '../button/NvButton.vue'
+import NvInput from '../input/NvInput.vue'
+import NvSelect from '../select/NvSelect.vue'
+import NvSelectTrigger from '../select/NvSelectTrigger.vue'
+import NvSelectValue from '../select/NvSelectValue.vue'
+import NvSelectContent from '../select/NvSelectContent.vue'
+import NvSelectItem from '../select/NvSelectItem.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref, watch } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -135,8 +142,8 @@ function onJumperKey(event: KeyboardEvent) {
   commitJumper((event.target as HTMLInputElement).value)
 }
 
-function onSizeChange(event: Event) {
-  const next = Number((event.target as HTMLSelectElement).value)
+function onSizeChange(value: unknown) {
+  const next = Number(value)
   if (!Number.isFinite(next) || next <= 0) return
   emit('pageSizeChange', next, props.pageSizeChangeResetPage ? 1 : currentPage.value)
 }
@@ -162,48 +169,45 @@ function toggleSimpleJumper() {
     role="group"
     :aria-label="label"
   >
-    <button
-      type="button"
+    <NvButton
+      variant="ghost"
+      size="sm"
       :aria-label="prevLabel"
-      :class="stepSx.className"
-      :style="stepSx.style"
-      :data-disabled="currentPage <= 1 ? '' : undefined"
+      :disabled="currentPage <= 1"
       @click="goTo(currentPage - 1)"
     >
       <NvIcon name="chevron-left" :size="16" />
-    </button>
-    <input
+    </NvButton>
+    <NvInput
       v-if="jumperEditing"
-      :class="jumperSx.className"
-      :style="jumperSx.style"
-      type="text"
-      inputmode="numeric"
+      :model-value="jumperValue"
+      size="sm"
       :aria-label="jumpLabel"
-      :value="jumperValue"
-      @input="jumperValue = ($event.target as HTMLInputElement).value"
+      style="width: 56px"
+      @update:model-value="jumperValue = $event"
       @keydown="onJumperKey"
-      @blur="commitJumper(($event.target as HTMLInputElement).value); jumperEditing = false"
+      @blur="commitJumper(jumperValue); jumperEditing = false"
     />
-    <button
+    <NvButton
       v-else
-      type="button"
+      variant="ghost"
+      size="sm"
       :class="simpleTextSx.className"
       :style="simpleTextSx.style"
       :aria-label="`当前第 ${currentPage} 页，共 ${pageCountValue} 页`"
       @click="toggleSimpleJumper"
     >
       {{ currentPage }} / {{ pageCountValue }}
-    </button>
-    <button
-      type="button"
+    </NvButton>
+    <NvButton
+      variant="ghost"
+      size="sm"
       :aria-label="nextLabel"
-      :class="stepSx.className"
-      :style="stepSx.style"
-      :data-disabled="currentPage >= pageCountValue ? '' : undefined"
+      :disabled="currentPage >= pageCountValue"
       @click="goTo(currentPage + 1)"
     >
       <NvIcon name="chevron-right" :size="16" />
-    </button>
+    </NvButton>
   </div>
   <Pagination
     v-bind="$attrs"
@@ -264,30 +268,33 @@ function toggleSimpleJumper() {
       <span v-if="showTotal" :class="auxTextSx.className" :style="auxTextSx.style">
         {{ totalText }}
       </span>
-      <select
+      <NvSelect
         v-if="sizeCanChange"
-        :class="sizeSelectSx.className"
-        :style="sizeSelectSx.style"
+        :model-value="String(effectivePageSize)"
         :aria-label="pageSizeLabel"
-        :value="String(effectivePageSize)"
         :disabled="disabled"
-        @change="onSizeChange"
+        @update:model-value="onSizeChange"
       >
-        <option v-for="option in sizeList" :key="option" :value="String(option)">
-          {{ option }} 条/页
-        </option>
-      </select>
+        <NvSelectTrigger :class="sizeSelectSx.className" :style="sizeSelectSx.style">
+          <NvSelectValue />
+        </NvSelectTrigger>
+        <NvSelectContent>
+          <NvSelectItem v-for="option in sizeList" :key="option" :value="String(option)">
+            {{ option }} 条/页
+          </NvSelectItem>
+        </NvSelectContent>
+      </NvSelect>
       <span v-if="showJumper" :class="auxTextSx.className" :style="auxTextSx.style">跳至</span>
-      <input
+      <NvInput
         v-if="showJumper"
         :class="jumperSx.className"
         :style="jumperSx.style"
-        type="text"
-        inputmode="numeric"
+        size="sm"
         :aria-label="jumpLabel"
         :disabled="disabled"
         @keydown="onJumperKey"
-        @blur="commitJumper(($event.target as HTMLInputElement).value)"
+        @blur="commitJumper(jumperValue)"
+        @update:model-value="jumperValue = $event"
       />
     </div>
   </Pagination>

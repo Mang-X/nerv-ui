@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@ui-sdk/vue/button'
 import { Input, InputClear, InputGroup } from '@ui-sdk/vue/input'
 import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
@@ -92,13 +93,13 @@ function onEnter() {
         <NvIcon name="close" :size="18" />
       </InputClear>
     </InputGroup>
-    <button
+    <Button
       v-if="showCancel"
       type="button"
       :class="stylex.props(styles.cancel, focus.ring).className"
       @click="emit('cancel')"
     >
       <slot name="cancel">{{ cancelText }}</slot>
-    </button>
+    </Button>
   </div>
 </template>
