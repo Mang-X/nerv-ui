@@ -24,10 +24,12 @@ export const styles = stylex.create({
     cursor: 'pointer',
     userSelect: 'none',
     outlineStyle: 'none',
-    transitionProperty: 'background-color, border-color, box-shadow, color',
+    transitionProperty: 'background-color, border-color, box-shadow, color, transform',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
     ':hover': { backgroundColor: color.muted },
+    // 按下瞬间的物理反馈：轻微内缩，松手回落由过渡完成。
+    ':active': { transform: 'scale(0.96)' },
     '[data-pressed]': {
       backgroundColor: color.brandSoft,
       color: color.brand,
@@ -58,7 +60,8 @@ export const styles = stylex.create({
     width: 'fit-content',
     padding: 2,
     boxSizing: 'border-box',
-    borderRadius: shape.radius,
+    // 外圈 8、内边距 2 → 药丸 6，内外圆角同心。
+    borderRadius: 8,
     // 放在工具栏卡片里时，用更浅的底色分层；单独使用时交给 outline 变体。
     backgroundColor: color.muted,
     '[data-orientation="vertical"]': {

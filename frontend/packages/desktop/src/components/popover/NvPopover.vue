@@ -4,10 +4,12 @@ import type { NvPopoverProps } from './types'
 
 defineOptions({ inheritAttrs: false })
 
-withDefaults(defineProps<NvPopoverProps>(), { open: undefined, 
+withDefaults(defineProps<NvPopoverProps>(), { open: undefined,
   defaultOpen: false,
   modal: false,
   openOnHover: false,
+  // 默认不抢焦点：气泡卡片常承载按钮/表单，自动聚焦会让首个按钮一打开就亮聚焦环。
+  initialFocus: 'none',
 })
 
 </script>
@@ -21,6 +23,7 @@ withDefaults(defineProps<NvPopoverProps>(), { open: undefined,
     :open-on-hover="openOnHover"
     :delay="delay"
     :close-delay="closeDelay"
+    :initial-focus="initialFocus"
   >
     <slot />
   </Popover>

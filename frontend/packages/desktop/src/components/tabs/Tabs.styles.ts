@@ -86,6 +86,7 @@ export const styles = stylex.create({
     transitionDuration: motion.durationBase,
     transitionTimingFunction: motion.easeOut,
     '[data-starting-style]': { opacity: 0 },
-    '[data-ending-style]': { opacity: 0 },
+    // 退场面板在动画结束前仍留在文档流里，和新面板叠高会闪一下；退场直接不做过渡。
+    '[data-ending-style]': { opacity: 0, transitionDuration: '0ms' },
   },
 })

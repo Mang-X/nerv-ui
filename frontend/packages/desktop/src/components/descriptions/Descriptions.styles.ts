@@ -21,7 +21,9 @@ export const styles = stylex.create({
     borderStyle: 'solid',
     borderColor: color.border,
     borderRadius: shape.radiusLg,
-    backgroundColor: color.border,
+    // 用分隔线填缝，而不是给整块铺 border 色底：后者在暗色下会透出一层灰
+    // （单元格圆角处尤其明显）。
+    backgroundColor: color.card,
     overflow: 'hidden',
   },
   item: {

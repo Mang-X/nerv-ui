@@ -19,6 +19,7 @@ export const styles = stylex.create({
     alignItems: 'center',
     width: '100%',
     minWidth: 0,
+    overflow: 'hidden',
   },
   viewport: {
     width: '100%',

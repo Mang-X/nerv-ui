@@ -9,9 +9,9 @@ import { color, motion } from './tokens.stylex'
 export const focus = stylex.create({
   ring: {
     outlineStyle: 'none',
-    transitionProperty: 'box-shadow, border-color',
-    transitionDuration: motion.durationFast,
-    transitionTimingFunction: motion.easeOut,
+    // 不在这里声明 transitionProperty：组件自己往往要过渡背景色/位移，
+    // 这里再写一次会在 stylex.props 里把组件的过渡整组覆盖掉（开关、切换按钮
+    // 的「变色瞬间跳变、滑块才动」就是这么来的）。
     ':focus-visible': {
       borderColor: color.brand,
       boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,

@@ -3,7 +3,6 @@ import { Resizable, ResizableHandle, ResizablePanel } from '@ui-sdk/vue/resizabl
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { omitClassStyle } from '../../internal/attrs'
-import { focus } from '../../theme/shared.stylex'
 import { styles } from './Resizable.styles'
 import type { NvResizableProps } from './types'
 
@@ -23,12 +22,20 @@ const props = withDefaults(defineProps<NvResizableProps>(), {
 
 const rootSx = computed(() => stylex.props(styles.root))
 const panelSx = computed(() => stylex.props(styles.panel))
+// 焦点环由样式内部用 `:focus-visible` 表达（不再组合 focus.ring，
+// 那会把手柄自己的 background 过渡覆盖掉）。
 const handleSx = computed(() =>
   stylex.props(
     styles.handle,
-    focus.ring,
     props.orientation === 'vertical' && styles.handleVertical,
   ),
+)
+// 夹持手柄：两段短横条，让「可拖动」这件事一眼可见。
+const gripSx = computed(() =>
+  stylex.props(styles.grip, props.orientation === 'vertical' && styles.gripVertical),
+)
+const gripBarSx = computed(() =>
+  stylex.props(styles.gripBar, props.orientation === 'vertical' && styles.gripBarVertical),
 )
 </script>
 
@@ -52,7 +59,12 @@ const handleSx = computed(() =>
     >
       <slot name="start" />
     </ResizablePanel>
-    <ResizableHandle :aria-label="label" :class="handleSx.className" :style="handleSx.style" />
+    <ResizableHandle :aria-label="label" :class="handleSx.className" :style="handleSx.style">
+      <span :class="gripSx.className" :style="gripSx.style" aria-hidden="true">
+        <span :class="gripBarSx.className" :style="gripBarSx.style" />
+        <span :class="gripBarSx.className" :style="gripBarSx.style" />
+      </span>
+    </ResizableHandle>
     <ResizablePanel :class="panelSx.className" :style="panelSx.style">
       <slot name="end" />
     </ResizablePanel>

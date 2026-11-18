@@ -4,7 +4,9 @@ import { color, motion, shape, typography } from '../../theme/tokens.stylex'
 export const styles = stylex.create({
   root: {
     display: 'inline-flex',
-    alignItems: 'flex-start',
+    // 居中而不是顶对齐：表格里没有标签文本时，顶对齐 + marginTop 会让
+    // 勾选前后行高差 3px（勾选后行高会变矮）。
+    alignItems: 'center',
     gap: 8,
     cursor: 'pointer',
     color: color.fg,
@@ -19,7 +21,7 @@ export const styles = stylex.create({
     flexShrink: 0,
     width: 18,
     height: 18,
-    marginTop: 1,
+    marginTop: 0,
     padding: 0,
     borderWidth: 1,
     borderStyle: 'solid',

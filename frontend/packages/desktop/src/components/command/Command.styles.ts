@@ -53,7 +53,8 @@ export const styles = stylex.create({
   list: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 1,
+    gap: 2,
+    minHeight: 0,
     padding: 6,
     overflowY: 'auto',
   },
@@ -65,8 +66,10 @@ export const styles = stylex.create({
     textAlign: 'center',
   },
   groupLabel: {
+    // 与条目共用同一条左基线，且和下方首条留 2px 呼吸位。
     paddingBlock: 4,
     paddingInline: 8,
+    marginBottom: 2,
     color: color.mutedFg,
     fontSize: 12,
     lineHeight: '16px',

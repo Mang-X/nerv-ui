@@ -220,13 +220,26 @@ export const styles = stylex.create({
     '[data-unavailable]': { color: color.mutedFg, textDecorationLine: 'line-through' },
     '[data-today]': { boxShadow: `inset 0 0 0 1px ${color.brand}` },
     '[data-selected]': { backgroundColor: color.brand, color: color.brandFg },
+  // 区间中段铺满整格，但首尾两格保持圆角，整条区间才像一条连续的带子。
     '[data-range-middle]': {
       borderRadius: 0,
       backgroundColor: color.brandSoft,
       color: color.fg,
     },
-    '[data-range-start]': { backgroundColor: color.brand, color: color.brandFg },
-    '[data-range-end]': { backgroundColor: color.brand, color: color.brandFg },
+    // 起止格与相邻中段之间的外缘仍要圆：左端圆左、右端圆右。
+    '[data-range-start]': {
+      borderStartStartRadius: shape.radiusSm,
+      borderEndStartRadius: shape.radiusSm,
+      backgroundColor: color.brand,
+      color: color.brandFg,
+    },
+    '[data-range-end]': {
+      borderStartEndRadius: shape.radiusSm,
+      borderEndEndRadius: shape.radiusSm,
+      backgroundColor: color.brand,
+      color: color.brandFg,
+    },
+
     '[data-preview]': { backgroundColor: color.brandSoft },
     '[data-disabled]': { opacity: 0.4, cursor: 'not-allowed' },
   },

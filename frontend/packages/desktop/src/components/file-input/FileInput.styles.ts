@@ -26,10 +26,14 @@ export const styles = stylex.create({
     backgroundColor: color.muted,
     color: color.mutedFg,
     textAlign: 'center',
-    transitionProperty: 'border-color, background-color, box-shadow',
+    transitionProperty: 'border-color, background-color, box-shadow, transform',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
-    ':hover': { borderColor: color.mutedFg },
+    ':hover': { borderColor: color.mutedFg, backgroundColor: color.card },
+    // 拖入时轻微放大，配合描边变色给出「接住了」的反馈。
+    '[data-dragging], [data-drag-accept]': {
+      transform: 'scale(1.01)',
+    },
     '[data-dragging]': { borderColor: color.brand, backgroundColor: color.brandSoft },
     '[data-drag-accept]': { borderColor: color.brand, backgroundColor: color.brandSoft },
     '[data-drag-reject]': { borderColor: color.danger },

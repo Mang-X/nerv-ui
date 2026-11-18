@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex'
-import { color, shape, typography } from '../../theme/tokens.stylex'
+import { color, motion, shape, typography } from '../../theme/tokens.stylex'
 
 export const styles = stylex.create({
   trigger: {
@@ -14,6 +14,9 @@ export const styles = stylex.create({
     fontFamily: typography.fontSans,
     cursor: 'pointer',
     outlineStyle: 'none',
+    transitionProperty: 'box-shadow, border-color',
+    transitionDuration: motion.durationFast,
+    transitionTimingFunction: motion.easeOut,
   },
   content: {
     boxSizing: 'border-box',

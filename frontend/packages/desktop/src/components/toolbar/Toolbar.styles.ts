@@ -9,7 +9,7 @@ export const styles = stylex.create({
     boxSizing: 'border-box',
     width: '100%',
     minWidth: 0,
-    padding: 6,
+    padding: 4,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: color.border,
