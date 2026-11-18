@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CheckIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -87,7 +87,7 @@ const emptySx = computed(() => stylex.props(styles.empty))
         <slot name="trailing" :item="item">
           <span v-if="item.meta">{{ item.meta }}</span>
         </slot>
-        <CheckIcon v-if="isSelected(item)" :size="22" aria-hidden="true" />
+        <NvIcon name="check" v-if="isSelected(item)" :size="22" />
       </span>
     </button>
     <div v-if="!items.length" :class="emptySx.className" :style="emptySx.style">

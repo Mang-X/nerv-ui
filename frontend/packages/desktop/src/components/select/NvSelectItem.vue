@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SelectItem, SelectItemIndicator, SelectItemText } from '@ui-sdk/vue/select'
-import { CheckIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -29,7 +29,7 @@ const indicatorSx = computed(() => stylex.props(styles.indicator))
       <slot>{{ label }}</slot>
     </SelectItemText>
     <SelectItemIndicator :class="indicatorSx.className" :style="indicatorSx.style">
-      <CheckIcon :size="14" aria-hidden="true" />
+      <NvIcon name="check" :size="14" />
     </SelectItemIndicator>
   </SelectItem>
 </template>

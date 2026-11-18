@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CircleCheck, CircleX, Info, TriangleAlert } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -19,13 +19,13 @@ const props = withDefaults(defineProps<MobileResultProps>(), {
 const emit = defineEmits<{ action: [] }>()
 
 const defaultIcons = {
-  success: CircleCheck,
-  error: CircleX,
-  warning: TriangleAlert,
-  info: Info,
+  success: 'circle-check',
+  error: 'x-circle',
+  warning: 'alert',
+  info: 'info',
 } as const
 
-const statusIcon = computed(() => props.icon ?? defaultIcons[props.status as MobileResultStatus])
+const statusIcon = computed(() => defaultIcons[props.status as MobileResultStatus])
 
 const iconSx = computed(() =>
   stylex.props(
@@ -45,7 +45,8 @@ const iconSx = computed(() =>
   >
     <div :class="iconSx.className" :style="iconSx.style">
       <slot name="icon">
-        <component :is="statusIcon" aria-hidden="true" :size="40" />
+        <component v-if="icon" :is="icon" aria-hidden="true" :size="40" />
+        <NvIcon v-else :name="statusIcon" :size="40" />
       </slot>
     </div>
     <div :class="stylex.props(styles.content).className" role="status" aria-live="polite">

@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends object">
-import { ArrowDownIcon, ArrowUpDownIcon, ArrowUpIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -237,24 +237,21 @@ function displayValue(value: unknown): string {
                 @click="toggleSort(column)"
               >
                 <span>{{ column.title }}</span>
-                <ArrowUpIcon
+                <NvIcon name="arrow-up"
                   v-if="sortDirectionOf(column) === 'asc'"
                   :size="12"
-                  aria-hidden="true"
                   :class="sortIconSx.className"
                   :style="sortIconSx.style"
                 />
-                <ArrowDownIcon
+                <NvIcon name="arrow-down"
                   v-else-if="sortDirectionOf(column) === 'desc'"
                   :size="12"
-                  aria-hidden="true"
                   :class="sortIconSx.className"
                   :style="sortIconSx.style"
                 />
-                <ArrowUpDownIcon
+                <NvIcon name="arrow-up-down"
                   v-else
                   :size="12"
-                  aria-hidden="true"
                   :class="sortIconSx.className"
                   :style="sortIconSx.style"
                 />

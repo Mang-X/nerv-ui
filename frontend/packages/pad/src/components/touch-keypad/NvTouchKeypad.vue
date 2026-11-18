@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DeleteIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -147,7 +147,7 @@ const confirmSx = computed(() => stylex.props(styles.action, styles.confirm, foc
         :style="mutedKeySx.style"
         @click="backspace"
       >
-        <DeleteIcon :size="26" aria-hidden="true" />
+        <NvIcon name="trash" :size="26" />
       </button>
     </div>
 

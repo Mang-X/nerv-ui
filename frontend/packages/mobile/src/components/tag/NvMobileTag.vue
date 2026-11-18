@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { X } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -48,7 +48,7 @@ const sx = computed(() =>
       @click.stop="emit('close')"
     >
       <slot name="close-icon">
-        <X aria-hidden="true" :size="14" />
+        <NvIcon name="close" :size="14" />
       </slot>
     </button>
   </span>

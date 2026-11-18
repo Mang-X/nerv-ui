@@ -132,3 +132,5 @@ export { default as NvMobileNumbers } from './components/numbers/NvMobileNumbers
 export type { MobileNumbersProps } from './components/numbers/types'
 
 export { darkTheme } from './theme/tokens.stylex'
+
+export { default as NvIcon } from './theme/NvIcon.vue'

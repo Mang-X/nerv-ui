@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronDown, LoaderCircle } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { styles } from './PullRefresh.styles'
@@ -133,9 +133,8 @@ defineExpose({ finish })
     @touchcancel="onTouchEnd"
   >
     <div :class="indicatorSx.className" :style="[indicatorSx.style, indicatorStyle]" aria-live="polite">
-      <LoaderCircle
+      <NvIcon name="loader-circle"
         v-if="isRefreshing"
-        aria-hidden="true"
         :size="18"
         :class="stylex.props(styles.spinner).className"
       />
@@ -144,7 +143,7 @@ defineExpose({ finish })
         :class="stylex.props(styles.arrow, ready && styles.arrowReady).className"
         aria-hidden="true"
       >
-        <ChevronDown :size="18" />
+        <NvIcon name="chevron-down" :size="18" />
       </span>
       <span>{{ isRefreshing ? refreshingText : ready ? releaseText : pullText }}</span>
     </div>

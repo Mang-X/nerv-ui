@@ -72,3 +72,5 @@ export type {
 } from './components/touch-badge/types'
 
 export { darkTheme } from './theme/tokens.stylex'
+
+export { default as NvIcon } from './theme/NvIcon.vue'

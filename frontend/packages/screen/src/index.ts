@@ -136,3 +136,5 @@ export { default as NvScreenToolbar } from './components/screen-toolbar/NvScreen
 export type { ScreenToolbarProps } from './components/screen-toolbar/types'
 
 export { darkTheme } from './theme/tokens.stylex'
+
+export { default as NvIcon } from './theme/NvIcon.vue'

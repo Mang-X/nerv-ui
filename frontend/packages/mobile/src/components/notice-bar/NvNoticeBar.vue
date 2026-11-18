@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Info, TriangleAlert, X } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, type Component } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -39,14 +39,15 @@ const iconSx = computed(() =>
     props.variant === 'danger' && styles.iconDanger,
   ),
 )
-const defaultIcon = computed(() => (props.variant === 'danger' ? TriangleAlert : Info))
+const defaultIcon = computed(() => (props.variant === 'danger' ? 'alert' : 'info'))
 </script>
 
 <template>
   <div :class="stateSx.className" :style="stateSx.style" role="status" aria-live="polite">
     <span :class="iconSx.className">
       <slot name="icon">
-        <component :is="icon ?? defaultIcon" aria-hidden="true" :size="18" />
+        <component v-if="icon" :is="icon" aria-hidden="true" :size="18" />
+        <NvIcon v-else :name="defaultIcon" :size="18" />
       </slot>
     </span>
     <span :class="stylex.props(styles.content).className">
@@ -60,7 +61,7 @@ const defaultIcon = computed(() => (props.variant === 'danger' ? TriangleAlert :
       :class="stylex.props(styles.close, focus.ring).className"
       @click="emit('close')"
     >
-      <X aria-hidden="true" :size="16" />
+      <NvIcon name="close" :size="16" />
     </button>
   </div>
 </template>

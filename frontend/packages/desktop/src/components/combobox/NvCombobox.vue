@@ -12,7 +12,7 @@ import {
   ComboboxTrigger,
 } from '@ui-sdk/vue/combobox'
 import { useAsyncOptions } from '@ui-sdk/vue/async-options'
-import { CheckIcon, ChevronDownIcon, SearchIcon, XIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus, glass, presence } from '../../theme/shared.stylex'
@@ -124,9 +124,8 @@ function sourceItems(items: unknown): NvComboboxItem[] {
 <template>
   <Combobox v-bind="{ ...omitClassStyle($attrs), ...comboboxBindings }">
     <div :class="[fieldSx.className, $attrs.class]" :style="[fieldSx.style, $attrs.style]">
-      <SearchIcon
+      <NvIcon name="search"
         :size="16"
-        aria-hidden="true"
         :class="iconSx.className"
         :style="iconSx.style"
       />
@@ -142,7 +141,7 @@ function sourceItems(items: unknown): NvComboboxItem[] {
         :class="clearSx.className"
         :style="clearSx.style"
       >
-        <XIcon :size="14" aria-hidden="true" />
+        <NvIcon name="close" :size="14" />
       </ComboboxClear>
       <ComboboxTrigger
         v-if="showTrigger"
@@ -150,7 +149,7 @@ function sourceItems(items: unknown): NvComboboxItem[] {
         :class="triggerSx.className"
         :style="triggerSx.style"
       >
-        <ChevronDownIcon :size="16" aria-hidden="true" />
+        <NvIcon name="chevron-down" :size="16" />
       </ComboboxTrigger>
     </div>
     <ComboboxContent
@@ -183,7 +182,7 @@ function sourceItems(items: unknown): NvComboboxItem[] {
         >
           <span :class="itemTextSx.className" :style="itemTextSx.style">{{ item.label }}</span>
           <ComboboxItemIndicator :class="indicatorSx.className" :style="indicatorSx.style">
-            <CheckIcon :size="14" aria-hidden="true" />
+            <NvIcon name="check" :size="14" />
           </ComboboxItemIndicator>
         </ComboboxItem>
       </ComboboxList>

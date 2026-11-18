@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Input, InputClear, InputGroup } from '@ui-sdk/vue/input'
-import { XIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref, useAttrs, useId } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -98,7 +98,7 @@ const hintSx = computed(() => stylex.props(styles.hint, props.invalid && styles.
         :class="clearSx.className"
         :style="clearSx.style"
       >
-        <XIcon :size="24" aria-hidden="true" />
+        <NvIcon name="close" :size="24" />
       </InputClear>
     </InputGroup>
     <p v-if="hint || $slots.hint" :id="hintId" :class="hintSx.className" :style="hintSx.style">

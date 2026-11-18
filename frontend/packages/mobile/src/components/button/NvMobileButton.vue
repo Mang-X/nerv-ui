@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button } from '@ui-sdk/vue/button'
-import { LoaderCircle } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -45,7 +45,7 @@ const sx = computed(() =>
     :class="sx.className"
     :style="sx.style"
   >
-    <LoaderCircle v-if="loading" aria-hidden="true" :size="18" :class="stylex.props(styles.loadingIcon).className" />
+    <NvIcon name="loader-circle" v-if="loading" :size="18" :class="stylex.props(styles.loadingIcon).className" />
     <slot v-else name="icon" />
     <span :class="stylex.props(styles.content).className"><slot /></span>
   </Button>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Input, InputClear, InputGroup } from '@ui-sdk/vue/input'
-import { XIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -62,7 +62,7 @@ const clearSx = computed(() => stylex.props(styles.clear, focus.subtle))
       :class="clearSx.className"
       :style="clearSx.style"
     >
-      <XIcon :size="14" aria-hidden="true" />
+      <NvIcon name="close" :size="14" />
     </InputClear>
   </InputGroup>
 </template>

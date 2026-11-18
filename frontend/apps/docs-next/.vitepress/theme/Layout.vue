@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
 import { Content, useData } from 'vitepress'
-import { NvBadge, NvButton, NvSheet, NvSheetContent } from '@nerv-ui/desktop'
+import { NvBadge, NvButton, NvIcon, NvSheet, NvSheetContent } from '@nerv-ui/desktop'
 import * as stylex from '@stylexjs/stylex'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { darkTheme } from './gen/tokens.stylex'
@@ -122,7 +122,7 @@ function toggleDark() {
         aria-label="打开组件导航"
         @click="menuOpen = true"
       >
-        ☰
+        <NvIcon name="menu" :size="18" />
       </button>
       <a href="/" :class="s.brand.className" :style="s.brand.style">
         <span :class="s.brandDot.className" :style="s.brandDot.style">Nv</span>UI
@@ -147,7 +147,7 @@ function toggleDark() {
         :aria-pressed="dark"
         @click="toggleDark"
       >
-        {{ dark ? '☀' : '☾' }}
+        <NvIcon :name="dark ? 'sun' : 'moon'" :size="16" />
       </NvButton>
     </header>
 

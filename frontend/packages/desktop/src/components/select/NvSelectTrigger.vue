@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SelectTrigger } from '@ui-sdk/vue/select'
-import { ChevronDownIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -23,10 +23,9 @@ const chevronSx = computed(() => stylex.props(styles.chevron))
     :style="[sx.style]"
   >
     <slot />
-    <ChevronDownIcon
+    <NvIcon name="chevron-down"
       v-if="!hideChevron"
       :size="16"
-      aria-hidden="true"
       :class="chevronSx.className"
       :style="chevronSx.style"
     />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRight } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, useAttrs } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -78,9 +78,8 @@ function onClick(event: MouseEvent) {
       <slot name="extra" />
     </span>
     <slot name="arrow">
-      <ChevronRight
+      <NvIcon name="chevron-right"
         v-if="interactive && arrow"
-        aria-hidden="true"
         :size="18"
         :class="stylex.props(styles.arrow).className"
       />

@@ -8,7 +8,7 @@ import {
   FileInputTrigger,
   formatFileSize,
 } from '@ui-sdk/vue/file-input'
-import { FileIcon, UploadIcon, XIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -71,13 +71,13 @@ function onReject(rejected: { reasons: readonly string[] }[]) {
     <FileInputDropzone v-if="dropzone" :class="dropzoneSx.className" :style="dropzoneSx.style">
       <span :class="hintSx.className" :style="hintSx.style">{{ hint }}</span>
       <FileInputTrigger :class="triggerSx.className" :style="triggerSx.style">
-        <UploadIcon :size="15" aria-hidden="true" />
+        <NvIcon name="upload" :size="15" />
         {{ triggerLabel }}
       </FileInputTrigger>
     </FileInputDropzone>
     <!-- A trigger-only layout keeps the keyboard path without a drop target. -->
     <FileInputTrigger v-else :class="triggerSx.className" :style="triggerSx.style">
-      <UploadIcon :size="15" aria-hidden="true" />
+      <NvIcon name="upload" :size="15" />
       {{ triggerLabel }}
     </FileInputTrigger>
     <FileInputList
@@ -87,13 +87,13 @@ function onReject(rejected: { reasons: readonly string[] }[]) {
       :style="listSx.style"
     >
       <FileInputItem v-slot="{ state }" :class="itemSx.className" :style="itemSx.style">
-        <FileIcon :size="14" aria-hidden="true" />
+        <NvIcon name="file" :size="14" />
         <span :class="fileNameSx.className" :style="fileNameSx.style">{{ state.file.name }}</span>
         <span :class="fileSizeSx.className" :style="fileSizeSx.style">
           {{ formatFileSize(state.file.size) }}
         </span>
         <FileInputItemRemove :class="removeSx.className" :style="removeSx.style">
-          <XIcon :size="13" aria-hidden="true" />
+          <NvIcon name="close" :size="13" />
         </FileInputItemRemove>
       </FileInputItem>
     </FileInputList>

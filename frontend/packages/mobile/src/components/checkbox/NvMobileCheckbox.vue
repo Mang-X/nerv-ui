@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Checkbox, CheckboxIndicator } from '@ui-sdk/vue/checkbox'
 import type { CheckedState } from '@ui-sdk/vue/checkbox'
-import { Check, Minus } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -57,8 +57,8 @@ const boxSx = computed(() =>
       @checked-change="checked = $event"
     >
       <CheckboxIndicator :class="stylex.props(styles.indicator).className">
-        <Minus v-if="state.indeterminate" aria-hidden="true" :size="16" />
-        <Check v-else-if="state.checked" aria-hidden="true" :size="16" />
+        <NvIcon name="minus" v-if="state.indeterminate" :size="16" />
+        <NvIcon name="check" v-else-if="state.checked" :size="16" />
       </CheckboxIndicator>
     </Checkbox>
     <span v-if="$slots.default" :class="stylex.props(styles.label).className">

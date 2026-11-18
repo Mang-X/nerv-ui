@@ -1,17 +1,7 @@
 <script setup lang="ts">
 import { useScroll } from '@embedpdf/plugin-scroll/vue'
 import { ZoomMode, useZoom } from '@embedpdf/plugin-zoom/vue'
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DownloadIcon,
-  ExternalLinkIcon,
-  Maximize2Icon,
-  MaximizeIcon,
-  RotateCwIcon,
-  ZoomInIcon,
-  ZoomOutIcon,
-} from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { useRegistry } from '@embedpdf/core/vue'
 import { setRotation } from '@embedpdf/core'
@@ -116,7 +106,7 @@ onBeforeUnmount(() => {
       :data-disabled="canGoPrevious ? undefined : ''"
       @click="goPrevious"
     >
-      <ChevronLeftIcon :size="16" aria-hidden="true" />
+      <NvIcon name="chevron-left" :size="16" />
     </button>
     <select
       :value="String(currentPage)"
@@ -136,7 +126,7 @@ onBeforeUnmount(() => {
       :data-disabled="canGoNext ? undefined : ''"
       @click="goNext"
     >
-      <ChevronRightIcon :size="16" aria-hidden="true" />
+      <NvIcon name="chevron-right" :size="16" />
     </button>
 
     <span :class="spacerSx.className" :style="spacerSx.style" />
@@ -148,7 +138,7 @@ onBeforeUnmount(() => {
       :style="iconButtonSx.style"
       @click="zoomOut"
     >
-      <ZoomOutIcon :size="16" aria-hidden="true" />
+      <NvIcon name="zoom-out" :size="16" />
     </button>
     <span :class="labelSx.className" :style="labelSx.style">{{ zoomLabel }}</span>
     <button
@@ -158,7 +148,7 @@ onBeforeUnmount(() => {
       :style="iconButtonSx.style"
       @click="zoomIn"
     >
-      <ZoomInIcon :size="16" aria-hidden="true" />
+      <NvIcon name="zoom-in" :size="16" />
     </button>
     <button
       type="button"
@@ -167,7 +157,7 @@ onBeforeUnmount(() => {
       :style="iconButtonSx.style"
       @click="fitWidth"
     >
-      <Maximize2Icon :size="16" aria-hidden="true" />
+      <NvIcon name="expand" :size="16" />
     </button>
     <button
       type="button"
@@ -176,7 +166,7 @@ onBeforeUnmount(() => {
       :style="iconButtonSx.style"
       @click="fitPage"
     >
-      <MaximizeIcon :size="16" aria-hidden="true" />
+      <NvIcon name="maximize" :size="16" />
     </button>
     <button
       type="button"
@@ -185,7 +175,7 @@ onBeforeUnmount(() => {
       :style="iconButtonSx.style"
       @click="rotatePage"
     >
-      <RotateCwIcon :size="16" aria-hidden="true" />
+      <NvIcon name="rotate-cw" :size="16" />
     </button>
 
     <span :class="dividerSx.className" :style="dividerSx.style" aria-hidden="true" />
@@ -198,7 +188,7 @@ onBeforeUnmount(() => {
       :data-disabled="src ? undefined : ''"
       @click="openInNewWindow"
     >
-      <ExternalLinkIcon :size="16" aria-hidden="true" />
+      <NvIcon name="external-link" :size="16" />
     </button>
     <a
       v-if="src"
@@ -208,7 +198,7 @@ onBeforeUnmount(() => {
       :class="iconButtonSx.className"
       :style="iconButtonSx.style"
     >
-      <DownloadIcon :size="16" aria-hidden="true" />
+      <NvIcon name="download" :size="16" />
     </a>
   </div>
 </template>

@@ -165,9 +165,6 @@ importers:
       '@embedpdf/plugin-zoom':
         specifier: 2.14.4
         version: 2.14.4(1e153b0311895763d190bb419948cc39)
-      '@lucide/vue':
-        specifier: 1.24.0
-        version: 1.24.0(vue@3.5.39(typescript@6.0.3))
       '@silurus/ooxml':
         specifier: 0.72.2
         version: 0.72.2
@@ -204,10 +201,6 @@ importers:
         version: 3.3.7(typescript@6.0.3)
 
   packages/mobile:
-    dependencies:
-      '@lucide/vue':
-        specifier: 1.24.0
-        version: 1.24.0(vue@3.5.39(typescript@6.0.3))
     devDependencies:
       '@stylexjs/babel-plugin':
         specifier: 0.19.2
@@ -241,10 +234,6 @@ importers:
         version: 3.3.7(typescript@6.0.3)
 
   packages/pad:
-    dependencies:
-      '@lucide/vue':
-        specifier: 1.24.0
-        version: 1.24.0(vue@3.5.39(typescript@6.0.3))
     devDependencies:
       '@stylexjs/babel-plugin':
         specifier: 0.19.2
@@ -278,10 +267,6 @@ importers:
         version: 3.3.7(typescript@6.0.3)
 
   packages/screen:
-    dependencies:
-      '@lucide/vue':
-        specifier: 1.24.0
-        version: 1.24.0(vue@3.5.39(typescript@6.0.3))
     devDependencies:
       '@stylexjs/babel-plugin':
         specifier: 0.19.2

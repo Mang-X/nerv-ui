@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MaximizeIcon, RotateCcwIcon, RotateCwIcon, ZoomInIcon, ZoomOutIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { styles } from './viewer.styles'
@@ -54,7 +54,7 @@ function onError() {
         :style="iconButtonSx.style"
         @click="zoomOut"
       >
-        <ZoomOutIcon :size="16" aria-hidden="true" />
+        <NvIcon name="zoom-out" :size="16" />
       </button>
       <span :class="labelSx.className" :style="labelSx.style">{{ Math.round(scale * 100) }}%</span>
       <button
@@ -64,7 +64,7 @@ function onError() {
         :style="iconButtonSx.style"
         @click="zoomIn"
       >
-        <ZoomInIcon :size="16" aria-hidden="true" />
+        <NvIcon name="zoom-in" :size="16" />
       </button>
       <button
         type="button"
@@ -73,7 +73,7 @@ function onError() {
         :style="iconButtonSx.style"
         @click="rotateLeft"
       >
-        <RotateCcwIcon :size="16" aria-hidden="true" />
+        <NvIcon name="rotate-ccw" :size="16" />
       </button>
       <button
         type="button"
@@ -82,7 +82,7 @@ function onError() {
         :style="iconButtonSx.style"
         @click="rotateRight"
       >
-        <RotateCwIcon :size="16" aria-hidden="true" />
+        <NvIcon name="rotate-cw" :size="16" />
       </button>
 
       <span :class="spacerSx.className" :style="spacerSx.style" />
@@ -94,7 +94,7 @@ function onError() {
         :style="iconButtonSx.style"
         @click="reset"
       >
-        <MaximizeIcon :size="16" aria-hidden="true" />
+        <NvIcon name="maximize" :size="16" />
       </button>
     </div>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronLeftIcon, ChevronRightIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import {
   Carousel,
   CarouselContent,
@@ -80,7 +80,7 @@ const indicatorSx = computed(() => stylex.props(styles.indicator, focus.subtle))
         :style="previousSx.style"
         aria-label="上一页"
       >
-        <ChevronLeftIcon :size="18" aria-hidden="true" />
+        <NvIcon name="chevron-left" :size="18" />
       </CarouselPrevious>
       <CarouselNext
         v-if="controls"
@@ -88,7 +88,7 @@ const indicatorSx = computed(() => stylex.props(styles.indicator, focus.subtle))
         :style="nextSx.style"
         aria-label="下一页"
       >
-        <ChevronRightIcon :size="18" aria-hidden="true" />
+        <NvIcon name="chevron-right" :size="18" />
       </CarouselNext>
     </div>
     <CarouselIndicatorGroup

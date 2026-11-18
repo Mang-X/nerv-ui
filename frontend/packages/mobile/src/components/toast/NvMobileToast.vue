@@ -9,7 +9,7 @@ import {
   type Toaster,
   type ToastType,
 } from '@ui-sdk/vue/toast'
-import { CircleCheck, CircleX, Info, LoaderCircle, TriangleAlert, X } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus, glass, presence } from '../../theme/shared.stylex'
@@ -42,16 +42,16 @@ const props = withDefaults(
 )
 
 const icons = {
-  default: Info,
-  info: Info,
-  success: CircleCheck,
-  error: CircleX,
-  warning: TriangleAlert,
-  loading: LoaderCircle,
+  default: 'info',
+  info: 'info',
+  success: 'circle-check',
+  error: 'x-circle',
+  warning: 'alert',
+  loading: 'loader-circle',
 } as const
 
 function iconFor(type: ToastType) {
-  return icons[type] ?? Info
+  return icons[type] ?? 'info'
 }
 
 function iconSx(type: ToastType) {
@@ -86,7 +86,7 @@ const regionSx = computed(() => stylex.props(styles.region))
   >
     <Toast v-slot="{ state }" :class="toastSx.className" :style="toastSx.style">
       <span :class="iconSx(state.type).className">
-        <component :is="iconFor(state.type)" aria-hidden="true" :size="20" />
+        <NvIcon :name="iconFor(state.type)" :size="20" />
       </span>
       <span :class="stylex.props(styles.content).className">
         <ToastTitle :class="stylex.props(styles.title).className" />
@@ -98,7 +98,7 @@ const regionSx = computed(() => stylex.props(styles.region))
         :aria-label="closeLabel"
         :class="stylex.props(styles.close, focus.ring).className"
       >
-        <X aria-hidden="true" :size="18" />
+        <NvIcon name="close" :size="18" />
       </ToastClose>
     </Toast>
   </ToastRegion>

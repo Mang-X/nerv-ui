@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NavigationMenuTrigger } from '@ui-sdk/vue/navigation-menu'
-import { ChevronDownIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -27,9 +27,8 @@ function chevronSx(open: boolean) {
     :style="[sx.style]"
   >
     <slot />
-    <ChevronDownIcon
+    <NvIcon name="chevron-down"
       :size="14"
-      aria-hidden="true"
       :class="chevronSx(state.open).className"
       :style="chevronSx(state.open).style"
     />

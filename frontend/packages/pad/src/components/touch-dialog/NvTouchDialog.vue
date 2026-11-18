@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui-sdk/vue/dialog'
-import { XIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref, useAttrs } from 'vue'
 import { focus, glass, overlay, presence } from '../../theme/shared.stylex'
@@ -115,7 +115,7 @@ const footerSx = computed(() => stylex.props(styles.footer))
           :class="closeSx.className"
           :style="closeSx.style"
         >
-          <XIcon :size="26" aria-hidden="true" />
+          <NvIcon name="close" :size="26" />
         </DialogClose>
       </header>
       <div v-if="$slots.default" :class="bodySx.className" :style="bodySx.style">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LoaderCircleIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { styles } from './Spinner.styles'
@@ -26,6 +26,6 @@ const sx = computed(() => stylex.props(styles.root))
     :class="[sx.className, $attrs.class]"
     :style="[sx.style, $attrs.style]"
   >
-    <LoaderCircleIcon :size="iconSize" aria-hidden="true" />
+    <NvIcon name="loader-circle" :size="iconSize" />
   </span>
 </template>

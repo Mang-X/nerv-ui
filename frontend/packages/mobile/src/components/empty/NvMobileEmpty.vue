@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Inbox } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { styles } from './Empty.styles'
@@ -29,7 +29,8 @@ const iconSize = computed(() => (props.size === 'sm' ? 28 : 36))
   >
     <div :class="stylex.props(styles.icon).className">
       <slot name="icon">
-        <component :is="icon ?? Inbox" aria-hidden="true" :size="iconSize" />
+        <component v-if="icon" :is="icon" aria-hidden="true" :size="iconSize" />
+        <NvIcon v-else name="inbox" :size="iconSize" />
       </slot>
     </div>
     <div :class="stylex.props(styles.content).className">

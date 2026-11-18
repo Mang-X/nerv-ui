@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Check, X } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -100,8 +100,8 @@ function goTo(index: number) {
           @click="goTo(index)"
         >
           <span :class="markerSx(statusOf(item, index), index === currentIndex).className">
-            <X v-if="isError(statusOf(item, index))" aria-hidden="true" :size="16" />
-            <Check v-else-if="isDone(statusOf(item, index))" aria-hidden="true" :size="16" />
+            <NvIcon name="close" v-if="isError(statusOf(item, index))" :size="16" />
+            <NvIcon name="check" v-else-if="isDone(statusOf(item, index))" :size="16" />
             <span v-else>{{ index + 1 }}</span>
           </span>
         </button>
@@ -138,8 +138,8 @@ function goTo(index: number) {
           @click="goTo(index)"
         >
           <span :class="markerSx(statusOf(item, index), index === currentIndex).className">
-            <X v-if="isError(statusOf(item, index))" aria-hidden="true" :size="16" />
-            <Check v-else-if="isDone(statusOf(item, index))" aria-hidden="true" :size="16" />
+            <NvIcon name="close" v-if="isError(statusOf(item, index))" :size="16" />
+            <NvIcon name="check" v-else-if="isDone(statusOf(item, index))" :size="16" />
             <span v-else>{{ index + 1 }}</span>
           </span>
         </button>

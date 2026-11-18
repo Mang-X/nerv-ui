@@ -5,7 +5,7 @@ import {
   AccordionPanel,
   AccordionTrigger,
 } from '@ui-sdk/vue/accordion'
-import { ChevronDownIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { omitClassStyle } from '../../internal/attrs'
@@ -45,9 +45,8 @@ function chevronSx(open: boolean) {
         <span :class="titleSx.className" :style="titleSx.style">
           <slot name="trigger">{{ title }}</slot>
         </span>
-        <ChevronDownIcon
+        <NvIcon name="chevron-down"
           :size="16"
-          aria-hidden="true"
           :class="chevronSx(state.open).className"
           :style="chevronSx(state.open).style"
         />

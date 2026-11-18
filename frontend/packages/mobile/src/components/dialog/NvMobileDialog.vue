@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui-sdk/vue/dialog'
-import { X } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus, glass, overlay } from '../../theme/shared.stylex'
@@ -92,7 +92,7 @@ function onOpenChange(open: boolean) {
           </DialogDescription>
         </div>
         <DialogClose v-if="showClose" :aria-label="closeLabel" :class="closeSx.className" :style="closeSx.style">
-          <X aria-hidden="true" :size="20" />
+          <NvIcon name="close" :size="20" />
         </DialogClose>
       </div>
       <div :class="stylex.props(styles.body).className">

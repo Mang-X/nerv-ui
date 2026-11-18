@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CircleAlert, LoaderCircle, RefreshCw } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -30,7 +30,7 @@ const rootSx = computed(() => stylex.props(styles.root, props.size === 'sm' && s
   >
     <div :class="stylex.props(styles.icon).className">
       <slot name="icon">
-        <CircleAlert aria-hidden="true" :size="28" />
+        <NvIcon name="alert-circle" :size="28" />
       </slot>
     </div>
     <div :class="stylex.props(styles.content).className">
@@ -49,13 +49,12 @@ const rootSx = computed(() => stylex.props(styles.root, props.size === 'sm' && s
         :class="stylex.props(styles.retry, focus.ring).className"
         @click="emit('retry')"
       >
-        <LoaderCircle
+        <NvIcon name="loader-circle"
           v-if="loading"
-          aria-hidden="true"
           :size="18"
           :class="stylex.props(styles.spinner).className"
         />
-        <RefreshCw v-else aria-hidden="true" :size="18" />
+        <NvIcon name="refresh" v-else :size="18" />
         <span>{{ retryText }}</span>
       </button>
     </slot>

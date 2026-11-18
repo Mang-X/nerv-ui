@@ -18,9 +18,7 @@
     "build": "node ../../scripts/sync-theme.mjs && tsdown && node -e \"require('fs').cpSync('dist/assets/stylex.css','dist/style.css')\"",
     "typecheck": "vue-tsc --noEmit -p tsconfig.json"
   },
-  "dependencies": {
-    "@lucide/vue": "1.24.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "vue": "^3.5.0",
     "@ui-sdk/vue": "0.1.0-beta.6",
@@ -37,8 +35,7 @@
     "typescript": "^6.0.3",
     "@ui-sdk/vue": "0.1.0-beta.6",
     "@ui-sdk/core": "0.1.0-beta.6",
-    "@stylexjs/stylex": "0.19.2",
-    "@lucide/vue": "0.19.2"
+    "@stylexjs/stylex": "0.19.2"
   },
   "peerDependenciesMeta": {
     "vue": {

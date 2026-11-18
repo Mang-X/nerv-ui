@@ -19,7 +19,6 @@
     "typecheck": "vue-tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
-    "@lucide/vue": "1.24.0",
     "@embedpdf/core": "2.14.4",
     "@embedpdf/engines": "2.14.4",
     "@embedpdf/plugin-document-manager": "2.14.4",
@@ -46,8 +45,7 @@
     "typescript": "^6.0.3",
     "@ui-sdk/vue": "0.1.0-beta.6",
     "@ui-sdk/core": "0.1.0-beta.6",
-    "@stylexjs/stylex": "0.19.2",
-    "@lucide/vue": "1.24.0"
+    "@stylexjs/stylex": "0.19.2"
   },
   "peerDependenciesMeta": {
     "vue": {

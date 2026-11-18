@@ -10,13 +10,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@ui-sdk/vue/pagination'
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronsLeftIcon,
-  ChevronsRightIcon,
-  EllipsisIcon,
-} from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -68,12 +62,12 @@ const ellipsisSx = computed(() => stylex.props(styles.ellipsis, props.size === '
     <PaginationList v-slot="{ state }" :class="listSx.className" :style="listSx.style">
       <PaginationItem v-if="showEdges" :class="itemSx.className" :style="itemSx.style">
         <PaginationFirst :aria-label="firstLabel" :class="stepSx.className" :style="stepSx.style">
-          <ChevronsLeftIcon :size="16" aria-hidden="true" />
+          <NvIcon name="chevrons-left" :size="16" />
         </PaginationFirst>
       </PaginationItem>
       <PaginationItem :class="itemSx.className" :style="itemSx.style">
         <PaginationPrevious :aria-label="prevLabel" :class="stepSx.className" :style="stepSx.style">
-          <ChevronLeftIcon :size="16" aria-hidden="true" />
+          <NvIcon name="chevron-left" :size="16" />
         </PaginationPrevious>
       </PaginationItem>
       <PaginationItem
@@ -89,17 +83,17 @@ const ellipsisSx = computed(() => stylex.props(styles.ellipsis, props.size === '
           :style="linkSx.style"
         />
         <PaginationEllipsis v-else :class="ellipsisSx.className" :style="ellipsisSx.style">
-          <EllipsisIcon :size="16" aria-hidden="true" />
+          <NvIcon name="more-horizontal" :size="16" />
         </PaginationEllipsis>
       </PaginationItem>
       <PaginationItem :class="itemSx.className" :style="itemSx.style">
         <PaginationNext :aria-label="nextLabel" :class="stepSx.className" :style="stepSx.style">
-          <ChevronRightIcon :size="16" aria-hidden="true" />
+          <NvIcon name="chevron-right" :size="16" />
         </PaginationNext>
       </PaginationItem>
       <PaginationItem v-if="showEdges" :class="itemSx.className" :style="itemSx.style">
         <PaginationLast :aria-label="lastLabel" :class="stepSx.className" :style="stepSx.style">
-          <ChevronsRightIcon :size="16" aria-hidden="true" />
+          <NvIcon name="chevrons-right" :size="16" />
         </PaginationLast>
       </PaginationItem>
     </PaginationList>

@@ -2,7 +2,7 @@
 import docxWasmUrl from './assets/docx_parser_bg.wasm?url'
 import pptxWasmUrl from './assets/pptx_parser_bg.wasm?url'
 import xlsxWasmUrl from './assets/xlsx_parser_bg.wasm?url'
-import { ChevronLeftIcon, ChevronRightIcon, RotateCcwIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import type { NvFilePreviewKind } from './types'
@@ -258,7 +258,7 @@ onBeforeUnmount(() => {
         :data-disabled="canGoPrevious ? undefined : ''"
         @click="goPrevious"
       >
-        <ChevronLeftIcon :size="16" aria-hidden="true" />
+        <NvIcon name="chevron-left" :size="16" />
       </button>
       <select
         :value="String(currentIndex)"
@@ -280,7 +280,7 @@ onBeforeUnmount(() => {
         :data-disabled="canGoNext ? undefined : ''"
         @click="goNext"
       >
-        <ChevronRightIcon :size="16" aria-hidden="true" />
+        <NvIcon name="chevron-right" :size="16" />
       </button>
 
       <span :class="spacerSx.className" :style="spacerSx.style" />
@@ -292,7 +292,7 @@ onBeforeUnmount(() => {
         :style="iconButtonSx.style"
         @click="loadDocument"
       >
-        <RotateCcwIcon :size="16" aria-hidden="true" />
+        <NvIcon name="rotate-ccw" :size="16" />
       </button>
     </div>
 

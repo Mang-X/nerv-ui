@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRightIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import { TreeGroup, TreeItem, TreeItemIndicator, TreeItemLabel } from '@ui-sdk/vue/tree'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
@@ -38,7 +38,7 @@ const groupSx = computed(() => stylex.props(styles.group))
           :class="indicatorSx.className"
           :style="indicatorSx.style"
         >
-          <ChevronRightIcon :size="14" aria-hidden="true" />
+          <NvIcon name="chevron-right" :size="14" />
         </TreeItemIndicator>
         <span :class="textSx.className" :style="textSx.style">{{ item.label }}</span>
       </slot>

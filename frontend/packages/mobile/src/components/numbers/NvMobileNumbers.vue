@@ -6,7 +6,7 @@ import {
   NumberInputGroup,
   NumberInputIncrement,
 } from '@ui-sdk/vue/number-input'
-import { Minus, Plus } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -81,7 +81,7 @@ function onValueChange(value: number | null) {
         :class="decrementSx.className"
         :style="decrementSx.style"
       >
-        <Minus aria-hidden="true" :size="18" />
+        <NvIcon name="minus" :size="18" />
       </NumberInputDecrement>
       <NumberInputControl
         :aria-label="label"
@@ -93,7 +93,7 @@ function onValueChange(value: number | null) {
         :class="incrementSx.className"
         :style="incrementSx.style"
       >
-        <Plus aria-hidden="true" :size="18" />
+        <NvIcon name="plus" :size="18" />
       </NumberInputIncrement>
     </NumberInputGroup>
   </NumberInput>

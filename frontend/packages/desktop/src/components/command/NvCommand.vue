@@ -11,7 +11,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from '@ui-sdk/vue/command'
-import { SearchIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus, glass } from '../../theme/shared.stylex'
@@ -70,9 +70,8 @@ function onAction(value: string) {
     :style="[panelSx.style, $attrs.style]"
   >
     <div :class="inputRowSx.className" :style="inputRowSx.style">
-      <SearchIcon
+      <NvIcon name="search"
         :size="16"
-        aria-hidden="true"
         :class="searchIconSx.className"
         :style="searchIconSx.style"
       />

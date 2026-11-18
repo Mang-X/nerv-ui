@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRightIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { styles } from './Breadcrumb.styles'
@@ -17,7 +17,7 @@ const sx = computed(() => stylex.props(styles.separator))
     :style="[sx.style, $attrs.style]"
   >
     <slot>
-      <ChevronRightIcon :size="14" aria-hidden="true" />
+      <NvIcon name="chevron-right" :size="14" />
     </slot>
   </li>
 </template>

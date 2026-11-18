@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PanelLeftIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -41,9 +41,8 @@ function toggleIconSx(isCollapsed: boolean) {
       @click="context?.toggle()"
     >
       <slot name="toggle">
-        <PanelLeftIcon
+        <NvIcon name="collapse-left-panel"
           :size="16"
-          aria-hidden="true"
           :class="toggleIconSx(collapsed).className"
           :style="toggleIconSx(collapsed).style"
         />

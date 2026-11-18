@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Rating, RatingItem } from '@ui-sdk/vue/rating'
-import { Star } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { styles } from './Rate.styles'
@@ -64,8 +64,7 @@ function onValueChange(value: number | null) {
     @value-change="onValueChange"
   >
     <RatingItem v-slot="{ state }" :class="stylex.props(styles.item).className">
-      <Star
-        aria-hidden="true"
+      <NvIcon name="star"
         :size="size === 'lg' ? 30 : size === 'sm' ? 18 : 24"
         :fill="state.fill > 0 ? 'currentColor' : 'none'"
         :class="iconSx.className"

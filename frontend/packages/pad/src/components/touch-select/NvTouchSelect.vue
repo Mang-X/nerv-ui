@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@ui-sdk/vue/select'
-import { CheckIcon, ChevronDownIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { focus, glass, overlay, presence } from '../../theme/shared.stylex'
@@ -100,9 +100,8 @@ const indicatorSx = computed(() => stylex.props(styles.indicator))
           :style="valueSx.style"
           :max-labels="maxLabels"
         />
-        <ChevronDownIcon
+        <NvIcon name="chevron-down"
           :size="24"
-          aria-hidden="true"
           :class="chevronSx.className"
           :style="chevronSx.style"
         />
@@ -126,7 +125,7 @@ const indicatorSx = computed(() => stylex.props(styles.indicator))
             {{ option.label }}
           </SelectItemText>
           <SelectItemIndicator :class="indicatorSx.className" :style="indicatorSx.style">
-            <CheckIcon :size="22" aria-hidden="true" />
+            <NvIcon name="check" :size="22" />
           </SelectItemIndicator>
         </SelectItem>
         <SelectEmpty v-if="!options.length" :class="emptySx.className" :style="emptySx.style">

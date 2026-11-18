@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Input, InputClear, InputGroup } from '@ui-sdk/vue/input'
-import { Search, X } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref, useAttrs } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -89,7 +89,7 @@ function onEnter() {
         :aria-label="clearLabel"
         :class="stylex.props(styles.clear, focus.ring).className"
       >
-        <X aria-hidden="true" :size="18" />
+        <NvIcon name="close" :size="18" />
       </InputClear>
     </InputGroup>
     <button

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Rating, RatingItem } from '@ui-sdk/vue/rating'
-import { StarIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { omitClassStyle } from '../../internal/attrs'
@@ -45,8 +45,7 @@ const iconSx = computed(() => stylex.props(styles.icon))
     :style="[rootSx.style, $attrs.style]"
   >
     <RatingItem v-slot="{ state }" :class="itemSx.className" :style="itemSx.style">
-      <StarIcon
-        aria-hidden="true"
+      <NvIcon name="star"
         :fill="state.fill === 1 ? 'currentColor' : 'none'"
         :class="iconSx.className"
         :style="iconSx.style"

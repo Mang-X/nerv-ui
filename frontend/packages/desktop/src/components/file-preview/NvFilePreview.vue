@@ -1,15 +1,6 @@
 <script setup lang="ts">
 import * as stylex from '@stylexjs/stylex'
-import {
-  AlertCircleIcon,
-  ExternalLinkIcon,
-  FileImageIcon,
-  FileSpreadsheetIcon,
-  FileTextIcon,
-  FileTypeIcon,
-  PresentationIcon,
-  ScrollTextIcon,
-} from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import { computed, defineAsyncComponent, ref } from 'vue'
 import { omitClassStyle } from '../../internal/attrs'
 import { styles } from './FilePreview.styles'
@@ -59,16 +50,16 @@ const isPlaceholder = computed(() => !props.src || kind.value === 'other')
 const kindIcon = computed(() => {
   switch (kind.value) {
     case 'pdf':
-      return ScrollTextIcon
+      return 'file-pdf'
     case 'office-docx':
     case 'office-pptx':
-      return PresentationIcon
+      return 'file-presentation'
     case 'office-xlsx':
-      return FileSpreadsheetIcon
+      return 'file-spreadsheet'
     case 'image':
-      return FileImageIcon
+      return 'file-image'
     default:
-      return FileTypeIcon
+      return 'file-question'
   }
 })
 
@@ -131,7 +122,7 @@ function handleError(message: string) {
   >
     <header v-if="showHeader" :class="headerSx.className" :style="headerSx.style">
       <span :class="headerIconSx.className" :style="headerIconSx.style">
-        <component :is="kindIcon" :size="16" aria-hidden="true" />
+        <NvIcon :name="kindIcon" :size="16" />
       </span>
       <span :class="headerTextSx.className" :style="headerTextSx.style">
         <span :class="headerTitleSx.className" :style="headerTitleSx.style">{{ displayName }}</span>
@@ -145,7 +136,7 @@ function handleError(message: string) {
         :style="iconButtonSx.style"
         @click="openSource"
       >
-        <ExternalLinkIcon :size="15" aria-hidden="true" />
+        <NvIcon name="external-link" :size="15" />
       </button>
     </header>
 
@@ -165,7 +156,7 @@ function handleError(message: string) {
       :style="[statusErrorSx.style, { flex: 1 }]"
       data-slot="nv-file-preview-error"
     >
-      <AlertCircleIcon :size="20" aria-hidden="true" />
+      <NvIcon name="alert-circle" :size="20" />
       <span>预览失败：{{ displayError }}</span>
     </div>
 
@@ -199,7 +190,7 @@ function handleError(message: string) {
     />
 
     <div v-else-if="isPlaceholder" :class="placeholderSx.className">
-      <FileTextIcon :class="placeholderIconSx.className" :size="36" :stroke-width="1.5" />
+      <NvIcon name="file-text" :class="placeholderIconSx.className" :size="36" :stroke-width="1.5" />
       <span :class="placeholderTitleSx.className">{{ displayName }}</span>
       <span :class="placeholderMetaSx.className">{{ subtitle }}</span>
       <span :class="placeholderNoteSx.className">

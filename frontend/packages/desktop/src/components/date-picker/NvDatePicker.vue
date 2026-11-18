@@ -13,7 +13,7 @@ import {
   DatePickerInput,
   DatePickerTrigger,
 } from '@ui-sdk/vue/date-picker'
-import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon, XIcon } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref, watch } from 'vue'
 import { focus, glass, presence } from '../../theme/shared.stylex'
@@ -191,14 +191,14 @@ function dayNumber(iso: string) {
       :class="clearSx.className"
       :style="clearSx.style"
     >
-      <XIcon :size="14" aria-hidden="true" />
+      <NvIcon name="close" :size="14" />
     </DatePickerClear>
     <DatePickerTrigger
       :aria-label="triggerLabel"
       :class="triggerSx.className"
       :style="triggerSx.style"
     >
-      <CalendarIcon :size="16" aria-hidden="true" />
+      <NvIcon name="calendar" :size="16" />
     </DatePickerTrigger>
     <DatePickerContent
       aria-label="选择日期"
@@ -216,7 +216,7 @@ function dayNumber(iso: string) {
           :style="navSx.style"
           @click="shift(-1)"
         >
-          <ChevronLeftIcon :size="16" aria-hidden="true" />
+          <NvIcon name="chevron-left" :size="16" />
         </button>
         <div :class="headingRowSx.className" :style="headingRowSx.style">
           <button
@@ -245,7 +245,7 @@ function dayNumber(iso: string) {
           :style="[navSx.style, nextSx.style]"
           @click="shift(1)"
         >
-          <ChevronRightIcon :size="16" aria-hidden="true" />
+          <NvIcon name="chevron-right" :size="16" />
         </button>
       </div>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Collapsible, CollapsiblePanel, CollapsibleTrigger } from '@ui-sdk/vue/collapsible'
-import { ChevronDown } from '@lucide/vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -70,7 +70,7 @@ function onOpenChange(open: boolean) {
         :class="stylex.props(styles.chevron, state.open && styles.chevronOpen).className"
         aria-hidden="true"
       >
-        <ChevronDown :size="20" />
+        <NvIcon name="chevron-down" :size="20" />
       </span>
     </CollapsibleTrigger>
     <CollapsiblePanel
