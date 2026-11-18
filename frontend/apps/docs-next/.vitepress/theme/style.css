@@ -1,5 +1,5 @@
 /* VitePress 默认主题的外壳样式（VPNav / VPSidebar / VPDoc 的间距与变量）随
-   自定义 Layout 一起退场；这里只保留正文排版所需的 vp-doc 规则与品牌色变量，
+   自定义 Layout 一起退场；这里只保留正文排版与品牌色变量，
    并把 VitePress 默认给 body 的背景/字体让位给 StyleX 外壳。 */
 :root {
   --vp-c-brand-1: oklch(0.54 0.16 256);
@@ -15,20 +15,31 @@
   --vp-c-brand-3: oklch(0.64 0.15 256);
 }
 
-/* 正文排版：VitePress 的 vp-doc 规则绑定在 VPDoc 组件内部，自定义布局下
-   <Content/> 直接挂在 article 上，需要自己把基线排版补回来。 */
-.vp-doc {
+/*
+ * 正文排版挂在 `.nv-prose` 上，并且每条规则都排除 `.nv-demo` 子树。
+ *
+ * 不用 VitePress 的 `.vp-doc`：ui-sdk 的弹层是就地渲染（不 teleport），弹层 DOM
+ * 落在正文容器内部，`.vp-doc h2 { border-top; margin: 48px 0 }` 这类后代选择器会
+ * 渗进去，把对话框标题画出一条横线并顶开间距。演示区里的组件 DOM 不属于正文，
+ * `:not(.nv-demo *)` 让正文规则整体跳过它；组件的 StyleX 原子类这才拿得回主导权。
+ */
+.nv-prose {
   font-size: 15px;
   line-height: 1.75;
 }
-.vp-doc h1 {
+.nv-prose :is(h1, h2, h3, h4, h5, h6):not(.nv-demo *) {
+  position: relative;
+  /* 顶栏吸顶 60px，锚点跳转要留出空间 */
+  scroll-margin-top: 76px;
+}
+.nv-prose h1:not(.nv-demo *) {
   margin: 0 0 12px;
   font-size: 30px;
   font-weight: 650;
   letter-spacing: -0.02em;
   line-height: 1.25;
 }
-.vp-doc h2 {
+.nv-prose h2:not(.nv-demo *) {
   margin: 40px 0 12px;
   padding-top: 16px;
   border-top: 1px solid var(--vp-c-divider, #e5e5e5);
@@ -36,26 +47,44 @@
   font-weight: 650;
   letter-spacing: -0.01em;
 }
-.vp-doc h3 {
+.nv-prose h3:not(.nv-demo *) {
   margin: 24px 0 8px;
   font-size: 16px;
   font-weight: 600;
 }
-.vp-doc p {
+.nv-prose h4:not(.nv-demo *) {
+  margin: 20px 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.nv-prose p:not(.nv-demo *) {
   margin: 10px 0;
 }
-.vp-doc ul,
-.vp-doc ol {
+.nv-prose :is(ul, ol):not(.nv-demo *) {
   margin: 10px 0;
   padding-inline-start: 20px;
 }
-.vp-doc blockquote {
+.nv-prose ul:not(.nv-demo *) {
+  list-style: disc;
+}
+.nv-prose ol:not(.nv-demo *) {
+  list-style: decimal;
+}
+.nv-prose li:not(.nv-demo *) {
+  margin: 4px 0;
+}
+.nv-prose blockquote:not(.nv-demo *) {
   margin: 12px 0;
   padding: 8px 12px;
   border-inline-start: 3px solid var(--vp-c-brand-1);
   color: var(--vp-c-text-2, #737373);
 }
-.vp-doc table {
+.nv-prose hr:not(.nv-demo *) {
+  margin: 32px 0;
+  border: 0;
+  border-top: 1px solid var(--vp-c-divider, #e5e5e5);
+}
+.nv-prose table:not(.nv-demo *) {
   display: block;
   max-width: 100%;
   overflow-x: auto;
@@ -63,20 +92,65 @@
   border-collapse: collapse;
   font-size: 13px;
 }
-.vp-doc th,
-.vp-doc td {
+.nv-prose th:not(.nv-demo *),
+.nv-prose td:not(.nv-demo *) {
   padding: 8px 10px;
   border: 1px solid var(--vp-c-divider, #e5e5e5);
   text-align: start;
   white-space: nowrap;
 }
-.vp-doc th {
+.nv-prose th:not(.nv-demo *) {
   font-weight: 600;
   background-color: var(--vp-c-bg-soft, #f5f5f5);
 }
-.vp-doc code {
+.nv-prose a:not(.nv-demo *) {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.nv-prose :is(p, li, td, th, blockquote) code:not(.nv-demo *) {
   font-family: var(--vp-font-family-mono);
   font-size: 13px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--vp-c-default-soft, #f0f0f0);
+}
+/* 代码块：VitePress 的 shiki 产物自带 token 内联色，容器样式需要我们自己补。 */
+.nv-prose div[class*='language-']:not(.nv-demo *) {
+  margin: 16px 0;
+  border-radius: 8px;
+  background-color: var(--vp-code-block-bg, #f6f6f7);
+  overflow-x: auto;
+}
+.nv-prose div[class*='language-']:not(.nv-demo *) pre {
+  margin: 0;
+  padding: 16px 20px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.nv-prose div[class*='language-']:not(.nv-demo *) code {
+  padding: 0;
+  background: none;
+  font-size: 13px;
+}
+/* 标题的 # 锚点：悬停才出现，避免和正文抢视线。 */
+.nv-prose .header-anchor {
+  position: absolute;
+  inset-inline-start: -0.9em;
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.nv-prose :is(h1, h2, h3, h4):not(.nv-demo *):hover .header-anchor,
+.nv-prose .header-anchor:focus-visible {
+  opacity: 0.7;
+}
+@media (max-width: 719px) {
+  .nv-prose .header-anchor {
+    display: none;
+  }
 }
 
 /* 大屏组件演示需要暗色画布 */

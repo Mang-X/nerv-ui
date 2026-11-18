@@ -15,7 +15,7 @@ import DocsSidebar from './DocsSidebar.vue'
 /**
  * 自定义布局：顶栏与侧栏全部由 @nerv-ui/desktop 组件 + StyleX 变量绘制，
  * 不再使用 VitePress 默认主题的 VPNav / VPSidebar。markdown 正文仍由
- * VitePress 的 <Content/> 渲染（保留 .vp-doc 的排版与代码高亮样式）。
+ * VitePress 的 <Content/> 渲染（正文排版由 .nv-prose 承担，见 style.css）。
  *
  * 主题真源是 `html.dark`：VitePress 的内联脚本先于 Vue 按 localStorage +
  * prefers-color-scheme 决定它，这里只跟随，并把四形态包的暗色变量组一起挂上
@@ -167,7 +167,7 @@ function toggleDark() {
         <DocsSidebar />
       </aside>
       <div :class="s.main.className" :style="s.main.style">
-        <div :class="[s.article.className, 'vp-doc']" :style="s.article.style">
+        <div :class="[s.article.className, 'nv-prose']" :style="s.article.style">
           <Content />
         </div>
         <aside v-if="outline.length" :class="s.outline.className" :style="s.outline.style" aria-label="本页目录">
