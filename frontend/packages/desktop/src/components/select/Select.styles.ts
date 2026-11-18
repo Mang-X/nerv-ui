@@ -63,8 +63,10 @@ export const styles = stylex.create({
   },
   label: {
     display: 'block',
-    marginBottom: 6,
-    color: color.fg,
+    // 分组标题与选项走同一套内边距，否则标题文字会比选项文字左移 8px。
+    paddingInline: 8,
+    marginBottom: 2,
+    color: color.mutedFg,
     fontFamily: typography.fontSans,
     fontSize: typography.sizeSm,
     fontWeight: 500,
