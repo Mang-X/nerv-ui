@@ -70,9 +70,7 @@ const darkSx = stylex.props(darkTheme, desktopDark, mobileDark, padDark, screenD
 const isHome = computed(() => frontmatter.value.layout === 'home')
 const hero = computed(() => frontmatter.value.hero ?? {})
 const actions = computed(() => (hero.value.actions ?? []) as Array<{ text: string; link: string }>)
-const navLinks = computed(
-  () => (theme.value.nav ?? []) as Array<{ text: string; link: string }>,
-)
+const navLinks = computed(() => (theme.value.nav ?? []) as Array<{ text: string; link: string }>)
 // VitePress 的 headers 是层级的（h3 挂在 h2 的 children 下），目录要摊平后按层缩进。
 const outline = computed(() => {
   type Header = { level: number; title: string; link: string; children?: Header[] }
@@ -89,16 +87,25 @@ const outline = computed(() => {
 
 function currentPath() {
   const path = page.value.relativePath.replace(/\.md$/, '')
-  return path === 'index' ? '/' : `/${path}`
+  if (path === 'index') return '/'
+  // `/desktop/index` → `/desktop/`，和顶部导航的分区前缀同口径
+  if (path.endsWith('/index')) return `/${path.slice(0, -'index'.length)}`
+  return `/${path}`
 }
 
 function isActiveNav(link: string) {
-  return link.replace(/\.html$/, '') === currentPath()
+  const target = link.replace(/\.html$/, '')
+  // 顶栏链接是分区根（`/desktop/`），进入分区内任意页面都算选中
+  if (target.endsWith('/')) return currentPath().startsWith(target)
+  return target === currentPath()
 }
 
 const menuOpen = ref(false)
 // 路由变化（尤其从抽屉里点了链接）后必须收起抽屉，否则它挡住新页面。
-watch(() => page.value.relativePath, () => (menuOpen.value = false))
+watch(
+  () => page.value.relativePath,
+  () => (menuOpen.value = false),
+)
 
 function toggleDark() {
   const next = !dark.value
@@ -156,7 +163,13 @@ function toggleDark() {
       <div :class="s.heroText.className" :style="s.heroText.style">{{ hero.text }}</div>
       <p :class="s.heroTagline.className" :style="s.heroTagline.style">{{ hero.tagline }}</p>
       <div :class="s.heroActions.className" :style="s.heroActions.style">
-        <a v-for="action in actions" :key="action.link" :href="action.link" :class="s.cta.className" :style="s.cta.style">
+        <a
+          v-for="action in actions"
+          :key="action.link"
+          :href="action.link"
+          :class="s.cta.className"
+          :style="s.cta.style"
+        >
           {{ action.text }}
         </a>
       </div>
@@ -170,7 +183,12 @@ function toggleDark() {
         <div :class="[s.article.className, 'nv-prose']" :style="s.article.style">
           <Content />
         </div>
-        <aside v-if="outline.length" :class="s.outline.className" :style="s.outline.style" aria-label="本页目录">
+        <aside
+          v-if="outline.length"
+          :class="s.outline.className"
+          :style="s.outline.style"
+          aria-label="本页目录"
+        >
           <div :class="s.outlineTitle.className" :style="s.outlineTitle.style">本页目录</div>
           <a
             v-for="item in outline"
@@ -186,7 +204,10 @@ function toggleDark() {
     </div>
 
     <NvSheet side="left" :open="menuOpen" @update:open="menuOpen = $event">
-      <NvSheetContent :class="[s.drawerPanel.className, dark && darkSx.className]" :style="s.drawerPanel.style">
+      <NvSheetContent
+        :class="[s.drawerPanel.className, dark && darkSx.className]"
+        :style="s.drawerPanel.style"
+      >
         <DocsSidebar />
       </NvSheetContent>
     </NvSheet>

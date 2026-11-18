@@ -33,7 +33,9 @@ export const styles = stylex.create({
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: color.border,
-    backgroundColor: `color-mix(in oklch, ${color.bg} 86%, transparent)`,
+    // 顶栏和侧栏同属「chrome 层」（card），正文画布是 bg。之前顶栏用 bg 的
+    // 86% 半透明，滚起来和正文同色，整页读起来没有分层。
+    backgroundColor: `color-mix(in oklch, ${color.card} 88%, transparent)`,
     backdropFilter: 'saturate(1.6) blur(14px)',
     WebkitBackdropFilter: 'saturate(1.6) blur(14px)',
   },
@@ -97,7 +99,10 @@ export const styles = stylex.create({
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
     ':hover': { backgroundColor: color.muted },
-    ':focus-visible': { borderColor: color.brand, boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}` },
+    ':focus-visible': {
+      borderColor: color.brand,
+      boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
+    },
   },
   // 移动端：侧栏收进抽屉，汉堡按钮只在小屏出现
   navMenuButton: {
@@ -118,7 +123,10 @@ export const styles = stylex.create({
     cursor: 'pointer',
     outlineStyle: 'none',
     '@media (max-width: 959px)': { display: 'inline-flex' },
-    ':focus-visible': { borderColor: color.brand, boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}` },
+    ':focus-visible': {
+      borderColor: color.brand,
+      boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
+    },
   },
 
   body: {

@@ -2,17 +2,37 @@
    自定义 Layout 一起退场；这里只保留正文排版与品牌色变量，
    并把 VitePress 默认给 body 的背景/字体让位给 StyleX 外壳。 */
 :root {
-  --vp-c-brand-1: oklch(0.54 0.16 256);
-  --vp-c-brand-2: oklch(0.54 0.16 256);
-  --vp-c-brand-3: oklch(0.54 0.16 256);
-  --vp-c-brand-soft: oklch(0.54 0.16 256 / 0.14);
+  --vp-c-brand-1: oklch(0.548 0.212 262);
+  --vp-c-brand-2: oklch(0.548 0.212 262);
+  --vp-c-brand-3: oklch(0.548 0.212 262);
+  --vp-c-brand-soft: oklch(0.548 0.212 262 / 0.12);
+  /* 正文用的这几组必须和 StyleX token 同值：正文表格/分割线/代码块和组件
+     摆在一起时，两套灰一旦不一致，整页就有「拼起来」的观感。 */
+  --vp-c-bg: oklch(0.972 0.004 258);
+  --vp-c-bg-alt: oklch(1 0 0);
+  --vp-c-bg-soft: oklch(0.944 0.007 258);
+  --vp-c-default-soft: oklch(0.944 0.007 258);
+  --vp-c-divider: oklch(0.9 0.008 258);
+  --vp-c-text-1: oklch(0.205 0.016 262);
+  --vp-c-text-2: oklch(0.5 0.018 260);
+  /* 代码块和行内 code 落在正文画布（bg）上，必须比画布深一档才看得出来，
+     所以取 muted 而不是 bg。 */
+  --vp-code-block-bg: oklch(0.944 0.007 258);
   --vp-nav-height: 0px;
   --vp-layout-top-height: 0px;
 }
 .dark {
-  --vp-c-brand-1: oklch(0.64 0.15 256);
-  --vp-c-brand-2: oklch(0.64 0.15 256);
-  --vp-c-brand-3: oklch(0.64 0.15 256);
+  --vp-c-brand-1: oklch(0.655 0.175 260);
+  --vp-c-brand-2: oklch(0.655 0.175 260);
+  --vp-c-brand-3: oklch(0.655 0.175 260);
+  --vp-c-bg: oklch(0.15 0.006 262);
+  --vp-c-bg-alt: oklch(0.205 0.007 262);
+  --vp-c-bg-soft: oklch(0.278 0.009 262);
+  --vp-c-default-soft: oklch(0.278 0.009 262);
+  --vp-c-divider: oklch(0.31 0.01 262);
+  --vp-c-text-1: oklch(0.975 0.002 260);
+  --vp-c-text-2: oklch(0.72 0.012 260);
+  --vp-code-block-bg: oklch(0.205 0.007 262);
 }
 
 /*
