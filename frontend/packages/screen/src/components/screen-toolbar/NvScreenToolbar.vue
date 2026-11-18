@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Toolbar, ToolbarGroup } from '@ui-sdk/vue/toolbar'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { styles } from './ScreenToolbar.styles'
@@ -24,23 +25,22 @@ const separatorSx = computed(() => stylex.props(styles.separator))
 </script>
 
 <template>
-  <div
-    role="toolbar"
+  <!-- role / 方向键在组内移动由 ui-sdk Toolbar 提供，不再自己写 role="toolbar" -->
+  <Toolbar
     :aria-label="ariaLabel"
-    :aria-disabled="disabled || undefined"
-    :inert="disabled || undefined"
+    :disabled="disabled"
     :class="rootSx.className"
     :style="rootSx.style"
   >
-    <div :class="groupSx.className" :style="groupSx.style">
+    <ToolbarGroup :class="groupSx.className" :style="groupSx.style">
       <slot />
-    </div>
+    </ToolbarGroup>
     <span :class="spacerSx.className" :style="spacerSx.style" aria-hidden="true" />
     <template v-if="$slots.end">
       <span :class="separatorSx.className" :style="separatorSx.style" aria-hidden="true" />
-      <div :class="groupSx.className" :style="groupSx.style">
+      <ToolbarGroup :class="groupSx.className" :style="groupSx.style">
         <slot name="end" />
-      </div>
+      </ToolbarGroup>
     </template>
-  </div>
+  </Toolbar>
 </template>

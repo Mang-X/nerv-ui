@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { bindScrollPicker } from '@ui-sdk/core'
 import * as stylex from '@stylexjs/stylex'
 import { computed, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { focus } from '../../theme/shared.stylex'
@@ -29,8 +30,8 @@ const emit = defineEmits<{
 const wheelId = useId()
 const viewport = ref<HTMLElement | null>(null)
 const inner = ref<number | null>(null)
-let scrollTimer: ReturnType<typeof setTimeout> | undefined
-let programmaticUntil = 0
+/** ui-sdk 的滚动选择器：中心项即选中项，吸附到最近的可选项。 */
+let unbindPicker: (() => void) | undefined
 
 function findEnabled(start: number, direction: 1 | -1): number {
   let index = start
@@ -67,7 +68,6 @@ const wheelSx = computed(() =>
 function scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
   const el = viewport.value
   if (!el) return
-  programmaticUntil = performance.now() + 260
   if (typeof el.scrollTo === 'function') {
     el.scrollTo({ top: index * props.itemHeight, behavior })
   } else {
@@ -82,27 +82,6 @@ function commit(index: number) {
   inner.value = index
   emit('update:modelValue', option.value)
   emit('change', option.value)
-}
-
-function onScroll() {
-  if (performance.now() < programmaticUntil) return
-  clearTimeout(scrollTimer)
-  scrollTimer = setTimeout(settle, 120)
-}
-
-function settle() {
-  const el = viewport.value
-  if (!el) return
-  const index = Math.min(
-    props.options.length - 1,
-    Math.max(0, Math.round(el.scrollTop / props.itemHeight)),
-  )
-  if (props.disabled || index === selectedIndex.value || props.options[index]?.disabled) {
-    scrollToIndex(selectedIndex.value, 'smooth')
-    return
-  }
-  commit(index)
-  scrollToIndex(index, 'smooth')
 }
 
 function step(direction: 1 | -1) {
@@ -141,17 +120,23 @@ function optionId(index: number) {
   return `${wheelId}-option-${index}`
 }
 
-watch(selectedIndex, (index) => {
-  if (performance.now() > programmaticUntil) scrollToIndex(index, 'smooth')
-})
+watch(selectedIndex, (index) => scrollToIndex(index, 'smooth'))
 
 watch(
   () => props.options.length,
   () => scrollToIndex(selectedIndex.value, 'auto'),
 )
 
-onMounted(() => scrollToIndex(selectedIndex.value, 'auto'))
-onBeforeUnmount(() => clearTimeout(scrollTimer))
+onMounted(() => {
+  scrollToIndex(selectedIndex.value, 'auto')
+  const el = viewport.value
+  if (!el) return
+  // 中心项即选中项：滚动、拖拽、PageUp/Down 都由 ui-sdk 判定并吸附到最近可选项。
+  unbindPicker = bindScrollPicker(el, {
+    onSelect: (index) => commit(index),
+  })
+})
+onBeforeUnmount(() => unbindPicker?.())
 </script>
 
 <template>
@@ -169,7 +154,6 @@ onBeforeUnmount(() => clearTimeout(scrollTimer))
       :aria-activedescendant="optionId(selectedIndex)"
       :class="wheelSx.className"
       :style="[wheelSx.style, wheelStyle]"
-      @scroll="onScroll"
       @keydown="onKeydown"
     >
       <div
