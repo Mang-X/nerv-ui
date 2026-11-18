@@ -8,6 +8,8 @@ export const styles = stylex.create({
     fontFamily: typography.fontSans,
   },
   list: {
+    position: 'relative',
+    isolation: 'isolate',
     display: 'inline-flex',
     alignItems: 'center',
     gap: 2,
@@ -22,7 +24,30 @@ export const styles = stylex.create({
     overflowX: 'auto',
     '[data-orientation="vertical"]': { flexDirection: 'column', alignItems: 'stretch' },
   },
+  /**
+   * 选中态药丸。ui-sdk 的 TabsIndicator 会把当前标签的盒子写成
+   * `--active-tab-left/top/width/height`（相对 tablist 的定位坐标），
+   * 这里用过渡让它在标签之间滑动，而不是让两个标签各自淡入淡出。
+   */
+  indicator: {
+    position: 'absolute',
+    zIndex: 0,
+    top: 'var(--active-tab-top, 0px)',
+    left: 'var(--active-tab-left, 0px)',
+    width: 'var(--active-tab-width, 0px)',
+    height: 'var(--active-tab-height, 0px)',
+    borderRadius: shape.radiusSm,
+    backgroundColor: color.card,
+    boxShadow: elevation.sm,
+    pointerEvents: 'none',
+    transitionProperty: 'left, top, width, height',
+    transitionDuration: motion.durationBase,
+    transitionTimingFunction: motion.easeOut,
+    '@media (prefers-reduced-motion: reduce)': { transitionDuration: '0ms' },
+  },
   trigger: {
+    position: 'relative',
+    zIndex: 1,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -42,15 +67,12 @@ export const styles = stylex.create({
     whiteSpace: 'nowrap',
     cursor: 'pointer',
     outlineStyle: 'none',
-    transitionProperty: 'background-color, color, box-shadow',
+    transitionProperty: 'color',
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
     ':hover': { color: color.fg },
-    '[data-selected]': {
-      backgroundColor: color.card,
-      color: color.fg,
-      boxShadow: elevation.sm,
-    },
+    // 底色由 indicator 负责，这里只做文字层级：选中项才升到正文色。
+    '[data-selected]': { color: color.fg, fontWeight: 600 },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
     '[data-orientation="vertical"]': { justifyContent: 'flex-start' },
   },
@@ -60,6 +82,9 @@ export const styles = stylex.create({
     fontSize: typography.sizeMd,
     lineHeight: typography.lineMd,
     outlineStyle: 'none',
+    transitionProperty: 'opacity',
+    transitionDuration: motion.durationBase,
+    transitionTimingFunction: motion.easeOut,
     '[data-starting-style]': { opacity: 0 },
     '[data-ending-style]': { opacity: 0 },
   },
