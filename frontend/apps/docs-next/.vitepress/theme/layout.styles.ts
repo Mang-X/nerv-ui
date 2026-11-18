@@ -38,6 +38,7 @@ export const styles = stylex.create({
     backgroundColor: `color-mix(in oklch, ${color.card} 88%, transparent)`,
     backdropFilter: 'saturate(1.6) blur(14px)',
     WebkitBackdropFilter: 'saturate(1.6) blur(14px)',
+    '@media (max-width: 480px)': { paddingInline: 12, gap: 6 },
   },
   brand: {
     display: 'inline-flex',
@@ -57,6 +58,9 @@ export const styles = stylex.create({
     alignItems: 'center',
     gap: 2,
     marginInlineStart: 'auto',
+    // 360–430px 的顶栏放不下「品牌 + 四个分区 + 主题开关」：收窄内边距与间距，
+    // 保证四个分区名各自一行、不折行也不横向溢出。
+    '@media (max-width: 480px)': { gap: 0 },
   },
   navLink: {
     display: 'inline-flex',
@@ -66,6 +70,8 @@ export const styles = stylex.create({
     borderRadius: shape.radiusSm,
     fontSize: typography.sizeMd,
     textDecorationLine: 'none',
+    // 手机上顶栏挤，两个字的分区名会被折成两行；锁死不换行。
+    whiteSpace: 'nowrap',
     color: color.mutedFg,
     transitionProperty: 'color, background-color',
     transitionDuration: motion.durationFast,
@@ -73,6 +79,7 @@ export const styles = stylex.create({
     outlineStyle: 'none',
     ':hover': { color: color.fg, backgroundColor: color.muted },
     ':focus-visible': { boxShadow: `0 0 0 1px ${color.brand}` },
+    '@media (max-width: 480px)': { paddingInline: 6, fontSize: 13 },
   },
   navLinkActive: {
     color: color.fg,
@@ -218,6 +225,13 @@ export const styles = stylex.create({
   article: {
     width: '100%',
     maxWidth: 760,
+    minWidth: 0,
+  },
+  // 总览页是一排排卡片，760px 只能排三列；放宽到 1080px 后同样字号的卡片能排四列，
+  // 也与右侧目录栏一起撑满可用宽度。整组属性自带，不依赖和 article 的原子类叠加。
+  articleWide: {
+    width: '100%',
+    maxWidth: 1080,
     minWidth: 0,
   },
   outline: {

@@ -5,6 +5,7 @@ import './style.css'
 
 import Demo from './Demo.vue'
 import Layout from './Layout.vue'
+import Overview from './Overview.vue'
 
 export default {
   // 只继承 enhancer 与内置组件，布局整体换成自定义壳（顶栏 / 侧栏 / 目录）。
@@ -12,5 +13,6 @@ export default {
   Layout,
   enhanceApp({ app }) {
     app.component('Demo', Demo)
+    app.component('Overview', Overview)
   },
 } satisfies Theme

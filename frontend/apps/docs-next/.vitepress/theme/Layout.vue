@@ -52,6 +52,7 @@ const s = {
   sidebarAside: stylex.props(styles.sidebarAside),
   main: stylex.props(styles.main),
   article: stylex.props(styles.article),
+  articleWide: stylex.props(styles.articleWide),
   outline: stylex.props(styles.outline),
   outlineTitle: stylex.props(styles.outlineTitle),
   outlineLink: stylex.props(styles.outlineLink),
@@ -68,6 +69,8 @@ const s = {
 const darkSx = stylex.props(darkTheme, desktopDark, mobileDark, padDark, screenDark)
 
 const isHome = computed(() => frontmatter.value.layout === 'home')
+// 总览页（frontmatter `overview: true`）用宽栏排卡片网格，普通文档页保持阅读宽栏。
+const isOverview = computed(() => frontmatter.value.overview === true)
 const hero = computed(() => frontmatter.value.hero ?? {})
 const actions = computed(() => (hero.value.actions ?? []) as Array<{ text: string; link: string }>)
 const navLinks = computed(() => (theme.value.nav ?? []) as Array<{ text: string; link: string }>)
@@ -180,11 +183,14 @@ function toggleDark() {
         <DocsSidebar />
       </aside>
       <div :class="s.main.className" :style="s.main.style">
-        <div :class="[s.article.className, 'nv-prose']" :style="s.article.style">
+        <div
+          :class="[isOverview ? s.articleWide.className : s.article.className, 'nv-prose']"
+          :style="isOverview ? s.articleWide.style : s.article.style"
+        >
           <Content />
         </div>
         <aside
-          v-if="outline.length"
+          v-if="outline.length && !isOverview"
           :class="s.outline.className"
           :style="s.outline.style"
           aria-label="本页目录"
