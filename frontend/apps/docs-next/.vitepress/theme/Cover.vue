@@ -42,6 +42,15 @@ const svgSx = stylex.props(styles.svg)
           :stroke-width="shape.fill ? 0 : 1.25"
           :opacity="shape.opacity"
         />
+        <path
+          v-else-if="shape.type === 'path'"
+          :d="shape.d"
+          :fill="shape.fill ? 'currentColor' : 'none'"
+          :stroke="shape.fill ? 'none' : 'currentColor'"
+          :stroke-width="shape.fill ? 0 : 1.25"
+          stroke-linejoin="round"
+          :opacity="shape.opacity"
+        />
         <line
           v-else
           :x1="shape.x1"
