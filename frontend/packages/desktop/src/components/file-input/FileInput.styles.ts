@@ -1,6 +1,11 @@
 import * as stylex from '@stylexjs/stylex'
 import { color, motion, shape, typography } from '../../theme/tokens.stylex'
 
+const slideIn = stylex.keyframes({
+  from: { opacity: 0, transform: 'translateY(-4px) scale(0.98)' },
+  to: { opacity: 1, transform: 'translateY(0) scale(1)' },
+})
+
 export const styles = stylex.create({
   root: {
     display: 'flex',
@@ -27,16 +32,26 @@ export const styles = stylex.create({
     color: color.mutedFg,
     textAlign: 'center',
     transitionProperty: 'border-color, background-color, box-shadow, transform',
-    transitionDuration: motion.durationFast,
+    transitionDuration: motion.durationBase,
     transitionTimingFunction: motion.easeOut,
     ':hover': { borderColor: color.mutedFg, backgroundColor: color.card },
-    // 拖入时轻微放大，配合描边变色给出「接住了」的反馈。
+    // 拖入时同时给出三种反馈：描边转品牌色、底色透出品牌光、整体轻微放大。
     '[data-dragging], [data-drag-accept]': {
-      transform: 'scale(1.01)',
+      borderColor: color.brand,
+      backgroundColor: color.brandSoft,
+      transform: 'scale(1.015)',
+      boxShadow: `0 0 0 3px ${color.brandSoft}`,
     },
-    '[data-dragging]': { borderColor: color.brand, backgroundColor: color.brandSoft },
-    '[data-drag-accept]': { borderColor: color.brand, backgroundColor: color.brandSoft },
-    '[data-drag-reject]': { borderColor: color.danger },
+    '[data-drag-reject]': {
+      borderColor: color.danger,
+      backgroundColor: 'color-mix(in oklch, #f43f5e 10%, transparent)',
+      transform: 'scale(0.995)',
+    },
+    // 拖放动画结束回到原位时也要有过渡，否则会「啪」地弹回去。
+    ':not([data-dragging]):not([data-drag-accept]):not([data-drag-reject])': {
+      transform: 'scale(1)',
+      boxShadow: 'none',
+    },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
   },
   hint: {
@@ -85,7 +100,19 @@ export const styles = stylex.create({
     color: color.fg,
     fontSize: typography.sizeSm,
     lineHeight: typography.lineSm,
+    // 新文件入场：从「淡出 + 上移」滑入；退场由移除按钮的淡出负责。
+    animationName: slideIn,
+    animationDuration: '180ms',
+    animationTimingFunction: motion.easeOut,
+    animationFillMode: 'backwards',
+    '@media (prefers-reduced-motion: reduce)': { animationDuration: '0ms' },
+    ':hover': { backgroundColor: color.mutedFg, boxShadow: `inset 0 0 0 1px ${color.border}` },
     '[data-disabled]': { opacity: 0.5 },
+  },
+  listEmpty: {
+    color: color.mutedFg,
+    fontSize: typography.sizeSm,
+    lineHeight: typography.lineSm,
   },
   fileName: {
     flex: 1,

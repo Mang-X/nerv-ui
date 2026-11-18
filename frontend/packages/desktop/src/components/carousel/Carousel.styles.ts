@@ -24,8 +24,10 @@ export const styles = stylex.create({
   viewport: {
     width: '100%',
     minWidth: 0,
-    // 内容按页平移，超出部分必须裁掉，否则翻页时页面出现横向滚动条。
-    overflow: 'hidden',
+    // ui-sdk 的 viewport 自己在内联样式里写了 `overflow: auto`（内联样式压过原子类），
+    // 于是翻页时能看到一条横向滚动条。这里把滚动条本身隐藏，滚动能力保留。
+    scrollbarWidth: 'none',
+    '::-webkit-scrollbar': { display: 'none' },
     borderRadius: shape.radiusLg,
     outlineStyle: 'none',
   },
