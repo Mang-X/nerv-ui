@@ -104,6 +104,10 @@ rg -n "<button|<input|<select|<textarea" packages/{desktop,mobile,pad,screen}/sr
   `prefers-reduced-motion` 的降级由 `theme/motion-reset.css` 统一收口（构建时追加到
   `dist/style.css` 末尾），组件里不用逐个写。
 - **令牌**：只用 `@nerv-ui/theme/tokens.stylex` 的变量。不写裸色值，不引旧 `--nv-*`。
+- **填充色阶**：静止态填充用 `muted`，悬停/按下/键盘高亮用 `mutedStrong`。把 `muted`
+  同时当静止态和 hover 会让次级按钮「点了没反应」；需要更深一级时不要自己 mix 颜色，
+  报告缺令牌。**看不清优先查层级**：控件和它所在的表面亮度差不足 0.02 时，修的是表面
+  色阶（或换到 card 表面），不是给控件加描边。
 - **图标**：只用 `NvIcon`。
 
 ## 五、现代基线
