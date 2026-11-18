@@ -14,6 +14,8 @@ export const styles = stylex.create({
     borderWidth: 0,
     borderRadius: 999,
     backgroundColor: color.muted,
+    // 亮色下轨道和背景几乎同色，加一层内描边让开关轮廓可辨
+    boxShadow: `inset 0 0 0 1px ${color.border}`,
     cursor: 'pointer',
     outlineStyle: 'none',
     transitionProperty: 'background-color, box-shadow',

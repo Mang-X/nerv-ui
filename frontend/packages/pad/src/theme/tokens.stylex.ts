@@ -5,16 +5,16 @@ import * as stylex from '@stylexjs/stylex'
  * typed CSS custom properties shared across the four form-factor packages.
  */
 export const color = stylex.defineVars({
-  bg: 'oklch(0.985 0 0)',
-  fg: 'oklch(0.145 0 0)',
-  card: 'oklch(1 0 0)',
-  muted: 'oklch(0.97 0 0)',
-  mutedFg: 'oklch(0.556 0 0)',
-  border: 'oklch(0.922 0 0)',
-  brand: 'oklch(0.54 0.16 256)',
+  bg: 'oklch(0.975 0.002 250)',
+  fg: 'oklch(0.17 0.012 250)',
+  card: 'oklch(0.997 0.001 250)',
+  muted: 'oklch(0.945 0.004 250)',
+  mutedFg: 'oklch(0.50 0.01 250)',
+  border: 'oklch(0.895 0.006 250)',
+  brand: 'oklch(0.52 0.165 258)',
   brandFg: 'oklch(0.985 0 0)',
-  brandSoft: 'oklch(0.54 0.16 256 / 0.14)',
-  danger: 'oklch(0.577 0.245 27.3)',
+  brandSoft: 'oklch(0.52 0.165 258 / 0.13)',
+  danger: 'oklch(0.57 0.24 27.3)',
   dangerFg: 'oklch(0.985 0 0)',
 })
 

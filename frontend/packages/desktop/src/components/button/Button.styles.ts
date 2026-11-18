@@ -20,6 +20,11 @@ export const styles = stylex.create({
     userSelect: 'none',
     outlineStyle: 'none',
     transitionProperty: 'background-color, border-color, box-shadow, transform, color',
+    ':hover:not(:disabled)': { backgroundColor: color.muted },
+    ':focus-visible': {
+      borderColor: color.brand,
+      boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
+    },
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
     ':disabled': { cursor: 'not-allowed', opacity: 0.5 },
@@ -32,7 +37,9 @@ export const styles = stylex.create({
   secondary: {
     backgroundColor: color.muted,
     color: color.fg,
+    borderColor: color.border,
   },
+
   outline: {
     backgroundColor: color.card,
     color: color.fg,
@@ -41,6 +48,8 @@ export const styles = stylex.create({
   ghost: {
     backgroundColor: 'transparent',
     color: color.fg,
+    // 亮色下纯透明按钮几乎不可见；hover 给浅底 + 细边，让可点区域明确。
+    ':hover:not(:disabled)': { backgroundColor: color.muted, borderColor: color.border },
   },
   danger: {
     backgroundColor: color.danger,

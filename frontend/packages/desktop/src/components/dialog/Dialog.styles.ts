@@ -40,6 +40,7 @@ export const styles = stylex.create({
     gap: 12,
     boxSizing: 'border-box',
     position: 'fixed',
+    backgroundColor: color.card,
     top: '50%',
     left: '50%',
     translate: '-50% -50%',
