@@ -9,7 +9,8 @@ import type { NvFilePreviewKind, NvFilePreviewProps } from './types'
 defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(defineProps<NvFilePreviewProps>(), {
-  height: 360,
+  // 默认高度只够放下占位卡片；要更大的画布由调用方显式传 height。
+  height: 240,
 })
 
 const imageExtensions = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp', 'avif', 'bmp', 'svg'])
@@ -36,6 +37,10 @@ const typeLabel = computed(() => {
   return '未知类型'
 })
 const canOpen = computed(() => Boolean(props.src))
+// 有地址但类型不支持 → 建议下载/打开；根本没给地址 → 说清楚缺什么，别让用户以为「不支持」。
+const note = computed(() =>
+  canOpen.value ? '该类型暂不支持在线预览，可打开或下载后查看。' : '未提供文件地址，无法生成预览。',
+)
 
 const rootSx = computed(() => stylex.props(styles.root))
 const imageSx = stylex.props(styles.image)
@@ -81,7 +86,7 @@ const rootStyle = computed(() => ({ height: `${Math.max(120, props.height)}px` }
       <FileTextIcon :class="placeholderIconSx.className" :size="36" :stroke-width="1.5" />
       <span :class="placeholderTitleSx.className">{{ displayName }}</span>
       <span :class="placeholderMetaSx.className">{{ typeLabel }}</span>
-      <span :class="placeholderNoteSx.className">暂不支持在线预览，请下载后查看。</span>
+      <span :class="placeholderNoteSx.className">{{ note }}</span>
       <a
         v-if="canOpen"
         :href="src"

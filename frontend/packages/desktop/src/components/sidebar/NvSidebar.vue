@@ -44,7 +44,10 @@ const widthStyle = computed(() => ({
 }))
 
 function cssSize(value: string | number): string {
-  return typeof value === 'number' ? `${value}px` : value
+  // 纯数字字符串（例如模板里写 width="220"）也要补单位：`width: 220` 是非法
+  // 声明会被整条丢弃，收起/展开看起来就像「点了没反应」。
+  if (typeof value === 'number') return `${value}px`
+  return /^\d+(\.\d+)?$/.test(value.trim()) ? `${value.trim()}px` : value
 }
 </script>
 

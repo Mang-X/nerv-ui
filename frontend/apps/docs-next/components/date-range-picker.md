@@ -24,17 +24,31 @@ const limited = ref(null)
 当前范围：{{ range ? range[0] + ' → ' + range[1] : '—' }}
 
 <Demo>
-  <NvDateRangePicker locale="zh-CN" v-model:value="limited" month="2026-11" min="2026-11-02" max="2026-11-20" />
+  <NvDateRangePicker
+    locale="zh-CN"
+    v-model:value="limited"
+    month="2026-11"
+    min="2026-11-02"
+    max="2026-11-20"
+    style="width: 300px"
+  />
   <NvDateRangePicker
     locale="zh-CN"
     v-model:value="limited"
     month="2026-11"
     :unavailable="[{ from: '2026-11-10', to: '2026-11-12' }]"
+    style="width: 300px"
   />
 </Demo>
 
 <Demo>
-  <NvDateRangePicker locale="zh-CN" v-model:value="range" :months="1" placeholder="单月视图" />
+  <NvDateRangePicker
+    locale="zh-CN"
+    v-model:value="range"
+    :months="1"
+    placeholder="单月视图"
+    style="width: 300px"
+  />
   <NvDateRangePicker locale="zh-CN" disabled :default-value="['2026-11-03', '2026-11-14']" style="width: 340px" />
 </Demo>
 

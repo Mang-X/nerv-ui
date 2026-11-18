@@ -72,6 +72,34 @@ const tags = [
 </Demo>
 
 <Demo block>
+  <NvScrollArea
+    virtual
+    :item-count="5000"
+    :item-size="36"
+    class="nv-sa-demo"
+    label="虚拟滚动列表"
+  >
+    <template #item="{ index }">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          height: 100%;
+          padding: 0 12px;
+          font-size: 13px;
+          border-bottom: 1px solid var(--vp-c-divider);
+        "
+      >
+        第 {{ index + 1 }} 行 · 工单 WO-{{ 100000 + index }}
+      </div>
+    </template>
+  </NvScrollArea>
+  <p style="margin: 10px 0 0; font-size: 13px; color: var(--vp-c-text-2)">
+    5,000 行只渲染可视窗口（约 10 行）与缓冲区，DOM 节点数恒定。
+  </p>
+</Demo>
+
+<Demo block>
   <NvScrollArea orientation="both" type="always" class="nv-sa-demo-wide" label="双向滚动">
     <div style="width: 900px; padding: 16px; font-size: 13px; line-height: 1.8">
       <strong>工艺说明全文</strong>
@@ -96,6 +124,10 @@ const tags = [
 | `height` | 滚动区域的固定高度 | `number \| string` | — |
 | `maxHeight` | 滚动区域的最大高度 | `number \| string` | — |
 | `label` | 滚动区域的无障碍名称，设置后渲染为 `region` | `string` | — |
+| `virtual` | 只渲染可视窗口内的行（需同时给 `itemCount`、`itemSize`） | `boolean` | `false` |
+| `itemCount` | 虚拟模式的总行数 | `number` | `0` |
+| `itemSize` | 虚拟模式的固定行高（px） | `number` | `32` |
+| `overscan` | 窗口上下额外渲染的行数 | `number` | `4` |
 
 `height` 与 `maxHeight` 传入数字时按像素处理，传入字符串时按原值使用。
 
@@ -103,4 +135,5 @@ const tags = [
 
 | 插槽 | 说明 |
 | --- | --- |
-| `default` | 滚动内容 |
+| `default` | 滚动内容（非虚拟模式） |
+| `item` | 虚拟模式的行内容，参数为 `{ index }` |

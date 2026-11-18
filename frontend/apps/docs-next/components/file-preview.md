@@ -26,6 +26,8 @@ const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
   />
 </Demo>
 
+<!-- PDF 分支走浏览器内置阅读器，需要一个真实地址；仓库里没有示例 PDF，
+     所以这里演示的是「未提供地址」的降级说明。 -->
 <Demo block>
   <NvFilePreview file-name="检验报告.pdf" content-type="application/pdf" :height="200" />
 </Demo>

@@ -24,7 +24,7 @@ export const styles = stylex.create({
   },
   invalid: {
     borderColor: color.danger,
-    ':focus-within': {
+    ':has(:focus-visible)': {
       borderColor: color.danger,
       boxShadow: `0 0 0 1px ${color.danger}, 0 0 0 4px ${dangerHalo}`,
     },

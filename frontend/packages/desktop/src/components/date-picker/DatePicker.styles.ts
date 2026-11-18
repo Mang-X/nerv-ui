@@ -27,7 +27,7 @@ export const styles = stylex.create({
     '[data-open]': { borderColor: color.brand },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
     '[data-invalid]': { borderColor: color.danger },
-    '[data-invalid]:focus-within': {
+    '[data-invalid]:has(:focus-visible)': {
       borderColor: color.danger,
       boxShadow: `0 0 0 1px ${color.danger}, 0 0 0 4px ${dangerHalo}`,
     },
@@ -114,6 +114,35 @@ export const styles = stylex.create({
     alignItems: 'center',
     gap: 4,
   },
+  // 年份 / 月份是两个原生 select：日历头部改成可直接跳月的控件，
+    // 而不是只能逐月翻页。样式压低到和导航按钮同级。
+  select: {
+    flex: 1,
+    // 双月视图下头部很长，月份下拉不该被拉成一条；单月视图仍能撑满剩余宽度。
+    maxWidth: 160,
+    minWidth: 0,
+    height: 28,
+    paddingInline: 6,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: color.border,
+    borderRadius: shape.radiusSm,
+    backgroundColor: 'transparent',
+    color: color.fg,
+    fontFamily: typography.fontSans,
+    fontSize: 13,
+    cursor: 'pointer',
+    outlineStyle: 'none',
+    transitionProperty: 'border-color, box-shadow',
+    transitionDuration: motion.durationFast,
+    ':hover': { borderColor: color.mutedFg },
+    ':focus-visible': {
+      borderColor: color.brand,
+      boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
+    },
+  },
+  yearSelect: { flex: '0 0 84px' },
+  navNext: { marginInlineStart: 'auto' },
   heading: {
     flex: 1,
     margin: 0,

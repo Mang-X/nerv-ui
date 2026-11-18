@@ -16,4 +16,12 @@ export interface NvScrollAreaProps {
   maxHeight?: number | string
   /** Accessible name for the scrolling region. */
   label?: string
+  /** Renders only the visible window of `itemCount` rows. Requires `itemSize` + `itemCount`. */
+  virtual?: boolean
+  /** Fixed row height in px for `virtual` mode. */
+  itemSize?: number
+  /** Total row count for `virtual` mode. */
+  itemCount?: number
+  /** Extra rows rendered above and below the window. Defaults to 4. */
+  overscan?: number
 }

@@ -5,6 +5,7 @@ export const styles = stylex.create({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    gap: 2,
     width: '100%',
     minWidth: 0,
     padding: 4,
@@ -66,6 +67,11 @@ export const styles = stylex.create({
     textOverflow: 'ellipsis',
   },
   group: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+    // 父子行之间也要留缝：父标签与子分组首行原本是贴着的。
+    paddingBlockStart: 2,
     paddingInlineStart: 16,
   },
 })

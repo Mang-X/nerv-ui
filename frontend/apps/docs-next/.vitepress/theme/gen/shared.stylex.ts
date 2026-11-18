@@ -16,7 +16,9 @@ export const focus = stylex.create({
       borderColor: color.brand,
       boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
     },
-    ':focus-within': {
+    // 包裹真实输入件的容器要跟着亮，但只能用 `:has(:focus-visible)`：`:focus-within`
+    // 在鼠标点击时也成立，按钮类控件会「按下后聚焦环永不消失」。
+    ':has(:focus-visible)': {
       borderColor: color.brand,
       boxShadow: `0 0 0 1px ${color.brand}, 0 0 0 4px ${color.brandSoft}`,
     },

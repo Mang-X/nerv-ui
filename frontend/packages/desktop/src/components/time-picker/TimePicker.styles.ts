@@ -24,13 +24,14 @@ export const styles = stylex.create({
     ':hover': { borderColor: color.mutedFg },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
     '[data-invalid]': { borderColor: color.danger },
-    '[data-invalid]:focus-within': {
+    '[data-invalid]:has(:focus-visible)': {
       borderColor: color.danger,
       boxShadow: `0 0 0 1px ${color.danger}, 0 0 0 4px ${dangerHalo}`,
     },
   },
   segment: {
-    width: '2.2ch',
+    // 2 位数字 + 左右各 2px 内边距：纯 `2.2ch` 会把数字右侧裁掉（scrollWidth > clientWidth）。
+    width: 'calc(2ch + 6px)',
     paddingInline: 2,
     borderWidth: 0,
     borderRadius: shape.radiusSm,
@@ -43,7 +44,7 @@ export const styles = stylex.create({
     fontVariantNumeric: 'tabular-nums',
     outlineStyle: 'none',
     ':focus': { backgroundColor: color.brandSoft },
-    '[data-type="dayPeriod"]': { width: '3.4ch' },
+    '[data-type="dayPeriod"]': { width: 'calc(3ch + 6px)' },
     '[data-type="literal"]': {
       width: 'auto',
       paddingInline: 2,

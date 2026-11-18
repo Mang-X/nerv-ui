@@ -20,7 +20,7 @@ const unavailable = ['2026-11-21', { from: '2026-11-24', to: '2026-11-27' }]
 ## 示例
 
 <Demo>
-  <NvDatePicker locale="zh-CN" v-model:value="picked" clearable />
+  <NvDatePicker locale="zh-CN" v-model:value="picked" clearable style="width: 220px" />
   <NvDatePicker locale="zh-CN" v-model:value="picked" clearable style="width: 260px" />
 </Demo>
 

@@ -54,6 +54,10 @@ export interface NvDatePickerProps {
   triggerLabel?: string
   prevLabel?: string
   nextLabel?: string
+  /** Accessible name of the year select in the calendar header. */
+  yearLabel?: string
+  /** Accessible name of the month select in the calendar header. */
+  monthLabel?: string
   side?: NvDatePickerSide
   align?: NvDatePickerAlign
   sideOffset?: number
@@ -98,6 +102,8 @@ export interface NvDateRangePickerProps {
   triggerLabel?: string
   prevLabel?: string
   nextLabel?: string
+  yearLabel?: string
+  monthLabel?: string
   side?: NvDatePickerSide
   align?: NvDatePickerAlign
   sideOffset?: number

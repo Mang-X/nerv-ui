@@ -22,10 +22,11 @@ withDefaults(defineProps<{ block?: boolean }>(), { block: false })
   gap: 12px;
   padding: 20px;
 }
+/* block 只是把主轴换成纵向，仍然走 flex 的 gap：
+   用 display:block 会让多段演示（进度条、分割线、树等）互相贴住。 */
 .nv-demo-stage--block {
-  display: block;
-}
-.nv-demo-stage--block > * {
-  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
 }
 </style>

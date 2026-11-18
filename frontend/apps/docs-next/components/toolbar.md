@@ -34,11 +34,12 @@ const view = ref(['table'])
 
 <Demo block>
   <div style="max-width: 320px; width: 100%">
-    <NvToolbar orientation="vertical" loop aria-label="视图工具栏">
+    <NvToolbar orientation="vertical" loop aria-label="视图工具栏" style="gap: 8px">
       <NvToggleGroup
         v-model:value="view"
         orientation="vertical"
         aria-label="视图切换"
+        style="width: 100%"
       >
         <NvToggle value="table">表格视图</NvToggle>
         <NvToggle value="list">列表视图</NvToggle>

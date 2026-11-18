@@ -23,6 +23,8 @@ export const styles = stylex.create({
   viewport: {
     width: '100%',
     minWidth: 0,
+    // 内容按页平移，超出部分必须裁掉，否则翻页时页面出现横向滚动条。
+    overflow: 'hidden',
     borderRadius: shape.radiusLg,
     outlineStyle: 'none',
   },
@@ -31,6 +33,7 @@ export const styles = stylex.create({
     gap: 12,
   },
   item: {
+    flexShrink: 0,
     minWidth: 0,
     boxSizing: 'border-box',
   },

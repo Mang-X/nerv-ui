@@ -38,6 +38,12 @@ export const styles = stylex.create({
   outline: {
     borderColor: color.border,
     backgroundColor: color.card,
+    // 卡片底上的描边按钮：按下后再用品牌色描边 + 浅底，避免和未按下状态只差一层灰。
+    '[data-pressed]': {
+      borderColor: color.brand,
+      backgroundColor: color.brandSoft,
+      color: color.brand,
+    },
   },
   sm: {
     height: 30,
@@ -53,7 +59,8 @@ export const styles = stylex.create({
     padding: 2,
     boxSizing: 'border-box',
     borderRadius: shape.radius,
-    backgroundColor: color.bg,
+    // 放在工具栏卡片里时，用更浅的底色分层；单独使用时交给 outline 变体。
+    backgroundColor: color.muted,
     '[data-orientation="vertical"]': {
       flexDirection: 'column',
       alignItems: 'stretch',

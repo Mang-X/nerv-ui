@@ -2,12 +2,13 @@
 import {
   CalendarDay,
   CalendarGrid,
-  CalendarHeading,
+  CalendarMonthSelect,
   CalendarNext,
   CalendarPrevious,
   CalendarWeekday,
   CalendarWeekdays,
   CalendarWeeks,
+  CalendarYearSelect,
   DatePicker,
   DatePickerClear,
   DatePickerContent,
@@ -32,6 +33,8 @@ const props = withDefaults(defineProps<NvDatePickerProps>(), {
   triggerLabel: '打开日历',
   prevLabel: '上个月',
   nextLabel: '下个月',
+  yearLabel: '年份',
+  monthLabel: '月份',
   // Optional Booleans default to false when omitted, which would make the
   // wrapper pass a controlled `open`/`closeOnSelect` the caller never asked for.
   open: undefined,
@@ -57,12 +60,20 @@ const contentSx = computed(() => stylex.props(glass.surface, styles.content, pre
 const headerSx = computed(() => stylex.props(styles.header))
 const headingSx = computed(() => stylex.props(styles.heading))
 const navSx = computed(() => stylex.props(styles.nav, focus.subtle))
+const nextSx = computed(() => stylex.props(styles.navNext))
 const gridsSx = computed(() => stylex.props(styles.grids))
 const gridSx = computed(() => stylex.props(styles.grid))
+const selectSx = computed(() => stylex.props(styles.select))
+const yearSelectSx = computed(() => stylex.props(styles.select, styles.yearSelect))
 const weekdaySx = computed(() => stylex.props(styles.weekday))
 const daySx = computed(() => stylex.props(styles.day, focus.subtle))
 
 const gridOffsets = computed(() => Array.from({ length: props.months }, (_, index) => index))
+
+/** `YYYY-MM-DD` → 日序号。ui-sdk 用 Intl 的 `day: numeric`，中文会带上「日」，格子里只要数字。 */
+function dayNumber(iso: string) {
+  return Number(iso.slice(8, 10))
+}
 </script>
 
 <template>
@@ -133,8 +144,21 @@ const gridOffsets = computed(() => Array.from({ length: props.months }, (_, inde
         >
           <ChevronLeftIcon :size="16" aria-hidden="true" />
         </CalendarPrevious>
-        <CalendarHeading :class="headingSx.className" :style="headingSx.style" />
-        <CalendarNext :aria-label="nextLabel" :class="navSx.className" :style="navSx.style">
+        <CalendarYearSelect
+          :aria-label="yearLabel"
+          :class="yearSelectSx.className"
+          :style="yearSelectSx.style"
+        />
+        <CalendarMonthSelect
+          :aria-label="monthLabel"
+          :class="selectSx.className"
+          :style="selectSx.style"
+        />
+        <CalendarNext
+          :aria-label="nextLabel"
+          :class="[navSx.className, nextSx.className]"
+          :style="[navSx.style, nextSx.style]"
+        >
           <ChevronRightIcon :size="16" aria-hidden="true" />
         </CalendarNext>
       </div>
@@ -158,7 +182,7 @@ const gridOffsets = computed(() => Array.from({ length: props.months }, (_, inde
               :value="cell.date"
               :class="daySx.className"
               :style="daySx.style"
-            />
+            ><span>{{ dayNumber(cell.date) }}</span></CalendarDay>
           </CalendarWeeks>
         </CalendarGrid>
       </div>

@@ -22,12 +22,12 @@ const getHref = (n) => `#/orders?page=${n}`
 
 <Demo block>
   <NvPagination v-model:page="page" :page-count="12" />
-  当前第 {{ page }} 页
+  <p style="margin: 10px 0 0">当前第 {{ page }} 页</p>
 </Demo>
 
 <Demo block>
   <NvPagination v-model:page="edgePage" :page-count="20" show-edges />
-  当前第 {{ edgePage }} 页
+  <p style="margin: 10px 0 0">当前第 {{ edgePage }} 页</p>
 </Demo>
 
 <Demo block>
@@ -36,7 +36,7 @@ const getHref = (n) => `#/orders?page=${n}`
     :page-size="20"
     :siblings="2"
     :boundaries="1" />
-  共 248 条 / 每页 20 条，当前第 {{ totalPage }} 页
+  <p style="margin: 10px 0 0">共 248 条 / 每页 20 条，当前第 {{ totalPage }} 页</p>
 </Demo>
 
 <Demo block>
@@ -45,7 +45,7 @@ const getHref = (n) => `#/orders?page=${n}`
     :page-count="8"
     :get-href="getHref"
     label="记录分页" />
-  <span style="font-size: 13px; color: var(--vp-c-text-2)">点击页码会跳转到 {{ getHref(hrefPage) }}</span>
+  <p style="margin: 10px 0 0">点击页码会跳转到 {{ getHref(hrefPage) }}</p>
 </Demo>
 
 <Demo block>
