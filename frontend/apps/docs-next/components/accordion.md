@@ -20,13 +20,13 @@ const multi = ref(['line', 'quality'])
 <Demo block>
   <NvAccordion v-model:value="single" collapsible>
     <NvAccordionItem value="basic" title="基本信息">
-      记录 REC-1024，产品型号 NX-220，批量 500 件。
+      记录 REC-1024，类型 NX-220，数量 500 项。
     </NvAccordionItem>
-    <NvAccordionItem value="quality" title="质量记录">
-      首次检验合格 492 件，返修 8 件；一次通过率 98.4%。
+    <NvAccordionItem value="quality" title="校验记录">
+      首次校验通过 492 项，修正 8 项；一次通过率 98.4%。
     </NvAccordionItem>
     <NvAccordionItem value="logs" title="变更日志">
-      2026-11-18 09:20 调整了第二道步骤的节奏时间。
+      2026-11-18 09:20 调整了第二阶段的处理时间。
     </NvAccordionItem>
   </NvAccordion>
 </Demo>
@@ -38,10 +38,10 @@ const multi = ref(['line', 'quality'])
     <NvAccordionItem value="line" title="分组状态">
       3 号分组运行中，利用率 82%。
     </NvAccordionItem>
-    <NvAccordionItem value="quality" title="质量记录">
-      当前批次暂无超差记录。
+    <NvAccordionItem value="quality" title="校验记录">
+      当前记录暂无异常记录。
     </NvAccordionItem>
-    <NvAccordionItem value="stopped" title="停机记录（禁用）" disabled>
+    <NvAccordionItem value="stopped" title="中断记录（禁用）" disabled>
       该条目被禁用，无法展开。
     </NvAccordionItem>
   </NvAccordion>

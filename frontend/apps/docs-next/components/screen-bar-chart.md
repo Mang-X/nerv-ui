@@ -6,7 +6,7 @@ title: NvScreenBarChart 柱状图
 import { NvScreenBarChart } from '@nerv-ui/screen'
 import '@nerv-ui/screen/styles.css'
 
-const lines = ['A 线', 'B 线', '焊装', '涂装', '立体库']
+const lines = ['第一分组', '第二分组', '第三分组', '第四分组', '第五分组']
 const series = [
   { label: '实际', tone: 'accent', data: [305, 240, 128, 176, 92] },
   { label: '计划', tone: 'muted', data: [320, 280, 200, 180, 100] },
@@ -21,7 +21,7 @@ const series = [
 
 <Demo>
   <div class="nv-screen-stage" style="display: flex; flex-direction: column; gap: 16px">
-    <NvScreenBarChart :series="series" :x-labels="lines" unit="件" height="200" aria-label="各线体产出" />
+    <NvScreenBarChart :series="series" :x-labels="lines" unit="项" height="200" aria-label="各分组数量" />
   </div>
 </Demo>
 

@@ -19,21 +19,21 @@ const selected = ref('')
 <Demo>
   <div style="width: 100%">
     <NvListRow
-      title="入库任务 2026-11-18-01"
-      description="物料项 A-1001 · 数量 240"
+      title="新增任务 2026-11-18-01"
+      description="文件项 A-1001 · 数量 240"
       meta="10:12"
       clickable
-      @click="selected = '入库任务'"
+      @click="selected = '新增任务'"
     />
     <NvListRow
       title="审核异常待处理"
-      description="站点 ST-04 上报外观缺陷"
+      description="终端 ST-04 上报格式异常"
       meta="3 条"
       clickable
       @click="selected = '审核异常'"
     />
     <NvListRow
-      title="已归档批次"
+      title="已归档记录"
       description="不可操作的历史记录"
       disabled
     />

@@ -17,14 +17,14 @@ import '@nerv-ui/desktop/styles.css'
   <div style="display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); width: 100%">
     <NvCard>
       <NvCardHeader>描边卡片</NvCardHeader>
-      <NvCardContent>记录 REC-1024 已进入精加工步骤，预计今日 16:00 完成。</NvCardContent>
+      <NvCardContent>记录 REC-1024 已进入细化阶段，预计今日 16:00 完成。</NvCardContent>
       <NvCardFooter>
         <NvButton size="sm">查看详情</NvButton>
       </NvCardFooter>
     </NvCard>
     <NvCard variant="solid">
       <NvCardHeader>实底卡片</NvCardHeader>
-      <NvCardContent>当前班次产出 1,284 件，一次通过率 98.2%。</NvCardContent>
+      <NvCardContent>当前周期完成 1,284 项，一次通过率 98.2%。</NvCardContent>
       <NvCardFooter>
         <NvButton size="sm" variant="outline">导出报表</NvButton>
       </NvCardFooter>

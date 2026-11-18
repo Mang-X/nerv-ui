@@ -29,7 +29,7 @@ function retry() {
 
 <Demo block>
   <NvMobileErrorRetry
-    description="生产数据加载超时，请检查网络后重试。"
+    description="数据加载超时，请检查网络后重试。"
     :loading="loading"
     @retry="retry"
   />

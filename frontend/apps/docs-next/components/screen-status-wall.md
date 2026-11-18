@@ -10,12 +10,12 @@ import '@nerv-ui/screen/styles.css'
 const picked = ref('尚未选择')
 
 const items = [
-  { key: 'a1', label: '总装 A 线', identity: 'L-A01', status: { label: '运行', tone: 'success' }, summary: '达成 95%', group: { key: 'assembly', label: '总装区' } },
-  { key: 'a2', label: '总装 B 线', identity: 'L-A02', status: { label: '低效', tone: 'warning' }, summary: '达成 86%', group: { key: 'assembly', label: '总装区' } },
-  { key: 'a3', label: '焊装线', identity: 'L-W01', status: { label: '停机', tone: 'danger' }, summary: '停机 18 min', group: { key: 'body', label: '焊装区' } },
-  { key: 'a4', label: '涂装线', identity: 'L-P01', status: { label: '运行', tone: 'success' }, summary: '达成 98%', group: { key: 'paint', label: '涂装区' } },
-  { key: 'a5', label: '立体库', identity: 'L-WH1', status: { label: '待料', tone: 'default' }, summary: '队列 18', group: { key: 'warehouse', label: '物流区' } },
-  { key: 'a6', label: '空压站', identity: 'L-UT1', status: { label: '离线', tone: 'default' }, disabled: true, group: { key: 'utility', label: '动力区' } },
+  { key: 'a1', label: '第一分组', identity: 'L-A01', status: { label: '运行', tone: 'success' }, summary: '达成 95%', group: { key: 'assembly', label: '研发区' } },
+  { key: 'a2', label: '第二分组', identity: 'L-A02', status: { label: '低效', tone: 'warning' }, summary: '达成 86%', group: { key: 'assembly', label: '研发区' } },
+  { key: 'a3', label: '第三分组', identity: 'L-W01', status: { label: '中断', tone: 'danger' }, summary: '中断 18 min', group: { key: 'body', label: '设计区' } },
+  { key: 'a4', label: '第四分组', identity: 'L-P01', status: { label: '运行', tone: 'success' }, summary: '达成 98%', group: { key: 'paint', label: '运营区' } },
+  { key: 'a5', label: '归档中心', identity: 'L-WH1', status: { label: '待同步', tone: 'default' }, summary: '队列 18', group: { key: 'warehouse', label: '文档区' } },
+  { key: 'a6', label: '服务节点', identity: 'L-UT1', status: { label: '离线', tone: 'default' }, disabled: true, group: { key: 'utility', label: '服务区' } },
 ]
 
 function onSelect(item) {
@@ -33,7 +33,7 @@ function onSelect(item) {
   <div class="nv-screen-stage" style="display: flex; flex-direction: column; gap: 16px">
     <NvScreenStatusWall
       :items="items"
-      label="线体状态墙"
+      label="状态墙"
       :columns="3"
       @select="onSelect"
     />

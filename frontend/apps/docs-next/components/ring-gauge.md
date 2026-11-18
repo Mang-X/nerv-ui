@@ -16,7 +16,7 @@ import '@nerv-ui/screen/styles.css'
 <Demo>
   <div class="nv-screen-stage">
     <NvRingGauge :value="76" :max="100" label="资源综合效率" unit="%" />
-    <NvRingGauge :value="92" :max="100" label="一次合格率" unit="%" tone="success" />
+    <NvRingGauge :value="92" :max="100" label="一次通过率" unit="%" tone="success" />
   </div>
 </Demo>
 

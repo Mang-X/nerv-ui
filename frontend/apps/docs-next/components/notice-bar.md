@@ -18,8 +18,8 @@ const visible = ref(true)
 
 <Demo>
   <div style="display: flex; flex-direction: column; gap: 12px; width: 100%">
-    <NvNoticeBar text="今日盘点任务将在 18:00 截止。" />
-    <NvNoticeBar variant="danger" text="站点 ST-04 上报资源报警，请及时处理。" />
+    <NvNoticeBar text="今日示例任务将在 18:00 截止。" />
+    <NvNoticeBar variant="danger" text="终端 ST-04 上报资源告警，请及时处理。" />
     <NvNoticeBar variant="neutral" text="系统将于今晚 22:00 进行例行维护。" />
   </div>
 </Demo>
@@ -35,9 +35,9 @@ const visible = ref(true)
     <NvMobileButton v-else size="md" variant="secondary" @click="visible = true">
       恢复通知条
     </NvMobileButton>
-    <NvNoticeBar variant="danger" text="库存低于安全线" closable>
+    <NvNoticeBar variant="danger" text="数量低于安全线" closable>
       <template #action>
-        <NvMobileButton size="md" variant="link">去补货</NvMobileButton>
+        <NvMobileButton size="md" variant="link">去处理</NvMobileButton>
       </template>
     </NvNoticeBar>
   </div>

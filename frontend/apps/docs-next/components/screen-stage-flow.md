@@ -7,17 +7,17 @@ import { NvScreenStageFlow } from '@nerv-ui/screen'
 import '@nerv-ui/screen/styles.css'
 
 const stages = [
-  { key: 's1', label: '接单', value: 120, unit: '件', status: { label: '正常', tone: 'success' } },
-  { key: 's2', label: '加工', value: 86, unit: '件', status: { label: '积压', tone: 'warning' } },
-  { key: 's3', label: '审核', value: 74, unit: '件', status: { label: '正常', tone: 'success' } },
-  { key: 's4', label: '包装', value: 62, unit: '件', status: { label: '低速', tone: 'accent' } },
-  { key: 's5', label: '入库', value: null, unit: '件', status: { label: '未知', tone: 'default' } },
+  { key: 's1', label: '创建', value: 120, unit: '项', status: { label: '正常', tone: 'success' } },
+  { key: 's2', label: '处理', value: 86, unit: '项', status: { label: '积压', tone: 'warning' } },
+  { key: 's3', label: '审核', value: 74, unit: '项', status: { label: '正常', tone: 'success' } },
+  { key: 's4', label: '发布', value: 62, unit: '项', status: { label: '低速', tone: 'accent' } },
+  { key: 's5', label: '归档', value: null, unit: '项', status: { label: '未知', tone: 'default' } },
 ]
 </script>
 
 # NvScreenStageFlow 阶段流转
 
-横向排列的工序 / 阶段卡片，阶段之间用连接符串起，适合展示各阶段的在制数量。
+横向排列的阶段卡片，阶段之间用连接符串起，适合展示各阶段的进行中数量。
 
 ## 示例
 
@@ -42,7 +42,7 @@ const stages = [
 | --- | --- | --- | --- |
 | `stages` | 阶段列表，必填 | `StageFlowStage[]` | — |
 | `connector` | 阶段之间的连接符；空字符串移除 | `string` | `›` |
-| `ariaLabel` | 流转组的无障碍名称 | `string` | `工位流转` |
+| `ariaLabel` | 流转组的无障碍名称 | `string` | `阶段流转` |
 
 ### StageFlowStage
 

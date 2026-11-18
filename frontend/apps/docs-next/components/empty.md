@@ -14,7 +14,7 @@ import '@nerv-ui/desktop/styles.css'
 ## 示例
 
 <Demo block>
-  <NvEmpty title="暂无记录" description="今天还没有新的生产记录，创建后会显示在这里。" />
+  <NvEmpty title="暂无记录" description="今天还没有新的记录，创建后会显示在这里。" />
 </Demo>
 
 <Demo block>

@@ -13,15 +13,15 @@ const metrics = [
   { label: '差异', value: -150, tone: 'danger' },
 ]
 const chips = [
-  { label: 'A 线', tone: 'success' },
-  { label: 'B 线', tone: 'warning' },
-  { label: '焊装', tone: 'danger' },
+  { label: '第一分组', tone: 'success' },
+  { label: '第二分组', tone: 'warning' },
+  { label: '第三分组', tone: 'danger' },
 ]
 </script>
 
 # NvScreenSummaryCard 汇总卡片
 
-大屏汇总卡，一个主指标配对比值与迷你趋势线，适合班次、区域级的总量展示。
+大屏汇总卡，一个主指标配对比值与迷你趋势线，适合周期、区域级的总量展示。
 
 ## 示例
 
@@ -29,7 +29,7 @@ const chips = [
   <div class="nv-screen-stage" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
     <NvScreenSummaryCard
       title="今日计划达成"
-      description="全部线体 · 截至 10:12"
+      description="全部分组 · 截至 10:12"
       variant="feature"
       :status="{ label: '正常', tone: 'success' }"
       :primary="{ label: '达成率', value: 95.3, unit: '%', tone: 'success' }"
@@ -39,16 +39,16 @@ const chips = [
       ]"
       :metrics="metrics"
       :trend="trend"
-      trend-label="近 12 个班次达成率"
+      trend-label="近 12 个周期达成率"
       :progress="95"
-      chips-label="异常线体"
+      chips-label="异常分组"
       :chips="chips"
-      note="焊装线已停机 18 分钟，需关注。"
+      note="第三分组已中断 18 分钟，需关注。"
       note-tone="danger"
     />
     <NvScreenSummaryCard
       title="资源综合效率"
-      reference="利用率 · 全厂"
+      reference="利用率 · 全组织"
       :variant="'compact'"
       :primary="{ label: '利用率', value: 78.4, unit: '%' }"
       :metrics="[

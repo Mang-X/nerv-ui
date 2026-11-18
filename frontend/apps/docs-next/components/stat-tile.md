@@ -9,19 +9,19 @@ import '@nerv-ui/pad/styles.css'
 
 # NvStatTile 指标卡
 
-站点平板上展示单个关键指标的卡片，可强调或标记为激活态。
+终端平板上展示单个关键指标的卡片，可强调或标记为激活态。
 
 ## 示例
 
 <Demo>
-  <NvStatTile label="今日产出" value="1,240" unit="件" hint="较昨日 +6.3%" />
-  <NvStatTile label="一次合格率" value="98.2" unit="%" hint="目标 98%" tone="brand" />
-  <NvStatTile label="待处理异常" value="7" unit="条" hint="其中 2 条为资源报警" tone="danger" />
-  <NvStatTile label="当前站点" value="ST-04" hint="运行中" active />
+  <NvStatTile label="今日数量" value="1,240" unit="项" hint="较昨日 +6.3%" />
+  <NvStatTile label="一次通过率" value="98.2" unit="%" hint="目标 98%" tone="brand" />
+  <NvStatTile label="待处理异常" value="7" unit="条" hint="其中 2 条为资源告警" tone="danger" />
+  <NvStatTile label="当前终端" value="ST-04" hint="运行中" active />
 </Demo>
 
 <Demo>
-  <NvStatTile label="今日产出" value="1,240" unit="件">
+  <NvStatTile label="今日数量" value="1,240" unit="项">
     <template #icon>
       <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M4 19h16M7 15l3-4 3 2 4-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />

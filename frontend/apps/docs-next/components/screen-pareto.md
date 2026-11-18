@@ -7,10 +7,10 @@ import { NvScreenPareto } from '@nerv-ui/screen'
 import '@nerv-ui/screen/styles.css'
 
 const items = [
-  { label: '尺寸超差', sub: '总装 A 线', value: 42, tone: 'danger' },
-  { label: '装配漏序', sub: '总装 B 线', value: 26, tone: 'warning' },
-  { label: '焊点虚焊', sub: '焊装线', value: 18 },
-  { label: '涂层划伤', sub: '涂装线', value: 11 },
+  { label: '格式异常', sub: '第一分组', value: 42, tone: 'danger' },
+  { label: '步骤缺失', sub: '第二分组', value: 26, tone: 'warning' },
+  { label: '数据缺失', sub: '第三分组', value: 18 },
+  { label: '字段错误', sub: '第四分组', value: 11 },
   { label: '其他', value: 6 },
 ]
 </script>
@@ -23,7 +23,7 @@ const items = [
 
 <Demo>
   <div class="nv-screen-stage" style="display: flex; flex-direction: column; gap: 16px">
-    <NvScreenPareto :items="items" unit="件" :total="120" :reference="80" height="200" aria-label="缺陷帕累托" />
+    <NvScreenPareto :items="items" unit="项" :total="120" :reference="80" height="200" aria-label="异常帕累托" />
   </div>
 </Demo>
 
@@ -36,7 +36,7 @@ const items = [
       height="180"
       aria-label="保持原始顺序"
     />
-    <NvScreenPareto :items="[]" empty-label="暂无缺陷数据" />
+    <NvScreenPareto :items="[]" empty-label="暂无异常数据" />
   </div>
 </Demo>
 
@@ -62,5 +62,5 @@ const items = [
 | `key` | 稳定标识 | `string \| number` |
 | `label` | 分类名 | `string` |
 | `value` | 分类数量 | `number` |
-| `sub` | 次级来源说明，如线体名 | `string` |
+| `sub` | 次级来源说明，如分组名 | `string` |
 | `tone` | 柱体语义色 | `'accent' \| 'success' \| 'warning' \| 'danger'` |

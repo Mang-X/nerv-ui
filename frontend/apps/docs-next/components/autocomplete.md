@@ -51,7 +51,7 @@ const custom = ref('')
 <Demo>
   <NvAutocomplete :items="products" :filter="false" :open-on-focus="true" open placeholder="禁用过滤" style="width: 260px" />
   <NvAutocomplete :items="products" placeholder="禁用" disabled style="width: 240px" />
-  <NvAutocomplete :items="['无可选项']" placeholder="无匹配建议" empty-text="没有匹配的产品" style="width: 240px" />
+  <NvAutocomplete :items="['无可选项']" placeholder="无匹配建议" empty-text="没有匹配的选项" style="width: 240px" />
 </Demo>
 
 ## API

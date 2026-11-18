@@ -8,13 +8,13 @@ import { NvCombobox } from '@nerv-ui/desktop'
 import '@nerv-ui/desktop/styles.css'
 
 const products = [
-  { value: 'p1', label: '铝合金支架 NX-220' },
-  { value: 'p2', label: '不锈钢法兰 NX-310' },
-  { value: 'p3', label: '铜制接头 NX-415' },
-  { value: 'p4', label: '尼龙衬套 NX-530' },
-  { value: 'p5', label: '铸铁底座 NX-640' },
-  { value: 'p6', label: '橡胶密封圈 NX-720', keywords: ['密封', 'o 型圈'] },
-  { value: 'p7', label: '轴承座 NX-810', disabled: true },
+  { value: 'p1', label: '示例选项 NX-220' },
+  { value: 'p2', label: '示例选项 NX-310' },
+  { value: 'p3', label: '示例选项 NX-415' },
+  { value: 'p4', label: '示例选项 NX-530' },
+  { value: 'p5', label: '示例选项 NX-640' },
+  { value: 'p6', label: '示例选项 NX-720', keywords: ['示例', '选项'] },
+  { value: 'p7', label: '示例选项 NX-810', disabled: true },
 ]
 
 const single = ref('p2')
@@ -37,7 +37,7 @@ const loader = async (query) => {
   <NvCombobox
     v-model:value="single"
     :items="products"
-    placeholder="搜索产品…"
+    placeholder="搜索选项…"
     clearable
     style="width: 260px"
   />
@@ -71,9 +71,9 @@ const loader = async (query) => {
 <Demo>
   <NvCombobox
     :load-options="loader"
-    placeholder="异步搜索产品…"
+    placeholder="异步搜索选项…"
     loading-text="正在检索…"
-    empty-text="没有匹配的产品"
+    empty-text="没有匹配的选项"
     style="width: 280px"
   />
   <NvCombobox :items="products" :filter="false" placeholder="不过滤：始终显示全部" style="width: 280px" />

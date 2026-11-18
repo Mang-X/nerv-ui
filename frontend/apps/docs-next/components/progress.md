@@ -18,7 +18,7 @@ const uploading = ref(68)
 ## 示例
 
 <Demo block>
-  <NvProgress :value="percent" label="本班次完成率" show-value />
+  <NvProgress :value="percent" label="本记录完成率" show-value />
 </Demo>
 
 <Demo block>
@@ -41,7 +41,7 @@ const uploading = ref(68)
 </Demo>
 
 <Demo block>
-  <NvProgress :value="12" :min="0" :max="20" label="抽检样本 12 / 20" show-value />
+  <NvProgress :value="12" :min="0" :max="20" label="抽查样本 12 / 20" show-value />
 </Demo>
 
 ## API

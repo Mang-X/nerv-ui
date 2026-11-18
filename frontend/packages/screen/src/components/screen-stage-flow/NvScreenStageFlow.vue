@@ -13,7 +13,7 @@ const props = withDefaults(
     connector?: string
     ariaLabel?: string
   }>(),
-  { connector: '›', ariaLabel: '工位流转' },
+  { connector: '›', ariaLabel: '阶段流转' },
 )
 
 const stageTones: Record<StageFlowTone, stylex.StyleXStyles | null> = {

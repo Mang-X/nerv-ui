@@ -12,8 +12,8 @@ const orderOpen = ref(false)
 const picked = ref('尚未选择')
 
 const actions = [
-  { value: 'edit', label: '编辑记录', description: '修改数量与交期' },
-  { value: 'split', label: '拆分批次' },
+  { value: 'edit', label: '编辑记录', description: '修改数量与备注' },
+  { value: 'split', label: '拆分记录' },
   { value: 'delete', label: '删除记录', description: '不可恢复', danger: true },
   { value: 'archive', label: '归档', disabled: true },
 ]

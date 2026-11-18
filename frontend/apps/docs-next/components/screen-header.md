@@ -16,7 +16,7 @@ import '@nerv-ui/screen/styles.css'
 <Demo>
   <div class="nv-screen-stage" style="flex-direction: column; align-items: stretch">
     <NvScreenHeader
-      title="总装区域生产看板"
+      title="区域数据看板"
       subtitle="Nerv-IIP · 实时监控"
       time="2026-11-18 10:12"
       status-label="数据正常"

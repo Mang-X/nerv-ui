@@ -17,7 +17,7 @@ import '@nerv-ui/screen/styles.css'
   <div class="nv-screen-stage" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center">
     <NvScreenStatusTag label="运行中" tone="success" />
     <NvScreenStatusTag label="待机" tone="warning" />
-    <NvScreenStatusTag label="报警" tone="danger" />
+    <NvScreenStatusTag label="告警" tone="danger" />
     <NvScreenStatusTag label="同步中" tone="accent" />
     <NvScreenStatusTag label="未知" tone="default" />
   </div>

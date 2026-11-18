@@ -9,10 +9,10 @@ import '@nerv-ui/desktop/styles.css'
 
 const page = ref(1)
 const slides = [
-  { title: '当日产量', value: '1,284 件' },
-  { title: '一次通过率', value: '98.2%' },
-  { title: '设备利用率', value: '82%' },
-  { title: '在制批次', value: '17 个' },
+  { title: '当日数量', value: '1,284 项' },
+  { title: '任务完成率', value: '98.2%' },
+  { title: '资源利用率', value: '82%' },
+  { title: '进行中任务', value: '17 项' },
 ]
 </script>
 
@@ -23,7 +23,7 @@ const slides = [
 ## 示例
 
 <Demo block>
-  <NvCarousel v-model:page="page" label="生产概览">
+  <NvCarousel v-model:page="page" label="项目概览">
     <NvCarouselItem v-for="slide in slides" :key="slide.title" :label="slide.title">
       <div
         style="

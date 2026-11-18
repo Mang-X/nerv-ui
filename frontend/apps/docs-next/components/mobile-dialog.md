@@ -23,8 +23,8 @@ const customOpen = ref(false)
   <NvMobileDialog
     v-model:open="open"
     trigger-label="打开对话框"
-    title="提交批次"
-    description="提交后将锁定本批次数据，无法继续编辑。"
+    title="提交记录"
+    description="提交后将锁定本条记录的数据，无法继续编辑。"
     confirm-text="提交"
     cancel-text="取消"
     @confirm="confirmed++"

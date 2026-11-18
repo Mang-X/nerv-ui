@@ -38,7 +38,7 @@ const tapped = ref('—')
 <Demo>
   <div style="width: 100%">
     <NvCellGroup title="快捷入口">
-      <NvCell title="扫码" description="扫描物料项或站点码" clickable>
+      <NvCell title="扫码" description="扫描文件项或终端码" clickable>
         <template #icon>
           <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 14h2v6h-6v-2h4z" fill="none" stroke="currentColor" stroke-width="1.6" />

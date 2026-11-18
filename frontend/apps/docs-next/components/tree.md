@@ -10,33 +10,33 @@ import '@nerv-ui/desktop/styles.css'
 const items = [
   {
     value: 'plant',
-    label: '一号厂区',
+    label: '一号区域',
     children: [
       {
         value: 'workshop-a',
-        label: '总装车间',
+        label: '研发部',
         children: [
-          { value: 'line-1', label: '一号产线' },
-          { value: 'line-2', label: '二号产线' },
-          { value: 'line-3', label: '三号产线（停用）', disabled: true },
+          { value: 'line-1', label: '前端组' },
+          { value: 'line-2', label: '后端组' },
+          { value: 'line-3', label: '测试组（停用）', disabled: true },
         ],
       },
       {
         value: 'workshop-b',
-        label: '质检车间',
+        label: '设计部',
         children: [
-          { value: 'lab-1', label: '理化实验室' },
-          { value: 'lab-2', label: '计量室' },
+          { value: 'lab-1', label: '交互设计组' },
+          { value: 'lab-2', label: '视觉设计组' },
         ],
       },
     ],
   },
   {
     value: 'plant-2',
-    label: '二号厂区',
+    label: '二号区域',
     children: [
-      { value: 'warehouse', label: '成品仓库' },
-      { value: 'shipping', label: '发运区' },
+      { value: 'warehouse', label: '文档中心' },
+      { value: 'shipping', label: '归档区' },
     ],
   },
 ]
@@ -59,7 +59,7 @@ const multi = ref(['line-1', 'line-2'])
       v-model:expanded="expanded"
       :items="items"
       mode="single"
-      aria-label="厂区结构"
+      aria-label="组织架构"
     />
     <p style="margin: 12px 0 0; font-size: 13px; color: var(--vp-c-text-2)">
       当前选中：{{ single ?? '无' }}；已展开：{{ expanded.join('、') || '无' }}

@@ -27,11 +27,11 @@ const openPanel = ref(null)
   <NvNavigationMenu v-model:value="openPanel">
     <NvNavigationMenuList>
       <NvNavigationMenuItem value="orders">
-        <NvNavigationMenuTrigger>生产管理</NvNavigationMenuTrigger>
+        <NvNavigationMenuTrigger>项目管理</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
-          <NvNavigationMenuLink href="#/orders">生产记录</NvNavigationMenuLink>
-          <NvNavigationMenuLink href="#/schedule">计划计划</NvNavigationMenuLink>
-          <NvNavigationMenuLink href="#/reports">生产报表</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/orders">记录</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/schedule">计划</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/reports">报表</NvNavigationMenuLink>
         </NvNavigationMenuContent>
       </NvNavigationMenuItem>
       <NvNavigationMenuItem value="devices">
@@ -39,14 +39,14 @@ const openPanel = ref(null)
         <NvNavigationMenuContent>
           <NvNavigationMenuLink href="#/devices">资源台账</NvNavigationMenuLink>
           <NvNavigationMenuLink href="#/monitor">实时监控</NvNavigationMenuLink>
-          <NvNavigationMenuLink href="#/maintenance">保养计划</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/maintenance">维护计划</NvNavigationMenuLink>
         </NvNavigationMenuContent>
       </NvNavigationMenuItem>
       <NvNavigationMenuItem value="quality">
-        <NvNavigationMenuTrigger>质量</NvNavigationMenuTrigger>
+        <NvNavigationMenuTrigger>校验</NvNavigationMenuTrigger>
         <NvNavigationMenuContent>
-          <NvNavigationMenuLink href="#/inspection">检验记录</NvNavigationMenuLink>
-          <NvNavigationMenuLink href="#/spc">SPC 分析</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/inspection">校验记录</NvNavigationMenuLink>
+          <NvNavigationMenuLink href="#/spc">趋势分析</NvNavigationMenuLink>
         </NvNavigationMenuContent>
       </NvNavigationMenuItem>
     </NvNavigationMenuList>

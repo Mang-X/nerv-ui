@@ -21,7 +21,7 @@ const submitted = ref('—')
   <div style="width: 100%">
     <NvSearchBar
       v-model="keyword"
-      placeholder="搜索物料项、记录"
+      placeholder="搜索文件项、记录"
       show-cancel
       @search="submitted = $event"
       @cancel="keyword = ''"

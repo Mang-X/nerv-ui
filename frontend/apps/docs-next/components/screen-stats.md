@@ -7,8 +7,8 @@ import { NvScreenStats } from '@nerv-ui/screen'
 import '@nerv-ui/screen/styles.css'
 
 const items = [
-  { label: '计划产量', value: 3200, unit: '件' },
-  { label: '实际产量', value: 3050, unit: '件', tone: 'success' },
+  { label: '计划数量', value: 3200, unit: '项' },
+  { label: '实际数量', value: 3050, unit: '项', tone: 'success' },
   { label: '达成率', value: 95.3, unit: '%', tone: 'accent', hint: '较昨日 +1.2%' },
   { label: '异常数', value: 12, unit: '项', tone: 'danger', hint: '待处理 5 项' },
 ]
@@ -22,7 +22,7 @@ const items = [
 
 <Demo>
   <div class="nv-screen-stage" style="display: flex; flex-direction: column; gap: 16px">
-    <NvScreenStats :items="items" aria-label="今日产量统计" />
+    <NvScreenStats :items="items" aria-label="今日数量统计" />
     <NvScreenStats :items="items.slice(0, 3)" size="lg" :columns="3" aria-label="大号统计" />
   </div>
 </Demo>
@@ -30,9 +30,9 @@ const items = [
 <Demo>
   <div class="nv-screen-stage">
     <NvScreenStats
-      :items="[{ label: '平均节拍', value: 58, unit: 's' }, { label: '停线时长', value: 18, unit: 'min', tone: 'warning' }]"
+      :items="[{ label: '平均耗时', value: 58, unit: 's' }, { label: '中断时长', value: 18, unit: 'min', tone: 'warning' }]"
       :columns="2"
-      aria-label="节拍统计"
+      aria-label="用时统计"
     />
   </div>
 </Demo>

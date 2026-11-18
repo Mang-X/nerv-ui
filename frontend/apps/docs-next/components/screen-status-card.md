@@ -8,22 +8,22 @@ import '@nerv-ui/screen/styles.css'
 
 const metrics = [
   { label: '节奏', value: '58', unit: 's' },
-  { label: '在制品', value: '24', unit: '件', tone: 'accent' },
-  { label: '停机', value: '6', unit: 'min', tone: 'warning' },
+  { label: '进行中任务', value: '24', unit: '项', tone: 'accent' },
+  { label: '中断', value: '6', unit: 'min', tone: 'warning' },
 ]
 </script>
 
 # NvScreenStatusCard 状态卡片
 
-大屏上的资源 / 线体状态卡，用大号状态词承载当前状态，并附指标与进度条。
+大屏上的资源状态卡，用大号状态词承载当前状态，并附指标与进度条。
 
 ## 示例
 
 <Demo>
   <div class="nv-screen-stage" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
     <NvScreenStatusCard
-      title="总装 A 线"
-      subtitle="站点 12 · 晨班"
+      title="第一分组"
+      subtitle="终端 12 · 上午"
       state="运行中"
       value="95.3"
       unit="%"
@@ -31,24 +31,24 @@ const metrics = [
       tone="success"
       :metrics="metrics"
       :progress="82"
-      progress-label="班次进度"
-      footer-label="班长"
+      progress-label="阶段进度"
+      footer-label="负责人"
       footer-value="陈明"
     />
     <NvScreenStatusCard
-      title="焊装线"
+      title="第二分组"
       state="待机"
-      hint="等待上游来料"
+      hint="等待上游数据"
       tone="warning"
-      :metrics="[{ label: '在制品', value: '3', unit: '件' }]"
+      :metrics="[{ label: '进行中任务', value: '3', unit: '项' }]"
       :progress="12"
     />
     <NvScreenStatusCard
-      title="涂装线"
-      state="报警"
-      hint="烘干炉温度偏低"
+      title="第三分组"
+      state="告警"
+      hint="响应耗时偏高"
       tone="danger"
-      :metrics="[{ label: '报警数', value: '2', tone: 'danger' }]"
+      :metrics="[{ label: '告警数', value: '2', tone: 'danger' }]"
       :progress="64"
       footer-label="处理人"
       footer-value="李静"
@@ -58,8 +58,8 @@ const metrics = [
 
 <Demo>
   <div class="nv-screen-stage" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
-    <NvScreenStatusCard title="立体库" state="正常" tone="default" footer-label="库存周转" footer-value="4.2 次/日" />
-    <NvScreenStatusCard title="空压站" state="离线" tone="default">
+    <NvScreenStatusCard title="第四分组" state="正常" tone="default" footer-label="请求频率" footer-value="4.2 次/日" />
+    <NvScreenStatusCard title="服务节点" state="离线" tone="default">
       <template #actions><span style="font-size: 12px; opacity: 0.7">最后心跳 10:01</span></template>
     </NvScreenStatusCard>
   </div>

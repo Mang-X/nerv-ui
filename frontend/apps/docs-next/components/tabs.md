@@ -24,11 +24,11 @@ const verticalTab = ref('general')
     <NvTabs v-model:value="tab">
       <NvTabsList>
         <NvTabsTrigger value="overview">概览</NvTabsTrigger>
-        <NvTabsTrigger value="quality">质量</NvTabsTrigger>
+        <NvTabsTrigger value="quality">校验</NvTabsTrigger>
         <NvTabsTrigger value="logs" disabled>日志</NvTabsTrigger>
       </NvTabsList>
       <NvTabsPanel value="overview">记录总数 1,284，今日新增 37。</NvTabsPanel>
-      <NvTabsPanel value="quality">一次通过率 98.2%，超差批次 3 个。</NvTabsPanel>
+      <NvTabsPanel value="quality">一次通过率 98.2%，异常记录 3 条。</NvTabsPanel>
       <NvTabsPanel value="logs">该面板被禁用，无法切换过来。</NvTabsPanel>
     </NvTabs>
   </div>
@@ -63,7 +63,7 @@ const verticalTab = ref('general')
         <NvTabsTrigger value="params">参数</NvTabsTrigger>
       </NvTabsList>
       <NvTabsPanel value="general" style="margin-top: 0">纵向排布，列表在左，面板在右。</NvTabsPanel>
-      <NvTabsPanel value="params" style="margin-top: 0">工艺参数共 12 项。</NvTabsPanel>
+      <NvTabsPanel value="params" style="margin-top: 0">参数共 12 项。</NvTabsPanel>
     </NvTabs>
   </div>
 </Demo>

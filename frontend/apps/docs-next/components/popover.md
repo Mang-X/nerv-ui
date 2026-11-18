@@ -21,8 +21,8 @@ const sideOpen = ref(false)
   <NvPopover v-model:open="infoOpen">
     <NvPopoverTrigger>查看详情</NvPopoverTrigger>
     <NvPopoverContent>
-      <strong>生产批次 B-20261118</strong>
-      <span style="font-size: 13px; color: var(--vp-c-text-2)">已通过首检，当前在总装二线。</span>
+      <strong>记录分组 B-20261118</strong>
+      <span style="font-size: 13px; color: var(--vp-c-text-2)">已通过首次校验，当前在第二分组。</span>
       <NvButton size="sm" variant="secondary" @click="infoOpen = false">收起</NvButton>
     </NvPopoverContent>
   </NvPopover>

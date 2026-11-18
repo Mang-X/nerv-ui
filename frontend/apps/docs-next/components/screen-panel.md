@@ -15,7 +15,7 @@ import '@nerv-ui/screen/styles.css'
 
 <Demo>
   <div class="nv-screen-stage" style="flex-direction: column; align-items: stretch">
-    <NvScreenPanel title="今日产量" subtitle="按小时统计" style="height: 160px">
+    <NvScreenPanel title="今日数量" subtitle="按小时统计" style="height: 160px">
       <div style="display: flex; align-items: center; justify-content: center; height: 100%; opacity: 0.7">
         图表区域
       </div>

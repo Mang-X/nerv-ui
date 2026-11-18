@@ -15,20 +15,20 @@ import '@nerv-ui/pad/styles.css'
 
 <Demo>
   <div style="display: flex; flex-direction: column; gap: 12px; width: 100%">
-    <NvStationBar station="总装一线 04 站点" code="ST-04" status="running" meta="当前记录 REC-2026-0412" active />
-    <NvStationBar station="总装一线 05 站点" code="ST-05" status="idle" meta="等待派工" />
-    <NvStationBar station="总装一线 06 站点" code="ST-06" status="paused" meta="换型准备中" />
-    <NvStationBar station="总装一线 07 站点" code="ST-07" status="alarm" meta="资源报警：主轴温度过高" />
-    <NvStationBar station="总装一线 08 站点" code="ST-08" status="offline" meta="通讯中断" />
+    <NvStationBar station="第一分组 04 站点" code="ST-04" status="running" meta="当前记录 REC-2026-0412" active />
+    <NvStationBar station="第一分组 05 站点" code="ST-05" status="idle" meta="等待分配" />
+    <NvStationBar station="第一分组 06 站点" code="ST-06" status="paused" meta="切换准备中" />
+    <NvStationBar station="第一分组 07 站点" code="ST-07" status="alarm" meta="资源告警：温度过高" />
+    <NvStationBar station="第一分组 08 站点" code="ST-08" status="offline" meta="通讯中断" />
   </div>
 </Demo>
 
 <Demo>
   <div style="display: flex; flex-direction: column; gap: 12px; width: 100%">
-    <NvStationBar station="可以自定义状态文案" code="ST-09" status="running" status-label="生产中" />
+    <NvStationBar station="可以自定义状态文案" code="ST-09" status="running" status-label="处理中" />
     <NvStationBar station="带操作区" code="ST-10" status="idle">
       <template #actions>
-        <span style="font-size: 12px; opacity: 0.7">长按派工</span>
+        <span style="font-size: 12px; opacity: 0.7">长按分配</span>
       </template>
     </NvStationBar>
   </div>

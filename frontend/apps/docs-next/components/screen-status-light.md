@@ -9,7 +9,7 @@ import '@nerv-ui/screen/styles.css'
 
 # NvScreenStatusLight 状态灯
 
-带呼吸动画的状态圆点与文字，用于表达设备、接口或数据链路的即时状态。
+带呼吸动画的状态圆点与文字，用于表达资源、接口或数据链路的即时状态。
 
 ## 示例
 
@@ -17,7 +17,7 @@ import '@nerv-ui/screen/styles.css'
   <div class="nv-screen-stage" style="display: flex; gap: 24px; flex-wrap: wrap">
     <NvScreenStatusLight tone="success" label="运行正常" />
     <NvScreenStatusLight tone="warning" label="需要关注" />
-    <NvScreenStatusLight tone="danger" label="报警" />
+    <NvScreenStatusLight tone="danger" label="告警" />
     <NvScreenStatusLight tone="accent" label="同步中" />
     <NvScreenStatusLight tone="default" label="未知" />
   </div>

@@ -18,7 +18,7 @@ const count = ref(12480)
 
 <Demo>
   <div class="nv-screen-stage">
-    <NvDigitalFlop :value="count" label="今日产量" />
+    <NvDigitalFlop :value="count" label="今日数量" />
     <NvDigitalFlop :value="3.6" size="md" tone="success" />
     <NvDigitalFlop :value="-0.8" size="md" tone="danger" />
   </div>

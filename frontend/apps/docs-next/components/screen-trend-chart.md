@@ -8,7 +8,7 @@ import '@nerv-ui/screen/styles.css'
 
 const hours = ['08', '09', '10', '11', '12', '13', '14', '15', '16', '17']
 const series = [
-  { label: '产出', tone: 'accent', data: [120, 132, 145, 150, 138, 160, 172, 168, 180, 176] },
+  { label: '完成量', tone: 'accent', data: [120, 132, 145, 150, 138, 160, 172, 168, 180, 176] },
   { label: '计划', tone: 'muted', data: [130, 130, 130, 140, 140, 150, 160, 160, 170, 170] },
 ]
 const hoverLabels = hours.map((hour) => `${hour}:00`)
@@ -26,9 +26,9 @@ const hoverLabels = hours.map((hour) => `${hour}:00`)
       :series="series"
       :x-labels="hours"
       :hover-labels="hoverLabels"
-      unit="件"
+      unit="项"
       height="220"
-      aria-label="小时产出趋势"
+      aria-label="小时完成趋势"
     />
   </div>
 </Demo>
@@ -37,15 +37,15 @@ const hoverLabels = hours.map((hour) => `${hour}:00`)
   <div class="nv-screen-stage" style="display: flex; flex-direction: column; gap: 16px">
     <NvScreenTrendChart
       :series="[
-        { label: '温度', tone: 'warning', data: [180, 184, null, 191, 196, 193, 189] },
+        { label: '当前值', tone: 'warning', data: [180, 184, null, 191, 196, 193, 189] },
         { label: '上限', tone: 'danger', data: [200, 200, 200, 200, 200, 200, 200] },
       ]"
       :x-labels="['08', '09', '10', '11', '12', '13', '14']"
-      unit="°C"
+      unit="ms"
       :show-area="false"
       :show-dots="false"
       height="180"
-      aria-label="炉温趋势"
+      aria-label="耗时趋势"
     />
     <NvScreenTrendChart :series="[]" empty-label="暂无趋势数据" />
   </div>

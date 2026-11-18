@@ -14,24 +14,24 @@ const thresholds = [
 const below = { label: '无数据', tone: 'accent', min: -1 }
 
 const cells = [
-  { key: 'w1', label: '工位 01', value: 48 },
-  { key: 'w2', label: '工位 02', value: 72 },
-  { key: 'w3', label: '工位 03', value: 91 },
-  { key: 'w4', label: '工位 04', value: 55 },
-  { key: 'w5', label: '工位 05', value: 88 },
-  { key: 'w6', label: '工位 06', value: 63 },
-  { key: 'w7', label: '工位 07', value: null },
-  { key: 'w8', label: '工位 08', value: 77 },
-  { key: 'w9', label: '工位 09', value: 42 },
-  { key: 'w10', label: '工位 10', value: 96 },
-  { key: 'w11', label: '工位 11', value: 58 },
-  { key: 'w12', label: '工位 12', value: 69 },
+  { key: 'w1', label: '岗位 01', value: 48 },
+  { key: 'w2', label: '岗位 02', value: 72 },
+  { key: 'w3', label: '岗位 03', value: 91 },
+  { key: 'w4', label: '岗位 04', value: 55 },
+  { key: 'w5', label: '岗位 05', value: 88 },
+  { key: 'w6', label: '岗位 06', value: 63 },
+  { key: 'w7', label: '岗位 07', value: null },
+  { key: 'w8', label: '岗位 08', value: 77 },
+  { key: 'w9', label: '岗位 09', value: 42 },
+  { key: 'w10', label: '岗位 10', value: 96 },
+  { key: 'w11', label: '岗位 11', value: 58 },
+  { key: 'w12', label: '岗位 12', value: 69 },
 ]
 </script>
 
 # NvScreenHeatmap 热力分档图
 
-按阈值把数值分档着色的方格矩阵，适合工位、设备、区域的负载或温度总览。
+按阈值把数值分档着色的方格矩阵，适合岗位、资源、区域的负载或评分总览。
 
 ## 示例
 
@@ -45,7 +45,7 @@ const cells = [
       unit="%"
       axis-start="低负载"
       axis-end="高负载"
-      aria-label="工位负载分档"
+      aria-label="岗位负载分档"
     />
   </div>
 </Demo>
@@ -57,13 +57,13 @@ const cells = [
       :thresholds="thresholds"
       :below="below"
       :columns="2"
-      aria-label="四工位分档"
+      aria-label="四岗位分档"
     />
     <NvScreenHeatmap
       :cells="[]"
       :thresholds="thresholds"
       :below="below"
-      empty-label="暂无工位记录"
+      empty-label="暂无岗位记录"
     />
   </div>
 </Demo>

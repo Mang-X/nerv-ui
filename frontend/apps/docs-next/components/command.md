@@ -11,28 +11,28 @@ const lastAction = ref(null)
 
 const entries = [
   {
-    label: '生产',
+    label: '项目',
     items: [
-      { value: 'new-order', label: '新建生产记录', keywords: ['创建', '订单'], shortcut: '⌘ N' },
-      { value: 'schedule', label: '打开计划计划', keywords: ['计划', '甘特'], shortcut: '⌘ K' },
-      { value: 'report', label: '导出生产报表', keywords: ['导出', '报表'] },
+      { value: 'new-order', label: '新建条目', keywords: ['创建', '条目'], shortcut: '⌘ N' },
+      { value: 'schedule', label: '打开计划', keywords: ['计划', '甘特'], shortcut: '⌘ K' },
+      { value: 'report', label: '导出报表', keywords: ['导出', '报表'] },
     ],
   },
   {
     label: '资源',
     items: [
-      { value: 'device-status', label: '查看资源状态', keywords: ['监控', 'oee'] },
-      { value: 'maintenance', label: '登记保养记录', disabled: true },
+      { value: 'device-status', label: '查看资源状态', keywords: ['监控', '状态'] },
+      { value: 'maintenance', label: '登记维护记录', disabled: true },
     ],
   },
   { value: 'settings', label: '打开系统设置', keywords: ['偏好', '配置'] },
 ]
 
 const flatEntries = [
-  { value: 'a', label: '开始生产', keywords: ['启动'] },
-  { value: 'b', label: '暂停分组' },
-  { value: 'c', label: '切换班次' },
-  { value: 'd', label: '查看报警' },
+  { value: 'a', label: '开始任务', keywords: ['启动'] },
+  { value: 'b', label: '暂停任务' },
+  { value: 'c', label: '切换视图' },
+  { value: 'd', label: '查看通知' },
 ]
 </script>
 

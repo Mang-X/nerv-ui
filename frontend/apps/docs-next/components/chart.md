@@ -11,12 +11,12 @@ const weeks = ['第 1 周', '第 2 周', '第 3 周', '第 4 周', '第 5 周', 
 const lineData = [
   {
     key: 'inbound',
-    label: '入库',
+    label: '新增',
     data: weeks.map((x, i) => ({ x, y: [820, 932, 901, 1094, 1230, 1180, 1320, 1466][i] })),
   },
   {
     key: 'outbound',
-    label: '出库',
+    label: '移除',
     data: weeks.map((x, i) => ({ x, y: [760, 810, 880, 960, 1120, 1050, 1210, 1284][i] })),
   },
 ]
@@ -32,7 +32,7 @@ const areaData = [
 const barData = [
   {
     key: 'plan',
-    label: '计划产出',
+    label: '计划数量',
     data: [
       { x: '1 号分组', y: 4800 },
       { x: '2 号分组', y: 3600 },
@@ -43,7 +43,7 @@ const barData = [
   },
   {
     key: 'actual',
-    label: '实际产出',
+    label: '实际数量',
     data: [
       { x: '1 号分组', y: 4520 },
       { x: '2 号分组', y: 3780 },
@@ -55,10 +55,10 @@ const barData = [
 ]
 
 const donutData = [
-  { label: '生产中', value: 620 },
-  { label: '已完工', value: 380 },
+  { label: '进行中', value: 620 },
+  { label: '已完成', value: 380 },
   { label: '暂停', value: 96 },
-  { label: '待开工', value: 188 },
+  { label: '待开始', value: 188 },
 ]
 </script>
 
@@ -69,15 +69,15 @@ const donutData = [
 ## 示例
 
 <Demo block>
-  <NvLineChart :data="lineData" :height="240" aria-label="每周出入库趋势" value-suffix=" 件" />
+  <NvLineChart :data="lineData" :height="240" aria-label="每周新增与移除趋势" value-suffix=" 项" />
 </Demo>
 
 <Demo block>
-  <NvLineChart :data="areaData" :height="220" area aria-label="累计记录趋势" value-suffix=" 单" />
+  <NvLineChart :data="areaData" :height="220" area aria-label="累计记录趋势" value-suffix=" 条" />
 </Demo>
 
 <Demo block>
-  <NvBarChart :data="barData" :height="240" aria-label="各分组计划与实际产出" value-suffix=" 件" />
+  <NvBarChart :data="barData" :height="240" aria-label="各分组计划与实际数量" value-suffix=" 项" />
 </Demo>
 
 <Demo block>
@@ -108,7 +108,7 @@ const donutData = [
 | `showLegend` | 在绘图区上方显示系列图例 | `boolean` | `true` |
 | `ariaLabel` | 整张图的无障碍名称 | `string` | `折线图` |
 | `area` | 同时填充折线下方的区域 | `boolean` | `false` |
-| `valueSuffix` | 追加到 tooltip 数值后的单位，如 `" 件"` | `string` | — |
+| `valueSuffix` | 追加到 tooltip 数值后的单位，如 `" 项"` | `string` | — |
 
 ### NvBarChart 属性
 

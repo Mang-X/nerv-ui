@@ -7,11 +7,11 @@ import { NvScreenScrollArea } from '@nerv-ui/screen'
 import '@nerv-ui/screen/styles.css'
 
 const rows = [
-  { id: 'WO-1138', line: '总装 A 线', state: '加工中' },
-  { id: 'WO-1139', line: '总装 B 线', state: '待首检' },
-  { id: 'WO-1140', line: '焊装线', state: '已完工' },
-  { id: 'WO-1141', line: '涂装线', state: '排队中' },
-  { id: 'WO-1142', line: '立体库', state: '入库中' },
+  { id: 'REC-1138', line: '第一分组', state: '处理中' },
+  { id: 'REC-1139', line: '第二分组', state: '待校验' },
+  { id: 'REC-1140', line: '第三分组', state: '已完成' },
+  { id: 'REC-1141', line: '第四分组', state: '排队中' },
+  { id: 'REC-1142', line: '第五分组', state: '归档中' },
 ]
 </script>
 
@@ -24,7 +24,7 @@ const rows = [
 <Demo>
   <div class="nv-screen-stage">
     <div style="height: 200px">
-      <NvScreenScrollArea :items="rows" :speed="24" :row-key="(item) => item.id" aria-label="工单滚动">
+      <NvScreenScrollArea :items="rows" :speed="24" :row-key="(item) => item.id" aria-label="记录滚动">
         <template #row="{ item }">
           <div style="display: flex; justify-content: space-between; padding: 10px 12px; border-bottom: 1px solid oklch(1 0 0 / 0.12); font-size: 14px">
             <span v-text="item.id"></span>

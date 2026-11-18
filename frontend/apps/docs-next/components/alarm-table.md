@@ -7,10 +7,10 @@ import { NvAlarmTable } from '@nerv-ui/screen'
 import '@nerv-ui/screen/styles.css'
 
 const rows = [
-  { id: 1, time: '10:02:31', source: '总装 A 线 · 站点 12', message: '扭力值连续 3 件超上限', level: 'critical', status: '未确认', statusTone: 'danger' },
-  { id: 2, time: '09:58:12', source: '焊装线 · 机器人 R03', message: '焊接电流波动超出工艺窗口', level: 'major', status: '处理中', statusTone: 'warning' },
-  { id: 3, time: '09:41:55', source: '涂装线 · 烘干炉', message: '炉温偏低 6°C，已自动补偿', level: 'minor', status: '已恢复', statusTone: 'success' },
-  { id: 4, time: '09:30:08', source: '立体库 · 堆垛机', message: '任务队列积压 18 条', level: 'info', status: '已恢复', statusTone: 'accent' },
+  { id: 1, time: '10:02:31', source: '第一分组 · 终端 12', message: '响应耗时连续 3 次超出上限', level: 'critical', status: '未确认', statusTone: 'danger' },
+  { id: 2, time: '09:58:12', source: '第二分组 · 终端 R03', message: '响应耗时超出阈值', level: 'major', status: '处理中', statusTone: 'warning' },
+  { id: 3, time: '09:41:55', source: '第三分组 · 服务 B12', message: '队列延迟升高 6%，已自动重试', level: 'minor', status: '已恢复', statusTone: 'success' },
+  { id: 4, time: '09:30:08', source: '第四分组 · 调度器', message: '任务队列积压 18 条', level: 'info', status: '已恢复', statusTone: 'accent' },
 ]
 
 const levelLabels = { critical: '紧急', major: '重要', minor: '一般', info: '提示' }
@@ -34,7 +34,7 @@ const labels = { level: '级别', time: '发生时间', source: '来源', messag
   <div class="nv-screen-stage">
     <NvAlarmTable
       :rows="[
-        { id: 1, time: '10:02:31', source: '总装 A 线', message: '扭力超上限', level: 'critical' },
+        { id: 1, time: '10:02:31', source: '第一分组', message: '响应耗时超上限', level: 'critical' },
       ]"
       empty-label="当前没有告警"
     >
@@ -71,7 +71,7 @@ const labels = { level: '级别', time: '发生时间', source: '来源', messag
 | --- | --- | --- |
 | `id` | 记录标识 | `string \| number` |
 | `time` | 已格式化好的展示时间 | `string` |
-| `source` | 线体 / 站点 / 资源来源 | `string` |
+| `source` | 分组 / 终端 / 资源来源 | `string` |
 | `message` | 告警内容 | `string` |
 | `level` | 级别 | `'critical' \| 'major' \| 'minor' \| 'info'` |
 | `status` | 处理状态文案 | `string` |

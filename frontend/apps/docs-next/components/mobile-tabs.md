@@ -25,10 +25,10 @@ const items = [
   <div style="width: 100%">
     <NvMobileTabs v-model="tab" :items="items">
       <template #panel-overview>
-        <span>概览内容：今日产出 1,240 件。</span>
+        <span>概览内容：今日完成 1,240 项。</span>
       </template>
       <template #panel-detail>
-        <span>明细内容：共 36 条生产记录。</span>
+        <span>明细内容：共 36 条记录。</span>
       </template>
     </NvMobileTabs>
   </div>

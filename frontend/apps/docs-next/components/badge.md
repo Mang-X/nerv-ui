@@ -29,7 +29,7 @@ import '@nerv-ui/desktop/styles.css'
 
 <Demo>
   <NvBadge dot variant="brand">运行中</NvBadge>
-  <NvBadge dot variant="danger">已停机</NvBadge>
+  <NvBadge dot variant="danger">已中断</NvBadge>
   <NvBadge dot variant="neutral">待机</NvBadge>
   <NvBadge variant="outline" round>3 条待办</NvBadge>
 </Demo>

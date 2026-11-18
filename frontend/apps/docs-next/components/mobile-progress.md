@@ -17,7 +17,7 @@ const value = ref(42)
 ## 示例
 
 <Demo block>
-  <NvMobileProgress :value="value" label="本批次完成度" show-value />
+  <NvMobileProgress :value="value" label="本记录完成度" show-value />
   <div style="display: flex; gap: 8px">
     <NvMobileButton size="md" variant="secondary" @click="value = Math.max(0, value - 10)">减 10</NvMobileButton>
     <NvMobileButton size="md" @click="value = Math.min(100, value + 10)">加 10</NvMobileButton>
@@ -26,7 +26,7 @@ const value = ref(42)
 
 <Demo block>
   <NvMobileProgress :value="null" label="正在计算" />
-  <NvMobileProgress :value="68" variant="danger" label="废品率" show-value />
+  <NvMobileProgress :value="68" variant="danger" label="异常率" show-value />
   <NvMobileProgress :value="86" variant="neutral" label="负载" size="sm" show-value />
   <NvMobileProgress :value="100" label="已完成" size="lg" show-value />
 </Demo>

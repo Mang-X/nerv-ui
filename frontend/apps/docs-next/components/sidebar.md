@@ -25,9 +25,9 @@ const railCollapsed = ref(true)
 <Demo block>
   <div style="display: flex; height: 340px; border: 1px solid var(--vp-c-divider); border-radius: 10px; overflow: hidden; width: 100%">
     <NvSidebar v-model:collapsed="collapsed" width="220">
-      <NvSidebarHeader>NvUI 制造平台</NvSidebarHeader>
-      <NvSidebarGroup label="生产">
-        <NvSidebarItem label="生产看板" active>
+      <NvSidebarHeader>NvUI 示例平台</NvSidebarHeader>
+      <NvSidebarGroup label="项目">
+        <NvSidebarItem label="项目看板" active>
           <template #icon>
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor" />
@@ -36,16 +36,16 @@ const railCollapsed = ref(true)
               <rect x="14" y="14" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3" />
             </svg>
           </template>
-          生产看板
+          项目看板
         </NvSidebarItem>
-        <NvSidebarItem label="生产记录">
+        <NvSidebarItem label="记录">
           <template #icon>
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6 3h9l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8" />
               <path d="M9 11h7M9 15h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
             </svg>
           </template>
-          生产记录
+          记录
         </NvSidebarItem>
         <NvSidebarItem label="资源监控">
           <template #icon>
@@ -73,7 +73,7 @@ const railCollapsed = ref(true)
     <NvSidebar v-model:collapsed="railCollapsed" width="200" collapsed-width="56" collapsible>
       <NvSidebarHeader>控制台</NvSidebarHeader>
       <NvSidebarItem label="总览" active>总览</NvSidebarItem>
-      <NvSidebarItem label="报警" href="#/alerts">报警</NvSidebarItem>
+      <NvSidebarItem label="通知" href="#/alerts">通知</NvSidebarItem>
       <NvSidebarItem label="计划" href="#/scheduling">计划</NvSidebarItem>
     </NvSidebar>
     <div style="flex: 1; padding: 16px; font-size: 13px; color: var(--vp-c-text-2)">

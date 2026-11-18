@@ -12,7 +12,7 @@ const tab = ref('realtime')
 const items = [
   { value: 'realtime', label: '实时', badge: 12 },
   { value: 'history', label: '历史' },
-  { value: 'quality', label: '质量' },
+  { value: 'quality', label: '校验' },
   { value: 'disabled', label: '不可用', disabled: true },
 ]
 </script>

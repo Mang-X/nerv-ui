@@ -7,7 +7,7 @@ import { NvScreenTable } from '@nerv-ui/screen'
 import '@nerv-ui/screen/styles.css'
 
 const columns = [
-  { key: 'line', label: '线体', width: '22%' },
+  { key: 'line', label: '分组', width: '22%' },
   { key: 'plan', label: '计划', align: 'end', width: 120 },
   { key: 'actual', label: '实际', align: 'end', width: 120 },
   { key: 'rate', label: '达成率', align: 'end', width: 120, variant: 'status' },
@@ -15,10 +15,10 @@ const columns = [
 ]
 
 const rows = [
-  { id: 1, line: '总装 A 线', plan: 320, actual: 305, rate: { value: '95.3%', tone: 'success' }, status: { value: '运行', tone: 'success' } },
-  { id: 2, line: '总装 B 线', plan: 280, actual: 240, rate: { value: '85.7%', tone: 'warning' }, status: { value: '低效', tone: 'warning' } },
-  { id: 3, line: '焊装线', plan: 200, actual: 128, rate: { value: '64.0%', tone: 'danger' }, status: { value: '停机', tone: 'danger' } },
-  { id: 4, line: '涂装线', plan: 180, actual: 176, rate: '97.8%', status: { value: '运行', tone: 'accent' } },
+  { id: 1, line: '第一分组', plan: 320, actual: 305, rate: { value: '95.3%', tone: 'success' }, status: { value: '运行', tone: 'success' } },
+  { id: 2, line: '第二分组', plan: 280, actual: 240, rate: { value: '85.7%', tone: 'warning' }, status: { value: '低效', tone: 'warning' } },
+  { id: 3, line: '第三分组', plan: 200, actual: 128, rate: { value: '64.0%', tone: 'danger' }, status: { value: '中断', tone: 'danger' } },
+  { id: 4, line: '第四分组', plan: 180, actual: 176, rate: '97.8%', status: { value: '运行', tone: 'accent' } },
 ]
 </script>
 
@@ -39,16 +39,16 @@ const rows = [
   <div class="nv-screen-stage">
     <NvScreenTable
       :columns="[
-        { key: 'line', label: '线体' },
+        { key: 'line', label: '分组' },
         { key: 'status', label: '状态' },
       ]"
       :rows="[
-        { id: 1, line: '总装 A 线', status: '运行' },
-        { id: 2, line: '总装 B 线', status: '停机' },
+        { id: 1, line: '第一分组', status: '运行' },
+        { id: 2, line: '第二分组', status: '中断' },
       ]"
     >
       <template #cell-status="{ value }">
-        <span style="font-weight: 600" v-text="value === '运行' ? '● 正常运行' : '■ 已停机'"></span>
+        <span style="font-weight: 600" v-text="value === '运行' ? '● 正常运行' : '■ 已中断'"></span>
       </template>
     </NvScreenTable>
   </div>

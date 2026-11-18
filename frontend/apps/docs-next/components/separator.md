@@ -18,7 +18,7 @@ import '@nerv-ui/desktop/styles.css'
   <NvSeparator />
   <div>步骤明细</div>
   <NvSeparator decorative />
-  <div>质量记录</div>
+  <div>校验记录</div>
 </Demo>
 
 <Demo>

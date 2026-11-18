@@ -25,7 +25,7 @@ import '@nerv-ui/desktop/styles.css'
     </NvBreadcrumbItem>
     <NvBreadcrumbSeparator />
     <NvBreadcrumbItem>
-      <NvBreadcrumbLink href="#/orders">生产记录</NvBreadcrumbLink>
+      <NvBreadcrumbLink href="#/orders">记录</NvBreadcrumbLink>
     </NvBreadcrumbItem>
     <NvBreadcrumbSeparator />
     <NvBreadcrumbItem>
@@ -37,11 +37,11 @@ import '@nerv-ui/desktop/styles.css'
 <Demo block>
   <NvBreadcrumb label="资源位置">
     <NvBreadcrumbItem>
-      <NvBreadcrumbLink href="#/">华东一厂</NvBreadcrumbLink>
+      <NvBreadcrumbLink href="#/">华东区</NvBreadcrumbLink>
     </NvBreadcrumbItem>
     <NvBreadcrumbSeparator />
     <NvBreadcrumbItem>
-      <NvBreadcrumbLink href="#/workshop">装配区域</NvBreadcrumbLink>
+      <NvBreadcrumbLink href="#/workshop">研发区域</NvBreadcrumbLink>
     </NvBreadcrumbItem>
     <NvBreadcrumbSeparator>
       <span aria-hidden="true">/</span>

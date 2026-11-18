@@ -20,7 +20,7 @@ const toaster = createToaster({ duration: 3000 })
   <NvMobileButton variant="secondary" @click="toaster('已保存草稿')">默认</NvMobileButton>
   <NvMobileButton variant="secondary" @click="toaster.success('提交成功')">成功</NvMobileButton>
   <NvMobileButton variant="secondary" @click="toaster.error('提交失败，请重试')">失败</NvMobileButton>
-  <NvMobileButton variant="secondary" @click="toaster.warning('库存不足')">警告</NvMobileButton>
+  <NvMobileButton variant="secondary" @click="toaster.warning('数量不足')">警告</NvMobileButton>
   <NvMobileButton variant="secondary" @click="toaster.loading('正在上传…')">加载中</NvMobileButton>
 </Demo>
 

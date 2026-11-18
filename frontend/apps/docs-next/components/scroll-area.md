@@ -14,18 +14,18 @@ import '@nerv-ui/desktop/styles.css'
 
 const rows = Array.from({ length: 24 }, (_, index) => `记录 REC-${1040 + index}`)
 const tags = [
-  '下料',
-  '车削',
-  '钻孔',
-  '铰孔',
-  '去毛刺',
+  '解析',
+  '转换',
+  '校验',
   '清洗',
-  '烘干',
-  '首检',
-  '巡检',
-  '终检',
-  '包装',
-  '入库',
+  '去重',
+  '拆分',
+  '合并',
+  '同步',
+  '审核',
+  '发布',
+  '归档',
+  '完成',
 ]
 </script>
 
@@ -53,7 +53,7 @@ const tags = [
 </Demo>
 
 <Demo block>
-  <NvScrollArea orientation="horizontal" class="nv-sa-demo-short" label="工序标签">
+  <NvScrollArea orientation="horizontal" class="nv-sa-demo-short" label="标签">
     <div style="display: flex; gap: 8px; padding: 16px; white-space: nowrap">
       <span
         v-for="tag in tags"
@@ -90,7 +90,7 @@ const tags = [
           border-bottom: 1px solid var(--vp-c-divider);
         "
       >
-        第 {{ index + 1 }} 行 · 工单 WO-{{ 100000 + index }}
+        第 {{ index + 1 }} 行 · 记录 REC-{{ 100000 + index }}
       </div>
     </template>
   </NvScrollArea>
@@ -102,9 +102,9 @@ const tags = [
 <Demo block>
   <NvScrollArea orientation="both" type="always" class="nv-sa-demo-wide" label="双向滚动">
     <div style="width: 900px; padding: 16px; font-size: 13px; line-height: 1.8">
-      <strong>工艺说明全文</strong>
+      <strong>文档说明全文</strong>
       <p style="margin: 8px 0 0">
-        本工序共 12 道步骤，每道步骤均有对应的检验要求与记录字段。内容宽度超出容器时可横向滚动，
+        本文档共 12 个章节，每个章节均有对应的校验要求与记录字段。内容宽度超出容器时可横向滚动，
         高度超出时出现纵向滚动条。滚动条常驻展示，便于定位当前位置。
       </p>
     </div>

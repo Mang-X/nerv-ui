@@ -22,15 +22,15 @@ import '@nerv-ui/desktop/styles.css'
     <template #start>
       <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
         <strong>分组列表</strong>
-        <span style="color: var(--vp-c-text-2)">三号产线</span>
-        <span style="color: var(--vp-c-text-2)">一号产线</span>
-        <span style="color: var(--vp-c-text-2)">质检车间</span>
+        <span style="color: var(--vp-c-text-2)">第三分组</span>
+        <span style="color: var(--vp-c-text-2)">第一分组</span>
+        <span style="color: var(--vp-c-text-2)">校验部</span>
       </div>
     </template>
     <template #end>
       <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
         <strong>记录详情</strong>
-        <span style="color: var(--vp-c-text-2)">REC-1034 · 已完成 318 / 500 件</span>
+        <span style="color: var(--vp-c-text-2)">REC-1034 · 已完成 318 / 500 项</span>
         <span style="color: var(--vp-c-text-2)">拖动中间手柄可调整两栏宽度</span>
       </div>
     </template>

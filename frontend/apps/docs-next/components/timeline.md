@@ -20,28 +20,28 @@ import '@nerv-ui/desktop/styles.css'
         time="11-18 08:12"
         datetime="2026-11-18T08:12"
         title="记录创建"
-        description="计划模块下发加工任务，关联物料已预占。"
+        description="计划模块下发处理任务，关联文件项已预留。"
         status="default"
       />
       <NvTimelineItem
         time="11-18 08:40"
         datetime="2026-11-18T08:40"
         title="资料就绪"
-        description="工艺文件与检验标准已下发到三号产线。"
+        description="流程文件与校验标准已下发到第三分组。"
         status="default"
       />
       <NvTimelineItem
         time="11-18 09:05"
         datetime="2026-11-18T09:05"
-        title="开始加工"
-        description="操作员扫码开工，首件检验已通过。"
+        title="开始处理"
+        description="处理人扫码开始，首次校验已通过。"
         status="active"
       />
       <NvTimelineItem
         time="11-18 10:21"
         datetime="2026-11-18T10:21"
-        title="尺寸预警"
-        description="第 120 件孔径接近上限，已通知班组长复核。"
+        title="指标预警"
+        description="第 120 条数据接近上限，已通知分组负责人复核。"
         status="danger"
       />
     </NvTimeline>
@@ -54,15 +54,15 @@ import '@nerv-ui/desktop/styles.css'
       <NvTimelineItem
         time="11-17 14:20"
         datetime="2026-11-17T14:20"
-        title="查看上一批次记录"
+        title="查看上一条记录"
         href="#"
-        description="跳转到批次 REC-1028 的完整记录。"
+        description="跳转到记录 REC-1028 的完整内容。"
       />
       <NvTimelineItem
         time="11-17 16:05"
         datetime="2026-11-17T16:05"
-        title="补充检验结果"
-        description="复检合格，超差项已备注。"
+        title="补充校验结果"
+        description="复核通过，异常项已备注。"
         status="active"
       />
     </NvTimeline>

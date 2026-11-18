@@ -7,9 +7,9 @@ import { NvMobileCollapse } from '@nerv-ui/mobile'
 import '@nerv-ui/mobile/styles.css'
 
 const logs = [
-  '10:02:11 记录已下发',
-  '10:05:40 操作员已领取',
-  '10:18:02 首件检验通过',
+  '10:02:11 记录已创建',
+  '10:05:40 处理人已领取',
+  '10:18:02 首次校验通过',
 ]
 </script>
 
@@ -20,8 +20,8 @@ const logs = [
 ## 示例
 
 <Demo block>
-  <NvMobileCollapse title="工艺说明" description="共 12 道步骤" default-open>
-    <p style="margin: 0">先装夹后对刀，注意刀具寿命余量不少于 20%。</p>
+  <NvMobileCollapse title="流程说明" description="共 12 个步骤" default-open>
+    <p style="margin: 0">先解析后转换，注意每步校验的容错余量不少于 20%。</p>
   </NvMobileCollapse>
   <NvMobileCollapse title="操作日志" description="3 条记录">
     <ul style="margin: 0; padding-left: 18px">

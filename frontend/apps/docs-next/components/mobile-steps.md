@@ -12,16 +12,16 @@ const current = ref(1)
 const items = [
   { title: '创建', description: '已提交记录' },
   { title: '审核', description: '进行中' },
-  { title: '下料', description: '待开始' },
+  { title: '转换', description: '待开始' },
   { title: '完成' },
 ]
 
 const verticalItems = [
-  { title: '接单', description: '10:02 已完成' },
-  { title: '领料', description: '10:18 已完成' },
-  { title: '加工', description: '进行中', status: 'active' },
-  { title: '审核', description: '异常：尺寸超差', status: 'error' },
-  { title: '入库' },
+  { title: '创建', description: '10:02 已完成' },
+  { title: '校验', description: '10:18 已完成' },
+  { title: '转换', description: '进行中', status: 'active' },
+  { title: '复核', description: '异常：格式校验未通过', status: 'error' },
+  { title: '归档' },
 ]
 </script>
 

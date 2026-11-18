@@ -36,8 +36,8 @@ onMounted(() => {
 </Demo>
 
 <Demo>
-  <NvAvatar shape="square" name="华东一厂" />
-  <NvAvatar shape="square" size="lg" name="华东一厂" />
+  <NvAvatar shape="square" name="华东区域" />
+  <NvAvatar shape="square" size="lg" name="华东区域" />
 </Demo>
 
 <Demo>
