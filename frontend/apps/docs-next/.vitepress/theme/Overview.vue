@@ -32,7 +32,18 @@ const groups = computed<SidebarLeaf[]>(() => {
 
 const describe = (url: string) => data.find((item) => item.url === url)?.desc ?? ''
 
-type Entry = { text: string; link: string; slug: string; desc: string }
+type Entry = { text: string; link: string; slug: string; desc: string; name: string; label: string }
+
+/**
+ * 标题拆成「英文标识 + 中文名」两段。只对以 Nv 开头的标题生效——
+ * 「图表（折线 / 柱 / 环）」这种整句中文的标题不拆，否则会在斜杠处被截断。
+ */
+function splitTitle(text: string): { name: string; label: string } {
+  if (!text.startsWith('Nv')) return { name: text, label: '' }
+  const at = text.lastIndexOf(' ')
+  if (at <= 0) return { name: text, label: '' }
+  return { name: text.slice(0, at), label: text.slice(at + 1) }
+}
 
 /** 把侧栏的分组结构拍平成「分组 → 条目」；分组没有子组时整页只有一组。 */
 const sections = computed(() => {
@@ -52,6 +63,7 @@ const sections = computed(() => {
               // `/desktop/button` → `button`，封面按 slug 查
               slug: leaf.link.split('/').pop() ?? '',
               desc: describe(leaf.link),
+              ...splitTitle(leaf.text),
             })),
         })
       } else if (entry.link) {
@@ -60,6 +72,7 @@ const sections = computed(() => {
           link: entry.link,
           slug: entry.link.split('/').pop() ?? '',
           desc: describe(entry.link),
+          ...splitTitle(entry.text),
         })
       }
     }
@@ -101,6 +114,8 @@ const sx = {
   grid: stylex.props(styles.grid),
   card: stylex.props(styles.card),
   cardHead: stylex.props(styles.cardHead),
+  cardEn: stylex.props(styles.cardEn),
+  cardZh: stylex.props(styles.cardZh),
   empty: stylex.props(styles.empty),
 }
 </script>
@@ -149,7 +164,12 @@ const sx = {
           :style="sx.card.style"
           :aria-label="item.text"
         >
-          <span :class="sx.cardHead.className" :style="sx.cardHead.style">{{ item.text }}</span>
+          <span :class="sx.cardHead.className" :style="sx.cardHead.style">
+            <span :class="sx.cardEn.className" :style="sx.cardEn.style">{{ item.name }}</span>
+            <span v-if="item.label" :class="sx.cardZh.className" :style="sx.cardZh.style">
+              {{ item.label }}
+            </span>
+          </span>
           <Cover :slug="item.slug" />
         </a>
       </div>

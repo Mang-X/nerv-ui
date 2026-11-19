@@ -106,7 +106,25 @@ export const styles = stylex.create({
     WebkitBoxOrient: 'vertical',
     WebkitLineClamp: 2,
     overflow: 'hidden',
-    overflowWrap: 'anywhere',
+    // 断行只在空格处发生：`overflowWrap: anywhere` 会把「告警列表」从中间
+    // 拆成「告警列 / 表」，窄屏双列时还会把英文标识劈开。英文标识本身超长时
+    // 才允许词内断行（break-word）。
+    overflowWrap: 'break-word',
+    wordBreak: 'normal',
+  },
+
+  // 标题拆成「英文标识」「中文名」两段：英文标识整体不拆（它是组件名，
+  // 拆开就没法搜），中文名允许在字间断行。窄屏双列时长标题因此整齐。
+  cardEn: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: 'block',
+  },
+  cardZh: {
+    display: 'block',
+    color: color.mutedFg,
+    fontWeight: 500,
   },
 
   empty: {
