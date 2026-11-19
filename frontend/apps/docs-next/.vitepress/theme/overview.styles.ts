@@ -59,7 +59,9 @@ export const styles = stylex.create({
     // 卡片带示意图后需要更宽的落脚：212px 只能放三列且挤压名字，236px 在
     // 1080px 容器里正好四列。
     gridTemplateColumns: 'repeat(auto-fill, minmax(236px, 1fr))',
-    '@media (max-width: 639px)': { gridTemplateColumns: '1fr' },
+    // 手机上单列时一屏只能放 4 张卡（桌面分区 46 个组件要滚十几屏），
+    // 两列后一屏能放 6 张以上，且封面随卡片宽度缩放。
+    '@media (max-width: 639px)': { gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 8 },
   },
 
   card: {
