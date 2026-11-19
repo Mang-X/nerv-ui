@@ -121,8 +121,11 @@ export const styles = stylex.create({
       color: color.fg,
     },
     '[data-active]': {
+      // 品牌色文字落在 brandSoft 上只有 4.3:1，低于正文 4.5 的门槛；
+      // 选中状态靠底色表达，文字保持墨色，两层信号互不打架。
       backgroundColor: color.brandSoft,
-      color: color.brand,
+      color: color.fg,
+      fontWeight: 550,
     },
     '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
   },

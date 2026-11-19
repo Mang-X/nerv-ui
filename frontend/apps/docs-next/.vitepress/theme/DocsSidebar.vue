@@ -42,17 +42,26 @@ const current = computed(() => {
  * 四种场景各自一个侧栏：`/desktop/`、`/mobile/`、`/pad/`、`/screen/`。
  * 取匹配到的那个前缀（VitePress 的 sidebar 对象就是按前缀匹配，多个命中取最长）。
  */
+const sectionPrefix = computed(() => {
+  const raw = theme.value.sidebar
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return '/'
+  const prefixes = Object.keys(raw as Record<string, SidebarGroup[]>)
+  return (
+    prefixes
+      .filter((prefix) => current.value.startsWith(prefix))
+      .sort((a, b) => b.length - a.length)[0] ?? '/'
+  )
+})
+
 const groups = computed<SidebarGroup[]>(() => {
   const raw = theme.value.sidebar
   if (Array.isArray(raw)) return raw as SidebarGroup[]
   if (!raw || typeof raw !== 'object') return []
-  const prefixes = Object.keys(raw as Record<string, SidebarGroup[]>)
-  const matched = prefixes
-    .filter((prefix) => current.value.startsWith(prefix))
-    .sort((a, b) => b.length - a.length)[0]
-  const section = matched ? (raw as Record<string, SidebarGroup[]>)[matched] : undefined
-  return Array.isArray(section) ? section : []
+  return (raw as Record<string, SidebarGroup[]>)[sectionPrefix.value] ?? []
 })
+
+/** 分区总览页在侧栏里单独占一行，排在组件分组之前。 */
+const isOverview = computed(() => current.value === sectionPrefix.value)
 
 function isActive(link?: string) {
   return !!link && link === current.value
@@ -92,6 +101,9 @@ const accordionSx = stylex.props(styles.sidebarNav)
     :class="[sx.inner.className]"
     :style="sx.inner.style"
   >
+    <div :class="sx.list.className" :style="sx.list.style">
+      <NvSidebarItem :href="sectionPrefix" :active="isOverview">组件总览</NvSidebarItem>
+    </div>
     <NvAccordion
       multiple
       :value="open"
