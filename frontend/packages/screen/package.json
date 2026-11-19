@@ -1,16 +1,20 @@
 {
   "name": "@nerv-ui/screen",
   "version": "0.1.0",
-  "type": "module",
   "files": [
     "dist",
     "src",
     "!src/**/*.test.ts"
   ],
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./agent": {
+      "types": "./dist/agent.d.ts",
+      "import": "./dist/agent.js"
     },
     "./styles.css": "./dist/style.css"
   },
@@ -19,23 +23,23 @@
     "typecheck": "vue-tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "vue": "^3.5.0",
-    "@ui-sdk/vue": "0.1.0-beta.6",
-    "@ui-sdk/core": "0.1.0-beta.6",
-    "@stylexjs/stylex": "0.19.2"
-  },
   "devDependencies": {
-    "@stylexjs/unplugin": "0.19.2",
     "@stylexjs/babel-plugin": "0.19.2",
+    "@stylexjs/stylex": "0.19.2",
+    "@stylexjs/unplugin": "0.19.2",
+    "@ui-sdk/core": "0.1.0-beta.6",
+    "@ui-sdk/vue": "0.1.0-beta.6",
     "tsdown": "0.23.7",
+    "typescript": "^6.0.3",
     "unplugin-vue": "^8.0.1",
     "vue": "3.5.39",
-    "vue-tsc": "^3.3.7",
-    "typescript": "^6.0.3",
-    "@ui-sdk/vue": "0.1.0-beta.6",
+    "vue-tsc": "^3.3.7"
+  },
+  "peerDependencies": {
+    "@stylexjs/stylex": "0.19.2",
     "@ui-sdk/core": "0.1.0-beta.6",
-    "@stylexjs/stylex": "0.19.2"
+    "@ui-sdk/vue": "0.1.0-beta.6",
+    "vue": "^3.5.0"
   },
   "peerDependenciesMeta": {
     "vue": {

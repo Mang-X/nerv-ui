@@ -3,7 +3,7 @@ import Vue from 'unplugin-vue/rolldown'
 import stylex from '@stylexjs/unplugin/rolldown'
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/agent.ts'],
   format: 'esm',
   platform: 'neutral',
   dts: { tsconfig: 'tsconfig.json' },

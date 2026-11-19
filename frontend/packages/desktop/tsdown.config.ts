@@ -28,7 +28,10 @@ const wasmUrlPlugin = {
   },
   load: {
     filter: { id: /^\0wasm-url:/ },
-    handler(this: { emitFile: (options: { type: 'asset'; name: string; source: Buffer }) => string }, id: string) {
+    handler(
+      this: { emitFile: (options: { type: 'asset'; name: string; source: Buffer }) => string },
+      id: string,
+    ) {
       const file = id.slice('\0wasm-url:'.length)
       const ref = this.emitFile({
         type: 'asset',
@@ -41,7 +44,7 @@ const wasmUrlPlugin = {
 }
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/agent.ts'],
   format: 'esm',
   platform: 'neutral',
   dts: { tsconfig: 'tsconfig.json' },
