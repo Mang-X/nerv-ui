@@ -15,73 +15,92 @@ import { color } from './gen/tokens.stylex'
  *
  * 画的是「结构示意」不是截图：没有真实文字，缩放和换主题都不会糊。
  */
+export type Tone = 0 | 1 | 2 | 3
+
 export type Shape =
-  /** 实心圆角块：fill(x, y, w, h, radius, opacity) */
-  | ['f', number, number, number, number, number, number]
-  /** 描边圆角块：stroke(x, y, w, h, radius, opacity) */
-  | ['s', number, number, number, number, number, number]
-  /** 直线：line(x1, y1, x2, y2, opacity) */
-  | ['l', number, number, number, number, number]
-  /** 实心圆：dot(cx, cy, r, opacity) */
-  | ['d', number, number, number, number]
-  /** 描边圆环：ring(cx, cy, r, opacity) */
-  | ['r', number, number, number, number]
-  /** 多边形路径：path(d, opacity, filled) —— 只用于「星」「勾」这类直线画不出的形。 */
-  | ['p', string, number, number, number?]
+  /** 实心圆角块：fill(x, y, w, h, radius, opacity, tone?) */
+  | ['f', number, number, number, number, number, number, Tone?]
+  /** 描边圆角块：stroke(x, y, w, h, radius, opacity, tone?) */
+  | ['s', number, number, number, number, number, number, Tone?]
+  /** 直线：line(x1, y1, x2, y2, opacity, tone?) */
+  | ['l', number, number, number, number, number, Tone?]
+  /** 实心圆：dot(cx, cy, r, opacity, tone?) */
+  | ['d', number, number, number, number, Tone?]
+  /** 描边圆环：ring(cx, cy, r, opacity, tone?) */
+  | ['r', number, number, number, number, Tone?]
+  /** 多边形路径：path(d, opacity, filled, width?, tone?) */
+  | ['p', string, number, number, number?, Tone?]
 
 // ---- 三个明度档，全库只用这三档
 const STRUCT = 0.34
 const MUTED = 0.16
 const ACCENT = 0.52
 
-const f = (x: number, y: number, w: number, h: number, radius = 3, opacity = MUTED): Shape => [
-  'f',
-  x,
-  y,
-  w,
-  h,
-  radius,
+const f = (
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  radius = 3,
+  opacity = MUTED,
+  tone: Tone = 0,
+): Shape => ['f', x, y, w, h, radius, opacity, tone]
+const s = (
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  radius = 3,
+  opacity = STRUCT,
+  tone: Tone = 0,
+): Shape => ['s', x, y, w, h, radius, opacity, tone]
+const l = (
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  opacity = STRUCT,
+  tone: Tone = 0,
+): Shape => ['l', x1, y1, x2, y2, opacity, tone]
+const d = (cx: number, cy: number, r: number, opacity = 0.4, tone: Tone = 0): Shape => [
+  'd',
+  cx,
+  cy,
+  r,
   opacity,
+  tone,
 ]
-const s = (x: number, y: number, w: number, h: number, radius = 3, opacity = STRUCT): Shape => [
-  's',
-  x,
-  y,
-  w,
-  h,
-  radius,
-  opacity,
-]
-const l = (x1: number, y1: number, x2: number, y2: number, opacity = STRUCT): Shape => [
-  'l',
-  x1,
-  y1,
-  x2,
-  y2,
-  opacity,
-]
-const d = (cx: number, cy: number, r: number, opacity = 0.4): Shape => ['d', cx, cy, r, opacity]
-const ring = (cx: number, cy: number, r: number, opacity = STRUCT): Shape => [
+const ring = (cx: number, cy: number, r: number, opacity = STRUCT, tone: Tone = 0): Shape => [
   'r',
   cx,
   cy,
   r,
   opacity,
+  tone,
 ]
 
 /** 一行「文字」：高 3.5 的细条，行距 10；全库统一这个尺寸。 */
-const bar = (x: number, y: number, w: number, opacity = MUTED) => f(x, y, w, 3.5, 1.75, opacity)
+const bar = (x: number, y: number, w: number, opacity = MUTED, tone: Tone = 0) =>
+  f(x, y, w, 3.5, 1.75, opacity, tone)
 /** 面状组件的外框：全库同一个尺寸和圆角。 */
-const frame = (x = 14, y = 14, w = 92, h = 52, opacity = STRUCT) => s(x, y, w, h, 6, opacity)
+const frame = (x = 14, y = 14, w = 92, h = 52, opacity = STRUCT, tone: Tone = 0) =>
+  s(x, y, w, h, 6, opacity, tone)
 /** 五角星（评分用）：中心 cx、cy，外径 r。 */
-const star = (cx: number, cy: number, r: number, opacity: number, filled = true): Shape => {
+const star = (
+  cx: number,
+  cy: number,
+  r: number,
+  opacity: number,
+  filled = true,
+  tone: Tone = 0,
+): Shape => {
   const pts: string[] = []
   for (let i = 0; i < 10; i++) {
     const a = -Math.PI / 2 + (i * Math.PI) / 5
     const rr = i % 2 === 0 ? r : r * 0.42
     pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)} ${(cy + rr * Math.sin(a)).toFixed(1)}`)
   }
-  return ['p', `M${pts.join('L')}Z`, opacity, filled ? 1 : 0]
+  return ['p', `M${pts.join('L')}Z`, opacity, filled ? 1 : 0, undefined, tone]
 }
 /** 向下的折角箭头（下拉/更多）：中心 cx、cy。 */
 const caret = (cx: number, cy: number, opacity = STRUCT) => [
@@ -167,9 +186,9 @@ const covers: Record<string, Shape[]> = {
   ],
   'alert-dialog': [
     frame(18, 10, 84, 60, 0.28),
-    ring(38, 28, 8, 0.4),
-    l(38, 24, 38, 30, 0.5),
-    d(38, 33, 1.4, 0.5),
+    ring(38, 28, 8, 0.55, 3),
+    l(38, 23, 38, 29, 0.65, 3),
+    d(38, 32.5, 1.4, 0.65, 3),
     bar(54, 22, 30, 0.42),
     bar(54, 32, 40, 0.16),
     bar(54, 40, 28, 0.1),
@@ -218,16 +237,19 @@ const covers: Record<string, Shape[]> = {
   // badge：一个标签条 + 压在右上角的计数气泡，两件东西的关系就是徽标要表达的。
   // badge：几枚不同色调的标签条（实底 / 品牌底 / 描边 / 带圆点），
   // 徽标本身就是这么一组小胶囊，不需要额外的「计数气泡」去暗示。
+  // badge：四枚不同色调的标签条（中性 / 品牌 / 危险 / 带圆点的中性）。
+  // 徽标本身的语义就是「用颜色区分状态」，四枚都画成同一色反而看不出用途。
   badge: [
-    f(14, 16, 30, 14, 3, 0.14),
-    bar(21, 21, 16, 0.3),
-    f(50, 16, 28, 14, 3, 0.32),
-    bar(56, 21, 16, 0.55),
-    s(14, 40, 32, 14, 3, 0.28),
-    bar(21, 45, 18, 0.24),
-    f(52, 40, 34, 14, 7, 0.12),
-    d(61, 47, 2.8, 0.42),
-    bar(67, 45, 12, 0.26),
+    f(12, 14, 30, 14, 3, 0.14),
+    bar(19, 19, 16, 0.3),
+    f(48, 14, 28, 14, 3, 0.26, 0),
+    bar(54, 19, 16, 0.5, 0),
+    f(12, 36, 32, 14, 3, 0.26, 3),
+    bar(19, 41, 18, 0.5, 3),
+    f(50, 36, 34, 14, 7, 0.1),
+    d(59, 43, 2.8, 0.55, 1),
+    bar(65, 41, 12, 0.26),
+    f(90, 14, 18, 14, 7, 0.22, 2),
   ],
   // avatar：两枚首字母头像（描边）+ 一枚品牌实底 + 一枚方形，
   // 「圆形里放首字母」是头像唯一的识别点。
@@ -387,13 +409,15 @@ const covers: Record<string, Shape[]> = {
     bar(54, 10.5, 12, 0.38),
     bar(88, 10.5, 12, 0.38),
   ],
+  // chart：柱按语义着色（好=绿 / 中=品牌蓝 / 差=橙），折线保持品牌色。
+  // 图表类封面如果全是同一种蓝，四种图表就只能靠形状猜。
   chart: [
-    l(16, 66, 106, 66, 0.28),
-    l(16, 66, 16, 16, 0.28),
-    f(26, 46, 11, 20, 2, 0.26),
-    f(46, 32, 11, 34, 2, 0.45),
-    f(66, 52, 11, 14, 2, 0.2),
-    f(86, 24, 11, 42, 2, 0.36),
+    l(16, 66, 106, 66, 0.24),
+    l(16, 66, 16, 16, 0.24),
+    f(26, 46, 11, 20, 2, 0.28, 1),
+    f(46, 32, 11, 34, 2, 0.5, 0),
+    f(66, 52, 11, 14, 2, 0.3, 2),
+    f(86, 24, 11, 42, 2, 0.42, 1),
     l(31, 44, 51, 30, 0.5),
     l(51, 30, 71, 50, 0.5),
     l(71, 50, 91, 22, 0.5),
@@ -423,13 +447,14 @@ const covers: Record<string, Shape[]> = {
     d(64, 60, 3, 0.18),
     d(74, 60, 3, 0.18),
   ],
+  // timeline：三个节点按「已完成 / 进行中 / 未开始」着色。
   timeline: [
-    l(32, 14, 32, 66, 0.18),
-    d(32, 20, 4, 0.5),
-    bar(46, 17, 38),
-    d(32, 40, 4, 0.3),
-    bar(46, 37, 30, 0.16),
-    d(32, 60, 4, 0.2),
+    l(32, 14, 32, 66, 0.16),
+    d(32, 20, 4, 0.6, 1),
+    bar(46, 17, 38, 0.3, 1),
+    d(32, 40, 4, 0.6, 0),
+    bar(46, 37, 30, 0.24),
+    d(32, 60, 4, 0.25),
     bar(46, 57, 24, 0.12),
   ],
   // ---- 日期与选择
@@ -497,12 +522,13 @@ const covers: Record<string, Shape[]> = {
     bar(28, 57, 24, 0.12),
   ],
   // rating：五颗星，前三颗实心（已打分）、后两颗描边（未打分）。
+  // rating：已打分用琥珀色（和真实评分控件的黄色星一致），未打分保持描边。
   rating: [
-    star(24, 36, 8, 0.5, true),
-    star(42, 36, 8, 0.5, true),
-    star(60, 36, 8, 0.5, true),
-    star(78, 36, 8, 0.22, false),
-    star(96, 36, 8, 0.18, false),
+    star(24, 36, 8, 0.6, true, 2),
+    star(42, 36, 8, 0.6, true, 2),
+    star(60, 36, 8, 0.6, true, 2),
+    star(78, 36, 8, 0.2, false),
+    star(96, 36, 8, 0.16, false),
   ],
   'file-input': [
     s(16, 12, 88, 40, 6, 0.24),
@@ -632,9 +658,9 @@ const mobile: Record<string, Shape[]> = {
     bar(52, 57, 16, 0.1),
   ],
   'mobile-error-retry': [
-    ring(44, 28, 11, 0.4),
-    l(44, 23, 44, 30, 0.5),
-    d(44, 33.5, 1.4, 0.5),
+    ring(44, 28, 11, 0.55, 3),
+    l(44, 22, 44, 29, 0.65, 3),
+    d(44, 33, 1.4, 0.65, 3),
     bar(62, 22, 26, 0.2),
     bar(62, 32, 18, 0.14),
     s(40, 50, 40, 14, 5, 0.24),
@@ -700,9 +726,9 @@ const mobile: Record<string, Shape[]> = {
     ring(102, 34, 7, 0.18),
   ],
   'mobile-result': [
-    ring(60, 26, 14, 0.35),
-    l(54, 26, 58, 31, 0.6),
-    l(58, 31, 67, 21, 0.6),
+    ring(60, 26, 14, 0.5, 1),
+    l(54, 26, 58, 31, 0.75, 1),
+    l(58, 31, 67, 21, 0.75, 1),
     bar(42, 48, 36, 0.16),
     s(38, 56, 44, 14, 6, 0.22),
   ],
@@ -721,7 +747,7 @@ const mobile: Record<string, Shape[]> = {
     bar(86, 56, 16, 0.16),
   ],
   'mobile-steps': [
-    d(24, 30, 6, 0.55),
+    d(24, 30, 6, 0.65, 1),
     l(31, 30, 49, 30, 0.35),
     ring(58, 30, 6, 0.4),
     l(65, 30, 83, 30, 0.16),
@@ -931,11 +957,11 @@ const screen: Record<string, Shape[]> = {
   'alarm-table': [
     s(8, 8, 104, 64, 4, 0.22),
     f(8, 8, 104, 12, 4, 0.18),
-    d(18, 30, 3, 0.7),
+    d(18, 30, 3, 0.75, 3),
     bar(26, 27, 38, 0.3),
-    d(18, 42, 3, 0.45),
+    d(18, 42, 3, 0.7, 2),
     bar(26, 39, 30, 0.22),
-    d(18, 54, 3, 0.3),
+    d(18, 54, 3, 0.55, 0),
     bar(26, 51, 44, 0.18),
     f(88, 26, 16, 7, 3, 0.3),
     f(88, 38, 16, 7, 3, 0.16),
@@ -965,13 +991,13 @@ const screen: Record<string, Shape[]> = {
     bar(48, 60, 24, 0.14),
   ],
   'screen-bar-chart': [
-    l(10, 66, 110, 66, 0.22),
-    f(16, 46, 10, 20, 2, 0.28),
-    f(32, 34, 10, 32, 2, 0.45),
-    f(48, 50, 10, 16, 2, 0.2),
-    f(64, 24, 10, 42, 2, 0.52),
-    f(80, 40, 10, 26, 2, 0.34),
-    f(96, 32, 10, 34, 2, 0.42),
+    l(10, 66, 110, 66, 0.2),
+    f(16, 46, 10, 20, 2, 0.28, 1),
+    f(32, 34, 10, 32, 2, 0.5, 0),
+    f(48, 50, 10, 16, 2, 0.28, 2),
+    f(64, 24, 10, 42, 2, 0.5, 0),
+    f(80, 40, 10, 26, 2, 0.34, 1),
+    f(96, 32, 10, 34, 2, 0.42, 0),
   ],
   'screen-button': [
     s(16, 20, 88, 30, 6, 0.45),
@@ -986,9 +1012,14 @@ const screen: Record<string, Shape[]> = {
     d(96, 22, 4, 0.45),
     l(8, 40, 112, 40, 0.12),
   ],
+  // 热力分档：低=绿、中=橙、高=红，和真实的负载分档图一致。
   'screen-heatmap': [
     ...[16, 36, 56, 76, 96].flatMap((x, i) =>
-      [14, 30, 46].map((y, j) => f(x, y, 14, 12, 2, [0.1, 0.3, 0.5, 0.2, 0.35][(i + j) % 5])),
+      [14, 30, 46].map((y, j) => {
+        const level = (i * 3 + j) % 3
+        // 低负载=绿、中=橙、高=红
+        return f(x, y, 14, 12, 2, [0.34, 0.4, 0.5][level], (level + 1) as 1 | 2 | 3)
+      }),
     ),
   ],
   'screen-input': [
@@ -1015,11 +1046,11 @@ const screen: Record<string, Shape[]> = {
     f(20, 56, 34, 8, 4, 0.2),
   ],
   'screen-pareto': [
-    f(16, 40, 12, 26, 2, 0.45),
-    f(36, 48, 12, 18, 2, 0.35),
-    f(56, 54, 12, 12, 2, 0.25),
-    f(76, 58, 12, 8, 2, 0.18),
-    f(96, 62, 12, 4, 2, 0.12),
+    f(16, 40, 12, 26, 2, 0.5, 3),
+    f(36, 48, 12, 18, 2, 0.4, 3),
+    f(56, 54, 12, 12, 2, 0.3, 2),
+    f(76, 58, 12, 8, 2, 0.22, 0),
+    f(96, 62, 12, 4, 2, 0.16, 0),
     l(22, 36, 42, 46, 0.45),
     l(42, 46, 62, 54, 0.45),
     l(62, 54, 82, 60, 0.45),
@@ -1076,7 +1107,7 @@ const screen: Record<string, Shape[]> = {
   ],
   'screen-status-card': [
     s(8, 8, 62, 64, 6, 0.22),
-    d(22, 22, 4, 0.55),
+    d(22, 22, 4, 0.7, 1),
     bar(30, 19, 26, 0.4),
     bar(18, 38, 40, 0.16),
     f(18, 52, 42, 6, 3, 0.28),
@@ -1102,16 +1133,19 @@ const screen: Record<string, Shape[]> = {
     f(14, 64, 18, 8, 4, 0.1),
   ],
   'screen-status-wall': [
-    ...[14, 42, 70].flatMap((x) => [f(x, 12, 22, 22, 5, 0.12), f(x, 40, 22, 22, 5, 0.3)]),
-    f(98, 12, 12, 22, 5, 0.24),
-    f(98, 40, 12, 22, 5, 0.5),
-    f(42, 12, 22, 22, 5, 0.5),
+    ...[14, 42, 70].flatMap((x, i) => [
+      f(x, 12, 22, 22, 5, 0.26, (i === 0 ? 1 : i === 1 ? 3 : 2) as 1 | 3 | 2),
+      f(x, 40, 22, 22, 5, 0.22, (i === 1 ? 1 : i === 2 ? 3 : 0) as 1 | 3 | 0),
+    ]),
+    f(98, 12, 12, 22, 5, 0.24, 0),
+    f(98, 40, 12, 22, 5, 0.4, 1),
+    f(42, 12, 22, 22, 5, 0.4, 1),
   ],
   'screen-summary-card': [
     s(10, 8, 100, 64, 6, 0.24),
     bar(22, 16, 24, 0.14),
     bar(22, 26, 46, 0.5),
-    f(80, 14, 22, 10, 5, 0.28),
+    f(80, 14, 22, 10, 5, 0.4, 1),
     l(22, 48, 44, 56, 0.3),
     l(44, 56, 66, 40, 0.3),
     l(66, 40, 96, 46, 0.3),
@@ -1159,9 +1193,16 @@ const screen: Record<string, Shape[]> = {
 
 export const componentCovers: Record<string, Shape[]> = { ...covers, ...mobile, ...pad, ...screen }
 
+/** 四个色调：品牌是默认，其余三种只用在「状态」上。 */
+const TONES = [color.brand, color.success, color.warning, color.danger] as const
+
 /** 把形状元组转成给模板用的属性。 */
 export function shapeProps(shape: Shape) {
   const [kind, ...n] = shape
+  // 最后一个元素可能是 tone，也可能不存在；按 kind 判断这次是否带了 tone。
+  const hasTone = { f: 7, s: 7, l: 6, d: 5, r: 5 }[kind] === n.length
+  const colorOf = (index: number) => TONES[hasTone ? (n[index] as Tone) : 0]
+
   switch (kind) {
     case 'f':
       return {
@@ -1173,6 +1214,7 @@ export function shapeProps(shape: Shape) {
         rx: n[4],
         opacity: n[5],
         fill: true,
+        color: colorOf(6),
       }
     case 's':
       return {
@@ -1184,13 +1226,38 @@ export function shapeProps(shape: Shape) {
         rx: n[4],
         opacity: n[5],
         fill: false,
+        color: colorOf(6),
       }
     case 'l':
-      return { type: 'line' as const, x1: n[0], y1: n[1], x2: n[2], y2: n[3], opacity: n[4] }
+      return {
+        type: 'line' as const,
+        x1: n[0],
+        y1: n[1],
+        x2: n[2],
+        y2: n[3],
+        opacity: n[4],
+        color: colorOf(5),
+      }
     case 'd':
-      return { type: 'circle' as const, cx: n[0], cy: n[1], r: n[2], opacity: n[3], fill: true }
+      return {
+        type: 'circle' as const,
+        cx: n[0],
+        cy: n[1],
+        r: n[2],
+        opacity: n[3],
+        fill: true,
+        color: colorOf(4),
+      }
     case 'r':
-      return { type: 'circle' as const, cx: n[0], cy: n[1], r: n[2], opacity: n[3], fill: false }
+      return {
+        type: 'circle' as const,
+        cx: n[0],
+        cy: n[1],
+        r: n[2],
+        opacity: n[3],
+        fill: false,
+        color: colorOf(4),
+      }
     case 'p':
       return {
         type: 'path' as const,
@@ -1198,6 +1265,7 @@ export function shapeProps(shape: Shape) {
         opacity: n[1],
         fill: n[2] === 1,
         width: n[3] ?? 1.25,
+        color: TONES[(n[4] as Tone | undefined) ?? 0],
       }
   }
 }

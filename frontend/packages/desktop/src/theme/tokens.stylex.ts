@@ -23,6 +23,9 @@ export const color = stylex.defineVars({
   danger: 'oklch(0.575 0.205 26)',
   dangerHover: 'oklch(0.52 0.2 26)',
   dangerFg: 'oklch(1 0 0)',
+  // 语义色：只在「状态」上出现（成功/进行中/预警），不参与品牌强调。
+  success: 'oklch(0.62 0.17 152)',
+  warning: 'oklch(0.72 0.16 78)',
 })
 
 export const shape = stylex.defineVars({
@@ -55,6 +58,8 @@ export const darkTheme = stylex.createTheme(color, {
   danger: 'oklch(0.700 0.180 24)',
   dangerHover: 'oklch(0.755 0.165 24)',
   dangerFg: 'oklch(0.150 0.006 262)',
+  success: 'oklch(0.72 0.16 152)',
+  warning: 'oklch(0.80 0.16 80)',
 })
 
 export const elevation = stylex.defineVars({
