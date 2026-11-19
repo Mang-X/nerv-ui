@@ -17,5 +17,5 @@ export interface TouchSwitchProps {
   /** Where the label sits relative to the track. */
   labelPosition?: TouchSwitchLabelPosition
   /** Accessible name when there is no visible label. */
-  'aria-label'?: string
+  ariaLabel?: string
 }

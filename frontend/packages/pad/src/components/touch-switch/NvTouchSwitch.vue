@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { Switch, SwitchThumb } from '@ui-sdk/vue/switch'
 import * as stylex from '@stylexjs/stylex'
-import { computed, ref } from 'vue'
+import { computed, ref, useAttrs } from 'vue'
 import { focus } from '../../theme/shared.stylex'
 import { styles } from './TouchSwitch.styles'
 import type { TouchSwitchProps } from './types'
+
+defineOptions({ inheritAttrs: false })
+
+const attrs = useAttrs()
 
 const props = withDefaults(defineProps<TouchSwitchProps>(), {
   modelValue: undefined,
@@ -16,7 +20,7 @@ const props = withDefaults(defineProps<TouchSwitchProps>(), {
   value: undefined,
   label: undefined,
   labelPosition: 'start',
-  'aria-label': undefined,
+  ariaLabel: undefined,
 })
 
 const emit = defineEmits<{ 'update:modelValue': [value: boolean] }>()
@@ -50,7 +54,7 @@ const labelSx = computed(() => stylex.props(styles.label))
       :disabled="disabled"
       :read-only="readOnly"
       :required="required"
-      :aria-label="$props['aria-label']"
+      :aria-label="ariaLabel ?? (attrs['aria-label'] as string | undefined)"
       :class="trackSx.className"
       :style="trackSx.style"
     >

@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<TouchToolbarProps>(), {
   disabled: false,
   position: 'static',
   elevated: false,
-  'aria-label': '工具条',
+  ariaLabel: '工具条',
 })
 
 const emit = defineEmits<{ action: [item: TouchToolbarItem] }>()
@@ -42,7 +42,7 @@ const labelSx = computed(() => stylex.props(styles.label))
 <template>
   <nav
     v-bind="forwardedAttrs"
-    :aria-label="$props['aria-label']"
+    :aria-label="ariaLabel"
     :class="[rootSx.className, $attrs.class]"
     :style="[rootSx.style, $attrs.style]"
   >

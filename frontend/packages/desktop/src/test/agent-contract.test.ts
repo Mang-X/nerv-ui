@@ -20,11 +20,10 @@ afterEach(() => {
   document.body.replaceChildren()
 })
 
-/** 桥每秒最多折一次；组件挂载后等它登记完再读。 */
-async function snapshotOf(wrapper: ReturnType<typeof mount>, component: string) {
+/** 桥按帧收集组件；挂载后等它把这一份登记完再读。 */
+async function snapshotOf(wrapper: ReturnType<typeof mount>, kind: string) {
   for (let i = 0; i < 40; i++) {
-    const entries = agent.snapshot().filter((entry) => !entry.offPage)
-    const own = entries.filter((entry) => entry.component === component)
+    const own = agent.snapshot().filter((entry) => !entry.offPage && entry.component === kind)
     if (own.length) return own
     await wrapper.vm.$nextTick()
     await new Promise((resolve) => setTimeout(resolve, 20))
@@ -33,18 +32,16 @@ async function snapshotOf(wrapper: ReturnType<typeof mount>, component: string) 
 }
 
 describe('代理桥：每个组件都要能被找到', () => {
-  const cases = Object.keys(samples) as Array<keyof typeof samples>
-
-  for (const name of cases) {
+  for (const [name, { kind, render }] of Object.entries(samples)) {
     it(`${name} 登记进桥，并且有名字`, async () => {
-      const wrapper = mount(samples[name](), { attachTo: document.body })
-      const own = await snapshotOf(wrapper, name)
+      const wrapper = mount(render(), { attachTo: document.body })
+      const own = await snapshotOf(wrapper, kind)
 
-      expect(own.length, `${name} 没有登记进代理桥——它可能没有走 ui-sdk 原语`).toBeGreaterThan(0)
+      expect(own.length, `${name} 没有登记成 ${kind}——它可能没有走 ui-sdk 原语`).toBeGreaterThan(0)
 
       // `label` 是代理定位控件的唯一手段：没名字就是找不到。
       for (const entry of own) {
-        expect(entry.label, `${name} 的条目 ${entry.ref} 没有可访问名称`).toBeTruthy()
+        expect(entry.label, `${name} 的 ${kind} 条目 ${entry.ref} 没有可访问名称`).toBeTruthy()
       }
 
       wrapper.unmount()
@@ -74,7 +71,7 @@ describe('代理桥：每个组件都要能被找到', () => {
 
 describe('代理桥：动作能真的改变组件', () => {
   it('carousel 的 play 走组件 API', async () => {
-    const wrapper = mount(samples.carousel(), { attachTo: document.body })
+    const wrapper = mount(samples.carousel.render(), { attachTo: document.body })
     const [entry] = await snapshotOf(wrapper, 'carousel')
     expect(entry, 'carousel 没进桥').toBeDefined()
 
@@ -92,7 +89,7 @@ describe('代理桥：动作能真的改变组件', () => {
   })
 
   it('input 的 setValue 走组件 API，而不是直接改 DOM', async () => {
-    const wrapper = mount(samples.input(), { attachTo: document.body })
+    const wrapper = mount(samples.input.render(), { attachTo: document.body })
     const [entry] = await snapshotOf(wrapper, 'input')
     expect(entry, 'input 没进桥').toBeDefined()
     expect(entry.actions).toEqual(expect.arrayContaining(['setValue', 'clear']))
@@ -102,6 +99,39 @@ describe('代理桥：动作能真的改变组件', () => {
     })
     expect(result.ok).toBe(true)
     expect(wrapper.find('input').element.value).toBe('A-01')
+
+    wrapper.unmount()
+  })
+
+  it('tabs 的 setValue 切换面板', async () => {
+    const wrapper = mount(samples.tabs.render(), { attachTo: document.body })
+    const [entry] = await snapshotOf(wrapper, 'tabs')
+    expect(entry, 'tabs 没进桥').toBeDefined()
+    expect(entry.actions).toEqual(expect.arrayContaining(['setValue']))
+
+    const result = await agent.act({
+      steps: [{ ref: entry.ref, action: 'setValue', args: ['logs'] }],
+    })
+    expect(result.ok).toBe(true)
+    await wrapper.vm.$nextTick()
+    const selected = wrapper
+      .findAll('[role="tab"]')
+      .find((tab) => tab.attributes('aria-selected') === 'true')
+    expect(selected?.text()).toBe('日志')
+
+    wrapper.unmount()
+  })
+
+  it('dialog 的 setOpen 打开后能读出标题', async () => {
+    const wrapper = mount(samples.dialog.render(), { attachTo: document.body })
+    const [entry] = await snapshotOf(wrapper, 'dialog')
+    expect(entry, 'dialog 没进桥').toBeDefined()
+    expect(entry.actions).toEqual(expect.arrayContaining(['setOpen']))
+
+    const result = await agent.act({
+      steps: [{ ref: entry.ref, action: 'setOpen', args: [false] }],
+    })
+    expect(result.ok).toBe(true)
 
     wrapper.unmount()
   })

@@ -45,3 +45,15 @@ if (!globalThis.matchMedia) {
 if (!Element.prototype.scrollTo) {
   Element.prototype.scrollTo = function scrollTo() {}
 }
+
+/**
+ * Tabs 的选中指示器会读 `element.getAnimations()` 来决定要不要补一段滑动动画。
+ * jsdom 没有 Web Animations API，缺了它整个切换会抛 "el.getAnimations is not
+ * a function"——注意这条**不在** DOM 操作本身，而是在切换之后的动画收尾里，
+ * 所以看起来像"状态没改"，实际状态已经改了。
+ */
+if (!Element.prototype.getAnimations) {
+  Element.prototype.getAnimations = function getAnimations() {
+    return []
+  }
+}

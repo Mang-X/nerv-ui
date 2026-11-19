@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { Switch, SwitchThumb } from '@ui-sdk/vue/switch'
 import * as stylex from '@stylexjs/stylex'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { focus } from '../../theme/shared.stylex'
 import { styles } from './MobileSwitch.styles'
+
+defineOptions({ inheritAttrs: false })
+
+const attrs = useAttrs()
 
 const props = withDefaults(
   defineProps<{
@@ -42,6 +46,7 @@ const trackSx = computed(() =>
       <slot />
     </span>
     <Switch
+      v-bind="{ ...attrs, class: undefined, style: undefined }"
       :checked="checked"
       :disabled="disabled"
       :read-only="readonly"
@@ -52,9 +57,7 @@ const trackSx = computed(() =>
       :style="trackSx.style"
       @checked-change="checked = $event"
     >
-      <SwitchThumb
-        :class="stylex.props(styles.thumb, checked && styles.thumbChecked).className"
-      />
+      <SwitchThumb :class="stylex.props(styles.thumb, checked && styles.thumbChecked).className" />
     </Switch>
   </label>
 </template>

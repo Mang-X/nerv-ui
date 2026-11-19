@@ -17,5 +17,5 @@ export interface TouchToolbarProps {
   /** Lifts the bar above page content when `fixed`. */
   elevated?: boolean
   /** Accessible name for the bar. */
-  'aria-label'?: string
+  ariaLabel?: string
 }
