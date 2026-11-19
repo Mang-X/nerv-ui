@@ -30,14 +30,14 @@ const uploading = ref(68)
 </Demo>
 
 <Demo>
-  <NvProgress size="sm" :value="30" />
-  <NvProgress size="md" :value="62" />
-  <NvProgress size="lg" :value="88" />
+  <NvProgress size="sm" :value="30" label="小号进度" />
+  <NvProgress size="md" :value="62" label="中号进度" />
+  <NvProgress size="lg" :value="88" label="大号进度" />
 </Demo>
 
 <Demo block>
   <NvProgress :value="null" label="正在连接资源" />
-  <NvProgress :value="null" size="sm" />
+  <NvProgress :value="null" size="sm" label="同步中（无具体进度）" />
 </Demo>
 
 <Demo block>
@@ -48,14 +48,14 @@ const uploading = ref(68)
 
 ### NvProgress 属性
 
-| 属性 | 说明 | 类型 | 默认 |
-| --- | --- | --- | --- |
-| `value` | 完成程度；`null` 渲染不确定态进度条 | `number \| null` | `null` |
-| `min` | 最小值 | `number` | `0` |
-| `max` | 最大值 | `number` | `100` |
-| `label` | 进度条上方的可见标签 | `string` | — |
-| `showValue` | 在标签行末尾显示格式化后的数值 | `boolean` | `false` |
-| `size` | 尺寸 | `sm \| md \| lg` | `md` |
+| 属性        | 说明                                | 类型             | 默认    |
+| ----------- | ----------------------------------- | ---------------- | ------- |
+| `value`     | 完成程度；`null` 渲染不确定态进度条 | `number \| null` | `null`  |
+| `min`       | 最小值                              | `number`         | `0`     |
+| `max`       | 最大值                              | `number`         | `100`   |
+| `label`     | 进度条上方的可见标签                | `string`         | —       |
+| `showValue` | 在标签行末尾显示格式化后的数值      | `boolean`        | `false` |
+| `size`      | 尺寸                                | `sm \| md \| lg` | `md`    |
 
 ### NvProgress 插槽
 

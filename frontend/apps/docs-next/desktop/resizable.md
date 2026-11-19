@@ -18,7 +18,7 @@ import '@nerv-ui/desktop/styles.css'
 ## 示例
 
 <Demo block>
-  <NvResizable :default-size="32" :min-size="20" :max-size="70" label="调整左侧宽度">
+  <NvResizable :default-size="32" :min-size="20" :max-size="70" aria-label="左右分栏" label="调整左侧宽度">
     <template #start>
       <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
         <strong>分组列表</strong>
@@ -40,6 +40,7 @@ import '@nerv-ui/desktop/styles.css'
 <Demo block>
   <NvResizable
     orientation="vertical"
+    aria-label="上下分栏"
     class="nv-resizable-vertical"
     :default-size="45"
     :min-size="25"
@@ -68,21 +69,21 @@ import '@nerv-ui/desktop/styles.css'
 
 ### NvResizable 属性
 
-| 属性 | 说明 | 类型 | 默认 |
-| --- | --- | --- | --- |
-| `orientation` | 两栏并排或上下堆叠 | `horizontal \| vertical` | `horizontal` |
-| `defaultSize` | 首栏的初始占比（百分比） | `number` | `30` |
-| `minSize` | 首栏的最小占比（百分比） | `number` | `20` |
-| `maxSize` | 首栏的最大占比（百分比） | `number` | — |
-| `collapsible` | 允许首栏折叠到 `collapsedSize` | `boolean` | `false` |
-| `collapsedSize` | 折叠后的尺寸，如 `0` 或 `48px` | `number \| string` | — |
-| `step` | 方向键每次调整的百分比 | `number` | — |
-| `largeStep` | Shift 加方向键每次调整的百分比 | `number` | — |
-| `label` | 拖拽手柄的无障碍名称 | `string` | `调整面板大小` |
+| 属性            | 说明                           | 类型                     | 默认           |
+| --------------- | ------------------------------ | ------------------------ | -------------- |
+| `orientation`   | 两栏并排或上下堆叠             | `horizontal \| vertical` | `horizontal`   |
+| `defaultSize`   | 首栏的初始占比（百分比）       | `number`                 | `30`           |
+| `minSize`       | 首栏的最小占比（百分比）       | `number`                 | `20`           |
+| `maxSize`       | 首栏的最大占比（百分比）       | `number`                 | —              |
+| `collapsible`   | 允许首栏折叠到 `collapsedSize` | `boolean`                | `false`        |
+| `collapsedSize` | 折叠后的尺寸，如 `0` 或 `48px` | `number \| string`       | —              |
+| `step`          | 方向键每次调整的百分比         | `number`                 | —              |
+| `largeStep`     | Shift 加方向键每次调整的百分比 | `number`                 | —              |
+| `label`         | 拖拽手柄的无障碍名称           | `string`                 | `调整面板大小` |
 
 ### NvResizable 插槽
 
-| 插槽 | 说明 |
-| --- | --- |
+| 插槽    | 说明     |
+| ------- | -------- |
 | `start` | 首栏内容 |
-| `end` | 次栏内容 |
+| `end`   | 次栏内容 |

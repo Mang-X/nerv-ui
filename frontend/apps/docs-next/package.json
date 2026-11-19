@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vitepress dev . --host 127.0.0.1 --port 5280",
     "build": "vitepress build .",
-    "preview": "vitepress preview . --host 127.0.0.1 --port 5280"
+    "preview": "vitepress preview . --host 127.0.0.1 --port 5280",
+    "agent:audit": "node scripts/agent-audit.mjs"
   },
   "dependencies": {
     "@nerv-ui/desktop": "workspace:*",
