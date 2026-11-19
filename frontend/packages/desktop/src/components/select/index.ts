@@ -1,0 +1,6 @@
+export { default as NvSelect } from './NvSelect.vue'
+export { default as NvSelectLabel } from './NvSelectLabel.vue'
+export { default as NvSelectTrigger } from './NvSelectTrigger.vue'
+export { default as NvSelectValue } from './NvSelectValue.vue'
+export { default as NvSelectContent } from './NvSelectContent.vue'
+export { default as NvSelectItem } from './NvSelectItem.vue'
