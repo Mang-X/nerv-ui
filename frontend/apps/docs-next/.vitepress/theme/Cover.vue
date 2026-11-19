@@ -47,8 +47,9 @@ const svgSx = stylex.props(styles.svg)
           :d="shape.d"
           :fill="shape.fill ? 'currentColor' : 'none'"
           :stroke="shape.fill ? 'none' : 'currentColor'"
-          :stroke-width="shape.fill ? 0 : 1.25"
+          :stroke-width="shape.fill ? 0 : shape.width"
           stroke-linejoin="round"
+          stroke-linecap="round"
           :opacity="shape.opacity"
         />
         <line
