@@ -3,7 +3,7 @@ title: NvTimeline 时间线
 ---
 
 <script setup>
-import { NvTimeline } from '@nerv-iip/ui'
+import { NvTimeline } from '@nerv-ui/ui'
 import {
   FilePlus2Icon,
   PackageCheckIcon,

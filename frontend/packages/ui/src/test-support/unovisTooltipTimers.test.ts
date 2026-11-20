@@ -5,7 +5,7 @@ import { Tooltip } from '@unovis/ts'
 import NvAreaChart from '../components/pc/chart/NvAreaChart.vue'
 
 /**
- * #2014 的阳性对照：`@nerv-iip/ui` 自己的组件测试就挂真实图表
+ * #2014 的阳性对照：`@nerv-ui/ui` 自己的组件测试就挂真实图表
  * （`Metric.test.ts` → `NvMetricStrip` → `NvMetricSparklinePart` → `NvAreaChart`），
  * 和 business-console 是同一条 unovis 路径，所以这个包同样要被 `src/test/setup.ts`
  * 里的收口覆盖。这里挂载**真实**的 `NvAreaChart`，走一次「挂载 + 数据更新 + 卸载」，

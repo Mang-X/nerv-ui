@@ -3,7 +3,7 @@ title: NvScreenHeader 大屏页头
 ---
 
 <script setup>
-import { NvScreenHeader } from '@nerv-iip/ui'
+import { NvScreenHeader } from '@nerv-ui/ui'
 </script>
 
 # NvScreenHeader 大屏页头

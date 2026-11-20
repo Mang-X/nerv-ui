@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, expect, it, vi } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
-import { NvApp, Tooltip, TooltipTrigger, TooltipContent, Toaster, toast } from '@nerv-iip/ui'
+import { NvApp, Tooltip, TooltipTrigger, TooltipContent, Toaster, toast } from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/AppProviderExample.vue'
 let page: VueWrapper | undefined
 afterEach(() => {

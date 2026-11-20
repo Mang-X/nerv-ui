@@ -9,7 +9,7 @@ import {
   NvCardDescription,
   NvCardContent,
   NvCardFooter,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/CardStructureExample.vue'
 let page: VueWrapper
 afterEach(() => page?.unmount())

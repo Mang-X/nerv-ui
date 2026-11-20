@@ -7,7 +7,7 @@
 > - **基于 `NvDataTable` 的列表页**自动获得分页：在表格上设置 `manual`，并带有
 >   `v-model:page`、`:total-items` 和 `:page-size`
 >   （见 `table.md`）。这是实体列表的默认方式。
-> - **独立的 `NvPagination`**（来自 `@nerv-iip/ui`）用于非表格的分页界面
+> - **独立的 `NvPagination`**（来自 `@nerv-ui/ui`）用于非表格的分页界面
 >   （卡片网格、时间线）。
 >
 > 无前缀的 `Pagination*` 部件是 shadcn 原版 primitive，仅限库内部使用。

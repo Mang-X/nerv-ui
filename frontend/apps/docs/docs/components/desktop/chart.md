@@ -4,7 +4,7 @@ title: NvChart 族图表
 
 <script setup>
 import BaseChartExample from '../../.vitepress/examples/BaseChartExample.vue'
-import { NvAreaChart, NvLineChart, NvBarChart, NvDonutChart } from '@nerv-iip/ui'
+import { NvAreaChart, NvLineChart, NvBarChart, NvDonutChart } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const annotations = [{ id: 'review', axis: 'x', from: 1, to: 3, label: '查看周二至周四', tone: 'info' }]
@@ -183,7 +183,7 @@ const statusMix = [
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { NvLineChart } from '@nerv-iip/ui'
+import { NvLineChart } from '@nerv-ui/ui'
 
 const planActual = [
   { day: '周一', plan: 900, actual: 860 },

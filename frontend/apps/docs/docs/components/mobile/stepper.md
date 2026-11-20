@@ -4,7 +4,7 @@ title: NvStepper 步进器
 ---
 
 <script setup>
-import { NvStepper } from '@nerv-iip/ui-mobile'
+import { NvStepper } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const qty = ref(12)

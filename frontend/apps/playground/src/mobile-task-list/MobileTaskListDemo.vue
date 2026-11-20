@@ -5,7 +5,7 @@ import {
   NvMobileButton,
   type MobileListPosition,
   type MobileListStorage,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 import { useMemoryList } from './useMemoryList'
 const props = defineProps<{ source?: string }>()
 const source = computed(() => (props.source === 'studio' ? 'studio' : 'library'))

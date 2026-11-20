@@ -3,8 +3,8 @@ title: NvStationBar 站点条
 ---
 
 <script setup>
-import { NvStationBar } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvStationBar } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 </script>
 
 # NvStationBar 站点条

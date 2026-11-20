@@ -26,7 +26,7 @@ import {
   NvTechFrame,
   NvTitleBar,
   NvScreenTrendChart,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const input = ref('REC-2406-0312')

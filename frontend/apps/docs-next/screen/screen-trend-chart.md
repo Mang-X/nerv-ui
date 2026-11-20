@@ -3,8 +3,8 @@ title: NvScreenTrendChart 趋势图
 ---
 
 <script setup>
-import { NvScreenTrendChart } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenTrendChart } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const hours = ['08', '09', '10', '11', '12', '13', '14', '15', '16', '17']
 const series = [

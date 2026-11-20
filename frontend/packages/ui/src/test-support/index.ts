@@ -1,5 +1,5 @@
 /**
- * `@nerv-iip/ui/test-support`：只给**测试环境**用的东西（#2014 / #2022）——vitest
+ * `@nerv-ui/ui/test-support`：只给**测试环境**用的东西（#2014 / #2022）——vitest
  * `setupFiles` 的支撑件，以及跨 app 共享的契约门禁本体。
  *
  * 刻意不从 `src/index.ts` 主桶导出——这些东西会改 unovis 原型、装全局桩，
@@ -12,7 +12,7 @@
  * 1. 在该 app 的 `src/test/setup.ts` 里 `await disableUnovisTooltipThrottle()`，且必须排在
  *    ResizeObserver 桩**之后**（unovis 在模块求值时就把 ResizeObserver 定死，顺序换了会在
  *    卸载时抛 `observationTargets`）；导入面的门禁只放行 `src/test/setup.ts` 这一个文件。
- * 2. 给该 app 的 vite 配置补 `@nerv-iip/ui/test-support` 别名，并排在裸 `@nerv-iip/ui`
+ * 2. 给该 app 的 vite 配置补 `@nerv-ui/ui/test-support` 别名，并排在裸 `@nerv-ui/ui`
  *    **之前**——对象别名按声明序做前缀匹配，否则会被拼成 `.../src/index.ts/test-support`。
  */
 export { disableUnovisTooltipThrottle } from './unovisTooltipTimers'

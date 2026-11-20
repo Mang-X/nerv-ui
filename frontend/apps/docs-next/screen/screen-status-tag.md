@@ -3,8 +3,8 @@ title: NvScreenStatusTag 状态标签
 ---
 
 <script setup>
-import { NvScreenStatusTag } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenStatusTag } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 </script>
 
 # NvScreenStatusTag 状态标签

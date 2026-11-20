@@ -4,8 +4,8 @@ title: NvMobileSteps 步骤条
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileSteps } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileSteps } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const current = ref(1)
 

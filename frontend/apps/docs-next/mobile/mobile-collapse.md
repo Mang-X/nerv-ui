@@ -3,8 +3,8 @@ title: NvMobileCollapse 折叠面板
 ---
 
 <script setup>
-import { NvMobileCollapse } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileCollapse } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const logs = [
   '10:02:11 记录已创建',

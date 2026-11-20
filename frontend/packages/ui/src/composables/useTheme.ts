@@ -1,5 +1,5 @@
 /**
- * Design System v2 — runtime theme controls (@nerv-iip/ui).
+ * Design System v2 — runtime theme controls (@nerv-ui/ui).
  *
  * Two independent, persisted dimensions:
  *   1. Colour mode: light / dark  → toggles the `.dark` class on <html>.

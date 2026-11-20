@@ -3,7 +3,7 @@ title: NvScreenPagination 分页
 ---
 
 <script setup>
-import { NvScreenPagination, NvScreenPanel } from '@nerv-iip/ui'
+import { NvScreenPagination, NvScreenPanel } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const page = ref(1)

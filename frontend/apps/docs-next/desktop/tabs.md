@@ -4,8 +4,8 @@ title: NvTabs 标签页
 
 <script setup>
 import { ref } from 'vue'
-import { NvTabs, NvTabsList, NvTabsTrigger, NvTabsPanel } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvTabs, NvTabsList, NvTabsTrigger, NvTabsPanel } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const tab = ref('overview')
 const manualTab = ref('a')

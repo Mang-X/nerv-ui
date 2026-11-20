@@ -4,8 +4,8 @@ title: NvMobileTag 标签
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileTag } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileTag } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const tags = ref(['待处理', '已审核', '已关闭'])
 </script>

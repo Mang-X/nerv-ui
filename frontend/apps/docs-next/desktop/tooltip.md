@@ -4,8 +4,8 @@ title: NvTooltip 文字提示
 
 <script setup>
 import { ref } from 'vue'
-import { NvTooltip, NvTooltipTrigger, NvTooltipContent } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvTooltip, NvTooltipTrigger, NvTooltipContent } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const inlineOpen = ref(false)
 const sideOpen = ref(false)

@@ -3,7 +3,7 @@ title: NvTouchButton 触控按钮
 ---
 
 <script setup>
-import { NvTouchButton } from '@nerv-iip/ui'
+import { NvTouchButton } from '@nerv-ui/ui'
 import { CheckCircleIcon, PauseIcon, BellRingIcon } from '@lucide/vue'
 </script>
 

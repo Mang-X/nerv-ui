@@ -22,7 +22,7 @@ import FilterBarExample from '../../.vitepress/examples/FilterBarExample.vue'
 
 ## API
 
-从 `@nerv-iip/ui` 导入 `NvFilterBar`、`FilterField` 和 `FilterFieldOption`。
+从 `@nerv-ui/ui` 导入 `NvFilterBar`、`FilterField` 和 `FilterFieldOption`。
 
 | 属性              | 类型                    | 默认值     |
 | ----------------- | ----------------------- | ---------- |

@@ -3,7 +3,7 @@ title: NvGroupPanel 可折叠分组面板
 ---
 
 <script setup>
-import { NvGroupPanel, NvStatusBadge } from '@nerv-iip/ui'
+import { NvGroupPanel, NvStatusBadge } from '@nerv-ui/ui'
 </script>
 
 # NvGroupPanel 可折叠分组面板

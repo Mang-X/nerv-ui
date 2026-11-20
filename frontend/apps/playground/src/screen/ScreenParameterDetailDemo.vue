@@ -5,7 +5,7 @@ import {
   NvScreenParameter,
   NvScreenButton,
   NvScreenPanel,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const props = defineProps<{ context: 'library' | 'studio' }>()
 const open = ref(true)
 const state = ref<'data' | 'pending' | 'error' | 'empty'>('data')

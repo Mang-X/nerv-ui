@@ -18,7 +18,7 @@ import {
   NvDropdownMenuSubContent,
   NvDropdownMenuSubTrigger,
   DropdownMenuGroup,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const open = ref(false)
 const summary = ref(true)
 const order = ref('按时间')

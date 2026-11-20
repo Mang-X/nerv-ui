@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
-import { NvQtyStepper } from '@nerv-iip/ui'
+import { NvQtyStepper } from '@nerv-ui/ui'
 
 it('requests bounded changes without mutating the controlled value', async () => {
   const wrapper = mount(NvQtyStepper, { props: { modelValue: 4, min: 1, max: 6, step: 3 } })

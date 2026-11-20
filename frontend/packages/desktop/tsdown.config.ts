@@ -67,7 +67,7 @@ export default defineConfig({
     '@ui-sdk/vue',
     '@ui-sdk/core',
     '@stylexjs/stylex',
-    '@nerv-ui/theme',
+    '@nerv-ui-next/theme',
     '@embedpdf/core',
     '@embedpdf/engines',
     '@embedpdf/plugin-document-manager',

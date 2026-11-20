@@ -15,28 +15,28 @@ import { MonitorIcon, SmartphoneIcon, TabletIcon, PresentationIcon, ArrowRightIc
     <span class="nv-surface-icon"><MonitorIcon /></span>
     <span class="nv-surface-name">桌面 desktop</span>
     <span class="nv-surface-desc">桌面主形态：信息密度高、键鼠为主。紧凑 36–40px 触控目标，语义令牌 + 12 色动态板，Pro 组件（NvDataTable、描述列表、时间线、图表）。克制动效，专业感优先。</span>
-    <span class="nv-surface-tag"><code>@nerv-iip/ui</code> · <code>--nv-*</code> · 36–40px</span>
+    <span class="nv-surface-tag"><code>@nerv-ui/ui</code> · <code>--nv-*</code> · 36–40px</span>
     <span class="nv-surface-go">桌面组件 <ArrowRightIcon /></span>
   </a>
   <a class="nv-surface" href="/components/mobile/">
     <span class="nv-surface-icon"><SmartphoneIcon /></span>
     <span class="nv-surface-name">移动 mobile</span>
     <span class="nv-surface-desc">手持终端形态：触控为主、单手操作。原生质感控件 + 完整手势（侧滑 / 下拉刷新 / 抽屉），统一橡皮筋阻尼。安全区适配，≥44px 触控目标。</span>
-    <span class="nv-surface-tag"><code>@nerv-iip/ui-mobile</code> · <code>--nv-m-*</code> · 40–48px</span>
+    <span class="nv-surface-tag"><code>@nerv-ui/ui-mobile</code> · <code>--nv-m-*</code> · 40–48px</span>
     <span class="nv-surface-go">移动控件 <ArrowRightIcon /></span>
   </a>
   <a class="nv-surface" href="/components/touch/">
     <span class="nv-surface-icon"><TabletIcon /></span>
     <span class="nv-surface-name">触屏 pad</span>
     <span class="nv-surface-desc">触屏形态：近距离大触控、减少操作路径。56–72px 大触控目标，大号触控按钮、步进器、分段选择，为"少点几下完成操作"而设计。大量复用桌面件（放大字号间距）。</span>
-    <span class="nv-surface-tag"><code>@nerv-iip/ui · touch/</code> · <code>--nv-t-*</code> · 56–72px</span>
+    <span class="nv-surface-tag"><code>@nerv-ui/ui · touch/</code> · <code>--nv-t-*</code> · 56–72px</span>
     <span class="nv-surface-go">触屏组件 <ArrowRightIcon /></span>
   </a>
   <a class="nv-surface" href="/components/screen/">
     <span class="nv-surface-icon"><PresentationIcon /></span>
     <span class="nv-surface-name">大屏 screen</span>
     <span class="nv-surface-desc">大屏形态：远距离可读、几乎不触控。独立的近黑令牌层（<code>--nv-scr-*</code>），发光克制、发丝线撑结构，舞台缩放适配任意分辨率。</span>
-    <span class="nv-surface-tag"><code>@nerv-iip/ui · screen/</code> · <code>--nv-scr-*</code> · 远读</span>
+    <span class="nv-surface-tag"><code>@nerv-ui/ui · screen/</code> · <code>--nv-scr-*</code> · 远读</span>
     <span class="nv-surface-go">大屏组件 <ArrowRightIcon /></span>
   </a>
 </div>
@@ -45,7 +45,7 @@ import { MonitorIcon, SmartphoneIcon, TabletIcon, PresentationIcon, ArrowRightIc
 
 - **令牌共享，命名隔离**：desktop/mobile/pad 共享 `--nv-*` 语义令牌；大屏用独立的 `--nv-scr-*` 深色层。允许跨场景取值相同，但名称按命名空间隔离（ADR 0020 §3）。
 - **手感原生**：每个表面遵循其平台的交互基线与触控尺寸，不强行统一手势或尺寸。
-- **组件分层**：desktop / pad / screen 用 `@nerv-iip/ui`（分属 `pro/blocks/layout` · `touch/` · `screen/`），移动用 `@nerv-iip/ui-mobile`，但视觉血统一致。
+- **组件分层**：desktop / pad / screen 用 `@nerv-ui/ui`（分属 `pro/blocks/layout` · `touch/` · `screen/`），移动用 `@nerv-ui/ui-mobile`，但视觉血统一致。
 
 <style scoped>
 .nv-surfaces {

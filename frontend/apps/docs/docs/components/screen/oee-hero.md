@@ -4,7 +4,7 @@ title: NvOeeHero 核心指标
 
 <script setup>
 import { ref, computed } from 'vue'
-import { NvOeeHero, NvScreenInput, NvScreenPanel } from '@nerv-iip/ui'
+import { NvOeeHero, NvScreenInput, NvScreenPanel } from '@nerv-ui/ui'
 const reading = ref('2,460')
 const known = computed(() => reading.value.trim() !== '')
 </script>

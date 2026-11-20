@@ -4,8 +4,8 @@ title: NvAutocomplete 联想输入
 
 <script setup>
 import { ref } from 'vue'
-import { NvAutocomplete } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvAutocomplete } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const products = [
   '铝合金支架 NX-220',

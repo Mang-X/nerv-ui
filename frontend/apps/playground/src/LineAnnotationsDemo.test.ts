@@ -1,6 +1,6 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { afterAll, describe, expect, it } from 'vitest'
-import { NvLineChart } from '@nerv-iip/ui'
+import { NvLineChart } from '@nerv-ui/ui'
 import LineAnnotationsDemo from './LineAnnotationsDemo.vue'
 const bbox = Object.getOwnPropertyDescriptor(SVGElement.prototype, 'getBBox')
 Object.defineProperty(SVGElement.prototype, 'getBBox', {

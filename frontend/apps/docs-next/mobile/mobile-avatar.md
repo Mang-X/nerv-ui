@@ -4,8 +4,8 @@ title: NvMobileAvatar 头像
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { NvMobileAvatar } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileAvatar } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 const photoSrc = ref(null)
 onMounted(() => {
   photoSrc.value =

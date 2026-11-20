@@ -3,7 +3,7 @@ title: NvScreenFreshness 数据新鲜度
 ---
 
 <script setup>
-import { NvScreenFreshness } from '@nerv-iip/ui'
+import { NvScreenFreshness } from '@nerv-ui/ui'
 </script>
 
 # NvScreenFreshness 数据新鲜度

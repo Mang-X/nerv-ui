@@ -4,8 +4,8 @@ title: NvMobileSlider 滑块
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileSlider } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileSlider } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const volume = ref(35)
 const range = ref(70)

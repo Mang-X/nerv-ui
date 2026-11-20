@@ -3,7 +3,7 @@ title: NvTouchSegmented 分段切换
 ---
 
 <script setup>
-import { NvTouchSegmented } from '@nerv-iip/ui'
+import { NvTouchSegmented } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const view = ref('queue')

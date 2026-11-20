@@ -4,8 +4,8 @@ title: NvDataTable 数据表格
 
 <script setup>
 import { ref } from 'vue'
-import { NvDataTable, NvBadge, NvProgress } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvDataTable, NvBadge, NvProgress } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const columns = [
   { key: 'code', title: '记录号', width: 120 },

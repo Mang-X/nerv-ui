@@ -4,7 +4,7 @@ title: NvMobileGrid 宫格
 ---
 
 <script setup>
-import { NvMobileGrid } from '@nerv-iip/ui-mobile'
+import { NvMobileGrid } from '@nerv-ui/ui-mobile'
 import {
   BellIcon, BoxesIcon, ChartColumnIcon, ClipboardListIcon,
   ScanLineIcon, TruckIcon, UsersIcon, WrenchIcon,
@@ -49,7 +49,7 @@ function onGrid(item) {
 
 ```vue
 <script setup>
-import { NvMobileGrid } from '@nerv-iip/ui-mobile'
+import { NvMobileGrid } from '@nerv-ui/ui-mobile'
 import { ClipboardListIcon, ScanLineIcon, BoxesIcon, BellIcon } from '@lucide/vue'
 
 const gridItems = [

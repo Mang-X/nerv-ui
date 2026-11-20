@@ -13,7 +13,7 @@ if (!process.env.NERV_IIP_REFERENCE_ROOT)
   )
 
 // Design System v2 tokens live in the shared, single-source-of-truth theme file
-// inside @nerv-iip/ui (consumed by ALL apps). Guard the brand-critical values AND
+// inside @nerv-ui/ui (consumed by ALL apps). Guard the brand-critical values AND
 // the ADR 0020 §3/§4 scene-namespace + cascade-layer isolation contract.
 const srcDir = resolve(process.env.NERV_IIP_REFERENCE_ROOT!, 'frontend/packages/ui/src')
 const read = (rel: string) => readFileSync(resolve(srcDir, rel), 'utf8')

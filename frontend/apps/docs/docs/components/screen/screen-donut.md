@@ -3,7 +3,7 @@ title: NvScreenDonut 环形占比
 ---
 
 <script setup>
-import { NvScreenDonut } from '@nerv-iip/ui'
+import { NvScreenDonut } from '@nerv-ui/ui'
 
 const load = [
   { label: '排队', value: 38, color: 'rgba(160, 200, 245, 0.45)' },

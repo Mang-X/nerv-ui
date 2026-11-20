@@ -3,7 +3,7 @@ title: 大屏 / Screen
 ---
 
 <script setup>
-import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatusLight } from '@nerv-iip/ui'
+import { NvOeeHero, NvScreenPanel, NvRingGauge, NvScreenStatusTag, NvScreenStatusLight } from '@nerv-ui/ui'
 </script>
 
 # 大屏 / Screen 组件

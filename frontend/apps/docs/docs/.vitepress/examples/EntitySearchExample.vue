@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NvEntityMultiPicker, type EntityPickerOption } from '@nerv-iip/ui'
+import { NvEntityMultiPicker, type EntityPickerOption } from '@nerv-ui/ui'
 
 const catalog: EntityPickerOption[] = Array.from({ length: 24 }, (_, index) => {
   const code = `SPACE-${String(index + 1).padStart(3, '0')}`

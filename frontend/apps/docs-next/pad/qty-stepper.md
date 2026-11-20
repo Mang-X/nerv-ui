@@ -4,8 +4,8 @@ title: NvQtyStepper 数量步进器
 
 <script setup>
 import { ref } from 'vue'
-import { NvQtyStepper } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvQtyStepper } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const qty = ref(2)
 const bounded = ref(5)

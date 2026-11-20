@@ -5,7 +5,7 @@ import {
   NvScreenPanel,
   type ScreenHeatmapCell,
   type ScreenHeatmapThreshold,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const cells = shallowRef<ScreenHeatmapCell[]>([])
 const columns = shallowRef(6)
 const compactScale = shallowRef(false)

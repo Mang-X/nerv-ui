@@ -4,8 +4,8 @@ title: NvTouchCard 触屏卡片
 
 <script setup>
 import { ref } from 'vue'
-import { NvTouchCard } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchCard } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const clicks = ref(0)
 

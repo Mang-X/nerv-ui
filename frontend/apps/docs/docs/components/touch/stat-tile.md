@@ -3,7 +3,7 @@ title: NvStatTile 指标块
 ---
 
 <script setup>
-import { NvStatTile } from '@nerv-iip/ui'
+import { NvStatTile } from '@nerv-ui/ui'
 </script>
 
 # NvStatTile 指标块

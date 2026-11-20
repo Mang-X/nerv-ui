@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, expect, it } from 'vitest'
 import { mount, flushPromises, type VueWrapper } from '@vue/test-utils'
-import { NvDropdownMenu } from '@nerv-iip/ui'
+import { NvDropdownMenu } from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/DropdownSelectionExample.vue'
 let page: VueWrapper
 afterEach(() => {

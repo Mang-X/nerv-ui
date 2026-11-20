@@ -4,12 +4,12 @@ title: NvCard 卡片
 
 <script setup>
 import CardStructureExample from '../../.vitepress/examples/CardStructureExample.vue'
-import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-iip/ui'
+import { NvCard, NvBadge, NvStatusBadge, Separator } from '@nerv-ui/ui'
 </script>
 
 # NvCard 卡片
 
-承载分组信息的「表面」原语。`NvCard` 基于 `@nerv-iip/ui` 稳定导出的卡片基础能力复制重建——发丝级描边 + 顶部内嵌高光读作单一清晰表面。它本身不含内边距与排版，内容由调用方组织（通常 `p-6` 头部 + 内容，放进 `grid`）；`interactive` 为可点击卡片叠加克制的悬浮上浮。
+承载分组信息的「表面」原语。`NvCard` 基于 `@nerv-ui/ui` 稳定导出的卡片基础能力复制重建——发丝级描边 + 顶部内嵌高光读作单一清晰表面。它本身不含内边距与排版，内容由调用方组织（通常 `p-6` 头部 + 内容，放进 `grid`）；`interactive` 为可点击卡片叠加克制的悬浮上浮。
 
 ## 示例
 
@@ -161,7 +161,7 @@ import {
   NvCardDescription,
   NvCardContent,
   NvCardFooter,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const confirmed = ref(false)
 const tipsViewed = ref(false)

@@ -3,8 +3,8 @@ title: NvKpiBar 关键指标条
 ---
 
 <script setup>
-import { NvKpiBar } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvKpiBar } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const metrics = [
   { label: '今日数量', value: '12,480', unit: '项', trend: 'up', hint: '较昨日 +4.2%' },

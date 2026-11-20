@@ -4,7 +4,7 @@ title: NvMobileAvatar 头像
 ---
 
 <script setup>
-import { NvMobileAvatar } from '@nerv-iip/ui-mobile'
+import { NvMobileAvatar } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>

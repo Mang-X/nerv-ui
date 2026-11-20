@@ -1,7 +1,7 @@
 # 卡片（NvCard）
 
 内容分组容器。用于设置分区、详情面板、统计摘要和登录表单。应用代码应使用
-`NvCard*` 组件族，它从 `@nerv-iip/ui` 导入；无前缀的 `Card*` 部件是 shadcn 原版基础组件（primitive），
+`NvCard*` 组件族，它从 `@nerv-ui/ui` 导入；无前缀的 `Card*` 部件是 shadcn 原版基础组件（primitive），
 仅限组件库内部使用。对于 KPI 或统计磁贴，应优先使用专门构建的
 `NvMetricCard`（仪表盘统计行可使用 `NvSectionCard`/`NvSectionCards`），而不是手动以
 `NvCard` 拼装。

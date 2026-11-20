@@ -7,8 +7,8 @@ title: NvResizable 可调分栏
 </style>
 
 <script setup>
-import { NvResizable } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvResizable } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvResizable 可调分栏

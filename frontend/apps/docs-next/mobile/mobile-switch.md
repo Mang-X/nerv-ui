@@ -4,8 +4,8 @@ title: NvMobileSwitch 开关
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileSwitch } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileSwitch } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const notify = ref(true)
 const sync = ref(false)

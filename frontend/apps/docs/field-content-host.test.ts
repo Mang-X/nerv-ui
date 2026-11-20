@@ -2,7 +2,7 @@
 import { afterEach, expect, it } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
 import { defineComponent } from 'vue'
-import { NvFieldContent, NvFieldTitle, NvFieldSeparator } from '@nerv-iip/ui'
+import { NvFieldContent, NvFieldTitle, NvFieldSeparator } from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/FieldContentExample.vue'
 import GroupExample from './docs/.vitepress/examples/FieldGroupExample.vue'
 let page: VueWrapper

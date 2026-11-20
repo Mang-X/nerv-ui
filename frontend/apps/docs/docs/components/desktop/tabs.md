@@ -10,7 +10,7 @@ import {
   NvTabsTrigger,
   NvTabsContent,
   Progress,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 </script>
 
 # NvTabs 标签页

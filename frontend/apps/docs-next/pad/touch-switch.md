@@ -4,8 +4,8 @@ title: NvTouchSwitch 触屏开关
 
 <script setup>
 import { ref } from 'vue'
-import { NvTouchSwitch } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchSwitch } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const notify = ref(true)
 const compact = ref(false)

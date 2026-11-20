@@ -3,8 +3,8 @@ title: NvTouchBadge 触屏徽标
 ---
 
 <script setup>
-import { NvTouchBadge } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchBadge } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 </script>
 
 # NvTouchBadge 触屏徽标

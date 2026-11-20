@@ -3,8 +3,8 @@ title: NvScreenPanel 大屏面板
 ---
 
 <script setup>
-import { NvScreenPanel } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenPanel } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 </script>
 
 # NvScreenPanel 大屏面板

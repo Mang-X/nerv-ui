@@ -4,8 +4,8 @@ title: NvScreenTabs 大屏标签页
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenTabs } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenTabs } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const tab = ref('realtime')
 

@@ -14,7 +14,7 @@ import {
   NvSelectItem,
   NvSelectTrigger,
   NvSelectValue,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const hasContent = ref(true)
 const variant = ref<'default' | 'icon'>('default')

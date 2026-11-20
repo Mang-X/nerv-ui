@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, reactive, onUnmounted } from 'vue'
-import { NvButton } from '@nerv-iip/ui'
+import { NvButton } from '@nerv-ui/ui'
 import DirectoryRecipe from './DirectoryRecipe.vue'
 import type { DirectoryFilter, DirectoryHost, DirectoryRow } from './contract'
 const space = ref(window.location.hash.endsWith('/studio') ? 'studio' : 'library')

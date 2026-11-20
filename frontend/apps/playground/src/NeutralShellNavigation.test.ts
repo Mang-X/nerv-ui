@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { defineComponent, h } from 'vue'
 import { expect, it } from 'vitest'
-import { SidebarProvider, useSidebar } from '@nerv-iip/ui'
+import { SidebarProvider, useSidebar } from '@nerv-ui/ui'
 import NeutralShellNavigation from './NeutralShellNavigation.vue'
 
 function fixture() {

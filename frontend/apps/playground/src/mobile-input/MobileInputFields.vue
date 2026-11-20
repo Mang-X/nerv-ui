@@ -11,7 +11,7 @@ import {
   NvStepper,
   NvMobileRate,
   NvMobileSlider,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 
 const title = shallowRef('')
 const keyword = shallowRef('')

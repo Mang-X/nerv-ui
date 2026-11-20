@@ -3,8 +3,8 @@ title: NvScreenBarChart 柱状图
 ---
 
 <script setup>
-import { NvScreenBarChart } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenBarChart } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const lines = ['第一分组', '第二分组', '第三分组', '第四分组', '第五分组']
 const series = [

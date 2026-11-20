@@ -3,8 +3,8 @@ title: NvRingGauge 环形仪表
 ---
 
 <script setup>
-import { NvRingGauge } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvRingGauge } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 </script>
 
 # NvRingGauge 环形仪表

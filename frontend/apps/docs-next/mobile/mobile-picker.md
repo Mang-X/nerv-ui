@@ -4,8 +4,8 @@ title: NvMobilePicker 选择器
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobilePicker } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobilePicker } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const city = ref(['hz', 'binjiang'])
 const size = ref(['m'])

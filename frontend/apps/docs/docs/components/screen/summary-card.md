@@ -4,7 +4,7 @@ title: NvScreenSummaryCard 入口与摘要
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenSummaryCard } from '@nerv-iip/ui'
+import { NvScreenSummaryCard } from '@nerv-ui/ui'
 const result = ref('请选择空间')
 </script>
 

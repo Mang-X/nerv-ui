@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NvButton, NvEntityPicker, NvField, NvFieldLabel, NvInput } from '@nerv-iip/ui'
+import { NvButton, NvEntityPicker, NvField, NvFieldLabel, NvInput } from '@nerv-ui/ui'
 
 const group = ref('')
 const options = ref([

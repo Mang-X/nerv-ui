@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NvEntityPicker, NvField, NvFieldLabel } from '@nerv-iip/ui'
+import { NvEntityPicker, NvField, NvFieldLabel } from '@nerv-ui/ui'
 
 const material = ref('')
 const options = [

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useColorMode } from '@nerv-iip/ui'
-import { NvAppShellMobile, NvNavBar } from '@nerv-iip/ui-mobile'
+import { useColorMode } from '@nerv-ui/ui'
+import { NvAppShellMobile, NvNavBar } from '@nerv-ui/ui-mobile'
 import { shallowRef } from 'vue'
 import MobileInputFields from './mobile-input/MobileInputFields.vue'
 import MobileCaptureInput from './mobile-input/MobileCaptureInput.vue'

@@ -11,7 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const fixed = ref(false)
 const open = ref(true)
 const current = ref('随手收藏')

@@ -4,8 +4,8 @@ title: NvSwitch 开关
 
 <script setup>
 import { ref } from 'vue'
-import { NvSwitch } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvSwitch } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const on = ref(true)
 const off = ref(false)

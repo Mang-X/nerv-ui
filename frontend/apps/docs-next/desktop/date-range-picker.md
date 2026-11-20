@@ -4,8 +4,8 @@ title: NvDateRangePicker 日期范围选择器
 
 <script setup>
 import { ref } from 'vue'
-import { NvDateRangePicker } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvDateRangePicker } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const range = ref(['2026-11-03', '2026-11-14'])
 const limited = ref(null)

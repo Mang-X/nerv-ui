@@ -10,7 +10,7 @@ import {
   NvScreenDonut,
   NvScreenFreshness,
   NvScreenStatusTag,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import type { DashboardInput } from './dashboardInput'
 const props = defineProps<{
   input: DashboardInput

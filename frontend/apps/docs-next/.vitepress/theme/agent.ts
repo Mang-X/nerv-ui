@@ -1,4 +1,4 @@
-import { createAgent, registerTools } from '@nerv-ui/desktop/agent'
+import { createAgent, registerTools } from '@nerv-ui-next/desktop/agent'
 
 /**
  * 文档站的代理桥：让代理直接读取并操作页面上的组件，而不是靠截图猜。
@@ -23,4 +23,4 @@ if (typeof window !== 'undefined') {
   ;(window as unknown as { __nvAgent?: typeof agent }).__nvAgent = agent
 }
 
-export type { AgentComponent, AgentStep } from '@nerv-ui/desktop/agent'
+export type { AgentComponent, AgentStep } from '@nerv-ui-next/desktop/agent'

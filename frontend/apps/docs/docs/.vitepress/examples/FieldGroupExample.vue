@@ -8,7 +8,7 @@ import {
   NvFieldDescription,
   NvInput,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const id = useId()
 const preparation = ref('带一本愿意分享的书')
 const feedback = ref('尚未确认')

@@ -4,8 +4,8 @@ title: NvMobileRadio 单选框
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileRadio, NvMobileRadioGroup } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileRadio, NvMobileRadioGroup } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const picked = ref('standard')
 const options = [

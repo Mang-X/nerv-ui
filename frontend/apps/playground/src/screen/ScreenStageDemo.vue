@@ -7,7 +7,7 @@ import {
   NvTitleBar,
   NvScreenHeader,
   NvGlowDivider,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const hall = shallowRef(false)
 const guidance = shallowRef(false)

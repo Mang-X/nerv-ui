@@ -1,6 +1,6 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import '@nerv-ui/desktop/styles.css'
+import '@nerv-ui-next/desktop/styles.css'
 import './style.css'
 
 import Demo from './Demo.vue'

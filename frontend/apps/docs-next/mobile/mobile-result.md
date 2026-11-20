@@ -4,8 +4,8 @@ title: NvMobileResult 结果页
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileButton, NvMobileResult } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileButton, NvMobileResult } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const acted = ref(0)
 </script>

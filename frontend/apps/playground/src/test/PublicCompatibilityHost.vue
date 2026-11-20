@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
-import { NvMobileButton, NvMobileSwitch, NvStepper } from '@nerv-iip/ui-mobile'
+import { NvMobileButton, NvMobileSwitch, NvStepper } from '@nerv-ui/ui-mobile'
 const clicks = shallowRef(0)
 const checked = shallowRef(false)
 const quantity = shallowRef(2)

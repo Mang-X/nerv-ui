@@ -4,8 +4,8 @@ title: NvDigitalFlop 数字翻牌
 
 <script setup>
 import { ref } from 'vue'
-import { NvDigitalFlop } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvDigitalFlop } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const count = ref(12480)
 </script>

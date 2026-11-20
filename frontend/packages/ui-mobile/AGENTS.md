@@ -1,6 +1,6 @@
-# AGENTS.md — @nerv-iip/ui-mobile（旧库移动层 · 冻结待删）
+# AGENTS.md — @nerv-ui/ui-mobile（旧库移动层 · 冻结待删）
 
-> **状态：冻结。** 新功能一律做进新库 `@nerv-ui/mobile`，写法见
+> **状态：冻结。** 新功能一律做进新库 `@nerv-ui-next/mobile`，写法见
 > `frontend/packages/CONVENTIONS.md`。本包只接受阻断性修复，并在 R11 整体删除。
 
 > 先读 `frontend/AGENTS.md` 与

@@ -4,7 +4,7 @@ title: NvNavBar 顶部栏
 ---
 
 <script setup>
-import { NvNavBar, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvNavBar, NvMobileButton } from '@nerv-ui/ui-mobile'
 import { EllipsisIcon } from '@lucide/vue'
 </script>
 

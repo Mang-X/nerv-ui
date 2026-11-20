@@ -4,7 +4,7 @@ title: NvVirtualList 虚拟列表
 ---
 
 <script setup>
-import { NvVirtualList, NvMobileTag } from '@nerv-iip/ui-mobile'
+import { NvVirtualList, NvMobileTag } from '@nerv-ui/ui-mobile'
 
 const states = [
   { label: '运行', variant: 'success' },

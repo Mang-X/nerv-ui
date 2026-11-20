@@ -1,7 +1,7 @@
 # 字段（NvField）
 
 包含标签、说明和错误消息的表单字段包装器。应用代码使用 `NvField*` 系列，
-它们来自 `@nerv-iip/ui`；无前缀的 `Field*` 部件是 shadcn 原版
+它们来自 `@nerv-ui/ui`；无前缀的 `Field*` 部件是 shadcn 原版
 primitives，仅限组件库内部使用。
 
 ## 结构

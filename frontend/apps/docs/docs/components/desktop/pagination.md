@@ -20,7 +20,7 @@ import PaginationExample from '../../.vitepress/examples/PaginationExample.vue'
 
 ## API
 
-九件均从 `@nerv-iip/ui` 主桶导入。`Pagination` 接受 `v-model:page`、`total`、`itemsPerPage`、`siblingCount` 和 `showEdges`；`PaginationContent` 的 `items` 插槽给出页码及省略号，分别交给 `PaginationItem` 和 `PaginationEllipsis`。`PaginationFirst`、`PaginationPrevious`、`PaginationNext`、`PaginationLast` 按当前页自动禁用首尾操作。
+九件均从 `@nerv-ui/ui` 主桶导入。`Pagination` 接受 `v-model:page`、`total`、`itemsPerPage`、`siblingCount` 和 `showEdges`；`PaginationContent` 的 `items` 插槽给出页码及省略号，分别交给 `PaginationItem` 和 `PaginationEllipsis`。`PaginationFirst`、`PaginationPrevious`、`PaginationNext`、`PaginationLast` 按当前页自动禁用首尾操作。
 
 `PaginationItem` 默认是 Reka 按钮，以 `value` 更新受控页码，选中时输出 `aria-current="page"`；`isActive` 控制其样式。`PaginationLink` 是普通 `a`，接受 `href` 和 `isActive`，后者同时输出 `aria-current="page"`。本页第二段只链接到上方结果和章节，不声明当前结果页；因此不传 `isActive`，也不输出 `aria-current="page"`。链接不会更新结果页，不把链接放进按钮中。
 

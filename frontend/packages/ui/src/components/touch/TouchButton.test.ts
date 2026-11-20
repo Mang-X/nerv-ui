@@ -1,7 +1,7 @@
 import { Comment, defineComponent, Fragment, h } from 'vue'
 import { mount } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
-import { NvTouchButton } from '@nerv-iip/ui'
+import { NvTouchButton } from '@nerv-ui/ui'
 
 // Match VTU trigger's Vue timestamp workaround for manually inspected events.
 function dispatchVueEvent(element: Element, event: Event) {

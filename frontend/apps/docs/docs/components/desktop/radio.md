@@ -3,7 +3,7 @@ title: NvRadioGroup 单选框
 ---
 
 <script setup>
-import { NvRadioGroup, NvRadioGroupItem } from '@nerv-iip/ui'
+import { NvRadioGroup, NvRadioGroupItem } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const radioValue = ref('std')

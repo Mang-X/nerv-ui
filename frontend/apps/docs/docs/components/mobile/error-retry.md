@@ -4,7 +4,7 @@ title: NvMobileErrorRetry 错误重试
 ---
 
 <script setup>
-import { NvMobileErrorRetry, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvMobileErrorRetry, NvMobileButton } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const pending = ref(false)
@@ -51,7 +51,7 @@ function reset() {
 
 ```vue
 <script setup>
-import { NvMobileErrorRetry } from '@nerv-iip/ui-mobile'
+import { NvMobileErrorRetry } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const pending = ref(false)

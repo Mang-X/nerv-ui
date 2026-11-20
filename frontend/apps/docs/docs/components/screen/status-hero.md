@@ -9,7 +9,7 @@ import {
   NvScreenInput,
   NvScreenSelect,
   NvScreenStatusHero,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const tone = ref('green')
 const rhythm = ref('steady')
 const label = ref('开放中')

@@ -4,8 +4,8 @@ title: NvToolbar 工具栏
 
 <script setup>
 import { ref } from 'vue'
-import { NvToolbar, NvToggle, NvToggleGroup } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvToolbar, NvToggle, NvToggleGroup } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const format = ref(['bold'])
 const view = ref(['table'])

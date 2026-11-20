@@ -4,8 +4,8 @@ title: NvMobileDialog 对话框
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileButton, NvMobileDialog } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileButton, NvMobileDialog } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const open = ref(false)
 const confirmed = ref(0)

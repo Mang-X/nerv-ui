@@ -3,9 +3,9 @@
 展示用户身份，包括头像图片、回退首字母和可选状态徽标。
 
 > NvUI 状态：PC 层目前没有 `NvAvatar`；`Avatar` / `AvatarImage` /
-> `AvatarFallback` 是当前从 `@nerv-iip/ui` 导出的规范名称
+> `AvatarFallback` 是当前从 `@nerv-ui/ui` 导出的规范名称
 > （在品牌层重建前，原版 primitive 继续作为应用侧名称）。
-> 在移动端界面请使用 `NvMobileAvatar`，它从 `@nerv-iip/ui-mobile` 导出。
+> 在移动端界面请使用 `NvMobileAvatar`，它从 `@nerv-ui/ui-mobile` 导出。
 
 ## 用法
 

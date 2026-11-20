@@ -4,8 +4,8 @@ title: NvTouchDialog 触屏对话框
 
 <script setup>
 import { ref } from 'vue'
-import { NvTouchButton, NvTouchDialog } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchButton, NvTouchDialog } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const open = ref(false)
 const lockedOpen = ref(false)

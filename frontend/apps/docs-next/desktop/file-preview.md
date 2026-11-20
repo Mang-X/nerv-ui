@@ -3,8 +3,8 @@ title: NvFilePreview 文件预览
 ---
 
 <script setup>
-import { NvFilePreview } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvFilePreview } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const sampleSvg = `data:image/svg+xml;utf8,${encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300"><rect width="480" height="300" fill="#e2e8f0"/><rect x="40" y="40" width="400" height="220" fill="#cbd5e1" stroke="#94a3b8"/><text x="240" y="160" font-family="sans-serif" font-size="22" text-anchor="middle" fill="#334155">示例预览 NX-220</text></svg>',

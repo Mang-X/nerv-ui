@@ -4,7 +4,7 @@ import type {
   FileUploadCompleteSessionRequest,
   FileUploadSession,
   FileUploadTransportContext,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 /** A host fixture: never fetches, persists files, or interprets opaque owner fields. */
 export function createMemoryUpload() {

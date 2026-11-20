@@ -10,11 +10,11 @@
     "agent:audit": "node scripts/agent-audit.mjs"
   },
   "dependencies": {
-    "@nerv-ui/desktop": "workspace:*",
-    "@nerv-ui/mobile": "workspace:*",
-    "@nerv-ui/pad": "workspace:*",
-    "@nerv-ui/screen": "workspace:*",
-    "@nerv-ui/theme": "workspace:*",
+    "@nerv-ui-next/desktop": "workspace:*",
+    "@nerv-ui-next/mobile": "workspace:*",
+    "@nerv-ui-next/pad": "workspace:*",
+    "@nerv-ui-next/screen": "workspace:*",
+    "@nerv-ui-next/theme": "workspace:*",
     "@stylexjs/stylex": "0.19.2",
     "@ui-sdk/core": "0.1.0-beta.6",
     "@ui-sdk/vue": "0.1.0-beta.6"

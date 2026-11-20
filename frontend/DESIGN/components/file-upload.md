@@ -4,10 +4,10 @@
 质量证据、维护照片和工程文档。
 
 > NvUI 状态：`FileUpload` 保持无前缀名称；它是 Nerv-IIP 自定义 primitive
-> （不是 shadcn 原版透传），也是当前从 `@nerv-iip/ui` 导出的规范
+> （不是 shadcn 原版透传），也是当前从 `@nerv-ui/ui` 导出的规范
 > 应用侧名称；[NvUI 命名映射表](../nvui-naming-map.md) 附录 A（原 ADR 0020 附录 A）
 > 未为其分配 `Nv*` 重命名。文件预览辅助项位于
-> `@nerv-iip/ui/file-preview` 子入口——它是唯一允许的运行时子入口，
+> `@nerv-ui/ui/file-preview` 子入口——它是唯一允许的运行时子入口，
 > 完整的子入口边界见[治理规范「包子入口边界」](../governance.md#包子入口边界)。
 
 ## 导出
@@ -65,7 +65,7 @@
 
 ```vue
 <script setup lang="ts">
-import type { FileUploadExpose } from '@nerv-iip/ui'
+import type { FileUploadExpose } from '@nerv-ui/ui'
 import { useTemplateRef } from 'vue'
 
 const uploadRef = useTemplateRef<FileUploadExpose>('upload')

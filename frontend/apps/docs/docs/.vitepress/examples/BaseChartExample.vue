@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ChartContainer, ChartLegendContent, ChartTooltipContent, NvButton } from '@nerv-iip/ui'
+import { ChartContainer, ChartLegendContent, ChartTooltipContent, NvButton } from '@nerv-ui/ui'
 type Item = { key: string; label: string; value: number }
 const initial: Item[] = [
   { key: 'reading', label: '阅读角', value: 0 },

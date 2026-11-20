@@ -102,7 +102,7 @@
 
 ## 经验总结（这轮重构沉淀）
 
-1. **三表面分层，尺寸/交互各自适配，勿混用**：桌面 `@nerv-iip/ui` 的 NvUI PC 层（指针、紧凑 36–40px）/ 手机 `@nerv-iip/ui-mobile`（原生触控 40–48px）/ 平板看板 `ui/components/touch`（大触控 56–72px）。把看板大件用到手机会"肿大"。
+1. **三表面分层，尺寸/交互各自适配，勿混用**：桌面 `@nerv-ui/ui` 的 NvUI PC 层（指针、紧凑 36–40px）/ 手机 `@nerv-ui/ui-mobile`（原生触控 40–48px）/ 平板看板 `ui/components/touch`（大触控 56–72px）。把看板大件用到手机会"肿大"。
 2. **原版 shadcn 零改动**：所有定制走"复制重建 + 令牌"，不改 `components/ui/*`。新件命名避免与 ui 导出撞名。
 3. **令牌单一来源**：颜色只用语义令牌；填充色（`--brand`…）与**文字专用色（`--*-strong`）分离**，后者保证小号色调文字 ≥4.5:1（impeccable 对比度硬规则）。
 4. **动效成体系**：缓动令牌（`--ease-out-*`）、传达状态而非装饰、所有位移类动画带 `prefers-reduced-motion` 降级。手势件（SwipeCell/PullRefresh/Picker）pointer 驱动、仅水平手势接管。

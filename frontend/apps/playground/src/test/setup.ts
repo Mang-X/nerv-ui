@@ -1,4 +1,4 @@
-import { disableUnovisTooltipThrottle } from '@nerv-iip/ui/test-support'
+import { disableUnovisTooltipThrottle } from '@nerv-ui/ui/test-support'
 
 if (!globalThis.ResizeObserver) {
   globalThis.ResizeObserver = class {

@@ -4,8 +4,8 @@ title: NvTouchInput 触屏输入框
 
 <script setup>
 import { ref } from 'vue'
-import { NvTouchInput } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchInput } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const keyword = ref('')
 const code = ref('R-2026-0042')

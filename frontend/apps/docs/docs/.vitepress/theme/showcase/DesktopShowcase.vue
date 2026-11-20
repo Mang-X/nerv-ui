@@ -5,7 +5,7 @@ import type {
   NvDataTableColumn,
   DescriptionItem,
   TimelineItem,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import {
   NvAreaChart,
   NvBadge,
@@ -69,7 +69,7 @@ import {
   NvTooltipProvider,
   NvTooltipTrigger,
   useThemeAccent,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import {
   ActivityIcon,
   ArrowRightIcon,
@@ -1433,7 +1433,7 @@ const progress = computed(
         <div class="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-10">
           <p class="text-sm font-medium">Nerv-IIP 设计系统 v2</p>
           <p class="text-sm text-muted-foreground">
-            令牌单一来源于 <code class="font-mono text-xs">@nerv-iip/ui</code>，原版 shadcn
+            令牌单一来源于 <code class="font-mono text-xs">@nerv-ui/ui</code>，原版 shadcn
             零改动，定制走复制重建。
           </p>
         </div>

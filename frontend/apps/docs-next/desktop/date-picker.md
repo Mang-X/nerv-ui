@@ -4,8 +4,8 @@ title: NvDatePicker 日期选择器
 
 <script setup>
 import { ref } from 'vue'
-import { NvDatePicker } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvDatePicker } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const picked = ref('2026-11-18')
 const limited = ref(null)

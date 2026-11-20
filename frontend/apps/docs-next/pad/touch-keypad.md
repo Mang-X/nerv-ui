@@ -4,8 +4,8 @@ title: NvTouchKeypad 触屏数字键盘
 
 <script setup>
 import { ref } from 'vue'
-import { NvTouchKeypad } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchKeypad } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const quantity = ref('12')
 const signed = ref('-3.5')

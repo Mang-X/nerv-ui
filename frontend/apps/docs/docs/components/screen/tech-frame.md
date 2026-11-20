@@ -3,7 +3,7 @@ title: NvTechFrame 科技边框
 ---
 
 <script setup>
-import { NvTechFrame } from '@nerv-iip/ui'
+import { NvTechFrame } from '@nerv-ui/ui'
 </script>
 
 # NvTechFrame 科技边框

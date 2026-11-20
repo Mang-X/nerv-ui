@@ -21,5 +21,5 @@
 
 ## 规则
 
-所有部件均应从 `@nerv-iip/ui` 导入。应用代码不得深层导入 shadcn、
+所有部件均应从 `@nerv-ui/ui` 导入。应用代码不得深层导入 shadcn、
 `reka-ui` 或 `packages/ui/src/components/ui/*`。

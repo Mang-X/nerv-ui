@@ -4,8 +4,8 @@ title: NvMobileDatePicker 日期选择器
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileDatePicker } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileDatePicker } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const date = ref('2026-11-18')
 const shown = ref('2026-11-18')

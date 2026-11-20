@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvButton, Tabs, TabsList, TabsTrigger, TabsContent } from '@nerv-iip/ui'
+import { NvButton, Tabs, TabsList, TabsTrigger, TabsContent } from '@nerv-ui/ui'
 const current = ref('garden')
 const variant = ref<'default' | 'line'>('default')
 const orientation = ref<'horizontal' | 'vertical'>('horizontal')

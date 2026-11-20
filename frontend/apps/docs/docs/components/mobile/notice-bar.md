@@ -4,7 +4,7 @@ title: NvNoticeBar 通知条
 ---
 
 <script setup>
-import { NvNoticeBar } from '@nerv-iip/ui-mobile'
+import { NvNoticeBar } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>
@@ -31,7 +31,7 @@ import { NvNoticeBar } from '@nerv-iip/ui-mobile'
 
 ```vue
 <script setup>
-import { NvNoticeBar } from '@nerv-iip/ui-mobile'
+import { NvNoticeBar } from '@nerv-ui/ui-mobile'
 </script>
 
 <template>

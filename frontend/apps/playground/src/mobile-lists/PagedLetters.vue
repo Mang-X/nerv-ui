@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, shallowRef } from 'vue'
-import { NvInfiniteList } from '@nerv-iip/ui-mobile'
+import { NvInfiniteList } from '@nerv-ui/ui-mobile'
 const letters = (start: number, end: number) =>
   Array.from({ length: end - start }, (_, i) => `来信 ${start + i + 1}`)
 const rows = shallowRef(letters(0, 8))

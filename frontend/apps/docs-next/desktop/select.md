@@ -11,8 +11,8 @@ import {
   NvSelectContent,
   NvSelectItem,
   NvSelectLabel,
-} from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+} from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const single = ref('apple')
 const multiple = ref(['apple'])

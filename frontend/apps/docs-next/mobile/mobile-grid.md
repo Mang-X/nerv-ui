@@ -4,8 +4,8 @@ title: NvMobileGrid 宫格
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileGrid } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileGrid } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const selected = ref('report')
 const picked = ref('report')

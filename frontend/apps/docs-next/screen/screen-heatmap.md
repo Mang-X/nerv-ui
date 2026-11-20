@@ -3,8 +3,8 @@ title: NvScreenHeatmap 热力分档图
 ---
 
 <script setup>
-import { NvScreenHeatmap } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenHeatmap } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const thresholds = [
   { label: '正常', tone: 'success', min: 0 },

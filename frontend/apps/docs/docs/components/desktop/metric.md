@@ -4,7 +4,7 @@ title: NvMetricCard 指标卡
 
 <script setup>
 import LocalMetricComparisonExample from '../../.vitepress/examples/localMetricComparisonExample.vue'
-import { NvMetricCard, NvMetricRing, NvMetricStrip } from '@nerv-iip/ui'
+import { NvMetricCard, NvMetricRing, NvMetricStrip } from '@nerv-ui/ui'
 import { WrenchIcon, CircleCheckIcon, ClockIcon, TriangleAlertIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
@@ -217,7 +217,7 @@ const facetFeedback = ref('请选择一个维度。')
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { NvMetricCard } from '@nerv-iip/ui'
+import { NvMetricCard } from '@nerv-ui/ui'
 
 const actionFeedback = ref('请选择处理入口。')
 </script>

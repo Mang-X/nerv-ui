@@ -4,7 +4,7 @@ title: NvPicker 滚轮选择
 ---
 
 <script setup>
-import { NvCell, NvCellGroup, NvPicker } from '@nerv-iip/ui-mobile'
+import { NvCell, NvCellGroup, NvPicker } from '@nerv-ui/ui-mobile'
 import { computed, ref } from 'vue'
 
 const pickerOpen = ref(false)

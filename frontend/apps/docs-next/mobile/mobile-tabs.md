@@ -4,8 +4,8 @@ title: NvMobileTabs 标签页
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileTabs } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileTabs } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const tab = ref('overview')
 const items = [

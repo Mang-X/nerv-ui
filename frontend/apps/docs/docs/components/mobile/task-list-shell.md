@@ -17,7 +17,7 @@ import Demo from '../../../../playground/src/mobile-task-list/MobileTaskListDemo
 
 ## API
 
-从 `@nerv-iip/ui-mobile` 导入 `NvMobileTaskListShell`、`MobileListStorage`、`MobileListPosition`。
+从 `@nerv-ui/ui-mobile` 导入 `NvMobileTaskListShell`、`MobileListStorage`、`MobileListPosition`。
 
 | 输入                              | 合同                                                                      |
 | --------------------------------- | ------------------------------------------------------------------------- |

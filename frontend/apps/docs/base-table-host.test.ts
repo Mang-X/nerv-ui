@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, expect, it } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
-import { TableCaption, TableFooter, TableEmpty } from '@nerv-iip/ui'
+import { TableCaption, TableFooter, TableEmpty } from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/BaseTableExample.vue'
 let page: VueWrapper
 afterEach(() => page?.unmount())

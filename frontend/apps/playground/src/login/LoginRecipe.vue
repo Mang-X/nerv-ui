@@ -7,8 +7,8 @@ import {
   NvSidebarBrand,
   NvScreenLoginStage,
   NvScreenButton,
-} from '@nerv-iip/ui'
-import { NvMobileButton } from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui'
+import { NvMobileButton } from '@nerv-ui/ui-mobile'
 import reading from '../assets/login-reading.svg'
 import type { LoginDraft, LoginMode, LoginSurface, SubmitLogin } from './contract'
 const props = defineProps<{

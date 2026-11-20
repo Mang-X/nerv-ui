@@ -3,8 +3,8 @@ title: NvScreenTable 大屏表格
 ---
 
 <script setup>
-import { NvScreenTable } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenTable } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const columns = [
   { key: 'line', label: '分组', width: '22%' },

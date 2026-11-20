@@ -3,8 +3,8 @@ title: NvScreenHeader 大屏页头
 ---
 
 <script setup>
-import { NvScreenHeader } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenHeader } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 </script>
 
 # NvScreenHeader 大屏页头

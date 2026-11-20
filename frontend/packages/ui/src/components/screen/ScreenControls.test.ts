@@ -9,7 +9,7 @@ import {
   NvScreenSwitch,
   NvScreenButton,
   NvScreenInput,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const wrappers: ReturnType<typeof mount>[] = []
 afterEach(() => {

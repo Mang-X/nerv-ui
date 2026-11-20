@@ -4,7 +4,7 @@ title: NvKpiBar 指标横条
 
 <script setup>
 import { ref } from 'vue'
-import { NvKpiBar, NvScreenButton } from '@nerv-iip/ui'
+import { NvKpiBar, NvScreenButton } from '@nerv-ui/ui'
 import { BookOpen, Users } from '@lucide/vue'
 const items = ref([
   { icon: BookOpen, value: '1,284', label: '累计阅读', tone: 'cyan' },

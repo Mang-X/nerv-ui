@@ -8,7 +8,7 @@ import {
   type FileUploadRejectedFile,
   type FileUploadRow,
   type FileUploadVariant,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { createMemoryUpload } from './memoryUpload'
 
 const upload = useTemplateRef<FileUploadExpose>('upload')

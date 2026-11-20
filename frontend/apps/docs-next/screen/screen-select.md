@@ -4,8 +4,8 @@ title: NvScreenSelect 大屏选择器
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenSelect } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenSelect } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const line = ref(null)
 const lines = [

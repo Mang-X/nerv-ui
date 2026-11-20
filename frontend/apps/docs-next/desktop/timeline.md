@@ -3,8 +3,8 @@ title: NvTimeline 时间线
 ---
 
 <script setup>
-import { NvTimeline, NvTimelineItem } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvTimeline, NvTimelineItem } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvTimeline 时间线

@@ -1,6 +1,6 @@
 # Block: Page Header（页头）
 
-> **现役实现 = `NvPageHeader`**（`@nerv-iip/ui` blocks 层，
+> **现役实现 = `NvPageHeader`**（`@nerv-ui/ui` blocks 层，
 > `packages/ui/src/components/blocks/page-header/PageHeader.vue`）。本文早期版本描述的
 > `IamPageHeader`（大标题 `h1` + 描述段）**已不存在**——被「面包屑即标题」的
 > `NvPageHeader` 取代；历史约定存档于文末附录。

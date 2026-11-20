@@ -3,8 +3,8 @@ title: NvSpinner 加载指示器
 ---
 
 <script setup>
-import { NvSpinner } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvSpinner } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvSpinner 加载指示器

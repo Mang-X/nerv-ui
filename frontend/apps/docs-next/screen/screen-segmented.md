@@ -4,8 +4,8 @@ title: NvScreenSegmented 大屏分段控件
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenSegmented } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenSegmented } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const range = ref('today')
 const align = ref('left')

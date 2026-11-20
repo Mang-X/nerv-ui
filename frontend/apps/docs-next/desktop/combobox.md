@@ -4,8 +4,8 @@ title: NvCombobox 组合框
 
 <script setup>
 import { ref } from 'vue'
-import { NvCombobox } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvCombobox } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const products = [
   { value: 'p1', label: '示例选项 NX-220' },

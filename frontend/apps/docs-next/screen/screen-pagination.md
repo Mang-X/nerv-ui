@@ -4,8 +4,8 @@ title: NvScreenPagination 大屏分页
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenPagination } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenPagination } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const page = ref(3)
 </script>

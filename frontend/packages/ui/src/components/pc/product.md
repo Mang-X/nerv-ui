@@ -1,6 +1,6 @@
 # PC / 桌面控制台组件层 · 产品定位（product.md）
 
-> `@nerv-iip/ui` 的 `pc/` `blocks/` `layout/` 层 —— console（平台管理台）与
+> `@nerv-ui/ui` 的 `pc/` `blocks/` `layout/` 层 —— console（平台管理台）与
 > business-console（业务操作台）的组件库。AI 编码与人工开发**新建或改动本层组件、
 > 设计新页面前先读本文件**。参数细则见 `frontend/DESIGN/foundation.md`，
 > 交互验收口径见 `frontend/DESIGN/patterns/interaction-patterns.md`。
@@ -115,7 +115,7 @@
 
 ### 三、空值：有标签的字段一律给 `—`
 
-`EMPTY_TEXT` / `isEmptyValue` / `displayValue` 从 `@nerv-iip/ui` 导出，别再手写 `?? '—'`。
+`EMPTY_TEXT` / `isEmptyValue` / `displayValue` 从 `@nerv-ui/ui` 导出，别再手写 `?? '—'`。
 
 - `NvDescriptions` / `NvDataTable` / `NvRecordCard` 已内建占位，**默认就对**。
 - 判空**不吞 `0` / `false` / `NaN`** —— 它们是真实业务值（0 件库存、否、无效读数）。

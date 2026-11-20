@@ -55,7 +55,7 @@ badge、表格摘要、表单帮助、toast 或菜单中放置开发、验证或
 
 ---
 
-## 组件速查（PC；名称即 `@nerv-iip/ui` 导出真名）
+## 组件速查（PC；名称即 `@nerv-ui/ui` 导出真名）
 
 | 组件                                                          | 使用时机                                                                      | 禁用场景                                                      |
 | ------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------- |
@@ -90,7 +90,7 @@ badge、表格摘要、表单帮助、toast 或菜单中放置开发、验证或
 | `NvNavigationMenu` / `NvAppHeader` / `NvPage*`                | 应用外壳与页面骨架                                                            | —                                                             |
 
 **无 `Nv` 版的现役原版件**（[映射表](./nvui-naming-map.md) 附录 A 未列品牌版，
-直接从 `@nerv-iip/ui` 用原名，
+直接从 `@nerv-ui/ui` 用原名，
 合法且过门禁）：`Alert` `Avatar` `Empty` `Skeleton` `Spinner` `Progress` `ScrollArea`
 `Separator` `Toaster`/`toast` `Breadcrumb` `Popover` `FileUpload` 等。深路径、
 `reka-ui`、`shadcn-vue` 直引仍然全部禁止。
@@ -130,7 +130,7 @@ badge、表格摘要、表单帮助、toast 或菜单中放置开发、验证或
 ## 所有 AI 代理必须遵守的规则
 
 1. **面向用户的文案优先**：页面服务于业务用户，而不是开发者。绝不得在 UI 文案中暴露演示（demo）/ 测试 / 脚手架 / 网关（gateway）/ 上下文（context）用语。
-2. **导入边界**：只能使用裸 `@nerv-iip/ui` / `@nerv-iip/ui-mobile` 和 `Nv*` 品牌名称（无 Nv 版原版件见上节清单）。绝不得使用深路径，也不得直接导入 `reka-ui`、`shadcn-vue`。
+2. **导入边界**：只能使用裸 `@nerv-ui/ui` / `@nerv-ui/ui-mobile` 和 `Nv*` 品牌名称（无 Nv 版原版件见上节清单）。绝不得使用深路径，也不得直接导入 `reka-ui`、`shadcn-vue`。
 3. **禁止原始调色板 CSS 类**：禁止 `bg-blue-600`、`text-gray-500`、`border-zinc-*`。应使用语义工具类（`bg-primary`、`text-muted-foreground`、`border-border`、`bg-brand`）。
 4. **模板中禁止原始十六进制值**：使用 token 工具类。
 5. **新组件中禁止 `--legacy-color-*`**。

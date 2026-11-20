@@ -1,7 +1,7 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { defineComponent, h } from 'vue'
-import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { FilePreview } from '@nerv-ui/ui/file-preview'
 
 const control = vi.hoisted(() => ({ viewers: [] as any[] }))
 // A controllable third-party boundary, deliberately delivers callbacks after destroy.

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSidebar } from '@nerv-iip/ui'
+import { useSidebar } from '@nerv-ui/ui'
 const { setOpenMobile } = useSidebar()
 // SPA routers prevent the native default even when they accept navigation.
 function onNavigate(event: MouseEvent) {

@@ -4,7 +4,7 @@ title: 空间登录与修改密码
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvButton } from '@nerv-iip/ui'
+import { NvButton } from '@nerv-ui/ui'
 import LoginDemo from '../../../../playground/src/login/LoginDemo.vue'
 const space = ref<'library' | 'studio'>('library')
 </script>

@@ -3,7 +3,7 @@ title: NvCarousel 轮播图
 ---
 
 <script setup>
-import { NvCarousel } from '@nerv-iip/ui'
+import { NvCarousel } from '@nerv-ui/ui'
 
 const lines = [
   { zone: 'Alpha 组', oee: '92%', tone: 'var(--nv-brand)' },

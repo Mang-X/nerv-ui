@@ -3,8 +3,8 @@ title: NvDescriptions 描述列表
 ---
 
 <script setup>
-import { NvDescriptions, NvDescriptionsItem } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvDescriptions, NvDescriptionsItem } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvDescriptions 描述列表

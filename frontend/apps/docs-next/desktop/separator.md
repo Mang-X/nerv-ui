@@ -3,8 +3,8 @@ title: NvSeparator 分割线
 ---
 
 <script setup>
-import { NvSeparator } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvSeparator } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvSeparator 分割线

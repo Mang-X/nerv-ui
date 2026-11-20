@@ -1,7 +1,7 @@
 # 下拉菜单（NvDropdownMenu）
 
 上下文操作菜单。主要用于表格行操作和顶栏用户菜单。应用代码使用
-`NvDropdownMenu*` 系列，它们来自 `@nerv-iip/ui`；无前缀的 `DropdownMenu*` 部件是
+`NvDropdownMenu*` 系列，它们来自 `@nerv-ui/ui`；无前缀的 `DropdownMenu*` 部件是
 shadcn 原版 primitives，仅限组件库内部使用。
 
 ## 用法

@@ -7,7 +7,7 @@ import {
   NvScreenPanel,
   NvScreenPagination,
   NvScreenTable,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { collectionColumns, collectionRows, eventLabels, eventRows } from './tables-fixtures'
 
 const source = shallowRef<'collection' | 'activity'>('collection')

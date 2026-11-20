@@ -1,6 +1,6 @@
 import { afterEach, expect, it, vi } from 'vitest'
 import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
-import { NvPicker, NvNumberKeyboard } from '@nerv-iip/ui-mobile'
+import { NvPicker, NvNumberKeyboard } from '@nerv-ui/ui-mobile'
 import Recipe from './MobileFlowRecipe.vue'
 import type { FlowInput } from './flow'
 let w: VueWrapper

@@ -4,7 +4,7 @@ title: NvDigitalFlop 数字翻牌
 
 <script setup>
 import { ref } from 'vue'
-import { NvDigitalFlop, NvScreenButton, NvScreenPanel } from '@nerv-iip/ui'
+import { NvDigitalFlop, NvScreenButton, NvScreenPanel } from '@nerv-ui/ui'
 const value = ref(1284)
 </script>
 

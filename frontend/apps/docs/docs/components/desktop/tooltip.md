@@ -9,7 +9,7 @@ import {
   NvTooltipTrigger,
   NvTooltipContent,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ActivityIcon } from '@lucide/vue'
 </script>
 

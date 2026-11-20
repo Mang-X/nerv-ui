@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NvLineChart, NvButton, type NvLineBand, type NvLineMarker } from '@nerv-iip/ui'
+import { NvLineChart, NvButton, type NvLineBand, type NvLineMarker } from '@nerv-ui/ui'
 const props = defineProps<{ space: 'library' | 'garden' }>()
 const reversed = ref(false)
 const alternate = ref(false)

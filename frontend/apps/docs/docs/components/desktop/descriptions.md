@@ -4,7 +4,7 @@ pageClass: nv-wide
 ---
 
 <script setup>
-import { NvDescriptions, NvStatusBadge } from '@nerv-iip/ui'
+import { NvDescriptions, NvStatusBadge } from '@nerv-ui/ui'
 
 const items = [
   { key: 'code', label: '记录号', value: 'REC-2406-0413' },

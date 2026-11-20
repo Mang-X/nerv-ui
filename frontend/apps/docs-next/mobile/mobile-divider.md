@@ -3,8 +3,8 @@ title: NvMobileDivider 分割线
 ---
 
 <script setup>
-import { NvMobileDivider } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileDivider } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 </script>
 
 # NvMobileDivider 分割线

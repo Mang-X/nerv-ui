@@ -15,7 +15,7 @@ import {
   NvAlertDialogAction,
   NvAlertDialogCancel,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { Trash2Icon } from '@lucide/vue'
 import { ref } from 'vue'
 
@@ -96,7 +96,7 @@ import {
   NvAlertDialogAction,
   NvAlertDialogCancel,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ref } from 'vue'
 const alertOpen = ref(false)
 const deleteReceipt = ref('尚未选择删除记录')

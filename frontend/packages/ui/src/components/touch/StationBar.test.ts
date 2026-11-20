@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
-import { NvStationBar } from '@nerv-iip/ui'
+import { NvStationBar } from '@nerv-ui/ui'
 
 it.each(['success', 'warning', 'danger', 'info', 'neutral'] as const)(
   'renders identity status and interactive right slot for tone %s',

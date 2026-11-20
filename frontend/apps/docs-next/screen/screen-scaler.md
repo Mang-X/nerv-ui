@@ -3,8 +3,8 @@ title: NvScreenScaler 大屏缩放容器
 ---
 
 <script setup>
-import { NvScreenScaler } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenScaler } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 </script>
 
 # NvScreenScaler 大屏缩放容器

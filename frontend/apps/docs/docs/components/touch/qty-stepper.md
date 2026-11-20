@@ -3,7 +3,7 @@ title: NvQtyStepper 数量步进
 ---
 
 <script setup>
-import { NvQtyStepper } from '@nerv-iip/ui'
+import { NvQtyStepper } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const qty = ref(12)

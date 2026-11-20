@@ -3,7 +3,7 @@ title: NvApp 与 NvAppHeader 应用外壳
 ---
 
 <script setup>
-import { NvAppHeader, NvButton } from '@nerv-iip/ui'
+import { NvAppHeader, NvButton } from '@nerv-ui/ui'
 import AppProviderExample from '../../.vitepress/examples/AppProviderExample.vue'
 import { BellIcon, SearchIcon } from '@lucide/vue'
 import { ref } from 'vue'
@@ -25,7 +25,7 @@ function onHeaderAction(action) {
 
 ```vue
 <script setup>
-import { NvApp } from '@nerv-iip/ui'
+import { NvApp } from '@nerv-ui/ui'
 </script>
 
 <template>
@@ -60,7 +60,7 @@ import { NvApp } from '@nerv-iip/ui'
 
 ```vue
 <script setup>
-import { NvAppHeader, NvButton } from '@nerv-iip/ui'
+import { NvAppHeader, NvButton } from '@nerv-ui/ui'
 import { ref } from 'vue'
 const headerReceipt = ref('')
 let headerActionCount = 0

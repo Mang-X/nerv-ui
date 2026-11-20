@@ -8,7 +8,7 @@ import {
   PopoverTitle,
   PopoverDescription,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const open = ref(false)
 const feedback = ref('可以打开阅读提示。')

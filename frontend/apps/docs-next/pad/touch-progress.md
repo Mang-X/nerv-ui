@@ -4,8 +4,8 @@ title: NvTouchProgress 触屏进度条
 
 <script setup>
 import { ref } from 'vue'
-import { NvTouchButton, NvTouchProgress } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchButton, NvTouchProgress } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const percent = ref(40)
 

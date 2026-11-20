@@ -4,8 +4,8 @@ title: NvMobileErrorRetry 错误重试
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileErrorRetry } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileErrorRetry } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const loading = ref(false)
 const retries = ref(0)

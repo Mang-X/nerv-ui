@@ -4,7 +4,7 @@ title: NvMobileButton 移动按钮
 ---
 
 <script setup>
-import { NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvMobileButton } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>

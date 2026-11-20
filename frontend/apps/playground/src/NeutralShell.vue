@@ -8,7 +8,7 @@ import {
   NvDropdownMenuTrigger,
   NvDropdownMenuContent,
   NvDropdownMenuItem,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import NeutralShellPages from './NeutralShellPages.vue'
 import NeutralShellDomains from './NeutralShellDomains.vue'
 import type { ShellEntry } from './neutral-shell-types'

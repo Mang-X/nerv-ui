@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { mount } from '@vue/test-utils'
 import { compileScript, parse } from 'vue/compiler-sfc'
 import * as Vue from 'vue'
-import * as UI from '@nerv-iip/ui'
+import * as UI from '@nerv-ui/ui'
 import { expect, it } from 'vitest'
 function example(page: string) {
   const markdown = readFileSync(
@@ -18,7 +18,7 @@ function example(page: string) {
   const result = compileScript(descriptor, { id: page, inlineTemplate: true })
   const code = result.content
     .replace(/import\s*\{([^}]+)\}\s*from\s*['"]([^'"]+)['"]/g, (_, names, source) => {
-      if (!['vue', '@nerv-iip/ui'].includes(source)) throw new Error(source)
+      if (!['vue', '@nerv-ui/ui'].includes(source)) throw new Error(source)
       return `const {${names.replace(/\bas\b/g, ':')}} = ${source === 'vue' ? 'Vue' : 'UI'}`
     })
     .replace('export default', 'return')

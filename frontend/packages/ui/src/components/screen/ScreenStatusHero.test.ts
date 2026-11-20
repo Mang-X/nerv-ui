@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
 import { h, nextTick, shallowRef } from 'vue'
-import { NvScreenStatusHero } from '@nerv-iip/ui'
+import { NvScreenStatusHero } from '@nerv-ui/ui'
 
 it('exports a large status hero with independent host label, tone, and rhythm updates', async () => {
   const tone = shallowRef<'green' | 'amber' | 'red' | 'cyan' | 'neutral'>('green')

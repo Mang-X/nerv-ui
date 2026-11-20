@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, shallowRef } from 'vue'
-import { NvPullRefresh } from '@nerv-iip/ui-mobile'
+import { NvPullRefresh } from '@nerv-ui/ui-mobile'
 const loading = shallowRef(false)
 const failNext = shallowRef(false)
 const requests = shallowRef(0)

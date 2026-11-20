@@ -4,8 +4,8 @@ title: NvMobileToast 轻提示
 
 <script setup>
 import { createToaster } from '@ui-sdk/vue/toast'
-import { NvMobileButton, NvMobileToast } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileButton, NvMobileToast } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const toaster = createToaster({ duration: 3000 })
 </script>

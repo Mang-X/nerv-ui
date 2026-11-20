@@ -4,8 +4,8 @@ title: NvTree 层级树
 
 <script setup>
 import { ref } from 'vue'
-import { NvTree } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvTree } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const items = [
   {

@@ -4,8 +4,8 @@ title: NvSegmented 分段控件
 
 <script setup>
 import { ref } from 'vue'
-import { NvSegmented } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvSegmented } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const view = ref('grid')
 const density = ref('standard')

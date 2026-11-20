@@ -4,10 +4,10 @@
 
 ## 按表面浏览
 
-- [**桌面 PC**](/components/desktop/) —— `@nerv-iip/ui`（`pro/blocks/layout`）：按钮、徽标、卡片、提示、FileUpload、NvDataTable、描述列表、时间线、图表、覆盖层。紧凑 36–40px。
-- [**移动 PDA**](/components/mobile/) —— `@nerv-iip/ui-mobile`：原生质感控件、手势（侧滑 / 下拉刷新 / 抽屉）、宫格 / 悬浮按钮 / 居中提示。40–48px。
-- [**一体机 / 工位**](/components/touch/) —— `@nerv-iip/ui`（`touch/`）：大触控按钮、分段、数量步进、指标块、工位栏。56–72px，[工位看板完整示例](/components/board)。
-- [**大屏 / 控制室**](/components/screen/) —— `@nerv-iip/ui`（`screen/`）：独立 `--nv-scr-*` 工业蓝令牌层，OEE 核心指标、节拍甘特、告警表、舞台缩放。远距可读。
+- [**桌面 PC**](/components/desktop/) —— `@nerv-ui/ui`（`pro/blocks/layout`）：按钮、徽标、卡片、提示、FileUpload、NvDataTable、描述列表、时间线、图表、覆盖层。紧凑 36–40px。
+- [**移动 PDA**](/components/mobile/) —— `@nerv-ui/ui-mobile`：原生质感控件、手势（侧滑 / 下拉刷新 / 抽屉）、宫格 / 悬浮按钮 / 居中提示。40–48px。
+- [**一体机 / 工位**](/components/touch/) —— `@nerv-ui/ui`（`touch/`）：大触控按钮、分段、数量步进、指标块、工位栏。56–72px，[工位看板完整示例](/components/board)。
+- [**大屏 / 控制室**](/components/screen/) —— `@nerv-ui/ui`（`screen/`）：独立 `--nv-scr-*` 工业蓝令牌层，OEE 核心指标、节拍甘特、告警表、舞台缩放。远距可读。
 
 ## 在文档里直接用组件
 
@@ -15,7 +15,7 @@
 
 ```md
 <script setup>
-import { NvButton, NvBadge } from '@nerv-iip/ui'
+import { NvButton, NvBadge } from '@nerv-ui/ui'
 </script>
 
 <NvButton>主操作</NvButton> <NvBadge>徽标</NvBadge>

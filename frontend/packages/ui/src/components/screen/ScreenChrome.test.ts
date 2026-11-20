@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import { h } from 'vue'
-import { NvScreenPanel, NvBorderPanel, NvTechFrame, NvTitleBar, NvScreenHeader } from '@nerv-iip/ui'
+import { NvScreenPanel, NvBorderPanel, NvTechFrame, NvTitleBar, NvScreenHeader } from '@nerv-ui/ui'
 
 const wrappers: ReturnType<typeof mount>[] = []
 afterEach(() => {

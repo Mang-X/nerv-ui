@@ -4,8 +4,8 @@ title: NvMobileButton 按钮
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileButton } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileButton } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const clicks = ref(0)
 </script>

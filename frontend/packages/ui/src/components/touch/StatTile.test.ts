@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
-import { NvStatTile } from '@nerv-iip/ui'
+import { NvStatTile } from '@nerv-ui/ui'
 
 it.each(['neutral', 'brand', 'success', 'warning', 'danger'] as const)(
   'renders values units and supporting slot for tone %s',

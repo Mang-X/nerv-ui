@@ -8,8 +8,8 @@ import {
   NvBreadcrumbItem,
   NvBreadcrumbLink,
   NvBreadcrumbSeparator,
-} from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+} from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvBreadcrumb 面包屑

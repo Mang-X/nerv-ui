@@ -4,7 +4,7 @@ title: 大屏详情与参数取值
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenDetailDialog, NvScreenParameter, NvScreenButton } from '@nerv-iip/ui'
+import { NvScreenDetailDialog, NvScreenParameter, NvScreenButton } from '@nerv-ui/ui'
 const open = ref(false)
 const samples = ref([0, 12.34567, 8])
 </script>

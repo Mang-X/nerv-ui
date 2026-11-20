@@ -3,7 +3,7 @@ title: NvScrollBoard 无缝滚动板
 ---
 
 <script setup>
-import { NvScrollBoard } from '@nerv-iip/ui'
+import { NvScrollBoard } from '@nerv-ui/ui'
 const messages = Array.from({ length: 12 }, (_, i) => ({ id: i, text: `${i + 1} · 城市共读与河岸影像` }))
 </script>
 

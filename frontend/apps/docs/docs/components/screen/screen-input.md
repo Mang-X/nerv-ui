@@ -4,7 +4,7 @@ title: NvScreenInput 输入框
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenInput } from '@nerv-iip/ui'
+import { NvScreenInput } from '@nerv-ui/ui'
 
 const wo = ref('城市漫步')
 const qty = ref('1240')

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvScreenStageFlow, type ScreenStage } from '@nerv-iip/ui'
+import { NvScreenStageFlow, type ScreenStage } from '@nerv-ui/ui'
 
 const domain = ref('阅读活动')
 const narrow = ref(false)

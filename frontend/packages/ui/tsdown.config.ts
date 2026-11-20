@@ -39,7 +39,7 @@ const wasmUrlPlugin = {
 }
 
 /**
- * Library build for @nerv-iip/ui (T10-3 — follows the T10-1 ui-mobile skeleton;
+ * Library build for @nerv-ui/ui (T10-3 — follows the T10-1 ui-mobile skeleton;
  * see docs/evidence/t10-1-host-check.md for the template rationale).
  *
  * - `.` is the full-form barrel; `./desktop`, `./screen`, `./pad` are optional

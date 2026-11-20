@@ -1,7 +1,7 @@
 # 输入 / 选择器 (NvInput / NvSelect)
 
 文本输入和固定选项选择器。在表单中必须置于 `NvField` 上下文内使用。应用代码使用
-`NvInput` 和 `NvSelect*` 家族，均来自 `@nerv-iip/ui`；无前缀的 `Input` / `Select*` 是
+`NvInput` 和 `NvSelect*` 家族，均来自 `@nerv-ui/ui`；无前缀的 `Input` / `Select*` 是
 shadcn 原版 primitive，仅限库内部使用。
 
 ## 输入框
@@ -72,7 +72,7 @@ shadcn 原版 primitive，仅限库内部使用。
 
 ## 禁止事项
 
-- 不得直接使用 `<input>`，必须使用 `<NvInput>`，后者来自 `@nerv-iip/ui`。
+- 不得直接使用 `<input>`，必须使用 `<NvInput>`，后者来自 `@nerv-ui/ui`。
 - 不得用 `NvInput` 从固定列表中选择，应使用 `NvSelect`。
-- 不得用 `NvSelect` 搜索大型数据集，应使用 `NvSearchSelect`（可搜索的弹窗单选）或 `NvCombobox`（输入筛选并允许自由输入），两者均来自 `@nerv-iip/ui`。
+- 不得用 `NvSelect` 搜索大型数据集，应使用 `NvSearchSelect`（可搜索的弹窗单选）或 `NvCombobox`（输入筛选并允许自由输入），两者均来自 `@nerv-ui/ui`。
 - 不得省略 `for`/`id` 配对（位于 `NvField` 内时）。

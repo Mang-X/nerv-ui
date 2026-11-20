@@ -250,7 +250,7 @@ function openFull() {
 - 首次无数据：「还没有 {X}」+ **［+ 新建 {X}］按钮**（有创建能力）或「去 {上游页} 维护 →」链接（只读页）。
 - 筛选无结果：「没有符合条件的 {X}」+ **［清空筛选］按钮**。
 
-**现状与过渡下限**：`NvDataTable` 只有 `emptyMessage` 文案位、无 `#empty` 插槽（`packages/ui/src/components/pc/data-table/NvDataTable.vue:48`），按钮进不了空态 → §8 能力项（补 `#empty` 插槽，接 `@nerv-iip/ui` 已有的 `Empty` 组件族）。缺口补齐前，**文案式出路是过渡下限**——如 `master-data/units.vue:540`：
+**现状与过渡下限**：`NvDataTable` 只有 `emptyMessage` 文案位、无 `#empty` 插槽（`packages/ui/src/components/pc/data-table/NvDataTable.vue:48`），按钮进不了空态 → §8 能力项（补 `#empty` 插槽，接 `@nerv-ui/ui` 已有的 `Empty` 组件族）。缺口补齐前，**文案式出路是过渡下限**——如 `master-data/units.vue:540`：
 
 ```vue
 empty-message="还没有计量单位，点击「新建计量单位」创建第一条。"
@@ -321,7 +321,7 @@ const shiftFilter = ref('all')
 
 ### 6.1 数量/测量值必用 NumberKeyboard
 
-- PDA 上**数量、测量值、计数**类录入必须用 `@nerv-iip/ui-mobile` 的 `NumberKeyboard`（`v-model` + `v-model:show` + `extraKey`（小数点），源码 `packages/ui-mobile/src/components/number-keyboard/NumberKeyboard.vue`）；触发字段设只读，防系统键盘弹出。
+- PDA 上**数量、测量值、计数**类录入必须用 `@nerv-ui/ui-mobile` 的 `NumberKeyboard`（`v-model` + `v-model:show` + `extraKey`（小数点），源码 `packages/ui-mobile/src/components/number-keyboard/NumberKeyboard.vue`）；触发字段设只读，防系统键盘弹出。
 - **豁免**：扫码回填的只读字段；文本类录入（单号手输兜底）用普通输入。
 - **现状**：组件已导出（`ui-mobile/src/index.ts:44`）、页面**零使用**——数量字段全是原生 `<input type="number">`。反例（`business-pda/src/pages/wms/count.vue:211`）：
 

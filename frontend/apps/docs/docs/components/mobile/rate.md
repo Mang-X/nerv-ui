@@ -5,7 +5,7 @@ title: NvMobileRate 评分
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileRate } from '@nerv-iip/ui-mobile'
+import { NvMobileRate } from '@nerv-ui/ui-mobile'
 
 const score = ref(4)
 const halfScore = ref(3.5)

@@ -5,9 +5,9 @@
 
 ## 包结构
 
-- `@nerv-ui/theme`：StyleX 变量（`tokens.stylex.ts`）、共享样式片段（`shared.stylex.ts`）、
+- `@nerv-ui-next/theme`：StyleX 变量（`tokens.stylex.ts`）、共享样式片段（`shared.stylex.ts`）、
   图标表（`icons.ts` + `NvIcon.vue`）。
-- `@nerv-ui/desktop` / `mobile` / `pad` / `screen`：按形态分包，组件放 `src/components/<name>/`。
+- `@nerv-ui-next/desktop` / `mobile` / `pad` / `screen`：按形态分包，组件放 `src/components/<name>/`。
 - 文档站：`apps/docs-next`。
 
 ---
@@ -103,7 +103,7 @@ rg -n "<button|<input|<select|<textarea" packages/{desktop,mobile,pad,screen}/sr
 - **动效**：只用 CSS 过渡/动画和 ui-sdk 的 presence/gesture。不引 motion-v。
   `prefers-reduced-motion` 的降级由 `theme/motion-reset.css` 统一收口（构建时追加到
   `dist/style.css` 末尾），组件里不用逐个写。
-- **令牌**：只用 `@nerv-ui/theme/tokens.stylex` 的变量。不写裸色值，不引旧 `--nv-*`。
+- **令牌**：只用 `@nerv-ui-next/theme/tokens.stylex` 的变量。不写裸色值，不引旧 `--nv-*`。
 - **填充色阶**：静止态填充用 `muted`，悬停/按下/键盘高亮用 `mutedStrong`。把 `muted`
   同时当静止态和 hover 会让次级按钮「点了没反应」；需要更深一级时不要自己 mix 颜色，
   报告缺令牌。**看不清优先查层级**：控件和它所在的表面亮度差不足 0.02 时，修的是表面
@@ -129,7 +129,7 @@ rg -n "<button|<input|<select|<textarea" packages/{desktop,mobile,pad,screen}/sr
 - Tailwind 类、`<style scoped>`、`@layer`、reka-ui、`clsx` / `tailwind-merge`、`@lucide/vue`。
 - 自己写状态机替代 ui-sdk 原语（见原则 B 的四步）。
 - 改 `packages/theme`。缺令牌先报告，由主会话加。
-- 从旧包 `@nerv-iip/*` 导入任何东西。
+- 从旧栈 `@nerv-ui/ui`、`@nerv-ui/ui-mobile` 导入任何东西。
 - 拿「演示里用不到」当理由，把组件写成不可交互。
 
 ## 七、待补原语

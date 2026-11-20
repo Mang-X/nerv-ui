@@ -11,8 +11,8 @@ import {
   NvSheetTitle,
   NvSheetDescription,
   NvSheetClose,
-} from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+} from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const rightOpen = ref(false)
 const leftOpen = ref(false)

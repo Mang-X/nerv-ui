@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import * as ui from './index'
 
-describe('@nerv-iip/ui date and chart readiness exports', () => {
+describe('@nerv-ui/ui date and chart readiness exports', () => {
   it('exports date picker primitives from the stable package boundary', () => {
     expect(ui.Calendar).toBeDefined()
     expect(ui.RangeCalendar).toBeDefined()

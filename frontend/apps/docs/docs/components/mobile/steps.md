@@ -4,7 +4,7 @@ title: NvMobileSteps 步骤条
 ---
 
 <script setup>
-import { NvMobileSteps } from '@nerv-iip/ui-mobile'
+import { NvMobileSteps } from '@nerv-ui/ui-mobile'
 
 const procSteps = [
   { label: '提交' },
@@ -42,7 +42,7 @@ const procSteps = [
 
 ```vue
 <script setup lang="ts">
-import { NvMobileSteps } from '@nerv-iip/ui-mobile'
+import { NvMobileSteps } from '@nerv-ui/ui-mobile'
 
 const procSteps = [
   { label: '提交' },

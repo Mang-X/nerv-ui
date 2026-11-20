@@ -4,8 +4,8 @@ title: NvToggle 切换按钮
 
 <script setup>
 import { ref } from 'vue'
-import { NvToggle, NvToggleGroup } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvToggle, NvToggleGroup } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const pinned = ref(true)
 const format = ref(['bold', 'italic'])

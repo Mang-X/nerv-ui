@@ -3,7 +3,7 @@ title: NvCommand 命令面板
 ---
 
 <script setup>
-import { NvCommand, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
+import { NvCommand, NvButton, NvNotifierHost, nvMessage } from '@nerv-ui/ui'
 import {
   ActivityIcon,
   GaugeIcon,
@@ -72,7 +72,7 @@ function onCommandSelect(item) {
 
 ```vue
 <script setup>
-import { NvCommand, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
+import { NvCommand, NvButton, NvNotifierHost, nvMessage } from '@nerv-ui/ui'
 import { GaugeIcon, LayersIcon, PlusIcon } from '@lucide/vue'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 

@@ -14,7 +14,7 @@ import {
   SidebarSeparator, SidebarInput, SidebarRail, SidebarTrigger, SidebarInset,
   NvSidebarBrand, NvSidebarDot, NvSidebarUser, NvSidebarSub, NvSidebarRail, NvSidebarTrigger,
   TooltipProvider,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import {
   LayoutDashboardIcon, BoxesIcon, ClipboardCheckIcon, WrenchIcon, SettingsIcon,
   FactoryIcon, ChevronRightIcon, PlusIcon, BellIcon, SearchIcon,

@@ -5,7 +5,7 @@ title: NvNumberKeyboard 数字键盘
 
 <script setup>
 import { ref } from 'vue'
-import { NvNumberKeyboard, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvNumberKeyboard, NvMobileButton } from '@nerv-ui/ui-mobile'
 
 const qty = ref('')
 const qtyShow = ref(false)

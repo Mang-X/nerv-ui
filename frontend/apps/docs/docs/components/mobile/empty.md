@@ -4,7 +4,7 @@ title: NvMobileEmpty 空状态
 ---
 
 <script setup>
-import { NvMobileEmpty, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvMobileEmpty, NvMobileButton } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>
@@ -31,7 +31,7 @@ import { NvMobileEmpty, NvMobileButton } from '@nerv-iip/ui-mobile'
 
 ```vue
 <script setup>
-import { NvMobileEmpty, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvMobileEmpty, NvMobileButton } from '@nerv-ui/ui-mobile'
 </script>
 
 <template>

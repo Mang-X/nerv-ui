@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FusionDemo from './FusionDemo.vue'
-import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
+import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-ui/ui'
 </script>
 
 <template>

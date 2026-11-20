@@ -4,8 +4,8 @@ title: NvAvatar 头像
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { NvAvatar } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvAvatar } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const logoSrc = ref(null)
 onMounted(() => {

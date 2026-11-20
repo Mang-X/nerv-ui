@@ -5,7 +5,7 @@
 
 ## 已交付
 
-- **#143 business-console 组件集** — 现已通过 `@nerv-iip/ui` 以其 NvUI 名称提供：
+- **#143 business-console 组件集** — 现已通过 `@nerv-ui/ui` 以其 NvUI 名称提供：
   `NvTabs*`、`NvSheet*`、`NvDatePicker`、`NvDateRangePicker`、
   `FileUpload`，以及原版规范组件 `Popover*`、`Progress`、`ScrollArea` 和
   图表层（现面向应用提供 `NvAreaChart` / `NvLineChart` /
@@ -14,7 +14,7 @@
 - **Combobox 模式** — ✅ 已交付 `NvCombobox`（输入筛选，允许自由输入）和
   `NvSearchSelect`（可搜索的弹窗单选），用于大型数据集（SKU、设备、技术人员）。
 - **`breadcrumb`** — ✅ 已作为原版 primitive 安装并从
-  `@nerv-iip/ui` 导出（`Breadcrumb*`）；尚未进行 Nv 重建。
+  `@nerv-ui/ui` 导出（`Breadcrumb*`）；尚未进行 Nv 重建。
 
 ## 尚未完成
 

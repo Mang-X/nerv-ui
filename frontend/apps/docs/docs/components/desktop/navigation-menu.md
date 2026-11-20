@@ -11,7 +11,7 @@ import {
   NvNavigationMenuContent,
   NvNavigationMenuLink,
   NvNavigationMenuIndicator,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import {
   ClipboardListIcon,
   CalendarRangeIcon,

@@ -127,7 +127,7 @@ for (const mm of barrel.matchAll(
 ))
   liveOld.add(mm[1])
 
-describe('NvUI mobile Appendix A6 full-mapping freeze (@nerv-iip/ui-mobile / #787)', () => {
+describe('NvUI mobile Appendix A6 full-mapping freeze (@nerv-ui/ui-mobile / #787)', () => {
   it('barrel exports exactly the frozen Nv mobile canonical set (Appendix A6)', () => {
     expect([...liveNv].sort()).toEqual([...NV_ALL].sort())
   })

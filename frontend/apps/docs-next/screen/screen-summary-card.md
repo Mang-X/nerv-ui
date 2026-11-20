@@ -3,8 +3,8 @@ title: NvScreenSummaryCard 汇总卡片
 ---
 
 <script setup>
-import { NvScreenSummaryCard } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenSummaryCard } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const trend = [42, 44, 41, 48, 52, 50, 58, 61, 57, 64, 66, 70]
 const metrics = [

@@ -4,8 +4,8 @@ title: NvProgress 进度条
 
 <script setup>
 import { ref } from 'vue'
-import { NvProgress } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvProgress } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const percent = ref(42)
 const uploading = ref(68)

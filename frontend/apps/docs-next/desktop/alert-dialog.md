@@ -11,8 +11,8 @@ import {
   NvAlertDialogTitle,
   NvAlertDialogDescription,
   NvAlertDialogClose,
-} from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+} from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const open = ref(false)
 const urgentOpen = ref(false)

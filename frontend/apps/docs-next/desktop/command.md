@@ -4,8 +4,8 @@ title: NvCommand 命令面板
 
 <script setup>
 import { ref } from 'vue'
-import { NvCommand } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvCommand } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const lastAction = ref(null)
 

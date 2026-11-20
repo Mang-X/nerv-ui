@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import * as filePreview from './components/ui/file-preview'
 import * as ui from './index'
 
-describe('@nerv-iip/ui foundation primitive exports', () => {
+describe('@nerv-ui/ui foundation primitive exports', () => {
   it('exports tabs primitives from the stable package boundary', () => {
     expect(ui.Tabs).toBeDefined()
     expect(ui.TabsList).toBeDefined()

@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogFooter,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const fixedOpen = ref(false)
 const scrollOpen = ref(false)
 </script>

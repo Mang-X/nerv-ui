@@ -10,7 +10,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const page = ref(1)
 const itemsPerPage = 3

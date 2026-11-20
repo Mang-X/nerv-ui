@@ -3,7 +3,7 @@ title: NvEntityMultiPicker 可搜索多选
 ---
 
 <script setup>
-import { NvEntityMultiPicker } from '@nerv-iip/ui'
+import { NvEntityMultiPicker } from '@nerv-ui/ui'
 import { ref } from 'vue'
 import EntitySearchExample from '../../.vitepress/examples/EntitySearchExample.vue'
 

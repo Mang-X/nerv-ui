@@ -4,8 +4,8 @@ title: NvTouchToolbar 触屏工具栏
 
 <script setup>
 import { ref } from 'vue'
-import { NvTouchToolbar } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchToolbar } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const items = [
   { value: 'records', label: '记录', active: true },

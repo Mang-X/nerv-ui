@@ -20,7 +20,7 @@ import PopoverExample from '../../.vitepress/examples/PopoverExample.vue'
 
 ## 设计说明
 
-`Popover`、`PopoverTrigger`、`PopoverContent`、`PopoverHeader`、`PopoverTitle`、`PopoverDescription` 均从 `@nerv-iip/ui` 主桶导入。后三件提供标题区、标题和描述的结构样式；当前 Reka 将内容的可访问名称关联到原触发入口；结构标题与描述作为内容中的可读文字，不替换该默认关联。
+`Popover`、`PopoverTrigger`、`PopoverContent`、`PopoverHeader`、`PopoverTitle`、`PopoverDescription` 均从 `@nerv-ui/ui` 主桶导入。后三件提供标题区、标题和描述的结构样式；当前 Reka 将内容的可访问名称关联到原触发入口；结构标题与描述作为内容中的可读文字，不替换该默认关联。
 
 内容通过既有 portal 呈现。宿主在 portal 内容挂 `vp-raw`，以视口最大宽度和碰撞留白约束边缘，不修改基础组件或叠层机制。`Popover` 的受控打开状态只由本页持有。
 

@@ -8,8 +8,8 @@ import {
   formatFilePreviewSize,
   type FileUploadExpose,
   type FileUploadVariant,
-} from '@nerv-iip/ui'
-import { FilePreview } from '@nerv-iip/ui/file-preview'
+} from '@nerv-ui/ui'
+import { FilePreview } from '@nerv-ui/ui/file-preview'
 import { createMemoryUpload } from './memoryUpload'
 
 const wrappers: ReturnType<typeof mount>[] = []

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue'
-import { NvScreenScaler, useColorMode, useTheme, type ScaleMode } from '@nerv-iip/ui'
+import { NvScreenScaler, useColorMode, useTheme, type ScaleMode } from '@nerv-ui/ui'
 import ScreenDashboardDemo from './screen/ScreenDashboardDemo.vue'
 import ScreenStageDemo from './screen/ScreenStageDemo.vue'
 import ScreenBackgroundDemo from './screen/ScreenBackgroundDemo.vue'

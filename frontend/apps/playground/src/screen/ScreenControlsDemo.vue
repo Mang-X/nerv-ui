@@ -10,7 +10,7 @@ import {
   NvScreenTabs,
   NvScreenSegmented,
   NvScreenSwitch,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { regions, spaces, longLabels } from './controls-fixtures'
 
 const query = shallowRef('')

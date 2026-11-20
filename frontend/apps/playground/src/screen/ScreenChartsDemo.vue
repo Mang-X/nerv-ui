@@ -7,7 +7,7 @@ import {
   NvScreenPareto,
   NvScreenPanel,
   NvScreenButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { arrivalData, chartRanges, distributions } from './chart-fixtures'
 
 const source = shallowRef('reading')

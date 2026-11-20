@@ -4,8 +4,8 @@ title: NvBottomSheet 底部面板
 
 <script setup>
 import { ref } from 'vue'
-import { NvBottomSheet, NvMobileButton } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvBottomSheet, NvMobileButton } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const filterOpen = ref(false)
 const plainOpen = ref(false)

@@ -3,8 +3,8 @@ title: NvScreenStats 统计条
 ---
 
 <script setup>
-import { NvScreenStats } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenStats } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const items = [
   { label: '计划数量', value: 3200, unit: '项' },

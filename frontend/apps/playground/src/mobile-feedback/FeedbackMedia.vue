@@ -6,7 +6,7 @@ import {
   NvMobileImage,
   NvMobileProgress,
   NvMobileSkeleton,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 const image = shallowRef('/media/lake.svg')
 const avatar = shallowRef('/media/portrait.svg')
 const progress = shallowRef<number | null>(null)

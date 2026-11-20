@@ -3,8 +3,8 @@ title: NvButton 按钮
 ---
 
 <script setup>
-import { NvButton } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvButton } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvButton 按钮

@@ -7,7 +7,7 @@
 @import '@fontsource-variable/inter';
 
 /*
- * Nerv-IIP Design System v2 — shared token source of truth (@nerv-iip/ui).
+ * Nerv-IIP Design System v2 — shared token source of truth (@nerv-ui/ui).
  *
  * Single source for ALL product apps (console + business-console + …). App
  * `main.css` files import this file; tokens are NEVER duplicated per app.

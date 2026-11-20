@@ -3,7 +3,7 @@ title: NvButton 按钮
 ---
 
 <script setup>
-import { NvButton } from '@nerv-iip/ui'
+import { NvButton } from '@nerv-ui/ui'
 import { PlusIcon } from '@lucide/vue'
 </script>
 

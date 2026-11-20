@@ -9,7 +9,7 @@ import {
   NvTouchButton,
   useColorMode,
   useTheme,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const { isDark, toggle } = useColorMode()
 const { theme, setTheme } = useTheme()
 const cornerTone = shallowRef<'success' | 'warning' | 'danger' | 'info' | 'neutral'>('success')

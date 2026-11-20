@@ -4,8 +4,8 @@ title: NvScreenInput 大屏输入框
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenInput } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenInput } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const keyword = ref('')
 </script>

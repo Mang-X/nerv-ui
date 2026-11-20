@@ -4,8 +4,8 @@ title: NvMobileNumbers 数字输入
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileNumbers } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileNumbers } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const qty = ref(12)
 const blank = ref(null)

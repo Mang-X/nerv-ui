@@ -6,7 +6,7 @@ import {
   NvMobileDialog,
   NvMobileInput,
   NvNumberKeyboard,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 const sheetOpen = shallowRef(false)
 const keyboardOpen = shallowRef(false)
 const note = shallowRef('')

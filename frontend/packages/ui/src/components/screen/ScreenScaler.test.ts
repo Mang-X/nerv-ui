@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
-import { NvScreenScaler } from '@nerv-iip/ui'
+import { NvScreenScaler } from '@nerv-ui/ui'
 
 let wrapper: ReturnType<typeof mount> | undefined
 afterEach(() => {

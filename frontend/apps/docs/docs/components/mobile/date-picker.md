@@ -4,7 +4,7 @@ title: NvMobileDatePicker 日期选择
 ---
 
 <script setup>
-import { NvCell, NvCellGroup, NvMobileDatePicker } from '@nerv-iip/ui-mobile'
+import { NvCell, NvCellGroup, NvMobileDatePicker } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const dateOpen = ref(false)

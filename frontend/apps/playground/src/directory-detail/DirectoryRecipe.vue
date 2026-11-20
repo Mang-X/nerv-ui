@@ -15,7 +15,7 @@ import {
   NvStatusBadge,
   displayValue,
   type NvDataTableColumn,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import type { DirectoryFilter, DirectoryHost, DirectoryPage, DirectoryTimeline } from './contract'
 const props = defineProps<{ host: DirectoryHost; filter: DirectoryFilter; readonly?: boolean }>()
 const emit = defineEmits<{ 'update:filter': [value: DirectoryFilter] }>()

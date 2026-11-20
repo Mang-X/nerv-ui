@@ -1,8 +1,8 @@
 # Block Library v2（FE-2 区块库）
 
-`@nerv-iip/ui` 里复制重建的可复用区块组件（`packages/ui/src/components/blocks/`）。
+`@nerv-ui/ui` 里复制重建的可复用区块组件（`packages/ui/src/components/blocks/`）。
 它们组合零改动的原版 shadcn-vue primitives + FE-1 token，**绝不修改任何原版件**。
-一律从稳定边界 `@nerv-iip/ui` 导入；页面必须用区块拼装，不得内联同等布局。
+一律从稳定边界 `@nerv-ui/ui` 导入；页面必须用区块拼装，不得内联同等布局。
 
 > 命名沿革：本库最初以无前缀名交付（`Toolbar`、`PageHeader`…），#787/#789 统一改为
 > `Nv*` 品牌名。历史文档/评审记录里的无前缀区块名即指下列 `Nv*` 件。

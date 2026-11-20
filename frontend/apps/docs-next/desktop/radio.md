@@ -4,8 +4,8 @@ title: NvRadio 单选框
 
 <script setup>
 import { ref } from 'vue'
-import { NvRadioGroup, NvRadio } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvRadioGroup, NvRadio } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const delivery = ref('standard')
 </script>

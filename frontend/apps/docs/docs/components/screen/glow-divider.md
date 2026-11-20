@@ -3,7 +3,7 @@ title: NvGlowDivider 辉光分割
 ---
 
 <script setup>
-import { NvGlowDivider } from '@nerv-iip/ui'
+import { NvGlowDivider } from '@nerv-ui/ui'
 </script>
 
 # NvGlowDivider 辉光分割

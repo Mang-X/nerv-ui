@@ -4,7 +4,7 @@ title: NvScreenHeatmap 分档热力格
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenButton, NvScreenHeatmap } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenHeatmap } from '@nerv-ui/ui'
 const cells = ref([{key:'a',label:'周三 08:00',value:0},{key:'b',label:'周三 09:00',value:4.5},{key:'c',label:'周三 10:00',value:null}])
 const thresholds = [{min:4,label:'适中',tone:'cyan'},{min:8,label:'充实',tone:'green'}]
 </script>

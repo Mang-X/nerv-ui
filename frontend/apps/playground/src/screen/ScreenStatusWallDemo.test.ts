@@ -1,7 +1,7 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
-import { NvScreenStatusWall } from '@nerv-iip/ui'
+import { NvScreenStatusWall } from '@nerv-ui/ui'
 import Demo from './ScreenStatusWallDemo.vue'
 
 it('shows two neutral sources and only commits the current delayed preview after replacement mode scroll and unmount', async () => {

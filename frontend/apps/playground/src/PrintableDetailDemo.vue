@@ -8,7 +8,7 @@ import {
   NvDialogTitle,
   NvDialogDescription,
   useColorMode,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import RecordDetailBody from './RecordDetailBody.vue'
 import './printable-detail.css'
 const records = [

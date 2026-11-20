@@ -3,8 +3,8 @@ title: NvLineChart / NvBarChart / NvDonutChart 图表
 ---
 
 <script setup>
-import { NvLineChart, NvBarChart, NvDonutChart } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvLineChart, NvBarChart, NvDonutChart } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const weeks = ['第 1 周', '第 2 周', '第 3 周', '第 4 周', '第 5 周', '第 6 周', '第 7 周', '第 8 周']
 

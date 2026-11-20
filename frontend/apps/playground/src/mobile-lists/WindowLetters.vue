@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef } from 'vue'
-import { NvVirtualList } from '@nerv-iip/ui-mobile'
+import { NvVirtualList } from '@nerv-ui/ui-mobile'
 const letters = Array.from({ length: 1000 }, (_, i) => ({
   id: `letter-${i + 1}`,
   title: `信笺 ${i + 1}`,

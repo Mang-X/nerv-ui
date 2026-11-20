@@ -9,8 +9,8 @@ import {
   NvSidebarHeader,
   NvSidebarGroup,
   NvSidebarItem,
-} from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+} from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const collapsed = ref(false)
 const railCollapsed = ref(true)
@@ -132,10 +132,10 @@ const railCollapsed = ref(true)
 
 ### 收起态由原语承担
 
-`NvSidebar` 底下是自建的 `sidebar` 原语（用 ui-sdk 的 `definePrimitive` 定义）。它的收益是可以脱离组件单独驱动——`@nerv-ui/desktop` 导出 `createSidebarController`：
+`NvSidebar` 底下是自建的 `sidebar` 原语（用 ui-sdk 的 `definePrimitive` 定义）。它的收益是可以脱离组件单独驱动——`@nerv-ui-next/desktop` 导出 `createSidebarController`：
 
 ```ts
-import { createSidebarController } from '@nerv-ui/desktop'
+import { createSidebarController } from '@nerv-ui-next/desktop'
 
 const controller = createSidebarController()
 // 作为 `controller` 属性传给 NvSidebar，之后：

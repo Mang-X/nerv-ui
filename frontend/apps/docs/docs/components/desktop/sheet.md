@@ -13,7 +13,7 @@ import {
   NvSheetFooter,
   NvSheetClose,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { SlidersHorizontalIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
@@ -89,7 +89,7 @@ import {
   NvSheetFooter,
   NvSheetClose,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ref } from 'vue'
 const sheetOpen = ref(false)
 const applyReceipt = ref('尚未应用示例条件')

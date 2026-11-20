@@ -3,7 +3,7 @@ title: NvInput 输入框
 ---
 
 <script setup>
-import { NvInput } from '@nerv-iip/ui'
+import { NvInput } from '@nerv-ui/ui'
 import { SearchIcon } from '@lucide/vue'
 import { ref } from 'vue'
 

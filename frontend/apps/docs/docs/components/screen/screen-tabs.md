@@ -4,7 +4,7 @@ title: NvScreenTabs 标签页
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenTabs } from '@nerv-iip/ui'
+import { NvScreenTabs } from '@nerv-ui/ui'
 
 const tab = ref('output')
 const items = [

@@ -3,8 +3,8 @@ title: NvBadge 徽标
 ---
 
 <script setup>
-import { NvBadge } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvBadge } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvBadge 徽标

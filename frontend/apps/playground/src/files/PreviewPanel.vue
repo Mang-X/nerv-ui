@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, ref, shallowRef } from 'vue'
-import { NvButton } from '@nerv-iip/ui'
-import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { NvButton } from '@nerv-ui/ui'
+import { FilePreview } from '@nerv-ui/ui/file-preview'
 
 const samples = [
   {

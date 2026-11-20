@@ -3,8 +3,8 @@ title: NvStatTile 指标卡
 ---
 
 <script setup>
-import { NvStatTile } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvStatTile } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 </script>
 
 # NvStatTile 指标卡

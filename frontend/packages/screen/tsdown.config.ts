@@ -16,5 +16,5 @@ export default defineConfig({
     }),
     Vue(),
   ],
-  external: ['vue', '@ui-sdk/vue', '@ui-sdk/core', '@stylexjs/stylex', '@nerv-ui/theme'],
+  external: ['vue', '@ui-sdk/vue', '@ui-sdk/core', '@stylexjs/stylex', '@nerv-ui-next/theme'],
 })

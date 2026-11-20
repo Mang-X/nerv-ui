@@ -4,8 +4,8 @@ title: NvFab 悬浮操作按钮
 
 <script setup>
 import { ref } from 'vue'
-import { NvFab } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvFab } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const clicks = ref(0)
 </script>

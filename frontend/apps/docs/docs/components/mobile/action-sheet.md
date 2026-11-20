@@ -4,7 +4,7 @@ title: NvActionSheet 动作面板
 ---
 
 <script setup>
-import { NvActionSheet, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvActionSheet, NvMobileButton } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const actionOpen = ref(false)
@@ -47,7 +47,7 @@ function onAction(value) {
 
 ```vue
 <script setup>
-import { NvActionSheet, NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvActionSheet, NvMobileButton } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const actionOpen = ref(false)

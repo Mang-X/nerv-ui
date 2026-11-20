@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NvScreenSummaryCard, type ScreenSummaryMetric } from '@nerv-iip/ui'
+import { NvScreenSummaryCard, type ScreenSummaryMetric } from '@nerv-ui/ui'
 const source = ref('阅读空间')
 const count = ref(6)
 const variant = ref<'launcher' | 'health' | 'line'>('launcher')

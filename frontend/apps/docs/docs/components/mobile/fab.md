@@ -4,7 +4,7 @@ title: NvFab 悬浮按钮
 ---
 
 <script setup>
-import { NvFab } from '@nerv-iip/ui-mobile'
+import { NvFab } from '@nerv-ui/ui-mobile'
 import { ClipboardListIcon, ScanLineIcon, WrenchIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
@@ -44,7 +44,7 @@ function onFabSelect(action) {
 
 ```vue
 <script setup>
-import { NvFab } from '@nerv-iip/ui-mobile'
+import { NvFab } from '@nerv-ui/ui-mobile'
 import { ClipboardListIcon, ScanLineIcon, WrenchIcon } from '@lucide/vue'
 
 const fabActions = [

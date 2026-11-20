@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvTree, NvButton, type NvTreeNode } from '@nerv-iip/ui'
+import { NvTree, NvButton, type NvTreeNode } from '@nerv-ui/ui'
 const props = defineProps<{ space: 'library' | 'studio' }>()
 const nodes = ref<NvTreeNode[]>([
   {

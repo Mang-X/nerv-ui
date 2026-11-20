@@ -9,7 +9,7 @@ import {
   NvKpiBar,
   NvScreenStatusLight,
   NvScreenStatusTag,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const wrappers: ReturnType<typeof mount>[] = []
 const frames = new Map<number, FrameRequestCallback>()

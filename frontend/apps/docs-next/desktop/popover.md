@@ -4,8 +4,8 @@ title: NvPopover 气泡卡片
 
 <script setup>
 import { ref } from 'vue'
-import { NvButton, NvPopover, NvPopoverTrigger, NvPopoverContent } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvButton, NvPopover, NvPopoverTrigger, NvPopoverContent } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const infoOpen = ref(false)
 const hoverOpen = ref(false)

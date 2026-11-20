@@ -4,8 +4,8 @@ title: NvScreenToolbar 大屏工具栏
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenButton, NvScreenSegmented, NvScreenStatusTag, NvScreenToolbar } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenButton, NvScreenSegmented, NvScreenStatusTag, NvScreenToolbar } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const range = ref('today')
 const options = [

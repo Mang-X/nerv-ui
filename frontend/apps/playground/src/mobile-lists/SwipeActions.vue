@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
-import { NvSwipeCell } from '@nerv-iip/ui-mobile'
+import { NvSwipeCell } from '@nerv-ui/ui-mobile'
 const selected = shallowRef('尚未选择动作')
 </script>
 

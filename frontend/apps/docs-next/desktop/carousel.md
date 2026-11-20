@@ -4,8 +4,8 @@ title: NvCarousel 轮播
 
 <script setup>
 import { ref } from 'vue'
-import { NvCarousel, NvCarouselItem } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvCarousel, NvCarouselItem } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const stats = [
   { title: '当日数量', value: '1,284 项', note: '较昨日 +36' },

@@ -3,8 +3,8 @@ title: NvScreenPareto 帕累托图
 ---
 
 <script setup>
-import { NvScreenPareto } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenPareto } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const items = [
   { label: '格式异常', sub: '第一分组', value: 42, tone: 'danger' },

@@ -4,8 +4,8 @@ title: NvCell 单元格
 
 <script setup>
 import { ref } from 'vue'
-import { NvCell, NvCellGroup } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvCell, NvCellGroup } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const tapped = ref('—')
 </script>

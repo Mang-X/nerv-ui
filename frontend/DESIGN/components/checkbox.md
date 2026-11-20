@@ -1,6 +1,6 @@
 # 复选框（NvCheckbox）
 
-布尔切换控件或多选列表项。应用代码使用 `NvCheckbox`（来自 `@nerv-iip/ui`；
+布尔切换控件或多选列表项。应用代码使用 `NvCheckbox`（来自 `@nerv-ui/ui`；
 reka `CheckboxRoot` API：直接使用 `v-model` / `modelValue`，并支持
 `indeterminate`）。无前缀的 `Checkbox` 是 shadcn 原版 primitive，
 仅限组件库内部使用。

@@ -4,8 +4,8 @@ title: NvPagination 分页
 
 <script setup>
 import { ref } from 'vue'
-import { NvPagination } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvPagination } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const page = ref(1)
 const edgePage = ref(5)

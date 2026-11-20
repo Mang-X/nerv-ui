@@ -8,7 +8,7 @@ import {
   NvRowActions,
   NvSectionCard,
   NvSectionCards,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/ListBlocksExample.vue'
 let page: VueWrapper
 afterEach(() => page?.unmount())

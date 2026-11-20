@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
-import { NvMobileBadge, NvMobileButton, NvMobileTag, NvMobileToast } from '@nerv-iip/ui-mobile'
+import { NvMobileBadge, NvMobileButton, NvMobileTag, NvMobileToast } from '@nerv-ui/ui-mobile'
 const count = shallowRef(7)
 const dot = shallowRef(false)
 const tag = shallowRef(true)

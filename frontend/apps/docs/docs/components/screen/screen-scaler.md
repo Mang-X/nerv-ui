@@ -10,7 +10,7 @@ title: NvScreenScaler 舞台缩放
 
 ```vue
 <script setup lang="ts">
-import { NvScreenScaler, NvScreenHeader } from '@nerv-iip/ui'
+import { NvScreenScaler, NvScreenHeader } from '@nerv-ui/ui'
 </script>
 
 <template>

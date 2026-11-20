@@ -4,8 +4,8 @@ title: NvMobileProgress 进度条
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileButton, NvMobileProgress } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileButton, NvMobileProgress } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const value = ref(42)
 </script>

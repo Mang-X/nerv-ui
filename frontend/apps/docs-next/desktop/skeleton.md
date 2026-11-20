@@ -3,8 +3,8 @@ title: NvSkeleton 骨架屏
 ---
 
 <script setup>
-import { NvSkeleton } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvSkeleton } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvSkeleton 骨架屏

@@ -3,8 +3,8 @@ title: NvScreenStatusCard 状态卡片
 ---
 
 <script setup>
-import { NvScreenStatusCard } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenStatusCard } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const metrics = [
   { label: '节奏', value: '58', unit: 's' },

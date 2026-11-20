@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
 import { Content, useData } from 'vitepress'
-import { NvBadge, NvButton, NvIcon, NvSheet, NvSheetContent } from '@nerv-ui/desktop'
+import { NvBadge, NvButton, NvIcon, NvSheet, NvSheetContent } from '@nerv-ui-next/desktop'
 import * as stylex from '@stylexjs/stylex'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { darkTheme } from './gen/tokens.stylex'
-import { darkTheme as desktopDark } from '@nerv-ui/desktop'
-import { darkTheme as mobileDark } from '@nerv-ui/mobile'
-import { darkTheme as padDark } from '@nerv-ui/pad'
-import { darkTheme as screenDark } from '@nerv-ui/screen'
+import { darkTheme as desktopDark } from '@nerv-ui-next/desktop'
+import { darkTheme as mobileDark } from '@nerv-ui-next/mobile'
+import { darkTheme as padDark } from '@nerv-ui-next/pad'
+import { darkTheme as screenDark } from '@nerv-ui-next/screen'
 import { styles } from './layout.styles'
 import DocsSidebar from './DocsSidebar.vue'
 
 /**
- * 自定义布局：顶栏与侧栏全部由 @nerv-ui/desktop 组件 + StyleX 变量绘制，
+ * 自定义布局：顶栏与侧栏全部由 @nerv-ui-next/desktop 组件 + StyleX 变量绘制，
  * 不再使用 VitePress 默认主题的 VPNav / VPSidebar。markdown 正文仍由
  * VitePress 的 <Content/> 渲染（正文排版由 .nv-prose 承担，见 style.css）。
  *

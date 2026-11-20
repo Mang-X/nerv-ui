@@ -4,8 +4,8 @@ title: NvNoticeBar 通知条
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileButton, NvNoticeBar } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileButton, NvNoticeBar } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const visible = ref(true)
 </script>

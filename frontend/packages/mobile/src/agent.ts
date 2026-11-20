@@ -4,7 +4,7 @@
  * 写界面，就从哪个包拿桥，不必单独安装 ui-sdk 或者猜它和组件的版本关系。
  *
  * ```ts
- * import { createAgent } from '@nerv-ui/desktop/agent'
+ * import { createAgent } from '@nerv-ui-next/desktop/agent'
  * const agent = createAgent()
  * agent.snapshot() // 每个可控组件的 label / state / actions
  * ```

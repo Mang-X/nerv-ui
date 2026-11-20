@@ -3,8 +3,8 @@ title: NvTouchButton 触屏按钮
 ---
 
 <script setup>
-import { NvTouchButton } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchButton } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 </script>
 
 # NvTouchButton 触屏按钮

@@ -4,7 +4,7 @@ title: NvScreenSegmented 分段控制
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenSegmented } from '@nerv-iip/ui'
+import { NvScreenSegmented } from '@nerv-ui/ui'
 
 const range = ref('today')
 const shift = ref('a')

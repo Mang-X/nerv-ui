@@ -4,8 +4,8 @@ title: NvTimePicker 时间选择器
 
 <script setup>
 import { ref } from 'vue'
-import { NvTimePicker } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvTimePicker } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const time = ref('14:30')
 const precise = ref('08:15:42')

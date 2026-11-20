@@ -3,7 +3,7 @@ title: NvTree 层级树
 ---
 
 <script setup>
-import { NvTree, NvButton } from '@nerv-iip/ui'
+import { NvTree, NvButton } from '@nerv-ui/ui'
 import { ref } from 'vue'
 const expanded = ref(['books'])
 const selected = ref(null)

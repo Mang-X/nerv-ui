@@ -3,8 +3,8 @@ title: NvScreenStageFlow 阶段流转
 ---
 
 <script setup>
-import { NvScreenStageFlow } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenStageFlow } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const stages = [
   { key: 's1', label: '创建', value: 120, unit: '项', status: { label: '正常', tone: 'success' } },

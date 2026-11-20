@@ -26,13 +26,13 @@ it('resolves public subentries without swallowing suffixes', async () => {
   const req = createRequire(resolve(app, 'package.json'))
   try {
     for (const id of [
-      '@nerv-iip/ui',
-      '@nerv-iip/ui/file-preview',
-      '@nerv-iip/ui/styles.css',
-      '@nerv-iip/ui/theme.css',
-      '@nerv-iip/ui/overrides.css',
-      '@nerv-iip/ui-mobile',
-      '@nerv-iip/ui-mobile/styles/mobile.css',
+      '@nerv-ui/ui',
+      '@nerv-ui/ui/file-preview',
+      '@nerv-ui/ui/styles.css',
+      '@nerv-ui/ui/theme.css',
+      '@nerv-ui/ui/overrides.css',
+      '@nerv-ui/ui-mobile',
+      '@nerv-ui/ui-mobile/styles/mobile.css',
     ]) {
       const result = await server.pluginContainer.resolveId(
         id,
@@ -41,7 +41,7 @@ it('resolves public subentries without swallowing suffixes', async () => {
       // ui-mobile ships a dist `import` condition; `require.resolve` cannot see it
       // (no `require`/`default` export), so assert resolvability via the plugin
       // container and on-disk existence rather than CJS path equality.
-      if (id === '@nerv-iip/ui-mobile') {
+      if (id === '@nerv-ui/ui-mobile') {
         expect(result?.id).toBe(
           resolve(app, '../../packages/ui-mobile/dist/index.js'),
         )
@@ -53,7 +53,7 @@ it('resolves public subentries without swallowing suffixes', async () => {
     // The vue-dedupe check uses the package entry as the require anchor;
     // ui-mobile resolves to dist/index.js, so anchor at that file instead.
     for (const entry of [
-      req.resolve('@nerv-iip/ui'),
+      req.resolve('@nerv-ui/ui'),
       resolve(app, '../../packages/ui-mobile/dist/index.js'),
     ])
       expect(createRequire(entry).resolve('vue')).toBe(req.resolve('vue'))
@@ -64,9 +64,9 @@ it('resolves public subentries without swallowing suffixes', async () => {
 it('admits neutral dependencies and forbids SDK imports', () => {
   expect(
     Object.keys(json(resolve(app, 'package.json')).dependencies)
-      .filter((k) => k.startsWith('@nerv-iip/'))
+      .filter((k) => k.startsWith('@nerv-ui/'))
       .sort(),
-  ).toEqual(['@nerv-iip/ui', '@nerv-iip/ui-mobile'])
+  ).toEqual(['@nerv-ui/ui', '@nerv-ui/ui-mobile'])
   for (const f of files(app).filter(
     (f) => /\.(ts|mts|vue|css|md)$/.test(f) && !f.endsWith('.test.ts'),
   ))

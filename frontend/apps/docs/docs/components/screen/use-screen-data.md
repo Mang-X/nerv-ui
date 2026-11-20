@@ -3,7 +3,7 @@ title: useScreenData 大屏取数
 ---
 
 <script setup>
-import { NvScreenButton, useScreenData } from '@nerv-iip/ui'
+import { NvScreenButton, useScreenData } from '@nerv-ui/ui'
 let sequence = 0
 const { data, error, loading, lastUpdated, isStale, refresh } = useScreenData(async () => {
   sequence += 1
@@ -69,7 +69,7 @@ const { data, error, loading, lastUpdated, isStale, refresh } = useScreenData(as
 ```vue
 <!-- SourceView.vue -->
 <script setup lang="ts">
-import { useScreenData } from '@nerv-iip/ui'
+import { useScreenData } from '@nerv-ui/ui'
 const props = defineProps<{ source: { id: string; fetch: () => Promise<string> } }>()
 const fixedSource = props.source
 const { data, error, lastUpdated } = useScreenData(() => fixedSource.fetch())
@@ -90,4 +90,4 @@ const { data, error, lastUpdated } = useScreenData(() => fixedSource.fetch())
 - 隐藏期间定时 tick 不请求，恢复可见立即补取；在途保护同样适用。手动 refresh 及 start 的立即请求不受 hidden gate 限制。
 - SSR 不自动启动轮询。
 
-两类公开类型均从主桶 `@nerv-iip/ui` 导出。独立宿主 `/#screen/data` 提供手动失败、暂缓完成、独立请求计数、身份切换与滚动操作；完整文档站运行另属 #10。
+两类公开类型均从主桶 `@nerv-ui/ui` 导出。独立宿主 `/#screen/data` 提供手动失败、暂缓完成、独立请求计数、身份切换与滚动操作；完整文档站运行另属 #10。

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NvAppShellMobile, NvNavBar } from '@nerv-iip/ui-mobile'
-import { useColorMode } from '@nerv-iip/ui'
+import { NvAppShellMobile, NvNavBar } from '@nerv-ui/ui-mobile'
+import { useColorMode } from '@nerv-ui/ui'
 import OverlayDetails from './mobile-overlays/OverlayDetails.vue'
 import OverlayPanels from './mobile-overlays/OverlayPanels.vue'
 import OverlaySelections from './mobile-overlays/OverlaySelections.vue'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NvStatusBadge } from '@nerv-iip/ui'
+import { NvStatusBadge } from '@nerv-ui/ui'
 defineProps<{
   record: {
     id: string

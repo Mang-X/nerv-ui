@@ -3,7 +3,7 @@ title: NvCombobox / NvSearchSelect 联想与搜索选择
 ---
 
 <script setup>
-import { NvCombobox, NvSearchSelect, NvField, NvFieldLabel } from '@nerv-iip/ui'
+import { NvCombobox, NvSearchSelect, NvField, NvFieldLabel } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const device = ref('')

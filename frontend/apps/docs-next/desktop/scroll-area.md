@@ -9,8 +9,8 @@ title: NvScrollArea 滚动区域
 </style>
 
 <script setup>
-import { NvScrollArea } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvScrollArea } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const rows = Array.from({ length: 24 }, (_, index) => `记录 REC-${1040 + index}`)
 const tags = [

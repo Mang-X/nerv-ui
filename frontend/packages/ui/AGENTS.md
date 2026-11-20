@@ -1,4 +1,4 @@
-# AGENTS.md — @nerv-iip/ui（旧库 · 冻结待删）
+# AGENTS.md — @nerv-ui/ui（旧库 · 冻结待删）
 
 > **状态：冻结。** 新功能一律做进新库 `@nerv-ui/*`（`frontend/packages/{desktop,mobile,pad,screen}`），
 > 写法见 `frontend/packages/CONVENTIONS.md`。本包只接受阻断性修复，并在 R11 整体删除。

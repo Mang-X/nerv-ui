@@ -4,7 +4,7 @@ title: NvMobileSkeleton 骨架屏
 ---
 
 <script setup>
-import { NvMobileSkeleton } from '@nerv-iip/ui-mobile'
+import { NvMobileSkeleton } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>

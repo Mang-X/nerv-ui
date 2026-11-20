@@ -4,8 +4,8 @@ title: NvTouchList 触屏列表
 
 <script setup>
 import { ref } from 'vue'
-import { NvTouchList } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchList } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const groups = [
   { value: 'g-01', title: '分组 A', description: '12 条记录 · 最近更新 08:20', meta: '12' },

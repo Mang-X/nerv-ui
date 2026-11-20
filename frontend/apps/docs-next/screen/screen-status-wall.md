@@ -4,8 +4,8 @@ title: NvScreenStatusWall 状态墙
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenStatusWall } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenStatusWall } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const picked = ref('尚未选择')
 

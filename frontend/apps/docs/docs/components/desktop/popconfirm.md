@@ -3,7 +3,7 @@ title: NvPopconfirm 气泡确认
 ---
 
 <script setup>
-import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-iip/ui'
+import { NvPopconfirm, NvButton, NvNotifierHost, nvMessage } from '@nerv-ui/ui'
 </script>
 
 # NvPopconfirm 气泡确认

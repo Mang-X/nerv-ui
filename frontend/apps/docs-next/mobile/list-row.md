@@ -4,8 +4,8 @@ title: NvListRow 列表行
 
 <script setup>
 import { ref } from 'vue'
-import { NvListRow } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvListRow } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const selected = ref('')
 </script>

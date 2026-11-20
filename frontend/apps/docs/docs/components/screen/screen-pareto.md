@@ -3,7 +3,7 @@ title: NvScreenPareto 帕累托
 ---
 
 <script setup>
-import { NvScreenPareto } from '@nerv-iip/ui'
+import { NvScreenPareto } from '@nerv-ui/ui'
 
 const defects = [
   { label: '字段校验失败', sub: '分组一线', count: 46, pct: 32.4 },

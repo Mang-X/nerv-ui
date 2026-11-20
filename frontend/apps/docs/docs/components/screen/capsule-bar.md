@@ -4,7 +4,7 @@ title: NvCapsuleBar 胶囊进度
 
 <script setup>
 import { ref } from 'vue'
-import { NvCapsuleBar, NvScreenButton, NvScreenPanel } from '@nerv-iip/ui'
+import { NvCapsuleBar, NvScreenButton, NvScreenPanel } from '@nerv-ui/ui'
 const items = ref([
   { label: '阅读座席', value: 72.5, tone: 'cyan' },
   { label: '展览空间', value: 125.25, tone: 'indigo' },

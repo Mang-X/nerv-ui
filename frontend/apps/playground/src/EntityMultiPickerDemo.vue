@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NvButton, NvEntityMultiPicker, useColorMode, type EntityPickerOption } from '@nerv-iip/ui'
+import { NvButton, NvEntityMultiPicker, useColorMode, type EntityPickerOption } from '@nerv-ui/ui'
 
 // 旧字段的逗号格式由这个宿主转换；公共组件始终只接收数组。
 const storedPlaces = ref('0')

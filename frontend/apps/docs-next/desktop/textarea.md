@@ -4,8 +4,8 @@ title: NvTextarea 文本域
 
 <script setup>
 import { ref } from 'vue'
-import { NvTextarea } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvTextarea } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const content = ref('可以随内容自动增高的多行输入。')
 </script>

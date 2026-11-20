@@ -3,8 +3,8 @@ title: NvScreenStatusLight 状态灯
 ---
 
 <script setup>
-import { NvScreenStatusLight } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenStatusLight } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 </script>
 
 # NvScreenStatusLight 状态灯

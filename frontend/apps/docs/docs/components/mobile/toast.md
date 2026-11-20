@@ -4,7 +4,7 @@ title: NvMobileToast 居中提示
 ---
 
 <script setup>
-import { NvMobileButton, NvMobileToast } from '@nerv-iip/ui-mobile'
+import { NvMobileButton, NvMobileToast } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const toastShow = ref(false)
@@ -58,7 +58,7 @@ function runLoadingToast() {
 
 ```vue
 <script setup>
-import { NvMobileButton, NvMobileToast } from '@nerv-iip/ui-mobile'
+import { NvMobileButton, NvMobileToast } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const toastShow = ref(false)

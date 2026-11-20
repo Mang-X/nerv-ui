@@ -4,7 +4,7 @@ title: NvScanBar 扫码栏
 ---
 
 <script setup>
-import { NvCell, NvCellGroup, NvScanBar } from '@nerv-iip/ui-mobile'
+import { NvCell, NvCellGroup, NvScanBar } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const scans = ref(['MTL-7782-0034'])

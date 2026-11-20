@@ -3,7 +3,7 @@ title: NvPage 页面布局
 ---
 
 <script setup>
-import { NvPage, NvPageAside } from '@nerv-iip/ui'
+import { NvPage, NvPageAside } from '@nerv-ui/ui'
 </script>
 
 # NvPage 页面布局

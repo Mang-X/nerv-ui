@@ -1,6 +1,6 @@
 # 日期选择器（NvDatePicker / NvDateRangePicker / NvTimePicker）
 
-桌面产品 UI 的日期/时间控件，从 `@nerv-iip/ui` 导出：
+桌面产品 UI 的日期/时间控件，从 `@nerv-ui/ui` 导出：
 
 - `NvDatePicker` — 单个日期。`v-model` 为 `YYYY-MM-DD` 字符串或 `null`；
   支持可选 `locale` 控制已选日期展示，省略时保持 ISO 显示；完整属性契约见[文档站](../../apps/design-system/docs/components/desktop/date-picker.md)。
@@ -24,7 +24,7 @@
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvDatePicker, NvDateRangePicker, type DateRange } from '@nerv-iip/ui'
+import { NvDatePicker, NvDateRangePicker, type DateRange } from '@nerv-ui/ui'
 
 const dueDate = ref<string | null>(null)
 const plannedWindow = ref<DateRange | null>(null)
@@ -38,5 +38,5 @@ const plannedWindow = ref<DateRange | null>(null)
 
 ## 规则
 
-- 不得在应用代码中从深层路径（deep path）导入日历或 Popover 内部实现；应使用 `@nerv-iip/ui` 的桶导出（barrel export）。
+- 不得在应用代码中从深层路径（deep path）导入日历或 Popover 内部实现；应使用 `@nerv-ui/ui` 的桶导出（barrel export）。
 - 不得手动组合 Popover + 原生日期输入；该前 NvUI 模式已由 `NvDatePicker` / `NvDateRangePicker` 取代。

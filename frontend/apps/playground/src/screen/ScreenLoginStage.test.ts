@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
-import { NvScreenLoginStage } from '@nerv-iip/ui'
+import { NvScreenLoginStage } from '@nerv-ui/ui'
 
 it('projects artwork and glow points through the same viewBox for contain and cover', async () => {
   const page = mount(NvScreenLoginStage, {

@@ -4,8 +4,8 @@ title: NvTouchSelect 触屏选择器
 
 <script setup>
 import { computed, ref } from 'vue'
-import { NvTouchSelect } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchSelect } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 
 const groupOptions = [
   { value: 'g-01', label: '分组 A' },

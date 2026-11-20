@@ -3,8 +3,8 @@ title: NvAlarmTable 告警列表
 ---
 
 <script setup>
-import { NvAlarmTable } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvAlarmTable } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const rows = [
   { id: 1, time: '10:02:31', source: '第一分组 · 终端 12', message: '响应耗时连续 3 次超出上限', level: 'critical', status: '未确认', statusTone: 'danger' },

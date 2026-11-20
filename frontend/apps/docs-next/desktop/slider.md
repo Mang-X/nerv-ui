@@ -4,8 +4,8 @@ title: NvSlider 滑块
 
 <script setup>
 import { ref } from 'vue'
-import { NvSlider } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvSlider } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 
 const volume = ref(40)
 const range = ref([20, 60])

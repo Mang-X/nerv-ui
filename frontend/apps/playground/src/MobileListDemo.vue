@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NvAppShellMobile, NvNavBar } from '@nerv-iip/ui-mobile'
-import { useColorMode } from '@nerv-iip/ui'
+import { NvAppShellMobile, NvNavBar } from '@nerv-ui/ui-mobile'
+import { useColorMode } from '@nerv-ui/ui'
 import LetterCarousel from './mobile-lists/LetterCarousel.vue'
 import WindowLetters from './mobile-lists/WindowLetters.vue'
 import PagedLetters from './mobile-lists/PagedLetters.vue'

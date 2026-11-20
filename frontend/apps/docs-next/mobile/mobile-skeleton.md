@@ -3,8 +3,8 @@ title: NvMobileSkeleton 骨架屏
 ---
 
 <script setup>
-import { NvMobileSkeleton } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileSkeleton } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 </script>
 
 # NvMobileSkeleton 骨架屏

@@ -4,7 +4,7 @@ title: NvSwiper 轮播图
 ---
 
 <script setup>
-import { NvSwiper, NvMobileButton, NvMobileTag } from '@nerv-iip/ui-mobile'
+import { NvSwiper, NvMobileButton, NvMobileTag } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const panels = [

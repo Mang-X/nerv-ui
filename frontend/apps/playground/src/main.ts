@@ -1,6 +1,6 @@
 import './assets/main.css'
 import { createApp } from 'vue'
-import { initTheme } from '@nerv-iip/ui'
+import { initTheme } from '@nerv-ui/ui'
 import App from './App.vue'
 
 initTheme()

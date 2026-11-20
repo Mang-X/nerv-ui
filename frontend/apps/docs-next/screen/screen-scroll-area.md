@@ -3,8 +3,8 @@ title: NvScreenScrollArea 自动滚动区
 ---
 
 <script setup>
-import { NvScreenScrollArea } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenScrollArea } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 
 const rows = [
   { id: 'REC-1138', line: '第一分组', state: '处理中' },

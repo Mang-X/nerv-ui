@@ -4,7 +4,7 @@ title: NvMobileImage 图片
 ---
 
 <script setup>
-import { NvMobileImage } from '@nerv-iip/ui-mobile'
+import { NvMobileImage } from '@nerv-ui/ui-mobile'
 
 const photo = 'https://picsum.photos/seed/nerv-cnc/480/360'
 const tall = 'https://picsum.photos/seed/nerv-line/360/480'

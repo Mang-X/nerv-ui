@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
 import { createApp, h } from 'vue'
 import source from './FusionBg.vue?raw'
-import { NvScreenFusionBg } from '@nerv-iip/ui'
+import { NvScreenFusionBg } from '@nerv-ui/ui'
 const nodes = [
   {
     id: 'a',

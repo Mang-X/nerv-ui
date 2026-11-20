@@ -3,7 +3,7 @@ title: NvLoader 加载
 ---
 
 <script setup>
-import { NvLoader, Skeleton } from '@nerv-iip/ui'
+import { NvLoader, Skeleton } from '@nerv-ui/ui'
 
 const loaderVariants = [
   { v: 'ring', name: '环形' },

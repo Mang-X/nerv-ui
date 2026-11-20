@@ -4,8 +4,8 @@ title: NvActionSheet 操作菜单
 
 <script setup>
 import { ref } from 'vue'
-import { NvActionSheet, NvMobileButton } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvActionSheet, NvMobileButton } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const open = ref(false)
 const orderOpen = ref(false)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { NvButton, NvBadge, NvDropdownMenuItem } from '@nerv-iip/ui'
+import { NvButton, NvBadge, NvDropdownMenuItem } from '@nerv-ui/ui'
 import NeutralShell from './NeutralShell.vue'
 import NeutralShellNavigation from './NeutralShellNavigation.vue'
 const props = defineProps<{ space: 'library' | 'studio' }>()

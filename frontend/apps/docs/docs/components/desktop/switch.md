@@ -3,7 +3,7 @@ title: NvSwitch 开关
 ---
 
 <script setup>
-import { NvSwitch } from '@nerv-iip/ui'
+import { NvSwitch } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const switchOn = ref(true)

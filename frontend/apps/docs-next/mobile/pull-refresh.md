@@ -4,8 +4,8 @@ title: NvPullRefresh 下拉刷新
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileButton, NvPullRefresh } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileButton, NvPullRefresh } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const refreshing = ref(false)
 const lastRefresh = ref('尚未刷新')

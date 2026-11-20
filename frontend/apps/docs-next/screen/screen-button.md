@@ -3,8 +3,8 @@ title: NvScreenButton 大屏按钮
 ---
 
 <script setup>
-import { NvScreenButton } from '@nerv-ui/screen'
-import '@nerv-ui/screen/styles.css'
+import { NvScreenButton } from '@nerv-ui-next/screen'
+import '@nerv-ui-next/screen/styles.css'
 </script>
 
 # NvScreenButton 大屏按钮

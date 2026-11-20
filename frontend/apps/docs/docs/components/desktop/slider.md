@@ -3,7 +3,7 @@ title: NvSlider 滑块
 ---
 
 <script setup>
-import { NvSlider } from '@nerv-iip/ui'
+import { NvSlider } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const util = ref([75])

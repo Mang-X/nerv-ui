@@ -4,7 +4,7 @@ title: NvScreenStatusTag 状态标签
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenInput, NvScreenSelect, NvScreenStatusTag } from '@nerv-iip/ui'
+import { NvScreenInput, NvScreenSelect, NvScreenStatusTag } from '@nerv-ui/ui'
 const tone = ref('run')
 const label = ref('欢迎来坐坐')
 const tones = ['run', 'idle', 'alarm', 'cyan', 'green', 'amber', 'red']

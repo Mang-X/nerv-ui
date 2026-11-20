@@ -6,7 +6,7 @@
 - **`NvStatusBadge`** — 实体状态（圆点加浅色胶囊、共享状态映射，
   可选实时 `pulse`）。状态列始终优先使用它。
 
-两者均从 `@nerv-iip/ui` 导出。无前缀的 `Badge` 是 shadcn 原版
+两者均从 `@nerv-ui/ui` 导出。无前缀的 `Badge` 是 shadcn 原版
 基础组件（primitive），仅限组件库内部使用。
 
 ## NvBadge 变体

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NvApp, NvButton, useColorMode, useTheme } from '@nerv-iip/ui'
+import { NvApp, NvButton, useColorMode, useTheme } from '@nerv-ui/ui'
 import { ref } from 'vue'
 import NativeUploadPanel from './files/NativeUploadPanel.vue'
 const uploadMode = ref('memory')

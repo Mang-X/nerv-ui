@@ -3,8 +3,8 @@ title: NvTouchAvatar 触屏头像
 ---
 
 <script setup>
-import { NvTouchAvatar } from '@nerv-ui/pad'
-import '@nerv-ui/pad/styles.css'
+import { NvTouchAvatar } from '@nerv-ui-next/pad'
+import '@nerv-ui-next/pad/styles.css'
 </script>
 
 # NvTouchAvatar 触屏头像

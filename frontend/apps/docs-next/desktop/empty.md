@@ -3,8 +3,8 @@ title: NvEmpty 空状态
 ---
 
 <script setup>
-import { NvEmpty, NvButton } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvEmpty, NvButton } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvEmpty 空状态

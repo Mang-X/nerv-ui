@@ -4,7 +4,7 @@ title: NvMobileTag 标签
 ---
 
 <script setup>
-import { NvMobileTag } from '@nerv-iip/ui-mobile'
+import { NvMobileTag } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>

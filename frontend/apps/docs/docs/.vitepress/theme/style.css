@@ -54,9 +54,9 @@
 
 @import 'shadcn-vue/tailwind.css';
 
-/* Design System v2 tokens — single source of truth in @nerv-iip/ui */
+/* Design System v2 tokens — single source of truth in @nerv-ui/ui */
 @import '../../../../../packages/ui/src/styles/theme.css';
-/* 移动端安全区/触控基线（@nerv-iip/ui-mobile） */
+/* 移动端安全区/触控基线（@nerv-ui/ui-mobile） */
 @import '../../../../../packages/ui-mobile/src/styles/mobile.css';
 /* Host-override decorations (overlay glass, sidebar premium). Imported UNLAYERED
    in the docs (ADR 0020 §4.2.1) — same rationale as the unlayered utilities
@@ -181,7 +181,7 @@
 }
 
 /* ----------------------------------------------------------------------------
- * Hide VitePress's built-in nav controls — replaced by our own @nerv-iip/ui
+ * Hide VitePress's built-in nav controls — replaced by our own @nerv-ui/ui
  * components in Layout.vue (search trigger + Sun/Moon appearance toggle).
  * ------------------------------------------------------------------------- */
 /* Search: collapse the default container but KEEP it mounted — its local-search

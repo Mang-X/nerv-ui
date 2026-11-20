@@ -3,8 +3,8 @@ title: NvMobileEmpty 空状态
 ---
 
 <script setup>
-import { NvMobileButton, NvMobileEmpty } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvMobileButton, NvMobileEmpty } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 </script>
 
 # NvMobileEmpty 空状态

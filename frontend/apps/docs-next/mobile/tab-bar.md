@@ -4,8 +4,8 @@ title: NvTabBar 底部导航栏
 
 <script setup>
 import { ref } from 'vue'
-import { NvTabBar } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvTabBar } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const current = ref('home')
 const items = [

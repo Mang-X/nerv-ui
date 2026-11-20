@@ -4,8 +4,8 @@ title: NvSwipeCell 滑动单元格
 
 <script setup>
 import { ref } from 'vue'
-import { NvSwipeCell } from '@nerv-ui/mobile'
-import '@nerv-ui/mobile/styles.css'
+import { NvSwipeCell } from '@nerv-ui-next/mobile'
+import '@nerv-ui-next/mobile/styles.css'
 
 const lastAction = ref('尚未操作')
 

@@ -70,10 +70,10 @@ importers:
       '@lucide/vue':
         specifier: 1.24.0
         version: 1.24.0(vue@3.5.39(typescript@6.0.3))
-      '@nerv-iip/ui':
+      '@nerv-ui/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@nerv-iip/ui-mobile':
+      '@nerv-ui/ui-mobile':
         specifier: workspace:*
         version: link:../../packages/ui-mobile
       vue:
@@ -92,19 +92,19 @@ importers:
 
   apps/docs-next:
     dependencies:
-      '@nerv-ui/desktop':
+      '@nerv-ui-next/desktop':
         specifier: workspace:*
         version: link:../../packages/desktop
-      '@nerv-ui/mobile':
+      '@nerv-ui-next/mobile':
         specifier: workspace:*
         version: link:../../packages/mobile
-      '@nerv-ui/pad':
+      '@nerv-ui-next/pad':
         specifier: workspace:*
         version: link:../../packages/pad
-      '@nerv-ui/screen':
+      '@nerv-ui-next/screen':
         specifier: workspace:*
         version: link:../../packages/screen
-      '@nerv-ui/theme':
+      '@nerv-ui-next/theme':
         specifier: workspace:*
         version: link:../../packages/theme
       '@stylexjs/stylex':
@@ -129,10 +129,10 @@ importers:
 
   apps/playground:
     dependencies:
-      '@nerv-iip/ui':
+      '@nerv-ui/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@nerv-iip/ui-mobile':
+      '@nerv-ui/ui-mobile':
         specifier: workspace:*
         version: link:../../packages/ui-mobile
       vue:
@@ -459,7 +459,7 @@ importers:
       '@lucide/vue':
         specifier: 1.24.0
         version: 1.24.0(vue@3.5.39(typescript@6.0.3))
-      '@nerv-iip/ui':
+      '@nerv-ui/ui':
         specifier: workspace:*
         version: link:../ui
       '@vueuse/core':

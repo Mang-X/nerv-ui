@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, h, ref } from 'vue'
-import { NvActionSummary, NvButton, useColorMode, type NvActionSummaryState } from '@nerv-iip/ui'
+import { NvActionSummary, NvButton, useColorMode, type NvActionSummaryState } from '@nerv-ui/ui'
 
 const CalendarIcon = defineComponent({ render: () => h('span', '✦') })
 const BookIcon = defineComponent({ render: () => h('span', '◈') })

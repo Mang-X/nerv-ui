@@ -3,8 +3,8 @@ title: NvCard 卡片
 ---
 
 <script setup>
-import { NvCard, NvCardHeader, NvCardContent, NvCardFooter, NvButton } from '@nerv-ui/desktop'
-import '@nerv-ui/desktop/styles.css'
+import { NvCard, NvCardHeader, NvCardContent, NvCardFooter, NvButton } from '@nerv-ui-next/desktop'
+import '@nerv-ui-next/desktop/styles.css'
 </script>
 
 # NvCard 卡片

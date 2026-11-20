@@ -2,7 +2,7 @@
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref } from 'vue'
 import { useData } from 'vitepress'
-import { NvIcon, NvInput } from '@nerv-ui/desktop'
+import { NvIcon, NvInput } from '@nerv-ui-next/desktop'
 import { data } from '../data/components.data'
 import Cover from './Cover.vue'
 import { styles } from './overview.styles'

@@ -6,7 +6,7 @@ import {
   NvScreenButton,
   NvScreenScrollArea,
   NvScrollBoard,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import ScreenDataSource from './ScreenDataSource.vue'
 import { createSpaceFeed, spaceRows } from './data-fixtures'
 

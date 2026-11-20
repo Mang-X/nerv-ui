@@ -12,7 +12,7 @@
 `packages/ui/src/components/pc/product.md`（骨架=成熟 B端范式 / 基调=冷静工业
 高密度 / 触感=产品级精致）。
 
-token 的单一事实来源是 `@nerv-iip/ui` 中的
+token 的单一事实来源是 `@nerv-ui/ui` 中的
 `packages/ui/src/styles/theme.css`，由 `apps/console` 和 `apps/business-console`
 共同导入。绝不得按 app 重复定义 token 值。
 
@@ -61,7 +61,7 @@ token 的单一事实来源是 `@nerv-iip/ui` 中的
 
 ### 动态强调色与颜色模式
 
-`@nerv-iip/ui` 暴露运行时机制（仅提供 composable；切换器 UI 属于 FE-2/FE-3）：
+`@nerv-ui/ui` 暴露运行时机制（仅提供 composable；切换器 UI 属于 FE-2/FE-3）：
 
 - `useColorMode()` → `{ mode, isDark, toggle, setMode }`：切换 `<html>` 上的 `.dark`，并持久化。
 - `useThemeAccent()` → `{ accent, setAccent, reset, presets }`：在运行时重写 `--brand`，并持久化。

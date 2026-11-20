@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NvThemePicker, NvThemeToggle } from '@nerv-iip/ui'
+import { NvThemePicker, NvThemeToggle } from '@nerv-ui/ui'
 import { ArrowRightIcon, LayoutDashboardIcon, MonitorIcon, SmartphoneIcon } from '@lucide/vue'
 
 definePage({ meta: { title: '总览' } })

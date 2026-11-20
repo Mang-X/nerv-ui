@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NvAccordion, NvAccordionItem, NvSidebar, NvSidebarItem } from '@nerv-ui/desktop'
+import { NvAccordion, NvAccordionItem, NvSidebar, NvSidebarItem } from '@nerv-ui-next/desktop'
 import * as stylex from '@stylexjs/stylex'
 import { computed, ref, watch } from 'vue'
 import { useData } from 'vitepress'
