@@ -146,20 +146,34 @@ async function pages() {
 
 async function launch() {
   const profile = await mkdtemp(join(tmpdir(), 'nv-agent-audit-'))
+  // `--no-sandbox` / `--disable-dev-shm-usage` 是 CI（容器里的 Linux Chrome）必需的：
+  // 缺前者时进程直接以 sandbox 权限错误退出，缺后者时 /dev/shm 只有 64MB 会崩。
+  // 本地 macOS 传这两个参数也无害。
   const child = spawn(
     CHROME,
     [
       '--headless=new',
       '--disable-gpu',
       '--hide-scrollbars',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
       '--no-first-run',
       '--no-default-browser-check',
       '--remote-debugging-port=0',
       `--user-data-dir=${profile}`,
       'about:blank',
     ],
-    { stdio: 'ignore' },
+    { stdio: ['ignore', 'ignore', 'pipe'] },
   )
+
+  // Chrome 起不来时把 stderr 带进错误里。`stdio: 'ignore'` 会把
+  // 「沙箱权限不足」这类真正的原因吃掉，只剩一句「没写出 DevToolsActivePort」。
+  let stderr = ''
+  child.stderr?.on('data', (chunk) => {
+    stderr += String(chunk)
+    if (stderr.length > 4000) stderr = stderr.slice(-4000)
+  })
 
   const portFile = join(profile, 'DevToolsActivePort')
   let port
@@ -172,7 +186,9 @@ async function launch() {
   }
   if (!port) {
     child.kill()
-    throw new Error('Chrome 没有写出 DevToolsActivePort')
+    throw new Error(
+      `Chrome 没有写出 DevToolsActivePort（${CHROME}）${stderr ? `\n${stderr}` : ''}`,
+    )
   }
 
   const targets = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()
