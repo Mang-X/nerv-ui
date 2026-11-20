@@ -78,6 +78,21 @@ const EXPECTED = {
   'screen-summary-card': null,
   'screen-table': null,
   'screen-trend-chart': null,
+  // 本批新增的大屏件里，只有 switch / search 建立在 ui-sdk 控件原语上、会自己进桥；
+  // 其余是纯展示（分隔线、外框、标题、胶囊条、环图、折线、新鲜度、指标卡、滚动榜）。
+  // detail-dialog 的文档示例默认关闭，页面上没有活着的条目——它的桥登记由
+  // screen 包的组件级契约测试覆盖，而不是靠页面。
+  'screen-glow-divider': null,
+  'screen-title-bar': null,
+  'screen-border-panel': null,
+  'screen-tech-frame': null,
+  'screen-capsule-bar': null,
+  'screen-donut': null,
+  'screen-sparkline': null,
+  'screen-freshness': null,
+  'screen-parameter': null,
+  'screen-scroll-board': null,
+  'screen-detail-dialog': null,
 }
 
 /**

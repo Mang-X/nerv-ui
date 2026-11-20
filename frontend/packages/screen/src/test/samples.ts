@@ -7,6 +7,9 @@ import { NvScreenSegmented } from '../components/screen-segmented'
 import { NvScreenTabs } from '../components/screen-tabs'
 import { NvScreenToolbar } from '../components/screen-toolbar'
 import { NvScreenPagination } from '../components/screen-pagination'
+import { NvScreenSwitch } from '../components/screen-switch'
+import { NvScreenSearch } from '../components/screen-search'
+import { NvScreenDetailDialog } from '../components/screen-detail-dialog'
 
 /**
  * 大屏样本。大屏组件里有一半是纯展示（KPI、环图、数字翻牌、面板），它们不进
@@ -73,5 +76,27 @@ export const samples: Record<string, Sample> = {
   pagination: {
     kind: 'pagination',
     render: () => h(NvScreenPagination, { pageCount: 5, defaultPage: 1, label: '看板分页' }),
+  },
+  switch: {
+    kind: 'switch',
+    render: () => h(NvScreenSwitch, { 'aria-label': '自动巡检', defaultChecked: true }),
+  },
+  search: {
+    kind: 'input',
+    render: () => h(NvScreenSearch, { label: '搜索工单' }),
+  },
+  dialog: {
+    kind: 'dialog',
+    render: () =>
+      h(
+        NvScreenDetailDialog,
+        {
+          open: true,
+          title: '工单 #4417',
+          description: '焊接线 A · 14:05 开始',
+          state: 'data',
+        },
+        { default: () => '正文' },
+      ),
   },
 }

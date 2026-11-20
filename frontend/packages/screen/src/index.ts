@@ -135,6 +135,30 @@ export type {
 export { default as NvScreenToolbar } from './components/screen-toolbar/NvScreenToolbar.vue'
 export type { ScreenToolbarProps } from './components/screen-toolbar/types'
 
+export { default as NvScreenGlowDivider } from './components/screen-glow-divider/NvScreenGlowDivider.vue'
+export { default as NvScreenBorderPanel } from './components/screen-border-panel/NvScreenBorderPanel.vue'
+export { default as NvScreenTechFrame } from './components/screen-tech-frame/NvScreenTechFrame.vue'
+export type { ScreenTechFrameAccent } from './components/screen-tech-frame/types'
+export { default as NvScreenCapsuleBar } from './components/screen-capsule-bar/NvScreenCapsuleBar.vue'
+export type {
+  ScreenCapsuleItem,
+  ScreenCapsuleTone,
+} from './components/screen-capsule-bar/types'
+export { default as NvScreenTitleBar } from './components/screen-title-bar/NvScreenTitleBar.vue'
+
+export { default as NvScreenSwitch } from './components/screen-switch/NvScreenSwitch.vue'
+export { default as NvScreenSearch } from './components/screen-search/NvScreenSearch.vue'
+export { default as NvScreenFreshness } from './components/screen-freshness/NvScreenFreshness.vue'
+export type { ScreenFreshnessTone } from './components/screen-freshness/types'
+export { default as NvScreenSparkline } from './components/screen-sparkline/NvScreenSparkline.vue'
+
+export { default as NvScreenParameter } from './components/screen-parameter/NvScreenParameter.vue'
+export { default as NvScreenDetailDialog } from './components/screen-detail-dialog/NvScreenDetailDialog.vue'
+export type { ScreenDetailState } from './components/screen-detail-dialog/types'
+export { default as NvScreenDonut } from './components/screen-donut/NvScreenDonut.vue'
+export type { ScreenDonutSegment } from './components/screen-donut/types'
+export { default as NvScreenScrollBoard } from './components/screen-scroll-board/NvScreenScrollBoard.vue'
+
 export { darkTheme } from './theme/tokens.stylex'
 
 export { default as NvIcon } from './theme/NvIcon.vue'
