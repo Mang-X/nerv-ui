@@ -31,11 +31,11 @@ import { computed, watch } from 'vue'
 
 export type ColorMode = 'light' | 'dark'
 
-export const COLOR_MODE_STORAGE_KEY = 'nerv-iip-color-mode'
+export const COLOR_MODE_STORAGE_KEY = 'nerv-ui-color-mode'
 /** Current theme storage key. */
-export const THEME_STORAGE_KEY = 'nerv-iip-theme'
+export const THEME_STORAGE_KEY = 'nerv-ui-theme'
 /** Legacy key (FE-1 stored a raw `--brand` oklch string). Migrated on read. */
-export const ACCENT_STORAGE_KEY = 'nerv-iip-accent'
+export const ACCENT_STORAGE_KEY = 'nerv-ui-accent'
 
 /** The neutral (black/white) theme — no colour, follows light/dark automatically. */
 export const NEUTRAL_THEME = 'neutral'
@@ -100,7 +100,7 @@ function isThemeName(value: string | null): value is ThemeName {
 }
 
 /**
- * Migrate a legacy `nerv-iip-accent` value (a raw `--brand` oklch string) to a
+ * Migrate a legacy `nerv-ui-accent` value (a raw `--brand` oklch string) to a
  * theme name. Matches it back to a preset by primary colour; falls back to the
  * default theme if it can't be resolved.
  */

@@ -14,7 +14,7 @@ const originalRevokeObjectURL = URL.revokeObjectURL
 beforeEach(() => {
   Object.defineProperty(URL, 'createObjectURL', {
     configurable: true,
-    value: vi.fn(() => 'blob:nerv-iip-preview'),
+    value: vi.fn(() => 'blob:nerv-ui-preview'),
   })
   Object.defineProperty(URL, 'revokeObjectURL', {
     configurable: true,
@@ -755,7 +755,7 @@ describe('FileUpload', () => {
     await flushPromises()
 
     const thumbnail = wrapper.get('[data-slot="file-upload-thumbnail"]')
-    expect(thumbnail.attributes('src')).toBe('blob:nerv-iip-preview')
+    expect(thumbnail.attributes('src')).toBe('blob:nerv-ui-preview')
     expect(thumbnail.attributes('alt')).toBe('defect-photo.png')
   })
 

@@ -31,6 +31,8 @@ PDF、Word、PowerPoint 和 Excel 预览都在统一工具栏内提供快速定�
 
 ## 示例
 
+### 图片预览
+
 <Demo title="图片预览" block>
   <FilePreview
     @open-source="onOpenSource"
@@ -73,6 +75,8 @@ function onOpenSource(src: string) {
 </template>
 ```
 
+### PDF 预览
+
 <Demo title="PDF 预览" block>
   <FilePreview
     @open-source="onOpenSource"
@@ -102,11 +106,15 @@ function onOpenSource(src: string) {
 
 以下样本包含三个内容不同的页面，可使用上一页、下一页和页码下拉切换。样本原样复用本仓库 playground 的本地合成资料；原单页 PDF 示例保持不变。窄屏在预览区域内横向滚动，站点正文不随工具栏撑宽。
 
+### 多页 PDF 导航
+
 <Demo title="多页 PDF 导航" block>
   <PdfPagesExample />
 </Demo>
 
 <<< @/.vitepress/examples/PdfPagesExample.vue
+
+### Word / DOCX 预览
 
 <Demo title="Word / DOCX 预览" block>
   <FilePreview
@@ -137,6 +145,8 @@ function onOpenSource(src: string) {
 
 Excel 示例使用一个包含 `Inspection / Trend / Summary` 3 个工作表的工作簿，用于验证表格预览的工作表切换体验。
 
+### Excel / XLSX 预览
+
 <Demo title="Excel / XLSX 预览" block>
   <FilePreview
     @open-source="onOpenSource"
@@ -163,6 +173,8 @@ Excel 示例使用一个包含 `Inspection / Trend / Summary` 3 个工作表的�
   />
 </template>
 ```
+
+### PowerPoint / PPTX 预览
 
 <Demo title="PowerPoint / PPTX 预览" block>
   <FilePreview
@@ -192,6 +204,8 @@ Excel 示例使用一个包含 `Inspection / Trend / Summary` 3 个工作表的�
 ```
 
 待上传、加载失败与不支持格式的状态：
+
+### 状态示例
 
 <Demo title="状态示例" block>
   <div class="grid gap-4 lg:grid-cols-3">

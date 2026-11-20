@@ -94,6 +94,11 @@ export default defineConfig({
       '@embedpdf/plugin-viewport',
       '@embedpdf/plugin-zoom',
       '@silurus/ooxml',
+      // `./test-support` 导出在本包之外被各 app 的 setup / 契约壳消费。它内部
+      // `import { describe, expect, it } from 'vitest'`——把 vitest 打进产物会让调用方
+      // 拿到**第二份** vitest，`describe()` 在模块顶层执行时读不到运行器的内部状态，
+      // 直接抛 `Cannot read properties of undefined (reading 'config')`。
+      'vitest',
     ],
   },
   dts: {

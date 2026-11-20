@@ -109,7 +109,7 @@ describe('useTheme — runtime primary theming', () => {
     expect(htmlStyle().getPropertyValue('--primary')).toBe(THEME_PRESETS.rose.primary)
   })
 
-  it('migrates a legacy nerv-iip-accent value to the matching theme', () => {
+  it('migrates a legacy nerv-ui-accent value to the matching theme', () => {
     localStorage.setItem(ACCENT_STORAGE_KEY, THEME_PRESETS.violet.primary)
     initTheme()
     expect(htmlStyle().getPropertyValue('--primary')).toBe(THEME_PRESETS.violet.primary)
