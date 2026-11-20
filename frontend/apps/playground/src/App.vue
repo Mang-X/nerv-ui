@@ -48,7 +48,7 @@ import {
   useColorMode,
   useTheme,
   type NvDataTableColumn,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const surface = shallowRef(window.location.hash)
 function syncSurface() {

@@ -5,7 +5,7 @@ title: NvMobileSlider 滑块
 
 <script setup>
 import { ref } from 'vue'
-import { NvMobileSlider } from '@nerv-iip/ui-mobile'
+import { NvMobileSlider } from '@nerv-ui/ui-mobile'
 
 const basic = ref(40)
 const stepped = ref(50)

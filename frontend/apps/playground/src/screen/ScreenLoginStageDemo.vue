@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvScreenLoginStage, NvScreenButton, NvScreenInput } from '@nerv-iip/ui'
+import { NvScreenLoginStage, NvScreenButton, NvScreenInput } from '@nerv-ui/ui'
 import reading from '../assets/login-reading.svg'
 import garden from '../assets/login-garden.svg'
 const pending = ref(false)

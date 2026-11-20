@@ -1,0 +1,21 @@
+/*
+ * 全局动效降级。
+ *
+ * 组件各自在样式里声明过渡与关键帧，逐个加 reduced-motion 分支既漏又散；
+ * 这里统一收口：用户要求减少动效时，把所有过渡/动画压到接近 0，状态变化仍然发生
+ * （不会出现「点了没反应」），只是不再有位移、缩放与旋转。
+ *
+ * 用 !important 是必要的：原子类的优先级按生成顺序浮动，普通声明压不住它们。
+ * 保留极短时长而非 `none`，是为了让依赖 transitionend 的逻辑仍能收到事件。
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

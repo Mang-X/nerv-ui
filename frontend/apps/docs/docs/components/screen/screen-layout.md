@@ -4,7 +4,7 @@ title: NvScreenLayout 种子氛围布局
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenButton, NvScreenLayout } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenLayout } from '@nerv-ui/ui'
 const visited = ref(false)
 </script>
 

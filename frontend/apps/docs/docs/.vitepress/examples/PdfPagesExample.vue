@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { withBase } from 'vitepress'
-import { FilePreview } from '@nerv-iip/ui/file-preview'
+import { FilePreview } from '@nerv-ui/ui/file-preview'
 
 // Byte-identical fixture from apps/playground/public/files/reading-journey.pdf.
 // Original provenance: apps/playground/public/files/PDF-SOURCES.md.

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NvButton, NvKanban, NvRecordCard } from '@nerv-iip/ui'
+import { NvButton, NvKanban, NvRecordCard } from '@nerv-ui/ui'
 interface Book {
   id: string
   title: string

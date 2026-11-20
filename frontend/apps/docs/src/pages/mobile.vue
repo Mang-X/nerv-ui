@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NvBadge, nvMessage, NvNotifierHost, NvStatusBadge, NvThemeToggle } from '@nerv-iip/ui'
+import { NvBadge, nvMessage, NvNotifierHost, NvStatusBadge, NvThemeToggle } from '@nerv-ui/ui'
 import type {
   ActionItem,
   MobileTabItem,
@@ -7,7 +7,7 @@ import type {
   StepItem,
   SwipeAction,
   TabItem,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 import {
   NvActionSheet,
   NvAppShellMobile,
@@ -43,8 +43,8 @@ import {
   NvSwipeCell,
   NvTabBar,
   NvVirtualList,
-} from '@nerv-iip/ui-mobile'
-import type { FabAction, GridItem } from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
+import type { FabAction, GridItem } from '@nerv-ui/ui-mobile'
 import {
   BatteryFullIcon,
   BellIcon,

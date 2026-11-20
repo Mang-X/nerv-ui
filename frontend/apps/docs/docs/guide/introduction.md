@@ -6,15 +6,15 @@
 
 - **Vue 3.5** `<script setup>` + TypeScript
 - **Tailwind CSS v4**（`@theme inline`、OKLCH 令牌）
-- 上游原语仅作为内部基座，应用与文档示例统一使用 `@nerv-iip/ui`（Pro）与 `@nerv-iip/ui-mobile`
+- 上游原语仅作为内部基座，应用与文档示例统一使用 `@nerv-ui/ui`（Pro）与 `@nerv-ui/ui-mobile`
 - 本文档站基于 **VitePress**，外壳已用本设计系统的令牌整体重塑
 
 ## 两个包
 
 | 包                    | 用途                                                               |
 | --------------------- | ------------------------------------------------------------------ |
-| `@nerv-iip/ui`        | 桌面 / 一体机的 Pro 组件、图表、设计令牌（`theme.css` 是唯一真源） |
-| `@nerv-iip/ui-mobile` | 移动 PDA 原生质感控件、手势、安全区基线                            |
+| `@nerv-ui/ui`        | 桌面 / 一体机的 Pro 组件、图表、设计令牌（`theme.css` 是唯一真源） |
+| `@nerv-ui/ui-mobile` | 移动 PDA 原生质感控件、手势、安全区基线                            |
 
 > **使用边界**：永远从包的稳定导出引用组件，不要从上游原始包或组件深层路径导入。详见[设计哲学 §3](/foundations/philosophy#_3-原版零改动-定制靠复制重建)。
 

@@ -13,7 +13,7 @@ import {
   NvSectionCard,
   NvSectionCards,
   DropdownMenuItem,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const search = ref('')
 const columns = ref<2 | 3 | 4>(4)
 const choices = [2, 3, 4] as const

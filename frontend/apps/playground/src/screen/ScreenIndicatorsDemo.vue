@@ -11,7 +11,7 @@ import {
   NvKpiBar,
   NvScreenStatusLight,
   NvScreenStatusTag,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { indicatorSources, statusTones } from './indicators-fixtures'
 
 const sourceId = shallowRef('morning')

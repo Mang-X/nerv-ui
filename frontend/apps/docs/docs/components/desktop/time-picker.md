@@ -3,7 +3,7 @@ title: NvTimePicker 时间选择器
 ---
 
 <script setup>
-import { NvTimePicker } from '@nerv-iip/ui'
+import { NvTimePicker } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const planTime = ref('08:30')

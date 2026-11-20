@@ -5,7 +5,7 @@ title: NvInfiniteList 无限滚动
 
 <script setup>
 import { ref } from 'vue'
-import { NvInfiniteList, NvCell, NvMobileTag } from '@nerv-iip/ui-mobile'
+import { NvInfiniteList, NvCell, NvMobileTag } from '@nerv-ui/ui-mobile'
 
 const products = ['季度回顾草稿', '设计评审纪要', '发布检查清单', '用户访谈记录', '服务部署计划', '回归测试报告']
 const stations = ['步骤 03', '步骤 01', '步骤 02', '步骤 04', '步骤 05']

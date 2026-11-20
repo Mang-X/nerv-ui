@@ -4,7 +4,7 @@ title: NvScreenTable 数据表格
 
 <script setup>
 import { ref, computed } from 'vue'
-import { NvScreenTable, NvScreenPagination, NvScreenButton } from '@nerv-iip/ui'
+import { NvScreenTable, NvScreenPagination, NvScreenButton } from '@nerv-ui/ui'
 const page = ref(1)
 const selected = ref('尚未选择')
 const columns = [

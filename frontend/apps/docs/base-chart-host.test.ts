@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, expect, it } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
-import { ChartContainer, ChartLegendContent, ChartTooltipContent } from '@nerv-iip/ui'
+import { ChartContainer, ChartLegendContent, ChartTooltipContent } from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/BaseChartExample.vue'
 let page: VueWrapper
 afterEach(() => page?.unmount())

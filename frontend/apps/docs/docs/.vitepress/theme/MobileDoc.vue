@@ -9,7 +9,7 @@
 // The frame is skinned per real device (see DEVICES below) — notch/island/punch
 // hole, bezel, corner radius, aspect. Pick one via the selector under the frame.
 import { computed, provide, ref } from 'vue'
-import { MOBILE_OVERLAY_TARGET } from '@nerv-iip/ui-mobile'
+import { MOBILE_OVERLAY_TARGET } from '@nerv-ui/ui-mobile'
 import SceneBadge from './SceneBadge.vue'
 
 // Keep mobile overlays (NvBottomSheet, NvPicker, DatePicker, NvActionSheet, Dialog,

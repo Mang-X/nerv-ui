@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef } from 'vue'
-import { NvScreenStatusHero } from '@nerv-iip/ui'
+import { NvScreenStatusHero } from '@nerv-ui/ui'
 
 type Tone = 'neutral' | 'cyan' | 'green' | 'amber' | 'red'
 type Rhythm = 'still' | 'steady' | 'slow' | 'fast'

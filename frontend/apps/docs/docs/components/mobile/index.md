@@ -4,7 +4,7 @@ title: 移动组件
 
 # 移动组件
 
-`@nerv-iip/ui-mobile` —— 移动端组件库，触控 + 手势为主。左侧按**分类**浏览，每个组件都有独立页面与实时演示（手机宽度预览）。
+`@nerv-ui/ui-mobile` —— 移动端组件库，触控 + 手势为主。左侧按**分类**浏览，每个组件都有独立页面与实时演示（手机宽度预览）。
 
 - **基础**：NvMobileButton、NvMobileBadge、NvCell、NvListRow
 - **表单**：NvMobileInput、NvMobileCheckbox、NvMobileRadioGroup、NvMobileSwitch、NvStepper、NvSearchBar、NvPicker、NvMobileDatePicker、NvScanBar

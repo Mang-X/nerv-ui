@@ -3,7 +3,7 @@ title: NvEntityPicker / NvCascadePicker 实体选择与级联选择
 ---
 
 <script setup>
-import { NvEntityPicker, NvCascadePicker, NvField, NvFieldLabel } from '@nerv-iip/ui'
+import { NvEntityPicker, NvCascadePicker, NvField, NvFieldLabel } from '@nerv-ui/ui'
 import { computed, ref } from 'vue'
 import EntityDialogExample from '../../.vitepress/examples/EntityDialogExample.vue'
 import EntityCreateExample from '../../.vitepress/examples/EntityCreateExample.vue'

@@ -8,7 +8,7 @@ import FusionDemo from '../../../../playground/src/screen/FusionDemo.vue'
 
 # NvScreenFusionBg 等距节点与有向流
 
-通过主桶 `@nerv-iip/ui` 导入 `NvScreenFusionBg`、`FusionNode`、`FusionEdge`。独立宿主入口 `/#screen/backgrounds`。
+通过主桶 `@nerv-ui/ui` 导入 `NvScreenFusionBg`、`FusionNode`、`FusionEdge`。独立宿主入口 `/#screen/backgrounds`。
 
 ## 示例
 

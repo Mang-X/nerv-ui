@@ -4,7 +4,7 @@ title: NvSearchBar 搜索栏
 ---
 
 <script setup>
-import { NvSearchBar } from '@nerv-iip/ui-mobile'
+import { NvSearchBar } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const keyword = ref('')

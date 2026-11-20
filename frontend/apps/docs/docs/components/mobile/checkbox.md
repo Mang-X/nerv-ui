@@ -4,7 +4,7 @@ title: NvMobileCheckbox 复选框
 ---
 
 <script setup>
-import { NvMobileCheckbox } from '@nerv-iip/ui-mobile'
+import { NvMobileCheckbox } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const checkA = ref(true)

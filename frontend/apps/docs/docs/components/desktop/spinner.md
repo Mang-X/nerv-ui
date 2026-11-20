@@ -3,7 +3,7 @@ title: NvSpinner 加载
 ---
 
 <script setup>
-import { NvButton, NvSpinner } from '@nerv-iip/ui'
+import { NvButton, NvSpinner } from '@nerv-ui/ui'
 </script>
 
 # NvSpinner 加载

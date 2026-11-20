@@ -3,7 +3,7 @@ title: NvScreenPanel 面板
 ---
 
 <script setup>
-import { NvScreenPanel, NvOeeHero } from '@nerv-iip/ui'
+import { NvScreenPanel, NvOeeHero } from '@nerv-ui/ui'
 </script>
 
 # NvScreenPanel 面板

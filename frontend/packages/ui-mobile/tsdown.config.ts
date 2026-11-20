@@ -2,7 +2,7 @@ import Vue from 'unplugin-vue/rolldown'
 import { defineConfig } from 'tsdown'
 
 /**
- * Library build for @nerv-iip/ui-mobile (T10-1 skeleton — the template for the
+ * Library build for @nerv-ui/ui-mobile (T10-1 skeleton — the template for the
  * other packages' productization).
  *
  * - Single `.` entry (index.ts barrel); `styles/mobile.css` stays a public
@@ -11,7 +11,7 @@ import { defineConfig } from 'tsdown'
  * - SFCs compiled by unplugin-vue on rolldown; scoped `<style>` blocks are
  *   extracted into dist/index.css so hosts get component styles from the
  *   artifact instead of compiling sources.
- * - vue / @nerv-iip/ui / reka-ui / @lucide/vue / @vueuse/core stay external —
+ * - vue / @nerv-ui/ui / reka-ui / @lucide/vue / @vueuse/core stay external —
  *   they resolve through package dependencies (or the vue peer) in the host.
  * - d.ts comes from tsdown's rolldown-plugin-dts (vue-tsc under the hood); the
  *   build tsconfig below drops `vitest/globals` types so declarations never
@@ -23,7 +23,7 @@ export default defineConfig({
   platform: 'browser',
   plugins: [Vue({ isProduction: true })],
   deps: {
-    neverBundle: ['vue', '@nerv-iip/ui', 'reka-ui', '@lucide/vue', '@vueuse/core'],
+    neverBundle: ['vue', '@nerv-ui/ui', 'reka-ui', '@lucide/vue', '@vueuse/core'],
   },
   dts: {
     tsconfig: 'tsconfig.build.json',

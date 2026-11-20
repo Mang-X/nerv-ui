@@ -12,9 +12,9 @@
 
 @import 'shadcn-vue/tailwind.css';
 
-/* Design System v2 tokens — single source of truth in @nerv-iip/ui */
+/* Design System v2 tokens — single source of truth in @nerv-ui/ui */
 @import '../../../../packages/ui/src/styles/theme.css';
-/* 移动端安全区/触控基线（@nerv-iip/ui-mobile） */
+/* 移动端安全区/触控基线（@nerv-ui/ui-mobile） */
 @import '../../../../packages/ui-mobile/src/styles/mobile.css';
 /* Host-override decorations (overlay glass, sidebar premium) → nv-overrides. */
 @import '../../../../packages/ui/src/styles/overrides.css' layer(nv-overrides);

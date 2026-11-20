@@ -3,7 +3,7 @@ title: NvStatusDot / NvStatusBadge 状态
 ---
 
 <script setup>
-import { NvStatusDot, NvStatusBadge } from '@nerv-iip/ui'
+import { NvStatusDot, NvStatusBadge } from '@nerv-ui/ui'
 </script>
 
 # NvStatusDot / NvStatusBadge 状态

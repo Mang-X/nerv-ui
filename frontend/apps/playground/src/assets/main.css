@@ -1,6 +1,6 @@
 @layer theme, nv-tokens, base, components, nv-components, utilities, nv-overrides, app;
-@import '@nerv-iip/ui/styles.css';
-@import '@nerv-iip/ui-mobile/styles/mobile.css';
+@import '@nerv-ui/ui/styles.css';
+@import '@nerv-ui/ui-mobile/styles/mobile.css';
 
 @layer app {
   body {

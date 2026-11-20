@@ -1,6 +1,6 @@
 # Block: Data Table（实体列表表格）
 
-> **现役实现 = `NvDataTable`**（`@nerv-iip/ui`，pc 层
+> **现役实现 = `NvDataTable`**（`@nerv-ui/ui`，pc 层
 > `packages/ui/src/components/pc/data-table/NvDataTable.vue`）。本文早期版本教的
 > 「原版 `<Table>` 手动拼 骨架/空态/行菜单」写法已废弃——业务页禁手搓裸表
 > （`goldStandardPages.contract.test.ts` 机器拦截 `<Table` / `<TableHeader`），

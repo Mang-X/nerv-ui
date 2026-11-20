@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef } from 'vue'
-import { NvMobileButton, NvPicker, NvMobileDatePicker } from '@nerv-iip/ui-mobile'
+import { NvMobileButton, NvPicker, NvMobileDatePicker } from '@nerv-ui/ui-mobile'
 const places = [
   { label: '湖畔', value: 'lake' },
   { label: '林间', value: 'woods' },

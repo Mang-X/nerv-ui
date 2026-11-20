@@ -1,0 +1,202 @@
+/* VitePress 默认主题的外壳样式（VPNav / VPSidebar / VPDoc 的间距与变量）随
+   自定义 Layout 一起退场；这里只保留正文排版与品牌色变量，
+   并把 VitePress 默认给 body 的背景/字体让位给 StyleX 外壳。 */
+:root {
+  --vp-c-brand-1: oklch(0.548 0.212 262);
+  --vp-c-brand-2: oklch(0.548 0.212 262);
+  --vp-c-brand-3: oklch(0.548 0.212 262);
+  --vp-c-brand-soft: oklch(0.548 0.212 262 / 0.12);
+  /* 正文用的这几组必须和 StyleX token 同值：正文表格/分割线/代码块和组件
+     摆在一起时，两套灰一旦不一致，整页就有「拼起来」的观感。 */
+  --vp-c-bg: oklch(0.972 0.004 258);
+  --vp-c-bg-alt: oklch(1 0 0);
+  --vp-c-bg-soft: oklch(0.944 0.007 258);
+  --vp-c-default-soft: oklch(0.944 0.007 258);
+  --vp-c-divider: oklch(0.9 0.008 258);
+  --vp-c-text-1: oklch(0.205 0.016 262);
+  --vp-c-text-2: oklch(0.5 0.018 260);
+  /* 代码块和行内 code 落在正文画布（bg）上，必须比画布深一档才看得出来，
+     所以取 muted 而不是 bg。 */
+  --vp-code-block-bg: oklch(0.944 0.007 258);
+  --vp-nav-height: 0px;
+  --vp-layout-top-height: 0px;
+}
+.dark {
+  --vp-c-brand-1: oklch(0.655 0.175 260);
+  --vp-c-brand-2: oklch(0.655 0.175 260);
+  --vp-c-brand-3: oklch(0.655 0.175 260);
+  --vp-c-bg: oklch(0.15 0.006 262);
+  --vp-c-bg-alt: oklch(0.205 0.007 262);
+  --vp-c-bg-soft: oklch(0.278 0.009 262);
+  --vp-c-default-soft: oklch(0.278 0.009 262);
+  --vp-c-divider: oklch(0.31 0.01 262);
+  --vp-c-text-1: oklch(0.975 0.002 260);
+  --vp-c-text-2: oklch(0.72 0.012 260);
+  --vp-code-block-bg: oklch(0.205 0.007 262);
+}
+
+/*
+ * 正文排版挂在 `.nv-prose` 上，并且每条规则都排除 `.nv-demo` 子树。
+ *
+ * 不用 VitePress 的 `.vp-doc`：ui-sdk 的弹层是就地渲染（不 teleport），弹层 DOM
+ * 落在正文容器内部，`.vp-doc h2 { border-top; margin: 48px 0 }` 这类后代选择器会
+ * 渗进去，把对话框标题画出一条横线并顶开间距。演示区里的组件 DOM 不属于正文，
+ * `:not(:is(.nv-demo, .nv-overview) *)` 让正文规则整体跳过它；组件的 StyleX 原子类这才拿得回主导权。
+ */
+.nv-prose {
+  font-size: 15px;
+  line-height: 1.75;
+}
+.nv-prose :is(h1, h2, h3, h4, h5, h6):not(:is(.nv-demo, .nv-overview) *) {
+  position: relative;
+  /* 顶栏吸顶 60px，锚点跳转要留出空间 */
+  scroll-margin-top: 76px;
+}
+.nv-prose h1:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 0 0 12px;
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.nv-prose h2:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 40px 0 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--vp-c-divider, #e5e5e5);
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.nv-prose h3:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 24px 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.nv-prose h4:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 20px 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.nv-prose p:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 10px 0;
+}
+.nv-prose :is(ul, ol):not(:is(.nv-demo, .nv-overview) *) {
+  margin: 10px 0;
+  padding-inline-start: 20px;
+}
+.nv-prose ul:not(:is(.nv-demo, .nv-overview) *) {
+  list-style: disc;
+}
+.nv-prose ol:not(:is(.nv-demo, .nv-overview) *) {
+  list-style: decimal;
+}
+.nv-prose li:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 4px 0;
+}
+.nv-prose blockquote:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 12px 0;
+  padding: 8px 12px;
+  border-inline-start: 3px solid var(--vp-c-brand-1);
+  color: var(--vp-c-text-2, #737373);
+}
+.nv-prose hr:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 32px 0;
+  border: 0;
+  border-top: 1px solid var(--vp-c-divider, #e5e5e5);
+}
+.nv-prose table:not(:is(.nv-demo, .nv-overview) *) {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 14px 0;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.nv-prose th:not(:is(.nv-demo, .nv-overview) *),
+.nv-prose td:not(:is(.nv-demo, .nv-overview) *) {
+  padding: 8px 10px;
+  border: 1px solid var(--vp-c-divider, #e5e5e5);
+  text-align: start;
+  white-space: nowrap;
+}
+.nv-prose th:not(:is(.nv-demo, .nv-overview) *) {
+  font-weight: 600;
+  background-color: var(--vp-c-bg-soft, #f5f5f5);
+}
+.nv-prose a:not(:is(.nv-demo, .nv-overview) *) {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.nv-prose :is(p, li, td, th, blockquote) code:not(:is(.nv-demo, .nv-overview) *) {
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--vp-c-default-soft, #f0f0f0);
+}
+/* 代码块：VitePress 的 shiki 产物自带 token 内联色，容器样式需要我们自己补。 */
+.nv-prose div[class*='language-']:not(:is(.nv-demo, .nv-overview) *) {
+  margin: 16px 0;
+  border-radius: 8px;
+  background-color: var(--vp-code-block-bg, #f6f6f7);
+  overflow-x: auto;
+}
+.nv-prose div[class*='language-']:not(:is(.nv-demo, .nv-overview) *) pre {
+  margin: 0;
+  padding: 16px 20px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.nv-prose div[class*='language-']:not(:is(.nv-demo, .nv-overview) *) code {
+  padding: 0;
+  background: none;
+  font-size: 13px;
+}
+/* 标题的 # 锚点：悬停才出现，避免和正文抢视线。 */
+.nv-prose .header-anchor {
+  position: absolute;
+  inset-inline-start: -0.9em;
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.nv-prose :is(h1, h2, h3, h4):not(:is(.nv-demo, .nv-overview) *):hover .header-anchor,
+.nv-prose .header-anchor:focus-visible {
+  opacity: 0.7;
+}
+@media (max-width: 719px) {
+  .nv-prose .header-anchor {
+    display: none;
+  }
+}
+
+/* 演示区里的说明文字（「当前第 2 页」「已启用格式：…」这类）不是正文段落，
+   统一压到 13px 弱色，别和 15px 的正文抢层级。组件自己声明字号的不受影响。 */
+.nv-demo-stage {
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* 大屏组件演示需要暗色画布 */
+.nv-screen-stage {
+  background: oklch(0.12 0.02 255);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 1rem 0;
+}
+
+/*
+ * 总览页的搜索框在手机上要保持 16px 字号：iOS 对小于 16px 的输入框会在聚焦时
+ * 自动放大整页。组件库默认 14px（桌面正确），文档站的移动视口单独抬一档。
+ * 这里必须 !important：StyleX 原子类自带 3 个 `:not(#\#)` 提权，文档站的普通
+ * 选择器压不住它。
+ */
+@media (max-width: 719px) {
+  .nv-overview input {
+    font-size: 16px !important;
+  }
+}

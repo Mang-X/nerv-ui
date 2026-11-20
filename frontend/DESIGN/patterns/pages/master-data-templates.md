@@ -17,7 +17,7 @@
 
 ### 规则
 
-**区块拼装铁律**（来自 AGENTS §3/§4）：一律用 `@nerv-iip/ui` 的 FE-2 区块拼，**不手搓裸
+**区块拼装铁律**（来自 AGENTS §3/§4）：一律用 `@nerv-ui/ui` 的 FE-2 区块拼，**不手搓裸
 `<table>` / 裸页头 / 裸 metric `<div>`，不改 shadcn 原版**。
 标准外壳：`BusinessLayout`（T 形外框，页面只填内容槽）。
 

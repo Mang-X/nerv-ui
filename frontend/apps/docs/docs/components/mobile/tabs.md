@@ -4,7 +4,7 @@ title: NvMobileTabs 顶部标签
 ---
 
 <script setup>
-import { NvMobileTabs } from '@nerv-iip/ui-mobile'
+import { NvMobileTabs } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const topTab = ref('doing')
@@ -37,7 +37,7 @@ const topTabs = [
 
 ```vue
 <script setup lang="ts">
-import { NvMobileTabs } from '@nerv-iip/ui-mobile'
+import { NvMobileTabs } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const topTab = ref('doing')

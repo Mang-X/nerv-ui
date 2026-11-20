@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef } from 'vue'
-import { useColorMode } from '@nerv-iip/ui'
+import { useColorMode } from '@nerv-ui/ui'
 import {
   NvAppShellMobile,
   NvNavBar,
@@ -15,7 +15,7 @@ import {
   NvFab,
   type FabAction,
   type GridItem,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 
 const page = shallowRef('discover')
 const pages = [

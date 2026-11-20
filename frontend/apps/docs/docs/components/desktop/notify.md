@@ -3,7 +3,7 @@ title: NvNotifierHost 消息提醒
 ---
 
 <script setup>
-import { nvMessage, nvNotification, NvNotifierHost, NvButton } from '@nerv-iip/ui'
+import { nvMessage, nvNotification, NvNotifierHost, NvButton } from '@nerv-ui/ui'
 
 function fireMessage(kind) {
   const map = {
@@ -56,7 +56,7 @@ function fireNotification(kind) {
 
 ```vue
 <script setup>
-import { nvMessage } from '@nerv-iip/ui'
+import { nvMessage } from '@nerv-ui/ui'
 </script>
 
 <template>
@@ -78,7 +78,7 @@ import { nvMessage } from '@nerv-iip/ui'
 
 ```vue
 <script setup>
-import { nvNotification } from '@nerv-iip/ui'
+import { nvNotification } from '@nerv-ui/ui'
 </script>
 
 <template>

@@ -4,7 +4,7 @@ title: NvScreenFlowLinesBg 与 NvScreenIsometricBlocksBg 装饰背景
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvScreenButton, NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-ui/ui'
 
 const flowClicks = ref(0)
 const isoClicks = ref(0)
@@ -33,7 +33,7 @@ const isoClicks = ref(0)
 
 ```vue
 <script setup lang="ts">
-import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
+import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-ui/ui'
 </script>
 
 <template>

@@ -3,7 +3,7 @@ title: NvBorderPanel 描边面板
 ---
 
 <script setup>
-import { NvBorderPanel } from '@nerv-iip/ui'
+import { NvBorderPanel } from '@nerv-ui/ui'
 </script>
 
 # NvBorderPanel 描边面板

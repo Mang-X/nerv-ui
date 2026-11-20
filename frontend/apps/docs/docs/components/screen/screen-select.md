@@ -4,7 +4,7 @@ title: NvScreenSelect 下拉选择
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenSelect } from '@nerv-iip/ui'
+import { NvScreenSelect } from '@nerv-ui/ui'
 
 const line = ref('line-a')
 const shift = ref('')

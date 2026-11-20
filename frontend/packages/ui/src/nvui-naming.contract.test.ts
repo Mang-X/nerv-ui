@@ -290,7 +290,7 @@ for (const src of barrels) {
     liveOld.add(m[1])
 }
 
-describe('NvUI Appendix A full-mapping freeze (@nerv-iip/ui / #787)', () => {
+describe('NvUI Appendix A full-mapping freeze (@nerv-ui/ui / #787)', () => {
   it('recognizes transitional selector definitions as forbidden identifiers', () => {
     expect(transitionalPcIdentifier.test('.ds-card { color: red; }')).toBe(true)
     expect(transitionalScreenIdentifier.test('.sb-card { color: red; }')).toBe(true)
@@ -385,7 +385,7 @@ describe('NvUI Appendix A full-mapping freeze (@nerv-iip/ui / #787)', () => {
 describe('shadcn 原版 purity (components/ui/**)', () => {
   const uiDir = resolve(srcDir, 'components/ui')
   // `file-preview/` lives under components/ui/ but is a CUSTOM Nerv composite (the one
-  // allowed `@nerv-iip/ui/file-preview` sub-entry) that composes pro components — it is
+  // allowed `@nerv-ui/ui/file-preview` sub-entry) that composes pro components — it is
   // not shadcn 原版, so it legitimately references NvSelect etc. and is excluded here.
   const files = walk(uiDir, (n) => /\.(vue|ts|css)$/.test(n) && !/\.(test|spec)\./.test(n)).filter(
     (f) => !f.replace(/\\/g, '/').includes('/file-preview/'),

@@ -3,7 +3,7 @@ title: NvPageGrid 卡片网格
 ---
 
 <script setup>
-import { NvPageGrid } from '@nerv-iip/ui'
+import { NvPageGrid } from '@nerv-ui/ui'
 </script>
 
 # NvPageGrid 卡片网格

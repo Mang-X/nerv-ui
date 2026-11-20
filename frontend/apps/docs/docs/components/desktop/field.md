@@ -10,7 +10,7 @@ import {
   NvFieldDescription,
   NvFieldError,
   NvInput,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import FieldContentExample from '../../.vitepress/examples/FieldContentExample.vue'
 import FieldGroupExample from '../../.vitepress/examples/FieldGroupExample.vue'
 import { ref } from 'vue'
@@ -53,7 +53,7 @@ import {
   NvFieldDescription,
   NvFieldError,
   NvInput,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ref } from 'vue'
 const orderNo = ref('REC-2406-0431')
 const planQty = ref('')

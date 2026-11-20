@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
   TooltipContent,
   toast,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const delay = ref(200)
 const confirmed = ref(false)

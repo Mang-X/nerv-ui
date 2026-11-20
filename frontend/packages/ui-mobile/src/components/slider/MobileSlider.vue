@@ -114,7 +114,7 @@ function nudge(delta: number) {
              smaller dark circle sitting directly inside it (no ring/gap). The
              inner disc is small at rest, grows on hover, shrinks while pressed. -->
         <span
-          class="nv-m-slider-ring grid size-5 place-items-center rounded-full bg-brand shadow-[0_1px_5px_rgb(0_0_0/0.35)]"
+          class="nv-m-slider-ring grid size-5 place-items-center rounded-full bg-brand"
         >
           <span
             class="nv-m-slider-dot block size-3.5 rounded-full bg-background"
@@ -166,21 +166,25 @@ function nudge(delta: number) {
       transition: none;
     }
   }
-}
-
-/* Focus ring draws on the visible 20px thumb circle, not the 44×44 square hit
-   area — halo hugs the actual control shape. Uses the shared --nv-focus-ring
-   contract (1px brand + 4px brand halo). Written OUTSIDE @layer so it beats the
-   `shadow-[…]` Tailwind utility on the same element (Tailwind utilities sit in
-   the `utilities` layer which comes after `nv-components` in the layer order). */
-.nv-m-slider-thumb:focus-visible .nv-m-slider-ring,
-.nv-m-slider-thumb:focus-within .nv-m-slider-ring {
-  outline: none;
-  border-color: var(--nv-brand);
-  /* Compose: keep the resting drop shadow AND add the brand halo. */
-  box-shadow:
-    0 1px 5px rgb(0 0 0 / 0.35),
-    var(--nv-focus-ring);
-  transition: box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
+  /* Focus ring draws on the visible 20px thumb circle, not the 44×44 square hit
+     area — halo hugs the actual control shape. Uses the shared --nv-focus-ring
+     contract (1px brand + 4px brand halo). The ring's resting drop shadow is
+     declared HERE rather than as a `shadow-[…]` Tailwind utility on the element:
+     utilities sit in the `utilities` layer, which comes after `nv-components`, so
+     a utility would out-rank any box-shadow written inside the layer. With both
+     states owned by these rules there is no layer competition left. */
+  .nv-m-slider-thumb .nv-m-slider-ring {
+    box-shadow: 0 1px 5px rgb(0 0 0 / 0.35);
+    transition: box-shadow var(--nv-duration-fast, 150ms) var(--nv-ease-out-quart, ease-out);
+  }
+  .nv-m-slider-thumb:focus-visible .nv-m-slider-ring,
+  .nv-m-slider-thumb:focus-within .nv-m-slider-ring {
+    outline: none;
+    border-color: var(--nv-brand);
+    /* Compose: keep the resting drop shadow AND add the brand halo. */
+    box-shadow:
+      0 1px 5px rgb(0 0 0 / 0.35),
+      var(--nv-focus-ring);
+  }
 }
 </style>

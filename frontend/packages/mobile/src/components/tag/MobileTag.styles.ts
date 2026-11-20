@@ -1,0 +1,70 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, shape, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  root: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 4,
+    boxSizing: 'border-box',
+    minHeight: 24,
+    paddingInline: 8,
+    paddingBlock: 2,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'transparent',
+    borderRadius: shape.radiusSm,
+    backgroundColor: color.muted,
+    color: color.fg,
+    fontFamily: typography.fontSans,
+    fontSize: 12,
+    fontWeight: 500,
+    lineHeight: '16px',
+    verticalAlign: 'middle',
+    whiteSpace: 'nowrap',
+  },
+  brand: {
+    backgroundColor: color.brandSoft,
+    color: color.brand,
+  },
+  danger: {
+    backgroundColor: `color-mix(in oklch, ${color.danger} 14%, transparent)`,
+    color: color.danger,
+  },
+  outline: {
+    backgroundColor: 'transparent',
+    borderColor: color.border,
+    color: color.fg,
+  },
+  md: {
+    minHeight: 28,
+    paddingInline: 10,
+    fontSize: 13,
+  },
+  round: {
+    borderRadius: 999,
+  },
+  close: {
+    position: 'relative',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    width: 18,
+    height: 18,
+    padding: 0,
+    marginInlineEnd: -4,
+    borderWidth: 0,
+    borderRadius: 999,
+    backgroundColor: 'transparent',
+    color: 'inherit',
+    cursor: 'pointer',
+    WebkitTapHighlightColor: 'transparent',
+    '::before': {
+      content: '""',
+      position: 'absolute',
+      inset: -13,
+      borderRadius: 999,
+    },
+  },
+})

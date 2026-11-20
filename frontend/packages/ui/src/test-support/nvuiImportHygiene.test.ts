@@ -25,16 +25,16 @@ describe('nvuiImportViolation', () => {
   const SETUP = 'test/setup.ts'
   const PAGE = 'pages/orders/index.vue'
 
-  it('bans deep imports into @nerv-iip/ui', () => {
-    expect(nvuiImportViolation('@nerv-iip/ui/src/components/ui/button', PAGE)).toMatch(
-      /deep import .* bare @nerv-iip\/ui barrel/,
+  it('bans deep imports into @nerv-ui/ui', () => {
+    expect(nvuiImportViolation('@nerv-ui/ui/src/components/ui/button', PAGE)).toMatch(
+      /deep import .* bare @nerv-ui\/ui barrel/,
     )
   })
 
-  it('bans deep imports into @nerv-iip/ui-mobile', () => {
+  it('bans deep imports into @nerv-ui/ui-mobile', () => {
     expect(
-      nvuiImportViolation('@nerv-iip/ui-mobile/src/components/NvMobileDialog.vue', PAGE),
-    ).toMatch(/deep import .* bare @nerv-iip\/ui-mobile barrel/)
+      nvuiImportViolation('@nerv-ui/ui-mobile/src/components/NvMobileDialog.vue', PAGE),
+    ).toMatch(/deep import .* bare @nerv-ui\/ui-mobile barrel/)
   })
 
   it('bans direct reka-ui, bare and deep', () => {
@@ -48,7 +48,7 @@ describe('nvuiImportViolation', () => {
   })
 
   it('allows the bare barrels and unrelated packages', () => {
-    for (const spec of ['@nerv-iip/ui', '@nerv-iip/ui-mobile', 'vue', '@/components/Foo.vue']) {
+    for (const spec of ['@nerv-ui/ui', '@nerv-ui/ui-mobile', 'vue', '@/components/Foo.vue']) {
       expect(nvuiImportViolation(spec, PAGE), spec).toBeNull()
     }
   })
@@ -62,27 +62,27 @@ describe('nvuiImportViolation', () => {
       'my-reka-ui',
       '@scope/shadcn-vue',
       './shadcn-vue.helpers',
-      '@nerv-iip/ui-kit/deep',
+      '@nerv-ui/ui-kit/deep',
     ]) {
       expect(nvuiImportViolation(spec, PAGE), spec).toBeNull()
     }
   })
 
   it('allows the file-preview runtime sub-entry everywhere', () => {
-    expect(nvuiImportViolation('@nerv-iip/ui/file-preview', PAGE)).toBeNull()
-    expect(nvuiImportViolation('@nerv-iip/ui/file-preview', SETUP)).toBeNull()
+    expect(nvuiImportViolation('@nerv-ui/ui/file-preview', PAGE)).toBeNull()
+    expect(nvuiImportViolation('@nerv-ui/ui/file-preview', SETUP)).toBeNull()
   })
 
   it('allows the documented stylesheet entries and rejects private style paths', () => {
     for (const entry of ['styles.css', 'theme.css', 'overrides.css']) {
-      expect(nvuiImportViolation('@nerv-iip/ui/' + entry, PAGE)).toBeNull()
+      expect(nvuiImportViolation('@nerv-ui/ui/' + entry, PAGE)).toBeNull()
     }
-    expect(nvuiImportViolation('@nerv-iip/ui/src/styles/theme.css', PAGE)).toMatch(/deep import/)
-    expect(nvuiImportViolation('@nerv-iip/ui/unknown.css', PAGE)).toMatch(/deep import/)
+    expect(nvuiImportViolation('@nerv-ui/ui/src/styles/theme.css', PAGE)).toMatch(/deep import/)
+    expect(nvuiImportViolation('@nerv-ui/ui/unknown.css', PAGE)).toMatch(/deep import/)
   })
 
   it('allows only the public mobile stylesheet and rejects lookalikes and private mobile paths', () => {
-    expect(nvuiImportViolation('@nerv-iip/ui-mobile/styles/mobile.css', PAGE)).toBeNull()
+    expect(nvuiImportViolation('@nerv-ui/ui-mobile/styles/mobile.css', PAGE)).toBeNull()
     for (const entry of [
       'styles/other.css',
       'styles/mobile.css/extra',
@@ -90,23 +90,23 @@ describe('nvuiImportViolation', () => {
       'src/index.ts',
       'styles.css',
     ]) {
-      expect(nvuiImportViolation('@nerv-iip/ui-mobile/' + entry, PAGE), entry).toMatch(
+      expect(nvuiImportViolation('@nerv-ui/ui-mobile/' + entry, PAGE), entry).toMatch(
         /deep import/,
       )
     }
   })
 
   it('allows test-support only from src/test/setup.ts', () => {
-    expect(nvuiImportViolation('@nerv-iip/ui/test-support', SETUP)).toBeNull()
+    expect(nvuiImportViolation('@nerv-ui/ui/test-support', SETUP)).toBeNull()
     // 同目录下的普通测试辅助文件、以及页面/组件，一律判红——放行面钉死到 setup 文件本身。
     for (const rel of [PAGE, 'test/helpers.ts', 'test/setup.extra.ts', 'components/Nv.vue']) {
-      expect(nvuiImportViolation('@nerv-iip/ui/test-support', rel), rel).toMatch(/deep import/)
+      expect(nvuiImportViolation('@nerv-ui/ui/test-support', rel), rel).toMatch(/deep import/)
     }
   })
 
   it('does not let an unknown sub-entry through on either barrel', () => {
-    expect(nvuiImportViolation('@nerv-iip/ui/test-supportx', SETUP)).toMatch(/deep import/)
-    expect(nvuiImportViolation('@nerv-iip/ui-mobile/file-preview', PAGE)).toMatch(/deep import/)
+    expect(nvuiImportViolation('@nerv-ui/ui/test-supportx', SETUP)).toMatch(/deep import/)
+    expect(nvuiImportViolation('@nerv-ui/ui-mobile/file-preview', PAGE)).toMatch(/deep import/)
   })
 })
 
@@ -114,17 +114,17 @@ describe('modulesOf', () => {
   it('picks up static, type-only, side-effect and dynamic imports', () => {
     const src = [
       "import Foo from 'reka-ui'",
-      "import type { Bar } from '@nerv-iip/ui'",
+      "import type { Bar } from '@nerv-ui/ui'",
       "import 'shadcn-vue'",
-      "export { x } from '@nerv-iip/ui/file-preview'",
-      "const m = await import('@nerv-iip/ui-mobile/deep')",
+      "export { x } from '@nerv-ui/ui/file-preview'",
+      "const m = await import('@nerv-ui/ui-mobile/deep')",
     ].join('\n')
     expect(modulesOf(src)).toEqual([
       'reka-ui',
-      '@nerv-iip/ui',
+      '@nerv-ui/ui',
       'shadcn-vue',
-      '@nerv-iip/ui/file-preview',
-      '@nerv-iip/ui-mobile/deep',
+      '@nerv-ui/ui/file-preview',
+      '@nerv-ui/ui-mobile/deep',
     ])
   })
 })
@@ -199,7 +199,7 @@ describe('deriveDeprecated', () => {
 
 describe('contractShellDefect', () => {
   const GOOD = [
-    "import { runNvUiImportHygieneContract } from '@nerv-iip/ui/test-support'",
+    "import { runNvUiImportHygieneContract } from '@nerv-ui/ui/test-support'",
     '',
     'runNvUiImportHygieneContract(import.meta.url)',
   ].join('\n')
@@ -215,7 +215,7 @@ describe('contractShellDefect', () => {
   it('rejects a shell that calls something else or drops the import', () => {
     expect(contractShellDefect("it('ok', () => {})\n")).toMatch(/does not import/)
     expect(
-      contractShellDefect(GOOD.replace('@nerv-iip/ui/test-support', './somewhere-else')),
+      contractShellDefect(GOOD.replace('@nerv-ui/ui/test-support', './somewhere-else')),
     ).toMatch(/does not import/)
     expect(contractShellDefect(GOOD.replace('import.meta.url', "'hardcoded'"))).toMatch(
       /does not call/,
@@ -223,7 +223,7 @@ describe('contractShellDefect', () => {
   })
 
   it('every app shell in the repo actually arms the guard', () => {
-    // 这条住在 `@nerv-iip/ui` 的 job 里，所以四份壳被同时掏空时仍然有人报警——
+    // 这条住在 `@nerv-ui/ui` 的 job 里，所以四份壳被同时掏空时仍然有人报警——
     // per-app 的同名断言那时根本不会被执行。
     for (const app of appsRequiringContract(frontendRoot)) {
       const shell = resolve(frontendRoot, 'apps', app, 'src', CONTRACT_SHELL_BASENAME)

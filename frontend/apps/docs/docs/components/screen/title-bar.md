@@ -3,7 +3,7 @@ title: NvTitleBar 标题栏
 ---
 
 <script setup>
-import { NvTitleBar } from '@nerv-iip/ui'
+import { NvTitleBar } from '@nerv-ui/ui'
 </script>
 
 # NvTitleBar 标题栏

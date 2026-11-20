@@ -4,7 +4,7 @@ title: NvScreenStatusCard 比较摘要
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenInput, NvScreenStatusCard } from '@nerv-iip/ui'
+import { NvScreenInput, NvScreenStatusCard } from '@nerv-ui/ui'
 const current = ref('12,840')
 const unit = ref('人次')
 const labels = { state: '空间状态', plan: '目标', actual: '当前', rate: '进度', downtime: '持续时间' }

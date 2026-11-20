@@ -4,7 +4,7 @@ title: NvSparkline 迷你趋势
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenButton, NvScreenPanel, NvSparkline } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenPanel, NvSparkline } from '@nerv-ui/ui'
 const data = ref([8, 11, 9, 14, 12, 17])
 </script>
 

@@ -4,7 +4,7 @@ title: NvPullRefresh 下拉刷新
 ---
 
 <script setup>
-import { NvCell, NvPullRefresh } from '@nerv-iip/ui-mobile'
+import { NvCell, NvPullRefresh } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const refreshing = ref(false)
@@ -48,7 +48,7 @@ function onRefresh() {
 
 ```vue
 <script setup>
-import { NvCell, NvPullRefresh } from '@nerv-iip/ui-mobile'
+import { NvCell, NvPullRefresh } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const refreshing = ref(false)

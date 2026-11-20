@@ -17,7 +17,7 @@
  * 落点在 setup 而不是逐个测试文件桩掉图表组件：只要还有别的页面挂
  * `NvAreaChart` / `NvLineChart` / `NvBarChart` / `NvDonutChart`，逐个加桩就是打地鼠。
  *
- * 实现本身住在 `@nerv-iip/ui/test-support`（#2014）而不是某个 app 内部：暴露面不止
+ * 实现本身住在 `@nerv-ui/ui/test-support`（#2014）而不是某个 app 内部：暴露面不止
  * business-console —— `packages/ui` 自己的组件测试就直接挂真实图表，其它 app 一旦挂图
  * 也会复现。各包各写一份等于把「打地鼠」从文件级搬到包级，所以这里只留一份实现，
  * 由各包的 setup 引用。这个子路径是 test-only 的：它不进 `src/index.ts` 主桶，

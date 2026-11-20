@@ -4,7 +4,7 @@ title: NvMobileResult 结果页
 ---
 
 <script setup>
-import { NvMobileButton, NvMobileResult } from '@nerv-iip/ui-mobile'
+import { NvMobileButton, NvMobileResult } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>
@@ -47,7 +47,7 @@ import { NvMobileButton, NvMobileResult } from '@nerv-iip/ui-mobile'
 
 ```vue
 <script setup>
-import { NvMobileResult } from '@nerv-iip/ui-mobile'
+import { NvMobileResult } from '@nerv-ui/ui-mobile'
 </script>
 
 <template>

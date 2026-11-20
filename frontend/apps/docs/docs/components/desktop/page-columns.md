@@ -3,7 +3,7 @@ title: NvPageColumns 瀑布分栏
 ---
 
 <script setup>
-import { NvPageColumns } from '@nerv-iip/ui'
+import { NvPageColumns } from '@nerv-ui/ui'
 </script>
 
 # NvPageColumns 瀑布分栏

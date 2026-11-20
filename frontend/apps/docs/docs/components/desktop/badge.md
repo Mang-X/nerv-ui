@@ -3,7 +3,7 @@ title: NvBadge 徽标
 ---
 
 <script setup>
-import { NvBadge } from '@nerv-iip/ui'
+import { NvBadge } from '@nerv-ui/ui'
 </script>
 
 # NvBadge 徽标

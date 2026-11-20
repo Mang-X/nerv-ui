@@ -2,9 +2,15 @@ packages:
   # Active standalone desktop/touch/mobile host and UI packages.
   # design-system restored by T09/A.
   - apps/docs
+  - apps/docs-next
   - apps/playground
   - packages/ui
   - packages/ui-mobile
+  - packages/theme
+  - packages/desktop
+  - packages/mobile
+  - packages/pad
+  - packages/screen
 allowBuilds:
   # maplibre-gl ships only via @unovis/ts' map components, which we don't use
   # (we use the XY area/line charts). Skip its native build to keep install lean.
@@ -17,6 +23,8 @@ minimumReleaseAgeExclude:
   - '@pinia/colada@1.4.2'
   - pinia@4.0.2
   - vue-router@5.2.0
+  - '@ui-sdk/core@0.1.0-beta.6'
+  - '@ui-sdk/vue@0.1.0-beta.6'
 overrides:
   vite: npm:@voidzero-dev/vite-plus-core@0.2.4
   # VitePress 1.6.4 is the latest stable release and still embeds Vite 5. Keep

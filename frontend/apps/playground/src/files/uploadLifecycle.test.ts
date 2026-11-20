@@ -8,7 +8,7 @@ import {
   type FileUploadCreateSessionRequest,
   type FileUploadSession,
   type FileUploadTransportContext,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 function gate<T>() {
   let resolve!: (value: T) => void

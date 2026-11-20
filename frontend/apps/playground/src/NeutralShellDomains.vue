@@ -6,7 +6,7 @@ import {
   NvDropdownMenuTrigger,
   NvDropdownMenuContent,
   NvDropdownMenuItem,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import type { ShellEntry } from './neutral-shell-types'
 const props = defineProps<{
   items: ShellEntry[]

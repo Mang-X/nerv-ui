@@ -14,7 +14,7 @@ import {
   NvDropdownMenuItem,
   NvDropdownMenuSeparator,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import {
   MoreHorizontalIcon,
   EyeIcon,
@@ -73,7 +73,7 @@ import {
   NvDropdownMenuItem,
   NvDropdownMenuSeparator,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { MoreHorizontalIcon, EyeIcon, PencilIcon, CopyIcon, Trash2Icon } from '@lucide/vue'
 import { ref } from 'vue'
 const actionReceipt = ref('请选择一项操作。')

@@ -4,7 +4,7 @@ title: NvListRow 列表行
 ---
 
 <script setup>
-import { NvListRow } from '@nerv-iip/ui-mobile'
+import { NvListRow } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>

@@ -11,7 +11,7 @@ import {
   NvSelectItem,
   NvSelectTrigger,
   NvSelectValue,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ref } from 'vue'
 import BaseDatesExample from '../../.vitepress/examples/BaseDatesExample.vue'
 
@@ -98,7 +98,7 @@ const locale = ref('zh-CN')
 
 ```vue
 <script setup>
-import { NvDateRangePicker } from '@nerv-iip/ui'
+import { NvDateRangePicker } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const range = ref({ start: '2026-06-10', end: '2026-06-18' })

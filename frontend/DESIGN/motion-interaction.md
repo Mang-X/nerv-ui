@@ -1,6 +1,6 @@
 ---
 # Motion & Interaction — 组件打磨与一致性规范
-# 适用于 @nerv-iip/ui (pc/blocks/layout + touch) 与 @nerv-iip/ui-mobile。
+# 适用于 @nerv-ui/ui (pc/blocks/layout + touch) 与 @nerv-ui/ui-mobile。
 # 目标：高质感、高一致性。任何新组件 / 改动都应过一遍本清单。
 ---
 

@@ -3,7 +3,7 @@ title: NvNotificationInbox 通知收件箱
 ---
 
 <script setup>
-import { NvNotificationInbox } from '@nerv-iip/ui'
+import { NvNotificationInbox } from '@nerv-ui/ui'
 import { ref } from 'vue'
 const selected = ref(null)
 const items = ref([{ key: 'book', title: '预约书籍可以领取', summary: '请到服务台领取。', read: false, statuses: [{ label: '待领取', tone: 'info' }] }])

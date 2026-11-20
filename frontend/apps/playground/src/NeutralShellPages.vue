@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, useId } from 'vue'
-import { NvButton } from '@nerv-iip/ui'
+import { NvButton } from '@nerv-ui/ui'
 import type { ShellEntry } from './neutral-shell-types'
 const props = defineProps<{ items: ShellEntry[]; currentKey?: string }>()
 const emit = defineEmits<{ navigate: [key: string] }>()

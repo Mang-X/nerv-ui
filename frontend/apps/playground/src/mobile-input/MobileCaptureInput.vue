@@ -8,7 +8,7 @@ import {
   NvNumberKeyboard,
   NvBottomSheet,
   NvMobileDialog,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 
 const props = defineProps<{ editing: boolean }>()
 const enabled = shallowRef(true)

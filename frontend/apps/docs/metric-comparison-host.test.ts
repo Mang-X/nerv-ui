@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, expect, it } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
-import { NvMetricComparison } from '@nerv-iip/ui'
+import { NvMetricComparison } from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/localMetricComparisonExample.vue'
 let page: VueWrapper
 afterEach(() => page?.unmount())

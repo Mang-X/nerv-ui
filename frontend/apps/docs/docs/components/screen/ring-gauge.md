@@ -4,7 +4,7 @@ title: NvRingGauge 环形仪表
 
 <script setup>
 import { computed, ref } from 'vue'
-import { NvRingGauge, NvScreenInput, NvScreenPanel } from '@nerv-iip/ui'
+import { NvRingGauge, NvScreenInput, NvScreenPanel } from '@nerv-ui/ui'
 const input = ref('72.5')
 const finiteValue = computed(() => {
   const n = Number(input.value)

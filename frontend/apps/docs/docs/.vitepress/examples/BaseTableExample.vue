@@ -11,7 +11,7 @@ import {
   TableCell,
   TableFooter,
   TableEmpty,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const hasRecords = ref(true)
 const items = [

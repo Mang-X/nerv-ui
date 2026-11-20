@@ -3,8 +3,8 @@
 区块或页面区域没有数据可展示时使用的完整空状态。
 
 > NvUI 状态：PC 层目前没有 `NvEmpty`；`Empty*` 系列是当前从
-> `@nerv-iip/ui` 导出的规范名称（在品牌层重建前，原版 primitives 继续作为
-> 应用侧名称）。移动端使用 `NvMobileEmpty`，它从 `@nerv-iip/ui-mobile` 导出。
+> `@nerv-ui/ui` 导出的规范名称（在品牌层重建前，原版 primitives 继续作为
+> 应用侧名称）。移动端使用 `NvMobileEmpty`，它从 `@nerv-ui/ui-mobile` 导出。
 
 ## 何时使用哪种空状态
 

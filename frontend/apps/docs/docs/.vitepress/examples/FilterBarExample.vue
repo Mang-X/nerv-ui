@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { NvButton, NvFilterBar, type FilterField } from '@nerv-iip/ui'
+import { NvButton, NvFilterBar, type FilterField } from '@nerv-ui/ui'
 type Values = { category?: string; day?: string; period?: { from?: string; to?: string } }
 const fields = ref<FilterField[]>([
   {

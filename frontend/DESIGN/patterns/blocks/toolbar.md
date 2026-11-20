@@ -1,6 +1,6 @@
 # Block: Toolbar（工具条）
 
-> **现役实现 = `NvToolbar`**（`@nerv-iip/ui` blocks 层，
+> **现役实现 = `NvToolbar`**（`@nerv-ui/ui` blocks 层，
 > `packages/ui/src/components/blocks/toolbar/Toolbar.vue`）。本文早期版本描述的
 > `IamListToolbar`（自带 actionLabel/statusOptions 的封闭组件）**已不存在**——被开放
 > 槽位的 `NvToolbar` 取代；旧接口存档于文末附录。

@@ -1,7 +1,7 @@
 import { mount, flushPromises, type VueWrapper } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import { reactive, nextTick } from 'vue'
-import { NvEntityPicker, NvSheet, NvStatusBadge } from '@nerv-iip/ui'
+import { NvEntityPicker, NvSheet, NvStatusBadge } from '@nerv-ui/ui'
 import DirectoryRecipe from './DirectoryRecipe.vue'
 import DirectoryDemo from './DirectoryDemo.vue'
 import type { DirectoryHost, DirectoryPage, DirectoryTimeline } from './contract'

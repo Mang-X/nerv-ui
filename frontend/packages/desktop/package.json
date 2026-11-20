@@ -1,0 +1,74 @@
+{
+  "name": "@nerv-ui-next/desktop",
+  "version": "0.1.0",
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts",
+    "!src/test"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./agent": {
+      "types": "./dist/agent.d.ts",
+      "import": "./dist/agent.js"
+    },
+    "./styles.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "node ../../scripts/sync-theme.mjs && tsdown && node -e \"const fs=require('fs');fs.cpSync('dist/assets/stylex.css','dist/style.css');fs.appendFileSync('dist/style.css', fs.readFileSync('src/theme/motion-reset.css','utf8'))\"",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "test": "vp test run src"
+  },
+  "dependencies": {
+    "@embedpdf/core": "2.14.4",
+    "@embedpdf/engines": "2.14.4",
+    "@embedpdf/models": "2.14.4",
+    "@embedpdf/plugin-document-manager": "2.14.4",
+    "@embedpdf/plugin-render": "2.14.4",
+    "@embedpdf/plugin-scroll": "2.14.4",
+    "@embedpdf/plugin-viewport": "2.14.4",
+    "@embedpdf/plugin-zoom": "2.14.4",
+    "@silurus/ooxml": "0.72.2"
+  },
+  "devDependencies": {
+    "@stylexjs/babel-plugin": "0.19.2",
+    "@stylexjs/stylex": "0.19.2",
+    "@stylexjs/unplugin": "0.19.2",
+    "@ui-sdk/core": "0.1.0-beta.6",
+    "@ui-sdk/vue": "0.1.0-beta.6",
+    "@vitejs/plugin-vue": "6.0.8",
+    "@vue/test-utils": "2.4.11",
+    "jsdom": "29.1.1",
+    "tsdown": "0.23.7",
+    "typescript": "^6.0.3",
+    "unplugin-vue": "^8.0.1",
+    "vitest": "4.1.10",
+    "vue": "3.5.39",
+    "vue-tsc": "^3.3.7"
+  },
+  "peerDependencies": {
+    "@stylexjs/stylex": "0.19.2",
+    "@ui-sdk/core": "0.1.0-beta.6",
+    "@ui-sdk/vue": "0.1.0-beta.6",
+    "vue": "^3.5.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": false
+    },
+    "@ui-sdk/vue": {
+      "optional": false
+    },
+    "@ui-sdk/core": {
+      "optional": false
+    },
+    "@stylexjs/stylex": {
+      "optional": false
+    }
+  }
+}

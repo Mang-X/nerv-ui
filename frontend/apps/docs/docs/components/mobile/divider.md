@@ -4,7 +4,7 @@ title: NvMobileDivider 分割线
 ---
 
 <script setup>
-import { NvMobileDivider } from '@nerv-iip/ui-mobile'
+import { NvMobileDivider } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>

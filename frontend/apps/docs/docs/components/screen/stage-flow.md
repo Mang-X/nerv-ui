@@ -4,7 +4,7 @@ title: NvScreenStageFlow 阶段数量流
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenButton, NvScreenStageFlow } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenStageFlow } from '@nerv-ui/ui'
 const stages = ref([
   { key: 'register', label: '报名', value: 24 },
   { key: 'prepare', label: '资料准备', value: 0, status: { label: '等待确认', tone: 'amber' } },

@@ -4,7 +4,7 @@ title: NvMobileDropdownMenu 下拉筛选
 ---
 
 <script setup>
-import { NvMobileDropdownMenu, NvMobileDropdownMenuItem, NvCell } from '@nerv-iip/ui-mobile'
+import { NvMobileDropdownMenu, NvMobileDropdownMenuItem, NvCell } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const status = ref('')
@@ -71,7 +71,7 @@ const rows = [
 
 ```vue
 <script setup>
-import { NvMobileDropdownMenu, NvMobileDropdownMenuItem } from '@nerv-iip/ui-mobile'
+import { NvMobileDropdownMenu, NvMobileDropdownMenuItem } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const status = ref('')

@@ -7,7 +7,7 @@ import {
   NvMobileErrorRetry,
   NvMobileResult,
   NvMobileSkeleton,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 const notice = shallowRef(true)
 const detail = shallowRef('尚未查看通知')
 const state = shallowRef<'empty' | 'pending' | 'failed' | 'success' | 'error'>('empty')

@@ -3,7 +3,7 @@ title: Alert 警告提示
 ---
 
 <script setup>
-import { Alert, AlertTitle, AlertDescription } from '@nerv-iip/ui'
+import { Alert, AlertTitle, AlertDescription } from '@nerv-ui/ui'
 import { InfoIcon, TriangleAlertIcon } from '@lucide/vue'
 </script>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
-import { NvMobileButton, NvMobileSwitch, NvNavBar, NvStepper } from '@nerv-iip/ui-mobile'
+import { NvMobileButton, NvMobileSwitch, NvNavBar, NvStepper } from '@nerv-ui/ui-mobile'
 
 const back = shallowRef(0)
 const right = shallowRef(0)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
-import { NvNotificationInbox, NvButton, type NvNotificationItem } from '@nerv-iip/ui'
+import { NvNotificationInbox, NvButton, type NvNotificationItem } from '@nerv-ui/ui'
 const props = defineProps<{ space: 'library' | 'studio' }>()
 const selected = shallowRef<string | null>(null)
 const filter = shallowRef('all')

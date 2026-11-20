@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
-import { NvSwiper, NvSwiperItem } from '@nerv-iip/ui-mobile'
+import { NvSwiper, NvSwiperItem } from '@nerv-ui/ui-mobile'
 const pages = [
   { title: '湖畔', note: '风掠过水面，留下一圈涟漪。' },
   { title: '小径', note: '沿着树影，慢慢走过午后。' },

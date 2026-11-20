@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import { createApp, createSSRApp, h, nextTick, ref } from 'vue'
 import { renderToString } from 'vue/server-renderer'
-import { NvScreenLayout } from '@nerv-iip/ui'
+import { NvScreenLayout } from '@nerv-ui/ui'
 
 it('renders seed-driven geometry through the public layout and updates only the changed instance', async () => {
   const seed = ref('gallery-one')

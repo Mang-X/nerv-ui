@@ -19,7 +19,7 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectItem,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const id = useId()
 const region = ref('北岸')
 const activity = ref('阅读分享')

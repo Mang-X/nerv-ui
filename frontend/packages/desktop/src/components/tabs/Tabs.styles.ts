@@ -1,0 +1,92 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, elevation, motion, shape, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  root: {
+    display: 'block',
+    width: '100%',
+    fontFamily: typography.fontSans,
+  },
+  list: {
+    position: 'relative',
+    isolation: 'isolate',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 2,
+    boxSizing: 'border-box',
+    maxWidth: '100%',
+    padding: 3,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: color.border,
+    borderRadius: shape.radius,
+    backgroundColor: color.muted,
+    overflowX: 'auto',
+    '[data-orientation="vertical"]': { flexDirection: 'column', alignItems: 'stretch' },
+  },
+  /**
+   * 选中态药丸。ui-sdk 的 TabsIndicator 会把当前标签的盒子写成
+   * `--active-tab-left/top/width/height`（相对 tablist 的定位坐标），
+   * 这里用过渡让它在标签之间滑动，而不是让两个标签各自淡入淡出。
+   */
+  indicator: {
+    position: 'absolute',
+    zIndex: 0,
+    top: 'var(--active-tab-top, 0px)',
+    left: 'var(--active-tab-left, 0px)',
+    width: 'var(--active-tab-width, 0px)',
+    height: 'var(--active-tab-height, 0px)',
+    borderRadius: shape.radiusSm,
+    backgroundColor: color.card,
+    boxShadow: elevation.sm,
+    pointerEvents: 'none',
+    transitionProperty: 'left, top, width, height',
+    transitionDuration: motion.durationBase,
+    transitionTimingFunction: motion.easeOut,
+    '@media (prefers-reduced-motion: reduce)': { transitionDuration: '0ms' },
+  },
+  trigger: {
+    position: 'relative',
+    zIndex: 1,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    flexShrink: 0,
+    boxSizing: 'border-box',
+    height: 30,
+    paddingInline: 12,
+    borderWidth: 0,
+    borderRadius: shape.radiusSm,
+    backgroundColor: 'transparent',
+    color: color.mutedFg,
+    fontFamily: typography.fontSans,
+    fontSize: typography.sizeMd,
+    fontWeight: 500,
+    lineHeight: typography.lineMd,
+    whiteSpace: 'nowrap',
+    cursor: 'pointer',
+    outlineStyle: 'none',
+    transitionProperty: 'color',
+    transitionDuration: motion.durationFast,
+    transitionTimingFunction: motion.easeOut,
+    ':hover': { color: color.fg },
+    // 底色由 indicator 负责，这里只做文字层级：选中项才升到正文色。
+    '[data-selected]': { color: color.fg, fontWeight: 600 },
+    '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
+    '[data-orientation="vertical"]': { justifyContent: 'flex-start' },
+  },
+  panel: {
+    marginTop: 12,
+    color: color.fg,
+    fontSize: typography.sizeMd,
+    lineHeight: typography.lineMd,
+    outlineStyle: 'none',
+    transitionProperty: 'opacity',
+    transitionDuration: motion.durationBase,
+    transitionTimingFunction: motion.easeOut,
+    '[data-starting-style]': { opacity: 0 },
+    // 退场面板在动画结束前仍留在文档流里，和新面板叠高会闪一下；退场直接不做过渡。
+    '[data-ending-style]': { opacity: 0, transitionDuration: '0ms' },
+  },
+})

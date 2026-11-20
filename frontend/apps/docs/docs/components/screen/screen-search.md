@@ -4,7 +4,7 @@ title: NvScreenSearch 搜索框
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenSearch } from '@nerv-iip/ui'
+import { NvScreenSearch } from '@nerv-ui/ui'
 
 const kw = ref('城市漫步')
 const empty = ref('')

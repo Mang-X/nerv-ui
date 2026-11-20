@@ -3,7 +3,7 @@ title: NvStationBar 区域栏
 ---
 
 <script setup>
-import { NvStationBar, NvThemeToggle } from '@nerv-iip/ui'
+import { NvStationBar, NvThemeToggle } from '@nerv-ui/ui'
 </script>
 
 # NvStationBar 区域栏

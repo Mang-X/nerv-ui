@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
-import { NvTouchSegmented } from '@nerv-iip/ui'
+import { NvTouchSegmented } from '@nerv-ui/ui'
 
 const options = [
   { value: 'read', label: '阅读' },

@@ -27,10 +27,10 @@ export interface SurfaceMeta {
 export const SURFACES: Surface[] = ['desktop', 'mobile', 'touch', 'screen']
 
 export const SURFACE_META: Record<Surface, SurfaceMeta> = {
-  desktop: { seg: 'desktop', label: '桌面', pkg: '@nerv-iip/ui · pc/blocks/layout' },
-  mobile: { seg: 'mobile', label: '移动', pkg: '@nerv-iip/ui-mobile' },
-  touch: { seg: 'touch', label: '触屏', pkg: '@nerv-iip/ui · touch/' },
-  screen: { seg: 'screen', label: '大屏', pkg: '@nerv-iip/ui · screen/' },
+  desktop: { seg: 'desktop', label: '桌面', pkg: '@nerv-ui/ui · pc/blocks/layout' },
+  mobile: { seg: 'mobile', label: '移动', pkg: '@nerv-ui/ui-mobile' },
+  touch: { seg: 'touch', label: '触屏', pkg: '@nerv-ui/ui · touch/' },
+  screen: { seg: 'screen', label: '大屏', pkg: '@nerv-ui/ui · screen/' },
 }
 
 export interface FamilyMember {

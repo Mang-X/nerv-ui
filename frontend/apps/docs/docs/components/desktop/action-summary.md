@@ -15,7 +15,7 @@ import {
   NvSelectTrigger,
   NvSelectValue,
   type NvActionSummaryState,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const planState = ref<NvActionSummaryState>('data')
 const readingState = ref<NvActionSummaryState>('empty')

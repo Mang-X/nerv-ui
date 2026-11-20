@@ -1,3 +1,3 @@
-import { runNvUiImportHygieneContract } from '@nerv-iip/ui/test-support'
+import { runNvUiImportHygieneContract } from '@nerv-ui/ui/test-support'
 
 runNvUiImportHygieneContract(import.meta.url)

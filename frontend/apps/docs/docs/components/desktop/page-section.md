@@ -3,7 +3,7 @@ title: NvPageSection 内容区块
 ---
 
 <script setup>
-import { NvPageSection, NvPageGrid } from '@nerv-iip/ui'
+import { NvPageSection, NvPageGrid } from '@nerv-ui/ui'
 </script>
 
 # NvPageSection 内容区块

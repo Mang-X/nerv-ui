@@ -4,19 +4,19 @@
 
 ## 决策
 
-业务控制台就绪度首先是设计系统工作，其次才是实现工作。新增原语必须加入 `@nerv-iip/ui`、在 `frontend/DESIGN` 中记录，然后才能由应用页面使用。
+业务控制台就绪度首先是设计系统工作，其次才是实现工作。新增原语必须加入 `@nerv-ui/ui`、在 `frontend/DESIGN` 中记录，然后才能由应用页面使用。
 
 ## 即刻组件集
 
 | 能力                 | 设计系统方向                                                       | #143 状态                                                                                                                                 |
 | -------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| 标签页（Tabs）       | shadcn-vue `tabs` 样式与公共组成部分。                             | 已在 `@nerv-iip/ui` 中交付；用于订单、工单、设备和 SKU 等密集详情页。                                                                     |
-| 侧滑面板（Sheet）    | shadcn-vue `sheet` 样式与公共组成部分。                            | 已在 `@nerv-iip/ui` 中交付；用于从列表页滑入的检查、详情或编辑面板。                                                                      |
-| 日期和日期范围选择器 | 基于 Popover 的紧凑型 DateOnly 控件。                              | 已在 `@nerv-iip/ui` 中交付；当前界面使用原生日期输入，在加入样式化日历网格部件前，`Calendar`/`RangeCalendar` 仅作为底层 Reka 根组件导出。 |
-| 图表                 | 带语义 token 桥接的 shadcn 风格图表壳层。                          | 已在 `@nerv-iip/ui` 中交付；页面级图表引擎仍是适配器，而非第二套设计系统。                                                                |
-| 文件上传             | 采用 shadcn 结构和 FileStorage 语义的 Nerv-IIP FileUpload 包装器。 | 已在 `@nerv-iip/ui` 中交付；界面通过 FileStorage 上传会话和 tus/server-proxy 传输，不得直接访问 MinIO。                                   |
-| 进度                 | shadcn-vue `progress` 样式。                                       | 已在 `@nerv-iip/ui` 中交付；供 FileUpload 和执行进度指示器使用。                                                                          |
-| 滚动区域             | shadcn-vue `scroll-area` 样式。                                    | 已在 `@nerv-iip/ui` 中交付；避免页面局部滚动条样式。                                                                                      |
+| 标签页（Tabs）       | shadcn-vue `tabs` 样式与公共组成部分。                             | 已在 `@nerv-ui/ui` 中交付；用于订单、工单、设备和 SKU 等密集详情页。                                                                     |
+| 侧滑面板（Sheet）    | shadcn-vue `sheet` 样式与公共组成部分。                            | 已在 `@nerv-ui/ui` 中交付；用于从列表页滑入的检查、详情或编辑面板。                                                                      |
+| 日期和日期范围选择器 | 基于 Popover 的紧凑型 DateOnly 控件。                              | 已在 `@nerv-ui/ui` 中交付；当前界面使用原生日期输入，在加入样式化日历网格部件前，`Calendar`/`RangeCalendar` 仅作为底层 Reka 根组件导出。 |
+| 图表                 | 带语义 token 桥接的 shadcn 风格图表壳层。                          | 已在 `@nerv-ui/ui` 中交付；页面级图表引擎仍是适配器，而非第二套设计系统。                                                                |
+| 文件上传             | 采用 shadcn 结构和 FileStorage 语义的 Nerv-IIP FileUpload 包装器。 | 已在 `@nerv-ui/ui` 中交付；界面通过 FileStorage 上传会话和 tus/server-proxy 传输，不得直接访问 MinIO。                                   |
+| 进度                 | shadcn-vue `progress` 样式。                                       | 已在 `@nerv-ui/ui` 中交付；供 FileUpload 和执行进度指示器使用。                                                                          |
+| 滚动区域             | shadcn-vue `scroll-area` 样式。                                    | 已在 `@nerv-ui/ui` 中交付；避免页面局部滚动条样式。                                                                                      |
 
 ## 文件上传（FileUpload）方向
 
@@ -26,7 +26,7 @@
 
 当上传需要更丰富的可恢复性控制、重试策略、暂停/恢复界面、来源提供方或更广泛的 tus 协议覆盖时，Uppy core/headless（核心/无界面模式）加 `@uppy/tus` 仍是首选适配器。它应位于相同的 Nerv-IIP 包装器契约之后。
 
-不得将 Uppy Dashboard（仪表盘）用作默认视觉基线。其行为可以启发交互细节，但渲染壳层应保持 Calm Control Plane（沉静控制平面）并使用 `@nerv-iip/ui` 原语。
+不得将 Uppy Dashboard（仪表盘）用作默认视觉基线。其行为可以启发交互细节，但渲染壳层应保持 Calm Control Plane（沉静控制平面）并使用 `@nerv-ui/ui` 原语。
 
 对于当前狭窄的 FileStorage 传输路径，在依赖负担比完整协议覆盖更重要时，可以使用自定义 tus 客户端。在扩展到大型 CAD 包或重型媒体工作流之前，它应保持可由 Uppy 支撑的适配器替换。
 
@@ -82,4 +82,4 @@
 1. 不得将 MinIO/S3 多段上传（multipart）作为 #143 的一部分实现。
 2. 不得创建第二套图表设计系统。
 3. 不得暴露 FileStorage 对象键或直接对象存储 URL。
-4. 不得在 `@nerv-iip/ui` 之外创建页面专用的上传、图表、日期、侧滑面板或标签页样式。
+4. 不得在 `@nerv-ui/ui` 之外创建页面专用的上传、图表、日期、侧滑面板或标签页样式。

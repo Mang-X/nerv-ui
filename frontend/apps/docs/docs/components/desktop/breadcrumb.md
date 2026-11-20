@@ -6,7 +6,7 @@ title: Breadcrumb 面包屑
 import {
   Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage,
   BreadcrumbSeparator, BreadcrumbEllipsis,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 </script>
 
 # Breadcrumb 面包屑

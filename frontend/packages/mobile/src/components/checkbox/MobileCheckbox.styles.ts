@@ -1,0 +1,65 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, motion, shape, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  row: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    minHeight: 44,
+    fontFamily: typography.fontSans,
+    cursor: 'pointer',
+    WebkitTapHighlightColor: 'transparent',
+  },
+  rowDisabled: {
+    cursor: 'not-allowed',
+    opacity: 0.5,
+  },
+  box: {
+    position: 'relative',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    boxSizing: 'border-box',
+    width: 22,
+    height: 22,
+    padding: 0,
+    borderWidth: 1.5,
+    borderStyle: 'solid',
+    borderColor: color.border,
+    borderRadius: shape.radiusSm,
+    backgroundColor: color.card,
+    color: color.brandFg,
+    cursor: 'pointer',
+    WebkitTapHighlightColor: 'transparent',
+    transitionProperty: 'background-color, border-color, box-shadow, opacity',
+    transitionDuration: motion.durationFast,
+    transitionTimingFunction: motion.easeOut,
+    '::before': {
+      content: '""',
+      position: 'absolute',
+      inset: -11,
+      borderRadius: shape.radiusSm,
+    },
+    ':disabled': { cursor: 'not-allowed' },
+  },
+  boxChecked: {
+    backgroundColor: color.brand,
+    borderColor: color.brand,
+  },
+  indicator: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+  },
+  label: {
+    flex: 1,
+    minWidth: 0,
+    fontSize: 15,
+    lineHeight: '20px',
+    color: color.fg,
+  },
+})

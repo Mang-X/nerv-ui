@@ -8,7 +8,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSkeleton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const waiting = ref(true)
 const showIcon = ref(true)
 const current = ref('随手收藏')

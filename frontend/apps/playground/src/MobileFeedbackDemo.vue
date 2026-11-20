@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NvAppShellMobile, NvNavBar } from '@nerv-iip/ui-mobile'
-import { useColorMode } from '@nerv-iip/ui'
+import { NvAppShellMobile, NvNavBar } from '@nerv-ui/ui-mobile'
+import { useColorMode } from '@nerv-ui/ui'
 import FeedbackStates from './mobile-feedback/FeedbackStates.vue'
 import FeedbackSignals from './mobile-feedback/FeedbackSignals.vue'
 import FeedbackMedia from './mobile-feedback/FeedbackMedia.vue'

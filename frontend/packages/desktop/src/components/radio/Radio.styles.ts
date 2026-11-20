@@ -1,0 +1,56 @@
+import * as stylex from '@stylexjs/stylex'
+import { color, motion, typography } from '../../theme/tokens.stylex'
+
+export const styles = stylex.create({
+  group: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 8,
+    fontFamily: typography.fontSans,
+  },
+  root: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 8,
+    cursor: 'pointer',
+    color: color.fg,
+    fontFamily: typography.fontSans,
+    fontSize: typography.sizeMd,
+    lineHeight: typography.lineMd,
+    userSelect: 'none',
+  },
+  radio: {
+    display: 'grid',
+    placeItems: 'center',
+    flexShrink: 0,
+    width: 18,
+    height: 18,
+    padding: 0,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: color.border,
+    borderRadius: 999,
+    backgroundColor: color.card,
+    cursor: 'pointer',
+    outlineStyle: 'none',
+    transitionProperty: 'border-color, background-color, box-shadow',
+    transitionDuration: motion.durationFast,
+    transitionTimingFunction: motion.easeOut,
+    ':hover': { borderColor: color.mutedFg },
+    '[data-checked]': { borderColor: color.brand },
+    '[data-disabled]': { opacity: 0.5, cursor: 'not-allowed' },
+  },
+  indicator: {
+    display: 'block',
+    width: 8,
+    height: 8,
+    borderRadius: 999,
+    backgroundColor: color.brand,
+  },
+  label: {
+    cursor: 'pointer',
+    color: color.fg,
+    fontSize: typography.sizeMd,
+    lineHeight: typography.lineMd,
+  },
+})

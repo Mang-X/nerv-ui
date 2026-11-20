@@ -14,7 +14,7 @@ import {
   NvSelectItem,
   NvSelectTrigger,
   NvSelectValue,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const id = useId()
 const topic = ref('随手阅读')
 const display = ref('简洁')

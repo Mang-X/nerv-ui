@@ -9,7 +9,7 @@ import {
   NvCardDescription,
   NvCardContent,
   NvCardFooter,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const confirmed = ref(false)
 const tipsViewed = ref(false)

@@ -1,0 +1,52 @@
+import * as stylex from '@stylexjs/stylex'
+import { motion } from '../../theme/tokens.stylex'
+import { scr, scrShape, scrType } from '../../tokens.stylex'
+
+export const styles = stylex.create({
+  base: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    whiteSpace: 'nowrap',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'transparent',
+    borderRadius: scrShape.radiusLg,
+    fontFamily: 'inherit',
+    fontWeight: 600,
+    lineHeight: 1,
+    cursor: 'pointer',
+    userSelect: 'none',
+    touchAction: 'manipulation',
+    outlineStyle: 'none',
+    transitionProperty: 'background-color, border-color, box-shadow, transform, color',
+    transitionDuration: motion.durationFast,
+    transitionTimingFunction: motion.easeOut,
+    ':disabled': { cursor: 'not-allowed', opacity: 0.45 },
+    ':active:not(:disabled)': { transform: 'scale(0.985)' },
+  },
+  md: { height: 56, minWidth: 56, paddingInline: 22, fontSize: scrType.md },
+  lg: { height: 64, minWidth: 64, paddingInline: 26, fontSize: 19 },
+  xl: { height: 72, minWidth: 72, paddingInline: 30, fontSize: 20 },
+  iconMd: { width: 56, paddingInline: 0 },
+  iconLg: { width: 64, paddingInline: 0 },
+  iconXl: { width: 72, paddingInline: 0 },
+  primary: { backgroundColor: scr.accent, color: scr.accentFg },
+  secondary: { backgroundColor: scr.panelAlt, color: scr.fg },
+  outline: {
+    backgroundColor: 'transparent',
+    color: scr.fg,
+    borderColor: scr.borderStrong,
+  },
+  ghost: { backgroundColor: 'transparent', color: scr.fg },
+  danger: { backgroundColor: scr.danger, color: scr.bg },
+  block: { width: '100%' },
+  icon: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    fontSize: '1.2em',
+  },
+})

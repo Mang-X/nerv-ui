@@ -4,7 +4,7 @@ title: NvScreenTrendChart 趋势图
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenTrendChart } from '@nerv-iip/ui'
+import { NvScreenTrendChart } from '@nerv-ui/ui'
 
 const actual = ref([120, 360, 640, 760, 980, 880, 1086, 760, 940, 910, 930, 910])
 const plan = ref([140, 420, 700, 900, 1010, 1080, 1150, 1180, 1220, 1260, 1320, 1380])

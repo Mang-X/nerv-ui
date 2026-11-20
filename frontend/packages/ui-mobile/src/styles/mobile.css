@@ -1,6 +1,6 @@
 /*
- * Nerv-IIP 移动端基线（@nerv-iip/ui-mobile）。
- * 安全区工具类统一注入顶/底/左右；触控密度变量。token 仍来自 @nerv-iip/ui 的 theme.css。
+ * Nerv-IIP 移动端基线（@nerv-ui/ui-mobile）。
+ * 安全区工具类统一注入顶/底/左右；触控密度变量。token 仍来自 @nerv-ui/ui 的 theme.css。
  */
 
 /* Relative to this public CSS entry, so consumers never scan private package paths. */

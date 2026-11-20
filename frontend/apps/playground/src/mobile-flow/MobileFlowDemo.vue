@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvMobileButton } from '@nerv-iip/ui-mobile'
+import { NvMobileButton } from '@nerv-ui/ui-mobile'
 import MobileFlowRecipe from './MobileFlowRecipe.vue'
 import type { FlowCandidate } from './flow'
 const code = ref('WEEKEND')

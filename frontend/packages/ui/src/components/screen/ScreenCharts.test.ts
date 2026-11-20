@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { NvScreenTrendChart, NvScreenBarChart, NvScreenDonut, NvScreenPareto } from '@nerv-iip/ui'
+import { NvScreenTrendChart, NvScreenBarChart, NvScreenDonut, NvScreenPareto } from '@nerv-ui/ui'
 
 beforeEach(() =>
   vi.stubGlobal('matchMedia', () => ({

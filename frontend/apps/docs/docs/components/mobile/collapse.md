@@ -4,7 +4,7 @@ title: NvMobileCollapse 折叠面板
 ---
 
 <script setup>
-import { NvMobileCollapse } from '@nerv-iip/ui-mobile'
+import { NvMobileCollapse } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import * as ui from './index'
 
-describe('@nerv-iip/ui FE-2 block library exports', () => {
+describe('@nerv-ui/ui FE-2 block library exports', () => {
   it('exports the layout + header blocks from the stable boundary (Nv names)', () => {
     expect(ui.NvAppShellInset).toBeDefined()
     expect(ui.NvPageHeader).toBeDefined()

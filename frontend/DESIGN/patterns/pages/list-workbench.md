@@ -53,8 +53,8 @@ Business Console 列表页的规范原型——**所有** stage-B 列表/工作�
 - [ ] 页内无裸 `<Table>`/`<TableHeader>` 拼装——表格走 `NvDataTable`。
 - [ ] 无手搓 metric `<div>`——KPI 走 `NvSectionCard`。
 - [ ] 状态走 `NvStatusBadge`；行操作走 `NvRowActions`。
-- [ ] 只从 `@nerv-iip/ui` 主桶导入——无深导入
-      （`@nerv-iip/ui/...`、`reka-ui`、`shadcn-vue`）。
+- [ ] 只从 `@nerv-ui/ui` 主桶导入——无深导入
+      （`@nerv-ui/ui/...`、`reka-ui`、`shadcn-vue`）。
 - [ ] 无 org/environment/debug/source 元数据、无开发语言文案。
 - [ ] **本页所属域的每个侧栏项都有 `icon`**——rail 里无首字回退。
 - [ ] **无「用途说明」浮段、无冗余「本页 N」计数**——引导来自页头/列头/徽标/按钮/空态。

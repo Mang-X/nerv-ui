@@ -4,7 +4,7 @@ title: NvMobileRadioGroup 单选框
 ---
 
 <script setup>
-import { NvMobileRadioGroup, NvMobileRadioItem } from '@nerv-iip/ui-mobile'
+import { NvMobileRadioGroup, NvMobileRadioItem } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const inspect = ref('std')

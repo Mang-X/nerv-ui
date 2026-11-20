@@ -4,7 +4,7 @@ title: NvScreenSwitch 开关
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenSwitch } from '@nerv-iip/ui'
+import { NvScreenSwitch } from '@nerv-ui/ui'
 
 const auto = ref(true)
 const alarm = ref(false)

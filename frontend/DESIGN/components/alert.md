@@ -3,7 +3,7 @@
 页面流中的内联信息消息。用于持续显示、不可手动关闭的反馈。
 
 > NvUI 状态：目前尚无 `NvAlert`；`Alert` / `AlertTitle` /
-> `AlertDescription` 是当前从 `@nerv-iip/ui` 导出的规范名称
+> `AlertDescription` 是当前从 `@nerv-ui/ui` 导出的规范名称
 > （在品牌层重建前，原版 primitive 继续作为应用侧名称）。
 
 ## 变体

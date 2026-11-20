@@ -4,7 +4,7 @@ title: NvMobileSwitch 开关
 ---
 
 <script setup>
-import { NvCell, NvCellGroup, NvMobileSwitch } from '@nerv-iip/ui-mobile'
+import { NvCell, NvCellGroup, NvMobileSwitch } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const rush = ref(true)

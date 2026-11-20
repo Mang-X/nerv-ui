@@ -4,7 +4,7 @@ title: NvScreenStatusWall 分组状态墙
 
 <script setup>
 import { ref } from 'vue'
-import { NvScreenPanel, NvScreenSelect, NvScreenStatusWall } from '@nerv-iip/ui'
+import { NvScreenPanel, NvScreenSelect, NvScreenStatusWall } from '@nerv-ui/ui'
 const mode = ref('flat')
 const current = ref(null)
 const items = [{key:'a',label:'阅读角',identity:'东区 1 号',status:{label:'待确认',tone:'amber'},summary:'0 人',group:{key:'east',label:'东区'}},{key:'b',label:'阅读角',identity:'西区 2 号',status:{label:'开放',tone:'green'},summary:null,group:{key:'west',label:'西区'}}]
@@ -63,7 +63,7 @@ type ScreenStatusWallMode = 'flat' | 'group-grid' | 'group-chip'
 
 ## 设计说明
 
-类型和组件均从 `@nerv-iip/ui` 主桶导入。identity 是可辨的人类位置描述；技术 key 不作为默认可见文字。摘要纯文本，真实零不得被空值判断丢弃，null/undefined 显示 —。分组按 key 关联，同名组可独立，未分组与名为 ungrouped 的组互不冲突。
+类型和组件均从 `@nerv-ui/ui` 主桶导入。identity 是可辨的人类位置描述；技术 key 不作为默认可见文字。摘要纯文本，真实零不得被空值判断丢弃，null/undefined 显示 —。分组按 key 关联，同名组可独立，未分组与名为 ungrouped 的组互不冲突。
 
 无请求、轮询、缓存或详情 slot。宿主在墙外组合现有面板接收 preview；disabled 项无 hover、focus 或选择动作。按钮原生 title 保留全文，ARIA 名称包括标签、身份、状态。组件固定行几何，不根据摘要自动扩高；宿主提供确定高度和适合六列的宽度。有限 DOM 与 stride 的测试使用受控 clientHeight 和真实 useVirtualList，不能代表真实 resize、命中、视距或视觉通过。
 

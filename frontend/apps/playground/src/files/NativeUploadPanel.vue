@@ -7,7 +7,7 @@ import {
   type FileUploadExpose,
   type FileUploadSession,
   type FileUploadVariant,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 
 const prefix = '/__native-fixture'
 const upload = useTemplateRef<FileUploadExpose>('nativeUpload')

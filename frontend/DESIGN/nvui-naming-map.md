@@ -337,7 +337,7 @@ NvFieldVariants`、`fieldProVariants → nvFieldVariants`。
 
 （`SegmentOption` 类型不改名。）
 
-### A6. `@nerv-iip/ui-mobile`（47 个组件导出，43 件）
+### A6. `@nerv-ui/ui-mobile`（47 个组件导出，43 件）
 
 | 旧名             | 新名                     | 依据                                                                |
 | ---------------- | ------------------------ | ------------------------------------------------------------------- |

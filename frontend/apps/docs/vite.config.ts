@@ -21,8 +21,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@nerv-iip/ui': fileURLToPath(new URL('../../packages/ui/src/index.ts', import.meta.url)),
-      '@nerv-iip/ui-mobile': fileURLToPath(
+      '@nerv-ui/ui': fileURLToPath(new URL('../../packages/ui/src/index.ts', import.meta.url)),
+      '@nerv-ui/ui-mobile': fileURLToPath(
         new URL('../../packages/ui-mobile/src/index.ts', import.meta.url),
       ),
     },

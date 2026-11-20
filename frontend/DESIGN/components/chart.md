@@ -1,6 +1,6 @@
 # 图表（NvAreaChart / NvLineChart / NvBarChart / NvDonutChart）
 
-应用页面使用从 `@nerv-iip/ui` 导入的品牌图表组件：
+应用页面使用从 `@nerv-ui/ui` 导入的品牌图表组件：
 
 - `NvLineChart` / `NvAreaChart` — 时间趋势。属性：`data`（行对象）、`xKey`、
   `series: LineSeries[]`（`{ key, label, color? }`）、`height`、`valueSuffix`。
@@ -23,7 +23,7 @@ shadcn 风格的图表壳层（shell）（`ChartContainer`、`ChartTooltipConten
 
 ```vue
 <script setup lang="ts">
-import { NvLineChart, type LineSeries } from '@nerv-iip/ui'
+import { NvLineChart, type LineSeries } from '@nerv-ui/ui'
 
 const series: LineSeries[] = [
   { key: 'planned', label: 'Planned' },

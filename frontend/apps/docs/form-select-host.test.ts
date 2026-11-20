@@ -2,7 +2,7 @@
 import { afterEach, expect, it } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
 import { defineComponent } from 'vue'
-import { NvFormSection, NvSelect, Select } from '@nerv-iip/ui'
+import { NvFormSection, NvSelect, Select } from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/localFormSectionExample.vue'
 let page: VueWrapper
 afterEach(() => page?.unmount())

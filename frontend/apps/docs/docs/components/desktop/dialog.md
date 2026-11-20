@@ -15,7 +15,7 @@ import {
   NvDialogClose,
   NvButton,
   NvInput,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { GaugeIcon } from '@lucide/vue'
 import { ref } from 'vue'
 
@@ -96,7 +96,7 @@ import {
   NvDialogFooter,
   NvDialogClose,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ref } from 'vue'
 const dialogOpen = ref(false)
 const dispatchReceipt = ref('尚未选择指派记录')

@@ -23,7 +23,7 @@ import {
   NvAlertDialogCancel,
   AlertDialogCancel,
   NvButton,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const brandOpen = ref(false)
 const baseOpen = ref(false)
 const brandReceipt = ref('尚未确认')

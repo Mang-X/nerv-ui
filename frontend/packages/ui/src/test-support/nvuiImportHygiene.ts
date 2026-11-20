@@ -11,9 +11,9 @@ import { describe, expect, it } from 'vitest'
  * （`apps/<app>/src/nvui-imports.contract.test.ts`）。此前四份是字节相同的手工副本，没有
  * 任何东西保证它们继续相同：只改一两份会让门禁在某些 app 上悄悄变松而 CI 照绿。
  *
- * 组件库只通过稳定包边界消费——裸 `@nerv-iip/ui` / `@nerv-iip/ui-mobile`，用 `Nv*` 规范名。
+ * 组件库只通过稳定包边界消费——裸 `@nerv-ui/ui` / `@nerv-ui/ui-mobile`，用 `Nv*` 规范名。
  *
- *  1. **硬禁**（永远判红）：深导入 `@nerv-iip/ui|ui-mobile/*`（例外见
+ *  1. **硬禁**（永远判红）：深导入 `@nerv-ui/ui|ui-mobile/*`（例外见
  *     {@link ALLOWED_UI_SUBPATHS} 与 {@link TEST_ONLY_UI_SUBPATHS}）、直接 `reka-ui`、
  *     直接 `shadcn-vue`。
  *  2. **收口不变量**：codemod 收口（#789）删光了库桶里的 `@deprecated` 旧名别名，旧名因此
@@ -27,7 +27,7 @@ import { describe, expect, it } from 'vitest'
 /** 运行时子入口，全 app 源码放行；见 `frontend/DESIGN/governance.md` 的「包子入口边界」。 */
 const ALLOWED_UI_SUBPATHS = new Set(['file-preview', 'styles.css', 'theme.css', 'overrides.css'])
 /**
- * test-only 子入口（#2014）：`@nerv-iip/ui/test-support` 装的是各包 vitest `setupFiles`
+ * test-only 子入口（#2014）：`@nerv-ui/ui/test-support` 装的是各包 vitest `setupFiles`
  * 用的支撑件（unovis tooltip 定时器收口等）与本门禁自身的实现，不是组件边界的一部分。
  * 它只在 `src/test/setup.ts` 里放行；页面 / 组件 / composable 引用它照旧判红。
  */
@@ -45,18 +45,18 @@ export const CONTRACT_SHELL_BASENAME = 'nvui-imports.contract.test.ts'
  *
  * 「四份壳字节一致」是**自指**判据：四份被同时换成同样的空壳（`it('ok', () => {})`）时
  * 一致性断言仍然全绿，而门禁已经全灭。所以另加这条形状断言——它不比较副本之间，而是把每份
- * 壳钉到「从 `@nerv-iip/ui/test-support` 导入并调用 `runNvUiImportHygieneContract`」这个
- * 事实上。该断言同时住在 `@nerv-iip/ui` 包自己的单测里，因此四份壳同时被掏空时仍有人报警。
+ * 壳钉到「从 `@nerv-ui/ui/test-support` 导入并调用 `runNvUiImportHygieneContract`」这个
+ * 事实上。该断言同时住在 `@nerv-ui/ui` 包自己的单测里，因此四份壳同时被掏空时仍有人报警。
  */
 export const CONTRACT_SHELL_IMPORT_RE =
-  /import\s*\{[^}]*\brunNvUiImportHygieneContract\b[^}]*\}\s*from\s*['"]@nerv-iip\/ui\/test-support['"]/
+  /import\s*\{[^}]*\brunNvUiImportHygieneContract\b[^}]*\}\s*from\s*['"]@nerv-ui\/ui\/test-support['"]/
 export const CONTRACT_SHELL_CALL_RE =
   /^\s*runNvUiImportHygieneContract\(\s*import\.meta\.url\s*\)\s*$/m
 
 /** 壳没有真的挂上门禁时返回原因，正常返回 `null`。 */
 export function contractShellDefect(source: string): string | null {
   if (!CONTRACT_SHELL_IMPORT_RE.test(source)) {
-    return 'shell does not import runNvUiImportHygieneContract from @nerv-iip/ui/test-support'
+    return 'shell does not import runNvUiImportHygieneContract from @nerv-ui/ui/test-support'
   }
   if (!CONTRACT_SHELL_CALL_RE.test(source)) {
     return 'shell does not call runNvUiImportHygieneContract(import.meta.url)'
@@ -72,21 +72,21 @@ export function contractShellDefect(source: string): string | null {
  * @returns 违规原因（用作断言消息），合规返回 `null`。
  */
 export function nvuiImportViolation(spec: string, rel: string): string | null {
-  const uiDeep = /^@nerv-iip\/ui\/(.+)$/.exec(spec)
+  const uiDeep = /^@nerv-ui\/ui\/(.+)$/.exec(spec)
   if (uiDeep) {
     const sub = uiDeep[1]
     const allowed =
       ALLOWED_UI_SUBPATHS.has(sub) || (isTestSetupFile(rel) && TEST_ONLY_UI_SUBPATHS.has(sub))
-    if (!allowed) return `deep import "${spec}" — use the bare @nerv-iip/ui barrel`
+    if (!allowed) return `deep import "${spec}" — use the bare @nerv-ui/ui barrel`
   }
-  if (/^@nerv-iip\/ui-mobile\/.+$/.test(spec) && spec !== '@nerv-iip/ui-mobile/styles/mobile.css') {
-    return `deep import "${spec}" — use the bare @nerv-iip/ui-mobile barrel`
+  if (/^@nerv-ui\/ui-mobile\/.+$/.test(spec) && spec !== '@nerv-ui/ui-mobile/styles/mobile.css') {
+    return `deep import "${spec}" — use the bare @nerv-ui/ui-mobile barrel`
   }
   if (/^reka-ui(\/|$)/.test(spec)) {
-    return `direct reka-ui import "${spec}" — headless primitives live inside @nerv-iip/ui`
+    return `direct reka-ui import "${spec}" — headless primitives live inside @nerv-ui/ui`
   }
   if (/^shadcn-vue(\/|$)/.test(spec)) {
-    return `direct shadcn-vue import "${spec}" — use @nerv-iip/ui`
+    return `direct shadcn-vue import "${spec}" — use @nerv-ui/ui`
   }
   return null
 }
@@ -151,9 +151,9 @@ export function appsRequiringContract(frontendRoot: string): string[] {
         scripts?: Record<string, string>
       }
       const deps = { ...pkg.dependencies, ...pkg.devDependencies }
-      const consumesLibrary = '@nerv-iip/ui' in deps || '@nerv-iip/ui-mobile' in deps
+      const consumesLibrary = '@nerv-ui/ui' in deps || '@nerv-ui/ui-mobile' in deps
       // `scripts.test` 与 vitest 依赖任一存在即算「有测试运行器」：只删 test 脚本不足以让一个
-      // app 从集合里溜走。两者都没有时这里确实兜不住——最终闭合点是 `@nerv-iip/ui` 包自己
+      // app 从集合里溜走。两者都没有时这里确实兜不住——最终闭合点是 `@nerv-ui/ui` 包自己
       // 单测里那份写死的四元素期望列表（改集合必须人工复核）。
       const hasTestRunner = typeof pkg.scripts?.test === 'string' || 'vitest' in deps
       return consumesLibrary && hasTestRunner
@@ -209,7 +209,7 @@ export function runNvUiImportHygieneContract(contractFileUrl: string): void {
       ).toEqual([])
     })
 
-    // #2022：四份壳曾是手工维护的字节副本。规则本体收进 `@nerv-iip/ui/test-support` 之后，
+    // #2022：四份壳曾是手工维护的字节副本。规则本体收进 `@nerv-ui/ui/test-support` 之后，
     // 这条断言守住剩下的两个漂移面——「有 app 没挂壳」和「某个 app 的壳被单独改过」。
     // 它在每个 app 的 job 里各跑一次，所以 CI 上失败归属仍然落到具体 app。
     describe('contract shell consistency across apps', () => {
@@ -241,7 +241,7 @@ export function runNvUiImportHygieneContract(contractFileUrl: string): void {
         expect(
           defects,
           'a contract shell no longer arms the guard — it must import ' +
-            'runNvUiImportHygieneContract from @nerv-iip/ui/test-support and call it with import.meta.url',
+            'runNvUiImportHygieneContract from @nerv-ui/ui/test-support and call it with import.meta.url',
         ).toEqual({})
       })
 
@@ -258,7 +258,7 @@ export function runNvUiImportHygieneContract(contractFileUrl: string): void {
         expect(
           drifted,
           `contract shells diverged from ${appName}'s — the shell is a fixed call into ` +
-            `@nerv-iip/ui/test-support and must stay byte-identical across apps; rules belong in ` +
+            `@nerv-ui/ui/test-support and must stay byte-identical across apps; rules belong in ` +
             `that module, not in a per-app copy. Digests: ` +
             JSON.stringify(digests, null, 2),
         ).toEqual([])

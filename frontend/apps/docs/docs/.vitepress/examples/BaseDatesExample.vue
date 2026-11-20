@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { DatePicker, DateRangePicker, NvButton, type DateRangeValue } from '@nerv-iip/ui'
+import { DatePicker, DateRangePicker, NvButton, type DateRangeValue } from '@nerv-ui/ui'
 const single = ref<string | null>('2026-06-18')
 const range = ref<DateRangeValue | null>({ from: '2026-06-10', to: '2026-06-18' })
 const disabled = ref(false)

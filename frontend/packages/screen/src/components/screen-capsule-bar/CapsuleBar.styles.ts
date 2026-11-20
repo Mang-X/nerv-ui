@@ -1,0 +1,56 @@
+import * as stylex from '@stylexjs/stylex'
+import { scr, scrType } from '../../tokens.stylex'
+
+export const styles = stylex.create({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 14,
+    fontVariantNumeric: 'tabular-nums',
+  },
+  row: {
+    display: 'grid',
+    gridTemplateColumns: '64px minmax(0, 1fr) minmax(52px, max-content)',
+    alignItems: 'center',
+    gap: 12,
+  },
+  label: {
+    fontSize: scrType.xs,
+    color: scr.fgMuted,
+    textAlign: 'end',
+    whiteSpace: 'nowrap',
+    overflowX: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  track: {
+    position: 'relative',
+    height: 12,
+    borderRadius: 999,
+    backgroundColor: scr.track,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: scr.border,
+    overflowX: 'hidden',
+  },
+  fill: {
+    position: 'absolute',
+    insetBlock: 0,
+    left: 0,
+    borderRadius: 999,
+    transitionProperty: 'width',
+    transitionDuration: '0.6s',
+    transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
+    '@media (prefers-reduced-motion: reduce)': { transitionProperty: 'none' },
+  },
+  value: { fontSize: 14, fontWeight: 600, textAlign: 'end' },
+  fillCyan: { backgroundColor: scr.accent, boxShadow: `0 0 8px ${scr.accentSoft}` },
+  fillIndigo: { backgroundColor: scr.accent, boxShadow: `0 0 8px ${scr.accentSoft}` },
+  fillGreen: { backgroundColor: scr.success, boxShadow: `0 0 8px ${scr.successSoft}` },
+  fillAmber: { backgroundColor: scr.warning, boxShadow: `0 0 8px ${scr.warningSoft}` },
+  fillRed: { backgroundColor: scr.danger, boxShadow: `0 0 8px ${scr.dangerSoft}` },
+  valueCyan: { color: scr.accent },
+  valueIndigo: { color: scr.accent },
+  valueGreen: { color: scr.success },
+  valueAmber: { color: scr.warning },
+  valueRed: { color: scr.danger },
+})

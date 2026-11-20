@@ -7,7 +7,7 @@
 | 场景                             | 用法                                                                                                                          |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | 实体列表（默认）                 | `NvDataTable` 内建分页：`manual` + `v-model:page` + `:total-items` + `:page-size`（服务端 1-based，见 `components/table.md`） |
-| 非表格的分页面（卡片墙、时间线） | 独立 `NvPagination`（`@nerv-iip/ui`，props/emits 见 `components/pagination.md`）                                              |
+| 非表格的分页面（卡片墙、时间线） | 独立 `NvPagination`（`@nerv-ui/ui`，props/emits 见 `components/pagination.md`）                                              |
 
 ## 规则
 

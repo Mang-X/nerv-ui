@@ -3,7 +3,7 @@ title: NvAlarmTable 告警列表
 ---
 
 <script setup>
-import { NvAlarmTable } from '@nerv-iip/ui'
+import { NvAlarmTable } from '@nerv-ui/ui'
 const rows = [
   { id: 'event-1', time: '14:00', line: '书房', level: 'sev', name: '预约时间变更', wo: 'REF-7', status: '已恢复', tone: 'var(--nv-scr-muted)' },
   { id: 'event-2', time: '14:01', line: '展厅', level: 'gen', name: '活动安排更新', wo: 'REF-7', status: '特别好', tone: 'var(--nv-scr-amber)' },

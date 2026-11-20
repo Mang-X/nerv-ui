@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, NvThemePicker, useColorMode } from '@nerv-iip/ui'
+import { Button, NvThemePicker, useColorMode } from '@nerv-ui/ui'
 import { Moon, Search, Sun } from '@lucide/vue'
 import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
@@ -7,7 +7,7 @@ import { onMounted, ref, watch } from 'vue'
 import SceneBadge from './SceneBadge.vue'
 
 // Wrap the default layout and swap VitePress's built-in nav controls for our own
-// @nerv-iip/ui components, so the docs chrome matches the system it documents:
+// @nerv-ui/ui components, so the docs chrome matches the system it documents:
 //   • the search box  → our Button-styled trigger (opens VitePress's own local
 //     search modal via its Ctrl/⌘-K shortcut, so the index/modal still work);
 //   • the appearance switch → our Sun/Moon Button bound to `isDark`;

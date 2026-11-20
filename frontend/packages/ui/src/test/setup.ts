@@ -1,7 +1,7 @@
 import { disableUnovisTooltipThrottle } from '../test-support'
 
 /**
- * `@nerv-iip/ui` 自己的组件测试也挂真实图表（`Metric.test.ts` → `NvMetricStrip`
+ * `@nerv-ui/ui` 自己的组件测试也挂真实图表（`Metric.test.ts` → `NvMetricStrip`
  * → `NvMetricSparklinePart` → `NvAreaChart` → `VisTooltip`），走的是和
  * business-console 完全相同的那条 unovis 路径，所以同样会被 tooltip 的 throttle
  * 定时器判红（#2011 / #2014）。这个包此前没有统一的 setup 落点，ResizeObserver 桩

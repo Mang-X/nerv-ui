@@ -1,4 +1,4 @@
-export { cn } from '@nerv-iip/ui'
+export { cn } from '@nerv-ui/ui'
 
 /**
  * iOS-style rubber-band resistance. Maps a raw past-the-edge overscroll to a

@@ -284,7 +284,7 @@
 
 **核实后的体系事实**：base（shadcn 原版，零改动）+ 四场景层——PC `pc/`（35 目录 95+ 件，Pro 后缀）、mobile（独立 `ui-mobile` 包 43 件，Mobile 前缀+裸名混杂）、screen（28+ 件，Screen 前缀）、touch（5 件，平板工位）。命名三种风格并存；console/screen app 无合约测试守护；docs 站 desktop 有 45 页，而 mobile/screen 明显偏科；token 文档不分场景（`--sb-*` 等场景差异只在组件层体现）。
 
-> **已决策（2026-07-07）**：品牌前缀 `Nv`，组件库品牌名 **NvUI**（包名方案在 ADR 定：`@nerv-iip/nvui` / 保持 `@nerv-iip/ui` 仅改组件名，倾向前者）；**迁移在业务批（C/P）之前完成**；token 允许跨场景取值相同（设计理念一致，如动效统一 motion-v 封装），但**名称必须按场景命名空间隔离**（primitive 层共享，semantic 层按场景前缀：PC `--nv-*`、screen `--nv-scr-*`（现 `--sb-*` 迁移）、mobile `--nv-m-*`、touch `--nv-t-*`，具体在 ADR 冻结）；**样式隔离制度化**：全部组件样式进 CSS cascade layer，解决 VitePress 文档站 `--vp-*` 覆盖/revert-layer 嵌入坑，文档站嵌入规范写入 governance。
+> **已决策（2026-07-07）**：品牌前缀 `Nv`，组件库品牌名 **NvUI**（包名方案在 ADR 定：`@nerv-iip/nvui` / 保持 `@nerv-ui/ui` 仅改组件名，倾向前者）；**迁移在业务批（C/P）之前完成**；token 允许跨场景取值相同（设计理念一致，如动效统一 motion-v 封装），但**名称必须按场景命名空间隔离**（primitive 层共享，semantic 层按场景前缀：PC `--nv-*`、screen `--nv-scr-*`（现 `--sb-*` 迁移）、mobile `--nv-m-*`、touch `--nv-t-*`，具体在 ADR 冻结）；**样式隔离制度化**：全部组件样式进 CSS cascade layer，解决 VitePress 文档站 `--vp-*` 覆盖/revert-layer 嵌入坑，文档站嵌入规范写入 governance。
 
 **B1 命名规范 ADR（先决策再动手）**——品牌前缀候选：
 

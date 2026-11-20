@@ -91,7 +91,7 @@ it('changes color mode and accent through the station right slot', async () => {
   const accentBefore = blue.attributes('aria-pressed')
   await blue.trigger('click')
   expect(blue.attributes('aria-pressed')).toBe(accentBefore === 'true' ? 'false' : 'true')
-  expect(localStorage.getItem('nerv-iip-theme')).toBe(
+  expect(localStorage.getItem('nerv-ui-theme')).toBe(
     blue.attributes('aria-pressed') === 'true' ? 'blue' : 'neutral',
   )
 })

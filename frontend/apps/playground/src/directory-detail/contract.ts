@@ -1,4 +1,4 @@
-import type { EntityPickerOption, TimelineItem } from '@nerv-iip/ui'
+import type { EntityPickerOption, TimelineItem } from '@nerv-ui/ui'
 export interface DirectoryRow {
   key: string
   code: string

@@ -1,0 +1,7 @@
+# 现代优先：只面向常青浏览器的最新两个版本，不为旧引擎产出降级声明。
+last 2 chrome versions
+last 2 edge versions
+last 2 firefox versions
+last 2 safari versions
+last 2 ios_saf versions
+last 2 android versions

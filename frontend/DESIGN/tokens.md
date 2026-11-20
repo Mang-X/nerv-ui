@@ -51,7 +51,7 @@ JS 预设唯一来源 `packages/ui/src/lib/motion.ts`，数值与 CSS token 同�
 
 ## 第 1 层：原始值
 
-原始 OKLCH 值只在共享的 `@nerv-iip/ui` 主题文件
+原始 OKLCH 值只在共享的 `@nerv-ui/ui` 主题文件
 `packages/ui/src/styles/theme.css` 中定义一次（由两个 app 的 `main.css` 导入）。
 **绝不得在组件模板中直接引用。**
 

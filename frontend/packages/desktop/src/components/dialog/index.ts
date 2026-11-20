@@ -1,0 +1,6 @@
+export { default as NvDialog } from './NvDialog.vue'
+export { default as NvDialogTrigger } from './NvDialogTrigger.vue'
+export { default as NvDialogContent } from './NvDialogContent.vue'
+export { default as NvDialogTitle } from './NvDialogTitle.vue'
+export { default as NvDialogDescription } from './NvDialogDescription.vue'
+export { default as NvDialogClose } from './NvDialogClose.vue'

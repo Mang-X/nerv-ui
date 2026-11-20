@@ -2,7 +2,7 @@
 import { afterEach, expect, it, vi } from 'vitest'
 import { mount, type VueWrapper } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import { Avatar, AvatarImage, AvatarFallback } from '@nerv-iip/ui'
+import { Avatar, AvatarImage, AvatarFallback } from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/AvatarExample.vue'
 vi.mock('vitepress', () => ({ withBase: (path: string) => path }))
 let page: VueWrapper

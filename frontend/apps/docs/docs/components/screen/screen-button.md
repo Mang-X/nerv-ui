@@ -3,7 +3,7 @@ title: NvScreenButton 按钮
 ---
 
 <script setup>
-import { NvScreenButton } from '@nerv-iip/ui'
+import { NvScreenButton } from '@nerv-ui/ui'
 </script>
 
 # NvScreenButton 按钮

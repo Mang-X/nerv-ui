@@ -6,7 +6,7 @@ import {
   NvMobileCollapse,
   NvMobileDropdownMenu,
   NvMobileDropdownMenuItem,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 const actions = [
   { label: '收好心愿', value: 'save' },
   { label: '暂时收起', value: 'archive', danger: true },

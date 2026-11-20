@@ -4,7 +4,7 @@ title: NvSwipeCell 侧滑操作
 ---
 
 <script setup>
-import { NvSwipeCell } from '@nerv-iip/ui-mobile'
+import { NvSwipeCell } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const swipeActions = [
@@ -58,7 +58,7 @@ function onSwipe(value) {
 
 ```vue
 <script setup>
-import { NvSwipeCell } from '@nerv-iip/ui-mobile'
+import { NvSwipeCell } from '@nerv-ui/ui-mobile'
 
 const swipeActions = [
   { label: '完成', value: 'finish', tone: 'brand' },

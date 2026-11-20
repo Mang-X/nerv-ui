@@ -5,7 +5,7 @@ import { createSourceFile, isImportDeclaration, isStringLiteral, ScriptTarget } 
 import { describe, expect, it } from 'vitest'
 
 // Design System v2 tokens live in the shared, single-source-of-truth theme file
-// inside @nerv-iip/ui (consumed by ALL apps). Guard the brand-critical values AND
+// inside @nerv-ui/ui (consumed by ALL apps). Guard the brand-critical values AND
 // the ADR 0020 §3/§4 scene-namespace + cascade-layer isolation contract.
 const srcDir = dirname(fileURLToPath(import.meta.url))
 const read = (rel: string) => readFileSync(resolve(srcDir, rel), 'utf8')

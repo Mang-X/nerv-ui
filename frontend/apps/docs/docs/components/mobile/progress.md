@@ -4,7 +4,7 @@ title: NvMobileProgress 进度条
 ---
 
 <script setup>
-import { NvMobileProgress } from '@nerv-iip/ui-mobile'
+import { NvMobileProgress } from '@nerv-ui/ui-mobile'
 </script>
 
 <MobileDoc>

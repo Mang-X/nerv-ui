@@ -3,7 +3,7 @@ title: NvScreenScrollArea 滚动区
 ---
 
 <script setup>
-import { NvScreenScrollArea } from '@nerv-iip/ui'
+import { NvScreenScrollArea } from '@nerv-ui/ui'
 const rows = Array.from({ length: 14 }, (_, i) => ({ id: i, text: `${i + 1} · 街角阅读与河岸展览` }))
 </script>
 

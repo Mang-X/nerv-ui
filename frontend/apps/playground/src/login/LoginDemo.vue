@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef, watch, onBeforeUnmount } from 'vue'
-import { NvButton } from '@nerv-iip/ui'
+import { NvButton } from '@nerv-ui/ui'
 import LoginRecipe from './LoginRecipe.vue'
 import type { LoginDraft, LoginMode, LoginSurface, LoginReceipt } from './contract'
 const props = withDefaults(defineProps<{ space?: 'library' | 'studio' }>(), { space: 'library' })

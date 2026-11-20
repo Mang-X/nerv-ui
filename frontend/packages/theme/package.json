@@ -1,0 +1,37 @@
+{
+  "name": "@nerv-ui-next/theme",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tokens.stylex": {
+      "types": "./dist/tokens.stylex.d.ts",
+      "import": "./dist/tokens.stylex.js"
+    },
+    "./shared.stylex": {
+      "types": "./dist/shared.stylex.d.ts",
+      "import": "./dist/shared.stylex.js"
+    },
+    "./styles.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "tsdown && node -e \"require('fs').cpSync('dist/assets/stylex.css','dist/style.css')\""
+  },
+  "dependencies": {
+    "@stylexjs/stylex": "0.19.2"
+  },
+  "devDependencies": {
+    "@stylexjs/unplugin": "0.19.2",
+    "tsdown": "0.23.7",
+    "typescript": "^6.0.3"
+  }
+}

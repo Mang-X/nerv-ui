@@ -17,7 +17,7 @@ import Demo from '../../../../playground/src/PhotoAttachmentsDemo.vue'
 
 ## API
 
-从 `@nerv-iip/ui-mobile` 主桶导入 `NvPhotoAttachments`、`PhotoAttachment`、`PhotoUpload`。
+从 `@nerv-ui/ui-mobile` 主桶导入 `NvPhotoAttachments`、`PhotoAttachment`、`PhotoUpload`。
 
 | 输入                      | 合同                                                               |
 | ------------------------- | ------------------------------------------------------------------ |

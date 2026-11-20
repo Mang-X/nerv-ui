@@ -4,7 +4,7 @@ title: NvMobileDialog 对话框
 ---
 
 <script setup>
-import { NvMobileButton, NvMobileDialog } from '@nerv-iip/ui-mobile'
+import { NvMobileButton, NvMobileDialog } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const confirmOpen = ref(false)
@@ -52,7 +52,7 @@ iOS 风格的居中确认弹窗，紧凑卡片承载标题与说明，发线分�
 
 ```vue
 <script setup>
-import { NvMobileButton, NvMobileDialog } from '@nerv-iip/ui-mobile'
+import { NvMobileButton, NvMobileDialog } from '@nerv-ui/ui-mobile'
 import { ref } from 'vue'
 
 const confirmOpen = ref(false)

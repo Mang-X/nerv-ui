@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { expect, it } from 'vitest'
 import { h } from 'vue'
-import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-iip/ui'
+import { NvScreenFlowLinesBg, NvScreenIsometricBlocksBg } from '@nerv-ui/ui'
 
 it('exports the preserved flow geometry and light/node layers through the public barrel', () => {
   const wrapper = mount(NvScreenFlowLinesBg)

@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { mount } from '@vue/test-utils'
 import { compileScript, parse } from 'vue/compiler-sfc'
 import * as Vue from 'vue'
-import * as UI from '@nerv-iip/ui'
+import * as UI from '@nerv-ui/ui'
 import { expect, it } from 'vitest'
 
 it('ring documentation input clears to unknown and recovers finite zero decimal negative and overflow readings', async () => {
@@ -21,7 +21,7 @@ it('ring documentation input clears to unknown and recovers finite zero decimal 
   const compiled = compileScript(descriptor, { id: 'ring-documentation', inlineTemplate: true })
   const code = compiled.content
     .replace(/import\s*\{([^}]+)\}\s*from\s*['"]([^'"]+)['"]/g, (_, names, source) => {
-      if (source !== 'vue' && source !== '@nerv-iip/ui')
+      if (source !== 'vue' && source !== '@nerv-ui/ui')
         throw new Error(`Unexpected import ${source}`)
       return `const {${names.replace(/\bas\b/g, ':')}} = ${source === 'vue' ? 'Vue' : 'UI'}`
     })

@@ -16,8 +16,8 @@ const Flower2 = {
       [h('path', { d: 'M12 22 V10 M12 16 Q2 16 3 6 Q12 6 12 16 M12 12 Q22 12 21 2 Q12 2 12 12' })],
     ),
 }
-import { NvScreenFusionBg } from '@nerv-iip/ui'
-import type { FusionNode } from '@nerv-iip/ui'
+import { NvScreenFusionBg } from '@nerv-ui/ui'
+import type { FusionNode } from '@nerv-ui/ui'
 const empty = shallowRef(false)
 const library: FusionNode[] = [
   {

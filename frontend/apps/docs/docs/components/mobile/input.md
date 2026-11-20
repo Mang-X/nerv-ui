@@ -4,7 +4,7 @@ title: NvMobileInput 输入框
 ---
 
 <script setup>
-import { NvMobileInput } from '@nerv-iip/ui-mobile'
+import { NvMobileInput } from '@nerv-ui/ui-mobile'
 import { ScanLineIcon } from '@lucide/vue'
 import { ref } from 'vue'
 

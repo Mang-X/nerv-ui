@@ -3,7 +3,7 @@ title: NvScreenBarChart 柱状图
 ---
 
 <script setup>
-import { NvScreenBarChart } from '@nerv-iip/ui'
+import { NvScreenBarChart } from '@nerv-ui/ui'
 
 const inbound = [4, 9, 14, 18, 17, 21, 16, 19, 15, 12, 8, 3]
 const outbound = [2, 5, 9, 13, 16, 19, 21, 18, 20, 17, 11, 6]

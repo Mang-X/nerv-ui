@@ -3,7 +3,7 @@ title: NvContainer 容器
 ---
 
 <script setup>
-import { NvContainer } from '@nerv-iip/ui'
+import { NvContainer } from '@nerv-ui/ui'
 </script>
 
 # NvContainer 容器

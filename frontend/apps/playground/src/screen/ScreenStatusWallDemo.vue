@@ -5,7 +5,7 @@ import {
   NvScreenPanel,
   type ScreenStatusWallItem,
   type ScreenStatusWallMode,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 const props = defineProps<{
   loadPreview?: (item: ScreenStatusWallItem, signal: AbortSignal) => Promise<string>
 }>()

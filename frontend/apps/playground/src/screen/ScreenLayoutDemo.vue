@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvScreenLayout } from '@nerv-iip/ui'
+import { NvScreenLayout } from '@nerv-ui/ui'
 
 const seed = ref('city-gallery')
 const time = ref('10:30')

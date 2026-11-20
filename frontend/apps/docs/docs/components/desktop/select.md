@@ -9,7 +9,7 @@ import {
   NvSelectItem,
   NvSelectTrigger,
   NvSelectValue,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ref } from 'vue'
 import LocalFormSectionExample from '../../.vitepress/examples/localFormSectionExample.vue'
 

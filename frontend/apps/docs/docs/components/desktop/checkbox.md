@@ -3,7 +3,7 @@ title: NvCheckbox 复选框
 ---
 
 <script setup>
-import { NvCheckbox } from '@nerv-iip/ui'
+import { NvCheckbox } from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const agreed = ref(true)

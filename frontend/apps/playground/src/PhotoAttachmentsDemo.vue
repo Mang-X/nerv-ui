@@ -5,7 +5,7 @@ import {
   NvMobileButton,
   type PhotoAttachment,
   type PhotoUpload,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 const props = defineProps<{ source?: string }>()
 const source = computed(() => (props.source === 'studio' ? 'studio' : 'library'))
 const attachments = ref<PhotoAttachment[]>([])

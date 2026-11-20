@@ -11,7 +11,7 @@ import {
   NvMobileResult,
   NvMobileTag,
   NvMobileSteps,
-} from '@nerv-iip/ui-mobile'
+} from '@nerv-ui/ui-mobile'
 import type { FlowInput } from './flow'
 const props = defineProps<{ input: FlowInput }>()
 const emit = defineEmits<{ code: [value: string] }>()

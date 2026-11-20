@@ -4,7 +4,7 @@ title: 桌面 PC 组件
 
 # 桌面 PC 组件
 
-`@nerv-iip/ui` —— 控制台主表面的组件库。左侧按**分类**浏览组件，每个组件都有独立页面与实时演示。
+`@nerv-ui/ui` —— 控制台主表面的组件库。左侧按**分类**浏览组件，每个组件都有独立页面与实时演示。
 
 - **通用**：NvButton、NvBadge、NvCard
 - **布局**：NvContainer、NvPage（含 NvPageAside）、NvPageGrid、NvPageColumns、NvPageSection

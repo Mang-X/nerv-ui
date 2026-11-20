@@ -1,0 +1,27 @@
+{
+  "name": "@nerv-ui/docs-next",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev . --host 127.0.0.1 --port 5280",
+    "build": "vitepress build .",
+    "preview": "vitepress preview . --host 127.0.0.1 --port 5280",
+    "agent:audit": "node scripts/agent-audit.mjs"
+  },
+  "dependencies": {
+    "@nerv-ui-next/desktop": "workspace:*",
+    "@nerv-ui-next/mobile": "workspace:*",
+    "@nerv-ui-next/pad": "workspace:*",
+    "@nerv-ui-next/screen": "workspace:*",
+    "@nerv-ui-next/theme": "workspace:*",
+    "@stylexjs/stylex": "0.19.2",
+    "@ui-sdk/core": "0.1.0-beta.6",
+    "@ui-sdk/vue": "0.1.0-beta.6"
+  },
+  "devDependencies": {
+    "@stylexjs/unplugin": "0.19.2",
+    "vitepress": "1.6.4",
+    "vue": "3.5.39"
+  }
+}

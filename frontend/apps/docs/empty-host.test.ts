@@ -8,7 +8,7 @@ import {
   EmptyTitle,
   EmptyDescription,
   EmptyContent,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import Example from './docs/.vitepress/examples/EmptyExample.vue'
 let page: VueWrapper
 afterEach(() => page?.unmount())

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { withBase } from 'vitepress'
-import { Avatar, AvatarImage, AvatarFallback, NvButton } from '@nerv-iip/ui'
+import { Avatar, AvatarImage, AvatarFallback, NvButton } from '@nerv-ui/ui'
 
 const mode = ref<'valid' | 'broken' | 'none'>('valid')
 const src = computed(() =>

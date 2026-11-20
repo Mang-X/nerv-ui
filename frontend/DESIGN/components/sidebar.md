@@ -10,7 +10,7 @@ PC 应用壳使用 `NvSidebar`，组合原版 `SidebarProvider`、`SidebarConten
 
 ## 正例
 
-通过 `@nerv-iip/ui` 导入 `NvSidebar`，由同一个 `SidebarProvider` 管理开合，使用 `NvSidebarTrigger` 和 `NvSidebarRail` 作为开合入口。
+通过 `@nerv-ui/ui` 导入 `NvSidebar`，由同一个 `SidebarProvider` 管理开合，使用 `NvSidebarTrigger` 和 `NvSidebarRail` 作为开合入口。
 
 ## 反例
 

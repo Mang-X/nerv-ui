@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef } from 'vue'
-import { NvScreenButton, NvScreenFreshness, NvScreenPanel, useScreenData } from '@nerv-iip/ui'
+import { NvScreenButton, NvScreenFreshness, NvScreenPanel, useScreenData } from '@nerv-ui/ui'
 import type { SpaceFeed } from './data-fixtures'
 
 const props = defineProps<{ feed: SpaceFeed; title: string }>()

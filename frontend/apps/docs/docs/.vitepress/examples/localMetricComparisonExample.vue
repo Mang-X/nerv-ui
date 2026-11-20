@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NvButton, NvMetricComparison } from '@nerv-iip/ui'
+import { NvButton, NvMetricComparison } from '@nerv-ui/ui'
 const label = ref('到访人次')
 const baseline = ref({ label: '计划', value: 100 })
 const actual = ref({ label: '到访', value: 120 })

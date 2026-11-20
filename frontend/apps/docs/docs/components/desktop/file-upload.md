@@ -12,7 +12,7 @@ import {
   type FileUploadExpose,
   type FileUploadSession,
   type FileUploadTransportContext,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { computed, nextTick, onMounted, ref, shallowRef } from 'vue'
 
 const manualUpload = ref<FileUploadExpose | null>(null)
@@ -171,7 +171,7 @@ onMounted(async () => {
 
 面向 FileStorage 上传会话的桌面上传组件。组件负责文件选择、队列、暂停、恢复、失败重试和虚拟列表；`queue`、画廊、表格等变体提供拖拽入口，上层负责把业务归属、创建上传会话、完成上传会话和传输实现传入。
 
-本页所有示例都优先使用 `@nerv-iip/ui` 稳定导出，例如 `Button`、`FileUpload` 和 `uploadWithNativeFileStorageTransport`；不要从原始上游包或组件深层路径导入。
+本页所有示例都优先使用 `@nerv-ui/ui` 稳定导出，例如 `Button`、`FileUpload` 和 `uploadWithNativeFileStorageTransport`；不要从原始上游包或组件深层路径导入。
 
 ## 示例
 
@@ -206,7 +206,7 @@ onMounted(async () => {
 
 ```vue
 <script setup lang="ts">
-import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-iip/ui'
+import { FileUpload, uploadWithNativeFileStorageTransport } from '@nerv-ui/ui'
 </script>
 
 <template>
@@ -266,7 +266,7 @@ import {
   FileUpload,
   uploadWithNativeFileStorageTransport,
   type FileUploadExpose,
-} from '@nerv-iip/ui'
+} from '@nerv-ui/ui'
 import { ref } from 'vue'
 
 const upload = ref<FileUploadExpose | null>(null)
@@ -554,7 +554,7 @@ const upload = ref<FileUploadExpose | null>(null)
 组件使用 `motion-v` 的 `MotionConfig reduced-motion="user"`、`AnimatePresence` 和 `motion.*`。`fileUploadMotion` 与 `filePreviewMotion` 共享 UI 包的 JS motion token 层：dropzone 使用 `fastInvoke`，行进入、移除和位置迁移使用 `pointToPointShort`。该 JS 层由契约测试与 `theme.css` 的 `--ease-* / --duration-*` 配对，避免 Motion for Vue 曲线和 CSS token 漂移。
 
 ```ts
-import { fileUploadMotion } from '@nerv-iip/ui'
+import { fileUploadMotion } from '@nerv-ui/ui'
 
 fileUploadMotion.fastInvoke
 fileUploadMotion.pointToPointShort

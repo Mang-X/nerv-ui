@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, expect, it } from 'vitest'
 import { defineComponent, h } from 'vue'
-import { NvOeeHero, NvScreenStatusCard } from '@nerv-iip/ui'
+import { NvOeeHero, NvScreenStatusCard } from '@nerv-ui/ui'
 const wrappers: ReturnType<typeof mount>[] = []
 function render(component: any, props: any = {}) {
   const w = mount(component, { props })

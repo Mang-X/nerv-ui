@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest'
-import { uploadWithNativeFileStorageTransport, type FileUploadTransportContext } from '@nerv-iip/ui'
+import { uploadWithNativeFileStorageTransport, type FileUploadTransportContext } from '@nerv-ui/ui'
 
 const MiB = 1024 * 1024
 function context(size = 8, mode = 'tus'): FileUploadTransportContext {
