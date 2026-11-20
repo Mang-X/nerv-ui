@@ -143,6 +143,16 @@ export { default as NvMobileInfiniteList } from './components/infinite-list/NvMo
 export type { NvMobileInfiniteListProps } from './components/infinite-list/types'
 export { default as NvMobileVirtualList } from './components/virtual-list/NvMobileVirtualList.vue'
 
+export { default as NvMobileBadge } from './components/badge/NvMobileBadge.vue'
+export type { NvMobileBadgeProps } from './components/badge/types'
+export { default as NvMobileDropdownMenu } from './components/dropdown-menu/NvMobileDropdownMenu.vue'
+export { default as NvMobileDropdownMenuItem } from './components/dropdown-menu/NvMobileDropdownMenuItem.vue'
+export type {
+  MobileDropdownOption,
+  NvMobileDropdownMenuItemProps,
+  NvMobileDropdownMenuProps,
+} from './components/dropdown-menu/types'
+
 export { darkTheme } from './theme/tokens.stylex'
 
 export { default as NvIcon } from './theme/NvIcon.vue'

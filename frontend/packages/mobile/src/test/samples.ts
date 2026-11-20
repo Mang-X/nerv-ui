@@ -2,6 +2,7 @@ import { h } from 'vue'
 import type { VNode } from 'vue'
 import { NvMobileAvatar } from '../components/avatar'
 import NvMobileStepper from '../components/stepper/NvMobileStepper.vue'
+import { NvMobileDropdownMenu, NvMobileDropdownMenuItem } from '../components/dropdown-menu'
 import NvMobileButton from '../components/button/NvMobileButton.vue'
 import NvMobileCheckbox from '../components/checkbox/NvMobileCheckbox.vue'
 import NvMobileCollapse from '../components/collapse/NvMobileCollapse.vue'
@@ -85,5 +86,21 @@ export const samples: Record<string, Sample> = {
   stepper: {
     kind: 'number-input',
     render: () => h(NvMobileStepper, { label: '数量', modelValue: 3, min: 0, max: 99 }),
+  },
+  'dropdown-menu': {
+    kind: 'select',
+    render: () =>
+      h(NvMobileDropdownMenu, { label: '列表筛选' }, {
+        default: () => [
+          h(NvMobileDropdownMenuItem, {
+            title: '全部产线',
+            modelValue: 'line-a',
+            options: [
+              { label: 'A 线', value: 'line-a' },
+              { label: 'B 线', value: 'line-b' },
+            ],
+          }),
+        ],
+      }),
   },
 }

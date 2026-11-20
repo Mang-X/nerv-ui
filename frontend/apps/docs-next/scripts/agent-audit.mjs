@@ -60,6 +60,8 @@ const EXPECTED = {
   'mobile-image': null,
   'mobile-infinite-list': null,
   'mobile-virtual-list': null,
+  // 角标是纯展示的叠加层，没有可登记控件。
+  'mobile-badge': null,
   // 触屏端：指标块、工位条、徽标都是展示件。
   'stat-tile': null,
   'station-bar': null,
