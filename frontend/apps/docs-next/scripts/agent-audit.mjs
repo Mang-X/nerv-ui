@@ -55,6 +55,11 @@ const EXPECTED = {
   // 移动端：分隔线、骨架屏没有交互。
   'mobile-divider': null,
   'mobile-skeleton': null,
+  // 图片、触底加载、虚拟列表都没有 ui-sdk 原语承载的控件：图片加载是浏览器事件，
+  // 另外两个是滚动容器。它们的滚动行为由组件自己观察，页面上没有可登记的条目。
+  'mobile-image': null,
+  'mobile-infinite-list': null,
+  'mobile-virtual-list': null,
   // 触屏端：指标块、工位条、徽标都是展示件。
   'stat-tile': null,
   'station-bar': null,

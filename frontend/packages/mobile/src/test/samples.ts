@@ -1,6 +1,7 @@
 import { h } from 'vue'
 import type { VNode } from 'vue'
 import { NvMobileAvatar } from '../components/avatar'
+import NvMobileStepper from '../components/stepper/NvMobileStepper.vue'
 import NvMobileButton from '../components/button/NvMobileButton.vue'
 import NvMobileCheckbox from '../components/checkbox/NvMobileCheckbox.vue'
 import NvMobileCollapse from '../components/collapse/NvMobileCollapse.vue'
@@ -80,5 +81,9 @@ export const samples: Record<string, Sample> = {
   progress: {
     kind: 'progress',
     render: () => h(NvMobileProgress, { value: 40, label: '本单完成率' }),
+  },
+  stepper: {
+    kind: 'number-input',
+    render: () => h(NvMobileStepper, { label: '数量', modelValue: 3, min: 0, max: 99 }),
   },
 }

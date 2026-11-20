@@ -131,6 +131,18 @@ export type { MobileSliderProps } from './components/slider/types'
 export { default as NvMobileNumbers } from './components/numbers/NvMobileNumbers.vue'
 export type { MobileNumbersProps } from './components/numbers/types'
 
+export { default as NvMobileStepper } from './components/stepper/NvMobileStepper.vue'
+export type { NvMobileStepperProps } from './components/stepper/types'
+export { default as NvMobileImage } from './components/image/NvMobileImage.vue'
+export type {
+  NvMobileImageFit,
+  NvMobileImageProps,
+  NvMobileImageRadius,
+} from './components/image/types'
+export { default as NvMobileInfiniteList } from './components/infinite-list/NvMobileInfiniteList.vue'
+export type { NvMobileInfiniteListProps } from './components/infinite-list/types'
+export { default as NvMobileVirtualList } from './components/virtual-list/NvMobileVirtualList.vue'
+
 export { darkTheme } from './theme/tokens.stylex'
 
 export { default as NvIcon } from './theme/NvIcon.vue'

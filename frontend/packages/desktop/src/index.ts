@@ -55,6 +55,7 @@ export { default as NvDropdownMenuShortcut } from './components/dropdown-menu/Nv
 export { default as NvDropdownMenuSub } from './components/dropdown-menu/NvDropdownMenuSub.vue'
 export { default as NvDropdownMenuSubTrigger } from './components/dropdown-menu/NvDropdownMenuSubTrigger.vue'
 export { default as NvDropdownMenuSubContent } from './components/dropdown-menu/NvDropdownMenuSubContent.vue'
+export { default as NvPopconfirm } from './components/popconfirm/NvPopconfirm.vue'
 export { default as NvDatePicker } from './components/date-picker/NvDatePicker.vue'
 export { default as NvDateRangePicker } from './components/date-picker/NvDateRangePicker.vue'
 export { default as NvTimePicker } from './components/time-picker/NvTimePicker.vue'
@@ -124,6 +125,7 @@ export type {
   NvDropdownMenuSubContentProps,
   NvDropdownMenuTriggerProps,
 } from './components/dropdown-menu/types'
+export type { NvPopconfirmProps } from './components/popconfirm/types'
 export type {
   NvDatePickerProps,
   NvDatePickerValue,
