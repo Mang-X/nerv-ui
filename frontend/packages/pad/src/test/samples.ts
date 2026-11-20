@@ -1,5 +1,6 @@
 import { h } from 'vue'
 import type { VNode } from 'vue'
+import { NvTouchAvatar } from '../components/touch-avatar'
 import { NvTouchButton } from '../components/touch-button'
 import { NvTouchInput } from '../components/touch-input'
 import { NvQtyStepper } from '../components/qty-stepper'
@@ -24,6 +25,10 @@ export const samples: Record<string, Sample> = {
   button: {
     kind: 'button',
     render: () => h(NvTouchButton, null, { default: () => '确认上架' }),
+  },
+  avatar: {
+    kind: 'avatar',
+    render: () => h(NvTouchAvatar, { name: '张伟' }),
   },
   input: {
     kind: 'input',

@@ -1,5 +1,6 @@
 import { h } from 'vue'
 import type { VNode } from 'vue'
+import { NvMobileAvatar } from '../components/avatar'
 import NvMobileButton from '../components/button/NvMobileButton.vue'
 import NvMobileCheckbox from '../components/checkbox/NvMobileCheckbox.vue'
 import NvMobileCollapse from '../components/collapse/NvMobileCollapse.vue'
@@ -26,6 +27,10 @@ export const samples: Record<string, Sample> = {
   button: {
     kind: 'button',
     render: () => h(NvMobileButton, null, { default: () => '确认' }),
+  },
+  avatar: {
+    kind: 'avatar',
+    render: () => h(NvMobileAvatar, { name: '陈明' }),
   },
   input: {
     kind: 'input',

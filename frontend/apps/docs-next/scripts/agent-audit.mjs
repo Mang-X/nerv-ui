@@ -52,16 +52,43 @@ const EXPECTED = {
   spinner: null,
   separator: null,
   breadcrumb: null,
+  // 移动端：分隔线、骨架屏没有交互。
+  'mobile-divider': null,
+  'mobile-skeleton': null,
+  // 触屏端：指标块、工位条、徽标都是展示件。
+  'stat-tile': null,
+  'station-bar': null,
+  'touch-badge': null,
+  // 大屏：看板件绝大多数是纯展示，唯一的交互是页面自身的筛选，不在组件里。
+  'alarm-table': null,
+  'digital-flop': null,
+  'kpi-bar': null,
+  'ring-gauge': null,
+  'screen-bar-chart': null,
+  'screen-header': null,
+  'screen-panel': null,
+  'screen-pareto': null,
+  'screen-scaler': null,
+  'screen-scroll-area': null,
+  'screen-stage-flow': null,
+  'screen-stats': null,
+  'screen-status-card': null,
+  'screen-status-light': null,
+  'screen-status-tag': null,
+  'screen-summary-card': null,
+  'screen-table': null,
+  'screen-trend-chart': null,
 }
 
 /**
  * 已知缺口：体检能看见它没登记，但暂时不当作回归——每一条都要有去向，
  * 不能变成"永远红的格子"。修好了就从这里删掉。
+ *
+ * 现在是空的：sidebar 换了自建的 `sidebar` 原语，timeline 接了
+ * `@ui-sdk/vue/timeline`，两个曾经的缺口都补上了。空表是有意的——它让
+ * "主组件没进桥"重新变回硬错误。
  */
-const KNOWN_GAPS = {
-  sidebar: '没有 ui-sdk 原语；收起/展开还没登记成动作',
-  timeline: '仍在用自写的 <ul>，没接 @ui-sdk/vue/timeline',
-}
+const KNOWN_GAPS = {}
 
 // ---------------------------------------------------------------- 参数
 

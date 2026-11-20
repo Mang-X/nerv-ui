@@ -1,6 +1,13 @@
 import * as stylex from '@stylexjs/stylex'
 import { color, motion, typography } from '../../theme/tokens.stylex'
 
+/**
+ * 时间线的排版。
+ *
+ * 元素上的 `data-slot` / `data-first` / `data-last` / `data-current` 由 ui-sdk 原语
+ * 写：部件的先后顺序、最后一条不画连接线、进行中的节点加粗，都是原语算出来的，
+ * 这里只负责照着这些属性画。
+ */
 export const styles = stylex.create({
   root: {
     display: 'flex',
@@ -9,7 +16,6 @@ export const styles = stylex.create({
     minWidth: 0,
     margin: 0,
     padding: 0,
-    listStyle: 'none',
     boxSizing: 'border-box',
     fontFamily: typography.fontSans,
     color: color.fg,
@@ -23,9 +29,17 @@ export const styles = stylex.create({
     paddingInlineStart: 24,
     paddingBlockEnd: 20,
     boxSizing: 'border-box',
-    ':last-child': { paddingBlockEnd: 0 },
-    ':last-child [data-nv-timeline-rail]': { display: 'none' },
+    outlineStyle: 'none',
+    // 原语把 Tab 停在一个事件上；焦点环要落在这一条上。
+    ':focus-visible': {
+      borderRadius: 4,
+      boxShadow: `0 0 0 2px ${color.brandSoft}`,
+    },
+    '[data-last]': { paddingBlockEnd: 0 },
+    // 原语只在 item 上写 `data-last`；连接线挂在 item 里，按祖先判断。
+    '[data-last] [data-nv-timeline-rail]': { display: 'none' },
   },
+  /** 连接线：最后一条不出线，剩下的从标记下方接到下一条。 */
   rail: {
     position: 'absolute',
     insetInlineStart: 4.5,
@@ -50,9 +64,14 @@ export const styles = stylex.create({
     transitionDuration: motion.durationFast,
     transitionTimingFunction: motion.easeOut,
   },
-  dotActive: {
+  dotComplete: {
     borderColor: color.brand,
     backgroundColor: color.brand,
+  },
+  dotCurrent: {
+    borderColor: color.brand,
+    backgroundColor: color.card,
+    boxShadow: `0 0 0 4px ${color.brandSoft}`,
   },
   dotDanger: {
     borderColor: color.danger,
@@ -75,6 +94,7 @@ export const styles = stylex.create({
     fontSize: typography.sizeMd,
     fontWeight: 500,
     lineHeight: typography.lineMd,
+    '[data-current]': { fontWeight: 600 },
   },
   link: {
     color: color.brand,

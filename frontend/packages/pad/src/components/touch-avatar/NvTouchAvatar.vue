@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Avatar, AvatarFallback, AvatarImage } from '@ui-sdk/vue/avatar'
 import * as stylex from '@stylexjs/stylex'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { omitClassStyle } from '../../internal/attrs'
 import { styles } from './TouchAvatar.styles'
 import type { TouchAvatarProps } from './types'
@@ -18,6 +18,17 @@ const props = withDefaults(defineProps<TouchAvatarProps>(), {
   status: undefined,
   fallbackDelay: 0,
 })
+
+const attrs = useAttrs()
+
+/**
+ * 只有加载成功的图片才有 alt；纯首字头像此前没有任何可访问名称——读屏读不出，
+ * 代理也认不出它属于谁。这里把 `alt` / `name` 提到根上作为整体名称。
+ */
+const ariaLabel = computed(
+  () =>
+    (attrs['aria-label'] as string | undefined) ?? props.alt ?? props.name ?? props.fallback ?? '',
+)
 
 const fallbackSizes = {
   md: styles.fallbackMd,
@@ -48,6 +59,8 @@ function initialsOf(text: string): string {
 <template>
   <Avatar
     v-bind="omitClassStyle($attrs)"
+    role="img"
+    :aria-label="ariaLabel || undefined"
     :class="[rootSx.className, $attrs.class]"
     :style="[rootSx.style, $attrs.style]"
   >

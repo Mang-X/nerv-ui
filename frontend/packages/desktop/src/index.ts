@@ -157,6 +157,7 @@ export { default as NvSidebar } from './components/sidebar/NvSidebar.vue'
 export { default as NvSidebarHeader } from './components/sidebar/NvSidebarHeader.vue'
 export { default as NvSidebarGroup } from './components/sidebar/NvSidebarGroup.vue'
 export { default as NvSidebarItem } from './components/sidebar/NvSidebarItem.vue'
+export { createSidebarController } from './components/sidebar/sidebar-primitive'
 export { default as NvNavigationMenu } from './components/navigation-menu/NvNavigationMenu.vue'
 export { default as NvNavigationMenuList } from './components/navigation-menu/NvNavigationMenuList.vue'
 export { default as NvNavigationMenuItem } from './components/navigation-menu/NvNavigationMenuItem.vue'
@@ -182,6 +183,12 @@ export type { NvSeparatorOrientation, NvSeparatorProps } from './components/sepa
 export type { NvAccordionItemProps, NvAccordionProps } from './components/accordion/types'
 export type { NvBreadcrumbLinkProps, NvBreadcrumbProps } from './components/breadcrumb/types'
 export type { NvPaginationProps, NvPaginationSize } from './components/pagination/types'
+export type {
+  NvSidebarApi,
+  NvSidebarChangeReason,
+  NvSidebarOptions,
+  NvSidebarState,
+} from './components/sidebar/sidebar-primitive'
 export type {
   NvSidebarGroupProps,
   NvSidebarItemProps,
@@ -231,6 +238,7 @@ export type {
   NvTimelineItemProps,
   NvTimelineProps,
   NvTimelineStatus,
+  NvTimelineTone,
 } from './components/timeline/types'
 export type {
   NvToggleGroupOrientation,

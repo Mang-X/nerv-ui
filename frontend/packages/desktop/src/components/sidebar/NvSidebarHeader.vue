@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Button } from '@ui-sdk/vue/button'
-import NvIcon from '../../theme/NvIcon.vue'
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
+import NvIcon from '../../theme/NvIcon.vue'
 import { focus } from '../../theme/shared.stylex'
-import { styles } from './Sidebar.styles'
 import { useNvSidebarContext } from './sidebar-context'
+import { SidebarTrigger } from './sidebar-parts'
+import { styles } from './Sidebar.styles'
 
 defineOptions({ inheritAttrs: false })
 
@@ -33,21 +33,21 @@ function toggleIconSx(isCollapsed: boolean) {
     <div v-if="!collapsed" :class="contentSx.className" :style="contentSx.style">
       <slot />
     </div>
-    <Button
+    <SidebarTrigger
       v-if="collapsible"
-      type="button"
       :aria-label="collapsed ? '展开侧栏' : '收起侧栏'"
+      :title="collapsed ? '展开侧栏' : '收起侧栏'"
       :class="toggleSx.className"
       :style="toggleSx.style"
-      @click="context?.toggle()"
     >
       <slot name="toggle">
-        <NvIcon name="collapse-left-panel"
+        <NvIcon
+          name="collapse-left-panel"
           :size="16"
           :class="toggleIconSx(collapsed).className"
           :style="toggleIconSx(collapsed).style"
         />
       </slot>
-    </Button>
+    </SidebarTrigger>
   </div>
 </template>

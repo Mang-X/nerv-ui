@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
-import { styles } from './Sidebar.styles'
 import { useNvSidebarContext } from './sidebar-context'
+import { styles } from './Sidebar.styles'
 import type { NvSidebarGroupProps } from './types'
 
 defineOptions({ inheritAttrs: false })

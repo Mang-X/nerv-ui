@@ -47,7 +47,13 @@ export default defineConfig({
   entry: ['src/index.ts', 'src/agent.ts'],
   format: 'esm',
   platform: 'neutral',
-  dts: { tsconfig: 'tsconfig.json' },
+  dts: {
+    tsconfig: 'tsconfig.json',
+    // `sidebar` 原语的实例类型包含 ui-sdk 未公开导出的辅助类型（`SlotProps`），
+    // 声明发射无法为它命名。它只是内部件（对外只有组件与 controller），
+    // 标 @internal 后从 d.ts 去掉，声明仍然由 `.vue` 的 props 类型对外负责。
+    compilerOptions: { stripInternal: true },
+  },
   plugins: [
     stylex({
       useCSSLayers: false,

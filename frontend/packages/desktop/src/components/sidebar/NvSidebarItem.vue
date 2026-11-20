@@ -4,8 +4,8 @@ import * as stylex from '@stylexjs/stylex'
 import { computed } from 'vue'
 import { focus } from '../../theme/shared.stylex'
 import { omitClassStyle } from '../../internal/attrs'
-import { styles } from './Sidebar.styles'
 import { useNvSidebarContext } from './sidebar-context'
+import { styles } from './Sidebar.styles'
 import type { NvSidebarItemProps } from './types'
 
 defineOptions({ inheritAttrs: false })
@@ -17,6 +17,7 @@ const props = withDefaults(defineProps<NvSidebarItemProps>(), {
   label: undefined,
 })
 
+// 收起态由原语持有；条目在侧栏外单独使用时按展开处理。
 const context = useNvSidebarContext()
 const collapsed = computed(() => context?.collapsed.value ?? false)
 const showText = computed(() => !collapsed.value)

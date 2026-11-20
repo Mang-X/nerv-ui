@@ -41,9 +41,11 @@ import {
   NvSheetTrigger,
 } from '../components/sheet'
 import NvSlider from '../components/slider/NvSlider.vue'
+import { NvSidebar, NvSidebarHeader, NvSidebarItem } from '../components/sidebar'
 import NvSwitch from '../components/switch/NvSwitch.vue'
 import { NvTabs, NvTabsList, NvTabsPanel, NvTabsTrigger } from '../components/tabs'
 import NvTextarea from '../components/textarea/NvTextarea.vue'
+import { NvTimeline, NvTimelineItem } from '../components/timeline'
 import { NvToggle, NvToggleGroup } from '../components/toggle'
 import { NvTooltip, NvTooltipContent, NvTooltipTrigger } from '../components/tooltip'
 
@@ -134,6 +136,44 @@ export const samples: Record<string, Sample> = {
       ),
   },
   avatar: { kind: 'avatar', render: () => h(NvAvatar, { name: '张伟' }) },
+  sidebar: {
+    kind: 'sidebar',
+    render: () =>
+      h(
+        NvSidebar,
+        { label: '主导航' },
+        {
+          default: () => [
+            h(NvSidebarHeader, null, () => '示例平台'),
+            h(NvSidebarItem, { label: '项目看板' }, () => '项目看板'),
+          ],
+        },
+      ),
+  },
+  timeline: {
+    kind: 'timeline',
+    render: () =>
+      h(
+        NvTimeline,
+        { label: '记录流转' },
+        {
+          default: () => [
+            h(NvTimelineItem, {
+              time: '08:12',
+              datetime: '2026-11-18T08:12',
+              title: '记录创建',
+              status: 'complete',
+            }),
+            h(NvTimelineItem, {
+              time: '09:05',
+              datetime: '2026-11-18T09:05',
+              title: '开始处理',
+              status: 'current',
+            }),
+          ],
+        },
+      ),
+  },
   select: {
     kind: 'select',
     render: () =>

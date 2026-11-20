@@ -41,7 +41,7 @@ import '@nerv-ui/pad/styles.css'
     </template>
     带图标
   </NvTouchButton>
-  <NvTouchButton variant="secondary" icon-only size="lg">
+  <NvTouchButton variant="secondary" icon-only size="lg" aria-label="添加">
     <template #icon>
       <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -54,18 +54,18 @@ import '@nerv-ui/pad/styles.css'
 
 ### NvTouchButton 属性
 
-| 属性 | 说明 | 类型 | 默认 |
-| --- | --- | --- | --- |
-| `variant` | 视觉变体 | `primary \| secondary \| outline \| ghost \| danger` | `secondary` |
-| `size` | 尺寸，高度依次为 56 / 64 / 72px | `md \| lg \| xl` | `md` |
-| `block` | 整宽 | `boolean` | `false` |
-| `disabled` | 禁用 | `boolean` | `false` |
-| `iconOnly` | 只显示图标，按尺寸收成方形触控目标 | `boolean` | `false` |
-| `type` | 原生类型 | `button \| submit \| reset` | `button` |
+| 属性       | 说明                               | 类型                                                 | 默认        |
+| ---------- | ---------------------------------- | ---------------------------------------------------- | ----------- |
+| `variant`  | 视觉变体                           | `primary \| secondary \| outline \| ghost \| danger` | `secondary` |
+| `size`     | 尺寸，高度依次为 56 / 64 / 72px    | `md \| lg \| xl`                                     | `md`        |
+| `block`    | 整宽                               | `boolean`                                            | `false`     |
+| `disabled` | 禁用                               | `boolean`                                            | `false`     |
+| `iconOnly` | 只显示图标，按尺寸收成方形触控目标 | `boolean`                                            | `false`     |
+| `type`     | 原生类型                           | `button \| submit \| reset`                          | `button`    |
 
 ### 插槽
 
-| 插槽 | 说明 |
-| --- | --- |
-| `default` | 按钮文字 |
-| `icon` | 文字前的图标 |
+| 插槽      | 说明         |
+| --------- | ------------ |
+| `default` | 按钮文字     |
+| `icon`    | 文字前的图标 |

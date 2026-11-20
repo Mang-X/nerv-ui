@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Avatar, AvatarFallback, AvatarImage } from '@ui-sdk/vue/avatar'
 import * as stylex from '@stylexjs/stylex'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { styles } from './Avatar.styles'
 import type { MobileAvatarProps } from './types'
 
@@ -17,9 +17,26 @@ const props = withDefaults(defineProps<MobileAvatarProps>(), {
   fallbackDelay: 0,
 })
 
-const rootSx = computed(() =>
-  stylex.props(styles.root, styles[props.shape], styles[props.size]),
+const attrs = useAttrs()
+const inputAttrs = computed(() => {
+  const out: Record<string, unknown> = {}
+  for (const [key, value] of Object.entries(attrs)) {
+    if (key === 'class' || key === 'style') continue
+    out[key] = value
+  }
+  return out
+})
+
+/**
+ * 只有加载成功的图片才有 alt；纯首字头像此前没有任何可访问名称——读屏读不出，
+ * 代理也认不出它属于谁。这里把 `alt` / `name` 提到根上作为整体名称。
+ */
+const ariaLabel = computed(
+  () =>
+    (attrs['aria-label'] as string | undefined) ?? props.alt ?? props.name ?? props.fallback ?? '',
 )
+
+const rootSx = computed(() => stylex.props(styles.root, styles[props.shape], styles[props.size]))
 const fallbackSx = computed(() =>
   stylex.props(
     styles.fallback,
@@ -45,7 +62,9 @@ function initialsOf(text: string): string {
 
 <template>
   <Avatar
-    v-bind="$attrs"
+    v-bind="inputAttrs"
+    role="img"
+    :aria-label="ariaLabel || undefined"
     :class="[rootSx.className, $attrs.class]"
     :style="[rootSx.style, $attrs.style]"
   >

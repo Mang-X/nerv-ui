@@ -20,11 +20,13 @@ const railCollapsed = ref(true)
 
 纵向导航容器，内置可折叠导轨；收起时隐藏文字但保留图标与无障碍名称。
 
+收起/展开是 ui-sdk 原语（`definePrimitive`）上一等状态：折叠按钮的 `aria-expanded`、根上的 `data-collapsed`，以及代理桥里的 `setCollapsed` 动作都由它写，组件本身不自己算。
+
 ## 示例
 
 <Demo block>
   <div style="display: flex; height: 340px; border: 1px solid var(--vp-c-divider); border-radius: 10px; overflow: hidden; width: 100%">
-    <NvSidebar v-model:collapsed="collapsed" width="220">
+    <NvSidebar v-model:collapsed="collapsed" width="220" label="示例平台导航">
       <NvSidebarHeader>NvUI 示例平台</NvSidebarHeader>
       <NvSidebarGroup label="项目">
         <NvSidebarItem label="项目看板" active>
@@ -70,11 +72,37 @@ const railCollapsed = ref(true)
 
 <Demo block>
   <div style="display: flex; height: 260px; border: 1px solid var(--vp-c-divider); border-radius: 10px; overflow: hidden; width: 100%">
-    <NvSidebar v-model:collapsed="railCollapsed" width="200" collapsed-width="56" collapsible>
+    <NvSidebar v-model:collapsed="railCollapsed" width="200" collapsed-width="56" collapsible label="控制台导航">
       <NvSidebarHeader>控制台</NvSidebarHeader>
-      <NvSidebarItem label="总览" active>总览</NvSidebarItem>
-      <NvSidebarItem label="通知" href="#/alerts">通知</NvSidebarItem>
-      <NvSidebarItem label="计划" href="#/scheduling">计划</NvSidebarItem>
+      <NvSidebarItem label="总览" active>
+        <template #icon>
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="8" height="8" rx="1.5" fill="currentColor" />
+            <rect x="13" y="3" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.55" />
+            <rect x="3" y="13" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.55" />
+            <rect x="13" y="13" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.3" />
+          </svg>
+        </template>
+        总览
+      </NvSidebarItem>
+      <NvSidebarItem label="通知" href="#/alerts">
+        <template #icon>
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9a6 6 0 0 1 12 0v5l2 3H4l2-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M10 17a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </template>
+        通知
+      </NvSidebarItem>
+      <NvSidebarItem label="计划" href="#/scheduling">
+        <template #icon>
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path d="M8 3v4M16 3v4M4 10h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </template>
+        计划
+      </NvSidebarItem>
     </NvSidebar>
     <div style="flex: 1; padding: 16px; font-size: 13px; color: var(--vp-c-text-2)">
       点击头部按钮切换窄轨；收起时条目仍保留 title 与 aria-label。
@@ -86,55 +114,69 @@ const railCollapsed = ref(true)
 
 ### NvSidebar 属性
 
-| 属性 | 说明 | 类型 | 默认 |
-| --- | --- | --- | --- |
-| `collapsed` | 受控收起状态（`v-model:collapsed`） | `boolean` | — |
-| `defaultCollapsed` | 非受控初始收起状态 | `boolean` | `false` |
-| `collapsible` | 显示内置折叠按钮并允许窄轨 | `boolean` | `true` |
-| `width` | 展开宽度，数字按 px 处理 | `number \| string` | `240` |
-| `collapsedWidth` | 收起宽度，数字按 px 处理 | `number \| string` | `64` |
-| `label` | 导航地标的无障碍名称 | `string` | `侧边栏` |
+| 属性               | 说明                                | 类型               | 默认     |
+| ------------------ | ----------------------------------- | ------------------ | -------- |
+| `collapsed`        | 受控收起状态（`v-model:collapsed`） | `boolean`          | —        |
+| `defaultCollapsed` | 非受控初始收起状态                  | `boolean`          | `false`  |
+| `collapsible`      | 显示内置折叠按钮并允许窄轨          | `boolean`          | `true`   |
+| `width`            | 展开宽度，数字按 px 处理            | `number \| string` | `240`    |
+| `collapsedWidth`   | 收起宽度，数字按 px 处理            | `number \| string` | `64`     |
+| `label`            | 导航地标的无障碍名称                | `string`           | `侧边栏` |
 
 ### NvSidebar 事件
 
-| 事件 | 说明 |
-| --- | --- |
+| 事件               | 说明                           |
+| ------------------ | ------------------------------ |
 | `update:collapsed` | 收起状态变化，参数为 `boolean` |
-| `collapsedChange` | 同上，语义化别名 |
+| `collapsedChange`  | 同上，语义化别名               |
+
+### 收起态由原语承担
+
+`NvSidebar` 底下是自建的 `sidebar` 原语（用 ui-sdk 的 `definePrimitive` 定义）。它的收益是可以脱离组件单独驱动——`@nerv-ui/desktop` 导出 `createSidebarController`：
+
+```ts
+import { createSidebarController } from '@nerv-ui/desktop'
+
+const controller = createSidebarController()
+// 作为 `controller` 属性传给 NvSidebar，之后：
+controller.setCollapsed(true)
+```
+
+代理桥里对应的动作是 `setCollapsed`，复合控件也可以整体收起而不必点按钮。
 
 ### NvSidebar 插槽
 
-| 插槽 | 说明 |
-| --- | --- |
+| 插槽      | 说明                 |
+| --------- | -------------------- |
 | `default` | 放置页头、分组与条目 |
 
 ### NvSidebarHeader 插槽
 
-| 插槽 | 说明 |
-| --- | --- |
+| 插槽      | 说明                 |
+| --------- | -------------------- |
 | `default` | 页头内容，收起时隐藏 |
-| `toggle` | 替换内置折叠图标 |
+| `toggle`  | 替换内置折叠图标     |
 
 ### NvSidebarGroup 属性 / 插槽
 
-| 属性 / 插槽 | 说明 | 类型 |
-| --- | --- | --- |
-| `label` | 分组小标题；`label` 插槽优先 | `string` |
-| `label`（插槽） | 自定义分组标题 | — |
-| `default`（插槽） | 分组内的条目 | — |
+| 属性 / 插槽       | 说明                         | 类型     |
+| ----------------- | ---------------------------- | -------- |
+| `label`           | 分组小标题；`label` 插槽优先 | `string` |
+| `label`（插槽）   | 自定义分组标题               | —        |
+| `default`（插槽） | 分组内的条目                 | —        |
 
 ### NvSidebarItem 属性
 
-| 属性 | 说明 | 类型 | 默认 |
-| --- | --- | --- | --- |
-| `active` | 标记为当前目的地 | `boolean` | `false` |
-| `disabled` | 禁用条目 | `boolean` | `false` |
-| `href` | 提供后渲染为链接 | `string` | — |
-| `label` | 条目文本；收起时同时作为 `aria-label` 与 `title` | `string` | — |
+| 属性       | 说明                                             | 类型      | 默认    |
+| ---------- | ------------------------------------------------ | --------- | ------- |
+| `active`   | 标记为当前目的地                                 | `boolean` | `false` |
+| `disabled` | 禁用条目                                         | `boolean` | `false` |
+| `href`     | 提供后渲染为链接                                 | `string`  | —       |
+| `label`    | 条目文本；收起时同时作为 `aria-label` 与 `title` | `string`  | —       |
 
 ### NvSidebarItem 插槽
 
-| 插槽 | 说明 |
-| --- | --- |
-| `icon` | 条目图标，收起时仍然显示 |
-| `default` | 条目文本，展开时显示 |
+| 插槽      | 说明                     |
+| --------- | ------------------------ |
+| `icon`    | 条目图标，收起时仍然显示 |
+| `default` | 条目文本，展开时显示     |

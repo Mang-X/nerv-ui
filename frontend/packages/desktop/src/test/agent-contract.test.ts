@@ -69,6 +69,24 @@ describe('代理桥：每个组件都要能被找到', () => {
   })
 })
 
+describe('代理桥：聚焦与导航由原语承担', () => {
+  it('timeline 只有一个 Tab 停点，落在进行中的那个事件上', async () => {
+    const wrapper = mount(samples.timeline.render(), { attachTo: document.body })
+    const [entry] = await snapshotOf(wrapper, 'timeline')
+    expect(entry, 'timeline 没进桥').toBeDefined()
+    // 纯展示：事件文本进得去，但没有可叫的动作。
+    expect(entry.text).toEqual(['记录创建', '开始处理'])
+    expect(entry.actions).toEqual([])
+
+    const items = wrapper.findAll('[role="listitem"]')
+    const current = items.find((item) => item.attributes('aria-current') === 'step')
+    expect(current?.attributes('tabindex')).toBe('0')
+    expect(items[0].attributes('tabindex')).toBe('-1')
+
+    wrapper.unmount()
+  })
+})
+
 describe('代理桥：动作能真的改变组件', () => {
   it('carousel 的 play 走组件 API', async () => {
     const wrapper = mount(samples.carousel.render(), { attachTo: document.body })
@@ -132,6 +150,28 @@ describe('代理桥：动作能真的改变组件', () => {
       steps: [{ ref: entry.ref, action: 'setOpen', args: [false] }],
     })
     expect(result.ok).toBe(true)
+
+    wrapper.unmount()
+  })
+
+  it('sidebar 的 setCollapsed 收起后窄轨条目仍然有名字', async () => {
+    const wrapper = mount(samples.sidebar.render(), { attachTo: document.body })
+    const [entry] = await snapshotOf(wrapper, 'sidebar')
+    expect(entry, 'sidebar 没进桥').toBeDefined()
+    expect(entry.actions).toEqual(expect.arrayContaining(['setCollapsed']))
+
+    const result = await agent.act({
+      steps: [{ ref: entry.ref, action: 'setCollapsed', args: [true] }],
+    })
+    expect(result.ok).toBe(true)
+    await wrapper.vm.$nextTick()
+
+    const nav = wrapper.find('nav[aria-label="主导航"]')
+    expect(nav.attributes('data-collapsed')).toBe('')
+    // 收起后文字节点被移除，名字得靠 aria-label 兜住——否则读屏与代理都找不到。
+    const item = wrapper.find('[data-slot="button"]')
+    expect(item.text()).toBe('')
+    expect(item.attributes('aria-label')).toBe('项目看板')
 
     wrapper.unmount()
   })

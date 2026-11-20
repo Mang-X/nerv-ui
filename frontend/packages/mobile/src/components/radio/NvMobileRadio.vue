@@ -19,7 +19,13 @@ const props = withDefaults(
 
 <template>
   <label :class="stylex.props(styles.row, props.disabled && styles.rowDisabled).className">
-    <Radio v-slot="{ state }" :value="value" :disabled="disabled" :class="stylex.props(styles.radio, focus.ring).className">
+    <Radio
+      v-slot="{ state }"
+      :value="value"
+      :disabled="disabled"
+      :aria-label="label"
+      :class="stylex.props(styles.radio, focus.ring).className"
+    >
       <RadioIndicator
         :class="stylex.props(styles.indicator, state.checked && styles.indicatorChecked).className"
       >
