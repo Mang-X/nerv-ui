@@ -38,6 +38,12 @@ jobs:
       - name: 安装依赖
         run: pnpm install --frozen-lockfile
 
+      # `@nerv-ui/ui` 自己的部分测试按包名自引用（`from '@nerv-ui/ui/…'`），
+      # `vue-tsc` 解析到的是 `exports` 指向的 `dist/*.d.ts`——`dist` 不入库，
+      # 所以类型检查前必须先构建一次，否则会报 TS2307「找不到模块」。
+      - name: 构建被类型检查与测试自引用消费的包
+        run: pnpm --filter @nerv-ui/ui --filter @nerv-ui/ui-mobile build
+
       # 全部包都是 workspace 私有包，`vue-tsc` 走 tsconfig 源码解析，不需要先 build。
       - name: 类型检查（10 个工作区项目）
         run: pnpm typecheck
