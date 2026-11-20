@@ -39,6 +39,7 @@ export default defineConfig({
                 { text: 'NvPopover 气泡卡片', link: '/desktop/popover' },
                 { text: 'NvTooltip 文字提示', link: '/desktop/tooltip' },
                 { text: 'NvTabs 标签页', link: '/desktop/tabs' },
+                { text: 'NvDropdownMenu 下拉菜单', link: '/desktop/dropdown-menu' },
               ],
             },
             {

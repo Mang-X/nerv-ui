@@ -40,6 +40,21 @@ export { default as NvTabs } from './components/tabs/NvTabs.vue'
 export { default as NvTabsList } from './components/tabs/NvTabsList.vue'
 export { default as NvTabsTrigger } from './components/tabs/NvTabsTrigger.vue'
 export { default as NvTabsPanel } from './components/tabs/NvTabsPanel.vue'
+
+export { default as NvDropdownMenu } from './components/dropdown-menu/NvDropdownMenu.vue'
+export { default as NvDropdownMenuTrigger } from './components/dropdown-menu/NvDropdownMenuTrigger.vue'
+export { default as NvDropdownMenuContent } from './components/dropdown-menu/NvDropdownMenuContent.vue'
+export { default as NvDropdownMenuItem } from './components/dropdown-menu/NvDropdownMenuItem.vue'
+export { default as NvDropdownMenuCheckboxItem } from './components/dropdown-menu/NvDropdownMenuCheckboxItem.vue'
+export { default as NvDropdownMenuRadioGroup } from './components/dropdown-menu/NvDropdownMenuRadioGroup.vue'
+export { default as NvDropdownMenuRadioItem } from './components/dropdown-menu/NvDropdownMenuRadioItem.vue'
+export { default as NvDropdownMenuGroup } from './components/dropdown-menu/NvDropdownMenuGroup.vue'
+export { default as NvDropdownMenuLabel } from './components/dropdown-menu/NvDropdownMenuLabel.vue'
+export { default as NvDropdownMenuSeparator } from './components/dropdown-menu/NvDropdownMenuSeparator.vue'
+export { default as NvDropdownMenuShortcut } from './components/dropdown-menu/NvDropdownMenuShortcut.vue'
+export { default as NvDropdownMenuSub } from './components/dropdown-menu/NvDropdownMenuSub.vue'
+export { default as NvDropdownMenuSubTrigger } from './components/dropdown-menu/NvDropdownMenuSubTrigger.vue'
+export { default as NvDropdownMenuSubContent } from './components/dropdown-menu/NvDropdownMenuSubContent.vue'
 export { default as NvDatePicker } from './components/date-picker/NvDatePicker.vue'
 export { default as NvDateRangePicker } from './components/date-picker/NvDateRangePicker.vue'
 export { default as NvTimePicker } from './components/time-picker/NvTimePicker.vue'
@@ -99,6 +114,16 @@ export type {
   NvTooltipTriggerProps,
 } from './components/tooltip/types'
 export type { NvTabsPanelProps, NvTabsProps, NvTabsTriggerProps } from './components/tabs/types'
+export type {
+  NvDropdownMenuCheckboxItemProps,
+  NvDropdownMenuContentProps,
+  NvDropdownMenuItemProps,
+  NvDropdownMenuProps,
+  NvDropdownMenuRadioGroupProps,
+  NvDropdownMenuRadioItemProps,
+  NvDropdownMenuSubContentProps,
+  NvDropdownMenuTriggerProps,
+} from './components/dropdown-menu/types'
 export type {
   NvDatePickerProps,
   NvDatePickerValue,

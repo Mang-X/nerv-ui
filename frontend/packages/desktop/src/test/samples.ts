@@ -11,6 +11,12 @@ import {
 } from '../components/alert-dialog'
 import NvAvatar from '../components/avatar/NvAvatar.vue'
 import NvButton from '../components/button/NvButton.vue'
+import {
+  NvDropdownMenu,
+  NvDropdownMenuContent,
+  NvDropdownMenuItem,
+  NvDropdownMenuTrigger,
+} from '../components/dropdown-menu'
 import { NvCarousel, NvCarouselItem } from '../components/carousel'
 import NvCheckbox from '../components/checkbox/NvCheckbox.vue'
 import {
@@ -305,6 +311,29 @@ export const samples: Record<string, Sample> = {
           default: () => [
             h(NvTooltipTrigger, { 'aria-label': '上一班次' }, () => '悬停查看'),
             h(NvTooltipContent, null, { default: () => '上一班次为 A 班' }),
+          ],
+        },
+      ),
+  },
+  'dropdown-menu': {
+    kind: 'menu',
+    render: () =>
+      h(
+        NvDropdownMenu,
+        { open: true },
+        {
+          default: () => [
+            h(NvDropdownMenuTrigger, null, () => h(NvButton, null, () => '操作')),
+            h(
+              NvDropdownMenuContent,
+              { keepMounted: true },
+              {
+                default: () => [
+                  h(NvDropdownMenuItem, { label: '编辑' }, () => '编辑'),
+                  h(NvDropdownMenuItem, { label: '复制' }, () => '复制'),
+                ],
+              },
+            ),
           ],
         },
       ),
